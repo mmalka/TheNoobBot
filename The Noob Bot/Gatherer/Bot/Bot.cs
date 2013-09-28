@@ -47,7 +47,9 @@ namespace Gatherer.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 13});
+                Fsm.AddState(new Pause {Priority = 100});
+                if (nManager.nManagerSetting.CurrentSetting.ActivateLootStatistics)
+                    Fsm.AddState(new LootStatistics {Priority = 99});
                 Fsm.AddState(new Resurrect {Priority = 12});
                 Fsm.AddState(new IsAttacked {Priority = 11});
                 Fsm.AddState(new Looting {Priority = 10});

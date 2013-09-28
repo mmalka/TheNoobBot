@@ -785,6 +785,10 @@
       <Text>Plündere Monster</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Essen / Trinken &amp;&amp; Prozent zum benutzen</Text>
       <Id>RegenerationManagementPanelName</Id>

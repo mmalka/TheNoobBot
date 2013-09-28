@@ -266,6 +266,7 @@ namespace nManager
             Loot_Chests,
             Harvest_Avoid_Players_Radius,
             Loot_Mobs,
+            ActivateLootStatistics,
             RegenerationManagementPanelName,
             on,
             Drink,

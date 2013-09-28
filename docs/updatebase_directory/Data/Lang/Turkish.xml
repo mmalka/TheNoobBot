@@ -785,6 +785,10 @@
       <Text>Mobları Yağmala</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Yiyecek İçecek Kullanımı İçin Yüzdeler</Text>
       <Id>RegenerationManagementPanelName</Id>

@@ -785,6 +785,10 @@
       <Text>Loot Mobs</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Regeneration Management - Food / Drink &amp;&amp; percentage to be used</Text>
       <Id>RegenerationManagementPanelName</Id>

@@ -554,11 +554,11 @@
       <Id>Security</Id>
     </Translation>
     <Translation>
-      <Text>НЕТ</Text>
+      <Text>Нет</Text>
       <Id>NO</Id>
     </Translation>
     <Translation>
-      <Text>ДА</Text>
+      <Text>Да</Text>
       <Id>YES</Id>
     </Translation>
     <Translation>
@@ -785,8 +785,12 @@
       <Text>Собирать добычу</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Активировать статистику сбора</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
-      <Text>Еда   Напитки   когда использовать</Text>
+      <Text>Еда Напитки когда использовать</Text>
       <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>

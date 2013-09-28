@@ -785,6 +785,10 @@
       <Text>Mobok lootolása</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Étel / Ital &amp;&amp; hány % nál használja</Text>
       <Id>RegenerationManagementPanelName</Id>

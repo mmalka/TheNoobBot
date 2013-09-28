@@ -786,6 +786,10 @@
       <Text>Looter les créatures</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Statistiques des loots</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Manger / Boire en dessous de X %</Text>
       <Id>RegenerationManagementPanelName</Id>

@@ -785,6 +785,10 @@
       <Text>몹 루팅</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>음식/음료의 사용되는 비율</Text>
       <Id>RegenerationManagementPanelName</Id>

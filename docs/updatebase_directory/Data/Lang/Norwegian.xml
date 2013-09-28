@@ -786,9 +786,13 @@
       <Id>Harvest_Avoid_Players_Radius</Id>
     </Translation>
     <Translation>
-      <Text>Loot_Mobs</Text>
+      <Text>Loot Mobs</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Mat___Drikke____prosentgrense_for_å_bruke</Text>
       <Id>RegenerationManagementPanelName</Id>

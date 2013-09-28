@@ -125,6 +125,8 @@ namespace nManager.Helpful.Forms
             this.EmailOfTheBattleNetAccount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX40 = new DevComponents.DotNetBar.LabelX();
             this.LootingFarmingManagementPanelName = new DevComponents.DotNetBar.ExpandablePanel();
+            this.ActivateLootStatisticsLabel = new DevComponents.DotNetBar.LabelX();
+            this.ActivateLootStatistics = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.button1 = new System.Windows.Forms.Button();
             this.DontHarvestTheFollowingObjects = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.AutoConfirmOnBoPItems = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -1853,6 +1855,8 @@ namespace nManager.Helpful.Forms
             // 
             this.LootingFarmingManagementPanelName.CanvasColor = System.Drawing.SystemColors.Control;
             this.LootingFarmingManagementPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatisticsLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatistics);
             this.LootingFarmingManagementPanelName.Controls.Add(this.button1);
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjects);
             this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItems);
@@ -1901,7 +1905,7 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateMonsterLooting);
             this.LootingFarmingManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
             this.LootingFarmingManagementPanelName.Expanded = false;
-            this.LootingFarmingManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 71, 543, 588);
+            this.LootingFarmingManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 75, 521, 588);
             this.LootingFarmingManagementPanelName.ExpandOnTitleClick = true;
             this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 75);
             this.LootingFarmingManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -1922,6 +1926,35 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.TitleStyle.GradientAngle = 90;
             this.LootingFarmingManagementPanelName.TitleText = "Looting/Farming Management";
             // 
+            // ActivateLootStatisticsLabel
+            // 
+            this.ActivateLootStatisticsLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.ActivateLootStatisticsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActivateLootStatisticsLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateLootStatisticsLabel.Location = new System.Drawing.Point(4, 57);
+            this.ActivateLootStatisticsLabel.Name = "ActivateLootStatisticsLabel";
+            this.ActivateLootStatisticsLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateLootStatisticsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.ActivateLootStatisticsLabel.TabIndex = 66;
+            this.ActivateLootStatisticsLabel.Text = "Activate Loot Statistics";
+            // 
+            // ActivateLootStatistics
+            // 
+            this.ActivateLootStatistics.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.ActivateLootStatistics.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActivateLootStatistics.ForeColor = System.Drawing.Color.Black;
+            this.ActivateLootStatistics.Location = new System.Drawing.Point(163, 57);
+            this.ActivateLootStatistics.Name = "ActivateLootStatistics";
+            this.ActivateLootStatistics.Size = new System.Drawing.Size(63, 21);
+            this.ActivateLootStatistics.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ActivateLootStatistics.TabIndex = 65;
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
@@ -1932,7 +1965,7 @@ namespace nManager.Helpful.Forms
             this.button1.TabIndex = 64;
             this.button1.Text = "?";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.DontHaverstObjectsTutorial_Click);
             // 
             // DontHarvestTheFollowingObjects
             // 
@@ -1974,7 +2007,7 @@ namespace nManager.Helpful.Forms
             this.AutoConfirmOnBoPItemsLabel.ForeColor = System.Drawing.Color.Black;
             this.AutoConfirmOnBoPItemsLabel.Location = new System.Drawing.Point(289, 29);
             this.AutoConfirmOnBoPItemsLabel.Name = "AutoConfirmOnBoPItemsLabel";
-            this.AutoConfirmOnBoPItemsLabel.Size = new System.Drawing.Size(154, 22);
+            this.AutoConfirmOnBoPItemsLabel.Size = new System.Drawing.Size(161, 22);
             this.AutoConfirmOnBoPItemsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.AutoConfirmOnBoPItemsLabel.TabIndex = 62;
             this.AutoConfirmOnBoPItemsLabel.Text = "Auto Confirm on BoP Items";
@@ -2262,7 +2295,7 @@ namespace nManager.Helpful.Forms
             this.labelX61.ForeColor = System.Drawing.Color.Black;
             this.labelX61.Location = new System.Drawing.Point(290, 112);
             this.labelX61.Name = "labelX61";
-            this.labelX61.Size = new System.Drawing.Size(97, 22);
+            this.labelX61.Size = new System.Drawing.Size(160, 22);
             this.labelX61.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX61.TabIndex = 41;
             this.labelX61.Text = "Smelting";
@@ -2343,7 +2376,7 @@ namespace nManager.Helpful.Forms
             this.labelX23.ForeColor = System.Drawing.Color.Black;
             this.labelX23.Location = new System.Drawing.Point(289, 84);
             this.labelX23.Name = "labelX23";
-            this.labelX23.Size = new System.Drawing.Size(33, 22);
+            this.labelX23.Size = new System.Drawing.Size(161, 22);
             this.labelX23.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX23.TabIndex = 32;
             this.labelX23.Text = "Ninja";
@@ -2523,9 +2556,9 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX16.ForeColor = System.Drawing.Color.Black;
-            this.labelX16.Location = new System.Drawing.Point(4, 57);
+            this.labelX16.Location = new System.Drawing.Point(290, 57);
             this.labelX16.Name = "labelX16";
-            this.labelX16.Size = new System.Drawing.Size(154, 22);
+            this.labelX16.Size = new System.Drawing.Size(160, 22);
             this.labelX16.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX16.TabIndex = 20;
             this.labelX16.Text = "Loot Chests";
@@ -2538,7 +2571,7 @@ namespace nManager.Helpful.Forms
             // 
             this.ActivateChestLooting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateChestLooting.ForeColor = System.Drawing.Color.Black;
-            this.ActivateChestLooting.Location = new System.Drawing.Point(163, 57);
+            this.ActivateChestLooting.Location = new System.Drawing.Point(455, 57);
             this.ActivateChestLooting.Name = "ActivateChestLooting";
             this.ActivateChestLooting.Size = new System.Drawing.Size(63, 21);
             this.ActivateChestLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -3772,5 +3805,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton BecomeApprenticeOfSecondarySkillsWhileQuesting;
         private DevComponents.DotNetBar.LabelX BecomeApprenticeIfNeededByProductLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton BecomeApprenticeIfNeededByProduct;
+        private DevComponents.DotNetBar.LabelX ActivateLootStatisticsLabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton ActivateLootStatistics;
     }
 }

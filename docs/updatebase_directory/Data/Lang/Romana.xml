@@ -785,6 +785,10 @@
       <Text>Looteaza Mobi</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Procentaj cand foloseste Mancare / Bautura</Text>
       <Id>RegenerationManagementPanelName</Id>

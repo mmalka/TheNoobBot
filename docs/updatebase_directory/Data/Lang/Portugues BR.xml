@@ -785,6 +785,10 @@
       <Text>Saquear mobs</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>Comida / bebida &amp;&amp; porcentagem para ser usada</Text>
       <Id>RegenerationManagementPanelName</Id>

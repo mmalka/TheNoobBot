@@ -193,6 +193,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX12);
             labelX18.Text = Translate.Get(Translate.Id.Loot_Mobs);
             SetToolTypeIfNeeded(labelX18);
+            ActivateLootStatisticsLabel.Text = Translate.Get(Translate.Id.ActivateLootStatistics);
+            SetToolTypeIfNeeded(ActivateLootStatisticsLabel);
             RegenerationManagementPanelName.TitleText = Translate.Get(Translate.Id.RegenerationManagementPanelName);
             SetToolTypeIfNeeded(RegenerationManagementPanelName);
             labelX10.Text = Translate.Get(Translate.Id.on);
@@ -338,6 +340,8 @@ namespace nManager.Helpful.Forms
             ActivateChestLooting.OnText = onText;
             ActivateMonsterLooting.OffText = offText;
             ActivateMonsterLooting.OnText = onText;
+            ActivateLootStatistics.OffText = offText;
+            ActivateLootStatistics.OnText = onText;
             DoRegenManaIfLow.OffText = offText;
             DoRegenManaIfLow.OnText = onText;
             IgnoreFightIfMounted.OffText = offText;
@@ -391,37 +395,32 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.FoodName = FoodName.Text;
                 nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent = EatFoodWhenHealthIsUnderXPercent.Value;
                 nManagerSetting.CurrentSetting.BeverageName = BeverageName.Text;
-                nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent =
-                    DrinkBeverageWhenManaIsUnderXPercent.Value;
+                nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent = DrinkBeverageWhenManaIsUnderXPercent.Value;
                 nManagerSetting.CurrentSetting.DoRegenManaIfLow = DoRegenManaIfLow.Value;
                 nManagerSetting.CurrentSetting.ActivateMonsterLooting = ActivateMonsterLooting.Value;
+                nManagerSetting.CurrentSetting.ActivateLootStatistics = ActivateLootStatistics.Value;
                 nManagerSetting.CurrentSetting.ActivateChestLooting = ActivateChestLooting.Value;
                 nManagerSetting.CurrentSetting.ActivateBeastSkinning = ActivateBeastSkinning.Value;
                 nManagerSetting.CurrentSetting.BeastNinjaSkinning = BeastNinjaSkinning.Value;
                 nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = ActivateVeinsHarvesting.Value;
                 nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = ActivateHerbsHarvesting.Value;
                 nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius = DontHarvestIfPlayerNearRadius.Value;
-                nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange =
-                    DontHarvestIfMoreThanXUnitInAggroRange.Value;
+                nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange = DontHarvestIfMoreThanXUnitInAggroRange.Value;
                 nManagerSetting.CurrentSetting.GatheringSearchRadius = GatheringSearchRadius.Value;
-                nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements =
-                    HarvestDuringLongDistanceMovements.Value;
+                nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements = HarvestDuringLongDistanceMovements.Value;
                 nManagerSetting.CurrentSetting.ActivateAutoSmelting = ActivateAutoSmelting.Value;
                 nManagerSetting.CurrentSetting.ActivateAutoProspecting = ActivateAutoProspecting.Value;
-                nManagerSetting.CurrentSetting.TimeBetweenEachProspectingAttempt =
-                    TimeBetweenEachProspectingAttempt.Value;
+                nManagerSetting.CurrentSetting.TimeBetweenEachProspectingAttempt = TimeBetweenEachProspectingAttempt.Value;
                 nManagerSetting.CurrentSetting.OnlyUseProspectingInTown = OnlyUseProspectingInTown.Value;
                 nManagerSetting.CurrentSetting.MineralsToProspect.Clear();
-                nManagerSetting.CurrentSetting.MineralsToProspect.AddRange(
-                    Others.TextToArrayByLine(MineralsToProspect.Text));
+                nManagerSetting.CurrentSetting.MineralsToProspect.AddRange(Others.TextToArrayByLine(MineralsToProspect.Text));
                 nManagerSetting.CurrentSetting.ActivateAutoMilling = ActivateAutoMilling.Value;
                 nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt = TimeBetweenEachMillingAttempt.Value;
                 nManagerSetting.CurrentSetting.OnlyUseMillingInTown = OnlyUseMillingInTown.Value;
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Clear();
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.AddRange(Others.TextToArrayByLine(HerbsToBeMilled.Text));
                 nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Clear();
-                nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.AddRange(
-                    Others.TextToArrayByLine(DontHarvestTheFollowingObjects.Text));
+                nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.AddRange(Others.TextToArrayByLine(DontHarvestTheFollowingObjects.Text));
                 nManagerSetting.CurrentSetting.MakeStackOfElementalsItems = MakeStackOfElementalsItems.Value;
                 nManagerSetting.CurrentSetting.ActivateReloggerFeature = ActivateReloggerFeature.Value;
                 nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount = EmailOfTheBattleNetAccount.Text;
@@ -437,11 +436,9 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.SellBlue = SellBlue.Checked;
                 nManagerSetting.CurrentSetting.SellPurple = SellPurple.Checked;
                 nManagerSetting.CurrentSetting.DontSellTheseItems.Clear();
-                nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(
-                    Others.TextToArrayByLine(DontSellTheseItems.Text));
+                nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(Others.TextToArrayByLine(DontSellTheseItems.Text));
                 nManagerSetting.CurrentSetting.ForceToSellTheseItems.Clear();
-                nManagerSetting.CurrentSetting.ForceToSellTheseItems.AddRange(
-                    Others.TextToArrayByLine(ForceToSellTheseItems.Text));
+                nManagerSetting.CurrentSetting.ForceToSellTheseItems.AddRange(Others.TextToArrayByLine(ForceToSellTheseItems.Text));
                 nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature = ActivateAutoMaillingFeature.Value;
                 nManagerSetting.CurrentSetting.MaillingFeatureRecipient = MaillingFeatureRecipient.Text;
                 nManagerSetting.CurrentSetting.MaillingFeatureSubject = MaillingFeatureSubject.Text;
@@ -451,15 +448,12 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.MailBlue = MailBlue.Checked;
                 nManagerSetting.CurrentSetting.MailPurple = MailPurple.Checked;
                 nManagerSetting.CurrentSetting.ForceToMailTheseItems.Clear();
-                nManagerSetting.CurrentSetting.ForceToMailTheseItems.AddRange(
-                    Others.TextToArrayByLine(ForceToMailTheseItems.Text));
+                nManagerSetting.CurrentSetting.ForceToMailTheseItems.AddRange(Others.TextToArrayByLine(ForceToMailTheseItems.Text));
                 nManagerSetting.CurrentSetting.DontMailTheseItems.Clear();
-                nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(
-                    Others.TextToArrayByLine(DontMailTheseItems.Text));
+                nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(Others.TextToArrayByLine(DontMailTheseItems.Text));
                 nManagerSetting.CurrentSetting.StopTNBIfBagAreFull = StopTNBIfBagAreFull.Value;
                 nManagerSetting.CurrentSetting.StopTNBIfHonorPointsLimitReached = StopTNBIfHonorPointsLimitReached.Value;
-                nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported =
-                    StopTNBIfPlayerHaveBeenTeleported.Value;
+                nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported = StopTNBIfPlayerHaveBeenTeleported.Value;
                 nManagerSetting.CurrentSetting.StopTNBAfterXLevelup = StopTNBAfterXLevelup.Value;
                 nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers = StopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.StopTNBAfterXStucks = StopTNBAfterXStucks.Value;
@@ -472,16 +466,14 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs = MaxDistanceToGoToMailboxesOrNPCs.Value;
                 nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems = AutoConfirmOnBoPItems.Value;
                 nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature = ActivateAlwaysOnTopFeature.Value;
-                nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent =
-                    RepairWhenDurabilityIsUnderPercent.Value;
+                nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent = RepairWhenDurabilityIsUnderPercent.Value;
                 nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft = SellItemsWhenLessThanXSlotLeft.Value;
                 nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft = SendMailWhenLessThanXSlotLeft.Value;
                 nManagerSetting.CurrentSetting.UseHearthstone = UseHearthstone.Value;
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXLevelup = ActiveStopTNBAfterXLevelup.Value;
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXMinutes = ActiveStopTNBAfterXMinutes.Value;
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXStucks = ActiveStopTNBAfterXStucks.Value;
-                nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers =
-                    ActiveStopTNBIfReceivedAtMostXWhispers.Value;
+                nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
                 nManagerSetting.CurrentSetting.Save();
@@ -521,6 +513,7 @@ namespace nManager.Helpful.Forms
                 DrinkBeverageWhenManaIsUnderXPercent.Value = managerSetting.DrinkBeverageWhenManaIsUnderXPercent;
                 DoRegenManaIfLow.Value = managerSetting.DoRegenManaIfLow;
                 ActivateMonsterLooting.Value = managerSetting.ActivateMonsterLooting;
+                ActivateLootStatistics.Value = managerSetting.ActivateLootStatistics;
                 ActivateChestLooting.Value = managerSetting.ActivateChestLooting;
                 ActivateBeastSkinning.Value = managerSetting.ActivateBeastSkinning;
                 BeastNinjaSkinning.Value = managerSetting.BeastNinjaSkinning;
@@ -539,8 +532,7 @@ namespace nManager.Helpful.Forms
                 OnlyUseMillingInTown.Value = managerSetting.OnlyUseMillingInTown;
                 TimeBetweenEachMillingAttempt.Value = managerSetting.TimeBetweenEachMillingAttempt;
                 HerbsToBeMilled.Text = Others.ArrayToTextByLine(managerSetting.HerbsToBeMilled.ToArray());
-                DontHarvestTheFollowingObjects.Text =
-                    Others.ArrayToTextByLine(managerSetting.DontHarvestTheFollowingObjects.ToArray());
+                DontHarvestTheFollowingObjects.Text = Others.ArrayToTextByLine(managerSetting.DontHarvestTheFollowingObjects.ToArray());
                 MakeStackOfElementalsItems.Value = managerSetting.MakeStackOfElementalsItems;
                 ActivateReloggerFeature.Value = managerSetting.ActivateReloggerFeature;
                 EmailOfTheBattleNetAccount.Text = managerSetting.EmailOfTheBattleNetAccount;
@@ -666,9 +658,9 @@ namespace nManager.Helpful.Forms
             Wow.Helpers.CombatClass.ResetConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" + CombatClass.Text);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DontHaverstObjectsTutorial_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612&p=20876");
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612");
         }
 
         private void HealerClassSettingsButton_Click(object sender, EventArgs e)

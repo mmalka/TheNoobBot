@@ -785,6 +785,10 @@
       <Text>拾取小怪</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
+	<Translation>
+		<Text>Activate Loot Statistics</Text>
+		<Id>ActivateLootStatistics</Id>
+	</Translation>
     <Translation>
       <Text>食物 / 饮料 &amp;&amp; 使用百分百</Text>
       <Id>RegenerationManagementPanelName</Id>

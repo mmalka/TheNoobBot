@@ -211,6 +211,7 @@ namespace nManager
         public int DrinkBeverageWhenManaIsUnderXPercent = 35;
         public bool DoRegenManaIfLow;
         public bool ActivateMonsterLooting = true;
+        public bool ActivateLootStatistics = true;
         public bool ActivateChestLooting;
         public bool ActivateBeastSkinning;
         public bool BeastNinjaSkinning;
