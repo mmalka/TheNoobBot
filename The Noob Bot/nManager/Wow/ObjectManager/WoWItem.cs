@@ -96,6 +96,11 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public ulong Owner
+        {
+            get { return GetDescriptor<ulong>(GetBaseAddress, (uint) Descriptors.ItemFields.Owner); }
+        }
+
         public T GetDescriptor<T>(Descriptors.ItemFields field) where T : struct
         {
             try

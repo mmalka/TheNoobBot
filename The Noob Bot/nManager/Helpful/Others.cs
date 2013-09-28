@@ -1018,7 +1018,6 @@ namespace nManager.Helpful
         }
 
         private static readonly Dictionary<int, int> ItemStock = new Dictionary<int, int>();
-        public static List<WoWObject> TempList = new List<WoWObject>();
         private static int _oldEventFireCount = -1; // the first call call it with param (0)
 
         public static void CheckInventoryForLatestLoot(int eventFireCount)
@@ -1028,40 +1027,30 @@ namespace nManager.Helpful
                 if (_oldEventFireCount == eventFireCount)
                     return; // When looting multiples items, fire multiples times, ignores duplicate.
                 _oldEventFireCount = eventFireCount;
-                while (!ObjectManager.OthersTempListBuilded)
-                    Thread.Sleep(50);
                 Dictionary<int, int> newLoots = new Dictionary<int, int>();
-                bool firstCheck = true;
-                foreach (WoWObject currObj in TempList)
+                bool firstCheck = false;
+                foreach (WoWItem currObj in ObjectManager.GetObjectWoWItem())
                 {
-                    WoWObject obj = currObj;
-                    if (obj.Type != WoWObjectType.Item)
-                        continue;
+                    WoWItem obj = currObj;
                     if (!obj.IsValid)
                         continue;
                     int localEntry = obj.Entry;
                     if (localEntry < 1)
-                    {
-                        localEntry = obj.Entry; // Gives a seconds chance.
-                        if (localEntry < 1)
-                        {
-                            localEntry = obj.Entry; // Gives a last chance.
-                            if (localEntry < 1)
-                                continue;
-                        }
-                    }
-                    if (obj.ItemOwner != ObjectManager.Me.Guid)
                         continue;
+                    ulong localOwner = obj.Owner;
+                    if (localOwner != ObjectManager.Me.Guid)
+                        continue; // I think WoWItem are ONLY ours items, may review this later.
                     if (newLoots.ContainsKey(localEntry))
                         continue; // ObjectManager return an independant baseAdress for each stack, we just want ONE ItemEntry, not one per stack.
                     int count = ItemsManager.GetItemCount(localEntry);
+                    if (ItemStock.Count == 0)
+                        firstCheck = true; // Set to true if ItemStock was empty on the first row, do not 'else set to false' or it will break the concept.
                     if (!ItemStock.ContainsKey(localEntry))
                     {
                         newLoots.Add(localEntry, count);
                         ItemStock.Add(localEntry, count);
                         continue;
                     }
-                    firstCheck = false;
                     if (ItemStock[localEntry] == count)
                         continue;
                     if (ItemStock[localEntry] < count)
@@ -1076,9 +1065,6 @@ namespace nManager.Helpful
                         ItemStock[localEntry] = count;
                     }
                 }
-                TempList.Clear();
-                ObjectManager.OthersTempListBuilded = false;
-
                 if (!firstCheck)
                 {
                     foreach (KeyValuePair<int, int> pair in newLoots)
@@ -1090,7 +1076,7 @@ namespace nManager.Helpful
             }
             catch (Exception e)
             {
-                Logging.WriteError("LootStatistics Internal Foreach: " + e);
+                Logging.WriteError("CheckInventoryForLatestLoot(int eventFireCount): " + e);
             }
         }
     }

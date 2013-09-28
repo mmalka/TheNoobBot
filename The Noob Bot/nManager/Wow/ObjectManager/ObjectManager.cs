@@ -99,8 +99,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static bool OthersTempListBuilded = false;
-
         internal static void Pulse()
         {
             try
@@ -133,21 +131,12 @@ namespace nManager.Wow.ObjectManager
                     {
                         ObjectDictionary.Remove(guid);
                     }
-                    if (OthersTempListBuilded) return;
-                    Thread thread = new Thread(o => BuildTempList(ObjectList)) {Name = "TempList building thread"};
-                    thread.Start();
                 }
             }
             catch (Exception e)
             {
                 Logging.WriteError("ObjectManager > Pulse(): " + e);
             }
-        }
-
-        internal static void BuildTempList(List<WoWObject> localList)
-        {
-            Others.TempList.AddRange(localList);
-            OthersTempListBuilded = true;
         }
 
         internal static void ReadObjectList()
