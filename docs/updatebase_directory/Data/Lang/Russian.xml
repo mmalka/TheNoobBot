@@ -986,11 +986,11 @@
       <Id>RunningWoWBuildDot</Id>
     </Translation>	
     <Translation>
-      <Text>Пожалуйста скачайте старую версию WoW на нашем форуме в разделе "News and release"</Text>
+      <Text>Пожалуйста скачайте старую версию WoW на нашем форуме в разделе "News and release". (Обычно обновляется US realms преждем чем RU realms)</Text>
       <Id>PleaseDownloadOlder</Id>
     </Translation>
     <Translation>
-      <Text>Пожалуйста, скачайте новую версию TheNoobBot на нашем форуме "News and release". </Text>
+      <Text>Пожалуйста, скачайте новую версию TheNoobBot на нашем форуме "News and release". (Возможно, обновление еще недоступно, и вам придется подождать)</Text>
       <Id>PleaseDownloadNewer</Id>
     </Translation>
     <Translation>
