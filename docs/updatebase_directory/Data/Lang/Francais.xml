@@ -1075,7 +1075,7 @@
       <Id>After</Id>
     </Translation>
     <Translation>
-      <Text>Add</Text>
+      <Text>Ajouter</Text>
       <Id>Add</Id>
     </Translation>
     <Translation>
@@ -1091,15 +1091,15 @@
       <Id>Nodes_List_Manager</Id>
     </Translation>
     <Translation>
-      <Text>(Ore)</Text>
+      <Text>(Minerai)</Text>
       <Id>Smelting_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text>(Herbe)</Text>
+      <Text>(Plante)</Text>
       <Id>Milling_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text>(Ore)</Text>
+      <Text>(Minerai)</Text>
       <Id>Prospecting_Product_Description</Id>
     </Translation>
     <Translation>
@@ -1107,7 +1107,7 @@
       <Id>Profiles_Converters_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text>(EXP, Dépeçage, Réputation et loots)</Text>
+      <Text>(Exp, Dépeçage, Réputation et loots)</Text>
       <Id>Grinder_Product_Description</Id>
     </Translation>
     <Translation>

@@ -946,39 +946,39 @@
       <Id>This_Programme_is_for_The_Game</Id>
     </Translation>
     <Translation>
-      <Text>This version of the bot is not compatible with this version of World of Warcraft</Text>
+      <Text>Эта версия бота не совместима с версией  World of Warcraft</Text>
       <Id>UpdateRequiredCasesTitle</Id>
     </Translation>
     <Translation>
-      <Text>Please use the right version of the bot or wait for an update if not yet available.</Text>
+      <Text>Пожалуйста используйте нужную версию бота или подождите обновление</Text>
       <Id>UpdateRequiredCases</Id>
     </Translation>
     <Translation>
-      <Text>This version of TheNoobBot is too advanced for this version of WoW</Text>
+      <Text>Версия бота новее версии клиента WoW</Text>
       <Id>UpdateRequireOlderTheNoobBotTitle</Id>
     </Translation>
     <Translation>
-      <Text>This version is for WoW Build </Text>
+      <Text>Эта версия оптимальна для WoW </Text>
       <Id>UpdateRequireOlderTheNoobBot</Id>
     </Translation>
     <Translation>
-      <Text>This version of WoW is too advanced for this version of TheNoobBot</Text>
+      <Text>Версия бота новее версии клиента WoW</Text>
       <Id>UpdateRequireNewerTheNoobBotTitle</Id>
     </Translation>
     <Translation>
-      <Text>This version is for WoW Build </Text>
+      <Text>Эта версия оптимальна для WoW </Text>
       <Id>UpdateRequireNewerTheNoobBot</Id>
     </Translation>
     <Translation>
-      <Text>Case 1: You may have a version of TheNoobBot too recent for this WoW version</Text>
+      <Text>Случай 1: Ваша версия TNB новее версии WoW</Text>
       <Id>UpdateRequiredCase1</Id>
     </Translation>
     <Translation>
-      <Text>Case 2: You may have a version of WoW too recent for this TheNoobBot version</Text>
+      <Text>Случай 2: Ваша версия WoW слишкам новая для используемой версии TNB</Text>
       <Id>UpdateRequiredCase2</Id>
     </Translation>
     <Translation>
-      <Text> but you are running WoW Build </Text>
+      <Text> но у вас запущена WoW сборки</Text>
       <Id>RunningWoWBuild</Id>
     </Translation>	
     <Translation>
@@ -986,11 +986,11 @@
       <Id>RunningWoWBuildDot</Id>
     </Translation>	
     <Translation>
-      <Text>Please download an older version of TheNoobBot on our forum "News and release". (WoW usually update US realms before EU/RU)</Text>
+      <Text>Пожалуйста скачайте старую версию WoW на нашем форуме в разделе "News and release"</Text>
       <Id>PleaseDownloadOlder</Id>
     </Translation>
     <Translation>
-      <Text>Please download a newer version of TheNoobBot on our forum "News and release". (You may wait until an update is available)</Text>
+      <Text>Пожалуйста, скачайте новую версию TheNoobBot на нашем форуме "News and release". </Text>
       <Id>PleaseDownloadNewer</Id>
     </Translation>
     <Translation>
