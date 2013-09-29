@@ -126,20 +126,16 @@
       <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
-      <Text>The game has an suspect activity, it is recommended to closing the game and tnb for your account security. Click on "Yes" to close tnb</Text>
-      <Id>The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb</Id>
-    </Translation>
-    <Translation>
       <Text>Suspect Activity</Text>
       <Id>Suspect_Activity</Id>
     </Translation>
     <Translation>
       <Text>TheNoobBot's server seems to be down, you may try to disable your Anti-virus or Firewall and try again. Note: This version may have been blocked from our servers due to a suspect game activity or crack attempt, you can check if a new version is available on our Website or check our forum in News cat</Text>
-      <Id>TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat</Id>
+      <Id>TheNoobBotServerIsOffline</Id>
     </Translation>
     <Translation>
-      <Text>The game is in your taskbar, this program don't works if you restore The Game window</Text>
-      <Id>The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window</Id>
+      <Text>You have reduced WoW to your TaskBar, but TheNoobBot requires it to be at least in background of your others applications.</Text>
+      <Id>WoWIsReducedError</Id>
     </Translation>
     <Translation>
       <Text>Information</Text>
@@ -462,7 +458,7 @@
       <Id>Settings_Fisherbot</Id>
     </Translation>
     <Translation>
-      <Text>Please select an profile or disable School Fish option</Text>
+      <Text>Please select a profile or disable the School Fish option</Text>
       <Id>Please_select_an_profile_or_disable_School_Fish_option</Id>
     </Translation>
     <Translation>
