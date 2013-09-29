@@ -100,11 +100,9 @@ namespace nManager
             LatestUpdateDescription,
             ConfirmUpdate,
             LatestUpdateTitle,
-            The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb,
             Suspect_Activity,
-            TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat
-            ,
-            The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window,
+            TheNoobBotServerIsOffline,
+            WoWIsReducedError,
             Information,
             Trial_version,
             UserName,
@@ -411,8 +409,8 @@ namespace nManager
             GrinderTipOffMessage,
             GathererTipOffTitle,
             GathererTipOffMessage,
-            QuesterTipOffMessage,
             QuesterTipOffTitle,
+            QuesterTipOffMessage,
             ArchaeologistTipOffTitle,
             ArchaeologistTipOffMessage,
             TipOffLootingOn,
@@ -486,20 +484,20 @@ namespace nManager
         [Serializable]
         public class Translation
         {
-            private string _text = "";
-
-            public string Text
-            {
-                get { return _text; }
-                set { _text = value; }
-            }
-
             private Id _id = Id.none;
 
             public Id Id
             {
                 get { return _id; }
                 set { _id = value; }
+            }
+
+            private string _text = "";
+
+            public string Text
+            {
+                get { return _text; }
+                set { _text = value; }
             }
         }
     }

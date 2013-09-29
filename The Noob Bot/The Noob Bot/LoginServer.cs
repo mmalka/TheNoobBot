@@ -598,11 +598,7 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("LoginServer > CheckServerIsOnlineThread(): " + e);
             }
-            MessageBox.Show(
-                Translate.Get(
-                    Translate.Id.
-                              TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat),
-                Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(Translate.Get(Translate.Id.TheNoobBotServerIsOffline),Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             EndInformation();
         }
 
