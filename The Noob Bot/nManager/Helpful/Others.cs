@@ -1022,62 +1022,67 @@ namespace nManager.Helpful
 
         public static void CheckInventoryForLatestLoot(int eventFireCount)
         {
-            try // to be removed if no fails
+            try
             {
                 if (_oldEventFireCount == eventFireCount)
-                    return; // When looting multiples items, fire multiples times, ignores duplicate.
+                    return;
                 _oldEventFireCount = eventFireCount;
                 Dictionary<int, int> newLoots = new Dictionary<int, int>();
-                bool firstCheck = false;
-                foreach (WoWItem currObj in ObjectManager.GetObjectWoWItem())
+                bool firstCheck = ItemStock.Count == 0;
+                List<WoWItem> objectWoWItems = ObjectManager.GetObjectWoWItem();
+                foreach (WoWItem wowItem in objectWoWItems)
                 {
-                    WoWItem obj = currObj;
-                    if (!obj.IsValid)
+                    WoWItem item = wowItem;
+                    if (!item.IsValid || item.Entry < 1 || newLoots.ContainsKey(item.Entry))
                         continue;
-                    int localEntry = obj.Entry;
-                    if (localEntry < 1)
+                    if (EquippedItems.IsEquippedItemByGuid(item.Guid))
                         continue;
-                    ulong localOwner = obj.Owner;
-                    if (localOwner != ObjectManager.Me.Guid)
-                        continue; // I think WoWItem are ONLY ours items, may review this later.
-                    if (newLoots.ContainsKey(localEntry))
-                        continue; // ObjectManager return an independant baseAdress for each stack, we just want ONE ItemEntry, not one per stack.
-                    ulong guid = obj.Guid;
-                    if (EquippedItems.IsEquippedItemByGuid(guid))
-                        continue;
-                    int count = ItemsManager.GetItemCount(localEntry);
+                    int count = ItemsManager.GetItemCount(item.Entry);
                     if (count == 0)
                         continue;
-                    if (ItemStock.Count == 0)
-                        firstCheck = true; // Set to true if ItemStock was empty on the first row, do not 'else set to false' or it will break the concept.
-                    if (!ItemStock.ContainsKey(localEntry))
+                    if (!ItemStock.ContainsKey(item.Entry))
                     {
-                        newLoots.Add(localEntry, count);
-                        ItemStock.Add(localEntry, count);
+                        newLoots.Add(item.Entry, count);
+                        ItemStock.Add(item.Entry, count);
                         continue;
                     }
-                    if (ItemStock[localEntry] == count)
+                    if (ItemStock[item.Entry] == count)
                         continue;
-                    if (ItemStock[localEntry] < count)
+                    if (ItemStock[item.Entry] < count)
                     {
-                        newLoots.Add(localEntry, count - ItemStock[localEntry]);
-                        ItemStock[localEntry] = count;
+                        newLoots.Add(item.Entry, count - ItemStock[item.Entry]);
+                        ItemStock[item.Entry] = count;
                         continue;
                     }
-                    if (ItemStock[localEntry] > count)
+                    if (ItemStock[item.Entry] > count)
                     {
-                        // we lost some items, let's ignore this for now and just replace our internal stock
-                        ItemStock[localEntry] = count;
+                        // Update our stock if we lost some items.
+                        ItemStock[item.Entry] = count;
                     }
                 }
                 if (!firstCheck)
                 {
                     foreach (KeyValuePair<int, int> pair in newLoots)
                     {
+                        // Can do anything here, like equip cool items etc.
                         Logging.Write("You recieve loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
                     }
                 }
+                // When all the processing is done, let's now check if we are missing items completly.
+                foreach (KeyValuePair<int, int> pair in ItemStock)
+                {
+                    bool KeepValue = false;
+                    foreach (WoWItem item in objectWoWItems)
+                    {
+                        if (item.Entry == pair.Key)
+                            KeepValue = true;
+                    }
+                    // Update our stock if we lost some items.
+                    if (!KeepValue)
+                        ItemStock[pair.Key] = 0;
+                }
                 newLoots.Clear();
+                objectWoWItems.Clear();
             }
             catch (Exception e)
             {

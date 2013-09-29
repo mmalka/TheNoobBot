@@ -302,8 +302,11 @@ namespace nManager.Wow.ObjectManager
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Container);
                 List<WoWContainer> list = new List<WoWContainer>();
-                foreach (WoWContainer container in tempsListObj.Select(a => { return new WoWContainer(a.GetBaseAddress); }))
+                foreach (WoWObject a in tempsListObj)
+                {
+                    WoWContainer container = new WoWContainer(a.GetBaseAddress);
                     list.Add(container);
+                }
                 return list;
             }
             catch (Exception e)

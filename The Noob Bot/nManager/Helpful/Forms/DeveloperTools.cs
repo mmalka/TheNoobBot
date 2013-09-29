@@ -111,7 +111,7 @@ namespace nManager.Helpful.Forms
                         "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWItem</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry +
                         "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" +
-                        wowO.Guid + "</td>     <td>" + ObjectManager.Me.GetDescriptor<ulong>(wowO.GetBaseAddress, (uint) Descriptors.ItemFields.Owner) +
+                        wowO.Guid + "</td>     <td>" + wowO.Owner +
                         "</td><td>IsEquipped by me ? " + EquippedItems.IsEquippedItemByGuid(wowO.Guid) + "</td>   </tr>";
                 }
                 // WoWCorpse
