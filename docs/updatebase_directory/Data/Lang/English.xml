@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Translations>
     <Translation>
@@ -785,10 +785,10 @@
       <Text>Loot Mobs</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
-	<Translation>
-		<Text>Activate Loot Statistics</Text>
-		<Id>ActivateLootStatistics</Id>
-	</Translation>
+    <Translation>
+      <Text>Activate Loot Statistics</Text>
+      <Id>ActivateLootStatistics</Id>
+    </Translation>
     <Translation>
       <Text>Regeneration Management - Food / Drink &amp;&amp; percentage to be used</Text>
       <Id>RegenerationManagementPanelName</Id>
@@ -925,15 +925,15 @@
       <Text>Please configure your Fly mount in General settings</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>This aquatic mount does not exist: </Text>
       <Id>ThisAquaticMountDoesNotExist</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>This flying mount does not exist: </Text>
       <Id>ThisFlyingMountDoesNotExist</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>This ground mount does not exist: </Text>
       <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
@@ -978,13 +978,13 @@
       <Id>UpdateRequiredCase2</Id>
     </Translation>
     <Translation>
-      <Text> but you are running WoW Build </Text>
-      <Id>RunningWoWBuild</Id>
-    </Translation>	
-    <Translation>
       <Text>.</Text>
       <Id>RunningWoWBuildDot</Id>
-    </Translation>	
+    </Translation>
+    <Translation>
+      <Text> but you are running WoW Build </Text>
+      <Id>RunningWoWBuild</Id>
+    </Translation>
     <Translation>
       <Text>Please download an older version of TheNoobBot on our forum "News and release". (WoW usually update US realms before EU/RU)</Text>
       <Id>PleaseDownloadOlder</Id>
@@ -1130,16 +1130,16 @@
       <Id>Fisherbot_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
-      <Id>Archaeologist_Product_Description</Id>
-    </Translation>
-    <Translation>
       <Text>(Honor points in Battlegrounds - Beta)</Text>
       <Id>Battlegrounder_Product_Description</Id>
     </Translation>
     <Translation>
       <Text>(XP while questing - Beta)</Text>
       <Id>Quester_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Archaeologist_Product_Description</Id>
     </Translation>
     <Translation>
       <Text>By npc name</Text>
@@ -1201,7 +1201,7 @@
       <Text>Twin Peaks</Text>
       <Id>TwinPeaks</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Battle for Gilneas</Text>
       <Id>BattleforGilneas</Id>
     </Translation>
@@ -1209,11 +1209,11 @@
       <Text>Random Battleground</Text>
       <Id>RandomBattleground</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Temple of Kotmogu</Text>
       <Id>TempleofKotmogu</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Silvershard Mines</Text>
       <Id>SilvershardMines</Id>
     </Translation>
@@ -1245,7 +1245,7 @@
       <Text>Queue for Twin Peaks</Text>
       <Id>QueueTwinPeaks</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Queue for Battle for Gilneas</Text>
       <Id>QueueBattleforGilneas</Id>
     </Translation>
@@ -1253,343 +1253,343 @@
       <Text>Queue for Random Battleground</Text>
       <Id>QueueRandomBattleground</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Queue for Temple of Kotmogu</Text>
       <Id>QueueTempleofKotmogu</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Queue for Silvershard Mines</Text>
       <Id>QueueSilvershardMines</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Uncap MaxFPS (recommended)</Text>
       <Id>Uncap_MaxFPS</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Always on Top</Text>
       <Id>AlwaysOnTop</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>There is neither Ground mount nor Flying mount set in your general settings, this may impact your botting experience, make sure to at least define one of them.</Text>
       <Id>No_mounts_in_settings</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Auto Confirm on BoP Items</Text>
       <Id>AutoConfirmOnBoPItems</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Join Queue</Text>
       <Id>JoinQueue</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Requeueing in Process</Text>
       <Id>RequeueingInProcess</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Battleground has ended.</Text>
       <Id>Battleground_Ended</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>You must be in a battle in order to use the Profile Creator.</Text>
       <Id>NotInBg</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Send Mail when less than X slot left</Text>
       <Id>SendMailWhenLessThanXSlotLeft</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Sell items when less than X slot left</Text>
       <Id>SellItemsWhenLessThanXSlotLeft</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Repair when Durability is under than X %</Text>
       <Id>RepairWhenDurabilityIsUnderPercent</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Requeue after X minutes</Text>
       <Id>RequeueAfterXMinutes</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>You can only be queued for 2 battles at once.</Text>
       <Id>ErrorMultipleQueue</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Can't queue for Random Battleground while in another Battleground queue.</Text>
       <Id>ErrorRandomQueue</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Can't do that while in a Random Battleground queue.</Text>
       <Id>ErrorSingleRandomQueue</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>You can't have the same zone twice inside the same profile.</Text>
       <Id>CantDuplicateZone</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>You must select the current Battleground corresponding zone prior to start recording.</Text>
       <Id>CantRecordInWrongZone</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Battlegrounder - Settings Tip-off</Text>
       <Id>BattlegrounderTipOffTitle</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Your General Settings are not optimized for the Battlegrounder product: </Text>
       <Id>BattlegrounderTipOffMessage</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Grinder - Settings Tip-off</Text>
-      <Id>GrinderTipOffMessage</Id>
+      <Id>GrinderTipOffTitle</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Your General Settings are not optimized for the Grinder product: </Text>
       <Id>GrinderTipOffMessage</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Gatherer - Settings Tip-off</Text>
       <Id>GathererTipOffTitle</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Your General Settings are not optimized for the Gatherer product: </Text>
       <Id>GathererTipOffMessage</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Quester - Settings Tip-off</Text>
       <Id>QuesterTipOffTitle</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Your General Settings are not optimized for the Quester product: </Text>
       <Id>QuesterTipOffMessage</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Archaeologist - Settings Tip-off</Text>
       <Id>ArchaeologistTipOffTitle</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Your General Settings are not optimized for the Archaeologist product: </Text>
       <Id>ArchaeologistTipOffMessage</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to activate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => ON</Text>
+    <Translation>
+      <Text>We highly recommand to activate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
       <Id>TipOffLootingOn</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to deactivate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
+    <Translation>
+      <Text>We highly recommand to deactivate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
       <Id>TipOffLootingOff</Id>
     </Translation>
-	<Translation>
-      <Text>We recommand to activate the Looting function for Pandaria in General Settings => Looting &amp; Farming options => Loot mobs => ON</Text>
+    <Translation>
+      <Text>We recommand to activate the Looting function for Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
       <Id>TipOffLootingOnArchaeologist</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
+    <Translation>
+      <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
       <Id>TipOffLootingOffArchaeologist</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to activate the Selling function while questing, in General Settings => NPCs Management - Repairer, Vendor (Selling or Buying) => Selling => ON</Text>
+    <Translation>
+      <Text>We highly recommand to activate the Selling function while questing, in General Settings =&gt; NPCs Management - Repairer, Vendor (Selling or Buying) =&gt; Selling =&gt; ON</Text>
       <Id>TipOffSellingOnQuester</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>We also recommand to activate selling for Grey, White and Green items to avoid getting your bags full / not able to sell its content.</Text>
       <Id>TipOffSellingQualityQuester</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings => Looting &amp; Farming options => Search Radius => -30</Text>
+    <Translation>
+      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; -30</Text>
       <Id>TipOffRadiusLow</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings => Looting &amp; Farming options => Search Radius => 100+</Text>
+    <Translation>
+      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; 100+</Text>
       <Id>TipOffRadiusHigh</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to activate Ground Mount in General Settings => Mount options => Use Ground Mount => YES.</Text>
+    <Translation>
+      <Text>We highly recommand to activate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; YES.</Text>
       <Id>TipOffUseGroundMountOn</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to deactivate Ground Mount in General Settings => Mount options => Use Ground Mount => NO.</Text>
+    <Translation>
+      <Text>We highly recommand to deactivate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; NO.</Text>
       <Id>TipOffUseGroundMountOff</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to set a Ground Mount Name in General Settings => Mount options => Ground => Name of the Mount.</Text>
+    <Translation>
+      <Text>We highly recommand to set a Ground Mount Name in General Settings =&gt; Mount options =&gt; Ground =&gt; Name of the Mount.</Text>
       <Id>TipOffEmptyGroundMount</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to set a Flying Mount Name in General Settings => Mount options => Flying => Name of the Mount.</Text>
+    <Translation>
+      <Text>We highly recommand to set a Flying Mount Name in General Settings =&gt; Mount options =&gt; Flying =&gt; Name of the Mount.</Text>
       <Id>TipOffEmptyFlyingMount</Id>
     </Translation>
-	<Translation>
-      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings => Mount options.</Text>
+    <Translation>
+      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings =&gt; Mount options.</Text>
       <Id>TipOffMinimumDistanceToUseGroundMount</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Use Hearthstone</Text>
       <Id>UseHearthstone</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Use Hearthstone prior to log-off activated, but HearthStone not found.</Text>
       <Id>HearthstoneNotFound</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Use MOLL-E if up</Text>
       <Id>UseMollE</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Use Robot when up</Text>
       <Id>UseRobot</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
       <Id>ReloggerManagementPanelName</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Quester Profile Management System</Text>
       <Id>QuesterProfileManagementSystem</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Grouped Profile Manager</Text>
       <Id>GroupedProfileManager</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Simple Profile Manager</Text>
       <Id>SimpleProfileManager</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Grouped Quest Profile File</Text>
       <Id>GroupedQuestProfileFile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>There is no Grouped Profile to edit</Text>
       <Id>NoGroupedProfileToEdit</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Remove Grouped Profile</Text>
       <Id>RemoveGroupedProfile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Confirm</Text>
       <Id>Confirm</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>There is no Grouped Profile to delete.</Text>
       <Id>NoGroupedProfileToDelete</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>This feature is not yet available</Text>
       <Id>FeatureNotYetAvailable</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Create a grouped profile</Text>
       <Id>AddGrouped</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Edit a grouped profile</Text>
       <Id>EditGrouped</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Grouped Profile Documentation</Text>
       <Id>GroupedDocumentation</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Remove a grouped profile</Text>
       <Id>RemoveGrouped</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Create a simple profile</Text>
       <Id>AddSimple</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Edit a simple profile</Text>
       <Id>EditSimple</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Simple Profile Documentation</Text>
       <Id>SimpleDocumentation</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Remove a simple profile</Text>
       <Id>RemoveSimple</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Available profiles :</Text>
       <Id>AvailableSimpleProfiles</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Currently grouped profiles :</Text>
       <Id>CurrentlyGroupedProfiles</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Group the selected profile</Text>
       <Id>GroupSelectedProfile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Ungroup selected profile</Text>
       <Id>UngroupSelectedProfile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Ungroup ALL Profiles</Text>
       <Id>UngroupAllProfiles</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Save as new &amp;&amp; Close</Text>
       <Id>SaveGroupedProfileAs</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Save &amp;&amp; Close</Text>
       <Id>SaveGroupedProfile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Cancel &amp;&amp; Close</Text>
       <Id>CancelGroupedProfileEdition</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Move Up</Text>
       <Id>MoveUp</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Move Down</Text>
       <Id>MoveDown</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>You can't save an empty Grouped Profile</Text>
       <Id>CantSaveEmptyGroupedNew</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
       <Id>CantSaveEmptyGroupedExisting</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Load a Quester Profile</Text>
       <Id>LoadQuesterProfile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>There is no simple profiles to load, make sure to download the latest TheNoobBot version to get profiles</Text>
       <Id>NoSimpleProfileToLoad</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>There is no grouped profiles to load, please create one or download one from TheNoobBot community forum</Text>
       <Id>NoGroupedProfileToLoad</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Simple Profile List</Text>
       <Id>SimpleProfilesList</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Grouped Profile List</Text>
       <Id>GroupedProfilesList</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Load a Simple Profile</Text>
       <Id>LoadSimpleProfile</Id>
     </Translation>
-	<Translation>
+    <Translation>
       <Text>Load a Grouped Profile</Text>
       <Id>LoadGroupedProfile</Id>
     </Translation>
