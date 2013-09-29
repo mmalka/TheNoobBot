@@ -159,11 +159,14 @@ namespace nManager.Wow.Bot.States
             {
                 if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
-                    if (_travelersTundraMammoth.IsSpellUsable)
+                    if (_travelersTundraMammoth.HaveBuff || _travelersTundraMammoth.IsSpellUsable)
                     {
-                        MountTask.DismountMount();
-                        _travelersTundraMammoth.Launch(true, true, true);
-                        Thread.Sleep(2000);
+                        if (!_travelersTundraMammoth.HaveBuff)
+                        {
+                            MountTask.DismountMount();
+                            _travelersTundraMammoth.Launch(true, true, true);
+                            Thread.Sleep(2000);
+                        }
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
                             WoWUnit drixBlackwrench =
@@ -208,11 +211,14 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
-                    if (_grandExpeditionYak.IsSpellUsable)
+                    if (_grandExpeditionYak.HaveBuff || _grandExpeditionYak.IsSpellUsable)
                     {
-                        MountTask.DismountMount();
-                        _grandExpeditionYak.Launch(true, true, true);
-                        Thread.Sleep(2000);
+                        if (!_grandExpeditionYak.HaveBuff)
+                        {
+                            MountTask.DismountMount();
+                            _grandExpeditionYak.Launch(true, true, true);
+                            Thread.Sleep(2000);
+                        }
                         WoWUnit cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
@@ -266,11 +272,14 @@ namespace nManager.Wow.Bot.States
             {
                 if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
-                    if (_travelersTundraMammoth.IsSpellUsable)
+                    if (_travelersTundraMammoth.HaveBuff || _travelersTundraMammoth.IsSpellUsable)
                     {
-                        MountTask.DismountMount();
-                        _travelersTundraMammoth.Launch(true, true, true);
-                        Thread.Sleep(2000);
+                        if (!_travelersTundraMammoth.HaveBuff)
+                        {
+                            MountTask.DismountMount();
+                            _travelersTundraMammoth.Launch(true, true, true);
+                            Thread.Sleep(2000);
+                        }
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
                             WoWUnit mojodishu =
@@ -315,11 +324,14 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
-                    if (_grandExpeditionYak.IsSpellUsable)
+                    if (_grandExpeditionYak.HaveBuff || _grandExpeditionYak.IsSpellUsable)
                     {
-                        MountTask.DismountMount();
-                        _grandExpeditionYak.Launch(true, true, true);
-                        Thread.Sleep(2000);
+                        if (!_grandExpeditionYak.HaveBuff)
+                        {
+                            MountTask.DismountMount();
+                            _grandExpeditionYak.Launch(true, true, true);
+                            Thread.Sleep(2000);
+                        }
                         WoWUnit cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
