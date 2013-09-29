@@ -1042,7 +1042,12 @@ namespace nManager.Helpful
                         continue; // I think WoWItem are ONLY ours items, may review this later.
                     if (newLoots.ContainsKey(localEntry))
                         continue; // ObjectManager return an independant baseAdress for each stack, we just want ONE ItemEntry, not one per stack.
+                    ulong guid = obj.Guid;
+                    if (EquippedItems.IsEquippedItemByGuid(guid))
+                        continue;
                     int count = ItemsManager.GetItemCount(localEntry);
+                    if (count == 0)
+                        continue;
                     if (ItemStock.Count == 0)
                         firstCheck = true; // Set to true if ItemStock was empty on the first row, do not 'else set to false' or it will break the concept.
                     if (!ItemStock.ContainsKey(localEntry))
