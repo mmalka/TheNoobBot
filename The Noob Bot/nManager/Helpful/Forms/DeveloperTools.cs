@@ -352,7 +352,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                TranslateTools t = new TranslateTools();
+                TranslationManagementMainFrame t = new TranslationManagementMainFrame();
                 t.Show();
             }
             catch (Exception ex)

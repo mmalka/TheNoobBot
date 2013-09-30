@@ -1,6 +1,8 @@
+using System.Drawing;
+
 namespace nManager.Helpful.Forms
 {
-    partial class TranslateTools
+    partial class TranslationManagementMainFrame
     {
         /// <summary>
         /// Required designer variable.
@@ -28,83 +30,91 @@ namespace nManager.Helpful.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.listDigsitesDGV = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.saveB = new DevComponents.DotNetBar.ButtonX();
-            this.loadB = new DevComponents.DotNetBar.ButtonX();
-            ((System.ComponentModel.ISupportInitialize)(this.listDigsitesDGV)).BeginInit();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.TranslationTable = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.SaveAsButton = new DevComponents.DotNetBar.ButtonX();
+            this.LoadAsButton = new DevComponents.DotNetBar.ButtonX();
+            ((System.ComponentModel.ISupportInitialize)(this.TranslationTable)).BeginInit();
             this.SuspendLayout();
             // 
-            // listDigsitesDGV
+            // TranslationTable
             // 
-            this.listDigsitesDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.TranslationTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listDigsitesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.listDigsitesDGV.DefaultCellStyle = dataGridViewCellStyle2;
-            this.listDigsitesDGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.listDigsitesDGV.Location = new System.Drawing.Point(12, 43);
-            this.listDigsitesDGV.Name = "listDigsitesDGV";
-            this.listDigsitesDGV.Size = new System.Drawing.Size(601, 341);
-            this.listDigsitesDGV.TabIndex = 0;
+            this.TranslationTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TranslationTable.DefaultCellStyle = dataGridViewCellStyle1;
+            this.TranslationTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.TranslationTable.Location = new System.Drawing.Point(0, 40);
+            this.TranslationTable.Margin = new System.Windows.Forms.Padding(0);
+            this.TranslationTable.Name = "TranslationTable";
+            this.TranslationTable.Size = new System.Drawing.Size(784, 520);
+            this.TranslationTable.TabIndex = 0;
             // 
-            // saveB
+            // SaveAsButton
             // 
-            this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.saveB.Location = new System.Drawing.Point(449, 14);
-            this.saveB.Name = "saveB";
-            this.saveB.Size = new System.Drawing.Size(164, 23);
-            this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.saveB.TabIndex = 1;
-            this.saveB.Text = "Save";
-            this.saveB.Click += new System.EventHandler(this.saveB_Click);
+            this.SaveAsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.SaveAsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveAsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.SaveAsButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.SaveAsButton.Location = new System.Drawing.Point(394, 4);
+            this.SaveAsButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SaveAsButton.Name = "SaveAsButton";
+            this.SaveAsButton.Size = new System.Drawing.Size(390, 30);
+            this.SaveAsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.SaveAsButton.TabIndex = 1;
+            this.SaveAsButton.Text = "Save";
+            this.SaveAsButton.Click += new System.EventHandler(this.SaveAsButton_Click);
             // 
-            // loadB
+            // LoadAsButton
             // 
-            this.loadB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.loadB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.loadB.Location = new System.Drawing.Point(279, 14);
-            this.loadB.Name = "loadB";
-            this.loadB.Size = new System.Drawing.Size(164, 23);
-            this.loadB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.loadB.TabIndex = 2;
-            this.loadB.Text = "Load";
-            this.loadB.Click += new System.EventHandler(this.loadB_Click);
+            this.LoadAsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.LoadAsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadAsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.LoadAsButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.LoadAsButton.Location = new System.Drawing.Point(0, 4);
+            this.LoadAsButton.Margin = new System.Windows.Forms.Padding(0);
+            this.LoadAsButton.Name = "LoadAsButton";
+            this.LoadAsButton.Size = new System.Drawing.Size(390, 30);
+            this.LoadAsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.LoadAsButton.TabIndex = 2;
+            this.LoadAsButton.Text = "Load";
+            this.LoadAsButton.Click += new System.EventHandler(this.LoadAsButton_Click);
             // 
-            // Translate_Tools
+            // TranslationManagementMainFrame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(625, 396);
-            this.Controls.Add(this.loadB);
-            this.Controls.Add(this.saveB);
-            this.Controls.Add(this.listDigsitesDGV);
+            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.MinimumSize = new Size(800,600);
+            this.Controls.Add(this.LoadAsButton);
+            this.Controls.Add(this.SaveAsButton);
+            this.Controls.Add(this.TranslationTable);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "TranslateTools";
+            this.MaximizeBox = true;
+            this.MinimizeBox = false;
+            this.Name = "TranslationManagementMainFrame";
             this.ShowIcon = false;
-            this.ShowInTaskbar = true;
-            this.Text = "Translate Tools";
-            ((System.ComponentModel.ISupportInitialize)(this.listDigsitesDGV)).EndInit();
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TitleText = "Translation Management System";
+            ((System.ComponentModel.ISupportInitialize)(this.TranslationTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.Controls.DataGridViewX listDigsitesDGV;
-        private DevComponents.DotNetBar.ButtonX saveB;
-        private DevComponents.DotNetBar.ButtonX loadB;
+        private DevComponents.DotNetBar.Controls.DataGridViewX TranslationTable;
+        private DevComponents.DotNetBar.ButtonX SaveAsButton;
+        private DevComponents.DotNetBar.ButtonX LoadAsButton;
     }
 }

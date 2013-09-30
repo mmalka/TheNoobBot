@@ -1,15 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
 namespace nManager.Helpful.Forms
 {
-    public partial class TranslateTools : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class TranslationManagementMainFrame : DevComponents.DotNetBar.Metro.MetroForm
     {
         private readonly Translate.Language _translation = new Translate.Language();
+        private readonly Translate.Language _defaultLangage = XmlSerializer.Deserialize<Translate.Language>(Application.StartupPath + @"\Data\Lang\English.xml");
 
-        public TranslateTools()
+        public TranslationManagementMainFrame()
         {
             try
             {
@@ -17,11 +17,22 @@ namespace nManager.Helpful.Forms
                 Translate();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
-                foreach (object id in Enum.GetValues(typeof (Translate.Id)))
+                TranslationTable.Columns.Add("Id", "Id");
+                TranslationTable.Columns[0].ReadOnly = true;
+                TranslationTable.Columns[0].Width = 124;
+                TranslationTable.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                TranslationTable.Columns.Add("YourTranslation", "Your translated text");
+                TranslationTable.Columns[1].Width = 300;
+                TranslationTable.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                TranslationTable.Columns.Add("DefaultText", "Default English text");
+                TranslationTable.Columns[2].ReadOnly = true;
+                TranslationTable.Columns[2].Width = 300;
+                TranslationTable.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                foreach (Translate.Translation translation in _defaultLangage.Translations)
                 {
-                    _translation.Translations.Add(new Translate.Translation {Id = (Translate.Id) id, Text = ""});
+                    TranslationTable.Rows.Add(new object[] {translation.Id.ToString(), "", translation.Text});
                 }
-                listDigsitesDGV.DataSource = _translation.Translations;
             }
             catch (Exception e)
             {
@@ -31,51 +42,131 @@ namespace nManager.Helpful.Forms
 
         private void Translate()
         {
-            saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-            loadB.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools);
+            SaveAsButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
+            LoadAsButton.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
+            TitleText = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools);
         }
 
-        private void saveB_Click(object sender, EventArgs e)
+        private void SaveAsButton_Click(object sender, EventArgs e)
+        {
+            SaveGrid();
+        }
+
+        private void LoadAsButton_Click(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
+        private void SaveGrid()
         {
             try
             {
-                string filePath = Others.DialogBoxSaveFile(Application.StartupPath + "\\Data\\Lang\\",
-                                                           "Langage files (*.xml)|*.xml");
+                string filePath = Others.DialogBoxSaveFile(Application.StartupPath + @"\Data\Lang\", "Langage files (*.xml)|*.xml");
                 if (!string.IsNullOrWhiteSpace(filePath))
                 {
-                    _translation.Translations = (List<Translate.Translation>) listDigsitesDGV.DataSource;
+                    _translation.Translations.Clear();
+                    for (int i = 0; i < TranslationTable.Rows.Count - 1; i++)
+                    {
+                        DataGridViewRow row = TranslationTable.Rows[i];
+                        // Foreach is necessary since the user can sort the Grid, the indexes wont match.
+                        foreach (Translate.Id currId in Enum.GetValues(typeof (Translate.Id)))
+                        {
+                            if (currId.ToString() != row.Cells[0].Value.ToString())
+                                continue;
+                            string textContent = row.Cells[1].Value == null || string.IsNullOrEmpty(row.Cells[1].Value.ToString()) ||
+                                                 row.Cells[1].Value.ToString() == row.Cells[0].Value.ToString() || row.Cells[1].Value.ToString().Contains("_")
+                                                     ? row.Cells[2].Value.ToString()
+                                                     : row.Cells[1].Value.ToString();
+                            _translation.Translations.Add(new Translate.Translation
+                                {
+                                    Id = currId,
+                                    Text = textContent
+                                });
+                            break;
+                        }
+                    }
                     XmlSerializer.Serialize(filePath, _translation);
+                    LoadGrid(filePath);
                 }
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Translate_Tools > saveB_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError("Translate_Tools > SaveGrid(): " + ex);
             }
         }
 
-        private void loadB_Click(object sender, EventArgs e)
+        private void LoadGrid(string filePath = "")
         {
-            string filePath = Others.DialogBoxOpenFile(Application.StartupPath + "\\Data\\Lang\\",
-                                                       "Langage files (*.xml)|*.xml");
-            if (File.Exists(filePath))
+            try
             {
-                Translate.Language t = XmlSerializer.Deserialize<Translate.Language>(filePath);
-                for (int i = 0; i <= t.Translations.Count - 1; i++)
+                if (string.IsNullOrEmpty(filePath))
+                    filePath = Others.DialogBoxOpenFile(Application.StartupPath + @"\Data\Lang\", "Langage files (*.xml)|*.xml");
+                if (File.Exists(filePath))
                 {
-                    if (!string.IsNullOrEmpty(t.Translations[i].Text))
+                    Translate.Language currentLangage = XmlSerializer.Deserialize<Translate.Language>(filePath);
+                    CheckIdListAndReOrganize(ref currentLangage);
+                    for (int i = 0; i <= _defaultLangage.Translations.Count - 1; i++)
                     {
-                        for (int j = 0; j <= _translation.Translations.Count - 1; j++)
+                        if (string.IsNullOrEmpty(currentLangage.Translations[i].Text) || currentLangage.Translations[i].Text == currentLangage.Translations[i].Id.ToString() ||
+                            currentLangage.Translations[i].Text.Contains("_"))
+                            currentLangage.Translations[i].Text = _defaultLangage.Translations[i].Text;
+                    }
+                    TranslationTable.Rows.Clear();
+                    for (int i = 0; i < _defaultLangage.Translations.Count; i++)
+                    {
+                        Translate.Translation translation = _defaultLangage.Translations[i];
+                        TranslationTable.Rows.Add(new object[] {translation.Id.ToString(), currentLangage.Translations[i].Text, translation.Text});
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Translate_Tools > LoadGrid(string filePath): " + ex);
+            }
+        }
+
+        private void CheckIdListAndReOrganize(ref Translate.Language lang)
+        {
+            for (int i = 0; i <= _defaultLangage.Translations.Count - 1; i++)
+            {
+                if (lang.Translations.Count - 1 > i)
+                {
+                    if (_defaultLangage.Translations[i].Id != lang.Translations[i].Id)
+                    {
+                        bool found = false;
+                        int foundAt = 0;
+                        string textFound = "";
+                        for (int j = 0; j < lang.Translations.Count - 1; j++)
                         {
-                            if (t.Translations[i].Id == _translation.Translations[j].Id)
+                            if (lang.Translations[j].Id == _defaultLangage.Translations[i].Id)
                             {
-                                _translation.Translations[j].Text = t.Translations[i].Text;
+                                found = true;
+                                foundAt = j;
+                                textFound = lang.Translations[j].Text;
                                 break;
                             }
                         }
+                        if (found)
+                        {
+                            lang.Translations.RemoveAt(foundAt);
+                            if (string.IsNullOrEmpty(textFound))
+                                textFound = _defaultLangage.Translations[i].Text;
+                            lang.Translations.Insert(i, new Translate.Translation {Id = _defaultLangage.Translations[i].Id, Text = textFound});
+                        }
+                        else
+                        {
+                            lang.Translations.Insert(i, _defaultLangage.Translations[i]);
+                        }
                     }
                 }
-                listDigsitesDGV.DataSource = _translation.Translations;
+                else if (lang.Translations.Count - 1 < i && i != _defaultLangage.Translations.Count)
+                {
+                    lang.Translations.Insert(i, _defaultLangage.Translations[i]);
+                }
+            }
+            while (_defaultLangage.Translations.Count < lang.Translations.Count)
+            {
+                lang.Translations.RemoveAt(lang.Translations.Count - 1);
             }
         }
     }
