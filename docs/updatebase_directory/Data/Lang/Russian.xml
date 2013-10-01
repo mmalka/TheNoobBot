@@ -1111,31 +1111,31 @@
     </Translation>
     <Translation>
       <Id>Gatherer_Product_Description</Id>
-      <Text>(Collection of Herbs, Veins, chests)</Text>
+      <Text>(Собирает травы, руду, сундуки)</Text>
     </Translation>
     <Translation>
       <Id>Damage_Dealer_Product_Description</Id>
-      <Text>(DPS your target and fight back)</Text>
+      <Text>(Бьёт по выбранной вами цели)</Text>
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
-      <Text>(Heals your party members - BETA)</Text>
+      <Text>(Исцеляет членов твоей группы - Бета)</Text>
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text>(Fish in Fishing School as well as outside)</Text>
+      <Text>(Ловит рыбу как в лунках так и в водоёмах)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
-      <Text>(Do battlegrounds to farms honor points - Beta)</Text>
+      <Text>(Фармит очки хлонора на полях битв - Бета)</Text>
     </Translation>
     <Translation>
       <Id>Quester_Product_Description</Id>
-      <Text>(Do quests to levelup your character - Beta)</Text>
+      <Text>(Выполняет квесты для повышения уровня твоего персонажа - Beta)</Text>
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
-      <Text>(Do archaeology to farms exp, achievements and items.)</Text>
+      <Text>(Служит для добычи опыта, достижений и вещей)</Text>
     </Translation>
     <Translation>
       <Id>By_npc_name</Id>
