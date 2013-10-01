@@ -47,7 +47,7 @@
     </Translation>
     <Translation>
       <Id>Login___The_Noob_Bot_version</Id>
-      <Text>Подключение   The Noob Bot version</Text>
+      <Text>Подключение The Noob Bot version</Text>
     </Translation>
     <Translation>
       <Id>Server_connection</Id>
@@ -91,23 +91,23 @@
     </Translation>
     <Translation>
       <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
-      <Text>Неправильный пароль  перейдите по этой ссылке если вы забыли пароль</Text>
+      <Text>Неправильный пароль перейдите по этой ссылке если вы забыли пароль</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
-      <Text>Неправильный логин  перейдите сюда если хотите создать аккаунт и купить TheNoobBot</Text>
+      <Text>Неправильный логин перейдите сюда если хотите создать аккаунт и купить TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
-      <Text>Ошибка при входе  попробуйте выключить антивирус  зайдите на вебсайт если вамнужна помощь</Text>
+      <Text>Ошибка при входе попробуйте выключить антивирус зайдите на вебсайт если вамнужна помощь</Text>
     </Translation>
     <Translation>
       <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
-      <Text>Подписка закончилась.  Обновите подписку если хотите снова использовать безлимитную версию TNB</Text>
+      <Text>Подписка закончилась. Обновите подписку если хотите снова использовать безлимитную версию TNB</Text>
     </Translation>
     <Translation>
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
-      <Text>Вы запустили пробную версию.  TNB остановится автоматически через 20 минут</Text>
+      <Text>Вы запустили пробную версию. TNB остановится автоматически через 20 минут</Text>
     </Translation>
     <Translation>
       <Id>LatestUpdateVersion</Id>
@@ -291,11 +291,11 @@
     </Translation>
     <Translation>
       <Id>Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List</Id>
-      <Text>Добавьте предметы для просеивания в  Настройки  =&gt;  Опции добычи =&gt;    Список просеивания</Text>
+      <Text>Добавьте предметы для просеивания в Настройки =&gt; Опции добычи =&gt; Список просеивания</Text>
     </Translation>
     <Translation>
       <Id>Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List</Id>
-      <Text>Добавьте предметы для измельчения в Настройки   =&gt;  Опции добычи  =&gt;    Список измельчения</Text>
+      <Text>Добавьте предметы для измельчения в Настройки =&gt; Опции добычи =&gt; Список измельчения</Text>
     </Translation>
     <Translation>
       <Id>Convertion_finish</Id>
@@ -443,7 +443,7 @@
     </Translation>
     <Translation>
       <Id>If_special__If_empty__default_items_is_used</Id>
-      <Text>Если специальный Если пустой  предмет по умолчанию используется</Text>
+      <Text>Если специальный Если пустой предмет по умолчанию используется</Text>
     </Translation>
     <Translation>
       <Id>Profile_Creator</Id>
@@ -599,7 +599,7 @@
     </Translation>
     <Translation>
       <Id>Force_Mail_List__one_item_by_line</Id>
-      <Text>Отправить принудительно ( один предмет в строке)</Text>
+      <Text>Отправить принудительно (один предмет в строке)</Text>
     </Translation>
     <Translation>
       <Id>Mail_Purple_items</Id>
@@ -831,7 +831,7 @@
     </Translation>
     <Translation>
       <Id>SpellManagementSystemPanelName</Id>
-      <Text>Класс  Настройка заклинаний</Text>
+      <Text>Класс Настройка заклинаний</Text>
     </Translation>
     <Translation>
       <Id>Use_Spirit_Healer</Id>
@@ -907,7 +907,7 @@
     </Translation>
     <Translation>
       <Id>Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly</Id>
-      <Text>Эта программа не работает без Visual C++ 2010. Он не установлен на вашем компьютере. Если вы не установите его,программа будет работать не корректно</Text>
+      <Text>Эта программа не работает без Visual C# Express 2010. Он не установлен на вашем компьютере. Если вы не установите его,программа будет работать не корректно</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>
@@ -1043,7 +1043,7 @@
     </Translation>
     <Translation>
       <Id>tnb_started_since</Id>
-      <Text>tnb появился</Text>
+      <Text>TNB появился</Text>
     </Translation>
     <Translation>
       <Id>Your_player_is_now_level</Id>
@@ -1087,55 +1087,55 @@
     </Translation>
     <Translation>
       <Id>Smelting_Product_Description</Id>
-      <Text>Плавка</Text>
+      <Text>(Выплавка позволяет обрабатывать сырую руду в более чистые слитки)</Text>
     </Translation>
     <Translation>
       <Id>Milling_Product_Description</Id>
-      <Text>(Herb)</Text>
+      <Text>(Измельчение используется, чтобы сделать пигменты из травs)</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_Product_Description</Id>
-      <Text>Просеивание</Text>
+      <Text>(Просеивание позволяет отделить драгоценные камни от сырой руды)</Text>
     </Translation>
     <Translation>
       <Id>Profiles_Converters_Product_Description</Id>
-      <Text>Конвертир профилей (WowRobot/Pirox/HonorBuddy и другие)</Text>
+      <Text>(Конвертирование профилей из WowRobot/Pirox/HonorBuddy... в профили TNB)</Text>
     </Translation>
     <Translation>
       <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
-      <Text>(Gatherer, Grinder, fishing bot профили)</Text>
+      <Text>(Конвертирование летающего маршрута TNB в наземный)</Text>
     </Translation>
     <Translation>
       <Id>Grinder_Product_Description</Id>
-      <Text>Grinder (XP, Skinning, Reputation and Items)</Text>
+      <Text>(Убивает монстров и выполняет задачи, используется для получения опыта, рупетации и фарма вещей)</Text>
     </Translation>
     <Translation>
       <Id>Gatherer_Product_Description</Id>
-      <Text>Gatherer (Mining and Herbing)</Text>
+      <Text>(Collection of Herbs, Veins, chests)</Text>
     </Translation>
     <Translation>
       <Id>Damage_Dealer_Product_Description</Id>
-      <Text>(Удары по Выделенной цели)</Text>
+      <Text>(DPS your target and fight back)</Text>
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
-      <Text>(Heal yourself and Party members - BETA)</Text>
+      <Text>(Heals your party members - BETA)</Text>
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text>Рыболовный бот</Text>
+      <Text>(Fish in Fishing School as well as outside)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
-      <Text>Баттлграундер</Text>
+      <Text>(Do battlegrounds to farms honor points - Beta)</Text>
     </Translation>
     <Translation>
       <Id>Quester_Product_Description</Id>
-      <Text>Квестер</Text>
+      <Text>(Do quests to levelup your character - Beta)</Text>
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
-      <Text>Археологист </Text>
+      <Text>(Do archaeology to farms exp, achievements and items.)</Text>
     </Translation>
     <Translation>
       <Id>By_npc_name</Id>
@@ -1335,7 +1335,7 @@
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffTitle</Id>
-      <Text>Battlegrounder - Settings Tip-off</Text>
+      <Text>Battlegrounder - предупреждение параметров настройки</Text>
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffMessage</Id>
@@ -1343,7 +1343,7 @@
     </Translation>
     <Translation>
       <Id>GrinderTipOffTitle</Id>
-      <Text>Grinder - Settings Tip-off</Text>
+      <Text>Grinder - предупреждение параметров настройки</Text>
     </Translation>
     <Translation>
       <Id>GrinderTipOffMessage</Id>
@@ -1351,7 +1351,7 @@
     </Translation>
     <Translation>
       <Id>GathererTipOffTitle</Id>
-      <Text>Gatherer - Settings Tip-off</Text>
+      <Text>Gatherer - предупреждение параметров настройки</Text>
     </Translation>
     <Translation>
       <Id>GathererTipOffMessage</Id>
@@ -1359,7 +1359,7 @@
     </Translation>
     <Translation>
       <Id>QuesterTipOffTitle</Id>
-      <Text>Quester - Settings Tip-off</Text>
+      <Text>Quester - предупреждение параметров настройки</Text>
     </Translation>
     <Translation>
       <Id>QuesterTipOffMessage</Id>
@@ -1367,7 +1367,7 @@
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffTitle</Id>
-      <Text>Archaeologist - Settings Tip-off</Text>
+      <Text>Archaeologist - предупреждение параметров настройки</Text>
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffMessage</Id>
@@ -1375,55 +1375,55 @@
     </Translation>
     <Translation>
       <Id>TipOffLootingOn</Id>
-      <Text>Мы рекомендуем изменить настройки  сбора добычи: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt; Да</Text>
+      <Text>Мы рекомендуем изменить настройки сбора добычи: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt; Да</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOff</Id>
-      <Text>Мы рекомендуем изменить настройки  сбора добычи: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt;Нет</Text>
+      <Text>Мы рекомендуем изменить настройки сбора добычи: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt;Нет</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOnArchaeologist</Id>
-      <Text>,Мы рекомендуем изменить настройки  сбора добычи для Пандарии: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt; Да</Text>
+      <Text>Мы рекомендуем изменить настройки сбора добычи для Пандарии: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt; Да</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOffArchaeologist</Id>
-      <Text>Мы рекомендуем изменить настройки  сбора добычи для Пандарии: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt; Нет</Text>
+      <Text>Мы рекомендуем изменить настройки сбора добычи для Пандарии: Основные настройки =&gt; Опции сбора =&gt; Собирать добычу =&gt; Нет</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingOnQuester</Id>
-      <Text>We highly recommand to activate the Selling function while questing, in General Settings =&gt; NPCs Management - Repairer, Vendor (Selling or Buying) =&gt; Selling =&gt; ON</Text>
+      <Text>Мы рекомендуем изменить натсройки продаже для Qusting: Основные настройки =&gt; Ремонтник, вендор (покупка или продажа) =&gt; Продажа =&gt; Да</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingQualityQuester</Id>
-      <Text>We also recommand to activate selling for Grey, White and Green items to avoid getting your bags full / not able to sell its content.</Text>
+      <Text>Мы рекомендуем установить продажу серых, белых и зеленых вещей чтобы избежать заполнение ваших сумок</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusLow</Id>
-      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; -30</Text>
+      <Text>Мы рекомендуем изменить радиус поиска до 30 ярдов в Основные настройки =&gt; Настройки добычи =&gt; Радиус поиска =&gt; -30</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusHigh</Id>
-      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; 100+</Text>
+      <Text>Мы рекомендуем изменить радиус поиска более 100 ярдов в Основные настройки =&gt; Настройки добычи =&gt; Радиус поиска =&gt; 100+</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOn</Id>
-      <Text>We highly recommand to activate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; YES.</Text>
+      <Text>Мы рекомендуем актвируовать наземного маунта в Основные настройки =&gt; Опции маунта =&gt; Использовать наземного маунта =&gt;Да</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOff</Id>
-      <Text>We highly recommand to deactivate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; NO.</Text>
+      <Text>Мы рекомендуем отключить наземного маунта в Основные настройки =&gt; Опции маунта =&gt; Использовать наземного маунта =&gt; Нет</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyGroundMount</Id>
-      <Text>We highly recommand to set a Ground Mount Name in General Settings =&gt; Mount options =&gt; Ground =&gt; Name of the Mount.</Text>
+      <Text>Мы рекомендуем ввести имя наземного маунта в  Основные настройки =&gt; Опции маунта =&gt; Наземный =&gt; Имя маунта</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyFlyingMount</Id>
-      <Text>We highly recommand to set a Flying Mount Name in General Settings =&gt; Mount options =&gt; Flying =&gt; Name of the Mount.</Text>
+      <Text>Мы рекомендуем ввести имя летающегоо маунта в  Основные настройки =&gt; Опции маунта =&gt; Летающий =&gt; Имя маунта</Text>
     </Translation>
     <Translation>
       <Id>TipOffMinimumDistanceToUseGroundMount</Id>
-      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings =&gt; Mount options.</Text>
+      <Text>Мы рекомендуем установить минимальную дистанцию для использования наземного маунта в Основные настройки =&gt; Настройки маунта</Text>
     </Translation>
     <Translation>
       <Id>UseHearthstone</Id>
@@ -1447,95 +1447,95 @@
     </Translation>
     <Translation>
       <Id>QuesterProfileManagementSystem</Id>
-      <Text>Quester Profile Management System</Text>
+      <Text>Система управления профилем Quester</Text>
     </Translation>
     <Translation>
       <Id>GroupedProfileManager</Id>
-      <Text>Grouped Profile Manager</Text>
+      <Text>Система управления сгруппированными профилями</Text>
     </Translation>
     <Translation>
       <Id>SimpleProfileManager</Id>
-      <Text>Simple Profile Manager</Text>
+      <Text>Система управления простыми профилями</Text>
     </Translation>
     <Translation>
       <Id>GroupedQuestProfileFile</Id>
-      <Text>Grouped Quest Profile File</Text>
+      <Text>Сгруппированый файл профиля квестов</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToEdit</Id>
-      <Text>There is no Grouped Profile to edit</Text>
+      <Text>Нет никакого сгруппированного профиля для редактирования</Text>
     </Translation>
     <Translation>
       <Id>RemoveGroupedProfile</Id>
-      <Text>Remove Grouped Profile</Text>
+      <Text>Удалть сгруппированный профиль</Text>
     </Translation>
     <Translation>
       <Id>Confirm</Id>
-      <Text>Confirm</Text>
+      <Text>Подтвердить</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToDelete</Id>
-      <Text>There is no Grouped Profile to delete.</Text>
+      <Text>Нет никакого Сгруппированного Профиля, для удаления</Text>
     </Translation>
     <Translation>
       <Id>FeatureNotYetAvailable</Id>
-      <Text>This feature is not yet available</Text>
+      <Text>В настоящее время эта функция недоступна</Text>
     </Translation>
     <Translation>
       <Id>AddGrouped</Id>
-      <Text>Create a grouped profile</Text>
+      <Text>Создать сгруппированый профиль</Text>
     </Translation>
     <Translation>
       <Id>EditGrouped</Id>
-      <Text>Edit a grouped profile</Text>
+      <Text>Изменить сгруппированый профиль</Text>
     </Translation>
     <Translation>
       <Id>GroupedDocumentation</Id>
-      <Text>Grouped Profile Documentation</Text>
+      <Text>Документация сгрупперованого профиля</Text>
     </Translation>
     <Translation>
       <Id>RemoveGrouped</Id>
-      <Text>Remove a grouped profile</Text>
+      <Text>Удалить сгрупперованый профиль</Text>
     </Translation>
     <Translation>
       <Id>AddSimple</Id>
-      <Text>Create a simple profile</Text>
+      <Text>Создать простой профиль</Text>
     </Translation>
     <Translation>
       <Id>EditSimple</Id>
-      <Text>Edit a simple profile</Text>
+      <Text>Изменить простой профиль</Text>
     </Translation>
     <Translation>
       <Id>SimpleDocumentation</Id>
-      <Text>Simple Profile Documentation</Text>
+      <Text>Простая документация профиля</Text>
     </Translation>
     <Translation>
       <Id>RemoveSimple</Id>
-      <Text>Remove a simple profile</Text>
+      <Text>Удалить простой профиль</Text>
     </Translation>
     <Translation>
       <Id>AvailableSimpleProfiles</Id>
-      <Text>Available profiles :</Text>
+      <Text>Доступные профили:</Text>
     </Translation>
     <Translation>
       <Id>CurrentlyGroupedProfiles</Id>
-      <Text>Currently grouped profiles :</Text>
+      <Text>В настоящее время сгруппированые профили:</Text>
     </Translation>
     <Translation>
       <Id>GroupSelectedProfile</Id>
-      <Text>Group the selected profile</Text>
+      <Text>Сгруппировать все выделенные профили</Text>
     </Translation>
     <Translation>
       <Id>UngroupSelectedProfile</Id>
-      <Text>Ungroup selected profile</Text>
+      <Text>Не группировать выделенный профиль</Text>
     </Translation>
     <Translation>
       <Id>UngroupAllProfiles</Id>
-      <Text>Ungroup ALL Profiles</Text>
+      <Text>Не группировать  все профили</Text>
     </Translation>
     <Translation>
       <Id>SaveGroupedProfileAs</Id>
-      <Text>Save as new &amp;&amp; Close</Text>
+      <Text>Сохранить как новый и закрыть</Text>
     </Translation>
     <Translation>
       <Id>SaveGroupedProfile</Id>
@@ -1547,47 +1547,47 @@
     </Translation>
     <Translation>
       <Id>MoveUp</Id>
-      <Text>Move Up</Text>
+      <Text>Вверх</Text>
     </Translation>
     <Translation>
       <Id>MoveDown</Id>
-      <Text>Move Down</Text>
+      <Text>Вниз</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedNew</Id>
-      <Text>You can't save an empty Grouped Profile</Text>
+      <Text>Вы не можете сохранить пустой сгруппированный профиль</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedExisting</Id>
-      <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+      <Text>Вы не можете сохранить пустой Сгруппированный Профиль, если Вы хотите удалить его, Отменить, тогда удалите его из предыдущего окна</Text>
     </Translation>
     <Translation>
       <Id>LoadQuesterProfile</Id>
-      <Text>Load a Quester Profile</Text>
+      <Text>Загрузить квестовый профиль</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToLoad</Id>
-      <Text>There is no simple profiles to load, make sure to download the latest TheNoobBot version to get profiles</Text>
+      <Text>Нет ни одного простого профиля для загрузки. Убедитесь что у вас установлена последняя версия TNB</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToLoad</Id>
-      <Text>There is no grouped profiles to load, please create one or download one from TheNoobBot community forum</Text>
+      <Text>Нет никаких сгруппированных профилей, чтобы загрузить, пожалуйста, создайте один или скачайте один с форума сообщества TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>SimpleProfilesList</Id>
-      <Text>Simple Profile List</Text>
+      <Text>Список простых профилей</Text>
     </Translation>
     <Translation>
       <Id>GroupedProfilesList</Id>
-      <Text>Grouped Profile List</Text>
+      <Text>Список сгруппированных профилей</Text>
     </Translation>
     <Translation>
       <Id>LoadSimpleProfile</Id>
-      <Text>Load a Simple Profile</Text>
+      <Text>Загрузить простой профиль</Text>
     </Translation>
     <Translation>
       <Id>LoadGroupedProfile</Id>
-      <Text>Load a Grouped Profile</Text>
+      <Text>Загрузить сгруппирвоанный профиль</Text>
     </Translation>
   </Translations>
 </Language>

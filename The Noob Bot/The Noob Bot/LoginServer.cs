@@ -433,7 +433,7 @@ namespace The_Noob_Bot
             KillProcess();
         }
 
-        public static void Reboot()
+        private static void Reboot()
         {
             try
             {
@@ -444,7 +444,7 @@ namespace The_Noob_Bot
             }
         }
 
-        public static void Overload()
+        private static void Overload()
         {
             try
             {
@@ -455,7 +455,7 @@ namespace The_Noob_Bot
             }
         }
 
-        public static void HookWowQ()
+        private static void HookWowQ()
         {
             if (true)
             {
@@ -470,7 +470,7 @@ namespace The_Noob_Bot
             }
         }
 
-        public static void DoLoginCheck()
+        private static void DoLoginCheck()
         {
         }
 

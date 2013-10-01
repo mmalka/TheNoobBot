@@ -1087,55 +1087,55 @@
     </Translation>
     <Translation>
       <Id>Smelting_Product_Description</Id>
-      <Text>(Ore)</Text>
+      <Text>(Smelting allows to process raw ore into purer bars)</Text>
     </Translation>
     <Translation>
       <Id>Milling_Product_Description</Id>
-      <Text>(Herb)</Text>
+      <Text>(Milling is used to make pigments from herbs)</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_Product_Description</Id>
-      <Text>(Ore)</Text>
+      <Text>(Prospecting allows the gathering of gems from raw ore)</Text>
     </Translation>
     <Translation>
       <Id>Profiles_Converters_Product_Description</Id>
-      <Text>(WowRobot/Pirox/HonorBuddy and more)</Text>
+      <Text>(Convert profiles from WowRobot/Pirox/HonorBuddy... into Tnb profiles)</Text>
     </Translation>
     <Translation>
       <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
-      <Text>(Gatherer, Grinder, Fisherbot profiles)</Text>
+      <Text>(Convert Flying Tnb profiles into Ground profiles)</Text>
     </Translation>
     <Translation>
       <Id>Grinder_Product_Description</Id>
-      <Text>(XP, Skinning, Reputation and Items)</Text>
+      <Text>(Kill monsters and do gathering tasks, used for Exp, reputation and Items farming)</Text>
     </Translation>
     <Translation>
       <Id>Gatherer_Product_Description</Id>
-      <Text>(Mining and Herbing)</Text>
+      <Text>(Collection of Herbs, Veins, chests)</Text>
     </Translation>
     <Translation>
       <Id>Damage_Dealer_Product_Description</Id>
-      <Text>(DPS your target)</Text>
+      <Text>(DPS your target and fight back)</Text>
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
-      <Text>(Heal yourself and Party members - BETA)</Text>
+      <Text>(Heals your party members - BETA)</Text>
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text />
+      <Text>(Fish in Fishing School as well as outside)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
-      <Text>(Honor points in Battlegrounds - Beta)</Text>
+      <Text>(Do battlegrounds to farms honor points - Beta)</Text>
     </Translation>
     <Translation>
       <Id>Quester_Product_Description</Id>
-      <Text>(XP while questing - Beta)</Text>
+      <Text>(Do quests to levelup your character - Beta)</Text>
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
-      <Text />
+      <Text>(Do archaeology to farms exp, achievements and items.)</Text>
     </Translation>
     <Translation>
       <Id>By_npc_name</Id>

@@ -300,7 +300,7 @@ namespace nManager.Wow.MemoryClass
                                         Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
                                         Logging.Write("An error is detected, you must switch the DirectX version used by your WoW client !");
                                         MessageBox.Show("An error is detected, you must switch the DirectX version used by your WoW client !");
-                                        Application.Exit();
+                                        Pulsator.Dispose(true);
                                     }
                                     byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 10);
                                     // Gather as much data as possible if there is others graphic cards system.
@@ -338,7 +338,7 @@ namespace nManager.Wow.MemoryClass
                                             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
                                             Logging.Write("An error is detected, please restart your WoW Client before running the bot again !");
                                             MessageBox.Show("An error is detected, please restart your WoW Client before running the bot again !");
-                                            Application.Exit();
+                                            Pulsator.Dispose(true);
                                         }
                                     }
                                 }
