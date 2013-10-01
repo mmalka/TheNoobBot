@@ -317,17 +317,9 @@ namespace Quester.Tasks
                     // Mounting Mount
                     MountTask.Mount();
                     // Need GoTo Zone:
-                    if (
-                        questObjective.PathHotspots[
-                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                          ObjectManager.Me.Position)].DistanceTo(
-                                                              ObjectManager.Me.Position) > 5)
+                    if (questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
-                        MovementManager.Go(
-                            PathFinder.FindPath(
-                                questObjective.PathHotspots[
-                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                  ObjectManager.Me.Position)]));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
                     else
                     {
@@ -343,8 +335,7 @@ namespace Quester.Tasks
                 WoWGameObject node =
                     ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 
-                if (!nManagerSetting.IsBlackListedZone(node.Position) &&
-                    !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
+                if (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
                     FarmingTask.Pulse(new List<WoWGameObject> {node});
@@ -357,16 +348,9 @@ namespace Quester.Tasks
                     MountTask.Mount();
                     // Need GoTo Zone:
                     if (
-                        questObjective.PathHotspots[
-                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                          ObjectManager.Me.Position)].DistanceTo(
-                                                              ObjectManager.Me.Position) > 5)
+                        questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
-                        MovementManager.Go(
-                            PathFinder.FindPath(
-                                questObjective.PathHotspots[
-                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                  ObjectManager.Me.Position)]));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
                     else
                     {
@@ -384,12 +368,8 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Entry.Count > 0)
                     {
-                        WoWGameObject node =
-                            ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                        WoWUnit unit =
-                            ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                        WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -413,12 +393,8 @@ namespace Quester.Tasks
                         MovementManager.StopMove();
                         if (questObjective.Entry.Count > 0)
                         {
-                            WoWGameObject node =
-                                ObjectManager.GetNearestWoWGameObject(
-                                    ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                            WoWUnit unit =
-                                ObjectManager.GetNearestWoWUnit(
-                                    ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                            WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -1031,7 +1007,7 @@ namespace Quester.Tasks
                 return;
             //End target finding based on QuestGiver.
 
-            if (/*baseAddress > 0 && */npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
+            if ( /*baseAddress > 0 && */npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
             {
                 Quest.CloseQuestWindow();
                 Interact.InteractWith(baseAddress);

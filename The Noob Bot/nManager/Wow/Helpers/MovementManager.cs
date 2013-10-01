@@ -318,11 +318,8 @@ namespace nManager.Wow.Helpers
                                 return;
                             }
                             // GoTo next Point
-                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f &&
-                                   ObjectManager.ObjectManager.Me.IsMounted) ||
-                                  ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) &&
-                                 ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) &&
-                                _movement)
+                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f && ObjectManager.ObjectManager.Me.IsMounted) ||
+                                  ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) && ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) && _movement)
                             {
                                 idPoint++;
                                 if (idPoint > _points.Count - 1)
