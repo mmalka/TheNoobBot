@@ -81,6 +81,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private readonly NavMesh _mesh;
         private readonly NavMeshQuery _query;
         private readonly string _meshPath;
+        private Dictionary<Tuple<int, int>, int> _loadedTiles;
+        private Helpful.Timer _loadTileCheck;
 
         #region Memory Management
 
@@ -325,8 +327,20 @@ namespace nManager.Wow.Helpers.PathFinderClass
             {
                 CheckDungeon();
 
+                // To check every 1 minute minimum and unload tiles loaded more than 30 minutes ago
+                if (_loadTileCheck.IsReady)
+                {
+                    //Logging.Write("Timer ready, checking loaded tile's age");
+                    _loadTileCheck.Reset();
+                    checkTilesAgeAndUnload();
+                }
+
+                Tuple<int, int> coords = new Tuple<int, int>(x, y);
                 if (_mesh.HasTileAt(x, y))
+                {
+                    _loadedTiles[coords] = Others.TimesSec;
                     return true;
+                }
                 string path = GetTilePath(x, y);
 
                 string fName = GetTileName(x, y);
@@ -348,6 +362,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         return false;
                     }
                 }
+                _loadedTiles.Add(coords, Others.TimesSec);
                 return true;
             }
             catch (Exception exception)
@@ -398,6 +413,23 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 Logging.WriteError("forceDownloadTile(string fileName): " + exception);
                 return false;
             }
+        }
+
+        private void checkTilesAgeAndUnload()
+        {
+            List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
+            foreach (KeyValuePair<Tuple<int, int>, int> entry in _loadedTiles)
+            {
+                //Logging.Write("Found " + entry.Key.Item1 + "," + entry.Key.Item2 + " time " + entry.Value);
+                if (entry.Value < Others.TimesSec - (10 * 60)) // 10 * 60 = 10 mins
+                {
+                    RemoveTile(entry.Key.Item1, entry.Key.Item2);
+                    Logging.Write("Unloading old tile (" + entry.Key.Item1 + ", " + entry.Key.Item2 + ")");
+                    toRemove.Add(entry.Key);
+                }
+            }
+            foreach (Tuple<int, int> entry in toRemove)
+                _loadedTiles.Remove(entry);
         }
 
         public bool RemoveTile(int x, int y, out byte[] tileData)
@@ -571,6 +603,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
                                            ")");
 
                 _mesh = new NavMesh();
+                _loadedTiles = new Dictionary<Tuple<int, int>, int>();
+                if (_loadTileCheck == null)
+                    _loadTileCheck = new Helpful.Timer(60 * 1000); // 1 min
                 DetourStatus status;
 
                 // check if this is a dungeon and initialize our mesh accordingly
