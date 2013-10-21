@@ -16,8 +16,6 @@ namespace nManager.Wow.Helpers
         public static ulong StartFight(ulong guid = 0)
         {
             MovementManager.StopMove();
-            if (ObjectManager.ObjectManager.Me.IsMounted)
-                MountTask.DismountMount();
             WoWUnit targetNpc = null;
             try
             {
@@ -33,6 +31,9 @@ namespace nManager.Wow.Helpers
                     targetNpc =
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
+
+                if (ObjectManager.ObjectManager.Me.IsMounted && CombatClass.InRange(targetNpc))
+                      MountTask.DismountMount();
 
                 InFight = true;
 
