@@ -70,6 +70,8 @@ namespace Grinder.Bot
 
                 // Load CC:
                 CombatClass.LoadCombatClass();
+                // Initialize mounting spells
+                MountTask.GetMountCapacity();
 
                 // FSM
                 Fsm.States.Clear();
