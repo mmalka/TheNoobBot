@@ -1483,17 +1483,24 @@ namespace nManager.Wow.Helpers
             bool patherResult, requiresUpdate;
             uint baseAddress;
 
-            // Normal "Go to destination code", launch the movement thread by calling Go(), then return
+            // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
             if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
             {
                 baseAddress = UpdateTarget(ref Target, out requiresUpdate);
+                if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly) // Then we are > ~180 of the target
+                {
+                    Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
+                    LongMove.LongMoveByNewThread(Target.Position);
+                    return 0;
+                }
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
-                _maxTimerForStuckDetection = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
-                _cacheTargetAddress = baseAddress;
-                _updatePathSpecialTimer = new Timer(5000);
+                _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                 if (!patherResult)
                     points.Add(Target.Position);
+                float groundDistance = Math.DistanceListPoint(points);
+                _cacheTargetAddress = baseAddress;
+                _updatePathSpecialTimer = new Timer(5000);
                 Go(points);
                 return baseAddress;
             }
@@ -1504,6 +1511,20 @@ namespace nManager.Wow.Helpers
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
                 {
                     baseAddress = UpdateTarget(ref Target, out requiresUpdate);
+                    if (LongMove.IsLongMove)    // we are in longmove
+                    {
+                        if (baseAddress == 0)   // we don't have the target in our radar
+                            return 0;           // Then return
+                        else
+                            LongMove.StopLongMove(); // We have the target, then we can stop the long move
+                    }
+                    else if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly)
+                    {   // We are not in longmove but we don't have the target and we can fly, let's longmove then
+                        StopMove();
+                        Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
+                        LongMove.LongMoveByNewThread(Target.Position);
+                        return 0;
+                    }
                     if (baseAddress != 0 && baseAddress != _cacheTargetAddress)
                     {
                         _cacheTargetAddress = baseAddress;
