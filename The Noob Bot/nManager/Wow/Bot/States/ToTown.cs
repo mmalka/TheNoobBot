@@ -37,6 +37,8 @@ namespace nManager.Wow.Bot.States
         private bool _use74A;
         private bool _use110G;
         private bool _useJeeves;
+        private bool _suspendSelling = false;
+        private bool _suspendMailing = false;
 
         public override bool NeedToRun
         {
@@ -94,18 +96,23 @@ namespace nManager.Wow.Bot.States
                            ItemsManager.GetItemCount(49040) > 0 && !ItemsManager.IsItemOnCooldown(49040) && ItemsManager.IsItemUsable(49040))))
                     _useJeeves = true;
 
+                if (Usefuls.GetContainerNumFreeSlots > nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft)
+                    _suspendSelling = false;
+                if (Usefuls.GetContainerNumFreeSlots > nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft)
+                    _suspendMailing = false;
+
                 if (ObjectManager.ObjectManager.Me.GetDurability <=
                     nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
                     (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0 || (MountTask.GetMountCapacity() >= MountCapacity.Ground && (_magicMountMammoth || _magicMountYak)) || _use74A ||
                      _use110G || _useJeeves) && nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
                     return true;
 
-                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
+                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft && !_suspendSelling &&
                     (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 || (MountTask.GetMountCapacity() >= MountCapacity.Ground && (_magicMountMammoth || _magicMountYak)) || _use74A ||
                      _use110G || _useJeeves) && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
                     return true;
 
-                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft &&
+                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft && !_suspendMailing &&
                     (NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 || _useMollE) &&
                     nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
                     nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
@@ -121,8 +128,9 @@ namespace nManager.Wow.Bot.States
             Npc mailBox = null;
 
             // If we need to send items.
-            if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
-                nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
+            if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature && !_suspendMailing &&
+                nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty &&
+                Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft)
             {
                 if (_useMollE)
                 {
@@ -268,7 +276,7 @@ namespace nManager.Wow.Bot.States
             // If we need to sell.
             if (NeedFoodSupplies() || NeedDrinkSupplies() ||
                 Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
-                nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
+                nManagerSetting.CurrentSetting.ActivateAutoSellingFeature && !_suspendSelling)
             {
                 if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
@@ -427,6 +435,8 @@ namespace nManager.Wow.Bot.States
                             Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems,
                                              nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
                             Thread.Sleep(3000);
+                            if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft)
+                                _suspendSelling = true;
                             // End NPC Buyer
 
                             // NPC Seller
@@ -473,6 +483,8 @@ namespace nManager.Wow.Bot.States
                             if (mailSendingCompleted)
                                 Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + target.Name + " (" +
                                               target.Entry + ").");
+                            if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft)
+                                _suspendMailing = true;
                         }
                         // End MailBox
 
