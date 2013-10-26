@@ -1,7 +1,7 @@
 <?php
 
 include ("fusionchart.php");
-$dbServer = "services.thenoobcompany.com";
+$dbServer = "localhost";
 $dbUser = "thenoobbot_chk";
 $dbPassword = "XXXXXXXXXXXXXXXXX";
 $mysql = mysql_connect($dbServer, $dbUser, $dbPassword) or die(mysql_error());
@@ -17,40 +17,40 @@ $stats_table = "tnb_stats";
 			<div style="float:left;width:300px; height: 200px">
 								<h3 style="margin-left:15px;" id="stats">Global online bots stats :</h3>
 				<ul>
-					<li><a href="advanced.php?type=month">Last twelve months</a></li>
-					<li><a href="advanced.php?type=days">Last thirty-one days</a></li>
-					<li><a href="advanced.php?type=day">Last seven days</a></li>
-					<li><a href="advanced.php?type=sdays">Last seven days, hour per hour</a></li>
-					<li><a href="advanced.php?type=hour">Last 24 hours</a></li>
-					<li><a href="advanced.php?type=12h">Last 12 hours, minutes per minutes (slow!)</a></li>
-					<li><a href="advanced.php?type=24h">Last 24 hours, minutes per minutes (slow!)</a></li>
-					<li><a href="advanced.php?type=mins">Last hour, minutes per minutes</a></li>
+					<li><a href=".advanced.php?type=month">Last twelve months</a></li>
+					<li><a href=".advanced.php?type=days">Last thirty-one days</a></li>
+					<li><a href=".advanced.php?type=day">Last seven days</a></li>
+					<li><a href=".advanced.php?type=sdays">Last seven days, hour per hour</a></li>
+					<li><a href=".advanced.php?type=hour">Last 24 hours</a></li>
+					<li><a href=".advanced.php?type=12h">Last 12 hours, minutes per minutes (slow!)</a></li>
+					<li><a href=".advanced.php?type=24h">Last 24 hours, minutes per minutes (slow!)</a></li>
+					<li><a href=".advanced.php?type=mins">Last hour, minutes per minutes</a></li>
 				</ul>
 			</div>
 			<div style="float:left;width:300px; height: 200px">
 				<h3 style="margin-left:15px;" id="stats">Paid online bots stats :</h3>
 				<ul>
-					<li><a href="advanced.php?type=month&info=paid">Last twelve months</a></li>
-					<li><a href="advanced.php?type=days&info=paid">Last thirty-one days</a></li>
-					<li><a href="advanced.php?type=day&info=paid">Last seven days</a></li>
-					<li><a href="advanced.php?type=sdays&info=paid">Last seven days, hour per hour</a></li>
-					<li><a href="advanced.php?type=hour&info=paid">Last 24 hours</a></li>
-					<li><a href="advanced.php?type=12h&info=paid">Last 12 hours, minutes per minutes (slow!)</a></li>
-					<li><a href="advanced.php?type=24h&info=paid">Last 24 hours, minutes per minutes (slow!)</a></li>
-					<li><a href="advanced.php?type=mins&info=paid">Last hour, minutes per minutes</a></li>
+					<li><a href=".advanced.php?type=month&info=paid">Last twelve months</a></li>
+					<li><a href=".advanced.php?type=days&info=paid">Last thirty-one days</a></li>
+					<li><a href=".advanced.php?type=day&info=paid">Last seven days</a></li>
+					<li><a href=".advanced.php?type=sdays&info=paid">Last seven days, hour per hour</a></li>
+					<li><a href=".advanced.php?type=hour&info=paid">Last 24 hours</a></li>
+					<li><a href=".advanced.php?type=12h&info=paid">Last 12 hours, minutes per minutes (slow!)</a></li>
+					<li><a href=".advanced.php?type=24h&info=paid">Last 24 hours, minutes per minutes (slow!)</a></li>
+					<li><a href=".advanced.php?type=mins&info=paid">Last hour, minutes per minutes</a></li>
 				</ul>
 			</div>
 			<div style="float:left;width:300px; height: 200px">
 				<h3 style="margin-left:15px;" id="stats">Free trial online bots stats :</h3>
 				<ul>
-					<li><a href="advanced.php?type=month&info=trial">Last twelve months</a></li>
-					<li><a href="advanced.php?type=days&info=trial">Last thirty-one days</a></li>
-					<li><a href="advanced.php?type=day&info=trial">Last seven days</a></li>
-					<li><a href="advanced.php?type=sdays&info=trial">Last seven days, hour per hour</a></li>
-					<li><a href="advanced.php?type=hour&info=trial">Last 24 hours</a></li>
-					<li><a href="advanced.php?type=12h&info=trial">Last 12 hours, minutes per minutes (slow!)</a></li>
-					<li><a href="advanced.php?type=24h&info=trial">Last 24 hours, minutes per minutes (slow!)</a></li>
-					<li><a href="advanced.php?type=mins&info=trial">Last hour, minutes per minutes</a></li>
+					<li><a href=".advanced.php?type=month&info=trial">Last twelve months</a></li>
+					<li><a href=".advanced.php?type=days&info=trial">Last thirty-one days</a></li>
+					<li><a href=".advanced.php?type=day&info=trial">Last seven days</a></li>
+					<li><a href=".advanced.php?type=sdays&info=trial">Last seven days, hour per hour</a></li>
+					<li><a href=".advanced.php?type=hour&info=trial">Last 24 hours</a></li>
+					<li><a href=".advanced.php?type=12h&info=trial">Last 12 hours, minutes per minutes (slow!)</a></li>
+					<li><a href=".advanced.php?type=24h&info=trial">Last 24 hours, minutes per minutes (slow!)</a></li>
+					<li><a href=".advanced.php?type=mins&info=trial">Last hour, minutes per minutes</a></li>
 				</ul>
 			</div>
 		</div>
@@ -214,7 +214,7 @@ for ($i = $count; $i > 0; $i--)
       $strDataCurr = "<dataset seriesName='Shown Global Online Bots'>";
     }
 }
-$strXML = "<chart showNames='1' showValues='0' rotateNames='1' animation='1' caption='$nom' numberPrefix='' formatNumberScale='1' rotateValues='30' placeValuesInside='10' decimals='0' >";
+$strXML = "<chart showNames='1' showValues='0' rotateNames='1' animation='1' caption='$nom' numberPrefix='' formatNumberScale='0' rotateValues='30' placeValuesInside='10' decimals='0' >";
 $strCategories = "<categories>";
 
 

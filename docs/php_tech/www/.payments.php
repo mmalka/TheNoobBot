@@ -1,10 +1,11 @@
 <?php
 
 include ("fusionchart.php");
-$dbServer = "services.thenoobcompany.com";
+$dbServer = "localhost";
 $dbUser = "thenoobbot_chk";
 $dbPassword = "XXXXXXXXXXXXXXXXX";
-$mysql = mysql_connect($dbServer, $dbUser, $dbPassword) or die(mysql_error());
+if($_GET['mysql'] != 'off')
+  $mysql = mysql_connect($dbServer, $dbUser, $dbPassword) or die(mysql_error());
 $type = $_GET['type'];
 $db_site = "thenoobbot_site";
 $payments_table = "wp_SWW_Invoice";
@@ -27,14 +28,14 @@ $payments_table = "wp_SWW_Invoice";
 			<div style="float:left;width:300px; height: 200px">
 				<h3 style="margin-left:15px;" id="stats">Approximate TheNoobBot revenues :</h3>
 				<ul>
-					<li><a href="payments.php?type=24months">Last twenty-four months</a></li>
-					<li><a href="payments.php?type=12months">Last twelve months</a></li>
-					<li><a href="payments.php?type=6months">Last six months</a></li>
-					<li><a href="payments.php?type=180days">Last six months, days to days</a></li>
-					<li><a href="payments.php?type=90days">Last three months, days to days</a></li>
-                    <li><a href="payments.php?type=31days">Last thirty-one days</a></li>
-					<li><a href="payments.php?type=15days">Last fifteen days</a></li>
-					<li><a href="payments.php?type=7days">Last seven days</a></li>
+					<li><a href=".payments.php?type=24months">Last twenty-four months</a></li>
+					<li><a href=".payments.php?type=12months">Last twelve months</a></li>
+					<li><a href=".payments.php?type=6months">Last six months</a></li>
+					<li><a href=".payments.php?type=180days">Last six months, days to days</a></li>
+					<li><a href=".payments.php?type=90days">Last three months, days to days</a></li>
+                    <li><a href=".payments.php?type=31days">Last thirty-one days</a></li>
+					<li><a href=".payments.php?type=15days">Last fifteen days</a></li>
+					<li><a href=".payments.php?type=7days">Last seven days</a></li>
 				</ul>
 			</div>
 		</div>
@@ -112,7 +113,7 @@ for ($i = $count; $i > 0; $i--)
   $strDataCurr = "<dataset seriesName='Revenue in Euros'>";
     
 }
-$strXML = "<chart showNames='1' showValues='0' rotateNames='1' animation='1' caption='$nom' numberPrefix='' formatNumberScale='1' rotateValues='30' placeValuesInside='10' decimals='0' >";
+$strXML = "<chart showNames='1' showValues='0' rotateNames='1' animation='1' caption='$nom' numberPrefix='' formatNumberScale='0' rotateValues='30' placeValuesInside='10' decimals='2' >";
 $strCategories = "<categories>";
 
 
