@@ -59,6 +59,7 @@ namespace nManager.Wow.Helpers
                     MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
                     MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
                     MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Aquatic Form"));
+                    MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Sky Golem"));
                 }
                 return MountDruidIdList;
             }
@@ -79,6 +80,7 @@ namespace nManager.Wow.Helpers
                 {
                     FlightFormsIdsList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
                     FlightFormsIdsList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
+                    // Sky Golem is not a flight form, and wont cause trouble to farm underwater.
                 }
                 return FlightFormsIdsList;
             }
