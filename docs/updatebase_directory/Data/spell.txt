@@ -24721,7 +24721,7 @@
 48930;Geist Wall Walk
 48953;Infect!
 48954;Swift Zhevra
-48955;Refer A Friend Summon Effect
+48955;Recruit A Friend Summon Effect
 48956;Create Direbrew's Shanker
 48960;Horde Log Ride 01 Begin
 48961;Log Ride Horde 00
@@ -90542,6 +90542,7 @@
 142556;Poison: Blue
 142557;Poison: Red
 142558;Poison: Yellow
+142559;Encapsulated Pheromones
 142560;Spoils of Pandaria
 142561;Venom Cloud
 142562;Torch Toss
@@ -91209,7 +91210,6 @@
 143369;Languages
 143372;Gene Splice
 143373;Gene Splice
-143374;REUSEME
 143375;Death and Decay
 143376;Sting
 143377;Sting
@@ -94800,9 +94800,23 @@
 149624;Sacrificed to Ordos
 149634;Teleport
 149716;Clone Me! - No Weapons
+149787;Alterac Brew-Pup
+149792;Murkalot
+149801;Emerald Hippogryph
 149836;Crawler Mine Immunity
 149837;Crawler Mine Jump
 149978;Garrosh Finale - Horde
 149979;Garrosh Finale - Alliance
 149989;Disallow Demonic Circle Summon
 150017;Rake
+150233;Item - Proc Agility
+150236;Plunder Quest Tracker
+150799;Cleanse
+150852;Cleanse
+150903;REUSE ME
+151186;Crafty Spell
+151559;Ordos Bonus Loot
+151804;Food
+151944;Food
+151945;Food
+152028;Mulled Alterac Brandy

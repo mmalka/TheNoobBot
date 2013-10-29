@@ -79,7 +79,7 @@
         public enum GameInfo
         {
             continentId = 0xAC15E8,
-            buildWowVersion = 0xB76810,
+            buildWowVersion = 0xB7680C,
             gameState = 0xD43ACE,
             isLoadingOrConnecting = 0xC76888,
             AreaId = 0xB44448,
@@ -94,7 +94,7 @@
         public enum Player
         {
             petGUID = 0xDB27D8,
-            playerName = 0xEA1E08,
+            playerName = 0xEA23C8,
             PlayerComboPoint = 0xD43BB1,
             RetrieveCorpseWindow = 0xD43B84,
             // Some offsets to refine descriptor
