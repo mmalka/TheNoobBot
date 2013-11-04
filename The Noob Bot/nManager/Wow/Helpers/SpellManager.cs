@@ -761,13 +761,12 @@ namespace nManager.Wow.Helpers
             return new SpellInfoLua();
         }
 
-        public static List<SpellInfoLua> SpellInfoCreateCache(List<uint> listId)
+        public static void SpellInfoCreateCache(List<uint> listId)
         {
             try
             {
                 lock ("SpellInfoCreateCache")
                 {
-                    List<SpellInfoLua> ret = new List<SpellInfoLua>();
                     string listIdString = "{ ";
                     foreach (uint id in listId)
                     {
@@ -778,16 +777,15 @@ namespace nManager.Wow.Helpers
                     listIdString += "}";
 
                     string randomString = Others.GetRandomString(Others.Random(5, 10));
-                    string result = Lua.LuaDoString(
-                        randomString + " = \"\"; " +
+                    string command = randomString + " = \"\"; " +
                         "local spellBookList = " + listIdString + " " +
                         "for arrayId = 1, table.getn(spellBookList) do " +
                         "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(spellBookList[arrayId]); " +
                         randomString + " = " + randomString +
                         " .. tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellBookList[arrayId]);" +
                         randomString + " = " + randomString + " .. \"||\"" +
-                        "end "
-                        , randomString);
+                        "end ";
+                    string result = Lua.LuaDoString(command, randomString);
                     if (!string.IsNullOrWhiteSpace(result))
                     {
                         string[] listSpell = result.Split(new[] {"||"}, StringSplitOptions.None);
@@ -845,7 +843,6 @@ namespace nManager.Wow.Helpers
                                     {
                                         if (!_spellInfos.ContainsKey(spellInfo.ID))
                                             _spellInfos.Add(spellInfo.ID, spellInfo);
-                                        ret.Add(spellInfo);
                                     }
                                 }
                                 else
@@ -853,7 +850,7 @@ namespace nManager.Wow.Helpers
                                     Logging.WriteDebug("Return as bad format: public static SpellInfo SpellInfoCreateCache()");
                                 }
                             }
-                            return ret;
+                            return;
                         }
                     }
                     else
@@ -866,7 +863,7 @@ namespace nManager.Wow.Helpers
             {
                 Logging.WriteError("SpellInfo GetSpellInfo(uint id): " + exception);
             }
-            return new List<SpellInfoLua>();
+            return;
         }
 
         public class SpellInfoLua
@@ -1003,7 +1000,6 @@ namespace nManager.Wow.Helpers
         public class SpellListManager
         {
             public static Dictionary<uint, string> ListSpell { get; private set; }
-            public static List<string> ListSpellName { get; private set; }
             private static readonly object LoadSpellListeLock = new object();
 
             internal static void LoadSpellListe(string fileName)
@@ -1032,11 +1028,6 @@ namespace nManager.Wow.Helpers
                             }
 
                             ListSpell = tListSpell;
-                            ListSpellName = new List<string>();
-                            foreach (KeyValuePair<uint, string> spell in ListSpell)
-                            {
-                                ListSpellName.Add(spell.Value);
-                            }
                         }
                     }
                 }
