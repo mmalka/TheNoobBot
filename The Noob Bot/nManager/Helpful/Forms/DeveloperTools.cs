@@ -298,7 +298,7 @@ namespace nManager.Helpful.Forms
 
                 if (npc.Entry <= 0)
                 {
-                    MessageBox.Show(Translate.Get(Translate.Id.No_found));
+                    MessageBox.Show(Translate.Get(Translate.Id.NPCNotFound));
                     return;
                 }
 

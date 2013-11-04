@@ -331,8 +331,8 @@
       <Text>Non non défini</Text>
     </Translation>
     <Translation>
-      <Id>No_found</Id>
-      <Text>Introuvable</Text>
+      <Id>NPCNotFound</Id>
+      <Text>NPC not found, make sure to write as it appear in your client language.</Text>
     </Translation>
     <Translation>
       <Id>Separation_distance_record</Id>

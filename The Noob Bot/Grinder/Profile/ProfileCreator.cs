@@ -30,7 +30,6 @@ namespace Grinder.Profile
                 npcTypeC.Text = Npc.NpcType.None.ToString();
 
                 RefreshListZones();
-                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
             }
             catch (Exception e)
@@ -442,7 +441,7 @@ namespace Grinder.Profile
 
                 if (npc.Entry <= 0)
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_found) + ".");
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NPCNotFound) + ".");
                     return;
                 }
 

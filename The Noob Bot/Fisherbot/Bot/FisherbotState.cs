@@ -128,7 +128,7 @@ namespace Fisherbot.Bot
 
                 if (timer.IsReady && _node.GetDistance2D > DistanceMax)
                 {
-                    Logging.Write("Fishing failed - No found nearby point (distance near position = " +
+                    Logging.Write("Fishing failed - No nearby point found (distance near position = " +
                                   ObjectManager.Me.Position.DistanceTo2D(
                                       FisherbotSetting.CurrentSetting.FisherbotPosition).ToString(CultureInfo.InvariantCulture) + ")");
                     MovementManager.StopMove();

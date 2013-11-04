@@ -26,8 +26,7 @@ namespace Gatherer.Bot
                     npcTypeC.Items.Add(t.ToString());
                 }
                 npcTypeC.Text = Npc.NpcType.None.ToString();
-                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    TopMost = true;
+                TopMost = true;
             }
             catch (Exception e)
             {
@@ -346,7 +345,7 @@ namespace Gatherer.Bot
 
                 if (npc.Entry <= 0)
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_found));
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NPCNotFound));
                     return;
                 }
 

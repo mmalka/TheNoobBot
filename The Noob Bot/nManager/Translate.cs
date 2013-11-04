@@ -151,7 +151,7 @@ namespace nManager
             Record_Way,
             Stop_Record_Way,
             Name_Empty,
-            No_found,
+            NPCNotFound,
             Separation_distance_record,
             Del,
             Add_this_position_to_Black_list_Radius,
