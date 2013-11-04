@@ -1263,7 +1263,7 @@ error:
 			unsigned char* copy = new unsigned char[data->Length];
 			Marshal::Copy(data, 0, (IntPtr)copy, data->Length);
 			dtTileRef tileRef;
-			auto status = _mesh->addTile(copy, data->Length, 0, lastRef, &tileRef);
+			dtStatus status = _mesh->addTile(copy, data->Length, DT_TILE_FREE_DATA, lastRef, &tileRef);
 			if (dtStatusSucceed(status))
 				tile = gcnew MeshTile(_mesh->getTileByRef(tileRef), _mesh);
 			return (DetourStatus)status;
@@ -1277,13 +1277,8 @@ error:
 			unsigned char* retData;
 			int retDataLength;
 			dtStatus status = _mesh->removeTile(tileRef, &retData, &retDataLength);
-
 			if (dtStatusSucceed(status))
-			{
 				delete[] retData;
-				return (DetourStatus)status;
-			}
-
 			return (DetourStatus)status;
 		}
 
