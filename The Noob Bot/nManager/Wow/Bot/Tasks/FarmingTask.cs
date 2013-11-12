@@ -151,7 +151,14 @@ namespace nManager.Wow.Bot.Tasks
                                     }
                                 }
                             }
-                            Thread.Sleep(Usefuls.Latency + 300);
+                            Thread.Sleep(Usefuls.Latency + 250);
+                            if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            {
+                                Usefuls.DisMount();
+                                return;
+                            }
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 200);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -263,17 +270,21 @@ namespace nManager.Wow.Bot.Tasks
                             if (MovementManager.InMovement)
                                 return;
                         }
-                        Thread.Sleep(500 + Usefuls.Latency);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         while (ObjectManager.ObjectManager.Me.GetMove)
                         {
                             Thread.Sleep(250);
+                        }
+                        if (ObjectManager.ObjectManager.Me.InCombat)
+                        {
+                            return;
                         }
                         Interact.InteractWith(node.GetBaseAddress);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             return;
                         }
-                        Thread.Sleep(250);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Thread.Sleep(250);
@@ -282,7 +293,7 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             return;
                         }
-                        Thread.Sleep(Usefuls.Latency + 1250);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             return;

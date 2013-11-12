@@ -81,7 +81,7 @@ namespace nManager.Wow.Bot.Tasks
                                             {
                                                 return;
                                             }
-                                            Thread.Sleep(1250);
+                                            Thread.Sleep(500 + Usefuls.Latency);
                                             if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                                 ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                 return;
@@ -89,29 +89,30 @@ namespace nManager.Wow.Bot.Tasks
                                             if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
                                                 !ObjectManager.ObjectManager.Me.InCombat)
                                                 Elemental.AutoMakeElemental();
+                                            Thread.Sleep(250 + Usefuls.Latency);
                                             if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                             {
                                                 WoWUnit unit = wowUnit;
                                                 foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
                                                 {
-                                                    nManagerSetting.AddBlackList(u.Guid, 2500);
+                                                    nManagerSetting.AddBlackList(u.Guid, 2600);
                                                 }
-                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
                                                 break;
                                             }
                                         }
                                         if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                             ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
-                                            Thread.Sleep(1500);
+                                            //Thread.Sleep(200 + Usefuls.Latency);
                                             if (wowUnit.IsSkinnable)
                                             {
                                                 Logging.Write("Skin " + wowUnit.Name);
                                                 Interact.InteractWith(wowUnit.GetBaseAddress);
-                                                Thread.Sleep(500);
+                                                Thread.Sleep(200 + Usefuls.Latency);
                                                 while (ObjectManager.ObjectManager.Me.IsCast)
                                                 {
-                                                    Thread.Sleep(50);
+                                                    Thread.Sleep(100);
                                                 }
                                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
                                                      !(ObjectManager.ObjectManager.Me.IsMounted &&
@@ -120,7 +121,7 @@ namespace nManager.Wow.Bot.Tasks
                                                 {
                                                     return;
                                                 }
-                                                Thread.Sleep(1000);
+                                                Thread.Sleep(400 + Usefuls.Latency);
                                                 if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                                     ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                     return;
