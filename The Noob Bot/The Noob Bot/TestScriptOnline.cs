@@ -13,30 +13,16 @@
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
                 //if (nManager.Information.TargetWowBuild == 17359)
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEABE18;
-                //else nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEABE18;
+					nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEA2388;
+				//else nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEABE18;
             }
-            else if (nManager.Information.Version == "1.9.5" &&
-                (nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe") != "B847814F1BFD5C991A18F8689B2A2559" ||
-                nManager.Helpful.Others.GetFileMd5CheckSum("nManager" + random + ".dll") != "20A9FA5C3ABDC0278DD009155A21709D"))
-            {
+			else if (nManager.Information.Version == "1.9.9")
+			{
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
-                System.Windows.Forms.MessageBox.Show("Update available, please update TheNoobBot to the next version or get an official release version on TheNoobBot.com if you are using a cracked version.");
-                nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version or get an official release version on TheNoobBot.com if you are using a cracked version.");
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xE3CB00;
-                System.Threading.Thread.Sleep(1000 * 60 * 3);
-                while (true)
-                {
-                }
-            }
-            else if (nManager.Information.Version == "1.9.5")
-            {
-                System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
-                System.IO.File.Delete("nManager" + random + ".dll");
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEABE18;
-            }
-            else
+                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEA2388;
+			}
+		    else
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
