@@ -143,7 +143,7 @@ namespace nManager.Wow.Bot.States
                             trainer = Npc.NpcType.SkinningTrainer;
                             isPrimarySkill = true;
                             break;
-                        case "Ridings":
+                        case "Riding":
                             if (!nManagerSetting.CurrentSetting.TrainMountingCapacity)
                                 doIgnoreCheck = true;
                             skillLine = SkillLine.Riding;
@@ -218,6 +218,8 @@ namespace nManager.Wow.Bot.States
                             trainer = Npc.NpcType.LeatherworkingTrainer;
                             isPrimarySkill = true;
                             break;
+                        default:
+                            continue;
                     }
 
                     SkillRank skillRank = (SkillRank) Skill.GetMaxValue(skillLine);
