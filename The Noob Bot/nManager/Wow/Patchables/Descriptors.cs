@@ -277,6 +277,7 @@
             ScriptPackageID = ObjectFields.End + 0,
             RndSeedVal = ObjectFields.End + 1,
             CreatedBy = ObjectFields.End + 2,
+            SceneType = ObjectFields.End + 2,
             End = ObjectFields.End + 4,
         }
 

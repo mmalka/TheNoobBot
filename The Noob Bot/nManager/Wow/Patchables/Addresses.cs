@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 17399
+    ///   Offset and Pointer for Wow 17658
     /// </summary>
     public static class Addresses
     {
@@ -16,12 +16,12 @@
         public enum ObjectManager
         {
             objectManager = 0x462C,
-            localGuid = 0xE4,
-            objectGUID = 0x28, // check
-            objectTYPE = 0xC, // check
+            localGuid = 0xE8,
+            objectGUID = 0x28,
+            objectTYPE = 0xC,
             // These are 'hard coded' in the client. I don't remember the last time they changed.
-            firstObject = 0xCC, // check
-            nextObject = 0x34, // check
+            firstObject = 0xCC,
+            nextObject = 0x34,
         }
 
         /// <summary>
@@ -30,24 +30,24 @@
         public enum Hooking
         {
             DX_DEVICE = 0xBADFF0,
-            DX_DEVICE_IDX = 0x2820, // check
-            ENDSCENE_IDX = 0xA8, // check
+            DX_DEVICE_IDX = 0x2820,
+            ENDSCENE_IDX = 0xA8,
         }
 
         /// <summary> Movement Flags</summary>
         /// [[base+offset1]+offset2]
         public enum MovementFlagsOffsets
         {
-            Offset1 = 0xE4, // check
-            Offset2 = 0x38, // check
+            Offset1 = 0xEC,
+            Offset2 = 0x38,
         }
 
         public enum Party
         {
             PartyOffset = 0xDBD8D8,
-            NumOfPlayers = 0xC4, // check
-            NumOfPlayers_SuBGroup = 0xC8, // check
-            PlayerGuid = 0x10, // check
+            NumOfPlayers = 0xC4,
+            NumOfPlayers_SuBGroup = 0xC8,
+            PlayerGuid = 0x10,
         }
 
         public enum PetBattle
@@ -132,7 +132,7 @@
         public enum UnitField
         {
             UNIT_SPEED = 0x788, // check // 0xE4 ?
-            UNIT_FIELD_X = 0x830, // check
+            UNIT_FIELD_X = 0x838, // check
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // check
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // check
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // check
@@ -149,9 +149,9 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0xF0, // check
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // check
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // check
+            GAMEOBJECT_FIELD_X = 0x1F4,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             DBCacheRow = 0x1C0, // CGGameObject_C::GetName
             CachedName = 0xB0, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // check
