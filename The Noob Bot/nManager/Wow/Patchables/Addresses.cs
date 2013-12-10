@@ -174,7 +174,7 @@
         /// </summary>
         public enum Fishing
         {
-            BobberHasMoved = 0xC4, // check
+            BobberHasMoved = 0xCC,
         }
 
         /// <summary>
