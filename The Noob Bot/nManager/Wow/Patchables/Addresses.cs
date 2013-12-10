@@ -16,7 +16,7 @@
         public enum ObjectManager
         {
             objectManager = 0x462C,
-            localGuid = 0xE0, // check
+            localGuid = 0xE4,
             objectGUID = 0x28, // check
             objectTYPE = 0xC, // check
             // These are 'hard coded' in the client. I don't remember the last time they changed.
@@ -30,7 +30,7 @@
         public enum Hooking
         {
             DX_DEVICE = 0xBADFF0,
-            DX_DEVICE_IDX = 0x281C, // check
+            DX_DEVICE_IDX = 0x2820, // check
             ENDSCENE_IDX = 0xA8, // check
         }
 
@@ -205,10 +205,10 @@
         public enum ClickToMove
         {
             CTM = 0xD0A398, // GetClickToMoveStruct
-            CTM_PUSH = CTM + 0x1C, // check
-            CTM_X = CTM + 0x8C, // check
-            CTM_Y = CTM_X + 0x4, // check
-            CTM_Z = CTM_Y + 0x4, // check
+            CTM_PUSH = CTM + 0x1C,
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
