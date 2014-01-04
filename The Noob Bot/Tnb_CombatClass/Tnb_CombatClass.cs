@@ -14513,14 +14513,12 @@ public class ShamanEnhancement
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
-             && MySettings.UseWaterShield && !WaterShield.HaveBuff) || !MySettings.UseLightningShield)
+        if (MySettings.UseWaterShield && !WaterShield.HaveBuff && WaterShield.KnownSpell && WaterShield.IsSpellUsable && (!MySettings.UseLightningShield || ObjectManager.Me.ManaPercentage < 5))
         {
             WaterShield.LaunchOnSelf();
             return;
         }
-        if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
-            && MySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
+        if (MySettings.UseLightningShield && (ObjectManager.Me.ManaPercentage > 10 || !MySettings.UseWaterShield) && LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff)
         {
             LightningShield.LaunchOnSelf();
             return;
@@ -15405,23 +15403,17 @@ public class ShamanRestoration
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
-             && MySettings.UseWaterShield && !WaterShield.HaveBuff)
-            || (!MySettings.UseLightningShield && !MySettings.UseEarthShield))
+        if (MySettings.UseWaterShield && !WaterShield.HaveBuff && WaterShield.KnownSpell && WaterShield.IsSpellUsable && (!MySettings.UseLightningShield && !MySettings.UseEarthShield || ObjectManager.Me.ManaPercentage < 5))
         {
             WaterShield.LaunchOnSelf();
             return;
         }
-        if (ObjectManager.Me.HealthPercent < 50 && EarthShield.KnownSpell && EarthShield.IsSpellUsable
-            && MySettings.UseEarthShield && !EarthShield.HaveBuff && ObjectManager.Me.ManaPercentage > 15
-            || !MySettings.UseLightningShield)
+        if (MySettings.UseEarthShield && !MySettings.UseLightningShield && !EarthShield.HaveBuff && EarthShield.KnownSpell && ObjectManager.Me.HealthPercent < 50 && EarthShield.IsSpellUsable)
         {
             EarthShield.Launch();
             return;
         }
-        if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
-            && MySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15
-            && ObjectManager.Me.HealthPercent > 70)
+        if (MySettings.UseLightningShield && !MySettings.UseEarthShield && (ObjectManager.Me.ManaPercentage > 10 || !MySettings.UseWaterShield) && LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff)
         {
             LightningShield.LaunchOnSelf();
             return;
@@ -16292,14 +16284,12 @@ public class ShamanElemental
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
-             && MySettings.UseWaterShield && !WaterShield.HaveBuff) || !MySettings.UseLightningShield)
+        if (MySettings.UseWaterShield && !WaterShield.HaveBuff && WaterShield.KnownSpell && WaterShield.IsSpellUsable && (!MySettings.UseLightningShield || ObjectManager.Me.ManaPercentage < 5))
         {
             WaterShield.LaunchOnSelf();
             return;
         }
-        if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
-            && MySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
+        if (MySettings.UseLightningShield && (ObjectManager.Me.ManaPercentage > 10 || !MySettings.UseWaterShield) && LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff)
         {
             LightningShield.LaunchOnSelf();
             return;
