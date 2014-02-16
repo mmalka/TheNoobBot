@@ -19228,7 +19228,9 @@ public class RogueCombat
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 30)
+                                if (ObjectManager.Target.GetDistance < 30 && ObjectManager.Me.Level < 10)
+                                    LowCombat();
+                                else if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -19315,8 +19317,7 @@ public class RogueCombat
             return;
         }
 
-        if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood
-            && MySettings.UseEviscerate && ObjectManager.Me.ComboPoint > 4)
+        if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood && MySettings.UseEviscerate && ObjectManager.Me.ComboPoint >= 2)
         {
             Eviscerate.Launch();
             return;
