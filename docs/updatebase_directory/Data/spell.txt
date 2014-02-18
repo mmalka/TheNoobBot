@@ -4478,7 +4478,6 @@
 14741;Increased Arcane Resist 39
 14742;Increased Arcane Resist 40
 14744;Burning Spirit
-14769;Power Word: Barrier
 14771;Glyph of Inner Sanctum
 14775;Stilled
 14792;Venomhide Poison
@@ -49307,7 +49306,6 @@
 81778;Trial of the Crypt: Set Argent Dawn Faction To Min Revered
 81779;Summon Wyvern
 81780;Force Cast Summon Wyvern
-81781;Power Word: Barrier
 81782;Power Word: Barrier
 81783;Damsel's Bad Luck: Summon Boarding Bunny
 81784;Damsel's Bad Luck: Summon Disembarking Bunny
@@ -59717,6 +59715,7 @@
 97320;Sunder Rift
 97321;Drain Spirit Essence
 97322;[DND] Ring
+97323;Darren's Test Spell
 97324;Quill of the Bird-Queen
 97325;Eye of the Inferno Effect
 97326;Return to the Mountain
@@ -87434,7 +87433,6 @@
 138610;Fiery Core
 138611;Wild Mushroom
 138613;Matter Swap
-138614;Power Word: Barrier
 138615;Matter Swap
 138616;Wild Mushroom
 138618;Matter Swap
@@ -94803,6 +94801,7 @@
 149787;Alterac Brew-Pup
 149792;Murkalot
 149801;Emerald Hippogryph
+149810;Treasure Goblin
 149836;Crawler Mine Immunity
 149837;Crawler Mine Jump
 149978;Garrosh Finale - Horde
@@ -94812,6 +94811,7 @@
 150233;Item - Proc Agility
 150236;Plunder Quest Tracker
 150799;Cleanse
+150808;QA Test Spell -  [DNT]
 150852;Cleanse
 150903;REUSE ME
 151186;Crafty Spell
@@ -94820,3 +94820,14 @@
 151944;Food
 151945;Food
 152028;Mulled Alterac Brandy
+152421;Bipsi's Bobbing Berg
+152422;Rafting Visual (Ice)
+153317;Treasure Goblin Death
+153319;Drop Coin
+153322;Loose Coins
+153489;Iron Skyreaver
+153895;Suicide
+154165;Moonkin Hatchling
+155676;Dread Hatchling Love Trigger
+155741;Dread Raven
+155748;Dread Hatchling
