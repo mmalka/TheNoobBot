@@ -81,7 +81,7 @@
             continentId = 0xADE5E8,
             buildWowVersion = 0xB93994,
             gameState = 0xD64626,
-            isLoadingOrConnecting = 0xC933C0,
+            isLoadingOrConnecting = 0xC943C0,
             AreaId = 0xB62358,
             lastWowErrorMessage = 0xD63A28,
             zoneMap = 0xD6461C,
