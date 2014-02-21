@@ -249,7 +249,7 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xC84358 + 0x8,
+            nameStorePtr = 0xC85358 + 0x8,
             nameMaskOffset = 0x24,
             nameBaseOffset = 0x18,
             nameStringOffset = 0x21,
