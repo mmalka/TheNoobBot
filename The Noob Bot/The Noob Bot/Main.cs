@@ -104,6 +104,7 @@ namespace The_Noob_Bot
                 Thread spellBook = new Thread(ThreadSpellBook) {Name = "SpellBook Loading"};
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
+                Communication.Listen();
 
                 _playerName = ObjectManager.Me.Name;
             }

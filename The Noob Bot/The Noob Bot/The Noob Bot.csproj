@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Communication.cs" />
     <Compile Include="LoginServer.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
