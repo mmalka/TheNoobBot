@@ -340,7 +340,10 @@ namespace Quester.Tasks
                     uint tNumber = Statistics.Farms;
                     FarmingTask.Pulse(new List<WoWGameObject> {node});
                     if (Statistics.Farms > tNumber)
+                    {
                         questObjective.CurrentCount++;
+                        MovementManager.StopMove();
+                    }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
