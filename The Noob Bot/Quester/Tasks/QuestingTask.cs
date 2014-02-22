@@ -960,7 +960,19 @@ namespace Quester.Tasks
 
         public static void PickUpQuest()
         {
-            PickUpTurnInQuest(true, false);
+            QuestStatus = "Pick-Up Quest";
+            Npc npc = Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
+            int item = CurrentQuest.ItemPickUp;
+            if (item != 0)
+            {
+                ItemsManager.UseItem(ItemsManager.GetItemNameById(item));
+                Thread.Sleep(250);
+                Quest.AcceptQuest();
+                return;
+            }
+            if (npc == null)
+                return;
+            Quest.QuestPickUp(ref npc, CurrentQuest.Name, CurrentQuest.Id);
         }
 
         public static void TurnInQuest()
@@ -970,197 +982,11 @@ namespace Quester.Tasks
                 ResetQuestObjective();
                 return;
             }
-            PickUpTurnInQuest(false, true);
-        }
-
-        private static void PickUpTurnInQuest(bool pickUp, bool turnIn)
-        {
-            Npc npc = null;
-            int item = CurrentQuest.ItemPickUp;
-
-            if (pickUp)
-            {
-                QuestStatus = "Pick-Up Quest";
-                npc = Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
-            }
-            if (turnIn)
-            {
-                QuestStatus = "Turn-In Quest";
-                npc = Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
-            }
-
-            if (pickUp && item != 0)
-            {
-                ItemsManager.UseItem(ItemsManager.GetItemNameById(item));
-                Thread.Sleep(250);
-                Quest.AcceptQuest();
-                return;
-            }
-
+            QuestStatus = "Turn-In Quest";
+            Npc npc = Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
             if (npc == null)
                 return;
-
-            // Go To QuestGiver:
-            // Launch script
-            //Script.Run(npc.Script); ToDo: Support scripts for special case quests.
-
-            //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc);
-            if (MovementManager.InMovement)
-                return;
-            //End target finding based on QuestGiver.
-
-            if ( /*baseAddress > 0 && */npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
-            {
-                Quest.CloseQuestWindow();
-                Interact.InteractWith(baseAddress);
-                Thread.Sleep(Usefuls.Latency + 600);
-                WoWObject targetIsObject = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
-                if (targetIsObject.IsValid)
-                    Thread.Sleep(2500); // to let the Gameobject open
-                if (pickUp)
-                {
-                    Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
-                    int id = Quest.GetQuestID();
-                    // GetNumGossipActiveQuests() == 1 because of auto accepted quests
-                    if (!(Quest.GetNumGossipAvailableQuests() == 1 && Quest.GetNumGossipActiveQuests() == 1) && id == CurrentQuest.Id)
-                    {
-                        Quest.AcceptQuest();
-                        Thread.Sleep(Usefuls.Latency + 500);
-                    }
-                    if (Quest.GetLogQuestId().Contains(CurrentQuest.Id))
-                    {
-                        Quest.CloseQuestWindow();
-                    }
-                    else
-                    {
-                        if (Quest.GetGossipAvailableQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
-                        {
-                            for (int i = 1; i <= Quest.GetNumGossipAvailableQuests(); i++)
-                            {
-                                Quest.SelectGossipAvailableQuest(i);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                id = Quest.GetQuestID();
-                                if (id == CurrentQuest.Id)
-                                {
-                                    Quest.AcceptQuest();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    id = Quest.GetQuestID();
-                                    Quest.CloseQuestWindow();
-                                    if (id != CurrentQuest.Id)
-                                        Quest.AbandonQuest(id);
-                                    break;
-                                }
-                                Quest.CloseQuestWindow();
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                Quest.AbandonQuest(id);
-                                Interact.InteractWith(baseAddress);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                            }
-                        }
-                        else
-                        {
-                            int gossipid = 1;
-                            while (Quest.GetAvailableTitle(gossipid) != "")
-                            {
-                                Quest.SelectAvailableQuest(gossipid);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                id = Quest.GetQuestID();
-                                if (id == CurrentQuest.Id)
-                                {
-                                    Quest.AcceptQuest();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    id = Quest.GetQuestID();
-                                    Quest.CloseQuestWindow();
-                                    if (id != CurrentQuest.Id)
-                                        Quest.AbandonQuest(id);
-                                    break;
-                                }
-                                Quest.CloseQuestWindow();
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                Quest.AbandonQuest(id);
-                                Interact.InteractWith(baseAddress);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                gossipid++;
-                            }
-                        }
-                    }
-                    Quest.KilledMobsToCount.Clear();
-                }
-                if (turnIn)
-                {
-                    Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
-                    int id = Quest.GetQuestID();
-                    if (id == CurrentQuest.Id) // this may fail
-                    {
-                        Quest.CompleteQuest();
-                        Thread.Sleep(Usefuls.Latency + 500);
-                    }
-                    if (!Quest.GetLogQuestId().Contains(CurrentQuest.Id)) // It's no more in the quest log, then we did turn in it sucessfuly
-                    {
-                        id = Quest.GetQuestID();
-                        Quest.FinishedQuestSet.Add(CurrentQuest.Id);
-                        Quest.CloseQuestWindow();
-                        Quest.AbandonQuest(id);
-                    }
-                    else
-                    {
-                        if (Quest.GetGossipActiveQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
-                        {
-                            for (int i = 1; i <= Quest.GetNumGossipActiveQuests(); i++)
-                            {
-                                Quest.SelectGossipActiveQuest(i);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                id = Quest.GetQuestID();
-                                if (id == CurrentQuest.Id)
-                                {
-                                    Quest.CompleteQuest();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    // here it can be the next quest id presented automatically when the current one is turned in
-                                    id = Quest.GetQuestID();
-                                    Quest.CloseQuestWindow();
-                                    Quest.FinishedQuestSet.Add(CurrentQuest.Id);
-                                    // If it was auto-accepted, then abandon it. I'll make this better later.
-                                    Quest.AbandonQuest(id);
-                                    break;
-                                }
-                                Quest.CloseQuestWindow();
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                Interact.InteractWith(baseAddress);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                            }
-                        }
-                        else
-                        {
-                            int gossipid = 1;
-                            while (Quest.GetActiveTitle(gossipid) != "")
-                            {
-                                Quest.SelectActiveQuest(gossipid);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                id = Quest.GetQuestID();
-                                if (id == CurrentQuest.Id)
-                                {
-                                    Quest.CompleteQuest();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    Quest.CloseQuestWindow();
-                                    Quest.FinishedQuestSet.Add(CurrentQuest.Id);
-                                    break;
-                                }
-                                Quest.CloseQuestWindow();
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                Interact.InteractWith(baseAddress);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                gossipid++;
-                            }
-                        }
-                    }
-                }
-                Thread.Sleep(Usefuls.Latency);
-            }
-            /*else if (baseAddress == 0 && npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
-            {
-               This NPC is wrong! 
-            }*/
+            Quest.QuestTurnIn(ref npc, CurrentQuest.Name, CurrentQuest.Id);
         }
 
         // end PickUpTurnInQuest
