@@ -890,20 +890,22 @@
       </NeedQuestCompletedId>
       <PickUp>3514</PickUp>
       <TurnIn>3515</TurnIn>
-	</Quest>
-
-	<Quest>
-      <Name>Dolanaar Delivery</Name>
-      <Id>2159</Id>
-	  <RaceMask>8</RaceMask>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <QuestLevel>5</QuestLevel>
-	  <NeedQuestCompletedId>
-        <int>28730</int>
-      </NeedQuestCompletedId>
-      <PickUp>6780</PickUp>
-      <TurnIn>6736</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>6780</NpcEntry>
+          <QuestId>2159</QuestId>
+          <QuestName>Dolanaar Delivery</QuestName>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>6736</NpcEntry>
+          <QuestId>2159</QuestId>
+          <QuestName>Dolanaar Delivery</QuestName>
+        </QuestObjective>
+      </Objectives>
 	</Quest>
 	
  </Quests>

@@ -617,15 +617,35 @@ namespace Quester.Tasks
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                PickUpQuest();
-                questObjective.IsObjectiveCompleted = true;
+                if (Quest.GetQuestCompleted(questObjective.QuestId))
+                {
+                    questObjective.IsObjectiveCompleted = true;
+                    return;
+                }
+                if (!MovementManager.InMovement)
+                {
+                    Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
+                    Quest.QuestPickUp(ref Quester, questObjective.QuestName, questObjective.QuestId);
+                }
+                if (Quest.GetLogQuestId().Contains(questObjective.QuestId))
+                    questObjective.IsObjectiveCompleted = true;
             }
 
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                TurnInQuest();
-                questObjective.IsObjectiveCompleted = true;
+                if (Quest.GetQuestCompleted(questObjective.QuestId))
+                {
+                    questObjective.IsObjectiveCompleted = true;
+                    return;
+                }
+                if (!MovementManager.InMovement)
+                {
+                    Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
+                    Quest.QuestTurnIn(ref Quester, questObjective.QuestName, questObjective.QuestId);
+                }
+                if (!Quest.GetLogQuestId().Contains(questObjective.QuestId))
+                    questObjective.IsObjectiveCompleted = true;
             }
 
             // USE VEHICLE
