@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Questers>
+  <Npc>
+    <Entry>2079</Entry>
+    <Name>Ilthalaine</Name>
+	<Position>
+      <X>10312.7</X>
+      <Y>830.1215</Y>
+      <Z>1326.441</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc>
+   <Entry>2077</Entry>
+   <Name>Melithar Staghelm</Name>
+   <Position>
+     <X>10328.95</X>
+     <Y>825.3351</Y>
+     <Z>1326.383</Z>
+     <Type>Flying</Type>
+   </Position>
+  </Npc>
+  
+  <Npc> <!-- Druid Trainer-->
+  <Entry>3597</Entry>
+    <Name>Mardant Strongoak</Name>
+    <Position>
+      <X>10485.95</X>
+      <Y>816.0121</Y>
+      <Z>1322.745</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+ 
+  <Npc> <!-- Hunter Trainer-->
+    <Entry>3596</Entry>
+    <Name>Ayanna Everstride</Name>
+    <Position>
+      <X>10448.12</X>
+      <Y>777.9965</Y>
+      <Z>1322.666</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+ 
+   <Npc> <!-- Mage Trainer-->
+    <Entry>43006</Entry> 
+    <Name>Rhyanda</Name>
+    <Position>
+      <X>10456.29</X>
+      <Y>804.882</Y>
+      <Z>1346.755</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+ 
+  <Npc> <!-- Monk Trainer-->
+    <Entry>63331</Entry>
+    <Name>Laoxi</Name>
+    <Position>
+      <X>10526.41</X>
+      <Y>785.5452</Y>
+      <Z>1329.599</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+
+  <Npc> <!-- Priest Trainer-->
+    <Entry>3595</Entry>
+    <Name>Shanda</Name>
+    <Position>
+      <X>10458.76</X>
+      <Y>801.6235</Y>
+      <Z>1346.755</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc> <!-- Rogue Trainer-->
+    <Entry>3594</Entry>
+    <Name>Frahun Shadewhisper</Name>
+    <Position>
+      <X>10519.15</X>
+      <Y>778.0143</Y>
+      <Z>1329.6</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc> <!-- Warrior Trainer-->
+    <Entry>3593</Entry>
+    <Name>Alyissia</Name>
+    <Position>
+      <X>10526.61</X>
+      <Y>778.0858</Y>
+      <Z>1329.6</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc> <!-- Bowyer -->
+    <Entry>3589</Entry>
+    <Name>Keina</Name>
+    <Position>
+      <X>10450.93</X>
+      <Y>786.4358</Y>
+      <Z>1322.682</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc>
+    <Entry>49479</Entry>
+    <Name>Dentaria Silverglade</Name>
+    <Position>
+      <X>10545.33</X>
+      <Y>875.0208</Y>
+      <Z>1309.415</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc>
+    <Entry>49480</Entry>
+    <Name>Tarindrella</Name>
+    <Position>
+         <X>10765.32</X>
+         <Y>924.0579</Y>
+         <Z>1338.129</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+  <Npc>
+    <Entry>3514</Entry>
+    <Name>Tenaron Stormgrip</Name>
+    <Position>
+      <X>10492.52</X>
+      <Y>807.2798</Y>
+      <Z>1397.269</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+  
+   <Npc>
+    <Entry>3515</Entry>
+    <Name>Corithras Moonrage</Name>
+    <Position>
+      <X>9736.91</X>
+      <Y>956.0632</Y>
+      <Z>1294.111</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+
+   <Npc>
+    <Entry>6780</Entry>
+    <Name>Porthannius</Name>
+    <Position>
+      <X>10214.34</X>
+      <Y>700.5534</Y>
+      <Z>1360.597</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+
+   <Npc>
+    <Entry>6736</Entry>
+    <Name>Innkeeper Keldamyr</Name>
+    <Position>
+      <X>9802.209</X>
+      <Y>982.6077</Y>
+      <Z>1313.896</Z>
+      <Type>None</Type>
+    </Position>
+  </Npc>
+
+</Questers>
+  
+ <Quests>
+
+	<Quest>
+      <Name>The Balance of Nature</Name>
+      <Id>28713</Id>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>5</MaxLevel>
+      <QuestLevel>1</QuestLevel>
+      <PickUp>2079</PickUp>
+      <TurnIn>2079</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>6</Count>
+          <Entry>
+            <int>2031</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+             <X>10291.72</X>
+             <Y>840.304</Y>
+             <Z>1332.586</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+     </Objectives>
+    </Quest>
+	
+    <Quest>
+      <Name>Fel Moss Corruption</Name>
+      <Id>28714</Id>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>2</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>28713</int>
+      </NeedQuestCompletedId>
+      <PickUp>2079</PickUp>
+      <TurnIn>2079</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>3297</CollectItemId>
+          <CollectCount>6</CollectCount>
+          <Entry>
+		  <int>1988</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10322.47</X>
+              <Y>1017.573</Y>
+              <Z>1337.398</Z>
+            </Point>
+		  </Hotspots>
+		</QuestObjective>
+		<QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>3297</CollectItemId>
+          <CollectCount>6</CollectCount>
+          <Entry>
+		  <int>1989</int>
+          </Entry>
+		  <Hotspots>
+            <Point>
+             <X>10274.44</X>
+			 <Y>956.5681</Y>
+			 <Z>1339.525</Z>
+			</Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>A Favor for Melithar</Name>
+      <Id>28734</Id>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28714</int>
+      </NeedQuestCompletedId>
+      <PickUp>2079</PickUp>
+      <TurnIn>2077</TurnIn>
+    </Quest>
+	
+    <Quest>
+      <Name>Demonic Thieves</Name>
+      <Id>28715</Id>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28734</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>2077</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <Entry>
+            <int>195074</int>
+          </Entry>
+          <CollectItemId>46700</CollectItemId>
+          <CollectCount>6</CollectCount>
+          <Hotspots>
+            <Point>
+			 <X>10269.54</X>
+			 <Y>970.7878</Y>
+			 <Z>1341.069</Z>
+            </Point>
+            <Point>
+			 <X>10274.44</X>
+			 <Y>956.5681</Y>
+			 <Z>1339.525</Z>
+            </Point>			
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>	
+	
+    <Quest> <!-- Druid Quest-->
+      <Name>Verdant Sigil</Name>
+      <Id>3120</Id>
+	  <ClassMask>1024</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>3597</TurnIn>
+    </Quest>
+
+	
+    <Quest> <!-- Druid Quest-->
+     <Name>Moonfire</Name>
+     <Id>26948</Id>
+	 <ClassMask>1024</ClassMask>
+	 <RaceMask>8</RaceMask>
+     <MaxLevel>6</MaxLevel>
+     <MinLevel>2</MinLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>3120</int>
+      </NeedQuestCompletedId>
+      <PickUp>3597</PickUp>
+      <TurnIn>3597</TurnIn>
+	  <Objectives>
+	    <QuestObjective>
+          <Objective>UseSpell</Objective>
+          <Entry>
+            <int>44614</int>
+          </Entry>
+          <UseSpellId>8921</UseSpellId>
+          <Count>1</Count>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest> <!-- Hunter Quest-->
+      <Name>Etched Sigil</Name>
+      <Id>3117</Id>
+	  <ClassMask>4</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>3596</TurnIn>
+    </Quest>
+
+    <Quest> <!-- Hunter Quest-->
+      <Name>A Woodsman's Training</Name>
+      <Id>26947</Id>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>3117</int>
+      </NeedQuestCompletedId>
+      <PickUp>3596</PickUp>
+      <TurnIn>3596</TurnIn>
+	  <Objectives>
+	    <QuestObjective>
+          <Objective>UseSpell</Objective>
+          <Entry>
+            <int>44614</int>
+          </Entry>
+          <UseSpellId>56641</UseSpellId>
+          <Count>5</Count>
+        </QuestObjective>
+      </Objectives>
+    </Quest>	
+
+    <Quest> <!-- Mage Quest-->
+      <Name>Forbidden Sigil</Name>
+      <Id>26841</Id>
+	  <ClassMask>128</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>43006</TurnIn>
+    </Quest>
+
+	
+    <Quest> <!-- Mage Quest-->
+      <Name>Frost Nova</Name>
+      <Id>26940</Id>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>26841</int>
+      </NeedQuestCompletedId>
+      <PickUp>43006</PickUp>
+      <TurnIn>43006</TurnIn>
+	  <Objectives>
+	    <QuestObjective>
+          <Objective>UseSpell</Objective>
+          <Entry>
+            <int>44614</int>
+          </Entry>
+          <UseSpellId>122</UseSpellId>
+          <Count>1</Count>
+        </QuestObjective>
+      </Objectives>
+    </Quest>	
+
+    <Quest> <!-- Monk Quest-->
+      <Name>Calligraphed Sigil</Name>
+      <Id>31168</Id>
+	  <ClassMask>512</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>63331</TurnIn>
+    </Quest>
+
+    <Quest> <!-- Monk Quest-->
+      <Name>The Art of the Monk</Name>
+      <Id>31169</Id>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>31168</int>
+      </NeedQuestCompletedId>
+      <PickUp>63331</PickUp>
+      <TurnIn>63331</TurnIn>
+	  <Objectives>
+	    <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>44614</int>
+          </Entry>
+        </QuestObjective>		
+      </Objectives>
+    </Quest>	
+	
+    <Quest> <!-- Priest Quest-->
+      <Name>Hallowed Sigil</Name>
+      <Id>3119</Id>
+	  <ClassMask>16</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>3595</TurnIn>
+    </Quest>
+
+	
+    <Quest> <!-- Priest Quest-->
+      <Name>Learning the Word</Name>
+      <Id>26949</Id>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>3119</int>
+      </NeedQuestCompletedId>
+      <PickUp>3595</PickUp>
+      <TurnIn>3595</TurnIn>
+	  <Objectives>
+	    <QuestObjective>
+          <Objective>UseSpell</Objective>
+          <Entry>
+            <int>44614</int>
+          </Entry>
+          <UseSpellId>589</UseSpellId>
+          <Count>5</Count>
+        </QuestObjective>
+      </Objectives>
+    </Quest>	
+
+	
+    <Quest>
+      <Name>Encrypted Sigil</Name>
+      <Id>3118</Id>
+	  <ClassMask>8</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>3594</TurnIn>
+    </Quest>
+	
+	<Quest>
+      <Name>A Rogue's Advantage</Name>
+      <Id>26946</Id>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>3118</int>
+      </NeedQuestCompletedId>
+      <PickUp>3594</PickUp>
+      <TurnIn>3594</TurnIn>
+	  <Objectives>
+		<QuestObjective>
+          <Objective>KillMob</Objective>
+          <Entry>
+            <int>44614</int>
+          </Entry>
+          <Count>3</Count>
+        </QuestObjective>
+	  </Objectives>
+    </Quest>		
+
+	
+    <Quest> <!-- Warrior Quest-->
+      <Name>Simple Sigil</Name>
+      <Id>3116</Id>
+	  <ClassMask>1</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28715</int>
+      </NeedQuestCompletedId>
+      <PickUp>2077</PickUp>
+      <TurnIn>3593</TurnIn>
+    </Quest>
+
+	
+    <Quest> <!-- Warrior Quest-->
+      <Name>Learning New Techniques</Name>
+      <Id>26945</Id>
+      <MinLevel>2</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>3116</int>
+      </NeedQuestCompletedId>
+      <PickUp>3593</PickUp>
+      <TurnIn>3593</TurnIn>
+	   <Objectives>
+		<QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Position>
+			 <X>10365.5</X>
+			 <Y>781.0097</Y>
+			 <Z>1322.564</Z>
+          </Position>
+        </QuestObjective>
+		<QuestObjective>
+          <Objective>UseSpell</Objective>
+          <UseSpellId>100</UseSpellId>
+		  <Entry>
+            <int>44614</int>
+          </Entry>
+		  <Count>1</Count>
+		  <Hotspot>
+            <Position>
+			 <X>10365.5</X>
+			 <Y>781.0097</Y>
+			 <Z>1322.564</Z>
+ 		    </Position>
+		   </Hotspot>
+          <Range>15</Range>
+        </QuestObjective>
+	   </Objectives>
+    </Quest>
+
+	<Quest> <!-- Druid -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>1024</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+		<int>26948</int>
+	  </NeedQuestCompletedId>
+      <PickUp>3597</PickUp>
+      <TurnIn>49479</TurnIn>
+	</Quest>
+
+	<Quest> <!-- Hunter -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>4</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+		<int>26947</int>
+	  </NeedQuestCompletedId>
+      <PickUp>3596</PickUp>
+      <TurnIn>49479</TurnIn>
+	</Quest>
+
+	<Quest> <!-- Mage -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>128</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>26940</int>
+	  </NeedQuestCompletedId>
+	  <PickUp>43006</PickUp>
+      <TurnIn>49479</TurnIn>
+	</Quest>
+
+	<Quest> <!-- Monk -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>512</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+		<int>31169</int>
+	  </NeedQuestCompletedId>
+      <PickUp>63331</PickUp>
+      <TurnIn>49479</TurnIn>
+	</Quest> 
+
+	<Quest> <!-- Priest -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>16</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+		<int>26949</int>
+	  </NeedQuestCompletedId>
+      <PickUp>3595</PickUp>
+      <TurnIn>49479</TurnIn>
+	</Quest>
+
+	<Quest> <!-- Rogue -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>1024</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+		<int>26946</int>
+	  </NeedQuestCompletedId>
+      <PickUp>3594</PickUp>
+      <TurnIn>49479</TurnIn>
+  </Quest>
+
+  <Quest> <!-- Warrior -->
+      <Name>Priestess of the Moon</Name>
+      <Id>28723</Id>
+	  <ClassMask>1024</ClassMask>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+ 		<int>26945</int>
+	  </NeedQuestCompletedId>
+      <PickUp>3593</PickUp>
+      <TurnIn>49479</TurnIn>
+  </Quest>  
+  
+    <Quest>
+      <Name>Iverron's Antidote</Name>
+      <Id>28724</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28723</int>
+      </NeedQuestCompletedId>
+      <PickUp>49479</PickUp>
+      <TurnIn>49479</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <Entry>
+            <int>207346</int>
+          </Entry>
+          <CollectItemId>10641</CollectItemId>
+          <CollectCount>7</CollectCount>
+          <Hotspots>
+            <Point>
+			 <X>10520.91</X>
+			 <Y>876.0629</Y>
+			 <Z>1309.135</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+	
+	<Quest>
+      <Name>The Woodland Protector</Name>
+      <Id>28725</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>3</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28724</int>
+      </NeedQuestCompletedId>
+      <PickUp>49479</PickUp>
+      <TurnIn>49480</TurnIn>
+	</Quest>
+
+	<Quest>
+      <Name>Webwood Corruption</Name>
+      <Id>28726</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>7</MaxLevel>
+      <QuestLevel>4</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28725</int>
+      </NeedQuestCompletedId>
+      <PickUp>49480</PickUp>
+      <TurnIn>49480</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>12</Count>
+          <Entry>
+            <int>1986</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+			 <X>10806.49</X>
+			 <Y>939.7526</Y>
+			 <Z>1336.776</Z>
+            </Point>
+            <Point>
+			 <X>10833.88</X>
+			 <Y>930.3691</Y>
+			 <Z>1336.346</Z>
+            </Point>            
+			<Point>
+			 <X>10909.35</X>
+			 <Y>918.4645</Y>
+			 <Z>1322.309</Z>
+			</Point>
+			<Point>
+			 <X>10935.95</X>
+			 <Y>948.6776</Y>
+			 <Z>1322.097</Z>
+            </Point>
+			<Point>
+			 <X>10984.51</X>
+			 <Y>972.0536</Y>
+			 <Z>1335.943</Z>
+            </Point>
+			<Point>
+			 <X>10958.39</X>
+			 <Y>970.1158</Y>
+			 <Z>1330.484</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+     </Objectives>
+    </Quest>
+	
+	<Quest>
+      <Name>Vile Touch</Name>
+      <Id>28727</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>7</MaxLevel>
+      <QuestLevel>4</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28726</int>
+      </NeedQuestCompletedId>
+      <PickUp>49480</PickUp>
+      <TurnIn>49480</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>1994</int>
+          </Entry>
+          <Hotspots>
+			<Point>
+				 <X>10958.39</X>
+				 <Y>970.1158</Y>
+				 <Z>1330.484</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+     </Objectives>
+    </Quest>
+	
+	<Quest>
+      <Name>Signs of Things to Come</Name>
+      <Id>28728</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <QuestLevel>5</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28727</int>
+      </NeedQuestCompletedId>
+      <PickUp>49480</PickUp>
+      <TurnIn>49479</TurnIn>
+	</Quest>
+	
+	<Quest>
+      <Name>Teldrassil: Crown of Azeroth</Name>
+      <Id>28729</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <QuestLevel>5</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>28728</int>
+      </NeedQuestCompletedId>
+      <PickUp>49479</PickUp>
+      <TurnIn>49479</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <UseItemId>5185</UseItemId>
+          <Count>1</Count>
+          <Position>
+			 <X>10708.74</X>
+			 <Y>763.1391</Y>
+			 <Z>1321.249</Z>
+		  </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+	<Quest>
+      <Name>Precious Waters</Name>
+      <Id>28730</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <QuestLevel>5</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28729</int>
+      </NeedQuestCompletedId>
+      <PickUp>49479</PickUp>
+      <TurnIn>3514</TurnIn>
+	</Quest>
+
+	
+	<Quest>
+      <Name>Teldrassil: Passing Awareness</Name>
+      <Id>28731</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <QuestLevel>5</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28730</int>
+      </NeedQuestCompletedId>
+      <PickUp>3514</PickUp>
+      <TurnIn>3515</TurnIn>
+	</Quest>
+
+	<Quest>
+      <Name>Dolanaar Delivery</Name>
+      <Id>2159</Id>
+	  <RaceMask>8</RaceMask>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <QuestLevel>5</QuestLevel>
+	  <NeedQuestCompletedId>
+        <int>28730</int>
+      </NeedQuestCompletedId>
+      <PickUp>6780</PickUp>
+      <TurnIn>6736</TurnIn>
+	</Quest>
+	
+ </Quests>
+</QuesterProfile>
