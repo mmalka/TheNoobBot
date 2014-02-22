@@ -10,7 +10,11 @@ namespace nManager.Wow.Helpers
     {
         public enum opCodes
         {
-            QueryPosition = 1
+            QueryPosition = 1,
+            ReplyPosition = 11,
+            QueryEvent = 2,
+            ReplyQuestPickup = 21,
+            ReplyQuestTurnIn = 22,
         }
 
         public static byte[] StructToBytes(Object str)

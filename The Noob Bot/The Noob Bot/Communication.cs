@@ -23,6 +23,7 @@ namespace The_Noob_Bot
 
         private static void ListenForClients()
         {
+            tcpListener.Start();
             while (true)
             {
                 // Wait for a connection
@@ -63,11 +64,16 @@ namespace The_Noob_Bot
 
                 // Do something with that message
                 byte[] bufferPos = MimicryHelpers.StructToBytes(ObjectManager.Me.Position);
+                byte[] opCode = new byte[1];
 
                 switch ((MimicryHelpers.opCodes)message[0])
                 {
                     case MimicryHelpers.opCodes.QueryPosition:
-                        clientStream.Write(bufferPos, 0, bufferPos.Length);
+                        opCode[0] = (byte)MimicryHelpers.opCodes.ReplyPosition;
+                        clientStream.Write(opCode, 0, 1);
+                        clientStream.Write(bufferPos, 1, bufferPos.Length);
+                        break;
+                    case MimicryHelpers.opCodes.QueryEvent:
                         break;
                 }
                 clientStream.Flush();

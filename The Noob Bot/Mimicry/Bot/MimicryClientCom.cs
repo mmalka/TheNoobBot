@@ -24,23 +24,27 @@ namespace MimicryBot.Bot
 
         public static Point GetMasterPosition()
         {
+            byte[] opCode = new byte[1];
             byte[] buffer = new byte[4096];
-            buffer[0] = (byte)MimicryHelpers.opCodes.QueryPosition;
+            opCode[0] = (byte)MimicryHelpers.opCodes.QueryPosition;
 
             NetworkStream clientStream = client.GetStream();
-            clientStream.Write(buffer, 0, 1);
+            clientStream.Write(opCode, 0, 1);
             clientStream.Flush();
 
             // Now wait for an answer
             try
             {
-                int bytesRead = clientStream.Read(buffer, 0, 4096);
+                int bytesRead = clientStream.Read(opCode, 0, 1);
+                bytesRead += clientStream.Read(buffer, 1, 4096);
             }
             catch
             {
                 return new Point();
             }
-            return MimicryHelpers.BytesToStruct<Point>(buffer);
+            if ((MimicryHelpers.opCodes)opCode[0] == MimicryHelpers.opCodes.ReplyPosition)
+                return MimicryHelpers.BytesToStruct<Point>(buffer);
+            return new Point();
         }
     }
 }
