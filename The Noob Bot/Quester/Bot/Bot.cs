@@ -74,6 +74,15 @@ namespace Quester.Bot
                                             "\nThe quest is " + q.Name + ". Cannot continues!");
                             return false;
                         }
+                        foreach (Profile.QuestObjective o in q.Objectives)
+                        {
+                            if (o.NpcEntry != 0 && FindQuesterById(o.NpcEntry).Entry == 0)
+                            {
+                                MessageBox.Show("Your profile is missing the definition of NPC entry " + o.NpcEntry +
+                                                "\nThe quest is " + q.Name + ". Cannot continues!");
+                                return false;
+                            }
+                        }
                     }
                     Logging.Write("Loaded " + Profile.Quests.Count + " quests");
                     Profile.Filter();

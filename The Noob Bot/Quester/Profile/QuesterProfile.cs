@@ -152,6 +152,11 @@ namespace Quester.Profile
         public int TaxiEntry = 0;
         public string FlightDestinationX = "";
         public string FlightDestinationY = "";
+
+        // Pickup/Turnin quest
+        public int NpcEntry = 0;
+        public string QuestName = "";
+        public int QuestId = 0;
     }
 
     [Serializable]
