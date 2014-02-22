@@ -28,7 +28,7 @@ namespace Quester.Profile
             exp = (int) ObjectManager.Me.WowClass - 1;
             //exp = 2 - 1; // Paladin
             uint mBitClass = exp >= 0 ? (uint) Math.Pow(2, exp) : 0;
-            for (int i = 0; i < Quests.Count; i++)
+            for (int i = Quests.Count-1; i >=0 ; i--)
             {
                 Quest quest = Quests[i];
                 if (quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0 ||
