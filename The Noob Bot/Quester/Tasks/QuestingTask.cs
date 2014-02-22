@@ -149,7 +149,7 @@ namespace Quester.Tasks
             // PICK UP
             if (questObjective.Objective == Objective.PickUpObject)
             {
-                if (questObjective.CurrentCount >= questObjective.Count)
+                if (questObjective.CurrentCount >= questObjective.CollectCount)
                     return true;
                 return false;
             }
