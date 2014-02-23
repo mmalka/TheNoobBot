@@ -41258,4 +41258,18 @@
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>52642</Entry>
+    <Name>Foreman Pernic</Name>
+    <Position>
+      <X>10119.78</X>
+      <Y>2416.358</Y>
+      <Z>1321.643</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>MiningTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
 </ArrayOfNpc>
