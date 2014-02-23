@@ -17,7 +17,7 @@ namespace The_Noob_Bot
 {
     internal static class LoginServer
     {
-        private static readonly string[] retStr =
+        private static readonly string[] LocalStatusList =
             {
                 "NOKConnect",
                 "SNVConnect",
@@ -26,49 +26,50 @@ namespace The_Noob_Bot
                 "LEConnect"
             };
 
-        private static string _cachedSrv;
-        private static readonly Timer CachedSrvTimer = new Timer(15000);
-        private static readonly string[] Servers = new[] {"http://tech.thenoobbot.com/", "http://auth2.thenoobbot.com/"};
+        #region FailOver System
 
-        private static string UrlWebServer
+        private static string _cachedAuthServerAddress;
+        private static readonly Timer CachedAuthServerTimer = new Timer(300); // Re-try to connect to the prioritized AuthServers every 5 minutes.
+        private static readonly string[] FailOversAddress = new[] {"http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
+
+        private static string GetWorkingAuthServerAddress
         {
             get
             {
-                if (string.IsNullOrEmpty(_cachedSrv) || CachedSrvTimer.IsReady)
+                if (!string.IsNullOrEmpty(_cachedAuthServerAddress) && !CachedAuthServerTimer.IsReady)
                 {
-                    foreach (string server in Servers.Where(server => Others.GetRequest(server + "isOnline.php", "") == "true"))
-                    {
-                        _cachedSrv = server;
-                        CachedSrvTimer.Reset();
-                        return server;
-                    }
+                    return _cachedAuthServerAddress;
                 }
-                else
+                foreach (string failOverAddress in FailOversAddress.Where(server => Others.GetRequest(server + "isOnline.php", "") == "true"))
                 {
-                    return _cachedSrv;
+                    _cachedAuthServerAddress = failOverAddress;
+                    CachedAuthServerTimer.Reset();
+                    return failOverAddress;
                 }
-                return Servers[0];
+                return FailOversAddress[0];
             }
         }
 
-        private static string ScriptLoginUrl
+        #endregion
+
+        private static string GetAuthScriptLink
         {
-            get { return UrlWebServer + "auth.php"; }
+            get { return GetWorkingAuthServerAddress + "auth.php"; }
         }
 
-        private static string ScriptUpdate
+        private static string GetUpdateScriptLink
         {
-            get { return UrlWebServer + "update.php"; }
+            get { return GetWorkingAuthServerAddress + "update.php"; }
         }
 
-        private static string ScriptServerIsOnline
+        private static string GetMonitoringScriptLink
         {
-            get { return UrlWebServer + "isOnline.php"; }
+            get { return GetWorkingAuthServerAddress + "isOnline.php"; }
         }
 
-        private static string ScriptServerMyIp
+        private static string GetClientIPScriptLink
         {
-            get { return UrlWebServer + "myIp.php"; }
+            get { return GetWorkingAuthServerAddress + "myIp.php"; }
         }
 
         internal static int StartTime;
@@ -115,13 +116,13 @@ namespace The_Noob_Bot
             {
                 try
                 {
-                    _ip = GetReqWithAuthHeader(ScriptServerMyIp, Login, Password)[1];
-                    List<string> resultConnectReq = GetReqWithAuthHeader(ScriptLoginUrl + "?create=true", Login, Password);
+                    _ip = GetReqWithAuthHeader(GetClientIPScriptLink, Login, Password)[1];
+                    List<string> resultConnectReq = GetReqWithAuthHeader(GetAuthScriptLink + "?create=true", Login, Password);
                     string goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
                     repC = resultConnectReq[1];
 
                     int randomKey = Others.Random(1, 9999);
-                    List<string> resultRandom = GetReqWithAuthHeader(ScriptLoginUrl + "?random=true",
+                    List<string> resultRandom = GetReqWithAuthHeader(GetAuthScriptLink + "?random=true",
                                                                      randomKey.ToString(CultureInfo.InvariantCulture),
                                                                      randomKey.ToString(CultureInfo.InvariantCulture));
                     string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
@@ -140,7 +141,7 @@ namespace The_Noob_Bot
                 }
 
                 // Error
-                if (repC == retStr[1])
+                if (repC == LocalStatusList[1])
                 {
                     MessageBox.Show(
                         Translate.Get(
@@ -157,13 +158,13 @@ namespace The_Noob_Bot
                     return;
                 }
 
-                if (repC == retStr[3])
+                if (repC == LocalStatusList[3])
                     MessageBox.Show(
                         Translate.Get(
                             Translate.Id.Incorrect_password__go_to_this_address_if_you_have_forget_your_password) +
                         ": http://thenoobbot.com/login/?action=lostpassword", Translate.Get(Translate.Id.Error),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (repC == retStr[4])
+                else if (repC == LocalStatusList[4])
                     MessageBox.Show(
                         Translate.Get(
                             Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) +
@@ -335,12 +336,12 @@ namespace The_Noob_Bot
                         // End Statistique
 
                         string resultReqLoop =
-                            GetReqWithAuthHeader(ScriptLoginUrl + reqStatistique, Login, Password)[0];
+                            GetReqWithAuthHeader(GetAuthScriptLink + reqStatistique, Login, Password)[0];
                         if (TrueResultLoop != resultReqLoop)
                         {
                             if (!lastResult)
                                 break;
-                            if (_ip != GetReqWithAuthHeader(ScriptServerMyIp, Login, Password)[1])
+                            if (_ip != GetReqWithAuthHeader(GetClientIPScriptLink, Login, Password)[1])
                             {
                                 while (!ServerIsOnline())
                                 {
@@ -497,15 +498,15 @@ namespace The_Noob_Bot
                     return;
 #pragma warning disable 162
 // ReSharper disable HeuristicUnreachableCode
-                string resultReq = Others.GetRequest(ScriptUpdate, "null=null");
+                string resultReq = Others.GetRequest(GetUpdateScriptLink, "null=null");
                 if (resultReq != null)
                 {
                     if (resultReq.Count() < 100 && resultReq.Any())
                     {
                         if (resultReq != Information.Version)
                         {
-                            string resultDesc = Others.GetRequest(ScriptUpdate, "show=desc");
-                            string resultLog = Others.GetRequest(ScriptUpdate, "show=changelog");
+                            string resultDesc = Others.GetRequest(GetUpdateScriptLink, "show=desc");
+                            string resultLog = Others.GetRequest(GetUpdateScriptLink, "show=changelog");
                             DialogResult dr =
                                 MessageBox.Show(
                                     string.Format("{0}{1}{4}{4}{2}{4}{3}{4}{5}", Translate.Get(Translate.Id.LatestUpdateVersion), resultReq,
@@ -565,7 +566,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                string resultReq = Others.GetRequest(ScriptServerIsOnline, "null=null");
+                string resultReq = Others.GetRequest(GetMonitoringScriptLink, "null=null");
                 if (resultReq != null)
                 {
                     if (resultReq.Count() < 10)
@@ -598,7 +599,7 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("LoginServer > CheckServerIsOnlineThread(): " + e);
             }
-            MessageBox.Show(Translate.Get(Translate.Id.TheNoobBotServerIsOffline),Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(Translate.Get(Translate.Id.TheNoobBotServerIsOffline), Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             EndInformation();
         }
 
