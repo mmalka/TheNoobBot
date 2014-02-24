@@ -18,6 +18,7 @@ namespace nManager.Wow.Helpers
             ReplyQuestTurnIn = 22,
             QueryGuid = 3,
             ReplyGuid = 31,
+            Disconnect = 9,
         }
 
         public static T BytesToObject<T>(byte[] arrBytes)

@@ -83,6 +83,7 @@ namespace The_Noob_Bot
                         break;
                     case MimicryHelpers.opCodes.Disconnect:
                         tcpClient.Close();
+                        Logging.Write("Client diconnected");
                         return;
                     case MimicryHelpers.opCodes.QueryEvent:
                         break;
