@@ -57,6 +57,7 @@ namespace MimicryBot.Bot
                 CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
+                MimicryClientCom.Disconnect();
             }
             catch (Exception e)
             {

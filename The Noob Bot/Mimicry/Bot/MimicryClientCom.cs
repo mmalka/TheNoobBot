@@ -18,9 +18,23 @@ namespace MimicryBot.Bot
             if (client == null)
                 client = new TcpClient();
             if (serviceEndPoint == null)
-                serviceEndPoint = new IPEndPoint(IPAddress.Parse("192.168.10.1"), 6543);
-            Logging.Write("Connected to bot @192.168.10.1");
+                serviceEndPoint = new IPEndPoint(IPAddress.Parse("192.168.10.116"), 6543);
+            Logging.Write("Connected to bot @192.168.10.116");
             client.Connect(serviceEndPoint);
+        }
+
+        public static void Disconnect()
+        {
+            if (client == null)
+                return;
+            byte[] opCode = new byte[1];
+            NetworkStream clientStream = client.GetStream();
+            opCode[0] = (byte)MimicryHelpers.opCodes.Disconnect;
+            clientStream.Write(opCode, 0, 1);
+            clientStream.Flush();
+
+            Logging.Write("Disconnected from main bot.");
+            client.Close();
         }
 
         public static ulong GetMasterGuid()

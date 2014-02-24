@@ -81,6 +81,9 @@ namespace The_Noob_Bot
                         clientStream.Write(opCode, 0, 1);
                         clientStream.Write(bufferGuid, 0, bufferGuid.Length);
                         break;
+                    case MimicryHelpers.opCodes.Disconnect:
+                        tcpClient.Close();
+                        return;
                     case MimicryHelpers.opCodes.QueryEvent:
                         break;
                 }

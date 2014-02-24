@@ -24,16 +24,24 @@ namespace MimicryBot.Bot
 
         public override int Priority { get; set; }
 
-        private Timer _positionCheckTimer;
-        private Point _lastPoint;
-        private ulong _masterGuid = 0;
+        private Timer _positionCheckTimer, _runTimer;
+        private Npc _master = null;
 
         public override bool NeedToRun
         {
             get
             {
-                if (_positionCheckTimer == null)
-                    _positionCheckTimer = new Timer(500);
+                if (_runTimer == null)
+                {
+                    _runTimer = new Timer(200);
+                    _positionCheckTimer = new Timer(5000);
+                }
+                if (_master == null)
+                {
+                    _master = new Npc();
+                    _master.Guid = MimicryClientCom.GetMasterGuid();
+                    _master.Position = MimicryClientCom.GetMasterPosition();
+                }
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.Me.IsDeadMe ||
@@ -44,11 +52,9 @@ namespace MimicryBot.Bot
                     Usefuls.IsFlying ||
                     !Products.IsStarted)
                     return false;
-                if (_masterGuid == 0)
-                    _masterGuid = MimicryClientCom.GetMasterGuid();
-                if (_positionCheckTimer.IsReady)
+                if (_runTimer.IsReady)
                 {
-                    _positionCheckTimer.Reset();
+                    _runTimer.Reset();
                     return true;
                 }
                 return false;
@@ -67,27 +73,32 @@ namespace MimicryBot.Bot
 
         public override void Run()
         {
-            Point target = MimicryClientCom.GetMasterPosition();
-            if (_lastPoint == target)
-                return;
-            _lastPoint = target;
-
-            if (target.DistanceTo(ObjectManager.Me.Position) < 3.0f)
+            WoWPlayer TargetPlayer = ObjectManager.GetObjectWoWPlayer(_master.Guid);
+            if (TargetPlayer == null)
             {
+                if (_positionCheckTimer.IsReady)
+                {
+                    _master.Position = MimicryClientCom.GetMasterPosition();
+                    _positionCheckTimer.Reset();
+                }
+            }
+            else
+                _master.Position = TargetPlayer.Position;
+            if (_master.Position.DistanceTo(ObjectManager.Me.Position) < 3.0f)
+            {
+                MovementManager.Chasing = false;
                 MovementManager.StopMove();
-                return;
             }
-
-            if (target.Type.ToLower() == "flying" || target.Type.ToLower() == "swimming")
+            else if (_master.Position.Type.ToLower() == "flying" || _master.Position.Type.ToLower() == "swimming")
             {
-                MovementManager.MoveTo(target);
-                return;
+                MovementManager.MoveTo(_master.Position);
+                Logging.Write("Flying or swimming");
             }
-
-            Npc Master = new Npc();
-            Master.Position = target;
-            Master.Guid = _masterGuid;
-            uint baseAddress = MovementManager.FindTarget(ref Master, 3.0f);
+            else
+            {
+                MovementManager.Chasing = true;
+                uint baseAddress = MovementManager.FindTarget(ref _master, 3.0f);
+            }
         }
 
 
