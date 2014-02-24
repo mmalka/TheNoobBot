@@ -36,14 +36,14 @@ namespace MimicryBot.Bot
             try
             {
                 int bytesRead = clientStream.Read(opCode, 0, 1);
-                bytesRead += clientStream.Read(buffer, 1, 4096);
+                bytesRead += clientStream.Read(buffer, 0, 4096);
             }
             catch
             {
                 return new Point();
             }
             if ((MimicryHelpers.opCodes)opCode[0] == MimicryHelpers.opCodes.ReplyPosition)
-                return MimicryHelpers.BytesToStruct<Point>(buffer);
+                return MimicryHelpers.BytesToObject<Point>(buffer);
             return new Point();
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace nManager.Wow.Helpers
 {
@@ -17,6 +18,27 @@ namespace nManager.Wow.Helpers
             ReplyQuestTurnIn = 22,
         }
 
+
+        public static T BytesToObject<T>(byte[] arrBytes)
+        {
+            System.IO.MemoryStream memStream = new System.IO.MemoryStream();
+            BinaryFormatter binForm = new BinaryFormatter();
+            memStream.Write(arrBytes, 0, arrBytes.Length);
+            memStream.Seek(0, System.IO.SeekOrigin.Begin);
+            T obj = (T)binForm.Deserialize(memStream);
+            return obj;
+        }
+
+        public static byte[] ObjectToBytes(Object obj)
+        {
+            if (obj == null)
+                return null;
+            BinaryFormatter bf = new BinaryFormatter();
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            bf.Serialize(ms, obj);
+            return ms.ToArray();
+        }
+
         public static byte[] StructToBytes(Object str)
         {
             int size = Marshal.SizeOf(str);
@@ -26,7 +48,6 @@ namespace nManager.Wow.Helpers
             Marshal.StructureToPtr(str, ptr, true);
             Marshal.Copy(ptr, arr, 0, size);
             Marshal.FreeHGlobal(ptr);
-
             return arr;
         }
 

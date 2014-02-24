@@ -7,6 +7,7 @@ namespace nManager.Wow.Class
     /// <summary>
     /// Point class
     /// </summary>
+    [Serializable]
     public class Point
     {
         /// <summary>

@@ -53,6 +53,7 @@ namespace The_Noob_Bot
                 }
                 catch
                 {
+                    Logging.Write("Something wrong happened!!!");
                     break;
                 }
 
@@ -63,7 +64,7 @@ namespace The_Noob_Bot
                 }
 
                 // Do something with that message
-                byte[] bufferPos = MimicryHelpers.StructToBytes(ObjectManager.Me.Position);
+                byte[] bufferPos = MimicryHelpers.ObjectToBytes(ObjectManager.Me.Position);
                 byte[] opCode = new byte[1];
 
                 switch ((MimicryHelpers.opCodes)message[0])
@@ -71,7 +72,7 @@ namespace The_Noob_Bot
                     case MimicryHelpers.opCodes.QueryPosition:
                         opCode[0] = (byte)MimicryHelpers.opCodes.ReplyPosition;
                         clientStream.Write(opCode, 0, 1);
-                        clientStream.Write(bufferPos, 1, bufferPos.Length);
+                        clientStream.Write(bufferPos, 0, bufferPos.Length);
                         break;
                     case MimicryHelpers.opCodes.QueryEvent:
                         break;

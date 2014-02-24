@@ -32,7 +32,7 @@ namespace MimicryBot.Bot
             get
             {
                 if (_positionCheckTimer == null)
-                    _positionCheckTimer = new Timer(1 * 1000);
+                    _positionCheckTimer = new Timer(500);
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.Me.IsDeadMe ||
