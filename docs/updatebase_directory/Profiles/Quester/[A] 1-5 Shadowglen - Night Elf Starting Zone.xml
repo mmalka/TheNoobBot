@@ -663,7 +663,7 @@
     <Quest> <!-- Rogue -->
       <Name>Priestess of the Moon</Name>
       <Id>28723</Id>
-      <ClassMask>1024</ClassMask>
+      <ClassMask>8</ClassMask>
       <RaceMask>8</RaceMask>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -678,7 +678,7 @@
     <Quest> <!-- Warrior -->
       <Name>Priestess of the Moon</Name>
       <Id>28723</Id>
-      <ClassMask>1024</ClassMask>
+      <ClassMask>1</ClassMask>
       <RaceMask>8</RaceMask>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
