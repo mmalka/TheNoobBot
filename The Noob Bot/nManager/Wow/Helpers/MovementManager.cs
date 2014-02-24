@@ -1448,7 +1448,7 @@ namespace nManager.Wow.Helpers
             asMoved = false;
             if (TargetIsNPC.IsValid)
             {
-                asMoved = Target.Position != TargetIsNPC.Position;
+                asMoved = Target.Position.DistanceTo(TargetIsNPC.Position) > 3;
                 Target.Position = TargetIsNPC.Position;
                 Target.Name = TargetIsNPC.Name;
                 return TargetIsNPC.GetBaseAddress;
@@ -1456,7 +1456,7 @@ namespace nManager.Wow.Helpers
             WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             if (TargetIsObject.IsValid)
             {
-                asMoved = Target.Position != TargetIsObject.Position;
+                asMoved = Target.Position.DistanceTo(TargetIsObject.Position) > 3;
                 Target.Position = TargetIsObject.Position;
                 Target.Name = TargetIsObject.Name;
                 return TargetIsObject.GetBaseAddress;
