@@ -29,7 +29,8 @@ namespace The_Noob_Bot
                 // Wait for a connection
                 TcpClient client = tcpListener.AcceptTcpClient();
                 // We got one, create a thread for it
-                Logging.Write("Another Bot has connected to this one.");
+                Socket s = client.Client;
+                Logging.Write("Bot with address " + IPAddress.Parse(((IPEndPoint)s.RemoteEndPoint).Address.ToString()) + " has connected.");
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
                 clientThread.Start(client);
             }
@@ -53,7 +54,7 @@ namespace The_Noob_Bot
                 }
                 catch
                 {
-                    Logging.Write("Something wrong happened!!!");
+                    Logging.Write("Client connection lost!");
                     break;
                 }
 
@@ -65,6 +66,7 @@ namespace The_Noob_Bot
 
                 // Do something with that message
                 byte[] bufferPos = MimicryHelpers.ObjectToBytes(ObjectManager.Me.Position);
+                byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
                 byte[] opCode = new byte[1];
 
                 switch ((MimicryHelpers.opCodes)message[0])
@@ -73,6 +75,11 @@ namespace The_Noob_Bot
                         opCode[0] = (byte)MimicryHelpers.opCodes.ReplyPosition;
                         clientStream.Write(opCode, 0, 1);
                         clientStream.Write(bufferPos, 0, bufferPos.Length);
+                        break;
+                    case MimicryHelpers.opCodes.QueryGuid:
+                        opCode[0] = (byte)MimicryHelpers.opCodes.ReplyGuid;
+                        clientStream.Write(opCode, 0, 1);
+                        clientStream.Write(bufferGuid, 0, bufferGuid.Length);
                         break;
                     case MimicryHelpers.opCodes.QueryEvent:
                         break;

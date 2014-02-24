@@ -1435,7 +1435,6 @@ namespace nManager.Wow.Helpers
             Random rand = new Random();
 #pragma warning restore 168
             WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-            WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             asMoved = false;
             if (TargetIsNPC.IsValid)
             {
@@ -1444,12 +1443,22 @@ namespace nManager.Wow.Helpers
                 Target.Name = TargetIsNPC.Name;
                 return TargetIsNPC.GetBaseAddress;
             }
+            WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             if (TargetIsObject.IsValid)
             {
                 asMoved = Target.Position.DistanceTo(TargetIsObject.Position) > 5;
                 Target.Position = TargetIsObject.Position;
                 Target.Name = TargetIsObject.Name;
                 return TargetIsObject.GetBaseAddress;
+            }
+            // player ?
+            WoWPlayer TargetIsPlayer = ObjectManager.ObjectManager.GetObjectWoWPlayer(Target.Guid);
+            if (TargetIsPlayer.IsValid)
+            {
+                asMoved = Target.Position.DistanceTo(TargetIsPlayer.Position) > 5;
+                Target.Position = TargetIsPlayer.Position;
+                Target.Name = TargetIsPlayer.Name;
+                return TargetIsPlayer.GetBaseAddress;
             }
             return 0;
         }
@@ -1474,6 +1483,16 @@ namespace nManager.Wow.Helpers
             return FindTarget(ref _trakedTarget, SpecialRange);
         }
 
+        public static uint FindTarget(WoWPlayer Player, float SpecialRange = 0)
+        {
+            if (_trakedTargetGuid != Player.Guid)
+            {
+                _trakedTarget = new Npc { Entry = Player.Entry, Position = Player.Position, Name = Player.Name, Guid = Player.Guid };
+                _trakedTargetGuid = Player.Guid;
+            }
+            return FindTarget(ref _trakedTarget, SpecialRange);
+        }
+
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true)
         {
             if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
@@ -1494,7 +1513,8 @@ namespace nManager.Wow.Helpers
                     return 0;
                 }
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
-                Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
+                if (Target.Guid == 0)
+                    Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
                 _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                 if (!patherResult)
                     points.Add(Target.Position);

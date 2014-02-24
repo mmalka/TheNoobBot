@@ -26,6 +26,7 @@ namespace MimicryBot.Bot
 
         private Timer _positionCheckTimer;
         private Point _lastPoint;
+        private ulong _masterGuid = 0;
 
         public override bool NeedToRun
         {
@@ -43,7 +44,8 @@ namespace MimicryBot.Bot
                     Usefuls.IsFlying ||
                     !Products.IsStarted)
                     return false;
-
+                if (_masterGuid == 0)
+                    _masterGuid = MimicryClientCom.GetMasterGuid();
                 if (_positionCheckTimer.IsReady)
                 {
                     _positionCheckTimer.Reset();
@@ -65,56 +67,27 @@ namespace MimicryBot.Bot
 
         public override void Run()
         {
-            nManager.Helpful.Timer timer;
             Point target = MimicryClientCom.GetMasterPosition();
             if (_lastPoint == target)
                 return;
-
             _lastPoint = target;
-            bool r;
+
+            if (target.DistanceTo(ObjectManager.Me.Position) < 3.0f)
+            {
+                MovementManager.StopMove();
+                return;
+            }
+
             if (target.Type.ToLower() == "flying" || target.Type.ToLower() == "swimming")
             {
                 MovementManager.MoveTo(target);
                 return;
             }
 
-            List<Point> points = PathFinder.FindPath(target, out r);
-            if (points.Count <= 1 || points.Count >= 40)
-            {
-                points.Clear();
-                points.Add(ObjectManager.Me.Position);
-                points.Add(target);
-            }
-            MovementManager.Go(points);
-
-            timer = new nManager.Helpful.Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
-            while (Products.IsStarted &&
-                    !ObjectManager.Me.IsDeadMe &&
-                    !(ObjectManager.Me.InCombat &&
-                        !(ObjectManager.Me.IsMounted &&
-                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                    !timer.IsReady && MovementManager.InMovement)
-            {
-                if (ObjectManager.Me.Position.DistanceTo2D(target) <= 2)
-                {
-                    MovementManager.StopMove();
-                    break;
-                }
-                Thread.Sleep(50);
-            }
-
-            if (timer.IsReady && target.DistanceTo2D(ObjectManager.Me.Position) > 20)
-            {
-                MovementManager.StopMove();
-                return;
-            }
-
-            // Stop move
-            MovementManager.StopMove();
-
-            // Face
-            //MovementManager.Face(target);
-
+            Npc Master = new Npc();
+            Master.Position = target;
+            Master.Guid = _masterGuid;
+            uint baseAddress = MovementManager.FindTarget(ref Master, 3.0f);
         }
 
 

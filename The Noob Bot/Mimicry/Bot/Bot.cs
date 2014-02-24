@@ -21,13 +21,15 @@ namespace MimicryBot.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 6});
-                Fsm.AddState(new IsAttacked {Priority = 5});
-                Fsm.AddState(new FightHostileTarget {Priority = 43});
-                Fsm.AddState(new SpecializationCheck {Priority = 3});
-                Fsm.AddState(new LevelupCheck {Priority = 2});
-                Fsm.AddState(new MimicryState {Priority = 1});
-                Fsm.AddState(new Idle {Priority = 0});
+                Fsm.AddState(new Pause { Priority = 8 });
+                Fsm.AddState(new Looting { Priority = 7 });
+                Fsm.AddState(new IsAttacked { Priority = 6 });
+                Fsm.AddState(new FightHostileTarget { Priority = 5 });
+                Fsm.AddState(new Farming { Priority = 4 });
+                Fsm.AddState(new SpecializationCheck { Priority = 3 });
+                Fsm.AddState(new LevelupCheck { Priority = 2});
+                Fsm.AddState(new MimicryState { Priority = 1});
+                Fsm.AddState(new Idle { Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6, "FSM Mimicry");

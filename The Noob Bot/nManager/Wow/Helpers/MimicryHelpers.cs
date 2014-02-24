@@ -16,8 +16,9 @@ namespace nManager.Wow.Helpers
             QueryEvent = 2,
             ReplyQuestPickup = 21,
             ReplyQuestTurnIn = 22,
+            QueryGuid = 3,
+            ReplyGuid = 31,
         }
-
 
         public static T BytesToObject<T>(byte[] arrBytes)
         {
