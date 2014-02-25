@@ -94,6 +94,16 @@ namespace Quester.Profile
                     ExistingSimpleProfiles.SelectedIndex = CurrentSelection;
                 else if (ExistingSimpleProfiles.Items.Count > 0)
                     ExistingSimpleProfiles.SelectedIndex = 0;
+                if (ExistingSimpleProfiles.Items.Count > 0)
+                {
+                    ProfileManagerEdit.Show();
+                    ProfileManagerRemove.Show();
+                }
+                else
+                {
+                    ProfileManagerEdit.Hide();
+                    ProfileManagerRemove.Hide();
+                }
             }
             catch (Exception e)
             {
@@ -138,27 +148,26 @@ namespace Quester.Profile
                     if (check == DialogResult.Yes)
                         File.Delete(fullpath);
                 }
-                else
-                {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NoGroupedProfileToDelete));
-                }
-            }
-            else
-            {
-                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NoGroupedProfileToDelete));
             }
             RefreshGroupedProfileList();
         }
 
         private void ProfileManagerAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
+            SimpleProfileManager f = new SimpleProfileManager();
+            f.ShowDialog();
             RefreshProfileManagerForm();
         }
 
         private void ProfileManageEdit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
+            if (ExistingSimpleProfiles.Items.Count > 0)
+            {
+                SimpleProfileManager f = new SimpleProfileManager(ExistingSimpleProfiles.Items[ExistingSimpleProfiles.SelectedIndex].ToString());
+                f.ShowDialog();
+            }
+            else
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NoSimpleProfileToEdit));
             RefreshProfileManagerForm();
         }
 
@@ -169,7 +178,18 @@ namespace Quester.Profile
 
         private void ProfileManagerRemove_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
+            if (ExistingSimpleProfiles.Items.Count > 0)
+            {
+                string path = ExistingSimpleProfiles.Items[ExistingSimpleProfiles.SelectedIndex].ToString();
+                string fullpath = Application.StartupPath + "\\Profiles\\Quester\\" + path;
+                if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
+                {
+                    DialogResult check = MessageBox.Show(string.Format("{0}", nManager.Translate.Get(nManager.Translate.Id.RemoveSimple) + path + " ?"),
+                                                         nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (check == DialogResult.Yes)
+                        File.Delete(fullpath);
+                }
+            }
             RefreshProfileManagerForm();
         }
     }

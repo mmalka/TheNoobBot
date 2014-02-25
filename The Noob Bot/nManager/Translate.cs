@@ -453,9 +453,9 @@ namespace nManager
             GroupSelectedProfile,
             UngroupSelectedProfile,
             UngroupAllProfiles,
-            SaveGroupedProfileAs,
-            SaveGroupedProfile,
-            CancelGroupedProfileEdition,
+            SaveAsAndClose,
+            SaveAndClose,
+            CancelAndClose,
             MoveUp,
             MoveDown,
             CantSaveEmptyGroupedNew,
@@ -466,7 +466,15 @@ namespace nManager
             SimpleProfilesList,
             GroupedProfilesList,
             LoadSimpleProfile,
-            LoadGroupedProfile
+            LoadGroupedProfile,
+            ProfileQuestList,
+            AddNewQuest,
+            EditSelectedQuest,
+            DeleteSelectedQuest,
+            SimpleQuestProfileFile,
+            CantSaveEmptySimpleNew,
+            CantSaveEmptySimpleExisting,
+            NoSimpleProfileToEdit
         };
 
         [Serializable]
