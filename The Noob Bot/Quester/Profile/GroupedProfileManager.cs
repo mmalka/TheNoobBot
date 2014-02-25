@@ -46,9 +46,9 @@ namespace Quester.Profile
             GroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.GroupSelectedProfile);
             UngroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupSelectedProfile);
             UngroupAllProfiles.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupAllProfiles);
-            SaveGroupedProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveGroupedProfileAs);
-            SaveGroupedProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveGroupedProfile);
-            CancelGroupedProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelGroupedProfileEdition);
+            SaveGroupedProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAsAndClose);
+            SaveGroupedProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose);
+            CancelGroupedProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
             MoveUpButton.Text = nManager.Translate.Get(nManager.Translate.Id.MoveUp);
             MoveDownButton.Text = nManager.Translate.Get(nManager.Translate.Id.MoveDown);
         }

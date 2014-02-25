@@ -1534,15 +1534,15 @@
       <Text>Не группировать  все профили</Text>
     </Translation>
     <Translation>
-      <Id>SaveGroupedProfileAs</Id>
+      <Id>SaveAsAndClose</Id>
       <Text>Сохранить как новый и закрыть</Text>
     </Translation>
     <Translation>
-      <Id>SaveGroupedProfile</Id>
+      <Id>SaveAndClose</Id>
       <Text>Сохранить и закрыть</Text>
     </Translation>
     <Translation>
-      <Id>CancelGroupedProfileEdition</Id>
+      <Id>CancelAndClose</Id>
       <Text>Отменить и закрыть</Text>
     </Translation>
     <Translation>
@@ -1588,6 +1588,38 @@
     <Translation>
       <Id>LoadGroupedProfile</Id>
       <Text>Загрузить сгруппирвоанный профиль</Text>
+    </Translation>
+    <Translation>
+      <Id>ProfileQuestList</Id>
+      <Text>Profile's Quest List :</Text>
+    </Translation>
+    <Translation>
+      <Id>AddNewQuest</Id>
+      <Text>Add a new quest</Text>
+    </Translation>
+    <Translation>
+      <Id>EditSelectedQuest</Id>
+      <Text>Edit the selected quest</Text>
+    </Translation>
+    <Translation>
+      <Id>DeleteSelectedQuest</Id>
+      <Text>Delete the selected quest</Text>
+    </Translation>
+    <Translation>
+      <Id>SimpleQuestProfileFile</Id>
+      <Text>Simple Quest Profile File</Text>
+    </Translation>
+    <Translation>
+      <Id>CantSaveEmptySimpleNew</Id>
+      <Text>You can't save an empty Simple Profile</Text>
+    </Translation>
+    <Translation>
+      <Id>CantSaveEmptySimpleExisting</Id>
+      <Text>You can't save an empty Simple Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+    </Translation>
+    <Translation>
+      <Id>NoSimpleProfileToEdit</Id>
+      <Text>There is no Simple Profile to edit</Text>
     </Translation>
   </Translations>
 </Language>
