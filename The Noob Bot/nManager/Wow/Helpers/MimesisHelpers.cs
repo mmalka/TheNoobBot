@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace nManager.Wow.Helpers
 {
-    public class MimicryHelpers
+    public class MimesisHelpers
     {
         public enum opCodes
         {

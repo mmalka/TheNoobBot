@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using nManager;
-using MimicryBot.Bot;
+using Mimesis;
+using Mimesis.Bot;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -15,11 +17,12 @@ public class Main : IProduct
     {
         try
         {
+            MimesisSettings.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
-            Logging.WriteError("Mimicry > Main > Initialize(): " + e);
+            Logging.WriteError("Mimesis > Main > Initialize(): " + e);
         }
     }
 
@@ -32,7 +35,7 @@ public class Main : IProduct
         }
         catch (Exception e)
         {
-            Logging.WriteError("Mimicry > Main > Dispose(): " + e);
+            Logging.WriteError("Mimesis > Main > Dispose(): " + e);
         }
     }
 
@@ -53,7 +56,7 @@ public class Main : IProduct
         }
         catch (Exception e)
         {
-            Logging.WriteError("Mimicry > Main > Start(): " + e);
+            Logging.WriteError("Mimesis > Main > Start(): " + e);
         }
     }
 
@@ -67,7 +70,7 @@ public class Main : IProduct
         }
         catch (Exception e)
         {
-            Logging.WriteError("Mimicry > Main > Stop(): " + e);
+            Logging.WriteError("Mimesis > Main > Stop(): " + e);
         }
     }
 
@@ -75,12 +78,13 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            SettingsMimesisForm f = new SettingsMimesisForm();
+            f.ShowDialog();
             Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {
-            Logging.WriteError("Mimicry > Main > Settings(): " + e);
+            Logging.WriteError("Mimesis > Main > Settings(): " + e);
         }
     }
 

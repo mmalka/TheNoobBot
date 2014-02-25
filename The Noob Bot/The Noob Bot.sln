@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heal Bot", "Heal Bot\Heal B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flying To Ground Profiles Converter", "Flying To Ground Profiles Converter\Flying To Ground Profiles Converter.csproj", "{86446A5F-B43E-4449-B30C-E626B5A1ABD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mimicry", "Mimicry\Mimicry.csproj", "{1A9E977D-F935-4AA6-818C-ED44E59DCE1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mimesis", "Mimesis\Mimesis.csproj", "{1A9E977D-F935-4AA6-818C-ED44E59DCE1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

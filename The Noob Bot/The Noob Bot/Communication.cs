@@ -65,27 +65,27 @@ namespace The_Noob_Bot
                 }
 
                 // Do something with that message
-                byte[] bufferPos = MimicryHelpers.ObjectToBytes(ObjectManager.Me.Position);
+                byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
                 byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
                 byte[] opCode = new byte[1];
 
-                switch ((MimicryHelpers.opCodes)message[0])
+                switch ((MimesisHelpers.opCodes)message[0])
                 {
-                    case MimicryHelpers.opCodes.QueryPosition:
-                        opCode[0] = (byte)MimicryHelpers.opCodes.ReplyPosition;
+                    case MimesisHelpers.opCodes.QueryPosition:
+                        opCode[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
                         clientStream.Write(opCode, 0, 1);
                         clientStream.Write(bufferPos, 0, bufferPos.Length);
                         break;
-                    case MimicryHelpers.opCodes.QueryGuid:
-                        opCode[0] = (byte)MimicryHelpers.opCodes.ReplyGuid;
+                    case MimesisHelpers.opCodes.QueryGuid:
+                        opCode[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
                         clientStream.Write(opCode, 0, 1);
                         clientStream.Write(bufferGuid, 0, bufferGuid.Length);
                         break;
-                    case MimicryHelpers.opCodes.Disconnect:
+                    case MimesisHelpers.opCodes.Disconnect:
                         tcpClient.Close();
                         Logging.Write("Client diconnected");
                         return;
-                    case MimicryHelpers.opCodes.QueryEvent:
+                    case MimesisHelpers.opCodes.QueryEvent:
                         break;
                 }
                 clientStream.Flush();

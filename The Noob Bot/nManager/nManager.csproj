@@ -140,7 +140,7 @@
     <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
     <Compile Include="Wow\Helpers\EventsListener.cs" />
-    <Compile Include="Wow\Helpers\MimicryHelpers.cs" />
+    <Compile Include="Wow\Helpers\MimesisHelpers.cs" />
     <Compile Include="Wow\Helpers\WoWItemSubClass.cs" />
     <Compile Include="Wow\Helpers\WoWItemClass.cs" />
     <Compile Include="Wow\Helpers\MovementsAction.cs" />

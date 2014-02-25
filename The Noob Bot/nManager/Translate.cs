@@ -474,7 +474,10 @@ namespace nManager
             SimpleQuestProfileFile,
             CantSaveEmptySimpleNew,
             CantSaveEmptySimpleExisting,
-            NoSimpleProfileToEdit
+            NoSimpleProfileToEdit,
+            Settings_Mimesis,
+            MasterBotIPAddress,
+            MasterBotIPPort
         };
 
         [Serializable]

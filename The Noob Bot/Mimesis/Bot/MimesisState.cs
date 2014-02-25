@@ -13,13 +13,13 @@ using nManager.Wow.ObjectManager;
 using Timer = nManager.Helpful.Timer;
 using Math = nManager.Helpful.Math;
 
-namespace MimicryBot.Bot
+namespace Mimesis.Bot
 {
-    public class MimicryState : State
+    public class MimesisState : State
     {
         public override string DisplayName
         {
-            get { return "Mimicry"; }
+            get { return "Mimesis"; }
         }
 
         public override int Priority { get; set; }
@@ -39,8 +39,8 @@ namespace MimicryBot.Bot
                 if (_master == null)
                 {
                     _master = new Npc();
-                    _master.Guid = MimicryClientCom.GetMasterGuid();
-                    _master.Position = MimicryClientCom.GetMasterPosition();
+                    _master.Guid = MimesisClientCom.GetMasterGuid();
+                    _master.Position = MimesisClientCom.GetMasterPosition();
                 }
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
@@ -78,7 +78,7 @@ namespace MimicryBot.Bot
             {
                 if (_positionCheckTimer.IsReady)
                 {
-                    _master.Position = MimicryClientCom.GetMasterPosition();
+                    _master.Position = MimesisClientCom.GetMasterPosition();
                     _positionCheckTimer.Reset();
                 }
             }

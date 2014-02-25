@@ -6,21 +6,32 @@ using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Helpful;
 
-namespace MimicryBot.Bot
+namespace Mimesis.Bot
 {
-    class MimicryClientCom
+    class MimesisClientCom
     {
         private static TcpClient client = null;
         private static IPEndPoint serviceEndPoint = null;
 
-        public static void Connect()
+        public static bool Connect()
         {
+            Logging.Write("Connecting to " + MimesisSettings.CurrentSetting.MasterIPAddress + " ...");
             if (client == null)
                 client = new TcpClient();
+            
             if (serviceEndPoint == null)
-                serviceEndPoint = new IPEndPoint(IPAddress.Parse("192.168.10.116"), 6543);
-            Logging.Write("Connected to bot @192.168.10.116");
-            client.Connect(serviceEndPoint);
+                serviceEndPoint = new IPEndPoint(IPAddress.Parse(MimesisSettings.CurrentSetting.MasterIPAddress), MimesisSettings.CurrentSetting.MasterIPPort);
+            try
+            {
+                client.Connect(serviceEndPoint);
+                Logging.Write("Connected!");
+                return true;
+            }
+            catch
+            {
+                Logging.Write("Could not connect to " + MimesisSettings.CurrentSetting.MasterIPAddress + ":" + MimesisSettings.CurrentSetting.MasterIPPort);
+                return false;
+            }
         }
 
         public static void Disconnect()
@@ -29,7 +40,7 @@ namespace MimicryBot.Bot
                 return;
             byte[] opCode = new byte[1];
             NetworkStream clientStream = client.GetStream();
-            opCode[0] = (byte)MimicryHelpers.opCodes.Disconnect;
+            opCode[0] = (byte)MimesisHelpers.opCodes.Disconnect;
             clientStream.Write(opCode, 0, 1);
             clientStream.Flush();
 
@@ -41,7 +52,7 @@ namespace MimicryBot.Bot
         {
             byte[] opCode = new byte[1];
             byte[] buffer = new byte[4096];
-            opCode[0] = (byte)MimicryHelpers.opCodes.QueryGuid;
+            opCode[0] = (byte)MimesisHelpers.opCodes.QueryGuid;
 
             NetworkStream clientStream = client.GetStream();
             clientStream.Write(opCode, 0, 1);
@@ -57,7 +68,7 @@ namespace MimicryBot.Bot
             {
                 return 0;
             }
-            if ((MimicryHelpers.opCodes)opCode[0] == MimicryHelpers.opCodes.ReplyGuid)
+            if ((MimesisHelpers.opCodes)opCode[0] == MimesisHelpers.opCodes.ReplyGuid)
                 return (ulong)BitConverter.ToInt64(buffer, 0);
             return 0;
         }
@@ -66,7 +77,7 @@ namespace MimicryBot.Bot
         {
             byte[] opCode = new byte[1];
             byte[] buffer = new byte[4096];
-            opCode[0] = (byte)MimicryHelpers.opCodes.QueryPosition;
+            opCode[0] = (byte)MimesisHelpers.opCodes.QueryPosition;
 
             NetworkStream clientStream = client.GetStream();
             clientStream.Write(opCode, 0, 1);
@@ -82,8 +93,8 @@ namespace MimicryBot.Bot
             {
                 return new Point();
             }
-            if ((MimicryHelpers.opCodes)opCode[0] == MimicryHelpers.opCodes.ReplyPosition)
-                return MimicryHelpers.BytesToObject<Point>(buffer);
+            if ((MimesisHelpers.opCodes)opCode[0] == MimesisHelpers.opCodes.ReplyPosition)
+                return MimesisHelpers.BytesToObject<Point>(buffer);
             return new Point();
         }
     }

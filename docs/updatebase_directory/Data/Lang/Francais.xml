@@ -1622,5 +1622,17 @@
       <Id>NoSimpleProfileToEdit</Id>
       <Text>There is no Simple Profile to edit</Text>
     </Translation>
+    <Translation>
+      <Id>Settings_Mimesis</Id>
+      <Text>Paramètres de Mimesis</Text>
+    </Translation>
+    <Translation>
+      <Id>MasterBotIPAddress</Id>
+      <Text>Adresse IP du bot maître</Text>
+    </Translation>
+    <Translation>
+      <Id>MasterBotIPPort</Id>
+      <Text>Port utilisé pas le bot maître</Text>
+    </Translation>
   </Translations>
 </Language>

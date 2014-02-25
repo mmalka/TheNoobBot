@@ -4,7 +4,7 @@ using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 
-namespace MimicryBot.Bot
+namespace Mimesis.Bot
 {
     internal class Bot
     {
@@ -14,9 +14,10 @@ namespace MimicryBot.Bot
         {
             try
             {
+                if (!MimesisClientCom.Connect())
+                    return false;
                 // Load CC:
                 CombatClass.LoadCombatClass();
-                MimicryClientCom.Connect();
 
                 // FSM
                 Fsm.States.Clear();
@@ -28,11 +29,11 @@ namespace MimicryBot.Bot
                 Fsm.AddState(new Farming { Priority = 4 });
                 Fsm.AddState(new SpecializationCheck { Priority = 3 });
                 Fsm.AddState(new LevelupCheck { Priority = 2});
-                Fsm.AddState(new MimicryState { Priority = 1});
+                Fsm.AddState(new MimesisState { Priority = 1});
                 Fsm.AddState(new Idle { Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6, "FSM Mimicry");
+                Fsm.StartEngine(6, "FSM Mimesis");
 
                 return true;
             }
@@ -45,7 +46,7 @@ namespace MimicryBot.Bot
                 catch
                 {
                 }
-                Logging.WriteError("Mimicry > Bot > Bot  > Pulse(): " + e);
+                Logging.WriteError("Mimesis > Bot > Bot  > Pulse(): " + e);
                 return false;
             }
         }
@@ -57,11 +58,11 @@ namespace MimicryBot.Bot
                 CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
-                MimicryClientCom.Disconnect();
+                MimesisClientCom.Disconnect();
             }
             catch (Exception e)
             {
-                Logging.WriteError("Mimicry > Bot > Bot  > Dispose(): " + e);
+                Logging.WriteError("Mimesis > Bot > Bot  > Dispose(): " + e);
             }
         }
     }
