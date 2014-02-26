@@ -1,3 +1,5 @@
+using System;
+
 namespace Quester.Profile
 {
     partial class ProfileManager
@@ -52,7 +54,7 @@ namespace Quester.Profile
             this.ProfileManagerAddGrouped.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerAddGrouped.TabIndex = 0;
             this.ProfileManagerAddGrouped.Text = "Create a grouped profile";
-            this.ProfileManagerAddGrouped.Click += new System.EventHandler(this.ProfileManagerAddGrouped_Click);
+            this.ProfileManagerAddGrouped.Click += new System.EventHandler((sender, e) => this.ProfileManagerAddGrouped_Click());
             // 
             // ExistingGroupedProfiles
             // 
@@ -63,7 +65,7 @@ namespace Quester.Profile
             this.ExistingGroupedProfiles.Name = "ExistingGroupedProfiles";
             this.ExistingGroupedProfiles.Size = new System.Drawing.Size(241, 108);
             this.ExistingGroupedProfiles.TabIndex = 1;
-            this.ExistingGroupedProfiles.DoubleClick += new System.EventHandler(this.DoProfileManagerEditGrouped);
+            this.ExistingGroupedProfiles.DoubleClick += new System.EventHandler((sender, e) => this.DoProfileManagerEditGrouped());
             // 
             // ProfileManagerAdd
             // 
@@ -75,7 +77,7 @@ namespace Quester.Profile
             this.ProfileManagerAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerAdd.TabIndex = 2;
             this.ProfileManagerAdd.Text = "Create a simple profile";
-            this.ProfileManagerAdd.Click += new System.EventHandler(this.ProfileManagerAdd_Click);
+            this.ProfileManagerAdd.Click += new System.EventHandler((sender, e) => this.ProfileManagerAdd_Click());
             // 
             // ProfileManagerEditGrouped
             // 
@@ -87,7 +89,7 @@ namespace Quester.Profile
             this.ProfileManagerEditGrouped.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerEditGrouped.TabIndex = 3;
             this.ProfileManagerEditGrouped.Text = "Edit a grouped profile";
-            this.ProfileManagerEditGrouped.Click += new System.EventHandler(this.DoProfileManagerEditGrouped);
+            this.ProfileManagerEditGrouped.Click += new System.EventHandler((sender, e) => this.DoProfileManagerEditGrouped());
             // 
             // ProfileManagerEdit
             // 
@@ -99,7 +101,7 @@ namespace Quester.Profile
             this.ProfileManagerEdit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerEdit.TabIndex = 4;
             this.ProfileManagerEdit.Text = "Edit a simple profile";
-            this.ProfileManagerEdit.Click += new System.EventHandler(this.ProfileManageEdit_Click);
+            this.ProfileManagerEdit.Click += new System.EventHandler((sender, e) => this.DoProfileManagerEditSimple());
             // 
             // ExistingSimpleProfiles
             // 
@@ -110,6 +112,7 @@ namespace Quester.Profile
             this.ExistingSimpleProfiles.Name = "ExistingSimpleProfiles";
             this.ExistingSimpleProfiles.Size = new System.Drawing.Size(241, 108);
             this.ExistingSimpleProfiles.TabIndex = 5;
+            this.ExistingSimpleProfiles.DoubleClick += new EventHandler((sender, e) => this.DoProfileManagerEditSimple());
             // 
             // ProfileManagerRemoveGrouped
             // 
@@ -121,7 +124,7 @@ namespace Quester.Profile
             this.ProfileManagerRemoveGrouped.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerRemoveGrouped.TabIndex = 6;
             this.ProfileManagerRemoveGrouped.Text = "Remove a grouped profile";
-            this.ProfileManagerRemoveGrouped.Click += new System.EventHandler(this.ProfileManagerRemoveGrouped_Click);
+            this.ProfileManagerRemoveGrouped.Click += new System.EventHandler((sender, e) => this.ProfileManagerRemoveGrouped_Click());
             // 
             // ProfileManagerGroupedLabel
             // 
@@ -129,6 +132,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.ProfileManagerGroupedLabel.BackgroundStyle.Class = "";
             this.ProfileManagerGroupedLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ProfileManagerGroupedLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.ProfileManagerGroupedLabel.ForeColor = System.Drawing.Color.Black;
@@ -145,6 +149,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.ProfileManagerSimpleLabel.BackgroundStyle.Class = "";
             this.ProfileManagerSimpleLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ProfileManagerSimpleLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.ProfileManagerSimpleLabel.ForeColor = System.Drawing.Color.Black;
@@ -165,7 +170,7 @@ namespace Quester.Profile
             this.ProfileManagerRemove.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerRemove.TabIndex = 9;
             this.ProfileManagerRemove.Text = "Remove a simple profile";
-            this.ProfileManagerRemove.Click += new System.EventHandler(this.ProfileManagerRemove_Click);
+            this.ProfileManagerRemove.Click += new System.EventHandler((sender, e) => this.ProfileManagerRemove_Click());
             // 
             // ProfileManagerGroupedDocumentation
             // 
@@ -177,7 +182,7 @@ namespace Quester.Profile
             this.ProfileManagerGroupedDocumentation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerGroupedDocumentation.TabIndex = 10;
             this.ProfileManagerGroupedDocumentation.Text = "Grouped Profile Documentation";
-            this.ProfileManagerGroupedDocumentation.Click += new System.EventHandler(this.ProfileManagerGroupedDocumentation_Click);
+            this.ProfileManagerGroupedDocumentation.Click += new System.EventHandler((sender, e) => this.ProfileManagerGroupedDocumentation_Click());
             // 
             // ProfileManagerSimpleDocumentation
             // 
@@ -189,7 +194,7 @@ namespace Quester.Profile
             this.ProfileManagerSimpleDocumentation.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ProfileManagerSimpleDocumentation.TabIndex = 11;
             this.ProfileManagerSimpleDocumentation.Text = "Simple Profile Documentation";
-            this.ProfileManagerSimpleDocumentation.Click += new System.EventHandler(this.ProfileManagerSimpleDocumentation_Click);
+            this.ProfileManagerSimpleDocumentation.Click += new System.EventHandler((sender, e) => this.ProfileManagerSimpleDocumentation_Click());
             // 
             // ProfileManager
             // 
