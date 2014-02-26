@@ -44,7 +44,7 @@
 
         public enum Party
         {
-            PartyOffset = 0xDC1400,
+            PartyOffset = 0xDC13FC, // Script_SendChatMessage First offset/4th block
             NumOfPlayers = 0xC4,
             NumOfPlayers_SuBGroup = 0xC8,
             PlayerGuid = 0x10,

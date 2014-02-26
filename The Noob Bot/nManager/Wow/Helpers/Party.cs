@@ -45,8 +45,8 @@ namespace nManager.Wow.Helpers
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
                 if (party > 0)
                 {
-                    uint numGroupMembers = GetPartyNumberPlayers();
-                    for (uint i = 0; i < numGroupMembers; i++)
+                    //uint numGroupMembers = GetPartyNumberPlayers();
+                    for (uint i = 0; i < 40; i++)
                     {
                         uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
                         if (partyPlayer <= 0) continue;
@@ -136,9 +136,10 @@ namespace nManager.Wow.Helpers
             try
             {
                 string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomStringResult + " = IsInGroup(\"" + partyType + "\")");
+                string randomStringResult2 = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomStringResult2 + " = IsInGroup(\"" + partyType + "\"); if " + randomStringResult2 + " then " + randomStringResult + " = \"1\" else " + randomStringResult + " = \"0\" end");
                 string sResult = Lua.GetLocalizedText(randomStringResult);
-                return Others.ToBoolean(sResult);
+                return sResult == "1";
             }
             catch (Exception exception)
             {
