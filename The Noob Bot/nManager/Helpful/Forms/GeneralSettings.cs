@@ -1,6 +1,11 @@
 using System;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Windows.Forms;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Helpers;
 
 namespace nManager.Helpful.Forms
 {
@@ -32,6 +37,9 @@ namespace nManager.Helpful.Forms
                 {
                     HealerClass.Items.Add(f);
                 }
+                var firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
+                BroadcastingIPLan.Text = firstInterfaceLanIPv4 != null ? firstInterfaceLanIPv4.ToString() : "No Lan IPv4 found";
+                BroadcastingIPWan.Text = Others.GetClientIPAddress;
             }
             catch (Exception e)
             {
@@ -267,13 +275,33 @@ namespace nManager.Helpful.Forms
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
             SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
             ActivateAlwaysOnTopFeature.Text = Translate.Get(Translate.Id.AlwaysOnTop);
+            SetToolTypeIfNeeded(ActivateAlwaysOnTopFeature);
             SendMailWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SendMailWhenLessThanXSlotLeft);
+            SetToolTypeIfNeeded(SendMailWhenLessThanXSlotLeftLabel);
             SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
+            SetToolTypeIfNeeded(SellItemsWhenLessThanXSlotLeftLabel); 
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
+            SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel); 
             UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
+            SetToolTypeIfNeeded(UseHearthstoneLabel); 
             UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
+            SetToolTypeIfNeeded(UseMollELabel);
             UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
-            SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
+            SetToolTypeIfNeeded(UseRobotLabel);
+            MimesisBroadcasterSettingsPanel.TitleText = Translate.Get(Translate.Id.MimesisBroadcasterSettings);
+            SetToolTypeIfNeeded(MimesisBroadcasterSettingsPanel);
+            BroadcastingPortDefaultLabel.Text = Translate.Get(Translate.Id.BroadcastingPortDefault);
+            SetToolTypeIfNeeded(BroadcastingPortDefaultLabel);
+            BroadcastingIPWanLabel.Text = Translate.Get(Translate.Id.BroadcastingIPWan);
+            SetToolTypeIfNeeded(BroadcastingIPWanLabel);
+            BroadcastingIPLanLabel.Text = Translate.Get(Translate.Id.BroadcastingIPLan);
+            SetToolTypeIfNeeded(BroadcastingIPLanLabel);
+            ActivateBroadcastingMimesisLabel.Text = Translate.Get(Translate.Id.ActivateBroadcastingMimesis);
+            SetToolTypeIfNeeded(ActivateBroadcastingMimesisLabel);
+            BroadcastingIPLocalLabel.Text = Translate.Get(Translate.Id.BroadcastingIPLocal);
+            SetToolTypeIfNeeded(BroadcastingIPLocalLabel);
+            BroadcastingPortLabel.Text = Translate.Get(Translate.Id.BroadcastingPort);
+            SetToolTypeIfNeeded(BroadcastingPortLabel);
             ActivateAlwaysOnTopFeature.OffText = offText;
             ActivateAlwaysOnTopFeature.OnText = onText;
             AllowTNBToSetYourMaxFps.OffText = offText;
@@ -368,6 +396,8 @@ namespace nManager.Helpful.Forms
             CanPullUnitsAlreadyInFight.OnText = onText;
             AutoAssignTalents.OffText = offText;
             AutoAssignTalents.OnText = onText;
+            ActivateBroadcastingMimesis.OffText = offText;
+            ActivateBroadcastingMimesis.OnText = onText;
         }
 
         private void SaveSetting()
@@ -476,6 +506,8 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
+                nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
+                nManagerSetting.CurrentSetting.BroadcastingPort = BroadcastingPort.Text;
                 nManagerSetting.CurrentSetting.Save();
                 MountTask.SettingsHasChanged = true;
             }
@@ -584,6 +616,8 @@ namespace nManager.Helpful.Forms
                 ActiveStopTNBIfReceivedAtMostXWhispers.Value = managerSetting.ActiveStopTNBIfReceivedAtMostXWhispers;
                 UseMollE.Value = managerSetting.UseMollE;
                 UseRobot.Value = managerSetting.UseRobot;
+                ActivateBroadcastingMimesis.Value = managerSetting.ActivateBroadcastingMimesis;
+                BroadcastingPort.Text = managerSetting.BroadcastingPort;
             }
             catch (Exception ex)
             {

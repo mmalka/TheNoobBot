@@ -282,5 +282,7 @@ namespace nManager
         public bool ActiveStopTNBIfReceivedAtMostXWhispers;
         public bool UseMollE;
         public bool UseRobot;
+        public bool ActivateBroadcastingMimesis = false;
+        public string BroadcastingPort = "6543";
     }
 }

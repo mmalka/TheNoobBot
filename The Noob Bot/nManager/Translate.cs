@@ -477,7 +477,14 @@ namespace nManager
             NoSimpleProfileToEdit,
             Settings_Mimesis,
             MasterBotIPAddress,
-            MasterBotIPPort
+            MasterBotIPPort,
+            MimesisBroadcasterSettings,
+            BroadcastingPortDefault,
+            BroadcastingIPWan,
+            BroadcastingIPLan,
+            ActivateBroadcastingMimesis,
+            BroadcastingIPLocal,
+            BroadcastingPort
         };
 
         [Serializable]

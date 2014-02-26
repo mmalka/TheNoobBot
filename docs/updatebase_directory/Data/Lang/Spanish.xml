@@ -1633,5 +1633,33 @@
       <Id>MasterBotIPPort</Id>
       <Text>Port used by the master bot</Text>
     </Translation>
+    <Translation>
+      <Id>MimesisBroadcasterSettings</Id>
+      <Text>Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with this session)</Text>
+    </Translation>
+    <Translation>
+      <Id>BroadcastingPortDefault</Id>
+      <Text>Default: 6543</Text>
+    </Translation>
+    <Translation>
+      <Id>BroadcastingIPWan</Id>
+      <Text>IP Wan (internet)</Text>
+    </Translation>
+    <Translation>
+      <Id>BroadcastingIPLan</Id>
+      <Text>IP Lan (network)</Text>
+    </Translation>
+    <Translation>
+      <Id>ActivateBroadcastingMimesis</Id>
+      <Text>Activate Broadcasting</Text>
+    </Translation>
+    <Translation>
+      <Id>BroadcastingIPLocal</Id>
+      <Text>IP Local (computer)</Text>
+    </Translation>
+    <Translation>
+      <Id>BroadcastingPort</Id>
+      <Text>Broadcasting Port</Text>
+    </Translation>
   </Translations>
 </Language>
