@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="FiniteStateMachine\Engine.cs" />
     <Compile Include="FiniteStateMachine\State.cs" />
+    <Compile Include="Helpful\Communication.cs" />
     <Compile Include="Helpful\Display.cs" />
     <Compile Include="Helpful\Forms\DeveloperTools.cs">
       <SubType>Form</SubType>

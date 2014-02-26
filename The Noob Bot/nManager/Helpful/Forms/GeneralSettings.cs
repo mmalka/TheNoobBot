@@ -506,8 +506,12 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
+                if (nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis && !ActivateBroadcastingMimesis.Value)
+                    Communication.Shutdown(nManagerSetting.CurrentSetting.BroadcastingPort); // Display the port used before the settings edition.
+                else if (!nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis && ActivateBroadcastingMimesis.Value)
+                    Communication.Listen();
                 nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
-                nManagerSetting.CurrentSetting.BroadcastingPort = BroadcastingPort.Text;
+                nManagerSetting.CurrentSetting.BroadcastingPort = BroadcastingPort.Value;
                 nManagerSetting.CurrentSetting.Save();
                 MountTask.SettingsHasChanged = true;
             }
@@ -617,7 +621,7 @@ namespace nManager.Helpful.Forms
                 UseMollE.Value = managerSetting.UseMollE;
                 UseRobot.Value = managerSetting.UseRobot;
                 ActivateBroadcastingMimesis.Value = managerSetting.ActivateBroadcastingMimesis;
-                BroadcastingPort.Text = managerSetting.BroadcastingPort;
+                BroadcastingPort.Value = managerSetting.BroadcastingPort;
             }
             catch (Exception ex)
             {

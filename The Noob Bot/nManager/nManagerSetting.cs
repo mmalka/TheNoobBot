@@ -283,6 +283,6 @@ namespace nManager
         public bool UseMollE;
         public bool UseRobot;
         public bool ActivateBroadcastingMimesis = false;
-        public string BroadcastingPort = "6543";
+        public int BroadcastingPort = 6543;
     }
 }

@@ -2,35 +2,44 @@
 using System.Threading;
 using System.Net.Sockets;
 using System.Net;
-using System.Text;
 using nManager.Wow.ObjectManager;
-using nManager.Helpful;
 using nManager.Wow.Helpers;
 
-namespace The_Noob_Bot
+namespace nManager.Helpful
 {
     public static class Communication
     {
-        private static TcpListener tcpListener;
-        private static Thread listenThread;
+        private static TcpListener _tcpListener;
+        private static Thread _listenThread;
+
+        public static void Shutdown(int port = 6543)
+        {
+            if (_tcpListener != null)
+                _tcpListener.Stop();
+            if (_listenThread != null && _listenThread.IsAlive)
+                _listenThread.Abort();
+            Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+        }
 
         public static void Listen()
         {
-            tcpListener = new TcpListener(IPAddress.Any, 6543);
-            listenThread = new Thread(new ThreadStart(ListenForClients));
-            listenThread.Start();
+            int port = nManagerSetting.CurrentSetting.BroadcastingPort;
+            _tcpListener = new TcpListener(IPAddress.Any, port);
+            _listenThread = new Thread(new ThreadStart(ListenForClients));
+            _listenThread.Start();
+            Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
         }
 
         private static void ListenForClients()
         {
-            tcpListener.Start();
+            _tcpListener.Start();
             while (true)
             {
                 // Wait for a connection
-                TcpClient client = tcpListener.AcceptTcpClient();
+                TcpClient client = _tcpListener.AcceptTcpClient();
                 // We got one, create a thread for it
                 Socket s = client.Client;
-                Logging.Write("Bot with address " + IPAddress.Parse(((IPEndPoint)s.RemoteEndPoint).Address.ToString()) + " has connected.");
+                Logging.Write("Bot with address " + IPAddress.Parse(((IPEndPoint) s.RemoteEndPoint).Address.ToString()) + " has connected.");
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
                 clientThread.Start(client);
             }
@@ -38,7 +47,7 @@ namespace The_Noob_Bot
 
         private static void HandleClientComm(object client)
         {
-            TcpClient tcpClient = (TcpClient)client;
+            TcpClient tcpClient = (TcpClient) client;
             NetworkStream clientStream = tcpClient.GetStream();
 
             byte[] message = new byte[4096];
@@ -69,15 +78,15 @@ namespace The_Noob_Bot
                 byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
                 byte[] opCode = new byte[1];
 
-                switch ((MimesisHelpers.opCodes)message[0])
+                switch ((MimesisHelpers.opCodes) message[0])
                 {
                     case MimesisHelpers.opCodes.QueryPosition:
-                        opCode[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
+                        opCode[0] = (byte) MimesisHelpers.opCodes.ReplyPosition;
                         clientStream.Write(opCode, 0, 1);
                         clientStream.Write(bufferPos, 0, bufferPos.Length);
                         break;
                     case MimesisHelpers.opCodes.QueryGuid:
-                        opCode[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
+                        opCode[0] = (byte) MimesisHelpers.opCodes.ReplyGuid;
                         clientStream.Write(opCode, 0, 1);
                         clientStream.Write(bufferGuid, 0, bufferGuid.Length);
                         break;
@@ -92,6 +101,5 @@ namespace The_Noob_Bot
             }
             tcpClient.Close();
         }
-
     }
 }

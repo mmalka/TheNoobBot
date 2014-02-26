@@ -32,7 +32,7 @@ namespace nManager.Helpful.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralSettings));
             this.panel1 = new System.Windows.Forms.Panel();
             this.MimesisBroadcasterSettingsPanel = new DevComponents.DotNetBar.ExpandablePanel();
-            this.BroadcastingPort = new System.Windows.Forms.NumericUpDown();
+            this.BroadcastingPort = new DevComponents.Editors.IntegerInput();
             this.BroadcastingIPWan = new DevComponents.DotNetBar.LabelX();
             this.BroadcastingIPLan = new DevComponents.DotNetBar.LabelX();
             this.BroadcastingIPLocal = new DevComponents.DotNetBar.LabelX();
@@ -340,17 +340,12 @@ namespace nManager.Helpful.Forms
             // BroadcastingPort
             // 
             this.BroadcastingPort.Location = new System.Drawing.Point(160, 58);
-            this.BroadcastingPort.Minimum = 0;
-            this.BroadcastingPort.Maximum = 65536;
             this.BroadcastingPort.Name = "BroadcastingPort";
             this.BroadcastingPort.Size = new System.Drawing.Size(63, 22);
+            this.BroadcastingPort.MinValue = 1;
+            this.BroadcastingPort.MaxValue = 65536;
             this.BroadcastingPort.TabIndex = 32;
-            this.BroadcastingPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.BroadcastingPort.Value = new decimal(new int[] {
-            6543,
-            0,
-            0,
-            0});
+            this.BroadcastingPort.Value = 6543;
             this.BroadcastingPort.Visible = false;
             // 
             // BroadcastingIPWan
@@ -4237,6 +4232,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateBroadcastingMimesis;
         private DevComponents.DotNetBar.LabelX BroadcastingIPLocalLabel;
         private DevComponents.DotNetBar.LabelX BroadcastingPortLabel;
-        private System.Windows.Forms.NumericUpDown BroadcastingPort;
+        private DevComponents.Editors.IntegerInput BroadcastingPort;
     }
 }
