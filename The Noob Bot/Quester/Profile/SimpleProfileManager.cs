@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 
 namespace Quester.Profile
 {
@@ -55,7 +56,17 @@ namespace Quester.Profile
                 if (Profile == null) return;
                 foreach (Quest quest in Profile.Quests)
                 {
-                    ProfileQuestList.Items.Add(quest.Id + " - " + quest.Name + " - Level " + quest.QuestLevel);
+                    string classSpecific = "";
+                    foreach (int wowClass in Enum.GetValues(typeof (WoWClassMask)))
+                    {
+                        if (wowClass == quest.ClassMask)
+                        {
+                            classSpecific = wowClass.ToString();
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(classSpecific))
+                        classSpecific = " - Class " + classSpecific;
+                    ProfileQuestList.Items.Add(quest.Id + " - " + quest.Name + " - Level " + quest.QuestLevel + classSpecific);
                 }
                 if (ProfileQuestList.Items.Count > 0)
                 {
