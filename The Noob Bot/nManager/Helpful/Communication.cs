@@ -43,7 +43,7 @@ namespace nManager.Helpful
                 Random random = new Random();
                 int randomPort = random.Next(1024, 65536);
                 while (randomPort == port) // Make sure we don't use the same port.
-                    random.Next(1024, 65536); // Many of the 1000 firsts ports are reserved.
+                    random.Next(1024, 65536); // Many of the 1024 firsts ports are reserved.
                 Logging.WriteError("Mimesis Broadcaster cannot listen on port " + port + ", another application is already using this port, trying to use " + randomPort + " instead.");
                 _tcpListener = new TcpListener(IPAddress.Any, randomPort);
                 StartListenOnPort(randomPort);
