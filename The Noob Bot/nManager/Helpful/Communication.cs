@@ -31,21 +31,39 @@ namespace nManager.Helpful
                 Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
         }
 
+        public static void StartListenOnPort(int port)
+        {
+            try
+            {
+                _tcpListener.Start();
+                Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+            }
+            catch (SocketException)
+            {
+                Random random = new Random();
+                int randomPort = random.Next(1024, 65536);
+                while (randomPort == port) // Make sure we don't use the same port.
+                    random.Next(1024, 65536); // Many of the 1000 firsts ports are reserved.
+                Logging.WriteError("Mimesis Broadcaster cannot listen on port " + port + ", another application is already using this port, trying to use " + randomPort + " instead.");
+                _tcpListener = new TcpListener(IPAddress.Any, randomPort);
+                StartListenOnPort(randomPort);
+            }
+        }
+
         public static void Listen()
         {
             Shutdown(); // Make sure we shutdown all previous sessions first. It should be useless if the rest is well coded.
             int port = nManagerSetting.CurrentSetting.BroadcastingPort;
             _tcpListener = new TcpListener(IPAddress.Any, port);
-            _listenThread = new Thread(new ThreadStart(ListenForClients));
+            _listenThread = new Thread(new ThreadStart(() => ListenForClients(port)));
             _listenThread.Start();
-            Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
         }
 
-        private static void ListenForClients()
+        private static void ListenForClients(int port)
         {
             if (_listenThread == null || !_listenThread.IsAlive)
                 return;
-            _tcpListener.Start();
+            StartListenOnPort(port);
             while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
             {
                 if (_tcpListener.Pending())
