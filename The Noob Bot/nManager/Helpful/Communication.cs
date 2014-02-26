@@ -14,15 +14,26 @@ namespace nManager.Helpful
 
         public static void Shutdown(int port = 6543)
         {
-            if (_tcpListener != null)
-                _tcpListener.Stop();
+            bool done = false;
             if (_listenThread != null && _listenThread.IsAlive)
+            {
                 _listenThread.Abort();
-            Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+                _listenThread = null;
+                done = true;
+            }
+            if (_tcpListener != null && _tcpListener.Server != null)
+            {
+                _tcpListener.Stop();
+                _tcpListener = null;
+                done = true;
+            }
+            if (done)
+                Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
         }
 
         public static void Listen()
         {
+            Shutdown(); // Make sure we shutdown all previous sessions first. It should be useless if the rest is well coded.
             int port = nManagerSetting.CurrentSetting.BroadcastingPort;
             _tcpListener = new TcpListener(IPAddress.Any, port);
             _listenThread = new Thread(new ThreadStart(ListenForClients));
@@ -32,28 +43,39 @@ namespace nManager.Helpful
 
         private static void ListenForClients()
         {
+            if (_listenThread == null || !_listenThread.IsAlive)
+                return;
             _tcpListener.Start();
-            while (true)
+            while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
             {
-                // Wait for a connection
-                TcpClient client = _tcpListener.AcceptTcpClient();
-                // We got one, create a thread for it
-                Socket s = client.Client;
-                Logging.Write("Bot with address " + IPAddress.Parse(((IPEndPoint) s.RemoteEndPoint).Address.ToString()) + " has connected.");
-                Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
-                clientThread.Start(client);
+                if (_tcpListener.Pending())
+                {
+                    // Wait for a connection
+                    TcpClient client = _tcpListener.AcceptTcpClient();
+                    // We got one, create a thread for it
+                    Socket s = client.Client;
+                    Logging.Write("Bot with address " + IPAddress.Parse(((IPEndPoint) s.RemoteEndPoint).Address.ToString()) + " has connected.");
+                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
+                    clientThread.Start(client);
+                }
+                else
+                {
+                    Thread.Sleep(10);
+                }
             }
         }
 
         private static void HandleClientComm(object client)
         {
+            if (_listenThread == null || !_listenThread.IsAlive || _tcpListener == null || _tcpListener.Server == null)
+                return;
             TcpClient tcpClient = (TcpClient) client;
             NetworkStream clientStream = tcpClient.GetStream();
 
             byte[] message = new byte[4096];
             int bytesRead;
 
-            while (true)
+            while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
             {
                 bytesRead = 0;
                 try
@@ -99,6 +121,7 @@ namespace nManager.Helpful
                 }
                 clientStream.Flush();
             }
+            clientStream.Dispose();
             tcpClient.Close();
         }
     }

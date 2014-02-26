@@ -506,13 +506,20 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
-                if (nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis && !ActivateBroadcastingMimesis.Value)
-                    Communication.Shutdown(nManagerSetting.CurrentSetting.BroadcastingPort); // Display the port used before the settings edition.
-                else if (!nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis && ActivateBroadcastingMimesis.Value)
-                    Communication.Listen();
+                int oldPort = nManagerSetting.CurrentSetting.BroadcastingPort;
+                bool oldStatus = nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis;
                 nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
                 nManagerSetting.CurrentSetting.BroadcastingPort = BroadcastingPort.Value;
                 nManagerSetting.CurrentSetting.Save();
+                if (oldStatus && !ActivateBroadcastingMimesis.Value)
+                    Communication.Shutdown(oldPort); // Display the port used before the settings edition.
+                else if (!oldStatus && ActivateBroadcastingMimesis.Value)
+                    Communication.Listen();
+                else if (oldStatus && ActivateBroadcastingMimesis.Value && BroadcastingPort.Value != oldPort)
+                {
+                    Communication.Shutdown(oldPort); // Display the port used before the settings edition.
+                    Communication.Listen();
+                }
                 MountTask.SettingsHasChanged = true;
             }
             catch (Exception e)
