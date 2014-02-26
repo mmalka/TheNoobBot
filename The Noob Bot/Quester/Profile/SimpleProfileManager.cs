@@ -57,16 +57,15 @@ namespace Quester.Profile
                 foreach (Quest quest in Profile.Quests)
                 {
                     string classSpecific = "";
-                    foreach (int wowClass in Enum.GetValues(typeof (WoWClassMask)))
+                    foreach (object wowClass in Enum.GetValues(typeof (WoWClassMask)))
                     {
-                        if (wowClass == quest.ClassMask)
-                        {
-                            classSpecific = wowClass.ToString();
-                        }
+                        if ((int) wowClass != quest.ClassMask) continue;
+                        classSpecific = wowClass.ToString();
+                        break;
                     }
                     if (!string.IsNullOrEmpty(classSpecific))
-                        classSpecific = " - Class " + classSpecific;
-                    ProfileQuestList.Items.Add(quest.Id + " - " + quest.Name + " - Level " + quest.QuestLevel + classSpecific);
+                        classSpecific = " - Only " + classSpecific;
+                    ProfileQuestList.Items.Add(quest.Id + " - " + quest.Name + " - MinLevel " + quest.MinLevel + classSpecific);
                 }
                 if (ProfileQuestList.Items.Count > 0)
                 {
