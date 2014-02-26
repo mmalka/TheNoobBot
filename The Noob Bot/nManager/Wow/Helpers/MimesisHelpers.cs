@@ -21,6 +21,20 @@ namespace nManager.Wow.Helpers
             Disconnect = 9,
         }
 
+        public enum eventType
+        {
+            none = 0,
+            pickupQuest = 1,
+            turninQuest = 2,
+            interactObject = 3,
+        }
+
+        public struct MimesisEvent
+        {
+            eventType Type;
+
+        }
+
         public static T BytesToObject<T>(byte[] arrBytes)
         {
             System.IO.MemoryStream memStream = new System.IO.MemoryStream();
