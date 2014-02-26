@@ -28,6 +28,7 @@ namespace Mimesis
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsMimesisForm));
             this.MimesisMasterAddr = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.MimesisMasterPort = new DevComponents.Editors.IntegerInput();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
@@ -136,7 +137,10 @@ namespace Mimesis
             this.Controls.Add(this.MimesisMasterAddr);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(317, 171);
+            this.MinimumSize = new System.Drawing.Size(317, 171);
             this.Name = "SettingsMimesisForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

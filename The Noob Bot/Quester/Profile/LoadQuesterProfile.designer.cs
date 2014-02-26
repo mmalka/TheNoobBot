@@ -28,6 +28,7 @@ namespace Quester.Profile
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadQuesterProfile));
             this.LoadSimpleProfile = new DevComponents.DotNetBar.ButtonX();
             this.GroupedProfilesList = new System.Windows.Forms.ListBox();
             this.LoadGroupedProfile = new DevComponents.DotNetBar.ButtonX();
@@ -84,6 +85,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.GroupedProfileListLabel.BackgroundStyle.Class = "";
             this.GroupedProfileListLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.GroupedProfileListLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.GroupedProfileListLabel.Location = new System.Drawing.Point(287, 55);
@@ -97,6 +99,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.SimpleProfilesListLabel.BackgroundStyle.Class = "";
             this.SimpleProfilesListLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SimpleProfilesListLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.SimpleProfilesListLabel.Location = new System.Drawing.Point(12, 55);
@@ -131,6 +134,7 @@ namespace Quester.Profile
             this.Controls.Add(this.LoadSimpleProfile);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(557, 250);
             this.MinimumSize = new System.Drawing.Size(557, 250);

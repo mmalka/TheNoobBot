@@ -28,6 +28,7 @@ namespace Quester.Profile
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleProfileManager));
             this.SaveSimpleProfileAs = new DevComponents.DotNetBar.ButtonX();
             this.ProfileQuestList = new System.Windows.Forms.ListBox();
             this.SaveSimpleProfile = new DevComponents.DotNetBar.ButtonX();
@@ -76,6 +77,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.ProfileQuestListLabel.BackgroundStyle.Class = "";
             this.ProfileQuestListLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ProfileQuestListLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.ProfileQuestListLabel.Location = new System.Drawing.Point(12, 12);
@@ -96,7 +98,7 @@ namespace Quester.Profile
             this.CancelSimpleProfileEdition.Text = "Cancel && Close";
             this.CancelSimpleProfileEdition.Click += new System.EventHandler(this.CancelSimpleProfileEdition_Click);
             // 
-            // AddNewQuest
+            // AddNewQuestButton
             // 
             this.AddNewQuestButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.AddNewQuestButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -108,7 +110,7 @@ namespace Quester.Profile
             this.AddNewQuestButton.Text = "Add a new quest";
             this.AddNewQuestButton.Click += new System.EventHandler(this.AddNewQuest);
             // 
-            // EditSelectedQuest
+            // EditSelectedQuestButton
             // 
             this.EditSelectedQuestButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.EditSelectedQuestButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -120,7 +122,7 @@ namespace Quester.Profile
             this.EditSelectedQuestButton.Text = "Edit the selected quest";
             this.EditSelectedQuestButton.Click += new System.EventHandler(this.EditSelectedQuest);
             // 
-            // DeleteSelectedQuest
+            // DeleteSelectedQuestButton
             // 
             this.DeleteSelectedQuestButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.DeleteSelectedQuestButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -145,7 +147,9 @@ namespace Quester.Profile
             this.Controls.Add(this.SaveSimpleProfile);
             this.Controls.Add(this.ProfileQuestList);
             this.Controls.Add(this.SaveSimpleProfileAs);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(557, 220);
             this.MinimumSize = new System.Drawing.Size(557, 220);

@@ -29,6 +29,7 @@ namespace nManager.Helpful.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralSettings));
             this.panel1 = new System.Windows.Forms.Panel();
             this.AdvancedSettingsPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.AlwaysOnTopFeatureLabel = new DevComponents.DotNetBar.LabelX();
@@ -324,6 +325,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.AlwaysOnTopFeatureLabel.BackgroundStyle.Class = "";
             this.AlwaysOnTopFeatureLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AlwaysOnTopFeatureLabel.ForeColor = System.Drawing.Color.Black;
             this.AlwaysOnTopFeatureLabel.Location = new System.Drawing.Point(290, 60);
@@ -332,13 +334,15 @@ namespace nManager.Helpful.Forms
             this.AlwaysOnTopFeatureLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.AlwaysOnTopFeatureLabel.TabIndex = 30;
             this.AlwaysOnTopFeatureLabel.Text = "Always On Top";
+            this.AlwaysOnTopFeatureLabel.Visible = false;
             // 
             // ActivateAlwaysOnTopFeature
             // 
-            this.ActivateAlwaysOnTopFeature.BackColor = System.Drawing.Color.White;
+            this.ActivateAlwaysOnTopFeature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAlwaysOnTopFeature.BackgroundStyle.Class = "";
             this.ActivateAlwaysOnTopFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAlwaysOnTopFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAlwaysOnTopFeature.Location = new System.Drawing.Point(449, 60);
@@ -346,6 +350,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAlwaysOnTopFeature.Size = new System.Drawing.Size(63, 21);
             this.ActivateAlwaysOnTopFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAlwaysOnTopFeature.TabIndex = 29;
+            this.ActivateAlwaysOnTopFeature.Visible = false;
             // 
             // labelX73
             // 
@@ -353,6 +358,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX73.BackgroundStyle.Class = "";
             this.labelX73.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX73.ForeColor = System.Drawing.Color.Black;
             this.labelX73.Location = new System.Drawing.Point(290, 32);
@@ -361,13 +367,15 @@ namespace nManager.Helpful.Forms
             this.labelX73.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX73.TabIndex = 28;
             this.labelX73.Text = "Uncap MaxFPS (recommended)";
+            this.labelX73.Visible = false;
             // 
             // AllowTNBToSetYourMaxFps
             // 
-            this.AllowTNBToSetYourMaxFps.BackColor = System.Drawing.Color.White;
+            this.AllowTNBToSetYourMaxFps.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.AllowTNBToSetYourMaxFps.BackgroundStyle.Class = "";
             this.AllowTNBToSetYourMaxFps.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AllowTNBToSetYourMaxFps.ForeColor = System.Drawing.Color.Black;
             this.AllowTNBToSetYourMaxFps.Location = new System.Drawing.Point(449, 32);
@@ -375,10 +383,11 @@ namespace nManager.Helpful.Forms
             this.AllowTNBToSetYourMaxFps.Size = new System.Drawing.Size(63, 21);
             this.AllowTNBToSetYourMaxFps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AllowTNBToSetYourMaxFps.TabIndex = 27;
+            this.AllowTNBToSetYourMaxFps.Visible = false;
             // 
             // MaxDistanceToGoToMailboxesOrNPCs
             // 
-            this.MaxDistanceToGoToMailboxesOrNPCs.BackColor = System.Drawing.Color.White;
+            this.MaxDistanceToGoToMailboxesOrNPCs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -393,6 +402,7 @@ namespace nManager.Helpful.Forms
             this.MaxDistanceToGoToMailboxesOrNPCs.Size = new System.Drawing.Size(77, 22);
             this.MaxDistanceToGoToMailboxesOrNPCs.TabIndex = 26;
             this.MaxDistanceToGoToMailboxesOrNPCs.Value = 1000;
+            this.MaxDistanceToGoToMailboxesOrNPCs.Visible = false;
             // 
             // labelX60
             // 
@@ -400,6 +410,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX60.BackgroundStyle.Class = "";
             this.labelX60.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX60.ForeColor = System.Drawing.Color.Black;
             this.labelX60.Location = new System.Drawing.Point(3, 60);
@@ -408,6 +419,7 @@ namespace nManager.Helpful.Forms
             this.labelX60.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX60.TabIndex = 25;
             this.labelX60.Text = "Npc/Mailbox Search Radius";
+            this.labelX60.Visible = false;
             // 
             // labelX42
             // 
@@ -415,6 +427,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX42.BackgroundStyle.Class = "";
             this.labelX42.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX42.ForeColor = System.Drawing.Color.Black;
             this.labelX42.Location = new System.Drawing.Point(3, 33);
@@ -423,13 +436,15 @@ namespace nManager.Helpful.Forms
             this.labelX42.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX42.TabIndex = 11;
             this.labelX42.Text = "Use Paths Finder";
+            this.labelX42.Visible = false;
             // 
             // ActivatePathFindingFeature
             // 
-            this.ActivatePathFindingFeature.BackColor = System.Drawing.Color.White;
+            this.ActivatePathFindingFeature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivatePathFindingFeature.BackgroundStyle.Class = "";
             this.ActivatePathFindingFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivatePathFindingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivatePathFindingFeature.Location = new System.Drawing.Point(162, 33);
@@ -437,6 +452,7 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeature.Size = new System.Drawing.Size(63, 21);
             this.ActivatePathFindingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivatePathFindingFeature.TabIndex = 10;
+            this.ActivatePathFindingFeature.Visible = false;
             // 
             // SecuritySystemPanelName
             // 
@@ -502,6 +518,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.UseHearthstoneLabel.BackgroundStyle.Class = "";
             this.UseHearthstoneLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseHearthstoneLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UseHearthstoneLabel.ForeColor = System.Drawing.Color.Black;
@@ -511,13 +528,15 @@ namespace nManager.Helpful.Forms
             this.UseHearthstoneLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.UseHearthstoneLabel.TabIndex = 48;
             this.UseHearthstoneLabel.Text = "Use Hearthstone";
+            this.UseHearthstoneLabel.Visible = false;
             // 
             // ActiveStopTNBAfterXMinutes
             // 
-            this.ActiveStopTNBAfterXMinutes.BackColor = System.Drawing.Color.White;
+            this.ActiveStopTNBAfterXMinutes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActiveStopTNBAfterXMinutes.BackgroundStyle.Class = "";
             this.ActiveStopTNBAfterXMinutes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActiveStopTNBAfterXMinutes.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBAfterXMinutes.Location = new System.Drawing.Point(335, 228);
@@ -525,13 +544,15 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBAfterXMinutes.Size = new System.Drawing.Size(63, 21);
             this.ActiveStopTNBAfterXMinutes.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBAfterXMinutes.TabIndex = 47;
+            this.ActiveStopTNBAfterXMinutes.Visible = false;
             // 
             // ActiveStopTNBAfterXStucks
             // 
-            this.ActiveStopTNBAfterXStucks.BackColor = System.Drawing.Color.White;
+            this.ActiveStopTNBAfterXStucks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActiveStopTNBAfterXStucks.BackgroundStyle.Class = "";
             this.ActiveStopTNBAfterXStucks.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActiveStopTNBAfterXStucks.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBAfterXStucks.Location = new System.Drawing.Point(335, 199);
@@ -539,13 +560,15 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBAfterXStucks.Size = new System.Drawing.Size(63, 21);
             this.ActiveStopTNBAfterXStucks.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBAfterXStucks.TabIndex = 46;
+            this.ActiveStopTNBAfterXStucks.Visible = false;
             // 
             // ActiveStopTNBIfReceivedAtMostXWhispers
             // 
-            this.ActiveStopTNBIfReceivedAtMostXWhispers.BackColor = System.Drawing.Color.White;
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.BackgroundStyle.Class = "";
             this.ActiveStopTNBIfReceivedAtMostXWhispers.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActiveStopTNBIfReceivedAtMostXWhispers.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Location = new System.Drawing.Point(335, 172);
@@ -553,13 +576,15 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Size = new System.Drawing.Size(63, 21);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBIfReceivedAtMostXWhispers.TabIndex = 45;
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.Visible = false;
             // 
             // ActiveStopTNBAfterXLevelup
             // 
-            this.ActiveStopTNBAfterXLevelup.BackColor = System.Drawing.Color.White;
+            this.ActiveStopTNBAfterXLevelup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActiveStopTNBAfterXLevelup.BackgroundStyle.Class = "";
             this.ActiveStopTNBAfterXLevelup.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActiveStopTNBAfterXLevelup.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBAfterXLevelup.Location = new System.Drawing.Point(335, 143);
@@ -567,13 +592,15 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBAfterXLevelup.Size = new System.Drawing.Size(63, 21);
             this.ActiveStopTNBAfterXLevelup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBAfterXLevelup.TabIndex = 44;
+            this.ActiveStopTNBAfterXLevelup.Visible = false;
             // 
             // UseHearthstone
             // 
-            this.UseHearthstone.BackColor = System.Drawing.Color.White;
+            this.UseHearthstone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.UseHearthstone.BackgroundStyle.Class = "";
             this.UseHearthstone.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseHearthstone.ForeColor = System.Drawing.Color.Black;
             this.UseHearthstone.Location = new System.Drawing.Point(411, 33);
@@ -581,6 +608,7 @@ namespace nManager.Helpful.Forms
             this.UseHearthstone.Size = new System.Drawing.Size(63, 21);
             this.UseHearthstone.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseHearthstone.TabIndex = 42;
+            this.UseHearthstone.Visible = false;
             // 
             // labelX39
             // 
@@ -588,6 +616,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX39.BackgroundStyle.Class = "";
             this.labelX39.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX39.ForeColor = System.Drawing.Color.Black;
             this.labelX39.Location = new System.Drawing.Point(3, 336);
@@ -596,6 +625,7 @@ namespace nManager.Helpful.Forms
             this.labelX39.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX39.TabIndex = 41;
             this.labelX39.Text = "Song if New Whisper";
+            this.labelX39.Visible = false;
             // 
             // labelX45
             // 
@@ -603,6 +633,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX45.BackgroundStyle.Class = "";
             this.labelX45.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX45.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX45.ForeColor = System.Drawing.Color.Black;
@@ -612,13 +643,15 @@ namespace nManager.Helpful.Forms
             this.labelX45.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX45.TabIndex = 35;
             this.labelX45.Text = "Security:";
+            this.labelX45.Visible = false;
             // 
             // PlayASongIfNewWhispReceived
             // 
-            this.PlayASongIfNewWhispReceived.BackColor = System.Drawing.Color.White;
+            this.PlayASongIfNewWhispReceived.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.PlayASongIfNewWhispReceived.BackgroundStyle.Class = "";
             this.PlayASongIfNewWhispReceived.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.PlayASongIfNewWhispReceived.ForeColor = System.Drawing.Color.Black;
             this.PlayASongIfNewWhispReceived.Location = new System.Drawing.Point(162, 336);
@@ -626,6 +659,7 @@ namespace nManager.Helpful.Forms
             this.PlayASongIfNewWhispReceived.Size = new System.Drawing.Size(63, 21);
             this.PlayASongIfNewWhispReceived.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PlayASongIfNewWhispReceived.TabIndex = 40;
+            this.PlayASongIfNewWhispReceived.Visible = false;
             // 
             // labelX34
             // 
@@ -633,6 +667,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX34.BackgroundStyle.Class = "";
             this.labelX34.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX34.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX34.ForeColor = System.Drawing.Color.Black;
@@ -642,6 +677,7 @@ namespace nManager.Helpful.Forms
             this.labelX34.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX34.TabIndex = 34;
             this.labelX34.Text = "Close game:";
+            this.labelX34.Visible = false;
             // 
             // labelX33
             // 
@@ -649,6 +685,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX33.BackgroundStyle.Class = "";
             this.labelX33.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX33.ForeColor = System.Drawing.Color.Black;
             this.labelX33.Location = new System.Drawing.Point(245, 226);
@@ -657,6 +694,7 @@ namespace nManager.Helpful.Forms
             this.labelX33.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX33.TabIndex = 33;
             this.labelX33.Text = "Min";
+            this.labelX33.Visible = false;
             // 
             // labelX43
             // 
@@ -664,6 +702,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX43.BackgroundStyle.Class = "";
             this.labelX43.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX43.ForeColor = System.Drawing.Color.Black;
             this.labelX43.Location = new System.Drawing.Point(3, 310);
@@ -672,6 +711,7 @@ namespace nManager.Helpful.Forms
             this.labelX43.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX43.TabIndex = 39;
             this.labelX43.Text = "Record whisper in Log file";
+            this.labelX43.Visible = false;
             // 
             // labelX32
             // 
@@ -679,6 +719,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX32.BackgroundStyle.Class = "";
             this.labelX32.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX32.ForeColor = System.Drawing.Color.Black;
             this.labelX32.Location = new System.Drawing.Point(245, 199);
@@ -687,6 +728,7 @@ namespace nManager.Helpful.Forms
             this.labelX32.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX32.TabIndex = 32;
             this.labelX32.Text = "Blockages";
+            this.labelX32.Visible = false;
             // 
             // labelX31
             // 
@@ -694,6 +736,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX31.BackgroundStyle.Class = "";
             this.labelX31.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX31.ForeColor = System.Drawing.Color.Black;
             this.labelX31.Location = new System.Drawing.Point(245, 143);
@@ -702,13 +745,15 @@ namespace nManager.Helpful.Forms
             this.labelX31.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX31.TabIndex = 31;
             this.labelX31.Text = "Level";
+            this.labelX31.Visible = false;
             // 
             // RecordWhispsInLogFiles
             // 
-            this.RecordWhispsInLogFiles.BackColor = System.Drawing.Color.White;
+            this.RecordWhispsInLogFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.RecordWhispsInLogFiles.BackgroundStyle.Class = "";
             this.RecordWhispsInLogFiles.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.RecordWhispsInLogFiles.ForeColor = System.Drawing.Color.Black;
             this.RecordWhispsInLogFiles.Location = new System.Drawing.Point(162, 310);
@@ -716,6 +761,7 @@ namespace nManager.Helpful.Forms
             this.RecordWhispsInLogFiles.Size = new System.Drawing.Size(63, 21);
             this.RecordWhispsInLogFiles.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.RecordWhispsInLogFiles.TabIndex = 38;
+            this.RecordWhispsInLogFiles.Visible = false;
             // 
             // labelX29
             // 
@@ -723,6 +769,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX29.BackgroundStyle.Class = "";
             this.labelX29.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX29.ForeColor = System.Drawing.Color.Black;
             this.labelX29.Location = new System.Drawing.Point(3, 115);
@@ -731,13 +778,15 @@ namespace nManager.Helpful.Forms
             this.labelX29.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX29.TabIndex = 30;
             this.labelX29.Text = "If Player Teleported";
+            this.labelX29.Visible = false;
             // 
             // StopTNBIfPlayerHaveBeenTeleported
             // 
-            this.StopTNBIfPlayerHaveBeenTeleported.BackColor = System.Drawing.Color.White;
+            this.StopTNBIfPlayerHaveBeenTeleported.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.StopTNBIfPlayerHaveBeenTeleported.BackgroundStyle.Class = "";
             this.StopTNBIfPlayerHaveBeenTeleported.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.StopTNBIfPlayerHaveBeenTeleported.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfPlayerHaveBeenTeleported.Location = new System.Drawing.Point(162, 115);
@@ -745,6 +794,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfPlayerHaveBeenTeleported.Size = new System.Drawing.Size(63, 21);
             this.StopTNBIfPlayerHaveBeenTeleported.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfPlayerHaveBeenTeleported.TabIndex = 29;
+            this.StopTNBIfPlayerHaveBeenTeleported.Visible = false;
             // 
             // labelX44
             // 
@@ -752,6 +802,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX44.BackgroundStyle.Class = "";
             this.labelX44.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX44.ForeColor = System.Drawing.Color.Black;
             this.labelX44.Location = new System.Drawing.Point(3, 282);
@@ -760,6 +811,7 @@ namespace nManager.Helpful.Forms
             this.labelX44.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX44.TabIndex = 37;
             this.labelX44.Text = "Pause Bot if Nearby Player";
+            this.labelX44.Visible = false;
             // 
             // labelX30
             // 
@@ -767,6 +819,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX30.BackgroundStyle.Class = "";
             this.labelX30.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX30.ForeColor = System.Drawing.Color.Black;
             this.labelX30.Location = new System.Drawing.Point(3, 87);
@@ -775,13 +828,15 @@ namespace nManager.Helpful.Forms
             this.labelX30.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX30.TabIndex = 28;
             this.labelX30.Text = "If reached 4000 Honor Points";
+            this.labelX30.Visible = false;
             // 
             // PauseTNBIfNearByPlayer
             // 
-            this.PauseTNBIfNearByPlayer.BackColor = System.Drawing.Color.White;
+            this.PauseTNBIfNearByPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.PauseTNBIfNearByPlayer.BackgroundStyle.Class = "";
             this.PauseTNBIfNearByPlayer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.PauseTNBIfNearByPlayer.ForeColor = System.Drawing.Color.Black;
             this.PauseTNBIfNearByPlayer.Location = new System.Drawing.Point(162, 282);
@@ -789,13 +844,15 @@ namespace nManager.Helpful.Forms
             this.PauseTNBIfNearByPlayer.Size = new System.Drawing.Size(63, 21);
             this.PauseTNBIfNearByPlayer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PauseTNBIfNearByPlayer.TabIndex = 36;
+            this.PauseTNBIfNearByPlayer.Visible = false;
             // 
             // StopTNBIfHonorPointsLimitReached
             // 
-            this.StopTNBIfHonorPointsLimitReached.BackColor = System.Drawing.Color.White;
+            this.StopTNBIfHonorPointsLimitReached.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.StopTNBIfHonorPointsLimitReached.BackgroundStyle.Class = "";
             this.StopTNBIfHonorPointsLimitReached.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.StopTNBIfHonorPointsLimitReached.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfHonorPointsLimitReached.Location = new System.Drawing.Point(162, 87);
@@ -803,10 +860,11 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfHonorPointsLimitReached.Size = new System.Drawing.Size(63, 21);
             this.StopTNBIfHonorPointsLimitReached.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfHonorPointsLimitReached.TabIndex = 27;
+            this.StopTNBIfHonorPointsLimitReached.Visible = false;
             // 
             // StopTNBAfterXMinutes
             // 
-            this.StopTNBAfterXMinutes.BackColor = System.Drawing.Color.White;
+            this.StopTNBAfterXMinutes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -821,6 +879,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBAfterXMinutes.Size = new System.Drawing.Size(77, 22);
             this.StopTNBAfterXMinutes.TabIndex = 24;
             this.StopTNBAfterXMinutes.Value = 80;
+            this.StopTNBAfterXMinutes.Visible = false;
             // 
             // labelX28
             // 
@@ -828,6 +887,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX28.BackgroundStyle.Class = "";
             this.labelX28.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX28.ForeColor = System.Drawing.Color.Black;
             this.labelX28.Location = new System.Drawing.Point(3, 227);
@@ -836,10 +896,11 @@ namespace nManager.Helpful.Forms
             this.labelX28.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX28.TabIndex = 23;
             this.labelX28.Text = "After";
+            this.labelX28.Visible = false;
             // 
             // StopTNBAfterXStucks
             // 
-            this.StopTNBAfterXStucks.BackColor = System.Drawing.Color.White;
+            this.StopTNBAfterXStucks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -854,6 +915,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBAfterXStucks.Size = new System.Drawing.Size(77, 22);
             this.StopTNBAfterXStucks.TabIndex = 22;
             this.StopTNBAfterXStucks.Value = 80;
+            this.StopTNBAfterXStucks.Visible = false;
             // 
             // labelX26
             // 
@@ -861,6 +923,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX26.BackgroundStyle.Class = "";
             this.labelX26.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX26.ForeColor = System.Drawing.Color.Black;
             this.labelX26.Location = new System.Drawing.Point(3, 199);
@@ -869,10 +932,11 @@ namespace nManager.Helpful.Forms
             this.labelX26.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX26.TabIndex = 21;
             this.labelX26.Text = "After";
+            this.labelX26.Visible = false;
             // 
             // StopTNBIfReceivedAtMostXWhispers
             // 
-            this.StopTNBIfReceivedAtMostXWhispers.BackColor = System.Drawing.Color.White;
+            this.StopTNBIfReceivedAtMostXWhispers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -887,6 +951,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfReceivedAtMostXWhispers.Size = new System.Drawing.Size(77, 22);
             this.StopTNBIfReceivedAtMostXWhispers.TabIndex = 20;
             this.StopTNBIfReceivedAtMostXWhispers.Value = 10;
+            this.StopTNBIfReceivedAtMostXWhispers.Visible = false;
             // 
             // labelX25
             // 
@@ -894,6 +959,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX25.BackgroundStyle.Class = "";
             this.labelX25.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX25.ForeColor = System.Drawing.Color.Black;
             this.labelX25.Location = new System.Drawing.Point(3, 171);
@@ -902,10 +968,11 @@ namespace nManager.Helpful.Forms
             this.labelX25.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX25.TabIndex = 19;
             this.labelX25.Text = "If Whisper bigger or equal to";
+            this.labelX25.Visible = false;
             // 
             // StopTNBAfterXLevelup
             // 
-            this.StopTNBAfterXLevelup.BackColor = System.Drawing.Color.White;
+            this.StopTNBAfterXLevelup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -921,6 +988,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBAfterXLevelup.Size = new System.Drawing.Size(77, 22);
             this.StopTNBAfterXLevelup.TabIndex = 18;
             this.StopTNBAfterXLevelup.Value = 90;
+            this.StopTNBAfterXLevelup.Visible = false;
             // 
             // labelX24
             // 
@@ -928,6 +996,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX24.BackgroundStyle.Class = "";
             this.labelX24.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX24.ForeColor = System.Drawing.Color.Black;
             this.labelX24.Location = new System.Drawing.Point(3, 143);
@@ -936,6 +1005,7 @@ namespace nManager.Helpful.Forms
             this.labelX24.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX24.TabIndex = 16;
             this.labelX24.Text = "After";
+            this.labelX24.Visible = false;
             // 
             // labelX27
             // 
@@ -943,6 +1013,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX27.BackgroundStyle.Class = "";
             this.labelX27.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX27.ForeColor = System.Drawing.Color.Black;
             this.labelX27.Location = new System.Drawing.Point(3, 60);
@@ -951,13 +1022,15 @@ namespace nManager.Helpful.Forms
             this.labelX27.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX27.TabIndex = 11;
             this.labelX27.Text = "If full Bag";
+            this.labelX27.Visible = false;
             // 
             // StopTNBIfBagAreFull
             // 
-            this.StopTNBIfBagAreFull.BackColor = System.Drawing.Color.White;
+            this.StopTNBIfBagAreFull.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.StopTNBIfBagAreFull.BackgroundStyle.Class = "";
             this.StopTNBIfBagAreFull.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.StopTNBIfBagAreFull.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfBagAreFull.Location = new System.Drawing.Point(162, 60);
@@ -965,6 +1038,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfBagAreFull.Size = new System.Drawing.Size(63, 21);
             this.StopTNBIfBagAreFull.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfBagAreFull.TabIndex = 10;
+            this.StopTNBIfBagAreFull.Visible = false;
             // 
             // MailsManagementPanelName
             // 
@@ -1018,6 +1092,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.UseMollELabel.BackgroundStyle.Class = "";
             this.UseMollELabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseMollELabel.ForeColor = System.Drawing.Color.Black;
             this.UseMollELabel.Location = new System.Drawing.Point(289, 34);
@@ -1026,13 +1101,15 @@ namespace nManager.Helpful.Forms
             this.UseMollELabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.UseMollELabel.TabIndex = 43;
             this.UseMollELabel.Text = "Use MOLL-E if up";
+            this.UseMollELabel.Visible = false;
             // 
             // UseMollE
             // 
-            this.UseMollE.BackColor = System.Drawing.Color.White;
+            this.UseMollE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.UseMollE.BackgroundStyle.Class = "";
             this.UseMollE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseMollE.ForeColor = System.Drawing.Color.Black;
             this.UseMollE.Location = new System.Drawing.Point(448, 34);
@@ -1040,10 +1117,11 @@ namespace nManager.Helpful.Forms
             this.UseMollE.Size = new System.Drawing.Size(63, 21);
             this.UseMollE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseMollE.TabIndex = 42;
+            this.UseMollE.Visible = false;
             // 
             // SendMailWhenLessThanXSlotLeft
             // 
-            this.SendMailWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.White;
+            this.SendMailWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1058,6 +1136,7 @@ namespace nManager.Helpful.Forms
             this.SendMailWhenLessThanXSlotLeft.Size = new System.Drawing.Size(41, 22);
             this.SendMailWhenLessThanXSlotLeft.TabIndex = 41;
             this.SendMailWhenLessThanXSlotLeft.Value = 2;
+            this.SendMailWhenLessThanXSlotLeft.Visible = false;
             // 
             // SendMailWhenLessThanXSlotLeftLabel
             // 
@@ -1065,6 +1144,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SendMailWhenLessThanXSlotLeftLabel.BackgroundStyle.Class = "";
             this.SendMailWhenLessThanXSlotLeftLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SendMailWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
             this.SendMailWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(3, 61);
@@ -1072,10 +1152,11 @@ namespace nManager.Helpful.Forms
             this.SendMailWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(196, 23);
             this.SendMailWhenLessThanXSlotLeftLabel.TabIndex = 40;
             this.SendMailWhenLessThanXSlotLeftLabel.Text = "Send Mail when less than X slot left";
+            this.SendMailWhenLessThanXSlotLeftLabel.Visible = false;
             // 
             // MaillingFeatureRecipient
             // 
-            this.MaillingFeatureRecipient.BackColor = System.Drawing.Color.White;
+            this.MaillingFeatureRecipient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1086,6 +1167,7 @@ namespace nManager.Helpful.Forms
             this.MaillingFeatureRecipient.Name = "MaillingFeatureRecipient";
             this.MaillingFeatureRecipient.Size = new System.Drawing.Size(175, 22);
             this.MaillingFeatureRecipient.TabIndex = 38;
+            this.MaillingFeatureRecipient.Visible = false;
             // 
             // labelX56
             // 
@@ -1093,6 +1175,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX56.BackgroundStyle.Class = "";
             this.labelX56.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX56.ForeColor = System.Drawing.Color.Black;
             this.labelX56.Location = new System.Drawing.Point(3, 90);
@@ -1101,10 +1184,11 @@ namespace nManager.Helpful.Forms
             this.labelX56.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX56.TabIndex = 37;
             this.labelX56.Text = "Mail Recipient";
+            this.labelX56.Visible = false;
             // 
             // MaillingFeatureSubject
             // 
-            this.MaillingFeatureSubject.BackColor = System.Drawing.Color.White;
+            this.MaillingFeatureSubject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1115,10 +1199,11 @@ namespace nManager.Helpful.Forms
             this.MaillingFeatureSubject.Name = "MaillingFeatureSubject";
             this.MaillingFeatureSubject.Size = new System.Drawing.Size(175, 22);
             this.MaillingFeatureSubject.TabIndex = 36;
+            this.MaillingFeatureSubject.Visible = false;
             // 
             // ForceToMailTheseItems
             // 
-            this.ForceToMailTheseItems.BackColor = System.Drawing.Color.White;
+            this.ForceToMailTheseItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1131,6 +1216,7 @@ namespace nManager.Helpful.Forms
             this.ForceToMailTheseItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ForceToMailTheseItems.Size = new System.Drawing.Size(227, 83);
             this.ForceToMailTheseItems.TabIndex = 35;
+            this.ForceToMailTheseItems.Visible = false;
             // 
             // labelX48
             // 
@@ -1138,6 +1224,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX48.BackgroundStyle.Class = "";
             this.labelX48.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX48.ForeColor = System.Drawing.Color.Black;
             this.labelX48.Location = new System.Drawing.Point(272, 207);
@@ -1146,6 +1233,7 @@ namespace nManager.Helpful.Forms
             this.labelX48.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX48.TabIndex = 34;
             this.labelX48.Text = "Force Mail List (one item by line)";
+            this.labelX48.Visible = false;
             // 
             // MailPurple
             // 
@@ -1153,6 +1241,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.MailPurple.BackgroundStyle.Class = "";
             this.MailPurple.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailPurple.ForeColor = System.Drawing.Color.Black;
             this.MailPurple.Location = new System.Drawing.Point(162, 175);
@@ -1161,6 +1250,7 @@ namespace nManager.Helpful.Forms
             this.MailPurple.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MailPurple.TabIndex = 33;
             this.MailPurple.Text = "Mail Purple items";
+            this.MailPurple.Visible = false;
             // 
             // MailBlue
             // 
@@ -1168,6 +1258,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.MailBlue.BackgroundStyle.Class = "";
             this.MailBlue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailBlue.ForeColor = System.Drawing.Color.Black;
             this.MailBlue.Location = new System.Drawing.Point(11, 175);
@@ -1176,6 +1267,7 @@ namespace nManager.Helpful.Forms
             this.MailBlue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MailBlue.TabIndex = 32;
             this.MailBlue.Text = "Mail Blue items";
+            this.MailBlue.Visible = false;
             // 
             // MailGreen
             // 
@@ -1183,6 +1275,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.MailGreen.BackgroundStyle.Class = "";
             this.MailGreen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailGreen.ForeColor = System.Drawing.Color.Black;
             this.MailGreen.Location = new System.Drawing.Point(302, 146);
@@ -1191,6 +1284,7 @@ namespace nManager.Helpful.Forms
             this.MailGreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MailGreen.TabIndex = 31;
             this.MailGreen.Text = "Mail Green items";
+            this.MailGreen.Visible = false;
             // 
             // MailWhite
             // 
@@ -1198,6 +1292,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.MailWhite.BackgroundStyle.Class = "";
             this.MailWhite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailWhite.ForeColor = System.Drawing.Color.Black;
             this.MailWhite.Location = new System.Drawing.Point(162, 145);
@@ -1206,6 +1301,7 @@ namespace nManager.Helpful.Forms
             this.MailWhite.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MailWhite.TabIndex = 30;
             this.MailWhite.Text = "Mail White items";
+            this.MailWhite.Visible = false;
             // 
             // MailGray
             // 
@@ -1213,6 +1309,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.MailGray.BackgroundStyle.Class = "";
             this.MailGray.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailGray.ForeColor = System.Drawing.Color.Black;
             this.MailGray.Location = new System.Drawing.Point(11, 146);
@@ -1221,6 +1318,7 @@ namespace nManager.Helpful.Forms
             this.MailGray.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MailGray.TabIndex = 29;
             this.MailGray.Text = "Mail Gray items";
+            this.MailGray.Visible = false;
             // 
             // labelX54
             // 
@@ -1228,6 +1326,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX54.BackgroundStyle.Class = "";
             this.labelX54.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX54.ForeColor = System.Drawing.Color.Black;
             this.labelX54.Location = new System.Drawing.Point(3, 118);
@@ -1236,6 +1335,7 @@ namespace nManager.Helpful.Forms
             this.labelX54.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX54.TabIndex = 28;
             this.labelX54.Text = "Subject";
+            this.labelX54.Visible = false;
             // 
             // labelX55
             // 
@@ -1243,6 +1343,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX55.BackgroundStyle.Class = "";
             this.labelX55.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX55.ForeColor = System.Drawing.Color.Black;
             this.labelX55.Location = new System.Drawing.Point(3, 35);
@@ -1251,13 +1352,15 @@ namespace nManager.Helpful.Forms
             this.labelX55.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX55.TabIndex = 26;
             this.labelX55.Text = "Use Mail";
+            this.labelX55.Visible = false;
             // 
             // ActivateAutoMaillingFeature
             // 
-            this.ActivateAutoMaillingFeature.BackColor = System.Drawing.Color.White;
+            this.ActivateAutoMaillingFeature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAutoMaillingFeature.BackgroundStyle.Class = "";
             this.ActivateAutoMaillingFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAutoMaillingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoMaillingFeature.Location = new System.Drawing.Point(162, 35);
@@ -1265,10 +1368,11 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMaillingFeature.Size = new System.Drawing.Size(63, 21);
             this.ActivateAutoMaillingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMaillingFeature.TabIndex = 25;
+            this.ActivateAutoMaillingFeature.Visible = false;
             // 
             // DontMailTheseItems
             // 
-            this.DontMailTheseItems.BackColor = System.Drawing.Color.White;
+            this.DontMailTheseItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1281,6 +1385,7 @@ namespace nManager.Helpful.Forms
             this.DontMailTheseItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DontMailTheseItems.Size = new System.Drawing.Size(227, 83);
             this.DontMailTheseItems.TabIndex = 15;
+            this.DontMailTheseItems.Visible = false;
             // 
             // labelX58
             // 
@@ -1288,6 +1393,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX58.BackgroundStyle.Class = "";
             this.labelX58.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX58.ForeColor = System.Drawing.Color.Black;
             this.labelX58.Location = new System.Drawing.Point(12, 207);
@@ -1296,6 +1402,7 @@ namespace nManager.Helpful.Forms
             this.labelX58.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX58.TabIndex = 14;
             this.labelX58.Text = "Do not Mail List (one item by line)";
+            this.labelX58.Visible = false;
             // 
             // NPCsRepairSellBuyPanelName
             // 
@@ -1353,6 +1460,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.UseRobotLabel.BackgroundStyle.Class = "";
             this.UseRobotLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseRobotLabel.ForeColor = System.Drawing.Color.Black;
             this.UseRobotLabel.Location = new System.Drawing.Point(4, 34);
@@ -1361,13 +1469,15 @@ namespace nManager.Helpful.Forms
             this.UseRobotLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.UseRobotLabel.TabIndex = 41;
             this.UseRobotLabel.Text = "Use robot when possible";
+            this.UseRobotLabel.Visible = false;
             // 
             // UseRobot
             // 
-            this.UseRobot.BackColor = System.Drawing.Color.White;
+            this.UseRobot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.UseRobot.BackgroundStyle.Class = "";
             this.UseRobot.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseRobot.ForeColor = System.Drawing.Color.Black;
             this.UseRobot.Location = new System.Drawing.Point(163, 34);
@@ -1375,10 +1485,11 @@ namespace nManager.Helpful.Forms
             this.UseRobot.Size = new System.Drawing.Size(63, 21);
             this.UseRobot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseRobot.TabIndex = 40;
+            this.UseRobot.Visible = false;
             // 
             // SellItemsWhenLessThanXSlotLeft
             // 
-            this.SellItemsWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.White;
+            this.SellItemsWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1393,10 +1504,11 @@ namespace nManager.Helpful.Forms
             this.SellItemsWhenLessThanXSlotLeft.Size = new System.Drawing.Size(41, 22);
             this.SellItemsWhenLessThanXSlotLeft.TabIndex = 39;
             this.SellItemsWhenLessThanXSlotLeft.Value = 2;
+            this.SellItemsWhenLessThanXSlotLeft.Visible = false;
             // 
             // RepairWhenDurabilityIsUnderPercent
             // 
-            this.RepairWhenDurabilityIsUnderPercent.BackColor = System.Drawing.Color.White;
+            this.RepairWhenDurabilityIsUnderPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1412,6 +1524,7 @@ namespace nManager.Helpful.Forms
             this.RepairWhenDurabilityIsUnderPercent.Size = new System.Drawing.Size(41, 22);
             this.RepairWhenDurabilityIsUnderPercent.TabIndex = 38;
             this.RepairWhenDurabilityIsUnderPercent.Value = 30;
+            this.RepairWhenDurabilityIsUnderPercent.Visible = false;
             // 
             // SellItemsWhenLessThanXSlotLeftLabel
             // 
@@ -1419,6 +1532,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SellItemsWhenLessThanXSlotLeftLabel.BackgroundStyle.Class = "";
             this.SellItemsWhenLessThanXSlotLeftLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SellItemsWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
             this.SellItemsWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(247, 116);
@@ -1426,6 +1540,7 @@ namespace nManager.Helpful.Forms
             this.SellItemsWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(196, 23);
             this.SellItemsWhenLessThanXSlotLeftLabel.TabIndex = 37;
             this.SellItemsWhenLessThanXSlotLeftLabel.Text = "Sell items when less than X slot left";
+            this.SellItemsWhenLessThanXSlotLeftLabel.Visible = false;
             // 
             // RepairWhenDurabilityIsUnderPercentLabel
             // 
@@ -1433,6 +1548,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.RepairWhenDurabilityIsUnderPercentLabel.BackgroundStyle.Class = "";
             this.RepairWhenDurabilityIsUnderPercentLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.RepairWhenDurabilityIsUnderPercentLabel.ForeColor = System.Drawing.Color.Black;
             this.RepairWhenDurabilityIsUnderPercentLabel.Location = new System.Drawing.Point(246, 88);
@@ -1440,10 +1556,11 @@ namespace nManager.Helpful.Forms
             this.RepairWhenDurabilityIsUnderPercentLabel.Size = new System.Drawing.Size(197, 23);
             this.RepairWhenDurabilityIsUnderPercentLabel.TabIndex = 36;
             this.RepairWhenDurabilityIsUnderPercentLabel.Text = "Repair when Durability is under than X %";
+            this.RepairWhenDurabilityIsUnderPercentLabel.Visible = false;
             // 
             // ForceToSellTheseItems
             // 
-            this.ForceToSellTheseItems.BackColor = System.Drawing.Color.White;
+            this.ForceToSellTheseItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1456,6 +1573,7 @@ namespace nManager.Helpful.Forms
             this.ForceToSellTheseItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ForceToSellTheseItems.Size = new System.Drawing.Size(227, 83);
             this.ForceToSellTheseItems.TabIndex = 35;
+            this.ForceToSellTheseItems.Visible = false;
             // 
             // labelX53
             // 
@@ -1463,6 +1581,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX53.BackgroundStyle.Class = "";
             this.labelX53.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX53.ForeColor = System.Drawing.Color.Black;
             this.labelX53.Location = new System.Drawing.Point(272, 206);
@@ -1471,6 +1590,7 @@ namespace nManager.Helpful.Forms
             this.labelX53.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX53.TabIndex = 34;
             this.labelX53.Text = "Force Sell List (one item by line)";
+            this.labelX53.Visible = false;
             // 
             // SellPurple
             // 
@@ -1478,6 +1598,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SellPurple.BackgroundStyle.Class = "";
             this.SellPurple.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SellPurple.ForeColor = System.Drawing.Color.Black;
             this.SellPurple.Location = new System.Drawing.Point(162, 174);
@@ -1486,6 +1607,7 @@ namespace nManager.Helpful.Forms
             this.SellPurple.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SellPurple.TabIndex = 33;
             this.SellPurple.Text = "Sell Purple items";
+            this.SellPurple.Visible = false;
             // 
             // SellBlue
             // 
@@ -1493,6 +1615,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SellBlue.BackgroundStyle.Class = "";
             this.SellBlue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SellBlue.ForeColor = System.Drawing.Color.Black;
             this.SellBlue.Location = new System.Drawing.Point(11, 174);
@@ -1501,6 +1624,7 @@ namespace nManager.Helpful.Forms
             this.SellBlue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SellBlue.TabIndex = 32;
             this.SellBlue.Text = "Sell Blue items";
+            this.SellBlue.Visible = false;
             // 
             // SellGreen
             // 
@@ -1508,6 +1632,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SellGreen.BackgroundStyle.Class = "";
             this.SellGreen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SellGreen.ForeColor = System.Drawing.Color.Black;
             this.SellGreen.Location = new System.Drawing.Point(302, 145);
@@ -1516,6 +1641,7 @@ namespace nManager.Helpful.Forms
             this.SellGreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SellGreen.TabIndex = 31;
             this.SellGreen.Text = "Sell Green items";
+            this.SellGreen.Visible = false;
             // 
             // SellWhite
             // 
@@ -1523,6 +1649,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SellWhite.BackgroundStyle.Class = "";
             this.SellWhite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SellWhite.ForeColor = System.Drawing.Color.Black;
             this.SellWhite.Location = new System.Drawing.Point(162, 144);
@@ -1531,6 +1658,7 @@ namespace nManager.Helpful.Forms
             this.SellWhite.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SellWhite.TabIndex = 30;
             this.SellWhite.Text = "Sell White items";
+            this.SellWhite.Visible = false;
             // 
             // SellGray
             // 
@@ -1538,6 +1666,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.SellGray.BackgroundStyle.Class = "";
             this.SellGray.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SellGray.ForeColor = System.Drawing.Color.Black;
             this.SellGray.Location = new System.Drawing.Point(11, 145);
@@ -1546,6 +1675,7 @@ namespace nManager.Helpful.Forms
             this.SellGray.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SellGray.TabIndex = 29;
             this.SellGray.Text = "Sell Gray items";
+            this.SellGray.Visible = false;
             // 
             // labelX52
             // 
@@ -1553,6 +1683,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX52.BackgroundStyle.Class = "";
             this.labelX52.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX52.ForeColor = System.Drawing.Color.Black;
             this.labelX52.Location = new System.Drawing.Point(3, 117);
@@ -1561,13 +1692,15 @@ namespace nManager.Helpful.Forms
             this.labelX52.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX52.TabIndex = 28;
             this.labelX52.Text = "Selling";
+            this.labelX52.Visible = false;
             // 
             // ActivateAutoSellingFeature
             // 
-            this.ActivateAutoSellingFeature.BackColor = System.Drawing.Color.White;
+            this.ActivateAutoSellingFeature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAutoSellingFeature.BackgroundStyle.Class = "";
             this.ActivateAutoSellingFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAutoSellingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoSellingFeature.Location = new System.Drawing.Point(162, 117);
@@ -1575,6 +1708,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSellingFeature.Size = new System.Drawing.Size(63, 21);
             this.ActivateAutoSellingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSellingFeature.TabIndex = 27;
+            this.ActivateAutoSellingFeature.Visible = false;
             // 
             // labelX51
             // 
@@ -1582,6 +1716,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX51.BackgroundStyle.Class = "";
             this.labelX51.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX51.ForeColor = System.Drawing.Color.Black;
             this.labelX51.Location = new System.Drawing.Point(3, 89);
@@ -1590,13 +1725,15 @@ namespace nManager.Helpful.Forms
             this.labelX51.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX51.TabIndex = 26;
             this.labelX51.Text = "Repair";
+            this.labelX51.Visible = false;
             // 
             // ActivateAutoRepairFeature
             // 
-            this.ActivateAutoRepairFeature.BackColor = System.Drawing.Color.White;
+            this.ActivateAutoRepairFeature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAutoRepairFeature.BackgroundStyle.Class = "";
             this.ActivateAutoRepairFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAutoRepairFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoRepairFeature.Location = new System.Drawing.Point(162, 89);
@@ -1604,10 +1741,11 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoRepairFeature.Size = new System.Drawing.Size(63, 21);
             this.ActivateAutoRepairFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoRepairFeature.TabIndex = 25;
+            this.ActivateAutoRepairFeature.Visible = false;
             // 
             // NumberOfFoodsWeGot
             // 
-            this.NumberOfFoodsWeGot.BackColor = System.Drawing.Color.White;
+            this.NumberOfFoodsWeGot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1621,6 +1759,7 @@ namespace nManager.Helpful.Forms
             this.NumberOfFoodsWeGot.ShowUpDown = true;
             this.NumberOfFoodsWeGot.Size = new System.Drawing.Size(63, 22);
             this.NumberOfFoodsWeGot.TabIndex = 24;
+            this.NumberOfFoodsWeGot.Visible = false;
             // 
             // labelX50
             // 
@@ -1628,6 +1767,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX50.BackgroundStyle.Class = "";
             this.labelX50.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX50.ForeColor = System.Drawing.Color.Black;
             this.labelX50.Location = new System.Drawing.Point(247, 60);
@@ -1636,10 +1776,11 @@ namespace nManager.Helpful.Forms
             this.labelX50.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX50.TabIndex = 23;
             this.labelX50.Text = "Food Amount";
+            this.labelX50.Visible = false;
             // 
             // NumberOfBeverageWeGot
             // 
-            this.NumberOfBeverageWeGot.BackColor = System.Drawing.Color.White;
+            this.NumberOfBeverageWeGot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1653,6 +1794,7 @@ namespace nManager.Helpful.Forms
             this.NumberOfBeverageWeGot.ShowUpDown = true;
             this.NumberOfBeverageWeGot.Size = new System.Drawing.Size(63, 22);
             this.NumberOfBeverageWeGot.TabIndex = 18;
+            this.NumberOfBeverageWeGot.Visible = false;
             // 
             // labelX41
             // 
@@ -1660,6 +1802,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX41.BackgroundStyle.Class = "";
             this.labelX41.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX41.ForeColor = System.Drawing.Color.Black;
             this.labelX41.Location = new System.Drawing.Point(3, 61);
@@ -1668,10 +1811,11 @@ namespace nManager.Helpful.Forms
             this.labelX41.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX41.TabIndex = 16;
             this.labelX41.Text = "Drink Amount";
+            this.labelX41.Visible = false;
             // 
             // DontSellTheseItems
             // 
-            this.DontSellTheseItems.BackColor = System.Drawing.Color.White;
+            this.DontSellTheseItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1684,6 +1828,7 @@ namespace nManager.Helpful.Forms
             this.DontSellTheseItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DontSellTheseItems.Size = new System.Drawing.Size(227, 83);
             this.DontSellTheseItems.TabIndex = 15;
+            this.DontSellTheseItems.Visible = false;
             // 
             // labelX46
             // 
@@ -1691,6 +1836,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX46.BackgroundStyle.Class = "";
             this.labelX46.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX46.ForeColor = System.Drawing.Color.Black;
             this.labelX46.Location = new System.Drawing.Point(12, 206);
@@ -1699,6 +1845,7 @@ namespace nManager.Helpful.Forms
             this.labelX46.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX46.TabIndex = 14;
             this.labelX46.Text = "Do not Sell List (one item by line)";
+            this.labelX46.Visible = false;
             // 
             // ReloggerManagementPanelName
             // 
@@ -1737,7 +1884,7 @@ namespace nManager.Helpful.Forms
             // 
             // BattleNetSubAccount
             // 
-            this.BattleNetSubAccount.BackColor = System.Drawing.Color.White;
+            this.BattleNetSubAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1748,6 +1895,7 @@ namespace nManager.Helpful.Forms
             this.BattleNetSubAccount.Name = "BattleNetSubAccount";
             this.BattleNetSubAccount.Size = new System.Drawing.Size(175, 22);
             this.BattleNetSubAccount.TabIndex = 24;
+            this.BattleNetSubAccount.Visible = false;
             // 
             // labelX67
             // 
@@ -1755,6 +1903,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX67.BackgroundStyle.Class = "";
             this.labelX67.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX67.ForeColor = System.Drawing.Color.Black;
             this.labelX67.Location = new System.Drawing.Point(3, 116);
@@ -1763,6 +1912,7 @@ namespace nManager.Helpful.Forms
             this.labelX67.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX67.TabIndex = 23;
             this.labelX67.Text = "BattleNet Account";
+            this.labelX67.Visible = false;
             // 
             // labelX38
             // 
@@ -1770,6 +1920,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX38.BackgroundStyle.Class = "";
             this.labelX38.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX38.ForeColor = System.Drawing.Color.Black;
             this.labelX38.Location = new System.Drawing.Point(3, 28);
@@ -1778,13 +1929,15 @@ namespace nManager.Helpful.Forms
             this.labelX38.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX38.TabIndex = 13;
             this.labelX38.Text = "Relogger";
+            this.labelX38.Visible = false;
             // 
             // ActivateReloggerFeature
             // 
-            this.ActivateReloggerFeature.BackColor = System.Drawing.Color.White;
+            this.ActivateReloggerFeature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateReloggerFeature.BackgroundStyle.Class = "";
             this.ActivateReloggerFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateReloggerFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateReloggerFeature.Location = new System.Drawing.Point(162, 28);
@@ -1792,10 +1945,11 @@ namespace nManager.Helpful.Forms
             this.ActivateReloggerFeature.Size = new System.Drawing.Size(63, 21);
             this.ActivateReloggerFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateReloggerFeature.TabIndex = 12;
+            this.ActivateReloggerFeature.Visible = false;
             // 
             // PasswordOfTheBattleNetAccount
             // 
-            this.PasswordOfTheBattleNetAccount.BackColor = System.Drawing.Color.White;
+            this.PasswordOfTheBattleNetAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1806,6 +1960,7 @@ namespace nManager.Helpful.Forms
             this.PasswordOfTheBattleNetAccount.Name = "PasswordOfTheBattleNetAccount";
             this.PasswordOfTheBattleNetAccount.Size = new System.Drawing.Size(175, 22);
             this.PasswordOfTheBattleNetAccount.TabIndex = 22;
+            this.PasswordOfTheBattleNetAccount.Visible = false;
             // 
             // labelX37
             // 
@@ -1813,6 +1968,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX37.BackgroundStyle.Class = "";
             this.labelX37.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX37.ForeColor = System.Drawing.Color.Black;
             this.labelX37.Location = new System.Drawing.Point(3, 84);
@@ -1821,10 +1977,11 @@ namespace nManager.Helpful.Forms
             this.labelX37.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX37.TabIndex = 21;
             this.labelX37.Text = "Account Password";
+            this.labelX37.Visible = false;
             // 
             // EmailOfTheBattleNetAccount
             // 
-            this.EmailOfTheBattleNetAccount.BackColor = System.Drawing.Color.White;
+            this.EmailOfTheBattleNetAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1835,6 +1992,7 @@ namespace nManager.Helpful.Forms
             this.EmailOfTheBattleNetAccount.Name = "EmailOfTheBattleNetAccount";
             this.EmailOfTheBattleNetAccount.Size = new System.Drawing.Size(175, 22);
             this.EmailOfTheBattleNetAccount.TabIndex = 13;
+            this.EmailOfTheBattleNetAccount.Visible = false;
             // 
             // labelX40
             // 
@@ -1842,6 +2000,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX40.BackgroundStyle.Class = "";
             this.labelX40.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX40.ForeColor = System.Drawing.Color.Black;
             this.labelX40.Location = new System.Drawing.Point(3, 56);
@@ -1850,6 +2009,7 @@ namespace nManager.Helpful.Forms
             this.labelX40.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX40.TabIndex = 12;
             this.labelX40.Text = "Account Email";
+            this.labelX40.Visible = false;
             // 
             // LootingFarmingManagementPanelName
             // 
@@ -1932,6 +2092,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.ActivateLootStatisticsLabel.BackgroundStyle.Class = "";
             this.ActivateLootStatisticsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateLootStatisticsLabel.ForeColor = System.Drawing.Color.Black;
             this.ActivateLootStatisticsLabel.Location = new System.Drawing.Point(4, 57);
@@ -1940,13 +2101,15 @@ namespace nManager.Helpful.Forms
             this.ActivateLootStatisticsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.ActivateLootStatisticsLabel.TabIndex = 66;
             this.ActivateLootStatisticsLabel.Text = "Activate Loot Statistics";
+            this.ActivateLootStatisticsLabel.Visible = false;
             // 
             // ActivateLootStatistics
             // 
-            this.ActivateLootStatistics.BackColor = System.Drawing.Color.White;
+            this.ActivateLootStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateLootStatistics.BackgroundStyle.Class = "";
             this.ActivateLootStatistics.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateLootStatistics.ForeColor = System.Drawing.Color.Black;
             this.ActivateLootStatistics.Location = new System.Drawing.Point(163, 57);
@@ -1954,10 +2117,11 @@ namespace nManager.Helpful.Forms
             this.ActivateLootStatistics.Size = new System.Drawing.Size(63, 21);
             this.ActivateLootStatistics.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateLootStatistics.TabIndex = 65;
+            this.ActivateLootStatistics.Visible = false;
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(500, 140);
             this.button1.Name = "button1";
@@ -1969,7 +2133,7 @@ namespace nManager.Helpful.Forms
             // 
             // DontHarvestTheFollowingObjects
             // 
-            this.DontHarvestTheFollowingObjects.BackColor = System.Drawing.Color.White;
+            this.DontHarvestTheFollowingObjects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1982,13 +2146,15 @@ namespace nManager.Helpful.Forms
             this.DontHarvestTheFollowingObjects.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DontHarvestTheFollowingObjects.Size = new System.Drawing.Size(226, 83);
             this.DontHarvestTheFollowingObjects.TabIndex = 63;
+            this.DontHarvestTheFollowingObjects.Visible = false;
             // 
             // AutoConfirmOnBoPItems
             // 
-            this.AutoConfirmOnBoPItems.BackColor = System.Drawing.Color.White;
+            this.AutoConfirmOnBoPItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.AutoConfirmOnBoPItems.BackgroundStyle.Class = "";
             this.AutoConfirmOnBoPItems.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AutoConfirmOnBoPItems.ForeColor = System.Drawing.Color.Black;
             this.AutoConfirmOnBoPItems.Location = new System.Drawing.Point(455, 29);
@@ -1996,6 +2162,7 @@ namespace nManager.Helpful.Forms
             this.AutoConfirmOnBoPItems.Size = new System.Drawing.Size(63, 21);
             this.AutoConfirmOnBoPItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AutoConfirmOnBoPItems.TabIndex = 61;
+            this.AutoConfirmOnBoPItems.Visible = false;
             // 
             // AutoConfirmOnBoPItemsLabel
             // 
@@ -2003,6 +2170,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.AutoConfirmOnBoPItemsLabel.BackgroundStyle.Class = "";
             this.AutoConfirmOnBoPItemsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AutoConfirmOnBoPItemsLabel.ForeColor = System.Drawing.Color.Black;
             this.AutoConfirmOnBoPItemsLabel.Location = new System.Drawing.Point(289, 29);
@@ -2011,6 +2179,7 @@ namespace nManager.Helpful.Forms
             this.AutoConfirmOnBoPItemsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.AutoConfirmOnBoPItemsLabel.TabIndex = 62;
             this.AutoConfirmOnBoPItemsLabel.Text = "Auto Confirm on BoP Items";
+            this.AutoConfirmOnBoPItemsLabel.Visible = false;
             // 
             // labelX69
             // 
@@ -2018,6 +2187,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX69.BackgroundStyle.Class = "";
             this.labelX69.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX69.ForeColor = System.Drawing.Color.Black;
             this.labelX69.Location = new System.Drawing.Point(4, 476);
@@ -2026,13 +2196,15 @@ namespace nManager.Helpful.Forms
             this.labelX69.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX69.TabIndex = 59;
             this.labelX69.Text = "Milling only in town";
+            this.labelX69.Visible = false;
             // 
             // OnlyUseMillingInTown
             // 
-            this.OnlyUseMillingInTown.BackColor = System.Drawing.Color.White;
+            this.OnlyUseMillingInTown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.OnlyUseMillingInTown.BackgroundStyle.Class = "";
             this.OnlyUseMillingInTown.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.OnlyUseMillingInTown.ForeColor = System.Drawing.Color.Black;
             this.OnlyUseMillingInTown.Location = new System.Drawing.Point(163, 476);
@@ -2040,10 +2212,11 @@ namespace nManager.Helpful.Forms
             this.OnlyUseMillingInTown.Size = new System.Drawing.Size(63, 21);
             this.OnlyUseMillingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseMillingInTown.TabIndex = 58;
+            this.OnlyUseMillingInTown.Visible = false;
             // 
             // TimeBetweenEachMillingAttempt
             // 
-            this.TimeBetweenEachMillingAttempt.BackColor = System.Drawing.Color.White;
+            this.TimeBetweenEachMillingAttempt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2058,6 +2231,7 @@ namespace nManager.Helpful.Forms
             this.TimeBetweenEachMillingAttempt.Size = new System.Drawing.Size(77, 22);
             this.TimeBetweenEachMillingAttempt.TabIndex = 57;
             this.TimeBetweenEachMillingAttempt.Value = 15;
+            this.TimeBetweenEachMillingAttempt.Visible = false;
             // 
             // labelX70
             // 
@@ -2065,6 +2239,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX70.BackgroundStyle.Class = "";
             this.labelX70.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX70.ForeColor = System.Drawing.Color.Black;
             this.labelX70.Location = new System.Drawing.Point(4, 448);
@@ -2073,6 +2248,7 @@ namespace nManager.Helpful.Forms
             this.labelX70.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX70.TabIndex = 56;
             this.labelX70.Text = "Milling Every (in minute)";
+            this.labelX70.Visible = false;
             // 
             // labelX71
             // 
@@ -2080,6 +2256,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX71.BackgroundStyle.Class = "";
             this.labelX71.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX71.ForeColor = System.Drawing.Color.Black;
             this.labelX71.Location = new System.Drawing.Point(4, 420);
@@ -2088,13 +2265,15 @@ namespace nManager.Helpful.Forms
             this.labelX71.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX71.TabIndex = 55;
             this.labelX71.Text = "Milling";
+            this.labelX71.Visible = false;
             // 
             // ActivateAutoMilling
             // 
-            this.ActivateAutoMilling.BackColor = System.Drawing.Color.White;
+            this.ActivateAutoMilling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAutoMilling.BackgroundStyle.Class = "";
             this.ActivateAutoMilling.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAutoMilling.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoMilling.Location = new System.Drawing.Point(163, 420);
@@ -2102,10 +2281,11 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMilling.Size = new System.Drawing.Size(63, 21);
             this.ActivateAutoMilling.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMilling.TabIndex = 54;
+            this.ActivateAutoMilling.Visible = false;
             // 
             // HerbsToBeMilled
             // 
-            this.HerbsToBeMilled.BackColor = System.Drawing.Color.White;
+            this.HerbsToBeMilled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2118,6 +2298,7 @@ namespace nManager.Helpful.Forms
             this.HerbsToBeMilled.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.HerbsToBeMilled.Size = new System.Drawing.Size(227, 83);
             this.HerbsToBeMilled.TabIndex = 53;
+            this.HerbsToBeMilled.Visible = false;
             // 
             // labelX72
             // 
@@ -2125,6 +2306,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX72.BackgroundStyle.Class = "";
             this.labelX72.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX72.ForeColor = System.Drawing.Color.Black;
             this.labelX72.Location = new System.Drawing.Point(290, 393);
@@ -2133,6 +2315,7 @@ namespace nManager.Helpful.Forms
             this.labelX72.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX72.TabIndex = 52;
             this.labelX72.Text = "Milling list (one item by line)";
+            this.labelX72.Visible = false;
             // 
             // labelX68
             // 
@@ -2140,6 +2323,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX68.BackgroundStyle.Class = "";
             this.labelX68.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX68.ForeColor = System.Drawing.Color.Black;
             this.labelX68.Location = new System.Drawing.Point(4, 519);
@@ -2148,13 +2332,15 @@ namespace nManager.Helpful.Forms
             this.labelX68.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX68.TabIndex = 51;
             this.labelX68.Text = "Auto Make Elemental";
+            this.labelX68.Visible = false;
             // 
             // MakeStackOfElementalsItems
             // 
-            this.MakeStackOfElementalsItems.BackColor = System.Drawing.Color.White;
+            this.MakeStackOfElementalsItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.MakeStackOfElementalsItems.BackgroundStyle.Class = "";
             this.MakeStackOfElementalsItems.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MakeStackOfElementalsItems.ForeColor = System.Drawing.Color.Black;
             this.MakeStackOfElementalsItems.Location = new System.Drawing.Point(163, 519);
@@ -2162,6 +2348,7 @@ namespace nManager.Helpful.Forms
             this.MakeStackOfElementalsItems.Size = new System.Drawing.Size(63, 21);
             this.MakeStackOfElementalsItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MakeStackOfElementalsItems.TabIndex = 50;
+            this.MakeStackOfElementalsItems.Visible = false;
             // 
             // labelX65
             // 
@@ -2169,6 +2356,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX65.BackgroundStyle.Class = "";
             this.labelX65.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX65.ForeColor = System.Drawing.Color.Black;
             this.labelX65.Location = new System.Drawing.Point(4, 362);
@@ -2177,13 +2365,15 @@ namespace nManager.Helpful.Forms
             this.labelX65.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX65.TabIndex = 49;
             this.labelX65.Text = "Prospecting only in town";
+            this.labelX65.Visible = false;
             // 
             // OnlyUseProspectingInTown
             // 
-            this.OnlyUseProspectingInTown.BackColor = System.Drawing.Color.White;
+            this.OnlyUseProspectingInTown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.OnlyUseProspectingInTown.BackgroundStyle.Class = "";
             this.OnlyUseProspectingInTown.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.OnlyUseProspectingInTown.ForeColor = System.Drawing.Color.Black;
             this.OnlyUseProspectingInTown.Location = new System.Drawing.Point(163, 362);
@@ -2191,10 +2381,11 @@ namespace nManager.Helpful.Forms
             this.OnlyUseProspectingInTown.Size = new System.Drawing.Size(63, 21);
             this.OnlyUseProspectingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseProspectingInTown.TabIndex = 48;
+            this.OnlyUseProspectingInTown.Visible = false;
             // 
             // TimeBetweenEachProspectingAttempt
             // 
-            this.TimeBetweenEachProspectingAttempt.BackColor = System.Drawing.Color.White;
+            this.TimeBetweenEachProspectingAttempt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2209,6 +2400,7 @@ namespace nManager.Helpful.Forms
             this.TimeBetweenEachProspectingAttempt.Size = new System.Drawing.Size(77, 22);
             this.TimeBetweenEachProspectingAttempt.TabIndex = 47;
             this.TimeBetweenEachProspectingAttempt.Value = 15;
+            this.TimeBetweenEachProspectingAttempt.Visible = false;
             // 
             // labelX64
             // 
@@ -2216,6 +2408,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX64.BackgroundStyle.Class = "";
             this.labelX64.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX64.ForeColor = System.Drawing.Color.Black;
             this.labelX64.Location = new System.Drawing.Point(4, 334);
@@ -2224,6 +2417,7 @@ namespace nManager.Helpful.Forms
             this.labelX64.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX64.TabIndex = 46;
             this.labelX64.Text = "Prospecting Every (in minute)";
+            this.labelX64.Visible = false;
             // 
             // labelX63
             // 
@@ -2231,6 +2425,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX63.BackgroundStyle.Class = "";
             this.labelX63.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX63.ForeColor = System.Drawing.Color.Black;
             this.labelX63.Location = new System.Drawing.Point(4, 306);
@@ -2239,13 +2434,15 @@ namespace nManager.Helpful.Forms
             this.labelX63.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX63.TabIndex = 45;
             this.labelX63.Text = "Prospecting";
+            this.labelX63.Visible = false;
             // 
             // ActivateAutoProspecting
             // 
-            this.ActivateAutoProspecting.BackColor = System.Drawing.Color.White;
+            this.ActivateAutoProspecting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAutoProspecting.BackgroundStyle.Class = "";
             this.ActivateAutoProspecting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAutoProspecting.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoProspecting.Location = new System.Drawing.Point(163, 306);
@@ -2253,10 +2450,11 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoProspecting.Size = new System.Drawing.Size(63, 21);
             this.ActivateAutoProspecting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoProspecting.TabIndex = 44;
+            this.ActivateAutoProspecting.Visible = false;
             // 
             // MineralsToProspect
             // 
-            this.MineralsToProspect.BackColor = System.Drawing.Color.White;
+            this.MineralsToProspect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2269,6 +2467,7 @@ namespace nManager.Helpful.Forms
             this.MineralsToProspect.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.MineralsToProspect.Size = new System.Drawing.Size(227, 83);
             this.MineralsToProspect.TabIndex = 43;
+            this.MineralsToProspect.Visible = false;
             // 
             // labelX62
             // 
@@ -2276,6 +2475,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX62.BackgroundStyle.Class = "";
             this.labelX62.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX62.ForeColor = System.Drawing.Color.Black;
             this.labelX62.Location = new System.Drawing.Point(290, 278);
@@ -2284,6 +2484,7 @@ namespace nManager.Helpful.Forms
             this.labelX62.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX62.TabIndex = 42;
             this.labelX62.Text = "Prospecting list (one item by line)";
+            this.labelX62.Visible = false;
             // 
             // labelX61
             // 
@@ -2291,6 +2492,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX61.BackgroundStyle.Class = "";
             this.labelX61.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX61.ForeColor = System.Drawing.Color.Black;
             this.labelX61.Location = new System.Drawing.Point(290, 112);
@@ -2299,13 +2501,15 @@ namespace nManager.Helpful.Forms
             this.labelX61.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX61.TabIndex = 41;
             this.labelX61.Text = "Smelting";
+            this.labelX61.Visible = false;
             // 
             // ActivateAutoSmelting
             // 
-            this.ActivateAutoSmelting.BackColor = System.Drawing.Color.White;
+            this.ActivateAutoSmelting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateAutoSmelting.BackgroundStyle.Class = "";
             this.ActivateAutoSmelting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateAutoSmelting.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoSmelting.Location = new System.Drawing.Point(455, 112);
@@ -2313,6 +2517,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSmelting.Size = new System.Drawing.Size(63, 21);
             this.ActivateAutoSmelting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSmelting.TabIndex = 40;
+            this.ActivateAutoSmelting.Visible = false;
             // 
             // labelX36
             // 
@@ -2320,6 +2525,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX36.BackgroundStyle.Class = "";
             this.labelX36.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX36.ForeColor = System.Drawing.Color.Black;
             this.labelX36.Location = new System.Drawing.Point(289, 140);
@@ -2328,14 +2534,15 @@ namespace nManager.Helpful.Forms
             this.labelX36.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX36.TabIndex = 38;
             this.labelX36.Text = "Don\'t harvest List (one id per line)";
+            this.labelX36.Visible = false;
             // 
             // addBlackListHarvest
             // 
             this.addBlackListHarvest.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.addBlackListHarvest.Location = new System.Drawing.Point(0, 0);
             this.addBlackListHarvest.Name = "addBlackListHarvest";
-            this.addBlackListHarvest.Size = new System.Drawing.Size(0, 0);
             this.addBlackListHarvest.TabIndex = 60;
+            this.addBlackListHarvest.Visible = false;
             // 
             // labelX35
             // 
@@ -2343,6 +2550,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX35.BackgroundStyle.Class = "";
             this.labelX35.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX35.ForeColor = System.Drawing.Color.Black;
             this.labelX35.Location = new System.Drawing.Point(4, 252);
@@ -2351,13 +2559,15 @@ namespace nManager.Helpful.Forms
             this.labelX35.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX35.TabIndex = 34;
             this.labelX35.Text = "Harvest During Long Move";
+            this.labelX35.Visible = false;
             // 
             // HarvestDuringLongDistanceMovements
             // 
-            this.HarvestDuringLongDistanceMovements.BackColor = System.Drawing.Color.White;
+            this.HarvestDuringLongDistanceMovements.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.HarvestDuringLongDistanceMovements.BackgroundStyle.Class = "";
             this.HarvestDuringLongDistanceMovements.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.HarvestDuringLongDistanceMovements.ForeColor = System.Drawing.Color.Black;
             this.HarvestDuringLongDistanceMovements.Location = new System.Drawing.Point(163, 252);
@@ -2365,6 +2575,7 @@ namespace nManager.Helpful.Forms
             this.HarvestDuringLongDistanceMovements.Size = new System.Drawing.Size(63, 21);
             this.HarvestDuringLongDistanceMovements.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.HarvestDuringLongDistanceMovements.TabIndex = 33;
+            this.HarvestDuringLongDistanceMovements.Visible = false;
             // 
             // labelX23
             // 
@@ -2372,6 +2583,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX23.BackgroundStyle.Class = "";
             this.labelX23.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX23.ForeColor = System.Drawing.Color.Black;
             this.labelX23.Location = new System.Drawing.Point(289, 84);
@@ -2380,13 +2592,15 @@ namespace nManager.Helpful.Forms
             this.labelX23.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX23.TabIndex = 32;
             this.labelX23.Text = "Ninja";
+            this.labelX23.Visible = false;
             // 
             // BeastNinjaSkinning
             // 
-            this.BeastNinjaSkinning.BackColor = System.Drawing.Color.White;
+            this.BeastNinjaSkinning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.BeastNinjaSkinning.BackgroundStyle.Class = "";
             this.BeastNinjaSkinning.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BeastNinjaSkinning.ForeColor = System.Drawing.Color.Black;
             this.BeastNinjaSkinning.Location = new System.Drawing.Point(455, 84);
@@ -2394,10 +2608,11 @@ namespace nManager.Helpful.Forms
             this.BeastNinjaSkinning.Size = new System.Drawing.Size(63, 21);
             this.BeastNinjaSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BeastNinjaSkinning.TabIndex = 31;
+            this.BeastNinjaSkinning.Visible = false;
             // 
             // GatheringSearchRadius
             // 
-            this.GatheringSearchRadius.BackColor = System.Drawing.Color.White;
+            this.GatheringSearchRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2412,6 +2627,7 @@ namespace nManager.Helpful.Forms
             this.GatheringSearchRadius.Size = new System.Drawing.Size(77, 22);
             this.GatheringSearchRadius.TabIndex = 30;
             this.GatheringSearchRadius.Value = 45;
+            this.GatheringSearchRadius.Visible = false;
             // 
             // labelX22
             // 
@@ -2419,6 +2635,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX22.BackgroundStyle.Class = "";
             this.labelX22.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX22.ForeColor = System.Drawing.Color.Black;
             this.labelX22.Location = new System.Drawing.Point(4, 224);
@@ -2427,10 +2644,11 @@ namespace nManager.Helpful.Forms
             this.labelX22.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX22.TabIndex = 29;
             this.labelX22.Text = "Search Radius";
+            this.labelX22.Visible = false;
             // 
             // DontHarvestIfMoreThanXUnitInAggroRange
             // 
-            this.DontHarvestIfMoreThanXUnitInAggroRange.BackColor = System.Drawing.Color.White;
+            this.DontHarvestIfMoreThanXUnitInAggroRange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2445,6 +2663,7 @@ namespace nManager.Helpful.Forms
             this.DontHarvestIfMoreThanXUnitInAggroRange.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfMoreThanXUnitInAggroRange.TabIndex = 28;
             this.DontHarvestIfMoreThanXUnitInAggroRange.Value = 3;
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Visible = false;
             // 
             // labelX21
             // 
@@ -2452,6 +2671,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX21.BackgroundStyle.Class = "";
             this.labelX21.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX21.ForeColor = System.Drawing.Color.Black;
             this.labelX21.Location = new System.Drawing.Point(4, 196);
@@ -2460,6 +2680,7 @@ namespace nManager.Helpful.Forms
             this.labelX21.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX21.TabIndex = 27;
             this.labelX21.Text = "Max Units Near";
+            this.labelX21.Visible = false;
             // 
             // labelX20
             // 
@@ -2467,6 +2688,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX20.BackgroundStyle.Class = "";
             this.labelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX20.ForeColor = System.Drawing.Color.Black;
             this.labelX20.Location = new System.Drawing.Point(4, 140);
@@ -2475,13 +2697,15 @@ namespace nManager.Helpful.Forms
             this.labelX20.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX20.TabIndex = 26;
             this.labelX20.Text = "Harvest Herbs";
+            this.labelX20.Visible = false;
             // 
             // ActivateHerbsHarvesting
             // 
-            this.ActivateHerbsHarvesting.BackColor = System.Drawing.Color.White;
+            this.ActivateHerbsHarvesting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateHerbsHarvesting.BackgroundStyle.Class = "";
             this.ActivateHerbsHarvesting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateHerbsHarvesting.ForeColor = System.Drawing.Color.Black;
             this.ActivateHerbsHarvesting.Location = new System.Drawing.Point(163, 140);
@@ -2489,6 +2713,7 @@ namespace nManager.Helpful.Forms
             this.ActivateHerbsHarvesting.Size = new System.Drawing.Size(63, 21);
             this.ActivateHerbsHarvesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateHerbsHarvesting.TabIndex = 25;
+            this.ActivateHerbsHarvesting.Visible = false;
             // 
             // labelX19
             // 
@@ -2496,6 +2721,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX19.BackgroundStyle.Class = "";
             this.labelX19.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX19.ForeColor = System.Drawing.Color.Black;
             this.labelX19.Location = new System.Drawing.Point(4, 112);
@@ -2504,13 +2730,15 @@ namespace nManager.Helpful.Forms
             this.labelX19.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX19.TabIndex = 24;
             this.labelX19.Text = "Harvest Minerals";
+            this.labelX19.Visible = false;
             // 
             // ActivateVeinsHarvesting
             // 
-            this.ActivateVeinsHarvesting.BackColor = System.Drawing.Color.White;
+            this.ActivateVeinsHarvesting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateVeinsHarvesting.BackgroundStyle.Class = "";
             this.ActivateVeinsHarvesting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateVeinsHarvesting.ForeColor = System.Drawing.Color.Black;
             this.ActivateVeinsHarvesting.Location = new System.Drawing.Point(163, 112);
@@ -2518,6 +2746,7 @@ namespace nManager.Helpful.Forms
             this.ActivateVeinsHarvesting.Size = new System.Drawing.Size(63, 21);
             this.ActivateVeinsHarvesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateVeinsHarvesting.TabIndex = 23;
+            this.ActivateVeinsHarvesting.Visible = false;
             // 
             // labelX17
             // 
@@ -2525,6 +2754,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX17.BackgroundStyle.Class = "";
             this.labelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX17.ForeColor = System.Drawing.Color.Black;
             this.labelX17.Location = new System.Drawing.Point(4, 84);
@@ -2533,13 +2763,15 @@ namespace nManager.Helpful.Forms
             this.labelX17.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX17.TabIndex = 22;
             this.labelX17.Text = "Skin Mobs";
+            this.labelX17.Visible = false;
             // 
             // ActivateBeastSkinning
             // 
-            this.ActivateBeastSkinning.BackColor = System.Drawing.Color.White;
+            this.ActivateBeastSkinning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateBeastSkinning.BackgroundStyle.Class = "";
             this.ActivateBeastSkinning.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateBeastSkinning.ForeColor = System.Drawing.Color.Black;
             this.ActivateBeastSkinning.Location = new System.Drawing.Point(163, 84);
@@ -2547,6 +2779,7 @@ namespace nManager.Helpful.Forms
             this.ActivateBeastSkinning.Size = new System.Drawing.Size(63, 21);
             this.ActivateBeastSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateBeastSkinning.TabIndex = 21;
+            this.ActivateBeastSkinning.Visible = false;
             // 
             // labelX16
             // 
@@ -2554,6 +2787,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX16.BackgroundStyle.Class = "";
             this.labelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX16.ForeColor = System.Drawing.Color.Black;
             this.labelX16.Location = new System.Drawing.Point(290, 57);
@@ -2562,13 +2796,15 @@ namespace nManager.Helpful.Forms
             this.labelX16.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX16.TabIndex = 20;
             this.labelX16.Text = "Loot Chests";
+            this.labelX16.Visible = false;
             // 
             // ActivateChestLooting
             // 
-            this.ActivateChestLooting.BackColor = System.Drawing.Color.White;
+            this.ActivateChestLooting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateChestLooting.BackgroundStyle.Class = "";
             this.ActivateChestLooting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateChestLooting.ForeColor = System.Drawing.Color.Black;
             this.ActivateChestLooting.Location = new System.Drawing.Point(455, 57);
@@ -2576,10 +2812,11 @@ namespace nManager.Helpful.Forms
             this.ActivateChestLooting.Size = new System.Drawing.Size(63, 21);
             this.ActivateChestLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateChestLooting.TabIndex = 19;
+            this.ActivateChestLooting.Visible = false;
             // 
             // DontHarvestIfPlayerNearRadius
             // 
-            this.DontHarvestIfPlayerNearRadius.BackColor = System.Drawing.Color.White;
+            this.DontHarvestIfPlayerNearRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2594,6 +2831,7 @@ namespace nManager.Helpful.Forms
             this.DontHarvestIfPlayerNearRadius.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfPlayerNearRadius.TabIndex = 18;
             this.DontHarvestIfPlayerNearRadius.Value = 10;
+            this.DontHarvestIfPlayerNearRadius.Visible = false;
             // 
             // labelX12
             // 
@@ -2601,6 +2839,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX12.BackgroundStyle.Class = "";
             this.labelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX12.ForeColor = System.Drawing.Color.Black;
             this.labelX12.Location = new System.Drawing.Point(4, 168);
@@ -2609,6 +2848,7 @@ namespace nManager.Helpful.Forms
             this.labelX12.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX12.TabIndex = 16;
             this.labelX12.Text = "Harvest Avoid Players Radius";
+            this.labelX12.Visible = false;
             // 
             // labelX18
             // 
@@ -2616,6 +2856,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX18.BackgroundStyle.Class = "";
             this.labelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX18.ForeColor = System.Drawing.Color.Black;
             this.labelX18.Location = new System.Drawing.Point(4, 29);
@@ -2624,13 +2865,15 @@ namespace nManager.Helpful.Forms
             this.labelX18.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX18.TabIndex = 11;
             this.labelX18.Text = "Loot Mobs";
+            this.labelX18.Visible = false;
             // 
             // ActivateMonsterLooting
             // 
-            this.ActivateMonsterLooting.BackColor = System.Drawing.Color.White;
+            this.ActivateMonsterLooting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateMonsterLooting.BackgroundStyle.Class = "";
             this.ActivateMonsterLooting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateMonsterLooting.ForeColor = System.Drawing.Color.Black;
             this.ActivateMonsterLooting.Location = new System.Drawing.Point(163, 29);
@@ -2638,6 +2881,7 @@ namespace nManager.Helpful.Forms
             this.ActivateMonsterLooting.Size = new System.Drawing.Size(63, 21);
             this.ActivateMonsterLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateMonsterLooting.TabIndex = 10;
+            this.ActivateMonsterLooting.Visible = false;
             // 
             // RegenerationManagementPanelName
             // 
@@ -2679,10 +2923,11 @@ namespace nManager.Helpful.Forms
             // 
             // DoRegenManaIfLow
             // 
-            this.DoRegenManaIfLow.BackColor = System.Drawing.Color.White;
+            this.DoRegenManaIfLow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.DoRegenManaIfLow.BackgroundStyle.Class = "";
             this.DoRegenManaIfLow.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.DoRegenManaIfLow.ForeColor = System.Drawing.Color.Black;
             this.DoRegenManaIfLow.Location = new System.Drawing.Point(466, 55);
@@ -2690,6 +2935,7 @@ namespace nManager.Helpful.Forms
             this.DoRegenManaIfLow.Size = new System.Drawing.Size(63, 21);
             this.DoRegenManaIfLow.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DoRegenManaIfLow.TabIndex = 26;
+            this.DoRegenManaIfLow.Visible = false;
             // 
             // labelX9
             // 
@@ -2697,6 +2943,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX9.BackgroundStyle.Class = "";
             this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX9.ForeColor = System.Drawing.Color.Black;
             this.labelX9.Location = new System.Drawing.Point(394, 54);
@@ -2705,6 +2952,7 @@ namespace nManager.Helpful.Forms
             this.labelX9.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX9.TabIndex = 25;
             this.labelX9.Text = "%";
+            this.labelX9.Visible = false;
             // 
             // labelX10
             // 
@@ -2712,6 +2960,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX10.BackgroundStyle.Class = "";
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX10.ForeColor = System.Drawing.Color.Black;
             this.labelX10.Location = new System.Drawing.Point(312, 54);
@@ -2720,10 +2969,11 @@ namespace nManager.Helpful.Forms
             this.labelX10.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX10.TabIndex = 24;
             this.labelX10.Text = "on";
+            this.labelX10.Visible = false;
             // 
             // DrinkBeverageWhenManaIsUnderXPercent
             // 
-            this.DrinkBeverageWhenManaIsUnderXPercent.BackColor = System.Drawing.Color.White;
+            this.DrinkBeverageWhenManaIsUnderXPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2739,10 +2989,11 @@ namespace nManager.Helpful.Forms
             this.DrinkBeverageWhenManaIsUnderXPercent.Size = new System.Drawing.Size(53, 22);
             this.DrinkBeverageWhenManaIsUnderXPercent.TabIndex = 23;
             this.DrinkBeverageWhenManaIsUnderXPercent.Value = 35;
+            this.DrinkBeverageWhenManaIsUnderXPercent.Visible = false;
             // 
             // BeverageName
             // 
-            this.BeverageName.BackColor = System.Drawing.Color.White;
+            this.BeverageName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2753,6 +3004,7 @@ namespace nManager.Helpful.Forms
             this.BeverageName.Name = "BeverageName";
             this.BeverageName.Size = new System.Drawing.Size(144, 22);
             this.BeverageName.TabIndex = 22;
+            this.BeverageName.Visible = false;
             // 
             // labelX15
             // 
@@ -2760,6 +3012,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX15.BackgroundStyle.Class = "";
             this.labelX15.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX15.ForeColor = System.Drawing.Color.Black;
             this.labelX15.Location = new System.Drawing.Point(3, 54);
@@ -2768,6 +3021,7 @@ namespace nManager.Helpful.Forms
             this.labelX15.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX15.TabIndex = 21;
             this.labelX15.Text = "Drink";
+            this.labelX15.Visible = false;
             // 
             // labelX14
             // 
@@ -2775,6 +3029,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX14.BackgroundStyle.Class = "";
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX14.ForeColor = System.Drawing.Color.Black;
             this.labelX14.Location = new System.Drawing.Point(394, 26);
@@ -2783,6 +3038,7 @@ namespace nManager.Helpful.Forms
             this.labelX14.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX14.TabIndex = 20;
             this.labelX14.Text = "%";
+            this.labelX14.Visible = false;
             // 
             // labelX13
             // 
@@ -2790,6 +3046,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX13.BackgroundStyle.Class = "";
             this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX13.ForeColor = System.Drawing.Color.Black;
             this.labelX13.Location = new System.Drawing.Point(312, 26);
@@ -2798,10 +3055,11 @@ namespace nManager.Helpful.Forms
             this.labelX13.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX13.TabIndex = 19;
             this.labelX13.Text = "on";
+            this.labelX13.Visible = false;
             // 
             // EatFoodWhenHealthIsUnderXPercent
             // 
-            this.EatFoodWhenHealthIsUnderXPercent.BackColor = System.Drawing.Color.White;
+            this.EatFoodWhenHealthIsUnderXPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2817,10 +3075,11 @@ namespace nManager.Helpful.Forms
             this.EatFoodWhenHealthIsUnderXPercent.Size = new System.Drawing.Size(53, 22);
             this.EatFoodWhenHealthIsUnderXPercent.TabIndex = 18;
             this.EatFoodWhenHealthIsUnderXPercent.Value = 35;
+            this.EatFoodWhenHealthIsUnderXPercent.Visible = false;
             // 
             // FoodName
             // 
-            this.FoodName.BackColor = System.Drawing.Color.White;
+            this.FoodName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2831,6 +3090,7 @@ namespace nManager.Helpful.Forms
             this.FoodName.Name = "FoodName";
             this.FoodName.Size = new System.Drawing.Size(144, 22);
             this.FoodName.TabIndex = 13;
+            this.FoodName.Visible = false;
             // 
             // labelX11
             // 
@@ -2838,6 +3098,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX11.BackgroundStyle.Class = "";
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX11.ForeColor = System.Drawing.Color.Black;
             this.labelX11.Location = new System.Drawing.Point(3, 26);
@@ -2846,6 +3107,7 @@ namespace nManager.Helpful.Forms
             this.labelX11.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX11.TabIndex = 12;
             this.labelX11.Text = "Food";
+            this.labelX11.Visible = false;
             // 
             // MountManagementPanelName
             // 
@@ -2888,7 +3150,7 @@ namespace nManager.Helpful.Forms
             // 
             // AquaticMountName
             // 
-            this.AquaticMountName.BackColor = System.Drawing.Color.White;
+            this.AquaticMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2899,6 +3161,7 @@ namespace nManager.Helpful.Forms
             this.AquaticMountName.Name = "AquaticMountName";
             this.AquaticMountName.Size = new System.Drawing.Size(144, 22);
             this.AquaticMountName.TabIndex = 22;
+            this.AquaticMountName.Visible = false;
             // 
             // labelX66
             // 
@@ -2906,6 +3169,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX66.BackgroundStyle.Class = "";
             this.labelX66.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX66.ForeColor = System.Drawing.Color.Black;
             this.labelX66.Location = new System.Drawing.Point(3, 180);
@@ -2914,6 +3178,7 @@ namespace nManager.Helpful.Forms
             this.labelX66.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX66.TabIndex = 21;
             this.labelX66.Text = "Aquatic";
+            this.labelX66.Visible = false;
             // 
             // labelX57
             // 
@@ -2921,6 +3186,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX57.BackgroundStyle.Class = "";
             this.labelX57.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX57.ForeColor = System.Drawing.Color.Black;
             this.labelX57.Location = new System.Drawing.Point(3, 116);
@@ -2929,13 +3195,15 @@ namespace nManager.Helpful.Forms
             this.labelX57.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX57.TabIndex = 20;
             this.labelX57.Text = "Ignore Fight if in Gound Mount";
+            this.labelX57.Visible = false;
             // 
             // IgnoreFightIfMounted
             // 
-            this.IgnoreFightIfMounted.BackColor = System.Drawing.Color.White;
+            this.IgnoreFightIfMounted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.IgnoreFightIfMounted.BackgroundStyle.Class = "";
             this.IgnoreFightIfMounted.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.IgnoreFightIfMounted.ForeColor = System.Drawing.Color.Black;
             this.IgnoreFightIfMounted.Location = new System.Drawing.Point(162, 116);
@@ -2943,10 +3211,11 @@ namespace nManager.Helpful.Forms
             this.IgnoreFightIfMounted.Size = new System.Drawing.Size(63, 21);
             this.IgnoreFightIfMounted.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.IgnoreFightIfMounted.TabIndex = 19;
+            this.IgnoreFightIfMounted.Visible = false;
             // 
             // MinimumDistanceToUseMount
             // 
-            this.MinimumDistanceToUseMount.BackColor = System.Drawing.Color.White;
+            this.MinimumDistanceToUseMount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2961,6 +3230,7 @@ namespace nManager.Helpful.Forms
             this.MinimumDistanceToUseMount.Size = new System.Drawing.Size(77, 22);
             this.MinimumDistanceToUseMount.TabIndex = 18;
             this.MinimumDistanceToUseMount.Value = 80;
+            this.MinimumDistanceToUseMount.Visible = false;
             // 
             // labelX8
             // 
@@ -2968,6 +3238,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX8.BackgroundStyle.Class = "";
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.ForeColor = System.Drawing.Color.Black;
             this.labelX8.Location = new System.Drawing.Point(3, 88);
@@ -2976,10 +3247,11 @@ namespace nManager.Helpful.Forms
             this.labelX8.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX8.TabIndex = 16;
             this.labelX8.Text = "Mount Distance";
+            this.labelX8.Visible = false;
             // 
             // FlyingMountName
             // 
-            this.FlyingMountName.BackColor = System.Drawing.Color.White;
+            this.FlyingMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2990,6 +3262,7 @@ namespace nManager.Helpful.Forms
             this.FlyingMountName.Name = "FlyingMountName";
             this.FlyingMountName.Size = new System.Drawing.Size(144, 22);
             this.FlyingMountName.TabIndex = 15;
+            this.FlyingMountName.Visible = false;
             // 
             // labelX7
             // 
@@ -2997,6 +3270,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX7.BackgroundStyle.Class = "";
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.ForeColor = System.Drawing.Color.Black;
             this.labelX7.Location = new System.Drawing.Point(3, 152);
@@ -3005,10 +3279,11 @@ namespace nManager.Helpful.Forms
             this.labelX7.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX7.TabIndex = 14;
             this.labelX7.Text = "Flying";
+            this.labelX7.Visible = false;
             // 
             // GroundMountName
             // 
-            this.GroundMountName.BackColor = System.Drawing.Color.White;
+            this.GroundMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -3019,6 +3294,7 @@ namespace nManager.Helpful.Forms
             this.GroundMountName.Name = "GroundMountName";
             this.GroundMountName.Size = new System.Drawing.Size(144, 22);
             this.GroundMountName.TabIndex = 13;
+            this.GroundMountName.Visible = false;
             // 
             // labelX6
             // 
@@ -3026,6 +3302,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.ForeColor = System.Drawing.Color.Black;
             this.labelX6.Location = new System.Drawing.Point(3, 60);
@@ -3034,6 +3311,7 @@ namespace nManager.Helpful.Forms
             this.labelX6.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX6.TabIndex = 12;
             this.labelX6.Text = "Ground";
+            this.labelX6.Visible = false;
             // 
             // labelX5
             // 
@@ -3041,6 +3319,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX5.BackgroundStyle.Class = "";
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.ForeColor = System.Drawing.Color.Black;
             this.labelX5.Location = new System.Drawing.Point(3, 33);
@@ -3049,13 +3328,15 @@ namespace nManager.Helpful.Forms
             this.labelX5.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX5.TabIndex = 11;
             this.labelX5.Text = "Use Ground Mount";
+            this.labelX5.Visible = false;
             // 
             // UseGroundMount
             // 
-            this.UseGroundMount.BackColor = System.Drawing.Color.White;
+            this.UseGroundMount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.UseGroundMount.BackgroundStyle.Class = "";
             this.UseGroundMount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseGroundMount.ForeColor = System.Drawing.Color.Black;
             this.UseGroundMount.Location = new System.Drawing.Point(162, 33);
@@ -3063,6 +3344,7 @@ namespace nManager.Helpful.Forms
             this.UseGroundMount.Size = new System.Drawing.Size(63, 21);
             this.UseGroundMount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseGroundMount.TabIndex = 10;
+            this.UseGroundMount.Visible = false;
             // 
             // SpellManagementSystemPanelName
             // 
@@ -3081,6 +3363,7 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassResetSettingsButton);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClass);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassSettingsButton);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassResetSettingsButton);
             this.SpellManagementSystemPanelName.Controls.Add(this.labelX59);
@@ -3094,7 +3377,6 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.Controls.Add(this.labelX2);
             this.SpellManagementSystemPanelName.Controls.Add(this.AutoAssignTalents);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassLabel);
-            this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassSettingsButton);
             this.SpellManagementSystemPanelName.Dock = System.Windows.Forms.DockStyle.Top;
             this.SpellManagementSystemPanelName.Expanded = false;
@@ -3124,6 +3406,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.BackgroundStyle.Class = "";
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.ForeColor = System.Drawing.Color.Black;
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Location = new System.Drawing.Point(289, 210);
@@ -3132,13 +3415,15 @@ namespace nManager.Helpful.Forms
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.TabIndex = 43;
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Text = "Become apprentice of secondary skills while questing";
+            this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Visible = false;
             // 
             // BecomeApprenticeOfSecondarySkillsWhileQuesting
             // 
-            this.BecomeApprenticeOfSecondarySkillsWhileQuesting.BackColor = System.Drawing.Color.White;
+            this.BecomeApprenticeOfSecondarySkillsWhileQuesting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.BecomeApprenticeOfSecondarySkillsWhileQuesting.BackgroundStyle.Class = "";
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.ForeColor = System.Drawing.Color.Black;
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Location = new System.Drawing.Point(448, 210);
@@ -3146,6 +3431,7 @@ namespace nManager.Helpful.Forms
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Size = new System.Drawing.Size(63, 21);
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.TabIndex = 42;
+            this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Visible = false;
             // 
             // BecomeApprenticeIfNeededByProductLabel
             // 
@@ -3153,6 +3439,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.BecomeApprenticeIfNeededByProductLabel.BackgroundStyle.Class = "";
             this.BecomeApprenticeIfNeededByProductLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BecomeApprenticeIfNeededByProductLabel.ForeColor = System.Drawing.Color.Black;
             this.BecomeApprenticeIfNeededByProductLabel.Location = new System.Drawing.Point(12, 211);
@@ -3161,13 +3448,15 @@ namespace nManager.Helpful.Forms
             this.BecomeApprenticeIfNeededByProductLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.BecomeApprenticeIfNeededByProductLabel.TabIndex = 41;
             this.BecomeApprenticeIfNeededByProductLabel.Text = "Become apprentice if needed by product";
+            this.BecomeApprenticeIfNeededByProductLabel.Visible = false;
             // 
             // BecomeApprenticeIfNeededByProduct
             // 
-            this.BecomeApprenticeIfNeededByProduct.BackColor = System.Drawing.Color.White;
+            this.BecomeApprenticeIfNeededByProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.BecomeApprenticeIfNeededByProduct.BackgroundStyle.Class = "";
             this.BecomeApprenticeIfNeededByProduct.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BecomeApprenticeIfNeededByProduct.ForeColor = System.Drawing.Color.Black;
             this.BecomeApprenticeIfNeededByProduct.Location = new System.Drawing.Point(171, 211);
@@ -3175,6 +3464,7 @@ namespace nManager.Helpful.Forms
             this.BecomeApprenticeIfNeededByProduct.Size = new System.Drawing.Size(63, 21);
             this.BecomeApprenticeIfNeededByProduct.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BecomeApprenticeIfNeededByProduct.TabIndex = 40;
+            this.BecomeApprenticeIfNeededByProduct.Visible = false;
             // 
             // TrainMountingCapacityLabel
             // 
@@ -3182,6 +3472,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.TrainMountingCapacityLabel.BackgroundStyle.Class = "";
             this.TrainMountingCapacityLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TrainMountingCapacityLabel.ForeColor = System.Drawing.Color.Black;
             this.TrainMountingCapacityLabel.Location = new System.Drawing.Point(289, 183);
@@ -3190,13 +3481,15 @@ namespace nManager.Helpful.Forms
             this.TrainMountingCapacityLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.TrainMountingCapacityLabel.TabIndex = 39;
             this.TrainMountingCapacityLabel.Text = "Train mounting capacity";
+            this.TrainMountingCapacityLabel.Visible = false;
             // 
             // TrainMountingCapacity
             // 
-            this.TrainMountingCapacity.BackColor = System.Drawing.Color.White;
+            this.TrainMountingCapacity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.TrainMountingCapacity.BackgroundStyle.Class = "";
             this.TrainMountingCapacity.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TrainMountingCapacity.ForeColor = System.Drawing.Color.Black;
             this.TrainMountingCapacity.Location = new System.Drawing.Point(448, 183);
@@ -3204,6 +3497,7 @@ namespace nManager.Helpful.Forms
             this.TrainMountingCapacity.Size = new System.Drawing.Size(63, 21);
             this.TrainMountingCapacity.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TrainMountingCapacity.TabIndex = 38;
+            this.TrainMountingCapacity.Visible = false;
             // 
             // OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel
             // 
@@ -3211,6 +3505,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.BackgroundStyle.Class = "";
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.ForeColor = System.Drawing.Color.Black;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Location = new System.Drawing.Point(11, 183);
@@ -3219,13 +3514,15 @@ namespace nManager.Helpful.Forms
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.TabIndex = 37;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Text = "Only train if we have 2 times more money than required";
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Visible = false;
             // 
             // OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum
             // 
-            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.BackColor = System.Drawing.Color.White;
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.BackgroundStyle.Class = "";
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.ForeColor = System.Drawing.Color.Black;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Location = new System.Drawing.Point(170, 183);
@@ -3233,6 +3530,7 @@ namespace nManager.Helpful.Forms
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Size = new System.Drawing.Size(63, 21);
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.TabIndex = 36;
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Visible = false;
             // 
             // OnlyTrainCurrentlyUsedSkillsLabel
             // 
@@ -3240,6 +3538,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.OnlyTrainCurrentlyUsedSkillsLabel.BackgroundStyle.Class = "";
             this.OnlyTrainCurrentlyUsedSkillsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.OnlyTrainCurrentlyUsedSkillsLabel.ForeColor = System.Drawing.Color.Black;
             this.OnlyTrainCurrentlyUsedSkillsLabel.Location = new System.Drawing.Point(289, 155);
@@ -3248,13 +3547,15 @@ namespace nManager.Helpful.Forms
             this.OnlyTrainCurrentlyUsedSkillsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.OnlyTrainCurrentlyUsedSkillsLabel.TabIndex = 35;
             this.OnlyTrainCurrentlyUsedSkillsLabel.Text = "Only train currently used skills";
+            this.OnlyTrainCurrentlyUsedSkillsLabel.Visible = false;
             // 
             // OnlyTrainCurrentlyUsedSkills
             // 
-            this.OnlyTrainCurrentlyUsedSkills.BackColor = System.Drawing.Color.White;
+            this.OnlyTrainCurrentlyUsedSkills.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.OnlyTrainCurrentlyUsedSkills.BackgroundStyle.Class = "";
             this.OnlyTrainCurrentlyUsedSkills.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.OnlyTrainCurrentlyUsedSkills.ForeColor = System.Drawing.Color.Black;
             this.OnlyTrainCurrentlyUsedSkills.Location = new System.Drawing.Point(448, 155);
@@ -3262,6 +3563,7 @@ namespace nManager.Helpful.Forms
             this.OnlyTrainCurrentlyUsedSkills.Size = new System.Drawing.Size(63, 21);
             this.OnlyTrainCurrentlyUsedSkills.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyTrainCurrentlyUsedSkills.TabIndex = 34;
+            this.OnlyTrainCurrentlyUsedSkills.Visible = false;
             // 
             // HealerClassResetSettingsButton
             // 
@@ -3273,6 +3575,7 @@ namespace nManager.Helpful.Forms
             this.HealerClassResetSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.HealerClassResetSettingsButton.TabIndex = 33;
             this.HealerClassResetSettingsButton.Text = "Reset Settings";
+            this.HealerClassResetSettingsButton.Visible = false;
             this.HealerClassResetSettingsButton.Click += new System.EventHandler(this.HealerClassResetSettingsButton_Click);
             // 
             // HealerClassLabel
@@ -3281,6 +3584,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.HealerClassLabel.BackgroundStyle.Class = "";
             this.HealerClassLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.HealerClassLabel.ForeColor = System.Drawing.Color.Black;
             this.HealerClassLabel.Location = new System.Drawing.Point(11, 65);
@@ -3289,11 +3593,13 @@ namespace nManager.Helpful.Forms
             this.HealerClassLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.HealerClassLabel.TabIndex = 32;
             this.HealerClassLabel.Text = "Healer Class";
+            this.HealerClassLabel.Visible = false;
             // 
             // HealerClass
             // 
             this.HealerClass.DisplayMember = "Text";
             this.HealerClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.HealerClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HealerClass.ForeColor = System.Drawing.Color.Black;
             this.HealerClass.FormattingEnabled = true;
             this.HealerClass.ItemHeight = 16;
@@ -3302,6 +3608,7 @@ namespace nManager.Helpful.Forms
             this.HealerClass.Size = new System.Drawing.Size(153, 22);
             this.HealerClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.HealerClass.TabIndex = 31;
+            this.HealerClass.Visible = false;
             // 
             // HealerClassSettingsButton
             // 
@@ -3313,6 +3620,7 @@ namespace nManager.Helpful.Forms
             this.HealerClassSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.HealerClassSettingsButton.TabIndex = 30;
             this.HealerClassSettingsButton.Text = "Settings";
+            this.HealerClassSettingsButton.Visible = false;
             this.HealerClassSettingsButton.Click += new System.EventHandler(this.HealerClassSettingsButton_Click);
             // 
             // CombatClassResetSettingsButton
@@ -3325,6 +3633,7 @@ namespace nManager.Helpful.Forms
             this.CombatClassResetSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CombatClassResetSettingsButton.TabIndex = 29;
             this.CombatClassResetSettingsButton.Text = "Reset Settings";
+            this.CombatClassResetSettingsButton.Visible = false;
             this.CombatClassResetSettingsButton.Click += new System.EventHandler(this.CombatClassResetSettingsButton_Click);
             // 
             // labelX59
@@ -3333,6 +3642,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX59.BackgroundStyle.Class = "";
             this.labelX59.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX59.ForeColor = System.Drawing.Color.Black;
             this.labelX59.Location = new System.Drawing.Point(11, 99);
@@ -3341,13 +3651,15 @@ namespace nManager.Helpful.Forms
             this.labelX59.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX59.TabIndex = 28;
             this.labelX59.Text = "Use Spirit Healer";
+            this.labelX59.Visible = false;
             // 
             // UseSpiritHealer
             // 
-            this.UseSpiritHealer.BackColor = System.Drawing.Color.White;
+            this.UseSpiritHealer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.UseSpiritHealer.BackgroundStyle.Class = "";
             this.UseSpiritHealer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseSpiritHealer.ForeColor = System.Drawing.Color.Black;
             this.UseSpiritHealer.Location = new System.Drawing.Point(170, 99);
@@ -3355,6 +3667,7 @@ namespace nManager.Helpful.Forms
             this.UseSpiritHealer.Size = new System.Drawing.Size(63, 21);
             this.UseSpiritHealer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseSpiritHealer.TabIndex = 27;
+            this.UseSpiritHealer.Visible = false;
             // 
             // ActivateSkillsAutoTrainingLabel
             // 
@@ -3362,6 +3675,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.ActivateSkillsAutoTrainingLabel.BackgroundStyle.Class = "";
             this.ActivateSkillsAutoTrainingLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateSkillsAutoTrainingLabel.ForeColor = System.Drawing.Color.Black;
             this.ActivateSkillsAutoTrainingLabel.Location = new System.Drawing.Point(12, 155);
@@ -3370,13 +3684,15 @@ namespace nManager.Helpful.Forms
             this.ActivateSkillsAutoTrainingLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.ActivateSkillsAutoTrainingLabel.TabIndex = 24;
             this.ActivateSkillsAutoTrainingLabel.Text = "Activate Skill Auto Training";
+            this.ActivateSkillsAutoTrainingLabel.Visible = false;
             // 
             // ActivateSkillsAutoTraining
             // 
-            this.ActivateSkillsAutoTraining.BackColor = System.Drawing.Color.White;
+            this.ActivateSkillsAutoTraining.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.ActivateSkillsAutoTraining.BackgroundStyle.Class = "";
             this.ActivateSkillsAutoTraining.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ActivateSkillsAutoTraining.ForeColor = System.Drawing.Color.Black;
             this.ActivateSkillsAutoTraining.Location = new System.Drawing.Point(171, 155);
@@ -3384,6 +3700,7 @@ namespace nManager.Helpful.Forms
             this.ActivateSkillsAutoTraining.Size = new System.Drawing.Size(63, 21);
             this.ActivateSkillsAutoTraining.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateSkillsAutoTraining.TabIndex = 23;
+            this.ActivateSkillsAutoTraining.Visible = false;
             // 
             // labelX4
             // 
@@ -3391,6 +3708,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.ForeColor = System.Drawing.Color.Black;
             this.labelX4.Location = new System.Drawing.Point(289, 127);
@@ -3399,13 +3717,15 @@ namespace nManager.Helpful.Forms
             this.labelX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX4.TabIndex = 9;
             this.labelX4.Text = "Don\'t start fighting";
+            this.labelX4.Visible = false;
             // 
             // DontPullMonsters
             // 
-            this.DontPullMonsters.BackColor = System.Drawing.Color.White;
+            this.DontPullMonsters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.DontPullMonsters.BackgroundStyle.Class = "";
             this.DontPullMonsters.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.DontPullMonsters.ForeColor = System.Drawing.Color.Black;
             this.DontPullMonsters.Location = new System.Drawing.Point(448, 127);
@@ -3413,6 +3733,7 @@ namespace nManager.Helpful.Forms
             this.DontPullMonsters.Size = new System.Drawing.Size(63, 21);
             this.DontPullMonsters.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DontPullMonsters.TabIndex = 8;
+            this.DontPullMonsters.Visible = false;
             // 
             // labelX3
             // 
@@ -3420,6 +3741,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
             this.labelX3.Location = new System.Drawing.Point(289, 99);
@@ -3428,13 +3750,15 @@ namespace nManager.Helpful.Forms
             this.labelX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX3.TabIndex = 7;
             this.labelX3.Text = "Can attack units already in fight";
+            this.labelX3.Visible = false;
             // 
             // CanPullUnitsAlreadyInFight
             // 
-            this.CanPullUnitsAlreadyInFight.BackColor = System.Drawing.Color.White;
+            this.CanPullUnitsAlreadyInFight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.CanPullUnitsAlreadyInFight.BackgroundStyle.Class = "";
             this.CanPullUnitsAlreadyInFight.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.CanPullUnitsAlreadyInFight.ForeColor = System.Drawing.Color.Black;
             this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(448, 99);
@@ -3442,6 +3766,7 @@ namespace nManager.Helpful.Forms
             this.CanPullUnitsAlreadyInFight.Size = new System.Drawing.Size(63, 21);
             this.CanPullUnitsAlreadyInFight.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CanPullUnitsAlreadyInFight.TabIndex = 6;
+            this.CanPullUnitsAlreadyInFight.Visible = false;
             // 
             // labelX2
             // 
@@ -3449,6 +3774,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
             this.labelX2.Location = new System.Drawing.Point(11, 127);
@@ -3457,13 +3783,15 @@ namespace nManager.Helpful.Forms
             this.labelX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX2.TabIndex = 5;
             this.labelX2.Text = "Assign Talents";
+            this.labelX2.Visible = false;
             // 
             // AutoAssignTalents
             // 
-            this.AutoAssignTalents.BackColor = System.Drawing.Color.White;
+            this.AutoAssignTalents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
+            this.AutoAssignTalents.BackgroundStyle.Class = "";
             this.AutoAssignTalents.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AutoAssignTalents.ForeColor = System.Drawing.Color.Black;
             this.AutoAssignTalents.Location = new System.Drawing.Point(170, 128);
@@ -3471,6 +3799,7 @@ namespace nManager.Helpful.Forms
             this.AutoAssignTalents.Size = new System.Drawing.Size(63, 21);
             this.AutoAssignTalents.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AutoAssignTalents.TabIndex = 4;
+            this.AutoAssignTalents.Visible = false;
             // 
             // CombatClassLabel
             // 
@@ -3478,6 +3807,7 @@ namespace nManager.Helpful.Forms
             // 
             // 
             // 
+            this.CombatClassLabel.BackgroundStyle.Class = "";
             this.CombatClassLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.CombatClassLabel.ForeColor = System.Drawing.Color.Black;
             this.CombatClassLabel.Location = new System.Drawing.Point(11, 38);
@@ -3486,11 +3816,13 @@ namespace nManager.Helpful.Forms
             this.CombatClassLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.CombatClassLabel.TabIndex = 3;
             this.CombatClassLabel.Text = "Combat Class";
+            this.CombatClassLabel.Visible = false;
             // 
             // CombatClass
             // 
             this.CombatClass.DisplayMember = "Text";
             this.CombatClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.CombatClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CombatClass.ForeColor = System.Drawing.Color.Black;
             this.CombatClass.FormattingEnabled = true;
             this.CombatClass.ItemHeight = 16;
@@ -3499,6 +3831,7 @@ namespace nManager.Helpful.Forms
             this.CombatClass.Size = new System.Drawing.Size(153, 22);
             this.CombatClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CombatClass.TabIndex = 2;
+            this.CombatClass.Visible = false;
             // 
             // CombatClassSettingsButton
             // 
@@ -3510,6 +3843,7 @@ namespace nManager.Helpful.Forms
             this.CombatClassSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CombatClassSettingsButton.TabIndex = 1;
             this.CombatClassSettingsButton.Text = "Settings";
+            this.CombatClassSettingsButton.Visible = false;
             this.CombatClassSettingsButton.Click += new System.EventHandler(this.CombatClassSettingsButton_Click);
             // 
             // closeB
@@ -3566,6 +3900,7 @@ namespace nManager.Helpful.Forms
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GeneralSettings";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
