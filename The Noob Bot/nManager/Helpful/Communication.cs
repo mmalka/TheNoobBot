@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Net.Sockets;
 using System.Net;
+using System.Collections.Generic;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Helpers;
 
@@ -92,14 +93,16 @@ namespace nManager.Helpful
 
             byte[] message = new byte[4096];
             int bytesRead;
+            List<MimesisHelpers.MimesisEvent> eventList = new List<MimesisHelpers.MimesisEvent>();
 
             while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
             {
                 bytesRead = 0;
                 try
                 {
-                    // blocking call
-                    bytesRead = clientStream.Read(message, 0, 4096);
+                    // non blocking call
+                    if (clientStream.DataAvailable)
+                        bytesRead = clientStream.Read(message, 0, 4096);
                 }
                 catch
                 {
@@ -107,37 +110,53 @@ namespace nManager.Helpful
                     break;
                 }
 
-                if (bytesRead == 0)
+                if (bytesRead > 0)
                 {
-                    // client gone, end the thread
-                    break;
-                }
+                    // Do something with this message
+                    byte[] opCode = new byte[1];
 
-                // Do something with that message
-                byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
-                byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
-                byte[] opCode = new byte[1];
-
-                switch ((MimesisHelpers.opCodes) message[0])
-                {
-                    case MimesisHelpers.opCodes.QueryPosition:
-                        opCode[0] = (byte) MimesisHelpers.opCodes.ReplyPosition;
-                        clientStream.Write(opCode, 0, 1);
-                        clientStream.Write(bufferPos, 0, bufferPos.Length);
-                        break;
-                    case MimesisHelpers.opCodes.QueryGuid:
-                        opCode[0] = (byte) MimesisHelpers.opCodes.ReplyGuid;
-                        clientStream.Write(opCode, 0, 1);
-                        clientStream.Write(bufferGuid, 0, bufferGuid.Length);
-                        break;
-                    case MimesisHelpers.opCodes.Disconnect:
-                        tcpClient.Close();
-                        Logging.Write("Client diconnected");
-                        return;
-                    case MimesisHelpers.opCodes.QueryEvent:
-                        break;
+                    switch ((MimesisHelpers.opCodes)message[0])
+                    {
+                        case MimesisHelpers.opCodes.QueryPosition:
+                            opCode[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
+                            byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
+                            clientStream.Write(opCode, 0, 1);
+                            clientStream.Write(bufferPos, 0, bufferPos.Length);
+                            break;
+                        case MimesisHelpers.opCodes.QueryGuid:
+                            opCode[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
+                            byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
+                            clientStream.Write(opCode, 0, 1);
+                            clientStream.Write(bufferGuid, 0, bufferGuid.Length);
+                            break;
+                        case MimesisHelpers.opCodes.Disconnect:
+                            tcpClient.Close();
+                            Logging.Write("Client diconnected");
+                            return;
+                        case MimesisHelpers.opCodes.QueryEvent:
+                            opCode[0] = (byte)MimesisHelpers.opCodes.ReplyEvent;
+                            if (eventList.Count > 0)
+                            {
+                                MimesisHelpers.MimesisEvent mevent = eventList[0];
+                                byte[] bufferEvent = MimesisHelpers.StructToBytes(mevent);
+                                clientStream.Write(opCode, 0, 1);
+                                clientStream.Write(bufferEvent, 0, bufferEvent.Length);
+                                eventList.Remove(mevent);
+                            }
+                            else
+                            {
+                                MimesisHelpers.MimesisEvent emptyEv = new MimesisHelpers.MimesisEvent();
+                                emptyEv.eType = MimesisHelpers.eventType.none;
+                                byte[] bufferEvent = MimesisHelpers.StructToBytes(emptyEv);
+                                clientStream.Write(opCode, 0, 1);
+                                clientStream.Write(bufferEvent, 0, bufferEvent.Length);
+                            }
+                            break;
+                    }
+                    clientStream.Flush();
+                    Thread.Sleep(100);
+                    // We should code here event collecting (eg.: pickup quest, turnin quest, interact with object...)
                 }
-                clientStream.Flush();
             }
             clientStream.Dispose();
             tcpClient.Close();

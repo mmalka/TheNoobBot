@@ -84,7 +84,11 @@ namespace Mimesis.Bot
             }
             else
                 _master.Position = TargetPlayer.Position;
-            if (_master.Position.DistanceTo(ObjectManager.Me.Position) < 3.0f)
+            if (!_master.Position.IsValid)
+            {
+                return;
+            }
+            else if (_master.Position.DistanceTo(ObjectManager.Me.Position) < 3.0f)
             {
                 MovementManager.Chasing = false;
                 MovementManager.StopMove();
@@ -99,6 +103,7 @@ namespace Mimesis.Bot
                 MovementManager.Chasing = true;
                 uint baseAddress = MovementManager.FindTarget(ref _master, 3.0f);
             }
+            // now we should query for events
         }
 
 

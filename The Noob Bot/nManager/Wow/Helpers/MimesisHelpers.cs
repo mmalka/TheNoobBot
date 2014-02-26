@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
+using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
@@ -14,6 +15,7 @@ namespace nManager.Wow.Helpers
             QueryPosition = 1,
             ReplyPosition = 11,
             QueryEvent = 2,
+            ReplyEvent = 21,
             ReplyQuestPickup = 21,
             ReplyQuestTurnIn = 22,
             QueryGuid = 3,
@@ -29,10 +31,12 @@ namespace nManager.Wow.Helpers
             interactObject = 3,
         }
 
+        [Serializable]
         public struct MimesisEvent
         {
-            eventType Type;
-
+            public eventType eType;
+            public uint TargetId;
+            public uint QuestId;
         }
 
         public static T BytesToObject<T>(byte[] arrBytes)

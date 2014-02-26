@@ -100,6 +100,11 @@ namespace nManager.Wow.Class
             set { _type = value; }
         }
 
+        public bool IsValid
+        {
+            get { return (X != 0 || Y != 0 || Z != 0); }
+        }
+
         public override string ToString()
         {
             try
