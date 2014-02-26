@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
@@ -47,6 +48,32 @@ namespace nManager.Wow.Bot.States
                 if (_unit.IsValid && !_unit.IsDead && _unit.IsAlive && _unit.Health > 0)
                     if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated || _unit.Reaction == Reaction.Neutral)
                         return true;
+
+                // If in party, then search for the target if one member is in combat
+                if (Party.IsInGroup())
+                {
+                    List<WoWUnit> targets = new List<WoWUnit>();
+                    foreach (ulong playerGuid in Party.GetPartyPlayersGUID())
+                    {
+                        if (playerGuid != ObjectManager.ObjectManager.Me.Guid)
+                        {
+                            WoWUnit p = (WoWUnit)ObjectManager.ObjectManager.GetObjectByGuid(playerGuid);
+                            if (p.InCombat && p.Target != 0)
+                            {
+                                WoWUnit u = (WoWUnit)ObjectManager.ObjectManager.GetObjectByGuid(p.Target);
+                                if (u.IsValid && !u.IsDead && u.IsAlive && u.Health > 0)
+                                    if (u.Reaction == Reaction.Hostile || u.Reaction == Reaction.Hated || u.Reaction == Reaction.Neutral)
+                                        targets.Add(u);
+                            }
+                        }
+                    }
+                    // Now take the most occuring unit in the list
+                    if (targets.Count > 0)
+                    {
+                        _unit = targets.GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
+                        return true;
+                    }
+                }
                 _unit = new WoWUnit(0);
                 return false;
             }
