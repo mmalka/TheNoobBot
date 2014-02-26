@@ -111,14 +111,14 @@ namespace Quester.Profile
             }
         }
 
-        private void ProfileManagerAddGrouped_Click(object sender, EventArgs e)
+        private void ProfileManagerAddGrouped_Click()
         {
             GroupedProfileManager f = new GroupedProfileManager();
             f.ShowDialog();
             RefreshGroupedProfileList();
         }
 
-        private void DoProfileManagerEditGrouped(object sender, EventArgs e)
+        private void DoProfileManagerEditGrouped()
         {
             if (ExistingGroupedProfiles.Items.Count > 0)
             {
@@ -130,12 +130,12 @@ namespace Quester.Profile
             RefreshGroupedProfileList();
         }
 
-        private void ProfileManagerGroupedDocumentation_Click(object sender, EventArgs e)
+        private void ProfileManagerGroupedDocumentation_Click()
         {
             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=165&t=5983");
         }
 
-        private void ProfileManagerRemoveGrouped_Click(object sender, EventArgs e)
+        private void ProfileManagerRemoveGrouped_Click()
         {
             if (ExistingGroupedProfiles.Items.Count > 0)
             {
@@ -152,14 +152,14 @@ namespace Quester.Profile
             RefreshGroupedProfileList();
         }
 
-        private void ProfileManagerAdd_Click(object sender, EventArgs e)
+        private void ProfileManagerAdd_Click()
         {
             SimpleProfileManager f = new SimpleProfileManager();
             f.ShowDialog();
             RefreshProfileManagerForm();
         }
 
-        private void ProfileManageEdit_Click(object sender, EventArgs e)
+        private void DoProfileManagerEditSimple()
         {
             if (ExistingSimpleProfiles.Items.Count > 0)
             {
@@ -171,12 +171,12 @@ namespace Quester.Profile
             RefreshProfileManagerForm();
         }
 
-        private void ProfileManagerSimpleDocumentation_Click(object sender, EventArgs e)
+        private void ProfileManagerSimpleDocumentation_Click()
         {
             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=165&t=5986");
         }
 
-        private void ProfileManagerRemove_Click(object sender, EventArgs e)
+        private void ProfileManagerRemove_Click()
         {
             if (ExistingSimpleProfiles.Items.Count > 0)
             {

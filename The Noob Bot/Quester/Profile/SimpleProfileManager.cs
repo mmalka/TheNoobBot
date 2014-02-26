@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -49,11 +50,12 @@ namespace Quester.Profile
             CancelSimpleProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
         }
 
-        private void RefreshSimpleProfileList()
+        private void RefreshSimpleProfileList(int indexToSelect = 0)
         {
             try
             {
                 if (Profile == null) return;
+                ProfileQuestList.Items.Clear();
                 foreach (Quest quest in Profile.Quests)
                 {
                     string classSpecific = "";
@@ -72,7 +74,9 @@ namespace Quester.Profile
                     SaveSimpleProfile.Show();
                     DeleteSelectedQuestButton.Show();
                     EditSelectedQuestButton.Show();
-                    ProfileQuestList.SelectedIndex = 0;
+                    if (indexToSelect < ProfileQuestList.Items.Count)
+                        ProfileQuestList.SelectedIndex = indexToSelect;
+                    else ProfileQuestList.SelectedIndex = indexToSelect - 1;
                 }
                 else
                 {
@@ -134,12 +138,13 @@ namespace Quester.Profile
 
         private void DeleteSelectedQuest(object sender, EventArgs e)
         {
+            int SelectedIndex = ProfileQuestList.SelectedIndex; // We need to save the value before it is removed (-1).
             if (ProfileQuestList.Items.Count > 0 && ProfileQuestList.Items.Count == Profile.Quests.Count)
             {
-                ProfileQuestList.Items.Remove(ProfileQuestList.Items[ProfileQuestList.SelectedIndex]);
-                Profile.Quests.RemoveAt(ProfileQuestList.SelectedIndex);
+                ProfileQuestList.Items.Remove(ProfileQuestList.Items[SelectedIndex]);
+                Profile.Quests.RemoveAt(SelectedIndex);
             }
-            RefreshSimpleProfileList();
+            RefreshSimpleProfileList(SelectedIndex);
         }
     }
 }
