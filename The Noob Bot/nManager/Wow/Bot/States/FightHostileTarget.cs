@@ -57,8 +57,8 @@ namespace nManager.Wow.Bot.States
                     {
                         if (playerGuid != ObjectManager.ObjectManager.Me.Guid)
                         {
-                            WoWUnit p = new WoWUnit(ObjectManager.ObjectManager.GetObjectWoWPlayer(playerGuid).GetBaseAddress);
-                            if (p.IsValid && p.InCombat && p.Target != 0)
+                            WoWPlayer p = ObjectManager.ObjectManager.GetObjectWoWPlayer(playerGuid);
+                            if (p != null && p.InCombat && p.Target != 0)
                             {
                                 WoWUnit u = new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(p.Target).GetBaseAddress);
                                 if (u.IsValid && !u.IsDead && u.IsAlive && u.Health > 0)

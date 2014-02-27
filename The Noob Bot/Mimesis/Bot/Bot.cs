@@ -22,7 +22,8 @@ namespace Mimesis.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause { Priority = 8 });
+                Fsm.AddState(new Pause { Priority = 9 });
+                Fsm.AddState(new Resurrect { Priority = 8 });
                 Fsm.AddState(new Looting { Priority = 7 });
                 Fsm.AddState(new IsAttacked { Priority = 6 });
                 Fsm.AddState(new FightHostileTarget { Priority = 5 });
