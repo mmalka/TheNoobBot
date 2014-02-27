@@ -24,7 +24,7 @@ namespace Mimesis.Bot
 
         public override int Priority { get; set; }
 
-        private Timer _positionCheckTimer, _runTimer;
+        private Timer _positionCheckTimer, _runTimer, _eventQueryTimer;
         private Npc _master = null;
 
         public override bool NeedToRun
@@ -35,6 +35,7 @@ namespace Mimesis.Bot
                 {
                     _runTimer = new Timer(200);
                     _positionCheckTimer = new Timer(5000);
+                    _eventQueryTimer = new Timer(1000);
                 }
                 if (_master == null)
                 {
@@ -104,8 +105,11 @@ namespace Mimesis.Bot
                 uint baseAddress = MovementManager.FindTarget(ref _master, 3.0f);
             }
             // now we should query for events
+            if (_eventQueryTimer.IsReady)
+            {
+                MimesisClientCom.ProcessEvents();
+                _eventQueryTimer.Reset();
+            }
         }
-
-
     }
 }

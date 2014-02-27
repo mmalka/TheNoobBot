@@ -70,7 +70,7 @@ namespace nManager.Wow.Helpers
             {
                 lock ("LockEvent")
                 {
-                    if (!Products.Products.IsStarted) return;
+                    if (!Communication.RequiresHook && !Products.Products.IsStarted) return;
                     if (IsAttached(eventType) && !forceHook)
                     {
                         Logging.WriteError("The event " + eventType.ToString() + " is already hooked and parameter forceHook is passed with false.");
@@ -89,7 +89,7 @@ namespace nManager.Wow.Helpers
 
         private static void Hook()
         {
-            while (Products.Products.IsStarted)
+            while (Products.Products.IsStarted || Communication.RequiresHook)
             {
                 lock ("LockEvent")
                 {

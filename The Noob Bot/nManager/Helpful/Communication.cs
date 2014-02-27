@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Net.Sockets;
 using System.Net;
+using System.Linq;
 using System.Collections.Generic;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Helpers;
@@ -12,6 +13,16 @@ namespace nManager.Helpful
     {
         private static TcpListener _tcpListener;
         private static Thread _listenThread;
+        private static uint _eventSerialNumber;
+        private static List<int> _currentQuestList;
+        private static List<MimesisHelpers.MimesisEvent> _globalList;
+        private static Timer _cleanupTimer;
+        private static bool _requireHook;
+
+        public static bool RequiresHook
+        {
+            get { return _requireHook; }
+        }
 
         public static void Shutdown(int port = 6543)
         {
@@ -29,7 +40,11 @@ namespace nManager.Helpful
                 done = true;
             }
             if (done)
+            {
                 Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+                // We should unhook, but the code does not exist
+                _requireHook = false;
+            }
         }
 
         public static void StartListenOnPort(int port)
@@ -38,6 +53,19 @@ namespace nManager.Helpful
             {
                 _tcpListener.Start();
                 Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+                try
+                {
+                    _requireHook = true;
+                    EventsListener.HookEvent(Wow.Enums.WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+                }
+                catch
+                {
+                    Logging.WriteError("event QUEST_ACCEPTED already hooked");
+                }
+                _eventSerialNumber = 0;
+                _currentQuestList = Quest.GetLogQuestId();
+                _globalList = new List<MimesisHelpers.MimesisEvent>();
+                _cleanupTimer = new Timer(3 * 1000);
             }
             catch (SocketException)
             {
@@ -79,9 +107,45 @@ namespace nManager.Helpful
                 }
                 else
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(100);
+                    if (_cleanupTimer.IsReady) // Every 3 seconds, we drop the head event from the list
+                    {
+                        lock (_globalList)
+                        {
+                            if (_globalList.Count > 0)
+                            {
+                                MimesisHelpers.MimesisEvent evt = _globalList[0];
+                                _globalList.Remove(evt);
+                            }
+                        }
+                        _cleanupTimer.Reset();
+                    }
                 }
             }
+        }
+
+        /*
+         * We create a callback method which create a global list of events with a serial number
+        */
+        public static void EventQuestAccepted()
+        {
+            WoWUnit questGiver = (WoWUnit)ObjectManager.GetObjectByGuid(ObjectManager.Me.Target);
+            if (!questGiver.IsValid)
+                return;
+            _eventSerialNumber++;
+            // We create a global event based on the data we will gather
+            MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
+            evt.SerialNumber = _eventSerialNumber;
+            evt.eType = MimesisHelpers.eventType.pickupQuest;
+            evt.TargetId = questGiver.Entry;
+            // we diff current quest list vs old one
+            List<int> newQuestList = Quest.GetLogQuestId();
+            evt.QuestId = newQuestList.Where(q => !_currentQuestList.Any(q2 => q2 == q)).First();
+
+            // now add this new event to the globale list
+            lock(_globalList) _globalList.Add(evt);
+            _currentQuestList = newQuestList;
+            _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
         }
 
         private static void HandleClientComm(object client)
@@ -94,6 +158,7 @@ namespace nManager.Helpful
             byte[] message = new byte[4096];
             int bytesRead;
             List<MimesisHelpers.MimesisEvent> eventList = new List<MimesisHelpers.MimesisEvent>();
+            uint _currentSerialNumber = 0;
 
             while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
             {
@@ -156,6 +221,24 @@ namespace nManager.Helpful
                     clientStream.Flush();
                     Thread.Sleep(100);
                     // We should code here event collecting (eg.: pickup quest, turnin quest, interact with object...)
+                    /*
+                     * We loop throu the global list which is out of this thread, if an event has an higher serial number
+                     * than the last we know localy, we copy the event to the local list in this thread.
+                    */
+                    uint highestSerialNumber = 0;
+                    lock (_globalList)
+                    {
+                        foreach (MimesisHelpers.MimesisEvent evt in _globalList)
+                        {
+                            if (evt.SerialNumber > _currentSerialNumber)
+                            {
+                                eventList.Add(evt);
+                                if (evt.SerialNumber > highestSerialNumber) // Useless most probably because the list should be sorted
+                                    highestSerialNumber = evt.SerialNumber;
+                            }
+                        }
+                    }
+                    _currentSerialNumber = highestSerialNumber;
                 }
             }
             clientStream.Dispose();

@@ -2,9 +2,11 @@
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.Collections.Generic;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Helpful;
+using nManager.Wow.ObjectManager;
 
 namespace Mimesis.Bot
 {
@@ -95,6 +97,49 @@ namespace Mimesis.Bot
             if ((MimesisHelpers.opCodes)opCode[0] == MimesisHelpers.opCodes.ReplyPosition)
                 return MimesisHelpers.BytesToObject<Point>(buffer);
             return new Point();
+        }
+
+        public static void ProcessEvents()
+        {
+            byte[] opCode = new byte[1];
+            byte[] buffer = new byte[4096];
+            opCode[0] = (byte)MimesisHelpers.opCodes.QueryEvent;
+
+            NetworkStream clientStream = client.GetStream();
+            clientStream.Write(opCode, 0, 1);
+            clientStream.Flush();
+
+            // Now wait for an answer
+            try
+            {
+                int bytesRead = clientStream.Read(opCode, 0, 1);
+                bytesRead += clientStream.Read(buffer, 0, 4096);
+            }
+            catch
+            {
+                return;
+            }
+            if ((MimesisHelpers.opCodes)opCode[0] == MimesisHelpers.opCodes.ReplyEvent)
+            {
+                MimesisHelpers.MimesisEvent evt = MimesisHelpers.BytesToStruct<MimesisHelpers.MimesisEvent>(buffer);
+                switch (evt.eType)
+                {
+                    case MimesisHelpers.eventType.pickupQuest:
+                        List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.TargetId);
+                        if (listU.Count > 0)
+                        {
+                            WoWUnit u = listU[0];
+                            Npc quester = new Npc();
+                            quester.Entry = evt.TargetId;
+                            quester.Position = u.Position;
+                            quester.Name = u.Name;
+
+                            MovementManager.StopMove();
+                            Quest.QuestPickUp(ref quester, "not implemented", evt.QuestId);
+                        }
+                        break;
+                }
+            }
         }
     }
 }

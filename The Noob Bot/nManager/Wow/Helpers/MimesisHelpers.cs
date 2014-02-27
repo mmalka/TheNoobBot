@@ -34,9 +34,10 @@ namespace nManager.Wow.Helpers
         [Serializable]
         public struct MimesisEvent
         {
+            public uint SerialNumber;
             public eventType eType;
-            public uint TargetId;
-            public uint QuestId;
+            public int TargetId;
+            public int QuestId;
         }
 
         public static T BytesToObject<T>(byte[] arrBytes)
