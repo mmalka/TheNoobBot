@@ -153,7 +153,7 @@ namespace nManager.Helpful
             }
             // now add this new event to the globale list
             lock(_globalList) _globalList.Add(evt);
-            _currentQuestList = newQuestList;
+            _currentQuestList.Add(evt.QuestId);
             _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
         }
 
