@@ -15,9 +15,8 @@ namespace Mimesis.Bot
 
         public static bool Connect()
         {
-            Logging.Write("Connecting to " + MimesisSettings.CurrentSetting.MasterIPAddress + " ...");
-            if (client == null)
-                client = new TcpClient();
+            Logging.Write("Connecting to " + MimesisSettings.CurrentSetting.MasterIPAddress + ":" + MimesisSettings.CurrentSetting.MasterIPPort + " ...");
+            client = new TcpClient();
             
             if (serviceEndPoint == null)
                 serviceEndPoint = new IPEndPoint(IPAddress.Parse(MimesisSettings.CurrentSetting.MasterIPAddress), MimesisSettings.CurrentSetting.MasterIPPort);
