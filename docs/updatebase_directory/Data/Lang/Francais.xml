@@ -456,7 +456,7 @@
     </Translation>
     <Translation>
       <Id>Settings_Fisherbot</Id>
-      <Text>Configuration de Fisherbot</Text>
+      <Text>Paramètres du Fisherbot</Text>
     </Translation>
     <Translation>
       <Id>Please_select_an_profile_or_disable_School_Fish_option</Id>
@@ -1168,7 +1168,7 @@
     </Translation>
     <Translation>
       <Id>Settings_Battlegrounder</Id>
-      <Text>Battlegrounder Settings</Text>
+      <Text>Paramètres du Battlegrounder</Text>
     </Translation>
     <Translation>
       <Id>AlteracValley</Id>
@@ -1621,6 +1621,10 @@
     <Translation>
       <Id>NoSimpleProfileToEdit</Id>
       <Text>There is no Simple Profile to edit</Text>
+    </Translation>
+    <Translation>
+      <Id>AutoCloseChatFrame</Id>
+      <Text>Auto Close Chat</Text>
     </Translation>
     <Translation>
       <Id>Settings_Mimesis</Id>

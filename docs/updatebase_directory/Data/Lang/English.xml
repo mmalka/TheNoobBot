@@ -1622,6 +1622,10 @@
       <Text>There is no Simple Profile to edit</Text>
     </Translation>
     <Translation>
+      <Id>AutoCloseChatFrame</Id>
+      <Text>Auto Close Chat</Text>
+    </Translation>
+    <Translation>
       <Id>Settings_Mimesis</Id>
       <Text>Settings Mimesis</Text>
     </Translation>

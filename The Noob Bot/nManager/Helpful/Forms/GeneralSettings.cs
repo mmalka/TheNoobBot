@@ -274,22 +274,24 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX73);
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
             SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
-            ActivateAlwaysOnTopFeature.Text = Translate.Get(Translate.Id.AlwaysOnTop);
-            SetToolTypeIfNeeded(ActivateAlwaysOnTopFeature);
+            AlwaysOnTopFeatureLabel.Text = Translate.Get(Translate.Id.AlwaysOnTop);
+            SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
             SendMailWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SendMailWhenLessThanXSlotLeft);
             SetToolTypeIfNeeded(SendMailWhenLessThanXSlotLeftLabel);
             SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
-            SetToolTypeIfNeeded(SellItemsWhenLessThanXSlotLeftLabel); 
+            SetToolTypeIfNeeded(SellItemsWhenLessThanXSlotLeftLabel);
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
             SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel); 
             UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
-            SetToolTypeIfNeeded(UseHearthstoneLabel); 
+            SetToolTypeIfNeeded(UseHearthstoneLabel);
             UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
             SetToolTypeIfNeeded(UseMollELabel);
             UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
             SetToolTypeIfNeeded(UseRobotLabel);
             MimesisBroadcasterSettingsPanel.TitleText = Translate.Get(Translate.Id.MimesisBroadcasterSettings);
             SetToolTypeIfNeeded(MimesisBroadcasterSettingsPanel);
+            AutoCloseChatFrameLabel.Text = Translate.Get(Translate.Id.AutoCloseChatFrame);
+            SetToolTypeIfNeeded(AutoCloseChatFrameLabel);
             BroadcastingPortDefaultLabel.Text = Translate.Get(Translate.Id.BroadcastingPortDefault);
             SetToolTypeIfNeeded(BroadcastingPortDefaultLabel);
             BroadcastingIPWanLabel.Text = Translate.Get(Translate.Id.BroadcastingIPWan);
@@ -398,6 +400,8 @@ namespace nManager.Helpful.Forms
             AutoAssignTalents.OnText = onText;
             ActivateBroadcastingMimesis.OffText = offText;
             ActivateBroadcastingMimesis.OnText = onText;
+            AutoCloseChatFrame.OffText = offText;
+            AutoCloseChatFrame.OnText = onText;
         }
 
         private void SaveSetting()
@@ -506,6 +510,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
+                nManagerSetting.CurrentSetting.AutoCloseChatFrame = AutoCloseChatFrame.Value;
                 int oldPort = nManagerSetting.CurrentSetting.BroadcastingPort;
                 bool oldStatus = nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis;
                 nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
@@ -627,6 +632,7 @@ namespace nManager.Helpful.Forms
                 ActiveStopTNBIfReceivedAtMostXWhispers.Value = managerSetting.ActiveStopTNBIfReceivedAtMostXWhispers;
                 UseMollE.Value = managerSetting.UseMollE;
                 UseRobot.Value = managerSetting.UseRobot;
+                AutoCloseChatFrame.Value = managerSetting.AutoCloseChatFrame;
                 ActivateBroadcastingMimesis.Value = managerSetting.ActivateBroadcastingMimesis;
                 BroadcastingPort.Value = managerSetting.BroadcastingPort;
             }
