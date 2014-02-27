@@ -475,7 +475,7 @@ namespace nManager
             CantSaveEmptySimpleNew,
             CantSaveEmptySimpleExisting,
             NoSimpleProfileToEdit,
-            AutoCloseChatFrame
+            AutoCloseChatFrame,
             Settings_Mimesis,
             MasterBotIPAddress,
             MasterBotIPPort,

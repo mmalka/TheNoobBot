@@ -26,14 +26,6 @@ namespace The_Noob_Bot
                 "LEConnect"
             };
 
-        private static readonly Timer CachedAuthServerTimer = new Timer(300); // Re-try to connect to the prioritized AuthServers every 5 minutes.
-        private static readonly string[] FailOversAddress = new[] {"http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
-
-        private static string GetWorkingAuthServerAddress
-                    CachedAuthServerTimer.Reset();
-                    return failOverAddress;
-
-        private static string GetAuthScriptLink
         internal static int StartTime;
 
         private static string _ip;
