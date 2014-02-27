@@ -1088,6 +1088,24 @@ namespace nManager.Helpful
                 Logging.WriteError("CheckInventoryForLatestLoot(int eventFireCount): " + e);
             }
         }
+        private static int _oldQuestEventFireCount;
+
+        public static void QuestAcceptedEvents(int eventFireCount)
+        {
+            try
+            {
+                if (_oldQuestEventFireCount == eventFireCount)
+                    return;
+                _oldQuestEventFireCount = eventFireCount;
+                
+                // We just accepted a new quest, what to do now ?
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("QuestAcceptedEvents(int eventFireCount): " + e);
+            }
+        }
+       
         #region FailOver System
 
         private static string _cachedAuthServerAddress;

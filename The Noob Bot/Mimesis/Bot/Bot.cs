@@ -2,6 +2,7 @@ using System;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 
 namespace Mimesis.Bot
@@ -18,6 +19,9 @@ namespace Mimesis.Bot
                     return false;
                 // Load CC:
                 CombatClass.LoadCombatClass();
+
+                // Hook the events we wants
+                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callBack => Others.QuestAcceptedEvents((int)callBack));
 
                 // FSM
                 Fsm.States.Clear();
