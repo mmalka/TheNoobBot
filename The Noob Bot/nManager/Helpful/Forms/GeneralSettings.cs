@@ -266,14 +266,22 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX73);
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
             SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
-            ActivateAlwaysOnTopFeature.Text = Translate.Get(Translate.Id.AlwaysOnTop);
-            SendMailWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SendMailWhenLessThanXSlotLeft);
-            SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
-            RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
-            UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
-            UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
-            UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
+            AlwaysOnTopFeatureLabel.Text = Translate.Get(Translate.Id.AlwaysOnTop);
             SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
+            SendMailWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SendMailWhenLessThanXSlotLeft);
+            SetToolTypeIfNeeded(SendMailWhenLessThanXSlotLeftLabel);
+            SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
+            SetToolTypeIfNeeded(SellItemsWhenLessThanXSlotLeftLabel);
+            RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
+            SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel);
+            UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
+            SetToolTypeIfNeeded(UseHearthstoneLabel);
+            UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
+            SetToolTypeIfNeeded(UseMollELabel);
+            UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
+            SetToolTypeIfNeeded(UseRobotLabel);
+            AutoCloseChatFrameLabel.Text = Translate.Get(Translate.Id.AutoCloseChatFrame);
+            SetToolTypeIfNeeded(AutoCloseChatFrameLabel);
             ActivateAlwaysOnTopFeature.OffText = offText;
             ActivateAlwaysOnTopFeature.OnText = onText;
             AllowTNBToSetYourMaxFps.OffText = offText;
@@ -368,6 +376,8 @@ namespace nManager.Helpful.Forms
             CanPullUnitsAlreadyInFight.OnText = onText;
             AutoAssignTalents.OffText = offText;
             AutoAssignTalents.OnText = onText;
+            AutoCloseChatFrame.OffText = offText;
+            AutoCloseChatFrame.OnText = onText;
         }
 
         private void SaveSetting()
@@ -476,6 +486,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
+                nManagerSetting.CurrentSetting.AutoCloseChatFrame = AutoCloseChatFrame.Value;
                 nManagerSetting.CurrentSetting.Save();
                 MountTask.SettingsHasChanged = true;
             }
@@ -584,6 +595,7 @@ namespace nManager.Helpful.Forms
                 ActiveStopTNBIfReceivedAtMostXWhispers.Value = managerSetting.ActiveStopTNBIfReceivedAtMostXWhispers;
                 UseMollE.Value = managerSetting.UseMollE;
                 UseRobot.Value = managerSetting.UseRobot;
+                AutoCloseChatFrame.Value = managerSetting.AutoCloseChatFrame;
             }
             catch (Exception ex)
             {

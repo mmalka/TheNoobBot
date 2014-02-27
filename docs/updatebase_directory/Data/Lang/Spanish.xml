@@ -1621,5 +1621,9 @@
       <Id>NoSimpleProfileToEdit</Id>
       <Text>There is no Simple Profile to edit</Text>
     </Translation>
+    <Translation>
+      <Id>AutoCloseChatFrame</Id>
+      <Text>Auto Close Chat</Text>
+    </Translation>
   </Translations>
 </Language>

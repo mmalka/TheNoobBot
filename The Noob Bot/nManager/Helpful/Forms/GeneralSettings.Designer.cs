@@ -231,6 +231,8 @@ namespace nManager.Helpful.Forms
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.AutoCloseChatFrameLabel = new DevComponents.DotNetBar.LabelX();
+            this.AutoCloseChatFrame = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.panel1.SuspendLayout();
             this.AdvancedSettingsPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).BeginInit();
@@ -287,6 +289,8 @@ namespace nManager.Helpful.Forms
             // 
             this.AdvancedSettingsPanelName.CanvasColor = System.Drawing.SystemColors.Control;
             this.AdvancedSettingsPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrameLabel);
+            this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrame);
             this.AdvancedSettingsPanelName.Controls.Add(this.AlwaysOnTopFeatureLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.ActivateAlwaysOnTopFeature);
             this.AdvancedSettingsPanelName.Controls.Add(this.labelX73);
@@ -297,7 +301,7 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.Controls.Add(this.ActivatePathFindingFeature);
             this.AdvancedSettingsPanelName.Dock = System.Windows.Forms.DockStyle.Top;
             this.AdvancedSettingsPanelName.Expanded = false;
-            this.AdvancedSettingsPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 208, 560, 155);
+            this.AdvancedSettingsPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 200, 538, 155);
             this.AdvancedSettingsPanelName.ExpandOnTitleClick = true;
             this.AdvancedSettingsPanelName.Location = new System.Drawing.Point(0, 200);
             this.AdvancedSettingsPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -991,7 +995,7 @@ namespace nManager.Helpful.Forms
             this.MailsManagementPanelName.Controls.Add(this.labelX58);
             this.MailsManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
             this.MailsManagementPanelName.Expanded = false;
-            this.MailsManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 36, 543, 346);
+            this.MailsManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 150, 521, 346);
             this.MailsManagementPanelName.ExpandOnTitleClick = true;
             this.MailsManagementPanelName.Location = new System.Drawing.Point(0, 150);
             this.MailsManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -3554,6 +3558,35 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.Text = "Save and Close";
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
             // 
+            // AutoCloseChatFrameLabel
+            // 
+            this.AutoCloseChatFrameLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.AutoCloseChatFrameLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AutoCloseChatFrameLabel.ForeColor = System.Drawing.Color.Black;
+            this.AutoCloseChatFrameLabel.Location = new System.Drawing.Point(289, 88);
+            this.AutoCloseChatFrameLabel.Name = "AutoCloseChatFrameLabel";
+            this.AutoCloseChatFrameLabel.Size = new System.Drawing.Size(154, 22);
+            this.AutoCloseChatFrameLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.AutoCloseChatFrameLabel.TabIndex = 32;
+            this.AutoCloseChatFrameLabel.Text = "Auto Close Chat";
+            // 
+            // AutoCloseChatFrame
+            // 
+            this.AutoCloseChatFrame.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.AutoCloseChatFrame.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AutoCloseChatFrame.ForeColor = System.Drawing.Color.Black;
+            this.AutoCloseChatFrame.Location = new System.Drawing.Point(448, 88);
+            this.AutoCloseChatFrame.Name = "AutoCloseChatFrame";
+            this.AutoCloseChatFrame.Size = new System.Drawing.Size(63, 21);
+            this.AutoCloseChatFrame.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.AutoCloseChatFrame.TabIndex = 31;
+            // 
             // GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3807,5 +3840,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton BecomeApprenticeIfNeededByProduct;
         private DevComponents.DotNetBar.LabelX ActivateLootStatisticsLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateLootStatistics;
+        private DevComponents.DotNetBar.LabelX AutoCloseChatFrameLabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton AutoCloseChatFrame;
     }
 }

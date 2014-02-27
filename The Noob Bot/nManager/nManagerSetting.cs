@@ -194,7 +194,7 @@ namespace nManager
         public bool OnlyTrainCurrentlyUsedSkills = true;
         public bool TrainMountingCapacity = true;
         public bool OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum = true;
-        public bool BecomeApprenticeIfNeededByProduct = true;
+        public bool BecomeApprenticeIfNeededByProduct = false;
         public bool BecomeApprenticeOfSecondarySkillsWhileQuesting = false;
         public bool CanPullUnitsAlreadyInFight;
         public bool DontPullMonsters;
@@ -282,5 +282,6 @@ namespace nManager
         public bool ActiveStopTNBIfReceivedAtMostXWhispers;
         public bool UseMollE;
         public bool UseRobot;
+        public bool AutoCloseChatFrame = true;
     }
 }

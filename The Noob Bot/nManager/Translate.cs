@@ -474,7 +474,8 @@ namespace nManager
             SimpleQuestProfileFile,
             CantSaveEmptySimpleNew,
             CantSaveEmptySimpleExisting,
-            NoSimpleProfileToEdit
+            NoSimpleProfileToEdit,
+            AutoCloseChatFrame
         };
 
         [Serializable]

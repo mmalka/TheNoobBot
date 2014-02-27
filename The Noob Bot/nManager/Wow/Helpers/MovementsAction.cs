@@ -9,7 +9,8 @@ namespace nManager.Wow.Helpers
 
         public static void CloseChatFrameEditBox()
         {
-            Lua.LuaDoString("ChatFrame1EditBox:Hide();");
+            if (nManagerSetting.CurrentSetting.AutoCloseChatFrame)
+                Lua.LuaDoString("ChatFrame1EditBox:Hide();");
         }
 
         public static void Jump()
