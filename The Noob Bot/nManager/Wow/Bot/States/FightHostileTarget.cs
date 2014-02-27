@@ -60,7 +60,10 @@ namespace nManager.Wow.Bot.States
                             WoWPlayer p = ObjectManager.ObjectManager.GetObjectWoWPlayer(playerGuid);
                             if (p != null && p.InCombat && p.Target != 0)
                             {
-                                WoWUnit u = new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(p.Target).GetBaseAddress);
+                                WoWObject o = ObjectManager.ObjectManager.GetObjectByGuid(p.Target);
+                                if (o == null)
+                                    break;
+                                WoWUnit u = new WoWUnit(o.GetBaseAddress);
                                 if (u.IsValid && !u.IsDead && u.IsAlive && u.Health > 0)
                                     if (u.Reaction == Reaction.Hostile || u.Reaction == Reaction.Hated || u.Reaction == Reaction.Neutral)
                                         targets.Add(u);
