@@ -129,7 +129,10 @@ namespace nManager.Helpful
         */
         public static void EventQuestAccepted()
         {
-            WoWUnit questGiver = (WoWUnit)ObjectManager.GetObjectByGuid(ObjectManager.Me.Target);
+            WoWObject questGiverO = ObjectManager.GetObjectByGuid(ObjectManager.Me.Target);
+            if (questGiverO == null || !questGiverO.IsValid)
+                return;
+            WoWUnit questGiver = new WoWUnit(questGiverO.GetBaseAddress);
             if (!questGiver.IsValid)
                 return;
             _eventSerialNumber++;
@@ -140,8 +143,14 @@ namespace nManager.Helpful
             evt.TargetId = questGiver.Entry;
             // we diff current quest list vs old one
             List<int> newQuestList = Quest.GetLogQuestId();
-            evt.QuestId = newQuestList.Where(q => !_currentQuestList.Any(q2 => q2 == q)).First();
-
+            foreach (var quest in newQuestList)
+            {
+                if (!_currentQuestList.Contains(quest))
+                {
+                    evt.QuestId = quest;
+                    break;
+                }
+            }
             // now add this new event to the globale list
             lock(_globalList) _globalList.Add(evt);
             _currentQuestList = newQuestList;
