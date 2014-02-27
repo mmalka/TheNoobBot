@@ -133,9 +133,6 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(500); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
                         _callBack(GetEventFireCount(eventType));
                         break;
-                    case WoWEventsType.QUEST_ACCEPTED:
-                        _callBack(GetEventFireCount(eventType)); // Allow to pass the count in the function.
-                        break;
                     default:
                         _callBack(null);
                         break;
