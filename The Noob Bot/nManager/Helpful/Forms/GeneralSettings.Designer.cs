@@ -44,6 +44,8 @@ namespace nManager.Helpful.Forms
             this.BroadcastingIPLocalLabel = new DevComponents.DotNetBar.LabelX();
             this.BroadcastingPortLabel = new DevComponents.DotNetBar.LabelX();
             this.AdvancedSettingsPanelName = new DevComponents.DotNetBar.ExpandablePanel();
+            this.AutoCloseChatFrameLabel = new DevComponents.DotNetBar.LabelX();
+            this.AutoCloseChatFrame = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.AlwaysOnTopFeatureLabel = new DevComponents.DotNetBar.LabelX();
             this.ActivateAlwaysOnTopFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX73 = new DevComponents.DotNetBar.LabelX();
@@ -244,8 +246,6 @@ namespace nManager.Helpful.Forms
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.AutoCloseChatFrameLabel = new DevComponents.DotNetBar.LabelX();
-            this.AutoCloseChatFrame = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.panel1.SuspendLayout();
             this.MimesisBroadcasterSettingsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BroadcastingPort)).BeginInit();
@@ -318,7 +318,7 @@ namespace nManager.Helpful.Forms
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingPortLabel);
             this.MimesisBroadcasterSettingsPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.MimesisBroadcasterSettingsPanel.Expanded = false;
-            this.MimesisBroadcasterSettingsPanel.ExpandedBounds = new System.Drawing.Rectangle(0, 225, 521, 184);
+            this.MimesisBroadcasterSettingsPanel.ExpandedBounds = new System.Drawing.Rectangle(0, 201, 521, 184);
             this.MimesisBroadcasterSettingsPanel.ExpandOnTitleClick = true;
             this.MimesisBroadcasterSettingsPanel.Location = new System.Drawing.Point(0, 225);
             this.MimesisBroadcasterSettingsPanel.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -337,15 +337,20 @@ namespace nManager.Helpful.Forms
             this.MimesisBroadcasterSettingsPanel.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
             this.MimesisBroadcasterSettingsPanel.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.MimesisBroadcasterSettingsPanel.TitleStyle.GradientAngle = 90;
-            this.MimesisBroadcasterSettingsPanel.TitleText = "Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with this session)";
+            this.MimesisBroadcasterSettingsPanel.TitleText = "Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with t" +
+                "his session)";
             // 
             // BroadcastingPort
             // 
+            // 
+            // 
+            // 
+            this.BroadcastingPort.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BroadcastingPort.Location = new System.Drawing.Point(160, 58);
+            this.BroadcastingPort.MaxValue = 65536;
+            this.BroadcastingPort.MinValue = 1;
             this.BroadcastingPort.Name = "BroadcastingPort";
             this.BroadcastingPort.Size = new System.Drawing.Size(63, 22);
-            this.BroadcastingPort.MinValue = 1;
-            this.BroadcastingPort.MaxValue = 65536;
             this.BroadcastingPort.TabIndex = 32;
             this.BroadcastingPort.Value = 6543;
             this.BroadcastingPort.Visible = false;
@@ -525,7 +530,7 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.Controls.Add(this.ActivatePathFindingFeature);
             this.AdvancedSettingsPanelName.Dock = System.Windows.Forms.DockStyle.Top;
             this.AdvancedSettingsPanelName.Expanded = false;
-            this.AdvancedSettingsPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 200, 538, 155);
+            this.AdvancedSettingsPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 176, 521, 155);
             this.AdvancedSettingsPanelName.ExpandOnTitleClick = true;
             this.AdvancedSettingsPanelName.Location = new System.Drawing.Point(0, 200);
             this.AdvancedSettingsPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -545,6 +550,35 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.AdvancedSettingsPanelName.TitleStyle.GradientAngle = 90;
             this.AdvancedSettingsPanelName.TitleText = "Advanced Settings";
+            // 
+            // AutoCloseChatFrameLabel
+            // 
+            this.AutoCloseChatFrameLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.AutoCloseChatFrameLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AutoCloseChatFrameLabel.ForeColor = System.Drawing.Color.Black;
+            this.AutoCloseChatFrameLabel.Location = new System.Drawing.Point(289, 88);
+            this.AutoCloseChatFrameLabel.Name = "AutoCloseChatFrameLabel";
+            this.AutoCloseChatFrameLabel.Size = new System.Drawing.Size(154, 22);
+            this.AutoCloseChatFrameLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.AutoCloseChatFrameLabel.TabIndex = 32;
+            this.AutoCloseChatFrameLabel.Text = "Auto Close Chat";
+            // 
+            // AutoCloseChatFrame
+            // 
+            this.AutoCloseChatFrame.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.AutoCloseChatFrame.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AutoCloseChatFrame.ForeColor = System.Drawing.Color.Black;
+            this.AutoCloseChatFrame.Location = new System.Drawing.Point(448, 88);
+            this.AutoCloseChatFrame.Name = "AutoCloseChatFrame";
+            this.AutoCloseChatFrame.Size = new System.Drawing.Size(63, 21);
+            this.AutoCloseChatFrame.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.AutoCloseChatFrame.TabIndex = 31;
             // 
             // AlwaysOnTopFeatureLabel
             // 
@@ -3968,35 +4002,6 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.TabIndex = 4;
             this.saveAndCloseB.Text = "Save and Close";
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
-            // 
-            // AutoCloseChatFrameLabel
-            // 
-            this.AutoCloseChatFrameLabel.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.AutoCloseChatFrameLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.AutoCloseChatFrameLabel.ForeColor = System.Drawing.Color.Black;
-            this.AutoCloseChatFrameLabel.Location = new System.Drawing.Point(289, 88);
-            this.AutoCloseChatFrameLabel.Name = "AutoCloseChatFrameLabel";
-            this.AutoCloseChatFrameLabel.Size = new System.Drawing.Size(154, 22);
-            this.AutoCloseChatFrameLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
-            this.AutoCloseChatFrameLabel.TabIndex = 32;
-            this.AutoCloseChatFrameLabel.Text = "Auto Close Chat";
-            // 
-            // AutoCloseChatFrame
-            // 
-            this.AutoCloseChatFrame.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.AutoCloseChatFrame.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.AutoCloseChatFrame.ForeColor = System.Drawing.Color.Black;
-            this.AutoCloseChatFrame.Location = new System.Drawing.Point(448, 88);
-            this.AutoCloseChatFrame.Name = "AutoCloseChatFrame";
-            this.AutoCloseChatFrame.Size = new System.Drawing.Size(63, 21);
-            this.AutoCloseChatFrame.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.AutoCloseChatFrame.TabIndex = 31;
             // 
             // GeneralSettings
             // 
