@@ -512,7 +512,7 @@
     </Translation>
     <Translation>
       <Id>Npc_type_list</Id>
-      <Text>Obtenir une liste des type de NPC</Text>
+      <Text>Obtenir une liste des type de PNJ</Text>
     </Translation>
     <Translation>
       <Id>Get_infomations_by_name</Id>
@@ -1596,15 +1596,15 @@
     </Translation>
     <Translation>
       <Id>AddNewQuest</Id>
-      <Text>Add a new quest</Text>
+      <Text>Add a new Quest</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuest</Id>
-      <Text>Edit the selected quest</Text>
+      <Text>Edit the selected Quest</Text>
     </Translation>
     <Translation>
       <Id>DeleteSelectedQuest</Id>
-      <Text>Delete the selected quest</Text>
+      <Text>Delete the selected Quest</Text>
     </Translation>
     <Translation>
       <Id>SimpleQuestProfileFile</Id>
@@ -1672,15 +1672,15 @@
     </Translation>
     <Translation>
       <Id>AddNewQuester</Id>
-      <Text>Add a new NPC</Text>
+      <Text>Add a new PNJ</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuester</Id>
-      <Text>Edit the selected NPC</Text>
+      <Text>Edit the selected PNJ</Text>
     </Translation>
     <Translation>
       <Id>DeleteSelectedQuester</Id>
-      <Text>Delete the selected NPC</Text>
+      <Text>Delete the selected PNJ</Text>
     </Translation>
   </Translations>
 </Language>
