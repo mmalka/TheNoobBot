@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -62,6 +64,30 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("IsAttached(string id, MethodDelegate method): " + arg);
             }
             return false;
+        }
+
+        private static void UnHookEvent(WoWEventsType eventType)
+        {
+            try
+            {
+                foreach (HookedEventInfo c in _hookedEvents)
+                {
+                    if (c.EventType != eventType) continue;
+                    var thread = Process.GetCurrentProcess().Threads.Cast<Thread>().Single(delegate(Thread t) { return t.Name == "Hook of Event: " + eventType; });
+                    if (thread != null && thread.IsAlive)
+                    {
+                        thread.Abort();
+                    }
+                    _hookedEvents.Remove(c);
+                    Logging.WriteDebug("The event " + eventType + " has been unhooked");
+                    break;
+                }
+                Logging.WriteError("UnHookEvent(WoWEventsType eventType): The event " + eventType + " is not attached");
+            }
+            catch (Exception arg)
+            {
+                Logging.WriteError("UnHookEvent(WoWEventsType eventType): " + arg);
+            }
         }
 
         public static void HookEvent(WoWEventsType eventType, CallBack method, bool forceHook = false)
