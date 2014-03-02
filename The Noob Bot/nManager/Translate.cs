@@ -485,7 +485,11 @@ namespace nManager
             BroadcastingIPLan,
             ActivateBroadcastingMimesis,
             BroadcastingIPLocal,
-            BroadcastingPort
+            BroadcastingPort,
+            ProfileQuesterList,
+            AddNewQuester,
+            EditSelectedQuester,
+            DeleteSelectedQuester
         };
 
         [Serializable]
