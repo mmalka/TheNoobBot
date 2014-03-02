@@ -46,12 +46,10 @@ namespace Quester.Profile
             EditSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuest);
             DeleteSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuest);
             ProfileQuestListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ProfileQuestList);
-            /*
             AddNewQuesterButton.Text = nManager.Translate.Get(nManager.Translate.Id.AddNewQuester);
             EditSelectedQuesterButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuester);
             DeleteSelectedQuesterButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuester);
-            ProfileQuesterListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ProfileQuesterList);
-            */
+            ProfileQuestersListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ProfileQuesterList);
             SaveSimpleProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAsAndClose);
             SaveSimpleProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose);
             CancelSimpleProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
