@@ -213,7 +213,7 @@ namespace Quester.Profile
 
         private void DeleteSelectedQuester(object sender, EventArgs e)
         {
-            int selectedIndex = ProfileQuestList.SelectedIndex;
+            int selectedIndex = ProfileQuesterList.SelectedIndex;
             if (ProfileQuesterList.Items.Count > 0 && ProfileQuesterList.Items.Count == Profile.Questers.Count)
             {
                 ProfileQuesterList.Items.Remove(ProfileQuesterList.Items[selectedIndex]);
