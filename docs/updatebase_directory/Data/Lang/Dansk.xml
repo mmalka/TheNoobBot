@@ -1631,7 +1631,7 @@
     </Translation>
     <Translation>
       <Id>AddNewQuester</Id>
-      <Text>Add a new NPC</Text>
+      <Text>Add the target NPC</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuester</Id>

@@ -1632,7 +1632,7 @@
     </Translation>
     <Translation>
       <Id>AddNewQuester</Id>
-      <Text>Add a new PNJ</Text>
+      <Text>Add the target PNJ</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuester</Id>
