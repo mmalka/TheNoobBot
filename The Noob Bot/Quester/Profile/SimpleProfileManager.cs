@@ -194,7 +194,6 @@ namespace Quester.Profile
             int selectedIndex = ProfileQuestList.SelectedIndex;
             if (ProfileQuestList.Items.Count > 0 && ProfileQuestList.Items.Count == Profile.Quests.Count)
             {
-                ProfileQuestList.Items.Remove(ProfileQuestList.Items[selectedIndex]);
                 Profile.Quests.RemoveAt(selectedIndex);
             }
             RefreshProfileQuestList(selectedIndex);
@@ -209,14 +208,29 @@ namespace Quester.Profile
             }
             Npc npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
             Profile.Questers.Add(npc);
-            ProfileQuesterList.Items.Add(npc.Entry + " - " + npc.Name + " - GPS: " + npc.Position);
             RefreshProfileQuesterList(ProfileQuesterList.Items.Count - 1);
         }
 
         private void EditSelectedQuester(object sender, EventArgs e)
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
-            RefreshProfileQuesterList(ProfileQuesterList.SelectedIndex);
+            int selectedIndex = ProfileQuesterList.SelectedIndex;
+            if (ObjectManager.Target.Guid == 0 || ObjectManager.Target.IsNpcQuestGiver)
+            {
+                MessageBox.Show(@"The target is not a valid Npc Quest Giver");
+                return;
+            }
+            Npc npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
+            if (ProfileQuesterList.Items.Count <= 0 || ProfileQuesterList.Items.Count != Profile.Questers.Count) return;
+            if (!ProfileQuesterList.SelectedItem.ToString().Contains(npc.Entry + " -") || Profile.Questers[selectedIndex].Entry != npc.Entry)
+            {
+                MessageBox.Show(@"The NPC selected do not share the same EntryId as the current target, you may prefer to delete it first, then add.");
+            }
+            else
+            {
+                Profile.Questers[selectedIndex].Name = npc.Name;
+                Profile.Questers[selectedIndex].Position = npc.Position;
+            }
+            RefreshProfileQuesterList(selectedIndex);
         }
 
         private void DeleteSelectedQuester(object sender, EventArgs e)
@@ -224,7 +238,6 @@ namespace Quester.Profile
             int selectedIndex = ProfileQuesterList.SelectedIndex;
             if (ProfileQuesterList.Items.Count > 0 && ProfileQuesterList.Items.Count == Profile.Questers.Count)
             {
-                ProfileQuesterList.Items.Remove(ProfileQuesterList.Items[selectedIndex]);
                 Profile.Questers.RemoveAt(selectedIndex);
             }
             RefreshProfileQuesterList(selectedIndex);
