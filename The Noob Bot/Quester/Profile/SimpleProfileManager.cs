@@ -5,6 +5,7 @@ using DevComponents.DotNetBar.Metro;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.ObjectManager;
 
 namespace Quester.Profile
 {
@@ -201,8 +202,15 @@ namespace Quester.Profile
 
         private void AddNewQuester(object sender, EventArgs e)
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
-            RefreshProfileQuesterList();
+            if (ObjectManager.Target.Guid == 0 || ObjectManager.Target.IsNpcQuestGiver)
+            {
+                MessageBox.Show(@"The target is not a valid Npc Quest Giver");
+                return;
+            }
+            Npc npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
+            Profile.Questers.Add(npc);
+            ProfileQuesterList.Items.Add(npc.Entry + " - " + npc.Name + " - GPS: " + npc.Position);
+            RefreshProfileQuesterList(ProfileQuesterList.Items.Count - 1);
         }
 
         private void EditSelectedQuester(object sender, EventArgs e)

@@ -171,7 +171,7 @@ namespace Quester.Profile
             this.AddNewQuesterButton.Size = new System.Drawing.Size(166, 22);
             this.AddNewQuesterButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AddNewQuesterButton.TabIndex = 21;
-            this.AddNewQuesterButton.Text = "Add a new NPC";
+            this.AddNewQuesterButton.Text = "Add the target NPC";
             this.AddNewQuesterButton.Click += new System.EventHandler(this.AddNewQuester);
             // 
             // ProfileQuestersListLabel
