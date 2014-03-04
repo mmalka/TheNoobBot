@@ -247,17 +247,17 @@ namespace Quester.Tasks
                             iLast = questObjective.Hotspots.Count - 1;
                         Logging.Write( /*Translate.Get(...)*/ "Create_points_HotSpot " + iLast + " to_HotSpot " + i);
                         List<Point> points = PathFinder.FindPath(questObjective.Hotspots[iLast],
-                                                                 questObjective.Hotspots[i]);
+                            questObjective.Hotspots[i]);
                         questObjective.PathHotspots.AddRange(points);
                     }
                 }
                 else
                 {
                     questObjective.PathHotspots = new List<Point>
-                        {
-                            ObjectManager.Me.Position,
-                            ObjectManager.Me.Position
-                        };
+                    {
+                        ObjectManager.Me.Position,
+                        ObjectManager.Me.Position
+                    };
                 }
             }
 
@@ -411,6 +411,8 @@ namespace Quester.Tasks
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
                         }
+                        if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
+                            return;
                         ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
@@ -588,14 +590,14 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[
                             Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                          ObjectManager.Me.Position)].DistanceTo(
-                                                              ObjectManager.Me.Position) > 5)
+                                ObjectManager.Me.Position)].DistanceTo(
+                                    ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
                                     Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                  ObjectManager.Me.Position)]));
+                                        ObjectManager.Me.Position)]));
                     }
                     else
                     {
@@ -757,7 +759,7 @@ namespace Quester.Tasks
                             Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
                         SpellManager.CastSpellByIDAndPosition((uint) questObjective.UseSpellId,
-                                                              questObjective.Position);
+                            questObjective.Position);
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
                         Quest.GetSetIgnoreFight = false;
@@ -774,14 +776,14 @@ namespace Quester.Tasks
                 if (questObjective.Entry.Count > 0 && localEntry > 0)
                 {
                     target = new Npc
-                        {
-                            Entry = localEntry,
-                            Position = questObjective.Position,
-                            Name = questObjective.Name,
-                            ContinentId = (ContinentId) Usefuls.ContinentId,
-                            Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
-                            SelectGossipOption = questObjective.GossipOptionsInteractWith
-                        };
+                    {
+                        Entry = localEntry,
+                        Position = questObjective.Position,
+                        Name = questObjective.Name,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+                        SelectGossipOption = questObjective.GossipOptionsInteractWith
+                    };
                     baseAddress = MovementManager.FindTarget(ref target, questObjective.Range > 5f ? questObjective.Range : 0);
                     if (MovementManager.InMovement)
                         return;
@@ -791,6 +793,8 @@ namespace Quester.Tasks
                 {
                     if (questObjective.IgnoreFight)
                         Quest.GetSetIgnoreFight = true;
+                    if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
+                        return;
                     ItemsManager.UseItem(questObjective.UseItemId, questObjective.Position);
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
@@ -801,6 +805,8 @@ namespace Quester.Tasks
                     if (questObjective.IgnoreFight)
                         Quest.GetSetIgnoreFight = true;
                     Interact.InteractWith(baseAddress);
+                    if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
+                        return;
                     ItemsManager.UseItem(questObjective.UseItemId, target.Position);
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
@@ -824,14 +830,14 @@ namespace Quester.Tasks
                 CheckMandatoryFieldsByType(questObjective, true, true, true, true);
                 int localEntry = GetEntryListRow(questObjective);
                 Npc target = new Npc
-                    {
-                        Entry = localEntry,
-                        Position = questObjective.Position,
-                        Name = questObjective.Name,
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
-                        Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
-                        SelectGossipOption = questObjective.GossipOptionsInteractWith
-                    };
+                {
+                    Entry = localEntry,
+                    Position = questObjective.Position,
+                    Name = questObjective.Name,
+                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                    Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+                    SelectGossipOption = questObjective.GossipOptionsInteractWith
+                };
                 uint baseAddress = MovementManager.FindTarget(ref target, questObjective.Range > 5f ? questObjective.Range : 0);
                 if (MovementManager.InMovement)
                     return;
@@ -915,6 +921,8 @@ namespace Quester.Tasks
                         if (questObjective.IgnoreFight)
                             Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
+                        if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
+                            return;
                         Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
                         ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         Thread.Sleep(questObjective.WaitMs);
@@ -930,14 +938,14 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[
                             Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                          ObjectManager.Me.Position)].DistanceTo(
-                                                              ObjectManager.Me.Position) > 5)
+                                ObjectManager.Me.Position)].DistanceTo(
+                                    ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
                                     Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                  ObjectManager.Me.Position)]));
+                                        ObjectManager.Me.Position)]));
                     }
                     else
                     {
