@@ -211,6 +211,7 @@
     <Compile Include="Wow\Helpers\Fight.cs" />
     <Compile Include="Wow\Helpers\Interact.cs" />
     <Compile Include="Wow\Helpers\ItemsManager.cs" />
+    <Compile Include="Wow\Helpers\ItemSelection.cs" />
     <Compile Include="Wow\Helpers\Keybindings.cs" />
     <Compile Include="Wow\Helpers\Login.cs" />
     <Compile Include="Wow\Helpers\LongMove.cs" />
