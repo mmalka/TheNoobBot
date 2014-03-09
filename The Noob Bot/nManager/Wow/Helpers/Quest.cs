@@ -155,7 +155,7 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("SelectGossipActiveQuest(" + index + ")");
         }
 
-        public static void CompleteQuest()
+        public static ItemInfo CompleteQuest()
         {
             Lua.LuaDoString("CompleteQuest()");
             Thread.Sleep(500);
@@ -163,6 +163,7 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString(randomString + " = GetNumQuestChoices()");
             int numRewards = Others.ToInt32(Lua.GetLocalizedText(randomString));
             Logging.WriteDebug("There is " + numRewards + " rewards");
+            ItemInfo itemToEquip = null, tempItem;
 
             uint valuePriceChoice = 1;
             uint highestPriceValue = 0;
@@ -170,87 +171,28 @@ namespace nManager.Wow.Helpers
 #pragma warning disable 219
             uint highestEquipementValue = 0; // if 2 items are usefull, then we need to select one, but how?
 #pragma warning restore 219
-
             for (uint i = 1; i <= numRewards; i++)
             {
-                string sName = Others.GetRandomString(Others.Random(4, 10));
-                string sQuality = Others.GetRandomString(Others.Random(4, 10));
-                string sIlevel = Others.GetRandomString(Others.Random(4, 10));
-                string sInventorySlot = Others.GetRandomString(Others.Random(4, 10));
-                string sPrice = Others.GetRandomString(Others.Random(4, 10));
-                string sClass = Others.GetRandomString(Others.Random(4, 10));
-                string sSubClass = Others.GetRandomString(Others.Random(4, 10));
-
-                string command = "link = GetQuestItemLink(\"choice\", " + i + "); ";
-                command += sName + ",_," + sQuality + "," + sIlevel + ",_," + sClass + "," + sSubClass + ",_," + sInventorySlot + ",_," + sPrice + "=GetItemInfo(link);";
-
+                string sLink = Others.GetRandomString(Others.Random(4, 10));
+                string command = sLink + " = GetQuestItemLink(\"choice\", " + i + "); ";
                 Lua.LuaDoString(command);
-                uint price = Others.ToUInt32(Lua.GetLocalizedText(sPrice));
-                if (price > highestPriceValue)
+                string link = Lua.GetLocalizedText(sLink);
+
+                int value = ItemSelection.EvaluateItemStatsVsEquiped(link, out tempItem);
+                if (value > 0)
                 {
-                    highestPriceValue = price;
-                    valuePriceChoice = i;
+                    if (highestPriceValue < value)
+                    {
+                        highestPriceValue = (uint)value;
+                        valuePriceChoice = i;
+                    }
                 }
-#pragma warning disable 168
-                int quality = Others.ToInt32(Lua.GetLocalizedText(sQuality));
-                int iLevel = Others.ToInt32(Lua.GetLocalizedText(sIlevel));
-#pragma warning restore 168
-                string locClass = Lua.GetLocalizedText(sClass);
-                string locSubClass = Lua.GetLocalizedText(sSubClass);
-
-                // Now get the class and subclass of the item by searching in DBCs with localized names
-                WoWItemClass TheItemClassRec = WoWItemClass.FromName(locClass);
-                uint classId = TheItemClassRec.Record.ClassId;
-                WoWItemSubClass TheItemSubClassRec = WoWItemSubClass.FromNameAndClass(locSubClass, classId);
-                uint subClassId = TheItemSubClassRec.Record.SubClassId;
-                string strInvSlot = Lua.GetLocalizedText(sInventorySlot);
-
-                Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(sName) + "\" equip \"" + strInvSlot + "\" class " + (Enums.WoWItemClass) classId + " subclass " + subClassId +
-                                   " has a value of " + price);
-                if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Armor)
-                    if ((Enums.WowItemSubClassArmor) subClassId == EquipmentAndStats.InternalEquipableArmorItemType
-                        || strInvSlot == "INVTYPE_CLOAK" || strInvSlot == "INVTYPE_NECK"
-                        || strInvSlot == "INVTYPE_FINGER" || strInvSlot == "INVTYPE_TRINKET"
-                        || (strInvSlot == "INVTYPE_SHIELD" && EquipmentAndStats.HasShield))
-                        if (CheckItemStats(i))
-                            valueEquipementChoice = i;
-                if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Weapon)
+                else
                 {
-                    if (EquipmentAndStats.EquipableWeapons.Contains((Enums.WowItemSubClassWeapon) subClassId))
-                        if (CheckItemStats(i))
-                            valueEquipementChoice = i;
+                    valueEquipementChoice = i;
+                    itemToEquip = tempItem;
+                    break; // Let's stop at the first found for now, later we will give them a weight a select the best upgrade
                 }
-                // FUTUR in case we can select more than 1 item reward, then we need to compare to what we have
-                // FUTUR and maybe also equip the items
-
-                // Don't forget Cloaks which are all Class 4 SubClass 1 (cloth armor) and inventory type 16: Cloak
-                // Rings are Class 4 Subclass 0 and intype 11: Finger
-                /*switch (strInvSlot)
-                {
-                    case "INVTYPE_HEAD":
-                    case "INVTYPE_SHOULDER":
-                    case "INVTYPE_CHEST":
-                    case "INVTYPE_WAIST":
-                    case "INVTYPE_LEGS":
-                    case "INVTYPE_FEET":
-                    case "INVTYPE_HAND":
-                        break;
-                    case "INVTYPE_CLOAK":
-                        break;
-                    case "INVTYPE_NECK":
-                    case "INVTYPE_FINGER":
-                    case "INVTYPE_TRINKET":
-                        break;
-                    case "INVTYPE_2HWEAPON": // Two-Hand
-                    case "INVTYPE_WEAPON": // One-Hand
-                    case "INVTYPE_WEAPONMAINHAND": // Main Hand
-                    case "INVTYPE_WEAPONOFFHAND": // Off Hand
-                    case "INVTYPE_SHIELD":
-                    case "INVTYPE_HOLDABLE": // Held In Off-hand
-                        break;
-                    default:
-                        break;
-                }*/
             }
 
             if (valueEquipementChoice > 0)
@@ -264,73 +206,7 @@ namespace nManager.Wow.Helpers
                 Lua.LuaDoString("GetQuestReward(" + valuePriceChoice + ")");
             }
             Thread.Sleep(500);
-        }
-
-        public static bool CheckItemStats(uint slot)
-        {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            string command = randomString + "='' ";
-            command += "link=GetQuestItemLink(\"choice\"," + slot + "); ";
-            command += "stats=GetItemStats(link); ";
-            command += "for key,value in pairs(stats) do ";
-            command += randomString + "=" + randomString + " .. key .. '^' .. value .. '^' ";
-            command += "end;";
-            Lua.LuaDoString(command);
-            string sResult = Lua.GetLocalizedText(randomString);
-
-            string[] itemStatsArray = sResult.Split('^');
-            int index = 0;
-            bool valid = true;
-            while (index < itemStatsArray.Length - 1)
-            {
-                string name = itemStatsArray[index];
-                //string value = itemStatsArray[index+1];
-                Enums.WoWStatistic Stat = ConvertToStatistic(name);
-                if (Stat != Enums.WoWStatistic.None && !EquipmentAndStats.InternalEquipementStats.Contains(Stat))
-                    valid = false;
-                //Logging.WriteDebug(name + "=" + value);
-                index += 2;
-            }
-            return valid;
-        }
-
-        private static Enums.WoWStatistic ConvertToStatistic(string InterfaceName)
-        {
-            switch (InterfaceName)
-            {
-                case "ITEM_MOD_AGILITY_SHORT":
-                    return Enums.WoWStatistic.AGILITY;
-                case "ITEM_MOD_ATTACK_POWER_SHORT":
-                    return Enums.WoWStatistic.ATTACK_POWER;
-                case "ITEM_MOD_CRIT_RATING_SHORT":
-                    return Enums.WoWStatistic.CRIT_RATING;
-                case "ITEM_MOD_DODGE_RATING_SHORT":
-                    return Enums.WoWStatistic.DODGE_RATING;
-                case "ITEM_MOD_EXPERTISE_RATING_SHORT":
-                    return Enums.WoWStatistic.EXPERTISE_RATING;
-                case "ITEM_MOD_HASTE_RATING_SHORT":
-                    return Enums.WoWStatistic.HASTE_RATING;
-                case "ITEM_MOD_HIT_RATING_SHORT":
-                    return Enums.WoWStatistic.HIT_RATING;
-                case "ITEM_MOD_INTELLECT_SHORT":
-                    return Enums.WoWStatistic.INTELLECT;
-                case "ITEM_MOD_MASTERY_RATING_SHORT":
-                    return Enums.WoWStatistic.MASTERY_RATING;
-                case "ITEM_MOD_PARRY_RATING_SHORT":
-                    return Enums.WoWStatistic.PARRY_RATING;
-                case "not known":
-                    return Enums.WoWStatistic.RESILIENCE_RATING;
-                case "ITEM_MOD_SPELL_POWER_SHORT":
-                    return Enums.WoWStatistic.SPELL_POWER;
-                case "ITEM_MOD_SPIRIT_SHORT":
-                    return Enums.WoWStatistic.SPIRIT;
-                case "ITEM_MOD_STAMINA_SHORT":
-                    return Enums.WoWStatistic.STAMINA;
-                case "ITEM_MOD_STRENGTH_SHORT":
-                    return Enums.WoWStatistic.STRENGTH;
-                default: // To ignore ITEM_MOD_DAMAGE_PER_SECOND_SHORT for exemple
-                    return Enums.WoWStatistic.None;
-            }
+            return itemToEquip;
         }
 
         public static List<int> GetLogQuestId()
@@ -492,6 +368,7 @@ namespace nManager.Wow.Helpers
             uint baseAddress = MovementManager.FindTarget(ref npc);
             if (MovementManager.InMovement)
                 return;
+            ItemInfo equip = null;
             //End target finding based on QuestGiver.
             if ( /*baseAddress > 0 && */npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
@@ -505,7 +382,7 @@ namespace nManager.Wow.Helpers
                 int id = Quest.GetQuestID();
                 if (id == questId) // this may fail
                 {
-                    Quest.CompleteQuest();
+                    equip = Quest.CompleteQuest();
                     Thread.Sleep(Usefuls.Latency + 500);
                 }
                 if (!Quest.GetLogQuestId().Contains(questId)) // It's no more in the quest log, then we did turn in it sucessfuly
@@ -526,7 +403,7 @@ namespace nManager.Wow.Helpers
                             id = Quest.GetQuestID();
                             if (id == questId)
                             {
-                                Quest.CompleteQuest();
+                                equip = Quest.CompleteQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 // here it can be the next quest id presented automatically when the current one is turned in
                                 id = Quest.GetQuestID();
@@ -552,7 +429,7 @@ namespace nManager.Wow.Helpers
                             id = Quest.GetQuestID();
                             if (id == questId)
                             {
-                                Quest.CompleteQuest();
+                                equip = Quest.CompleteQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 Quest.CloseQuestWindow();
                                 Quest.FinishedQuestSet.Add(questId);
@@ -568,6 +445,8 @@ namespace nManager.Wow.Helpers
                 }
             }
             Thread.Sleep(Usefuls.Latency);
+            if (equip != null)
+                ItemSelection.EquipItem(equip);
         }
 
         [StructLayout(LayoutKind.Sequential)]

@@ -22,6 +22,7 @@ namespace nManager.Wow.Class
         public string ItemSubType { get; private set; }
         public string ItemTexture { get; private set; }
         public string ItemType { get; private set; }
+        public string xItemEquipSlot { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemInfo"/> class.
