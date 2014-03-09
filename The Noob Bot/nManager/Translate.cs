@@ -475,7 +475,11 @@ namespace nManager
             CantSaveEmptySimpleNew,
             CantSaveEmptySimpleExisting,
             NoSimpleProfileToEdit,
-            AutoCloseChatFrame
+            AutoCloseChatFrame,
+            ProfileQuesterList,
+            AddNewQuester,
+            EditSelectedQuester,
+            DeleteSelectedQuester
         };
 
         [Serializable]

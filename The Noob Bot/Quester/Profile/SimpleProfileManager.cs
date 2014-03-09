@@ -1,10 +1,9 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Metro;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 
 namespace Quester.Profile
@@ -24,11 +23,13 @@ namespace Quester.Profile
                 if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
                 {
                     Profile = XmlSerializer.Deserialize<QuesterProfile>(fullpath);
-                    RefreshSimpleProfileList();
+                    RefreshProfileQuestList();
+                    RefreshProfileQuesterList();
                 }
                 else
                 {
-                    RefreshSimpleProfileList();
+                    RefreshProfileQuestList();
+                    RefreshProfileQuesterList();
                 }
                 TopMost = true;
             }
@@ -45,12 +46,49 @@ namespace Quester.Profile
             EditSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuest);
             DeleteSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuest);
             ProfileQuestListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ProfileQuestList);
+            /*
+            AddNewQuesterButton.Text = nManager.Translate.Get(nManager.Translate.Id.AddNewQuester);
+            EditSelectedQuesterButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuester);
+            DeleteSelectedQuesterButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuester);
+            ProfileQuesterListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ProfileQuesterList);
+            */
             SaveSimpleProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAsAndClose);
             SaveSimpleProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose);
             CancelSimpleProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
         }
 
-        private void RefreshSimpleProfileList(int indexToSelect = 0)
+        private void RefreshButtonsStatus()
+        {
+            bool showGlobalsButtons = false;
+            if (ProfileQuestList.Items.Count > 0)
+            {
+                showGlobalsButtons = true;
+                DeleteSelectedQuestButton.Show();
+                EditSelectedQuestButton.Show();
+            }
+            else
+            {
+                DeleteSelectedQuestButton.Hide();
+                EditSelectedQuestButton.Hide();
+            }
+            if (ProfileQuesterList.Items.Count > 0)
+            {
+                showGlobalsButtons = true;
+                DeleteSelectedQuesterButton.Show();
+                EditSelectedQuesterButton.Show();
+            }
+            else
+            {
+                DeleteSelectedQuesterButton.Hide();
+                EditSelectedQuesterButton.Hide();
+            }
+            if (showGlobalsButtons)
+                SaveSimpleProfile.Show();
+            else
+                SaveSimpleProfile.Hide();
+        }
+
+        private void RefreshProfileQuestList(int indexToSelect = 0)
         {
             try
             {
@@ -71,19 +109,35 @@ namespace Quester.Profile
                 }
                 if (ProfileQuestList.Items.Count > 0)
                 {
-                    SaveSimpleProfile.Show();
-                    DeleteSelectedQuestButton.Show();
-                    EditSelectedQuestButton.Show();
                     if (indexToSelect < ProfileQuestList.Items.Count)
                         ProfileQuestList.SelectedIndex = indexToSelect;
                     else ProfileQuestList.SelectedIndex = indexToSelect - 1;
                 }
-                else
+                RefreshButtonsStatus();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Quester > Profile > SimpleProfileManager > LoadSimpleProfileList(): " + e);
+            }
+        }
+
+        private void RefreshProfileQuesterList(int indexToSelect = 0)
+        {
+            try
+            {
+                if (Profile == null) return;
+                ProfileQuesterList.Items.Clear();
+                foreach (Npc npc in Profile.Questers)
                 {
-                    SaveSimpleProfile.Hide();
-                    DeleteSelectedQuestButton.Hide();
-                    EditSelectedQuestButton.Hide();
+                    ProfileQuesterList.Items.Add(npc.Entry + " - " + npc.Name + " - GPS:" + npc.Position);
                 }
+                if (ProfileQuesterList.Items.Count > 0)
+                {
+                    if (indexToSelect < ProfileQuesterList.Items.Count)
+                        ProfileQuesterList.SelectedIndex = indexToSelect;
+                    else ProfileQuesterList.SelectedIndex = indexToSelect - 1;
+                }
+                RefreshButtonsStatus();
             }
             catch (Exception e)
             {
@@ -93,11 +147,11 @@ namespace Quester.Profile
 
         private void SaveSimpleProfileAs_Click(object sender, EventArgs e)
         {
-            if (Profile.Quests.Count > 0)
+            if (Profile.Quests.Count > 0 || Profile.Questers.Count > 0)
             {
-                string FileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Simple\\", nManager.Translate.Get(nManager.Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
-                if (FileToSaveAs != "")
-                    XmlSerializer.Serialize(FileToSaveAs, Profile);
+                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Simple\\", nManager.Translate.Get(nManager.Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
+                if (fileToSaveAs != "")
+                    XmlSerializer.Serialize(fileToSaveAs, Profile);
                 Close();
             }
             else
@@ -108,7 +162,7 @@ namespace Quester.Profile
 
         private void SaveSimpleProfile_Click(object sender, EventArgs e)
         {
-            if (Profile.Quests.Count > 0)
+            if (Profile.Quests.Count > 0 || Profile.Questers.Count > 0)
             {
                 XmlSerializer.Serialize(fullpath, Profile);
                 Close();
@@ -127,24 +181,47 @@ namespace Quester.Profile
         private void AddNewQuest(object sender, EventArgs e)
         {
             MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
-            RefreshSimpleProfileList();
+            RefreshProfileQuestList();
         }
 
         private void EditSelectedQuest(object sender, EventArgs e)
         {
             MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
-            RefreshSimpleProfileList();
+            RefreshProfileQuestList(ProfileQuestList.SelectedIndex);
         }
 
         private void DeleteSelectedQuest(object sender, EventArgs e)
         {
-            int SelectedIndex = ProfileQuestList.SelectedIndex; // We need to save the value before it is removed (-1).
+            int selectedIndex = ProfileQuestList.SelectedIndex;
             if (ProfileQuestList.Items.Count > 0 && ProfileQuestList.Items.Count == Profile.Quests.Count)
             {
-                ProfileQuestList.Items.Remove(ProfileQuestList.Items[SelectedIndex]);
-                Profile.Quests.RemoveAt(SelectedIndex);
+                ProfileQuestList.Items.Remove(ProfileQuestList.Items[selectedIndex]);
+                Profile.Quests.RemoveAt(selectedIndex);
             }
-            RefreshSimpleProfileList(SelectedIndex);
+            RefreshProfileQuestList(selectedIndex);
+        }
+
+        private void AddNewQuester(object sender, EventArgs e)
+        {
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
+            RefreshProfileQuesterList();
+        }
+
+        private void EditSelectedQuester(object sender, EventArgs e)
+        {
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
+            RefreshProfileQuesterList(ProfileQuesterList.SelectedIndex);
+        }
+
+        private void DeleteSelectedQuester(object sender, EventArgs e)
+        {
+            int selectedIndex = ProfileQuestList.SelectedIndex;
+            if (ProfileQuesterList.Items.Count > 0 && ProfileQuesterList.Items.Count == Profile.Questers.Count)
+            {
+                ProfileQuesterList.Items.Remove(ProfileQuesterList.Items[selectedIndex]);
+                Profile.Questers.RemoveAt(selectedIndex);
+            }
+            RefreshProfileQuesterList(selectedIndex);
         }
     }
 }

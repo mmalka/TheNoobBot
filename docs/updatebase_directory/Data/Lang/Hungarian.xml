@@ -1625,5 +1625,21 @@
       <Id>AutoCloseChatFrame</Id>
       <Text>Auto Close Chat</Text>
     </Translation>
+    <Translation>
+      <Id>ProfileQuesterList</Id>
+      <Text>Profile's Questers List :</Text>
+    </Translation>
+    <Translation>
+      <Id>AddNewQuester</Id>
+      <Text>Add a new NPC</Text>
+    </Translation>
+    <Translation>
+      <Id>EditSelectedQuester</Id>
+      <Text>Edit the selected NPC</Text>
+    </Translation>
+    <Translation>
+      <Id>DeleteSelectedQuester</Id>
+      <Text>Delete the selected NPC</Text>
+    </Translation>
   </Translations>
 </Language>
