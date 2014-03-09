@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -14,7 +12,7 @@ namespace nManager.Wow.Helpers
         public delegate void CallBack(object context);
 
         private static List<HookedEventInfo> _hookedEvents = new List<HookedEventInfo>();
-        private static Thread _threadHookEvent;
+        private static Thread _threadHookEvent = null;
         private static readonly uint PtrFirstEvent = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.EventsListener.BaseEvents);
         private static readonly int EventsCount = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.EventsListener.EventsCount);
 
@@ -45,8 +43,8 @@ namespace nManager.Wow.Helpers
                 return 0;
             uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 4*eventId);
             if (ptrCurrentEvent <= 0) return 0;
-            uint currentEventCount = Memory.WowMemory.Memory.ReadUInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetName);
-            return currentEventCount > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetCount) : 0;
+            uint currentEventNamePtr = Memory.WowMemory.Memory.ReadUInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetName);
+            return currentEventNamePtr > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint)Addresses.EventsListener.EventOffsetCount) : 0;
         }
 
         private static bool IsAttached(WoWEventsType eventType)
@@ -66,45 +64,22 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        private static void UnHookEvent(WoWEventsType eventType)
-        {
-            try
-            {
-                foreach (HookedEventInfo c in _hookedEvents)
-                {
-                    if (c.EventType != eventType) continue;
-                    var thread = Process.GetCurrentProcess().Threads.Cast<Thread>().Single(delegate(Thread t) { return t.Name == "Hook of Event: " + eventType; });
-                    if (thread != null && thread.IsAlive)
-                    {
-                        thread.Abort();
-                    }
-                    _hookedEvents.Remove(c);
-                    Logging.WriteDebug("The event " + eventType + " has been unhooked");
-                    break;
-                }
-                Logging.WriteError("UnHookEvent(WoWEventsType eventType): The event " + eventType + " is not attached");
-            }
-            catch (Exception arg)
-            {
-                Logging.WriteError("UnHookEvent(WoWEventsType eventType): " + arg);
-            }
-        }
-
         public static void HookEvent(WoWEventsType eventType, CallBack method, bool forceHook = false)
         {
             try
             {
                 lock ("LockEvent")
                 {
-                    if (!Products.Products.IsStarted) return;
                     if (IsAttached(eventType) && !forceHook)
                     {
                         Logging.WriteError("The event " + eventType.ToString() + " is already hooked and parameter forceHook is passed with false.");
                         return;
                     }
                     _hookedEvents.Add(new HookedEventInfo(method, eventType, GetEventFireCount(eventType)));
-                    _threadHookEvent = new Thread(Hook) {Name = "Hook of Event: " + eventType.ToString()};
-                    _threadHookEvent.Start();
+                    if (_threadHookEvent == null)
+                        _threadHookEvent = new Thread(Hook) { Name = "Hook of Events" };
+                    if (!_threadHookEvent.IsAlive)
+                        _threadHookEvent.Start();
                 }
             }
             catch (Exception arg)
@@ -113,27 +88,46 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void UnHookEvent(WoWEventsType eventType)
+        {
+            try
+            {
+                lock ("LockEvent")
+                {
+                    HookedEventInfo toRemove = null;
+                    foreach (HookedEventInfo current in _hookedEvents)
+                    {
+                        if (current.EventType == eventType)
+                        {
+                            toRemove = current;
+                            break;
+                        }
+                    }
+                    if (toRemove != null)
+                        _hookedEvents.Remove(toRemove);
+                }
+            }
+            catch (Exception err)
+            {
+                Logging.WriteError("UnHookEvent(WoWEventsType eventType): " + err);
+            }
+        }
+
         private static void Hook()
         {
-            while (Products.Products.IsStarted)
+            while (_hookedEvents.Count > 0)
             {
                 lock ("LockEvent")
                 {
                     foreach (HookedEventInfo current in _hookedEvents)
                     {
                         if (current.PreviousCurrentEventFireCount >= GetEventFireCount(current.EventType)) continue;
-                        HookedEventInfo eventInfo = current;
-                        Thread thread = new Thread(eventType => eventInfo.CallBack(eventInfo.EventType)) {Name = "Fire callback for Event: " + current.EventType};
+                        Thread thread = new Thread(eventType => current.CallBack(current.EventType)) { Name = "Fire callback for Event: " + current.EventType };
                         thread.Start();
                         current.PreviousCurrentEventFireCount++;
                     }
                 }
                 Thread.Sleep(100);
-            }
-            lock ("LockEvent")
-            {
-                _hookedEvents = new List<HookedEventInfo>();
-                _threadHookEvent = null;
             }
         }
 
