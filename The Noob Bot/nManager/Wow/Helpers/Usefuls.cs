@@ -514,7 +514,7 @@ namespace nManager.Wow.Helpers
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats(); " + randomString +
                                         " = lagHome + lagWorld");
-                        _lastLatency = Others.ToInt32(Lua.GetLocalizedText(randomString));
+                        _lastLatency = Others.ToInt32(Lua.GetLocalizedText(randomString)) / 2;
                         return _lastLatency;
                     }
                     catch (Exception e)
