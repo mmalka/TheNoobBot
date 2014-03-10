@@ -838,14 +838,20 @@ namespace Quester.Tasks
                     Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                     SelectGossipOption = questObjective.GossipOptionsInteractWith
                 };
-                uint baseAddress = MovementManager.FindTarget(ref target, questObjective.Range > 5f ? questObjective.Range : 0);
+                uint baseAddress = MovementManager.FindTarget(ref target);
                 if (MovementManager.InMovement)
                     return;
                 if (baseAddress > 0)
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500 + Usefuls.Latency);
-                    Vendor.BuyItem(ItemsManager.GetItemNameById(questObjective.CollectItemId), questObjective.CollectCount);
+                    int amount = questObjective.CollectCount - ItemsManager.GetItemCount(questObjective.CollectItemId);
+                    if (amount <= 0)
+                    {
+                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetItemNameById(questObjective.CollectItemId));
+                        questObjective.IsObjectiveCompleted = true;
+                    }
+                    Vendor.BuyItem(ItemsManager.GetItemNameById(questObjective.CollectItemId), amount);
                     Thread.Sleep(questObjective.WaitMs == 0 ? 2000 + Usefuls.Latency : questObjective.WaitMs);
                     if (ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     {
@@ -1040,6 +1046,8 @@ namespace Quester.Tasks
 
         private static int GetEntryListRow(QuestObjective questObjective)
         {
+            if (questObjective.Entry.Count == 1)
+                return questObjective.Entry[0];
             if (EntryListRow == -1)
             {
                 ResetEntryListRow();
