@@ -52,6 +52,7 @@ float rcSqrt(float x)
 /// // Where ctx is an instance of rcContext and filepath is a char array.
 /// ctx->log(RC_LOG_ERROR, "buildTiledNavigation: Could not load '%s'", filepath);
 /// @endcode
+#pragma unmanaged
 void rcContext::log(const rcLogCategory category, const char* format, ...)
 {
 	if (!m_logEnabled)
@@ -60,7 +61,7 @@ void rcContext::log(const rcLogCategory category, const char* format, ...)
 	char msg[MSG_SIZE];
 	va_list ap;
 	va_start(ap, format);
-	int len = vsnprintf(msg, MSG_SIZE, format, ap);
+	int len = vsnprintf_s(msg, MSG_SIZE, format, ap);
 	if (len >= MSG_SIZE)
 	{
 		len = MSG_SIZE-1;
@@ -69,6 +70,7 @@ void rcContext::log(const rcLogCategory category, const char* format, ...)
 	va_end(ap);
 	doLog(category, msg, len);
 }
+#pragma managed
 
 rcHeightfield* rcAllocHeightfield()
 {
