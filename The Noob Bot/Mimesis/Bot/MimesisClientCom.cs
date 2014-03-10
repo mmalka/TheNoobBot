@@ -119,7 +119,7 @@ namespace Mimesis.Bot
             opCodeAndSize[1] = (byte)bufferName.Length;
             NetworkStream clientStream = client.GetStream();
             clientStream.Write(opCodeAndSize, 0, 2);
-            clientStream.Write(bufferName, 0, bufferName.Length); // Grrr, we need "-ServerName" :(
+            clientStream.Write(bufferName, 0, bufferName.Length); // It's hardcoded "PlayerName-RealmName"
             clientStream.Flush();
             // Now wait for an answer
             try

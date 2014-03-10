@@ -19,6 +19,7 @@ namespace nManager.Helpful
         private static List<MimesisHelpers.MimesisEvent> _globalList;
         private static Timer _cleanupTimer;
         private static bool _requireHook;
+        private static Object _myLock = new Object();
 
         public static bool RequiresHook
         {
@@ -60,7 +61,7 @@ namespace nManager.Helpful
                 {
                     _requireHook = true;
                     EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
-                    //EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
+                    EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
                 }
                 catch
                 {
@@ -115,7 +116,7 @@ namespace nManager.Helpful
                     Thread.Sleep(100);
                     if (_cleanupTimer.IsReady) // Every 3 seconds, we drop the head event from the list
                     {
-                        lock (_globalList)
+                        lock (_myLock)
                         {
                             if (_globalList.Count > 0)
                             {
@@ -157,7 +158,7 @@ namespace nManager.Helpful
                 }
             }
             // now add this new event to the globale list
-            lock(_globalList) _globalList.Add(evt);
+            lock (_myLock) _globalList.Add(evt);
             _currentQuestList.Add(evt.QuestId);
             _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
         }
@@ -170,25 +171,31 @@ namespace nManager.Helpful
             WoWUnit questGiver = new WoWUnit(questGiverO.GetBaseAddress);
             if (!questGiver.IsValid)
                 return;
-            _eventSerialNumber++;
-            // We create a global event based on the data we will gather
-            MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
-            evt.SerialNumber = _eventSerialNumber;
-            evt.eType = MimesisHelpers.eventType.turninQuest;
-            evt.TargetId = questGiver.Entry;
-            // we diff current quest list vs old one
+            // First, let's check if it was a quest Turn-in
+            int questId = 0;
             List<int> newQuestList = Quest.GetLogQuestId();
             foreach (var quest in _currentQuestList)
             {
                 if (!newQuestList.Contains(quest))
                 {
-                    evt.QuestId = quest;
+                    questId = quest;
                     break;
                 }
             }
+            // if questId is still 0, then it was not a quest turn in
+            if (questId == 0)
+                return;
+            _eventSerialNumber++;
+            // Now we know it was realy a Turn in
+            // We create a global event based on the gathered data
+            MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
+            evt.SerialNumber = _eventSerialNumber;
+            evt.eType = MimesisHelpers.eventType.turninQuest;
+            evt.TargetId = questGiver.Entry;
+            evt.QuestId = questId;
             // now add this new event to the globale list
-            lock (_globalList) _globalList.Add(evt);
-            _currentQuestList.Remove(evt.QuestId);
+            lock (_myLock) _globalList.Add(evt);
+            _currentQuestList.Remove(questId);
             _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
         }
 
@@ -293,7 +300,7 @@ namespace nManager.Helpful
                          * than the last we know localy, we copy the event to the local list in this thread.
                         */
                         uint highestSerialNumber = 0;
-                        lock (_globalList)
+                        lock (_myLock)
                         {
                             foreach (MimesisHelpers.MimesisEvent evt in _globalList)
                             {
