@@ -20,6 +20,8 @@ namespace nManager.Wow.Helpers
             ReplyQuestTurnIn = 22,
             QueryGuid = 3,
             ReplyGuid = 31,
+            RequestGrouping = 4,
+            ReplyGrouping = 41,
             Disconnect = 9,
         }
 
@@ -83,6 +85,20 @@ namespace nManager.Wow.Helpers
             Marshal.FreeHGlobal(ptr);
 
             return str;
+        }
+
+        public static byte[] StringToBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        public static string BytesToString(byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return new string(chars);
         }
     }
 }

@@ -85,6 +85,11 @@ namespace Mimesis.Bot
             }
             else
                 _master.Position = TargetPlayer.Position;
+            if (!Party.IsInGroup())
+            {
+                MimesisClientCom.JoinGroup();
+                Thread.Sleep(500);
+            }
             if (!_master.Position.IsValid)
             {
                 return;
@@ -110,6 +115,7 @@ namespace Mimesis.Bot
                 MimesisClientCom.ProcessEvents();
                 _eventQueryTimer.Reset();
             }
+            // on event START_LOOT_ROLL lookup if item is an update and roll need/cupidity
         }
     }
 }

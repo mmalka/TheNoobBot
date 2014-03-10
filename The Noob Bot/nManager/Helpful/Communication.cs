@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Helpers;
+using nManager.Wow.Enums;
 
 namespace nManager.Helpful
 {
@@ -42,7 +43,9 @@ namespace nManager.Helpful
             if (done)
             {
                 Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
-                // We should unhook, but the code does not exist
+                // We now unhook these events
+                EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED);
+                EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED);
                 _requireHook = false;
             }
         }
@@ -56,7 +59,8 @@ namespace nManager.Helpful
                 try
                 {
                     _requireHook = true;
-                    EventsListener.HookEvent(Wow.Enums.WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+                    EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+                    //EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
                 }
                 catch
                 {
@@ -158,6 +162,36 @@ namespace nManager.Helpful
             _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
         }
 
+        public static void EventQuestFinished()
+        {
+            WoWObject questGiverO = ObjectManager.GetObjectByGuid(ObjectManager.Me.Target);
+            if (questGiverO == null || !questGiverO.IsValid)
+                return;
+            WoWUnit questGiver = new WoWUnit(questGiverO.GetBaseAddress);
+            if (!questGiver.IsValid)
+                return;
+            _eventSerialNumber++;
+            // We create a global event based on the data we will gather
+            MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
+            evt.SerialNumber = _eventSerialNumber;
+            evt.eType = MimesisHelpers.eventType.turninQuest;
+            evt.TargetId = questGiver.Entry;
+            // we diff current quest list vs old one
+            List<int> newQuestList = Quest.GetLogQuestId();
+            foreach (var quest in _currentQuestList)
+            {
+                if (!newQuestList.Contains(quest))
+                {
+                    evt.QuestId = quest;
+                    break;
+                }
+            }
+            // now add this new event to the globale list
+            lock (_globalList) _globalList.Add(evt);
+            _currentQuestList.Remove(evt.QuestId);
+            _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
+        }
+
         private class ClientThread
         {
             public void HandleClientComm(object client)
@@ -167,7 +201,8 @@ namespace nManager.Helpful
                 TcpClient tcpClient = (TcpClient)client;
                 NetworkStream clientStream = tcpClient.GetStream();
 
-                byte[] message = new byte[4096];
+                byte[] opCodeAndLen = new byte[2];
+                byte[] message = new byte[0];
                 int bytesRead;
                 List<MimesisHelpers.MimesisEvent> eventList = new List<MimesisHelpers.MimesisEvent>();
                 uint _currentSerialNumber = 0;
@@ -179,7 +214,15 @@ namespace nManager.Helpful
                     {
                         // non blocking call
                         if (clientStream.DataAvailable)
-                            bytesRead = clientStream.Read(message, 0, 4096);
+                        {
+                            bytesRead = clientStream.Read(opCodeAndLen, 0, 2);
+                            int len = opCodeAndLen[1];
+                            if (len > 0)
+                            {
+                                message = new byte[len];
+                                bytesRead += clientStream.Read(message, 0, len);
+                            }
+                        }
                     }
                     catch
                     {
@@ -190,20 +233,20 @@ namespace nManager.Helpful
                     if (bytesRead > 0)
                     {
                         // Do something with this message
-                        byte[] opCode = new byte[1];
-
-                        switch ((MimesisHelpers.opCodes)message[0])
+                        switch ((MimesisHelpers.opCodes)opCodeAndLen[0])
                         {
                             case MimesisHelpers.opCodes.QueryPosition:
-                                opCode[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
                                 byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
-                                clientStream.Write(opCode, 0, 1);
+                                opCodeAndLen[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
+                                opCodeAndLen[1] = (byte)bufferPos.Length;
+                                clientStream.Write(opCodeAndLen, 0, 2);
                                 clientStream.Write(bufferPos, 0, bufferPos.Length);
                                 break;
                             case MimesisHelpers.opCodes.QueryGuid:
-                                opCode[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
                                 byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
-                                clientStream.Write(opCode, 0, 1);
+                                opCodeAndLen[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
+                                opCodeAndLen[1] = (byte)bufferGuid.Length;
+                                clientStream.Write(opCodeAndLen, 0, 2);
                                 clientStream.Write(bufferGuid, 0, bufferGuid.Length);
                                 break;
                             case MimesisHelpers.opCodes.Disconnect:
@@ -211,12 +254,13 @@ namespace nManager.Helpful
                                 Logging.Write("Client diconnected");
                                 return;
                             case MimesisHelpers.opCodes.QueryEvent:
-                                opCode[0] = (byte)MimesisHelpers.opCodes.ReplyEvent;
+                                opCodeAndLen[0] = (byte)MimesisHelpers.opCodes.ReplyEvent;
                                 if (eventList.Count > 0)
                                 {
                                     MimesisHelpers.MimesisEvent mevent = eventList[0];
                                     byte[] bufferEvent = MimesisHelpers.StructToBytes(mevent);
-                                    clientStream.Write(opCode, 0, 1);
+                                    opCodeAndLen[1] = (byte)bufferEvent.Length;
+                                    clientStream.Write(opCodeAndLen, 0, 2);
                                     clientStream.Write(bufferEvent, 0, bufferEvent.Length);
                                     eventList.Remove(mevent);
                                 }
@@ -225,10 +269,21 @@ namespace nManager.Helpful
                                     MimesisHelpers.MimesisEvent emptyEv = new MimesisHelpers.MimesisEvent();
                                     emptyEv.eType = MimesisHelpers.eventType.none;
                                     byte[] bufferEvent = MimesisHelpers.StructToBytes(emptyEv);
-                                    clientStream.Write(opCode, 0, 1);
+                                    opCodeAndLen[1] = (byte)bufferEvent.Length;
+                                    clientStream.Write(opCodeAndLen, 0, 2);
                                     clientStream.Write(bufferEvent, 0, bufferEvent.Length);
                                 }
                                 break;
+                            case MimesisHelpers.opCodes.RequestGrouping:
+                                string sentName = MimesisHelpers.BytesToString(message);
+                                Lua.LuaDoString("InviteUnit(\"" + sentName + "\")");
+                                opCodeAndLen[0] = (byte)MimesisHelpers.opCodes.ReplyGrouping;
+                                opCodeAndLen[1] = 0;
+                                clientStream.Write(opCodeAndLen, 0, 2);
+                                break;
+                            /* Some more things to replicate
+                             * - TAXIMAP_OPENED
+                            */
                         }
                         clientStream.Flush();
                         Thread.Sleep(100);
