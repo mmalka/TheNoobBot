@@ -9,7 +9,7 @@ using nManager.Wow.Helpers;
 
 namespace nManager.Helpful
 {
-    public static class Communication
+    public class Communication
     {
         private static TcpListener _tcpListener;
         private static Thread _listenThread;
@@ -102,7 +102,8 @@ namespace nManager.Helpful
                     // We got one, create a thread for it
                     Socket s = client.Client;
                     Logging.Write("Bot with address " + IPAddress.Parse(((IPEndPoint) s.RemoteEndPoint).Address.ToString()) + " has connected.");
-                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
+                    ClientThread cThread = new ClientThread();
+                    Thread clientThread = new Thread(new ParameterizedThreadStart(cThread.HandleClientComm));
                     clientThread.Start(client);
                 }
                 else
@@ -157,101 +158,104 @@ namespace nManager.Helpful
             _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
         }
 
-        private static void HandleClientComm(object client)
+        private class ClientThread
         {
-            if (_listenThread == null || !_listenThread.IsAlive || _tcpListener == null || _tcpListener.Server == null)
-                return;
-            TcpClient tcpClient = (TcpClient) client;
-            NetworkStream clientStream = tcpClient.GetStream();
-
-            byte[] message = new byte[4096];
-            int bytesRead;
-            List<MimesisHelpers.MimesisEvent> eventList = new List<MimesisHelpers.MimesisEvent>();
-            uint _currentSerialNumber = 0;
-
-            while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
+            public void HandleClientComm(object client)
             {
-                bytesRead = 0;
-                try
-                {
-                    // non blocking call
-                    if (clientStream.DataAvailable)
-                        bytesRead = clientStream.Read(message, 0, 4096);
-                }
-                catch
-                {
-                    Logging.Write("Client connection lost!");
-                    break;
-                }
+                if (_listenThread == null || !_listenThread.IsAlive || _tcpListener == null || _tcpListener.Server == null)
+                    return;
+                TcpClient tcpClient = (TcpClient)client;
+                NetworkStream clientStream = tcpClient.GetStream();
 
-                if (bytesRead > 0)
-                {
-                    // Do something with this message
-                    byte[] opCode = new byte[1];
+                byte[] message = new byte[4096];
+                int bytesRead;
+                List<MimesisHelpers.MimesisEvent> eventList = new List<MimesisHelpers.MimesisEvent>();
+                uint _currentSerialNumber = 0;
 
-                    switch ((MimesisHelpers.opCodes)message[0])
+                while (_listenThread != null && _listenThread.IsAlive && _tcpListener != null && _tcpListener.Server != null)
+                {
+                    bytesRead = 0;
+                    try
                     {
-                        case MimesisHelpers.opCodes.QueryPosition:
-                            opCode[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
-                            byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
-                            clientStream.Write(opCode, 0, 1);
-                            clientStream.Write(bufferPos, 0, bufferPos.Length);
-                            break;
-                        case MimesisHelpers.opCodes.QueryGuid:
-                            opCode[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
-                            byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
-                            clientStream.Write(opCode, 0, 1);
-                            clientStream.Write(bufferGuid, 0, bufferGuid.Length);
-                            break;
-                        case MimesisHelpers.opCodes.Disconnect:
-                            tcpClient.Close();
-                            Logging.Write("Client diconnected");
-                            return;
-                        case MimesisHelpers.opCodes.QueryEvent:
-                            opCode[0] = (byte)MimesisHelpers.opCodes.ReplyEvent;
-                            if (eventList.Count > 0)
-                            {
-                                MimesisHelpers.MimesisEvent mevent = eventList[0];
-                                byte[] bufferEvent = MimesisHelpers.StructToBytes(mevent);
-                                clientStream.Write(opCode, 0, 1);
-                                clientStream.Write(bufferEvent, 0, bufferEvent.Length);
-                                eventList.Remove(mevent);
-                            }
-                            else
-                            {
-                                MimesisHelpers.MimesisEvent emptyEv = new MimesisHelpers.MimesisEvent();
-                                emptyEv.eType = MimesisHelpers.eventType.none;
-                                byte[] bufferEvent = MimesisHelpers.StructToBytes(emptyEv);
-                                clientStream.Write(opCode, 0, 1);
-                                clientStream.Write(bufferEvent, 0, bufferEvent.Length);
-                            }
-                            break;
+                        // non blocking call
+                        if (clientStream.DataAvailable)
+                            bytesRead = clientStream.Read(message, 0, 4096);
                     }
-                    clientStream.Flush();
-                    Thread.Sleep(100);
-                    // We should code here event collecting (eg.: pickup quest, turnin quest, interact with object...)
-                    /*
-                     * We loop throu the global list which is out of this thread, if an event has an higher serial number
-                     * than the last we know localy, we copy the event to the local list in this thread.
-                    */
-                    uint highestSerialNumber = 0;
-                    lock (_globalList)
+                    catch
                     {
-                        foreach (MimesisHelpers.MimesisEvent evt in _globalList)
+                        Logging.Write("Client connection lost!");
+                        break;
+                    }
+
+                    if (bytesRead > 0)
+                    {
+                        // Do something with this message
+                        byte[] opCode = new byte[1];
+
+                        switch ((MimesisHelpers.opCodes)message[0])
                         {
-                            if (evt.SerialNumber > _currentSerialNumber)
+                            case MimesisHelpers.opCodes.QueryPosition:
+                                opCode[0] = (byte)MimesisHelpers.opCodes.ReplyPosition;
+                                byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
+                                clientStream.Write(opCode, 0, 1);
+                                clientStream.Write(bufferPos, 0, bufferPos.Length);
+                                break;
+                            case MimesisHelpers.opCodes.QueryGuid:
+                                opCode[0] = (byte)MimesisHelpers.opCodes.ReplyGuid;
+                                byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
+                                clientStream.Write(opCode, 0, 1);
+                                clientStream.Write(bufferGuid, 0, bufferGuid.Length);
+                                break;
+                            case MimesisHelpers.opCodes.Disconnect:
+                                tcpClient.Close();
+                                Logging.Write("Client diconnected");
+                                return;
+                            case MimesisHelpers.opCodes.QueryEvent:
+                                opCode[0] = (byte)MimesisHelpers.opCodes.ReplyEvent;
+                                if (eventList.Count > 0)
+                                {
+                                    MimesisHelpers.MimesisEvent mevent = eventList[0];
+                                    byte[] bufferEvent = MimesisHelpers.StructToBytes(mevent);
+                                    clientStream.Write(opCode, 0, 1);
+                                    clientStream.Write(bufferEvent, 0, bufferEvent.Length);
+                                    eventList.Remove(mevent);
+                                }
+                                else
+                                {
+                                    MimesisHelpers.MimesisEvent emptyEv = new MimesisHelpers.MimesisEvent();
+                                    emptyEv.eType = MimesisHelpers.eventType.none;
+                                    byte[] bufferEvent = MimesisHelpers.StructToBytes(emptyEv);
+                                    clientStream.Write(opCode, 0, 1);
+                                    clientStream.Write(bufferEvent, 0, bufferEvent.Length);
+                                }
+                                break;
+                        }
+                        clientStream.Flush();
+                        Thread.Sleep(100);
+                        // We should code here event collecting (eg.: pickup quest, turnin quest, interact with object...)
+                        /*
+                         * We loop throu the global list which is out of this thread, if an event has an higher serial number
+                         * than the last we know localy, we copy the event to the local list in this thread.
+                        */
+                        uint highestSerialNumber = 0;
+                        lock (_globalList)
+                        {
+                            foreach (MimesisHelpers.MimesisEvent evt in _globalList)
                             {
-                                eventList.Add(evt);
-                                if (evt.SerialNumber > highestSerialNumber) // Useless most probably because the list should be sorted
-                                    highestSerialNumber = evt.SerialNumber;
+                                if (evt.SerialNumber > _currentSerialNumber)
+                                {
+                                    eventList.Add(evt);
+                                    if (evt.SerialNumber > highestSerialNumber) // Useless most probably because the list should be sorted
+                                        highestSerialNumber = evt.SerialNumber;
+                                }
                             }
                         }
+                        _currentSerialNumber = highestSerialNumber;
                     }
-                    _currentSerialNumber = highestSerialNumber;
                 }
+                clientStream.Dispose();
+                tcpClient.Close();
             }
-            clientStream.Dispose();
-            tcpClient.Close();
         }
     }
 }
