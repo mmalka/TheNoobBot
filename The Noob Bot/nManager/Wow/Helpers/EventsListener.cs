@@ -15,6 +15,7 @@ namespace nManager.Wow.Helpers
         private static Thread _threadHookEvent = null;
         private static readonly uint PtrFirstEvent = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.EventsListener.BaseEvents);
         private static readonly int EventsCount = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.EventsListener.EventsCount);
+        private static Object _ourLock = new Object();
 
         /*private static void EnumWoWEventsDumper()
         {
@@ -51,9 +52,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                foreach (HookedEventInfo c in _hookedEvents)
+                lock (_ourLock)
                 {
-                    if (c.EventType == eventType) return true;
+                    foreach (HookedEventInfo c in _hookedEvents)
+                    {
+                        if (c.EventType == eventType) return true;
+                    }
                 }
                 return false;
             }
@@ -68,19 +72,19 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock ("LockEvent")
+                if (IsAttached(eventType) && !forceHook)
                 {
-                    if (IsAttached(eventType) && !forceHook)
-                    {
-                        Logging.WriteError("The event " + eventType.ToString() + " is already hooked and parameter forceHook is passed with false.");
-                        return;
-                    }
-                    _hookedEvents.Add(new HookedEventInfo(method, eventType, GetEventFireCount(eventType)));
-                    if (_threadHookEvent == null)
-                        _threadHookEvent = new Thread(Hook) { Name = "Hook of Events" };
-                    if (!_threadHookEvent.IsAlive)
-                        _threadHookEvent.Start();
+                    Logging.WriteError("The event " + eventType.ToString() + " is already hooked and parameter forceHook is passed with false.");
+                    return;
                 }
+                lock (_ourLock)
+                {
+                    _hookedEvents.Add(new HookedEventInfo(method, eventType, GetEventFireCount(eventType)));
+                }
+                if (_threadHookEvent == null)
+                    _threadHookEvent = new Thread(Hook) { Name = "Hook of Events" };
+                if (!_threadHookEvent.IsAlive)
+                    _threadHookEvent.Start();
             }
             catch (Exception arg)
             {
@@ -92,7 +96,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock ("LockEvent")
+                lock (_ourLock)
                 {
                     HookedEventInfo toRemove = null;
                     foreach (HookedEventInfo current in _hookedEvents)
@@ -117,12 +121,12 @@ namespace nManager.Wow.Helpers
         {
             while (_hookedEvents.Count > 0)
             {
-                lock ("LockEvent")
+                lock (_ourLock)
                 {
                     foreach (HookedEventInfo current in _hookedEvents)
                     {
                         if (current.PreviousCurrentEventFireCount >= GetEventFireCount(current.EventType)) continue;
-                        Thread thread = new Thread(eventType => current.CallBack(current.EventType)) { Name = "Fire callback for Event: " + current.EventType };
+                        Thread thread = new Thread(current.CallBack) { Name = "Fire callback for Event: " + current.EventType };
                         thread.Start();
                         current.PreviousCurrentEventFireCount++;
                     }
@@ -144,14 +148,14 @@ namespace nManager.Wow.Helpers
                 PreviousCurrentEventFireCount = idUsedLastCount;
             }
 
-            internal void CallBack(WoWEventsType eventType)
+            internal void CallBack()
             {
-                switch (eventType)
+                switch (EventType)
                 {
                     case WoWEventsType.CHAT_MSG_LOOT:
                         // when looting multiple items, fire multiples times, we want to make sure to jump to the latest eventFireCount.
                         Thread.Sleep(500); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
-                        _callBack(GetEventFireCount(eventType));
+                        _callBack(GetEventFireCount(EventType));
                         break;
                     default:
                         _callBack(null);
