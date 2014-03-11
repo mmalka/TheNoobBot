@@ -361,7 +361,7 @@
       <Id>9704</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <QuestLevel>5</QuestLevel>
       <PickUp>15301</PickUp>
       <TurnIn>17849</TurnIn>
@@ -374,7 +374,7 @@
       <Id>9705</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <QuestLevel>5</QuestLevel>
       <NeedQuestCompletedId>
         <int>9704</int>
@@ -390,7 +390,7 @@
       <Id>8350</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <QuestLevel>5</QuestLevel>
       <NeedQuestCompletedId>
         <int>9705</int>
@@ -406,7 +406,7 @@
       <Id>8472</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <QuestLevel>5</QuestLevel>
       <PickUp>15418</PickUp>
       <TurnIn>15418</TurnIn>
@@ -434,7 +434,7 @@
       <Id>8463</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <QuestLevel>5</QuestLevel>
       <PickUp>15403</PickUp>
       <TurnIn>15403</TurnIn>
@@ -462,7 +462,7 @@
       <Id>9352</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>8463</int>
@@ -493,7 +493,7 @@
       <Id>8468</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <PickUp>180918</PickUp>
       <TurnIn>16924</TurnIn>
@@ -521,7 +521,7 @@
       <Id>8895</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>8472</int>
@@ -537,7 +537,7 @@
       <Id>9119</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>8</MaxLevel>
+      <MaxLevel>10</MaxLevel>
       <QuestLevel>5</QuestLevel>
       <NeedQuestCompletedId>
         <int>8895</int>
@@ -553,7 +553,7 @@
       <Id>8486</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>9119</int>
@@ -597,7 +597,7 @@
       <Id>9035</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <PickUp>15941</PickUp>
       <TurnIn>15945</TurnIn>
@@ -610,7 +610,7 @@
       <Id>9062</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>9035</int>
@@ -641,7 +641,7 @@
       <Id>9064</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>9062</int>
@@ -657,7 +657,7 @@
       <Id>9066</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>9064</int>
@@ -702,7 +702,7 @@
       <Id>8482</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <ItemPickUp>20765</ItemPickUp>
       <TurnIn>15403</TurnIn>
@@ -715,7 +715,7 @@
       <Id>8483</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <NeedQuestCompletedId>
         <int>8482</int>
@@ -771,7 +771,7 @@
       <Id>8884</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <PickUp>15920</PickUp>
       <TurnIn>15920</TurnIn>
@@ -800,7 +800,7 @@
       <Id>8885</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <NeedQuestCompletedId>
         <int>8884</int>
@@ -841,7 +841,7 @@
       <Id>9256</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>6</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
         <int>8483</int>
@@ -857,7 +857,7 @@
       <Id>8892</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
         <int>9256</int>
@@ -901,7 +901,7 @@
       <Id>8475</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
-      <MaxLevel>9</MaxLevel>
+      <MaxLevel>11</MaxLevel>
       <QuestLevel>6</QuestLevel>
       <PickUp>15416</PickUp>
       <TurnIn>15416</TurnIn>
@@ -975,7 +975,7 @@
       <Id>9067</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <NeedQuestCompletedId>
         <int>9395</int>
@@ -1033,7 +1033,7 @@
       <Id>8886</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>11</MaxLevel>
+      <MaxLevel>13</MaxLevel>
       <QuestLevel>8</QuestLevel>
       <PickUp>15921</PickUp>
       <TurnIn>15921</TurnIn>
@@ -1211,8 +1211,11 @@
       <Id>8488</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8487</int>
+      </NeedQuestCompletedId>
       <PickUp>15402</PickUp>
       <TurnIn>15402</TurnIn>
       <Objectives>
@@ -1258,7 +1261,7 @@
       <Id>9255</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <NeedQuestCompletedId>
         <int>8488</int>
@@ -1274,7 +1277,7 @@
       <Id>9358</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <PickUp>15397</PickUp>
       <TurnIn>15942</TurnIn>
@@ -1287,7 +1290,7 @@
       <Id>9358</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <NeedQuestCompletedId>
         <int>9252</int>
@@ -1331,7 +1334,7 @@
       <Id>9258</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <PickUp>16397</PickUp>
       <TurnIn>15398</TurnIn>
@@ -1344,7 +1347,7 @@
       <Id>8473</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>6</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <NeedQuestCompletedId>
         <int>9258</int>
@@ -1374,7 +1377,7 @@
       <Id>9130</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <PickUp>16261</PickUp>
       <TurnIn>44036</TurnIn>
@@ -1387,7 +1390,7 @@
       <Id>9133</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
         <int>9130</int>
@@ -1411,7 +1414,7 @@
       <Id>9134</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
         <int>9133</int>
@@ -1427,7 +1430,7 @@
       <Id>9135</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
         <int>9134</int>
@@ -1451,7 +1454,7 @@
       <Id>9359</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestCompletedId>
         <int>8892</int>
@@ -1470,7 +1473,7 @@
       <Id>8476</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestCompletedId>
         <int>9359</int>
@@ -1534,7 +1537,7 @@
       <Id>8477</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <PickUp>15400</PickUp>
       <TurnIn>15400</TurnIn>
@@ -1562,7 +1565,7 @@
       <Id>8888</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestNoCompletedId>
         <int>8889</int>
@@ -1579,7 +1582,7 @@
       <Id>9394</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestNoCompletedId>
         <int>8894</int>
@@ -1595,7 +1598,7 @@
       <Id>8894</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestNoCompletedId>
         <int>9394</int> <!-- Force the bot making more XP -->
@@ -1652,7 +1655,7 @@
       <Id>8889</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <PickUp>15924</PickUp>
       <TurnIn>15924</TurnIn>
@@ -1762,7 +1765,7 @@
       <Id>8479</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>14</MaxLevel>
+      <MaxLevel>16</MaxLevel>
       <QuestLevel>11</QuestLevel>
       <PickUp>15406</PickUp>
       <TurnIn>15406</TurnIn>
@@ -1790,7 +1793,7 @@
       <Id>8890</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestCompletedId>
         <int>8889</int>
@@ -1806,7 +1809,7 @@
       <Id>9360</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>14</MaxLevel>
+      <MaxLevel>16</MaxLevel>
       <QuestLevel>11</QuestLevel>
       <NeedQuestCompletedId>
         <int>8479</int> <!-- not really, but in order to get the item -->
@@ -1822,7 +1825,7 @@
       <Id>9363</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>14</MaxLevel>
+      <MaxLevel>16</MaxLevel>
       <QuestLevel>11</QuestLevel>
       <NeedQuestCompletedId>
         <int>8479</int>
@@ -1839,7 +1842,7 @@
       <Id>8887</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>11</MaxLevel>
+      <MaxLevel>13</MaxLevel>
       <QuestLevel>8</QuestLevel>
       <ItemPickUp>21776</ItemPickUp>
       <TurnIn>15921</TurnIn>
@@ -1852,7 +1855,7 @@
       <Id>8474</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <ItemPickUp>23228</ItemPickUp>
       <TurnIn>15398</TurnIn>
@@ -1920,7 +1923,7 @@
       <Id>9253</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestCompletedId>
         <int>9252</int>
@@ -1939,7 +1942,7 @@
       <Id>8490</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestCompletedId>
         <int>9253</int>
@@ -1980,7 +1983,7 @@
       <Id>9144</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestNotCompletedId>
         <int>9147</int>
