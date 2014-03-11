@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
             WoWItemSubClass TheItemSubClassRec = WoWItemSubClass.FromNameAndClass(questRewardItem.ItemSubType, classId);
             uint subClassId = TheItemSubClassRec.Record.SubClassId;
 
-            Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(questRewardItem.ItemName) + "\" equip \"" + questRewardItem.ItemEquipLoc + "\" class " + (Enums.WoWItemClass)classId + " subclass " + subClassId +
+            Logging.WriteDebug("Item \"" + questRewardItem.ItemName + "\" equip \"" + questRewardItem.ItemEquipLoc + "\" class " + (Enums.WoWItemClass)classId + " subclass " + subClassId +
                    " has a value of " + questRewardItem.ItemSellPrice);
 
             if ((Enums.WoWItemClass)classId == Enums.WoWItemClass.Armor)
