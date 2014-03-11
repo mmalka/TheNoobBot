@@ -1115,7 +1115,7 @@ namespace Quester.Tasks
                 Logging.WriteError("The CollectItemId(int) of your " + questObjective.Objective + " objective is missing or invalid. Can't continue.");
                 errors++;
             }
-            if (cCountItemId && questObjective.CollectCount != -1 || questObjective.CollectCount <= 0)
+            if (cCountItemId && questObjective.CollectCount != -1 && questObjective.CollectCount <= 0)
             {
                 Logging.WriteError("The CollectCount(int) of your " + questObjective.Objective + " objective is missing or invalid. Should be set to '-1' or '> 0'. Can't continue.");
                 errors++;
