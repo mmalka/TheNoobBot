@@ -128,9 +128,9 @@ namespace nManager.Helpful
                     new Process();
                 ProcessStartInfo pi =
                     new ProcessStartInfo
-                        {
-                            FileName = urlOrPath
-                        };
+                    {
+                        FileName = urlOrPath
+                    };
                 p.StartInfo = pi;
                 p.Start();
             }
@@ -150,7 +150,7 @@ namespace nManager.Helpful
 
                 if (s.IndexOf("\0", StringComparison.Ordinal) != -1)
                     s = s.Remove(s.IndexOf("\0", StringComparison.Ordinal),
-                                 s.Length - s.IndexOf("\0", StringComparison.Ordinal));
+                        s.Length - s.IndexOf("\0", StringComparison.Ordinal));
 
                 return s;
             }
@@ -516,10 +516,10 @@ namespace nManager.Helpful
             if (!Directory.Exists(path + pathDirectory))
                 return new List<string>();
             return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
-                {
-                    string name = Path.GetFileName(subfolder);
-                    return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
-                }).ToList();
+            {
+                string name = Path.GetFileName(subfolder);
+                return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
+            }).ToList();
         }
 
         /// <summary>
@@ -612,7 +612,7 @@ namespace nManager.Helpful
                 {
                     Logging.WriteError("PostRequest(string url, string parameters)#2: " + ex.Message);
                     MessageBox.Show(ex.Message, "HttpPost: Response error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception exception)
@@ -737,7 +737,8 @@ namespace nManager.Helpful
                 DialogResult resulMb =
                     MessageBox.Show(
                         Translate.Get(
-                            Translate.Id.Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
+                            Translate.Id
+                                .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
                         "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis),
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -1017,75 +1018,79 @@ namespace nManager.Helpful
         }
 
         private static readonly Dictionary<int, int> ItemStock = new Dictionary<int, int>();
+        private static readonly Object CheckInventoryLock = new Object();
         private static int _oldEventFireCount = -1; // the first call call it with param (0)
 
         public static void CheckInventoryForLatestLoot(int eventFireCount)
         {
-            try
+            lock (CheckInventoryLock)
             {
-                if (_oldEventFireCount == eventFireCount)
-                    return;
-                _oldEventFireCount = eventFireCount;
-                Dictionary<int, int> newLoots = new Dictionary<int, int>();
-                bool firstCheck = ItemStock.Count == 0;
-                List<WoWItem> objectWoWItems = ObjectManager.GetObjectWoWItem();
-                foreach (WoWItem wowItem in objectWoWItems)
+                try
                 {
-                    WoWItem item = wowItem;
-                    if (!item.IsValid || item.Entry < 1 || newLoots.ContainsKey(item.Entry))
-                        continue;
-                    if (EquippedItems.IsEquippedItemByGuid(item.Guid))
-                        continue;
-                    int count = ItemsManager.GetItemCount(item.Entry);
-                    if (count == 0)
-                        continue;
-                    if (!ItemStock.ContainsKey(item.Entry))
+                    if (_oldEventFireCount == eventFireCount)
+                        return;
+                    _oldEventFireCount = eventFireCount;
+                    Dictionary<int, int> newLoots = new Dictionary<int, int>();
+                    bool firstCheck = ItemStock.Count == 0;
+                    List<WoWItem> objectWoWItems = ObjectManager.GetObjectWoWItem();
+                    foreach (WoWItem wowItem in objectWoWItems)
                     {
-                        newLoots.Add(item.Entry, count);
-                        ItemStock.Add(item.Entry, count);
-                        continue;
+                        WoWItem item = wowItem;
+                        if (!item.IsValid || item.Entry < 1 || newLoots.ContainsKey(item.Entry))
+                            continue;
+                        if (EquippedItems.IsEquippedItemByGuid(item.Guid))
+                            continue;
+                        int count = ItemsManager.GetItemCount(item.Entry);
+                        if (count == 0)
+                            continue;
+                        if (!ItemStock.ContainsKey(item.Entry))
+                        {
+                            newLoots.Add(item.Entry, count);
+                            ItemStock.Add(item.Entry, count);
+                            continue;
+                        }
+                        if (ItemStock[item.Entry] == count)
+                            continue;
+                        if (ItemStock[item.Entry] < count)
+                        {
+                            newLoots.Add(item.Entry, count - ItemStock[item.Entry]);
+                            ItemStock[item.Entry] = count;
+                            continue;
+                        }
+                        if (ItemStock[item.Entry] > count)
+                        {
+                            // Update our stock if we lost some items.
+                            ItemStock[item.Entry] = count;
+                        }
                     }
-                    if (ItemStock[item.Entry] == count)
-                        continue;
-                    if (ItemStock[item.Entry] < count)
+                    if (!firstCheck)
                     {
-                        newLoots.Add(item.Entry, count - ItemStock[item.Entry]);
-                        ItemStock[item.Entry] = count;
-                        continue;
+                        foreach (KeyValuePair<int, int> pair in newLoots)
+                        {
+                            // Can do anything here, like equip cool items etc.
+                            Logging.Write("You recieve loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
+                        }
                     }
-                    if (ItemStock[item.Entry] > count)
+                    // When all the processing is done, let's now check if we are missing items completly.
+                    foreach (KeyValuePair<int, int> pair in ItemStock)
                     {
+                        bool KeepValue = false;
+                        foreach (WoWItem item in objectWoWItems)
+                        {
+                            if (item.Entry == pair.Key)
+                                KeepValue = true;
+                        }
                         // Update our stock if we lost some items.
-                        ItemStock[item.Entry] = count;
+                        if (!KeepValue)
+                            ItemStock[pair.Key] = 0;
                     }
+                    newLoots.Clear();
+                    objectWoWItems.Clear();
                 }
-                if (!firstCheck)
+                catch (Exception e)
                 {
-                    foreach (KeyValuePair<int, int> pair in newLoots)
-                    {
-                        // Can do anything here, like equip cool items etc.
-                        Logging.Write("You recieve loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
-                    }
+                    Logging.WriteError("CheckInventoryForLatestLoot(int eventFireCount): " + e);
                 }
-                // When all the processing is done, let's now check if we are missing items completly.
-                foreach (KeyValuePair<int, int> pair in ItemStock)
-                {
-                    bool KeepValue = false;
-                    foreach (WoWItem item in objectWoWItems)
-                    {
-                        if (item.Entry == pair.Key)
-                            KeepValue = true;
-                    }
-                    // Update our stock if we lost some items.
-                    if (!KeepValue)
-                        ItemStock[pair.Key] = 0;
-                }
-                newLoots.Clear();
-                objectWoWItems.Clear();
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("CheckInventoryForLatestLoot(int eventFireCount): " + e);
             }
         }
        
