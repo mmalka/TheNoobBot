@@ -326,15 +326,6 @@
       </Position>
     </Npc>
     <Npc>
-      <Entry>181011</Entry>
-      <Name>Magister Duskwither's Journal</Name>
-      <Position>
-        <X>9330.795</X>
-        <Y>-7897.802</Y>
-        <Z>159.3244</Z>
-      </Position>
-    </Npc>
-    <Npc>
       <Entry>15969</Entry>
       <Name>Groundskeeper Wyllithen</Name>
       <Position>
@@ -361,7 +352,6 @@
         <Z>158.4441</Z>
       </Position>
     </Npc>
-
   </Questers>
   <Quests>
     <!-- Main quest line -->
@@ -1645,19 +1635,6 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-
-    <!--<Quest>
-      <Name>Abandoned Investigations</Name>
-      <Id>8891</Id>
-      <RaceMask>33555378</RaceMask>
-      <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
-      <QuestLevel>10</QuestLevel>
-      <PickUp>181011</PickUp>
-      <TurnIn>15951</TurnIn>
-      <Objectives>
-      </Objectives>
-    </Quest>-->
 
     <Quest>
       <Name>Deactivating the Spire</Name>
