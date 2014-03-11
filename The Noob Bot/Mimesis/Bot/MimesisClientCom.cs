@@ -15,6 +15,8 @@ namespace Mimesis.Bot
     {
         private static TcpClient client = null;
         private static IPEndPoint serviceEndPoint = null;
+        public static List<MimesisHelpers.MimesisEvent> myTaskList = new List<MimesisHelpers.MimesisEvent>();
+        public static List<int> myQuestList = Quest.GetLogQuestId();
 
         public static bool Connect()
         {
@@ -27,6 +29,8 @@ namespace Mimesis.Bot
             {
                 client.Connect(serviceEndPoint);
                 Logging.Write("Connected!");
+                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+                EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
                 return true;
             }
             catch
@@ -40,14 +44,24 @@ namespace Mimesis.Bot
         {
             if (client == null)
                 return;
-            byte[] opCodeAndSize = new byte[2];
-            NetworkStream clientStream = client.GetStream();
-            opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.Disconnect;
-            opCodeAndSize[1] = 0;
-            clientStream.Write(opCodeAndSize, 0, 2);
-            clientStream.Flush();
-
+            if (client.Connected)
+            {
+                try
+                {
+                    NetworkStream clientStream = client.GetStream();
+                    byte[] opCodeAndSize = new byte[2];
+                    opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.Disconnect;
+                    opCodeAndSize[1] = 0;
+                    clientStream.Write(opCodeAndSize, 0, 2);
+                    clientStream.Flush();
+                }
+                catch (System.IO.IOException)
+                {
+                }
+            }
             Logging.Write("Disconnected from main bot.");
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED);
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED);
             client.Close();
         }
 
@@ -145,7 +159,7 @@ namespace Mimesis.Bot
         public static void ProcessEvents()
         {
             byte[] opCodeAndSize = new byte[2];
-            byte[] buffer;
+            byte[] buffer = new byte[1];
             opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.QueryEvent;
             opCodeAndSize[1] = 0;
 
@@ -158,48 +172,123 @@ namespace Mimesis.Bot
             {
                 int bytesRead = clientStream.Read(opCodeAndSize, 0, 2);
                 int len = opCodeAndSize[1];
-                buffer = new byte[len];
-                bytesRead += clientStream.Read(buffer, 0, len);
+                if (len > 0)
+                {
+                    buffer = new byte[len];
+                    bytesRead += clientStream.Read(buffer, 0, len);
+                }
             }
             catch (Exception e)
             {
                 Logging.WriteError("MimesisClientCom > ProcessEvents(): " + e);
                 return;
             }
-            if ((MimesisHelpers.opCodes)opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyEvent)
+            if ((MimesisHelpers.opCodes)opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyEvent && opCodeAndSize[1] > 0)
             {
                 MimesisHelpers.MimesisEvent evt = MimesisHelpers.BytesToStruct<MimesisHelpers.MimesisEvent>(buffer);
                 List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.TargetId);
                 switch (evt.eType)
                 {
                     case MimesisHelpers.eventType.pickupQuest:
-                        if (listU.Count > 0)
-                        {
-                            WoWUnit u = listU[0];
-                            Npc quester = new Npc();
-                            quester.Entry = evt.TargetId;
-                            quester.Position = u.Position;
-                            quester.Name = u.Name;
-
-                            MovementManager.StopMove();
-                            Quest.QuestPickUp(ref quester, "not implemented", evt.QuestId);
-                        }
+                        Logging.WriteDebug("Received pickupquest " + evt.QuestId);
+                        myTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.turninQuest:
-                        if (listU.Count > 0)
-                        {
-                            WoWUnit u = listU[0];
-                            Npc quester = new Npc();
-                            quester.Entry = evt.TargetId;
-                            quester.Position = u.Position;
-                            quester.Name = u.Name;
-
-                            MovementManager.StopMove();
-                            Quest.QuestTurnIn(ref quester, "not implemented", evt.QuestId);
-                        }
+                        Logging.WriteDebug("Received turninquest " + evt.QuestId);
+                        myTaskList.Add(evt);
                         break;
                 }
             }
+        }
+
+        public static void DoTasks()
+        {
+            if (!HasTaskToDo())
+                return;
+            MimesisHelpers.MimesisEvent evt = myTaskList[0];
+            List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.TargetId);
+            if (listU.Count > 0)
+            {
+                WoWUnit u = listU[0];
+                Npc quester = new Npc();
+                quester.Entry = evt.TargetId;
+                quester.Position = u.Position;
+                quester.Name = u.Name;
+
+                switch (evt.eType)
+                {
+                    case MimesisHelpers.eventType.pickupQuest:
+                        //Logging.WriteDebug("Run pickup..");
+                        Quest.QuestPickUp(ref quester, "not implemented", evt.QuestId);
+                        break;
+                    case MimesisHelpers.eventType.turninQuest:
+                        //Logging.WriteDebug("Run turnin..");
+                        Quest.QuestTurnIn(ref quester, "not implemented", evt.QuestId);
+                        break;
+                }
+            }
+        }
+
+        public static void EventQuestAccepted()
+        {
+            List<int> newQuestList = Quest.GetLogQuestId();
+            int questId = 0;
+            foreach (var quest in newQuestList)
+            {
+                if (!myQuestList.Contains(quest))
+                {
+                    questId = quest;
+                    break;
+                }
+            }
+            if (questId != 0)
+            {
+                MimesisHelpers.MimesisEvent evtToRemove = new MimesisHelpers.MimesisEvent();
+                foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
+                {
+                    if (evt.eType == MimesisHelpers.eventType.pickupQuest && evt.QuestId == questId)
+                    {
+                        evtToRemove = evt;
+                        break;
+                    }
+                }
+                myTaskList.Remove(evtToRemove);
+                myQuestList.Add(questId);
+            }
+        }
+
+        public static void EventQuestFinished()
+        {
+            List<int> newQuestList = Quest.GetLogQuestId();
+            int questId = 0;
+            foreach (var quest in myQuestList)
+            {
+                if (!newQuestList.Contains(quest))
+                {
+                    questId = quest;
+                    break;
+                }
+            }
+            if (questId != 0)
+            {
+                MimesisHelpers.MimesisEvent evtToRemove = new MimesisHelpers.MimesisEvent();
+                foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
+                {
+                    if (evt.eType == MimesisHelpers.eventType.turninQuest && evt.QuestId == questId)
+                    {
+                        evtToRemove = evt;
+                        break;
+                    }
+                }
+                myTaskList.Remove(evtToRemove);
+                myQuestList.Remove(questId);
+            }
+        }
+
+        // I will need to expand this for new Tasks
+        public static bool HasTaskToDo()
+        {
+            return myTaskList.Count > 0;
         }
 
         // We need the roll Id, but since the events have no data, how ?

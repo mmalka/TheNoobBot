@@ -65,12 +65,12 @@ namespace nManager.Helpful
                 }
                 catch
                 {
-                    Logging.WriteError("event QUEST_ACCEPTED already hooked");
+                    Logging.WriteError("event QUEST_ACCEPTED or QUEST_FINISHED already hooked");
                 }
                 _eventSerialNumber = 0;
                 _currentQuestList = Quest.GetLogQuestId();
                 _globalList = new List<MimesisHelpers.MimesisEvent>();
-                _cleanupTimer = new Timer(3 * 1000);
+                _cleanupTimer = new Timer(5 * 1000);
             }
             catch (SocketException)
             {
@@ -114,7 +114,7 @@ namespace nManager.Helpful
                 else
                 {
                     Thread.Sleep(100);
-                    if (_cleanupTimer.IsReady) // Every 3 seconds, we drop the head event from the list
+                    if (_cleanupTimer.IsReady) // Every 5 seconds, we drop the head event from the list
                     {
                         lock (_myLock)
                         {
@@ -160,7 +160,7 @@ namespace nManager.Helpful
             // now add this new event to the globale list
             lock (_myLock) _globalList.Add(evt);
             _currentQuestList.Add(evt.QuestId);
-            _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
+            _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it
         }
 
         public static void EventQuestFinished()
@@ -196,7 +196,7 @@ namespace nManager.Helpful
             // now add this new event to the globale list
             lock (_myLock) _globalList.Add(evt);
             _currentQuestList.Remove(questId);
-            _cleanupTimer.Reset(); // Let 3 seconds for all client threads to pickup this event before purging it
+            _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it
         }
 
         private class ClientThread
@@ -267,18 +267,15 @@ namespace nManager.Helpful
                                     MimesisHelpers.MimesisEvent mevent = eventList[0];
                                     byte[] bufferEvent = MimesisHelpers.StructToBytes(mevent);
                                     opCodeAndLen[1] = (byte)bufferEvent.Length;
+                                    Logging.WriteDebug("Sending to client event " + mevent.eType + " for quest " + mevent.QuestId);
                                     clientStream.Write(opCodeAndLen, 0, 2);
                                     clientStream.Write(bufferEvent, 0, bufferEvent.Length);
                                     eventList.Remove(mevent);
                                 }
                                 else
                                 {
-                                    MimesisHelpers.MimesisEvent emptyEv = new MimesisHelpers.MimesisEvent();
-                                    emptyEv.eType = MimesisHelpers.eventType.none;
-                                    byte[] bufferEvent = MimesisHelpers.StructToBytes(emptyEv);
-                                    opCodeAndLen[1] = (byte)bufferEvent.Length;
+                                    opCodeAndLen[1] = 0;
                                     clientStream.Write(opCodeAndLen, 0, 2);
-                                    clientStream.Write(bufferEvent, 0, bufferEvent.Length);
                                 }
                                 break;
                             case MimesisHelpers.opCodes.RequestGrouping:
@@ -293,7 +290,7 @@ namespace nManager.Helpful
                             */
                         }
                         clientStream.Flush();
-                        Thread.Sleep(100);
+                        Thread.Sleep(250);
                         // We should code here event collecting (eg.: pickup quest, turnin quest, interact with object...)
                         /*
                          * We loop throu the global list which is out of this thread, if an event has an higher serial number

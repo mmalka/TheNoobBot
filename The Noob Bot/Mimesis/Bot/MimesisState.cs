@@ -26,6 +26,7 @@ namespace Mimesis.Bot
 
         private Timer _positionCheckTimer, _runTimer, _eventQueryTimer;
         private Npc _master = null;
+        private int _groupInvitCount = 0;
 
         public override bool NeedToRun
         {
@@ -85,29 +86,37 @@ namespace Mimesis.Bot
             }
             else
                 _master.Position = TargetPlayer.Position;
-            if (!Party.IsInGroup())
+            if (_groupInvitCount < 3 && !Party.IsInGroup())
             {
                 MimesisClientCom.JoinGroup();
-                Thread.Sleep(500);
+                _groupInvitCount++;
+                Thread.Sleep(500 + Usefuls.Latency);
             }
             if (!_master.Position.IsValid)
             {
                 return;
             }
-            else if (_master.Position.DistanceTo(ObjectManager.Me.Position) < 3.0f)
+            else if (MimesisClientCom.HasTaskToDo())
             {
                 MovementManager.Chasing = false;
-                MovementManager.StopMove();
-            }
-            else if (_master.Position.Type.ToLower() == "flying" || _master.Position.Type.ToLower() == "swimming")
-            {
-                MovementManager.MoveTo(_master.Position);
-                Logging.Write("Flying or swimming");
             }
             else
             {
-                MovementManager.Chasing = true;
-                uint baseAddress = MovementManager.FindTarget(ref _master, 3.0f);
+                if (_master.Position.DistanceTo(ObjectManager.Me.Position) < 3.0f)
+                {
+                    MovementManager.Chasing = false;
+                    MovementManager.StopMove();
+                }
+                else if (_master.Position.Type.ToLower() == "flying" || _master.Position.Type.ToLower() == "swimming")
+                {
+                    MovementManager.MoveTo(_master.Position);
+                    Logging.Write("Flying or swimming");
+                }
+                else
+                {
+                    MovementManager.Chasing = true;
+                    uint baseAddress = MovementManager.FindTarget(ref _master, 3.0f);
+                }
             }
             // now we should query for events
             if (_eventQueryTimer.IsReady)
@@ -115,6 +124,7 @@ namespace Mimesis.Bot
                 MimesisClientCom.ProcessEvents();
                 _eventQueryTimer.Reset();
             }
+            MimesisClientCom.DoTasks();
             // on event START_LOOT_ROLL lookup if item is an update and roll need/cupidity
         }
     }
