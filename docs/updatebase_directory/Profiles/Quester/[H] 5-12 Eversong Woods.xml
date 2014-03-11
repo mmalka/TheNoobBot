@@ -262,7 +262,7 @@
         <Z>8.966657</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>15399</Entry>
       <Name>Lieutenant Dawnrunner</Name>
       <Position>
@@ -271,7 +271,7 @@
         <Z>86.68749</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>15400</Entry>
       <Name>Arathel Sunforge</Name>
       <Position>
@@ -280,7 +280,7 @@
         <Z>89.40356</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>15951</Entry>
       <Name>Magister Duskwither</Name>
       <Position>
@@ -289,7 +289,7 @@
         <Z>103.2739</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>19456</Entry>
       <Name>Whitebark's Spirit</Name>
       <Position>
@@ -298,7 +298,7 @@
         <Z>64.50932</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>16183</Entry>
       <Name>Courier Dawnstrider</Name>
       <Position>
@@ -307,7 +307,7 @@
         <Z>70.759</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>16362</Entry>
       <Name>Runewarden Deryan</Name>
       <Position>
@@ -316,7 +316,7 @@
         <Z>84.47708</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>15924</Entry>
       <Name>Apprentice Loralthalis</Name>
       <Position>
@@ -325,7 +325,7 @@
         <Z>98.36075</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>181011</Entry>
       <Name>Magister Duskwither's Journal</Name>
       <Position>
@@ -334,7 +334,7 @@
         <Z>159.3244</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>15969</Entry>
       <Name>Groundskeeper Wyllithen</Name>
       <Position>
@@ -343,13 +343,22 @@
         <Z>16.12427</Z>
       </Position>
     </Npc>
-	<Npc>
+    <Npc>
       <Entry>15406</Entry>
       <Name>Ven'jashi</Name>
       <Position>
         <X>8666.612</X>
         <Y>-7960.889</Y>
         <Z>151.793</Z>
+      </Position>
+    </Npc>
+    <Npc>
+      <Entry>181011</Entry>
+      <Name>Magister Duskwither's Journal</Name>
+      <Position>
+        <X>9331.203</X>
+        <Y>-7896.826</Y>
+        <Z>158.4441</Z>
       </Position>
     </Npc>
 
@@ -1439,7 +1448,7 @@
       <TurnIn>16261</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseFlightPath</Objective> 
+          <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <FlightDestinationX>0.57375419139862</FlightDestinationX>
           <FlightDestinationY>0.79429793357849</FlightDestinationY>
@@ -1465,7 +1474,7 @@
       <PickUp>15939</PickUp>
       <TurnIn>15399</TurnIn>
       <Objectives>
-	  </Objectives>
+      </Objectives>
     </Quest>
 
     <Quest>
@@ -1529,7 +1538,7 @@
             </Point>
           </Hotspots>
         </QuestObjective>
-	  </Objectives>
+      </Objectives>
     </Quest>
 
     <Quest>
@@ -1695,6 +1704,12 @@
             <int>180916</int>
           </Entry>
           <WaitMs>6000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <NpcEntry>181011</NpcEntry>
+          <QuestId>8891</QuestId>
+          <QuestName>Abandoned Investigations</QuestName>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1868,7 +1883,7 @@
       <Id>10166</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>13</MaxLevel>
+      <MaxLevel>15</MaxLevel>
       <QuestLevel>10</QuestLevel>
       <NeedQuestCompletedId>
         <int>8474</int>
@@ -1899,7 +1914,7 @@
               <Z>64.51009</Z>
             </Point>
           </Hotspots>
-		  <WaitMs>1000</WaitMs>
+          <WaitMs>1000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1914,7 +1929,7 @@
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <WaitMs>500</WaitMs>
         </QuestObjective>-->
-		<!-- Need to read the story, we will need to modify this part --> <!--
+        <!-- Need to read the story, we will need to modify this part --> <!--
       </Objectives>
     </Quest>-->
 
@@ -1934,7 +1949,7 @@
       <PickUp>15942</PickUp>
       <TurnIn>16362</TurnIn>
       <Objectives>
-	  </Objectives>
+      </Objectives>
     </Quest>
 
     <Quest>
@@ -1975,7 +1990,23 @@
             </Point>
           </Hotspots>
         </QuestObjective>
-	  </Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Abandoned Investigations</Name>
+      <Id>8891</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>15</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>999999</int> <!-- This 999999 is to be sure the bot don't pick it up -->
+      </NeedQuestCompletedId>
+      <PickUp>181011</PickUp>
+      <TurnIn>15951</TurnIn>
+      <Objectives>
+      </Objectives>
     </Quest>
 
     <Quest> <!-- Final Quest -->
@@ -1992,7 +2023,7 @@
       <PickUp>16210</PickUp>
       <TurnIn>16183</TurnIn>
       <Objectives>
-	  </Objectives>
+      </Objectives>
     </Quest>
 
   </Quests>
