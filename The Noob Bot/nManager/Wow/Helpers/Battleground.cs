@@ -24,9 +24,9 @@ namespace nManager.Wow.Helpers
         public static int QueueingStatus()
         {
             uint v1 =
-                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp);
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.StatPvp);
             int v2 =
-                (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp) &
+                (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.StatPvp) &
                  1);
             if (v1 == 0 || v2 > 0)
                 return 0;
@@ -41,7 +41,7 @@ namespace nManager.Wow.Helpers
 
         public static void AcceptBattlefieldPortAll()
         {
-            int maxIndex = Others.ToInt32(Lua.LuaDoString("maxBattlefieldID = GetMaxBattlefieldID()", "maxBattlefieldID"));
+            uint maxIndex = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.MaxBattlegroundId);
             for (int i = 1; i <= maxIndex; i++)
             {
                 AcceptBattlefieldPort(i, true);
@@ -53,7 +53,7 @@ namespace nManager.Wow.Helpers
         {
             return
                 Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                 (uint) Addresses.Battleground.pvpExitWindow) > 0;
+                                                 (uint) Addresses.Battleground.PvpExitWindow) > 0;
         }
 
         public static void ExitBattleground()

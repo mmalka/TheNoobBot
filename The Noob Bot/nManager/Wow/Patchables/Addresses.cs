@@ -164,9 +164,10 @@
         /// </summary>
         public enum Battleground
         {
-            statPvp = 0xB63104, // Script_InActiveBattlefield_0
-            pvpExitWindow = 0xDC2B60, // Script_GetBattlefieldWinner
-            selectedBattlegroundId = 0xDC2AF4, // Script_CanJoinBattlefieldAsGroup
+            StatPvp = 0xB63104, // Script_InActiveBattlefield_0
+            PvpExitWindow = 0xDC2B60, // Script_GetBattlefieldWinner
+            SelectedBattlegroundId = 0xDC2AF4, // Script_CanJoinBattlefieldAsGroup
+            MaxBattlegroundId = 0xDC2B24, // Script_GetMaxBattlefieldID
         }
 
         /// <summary>
