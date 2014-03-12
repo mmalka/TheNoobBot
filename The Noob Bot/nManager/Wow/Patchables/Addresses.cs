@@ -84,8 +84,8 @@
             isLoadingOrConnecting = 0xC953C0,
             AreaId = 0xB63358,
             lastWowErrorMessage = 0xD64A28,
-            zoneMap = 0xD6361C,
-            subZoneMap = 0xD63618,
+            zoneMap = 0xD6561C,
+            subZoneMap = 0xD65618,
         }
 
         /// <summary>
@@ -184,7 +184,7 @@
         {
             SpellBookNumSpells = 0xDC20F0, // Script_SetSpellBookItem
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xDC113C + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xDC213C + 0x4 * 0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
         }
 
