@@ -409,6 +409,25 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static WoWPlayer GetObjectWoWPlayer(ulong guid)
+        {
+            try
+            {
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
+                foreach (WoWObject a in tempsListObj)
+                {
+                    if (a.Guid == guid)
+                        return new WoWPlayer(a.GetBaseAddress);
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWPlayer(uint guid): " + e);
+                return null;
+            }
+        }
+
         public static List<WoWPlayer> GetObjectWoWPlayer()
         {
             try

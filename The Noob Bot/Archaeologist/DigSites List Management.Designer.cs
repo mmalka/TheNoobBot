@@ -29,6 +29,7 @@ namespace Archaeologist
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigSitesListManagement));
             this.listDigsitesDGV = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.saveB = new DevComponents.DotNetBar.ButtonX();
             this.solvingEveryXMin = new DevComponents.Editors.IntegerInput();
@@ -55,10 +56,10 @@ namespace Archaeologist
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.listDigsitesDGV.DefaultCellStyle = dataGridViewCellStyle1;
-            this.listDigsitesDGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.listDigsitesDGV.Location = new System.Drawing.Point(12, 43);
+            this.listDigsitesDGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.listDigsitesDGV.Location = new System.Drawing.Point(12, 41);
             this.listDigsitesDGV.Name = "listDigsitesDGV";
-            this.listDigsitesDGV.Size = new System.Drawing.Size(601, 341);
+            this.listDigsitesDGV.Size = new System.Drawing.Size(577, 327);
             this.listDigsitesDGV.TabIndex = 0;
             // 
             // saveB
@@ -66,9 +67,9 @@ namespace Archaeologist
             this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.saveB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.saveB.Location = new System.Drawing.Point(449, 14);
+            this.saveB.Location = new System.Drawing.Point(431, 13);
             this.saveB.Name = "saveB";
-            this.saveB.Size = new System.Drawing.Size(164, 23);
+            this.saveB.Size = new System.Drawing.Size(157, 22);
             this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.saveB.TabIndex = 1;
             this.saveB.Text = "Save";
@@ -84,11 +85,11 @@ namespace Archaeologist
             this.solvingEveryXMin.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.solvingEveryXMin.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.solvingEveryXMin.ForeColor = System.Drawing.Color.Black;
-            this.solvingEveryXMin.Location = new System.Drawing.Point(98, 15);
+            this.solvingEveryXMin.Location = new System.Drawing.Point(94, 14);
             this.solvingEveryXMin.MinValue = 1;
             this.solvingEveryXMin.Name = "solvingEveryXMin";
             this.solvingEveryXMin.ShowUpDown = true;
-            this.solvingEveryXMin.Size = new System.Drawing.Size(72, 22);
+            this.solvingEveryXMin.Size = new System.Drawing.Size(69, 22);
             this.solvingEveryXMin.TabIndex = 2;
             this.solvingEveryXMin.Value = 1;
             // 
@@ -101,9 +102,9 @@ namespace Archaeologist
             this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(12, 14);
+            this.labelX1.Location = new System.Drawing.Point(12, 13);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(80, 23);
+            this.labelX1.Size = new System.Drawing.Size(77, 22);
             this.labelX1.TabIndex = 3;
             this.labelX1.Text = "Solving Every";
             // 
@@ -116,9 +117,9 @@ namespace Archaeologist
             this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(176, 14);
+            this.labelX2.Location = new System.Drawing.Point(169, 13);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(31, 23);
+            this.labelX2.Size = new System.Drawing.Size(30, 22);
             this.labelX2.TabIndex = 4;
             this.labelX2.Text = "min";
             // 
@@ -131,9 +132,9 @@ namespace Archaeologist
             this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(213, 15);
+            this.labelX3.Location = new System.Drawing.Point(204, 14);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(102, 23);
+            this.labelX3.Size = new System.Drawing.Size(98, 22);
             this.labelX3.TabIndex = 6;
             this.labelX3.Text = "Max Try By Digsite";
             // 
@@ -147,20 +148,19 @@ namespace Archaeologist
             this.maxTryByDigsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.maxTryByDigsite.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.maxTryByDigsite.ForeColor = System.Drawing.Color.Black;
-            this.maxTryByDigsite.Location = new System.Drawing.Point(321, 16);
+            this.maxTryByDigsite.Location = new System.Drawing.Point(308, 15);
             this.maxTryByDigsite.MinValue = 1;
             this.maxTryByDigsite.Name = "maxTryByDigsite";
             this.maxTryByDigsite.ShowUpDown = true;
-            this.maxTryByDigsite.Size = new System.Drawing.Size(50, 22);
+            this.maxTryByDigsite.Size = new System.Drawing.Size(48, 22);
             this.maxTryByDigsite.TabIndex = 5;
             this.maxTryByDigsite.Value = 1;
             // 
-            // DigSites_List_Management
+            // DigSitesListManagement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(625, 396);
+            this.ClientSize = new System.Drawing.Size(600, 380);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.maxTryByDigsite);
             this.Controls.Add(this.labelX2);
@@ -170,9 +170,10 @@ namespace Archaeologist
             this.Controls.Add(this.listDigsitesDGV);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DigSitesListManagement";
             this.ShowIcon = false;
-            this.ShowInTaskbar = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DigSites list Management";
             ((System.ComponentModel.ISupportInitialize)(this.listDigsitesDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.solvingEveryXMin)).EndInit();

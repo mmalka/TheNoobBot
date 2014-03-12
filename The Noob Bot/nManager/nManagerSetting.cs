@@ -283,5 +283,7 @@ namespace nManager
         public bool UseMollE;
         public bool UseRobot;
         public bool AutoCloseChatFrame = true;
+        public bool ActivateBroadcastingMimesis = false;
+        public int BroadcastingPort = 6543;
     }
 }

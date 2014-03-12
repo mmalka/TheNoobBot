@@ -737,8 +737,7 @@ namespace nManager.Helpful
                 DialogResult resulMb =
                     MessageBox.Show(
                         Translate.Get(
-                            Translate.Id
-                                .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
+                            Translate.Id.Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
                         "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis),
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -1092,6 +1091,57 @@ namespace nManager.Helpful
                     Logging.WriteError("CheckInventoryForLatestLoot(int eventFireCount): " + e);
                 }
             }
+        }
+
+        #region FailOver System
+
+        private static string _cachedAuthServerAddress;
+        private static readonly Timer CachedAuthServerTimer = new Timer(300); // Re-try to connect to the prioritized AuthServers every 5 minutes.
+        private static readonly string[] FailOversAddress = new[] { "http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
+
+        public static string GetWorkingAuthServerAddress
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(_cachedAuthServerAddress) && !CachedAuthServerTimer.IsReady)
+                {
+                    return _cachedAuthServerAddress;
+                }
+                foreach (string failOverAddress in Enumerable.Where(FailOversAddress, server => GetRequest(server + "isOnline.php", "") == "true"))
+                {
+                    _cachedAuthServerAddress = failOverAddress;
+                    CachedAuthServerTimer.Reset();
+                    return failOverAddress;
+                }
+                return FailOversAddress[0];
+            }
+        }
+
+        #endregion
+
+        public static string GetAuthScriptLink
+        {
+            get { return GetWorkingAuthServerAddress + "auth.php"; }
+        }
+
+        public static string GetUpdateScriptLink
+        {
+            get { return GetWorkingAuthServerAddress + "update.php"; }
+        }
+
+        public static string GetMonitoringScriptLink
+        {
+            get { return GetWorkingAuthServerAddress + "isOnline.php"; }
+        }
+
+        public static string GetClientIPScriptLink
+        {
+            get { return GetWorkingAuthServerAddress + "myIp.php"; }
+        }
+
+        public static string GetClientIPAddress
+        {
+            get { return GetRequest(GetClientIPScriptLink, ""); } // We don't auth so we don't get "PLATINIUM" instead of the IP if Plat.
         }
     }
 }

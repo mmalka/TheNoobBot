@@ -1,6 +1,11 @@
 using System;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Windows.Forms;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Helpers;
 
 namespace nManager.Helpful.Forms
 {
@@ -32,6 +37,9 @@ namespace nManager.Helpful.Forms
                 {
                     HealerClass.Items.Add(f);
                 }
+                var firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
+                BroadcastingIPLan.Text = firstInterfaceLanIPv4 != null ? firstInterfaceLanIPv4.ToString() : "No Lan IPv4 found";
+                BroadcastingIPWan.Text = Others.GetClientIPAddress;
             }
             catch (Exception e)
             {
@@ -273,15 +281,29 @@ namespace nManager.Helpful.Forms
             SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
             SetToolTypeIfNeeded(SellItemsWhenLessThanXSlotLeftLabel);
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
-            SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel);
+            SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel); 
             UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
             SetToolTypeIfNeeded(UseHearthstoneLabel);
             UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
             SetToolTypeIfNeeded(UseMollELabel);
             UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
             SetToolTypeIfNeeded(UseRobotLabel);
+            MimesisBroadcasterSettingsPanel.TitleText = Translate.Get(Translate.Id.MimesisBroadcasterSettings);
+            SetToolTypeIfNeeded(MimesisBroadcasterSettingsPanel);
             AutoCloseChatFrameLabel.Text = Translate.Get(Translate.Id.AutoCloseChatFrame);
             SetToolTypeIfNeeded(AutoCloseChatFrameLabel);
+            BroadcastingPortDefaultLabel.Text = Translate.Get(Translate.Id.BroadcastingPortDefault);
+            SetToolTypeIfNeeded(BroadcastingPortDefaultLabel);
+            BroadcastingIPWanLabel.Text = Translate.Get(Translate.Id.BroadcastingIPWan);
+            SetToolTypeIfNeeded(BroadcastingIPWanLabel);
+            BroadcastingIPLanLabel.Text = Translate.Get(Translate.Id.BroadcastingIPLan);
+            SetToolTypeIfNeeded(BroadcastingIPLanLabel);
+            ActivateBroadcastingMimesisLabel.Text = Translate.Get(Translate.Id.ActivateBroadcastingMimesis);
+            SetToolTypeIfNeeded(ActivateBroadcastingMimesisLabel);
+            BroadcastingIPLocalLabel.Text = Translate.Get(Translate.Id.BroadcastingIPLocal);
+            SetToolTypeIfNeeded(BroadcastingIPLocalLabel);
+            BroadcastingPortLabel.Text = Translate.Get(Translate.Id.BroadcastingPort);
+            SetToolTypeIfNeeded(BroadcastingPortLabel);
             ActivateAlwaysOnTopFeature.OffText = offText;
             ActivateAlwaysOnTopFeature.OnText = onText;
             AllowTNBToSetYourMaxFps.OffText = offText;
@@ -376,6 +398,8 @@ namespace nManager.Helpful.Forms
             CanPullUnitsAlreadyInFight.OnText = onText;
             AutoAssignTalents.OffText = offText;
             AutoAssignTalents.OnText = onText;
+            ActivateBroadcastingMimesis.OffText = offText;
+            ActivateBroadcastingMimesis.OnText = onText;
             AutoCloseChatFrame.OffText = offText;
             AutoCloseChatFrame.OnText = onText;
         }
@@ -487,7 +511,20 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
                 nManagerSetting.CurrentSetting.AutoCloseChatFrame = AutoCloseChatFrame.Value;
+                int oldPort = nManagerSetting.CurrentSetting.BroadcastingPort;
+                bool oldStatus = nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis;
+                nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
+                nManagerSetting.CurrentSetting.BroadcastingPort = BroadcastingPort.Value;
                 nManagerSetting.CurrentSetting.Save();
+                if (oldStatus && !ActivateBroadcastingMimesis.Value)
+                    Communication.Shutdown(oldPort); // Display the port used before the settings edition.
+                else if (!oldStatus && ActivateBroadcastingMimesis.Value)
+                    Communication.Listen();
+                else if (oldStatus && ActivateBroadcastingMimesis.Value && BroadcastingPort.Value != oldPort)
+                {
+                    Communication.Shutdown(oldPort); // Display the port used before the settings edition.
+                    Communication.Listen();
+                }
                 MountTask.SettingsHasChanged = true;
             }
             catch (Exception e)
@@ -596,6 +633,8 @@ namespace nManager.Helpful.Forms
                 UseMollE.Value = managerSetting.UseMollE;
                 UseRobot.Value = managerSetting.UseRobot;
                 AutoCloseChatFrame.Value = managerSetting.AutoCloseChatFrame;
+                ActivateBroadcastingMimesis.Value = managerSetting.ActivateBroadcastingMimesis;
+                BroadcastingPort.Value = managerSetting.BroadcastingPort;
             }
             catch (Exception ex)
             {

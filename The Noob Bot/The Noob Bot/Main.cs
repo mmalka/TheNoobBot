@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Helpful.Forms;
 using nManager.Helpful.Forms.UserControls;
@@ -104,6 +105,8 @@ namespace The_Noob_Bot
                 Thread spellBook = new Thread(ThreadSpellBook) {Name = "SpellBook Loading"};
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
+                if (nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis)
+                    Communication.Listen();
 
                 _playerName = ObjectManager.Me.Name;
             }

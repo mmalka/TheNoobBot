@@ -7,6 +7,7 @@ namespace nManager.Wow.Class
     /// <summary>
     /// Point class
     /// </summary>
+    [Serializable]
     public class Point
     {
         /// <summary>
@@ -97,6 +98,11 @@ namespace nManager.Wow.Class
         {
             get { return _type; }
             set { _type = value; }
+        }
+
+        public bool IsValid
+        {
+            get { return (X != 0 || Y != 0 || Z != 0); }
         }
 
         public override string ToString()

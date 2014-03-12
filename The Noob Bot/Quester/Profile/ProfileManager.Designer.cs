@@ -30,6 +30,7 @@ namespace Quester.Profile
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileManager));
             this.ProfileManagerAddGrouped = new DevComponents.DotNetBar.ButtonX();
             this.ExistingGroupedProfiles = new System.Windows.Forms.ListBox();
             this.ProfileManagerAdd = new DevComponents.DotNetBar.ButtonX();
@@ -215,6 +216,7 @@ namespace Quester.Profile
             this.Controls.Add(this.ProfileManagerAddGrouped);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(443, 328);
             this.MinimumSize = new System.Drawing.Size(443, 328);

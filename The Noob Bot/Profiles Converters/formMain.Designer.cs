@@ -28,6 +28,7 @@ namespace Profiles_Converters
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             this.convertB = new DevComponents.DotNetBar.ButtonX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
@@ -39,9 +40,9 @@ namespace Profiles_Converters
             // 
             this.convertB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.convertB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.convertB.Location = new System.Drawing.Point(12, 90);
+            this.convertB.Location = new System.Drawing.Point(12, 86);
             this.convertB.Name = "convertB";
-            this.convertB.Size = new System.Drawing.Size(192, 38);
+            this.convertB.Size = new System.Drawing.Size(184, 36);
             this.convertB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.convertB.TabIndex = 0;
             this.convertB.Text = "Convert Profiles";
@@ -56,7 +57,7 @@ namespace Profiles_Converters
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Location = new System.Drawing.Point(3, 0);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(199, 18);
+            this.labelX1.Size = new System.Drawing.Size(191, 17);
             this.labelX1.TabIndex = 1;
             this.labelX1.Text = "Convert profiles (Pirox Fly gatherer, ";
             // 
@@ -67,9 +68,9 @@ namespace Profiles_Converters
             // 
             this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(15, 18);
+            this.labelX2.Location = new System.Drawing.Point(14, 17);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(179, 18);
+            this.labelX2.Size = new System.Drawing.Size(172, 17);
             this.labelX2.TabIndex = 2;
             this.labelX2.Text = "MMOLazy MyFlyer, Gather Buddy,";
             // 
@@ -80,9 +81,9 @@ namespace Profiles_Converters
             // 
             this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(15, 37);
+            this.labelX3.Location = new System.Drawing.Point(14, 36);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(187, 18);
+            this.labelX3.Size = new System.Drawing.Size(180, 17);
             this.labelX3.TabIndex = 3;
             this.labelX3.Text = "WowRobot Gather Fly, HonorBuddy";
             // 
@@ -93,18 +94,17 @@ namespace Profiles_Converters
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(15, 56);
+            this.labelX4.Location = new System.Drawing.Point(14, 54);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(187, 18);
+            this.labelX4.Size = new System.Drawing.Size(180, 17);
             this.labelX4.TabIndex = 4;
             this.labelX4.Text = " grind) to The Noob Bot profiles";
             // 
-            // form
+            // formMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(216, 130);
+            this.ClientSize = new System.Drawing.Size(207, 125);
             this.Controls.Add(this.labelX4);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.labelX2);
@@ -112,11 +112,13 @@ namespace Profiles_Converters
             this.Controls.Add(this.convertB);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(232, 168);
-            this.MinimumSize = new System.Drawing.Size(232, 168);
-            this.Name = "form";
+            this.MaximumSize = new System.Drawing.Size(223, 163);
+            this.MinimumSize = new System.Drawing.Size(223, 163);
+            this.Name = "formMain";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profiles Converters";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form_FormClosing);
             this.ResumeLayout(false);

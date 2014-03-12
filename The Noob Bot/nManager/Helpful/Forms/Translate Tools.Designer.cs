@@ -31,6 +31,7 @@ namespace nManager.Helpful.Forms
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TranslationManagementMainFrame));
             this.TranslationTable = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.SaveAsButton = new DevComponents.DotNetBar.ButtonX();
             this.LoadAsButton = new DevComponents.DotNetBar.ButtonX();
@@ -51,7 +52,7 @@ namespace nManager.Helpful.Forms
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.TranslationTable.DefaultCellStyle = dataGridViewCellStyle1;
-            this.TranslationTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.TranslationTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.TranslationTable.Location = new System.Drawing.Point(0, 40);
             this.TranslationTable.Margin = new System.Windows.Forms.Padding(0);
             this.TranslationTable.Name = "TranslationTable";
@@ -93,14 +94,14 @@ namespace nManager.Helpful.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.MinimumSize = new Size(800,600);
             this.Controls.Add(this.LoadAsButton);
             this.Controls.Add(this.SaveAsButton);
             this.Controls.Add(this.TranslationTable);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaximizeBox = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "TranslationManagementMainFrame";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

@@ -17,6 +17,22 @@ namespace nManager.Wow.ObjectManager
         {
         }
 
+        public new bool IsValid
+        {
+            get
+            {
+                try
+                {
+                    return BaseAddress != 0 && ObjectManager.ObjectDictionary.ContainsKey(Guid);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsValid: " + e);
+                    return false;
+                }
+            }
+        }
+
         public override Point Position
         {
             get

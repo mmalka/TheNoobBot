@@ -12,6 +12,13 @@ namespace nManager.Wow.Class
         }
 
         private int _entry;
+        private ulong _guid;
+
+        public ulong Guid
+        {
+            get { return _guid; }
+            set { _guid = value; }
+        }
 
         public string Name
         {

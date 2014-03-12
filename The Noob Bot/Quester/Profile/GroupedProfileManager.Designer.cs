@@ -28,6 +28,7 @@ namespace Quester.Profile
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupedProfileManager));
             this.SaveGroupedProfileAs = new DevComponents.DotNetBar.ButtonX();
             this.CurrentlyGroupedProfiles = new System.Windows.Forms.ListBox();
             this.SaveGroupedProfile = new DevComponents.DotNetBar.ButtonX();
@@ -89,6 +90,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.CurrentlyGroupedProfilesLabel.BackgroundStyle.Class = "";
             this.CurrentlyGroupedProfilesLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.CurrentlyGroupedProfilesLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.CurrentlyGroupedProfilesLabel.Location = new System.Drawing.Point(287, 12);
@@ -102,6 +104,7 @@ namespace Quester.Profile
             // 
             // 
             // 
+            this.AvailableSimpleProfilesLabel.BackgroundStyle.Class = "";
             this.AvailableSimpleProfilesLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AvailableSimpleProfilesLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.AvailableSimpleProfilesLabel.Location = new System.Drawing.Point(12, 12);
@@ -204,6 +207,7 @@ namespace Quester.Profile
             this.Controls.Add(this.SaveGroupedProfileAs);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(557, 250);
             this.MinimumSize = new System.Drawing.Size(557, 250);

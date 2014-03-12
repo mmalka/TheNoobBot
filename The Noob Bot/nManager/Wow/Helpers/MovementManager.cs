@@ -24,6 +24,7 @@ namespace nManager.Wow.Helpers
         private static Thread _worker;
         private static bool _movement;
         private static bool _loop;
+        private static bool _chasing = false;
         private static List<Point> _points = new List<Point>();
 
         private static bool _first;
@@ -68,6 +69,12 @@ namespace nManager.Wow.Helpers
                 }
                 return false;
             }
+        }
+
+        public static bool Chasing
+        {
+            get { return _chasing; }
+            set { _chasing = value; }
         }
 
         public static int PointId
@@ -371,10 +378,13 @@ namespace nManager.Wow.Helpers
                             idPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
                         }
                     }
-                    if (!_loop)
-                        StopMove();
-                    if (!ObjectManager.ObjectManager.Me.IsCast)
-                        StopMoveTo();
+                    if (!_chasing)
+                    {
+                        if (!_loop)
+                            StopMove();
+                        if (!ObjectManager.ObjectManager.Me.IsCast)
+                            StopMoveTo();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1435,21 +1445,29 @@ namespace nManager.Wow.Helpers
             Random rand = new Random();
 #pragma warning restore 168
             WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-            WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             asMoved = false;
             if (TargetIsNPC.IsValid)
             {
-                asMoved = Target.Position.DistanceTo(TargetIsNPC.Position) > 5;
+                asMoved = Target.Position.DistanceTo(TargetIsNPC.Position) > 3;
                 Target.Position = TargetIsNPC.Position;
                 Target.Name = TargetIsNPC.Name;
                 return TargetIsNPC.GetBaseAddress;
             }
+            WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             if (TargetIsObject.IsValid)
             {
-                asMoved = Target.Position.DistanceTo(TargetIsObject.Position) > 5;
+                asMoved = Target.Position.DistanceTo(TargetIsObject.Position) > 3;
                 Target.Position = TargetIsObject.Position;
                 Target.Name = TargetIsObject.Name;
                 return TargetIsObject.GetBaseAddress;
+            }
+            WoWPlayer TargetIsPlayer = ObjectManager.ObjectManager.GetObjectWoWPlayer(Target.Guid);
+            if (TargetIsPlayer != null && TargetIsPlayer.IsValid)
+            {
+                asMoved = Target.Position != TargetIsPlayer.Position;
+                Target.Position = TargetIsPlayer.Position;
+                Target.Name = TargetIsPlayer.Name;
+                return TargetIsPlayer.GetBaseAddress;
             }
             return 0;
         }
@@ -1474,6 +1492,16 @@ namespace nManager.Wow.Helpers
             return FindTarget(ref _trakedTarget, SpecialRange);
         }
 
+        public static uint FindTarget(WoWPlayer Player, float SpecialRange = 0)
+        {
+            if (_trakedTargetGuid != Player.Guid)
+            {
+                _trakedTarget = new Npc { Entry = Player.Entry, Position = Player.Position, Name = Player.Name, Guid = Player.Guid };
+                _trakedTargetGuid = Player.Guid;
+            }
+            return FindTarget(ref _trakedTarget, SpecialRange);
+        }
+
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true)
         {
             if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
@@ -1494,7 +1522,8 @@ namespace nManager.Wow.Helpers
                     return 0;
                 }
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
-                Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
+                if (Target.Guid == 0)
+                    Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
                 _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                 if (!patherResult)
                     points.Add(Target.Position);
@@ -1530,7 +1559,7 @@ namespace nManager.Wow.Helpers
                         _cacheTargetAddress = baseAddress;
                         requiresUpdate = true;
                     }
-                    if (_updatePathSpecialTimer.IsReady || requiresUpdate)
+                    if (requiresUpdate || _updatePathSpecialTimer.IsReady)
                     {
                         _updatePathSpecialTimer = new Timer(5000);
                         if (requiresUpdate)
