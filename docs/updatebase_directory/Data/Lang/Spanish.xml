@@ -1138,6 +1138,10 @@
       <Text>(Do archaeology to farms exp, achievements and items.)</Text>
     </Translation>
     <Translation>
+      <Id>Mimesis_Product_Description</Id>
+      <Text>(Do follow, assist and quests with its Master - Beta)</Text>
+    </Translation>
+    <Translation>
       <Id>By_npc_name</Id>
       <Text>Por nombre de npc</Text>
     </Translation>

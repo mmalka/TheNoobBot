@@ -1138,6 +1138,10 @@
       <Text />
     </Translation>
     <Translation>
+      <Id>Mimesis_Product_Description</Id>
+      <Text>(Do follow, assist and quests with its Master - Beta)</Text>
+    </Translation>
+    <Translation>
       <Id>By_npc_name</Id>
       <Text>NPC 이름</Text>
     </Translation>
