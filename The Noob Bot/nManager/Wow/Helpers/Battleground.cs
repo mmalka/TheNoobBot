@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using nManager.Helpful;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
@@ -40,7 +41,8 @@ namespace nManager.Wow.Helpers
 
         public static void AcceptBattlefieldPortAll()
         {
-            for (int i = 0; i <= 10; i++)
+            int maxIndex = Others.ToInt32(Lua.LuaDoString("maxBattlefieldID = GetMaxBattlefieldID()", "maxBattlefieldID"));
+            for (int i = 1; i <= maxIndex; i++)
             {
                 AcceptBattlefieldPort(i, true);
                 Thread.Sleep(500);
