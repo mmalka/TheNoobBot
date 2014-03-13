@@ -472,7 +472,7 @@ namespace The_Noob_Bot
                             {
                                 case DialogResult.Yes:
                                     Others.OpenWebBrowserOrApplication(resultLog);
-                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
+                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/latest.php");
 
                                     try
                                     {
