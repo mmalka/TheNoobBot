@@ -480,6 +480,7 @@ namespace nManager
             Settings_Mimesis,
             MasterBotIPAddress,
             MasterBotIPPort,
+            ActivatePartyMode,
             MimesisBroadcasterSettings,
             BroadcastingPortDefault,
             BroadcastingIPWan,

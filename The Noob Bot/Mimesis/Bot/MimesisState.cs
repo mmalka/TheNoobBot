@@ -1,17 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Threading;
-using System;
 using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Products;
-using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Timer = nManager.Helpful.Timer;
-using Math = nManager.Helpful.Math;
 
 namespace Mimesis.Bot
 {
@@ -86,7 +82,7 @@ namespace Mimesis.Bot
             }
             else
                 _master.Position = TargetPlayer.Position;
-            if (_groupInvitCount < 3 && !Party.IsInGroup())
+            if (MimesisSettings.CurrentSetting.ActivatePartyMode && _groupInvitCount < 3 && !Party.IsInGroup())
             {
                 MimesisClientCom.JoinGroup();
                 _groupInvitCount++;

@@ -43,5 +43,6 @@ namespace Mimesis.Bot
 
         public string MasterIPAddress = "127.0.0.1";
         public int MasterIPPort = 6543;
+        public bool ActivatePartyMode = true;
     }
 }

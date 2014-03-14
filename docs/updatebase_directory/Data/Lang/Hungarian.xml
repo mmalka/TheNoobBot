@@ -1642,6 +1642,10 @@
       <Text>Port used by the master bot</Text>
     </Translation>
     <Translation>
+      <Id>ActivatePartyMode</Id>
+      <Text>Party Mode (Asks master to invite us)</Text>
+    </Translation>
+    <Translation>
       <Id>MimesisBroadcasterSettings</Id>
       <Text>Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with this session)</Text>
     </Translation>
