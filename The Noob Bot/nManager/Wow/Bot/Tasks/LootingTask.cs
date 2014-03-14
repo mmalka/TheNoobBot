@@ -96,10 +96,12 @@ namespace nManager.Wow.Bot.Tasks
                                             ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
                                             if ((nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
-                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
+                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT) &&
+                                                    Skill.GetValue(Enums.SkillLine.Herbalism) >= wowUnit.Level*5)
                                                 || (nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
-                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
-                                                || (Skill.GetValue(Enums.SkillLine.Engineering) > 0 &&
+                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT)&&
+                                                    Skill.GetValue(Enums.SkillLine.Mining) >= wowUnit.Level*5)
+                                                || (Skill.GetValue(Enums.SkillLine.Engineering) > wowUnit.Level * 5 &&
                                                     wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
                                                )
                                             {
