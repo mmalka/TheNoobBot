@@ -122,4 +122,14 @@ namespace nManager.Wow.Enums
         VanityPets = 0x1000,
         LureBag = 0x8000,
     }
+
+    [Flags]
+    public enum TypeFlag
+    {
+        None = 0,
+        HERB_LOOT = 0x100,
+        MINING_LOOT = 0x200,
+        ENGENEERING_LOOT = 0x8000,
+    }
+
 }

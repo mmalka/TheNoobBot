@@ -90,16 +90,51 @@ namespace nManager.Wow.Bot.Tasks
                                                 !ObjectManager.ObjectManager.Me.InCombat)
                                                 Elemental.AutoMakeElemental();
                                             Thread.Sleep(250 + Usefuls.Latency);
-                                            if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
+                                        }
+                                        // For the moment no skill level check because I am unsure how
+                                        if (wowUnit.ExtraLootType != Enums.TypeFlag.None &&
+                                            ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
+                                        {
+                                            if ((nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
+                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
+                                                || (nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
+                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
+                                                || (Skill.GetValue(Enums.SkillLine.Engineering) > 0 &&
+                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
+                                               )
                                             {
-                                                WoWUnit unit = wowUnit;
-                                                foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
+                                                Logging.Write("Harvesting " + wowUnit.Name);
+                                                Thread.Sleep(2000 + Usefuls.Latency);
+                                                Interact.InteractWith(wowUnit.GetBaseAddress);
+                                                Thread.Sleep(200 + Usefuls.Latency);
+                                                while (ObjectManager.ObjectManager.Me.IsCast)
                                                 {
-                                                    nManagerSetting.AddBlackList(u.Guid, 2600);
+                                                    Thread.Sleep(100);
                                                 }
+                                                if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                                        Usefuls.IsFlying))))
+                                                {
+                                                    return;
+                                                }
+                                                Thread.Sleep(400 + Usefuls.Latency);
+                                                if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                                                    return;
+                                                Statistics.Farms++;
                                                 nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
                                                 break;
                                             }
+                                        }
+                                        if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
+                                        {
+                                            WoWUnit unit = wowUnit;
+                                            foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
+                                            {
+                                                nManagerSetting.AddBlackList(u.Guid, 2600);
+                                            }
+                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                            break;
                                         }
                                         if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                             ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)

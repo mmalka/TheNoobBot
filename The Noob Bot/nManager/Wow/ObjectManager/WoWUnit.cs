@@ -1447,6 +1447,24 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public TypeFlag ExtraLootType
+        {
+            get
+            {
+                try
+                {
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.UnitField.DBCacheRow);
+                    int cachedtype = Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint)Addresses.UnitField.CachedTypeFlag);
+                    return (TypeFlag)cachedtype;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > ExtraLootType: " + e);
+                    return TypeFlag.None;
+                }
+            }
+        }
+
         public bool IsSkinnable
         {
             get
