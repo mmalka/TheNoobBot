@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using nManager.Wow.Patchables;
+using Timer = nManager.Helpful.Timer;
+using System.Web;
 
 namespace The_Noob_Bot
 {
@@ -94,6 +102,8 @@ namespace The_Noob_Bot
             {
                 try
                 {
+                    //string lastScreenshot = UploadScreenshot();
+                    //Logging.Write(lastScreenshot);
                     if (channel == null)
                         channel = new Channel();
 
@@ -115,8 +125,8 @@ namespace The_Noob_Bot
                 }
 
                 string whisper = channelWhisper.Aggregate("",
-                                                          (current, cw) =>
-                                                          cw.Replace("~", "-").Replace("|", "-") + "~" + current);
+                    (current, cw) =>
+                        cw.Replace("~", "-").Replace("|", "-") + "~" + current);
                 whisper = whisper.Replace("[Whisper]", "");
 
                 Logging.LogType flag = Logging.LogType.S;
@@ -126,23 +136,23 @@ namespace The_Noob_Bot
                 flag |= Logging.LogType.N;
 
                 PacketClient packetClient = new PacketClient
-                    {
-                        Name = ObjectManager.Me.Name,
-                        Level = (int) ObjectManager.Me.Level,
-                        Health = (int) ObjectManager.Me.HealthPercent,
-                        X = ObjectManager.Me.Position.X,
-                        Y = ObjectManager.Me.Position.Y,
-                        Z = ObjectManager.Me.Position.Z,
-                        LastLog = Logging.ReadLastString(flag),
-                        TargetName = ObjectManager.Target.Name,
-                        TargetLevel = (int) ObjectManager.Target.Level,
-                        TargetHealth = (int) ObjectManager.Target.HealthPercent,
-                        InGame = Usefuls.InGame,
-                        SubMapName = Usefuls.SubMapZoneName,
-                        ClassPlayer = ObjectManager.Me.WowClass.ToString(),
-                        BagSpace = Usefuls.GetContainerNumFreeSlots,
-                        LastWhisper = whisper,
-                    };
+                {
+                    Name = ObjectManager.Me.Name,
+                    Level = (int) ObjectManager.Me.Level,
+                    Health = (int) ObjectManager.Me.HealthPercent,
+                    X = ObjectManager.Me.Position.X,
+                    Y = ObjectManager.Me.Position.Y,
+                    Z = ObjectManager.Me.Position.Z,
+                    LastLog = Logging.ReadLastString(flag),
+                    TargetName = ObjectManager.Target.Name,
+                    TargetLevel = (int) ObjectManager.Target.Level,
+                    TargetHealth = (int) ObjectManager.Target.HealthPercent,
+                    InGame = Usefuls.InGame,
+                    SubMapName = Usefuls.SubMapZoneName,
+                    ClassPlayer = ObjectManager.Me.WowClass.ToString(),
+                    BagSpace = Usefuls.GetContainerNumFreeSlots,
+                    LastWhisper = whisper,
+                };
 
 
                 string req = packetClient.Name + "|" + packetClient.Level + "|" + packetClient.Health + "|" +
@@ -156,7 +166,7 @@ namespace The_Noob_Bot
 
                 List<string> result =
                     Others.GetReqWithAuthHeader(RemoteScript + "?sessionId=" + _sessionKey + "&forServer=" + req,
-                                                LoginServer.Login, LoginServer.Password);
+                        LoginServer.Login, LoginServer.Password);
                 if (result[0] == null)
                     result[0] = "";
 
@@ -220,6 +230,37 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("Remote > SendGetToServer()#3: " + e);
             }
+        }
+
+        readonly string ScreenshotsDir = Path.Combine(Application.StartupPath, "Screenshots");
+        private string UploadScreenshot()
+        {
+            if (!Directory.Exists(ScreenshotsDir))
+                Directory.CreateDirectory(ScreenshotsDir);
+            string file = ScreenshotsDir + "\\" + string.Format(ObjectManager.Me.Name + "-{0:dd-MM-yyyy_hh-mm-ss-tt}.jpeg", DateTime.Now);
+            ImageCodecInfo codecInfo = GetEncoder(ImageFormat.Jpeg);
+            EncoderParameters parameters = new EncoderParameters(1);
+            parameters.Param[0] = new EncoderParameter(Encoder.Quality, 25L);
+            Direct3DCapture.CaptureWindow(Memory.WowProcess.MainWindowHandle, new Size {Height = 480, Width = 853}).Save(file, codecInfo, parameters);
+            NameValueCollection nvc = new NameValueCollection();
+            nvc.Add("table_name", "uploadfile");
+            nvc.Add("commit", "uploadfile");
+            return PostFile.HttpUploadFile("http://thenoobbot.com/remote/screenshots/upload.php", file, "uploadfile", "image/jpeg", nvc);
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
 
         #region Nested type: PacketClient

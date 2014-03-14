@@ -2,6 +2,7 @@
 {
     public enum WoWEventsType
     {
+// ReSharper disable InconsistentNaming
         UNIT_PET = 1,
         UNIT_TARGET = 2,
         UNIT_HEALTH = 3,
@@ -902,5 +903,6 @@
         DISPLAY_SIZE_CHANGED = 899,
         PRODUCT_ASSIGN_TO_TARGET_FAILED = 900,
         PRODUCT_DISTRIBUTIONS_UPDATED = 901,
+        // ReSharper restore InconsistentNaming
     }
 }

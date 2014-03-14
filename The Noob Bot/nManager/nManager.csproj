@@ -101,6 +101,8 @@
     <Compile Include="Helpful\Logging.cs" />
     <Compile Include="Helpful\Math.cs" />
     <Compile Include="Helpful\Mouse.cs" />
+    <Compile Include="Helpful\Direct3DCapture.cs" />
+    <Compile Include="Helpful\PostFile.cs" />
     <Compile Include="Helpful\Settings.cs" />
     <Compile Include="Helpful\Timer.cs" />
     <Compile Include="Helpful\Others.cs" />
