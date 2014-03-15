@@ -1139,9 +1139,31 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWUnit> list = new List<WoWUnit>();
+                int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
+                if (mySkinningLevel > 0)
+                    mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
+                int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
+                if (myHerbalismLevel > 0)
+                    myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
+                int myMiningLevel = Skill.GetValue(Enums.SkillLine.Mining);
+                if (myMiningLevel > 0)
+                    myMiningLevel += Skill.GetSkillBonus(Enums.SkillLine.Mining);
+                int myEngeneeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
+                if (myEngeneeringLevel > 0)
+                    myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.IsSkinnable && !withoutGuid.Contains(a.Guid)) list.Add(a);
+                    if (a.IsSkinnable && !withoutGuid.Contains(a.Guid))
+                    {
+                        if (a.ExtraLootType == TypeFlag.None && a.GetSkillLevelRequired <= mySkinningLevel)
+                            list.Add(a);
+                        else if (a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT) && a.GetSkillLevelRequired <= myHerbalismLevel)
+                            list.Add(a);
+                        else if (a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT) && a.GetSkillLevelRequired <= myMiningLevel)
+                            list.Add(a);
+                        else if (a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT) && a.GetSkillLevelRequired <= myEngeneeringLevel)
+                            list.Add(a);
+                    }
                 }
                 return list;
             }

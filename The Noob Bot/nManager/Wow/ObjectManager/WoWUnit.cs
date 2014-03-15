@@ -1481,6 +1481,19 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint GetSkillLevelRequired
+        {
+            get
+            {
+                if (Level < 10)
+                    return 1;
+                else if (Level > 20)
+                    return Level * 5;
+                else
+                    return (Level * 10) - 100;
+            }
+        }
+
         public bool IsSilenced
         {
             get

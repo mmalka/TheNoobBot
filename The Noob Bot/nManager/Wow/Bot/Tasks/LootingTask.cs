@@ -33,6 +33,7 @@ namespace nManager.Wow.Bot.Tasks
 
                             if ((int) wowUnit.GetBaseAddress > 0)
                             {
+                                bool looted = false;
                                 if (wowUnit.IsLootable)
                                     Logging.Write("Loot " + wowUnit.Name);
                                 else if (wowUnit.IsSkinnable && nManagerSetting.CurrentSetting.ActivateBeastSkinning)
@@ -89,86 +90,102 @@ namespace nManager.Wow.Bot.Tasks
                                             if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
                                                 !ObjectManager.ObjectManager.Me.InCombat)
                                                 Elemental.AutoMakeElemental();
-                                            Thread.Sleep(250 + Usefuls.Latency);
-                                        }
-                                        // For the moment no skill level check because I am unsure how
-                                        if (wowUnit.ExtraLootType != Enums.TypeFlag.None &&
-                                            ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
-                                        {
-                                            if ((nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
-                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT) &&
-                                                    Skill.GetValue(Enums.SkillLine.Herbalism) >= wowUnit.Level*5)
-                                                || (nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
-                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT)&&
-                                                    Skill.GetValue(Enums.SkillLine.Mining) >= wowUnit.Level*5)
-                                                || (Skill.GetValue(Enums.SkillLine.Engineering) > wowUnit.Level * 5 &&
-                                                    wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
-                                               )
+                                            //Thread.Sleep(250 + Usefuls.Latency);
+                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                             {
-                                                Logging.Write("Harvesting " + wowUnit.Name);
-                                                Thread.Sleep(2000 + Usefuls.Latency);
-                                                Interact.InteractWith(wowUnit.GetBaseAddress);
-                                                Thread.Sleep(200 + Usefuls.Latency);
-                                                while (ObjectManager.ObjectManager.Me.IsCast)
+                                                Thread.Sleep(2000 + Usefuls.Latency); // let the client react to unit flag change
+                                                looted = true;
+                                            }
+                                            else
+                                            {
+                                                WoWUnit unit = wowUnit;
+                                                // we blacklist all unit around for a short time to be sure we loot then
+                                                foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
                                                 {
-                                                    Thread.Sleep(100);
+                                                    nManagerSetting.AddBlackList(u.Guid, 2600);
                                                 }
-                                                if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
-                                                        Usefuls.IsFlying))))
-                                                {
-                                                    return;
-                                                }
-                                                Thread.Sleep(400 + Usefuls.Latency);
-                                                if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                                                    return;
-                                                Statistics.Farms++;
                                                 nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
                                                 break;
                                             }
                                         }
-                                        if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
-                                        {
-                                            WoWUnit unit = wowUnit;
-                                            foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
-                                            {
-                                                nManagerSetting.AddBlackList(u.Guid, 2600);
-                                            }
-                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                        if (looted && !wowUnit.IsSkinnable)
                                             break;
-                                        }
+                                        // From here we are sure the unit is skinnable
+                                        // if this is the unit we just looted, we need to redo check for extra loot
+                                        // if this is NOT the unit we just looted, then the check is already done at list building time
                                         if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                             ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
-                                            //Thread.Sleep(200 + Usefuls.Latency);
-                                            if (wowUnit.IsSkinnable)
+                                            if (looted)
                                             {
-                                                Logging.Write("Skin " + wowUnit.Name);
-                                                Interact.InteractWith(wowUnit.GetBaseAddress);
-                                                Thread.Sleep(200 + Usefuls.Latency);
-                                                while (ObjectManager.ObjectManager.Me.IsCast)
+                                                if (wowUnit.ExtraLootType == Enums.TypeFlag.None)
                                                 {
-                                                    Thread.Sleep(100);
+                                                    int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
+                                                    if (mySkinningLevel > 0)
+                                                        mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
+                                                    if (wowUnit.GetSkillLevelRequired > mySkinningLevel)
+                                                    {
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        break;
+                                                    }
                                                 }
-                                                if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
-                                                        Usefuls.IsFlying))))
+                                                else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
                                                 {
-                                                    return;
+                                                    int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
+                                                    if (myHerbalismLevel > 0)
+                                                        myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
+                                                    if (wowUnit.GetSkillLevelRequired > myHerbalismLevel)
+                                                    {
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        break;
+                                                    }
                                                 }
-                                                Thread.Sleep(400 + Usefuls.Latency);
-                                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
-                                                    ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                                                    return;
-                                                Statistics.Farms++;
-                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                                break;
+                                                else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
+                                                {
+                                                    int myMiningLevel = Skill.GetValue(Enums.SkillLine.Mining);
+                                                    if (myMiningLevel > 0)
+                                                        myMiningLevel += Skill.GetSkillBonus(Enums.SkillLine.Mining);
+                                                    if (wowUnit.GetSkillLevelRequired > myMiningLevel)
+                                                    {
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        break;
+                                                    }
+                                                }
+                                                else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
+                                                {
+                                                    int myEngeneeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
+                                                    if (myEngeneeringLevel > 0)
+                                                        myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
+                                                    if (wowUnit.GetSkillLevelRequired > myEngeneeringLevel)
+                                                    {
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        break;
+                                                    }
+                                                }
                                             }
+                                            Logging.Write("Skin " + wowUnit.Name);
+                                            Interact.InteractWith(wowUnit.GetBaseAddress);
+                                            Thread.Sleep(200 + Usefuls.Latency);
+                                            while (ObjectManager.ObjectManager.Me.IsCast)
+                                            {
+                                                Thread.Sleep(100);
+                                            }
+                                            if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                                    !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                                    Usefuls.IsFlying))))
+                                            {
+                                                return;
+                                            }
+                                            Thread.Sleep(400 + Usefuls.Latency);
+                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                                ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                                                return;
+                                            Statistics.Farms++;
+                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                            break;
                                         }
                                     }
-
                                     Thread.Sleep(30);
                                 }
                                 if (timer.IsReady)
