@@ -734,7 +734,7 @@
     <Quest>
       <Name>A Swift Message</Name>
       <Id>26393</Id>
-      <RaceMask>1101</RaceMask>
+      <RaceMask>1</RaceMask>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -748,7 +748,7 @@
       <NeedQuestCompletedId>
         <int>26393</int>
       </NeedQuestCompletedId>
-      <RaceMask>1101</RaceMask>
+      <RaceMask>1</RaceMask>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -762,7 +762,7 @@
       <NeedQuestCompletedId>
         <int>26394</int>
       </NeedQuestCompletedId>
-      <RaceMask>1101</RaceMask>
+      <RaceMask>1</RaceMask>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
@@ -776,7 +776,7 @@
       <NeedQuestCompletedId>
         <int>26395</int>
       </NeedQuestCompletedId>
-      <RaceMask>1101</RaceMask>
+      <RaceMask>1</RaceMask>
       <QuestLevel>7</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
