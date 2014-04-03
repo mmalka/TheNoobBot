@@ -373,6 +373,21 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
+        /// Cast Spell on specified target (blizz UnitID format: http://wowprogramming.com/docs/api_types#unitID).
+        /// </summary>
+        public void LaunchOnUnitID(string unitId)
+        {
+            try
+            {
+                Launch(CastTime != 0, true, false, unitId);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Spell > Launch(uintId): " + exception);
+            }
+        }
+
+        /// <summary>
         /// Cast Spell on Self.
         /// </summary>
         public void LaunchOnSelf()
@@ -429,14 +444,15 @@ namespace nManager.Wow.Class
         /// <param name="StopMove">if set to <c>true</c> [Don't move during cast].</param>
         /// <param name="waitIsCast">if set to <c>true</c> [Wait the cast end].</param>
         /// <param name="ignoreIfCast"> </param>
-        public void Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false)
+        /// <param name="unitId">if set, the spell is casted on this target.</param>
+        public void Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false, string unitId = null)
         {
             try
             {
-                int t = 200;
+                int t = 10;
                 while (ObjectManager.ObjectManager.Me.IsCast && !ignoreIfCast)
                 {
-                    Thread.Sleep(5);
+                    Thread.Sleep(100);
                     t--;
                     if (t < 0) return;
                 }
@@ -446,11 +462,14 @@ namespace nManager.Wow.Class
                     if (ObjectManager.ObjectManager.Me.GetMove)
                         MovementManager.StopMoveTo();
                 }
-                SpellManager.CastSpellByNameLUA(NameInGame);
+                if (unitId == null)
+                    SpellManager.CastSpellByNameLUA(NameInGame);
+                else
+                    SpellManager.CastSpellByNameLUA(NameInGame, unitId);
                 Thread.Sleep(600);
                 while (ObjectManager.ObjectManager.Me.IsCast && waitIsCast)
                 {
-                    Thread.Sleep(5);
+                    Thread.Sleep(100);
                 }
             }
             catch (Exception exception)
