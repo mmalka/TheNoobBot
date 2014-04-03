@@ -20,6 +20,7 @@ namespace Archaeologist
 
                 solvingEveryXMin.Value = Bot.ArchaeologistSetting.CurrentSetting.SolvingEveryXMin;
                 maxTryByDigsite.Value = Bot.ArchaeologistSetting.CurrentSetting.MaxTryByDigsite;
+                useKeystone.Checked = Bot.ArchaeologistSetting.CurrentSetting.UseKeystones;
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
             }
@@ -44,6 +45,7 @@ namespace Archaeologist
             {
                 Bot.ArchaeologistSetting.CurrentSetting.SolvingEveryXMin = solvingEveryXMin.Value;
                 Bot.ArchaeologistSetting.CurrentSetting.MaxTryByDigsite = maxTryByDigsite.Value;
+                Bot.ArchaeologistSetting.CurrentSetting.UseKeystones = useKeystone.Checked;
                 Bot.ArchaeologistSetting.CurrentSetting.Save();
                 XmlSerializer.Serialize(
                     Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
