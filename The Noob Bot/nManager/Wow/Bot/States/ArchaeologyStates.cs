@@ -38,6 +38,7 @@ namespace nManager.Wow.Bot.States
         private int nbLootAttempt;
         public int MaxTryByDigsite = 30;
         private int nbCastSurveyError;
+        public bool UseKeystones = true;
 
         private LocState myState = LocState.Iddle;
         private Timer timerLooting;
@@ -47,6 +48,12 @@ namespace nManager.Wow.Bot.States
         private bool _bestPathStatus;
         private bool _currentFindPathStatus;
         private readonly List<List<Point>> _pathFound = new List<List<Point>>();
+        // This point is used to remember where the last green survey was, so that we can detect ping-pong between 2 points.
+        private Point _lastGreenPosition = new Point();
+        private bool _AntiPingPong = false;
+        private int _greenCount = 0;
+
+        private bool _inSecondDigSiteWithSameName = false;
 
         private bool IsPointOutOfWater(Point p)
         {
@@ -78,6 +85,7 @@ namespace nManager.Wow.Bot.States
                     return true;
 
                 List<Digsite> listDigsitesZone = Archaeology.GetDigsitesZoneAvailable();
+                _inSecondDigSiteWithSameName = false;
 
                 if (listDigsitesZone.Count > 0)
                 {
@@ -154,7 +162,7 @@ namespace nManager.Wow.Bot.States
                 {
                     MovementManager.StopMove();
                     LongMove.StopLongMove();
-                    Archaeology.SolveAllArtifact();
+                    Archaeology.SolveAllArtifact(UseKeystones);
                     timerAutoSolving = new Timer(SolvingEveryXMin*1000*60);
                 }
 
@@ -173,29 +181,44 @@ namespace nManager.Wow.Bot.States
                             ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
                     if (t.GetBaseAddress > 0) // If found then loot
                     {
+                        nbCastSurveyError = 0;
+                        _lastGreenPosition = new Point();
+                        _AntiPingPong = false;
+                        _greenCount = 0;
                         if (myState == LocState.Looting)
                             if (timerLooting != null && timerLooting.IsReady)
                             {
                                 MovementsAction.Jump();
-                                Thread.Sleep(2000);
+                                Thread.Sleep(1500);
                             }
                             else
                                 return;
-
-                        List<Point> points = PathFinder.FindPath(t.Position);
+                        bool ValidPath;
+                        List<Point> points = PathFinder.FindPath(t.Position, out ValidPath, false);
+                        if (!ValidPath)
+                        {
+                            MountTask.Mount();
+                            Point p = new Point(t.Position);
+                            p.Z += 5.0f;
+                            points.Add(t.Position);
+                        }
                         MovementManager.Go(points);
                         if (nbLootAttempt > 2)
                         {
                             MovementManager.StopMove();
                             LongMove.StopLongMove();
-                            Archaeology.SolveAllArtifact();
+                            if (Archaeology.SolveAllArtifact(UseKeystones) == 0)
+                            {
+                                nManagerSetting.AddBlackList(t.Guid); // bugged artifacts not lootable
+                                Logging.Write("Black-listing bugged artifact");
+                            }
                             nbLootAttempt = 0;
                             return;
                         }
                         Logging.Write("Loot " + t.Name);
                         Timer timer = new Timer(1000*Math.DistanceListPoint(points)/3);
 
-                        while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3)
+                        while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3.5f)
                         {
                             Thread.Sleep(100);
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
@@ -210,7 +233,7 @@ namespace nManager.Wow.Bot.States
                         Interact.InteractWith(t.GetBaseAddress);
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
-                            Thread.Sleep(50);
+                            Thread.Sleep(100);
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
@@ -235,32 +258,40 @@ namespace nManager.Wow.Bot.States
                         return;
                     }
                     bool moreMovementNeeded = false;
-                    if (qPOI != null && !qPOI.ValidPoint && qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 50.0f)
+                    if (qPOI != null && !qPOI.ValidPoint && qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 40.0f)
                     {
 #pragma warning disable 168
                         // We call qPOI.MiddlePoint to make the WoWQuestPOIPoint instance compute the middle point, but I don't care were it is
-                        Point p = qPOI.MiddlePoint; // we are near enouth to compute it
+                        Point p = qPOI.MiddlePoint; // we are near enough to compute it
 #pragma warning restore 168
                         if (Usefuls.IsFlying)
+                        {
                             moreMovementNeeded = true;
+                            MovementManager.StopMove();
+                        }
                     }
                     // Go To Zone
                     if (qPOI != null && (moreMovementNeeded || !qPOI.IsInside(ObjectManager.ObjectManager.Me.Position)))
                     {
-                        nbCastSurveyError = 0;
-                        Logging.Write("Go to Digsite " + digsitesZone.name);
                         if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                         {
+                            Logging.Write("Not inside, then go to Digsite " + digsitesZone.name);
                             if (_bestPathId == 0)
                                 _bestPathId = _lastPathId;
                             MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
                         }
                         else if (qPOI.ValidPoint)
                         {
-                            Point destination = qPOI.MiddlePoint;
-                            destination.Type = "flying";
-                            Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
-                            MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
+                            if (moreMovementNeeded || !qPOI.IsInside(ObjectManager.ObjectManager.Me.Position))
+                            {
+                                Point destination = new Point(qPOI.MiddlePoint);
+                                destination.Type = "flying";
+                                if (moreMovementNeeded)
+                                    Logging.Write("Landing on the digsite");
+                                else
+                                    Logging.Write("Not inside, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
+                                MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                            }
                         }
                         else
                         {
@@ -275,8 +306,7 @@ namespace nManager.Wow.Bot.States
                     }
                     // Find loot with Survey
                     nbLootAttempt = 0;
-                    t =
-                        ObjectManager.ObjectManager.GetNearestWoWGameObject(
+                    t = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                             ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(Archaeology.SurveyList));
                     if (t.GetBaseAddress <= 0 || myState == LocState.GoingNextPoint ||
                         // recast if we moved even if last is still spawned
@@ -291,15 +321,35 @@ namespace nManager.Wow.Bot.States
 
                         surveySpell.Launch();
                         myState = LocState.Survey;
-                        Thread.Sleep(250); // let's wait a bit
+                        Thread.Sleep(200 + Usefuls.Latency); // let's wait a bit
                         nbCastSurveyError++;
                         if (nbCastSurveyError > 3)
                         {
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(qPOI.MiddlePoint) < 5)
+                            { // This means we are in a wrong digsite
+                                List<Digsite> listDigsitesZone;
+                                if (!_inSecondDigSiteWithSameName)
+                                    listDigsitesZone = Archaeology.GetDigsitesZoneAvailable(t.Name);
+                                else // very very rare case I had: back to the first digsite with same name after the 2nd one
+                                    listDigsitesZone = Archaeology.GetDigsitesZoneAvailable();
+                                foreach (Digsite dg in listDigsitesZone)
+                                    if (dg.name == t.Name)
+                                        digsitesZone = dg;
+                                WoWResearchSite OneSite;
+                                if (!_inSecondDigSiteWithSameName)
+                                    OneSite = WoWResearchSite.FromName(digsitesZone.name, true);
+                                else
+                                    OneSite = WoWResearchSite.FromName(digsitesZone.name, false);
+                                qPOI = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
+                                _inSecondDigSiteWithSameName = !_inSecondDigSiteWithSameName;
+                                nbCastSurveyError = 0;
+                                return;
+                            }
                             if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                             {
                                 if (_bestPathId == 0)
                                     _bestPathId = _lastPathId;
-                                Logging.Write("Go to Digsite " + digsitesZone.name);
+                                Logging.Write("Too many errors, then go to Digsite " + digsitesZone.name);
                                 MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
                             }
                             else
@@ -307,7 +357,7 @@ namespace nManager.Wow.Bot.States
                                 if (qPOI != null)
                                 {
                                     Point destination = qPOI.MiddlePoint;
-                                    Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
+                                    Logging.Write("Too many errors, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
                                     MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                                 }
                             }
@@ -326,92 +376,150 @@ namespace nManager.Wow.Bot.States
                     {
                         return;
                     }
-
-                    ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
-                    // set my rotation to survey rotation
-
-                    // Get Line to next cast survey
-                    Point p1 = ObjectManager.ObjectManager.Me.Position;
-                    Thread.Sleep(50);
-                    MovementsAction.MoveForward(true);
-                    Thread.Sleep(200);
-                    MovementsAction.MoveForward(false);
-                    Point p2 = ObjectManager.ObjectManager.Me.Position;
-
-                    if (p1.X == p2.X && p1.Y == p2.Y)
-                    {
-                        ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
-                        p2 = ObjectManager.ObjectManager.Me.Position;
-                        Thread.Sleep(50);
-                        MovementsAction.MoveBackward(true);
-                        Thread.Sleep(200);
-                        MovementsAction.MoveBackward(false);
-                        p1 = ObjectManager.ObjectManager.Me.Position;
-                    }
-                    if (p1.X == p2.X && p1.Y == p2.Y) // Get if p1 != p2 (else wowerror)
-                    {
-                        MovementManager.UnStuck();
-                    }
-                    else // Get next cast survey position
+                    Point p0;
+                    float angle;
                     {
                         Point p;
-
+                        float distance, distanceMin, distanceMax, decrement;
                         if (t.DisplayId == 10103) // Survey Tool (Red) 100 yard
                         {
-                            int d = 90;
-                            p = Math.GetPosition2DOfLineByDistance(p1, p2, d);
-                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                            p.Z = PathFinder.GetZPosition(p, true);
-                            while (qPOI != null && (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0))
-                            {
-                                //Logging.Write("Point at " + d + " bad, testing " + (d + 5));
-                                d += 5;
-                                p = Math.GetPosition2DOfLineByDistance(p1, p2, d);
-                                p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                                p.Z = PathFinder.GetZPosition(p, true);
-                                if (d >= 160)
-                                    break;
-                            }
-                            d = 90;
-                            while (qPOI != null && (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0))
-                            {
-                                //Logging.Write("Point at " + d + " bad, testing " + (d - 10));
-                                d -= 10;
-                                p = Math.GetPosition2DOfLineByDistance(p1, p2, d);
-                                p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                                p.Z = PathFinder.GetZPosition(p, true);
-                                if (d <= 10)
-                                    break;
-                            }
+                            distance = 90f;
+                            distanceMin = 20f;
+                            distanceMax = 210f;
+                            decrement = 10f;
+                            _lastGreenPosition = new Point();
+                            _AntiPingPong = false;
+                            _greenCount = 0;
                         }
                         else if (t.DisplayId == 10102) // Survey Tool (Yellow) 50 yard
-                            p = Math.GetPosition2DOfLineByDistance(p1, p2, 50 - 10 + 6);
-                        else // Survey Tool (Green) 25 yard
-                            p = Math.GetPosition2DOfLineByDistance(p1, p2, 13 + 2.5f);
+                        {
+                            distance = 46f;
+                            distanceMin = 20f;
+                            distanceMax = 56f;
+                            decrement = 6.5f;
+                            _lastGreenPosition = new Point();
+                            _AntiPingPong = false;
+                            _greenCount = 0;
+                        }
+                        else // Survey Tool (Green) 25 yard (t.DisplayId == 10101)
+                        {
+                            _greenCount++;
+                            if (_greenCount >= 10)
+                            {
+                                _greenCount = 0;
+                                _lastGreenPosition = new Point();
+                                Point destination = qPOI.MiddlePoint;
+                                _AntiPingPong = false;
+                                Logging.Write("Stuck, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
+                                MountTask.Mount();
+                                MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                                return;
+                            }
+                            if (_AntiPingPong)
+                            {
+                                Logging.Write("Ping-pong detected, shortening the distance");
+                                distance = 10f;
+                                distanceMin = 6f;
+                                distanceMax = 15f;
+                                decrement = 4f;
+                            }
+                            else
+                            {
+                                distance = 19f;
+                                distanceMin = 7f;
+                                distanceMax = 29f;
+                                decrement = 3f;
+                            }
+                        }
+                        {
+                            float d = distance;
+                            p0 = new Point(t.Position);
+                            angle = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
+                            p = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
 
+                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                            p.Z = PathFinder.GetZPosition(p, true);
+                            bool valid;
+                            PathFinder.FindPath(p, out valid);
+                            if (qPOI != null)
+                            {
+                                bool IamOutOfWater = IsPointOutOfWater(ObjectManager.ObjectManager.Me.Position);
+                                while (!valid || p.Z == 0 || !qPOI.IsInside(p) || !(!IamOutOfWater || IsPointOutOfWater(p)))
+                                {
+                                    if (d + 5 > distanceMax)
+                                        break;
+                                    d += 5;
+                                    Point newone = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
+                                    if (qPOI.IsInside(newone))
+                                    {
+                                        p = new Point(newone);
+                                        p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                        p.Z = PathFinder.GetZPosition(p, true); //(t.DisplayId == 10101 ? false : true));
+                                        if (p.Z == 0) // if p == 0 we don't care about the path
+                                            valid = false;
+                                        else
+                                            if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d * 5 && d > 30)
+                                                valid = false;
+                                    }
+                                }
+                                if (!valid || p.Z == 0 || !qPOI.IsInside(p) || !(!IamOutOfWater || IsPointOutOfWater(p)))
+                                {
+                                    d = distance;
+                                    while (!valid || p.Z == 0 || !qPOI.IsInside(p) || !(!IamOutOfWater || IsPointOutOfWater(p)))
+                                    {
+                                        if (d - decrement < distanceMin)
+                                            break;
+                                        d -= decrement;
+                                        Point newone = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
+                                        if (qPOI.IsInside(newone))
+                                        {
+                                            p = new Point(newone);
+                                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                            p.Z = PathFinder.GetZPosition(p, true);
+                                            if (p.Z == 0) // if p == 0 we don't care about the path
+                                                valid = false;
+                                            else
+                                                if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d * 5 && d > 30)
+                                                    valid = false;
+                                        }
+                                    }
+                                }
+                            }
+                            // check pingpong but not a second time
+                            if (_AntiPingPong)
+                                _AntiPingPong = false;
+                            else if (t.DisplayId == 10101 && _lastGreenPosition.IsValid && p.DistanceTo2D(_lastGreenPosition) <= 6f)
+                                _AntiPingPong = true;
+                            // then remmember the last Green Position
+                            if (t.DisplayId == 10101)
+                                _lastGreenPosition = new Point(ObjectManager.ObjectManager.Me.Position);
+                            if (_AntiPingPong)
+                            {
+                                myState = LocState.Iddle;
+                                return;
+                            }
+                            Logging.Write("Distance " + d + " selected");
+                        }
                         myState = LocState.GoingNextPoint;
-                        p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                        p.Z = PathFinder.GetZPosition(p, true);
-                        if (p.Z == 0)
-                            p.Z = ObjectManager.ObjectManager.Me.Position.Z;
+
                         // Find Path
                         bool resultB;
-                        List<Point> points = PathFinder.FindPath(p, out resultB);
+                        List<Point> points = PathFinder.FindPath(p, out resultB, false);
 
-                        // If path not found find neawer
+                        // If path not found find nearer
                         if (points.Count <= 0)
                         {
-                            Point pt = Math.GetPosition2DOfLineByDistance(p1, p2, 15);
+                            Point pt = Math.GetPosition2DOfAngleAndDistance(p0, angle, 15);
                             pt.Z = ObjectManager.ObjectManager.Me.Position.Z;
-                            points = PathFinder.FindPath(pt, out resultB);
+                            points = PathFinder.FindPath(pt, out resultB, false);
                             if (points.Count > 0 && resultB)
-                                p = new Point(pt.X, pt.Y, pt.Z);
+                                p = new Point(pt);
                         }
 
                         // Go to next position
                         if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
                             nbStuck >= 2)
-                            // Use fly mount
+                        // Use fly mount
                         {
                             p.Z = PathFinder.GetZPosition(p);
 
@@ -428,10 +536,10 @@ namespace nManager.Wow.Bot.States
                             }
                             MountTask.Mount();
                             LongMove.LongMoveByNewThread(p);
-                            Timer timer = new Timer(1000*points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position)/3);
+                            Timer timer = new Timer(2000 * points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position) / 3);
 
                             while (LongMove.IsLongMove && !timer.IsReady &&
-                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)
+                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 0.5f)
                             {
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
                                      !(ObjectManager.ObjectManager.Me.IsMounted &&
@@ -456,20 +564,55 @@ namespace nManager.Wow.Bot.States
                         }
                         else //  walk to next position
                         {
+                            float d1 = Math.DistanceListPoint(points);
+                            float d2 = points[0].DistanceTo(points[points.Count - 1]);
+                            // here we will try to shortcut the path using a fly mount
+                            if (MountTask.GetMountCapacity() == MountCapacity.Fly && d1 > 80 && d1 > (d2 * 2))
+                            {
+                                Point startpoint = new Point(ObjectManager.ObjectManager.Me.Position);
+                                Point endpoint = new Point(points[points.Count - 1]);
+                                float z1 = startpoint.Z;
+                                float z2 = endpoint.Z;
+                                float zref = System.Math.Max(z1, z2) + 6.0f;
+                                Point pref1 = new Point(startpoint);
+                                pref1.Z = zref;
+                                Point pref2 = new Point(endpoint);
+                                pref2.Z = zref;
+                                bool badres = TraceLine.TraceLineGo(startpoint, pref1) ||
+                                    TraceLine.TraceLineGo(pref1, pref2) ||
+                                    TraceLine.TraceLineGo(pref2, endpoint);
+                                if (!badres)
+                                {
+                                    Logging.Write("Flying to shortcut the path");
+                                    MountTask.Mount();
+                                    if (Usefuls.IsFlying) // Failsafe: in case we are indoor don't try
+                                    {
+                                        points = new List<Point>();
+                                        pref1.Z += 2f;
+                                        pref2.Z += 2f;
+                                        points.Add(pref1);
+                                        points.Add(pref2);
+                                        points.Add(endpoint);
+                                    }
+                                }
+                            }
                             if (Usefuls.IsFlying)
                                 for (int i = 0; i < points.Count; i++)
                                     points[i].Type = "flying";
-
+                            // Disabled because this does not work fine
+                            //else if (Usefuls.IsSwimming && !IsPointOutOfWater(points[points.Count - 1]))
+                            //    for (int i = 0; i < points.Count; i++)
+                            //        points[i].Type = "swimming";
                             MovementManager.Go(points);
-                            float d = Math.DistanceListPoint(points)/3;
+                            float d = Math.DistanceListPoint(points) / 3;
                             if (d > 200)
                                 d = 200;
-                            float tm_t = 1000*d/2 + 1200;
-                            if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
+                            float tm_t = 1000 * d / 2 + 1500;
+                            if (Usefuls.IsSwimming)
                                 tm_t /= 0.6f;
                             Timer timer = new Timer(tm_t);
                             while (MovementManager.InMovement && !timer.IsReady &&
-                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
+                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 0.5f)
                             {
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
                                      !(ObjectManager.ObjectManager.Me.IsMounted &&

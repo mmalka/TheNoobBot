@@ -51,7 +51,8 @@ namespace Archaeologist.Bot
                     {
                         Priority = 1,
                         SolvingEveryXMin = ArchaeologistSetting.CurrentSetting.SolvingEveryXMin,
-                        MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.MaxTryByDigsite
+                        MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.MaxTryByDigsite,
+                        UseKeystones = ArchaeologistSetting.CurrentSetting.UseKeystones
                     });
                 Fsm.AddState(new Idle {Priority = 0});
 

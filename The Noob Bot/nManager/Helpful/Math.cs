@@ -149,6 +149,28 @@ namespace nManager.Helpful
         /// Position 2d.
         /// </summary>
         /// <param name="a"></param>
+        /// <param name="angle"></param>
+        /// <param name="distance"></param>
+        /// <returns></returns>
+        public static Point GetPosition2DOfAngleAndDistance(Point a, float angle, float distance)
+        {
+            try
+            {
+                float dy = (float)System.Math.Sin(angle) * distance;
+                float dx = (float)System.Math.Cos(angle) * distance;
+                return new Point(a.X + dx, a.Y + dy, a.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetPosition2DOfAngleAndDistance(Point a, float angle, float distance): " + exception);
+            }
+            return new Point(0, 0, 0);
+        }
+
+        /// <summary>
+        /// Position 2d.
+        /// </summary>
+        /// <param name="a"></param>
         /// <param name="b"></param>
         /// <param name="distance"></param>
         /// <returns></returns>

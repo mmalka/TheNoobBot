@@ -136,7 +136,7 @@ namespace nManager.Wow.Helpers
             return /*finalList = */ fullList;
         }
 
-        public static List<Digsite> GetDigsitesZoneAvailable()
+        public static List<Digsite> GetDigsitesZoneAvailable(string NameForSecond = null)
         {
             try
             {
@@ -149,7 +149,11 @@ namespace nManager.Wow.Helpers
                     foreach (DigsitesZoneLua dl in digsitesZoneLua)
                     {
                         bool zonefound = false;
-                        WoWResearchSite RowRSite = WoWResearchSite.FromName(dl.name);
+                        WoWResearchSite RowRSite;
+                        if (NameForSecond == dl.name)
+                            RowRSite = WoWResearchSite.FromName(dl.name, true);
+                        else
+                            RowRSite = WoWResearchSite.FromName(dl.name);
                         WoWQuestPOIPoint qPOI = WoWQuestPOIPoint.FromSetId(RowRSite.Record.QuestIdPoint);
                         for (int i = 0; i <= _allDigsiteZone.Count - 1; i++)
                         {
@@ -272,10 +276,11 @@ namespace nManager.Wow.Helpers
 
         private static Spell archaeologySpell;
 
-        public static void SolveAllArtifact()
+        public static int SolveAllArtifact(bool useKeystone)
         {
             try
             {
+                int nbSolved = 0;
                 if (archaeologySpell == null)
                     archaeologySpell = new Spell("Archaeology");
 
@@ -285,24 +290,40 @@ namespace nManager.Wow.Helpers
                 {
                     Lua.RunMacroText("/click ArchaeologyFrameSummaryButton");
                     Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + j);
-                    Thread.Sleep(100);
-                    Lua.RunMacroText("/click ArchaeologyFrameArtifactPageSolveFrameSolveButton");
-                    Thread.Sleep(400);
-                    if (ObjectManager.ObjectManager.Me.IsCast)
+                    Thread.Sleep(200 + Usefuls.Latency);
+                    if (useKeystone)
                     {
+                        bool moreToSocket;
+                        do
+                        {
+                            moreToSocket = false;
+                            string randomString1 = Others.GetRandomString(Others.Random(4, 10));
+                            string randomString2 = Others.GetRandomString(Others.Random(4, 10));
+                            Lua.LuaDoString(randomString1 + " = SocketItemToArtifact(); if " + randomString1 + " then " + randomString2 + "=\"1\" else " + randomString2 + "=\"0\" end");
+                            if (Lua.GetLocalizedText(randomString2) == "1")
+                            {
+                                moreToSocket = true;
+                                Thread.Sleep(250 + Usefuls.Latency);
+                            }
+                        } while (moreToSocket);
+                    }
+                    string randomString3 = Others.GetRandomString(Others.Random(4, 10));
+                    string randomString4 = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomString3 + " = CanSolveArtifact(); if " + randomString3 + " then " + randomString4 + "=\"1\" else " + randomString4 + "=\"0\" end");
+                    bool canSolve = Lua.GetLocalizedText(randomString4) == "1";
+                    if (canSolve)
+                    {
+                        nbSolved++;
+                        Lua.RunMacroText("/click ArchaeologyFrameArtifactPageSolveFrameSolveButton");
                         if (Usefuls.GetContainerNumFreeSlots >= 1)
-                        {
                             j--;
-                        }
-                        while (ObjectManager.ObjectManager.Me.IsCast)
-                        {
-                            Thread.Sleep(100);
-                        }
+                        Thread.Sleep(2050 + Usefuls.Latency); // Spell cast time is 2.0secs
                     }
                     j++;
+                    Thread.Sleep(200 + Usefuls.Latency);
                 }
                 Lua.RunMacroText("/click ArchaeologyFrameCloseButton");
-                if (ObjectManager.ObjectManager.Me.Level < 90 || Usefuls.GetContainerNumFreeSlots <= 0) return;
+                if (ObjectManager.ObjectManager.Me.Level < 90 || Usefuls.GetContainerNumFreeSlots <= 0) return nbSolved;
                 for (int i = 79896; i <= 79917; i++)
                 {
                     if (i == 79906 || i == 79907)
@@ -314,7 +335,7 @@ namespace nManager.Wow.Helpers
                     {
                         MountTask.DismountMount();
                         ItemsManager.UseItem(i);
-                        Thread.Sleep(500);
+                        Thread.Sleep(1550 + Usefuls.Latency); // Spell cast time is 1.5secs
                     }
                 }
                 for (int i = 95375; i <= 95382; i++)
@@ -326,13 +347,15 @@ namespace nManager.Wow.Helpers
                     {
                         MountTask.DismountMount();
                         ItemsManager.UseItem(i);
-                        Thread.Sleep(500);
+                        Thread.Sleep(1550 + Usefuls.Latency); // Spell cast time is 1.5secs
                     }
                 }
+                return nbSolved;
             }
             catch (Exception e)
             {
                 Logging.WriteError("Archaeology >  solveAllArtifact(): " + e);
+                return 0;
             }
         }
 

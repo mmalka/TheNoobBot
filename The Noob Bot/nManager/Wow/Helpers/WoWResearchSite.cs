@@ -9,8 +9,9 @@ namespace nManager.Wow.Helpers
 
         private static DBC<ResearchSiteDbcRecord> _rSiteDBC;
 
-        private WoWResearchSite(string name)
+        private WoWResearchSite(string name, bool SecondOne = false)
         {
+            bool second = false;
             if (_rSiteDBC == null)
                 _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
             for (int id = _rSiteDBC.MinIndex; id <= _rSiteDBC.MaxIndex; id++)
@@ -21,7 +22,10 @@ namespace nManager.Wow.Helpers
                     string temp = Name;
                     if (temp == name)
                     {
-                        return;
+                        if (SecondOne && !second)
+                            second = true;
+                        else
+                            return;
                     }
                 }
             }
@@ -44,9 +48,9 @@ namespace nManager.Wow.Helpers
         }
 
         // Factory function
-        public static WoWResearchSite FromName(string name)
+        public static WoWResearchSite FromName(string name, bool secondOne = false)
         {
-            return new WoWResearchSite(name);
+            return new WoWResearchSite(name, secondOne);
         }
 
         public static WoWResearchSite FromId(int id)
