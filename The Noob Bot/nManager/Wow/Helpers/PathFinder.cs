@@ -86,7 +86,7 @@ namespace nManager.Wow.Helpers
         /// <param name="to">To.</param>
         /// <param name="resultSuccess"> </param>
         /// <returns></returns>
-        public static List<Point> FindPath(Point to, out bool resultSuccess)
+        public static List<Point> FindPath(Point to, out bool resultSuccess, bool addFromAndStart = true)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace nManager.Wow.Helpers
                     else
                         Logging.WriteNavigator("Using the PathFinder to destination out of water");
                 }
-                return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess);
+                return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess, addFromAndStart);
             }
             catch (Exception exception)
             {
@@ -226,6 +226,11 @@ namespace nManager.Wow.Helpers
 
                 return locList;
             }
+        }
+
+        public static float GetZPosition(float x, float y, float z, bool strict = false)
+        {
+            return GetZPosition(new Point(x, y, z), strict);
         }
 
         public static float GetZPosition(float x, float y, bool strict = false)
