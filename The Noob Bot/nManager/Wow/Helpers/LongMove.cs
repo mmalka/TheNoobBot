@@ -96,16 +96,18 @@ namespace nManager.Wow.Helpers
                     {
                         if (!MovementManager.IsUnStuck)
                         {
+                            const int checkInFront = 130; // was 100
+                            const int checkCollision = 60; // was 40
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) > 15)
                             {
                                 Point meTemps = ObjectManager.ObjectManager.Me.Position;
                                 meTemps.Z = meTemps.Z - 2;
 
                                 Point temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
-                                if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
+                                if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > checkInFront)
                                 {
                                     temps = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point,
-                                                                               100);
+                                                                               checkInFront);
                                     temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                                 }
                                 if (TraceLine.TraceLineGo(meTemps, temps) ||
@@ -115,12 +117,12 @@ namespace nManager.Wow.Helpers
                                     MovementsAction.Descend(false);
                                     MovementsAction.Ascend(true);
                                     timerSit = new Timer(1000);
-                                    // If distance to colission < 40 stop moveto
+                                    // If distance to colission < checkCollision stop moveto
                                     temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
-                                    if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
+                                    if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > checkInFront)
                                     {
                                         temps = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                                   point, 40);
+                                                                                   point, checkCollision);
                                         temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                                     }
                                     if (TraceLine.TraceLineGo(meTemps, temps))
