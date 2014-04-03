@@ -295,6 +295,18 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void CastSpellByNameLUA(string spellName, string target)
+        {
+            try
+            {
+                Lua.LuaDoString("CastSpellByName(\"" + spellName + "\", \"" + target + "\");");
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("CastSpellByNameLUA(string spellName, string target): " + exception);
+            }
+        }
+
         public static void CastSpellByIDAndPosition(UInt32 spellId, Point postion)
         {
             try

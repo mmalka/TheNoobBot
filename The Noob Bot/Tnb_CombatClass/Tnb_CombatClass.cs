@@ -23999,10 +23999,7 @@ public class HunterMarksmanship
         if (ObjectManager.Pet.IsAlive && MySettings.UseMisdirection && Misdirection.KnownSpell
             && Misdirection.IsSpellUsable)
         {
-            Lua.RunMacroText("/target pet");
-            Thread.Sleep(200);
-            Misdirection.Launch();
-            Thread.Sleep(200);
+            Misdirection.LaunchOnUnitID("pet");
         }
 
         if (SerpentSting.KnownSpell && SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood
@@ -24805,10 +24802,7 @@ public class HunterBeastMastery
         if (ObjectManager.Pet.IsAlive && MySettings.UseMisdirection && Misdirection.KnownSpell
             && Misdirection.IsSpellUsable)
         {
-            Lua.RunMacroText("/target pet");
-            Thread.Sleep(200);
-            Misdirection.Launch();
-            Thread.Sleep(200);
+            Misdirection.LaunchOnUnitID("pet");
         }
 
         if (SerpentSting.KnownSpell && SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood
@@ -25666,10 +25660,7 @@ public class HunterSurvival
         if (ObjectManager.Pet.IsAlive && MySettings.UseMisdirection && Misdirection.KnownSpell
             && Misdirection.IsSpellUsable)
         {
-            Lua.RunMacroText("/target pet");
-            Thread.Sleep(200);
-            Misdirection.Launch();
-            Thread.Sleep(200);
+            Misdirection.LaunchOnUnitID("pet");
         }
 
         if (SerpentSting.KnownSpell && SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood
