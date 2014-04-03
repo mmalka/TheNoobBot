@@ -33,6 +33,12 @@ namespace nManager.Wow.Helpers.PathFinderClass
             return true;
         }
 
+        public static string GetDetourSupportedVersion()
+        {
+            int val = (int)DetourLayer.SupportedVersion.value;
+            return val.ToString();
+        }
+
         public static bool IsWrongVersion(this DetourStatus status)
         {
             try

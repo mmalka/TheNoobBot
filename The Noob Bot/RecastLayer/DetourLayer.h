@@ -14,7 +14,6 @@ using namespace RecastLayer;
 
 namespace DetourLayer
 {
-
 	[Flags]
 	public enum struct DetourStatus : System::UInt32
 	{
@@ -49,6 +48,11 @@ namespace DetourLayer
 		Start = DT_STRAIGHTPATH_START,
 		End = DT_STRAIGHTPATH_END,
 		OffMeshConnection = DT_STRAIGHTPATH_OFFMESH_CONNECTION
+	};
+
+	public enum struct SupportedVersion : System::UInt32
+	{
+		value = DT_NAVMESH_VERSION
 	};
 
 	public ref class Poly
@@ -706,6 +710,7 @@ namespace DetourLayer
 			return gcnew Link(&_tile->links[index]);
 		}
 
+		/* Disabled unused function
 		bool Rebuild(array<bool>^ visited, const int visitedMask, const float cellHeight, const int nvp, [Out] array<unsigned char>^% rData)
 		{
 			const float cellSize = 1 / _tile->header->bvQuantFactor;
@@ -905,7 +910,7 @@ error:
 
 			rData = nullptr;
 			return false;
-		}
+		}*/
 
 	};
 
@@ -1277,8 +1282,13 @@ error:
 			unsigned char* retData;
 			int retDataLength;
 			dtStatus status = _mesh->removeTile(tileRef, &retData, &retDataLength);
+
 			if (dtStatusSucceed(status))
+			{
 				delete[] retData;
+				return (DetourStatus)status;
+			}
+
 			return (DetourStatus)status;
 		}
 
@@ -1403,7 +1413,7 @@ exit:
 			return (DetourStatus)_query->findNearestPoly(centerPointer, extentsPointer, filter->GetNativeObject(), &discard, nearestPointer);
 		}
 
-		unsigned int FindNearestPolygon(array<float>^ center, array<float>^ extents, QueryFilter^ filter)
+		dtPolyRef FindNearestPolygon(array<float>^ center, array<float>^ extents, QueryFilter^ filter)
 		{
 			pin_ptr<float> centerPointer = &center[0];
 			pin_ptr<float> extentsPointer = &extents[0];
@@ -1456,7 +1466,7 @@ exit:
 			return (DetourStatus)status;
 		}
 
-		DetourStatus FindPath(unsigned int startRef, unsigned int endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
+		DetourStatus FindPath(dtPolyRef startRef, dtPolyRef endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
 		{
 			pin_ptr<float> startPosPointer = &startPos[0];
 			pin_ptr<float> endPosPointer = &endPos[0];
