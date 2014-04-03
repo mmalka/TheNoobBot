@@ -36,6 +36,7 @@
     <ClInclude Include="Detour\DetourAlloc.h" />
     <ClInclude Include="Detour\DetourAssert.h" />
     <ClInclude Include="Detour\DetourCommon.h" />
+    <ClInclude Include="Detour\DetourMath.h" />
     <ClInclude Include="Detour\DetourNavMesh.h" />
     <ClInclude Include="Detour\DetourNavMeshBuilder.h" />
     <ClInclude Include="Detour\DetourNavMeshQuery.h" />
@@ -101,6 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

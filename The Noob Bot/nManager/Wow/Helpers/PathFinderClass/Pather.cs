@@ -9,6 +9,8 @@ using nManager.Helpful;
 using nManager.Wow.Class;
 using Math = System.Math;
 
+using dtPolyRef = System.UInt64;
+
 namespace nManager.Wow.Helpers.PathFinderClass
 {
     internal class Danger
@@ -327,7 +329,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             {
                 CheckDungeon();
 
-                // To check every 1 minute minimum and unload tiles loaded more than 30 minutes ago
+                // To check every 1 minute minimum and unload tiles loaded more than 15 minutes ago
                 if (_loadTileCheck.IsReady)
                 {
                     //Logging.Write("Timer ready, checking loaded tile's age");
@@ -349,7 +351,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (!File.Exists(path))
                     return false;
                 byte[] data = File.ReadAllBytes(path);
-                Logging.Write("Loading of " + Continent + "_" + x + "_" + y + ".tile terminated.");
+                Logging.Write(Continent + "_" + x + "_" + y + ".tile loaded.");
                 if (!LoadTile(data))
                 {
                     Others.DeleteFile(_meshPath + "\\" + fName);
@@ -387,13 +389,14 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                const string stringHttpMap = "http://meshes.thenoobbot.com/";
+                const string stringHttpMapBaseAddress = "http://meshes.thenoobbot.com/";
 
+                string stringHttpMap = stringHttpMapBaseAddress + Utility.GetDetourSupportedVersion() + "/";
                 Directory.CreateDirectory(_meshPath + "\\" + Continent + "\\");
 
                 if (!Others.ExistFile(_meshPath + "\\" + fileName))
                 {
-                    Logging.Write("Downloading of mesh's tile \"" + fileName + "\" in progress.");
+                    Logging.Write("Downloading \"" + fileName + "\"...");
                     if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
                                              _meshPath + "\\" + fileName + ".gz"))
                         return false;
@@ -421,7 +424,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             foreach (KeyValuePair<Tuple<int, int>, int> entry in _loadedTiles)
             {
                 //Logging.Write("Found " + entry.Key.Item1 + "," + entry.Key.Item2 + " time " + entry.Value);
-                if (entry.Value < Others.TimesSec - (10 * 60)) // 10 * 60 = 10 mins
+                if (entry.Value < Others.TimesSec - (15 * 60)) // 15 * 60 = 15 mins
                 {
                     RemoveTile(entry.Key.Item1, entry.Key.Item2);
                     Logging.Write("Unloading old tile (" + entry.Key.Item1 + ", " + entry.Key.Item2 + ")");
@@ -488,18 +491,18 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     LoadAround(endVec);
                 }
 
-                uint startRef = _query.FindNearestPolygon(start, extents, Filter);
+                dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
                 if (startRef == 0)
                     Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
 
-                uint endRef = _query.FindNearestPolygon(end, extents, Filter);
+                dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
                 if (endRef == 0)
                     Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end (" + endVec + ")");
 
                 if (startRef == 0 || endRef == 0)
                     return new List<Point>();
 
-                uint[] pathCorridor;
+                dtPolyRef[] pathCorridor;
                 DetourStatus status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
                 if (status.HasFailed() || pathCorridor == null)
                 {
@@ -515,7 +518,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 float[] finalPath;
                 StraightPathFlag[] pathFlags;
-                uint[] pathRefs;
+                dtPolyRef[] pathRefs;
                 status = _query.FindStraightPath(start, end, pathCorridor, out finalPath, out pathFlags, out pathRefs);
                 if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
                     Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
@@ -551,7 +554,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             int y = (int) Math.Floor(ty);
             LoadTile(x, y);
 
-            uint startRef = _query.FindNearestPolygon(center, extents, Filter);
+            dtPolyRef startRef = _query.FindNearestPolygon(center, extents, Filter);
             if (startRef == 0)
             {
                 Logging.WriteDebug("There is no polygon in this location (Tile " + x + "," + y + "), coord: X:" +
