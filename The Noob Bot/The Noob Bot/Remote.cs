@@ -102,8 +102,6 @@ namespace The_Noob_Bot
             {
                 try
                 {
-                    //string lastScreenshot = UploadScreenshot();
-                    //Logging.Write(lastScreenshot);
                     if (channel == null)
                         channel = new Channel();
 
@@ -152,6 +150,7 @@ namespace The_Noob_Bot
                     ClassPlayer = ObjectManager.Me.WowClass.ToString(),
                     BagSpace = Usefuls.GetContainerNumFreeSlots,
                     LastWhisper = whisper,
+                    Screenshot = UploadScreenshot()
                 };
 
 
@@ -161,7 +160,7 @@ namespace The_Noob_Bot
                              packetClient.TargetName + "|" +
                              packetClient.TargetLevel + "|" + packetClient.TargetHealth + "|" + packetClient.InGame +
                              "|" + packetClient.SubMapName + "|" + packetClient.ClassPlayer + "| |" +
-                             packetClient.BagSpace + "|" + packetClient.LastWhisper;
+                             packetClient.BagSpace + "|" + packetClient.LastWhisper + "|" + packetClient.Screenshot;
 
 
                 List<string> result =
@@ -240,8 +239,8 @@ namespace The_Noob_Bot
             string file = ScreenshotsDir + "\\" + string.Format(ObjectManager.Me.Name + "-{0:dd-MM-yyyy_hh-mm-ss-tt}.jpeg", DateTime.Now);
             ImageCodecInfo codecInfo = GetEncoder(ImageFormat.Jpeg);
             EncoderParameters parameters = new EncoderParameters(1);
-            parameters.Param[0] = new EncoderParameter(Encoder.Quality, 25L);
-            Direct3DCapture.CaptureWindow(Memory.WowProcess.MainWindowHandle, new Size {Height = 480, Width = 853}).Save(file, codecInfo, parameters);
+            parameters.Param[0] = new EncoderParameter(Encoder.Quality, 100L);
+            Direct3DCapture.CaptureWindow(Memory.WowProcess.MainWindowHandle, new Size {Height = 720, Width = 1280}).Save(file, codecInfo, parameters);
             NameValueCollection nvc = new NameValueCollection();
             nvc.Add("table_name", "uploadfile");
             nvc.Add("commit", "uploadfile");
@@ -267,21 +266,23 @@ namespace The_Noob_Bot
 
         private struct PacketClient
         {
-            public int BagSpace; // 14
+            public string Name; // 0
+            public int Level; // 1
+            public int Health; // 2
             public float X; // 3
             public float Y; // 4
             public float Z; // 5
-            public string ClassPlayer; // 12
-            public int Health; // 2
-            public bool InGame; // 10
             public string LastLog; // 6
-            public int Level; // 1
-            public string Name; // 0
-            public string SubMapName; // 11
-            public int TargetHealth; // 9
-            public int TargetLevel; // 8
             public string TargetName; // 7
+            public int TargetLevel; // 8
+            public int TargetHealth; // 9
+            public bool InGame; // 10
+            public string SubMapName; // 11
+            public string ClassPlayer; // 12
+            // white space = 13
+            public int BagSpace; // 14
             public string LastWhisper; // 15
+            public string Screenshot; // 16
         }
 
         #endregion
