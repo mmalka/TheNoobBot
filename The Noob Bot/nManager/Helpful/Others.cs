@@ -1128,12 +1128,12 @@ namespace nManager.Helpful
 
         public static string GetAuthScriptLink
         {
-            get { return GetWorkingAuthServerAddress + "auth_542.php"; }
+            get { return GetWorkingAuthServerAddress + "auth_540.php"; }
         }
 
         public static string GetUpdateScriptLink
         {
-            get { return GetWorkingAuthServerAddress + "update_542.php"; }
+            get { return GetWorkingAuthServerAddress + "update_540.php"; }
         }
 
         public static string GetMonitoringScriptLink

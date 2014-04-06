@@ -64,7 +64,7 @@ namespace nManager.Wow.MemoryClass
         /// <typeparam></typeparam>
         /// <param name="processName"></param>
         /// <returns name="processHandle"></returns>
-        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "Wow")
+        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "pandashan.dat")
         {
             try
             {
