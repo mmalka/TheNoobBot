@@ -389,7 +389,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                const string stringHttpMapBaseAddress = "http://meshes.theprivatebot.com/";
+                const string stringHttpMapBaseAddress = "http://meshes.thenoobbot.com/";
 
                 string stringHttpMap = stringHttpMapBaseAddress + Utility.GetDetourSupportedVersion() + "/";
                 Directory.CreateDirectory(_meshPath + "\\" + Continent + "\\");
