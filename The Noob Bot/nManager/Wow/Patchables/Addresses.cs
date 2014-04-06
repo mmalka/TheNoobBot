@@ -142,6 +142,7 @@
             TransportGUID = 0x830, // CGUnit_C__HasVehicleTransport
             DBCacheRow = 0x9B4, // CGUnit_C__GetUnitName
             CachedName = 0x6C, // check // CGUnit_C__GetUnitName
+            CachedTypeFlag = 0x4C, // check
         }
 
         /// <summary>
