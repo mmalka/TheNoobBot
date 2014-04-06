@@ -776,6 +776,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
+                    return 17688;
                     return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
                 }
                 catch (Exception e)
