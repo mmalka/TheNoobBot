@@ -24,9 +24,9 @@ namespace nManager.Wow.Helpers
         public static int QueueingStatus()
         {
             uint v1 =
-                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.StatPvp);
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp);
             int v2 =
-                (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.StatPvp) &
+                (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp) &
                  1);
             if (v1 == 0 || v2 > 0)
                 return 0;
@@ -53,7 +53,7 @@ namespace nManager.Wow.Helpers
         {
             return
                 Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                 (uint) Addresses.Battleground.PvpExitWindow) > 0;
+                                                 (uint) Addresses.Battleground.pvpExitWindow) > 0;
         }
 
         public static void ExitBattleground()
