@@ -312,7 +312,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                string botOnline = Others.GetRequest("http://tech.thenoobbot.com/auth.php", "botOnline=true");
+                string botOnline = Others.GetRequest("http://tech.theprivatebot.com/auth.php", "botOnline=true");
                 if (LoginServer.IsFreeVersion)
                 {
                     while (LoginServer.IsFreeVersion)
@@ -330,7 +330,7 @@ namespace The_Noob_Bot
                 else
                 {
                     string timeLeft =
-                        Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true",
+                        Others.GetReqWithAuthHeader("http://tech.theprivatebot.com/auth.php?TimeSubscription=true",
                                                     LoginServer.Login, LoginServer.Password)[0];
                     _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
                                         LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
@@ -360,7 +360,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+                Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
             }
             catch (Exception ex)
             {

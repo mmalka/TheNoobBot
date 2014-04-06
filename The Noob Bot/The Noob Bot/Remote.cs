@@ -39,7 +39,7 @@ namespace The_Noob_Bot
         private readonly Thread _work;
         private bool _firstActive;
 
-        private const string RemoteScript = "http://tech.thenoobbot.com/remote.php";
+        private const string RemoteScript = "http://tech.theprivatebot.com/remote.php";
         private int _sessionKey;
 
         internal Remote()
@@ -244,7 +244,7 @@ namespace The_Noob_Bot
             NameValueCollection nvc = new NameValueCollection();
             nvc.Add("table_name", "uploadfile");
             nvc.Add("commit", "uploadfile");
-            return PostFile.HttpUploadFile("http://thenoobbot.com/remote/screenshots/upload.php", file, "uploadfile", "image/jpeg", nvc);
+            return PostFile.HttpUploadFile("http://theprivatebot.com/remote/screenshots/upload.php", file, "uploadfile", "image/jpeg", nvc);
         }
 
         private ImageCodecInfo GetEncoder(ImageFormat format)

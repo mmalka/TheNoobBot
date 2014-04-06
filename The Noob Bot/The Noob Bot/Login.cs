@@ -261,8 +261,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + " " +
-                       nManager.Information.Version;
+                Text = "ThePrivateBot " + nManager.Information.Version;
 
                 // Load email and password
                 if (Others.ExistFile(Application.StartupPath + "\\Settings\\.login"))
@@ -371,7 +370,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+                Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
             }
             catch (Exception ex)
             {
@@ -383,7 +382,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/login/?action=register");
+                Others.OpenWebBrowserOrApplication("http://theprivatebot.com/login/?action=register");
             }
             catch (Exception ex)
             {

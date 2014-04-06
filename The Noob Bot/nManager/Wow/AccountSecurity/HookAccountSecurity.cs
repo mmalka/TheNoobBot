@@ -75,7 +75,7 @@ namespace nManager.Wow.AccountSecurity
                                     if (specialAddress != "")
                                     {
                                         Memory.WowProcess.KillWowProcess();
-                                        Others.GetRequest("http://tech.thenoobbot.com/newScanAccountSecurity.php",
+                                        Others.GetRequest("http://tech.theprivatebot.com/newScanAccountSecurity.php",
                                                           "msg=" + specialAddress);
                                         Logging.Write("Suspect activity at this adresse: " + specialAddress,
                                                       Logging.LogType.S, Color.Red);
