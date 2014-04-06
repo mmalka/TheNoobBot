@@ -297,7 +297,7 @@ namespace nManager.Wow.MemoryClass
                                     byte[] wrongdata = new byte[] {0, 0, 0, 0, 0};
                                     if (D3D.OriginalBytes == wrongdata)
                                     {
-                                        Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
+                                        Others.OpenWebBrowserOrApplication("http://theprivatebot.com/community/viewtopic.php?f=43&t=464");
                                         Logging.Write("An error is detected, you must switch the DirectX version used by your WoW client !");
                                         MessageBox.Show("An error is detected, you must switch the DirectX version used by your WoW client !");
                                         Pulsator.Dispose(true);
@@ -335,7 +335,7 @@ namespace nManager.Wow.MemoryClass
                                             // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
                                         else
                                         {
-                                            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
+                                            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/community/viewtopic.php?f=43&t=464");
                                             Logging.Write("An error is detected, please restart your WoW Client before running the bot again !");
                                             MessageBox.Show("An error is detected, please restart your WoW Client before running the bot again !");
                                             Pulsator.Dispose(true);
@@ -617,12 +617,10 @@ namespace nManager.Wow.MemoryClass
                 BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
-                foreach (ProcessModule v in
-                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" || v.ModuleName.ToLower() == "pandashan.dat" select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
-
                 return memory.ReadUTF8String(baseModule + (uint) Addresses.Player.playerName);
             }
             catch (Exception e)
@@ -640,8 +638,7 @@ namespace nManager.Wow.MemoryClass
                 BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
-                foreach (ProcessModule v in
-                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" || v.ModuleName.ToLower() == "pandashan.dat" select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }

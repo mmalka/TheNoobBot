@@ -133,7 +133,7 @@ namespace Quester.Profile
 
         private void ProfileManagerGroupedDocumentation_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=165&t=5983");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/community/viewtopic.php?f=165&t=5983");
         }
 
         private void ProfileManagerRemoveGrouped_Click(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace Quester.Profile
 
         private void ProfileManagerSimpleDocumentation_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=165&t=5986");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/community/viewtopic.php?f=165&t=5986");
         }
 
         private void ProfileManagerRemove_Click(object sender, EventArgs e)

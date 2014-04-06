@@ -712,7 +712,7 @@ namespace nManager.Helpful.Forms
 
         private void DontHaverstObjectsTutorial_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/community/viewtopic.php?f=43&t=5612");
         }
 
         private void HealerClassSettingsButton_Click(object sender, EventArgs e)

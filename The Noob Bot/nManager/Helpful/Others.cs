@@ -1104,7 +1104,7 @@ namespace nManager.Helpful
 
         private static string _cachedAuthServerAddress;
         private static readonly Timer CachedAuthServerTimer = new Timer(300); // Re-try to connect to the prioritized AuthServers every 5 minutes.
-        private static readonly string[] FailOversAddress = new[] {"http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
+        private static readonly string[] FailOversAddress = new[] { "http://tech.theprivatebot.com/" /*, "http://auth2.theprivatebot.com/"*/};
 
         public static string GetWorkingAuthServerAddress
         {

@@ -250,7 +250,7 @@ namespace The_Noob_Bot
             NameValueCollection nvc = new NameValueCollection();
             nvc.Add("table_name", "uploadfile");
             nvc.Add("commit", "uploadfile");
-            return PostFile.HttpUploadFile("http://thenoobbot.com/remote/screenshots/upload.php", file, "uploadfile", "image/jpeg", nvc);
+            return PostFile.HttpUploadFile("http://theprivatebot.com/remote/screenshots/upload.php", file, "uploadfile", "image/jpeg", nvc);
         }
 
         private ImageCodecInfo GetEncoder(ImageFormat format)
