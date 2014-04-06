@@ -198,6 +198,7 @@ namespace The_Noob_Bot
                     {
                         if (nManager.Wow.Helpers.Usefuls.InGame || !nManager.Wow.Helpers.Usefuls.IsLoadingOrConnecting)
                             return true;
+                        Logging.Write("Error while attaching the process. Error code: #" + Hook.WowIsUsed(idProcess) + "#" + Hook.IsInGame(idProcess) + "#" + nManager.Wow.Helpers.Usefuls.InGame + "#" + nManager.Wow.Helpers.Usefuls.IsLoadingOrConnecting);
                     }
                 }
             }

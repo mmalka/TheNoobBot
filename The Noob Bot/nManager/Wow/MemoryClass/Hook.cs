@@ -90,7 +90,7 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        uint wowBuildVersion = Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
+                        uint wowBuildVersion = Wow.Helpers.Usefuls.WowVersion;
 
                         if (wowBuildVersion != Information.TargetWowBuild)
                         {

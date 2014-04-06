@@ -139,7 +139,7 @@ namespace nManager.Wow.MemoryClass
 
                 System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(ProcessId);
                 MainWindowHandle = processById.MainWindowHandle;
-                WowModule = GetModule("Wow.exe");
+                WowModule = GetModule("pandashan.dat");
                 return ProcessHandle;
             }
             catch (Exception e)
