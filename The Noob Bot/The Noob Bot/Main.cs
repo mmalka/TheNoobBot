@@ -184,6 +184,8 @@ namespace The_Noob_Bot
 
 
                 // Products:
+                int i = 0;
+                int i2 = -1;
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Products\\", "*.dll"))
                 {
                     string text = f.Replace(".dll", "");
@@ -193,10 +195,14 @@ namespace The_Noob_Bot
                         if (!string.IsNullOrEmpty(nManager.Translate.Get(ret)))
                             text = text + " - " + nManager.Translate.Get(ret);
                     }
-
+                    if (text == nManagerSetting.CurrentSetting.LastProductLoaded)
+                        i2 = i;
                     listProductsCb.Items.Add(text);
+                    i++;
                 }
                 listProductsCb.DropDownStyle = ComboBoxStyle.DropDownList;
+                if (i2 >= 0)
+                    listProductsCb.SelectedIndex = i2;
                 Logging.OnChangedStatus += SynchroniseStatus;
             }
             catch (Exception ex)
@@ -410,6 +416,8 @@ namespace The_Noob_Bot
             try
             {
                 string productName = listProductsCb.Text;
+                nManagerSetting.CurrentSetting.LastProductLoaded = productName;
+                nManagerSetting.CurrentSetting.Save();
                 if (productName.Contains(" - "))
                 {
                     string[] texte2 = productName.Split('-');

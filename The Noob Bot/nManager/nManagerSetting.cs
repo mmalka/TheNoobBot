@@ -187,6 +187,7 @@ namespace nManager
             return false;
         }
 
+        public string LastProductLoaded;
         public string CombatClass = "Tnb_CombatClass.dll";
         public string HealerClass = "Tnb_HealerClass.dll";
         public bool AutoAssignTalents; // To be fixed.
