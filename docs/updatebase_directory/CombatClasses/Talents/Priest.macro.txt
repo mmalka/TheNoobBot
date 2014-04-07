@@ -1,1 +1,0 @@
-/run t,p,a={1,12,23,33,42,51,72,82,91,102,111,123,132,163,171,182,202,211,2,23,33,62,3,}SetPreviewPrimaryTalentTree(t[1],GetActiveTalentGroup())for i=1,#t do a=t[i]if a<9 then p=a else AddPreviewTalentPoints(p,floor(a/10),a%10)end end

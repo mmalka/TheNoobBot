@@ -10,44 +10,34 @@ namespace nManager.Wow.Helpers
     /// </summary>
     public static class Talent
     {
-        private static void ReadAndRunTalent()
+        private static int GetNumUnspentTalents()
         {
-            try
-            {
-                if (Others.ExistFile(Application.StartupPath + "\\CombatClasses\\Talents\\" +
-                                     ObjectManager.ObjectManager.Me.WowClass + ".macro.txt"))
-                {
-                    Lua.RunMacroText("/click TalentMicroButton");
-                    string macro =
-                        Others.ReadFile(Application.StartupPath + "\\CombatClasses\\Talents\\" +
-                                        ObjectManager.ObjectManager.Me.WowClass + ".macro.txt");
-
-                    if (macro.Replace(" ", "") != "")
-                        Lua.RunMacroText(macro);
-                    else
-                        return;
-
-                    Lua.RunMacroText("/click PlayerTalentFrameLearnButton");
-                    Thread.Sleep(400);
-                    Lua.RunMacroText("/click StaticPopup1Button1");
-                    Thread.Sleep(400);
-                    Lua.RunMacroText("/click TalentMicroButton");
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("ReadAndRunTalent(): " + exception);
-            }
+            string res = Others.GetRandomString(Others.Random(4, 10));
+           int numUnspent = Others.ToInt32(Lua.LuaDoString(res + " = GetNumUnspentTalents()", res));
+            return numUnspent;
         }
-
-        /// <summary>
-        /// Does the talents.
-        /// </summary>
         public static void DoTalents()
         {
             try
             {
-                ReadAndRunTalent();
+                if (GetNumUnspentTalents() == 0)
+                    return;
+                if (Others.ExistFile(Application.StartupPath + "\\CombatClasses\\Talents\\" + ObjectManager.ObjectManager.Me.WowSpecialization() + ".talents.txt"))
+                {
+                    Lua.RunMacroText("/click PlayerTalentFrameCloseButton"); // Make sure it's already closed.
+                    Thread.Sleep(400);
+                    Lua.RunMacroText("/click TalentMicroButton");
+                    string advised = Others.ReadFile(Application.StartupPath + "\\CombatClasses\\Talents\\" + ObjectManager.ObjectManager.Me.WowSpecialization() + ".talents.txt");
+                    var talents = advised.Split('|');
+                    foreach (string s in talents)
+                    {
+                        Lua.LuaDoString("PlayerTalentFrame_SelectTalent("+ s +")");
+                    }
+
+                    Lua.RunMacroText("/click PlayerTalentFrameTalentsLearnButton");
+                    Thread.Sleep(400);
+                    Lua.RunMacroText("/click PlayerTalentFrameCloseButton");
+                }
             }
             catch (Exception exception)
             {

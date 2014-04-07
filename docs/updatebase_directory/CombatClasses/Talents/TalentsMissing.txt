@@ -1,0 +1,56 @@
+To add or edit a spec, create/edit the file that respect the name style below.
+
+The talents system works as is, first of all, make sure you chose the specialisation and activated it, second, open the talent page of the active specialisation, then read talents as-is:
+1 - 2 - 3
+4 - 5 - 6
+7 - 8 - 9
+10 - 11 - 12
+13 - 14 - 15
+16 - 17 - 18
+
+
+then simply fill the file with the format below.
+
+Example, I want only the left column of each talent row:
+1|4|7|10|13|16
+Example, I want only the left column of each talent row except the third one where I want the third column instead:
+1|4|9|10|13|16
+
+done:
+PaladinHoly.talents.txt
+PaladinProtection.talents.txt
+PaladinRetribution.talents.txt
+
+
+todo:
+MageArcane.talents.txt
+MageFire.talents.txt
+MageFrost.talents.txt
+WarriorArms.talents.txt
+WarriorFury.talents.txt
+WarriorProtection.talents.txt
+DruidBalance.talents.txt
+DruidFeral.talents.txt
+DruidGuardian.talents.txt
+DruidRestoration.talents.txt
+DeathknightBlood.talents.txt
+DeathknightFrost.talents.txt
+DeathknightUnholy .talents.txt
+HunterBeastMastery.talents.txt
+HunterMarksmanship.talents.txt
+HunterSurvival.talents.txt
+PriestDiscipline .talents.txt
+PriestHoly.talents.txt
+PriestShadow.talents.txt
+RogueAssassination .talents.txt
+RogueCombat.talents.txt
+RogueSubtlety.talents.txt
+ShamanElemental.talents.txt
+ShamanEnhancement.talents.txt
+ShamanRestoration .talents.txt
+WarlockAffliction.talents.txt
+WarlockDemonology.talents.txt
+WarlockDestruction .talents.txt
+MonkBrewmaster.talents.txt
+MonkWindwalker.talents.txt
+MonkMistweaver.talents.txt
