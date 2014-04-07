@@ -92,7 +92,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void AddNpcRange(List<Npc> npcList)
+        public static void AddNpcRange(List<Npc> npcList, bool neutralIfPossible = false)
         {
             try
             {
@@ -112,8 +112,10 @@ namespace nManager.Wow.Helpers
                             if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 1)
                             {
                                 found = true;
-                                if (npc1.Faction != npc.Faction)
+                                if (npc1.Faction != npc.Faction && npc1.Faction != Npc.FactionType.Neutral)
                                 {
+                                    if (neutralIfPossible)
+                                        npc.Faction = Npc.FactionType.Neutral;
                                     oldNpc = npc1;
                                     factionChange = true;
                                 }

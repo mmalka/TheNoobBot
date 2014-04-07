@@ -1,5 +1,8 @@
-﻿// ReSharper disable RedundantUsingDirective
-
+﻿using System.Runtime.Serialization;
+using System.Threading;
+using nManager.Wow.ObjectManager;
+using ObjectManager = nManager.Wow.ObjectManager.ObjectManager;
+// ReSharper disable RedundantUsingDirective
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +25,86 @@ namespace Test_Product
         /*private const string CurrentProfileName = "afk.xml";
         private static bool _xmlProfile = true;
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
+        private static readonly Thread RadarThread = new Thread(LaunchRadar) { Name = "RadarThread" };
+        public static void LaunchRadar()
+        {
+            while (true)
+            {
+                Thread.Sleep(1000);
+                List<Npc> npcRadar = new List<Npc>();
+                List<WoWUnit> Vendors = ObjectManager.GetWoWUnitVendor();
+                List<WoWUnit> Repairers = ObjectManager.GetWoWUnitRepair();
+                var Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
+                foreach (WoWGameObject o in Mailboxes)
+                {
+                    Npc.FactionType fact;
+                    if (UnitRelation.GetReaction(o.Faction) < Reaction.Neutral)
+                    {
+                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Horde : Npc.FactionType.Alliance;
+                    }
+                    else
+                    {
+                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
+                    }
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = o.Entry,
+                        Faction = fact,
+                        Name = o.Name,
+                        Position = o.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.Mailbox
+                    });
+                }
+                foreach (WoWUnit n in Vendors)
+                {
+                    Npc.FactionType fact;
+                    if (UnitRelation.GetReaction(n.Faction) < Reaction.Neutral)
+                    {
+                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Horde : Npc.FactionType.Alliance;
+                    }
+                    else
+                    {
+                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
+                    }
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = fact,
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.Vendor
+                    });
+                }
+                foreach (WoWUnit n in Repairers)
+                {
+                    Npc.FactionType fact;
+                    if (UnitRelation.GetReaction(n.Faction) < Reaction.Neutral)
+                    {
+                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Horde : Npc.FactionType.Alliance;
+                    }
+                    else
+                    {
+                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
+                    }
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = fact,
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.Repair
+                    });
+                }
+                Logging.Write("Adding NPCs and Mailboxes.");
+                NpcDB.AddNpcRange(npcRadar, true);
+            }
+        }
 
         public static bool Pulse()
         {
@@ -29,6 +112,7 @@ namespace Test_Product
             {
                 // Update spell list
                 SpellManager.UpdateSpellBook();
+                RadarThread.Start();
                 // Enum parser !
                 /*var dict = new Dictionary<int, string>();
                 foreach (var name in Enum.GetNames(typeof(SkillLine)))

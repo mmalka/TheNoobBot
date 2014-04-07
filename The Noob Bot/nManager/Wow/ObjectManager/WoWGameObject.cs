@@ -58,6 +58,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint Faction
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<uint>(Descriptors.GameObjectFields.FactionTemplate);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWGameObject > Faction: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public override Point Position
         {
             get
