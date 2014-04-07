@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 
@@ -83,18 +84,34 @@ namespace nManager.Wow.Class
                     sResult = Lua.GetLocalizedText(randomString);
                 }
                 string[] intemInfoArray = sResult.Split('^');
-
-                ItemName = intemInfoArray[0];
-                ItemLink = intemInfoArray[1];
-                ItemRarity = Others.ToInt32(intemInfoArray[2]);
-                ItemLevel = Others.ToInt32(intemInfoArray[3]);
-                ItemMinLevel = Others.ToInt32(intemInfoArray[4]);
-                ItemType = intemInfoArray[5];
-                ItemSubType = intemInfoArray[6];
-                ItemStackCount = Others.ToInt32(intemInfoArray[7]);
-                ItemEquipLoc = intemInfoArray[8];
-                ItemTexture = intemInfoArray[9];
-                ItemSellPrice = Others.ToInt32(intemInfoArray[10]);
+                if (intemInfoArray.Count() < 2) // No items will show 1 count.
+                {
+                    ItemName = "";
+                    ItemLink = "";
+                    ItemRarity = 0;
+                    ItemLevel = 0;
+                    ItemMinLevel = 91;
+                    ItemType = "";
+                    ItemSubType = "";
+                    ItemStackCount = 0;
+                    ItemEquipLoc = "";
+                    ItemTexture = "";
+                    ItemSellPrice = 0;
+                }
+                else
+                {
+                    ItemName = intemInfoArray[0];
+                    ItemLink = intemInfoArray[1];
+                    ItemRarity = Others.ToInt32(intemInfoArray[2]);
+                    ItemLevel = Others.ToInt32(intemInfoArray[3]);
+                    ItemMinLevel = Others.ToInt32(intemInfoArray[4]);
+                    ItemType = intemInfoArray[5];
+                    ItemSubType = intemInfoArray[6];
+                    ItemStackCount = Others.ToInt32(intemInfoArray[7]);
+                    ItemEquipLoc = intemInfoArray[8];
+                    ItemTexture = intemInfoArray[9];
+                    ItemSellPrice = Others.ToInt32(intemInfoArray[10]);
+                }
             }
             catch (Exception exception)
             {
