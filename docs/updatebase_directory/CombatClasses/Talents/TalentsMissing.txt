@@ -20,34 +20,34 @@ done:
 PaladinHoly.talents.txt
 PaladinProtection.talents.txt
 PaladinRetribution.talents.txt
-
-
-todo:
-MageArcane.talents.txt
-MageFire.talents.txt
-MageFrost.talents.txt
-WarriorArms.talents.txt
-WarriorFury.talents.txt
-WarriorProtection.talents.txt
+ShamanElemental.talents.txt
+ShamanEnhancement.talents.txt
+ShamanRestoration.talents.txt
+PriestDiscipline.talents.txt
+PriestHoly.talents.txt
+PriestShadow.talents.txt
 DruidBalance.talents.txt
 DruidFeral.talents.txt
 DruidGuardian.talents.txt
 DruidRestoration.talents.txt
+MageArcane.talents.txt
+MageFire.talents.txt
+MageFrost.talents.txt
+
+
+todo:
+WarriorArms.talents.txt
+WarriorFury.talents.txt
+WarriorProtection.talents.txt
 DeathknightBlood.talents.txt
 DeathknightFrost.talents.txt
 DeathknightUnholy .talents.txt
 HunterBeastMastery.talents.txt
 HunterMarksmanship.talents.txt
 HunterSurvival.talents.txt
-PriestDiscipline .talents.txt
-PriestHoly.talents.txt
-PriestShadow.talents.txt
 RogueAssassination .talents.txt
 RogueCombat.talents.txt
 RogueSubtlety.talents.txt
-ShamanElemental.talents.txt
-ShamanEnhancement.talents.txt
-ShamanRestoration .talents.txt
 WarlockAffliction.talents.txt
 WarlockDemonology.talents.txt
 WarlockDestruction .talents.txt
