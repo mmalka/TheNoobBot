@@ -737,7 +737,8 @@ namespace nManager.Helpful
                 DialogResult resulMb =
                     MessageBox.Show(
                         Translate.Get(
-                            Translate.Id.Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
+                            Translate.Id
+                                .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
                         "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis),
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -1071,6 +1072,7 @@ namespace nManager.Helpful
                         }
                     }
                     // When all the processing is done, let's now check if we are missing items completly.
+                    var toRemove = new List<int>();
                     foreach (KeyValuePair<int, int> pair in ItemStock)
                     {
                         bool KeepValue = false;
@@ -1081,10 +1083,15 @@ namespace nManager.Helpful
                         }
                         // Update our stock if we lost some items.
                         if (!KeepValue)
-                            ItemStock[pair.Key] = 0;
+                            toRemove.Add(pair.Key);
+                    }
+                    foreach (int i in toRemove)
+                    {
+                        ItemStock.Remove(i);
                     }
                     newLoots.Clear();
                     objectWoWItems.Clear();
+                    toRemove.Clear();
                 }
                 catch (Exception e)
                 {
@@ -1097,7 +1104,7 @@ namespace nManager.Helpful
 
         private static string _cachedAuthServerAddress;
         private static readonly Timer CachedAuthServerTimer = new Timer(300); // Re-try to connect to the prioritized AuthServers every 5 minutes.
-        private static readonly string[] FailOversAddress = new[] { "http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
+        private static readonly string[] FailOversAddress = new[] {"http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
 
         public static string GetWorkingAuthServerAddress
         {
