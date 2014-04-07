@@ -20,6 +20,9 @@ done:
 PaladinHoly.talents.txt
 PaladinProtection.talents.txt
 PaladinRetribution.talents.txt
+HunterBeastMastery.talents.txt
+HunterMarksmanship.talents.txt
+HunterSurvival.talents.txt
 
 
 todo:
@@ -36,9 +39,6 @@ DruidRestoration.talents.txt
 DeathknightBlood.talents.txt
 DeathknightFrost.talents.txt
 DeathknightUnholy .talents.txt
-HunterBeastMastery.talents.txt
-HunterMarksmanship.talents.txt
-HunterSurvival.talents.txt
 PriestDiscipline .talents.txt
 PriestHoly.talents.txt
 PriestShadow.talents.txt
