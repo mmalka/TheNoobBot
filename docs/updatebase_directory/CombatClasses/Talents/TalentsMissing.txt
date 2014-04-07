@@ -23,6 +23,9 @@ PaladinRetribution.talents.txt
 ShamanElemental.talents.txt
 ShamanEnhancement.talents.txt
 ShamanRestoration.talents.txt
+HunterBeastMastery.talents.txt
+HunterMarksmanship.talents.txt
+HunterSurvival.talents.txt
 PriestDiscipline.talents.txt
 PriestHoly.talents.txt
 PriestShadow.talents.txt
@@ -42,9 +45,6 @@ WarriorProtection.talents.txt
 DeathknightBlood.talents.txt
 DeathknightFrost.talents.txt
 DeathknightUnholy .talents.txt
-HunterBeastMastery.talents.txt
-HunterMarksmanship.talents.txt
-HunterSurvival.talents.txt
 RogueAssassination .talents.txt
 RogueCombat.talents.txt
 RogueSubtlety.talents.txt
