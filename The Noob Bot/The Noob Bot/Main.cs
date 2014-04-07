@@ -59,7 +59,7 @@ namespace The_Noob_Bot
                 InitializeInterface();
                 InitializeUI();
                 _minimizedWindow = new MainMinimized();
-                _minimizedWindow.VisibleChanged += MinimizedVisivleChange;
+                _minimizedWindow.VisibleChanged += MinimizedVisibleChange;
                 while (!_SpellBookIsReady)
                 {
                     Thread.Sleep(10);
@@ -671,7 +671,7 @@ namespace The_Noob_Bot
             Hide();
         }
 
-        private void MinimizedVisivleChange(object sender, EventArgs e)
+        private void MinimizedVisibleChange(object sender, EventArgs e)
         {
             try
             {
