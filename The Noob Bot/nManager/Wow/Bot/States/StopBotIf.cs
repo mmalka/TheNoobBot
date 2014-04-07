@@ -29,9 +29,26 @@ namespace nManager.Wow.Bot.States
                 if (!Products.Products.IsStarted)
                     return false;
 
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting)
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                {
+                    if (!_inPause && !Products.Products.InPause)
+                    {
+                        Logging.Write("Game got disconnect or in loading, pausing TheNoobbot, please relog manually or make sure the relogger feature is activated.");
+                        _inPause = true;
+                        Products.Products.InPause = true;
+                        _gameOffline = true;
+                    }
                     return false;
+                }
+                if (_gameOffline)
+                {
+                    _gameOffline = false;
+                    ConfigWowForThisBot.ConfigWow();
+                    SpellManager.UpdateSpellBook();
+                    Logging.Write("Game is back online, unpausing, reloading SpellBook.");
+                    _inPause = false;
+                    Products.Products.InPause = false;
+                }
 
                 return true;
             }
@@ -51,6 +68,7 @@ namespace nManager.Wow.Bot.States
         private uint _startedLevel;
         private int _startedTime;
         private bool _inPause;
+        private bool _gameOffline;
         private readonly Channel _whisperChannel = new Channel();
         private int _numberWhisper;
 

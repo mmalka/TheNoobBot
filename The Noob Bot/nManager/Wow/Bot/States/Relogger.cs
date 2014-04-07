@@ -78,6 +78,7 @@ namespace nManager.Wow.Bot.States
                         Logging.Write("Ending player relogging with success.");
                         _relogger = false;
                         ConfigWowForThisBot.ConfigWow();
+                        SpellManager.UpdateSpellBook();
                         //Products.Products.ProductRestart();
                         break;
                     }
