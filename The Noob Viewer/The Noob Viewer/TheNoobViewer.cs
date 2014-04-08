@@ -88,7 +88,8 @@ namespace TheNoobViewer
                     float Z = float.Parse(position.SelectSingleNode("Z").InnerText);
 
                     string faction = OneNPC.SelectSingleNode("Faction").InnerText;
-                    string npccontinent = OneNPC.SelectSingleNode("ContinentId").InnerText;
+                    string basecontinent = OneNPC.SelectSingleNode("ContinentId").InnerText;
+                    string npccontinent;
                     HopType iFaction = HopType.Alliance;
                     switch (faction)
                     {
@@ -100,6 +101,18 @@ namespace TheNoobViewer
                             break;
                         case "Neutral":
                             iFaction = HopType.Neutral;
+                            break;
+                    }
+                    switch (basecontinent)
+                    {
+                        case "Pandaria":
+                            npccontinent = "HawaiiMainLand";
+                            break;
+                        case "Outland":
+                            npccontinent = "Expansion01";
+                            break;
+                        default:
+                            npccontinent = basecontinent;
                             break;
                     }
                     Hop h = new Hop { Location = new Vector3(X, Y, Z), Continent = npccontinent, Type = iFaction };
