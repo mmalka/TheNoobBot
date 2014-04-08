@@ -29,6 +29,7 @@ namespace Test_Product
 
         public static void LaunchRadar()
         {
+            int d;
             while (true)
             {
                 Thread.Sleep(1000);
@@ -98,37 +99,37 @@ namespace Test_Product
                 foreach (WoWUnit n in Trainers)
                 {
                     Npc.NpcType newtype;
-                    if (n.SubName.Contains("Alchemy"))
+                    if (n.SubName.Contains("Alchemy") || n.SubName.Contains("alchimistes"))
                         newtype = Npc.NpcType.AlchemyTrainer;
-                    else if (n.SubName.Contains("Blacksmithing"))
+                    else if (n.SubName.Contains("Blacksmithing") || n.SubName.Contains("forgerons"))
                         newtype = Npc.NpcType.BlacksmithingTrainer;
-                    else if (n.SubName.Contains("Enchanting"))
+                    else if (n.SubName.Contains("Enchanting") || n.SubName.Contains("enchanteurs"))
                         newtype = Npc.NpcType.EnchantingTrainer;
-                    else if (n.SubName.Contains("Engineering"))
+                    else if (n.SubName.Contains("Engineering") || n.SubName.Contains("ingénieurs"))
                         newtype = Npc.NpcType.EngineeringTrainer;
-                    else if (n.SubName.Contains("Herbalism"))
+                    else if (n.SubName.Contains("Herbalism") || n.SubName.Contains("herboristes"))
                         newtype = Npc.NpcType.HerbalismTrainer;
-                    else if (n.SubName.Contains("Inscription"))
+                    else if (n.SubName.Contains("Inscription") || n.SubName.Contains("calligraphes"))
                         newtype = Npc.NpcType.InscriptionTrainer;
-                    else if (n.SubName.Contains("Jewelcrafting"))
+                    else if (n.SubName.Contains("Jewelcrafting") || n.SubName.Contains("joailliers"))
                         newtype = Npc.NpcType.JewelcraftingTrainer;
-                    else if (n.SubName.Contains("Leatherworking"))
+                    else if (n.SubName.Contains("Leatherworking") || n.SubName.Contains("travailleurs du cuir"))
                         newtype = Npc.NpcType.LeatherworkingTrainer;
-                    else if (n.SubName.Contains("Mining"))
+                    else if (n.SubName.Contains("Mining") || n.SubName.Contains("mineurs"))
                         newtype = Npc.NpcType.MiningTrainer;
-                    else if (n.SubName.Contains("Skinning"))
+                    else if (n.SubName.Contains("Skinning") || n.SubName.Contains("dépeceurs"))
                         newtype = Npc.NpcType.SkinningTrainer;
-                    else if (n.SubName.Contains("Tailoring"))
+                    else if (n.SubName.Contains("Tailoring") || n.SubName.Contains("tailleurs"))
                         newtype = Npc.NpcType.TailoringTrainer;
-                    else if (n.SubName.Contains("Archaeology"))
+                    else if (n.SubName.Contains("Archaeology") || n.SubName.Contains("archéologues"))
                         newtype = Npc.NpcType.ArchaeologyTrainer;
-                    else if (n.SubName.Contains("Cooking"))
+                    else if (n.SubName.Contains("Cooking") || n.SubName.Contains("cuisiniers"))
                         newtype = Npc.NpcType.CookingTrainer;
-                    else if (n.SubName.Contains("First Aid"))
+                    else if (n.SubName.Contains("First Aid") || n.SubName.Contains("secouristes"))
                         newtype = Npc.NpcType.FirstAidTrainer;
-                    else if (n.SubName.Contains("Fishing"))
+                    else if (n.SubName.Contains("Fishing") || n.SubName.Contains("forgerons"))
                         newtype = Npc.NpcType.FishingTrainer;
-                    else if (n.SubName.Contains("Riding"))
+                    else if (n.SubName.Contains("Riding") || n.SubName.Contains(" de vol"))
                         newtype = Npc.NpcType.RidingTrainer;
                     else
                         continue;
@@ -207,8 +208,9 @@ namespace Test_Product
                         Type = newtype
                     });
                 }
-                Logging.Write("Found " + npcRadar.Count + "NPCs and Mailboxes in the memory.");
-                NpcDB.AddNpcRange(npcRadar, true);
+                d = NpcDB.AddNpcRange(npcRadar, true);
+                if (d > 0)
+                    Logging.Write("Found " + d + " new NPCs/Mailboxes in memory.");
             }
         }
 

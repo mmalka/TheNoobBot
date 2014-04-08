@@ -92,10 +92,11 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void AddNpcRange(List<Npc> npcList, bool neutralIfPossible = false)
+        public static int AddNpcRange(List<Npc> npcList, bool neutralIfPossible = false)
         {
             try
             {
+                int count = 0;
                 LoadList();
                 lock (typeof (NpcDB))
                 {
@@ -126,16 +127,22 @@ namespace nManager.Wow.Helpers
                         {
                             ListNpc.Remove(oldNpc);
                             ListNpc.Add(npc);
+                            count++;
                         }
                         else if (!found)
+                        {
                             ListNpc.Add(npc);
+                            count++;
+                        }
                     }
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
+                    return count;
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("NpcDB > AddNpcRange(List<Npc> npcList)): " + ex);
+                return 0;
             }
         }
 
