@@ -9,6 +9,7 @@ namespace meshPathVisualizer
     {
         public MinimapImage Background { get; private set; }
         public List<Hop> Hops { get; private set; }
+        public List<Hop> NpcDB { get; private set; }
         public string World { get; private set; }
         public int Width { get; set; }
         public int Height { get; set; }
@@ -16,12 +17,13 @@ namespace meshPathVisualizer
         public bool IgnoreWater { get; set; }
         public Bitmap Result { get; set; }
 
-        public PathImage(string world, List<Hop> hops, bool autoZoom = false, float zoom = 1.0f, bool ignoreWater = false)
+        public PathImage(string world, List<Hop> hops, List<Hop> npcdb, bool autoZoom = false, float zoom = 1.0f, bool ignoreWater = false)
         {
             World = world;
             Width = 0; // width;
             Height = 0; // height;
             Hops = hops;
+            NpcDB = npcdb;
             IgnoreWater = ignoreWater;
             Zoom = (autoZoom ? 0.0f : zoom);
         }
@@ -97,9 +99,44 @@ namespace meshPathVisualizer
                 points[i] = new PointF(tX*Background.TileWidth, tY*Background.TileHeight);
             }
             graphics.SmoothingMode = SmoothingMode.HighQuality;
-            graphics.DrawLines(new Pen(Color.Red, 4f), points);
+            graphics.DrawLines(new Pen(NpcDB == null ? Color.Red : Color.Orange, 4f), points);
+
             foreach (var point in points)
                 graphics.DrawEllipse(new Pen(Color.Black, 1f), point.X - (6f/2), point.Y - (6f/2), 6, 6);
+
+            if (NpcDB != null)
+            {
+                for (int i = 0; i < NpcDB.Count; i++)
+                {
+                    var hop = NpcDB[i];
+                    if (hop.Continent == World)
+                    {
+                        var recastLoc = hop.Location.ToRecast().ToFloatArray();
+                        float tX, tY;
+                        Pather.GetTileByLocation(recastLoc, out tX, out tY);
+                        if (tX >= minX && tX <= maxX && tY >= minY && tY <= maxY)
+                        {
+                            tX -= minX;
+                            tY -= minY;
+                            switch (hop.Type)
+                            {
+                                case HopType.Alliance:
+                                    graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    graphics.FillEllipse(new SolidBrush(Color.Blue), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    break;
+                                case HopType.Horde:
+                                    graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    graphics.FillEllipse(new SolidBrush(Color.Red), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    break;
+                                case HopType.Neutral:
+                                    graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    graphics.FillEllipse(new SolidBrush(Color.Yellow), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
             graphics.Dispose();
 
             // and wrap up the result

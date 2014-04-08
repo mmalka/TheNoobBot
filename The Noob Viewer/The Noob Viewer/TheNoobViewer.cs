@@ -15,6 +15,7 @@ namespace TheNoobViewer
     public partial class TheNoobViewer : Form
     {
         private List<Hop> Hops;
+        private List<Hop> NpcDB = null;
         private float zoom;
         private string path;
         private string continent;
@@ -57,6 +58,57 @@ namespace TheNoobViewer
             Azeroth.Checked = true;
             continent = "Azeroth";
             toolStripStatusContinent.Text = "Current continent: Azeroth";
+            // Now load the npcdb
+            try
+            {
+                System.IO.Stream fileStream = System.IO.File.Open("NpcDB.xml", System.IO.FileMode.Open);
+                XmlTextReader reader = new XmlTextReader(fileStream);
+                bool good = false;
+                while (reader.Read())
+                {
+                    if (reader.Name == "ArrayOfNpc")
+                    {
+                        good = true;
+                        break;
+                    }
+                }
+                reader.Close();
+                if (!good)
+                    return;
+                NpcDB = new List<Hop>();
+                XmlDocument doc = new XmlDocument();
+                doc.Load("NpcDB.xml");
+                XmlNodeList AllNpcs = doc.SelectNodes("/ArrayOfNpc/Npc"); ;
+
+                foreach (XmlNode OneNPC in AllNpcs)
+                {
+                    XmlNode position = OneNPC.SelectSingleNode("Position");
+                    float X = float.Parse(position.SelectSingleNode("X").InnerText);
+                    float Y = float.Parse(position.SelectSingleNode("Y").InnerText);
+                    float Z = float.Parse(position.SelectSingleNode("Z").InnerText);
+
+                    string faction = OneNPC.SelectSingleNode("Faction").InnerText;
+                    string npccontinent = OneNPC.SelectSingleNode("ContinentId").InnerText;
+                    HopType iFaction = HopType.Alliance;
+                    switch (faction)
+                    {
+                        case "Horde":
+                            iFaction = HopType.Horde;
+                            break;
+                        case "Alliance":
+                            iFaction = HopType.Alliance;
+                            break;
+                        case "Neutral":
+                            iFaction = HopType.Neutral;
+                            break;
+                    }
+                    Hop h = new Hop { Location = new Vector3(X, Y, Z), Continent = npccontinent, Type = iFaction };
+                    NpcDB.Add(h);
+                }
+            }
+            catch (System.IO.IOException)
+            {
+            }
         }
 
         public System.Drawing.Rectangle GetScreen()
@@ -75,23 +127,26 @@ namespace TheNoobViewer
             }
             else
             {
-                try
+                if (Hops != null) // it's null during initialize
                 {
-                    textBox1.Text = "Please Wait...";
-                    textBox1.Visible = true;
-                    this.Refresh();
-                    var image = new PathImage(continent, Hops, autoZoom, zoom, ignorewater);
-                    image.Generate(GetScreen().Width, GetScreen().Height, out zoom);
-                    textBox1.Visible = false;
-                    pictureBox1.Image = image.Result;
-                    toolStripStatusLabel1.Text = Hops.Count + " nodes in the path";
-                }
-                catch
-                {
-                    pictureBox1.Image = new System.Drawing.Bitmap(519, 411);
-                    toolStripStatusLabel1.Text = "Please open a file";
-                    textBox1.Visible = true;
-                    textBox1.Text = "An error occured, be sure to use the proper map";
+                    try
+                    {
+                        textBox1.Text = "Please Wait...";
+                        textBox1.Visible = true;
+                        this.Refresh();
+                        var image = new PathImage(continent, Hops, NpcDB, autoZoom, zoom, ignorewater);
+                        image.Generate(GetScreen().Width, GetScreen().Height, out zoom);
+                        textBox1.Visible = false;
+                        pictureBox1.Image = image.Result;
+                        toolStripStatusLabel1.Text = Hops.Count + " nodes in the path";
+                    }
+                    catch
+                    {
+                        pictureBox1.Image = new System.Drawing.Bitmap(519, 411);
+                        toolStripStatusLabel1.Text = "Please open a file";
+                        textBox1.Visible = true;
+                        textBox1.Text = "An error occured, be sure to use the proper map";
+                    }
                 }
             }
         }

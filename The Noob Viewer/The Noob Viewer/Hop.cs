@@ -3,8 +3,9 @@ namespace meshPathVisualizer
     
     public enum HopType
     {
-        Waypoint,
-        Flightmaster,
+        Alliance,
+        Horde,
+        Neutral
     }
 
     public class Hop
@@ -15,7 +16,7 @@ namespace meshPathVisualizer
         /// <summary>
         /// Only valid for hops with Flightmaster type
         /// </summary>
-        public string FlightTarget { get; set; }
+        public string Continent { get; set; }
     }
 
 }
