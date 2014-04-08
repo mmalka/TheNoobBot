@@ -1590,6 +1590,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsNpcSpiritGuide
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.SpiritHealer);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsNpcSpiritGuide: " + e);
+                    return false;
+                }
+            }
+        }
+
         public bool IsNpcSpiritHealer
         {
             get
@@ -1617,6 +1633,38 @@ namespace nManager.Wow.ObjectManager
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > IsNpcRepair: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool IsNpcFlightMaster
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.Taxi);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsNpcFlightMaster: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool IsNpcMailbox
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.MailInfo);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsNpcMailbox: " + e);
                     return false;
                 }
             }

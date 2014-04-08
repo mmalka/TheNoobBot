@@ -33,11 +33,16 @@ namespace Test_Product
             {
                 Thread.Sleep(1000);
                 List<Npc> npcRadar = new List<Npc>();
+                List<WoWGameObject> Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
                 List<WoWUnit> Vendors = ObjectManager.GetWoWUnitVendor();
                 List<WoWUnit> Repairers = ObjectManager.GetWoWUnitRepair();
                 List<WoWUnit> Inkeepers = ObjectManager.GetWoWUnitInkeeper();
                 List<WoWUnit> Trainers = ObjectManager.GetWoWUnitTrainer();
-                var Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
+                List<WoWUnit> FlightMasters = ObjectManager.GetWoWUnitFlightMaster();
+                List<WoWUnit> SpiritHealers = ObjectManager.GetWoWUnitSpiritHealer();
+                List<WoWUnit> SpiritGuides = ObjectManager.GetWoWUnitSpiritGuide();
+                List<WoWUnit> NpcMailboxes = ObjectManager.GetWoWUnitMailbox();
+                List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Chair);
                 foreach (WoWGameObject o in Mailboxes)
                 {
                     npcRadar.Add(new Npc
@@ -92,7 +97,7 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Trainers)
                 {
-                    Npc.NpcType newtype = Npc.NpcType.None;
+                    Npc.NpcType newtype;
                     if (n.SubName.Contains("Alchemy"))
                         newtype = Npc.NpcType.AlchemyTrainer;
                     else if (n.SubName.Contains("Blacksmithing"))
@@ -134,6 +139,70 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = newtype
+                    });
+                }
+                foreach (WoWUnit n in SpiritHealers)
+                {
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.SpiritHealer
+                    });
+                }
+                foreach (WoWUnit n in SpiritGuides)
+                {
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.SpiritGuide
+                    });
+                }
+                foreach (WoWUnit n in NpcMailboxes)
+                {
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.Mailbox
+                    });
+                }
+                foreach (WoWGameObject o in Forges)
+                {
+                    Npc.NpcType newtype;
+                    switch (o.Data0)
+                    {
+                        case 3:
+                            newtype = Npc.NpcType.SmeltingForge;
+                            break;
+                        case 1552:
+                            newtype = Npc.NpcType.RuneForge;
+                            break;
+                        default:
+                            continue;
+                    }
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = o.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
+                        Name = o.Name,
+                        Position = o.Position,
                         SelectGossipOption = 0,
                         Type = newtype
                     });

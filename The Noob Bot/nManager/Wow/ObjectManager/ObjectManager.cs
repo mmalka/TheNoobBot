@@ -821,7 +821,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         public static List<WoWGameObject> GetWoWGameObjectByName(List<WoWGameObject> listWoWGameObject,
-                                                                 List<string> names)
+            List<string> names)
         {
             try
             {
@@ -884,7 +884,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<WoWGameObject> listWoWGameObject,
-                                                                      List<int> displayId)
+            List<int> displayId)
         {
             try
             {
@@ -1444,6 +1444,37 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitFlightMaster(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsFlightMaster) list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitFlightMaster(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitFlightMaster()
+        {
+            try
+            {
+                return GetWoWUnitFlightMaster(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitFlightMaster(): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWUnit> GetWoWUnitSpiritHealer(List<WoWUnit> listWoWUnit)
         {
             try
@@ -1471,6 +1502,68 @@ namespace nManager.Wow.ObjectManager
             catch (Exception e)
             {
                 Logging.WriteError("GetWoWUnitSpiritHealer(): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitSpiritGuide(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcSpiritGuide) list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitSpiritGuide(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitSpiritGuide()
+        {
+            try
+            {
+                return GetWoWUnitSpiritGuide(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitSpiritGuide(): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitMailbox(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcMailbox) list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitMailbox(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitMailbox()
+        {
+            try
+            {
+                return GetWoWUnitMailbox(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitMailbox(): " + e);
             }
             return new List<WoWUnit>();
         }
@@ -1604,12 +1697,12 @@ namespace nManager.Wow.ObjectManager
             List<WoWPlayer> woWPlayerList = new List<WoWPlayer>();
             if (hostileHolder)
                 woWPlayerList.AddRange(Me.PlayerFaction.ToLower() == "horde"
-                                           ? GetWoWUnitAlliance()
-                                           : GetWoWUnitHorde());
+                    ? GetWoWUnitAlliance()
+                    : GetWoWUnitHorde());
             else
                 woWPlayerList.AddRange(Me.PlayerFaction.ToLower() == "horde"
-                                           ? GetWoWUnitHorde()
-                                           : GetWoWUnitAlliance());
+                    ? GetWoWUnitHorde()
+                    : GetWoWUnitAlliance());
             return woWPlayerList.FirstOrDefault(wowPlayer => wowPlayer.IsHoldingWGFlag);
         }
 
