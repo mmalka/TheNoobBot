@@ -1451,7 +1451,7 @@ namespace nManager.Wow.ObjectManager
                 List<WoWUnit> list = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.IsFlightMaster) list.Add(a);
+                    if (a.IsNpcFlightMaster) list.Add(a);
                 }
                 return list;
             }
