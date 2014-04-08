@@ -25,7 +25,8 @@ namespace Test_Product
         /*private const string CurrentProfileName = "afk.xml";
         private static bool _xmlProfile = true;
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
-        private static readonly Thread RadarThread = new Thread(LaunchRadar) { Name = "RadarThread" };
+        private static readonly Thread RadarThread = new Thread(LaunchRadar) {Name = "RadarThread"};
+
         public static void LaunchRadar()
         {
             while (true)
@@ -37,20 +38,11 @@ namespace Test_Product
                 var Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
                 foreach (WoWGameObject o in Mailboxes)
                 {
-                    Npc.FactionType fact;
-                    if (UnitRelation.GetReaction(o.Faction) < Reaction.Neutral)
-                    {
-                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Horde : Npc.FactionType.Alliance;
-                    }
-                    else
-                    {
-                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
-                    }
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
                         Entry = o.Entry,
-                        Faction = fact,
+                        Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
                         Position = o.Position,
                         SelectGossipOption = 0,
@@ -59,20 +51,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Vendors)
                 {
-                    Npc.FactionType fact;
-                    if (UnitRelation.GetReaction(n.Faction) < Reaction.Neutral)
-                    {
-                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Horde : Npc.FactionType.Alliance;
-                    }
-                    else
-                    {
-                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
-                    }
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
                         Entry = n.Entry,
-                        Faction = fact,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
                         SelectGossipOption = 0,
@@ -81,27 +64,18 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Repairers)
                 {
-                    Npc.FactionType fact;
-                    if (UnitRelation.GetReaction(n.Faction) < Reaction.Neutral)
-                    {
-                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Horde : Npc.FactionType.Alliance;
-                    }
-                    else
-                    {
-                        fact = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
-                    }
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
                         Entry = n.Entry,
-                        Faction = fact,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
                         SelectGossipOption = 0,
                         Type = Npc.NpcType.Repair
                     });
                 }
-                Logging.Write("Adding NPCs and Mailboxes.");
+                Logging.Write("Found " + npcRadar.Count + "NPCs and Mailboxes in the memory.");
                 NpcDB.AddNpcRange(npcRadar, true);
             }
         }

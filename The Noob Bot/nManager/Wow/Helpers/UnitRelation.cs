@@ -1,5 +1,6 @@
 ﻿using System;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
 
@@ -18,6 +19,15 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("GetReaction(uint mobFaction): " + exception);
             }
             return Reaction.Unknown;
+        }
+
+        public static Npc.FactionType GetObjectRacialFaction(uint objectFaction)
+        {
+            if (GetReaction(1, objectFaction) >= Reaction.Neutral && GetReaction(2, objectFaction) < Reaction.Neutral)
+                return Npc.FactionType.Alliance;
+            if (GetReaction(1, objectFaction) >= Reaction.Neutral && GetReaction(2, objectFaction) >= Reaction.Neutral)
+                return Npc.FactionType.Neutral;
+            return Npc.FactionType.Horde;
         }
 
         public static Reaction GetReaction(uint localFaction, uint mobFaction)
