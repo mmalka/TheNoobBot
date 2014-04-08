@@ -114,22 +114,20 @@ namespace meshPathVisualizer
                         var recastLoc = hop.Location.ToRecast().ToFloatArray();
                         float tX, tY;
                         Pather.GetTileByLocation(recastLoc, out tX, out tY);
-                        if (tX >= minX && tX <= maxX && tY >= minY && tY <= maxY)
+                        if (tX >= minX && tX <= maxX+1 && tY >= minY && tY <= maxY+1)
                         {
                             tX -= minX;
                             tY -= minY;
+                            graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                             switch (hop.Type)
                             {
                                 case HopType.Alliance:
-                                    graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                                     graphics.FillEllipse(new SolidBrush(Color.Blue), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                                     break;
                                 case HopType.Horde:
-                                    graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                                     graphics.FillEllipse(new SolidBrush(Color.Red), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                                     break;
                                 case HopType.Neutral:
-                                    graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                                     graphics.FillEllipse(new SolidBrush(Color.Yellow), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
                                     break;
                             }
