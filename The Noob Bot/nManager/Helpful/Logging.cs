@@ -230,13 +230,13 @@ namespace nManager.Helpful
                         LogQueue.RemoveAt(0);
                     }
                     else
-                        Thread.Sleep(100);
+                        Thread.Sleep(10);
                 }
                 catch (Exception exception)
                 {
                     WriteError("AddLog(): " + exception);
                 }
-                Thread.Sleep(30);
+                Thread.Sleep(10);
             }
         }
 
