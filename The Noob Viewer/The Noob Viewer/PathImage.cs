@@ -109,7 +109,10 @@ namespace meshPathVisualizer
                 for (int i = 0; i < NpcDB.Count; i++)
                 {
                     var hop = NpcDB[i];
-                    if (hop.Continent == World)
+                    string iContinent = hop.Continent;
+                    if (iContinent == "Pandaria")
+                        iContinent = "HawaiiMainLand";
+                    if (iContinent == World)
                     {
                         var recastLoc = hop.Location.ToRecast().ToFloatArray();
                         float tX, tY;
