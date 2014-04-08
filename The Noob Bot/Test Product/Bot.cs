@@ -35,6 +35,8 @@ namespace Test_Product
                 List<Npc> npcRadar = new List<Npc>();
                 List<WoWUnit> Vendors = ObjectManager.GetWoWUnitVendor();
                 List<WoWUnit> Repairers = ObjectManager.GetWoWUnitRepair();
+                List<WoWUnit> Inkeepers = ObjectManager.GetWoWUnitInkeeper();
+                List<WoWUnit> Trainers = ObjectManager.GetWoWUnitTrainer();
                 var Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
                 foreach (WoWGameObject o in Mailboxes)
                 {
@@ -66,13 +68,74 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
                         SelectGossipOption = 0,
                         Type = Npc.NpcType.Repair
+                    });
+                }
+                foreach (WoWUnit n in Inkeepers)
+                {
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = Npc.NpcType.Innkeeper
+                    });
+                }
+                foreach (WoWUnit n in Trainers)
+                {
+                    Npc.NpcType newtype = Npc.NpcType.None;
+                    if (n.SubName.Contains("Alchemy"))
+                        newtype = Npc.NpcType.AlchemyTrainer;
+                    else if (n.SubName.Contains("Blacksmithing"))
+                        newtype = Npc.NpcType.BlacksmithingTrainer;
+                    else if (n.SubName.Contains("Enchanting"))
+                        newtype = Npc.NpcType.EnchantingTrainer;
+                    else if (n.SubName.Contains("Engineering"))
+                        newtype = Npc.NpcType.EngineeringTrainer;
+                    else if (n.SubName.Contains("Herbalism"))
+                        newtype = Npc.NpcType.HerbalismTrainer;
+                    else if (n.SubName.Contains("Inscription"))
+                        newtype = Npc.NpcType.InscriptionTrainer;
+                    else if (n.SubName.Contains("Jewelcrafting"))
+                        newtype = Npc.NpcType.JewelcraftingTrainer;
+                    else if (n.SubName.Contains("Leatherworking"))
+                        newtype = Npc.NpcType.LeatherworkingTrainer;
+                    else if (n.SubName.Contains("Mining"))
+                        newtype = Npc.NpcType.MiningTrainer;
+                    else if (n.SubName.Contains("Skinning"))
+                        newtype = Npc.NpcType.SkinningTrainer;
+                    else if (n.SubName.Contains("Tailoring"))
+                        newtype = Npc.NpcType.TailoringTrainer;
+                    else if (n.SubName.Contains("Archaeology"))
+                        newtype = Npc.NpcType.ArchaeologyTrainer;
+                    else if (n.SubName.Contains("Cooking"))
+                        newtype = Npc.NpcType.CookingTrainer;
+                    else if (n.SubName.Contains("First Aid"))
+                        newtype = Npc.NpcType.FirstAidTrainer;
+                    else if (n.SubName.Contains("Fishing"))
+                        newtype = Npc.NpcType.FishingTrainer;
+                    else if (n.SubName.Contains("Riding"))
+                        newtype = Npc.NpcType.RidingTrainer;
+                    else
+                        continue;
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        SelectGossipOption = 0,
+                        Type = newtype
                     });
                 }
                 Logging.Write("Found " + npcRadar.Count + "NPCs and Mailboxes in the memory.");

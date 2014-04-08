@@ -1338,6 +1338,37 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitInkeeper()
+        {
+            try
+            {
+                return GetWoWUnitInkeeper(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitInkeeper(): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitInkeeper(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcInnkeeper) list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitInkeeper(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWUnit> GetWoWUnitVendorFood()
         {
             try

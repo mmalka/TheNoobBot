@@ -1447,6 +1447,32 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public string SubName
+        {
+            get
+            {
+                try
+                {
+                    if (Type == WoWObjectType.Player)
+                    {
+                        return "";
+                    }
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(
+                            Memory.WowMemory.Memory.ReadUInt(
+                                Memory.WowMemory.Memory.ReadUInt(BaseAddress +
+                                                                 (uint)
+                                                                 Addresses.UnitField.DBCacheRow) +
+                                (uint)Addresses.UnitField.CachedSubName));
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > SubName: " + e);
+                    return "";
+                }
+            }
+        }
+
         public TypeFlag ExtraLootType
         {
             get

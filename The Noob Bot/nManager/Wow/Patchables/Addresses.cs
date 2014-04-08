@@ -141,6 +141,7 @@
             CanInterrupt = 0xC64, // check // Script_UnitCastingInfo/Script_UnitChannelInfo
             TransportGUID = 0x830, // CGUnit_C__HasVehicleTransport
             DBCacheRow = 0x9B4, // CGUnit_C__GetUnitName
+            CachedSubName = 0x0,
             CachedName = 0x6C,
             CachedTypeFlag = 0x4C,
         }
