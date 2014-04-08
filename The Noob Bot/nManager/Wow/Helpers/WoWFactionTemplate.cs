@@ -33,45 +33,54 @@ namespace nManager.Wow.Helpers
             {
                 return Reaction.Hostile;
             }
-            for (int i = 0; i < 4; i++)
+            if (record.EnemyFactions != null)
             {
-                if (record.EnemyFactions[i] == 0)
+                for (int i = 0; i < 4; i++)
                 {
-                    break;
-                }
-                if (record.EnemyFactions[i] == record2.FactionId)
-                {
-                    return Reaction.Hostile;
+                    if (record.EnemyFactions[i] == 0)
+                    {
+                        break;
+                    }
+                    if (record.EnemyFactions[i] == record2.FactionId)
+                    {
+                        return Reaction.Hostile;
+                    }
                 }
             }
             if ((record2.FightSupport & record.FriendlyMask) != 0)
             {
                 return Reaction.Friendly;
             }
-            for (int j = 0; j < 4; j++)
+            if (record.FriendlyFactions != null)
             {
-                if (record.FriendlyFactions[j] == 0)
+                for (int j = 0; j < 4; j++)
                 {
-                    break;
-                }
-                if (record.FriendlyFactions[j] == record2.FactionId)
-                {
-                    return Reaction.Friendly;
+                    if (record.FriendlyFactions[j] == 0)
+                    {
+                        break;
+                    }
+                    if (record.FriendlyFactions[j] == record2.FactionId)
+                    {
+                        return Reaction.Friendly;
+                    }
                 }
             }
             if ((record.FightSupport & record2.FriendlyMask) != 0)
             {
                 return Reaction.Friendly;
             }
-            for (int k = 0; k < 4; k++)
+            if (record2.FriendlyFactions != null)
             {
-                if (record2.FriendlyFactions[k] == 0)
+                for (int k = 0; k < 4; k++)
                 {
-                    break;
-                }
-                if (record2.FriendlyFactions[k] == record.FactionId)
-                {
-                    return Reaction.Friendly;
+                    if (record2.FriendlyFactions[k] == 0)
+                    {
+                        break;
+                    }
+                    if (record2.FriendlyFactions[k] == record.FactionId)
+                    {
+                        return Reaction.Friendly;
+                    }
                 }
             }
             uint num4 = (~(record.FactionFlags >> 12) & 2) | 1;
