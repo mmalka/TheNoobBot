@@ -30,6 +30,8 @@ namespace Test_Product
         public static void LaunchRadar()
         {
             int d;
+            // Various mount repair, portable mailbox, repair robots, Guild Page...
+            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 191605, 24780, 29561, 49586, 49588 });
             while (true)
             {
                 Thread.Sleep(1000);
@@ -46,6 +48,8 @@ namespace Test_Product
                 List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Chair);
                 foreach (WoWGameObject o in Mailboxes)
                 {
+                    if (BlackListed.Contains(o.Entry))
+                        continue;
                     npcRadar.Add(new Npc
                     {
                         ContinentId = (ContinentId) Usefuls.ContinentId,
@@ -59,6 +63,8 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Vendors)
                 {
+                    if (BlackListed.Contains(n.Entry))
+                        continue;
                     npcRadar.Add(new Npc
                     {
                         ContinentId = (ContinentId) Usefuls.ContinentId,
@@ -72,6 +78,8 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Repairers)
                 {
+                    if (BlackListed.Contains(n.Entry))
+                        continue;
                     npcRadar.Add(new Npc
                     {
                         ContinentId = (ContinentId)Usefuls.ContinentId,
