@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace nManager.Wow.Class
 {
@@ -14,6 +15,7 @@ namespace nManager.Wow.Class
         private int _entry;
         private ulong _guid;
 
+        [XmlIgnore]
         public ulong Guid
         {
             get { return _guid; }

@@ -129,7 +129,7 @@ namespace Test_Product
                         newtype = Npc.NpcType.FirstAidTrainer;
                     else if (n.SubName.Contains("Fishing") || n.SubName.Contains("forgerons"))
                         newtype = Npc.NpcType.FishingTrainer;
-                    else if (n.SubName.Contains("Riding") || n.SubName.Contains(" de vol"))
+                    else if (n.SubName.Contains("Riding") || n.SubName.Contains(" de vol") || n.SubName.Contains(" de monte"))
                         newtype = Npc.NpcType.RidingTrainer;
                     else
                         continue;
@@ -210,7 +210,7 @@ namespace Test_Product
                 }
                 d = NpcDB.AddNpcRange(npcRadar, true);
                 if (d > 0)
-                    Logging.Write("Found " + d + " new NPCs/Mailboxes in memory.");
+                    Logging.Write("Found " + d + " new NPCs/Mailboxes in memory");
             }
         }
 
