@@ -37,6 +37,7 @@ namespace The_Noob_Bot
             this.targetHealthL = new DevComponents.DotNetBar.LabelX();
             this.healthL = new DevComponents.DotNetBar.LabelX();
             this.targetName = new DevComponents.DotNetBar.LabelX();
+			this.styleManager1 = new DevComponents.DotNetBar.StyleManager();
             this.lastLogL = new DevComponents.DotNetBar.LabelX();
             this.labelX13 = new DevComponents.DotNetBar.LabelX();
             this.targetLevelL = new DevComponents.DotNetBar.LabelX();
@@ -105,6 +106,9 @@ namespace The_Noob_Bot
             this.metroShell1.Name = "metroShell1";
             this.metroShell1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.playerNameB});
+			this.styleManager1.ManagerColorTint = System.Drawing.Color.WhiteSmoke;
+			this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
+			this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230))))), System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(181)))), ((int)(((byte)(22))))));
             this.metroShell1.SettingsButtonVisible = false;
             this.metroShell1.Size = new System.Drawing.Size(444, 229);
             this.metroShell1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
@@ -838,6 +842,7 @@ namespace The_Noob_Bot
         private System.Windows.Forms.Timer gameInformationTimer;
         private DevComponents.DotNetBar.LabelX targetName;
         private DevComponents.DotNetBar.LabelX targetHealthL;
+		private DevComponents.DotNetBar.StyleManager styleManager1;
         private DevComponents.DotNetBar.LabelX healthL;
         private DevComponents.DotNetBar.LabelX statusBarText;
         private DevComponents.DotNetBar.ButtonX devToolsB;
