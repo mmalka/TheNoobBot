@@ -231,7 +231,8 @@ namespace The_Noob_Bot
             }
         }
 
-        readonly string ScreenshotsDir = Path.Combine(Application.StartupPath, "Screenshots");
+        private readonly string ScreenshotsDir = Path.Combine(Application.StartupPath, "Screenshots");
+
         private string UploadScreenshot()
         {
             if (!Directory.Exists(ScreenshotsDir))
@@ -249,7 +250,6 @@ namespace The_Noob_Bot
 
         private ImageCodecInfo GetEncoder(ImageFormat format)
         {
-
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
 
             foreach (ImageCodecInfo codec in codecs)

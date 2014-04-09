@@ -31,15 +31,15 @@ namespace The_Noob_Bot
             try
             {
                 type.InvokeMember("s_userDefaultCulture",
-                                  BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
-                                  null,
-                                  culture,
-                                  new object[] {culture});
+                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                    null,
+                    culture,
+                    new object[] {culture});
                 type.InvokeMember("s_userDefaultUICulture",
-                                  BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
-                                  null,
-                                  culture,
-                                  new object[] {culture});
+                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                    null,
+                    culture,
+                    new object[] {culture});
             }
             catch
             {
@@ -121,7 +121,9 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > InitializeBot(): " + ex);
             }
         }
+
         private bool _SpellBookIsReady = false;
+
         private void ThreadSpellBook()
         {
             try
@@ -344,7 +346,7 @@ namespace The_Noob_Bot
                 {
                     string timeLeft =
                         Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true",
-                                                    LoginServer.Login, LoginServer.Password)[0];
+                            LoginServer.Login, LoginServer.Password)[0];
                     _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
                                         LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
                                         "Subscription time left: " + timeLeft + " " + Environment.NewLine +

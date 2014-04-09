@@ -1,18 +1,28 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Wow.MemoryClass;
-using Process = nManager.Wow.MemoryClass.Process;
+using The_Noob_Bot.Properties;
+using Process = System.Diagnostics.Process;
+using Usefuls = nManager.Wow.Helpers.Usefuls;
 
 namespace The_Noob_Bot
 {
-    internal partial class Login : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class Login : Form
     {
         private const string UpdateCheck = "573-567-555-554-606-605-593";
+        private const string KeyNManager = "dfs,kl,se8JDÃ¨__fs_vcss454fzdse&Ã©";
+        private Image _closeButtonImage;
+        private bool _flagClick;
+        private int _positionInitialeX;
+        private int _positionInitialeY;
+        private Image _reduceButtonImage;
 
         public Login()
         {
@@ -23,61 +33,61 @@ namespace The_Noob_Bot
 
         private void SetToolTypeIfNeeded(Control label)
         {
-            using (System.Drawing.Graphics g = CreateGraphics())
+            using (Graphics g = CreateGraphics())
             {
-                System.Drawing.SizeF size = g.MeasureString(label.Text, label.Font);
+                SizeF size = g.MeasureString(label.Text, label.Font);
                 if (size.Width > label.Width)
                 {
-                    labelsToolTip.SetToolTip(label, label.Text);
+                    toolTip.SetToolTip(label, label.Text);
                 }
             }
         }
 
         private void Translate()
         {
-            // Choose lang:
-            langChooseCb.Items.Clear();
-            foreach (string l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
+            try
             {
-                langChooseCb.Items.Add(l.Remove(l.Length - 1 - 3));
-            }
-
-            string langChoosed = "English.xml";
-            if (Others.ExistFile(Application.StartupPath + "\\Settings\\lang.txt"))
-            {
-                string langTemp = Others.ReadFile(Application.StartupPath + "\\Settings\\lang.txt");
-                if (!string.IsNullOrEmpty(langTemp))
+                LangSelection.Items.Clear();
+                foreach (string l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
                 {
-                    if (Others.ExistFile(Application.StartupPath + "\\Data\\Lang\\" + langTemp))
-                        langChoosed = langTemp;
+                    LangSelection.Items.Add(l.Remove(l.Length - 1 - 3));
                 }
+
+                string langSelected = "English.xml";
+                if (Others.ExistFile(Application.StartupPath + "\\Settings\\lang.txt"))
+                {
+                    string langTemp = Others.ReadFile(Application.StartupPath + "\\Settings\\lang.txt");
+                    if (!string.IsNullOrEmpty(langTemp))
+                    {
+                        if (Others.ExistFile(Application.StartupPath + "\\Data\\Lang\\" + langTemp))
+                            langSelected = langTemp;
+                    }
+                }
+                if (!nManager.Translate.Load(langSelected))
+                    return;
+
+                LangSelection.Text = langSelected.Remove(langSelected.Length - 1 - 3);
+                LangSelection.SelectedIndexChanged += LangSelection_SelectedIndexChanged;
+
+                LoginFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + " " + Information.Version;
+                Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
+                Remember.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRemember);
+                SetToolTypeIfNeeded(Remember);
+                Register.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRegister);
+                SetToolTypeIfNeeded(Register);
+                LoginButton.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormStart);
+                SetToolTypeIfNeeded(LoginButton);
+                RefreshButton.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRefresh);
+                SetToolTypeIfNeeded(RefreshButton);
+                WebsiteLink.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormWebsite);
+                SetToolTypeIfNeeded(WebsiteLink);
+                ForumLink.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormForum);
+                SetToolTypeIfNeeded(ForumLink);
             }
-            if (!nManager.Translate.Load(langChoosed))
-                return;
-
-            langChooseCb.Text = langChoosed.Remove(langChoosed.Length - 1 - 3);
-            langChooseCb.SelectedIndexChanged += langChooseCb_SelectedIndexChanged;
-
-            // Translate text:
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.User_Name) + "";
-            SetToolTypeIfNeeded(labelX1);
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Password);
-            SetToolTypeIfNeeded(labelX2);
-            saveCb.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-            SetToolTypeIfNeeded(saveCb);
-            createB.Text = nManager.Translate.Get(nManager.Translate.Id.Create);
-            SetToolTypeIfNeeded(createB);
-            launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
-            SetToolTypeIfNeeded(launchBotB);
-            refreshB.Text = nManager.Translate.Get(nManager.Translate.Id.Refresh);
-            SetToolTypeIfNeeded(refreshB);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Login);
-
-            labelItem1.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Game);
-
-            buttonLaunchWoWDX9.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
-
-            buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
 
         private void InitializeProgram()
@@ -85,10 +95,10 @@ namespace The_Noob_Bot
             try
             {
                 // File .exe.config
-                System.Diagnostics.Process tempsProcess = System.Diagnostics.Process.GetCurrentProcess();
+                Process tempsProcess = Process.GetCurrentProcess();
                 if (!Others.ExistFile(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config"))
                 {
-                    StreamWriter sw = new StreamWriter(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
+                    var sw = new StreamWriter(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
                     sw.WriteLine("<?xml version=\"1.0\"?>");
                     sw.WriteLine("<configuration>");
                     sw.WriteLine("<startup useLegacyV2RuntimeActivationPolicy=\"true\">");
@@ -100,11 +110,11 @@ namespace The_Noob_Bot
                     sw.WriteLine("</configuration>");
                     sw.Close();
 
-                    System.Diagnostics.Process.Start(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe");
+                    Process.Start(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe");
                     tempsProcess.Kill();
                 }
 
-                langChooseCb.DropDownStyle = ComboBoxStyle.DropDownList;
+                LangSelection.DropDownStyle = ComboBoxStyle.DropDownList;
                 Others.GetVisualCpp2010();
             }
             catch (Exception ex)
@@ -113,99 +123,52 @@ namespace The_Noob_Bot
             }
         }
 
-        private const string keyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
-
-        private void launchBotB_Click(object sender, EventArgs e)
+        private void MainFormOnLoad(object sender, EventArgs e)
         {
             try
             {
-                launchBotB.Enabled = false;
-                refreshB.Enabled = false;
-                launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.In_progress);
-                if (LoginOnServer() && AttachProcess())
+                if (Others.ExistFile(Application.StartupPath + "\\Settings\\.login"))
                 {
-                    Main formMain = new Main();
-                    formMain.Show();
-                    Hide();
-                }
-                launchBotB.Enabled = true;
-                refreshB.Enabled = true;
-                launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("launchBotB_Click(object sender, EventArgs e): " + ex);
-            }
-        }
-
-        private bool AttachProcess()
-        {
-            try
-            {
-                // Fight against cracked version, use sneaky strings name. Constant UpdateCheck equal "TNBAuth".
-                System.Diagnostics.Process[] Updater = System.Diagnostics.Process.GetProcesses();
-                for (int i = 0; i < Updater.Length; i++)
-                {
-                    System.Diagnostics.Process AbortUpdate = Updater[i];
-                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck)) continue;
-                    AbortUpdate.Kill();
-                    break;
-                }
-
-                if (listProcessLb.SelectedIndex < 0)
-                    MessageBox.Show(
-                        nManager.Translate.Get(nManager.Translate.Id.Please_select_game_Process_and_connect_to_the_game) +
-                        ".", nManager.Translate.Get(nManager.Translate.Id.Stop),
-                        MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                nManager.Pulsator.Dispose();
-
-                if (listProcessLb.SelectedIndex >= 0)
-                {
-                    string[] idStringArray =
-                        listProcessLb.SelectedItem.ToString().Replace(" ", "").Split('-');
-
-                    int idProcess = Others.ToInt32(idStringArray[0]);
-
-                    if (!Hook.IsInGame(idProcess))
+                    var strReader = new StreamReader(Application.StartupPath + "\\Settings\\.login", Encoding.Default);
+                    try
                     {
-                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game) + ".",
-                                        nManager.Translate.Get(nManager.Translate.Id.Stop), MessageBoxButtons.OK,
-                                        MessageBoxIcon.Stop);
-                        return false;
-                    }
-                    if (Hook.WowIsUsed(idProcess))
-                    {
-                        DialogResult resulMb =
-                            MessageBox.Show(
-                                nManager.Translate.Get(
-                                    nManager.Translate.Id.The_Game_is_currently_used_by_TheNoobBot_or_contains_traces) +
-                                "\n\n" +
-                                nManager.Translate.Get(
-                                    nManager.Translate.Id.If_no_others_session_of_TheNoobBot_is_currently_active),
-                                nManager.Translate.Get(nManager.Translate.Id.Use_this_Game) + "?" + @" - " +
-                                Hook.PlayerName(idProcess), MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                        if (resulMb == DialogResult.No)
+                        string text = Others.DecryptString(strReader.ReadLine());
+                        string[] text2 = text.Split('#');
+                        Identifier.Text = text2[0];
+                        Password.Text = text2[1];
+                        if (Identifier.Text != "")
                         {
-                            return false;
+                            Remember.Checked = true;
                         }
                     }
-
-                    nManager.Pulsator.Pulse(idProcess, keyNManager);
-                    Logging.Write("Select game process: " + listProcessLb.SelectedItem);
-                    if (nManager.Pulsator.IsActive)
+                    catch
                     {
-                        if (nManager.Wow.Helpers.Usefuls.InGame || !nManager.Wow.Helpers.Usefuls.IsLoadingOrConnecting)
-                            return true;
+                        Identifier.Text = "";
+                        Password.Text = "";
+                        Remember.Checked = false;
                     }
+                    strReader.Close();
                 }
+
+                LoginButton.Enabled = false;
+                RefreshButton.Enabled = false;
+                LoginServer.CheckServerIsOnline();
+                while (!LoginServer.IsOnlineserver)
+                {
+                    Thread.Sleep(10);
+                    Application.DoEvents();
+                    Thread.Sleep(50);
+                }
+                LoginServer.CheckUpdate();
+                LoginButton.Enabled = true;
+                RefreshButton.Enabled = true;
+
+                RefreshProcessList();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("AttachProcess(): " + ex);
+                Logging.WriteError("MainFormOnLoad(object sender, EventArgs e): " + ex);
             }
-            return false;
         }
 
         private bool LoginOnServer()
@@ -215,28 +178,28 @@ namespace The_Noob_Bot
                 if (LoginServer.IsConnected)
                     return true;
 
-                if ((userNameTb.Text.Replace(" ", "") != "" && passwordTb.Text.Replace(" ", "") != ""))
+                if ((Identifier.Text.Replace(" ", "") != "" && Password.Text.Replace(" ", "") != ""))
                 {
-                    userNameTb.Enabled = false;
-                    passwordTb.Enabled = false;
-                    createB.Enabled = false;
-                    saveCb.Enabled = false;
+                    Identifier.Enabled = false;
+                    Password.Enabled = false;
+                    Register.Enabled = false;
+                    Remember.Enabled = false;
 
-                    if (saveCb.Checked) // Save login and pass
+                    if (Remember.Checked)
                     {
                         Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
-                        StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Settings\\.login");
-                        sw.WriteLine(Others.EncryptString(userNameTb.Text.Trim() + "#" + passwordTb.Text.Trim()));
+                        var sw = new StreamWriter(Application.StartupPath + "\\Settings\\.login");
+                        sw.WriteLine(Others.EncryptString(Identifier.Text.Trim() + "#" + Password.Text.Trim()));
                         sw.Close();
                     }
-                    else // Delete .wr file
+                    else
                     {
                         string fileToDelete = Application.StartupPath + "\\Settings\\.login";
                         if (File.Exists(fileToDelete))
                             File.Delete(fileToDelete);
                     }
 
-                    LoginServer.Connect(userNameTb.Text.Trim(), passwordTb.Text.Trim());
+                    LoginServer.Connect(Identifier.Text.Trim(), Password.Text.Trim());
 
                     while (!LoginServer.IsConnected)
                     {
@@ -257,179 +220,336 @@ namespace The_Noob_Bot
             return false;
         }
 
-        private void Login_Shown(object sender, EventArgs e)
+        private bool AttachProcess()
         {
             try
             {
-                Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + " " +
-                       nManager.Information.Version;
-
-                // Load email and password
-                if (Others.ExistFile(Application.StartupPath + "\\Settings\\.login"))
+                // Fight against cracked version, use sneaky strings name. Constant UpdateCheck equal "TNBAuth".
+                Process[] Updater = Process.GetProcesses();
+                for (int i = 0; i < Updater.Length; i++)
                 {
-                    StreamReader strReader = new StreamReader(Application.StartupPath + "\\Settings\\.login", Encoding.Default);
-                    try
+                    Process AbortUpdate = Updater[i];
+                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck)) continue;
+                    AbortUpdate.Kill();
+                    break;
+                }
+
+                if (SessionList.SelectedIndex < 0)
+                    MessageBox.Show(
+                        nManager.Translate.Get(nManager.Translate.Id.Please_select_game_Process_and_connect_to_the_game) +
+                        ".", nManager.Translate.Get(nManager.Translate.Id.Stop),
+                        MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                Pulsator.Dispose();
+
+                if (SessionList.SelectedIndex >= 0)
+                {
+                    string[] idStringArray =
+                        SessionList.SelectedItem.ToString().Replace(" ", "").Split('-');
+
+                    int idProcess = Others.ToInt32(idStringArray[0]);
+
+                    if (!Hook.IsInGame(idProcess))
                     {
-                        string texte = Others.DecryptString(strReader.ReadLine());
-                        string[] texte2 = texte.Split('#');
-                        userNameTb.Text = texte2[0];
-                        passwordTb.Text = texte2[1];
-                        if (userNameTb.Text != "")
+                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game) + ".",
+                            nManager.Translate.Get(nManager.Translate.Id.Stop), MessageBoxButtons.OK,
+                            MessageBoxIcon.Stop);
+                        return false;
+                    }
+                    if (Hook.WowIsUsed(idProcess))
+                    {
+                        DialogResult resulMb =
+                            MessageBox.Show(
+                                nManager.Translate.Get(
+                                    nManager.Translate.Id.The_Game_is_currently_used_by_TheNoobBot_or_contains_traces) +
+                                "\n\n" +
+                                nManager.Translate.Get(
+                                    nManager.Translate.Id.If_no_others_session_of_TheNoobBot_is_currently_active),
+                                nManager.Translate.Get(nManager.Translate.Id.Use_this_Game) + "?" + @" - " +
+                                Hook.PlayerName(idProcess), MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        if (resulMb == DialogResult.No)
                         {
-                            saveCb.Checked = true;
+                            return false;
                         }
                     }
-                    catch
+
+                    Pulsator.Pulse(idProcess, KeyNManager);
+                    Logging.Write("Select game process: " + SessionList.SelectedItem);
+                    if (Pulsator.IsActive)
                     {
-                        userNameTb.Text = "";
-                        passwordTb.Text = "";
-                        saveCb.Checked = false;
+                        if (Usefuls.InGame || !Usefuls.IsLoadingOrConnecting)
+                            return true;
                     }
-                    strReader.Close();
                 }
-
-                launchBotB.Enabled = false;
-                refreshB.Enabled = false;
-
-                launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Server_connection) + "...";
-                LoginServer.CheckServerIsOnline();
-                while (!LoginServer.IsOnlineserver)
-                {
-                    Thread.Sleep(10);
-                    Application.DoEvents();
-                    Thread.Sleep(50);
-                }
-                //LoginServer.CheckAccountSecurity();
-                launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
-                LoginServer.CheckUpdate();
-                launchBotB.Enabled = true;
-                refreshB.Enabled = true;
-
-                RefreshProcessList();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Login_Shown(object sender, EventArgs e): " + ex);
+                Logging.WriteError("AttachProcess(): " + ex);
             }
-        }
-
-        private void refreshB_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                RefreshProcessList();
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("refreshB_Click(object sender, EventArgs e): " + ex);
-            }
+            return false;
         }
 
         private void RefreshProcessList()
         {
             try
             {
-                if (System.Diagnostics.Process.GetProcessesByName("WoW-64").Length > 0)
+                RefreshButton.Enabled = false;
+                if (Process.GetProcessesByName("WoW-64").Length > 0)
                     MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.WoW_Client_64bit),
-                                    nManager.Translate.Get(nManager.Translate.Id.Title_WoW_Client_64bit),
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        nManager.Translate.Get(nManager.Translate.Id.Title_WoW_Client_64bit),
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                listProcessLb.Items.Clear();
-                //ProcessList.SelectedIndex = -1;
-                List<string> usedProcess = new List<string>();
+                SessionList.Items.Clear();
+                SessionList.SelectedIndex = -1;
+                var usedProcess = new List<string>();
 
-                for (int i = Process.ListeProcessIdByName().Length - 1; i >= 0; i--)
+                for (int i = nManager.Wow.MemoryClass.Process.ListeProcessIdByName().Length - 1; i >= 0; i--)
                 {
-                    if (listProcessLb.SelectedIndex == -1 && !Hook.WowIsUsed(Process.ListeProcessIdByName()[i].Id))
+                    if (SessionList.SelectedIndex == -1 && !Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id))
                     {
-                        listProcessLb.Items.Add(Process.ListeProcessIdByName()[i].Id + " - " +
-                                                Hook.PlayerName(Process.ListeProcessIdByName()[i].Id));
-                        listProcessLb.SelectedIndex = 0;
+                        SessionList.Items.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id + " - " +
+                                              Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id));
+                        SessionList.SelectedIndex = 0;
                     }
                     else
                     {
                         string used = "";
-                        if (Hook.WowIsUsed(Process.ListeProcessIdByName()[i].Id))
+                        if (Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id))
                             used = " - " + nManager.Translate.Get(nManager.Translate.Id.In_use) + ".";
-                        usedProcess.Add(Process.ListeProcessIdByName()[i].Id + " - " +
-                                        Hook.PlayerName(Process.ListeProcessIdByName()[i].Id) + used);
+                        usedProcess.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id + " - " +
+                                        Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id) + used);
                     }
                 }
 
                 foreach (string v in usedProcess)
                 {
-                    listProcessLb.Items.Add(v);
+                    SessionList.Items.Add(v);
                 }
+                RefreshButton.Enabled = true;
             }
             catch (Exception ex)
             {
                 Logging.WriteError("RefreshProcessList(): " + ex);
+                RefreshButton.Enabled = true;
             }
         }
 
-        private void buttonX1_Click(object sender, EventArgs e)
+        private void MainFormMouseDown(object sender, MouseEventArgs e)
+        {
+            _flagClick = true;
+            _positionInitialeX = e.X;
+            _positionInitialeY = e.Y;
+        }
+
+        private void MainFormMouseUp(object sender, MouseEventArgs e)
+        {
+            _flagClick = false;
+        }
+
+
+        private void MainFormMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_flagClick)
+            {
+                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
+            }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Pulsator.Dispose(true);
+        }
+
+        private void ReduceButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void Identifier_Enter(object sender, EventArgs e)
+        {
+            FormFocusLogin.Visible = true;
+            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier))
+            {
+                Identifier.Text = "";
+                Identifier.ForeColor = Color.FromArgb(118, 118, 118);
+            }
+        }
+
+        private void Identifier_Leave(object sender, EventArgs e)
+        {
+            FormFocusLogin.Visible = false;
+            if (Identifier.Text == "")
+            {
+                Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
+                Identifier.ForeColor = Color.FromArgb(202, 202, 202);
+            }
+        }
+
+        private void Password_Enter(object sender, EventArgs e)
+        {
+            FormFocusPassword.Visible = true;
+            if (Password.Text == "Password")
+            {
+                Password.Text = "";
+                Password.ForeColor = Color.FromArgb(118, 118, 118);
+            }
+        }
+
+        private void Password_Leave(object sender, EventArgs e)
+        {
+            FormFocusPassword.Visible = false;
+            if (Password.Text == "")
+            {
+                Password.Text = "Password";
+                Password.ForeColor = Color.FromArgb(202, 202, 202);
+            }
+        }
+
+        private void Register_Click(object sender, EventArgs e)
+        {
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/login/?action=register");
+        }
+
+        private void Register_MouseEnter(object sender, EventArgs e)
+        {
+            Register.BackColor = Color.FromArgb(147, 181, 22);
+            Register.ForeColor = Color.FromArgb(255, 255, 255);
+        }
+
+        private void Register_MouseLeave(object sender, EventArgs e)
+        {
+            Register.BackColor = Color.FromArgb(232, 232, 232);
+            Register.ForeColor = Color.FromArgb(98, 160, 229);
+        }
+
+        private void LoginButton_MouseEnter(object sender, EventArgs e)
+        {
+            LoginButton.Image = Resources.greenB;
+        }
+
+        private void LoginButton_MouseLeave(object sender, EventArgs e)
+        {
+            LoginButton.Image = Resources.blueB;
+        }
+
+        private void RefreshButton_MouseEnter(object sender, EventArgs e)
+        {
+            RefreshButton.Image = Resources.greenB;
+        }
+
+        private void RefreshButton_MouseLeave(object sender, EventArgs e)
+        {
+            RefreshButton.Image = Resources.blackB;
+        }
+
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             try
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+                LoginButton.Enabled = false;
+                RefreshButton.Enabled = false;
+                if (LoginOnServer() && AttachProcess())
+                {
+                    var formMain = new Main();
+                    formMain.Show();
+                    Hide();
+                }
+                LoginButton.Enabled = true;
+                RefreshButton.Enabled = true;
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Login > buttonX1_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError("launchBotB_Click(object sender, EventArgs e): " + ex);
             }
         }
 
-        private void createB_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/login/?action=register");
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("createB_Click(object sender, EventArgs e): " + ex);
-            }
+            RefreshProcessList();
         }
 
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        private void ReduceButton_MouseEnter(object sender, EventArgs e)
         {
-            try
-            {
-                nManager.Pulsator.Dispose(true);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Login_FormClosed(object sender, FormClosedEventArgs e): " + ex);
-            }
+            _reduceButtonImage = ReduceButton.Image;
+            ReduceButton.Image = Resources.reduce_buttonG;
         }
 
-        private void langChooseCb_SelectedIndexChanged(object sender, EventArgs e)
+        private void ReduceButton_MouseLeave(object sender, EventArgs e)
+        {
+            ReduceButton.Image = _reduceButtonImage;
+            _reduceButtonImage = null;
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            _closeButtonImage = CloseButton.Image;
+            CloseButton.Image = Resources.close_buttonG;
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            CloseButton.Image = _closeButtonImage;
+            _closeButtonImage = null;
+        }
+
+        private void WebsiteLink_MouseEnter(object sender, EventArgs e)
+        {
+            WebsiteLink.BackColor = Color.FromArgb(147, 181, 22);
+            WebsiteLink.ForeColor = Color.FromArgb(255, 255, 255);
+        }
+
+        private void WebsiteLink_MouseLeave(object sender, EventArgs e)
+        {
+            WebsiteLink.BackColor = Color.FromArgb(232, 232, 232);
+            WebsiteLink.ForeColor = Color.FromArgb(98, 160, 229);
+        }
+
+        private void ForumLink_MouseEnter(object sender, EventArgs e)
+        {
+            ForumLink.BackColor = Color.FromArgb(147, 181, 22);
+            ForumLink.ForeColor = Color.FromArgb(255, 255, 255);
+        }
+
+        private void ForumLink_MouseLeave(object sender, EventArgs e)
+        {
+            ForumLink.BackColor = Color.FromArgb(232, 232, 232);
+            ForumLink.ForeColor = Color.FromArgb(98, 160, 229);
+        }
+
+        private void ForumLink_Click(object sender, EventArgs e)
+        {
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/");
+        }
+
+        private void WebsiteLink_Click(object sender, EventArgs e)
+        {
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+        }
+
+        private void EsterEggTrigger_MouseEnter(object sender, EventArgs e)
+        {
+            EasterEgg.Visible = true;
+        }
+
+        private void EsterEggTrigger_MouseLeave(object sender, EventArgs e)
+        {
+            EasterEgg.Visible = false;
+        }
+
+        private void LangSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
-                Others.WriteFile(Application.StartupPath + "\\Settings\\lang.txt", langChooseCb.Text + ".xml");
-                Others.OpenWebBrowserOrApplication(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe");
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                Others.WriteFile(Application.StartupPath + "\\Settings\\lang.txt", LangSelection.Text + ".xml");
+                Others.OpenWebBrowserOrApplication(Process.GetCurrentProcess().ProcessName + ".exe");
+                Process.GetCurrentProcess().Kill();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("langChooseCb_SelectedIndexChanged(object sender, EventArgs e): " + ex);
+                Logging.WriteError("LangSelection_SelectedIndexChanged(object sender, EventArgs e): " + ex);
             }
-        }
-
-        private void buttonLaunchWoWDX9_Click(object sender, EventArgs e)
-        {
-            nManager.Wow.Helpers.Usefuls.LaunchWow("-d3d9");
-            Thread.Sleep(1000);
-            RefreshProcessList();
-        }
-
-        private void buttonLaunchWoWDX11_Click(object sender, EventArgs e)
-        {
-            nManager.Wow.Helpers.Usefuls.LaunchWow("-d3d11");
-            Thread.Sleep(1000);
-            RefreshProcessList();
         }
     }
 }

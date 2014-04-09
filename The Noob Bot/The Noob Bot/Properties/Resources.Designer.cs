@@ -122,10 +122,49 @@ namespace The_Noob_Bot.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        internal static System.Drawing.Bitmap Wrench {
-            get {
+
+        internal static System.Drawing.Bitmap Wrench
+        {
+            get
+            {
                 object obj = ResourceManager.GetObject("Wrench", resourceCulture);
+                return ((System.Drawing.Bitmap) (obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap blackB {
+            get {
+                object obj = ResourceManager.GetObject("blackB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap blueB {
+            get {
+                object obj = ResourceManager.GetObject("blueB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap close_buttonG {
+            get {
+                object obj = ResourceManager.GetObject("close_buttonG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap FormFocus {
+            get {
+                object obj = ResourceManager.GetObject("FormFocus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap greenB {
+            get {
+                object obj = ResourceManager.GetObject("greenB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.Drawing.Bitmap reduce_buttonG {
+            get {
+                object obj = ResourceManager.GetObject("reduce_buttonG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

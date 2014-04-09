@@ -91,23 +91,23 @@
     </Translation>
     <Translation>
       <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
-      <Text>Mot de passe incorrect, allez à cette addresse si vous avec oublié votre MDP</Text>
+      <Text>Mot de passe erroné, rendez-vous sur http://thenoobbot.fr/ si vous avez perdu votre mot de passe</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
-      <Text>Pseudo incorrect, allez à cette addresse si vous voulez créer un compte TNB et souscrire à TNB</Text>
+      <Text>Pseudo erroné, vous pouvez créer un compte en cliquant sur CREER COMPTE</Text>
     </Translation>
     <Translation>
       <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
-      <Text>Erreur lors de l'identification, essayer de désactiver votre Antivirus ou Parfeu, allez sur nos forums pour toutes question</Text>
+      <Text>Problème de connexion, soyez sûr que votre parfeu ne bloque pas TheNoobBot et rééssayez plus tard</Text>
     </Translation>
     <Translation>
       <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
-      <Text>Abonnement terminé, il vous faut renouveler si vous voulez utiliser TNB en version complète</Text>
+      <Text>Abonnement expiré, vous pouvez renouveller votre abonnement en vous rendant sur http://thenoobbot.fr/</Text>
     </Translation>
     <Translation>
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
-      <Text>Votre session gratuite TNB fermera TNB dans 20 minutes</Text>
+      <Text>TheNoobBot est lancé en version d'essai, la session terminera au bout de 20 minutes</Text>
     </Translation>
     <Translation>
       <Id>LatestUpdateVersion</Id>
@@ -1689,6 +1689,38 @@
     <Translation>
       <Id>DeleteSelectedQuester</Id>
       <Text>Delete the selected PNJ</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormTitle</Id>
+      <Text>Connexion</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormDefaultIdentifier</Id>
+      <Text>PSEUDO</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormRemember</Id>
+      <Text>SAUVEGARDER</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormStart</Id>
+      <Text>LANCER</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormRefresh</Id>
+      <Text>RAFRAICHIR</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormWebsite</Id>
+      <Text>SITE INTERNET</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormForum</Id>
+      <Text>FORUM</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormRegister</Id>
+      <Text>CREER COMPTE</Text>
     </Translation>
   </Translations>
 </Language>

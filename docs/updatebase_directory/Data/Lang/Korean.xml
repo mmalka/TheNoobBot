@@ -87,27 +87,27 @@
     </Translation>
     <Translation>
       <Id>User_name_or_Password_error</Id>
-      <Text>TNB ID나 비밀번호가 잘못되었습니다</Text>
+      <Text>Login or Password error</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
-      <Text>비밀번호가 잘못되었습니다. 잃어버린 비밀번호를 찾기 위해 방문하세요</Text>
+      <Text>Password incorrect, please go to http://thenoobbot.com/ to request a password if you lost it</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
-      <Text>TNB ID가 잘못되었습니다. TNB ID를 생성하거나 The Noob Bot을 구매하세요</Text>
+      <Text>Login incorrect, please click on REGISTER if you want to create a TheNoobBot account</Text>
     </Translation>
     <Translation>
       <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
-      <Text>로그인 오류입니다. 바이러스 백신을 정지해보시거나, 웹사이트에 오셔서 도움을 받으세요.</Text>
+      <Text>Login error, make sure no antivirus is blocking TheNoobBot and try again later</Text>
     </Translation>
     <Translation>
       <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
-      <Text>계정이 만료되었습니다. 재사용을 원하신다면 구매하세요</Text>
+      <Text>Subscription ended, if you want to get ride of the trial, please renew your subscription on the website</Text>
     </Translation>
     <Translation>
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
-      <Text>트라이얼 버전을 사용 중이기 때문에, 20분 후에 자동적으로 정지됩니다.</Text>
+      <Text>TheNoobBot is started in trial mode, the session will be terminated after 20 minutes</Text>
     </Translation>
     <Translation>
       <Id>LatestUpdateVersion</Id>
@@ -1688,6 +1688,38 @@
     <Translation>
       <Id>DeleteSelectedQuester</Id>
       <Text>Delete the selected NPC</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormTitle</Id>
+      <Text>Login</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormDefaultIdentifier</Id>
+      <Text>LOGIN</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormRemember</Id>
+      <Text>SAVE</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormStart</Id>
+      <Text>CONNECT</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormRefresh</Id>
+      <Text>REFRESH</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormWebsite</Id>
+      <Text>WEBSITE</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormForum</Id>
+      <Text>COMMUNITY FORUM</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormRegister</Id>
+      <Text>REGISTER</Text>
     </Translation>
   </Translations>
 </Language>

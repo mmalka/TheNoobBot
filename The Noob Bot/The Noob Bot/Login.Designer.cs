@@ -1,16 +1,16 @@
-namespace The_Noob_Bot
+﻿namespace The_Noob_Bot
 {
-    internal partial class Login
+    partial class Login
     {
         /// <summary>
-        /// Required designer variable.
+        /// Variable nécessaire au concepteur.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Nettoyage des ressources utilisées.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,290 +20,496 @@ namespace The_Noob_Bot
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Code généré par le Concepteur Windows Form
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+        /// le contenu de cette méthode avec l'éditeur de code.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.userNameTb = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.passwordTb = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.listProcessLb = new System.Windows.Forms.ListBox();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.saveCb = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.createB = new DevComponents.DotNetBar.ButtonX();
-            this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.langChooseCb = new System.Windows.Forms.ComboBox();
-            this.launchBotB = new DevComponents.DotNetBar.ButtonX();
-            this.refreshB = new DevComponents.DotNetBar.ButtonX();
-            this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("Your error message here.");
-            this.requiredFieldValidator2 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("Your error message here.");
-            this.bar1 = new DevComponents.DotNetBar.Bar();
-            this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
-            this.buttonLaunchWoWDX9 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonLaunchWoWDX11 = new DevComponents.DotNetBar.ButtonItem();
-            ((System.ComponentModel.ISupportInitialize)(this.bar1)).BeginInit();
+            this.ControlMenu = new System.Windows.Forms.PictureBox();
+            this.ReduceButton = new System.Windows.Forms.PictureBox();
+            this.CloseButton = new System.Windows.Forms.PictureBox();
+            this.SessionList = new System.Windows.Forms.ListBox();
+            this.TopLeftLogo = new System.Windows.Forms.PictureBox();
+            this.Identifier = new System.Windows.Forms.TextBox();
+            this.Password = new System.Windows.Forms.TextBox();
+            this.keyLogoPassword = new System.Windows.Forms.PictureBox();
+            this.manLogoIdentifier = new System.Windows.Forms.PictureBox();
+            this.Remember = new System.Windows.Forms.CheckBox();
+            this.Register = new System.Windows.Forms.Label();
+            this.LoginFormTitle = new System.Windows.Forms.Label();
+            this.LoginButton = new System.Windows.Forms.Label();
+            this.RefreshButton = new System.Windows.Forms.Label();
+            this.FormFocusLogin = new System.Windows.Forms.PictureBox();
+            this.FormFocusPassword = new System.Windows.Forms.PictureBox();
+            this.WebsiteLink = new System.Windows.Forms.Label();
+            this.ForumLink = new System.Windows.Forms.Label();
+            this.LangSelection = new System.Windows.Forms.ComboBox();
+            this.EasterEgg = new System.Windows.Forms.PictureBox();
+            this.EsterEggTrigger1 = new System.Windows.Forms.Panel();
+            this.EsterEggTrigger2 = new System.Windows.Forms.Panel();
+            this.EsterEggTrigger3 = new System.Windows.Forms.Panel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormFocusLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormFocusPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EasterEgg)).BeginInit();
             this.SuspendLayout();
             // 
-            // userNameTb
+            // ControlMenu
             // 
-            this.userNameTb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.ControlMenu.BackColor = System.Drawing.Color.Black;
+            this.ControlMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ControlMenu.ErrorImage = null;
+            this.ControlMenu.Image = ((System.Drawing.Image)(resources.GetObject("ControlMenu.Image")));
+            this.ControlMenu.InitialImage = null;
+            this.ControlMenu.Location = new System.Drawing.Point(0, 0);
+            this.ControlMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.ControlMenu.MaximumSize = new System.Drawing.Size(575, 43);
+            this.ControlMenu.MinimumSize = new System.Drawing.Size(575, 43);
+            this.ControlMenu.Name = "ControlMenu";
+            this.ControlMenu.Size = new System.Drawing.Size(575, 43);
+            this.ControlMenu.TabIndex = 0;
+            this.ControlMenu.TabStop = false;
+            this.ControlMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
+            this.ControlMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
+            this.ControlMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
+            // ReduceButton
             // 
+            this.ReduceButton.BackColor = System.Drawing.Color.Transparent;
+            this.ReduceButton.ErrorImage = null;
+            this.ReduceButton.Image = ((System.Drawing.Image)(resources.GetObject("ReduceButton.Image")));
+            this.ReduceButton.InitialImage = null;
+            this.ReduceButton.Location = new System.Drawing.Point(523, 13);
+            this.ReduceButton.Margin = new System.Windows.Forms.Padding(0);
+            this.ReduceButton.MaximumSize = new System.Drawing.Size(13, 14);
+            this.ReduceButton.MinimumSize = new System.Drawing.Size(13, 14);
+            this.ReduceButton.Name = "ReduceButton";
+            this.ReduceButton.Size = new System.Drawing.Size(13, 14);
+            this.ReduceButton.TabIndex = 1;
+            this.ReduceButton.TabStop = false;
+            this.ReduceButton.Click += new System.EventHandler(this.ReduceButton_Click);
+            this.ReduceButton.MouseEnter += new System.EventHandler(this.ReduceButton_MouseEnter);
+            this.ReduceButton.MouseLeave += new System.EventHandler(this.ReduceButton_MouseLeave);
             // 
-            this.userNameTb.Border.Class = "TextBoxBorder";
-            this.userNameTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.userNameTb.ForeColor = System.Drawing.Color.Black;
-            this.userNameTb.Location = new System.Drawing.Point(72, 12);
-            this.userNameTb.Name = "userNameTb";
-            this.userNameTb.Size = new System.Drawing.Size(197, 22);
-            this.userNameTb.TabIndex = 0;
+            // CloseButton
             // 
-            // passwordTb
+            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseButton.ErrorImage = null;
+            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
+            this.CloseButton.InitialImage = null;
+            this.CloseButton.Location = new System.Drawing.Point(550, 13);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
+            this.CloseButton.MaximumSize = new System.Drawing.Size(13, 14);
+            this.CloseButton.MinimumSize = new System.Drawing.Size(13, 14);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(13, 14);
+            this.CloseButton.TabIndex = 2;
+            this.CloseButton.TabStop = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
+            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
             // 
-            this.passwordTb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            // SessionList
             // 
+            this.SessionList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.SessionList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SessionList.FormattingEnabled = true;
+            this.SessionList.IntegralHeight = false;
+            this.SessionList.Location = new System.Drawing.Point(274, 69);
+            this.SessionList.Margin = new System.Windows.Forms.Padding(0);
+            this.SessionList.MaximumSize = new System.Drawing.Size(266, 99);
+            this.SessionList.MinimumSize = new System.Drawing.Size(266, 99);
+            this.SessionList.Name = "SessionList";
+            this.SessionList.Size = new System.Drawing.Size(266, 99);
+            this.SessionList.TabIndex = 3;
             // 
+            // TopLeftLogo
             // 
-            this.passwordTb.Border.Class = "TextBoxBorder";
-            this.passwordTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.passwordTb.ForeColor = System.Drawing.Color.Black;
-            this.passwordTb.Location = new System.Drawing.Point(72, 45);
-            this.passwordTb.Name = "passwordTb";
-            this.passwordTb.PasswordChar = '*';
-            this.passwordTb.Size = new System.Drawing.Size(168, 22);
-            this.passwordTb.TabIndex = 1;
+            this.TopLeftLogo.ErrorImage = null;
+            this.TopLeftLogo.Image = ((System.Drawing.Image)(resources.GetObject("TopLeftLogo.Image")));
+            this.TopLeftLogo.InitialImage = null;
+            this.TopLeftLogo.Location = new System.Drawing.Point(13, 3);
+            this.TopLeftLogo.Margin = new System.Windows.Forms.Padding(0);
+            this.TopLeftLogo.Name = "TopLeftLogo";
+            this.TopLeftLogo.Size = new System.Drawing.Size(30, 35);
+            this.TopLeftLogo.TabIndex = 4;
+            this.TopLeftLogo.TabStop = false;
+            this.TopLeftLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
+            this.TopLeftLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
+            this.TopLeftLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
-            // listProcessLb
+            // Identifier
             // 
-            this.listProcessLb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
-            this.listProcessLb.ForeColor = System.Drawing.Color.Black;
-            this.listProcessLb.FormattingEnabled = true;
-            this.listProcessLb.Location = new System.Drawing.Point(1, 82);
-            this.listProcessLb.Name = "listProcessLb";
-            this.listProcessLb.Size = new System.Drawing.Size(239, 82);
-            this.listProcessLb.TabIndex = 3;
+            this.Identifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.Identifier.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Identifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Identifier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(202)))), ((int)(((byte)(202)))));
+            this.Identifier.Location = new System.Drawing.Point(60, 74);
+            this.Identifier.Margin = new System.Windows.Forms.Padding(0);
+            this.Identifier.MaximumSize = new System.Drawing.Size(192, 25);
+            this.Identifier.MinimumSize = new System.Drawing.Size(192, 25);
+            this.Identifier.Name = "Identifier";
+            this.Identifier.Size = new System.Drawing.Size(192, 25);
+            this.Identifier.TabIndex = 5;
+            this.Identifier.Text = "LOGIN";
+            this.Identifier.Enter += new System.EventHandler(this.Identifier_Enter);
+            this.Identifier.Leave += new System.EventHandler(this.Identifier_Leave);
             // 
-            // labelX1
+            // Password
             // 
-            this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.Password.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.Password.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Password.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(202)))), ((int)(((byte)(202)))));
+            this.Password.Location = new System.Drawing.Point(60, 138);
+            this.Password.Margin = new System.Windows.Forms.Padding(0);
+            this.Password.MaximumSize = new System.Drawing.Size(192, 25);
+            this.Password.MinimumSize = new System.Drawing.Size(192, 25);
+            this.Password.Name = "Password";
+            this.Password.PasswordChar = '*';
+            this.Password.Size = new System.Drawing.Size(192, 25);
+            this.Password.TabIndex = 6;
+            this.Password.Text = "Password";
+            this.Password.UseSystemPasswordChar = true;
+            this.Password.Enter += new System.EventHandler(this.Password_Enter);
+            this.Password.Leave += new System.EventHandler(this.Password_Leave);
             // 
+            // keyLogoPassword
             // 
+            this.keyLogoPassword.Image = ((System.Drawing.Image)(resources.GetObject("keyLogoPassword.Image")));
+            this.keyLogoPassword.Location = new System.Drawing.Point(30, 133);
+            this.keyLogoPassword.Margin = new System.Windows.Forms.Padding(0);
+            this.keyLogoPassword.MaximumSize = new System.Drawing.Size(29, 35);
+            this.keyLogoPassword.MinimumSize = new System.Drawing.Size(29, 35);
+            this.keyLogoPassword.Name = "keyLogoPassword";
+            this.keyLogoPassword.Size = new System.Drawing.Size(29, 35);
+            this.keyLogoPassword.TabIndex = 8;
+            this.keyLogoPassword.TabStop = false;
             // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(1, 15);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(67, 19);
-            this.labelX1.TabIndex = 4;
-            this.labelX1.Text = "User Name:";
+            // manLogoIdentifier
             // 
-            // labelX2
+            this.manLogoIdentifier.Image = ((System.Drawing.Image)(resources.GetObject("manLogoIdentifier.Image")));
+            this.manLogoIdentifier.Location = new System.Drawing.Point(30, 69);
+            this.manLogoIdentifier.Margin = new System.Windows.Forms.Padding(0);
+            this.manLogoIdentifier.MaximumSize = new System.Drawing.Size(29, 35);
+            this.manLogoIdentifier.MinimumSize = new System.Drawing.Size(29, 35);
+            this.manLogoIdentifier.Name = "manLogoIdentifier";
+            this.manLogoIdentifier.Size = new System.Drawing.Size(29, 35);
+            this.manLogoIdentifier.TabIndex = 9;
+            this.manLogoIdentifier.TabStop = false;
             // 
-            this.labelX2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            // Remember
             // 
+            this.Remember.AutoSize = true;
+            this.Remember.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.Remember.Checked = true;
+            this.Remember.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Remember.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.Remember.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.Remember.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.Remember.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Remember.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Remember.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.Remember.Location = new System.Drawing.Point(30, 184);
+            this.Remember.MaximumSize = new System.Drawing.Size(120, 24);
+            this.Remember.MinimumSize = new System.Drawing.Size(120, 24);
+            this.Remember.Name = "Remember";
+            this.Remember.Size = new System.Drawing.Size(120, 24);
+            this.Remember.TabIndex = 10;
+            this.Remember.Text = "SAVE";
+            this.Remember.UseVisualStyleBackColor = false;
             // 
+            // Register
             // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(1, 48);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(67, 19);
-            this.labelX2.TabIndex = 7;
-            this.labelX2.Text = "Password:";
+            this.Register.AutoSize = true;
+            this.Register.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.Register.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Register.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.Register.Location = new System.Drawing.Point(157, 184);
+            this.Register.Margin = new System.Windows.Forms.Padding(0);
+            this.Register.MaximumSize = new System.Drawing.Size(95, 24);
+            this.Register.MinimumSize = new System.Drawing.Size(95, 24);
+            this.Register.Name = "Register";
+            this.Register.Size = new System.Drawing.Size(95, 24);
+            this.Register.TabIndex = 11;
+            this.Register.Text = "REGISTER";
+            this.Register.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Register.Click += new System.EventHandler(this.Register_Click);
+            this.Register.MouseEnter += new System.EventHandler(this.Register_MouseEnter);
+            this.Register.MouseLeave += new System.EventHandler(this.Register_MouseLeave);
             // 
-            // saveCb
+            // LoginFormTitle
             // 
-            this.saveCb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.LoginFormTitle.AutoSize = true;
+            this.LoginFormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.LoginFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.LoginFormTitle.Location = new System.Drawing.Point(57, 4);
+            this.LoginFormTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.LoginFormTitle.MaximumSize = new System.Drawing.Size(450, 35);
+            this.LoginFormTitle.MinimumSize = new System.Drawing.Size(450, 35);
+            this.LoginFormTitle.Name = "LoginFormTitle";
+            this.LoginFormTitle.Size = new System.Drawing.Size(450, 35);
+            this.LoginFormTitle.TabIndex = 12;
+            this.LoginFormTitle.Text = "TheNoobBot - 3.0.0";
+            this.LoginFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LoginFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
+            this.LoginFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
+            this.LoginFormTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
+            // LoginButton
             // 
+            this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginButton.ForeColor = System.Drawing.Color.White;
+            this.LoginButton.Image = global::The_Noob_Bot.Properties.Resources.blueB;
+            this.LoginButton.Location = new System.Drawing.Point(274, 184);
+            this.LoginButton.Margin = new System.Windows.Forms.Padding(0);
+            this.LoginButton.MaximumSize = new System.Drawing.Size(106, 30);
+            this.LoginButton.MinimumSize = new System.Drawing.Size(106, 30);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(106, 30);
+            this.LoginButton.TabIndex = 13;
+            this.LoginButton.Text = "CONNECT";
+            this.LoginButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            this.LoginButton.MouseEnter += new System.EventHandler(this.LoginButton_MouseEnter);
+            this.LoginButton.MouseLeave += new System.EventHandler(this.LoginButton_MouseLeave);
             // 
-            this.saveCb.BackgroundStyle.Class = "";
-            this.saveCb.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.saveCb.ForeColor = System.Drawing.Color.Black;
-            this.saveCb.Location = new System.Drawing.Point(246, 37);
-            this.saveCb.Name = "saveCb";
-            this.saveCb.Size = new System.Drawing.Size(94, 23);
-            this.saveCb.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.saveCb.TabIndex = 8;
-            this.saveCb.Text = "Save";
+            // RefreshButton
             // 
-            // createB
+            this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshButton.ForeColor = System.Drawing.Color.White;
+            this.RefreshButton.Image = global::The_Noob_Bot.Properties.Resources.blackB;
+            this.RefreshButton.Location = new System.Drawing.Point(434, 184);
+            this.RefreshButton.Margin = new System.Windows.Forms.Padding(0);
+            this.RefreshButton.MaximumSize = new System.Drawing.Size(106, 30);
+            this.RefreshButton.MinimumSize = new System.Drawing.Size(106, 30);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(106, 30);
+            this.RefreshButton.TabIndex = 14;
+            this.RefreshButton.Text = "REFRESH";
+            this.RefreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            this.RefreshButton.MouseEnter += new System.EventHandler(this.RefreshButton_MouseEnter);
+            this.RefreshButton.MouseLeave += new System.EventHandler(this.RefreshButton_MouseLeave);
             // 
-            this.createB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.createB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.createB.Location = new System.Drawing.Point(285, 12);
-            this.createB.Name = "createB";
-            this.createB.Size = new System.Drawing.Size(55, 22);
-            this.createB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.createB.TabIndex = 9;
-            this.createB.Text = "Create";
-            this.createB.Click += new System.EventHandler(this.createB_Click);
+            // FormFocusLogin
             // 
-            // styleManager1
+            this.FormFocusLogin.ErrorImage = null;
+            this.FormFocusLogin.Image = ((System.Drawing.Image)(resources.GetObject("FormFocusLogin.Image")));
+            this.FormFocusLogin.InitialImage = null;
+            this.FormFocusLogin.Location = new System.Drawing.Point(29, 68);
+            this.FormFocusLogin.Margin = new System.Windows.Forms.Padding(0);
+            this.FormFocusLogin.MaximumSize = new System.Drawing.Size(225, 37);
+            this.FormFocusLogin.MinimumSize = new System.Drawing.Size(225, 37);
+            this.FormFocusLogin.Name = "FormFocusLogin";
+            this.FormFocusLogin.Size = new System.Drawing.Size(225, 37);
+            this.FormFocusLogin.TabIndex = 15;
+            this.FormFocusLogin.TabStop = false;
+            this.FormFocusLogin.Visible = false;
             // 
-            this.styleManager1.ManagerColorTint = System.Drawing.Color.WhiteSmoke;
-            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
-            this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230))))), System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(181)))), ((int)(((byte)(22))))));
+            // FormFocusPassword
             // 
-            // buttonX1
+            this.FormFocusPassword.ErrorImage = null;
+            this.FormFocusPassword.Image = ((System.Drawing.Image)(resources.GetObject("FormFocusPassword.Image")));
+            this.FormFocusPassword.InitialImage = null;
+            this.FormFocusPassword.Location = new System.Drawing.Point(29, 132);
+            this.FormFocusPassword.Margin = new System.Windows.Forms.Padding(0);
+            this.FormFocusPassword.MaximumSize = new System.Drawing.Size(225, 37);
+            this.FormFocusPassword.MinimumSize = new System.Drawing.Size(225, 37);
+            this.FormFocusPassword.Name = "FormFocusPassword";
+            this.FormFocusPassword.Size = new System.Drawing.Size(225, 37);
+            this.FormFocusPassword.TabIndex = 16;
+            this.FormFocusPassword.TabStop = false;
+            this.FormFocusPassword.Visible = false;
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(1, 167);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(183, 17);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 10;
-            this.buttonX1.Text = "http://www.TheNoobBot.com/";
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
+            // WebsiteLink
             // 
-            // langChooseCb
+            this.WebsiteLink.AutoSize = true;
+            this.WebsiteLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.WebsiteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebsiteLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.WebsiteLink.Location = new System.Drawing.Point(445, 251);
+            this.WebsiteLink.Margin = new System.Windows.Forms.Padding(0);
+            this.WebsiteLink.MaximumSize = new System.Drawing.Size(125, 14);
+            this.WebsiteLink.MinimumSize = new System.Drawing.Size(125, 14);
+            this.WebsiteLink.Name = "WebsiteLink";
+            this.WebsiteLink.Size = new System.Drawing.Size(125, 14);
+            this.WebsiteLink.TabIndex = 17;
+            this.WebsiteLink.Text = "WEBSITE";
+            this.WebsiteLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WebsiteLink.Click += new System.EventHandler(this.WebsiteLink_Click);
+            this.WebsiteLink.MouseEnter += new System.EventHandler(this.WebsiteLink_MouseEnter);
+            this.WebsiteLink.MouseLeave += new System.EventHandler(this.WebsiteLink_MouseLeave);
             // 
-            this.langChooseCb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
-            this.langChooseCb.ForeColor = System.Drawing.Color.Black;
-            this.langChooseCb.FormattingEnabled = true;
-            this.langChooseCb.Location = new System.Drawing.Point(190, 166);
-            this.langChooseCb.Name = "langChooseCb";
-            this.langChooseCb.Size = new System.Drawing.Size(150, 21);
-            this.langChooseCb.TabIndex = 11;
+            // ForumLink
             // 
-            // launchBotB
+            this.ForumLink.AutoSize = true;
+            this.ForumLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.ForumLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForumLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.ForumLink.Location = new System.Drawing.Point(291, 251);
+            this.ForumLink.Margin = new System.Windows.Forms.Padding(0);
+            this.ForumLink.MaximumSize = new System.Drawing.Size(150, 14);
+            this.ForumLink.MinimumSize = new System.Drawing.Size(150, 14);
+            this.ForumLink.Name = "ForumLink";
+            this.ForumLink.Size = new System.Drawing.Size(150, 14);
+            this.ForumLink.TabIndex = 18;
+            this.ForumLink.Text = "COMMUNITY FORUM";
+            this.ForumLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ForumLink.Click += new System.EventHandler(this.ForumLink_Click);
+            this.ForumLink.MouseEnter += new System.EventHandler(this.ForumLink_MouseEnter);
+            this.ForumLink.MouseLeave += new System.EventHandler(this.ForumLink_MouseLeave);
             // 
-            this.launchBotB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.launchBotB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.launchBotB.Image = global::The_Noob_Bot.Properties.Resources.Play;
-            this.launchBotB.ImageFixedSize = new System.Drawing.Size(30, 30);
-            this.launchBotB.Location = new System.Drawing.Point(246, 82);
-            this.launchBotB.Name = "launchBotB";
-            this.launchBotB.Size = new System.Drawing.Size(94, 38);
-            this.launchBotB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.launchBotB.TabIndex = 6;
-            this.launchBotB.Text = "Launch Bot";
-            this.launchBotB.Click += new System.EventHandler(this.launchBotB_Click);
+            // LangSelection
             // 
-            // refreshB
+            this.LangSelection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.LangSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LangSelection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LangSelection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LangSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.LangSelection.FormattingEnabled = true;
+            this.LangSelection.ItemHeight = 15;
+            this.LangSelection.Location = new System.Drawing.Point(30, 244);
+            this.LangSelection.Margin = new System.Windows.Forms.Padding(0);
+            this.LangSelection.MaximumSize = new System.Drawing.Size(120, 0);
+            this.LangSelection.MinimumSize = new System.Drawing.Size(120, 0);
+            this.LangSelection.Name = "LangSelection";
+            this.LangSelection.Size = new System.Drawing.Size(120, 23);
+            this.LangSelection.TabIndex = 20;
             // 
-            this.refreshB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.refreshB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.refreshB.Image = global::The_Noob_Bot.Properties.Resources.Refresh;
-            this.refreshB.ImageFixedSize = new System.Drawing.Size(30, 30);
-            this.refreshB.Location = new System.Drawing.Point(246, 126);
-            this.refreshB.Margin = new System.Windows.Forms.Padding(2);
-            this.refreshB.Name = "refreshB";
-            this.refreshB.Size = new System.Drawing.Size(94, 38);
-            this.refreshB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.refreshB.TabIndex = 5;
-            this.refreshB.Text = "Refresh";
-            this.refreshB.Click += new System.EventHandler(this.refreshB_Click);
+            // EasterEgg
             // 
-            // requiredFieldValidator1
+            this.EasterEgg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.EasterEgg.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EasterEgg.BackgroundImage")));
+            this.EasterEgg.ErrorImage = null;
+            this.EasterEgg.InitialImage = null;
+            this.EasterEgg.Location = new System.Drawing.Point(1, 43);
+            this.EasterEgg.Name = "EasterEgg";
+            this.EasterEgg.Size = new System.Drawing.Size(573, 224);
+            this.EasterEgg.TabIndex = 21;
+            this.EasterEgg.TabStop = false;
+            this.EasterEgg.Visible = false;
             // 
-            this.requiredFieldValidator1.ErrorMessage = "Your error message here.";
-            this.requiredFieldValidator1.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // EsterEggTrigger1
             // 
-            // requiredFieldValidator2
+            this.EsterEggTrigger1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.EsterEggTrigger1.Location = new System.Drawing.Point(550, 225);
+            this.EsterEggTrigger1.Name = "EsterEggTrigger1";
+            this.EsterEggTrigger1.Size = new System.Drawing.Size(10, 10);
+            this.EsterEggTrigger1.TabIndex = 22;
+            this.EsterEggTrigger1.MouseEnter += new System.EventHandler(this.EsterEggTrigger_MouseEnter);
+            this.EsterEggTrigger1.MouseLeave += new System.EventHandler(this.EsterEggTrigger_MouseLeave);
             // 
-            this.requiredFieldValidator2.ErrorMessage = "Your error message here.";
-            this.requiredFieldValidator2.HighlightColor = DevComponents.DotNetBar.Validator.eHighlightColor.Red;
+            // EsterEggTrigger2
             // 
-            // bar1
+            this.EsterEggTrigger2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.EsterEggTrigger2.Location = new System.Drawing.Point(222, 119);
+            this.EsterEggTrigger2.Name = "EsterEggTrigger2";
+            this.EsterEggTrigger2.Size = new System.Drawing.Size(10, 10);
+            this.EsterEggTrigger2.TabIndex = 23;
+            this.EsterEggTrigger2.MouseEnter += new System.EventHandler(this.EsterEggTrigger_MouseEnter);
+            this.EsterEggTrigger2.MouseLeave += new System.EventHandler(this.EsterEggTrigger_MouseLeave);
             // 
-            this.bar1.AntiAlias = true;
-            this.bar1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.labelItem1,
-            this.buttonLaunchWoWDX9,
-            this.buttonLaunchWoWDX11});
-            this.bar1.Location = new System.Drawing.Point(246, 60);
-            this.bar1.Name = "bar1";
-            this.bar1.Size = new System.Drawing.Size(94, 19);
-            this.bar1.Stretch = true;
-            this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.bar1.TabIndex = 12;
-            this.bar1.TabStop = false;
-            this.bar1.Text = "Launch Wow";
+            // EsterEggTrigger3
             // 
-            // labelItem1
-            // 
-            this.labelItem1.Name = "labelItem1";
-            this.labelItem1.Text = "Launch Game";
-            // 
-            // buttonLaunchWoWDX9
-            // 
-            this.buttonLaunchWoWDX9.Name = "buttonLaunchWoWDX9";
-            this.buttonLaunchWoWDX9.Text = "With DirectX9";
-            this.buttonLaunchWoWDX9.Click += new System.EventHandler(this.buttonLaunchWoWDX9_Click);
-            // 
-            // buttonLaunchWoWDX11
-            // 
-            this.buttonLaunchWoWDX11.Name = "buttonLaunchWoWDX11";
-            this.buttonLaunchWoWDX11.Text = "With DirectX11";
-            this.buttonLaunchWoWDX11.Click += new System.EventHandler(this.buttonLaunchWoWDX11_Click);
+            this.EsterEggTrigger3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.EsterEggTrigger3.Location = new System.Drawing.Point(189, 244);
+            this.EsterEggTrigger3.Name = "EsterEggTrigger3";
+            this.EsterEggTrigger3.Size = new System.Drawing.Size(10, 10);
+            this.EsterEggTrigger3.TabIndex = 23;
+            this.EsterEggTrigger3.MouseEnter += new System.EventHandler(this.EsterEggTrigger_MouseEnter);
+            this.EsterEggTrigger3.MouseLeave += new System.EventHandler(this.EsterEggTrigger_MouseLeave);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.ClientSize = new System.Drawing.Size(342, 188);
-            this.Controls.Add(this.bar1);
-            this.Controls.Add(this.langChooseCb);
-            this.Controls.Add(this.buttonX1);
-            this.Controls.Add(this.createB);
-            this.Controls.Add(this.saveCb);
-            this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.launchBotB);
-            this.Controls.Add(this.refreshB);
-            this.Controls.Add(this.labelX1);
-            this.Controls.Add(this.listProcessLb);
-            this.Controls.Add(this.passwordTb);
-            this.Controls.Add(this.userNameTb);
-            this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(575, 270);
+            this.Controls.Add(this.EsterEggTrigger3);
+            this.Controls.Add(this.EsterEggTrigger2);
+            this.Controls.Add(this.EsterEggTrigger1);
+            this.Controls.Add(this.LangSelection);
+            this.Controls.Add(this.ForumLink);
+            this.Controls.Add(this.WebsiteLink);
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.LoginButton);
+            this.Controls.Add(this.LoginFormTitle);
+            this.Controls.Add(this.Register);
+            this.Controls.Add(this.Remember);
+            this.Controls.Add(this.manLogoIdentifier);
+            this.Controls.Add(this.keyLogoPassword);
+            this.Controls.Add(this.Password);
+            this.Controls.Add(this.Identifier);
+            this.Controls.Add(this.TopLeftLogo);
+            this.Controls.Add(this.SessionList);
+            this.Controls.Add(this.CloseButton);
+            this.Controls.Add(this.ReduceButton);
+            this.Controls.Add(this.ControlMenu);
+            this.Controls.Add(this.FormFocusPassword);
+            this.Controls.Add(this.FormFocusLogin);
+            this.Controls.Add(this.EasterEgg);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(358, 226);
-            this.MinimumSize = new System.Drawing.Size(358, 226);
+            this.MaximumSize = new System.Drawing.Size(575, 270);
+            this.MinimumSize = new System.Drawing.Size(575, 270);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
-            this.Shown += new System.EventHandler(this.Login_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
-            this.labelsToolTip = new System.Windows.Forms.ToolTip(new System.ComponentModel.Container());
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseButton_Click);
+            this.Shown += new System.EventHandler(this.MainFormOnLoad);
+            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormFocusLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormFocusPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EasterEgg)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.Controls.TextBoxX userNameTb;
-        private DevComponents.DotNetBar.Controls.TextBoxX passwordTb;
-        private System.Windows.Forms.ListBox listProcessLb;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.ButtonX refreshB;
-        private DevComponents.DotNetBar.ButtonX launchBotB;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.Controls.CheckBoxX saveCb;
-        private DevComponents.DotNetBar.ButtonX createB;
-        private DevComponents.DotNetBar.StyleManager styleManager1;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
-        private System.Windows.Forms.ComboBox langChooseCb;
-        private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator2;
-        private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator1;
-        private DevComponents.DotNetBar.Bar bar1;
-        private DevComponents.DotNetBar.ButtonItem buttonLaunchWoWDX9;
-        private DevComponents.DotNetBar.ButtonItem buttonLaunchWoWDX11;
-        private DevComponents.DotNetBar.LabelItem labelItem1;
-
-        private System.Windows.Forms.ToolTip labelsToolTip;
+        private System.Windows.Forms.PictureBox ControlMenu;
+        private System.Windows.Forms.PictureBox ReduceButton;
+        private System.Windows.Forms.PictureBox CloseButton;
+        private System.Windows.Forms.ListBox SessionList;
+        private System.Windows.Forms.PictureBox TopLeftLogo;
+        private System.Windows.Forms.TextBox Identifier;
+        private System.Windows.Forms.TextBox Password;
+        private System.Windows.Forms.PictureBox keyLogoPassword;
+        private System.Windows.Forms.PictureBox manLogoIdentifier;
+        private System.Windows.Forms.CheckBox Remember;
+        private System.Windows.Forms.Label Register;
+        private System.Windows.Forms.Label LoginFormTitle;
+        private System.Windows.Forms.Label LoginButton;
+        private System.Windows.Forms.Label RefreshButton;
+        private System.Windows.Forms.PictureBox FormFocusLogin;
+        private System.Windows.Forms.PictureBox FormFocusPassword;
+        private System.Windows.Forms.Label WebsiteLink;
+        private System.Windows.Forms.Label ForumLink;
+        private System.Windows.Forms.ComboBox LangSelection;
+        private System.Windows.Forms.PictureBox EasterEgg;
+        private System.Windows.Forms.Panel EsterEggTrigger1;
+        private System.Windows.Forms.Panel EsterEggTrigger2;
+        private System.Windows.Forms.Panel EsterEggTrigger3;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
+

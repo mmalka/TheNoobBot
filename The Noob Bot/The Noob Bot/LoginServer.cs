@@ -18,13 +18,13 @@ namespace The_Noob_Bot
     internal static class LoginServer
     {
         private static readonly string[] LocalStatusList =
-            {
-                "NOKConnect",
-                "SNVConnect",
-                "OKConnect",
-                "PEConnect",
-                "LEConnect"
-            };
+        {
+            "NOKConnect",
+            "SNVConnect",
+            "OKConnect",
+            "PEConnect",
+            "LEConnect"
+        };
 
         internal static int StartTime;
 
@@ -48,7 +48,7 @@ namespace The_Noob_Bot
                 if (login == "" || password == "")
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.User_name_or_Password_error) + ".",
-                                    Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Process.GetCurrentProcess().Kill();
                     return;
                 }
@@ -78,8 +78,8 @@ namespace The_Noob_Bot
 
                     int randomKey = Others.Random(1, 9999);
                     List<string> resultRandom = GetReqWithAuthHeader(Others.GetAuthScriptLink + "?random=true",
-                                                                     randomKey.ToString(CultureInfo.InvariantCulture),
-                                                                     randomKey.ToString(CultureInfo.InvariantCulture));
+                        randomKey.ToString(CultureInfo.InvariantCulture),
+                        randomKey.ToString(CultureInfo.InvariantCulture));
                     string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
 
                     if (resultRandom[0] == goodResultRandomTry && resultConnectReq[0] == goodResultConnectReq)
@@ -101,7 +101,7 @@ namespace The_Noob_Bot
                     MessageBox.Show(
                         Translate.Get(
                             Translate.Id.
-                                      Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) +
+                                Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) +
                         ": http://thenoobbot.com/.",
                         Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show(
@@ -465,7 +465,7 @@ namespace The_Noob_Bot
                             DialogResult dr =
                                 MessageBox.Show(
                                     string.Format("{0}{1}{4}{4}{2}{4}{3}{4}{5}", Translate.Get(Translate.Id.LatestUpdateVersion), resultReq,
-                                                  Translate.Get(Translate.Id.LatestUpdateDescription), resultDesc, Environment.NewLine, Translate.Get(Translate.Id.ConfirmUpdate)),
+                                        Translate.Get(Translate.Id.LatestUpdateDescription), resultDesc, Environment.NewLine, Translate.Get(Translate.Id.ConfirmUpdate)),
                                     Translate.Get(Translate.Id.LatestUpdateTitle), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             switch (dr)

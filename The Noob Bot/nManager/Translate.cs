@@ -491,7 +491,15 @@ namespace nManager
             ProfileQuesterList,
             AddNewQuester,
             EditSelectedQuester,
-            DeleteSelectedQuester
+            DeleteSelectedQuester,
+            LoginFormTitle,
+            LoginFormDefaultIdentifier,
+            LoginFormRemember,
+            LoginFormStart,
+            LoginFormRefresh,
+            LoginFormWebsite,
+            LoginFormForum,
+            LoginFormRegister,
         };
 
         [Serializable]
