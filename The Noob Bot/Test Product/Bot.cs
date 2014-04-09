@@ -31,7 +31,7 @@ namespace Test_Product
         {
             int d;
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 191605, 24780, 29561, 49586, 49588 });
+            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 191605, 24780, 29561, 49586, 49588, 62822 });
             while (true)
             {
                 Thread.Sleep(1000);
