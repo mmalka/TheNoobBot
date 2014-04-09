@@ -69,7 +69,7 @@ namespace The_Noob_Bot
                 LangSelection.Text = langSelected.Remove(langSelected.Length - 1 - 3);
                 LangSelection.SelectedIndexChanged += LangSelection_SelectedIndexChanged;
 
-                LoginFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + " " + Information.Version;
+                LoginFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + @" - " + Information.Version;
                 Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
                 Remember.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRemember);
                 SetToolTypeIfNeeded(Remember);

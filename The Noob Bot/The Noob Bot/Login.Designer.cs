@@ -211,10 +211,7 @@
             // 
             // Remember
             // 
-            this.Remember.AutoSize = true;
             this.Remember.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.Remember.Checked = true;
-            this.Remember.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Remember.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.Remember.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.Remember.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
@@ -262,7 +259,7 @@
             this.LoginFormTitle.Name = "LoginFormTitle";
             this.LoginFormTitle.Size = new System.Drawing.Size(450, 35);
             this.LoginFormTitle.TabIndex = 12;
-            this.LoginFormTitle.Text = "TheNoobBot - 3.0.0";
+            this.LoginFormTitle.Text = "TheNoobBot";
             this.LoginFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LoginFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
             this.LoginFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
