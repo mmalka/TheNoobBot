@@ -135,7 +135,8 @@ namespace nManager.Wow.Helpers
                             count++;
                         }
                     }
-                    XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
+                    if (count != 0)
+                        XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                     return count;
                 }
             }
