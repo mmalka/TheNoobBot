@@ -180,11 +180,6 @@ namespace The_Noob_Bot
 
                 if ((Identifier.Text.Replace(" ", "") != "" && Password.Text.Replace(" ", "") != ""))
                 {
-                    Identifier.Enabled = false;
-                    Password.Enabled = false;
-                    Register.Enabled = false;
-                    Remember.Enabled = false;
-
                     if (Remember.Checked)
                     {
                         Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
@@ -214,8 +209,7 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("LoginOnServer(): " + ex);
             }
-            MessageBox.Show(
-                nManager.Translate.Get(nManager.Translate.Id.Please_enter_your_user_name_and_password) + ".",
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_enter_your_user_name_and_password) + ".",
                 nManager.Translate.Get(nManager.Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
@@ -449,6 +443,10 @@ namespace The_Noob_Bot
         {
             try
             {
+                Identifier.Enabled = false;
+                Password.Enabled = false;
+                Register.Enabled = false;
+                Remember.Enabled = false;
                 LoginButton.Enabled = false;
                 RefreshButton.Enabled = false;
                 if (LoginOnServer() && AttachProcess())
@@ -457,12 +455,26 @@ namespace The_Noob_Bot
                     formMain.Show();
                     Hide();
                 }
-                LoginButton.Enabled = true;
-                RefreshButton.Enabled = true;
+                else
+                {
+                    Identifier.Enabled = true;
+                    Password.Enabled = true;
+                    Register.Enabled = true;
+                    Remember.Enabled = true;
+                    LoginButton.Enabled = true;
+                    RefreshButton.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
-                Logging.WriteError("launchBotB_Click(object sender, EventArgs e): " + ex);
+                Identifier.Enabled = true;
+                Password.Enabled = true;
+                Register.Enabled = true;
+                Remember.Enabled = true;
+
+                LoginButton.Enabled = true;
+                RefreshButton.Enabled = true;
+                Logging.WriteError("LoginButton_Click(object sender, EventArgs e): " + ex);
             }
         }
 
