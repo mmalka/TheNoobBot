@@ -137,6 +137,8 @@ namespace The_Noob_Bot
                         string[] text2 = text.Split('#');
                         Identifier.Text = text2[0];
                         Password.Text = text2[1];
+                        Identifier.ForeColor = Color.FromArgb(118, 118, 118);
+                        Password.ForeColor = Color.FromArgb(118, 118, 118);
                         if (Identifier.Text != "")
                         {
                             Remember.Checked = true;
