@@ -261,7 +261,7 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(CombatClassResetSettingsButton);
             HealerClassResetSettingsButton.Text = Translate.Get(Translate.Id.ResetSettings);
             SetToolTypeIfNeeded(HealerClassResetSettingsButton);
-            closeB.Text = Translate.Get(Translate.Id.Close_without_save);
+            closeB.Text = Translate.Get(Translate.Id.CloseWithoutSaving);
             SetToolTypeIfNeeded(closeB);
             resetB.Text = Translate.Get(Translate.Id.Reset_Settings);
             SetToolTypeIfNeeded(resetB);

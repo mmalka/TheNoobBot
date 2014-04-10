@@ -50,9 +50,9 @@ namespace nManager
 
         private void Translate()
         {
-            SaveButton.Text = "SAVE AND CLOSE"; // nManager.Translate.Get(nManager.Translate.Id.Save); // SAVE AND CLOSE
-            LoadButton.Text = "LOAD A TRANSLATION FILE"; // nManager.Translate.Get(nManager.Translate.Id.Load); // LOAD A TRANSLATION FILE
-            QuitButton.Text = "CLOSE WITHOUT SAVING"; // CLOSE WITHOUT SAVING
+            SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose).ToUpper(); // SAVE AND CLOSE
+            LoadButton.Text = nManager.Translate.Get(nManager.Translate.Id.LoadTranslationFile).ToUpper(); // LOAD A TRANSLATION FILE
+            QuitButton.Text = nManager.Translate.Get(nManager.Translate.Id.CloseWithoutSaving).ToUpper(); // CLOSE WITHOUT SAVING
             TranslateManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools) + @" - " + Information.MainTitle;
         }
 

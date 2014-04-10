@@ -882,7 +882,7 @@
       <Text>Healer Class</Text>
     </Translation>
     <Translation>
-      <Id>Close_without_save</Id>
+      <Id>CloseWithoutSaving</Id>
       <Text>Bezárás mentés nélkül</Text>
     </Translation>
     <Translation>
@@ -1720,6 +1720,10 @@
     <Translation>
       <Id>LoginFormRegister</Id>
       <Text>REGISTER</Text>
+    </Translation>
+    <Translation>
+      <Id>LoadTranslationFile</Id>
+      <Text>Load a translation file</Text>
     </Translation>
   </Translations>
 </Language>

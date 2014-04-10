@@ -883,7 +883,7 @@
       <Text>Healer Class</Text>
     </Translation>
     <Translation>
-      <Id>Close_without_save</Id>
+      <Id>CloseWithoutSaving</Id>
       <Text>Fermer sans sauvegarder</Text>
     </Translation>
     <Translation>
@@ -1721,6 +1721,10 @@
     <Translation>
       <Id>LoginFormRegister</Id>
       <Text>CREER COMPTE</Text>
+    </Translation>
+    <Translation>
+      <Id>LoadTranslationFile</Id>
+      <Text>Charger un fichier de traduction</Text>
     </Translation>
   </Translations>
 </Language>

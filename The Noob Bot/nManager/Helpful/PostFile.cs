@@ -76,7 +76,7 @@ namespace nManager.Helpful
                 string r = reader2.ReadToEnd().Trim();
                 return r;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if (wresp != null)
                 {

@@ -289,7 +289,7 @@ namespace nManager
             Assign_Talents,
             CombatClass,
             HealerClass,
-            Close_without_save,
+            CloseWithoutSaving,
             Reset_Settings,
             Save_and_Close,
             General_Settings,
@@ -500,6 +500,7 @@ namespace nManager
             LoginFormWebsite,
             LoginFormForum,
             LoginFormRegister,
+            LoadTranslationFile,
         };
 
         [Serializable]
