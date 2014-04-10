@@ -235,10 +235,10 @@
             this.Register.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
             this.Register.Location = new System.Drawing.Point(157, 184);
             this.Register.Margin = new System.Windows.Forms.Padding(0);
-            this.Register.MaximumSize = new System.Drawing.Size(95, 24);
-            this.Register.MinimumSize = new System.Drawing.Size(95, 24);
+            this.Register.MaximumSize = new System.Drawing.Size(95, 30);
+            this.Register.MinimumSize = new System.Drawing.Size(95, 30);
             this.Register.Name = "Register";
-            this.Register.Size = new System.Drawing.Size(95, 24);
+            this.Register.Size = new System.Drawing.Size(95, 30);
             this.Register.TabIndex = 11;
             this.Register.Text = "REGISTER";
             this.Register.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
