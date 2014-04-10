@@ -1,4 +1,4 @@
-﻿namespace nManager
+﻿namespace nManager.Helpful.Forms
 {
     partial class TranslationManagementMainFrame
     {

@@ -2,10 +2,9 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using nManager.Helpful;
 using nManager.Properties;
 
-namespace nManager
+namespace nManager.Helpful.Forms
 {
     public partial class TranslationManagementMainFrame : Form
     {
