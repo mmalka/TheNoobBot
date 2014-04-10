@@ -180,6 +180,7 @@
             // 
             // InformationArea
             // 
+            this.InformationArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.InformationArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.InformationArea.Location = new System.Drawing.Point(35, 69);
             this.InformationArea.Margin = new System.Windows.Forms.Padding(0);
