@@ -271,35 +271,6 @@ namespace nManager.Helpful
         }
 
         /// <summary>
-        /// Press a Keyboard Key.
-        /// </summary>
-        /// <param name="mainWindowHandle"> </param>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static void PressKey(IntPtr mainWindowHandle, string key)
-        {
-            try
-            {
-                if (key == "/")
-                {
-                    PressKey(mainWindowHandle, (Keys) VK.DIVIDE);
-                }
-                else if (key.Length > 1 && key.Contains(";"))
-                {
-                    Keybindings.PressBarAndSlotKey(key);
-                }
-                else
-                {
-                    PressKey(mainWindowHandle, (Keys) VkKeyScan(key));
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("PressKey(IntPtr mainWindowHandle, string key): " + exception);
-            }
-        }
-
-        /// <summary>
         /// Sends the text in wow windows.
         /// </summary>
         /// <param name="mainWindowHandle"> </param>
