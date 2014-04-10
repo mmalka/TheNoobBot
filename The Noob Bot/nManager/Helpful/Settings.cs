@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
@@ -60,9 +61,12 @@ namespace nManager.Helpful
             string fileName;
             try
             {
-                fileName = productName + "-" +
-                           Others.DelSpecialChar(ObjectManager.Me.Name) + "." +
-                           ObjectManager.Me.WowClass + "." + Others.DelSpecialChar(Usefuls.RealmName) + ".xml";
+                while (ObjectManager.Me.WowClass.ToString() == "None")
+                {
+                    Thread.Sleep(10);
+                    Application.DoEvents();
+                }
+                fileName = productName + "-" + Others.DelSpecialChar(ObjectManager.Me.Name) + "." + ObjectManager.Me.WowClass + "." + Others.DelSpecialChar(Usefuls.RealmName) + ".xml";
             }
             catch (Exception e)
             {
