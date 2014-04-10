@@ -52,7 +52,6 @@ namespace The_Noob_Bot
             {
                 InitializeBot();
                 InitializeComponent();
-                startB.Enabled = false;
                 Translate();
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
@@ -60,12 +59,7 @@ namespace The_Noob_Bot
                 InitializeUI();
                 _minimizedWindow = new MainMinimized();
                 _minimizedWindow.VisibleChanged += MinimizedVisibleChange;
-                while (!_SpellBookIsReady)
-                {
-                    Thread.Sleep(10);
-                }
                 Logging.Status = "Startup Complete";
-                startB.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -122,7 +116,6 @@ namespace The_Noob_Bot
             }
         }
 
-        private bool _SpellBookIsReady = false;
 
         private void ThreadSpellBook()
         {
@@ -173,7 +166,6 @@ namespace The_Noob_Bot
                 {
                     nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(items);
                 }
-                _SpellBookIsReady = true;
             }
             catch (Exception ex)
             {
