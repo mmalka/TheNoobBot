@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace nManager.Wow.Class
 {
@@ -32,6 +33,7 @@ namespace nManager.Wow.Class
 
         public string InternalData { get; set; }
 
+        [DefaultValue(1)]
         public int SelectGossipOption = 1;
 
         public Point Position
@@ -42,6 +44,7 @@ namespace nManager.Wow.Class
 
         private Point _position = new Point();
 
+        [DefaultValue(FactionType.Neutral)]
         public FactionType Faction
         {
             get { return _faction; }
@@ -50,6 +53,7 @@ namespace nManager.Wow.Class
 
         private FactionType _faction = FactionType.Neutral;
 
+        [DefaultValue(NpcType.None)]
         public NpcType Type
         {
             get { return _type; }

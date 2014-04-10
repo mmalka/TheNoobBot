@@ -1,6 +1,7 @@
 ﻿using System;
 using nManager.Helpful;
 using Math = System.Math;
+using System.ComponentModel;
 
 namespace nManager.Wow.Class
 {
@@ -94,6 +95,7 @@ namespace nManager.Wow.Class
         /// <value>
         /// Point Type.
         /// </value>
+        [DefaultValue("")]
         public string Type
         {
             get { return _type; }
