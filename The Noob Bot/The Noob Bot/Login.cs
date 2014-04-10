@@ -326,6 +326,8 @@ namespace The_Noob_Bot
                 {
                     SessionList.Items.Add(v);
                 }
+                if (SessionList.Items.Count == 0)
+                    SessionList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game));
                 RefreshButton.Enabled = true;
             }
             catch (Exception ex)
