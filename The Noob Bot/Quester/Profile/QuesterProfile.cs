@@ -122,11 +122,11 @@ namespace Quester.Profile
         internal int CurrentCount = 0;
         internal List<Point> PathHotspots = null;
         public List<int> Entry = new List<int>();
-        public bool ShouldSerializeEntry() { return Entry.Count > 0; }
+        public bool ShouldSerializeEntry() { return Entry != null && Entry.Count > 0; }
         [DefaultValue("NoName")]
         public string Name = "NoName";
         public List<uint> Factions = new List<uint>();
-        public bool ShouldSerializeFactions() { return Factions.Count > 0; }
+        public bool ShouldSerializeFactions() { return Factions != null && Factions.Count > 0; }
         public int CollectItemId = 0;
         public int CollectCount = 0;
         public List<Point> Hotspots = new List<Point>();
