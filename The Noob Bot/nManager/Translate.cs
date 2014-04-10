@@ -501,6 +501,17 @@ namespace nManager
             LoginFormForum,
             LoginFormRegister,
             LoadTranslationFile,
+            LuaExecButton,
+            GpsButton,
+            TargetInfoButton,
+            TargetInfo2Button,
+            TranslationManagerButton,
+            CsharpExecButton,
+            NpcTypeButton,
+            NpcFactionButton,
+            SearchObjectButton,
+            AllObjectsButton,
+            SearchObjectBox,
         };
 
         [Serializable]

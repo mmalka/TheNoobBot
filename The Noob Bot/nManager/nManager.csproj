@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DocumentationFile>
     </DocumentationFile>
     <NoWarn>1591</NoWarn>
@@ -63,11 +63,11 @@
     <Compile Include="FiniteStateMachine\State.cs" />
     <Compile Include="Helpful\Communication.cs" />
     <Compile Include="Helpful\Display.cs" />
-    <Compile Include="Helpful\Forms\DeveloperTools.cs">
+    <Compile Include="Helpful\Forms\DeveloperToolsMainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Helpful\Forms\DeveloperTools.Designer.cs">
-      <DependentUpon>DeveloperTools.cs</DependentUpon>
+    <Compile Include="Helpful\Forms\DeveloperToolsMainFrame.designer.cs">
+      <DependentUpon>DeveloperToolsMainFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpful\Forms\Error Popup.cs">
       <SubType>Form</SubType>
@@ -277,9 +277,8 @@
     <Compile Include="Wow\Helpers\EquipmentAndStats.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Helpful\Forms\DeveloperTools.resx">
-      <DependentUpon>DeveloperTools.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Helpful\Forms\DeveloperToolsMainFrame.resx">
+      <DependentUpon>DeveloperToolsMainFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\Error Popup.resx">
       <DependentUpon>Error Popup.cs</DependentUpon>
@@ -319,6 +318,24 @@
     <None Include="Resources\close_button.png" />
     <None Include="Resources\close_buttonG.png" />
     <None Include="Resources\reduce_buttonG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_150.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

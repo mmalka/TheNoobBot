@@ -1725,5 +1725,49 @@
       <Id>LoadTranslationFile</Id>
       <Text>Load a translation file</Text>
     </Translation>
+    <Translation>
+      <Id>LuaExecButton</Id>
+      <Text>Execute LUA code</Text>
+    </Translation>
+    <Translation>
+      <Id>GpsButton</Id>
+      <Text>GPS infos</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetInfoButton</Id>
+      <Text>Target's information</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetInfo2Button</Id>
+      <Text>Target's information 2</Text>
+    </Translation>
+    <Translation>
+      <Id>TranslationManagerButton</Id>
+      <Text>Open Translation Manager</Text>
+    </Translation>
+    <Translation>
+      <Id>CsharpExecButton</Id>
+      <Text>Execute C# code</Text>
+    </Translation>
+    <Translation>
+      <Id>NpcTypeButton</Id>
+      <Text>NPC Type List</Text>
+    </Translation>
+    <Translation>
+      <Id>NpcFactionButton</Id>
+      <Text>NPC Faction List</Text>
+    </Translation>
+    <Translation>
+      <Id>SearchObjectButton</Id>
+      <Text>Search Object</Text>
+    </Translation>
+    <Translation>
+      <Id>AllObjectsButton</Id>
+      <Text>Get all objects informations</Text>
+    </Translation>
+    <Translation>
+      <Id>SearchObjectBox</Id>
+      <Text>Type in the name of the WoWObject you are looking for:</Text>
+    </Translation>
   </Translations>
 </Language>

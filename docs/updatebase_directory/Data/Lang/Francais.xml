@@ -1124,7 +1124,7 @@
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text />
+      <Text>(Fish in Fishing School as well as outside)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
@@ -1136,7 +1136,7 @@
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
-      <Text />
+      <Text>(Do archaeology to farms exp, achievements and items.)</Text>
     </Translation>
     <Translation>
       <Id>Mimesis_Product_Description</Id>
@@ -1725,6 +1725,50 @@
     <Translation>
       <Id>LoadTranslationFile</Id>
       <Text>Charger un fichier de traduction</Text>
+    </Translation>
+    <Translation>
+      <Id>LuaExecButton</Id>
+      <Text>Executer le code LUA</Text>
+    </Translation>
+    <Translation>
+      <Id>GpsButton</Id>
+      <Text>Coord GPS</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetInfoButton</Id>
+      <Text>Informations sur la cible</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetInfo2Button</Id>
+      <Text>Informations sur la cible 2</Text>
+    </Translation>
+    <Translation>
+      <Id>TranslationManagerButton</Id>
+      <Text>Ouvrir l'éditeur de traductions</Text>
+    </Translation>
+    <Translation>
+      <Id>CsharpExecButton</Id>
+      <Text>Executer le code C#</Text>
+    </Translation>
+    <Translation>
+      <Id>NpcTypeButton</Id>
+      <Text>Liste des Type de PNJ</Text>
+    </Translation>
+    <Translation>
+      <Id>NpcFactionButton</Id>
+      <Text>Liste des Faction de PNJ</Text>
+    </Translation>
+    <Translation>
+      <Id>SearchObjectButton</Id>
+      <Text>Chercher WoWObject</Text>
+    </Translation>
+    <Translation>
+      <Id>AllObjectsButton</Id>
+      <Text>Liste de tous les objects en mémoire</Text>
+    </Translation>
+    <Translation>
+      <Id>SearchObjectBox</Id>
+      <Text>Ecrivez le nom du WoWObject que vous cherchez:</Text>
     </Translation>
   </Translations>
 </Language>

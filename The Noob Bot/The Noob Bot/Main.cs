@@ -636,7 +636,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Thread t = new Thread(DevToolsThread) {Name = "DevTools Form"};
+                Thread t = new Thread(DeveloperToolsThread) { Name = "DeveloperToolsForm" };
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
             }
@@ -646,16 +646,16 @@ namespace The_Noob_Bot
             }
         }
 
-        private void DevToolsThread()
+        private void DeveloperToolsThread()
         {
             try
             {
-                DeveloperTools f = new DeveloperTools();
+                DeveloperToolsMainFrame f = new DeveloperToolsMainFrame();
                 f.ShowDialog();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Main > DevToolsThread(): " + ex);
+                Logging.WriteError("Main > DeveloperToolsThread(): " + ex);
             }
         }
 
