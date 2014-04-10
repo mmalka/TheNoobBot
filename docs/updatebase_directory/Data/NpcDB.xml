@@ -44830,6 +44830,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>59077</Entry>
+    <Name>Apothecary Cheng</Name>
+    <Position>
+      <X>1744.82813</X>
+      <Y>360.307281</Y>
+      <Z>482.139862</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>FirstAidTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>59079</Entry>
     <Name>Christofen Moonfeather</Name>
     <Position>
@@ -45054,6 +45068,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61119</Entry>
+    <Name>Sweaty Glove</Name>
+    <Position>
+      <X>3651.58862</X>
+      <Y>662.269165</Y>
+      <Z>637.4038</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>61215</Entry>
     <Name>Claretta</Name>
     <Position>
@@ -45078,6 +45106,48 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61496</Entry>
+    <Name>Steelbender Doshu</Name>
+    <Position>
+      <X>4344.42871</X>
+      <Y>873.6384</Y>
+      <Z>108.438896</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61496</Entry>
+    <Name>Steelbender Doshu</Name>
+    <Position>
+      <X>4344.42871</X>
+      <Y>873.6384</Y>
+      <Z>108.438896</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61531</Entry>
+    <Name>Full Flask</Name>
+    <Position>
+      <X>3568.84253</X>
+      <Y>600.774963</Y>
+      <Z>609.1297</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45124,6 +45194,90 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61624</Entry>
+    <Name>Black Arrow</Name>
+    <Position>
+      <X>3439.6936</X>
+      <Y>669.283</Y>
+      <Z>609.0524</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61624</Entry>
+    <Name>Black Arrow</Name>
+    <Position>
+      <X>3439.6936</X>
+      <Y>669.283</Y>
+      <Z>609.0524</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61651</Entry>
+    <Name>Master Lao</Name>
+    <Position>
+      <X>3489.28467</X>
+      <Y>650.239563</Y>
+      <Z>609.668</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61749</Entry>
+    <Name>The Metal Paw</Name>
+    <Position>
+      <X>1769.724</X>
+      <Y>372.217</Y>
+      <Z>478.263763</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61749</Entry>
+    <Name>The Metal Paw</Name>
+    <Position>
+      <X>1769.724</X>
+      <Y>372.217</Y>
+      <Z>478.263763</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>61756</Entry>
+    <Name>Little Elsa</Name>
+    <Position>
+      <X>1689.54346</X>
+      <Y>343.4375</Y>
+      <Z>479.8307</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>62322</Entry>
     <Name>Graceful Swan</Name>
     <Position>
@@ -45134,6 +45288,34 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>62656</Entry>
+    <Name>Huo the Firestarter</Name>
+    <Position>
+      <X>1179.79517</X>
+      <Y>-2704.52612</Y>
+      <Z>147.702179</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>62657</Entry>
+    <Name>Jolly Chao</Name>
+    <Position>
+      <X>1193.27209</X>
+      <Y>-2689.47339</Y>
+      <Z>156.5631</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45236,6 +45418,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>62871</Entry>
+    <Name>Puli the Even Handed</Name>
+    <Position>
+      <X>1765.69788</X>
+      <Y>291.921875</Y>
+      <Z>482.033539</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>62872</Entry>
     <Name>Cranfur the Noodler</Name>
     <Position>
@@ -45273,6 +45469,20 @@
       <Type>None</Type>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>62883</Entry>
+    <Name>Mai the Sleepy</Name>
+    <Position>
+      <X>2260.02075</X>
+      <Y>913.5903</Y>
+      <Z>481.147858</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>Innkeeper</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -46496,6 +46706,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>64449</Entry>
+    <Name>Kim Won Gi</Name>
+    <Position>
+      <X>-311.74527</X>
+      <Y>510.712433</Y>
+      <Z>168.57756</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>64451</Entry>
     <Name>Yun Applebarrel</Name>
     <Position>
@@ -47210,6 +47434,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>66360</Entry>
+    <Name>Master Brandom</Name>
+    <Position>
+      <X>3757.92</X>
+      <Y>1791.78</Y>
+      <Z>951.000732</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>MiningTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>66678</Entry>
     <Name>Krystel</Name>
     <Position>
@@ -47359,6 +47597,34 @@
       <Type>None</Type>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>67176</Entry>
+    <Name>Armorer Gang</Name>
+    <Position>
+      <X>2285.49487</X>
+      <Y>899.3143</Y>
+      <Z>481.126465</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>67176</Entry>
+    <Name>Armorer Gang</Name>
+    <Position>
+      <X>2285.49487</X>
+      <Y>899.3143</Y>
+      <Z>481.126465</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -47896,6 +48162,146 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>72993</Entry>
+    <Name>Lao-Chin the Iron Belly</Name>
+    <Position>
+      <X>-786.5996</X>
+      <Y>-5059.6665</Y>
+      <Z>2.99400139</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>72997</Entry>
+    <Name>Fei Li</Name>
+    <Position>
+      <X>-514.2465</X>
+      <Y>-5024.39746</Y>
+      <Z>2.056154</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73003</Entry>
+    <Name>Brewmaster Bo</Name>
+    <Position>
+      <X>-556.114136</X>
+      <Y>-5112.55273</Y>
+      <Z>2.05598783</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73004</Entry>
+    <Name>Brewmaster Blanche</Name>
+    <Position>
+      <X>-707.1196</X>
+      <Y>-5114.434</Y>
+      <Z>2.05618</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73006</Entry>
+    <Name>Brewmaster Chani</Name>
+    <Position>
+      <X>-518.7427</X>
+      <Y>-4955.20557</Y>
+      <Z>2.05596256</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73007</Entry>
+    <Name>Uncle Gao</Name>
+    <Position>
+      <X>-519.6489</X>
+      <Y>-5096.216</Y>
+      <Z>2.0559895</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73009</Entry>
+    <Name>Brother Yakshoe</Name>
+    <Position>
+      <X>-499.965637</X>
+      <Y>-5035.757</Y>
+      <Z>3.14198017</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73010</Entry>
+    <Name>Brother Rabbitsfoot</Name>
+    <Position>
+      <X>-722.9393</X>
+      <Y>-5121.14258</Y>
+      <Z>2.09765625</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73047</Entry>
+    <Name>Jogu the Drunk</Name>
+    <Position>
+      <X>-796.762146</X>
+      <Y>-5001.633</Y>
+      <Z>2.05641341</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73082</Entry>
+    <Name>Master Li</Name>
+    <Position>
+      <X>-721.3403</X>
+      <Y>-4915.55566</Y>
+      <Z>2.05643487</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>73151</Entry>
     <Name>Deathguard Netharian</Name>
     <Position>
@@ -47924,6 +48330,132 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73305</Entry>
+    <Name>Mistweaver Ai</Name>
+    <Position>
+      <X>-658.364563</X>
+      <Y>-5108.356</Y>
+      <Z>2.056415</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73306</Entry>
+    <Name>Mistweaver Ku</Name>
+    <Position>
+      <X>-641.6667</X>
+      <Y>-5108.283</Y>
+      <Z>2.057918</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73307</Entry>
+    <Name>Speaker Gulan</Name>
+    <Position>
+      <X>-485.300354</X>
+      <Y>-5881.48975</Y>
+      <Z>97.45686</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73398</Entry>
+    <Name>Sentry Mimao</Name>
+    <Position>
+      <X>-424.463531</X>
+      <Y>-4618.557</Y>
+      <Z>4.34980631</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73399</Entry>
+    <Name>Sentry "Big Belly" Fong</Name>
+    <Position>
+      <X>-922.260437</X>
+      <Y>-4636.778</Y>
+      <Z>4.42395</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73401</Entry>
+    <Name>Sentry Yinli</Name>
+    <Position>
+      <X>-903.1823</X>
+      <Y>-4649.057</Y>
+      <Z>5.312688</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73401</Entry>
+    <Name>Sentry Yinli</Name>
+    <Position>
+      <X>-903.1823</X>
+      <Y>-4649.057</Y>
+      <Z>5.312688</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73403</Entry>
+    <Name>Sentry Dondao</Name>
+    <Position>
+      <X>-409.9375</X>
+      <Y>-4615.39941</Y>
+      <Z>4.35083055</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73403</Entry>
+    <Name>Sentry Dondao</Name>
+    <Position>
+      <X>-409.9375</X>
+      <Y>-4615.39941</Y>
+      <Z>4.35083055</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>73422</Entry>
     <Name>Miss Jadepaw</Name>
     <Position>
@@ -47933,6 +48465,118 @@
       <Type>None</Type>
     </Position>
     <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73435</Entry>
+    <Name>Grimthorn Redbeard</Name>
+    <Position>
+      <X>-782.1198</X>
+      <Y>-4945.74463</Y>
+      <Z>2.05644917</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73618</Entry>
+    <Name>Brewmaster Tzu</Name>
+    <Position>
+      <X>-512.428833</X>
+      <Y>-4946.12842</Y>
+      <Z>2.05642223</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73622</Entry>
+    <Name>Graceful Swan</Name>
+    <Position>
+      <X>-516.059</X>
+      <Y>-4961.32129</Y>
+      <Z>2.05642223</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73629</Entry>
+    <Name>Hopswift</Name>
+    <Position>
+      <X>-516.463562</X>
+      <Y>-4969.116</Y>
+      <Z>2.056987</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73647</Entry>
+    <Name>Sapmaster Vu</Name>
+    <Position>
+      <X>-559.862854</X>
+      <Y>-5116.568</Y>
+      <Z>2.05586314</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73649</Entry>
+    <Name>Mama Stormstout</Name>
+    <Position>
+      <X>-614.857666</X>
+      <Y>-4913.07129</Y>
+      <Z>2.15257359</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73651</Entry>
+    <Name>Big Dan Stormstout</Name>
+    <Position>
+      <X>-578.7118</X>
+      <Y>-4913.78125</Y>
+      <Z>2.05653787</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73657</Entry>
+    <Name>Great Chef Woo</Name>
+    <Position>
+      <X>-786.1649</X>
+      <Y>-5086.16846</Y>
+      <Z>2.14883661</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -47962,6 +48606,104 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73812</Entry>
+    <Name>Brother Noodle</Name>
+    <Position>
+      <X>-729.199646</X>
+      <Y>-5120.79346</Y>
+      <Z>2.05768919</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73813</Entry>
+    <Name>Galu Wellspring</Name>
+    <Position>
+      <X>-688.2344</X>
+      <Y>-4914.432</Y>
+      <Z>2.05653334</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73814</Entry>
+    <Name>Noodle-Maker Monmon</Name>
+    <Position>
+      <X>-508.862854</X>
+      <Y>-5046.368</Y>
+      <Z>2.0564425</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73815</Entry>
+    <Name>Hearthminder Digao</Name>
+    <Position>
+      <X>-511.107635</X>
+      <Y>-5076.21</Y>
+      <Z>2.05774045</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73816</Entry>
+    <Name>Master Miantiao</Name>
+    <Position>
+      <X>-512.5851</X>
+      <Y>-5062.42871</Y>
+      <Z>2.05599332</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73817</Entry>
+    <Name>Smiling Jade</Name>
+    <Position>
+      <X>-755.920166</X>
+      <Y>-4916.455</Y>
+      <Z>2.05621481</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>73819</Entry>
+    <Name>Ku-Mo</Name>
+    <Position>
+      <X>-787.404541</X>
+      <Y>-5070.78125</Y>
+      <Z>2.05598736</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -52236,6 +52978,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>203418</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-516.3958</X>
+      <Y>-4969.0625</Y>
+      <Z>-0.346065938</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>203429</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -54322,6 +55078,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>210944</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>3474.019</X>
+      <Y>613.588562</Y>
+      <Z>608.144043</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>211006</Entry>
     <Name>Sunsong Ranch Mailbox</Name>
     <Position>
@@ -54345,6 +55115,20 @@
       <Type>None</Type>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>211226</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>2262.16138</X>
+      <Y>913.71875</Y>
+      <Z>481.124847</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -54546,6 +55330,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>212650</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2285.184</X>
+      <Y>901.4792</Y>
+      <Z>480.9679</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>212651</Entry>
     <Name>Forge</Name>
     <Position>
@@ -54556,6 +55354,34 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>212774</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1773.88367</X>
+      <Y>374.319458</Y>
+      <Z>478.060944</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>212775</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>1776.92017</X>
+      <Y>311.262146</Y>
+      <Z>477.895935</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -54910,6 +55736,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>215182</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2073.22363</X>
+      <Y>212.395172</Y>
+      <Z>479.600952</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>215460</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3753.78735</X>
+      <Y>1788.45837</Y>
+      <Z>950.848755</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>215973</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -54933,6 +55787,34 @@
       <Type>None</Type>
     </Position>
     <Faction>Neutral</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>227893</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-428.9375</X>
+      <Y>-4615.778</Y>
+      <Z>4.25560474</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>227894</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-908.2066</X>
+      <Y>-4633.7915</Y>
+      <Z>4.39697456</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>

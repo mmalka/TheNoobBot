@@ -103,6 +103,8 @@ namespace nManager.Wow.Helpers
                     for (int i = 0; i < npcList.Count; i++)
                     {
                         Npc npc = npcList[i];
+                        if (npc.Name == null || npc.Name == "")
+                            continue;
                         bool found = false;
                         bool factionChange = false;
                         Npc oldNpc = new Npc();
