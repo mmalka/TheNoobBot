@@ -91,115 +91,16 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
-        public static string GetSlotBarBySpellName(string spell)
-        {
-            try
-            {
-                List<string> spellList = new List<string> {spell};
-                return GetSlotBarBySpellName(spellList);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetSlotBarBySpellName(string spell): " + exception);
-            }
-            return "";
-        }
-
-        public static string GetSlotBarBySpellName(List<string> spellList)
-        {
-            try
-            {
-                for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
-                     i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
-                     // To be updated.
-                     i = i + (int) Addresses.BarManager.nextSlot)
-                {
-                    uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint) i);
-                    if (sIdt != 0)
-                    {
-                        if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
-                        {
-                            int j = ((i - ((int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar))/
-                                     (int) Addresses.BarManager.nextSlot);
-                            int k = 0;
-                            while (true)
-                            {
-                                if (j - 12 >= 0)
-                                {
-                                    j = j - 12;
-                                    k++;
-                                }
-                                else
-                                {
-                                    return (k + 1) + ";" + (j + 1);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetSlotBarBySpellName(List<string> spellList): " + exception);
-            }
-            return "";
-        }
-
-        public static string GetSlotBarBySpellId(UInt32 spellId)
-        {
-            try
-            {
-                for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
-                     i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
-                     // To be updated.
-                     i = i + (int) Addresses.BarManager.nextSlot)
-                {
-                    if (Memory.WowMemory.Memory.ReadUInt((uint) i) == spellId)
-                    {
-                        int j = (i - (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar)/
-                                (int) Addresses.BarManager.nextSlot;
-                        int k = 0;
-                        while (true)
-                        {
-                            if (j - 12 > 0)
-                            {
-                                j = j - 12;
-                                k++;
-                            }
-                            else
-                            {
-                                return (k + 1) + ";" + (j + 1);
-                            }
-
-                            if (k > 20 || j > 20)
-                                return "";
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetSlotBarBySpellId(UInt32 spellId): " + exception);
-            }
-            return "";
-        }
-
         public static string GetClientNameBySpellName(List<string> spellList)
         {
             try
             {
-                for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
-                     i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
-                     // To be updated.
-                     i = i + (int) Addresses.BarManager.nextSlot)
+                foreach (uint id in SpellBookID())
                 {
-                    uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint) i);
-                    if (sIdt != 0)
+                    string spellName = SpellListManager.SpellNameById(id);
+                    if (spellList.Contains(spellName))
                     {
-                        if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
-                        {
-                            return SpellListManager.SpellNameById(sIdt);
-                        }
+                        return spellName;
                     }
                 }
             }
@@ -208,79 +109,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("GetClientNameBySpellName(List<string> spellList): " + exception);
             }
             return "";
-        }
-
-        public static bool SlotIsEnable(string barAndSlot)
-        {
-            try
-            {
-                barAndSlot = barAndSlot.Replace("{", "");
-                barAndSlot = barAndSlot.Replace("}", "");
-                barAndSlot = barAndSlot.Replace(" ", "");
-                string[] keySlot = barAndSlot.Split(';');
-
-
-                if (Others.ToUInt32(keySlot[0]) == 1)
-                {
-                    int numBarOne = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                                    (uint) Addresses.BarManager.startBar);
-                    if (numBarOne > 0)
-                        keySlot[0] = (6 + (numBarOne)).ToString(CultureInfo.InvariantCulture);
-                }
-
-                uint adresse = Memory.WowProcess.WowModule + (uint) Addresses.BarManager.slotIsEnable +
-                               (4*12*(Others.ToUInt32(keySlot[0]) - 1)) + (4*(Others.ToUInt32(keySlot[1]) - 1));
-
-                return Memory.WowMemory.Memory.ReadUInt(adresse) == 1;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SlotIsEnable(string barAndSlot): " + exception);
-            }
-            return false;
-        }
-
-        public static void LaunchSpellByName(string spellName)
-        {
-            try
-            {
-                string slotKeySpell = GetSlotBarBySpellName(spellName);
-                if (slotKeySpell == "")
-                    CastSpellByNameLUA(spellName);
-                else
-                    Keybindings.PressBarAndSlotKey(slotKeySpell);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LaunchSpellByName(string spellName): " + exception);
-            }
-        }
-
-        public static void LaunchSpellById(UInt32 spellId)
-        {
-            try
-            {
-                string slotKeySpell = GetSlotBarBySpellId(spellId);
-                if (slotKeySpell == "")
-                {
-                    UInt32 spellIdTemps =
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.BarManager.startBar);
-                    Memory.WowMemory.Memory.WriteUInt(
-                        Memory.WowProcess.WowModule + (uint) Addresses.BarManager.startBar, spellId);
-                    Keybindings.PressBarAndSlotKey("1;1");
-                    Memory.WowMemory.Memory.WriteUInt(
-                        Memory.WowProcess.WowModule + (uint) Addresses.BarManager.startBar, spellIdTemps);
-                }
-                else
-                {
-                    Keybindings.PressBarAndSlotKey(slotKeySpell);
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("LaunchSpellById(UInt32 spellId): " + exception);
-            }
         }
 
         public static void CastSpellByNameLUA(string spellName)
@@ -790,13 +618,13 @@ namespace nManager.Wow.Helpers
 
                     string randomString = Others.GetRandomString(Others.Random(5, 10));
                     string command = randomString + " = \"\"; " +
-                        "local spellBookList = " + listIdString + " " +
-                        "for arrayId = 1, table.getn(spellBookList) do " +
-                        "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(spellBookList[arrayId]); " +
-                        randomString + " = " + randomString +
-                        " .. tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellBookList[arrayId]);" +
-                        randomString + " = " + randomString + " .. \"||\"" +
-                        "end ";
+                                     "local spellBookList = " + listIdString + " " +
+                                     "for arrayId = 1, table.getn(spellBookList) do " +
+                                     "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(spellBookList[arrayId]); " +
+                                     randomString + " = " + randomString +
+                                     " .. tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellBookList[arrayId]);" +
+                                     randomString + " = " + randomString + " .. \"||\"" +
+                                     "end ";
                     string result = Lua.LuaDoString(command, randomString);
                     if (!string.IsNullOrWhiteSpace(result))
                     {
@@ -894,26 +722,6 @@ namespace nManager.Wow.Helpers
 
         private static readonly Dictionary<string, List<uint>> CacheSpellIdByName = new Dictionary<string, List<uint>>();
 
-
-        public static string GetMountBarAndSlot()
-        {
-            try
-            {
-                List<string> mountList =
-                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
-
-                string key = GetSlotBarBySpellName(mountList);
-                if (key != "")
-                    Logging.Write("Searching for mount: " + key);
-                return key;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetMountBarAndSlot(): " + exception);
-            }
-            return "";
-        }
-
         public static string GetMountName()
         {
             try
@@ -952,25 +760,6 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
-        public static string GetFlyMountBarAndSlot()
-        {
-            try
-            {
-                List<string> flyMountList =
-                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
-
-                string key = GetSlotBarBySpellName(flyMountList);
-                if (key != "")
-                    Logging.Write("Searching for flying mount: " + key);
-                return key;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetFlyMountBarAndSlot(): " + exception);
-            }
-            return "";
-        }
-
         public static string GetAquaticMountName()
         {
             try
@@ -986,25 +775,6 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("GetAquaticMountName(): " + exception);
-            }
-            return "";
-        }
-
-        public static string GetAquaticMountBarAndSlot()
-        {
-            try
-            {
-                List<string> aquaticMountList =
-                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
-
-                string key = GetSlotBarBySpellName(aquaticMountList);
-                if (key != "")
-                    Logging.Write("Searching for aquatic mount: " + key);
-                return key;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetAquaticMountBarAndSlot(): " + exception);
             }
             return "";
         }
@@ -1116,24 +886,6 @@ namespace nManager.Wow.Helpers
                 catch (Exception exception)
                 {
                     Logging.WriteError("SpellNameById(UInt32 spellId): " + exception);
-                }
-                return "";
-            }
-
-            public static string SpellNameByIdExperimental(UInt32 spellId)
-            {
-                try
-                {
-                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + ",_,_,_,_,_,_,_,_ = GetSpellInfo(" + spellId + ")");
-                    string sResult = Lua.GetLocalizedText(randomStringResult);
-                    Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): " + sResult + ";" +
-                                       SpellNameById(spellId) + ";" + spellId);
-                    return sResult;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("SpellNameByIdExperimental(UInt32 spellId): " + exception);
                 }
                 return "";
             }

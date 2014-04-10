@@ -65,7 +65,7 @@ namespace nManager.Wow.Bot.Tasks
                     _flyMount = string.Empty;
                 }
                 if (ObjectManager.ObjectManager.Me.Level >= 60 && _aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
-                    _localizedAbysalMountName = SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
+                    _localizedAbysalMountName = SpellManager.SpellListManager.SpellNameById(75207);
 
                 Spell wisdom4Winds = new Spell(115913);
                 _wisdom4Winds = wisdom4Winds.KnownSpell;

@@ -103,17 +103,6 @@
         }
 
         /// <summary>
-        ///   Bar manager
-        /// </summary>
-        public enum BarManager
-        {
-            slotIsEnable = 0xDD7208,
-            nbBar = 0xDD77AC,
-            startBar = 0xDD77AC,
-            nextSlot = 0x4,
-        }
-
-        /// <summary>
         ///   EventsListener
         /// </summary>
         public enum EventsListener
@@ -187,7 +176,7 @@
         {
             SpellBookNumSpells = 0xDC20F0, // Script_SetSpellBookItem
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xDC213C + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xDC213C + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
         }
 
