@@ -69,12 +69,6 @@
     <Compile Include="Helpful\Forms\DeveloperTools.Designer.cs">
       <DependentUpon>DeveloperTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpful\Forms\Translate Tools.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Helpful\Forms\Translate Tools.Designer.cs">
-      <DependentUpon>Translate Tools.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpful\Forms\Error Popup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +80,12 @@
     </Compile>
     <Compile Include="Helpful\Forms\GeneralSettings.Designer.cs">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\TranslateTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\TranslateTools.Designer.cs">
+      <DependentUpon>TranslateTools.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpful\Forms\UserControls\LoggingUC.cs">
       <SubType>UserControl</SubType>
@@ -284,11 +284,11 @@
     <EmbeddedResource Include="Helpful\Forms\Error Popup.resx">
       <DependentUpon>Error Popup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Helpful\Forms\Translate Tools.resx">
-      <DependentUpon>Translate Tools.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\GeneralSettings.resx">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\TranslateTools.resx">
+      <DependentUpon>TranslateTools.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\UserControls\LoggingUC.resx">
       <DependentUpon>LoggingUC.cs</DependentUpon>
@@ -305,15 +305,20 @@
       <Name>RecastLayer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Save.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Redo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Exit.png" />
+    <None Include="Resources\greenB_260.png" />
+    <None Include="Resources\greenB.png" />
+    <None Include="Resources\blueB_260.png" />
+    <None Include="Resources\blackB_260.png" />
+    <None Include="Resources\blueB.png" />
+    <None Include="Resources\blackB.png" />
+    <None Include="Resources\reduce_button.png" />
+    <None Include="Resources\close_button.png" />
+    <None Include="Resources\close_buttonG.png" />
+    <None Include="Resources\reduce_buttonG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

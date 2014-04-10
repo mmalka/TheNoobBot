@@ -16,6 +16,7 @@ namespace The_Noob_Bot
 {
     public partial class Login : Form
     {
+        
         private const string UpdateCheck = "573-567-555-554-606-605-593";
         private const string KeyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
         private Image _closeButtonImage;
@@ -69,7 +70,7 @@ namespace The_Noob_Bot
                 LangSelection.Text = langSelected.Remove(langSelected.Length - 1 - 3);
                 LangSelection.SelectedIndexChanged += LangSelection_SelectedIndexChanged;
 
-                LoginFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + @" - " + Information.Version;
+                LoginFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormTitle) + @" - " + Information.MainTitle;
                 Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
                 Remember.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRemember);
                 SetToolTypeIfNeeded(Remember);

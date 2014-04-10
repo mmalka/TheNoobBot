@@ -178,7 +178,7 @@ namespace The_Noob_Bot
             try
             {
                 GetSubcriptionInfo();
-                Text = "The Noob Bot - " + nManager.Information.Version;
+                Text = Information.MainTitle;
                 if (LoginServer.IsFreeVersion)
                     Text += " - Trial";
                 playerNameB.Text = ObjectManager.Me.Name;

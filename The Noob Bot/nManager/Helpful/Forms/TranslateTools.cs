@@ -1,13 +1,21 @@
-using System;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using nManager.Helpful;
+using nManager.Properties;
 
-namespace nManager.Helpful.Forms
+namespace nManager
 {
-    public partial class TranslationManagementMainFrame : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class TranslationManagementMainFrame : Form
     {
         private readonly Translate.Language _translation = new Translate.Language();
         private readonly Translate.Language _defaultLangage = XmlSerializer.Deserialize<Translate.Language>(Application.StartupPath + @"\Data\Lang\English.xml");
+        private Image _closeButtonImage;
+        private bool _flagClick;
+        private int _positionInitialeX;
+        private int _positionInitialeY;
+        private Image _reduceButtonImage;
 
         public TranslationManagementMainFrame()
         {
@@ -19,7 +27,7 @@ namespace nManager.Helpful.Forms
                     TopMost = true;
                 TranslationTable.Columns.Add("Id", "Id");
                 TranslationTable.Columns[0].ReadOnly = true;
-                TranslationTable.Columns[0].Width = 124;
+                TranslationTable.Columns[0].Width = 72;
                 TranslationTable.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 TranslationTable.Columns.Add("YourTranslation", "Your translated text");
                 TranslationTable.Columns[1].Width = 300;
@@ -31,7 +39,7 @@ namespace nManager.Helpful.Forms
 
                 foreach (Translate.Translation translation in _defaultLangage.Translations)
                 {
-                    TranslationTable.Rows.Add(new object[] {translation.Id.ToString(), "", translation.Text});
+                    TranslationTable.Rows.Add(new object[] { translation.Id.ToString(), "", translation.Text });
                 }
             }
             catch (Exception e)
@@ -42,21 +50,96 @@ namespace nManager.Helpful.Forms
 
         private void Translate()
         {
-            SaveAsButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-            LoadAsButton.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
-            TitleText = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools);
+            SaveButton.Text = "SAVE AND CLOSE"; // nManager.Translate.Get(nManager.Translate.Id.Save); // SAVE AND CLOSE
+            LoadButton.Text = "LOAD A TRANSLATION FILE"; // nManager.Translate.Get(nManager.Translate.Id.Load); // LOAD A TRANSLATION FILE
+            QuitButton.Text = "CLOSE WITHOUT SAVING"; // CLOSE WITHOUT SAVING
+            TranslateManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools) + @" - " + Information.MainTitle;
         }
 
-        private void SaveAsButton_Click(object sender, EventArgs e)
+        private void MainFormMouseDown(object sender, MouseEventArgs e)
         {
-            SaveGrid();
+            _flagClick = true;
+            _positionInitialeX = e.X;
+            _positionInitialeY = e.Y;
         }
 
-        private void LoadAsButton_Click(object sender, EventArgs e)
+        private void MainFormMouseUp(object sender, MouseEventArgs e)
         {
-            LoadGrid();
+            _flagClick = false;
         }
 
+
+        private void MainFormMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_flagClick)
+            {
+                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
+            }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ReduceButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void LoadButton_MouseEnter(object sender, EventArgs e)
+        {
+            LoadButton.Image = Resources.greenB_260;
+        }
+
+        private void LoadButton_MouseLeave(object sender, EventArgs e)
+        {
+            LoadButton.Image = Resources.blueB_260;
+        }
+
+        private void SaveButton_MouseEnter(object sender, EventArgs e)
+        {
+            SaveButton.Image = Resources.greenB_260;
+        }
+
+        private void SaveButton_MouseLeave(object sender, EventArgs e)
+        {
+            SaveButton.Image = Resources.blueB_260;
+        }
+
+        private void QuitButton_MouseEnter(object sender, EventArgs e)
+        {
+            QuitButton.Image = Resources.greenB_260;
+        }
+
+        private void QuitButton_MouseLeave(object sender, EventArgs e)
+        {
+            QuitButton.Image = Resources.blackB_260;
+        }
+
+        private void ReduceButton_MouseEnter(object sender, EventArgs e)
+        {
+            _reduceButtonImage = ReduceButton.Image;
+            ReduceButton.Image = Resources.reduce_buttonG;
+        }
+
+        private void ReduceButton_MouseLeave(object sender, EventArgs e)
+        {
+            ReduceButton.Image = _reduceButtonImage;
+            _reduceButtonImage = null;
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            _closeButtonImage = CloseButton.Image;
+            CloseButton.Image = Resources.close_buttonG;
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            CloseButton.Image = _closeButtonImage;
+            _closeButtonImage = null;
+        }
         private void SaveGrid()
         {
             try
@@ -69,7 +152,7 @@ namespace nManager.Helpful.Forms
                     {
                         DataGridViewRow row = TranslationTable.Rows[i];
                         // Foreach is necessary since the user can sort the Grid, the indexes wont match.
-                        foreach (Translate.Id currId in Enum.GetValues(typeof (Translate.Id)))
+                        foreach (Translate.Id currId in Enum.GetValues(typeof(Translate.Id)))
                         {
                             if (currId.ToString() != row.Cells[0].Value.ToString())
                                 continue;
@@ -78,10 +161,10 @@ namespace nManager.Helpful.Forms
                                                      ? row.Cells[2].Value.ToString()
                                                      : row.Cells[1].Value.ToString();
                             _translation.Translations.Add(new Translate.Translation
-                                {
-                                    Id = currId,
-                                    Text = textContent
-                                });
+                            {
+                                Id = currId,
+                                Text = textContent
+                            });
                             break;
                         }
                     }
@@ -115,7 +198,7 @@ namespace nManager.Helpful.Forms
                     for (int i = 0; i < _defaultLangage.Translations.Count; i++)
                     {
                         Translate.Translation translation = _defaultLangage.Translations[i];
-                        TranslationTable.Rows.Add(new object[] {translation.Id.ToString(), currentLangage.Translations[i].Text, translation.Text});
+                        TranslationTable.Rows.Add(new object[] { translation.Id.ToString(), currentLangage.Translations[i].Text, translation.Text });
                     }
                 }
             }
@@ -151,7 +234,7 @@ namespace nManager.Helpful.Forms
                             lang.Translations.RemoveAt(foundAt);
                             if (string.IsNullOrEmpty(textFound))
                                 textFound = _defaultLangage.Translations[i].Text;
-                            lang.Translations.Insert(i, new Translate.Translation {Id = _defaultLangage.Translations[i].Id, Text = textFound});
+                            lang.Translations.Insert(i, new Translate.Translation { Id = _defaultLangage.Translations[i].Id, Text = textFound });
                         }
                         else
                         {
@@ -168,6 +251,17 @@ namespace nManager.Helpful.Forms
             {
                 lang.Translations.RemoveAt(lang.Translations.Count - 1);
             }
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveGrid();
+            Close();
         }
     }
 }
