@@ -321,7 +321,9 @@ namespace nManager.Wow.Bot.States
 
                         surveySpell.Launch();
                         myState = LocState.Survey;
-                        Thread.Sleep(200 + Usefuls.Latency); // let's wait a bit
+                        if (ObjectManager.ObjectManager.Me.InCombat)
+                            return;
+                        Thread.Sleep(500 + Usefuls.Latency); // let's wait a fair bit
                         nbCastSurveyError++;
                         if (nbCastSurveyError > 3)
                         {
