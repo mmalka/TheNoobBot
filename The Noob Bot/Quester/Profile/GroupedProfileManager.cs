@@ -1,16 +1,19 @@
-using System;
+﻿using System;
+using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
 using nManager.Helpful;
+using Quester.Properties;
 
 namespace Quester.Profile
 {
-    public partial class GroupedProfileManager : MetroForm
+    public partial class GroupedProfileManager : Form
     {
-        private readonly QuesterProfile Profile = new QuesterProfile();
-        private readonly string fullpath = "";
+        private readonly string _fullpath = "";
+        private readonly QuesterProfile _profile = new QuesterProfile();
+        private bool _flagClick;
+        private int _positionInitialeX;
+        private int _positionInitialeY;
 
         public GroupedProfileManager(string path = "")
         {
@@ -18,10 +21,10 @@ namespace Quester.Profile
             {
                 InitializeComponent();
                 Translate();
-                fullpath = Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + path;
-                if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
+                _fullpath = Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + path;
+                if (!string.IsNullOrWhiteSpace(path) && File.Exists(_fullpath))
                 {
-                    Profile = XmlSerializer.Deserialize<QuesterProfile>(fullpath);
+                    _profile = XmlSerializer.Deserialize<QuesterProfile>(_fullpath);
                     ShowGroupedProfileManagerForm();
                 }
                 else
@@ -39,13 +42,14 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager); // Form Title
-
-            AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles);
-            CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles);
-            GroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.GroupSelectedProfile);
-            UngroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupSelectedProfile);
-            UngroupAllProfiles.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupAllProfiles);
+            GroupedProfileManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
+            AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles).ToUpper();
+            CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles).ToUpper();
+            if (toolTip == null)
+                toolTip = new ToolTip();
+            toolTip.SetToolTip(GroupSelectedProfile, nManager.Translate.Get(nManager.Translate.Id.GroupSelectedProfile));
+            toolTip.SetToolTip(UngroupSelectedProfile, nManager.Translate.Get(nManager.Translate.Id.UngroupSelectedProfile));
+            toolTip.SetToolTip(UngroupAllProfiles, nManager.Translate.Get(nManager.Translate.Id.UngroupAllProfiles));
             SaveGroupedProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAsAndClose);
             SaveGroupedProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose);
             CancelGroupedProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
@@ -63,13 +67,13 @@ namespace Quester.Profile
         {
             try
             {
-                if (Profile == null) return;
-                foreach (Include include in Profile.Includes)
+                if (_profile == null) return;
+                foreach (Include include in _profile.Includes)
                 {
-                    CurrentlyGroupedProfiles.Items.Add(include.PathFile);
+                    GroupedProfilesList.Items.Add(include.PathFile);
                 }
-                if (CurrentlyGroupedProfiles.Items.Count > 0)
-                    CurrentlyGroupedProfiles.SelectedIndex = 0;
+                if (GroupedProfilesList.Items.Count > 0)
+                    GroupedProfilesList.SelectedIndex = 0;
             }
             catch (Exception e)
             {
@@ -77,53 +81,59 @@ namespace Quester.Profile
             }
         }
 
-        private void RefreshSimpleProfileList(bool Load = false)
+        private void RefreshSimpleProfileList(bool load = false)
         {
             try
             {
-                int CurrentSelection = AvailableSimpleProfiles.Items.Count;
-                bool Abort = false;
-                AvailableSimpleProfiles.Items.Clear();
+                int currentSelection = SimpleProfilesList.Items.Count;
+                bool abort = false;
+                SimpleProfilesList.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Quester\\", "*.xml"))
                 {
-                    if (CurrentlyGroupedProfiles.Items.Cast<string>().Any(Grouped => Grouped == f))
-                        Abort = true;
-                    if (!Abort)
-                        AvailableSimpleProfiles.Items.Add(f);
+                    foreach (string grouped in GroupedProfilesList.Items)
+                    {
+                        if (grouped == f)
+                        {
+                            abort = true;
+                            break;
+                        }
+                    }
+                    if (!abort)
+                        SimpleProfilesList.Items.Add(f);
                     else
-                        Abort = false;
+                        abort = false;
                 }
-                if (Load && AvailableSimpleProfiles.Items.Count > 0)
-                    AvailableSimpleProfiles.SelectedIndex = 0;
-                else if (CurrentSelection <= AvailableSimpleProfiles.Items.Count - 1 && AvailableSimpleProfiles.Items.Count > 0)
-                    AvailableSimpleProfiles.SelectedIndex = CurrentSelection;
-                else if (AvailableSimpleProfiles.Items.Count > 0)
-                    AvailableSimpleProfiles.SelectedIndex = 0;
+                if (load && SimpleProfilesList.Items.Count > 0)
+                    SimpleProfilesList.SelectedIndex = 0;
+                else if (currentSelection <= SimpleProfilesList.Items.Count - 1 && SimpleProfilesList.Items.Count > 0)
+                    SimpleProfilesList.SelectedIndex = currentSelection;
+                else if (SimpleProfilesList.Items.Count > 0)
+                    SimpleProfilesList.SelectedIndex = 0;
             }
             catch (Exception e)
             {
-                Logging.WriteError("Quester > Profile > ProfileManager > RefreshSimpleProfileList(): " + e);
+                Logging.WriteError("Quester > Profile > GroupedProfileManager > RefreshSimpleProfileList(): " + e);
             }
         }
 
         private void SaveGroupedProfileAs_Click(object sender, EventArgs e)
         {
-            if (CurrentlyGroupedProfiles.Items.Count > 0)
+            if (GroupedProfilesList.Items.Count > 0)
             {
-                Profile.Includes.Clear();
-                foreach (string PathFile in CurrentlyGroupedProfiles.Items)
+                _profile.Includes.Clear();
+                foreach (string pathFile in GroupedProfilesList.Items)
                 {
-                    string FullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + PathFile;
-                    if (!string.IsNullOrWhiteSpace(PathFile) && File.Exists(FullPathToFile))
+                    string fullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + pathFile;
+                    if (!string.IsNullOrWhiteSpace(pathFile) && File.Exists(fullPathToFile))
                     {
-                        Profile.Includes.Add(new Include {PathFile = PathFile, ScriptCondition = ""});
+                        _profile.Includes.Add(new Include {PathFile = pathFile, ScriptCondition = ""});
                     }
                 }
-                string FileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\",
-                                                               nManager.Translate.Get(nManager.Translate.Id.GroupedQuestProfileFile) + " (*.xml)|*.xml");
-                if (FileToSaveAs != "")
-                    XmlSerializer.Serialize(FileToSaveAs, Profile);
-                Close();
+                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\",
+                    nManager.Translate.Get(nManager.Translate.Id.GroupedQuestProfileFile) + " (*.xml)|*.xml");
+                if (fileToSaveAs == "") return;
+                if (XmlSerializer.Serialize(fileToSaveAs, _profile))
+                    Close();
             }
             else
             {
@@ -133,18 +143,18 @@ namespace Quester.Profile
 
         private void SaveGroupedProfile_Click(object sender, EventArgs e)
         {
-            if (CurrentlyGroupedProfiles.Items.Count > 0)
+            if (GroupedProfilesList.Items.Count > 0)
             {
-                Profile.Includes.Clear();
-                foreach (string PathFile in CurrentlyGroupedProfiles.Items)
+                _profile.Includes.Clear();
+                foreach (string pathFile in GroupedProfilesList.Items)
                 {
-                    string FullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + PathFile;
-                    if (!string.IsNullOrWhiteSpace(PathFile) && File.Exists(FullPathToFile))
+                    string fullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + pathFile;
+                    if (!string.IsNullOrWhiteSpace(pathFile) && File.Exists(fullPathToFile))
                     {
-                        Profile.Includes.Add(new Include {PathFile = PathFile, ScriptCondition = ""});
+                        _profile.Includes.Add(new Include {PathFile = pathFile, ScriptCondition = ""});
                     }
                 }
-                XmlSerializer.Serialize(fullpath, Profile);
+                XmlSerializer.Serialize(_fullpath, _profile);
                 Close();
             }
             else
@@ -155,17 +165,17 @@ namespace Quester.Profile
 
         private void DoGroupSelectedProfile(object sender, EventArgs e)
         {
-            if (AvailableSimpleProfiles.SelectedItems.Count > 0)
+            if (SimpleProfilesList.SelectedItems.Count > 0)
             {
-                for (int i = AvailableSimpleProfiles.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = SimpleProfilesList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    if (!CurrentlyGroupedProfiles.Items.Contains(AvailableSimpleProfiles.Items[AvailableSimpleProfiles.SelectedIndices[i]]))
+                    if (!GroupedProfilesList.Items.Contains(SimpleProfilesList.Items[SimpleProfilesList.SelectedIndices[i]]))
                     {
-                        CurrentlyGroupedProfiles.Items.Add(AvailableSimpleProfiles.Items[AvailableSimpleProfiles.SelectedIndices[i]]);
-                        CurrentlyGroupedProfiles.SelectedIndex = CurrentlyGroupedProfiles.Items.Count - 1;
-                        AvailableSimpleProfiles.Items.RemoveAt(AvailableSimpleProfiles.SelectedIndices[i]);
-                        if (AvailableSimpleProfiles.Items.Count > 0)
-                            AvailableSimpleProfiles.SelectedIndex = 0;
+                        GroupedProfilesList.Items.Add(SimpleProfilesList.Items[SimpleProfilesList.SelectedIndices[i]]);
+                        GroupedProfilesList.SelectedIndex = GroupedProfilesList.Items.Count - 1;
+                        SimpleProfilesList.Items.RemoveAt(SimpleProfilesList.SelectedIndices[i]);
+                        if (SimpleProfilesList.Items.Count > 0)
+                            SimpleProfilesList.SelectedIndex = 0;
                     }
                 }
             }
@@ -173,17 +183,17 @@ namespace Quester.Profile
 
         private void DoUngroupSelectedProfile(object sender, EventArgs e)
         {
-            if (CurrentlyGroupedProfiles.SelectedItems.Count > 0)
+            if (GroupedProfilesList.SelectedItems.Count > 0)
             {
-                for (int i = CurrentlyGroupedProfiles.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = GroupedProfilesList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    if (!AvailableSimpleProfiles.Items.Contains(CurrentlyGroupedProfiles.Items[CurrentlyGroupedProfiles.SelectedIndices[i]]))
+                    if (!SimpleProfilesList.Items.Contains(GroupedProfilesList.Items[GroupedProfilesList.SelectedIndices[i]]))
                     {
-                        AvailableSimpleProfiles.Items.Add(CurrentlyGroupedProfiles.Items[CurrentlyGroupedProfiles.SelectedIndices[i]]);
-                        AvailableSimpleProfiles.SelectedIndex = AvailableSimpleProfiles.Items.Count - 1;
-                        CurrentlyGroupedProfiles.Items.RemoveAt(CurrentlyGroupedProfiles.SelectedIndices[i]);
-                        if (CurrentlyGroupedProfiles.Items.Count > 0)
-                            CurrentlyGroupedProfiles.SelectedIndex = 0;
+                        SimpleProfilesList.Items.Add(GroupedProfilesList.Items[GroupedProfilesList.SelectedIndices[i]]);
+                        SimpleProfilesList.SelectedIndex = SimpleProfilesList.Items.Count - 1;
+                        GroupedProfilesList.Items.RemoveAt(GroupedProfilesList.SelectedIndices[i]);
+                        if (GroupedProfilesList.Items.Count > 0)
+                            GroupedProfilesList.SelectedIndex = 0;
                     }
                 }
             }
@@ -191,13 +201,13 @@ namespace Quester.Profile
 
         private void DoUngroupAllProfiles(object sender, EventArgs e)
         {
-            if (CurrentlyGroupedProfiles.SelectedItems.Count > 0)
+            if (GroupedProfilesList.SelectedItems.Count > 0)
             {
-                for (int i = CurrentlyGroupedProfiles.Items.Count - 1; i >= 0; i--)
+                for (int i = GroupedProfilesList.Items.Count - 1; i >= 0; i--)
                 {
-                    AvailableSimpleProfiles.Items.Add(CurrentlyGroupedProfiles.Items[i]);
-                    AvailableSimpleProfiles.SelectedIndex = AvailableSimpleProfiles.Items.Count - 1;
-                    CurrentlyGroupedProfiles.Items.RemoveAt(i);
+                    SimpleProfilesList.Items.Add(GroupedProfilesList.Items[i]);
+                    SimpleProfilesList.SelectedIndex = SimpleProfilesList.Items.Count - 1;
+                    GroupedProfilesList.Items.RemoveAt(i);
                 }
             }
         }
@@ -209,15 +219,15 @@ namespace Quester.Profile
 
         public void MoveItem(int direction)
         {
-            if (CurrentlyGroupedProfiles.SelectedItem == null || CurrentlyGroupedProfiles.SelectedIndex < 0)
+            if (GroupedProfilesList.SelectedItem == null || GroupedProfilesList.SelectedIndex < 0)
                 return;
-            int newIndex = CurrentlyGroupedProfiles.SelectedIndex + direction;
-            if (newIndex < 0 || newIndex >= CurrentlyGroupedProfiles.Items.Count)
+            int newIndex = GroupedProfilesList.SelectedIndex + direction;
+            if (newIndex < 0 || newIndex >= GroupedProfilesList.Items.Count)
                 return;
-            object selected = CurrentlyGroupedProfiles.SelectedItem;
-            CurrentlyGroupedProfiles.Items.Remove(selected);
-            CurrentlyGroupedProfiles.Items.Insert(newIndex, selected);
-            CurrentlyGroupedProfiles.SetSelected(newIndex, true);
+            object selected = GroupedProfilesList.SelectedItem;
+            GroupedProfilesList.Items.Remove(selected);
+            GroupedProfilesList.Items.Insert(newIndex, selected);
+            GroupedProfilesList.SetSelected(newIndex, true);
         }
 
         private void MoveUpButton_Click(object sender, EventArgs e)
@@ -228,6 +238,107 @@ namespace Quester.Profile
         private void MoveDownButton_Click(object sender, EventArgs e)
         {
             MoveItem(1);
+        }
+
+        private void MainFormMouseDown(object sender, MouseEventArgs e)
+        {
+            _flagClick = true;
+            _positionInitialeX = e.X;
+            _positionInitialeY = e.Y;
+        }
+
+        private void MainFormMouseUp(object sender, MouseEventArgs e)
+        {
+            _flagClick = false;
+        }
+
+
+        private void MainFormMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_flagClick)
+            {
+                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
+            }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ReduceButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void ReduceButton_MouseEnter(object sender, EventArgs e)
+        {
+            ReduceButton.Image = Resources.reduce_buttonG;
+        }
+
+        private void ReduceButton_MouseLeave(object sender, EventArgs e)
+        {
+            ReduceButton.Image = Resources.reduce_button;
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            CloseButton.Image = Resources.close_buttonG;
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            CloseButton.Image = Resources.close_button;
+        }
+
+        private void CancelGroupedProfileEdition_MouseEnter(object sender, EventArgs e)
+        {
+            CancelGroupedProfileEdition.Image = Resources.greenB;
+        }
+
+        private void CancelGroupedProfileEdition_MouseLeave(object sender, EventArgs e)
+        {
+            CancelGroupedProfileEdition.Image = Resources.blackB;
+        }
+
+        private void MoveUpButton_MouseEnter(object sender, EventArgs e)
+        {
+            MoveUpButton.Image = Resources.greenB;
+        }
+
+        private void MoveDownButton_MouseEnter(object sender, EventArgs e)
+        {
+            MoveDownButton.Image = Resources.greenB;
+        }
+
+        private void SaveGroupedProfile_MouseEnter(object sender, EventArgs e)
+        {
+            SaveGroupedProfile.Image = Resources.greenB;
+        }
+
+        private void SaveGroupedProfileAs_MouseEnter(object sender, EventArgs e)
+        {
+            SaveGroupedProfileAs.Image = Resources.greenB_150;
+        }
+
+        private void SaveGroupedProfileAs_MouseLeave(object sender, EventArgs e)
+        {
+            SaveGroupedProfileAs.Image = Resources.blueB_150;
+        }
+
+        private void SaveGroupedProfile_MouseLeave(object sender, EventArgs e)
+        {
+            SaveGroupedProfile.Image = Resources.blueB;
+        }
+
+        private void MoveDownButton_MouseLeave(object sender, EventArgs e)
+        {
+            MoveDownButton.Image = Resources.blackB;
+        }
+
+        private void MoveUpButton_MouseLeave(object sender, EventArgs e)
+        {
+            MoveUpButton.Image = Resources.blackB;
         }
     }
 }

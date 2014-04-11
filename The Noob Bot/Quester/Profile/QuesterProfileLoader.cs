@@ -10,11 +10,9 @@ namespace Quester.Profile
 {
     public partial class QuesterProfileLoader : Form
     {
-        private Image _closeButtonImage;
         private bool _flagClick;
         private int _positionInitialeX;
         private int _positionInitialeY;
-        private Image _reduceButtonImage;
 
         public QuesterProfileLoader()
         {
@@ -113,7 +111,7 @@ namespace Quester.Profile
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            Pulsator.Dispose(true);
+            Close();
         }
 
         private void ReduceButton_Click(object sender, EventArgs e)

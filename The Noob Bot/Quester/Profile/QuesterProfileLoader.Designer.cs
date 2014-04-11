@@ -161,7 +161,7 @@
             this.QuesterProfileLoaderFormTitle.Name = "QuesterProfileLoaderFormTitle";
             this.QuesterProfileLoaderFormTitle.Size = new System.Drawing.Size(450, 35);
             this.QuesterProfileLoaderFormTitle.TabIndex = 12;
-            this.QuesterProfileLoaderFormTitle.Text = "TheNoobBot";
+            this.QuesterProfileLoaderFormTitle.Text = "Quester Profile Loader - The Noob Bot 3.0.0";
             this.QuesterProfileLoaderFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.QuesterProfileLoaderFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
             this.QuesterProfileLoaderFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
@@ -276,7 +276,7 @@
             this.MaximumSize = new System.Drawing.Size(575, 475);
             this.MinimumSize = new System.Drawing.Size(575, 475);
             this.Name = "QuesterProfileLoader";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "QuesterProfileLoader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QuesterProfileLoader_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();

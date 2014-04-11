@@ -73,6 +73,16 @@ namespace Quester.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blackB_150 {
+            get {
+                object obj = ResourceManager.GetObject("blackB_150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blackB_242 {
             get {
                 object obj = ResourceManager.GetObject("blackB_242", resourceCulture);
@@ -96,6 +106,16 @@ namespace Quester.Properties {
         internal static System.Drawing.Bitmap blueB {
             get {
                 object obj = ResourceManager.GetObject("blueB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blueB_150 {
+            get {
+                object obj = ResourceManager.GetObject("blueB_150", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +166,16 @@ namespace Quester.Properties {
         internal static System.Drawing.Bitmap greenB {
             get {
                 object obj = ResourceManager.GetObject("greenB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenB_150 {
+            get {
+                object obj = ResourceManager.GetObject("greenB_150", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -370,7 +370,7 @@
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "DeveloperToolsMainFrame";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Translate Tools";
             ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();

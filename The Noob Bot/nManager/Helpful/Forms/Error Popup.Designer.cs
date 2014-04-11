@@ -73,7 +73,7 @@ namespace nManager.Helpful.Forms
             this.Name = "ErrorPopup";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Error";
             this.TopMost = true;
             this.ResumeLayout(false);
