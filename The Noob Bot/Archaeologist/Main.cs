@@ -77,7 +77,7 @@ public class Main : IProduct
     {
         try
         {
-            DigSitesListManagement f = new DigSitesListManagement();
+            ArchaeologistSettingsFrame f = new ArchaeologistSettingsFrame();
             f.ShowDialog();
             Others.ProductStatusLog(Products.ProductName, 7);
         }

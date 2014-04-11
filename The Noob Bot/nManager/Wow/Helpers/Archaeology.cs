@@ -58,15 +58,16 @@ namespace nManager.Wow.Helpers
                 }
             }
         }
-
+        public static bool ForceReloadDigsites = false;
         public static List<Digsite> GetAllDigsitesZone()
         {
             try
             {
                 // I don't know why it's null when called from DigSites List Management
                 // since it's a static method so the class is initialized fully before the 1st call can be made
-                if (_allDigsiteZone == null || _allDigsiteZone.Count <= 0)
+                if (_allDigsiteZone == null || _allDigsiteZone.Count <= 0 || ForceReloadDigsites)
                 {
+                    ForceReloadDigsites = false;
                     List<Digsite> listDigsitesZone = new List<Digsite>();
 
                     try
