@@ -466,11 +466,11 @@
       <Text>"Sondar" não encontrado, parando o TNB</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Solucionar todos</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Maximo de tentativas por sitio arqueológico</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>Minimo</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Gerenciamento de sitios arqueológicos</Text>
     </Translation>
     <Translation>

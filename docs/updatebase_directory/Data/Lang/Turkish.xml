@@ -466,11 +466,11 @@
       <Text>Kazı büyüsü bulunamadı  tnb durduruldu</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Hepsini çöz</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Kazı Alanında Maks Deneme</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>min</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Kazıalanı Yönetim Listesi</Text>
     </Translation>
     <Translation>

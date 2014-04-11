@@ -185,10 +185,10 @@ namespace nManager
             Settings_Fisherbot,
             Please_select_an_profile_or_disable_School_Fish_option,
             Survey_spell_not_found__stopping_tnb,
-            Solving_Every,
-            Max_Try_By_Digsite,
+            SolvingEveryXMinutes,
+            MaxTryByDigsite,
             min,
-            DigSites_list_Management,
+            ArchaeologistSettingsFrameTitle,
             Normal,
             Debug,
             Navigator,
@@ -512,6 +512,10 @@ namespace nManager
             SearchObjectButton,
             AllObjectsButton,
             SearchObjectBox,
+            Active,
+            DigsiteName,
+            Priority,
+            UseKeystones,
         };
 
         [Serializable]

@@ -466,11 +466,11 @@
       <Text>Rilevamento non trovato  stop tnb</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Risolvi tutto</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Tentativi massimi per punto di scavo</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>minimo</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Punti di scavo gestione lista</Text>
     </Translation>
     <Translation>
@@ -1768,6 +1768,22 @@
     <Translation>
       <Id>SearchObjectBox</Id>
       <Text>Type in the name of the WoWObject you are looking for:</Text>
+    </Translation>
+    <Translation>
+      <Id>Active</Id>
+      <Text>Active</Text>
+    </Translation>
+    <Translation>
+      <Id>DigsiteName</Id>
+      <Text>Digsite's Name</Text>
+    </Translation>
+    <Translation>
+      <Id>Priority</Id>
+      <Text>Priority</Text>
+    </Translation>
+    <Translation>
+      <Id>UseKeystones</Id>
+      <Text>Use Keystones</Text>
     </Translation>
   </Translations>
 </Language>

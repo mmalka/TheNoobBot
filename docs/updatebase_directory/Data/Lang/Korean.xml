@@ -466,11 +466,11 @@
       <Text>'조사'가 찾아지지 않을 때, TNB를 중지</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>모든걸 팔기</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>발굴현장에서 최대 시도 횟수</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>최소</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>발굴현장 리스트 매니지먼트</Text>
     </Translation>
     <Translation>

@@ -466,11 +466,11 @@
       <Text>Spellul Survey nu a fost gasit, opresc tnb</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Rezolva la fiecare</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Incercari maxim per digsite</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>min</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Gestionare lista DigSites</Text>
     </Translation>
     <Translation>

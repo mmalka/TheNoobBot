@@ -466,11 +466,11 @@
       <Text>勘測技能未找到，TNB 停止...</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>全部解開</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>全部挖掘</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>分鐘</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>挖掘場列表管理</Text>
     </Translation>
     <Translation>

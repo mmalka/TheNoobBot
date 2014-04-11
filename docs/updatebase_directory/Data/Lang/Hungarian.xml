@@ -466,11 +466,11 @@
       <Text>Survey spell nem található, a tnb leáll</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Összerakás minden</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Maximum próbálkozás ásatási területen</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>percben</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Ásatási zóna lista</Text>
     </Translation>
     <Translation>

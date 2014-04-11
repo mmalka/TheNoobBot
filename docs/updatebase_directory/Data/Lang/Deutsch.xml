@@ -466,11 +466,11 @@
       <Text>Zauber 'Untersuchung' nicht gefunden, TNB wird gestoppt.</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Löse jedes</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Maximale Versuche bei der Ausgrabungsstätte</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>min</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Ausgrabungsstätte Liste</Text>
     </Translation>
     <Translation>

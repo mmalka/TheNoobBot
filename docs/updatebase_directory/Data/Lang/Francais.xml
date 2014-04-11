@@ -467,11 +467,11 @@
       <Text>Sort de fouille est introuvable, fermeture de l'archéologue</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Reconstituer tous les</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Reconstituer toutes les X mins</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Essai max par site de fouille</Text>
     </Translation>
     <Translation>
@@ -479,7 +479,7 @@
       <Text>min</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Gestion des sites de fouille</Text>
     </Translation>
     <Translation>
@@ -1769,6 +1769,22 @@
     <Translation>
       <Id>SearchObjectBox</Id>
       <Text>Ecrivez le nom du WoWObject que vous cherchez:</Text>
+    </Translation>
+    <Translation>
+      <Id>Active</Id>
+      <Text>Actif</Text>
+    </Translation>
+    <Translation>
+      <Id>DigsiteName</Id>
+      <Text>Nom du site de fouille</Text>
+    </Translation>
+    <Translation>
+      <Id>Priority</Id>
+      <Text>Priorité</Text>
+    </Translation>
+    <Translation>
+      <Id>UseKeystones</Id>
+      <Text>Utiliser les pierres angulaires</Text>
     </Translation>
   </Translations>
 </Language>

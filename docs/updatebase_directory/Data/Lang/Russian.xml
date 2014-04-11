@@ -466,11 +466,11 @@
       <Text>Искомое заклинание не найдено, остановка TNB</Text>
     </Translation>
     <Translation>
-      <Id>Solving_Every</Id>
-      <Text>Всегда решать</Text>
+      <Id>SolvingEveryXMinutes</Id>
+      <Text>Solving Every X Minutes</Text>
     </Translation>
     <Translation>
-      <Id>Max_Try_By_Digsite</Id>
+      <Id>MaxTryByDigsite</Id>
       <Text>Максимальное число попыток копания</Text>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Text>минут</Text>
     </Translation>
     <Translation>
-      <Id>DigSites_list_Management</Id>
+      <Id>ArchaeologistSettingsFrameTitle</Id>
       <Text>Список копаний</Text>
     </Translation>
     <Translation>

@@ -28,6 +28,9 @@ namespace Archaeologist
         private bool _flagClick;
         private int _positionInitialeX;
         private int _positionInitialeY;
+        private string _digsiteNameColumn = "Digsite's Name";
+        private string _priorityDigsiteColumn = "Priority";
+        private string _activeDigsiteColumn = "Active";
 
         public ArchaeologistSettingsFrame()
         {
@@ -44,17 +47,17 @@ namespace Archaeologist
                 DigSitesTable.Columns[0].ReadOnly = true;
                 DigSitesTable.Columns[0].Width = 33;
                 DigSitesTable.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                DigSitesTable.Columns.Add("DigSiteName", "Digsite's Name");
+                DigSitesTable.Columns.Add("DigSiteName", _digsiteNameColumn);
                 DigSitesTable.Columns[1].ReadOnly = true;
                 DigSitesTable.Columns[1].Width = 559;
                 DigSitesTable.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                DigSitesTable.Columns.Add("DigSitePriority", "Priority");
+                DigSitesTable.Columns.Add("DigSitePriority", _priorityDigsiteColumn);
                 DigSitesTable.Columns[2].Width = 40;
                 DigSitesTable.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 DataGridViewCheckBoxColumn columnActive = new DataGridViewCheckBoxColumn();
                 DigSitesTable.Columns.Add(columnActive);
                 DigSitesTable.Columns[3].Name = "DigSitePriority";
-                DigSitesTable.Columns[3].HeaderText = "Active";
+                DigSitesTable.Columns[3].HeaderText = _activeDigsiteColumn;
                 DigSitesTable.Columns[3].Width = 40;
                 DigSitesTable.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -71,10 +74,13 @@ namespace Archaeologist
 
         private void Translate()
         {
-            //UseKeystones.Text = nManager.Translate.Get(nManager.Translate.Id.UseKeystones);
-            SolvingEveryXMinLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Solving_Every);
-            MaxTryByDigsiteLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Max_Try_By_Digsite);
-            DeveloperToolsFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.DigSites_list_Management) + @" - " + Information.MainTitle;
+            UseKeystones.Text = nManager.Translate.Get(nManager.Translate.Id.UseKeystones);
+            _digsiteNameColumn = nManager.Translate.Get(nManager.Translate.Id.DigsiteName);
+            _priorityDigsiteColumn = nManager.Translate.Get(nManager.Translate.Id.Priority);
+            _activeDigsiteColumn = nManager.Translate.Get(nManager.Translate.Id.Active);
+            SolvingEveryXMinLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SolvingEveryXMinutes);
+            MaxTryByDigsiteLabel.Text = nManager.Translate.Get(nManager.Translate.Id.MaxTryByDigsite);
+            DeveloperToolsFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.ArchaeologistSettingsFrameTitle) + @" - " + Information.MainTitle;
             CancelAndCloseButton.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
             SaveAndCloseButton.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose);
         }

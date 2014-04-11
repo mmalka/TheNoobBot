@@ -311,7 +311,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ArchaeologistSettingsFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Translate Tools";
+            this.Text = "Developer Tools";
             ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).EndInit();
