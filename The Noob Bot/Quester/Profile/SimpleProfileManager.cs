@@ -1,18 +1,23 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
+using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
+using Quester.Properties;
+using Point = System.Drawing.Point;
 
 namespace Quester.Profile
 {
-    public partial class SimpleProfileManager : MetroForm
+    public partial class SimpleProfileManager : Form
     {
-        private readonly QuesterProfile Profile = new QuesterProfile();
-        private readonly string fullpath = "";
+        private readonly string _fullpath = "";
+        private readonly QuesterProfile _profile = new QuesterProfile();
+        private bool _flagClick;
+        private int _positionInitialeX;
+        private int _positionInitialeY;
 
         public SimpleProfileManager(string path = "")
         {
@@ -20,10 +25,10 @@ namespace Quester.Profile
             {
                 InitializeComponent();
                 Translate();
-                fullpath = Application.StartupPath + "\\Profiles\\Quester\\" + path;
-                if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
+                _fullpath = Application.StartupPath + "\\Profiles\\Quester\\" + path;
+                if (!string.IsNullOrWhiteSpace(path) && File.Exists(_fullpath))
                 {
-                    Profile = XmlSerializer.Deserialize<QuesterProfile>(fullpath);
+                    _profile = XmlSerializer.Deserialize<QuesterProfile>(_fullpath);
                     RefreshProfileQuestList();
                     RefreshProfileQuesterList();
                 }
@@ -42,7 +47,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager); // Form Title
+            SimpleProfileManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager) + " - " + Information.MainTitle;
             AddNewQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.AddNewQuest);
             EditSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuest);
             DeleteSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuest);
@@ -91,9 +96,9 @@ namespace Quester.Profile
         {
             try
             {
-                if (Profile == null) return;
+                if (_profile == null) return;
                 ProfileQuestList.Items.Clear();
-                foreach (Quest quest in Profile.Quests)
+                foreach (Quest quest in _profile.Quests)
                 {
                     string classSpecific = "";
                     foreach (object wowClass in Enum.GetValues(typeof (WoWClassMask)))
@@ -124,9 +129,9 @@ namespace Quester.Profile
         {
             try
             {
-                if (Profile == null) return;
+                if (_profile == null) return;
                 ProfileQuesterList.Items.Clear();
-                foreach (Npc npc in Profile.Questers)
+                foreach (Npc npc in _profile.Questers)
                 {
                     ProfileQuesterList.Items.Add(npc.Entry + " - " + npc.Name + " - GPS:" + npc.Position);
                 }
@@ -146,11 +151,11 @@ namespace Quester.Profile
 
         private void SaveSimpleProfileAs_Click(object sender, EventArgs e)
         {
-            if (Profile.Quests.Count > 0 || Profile.Questers.Count > 0)
+            if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
             {
-                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Simple\\", nManager.Translate.Get(nManager.Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
+                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\", nManager.Translate.Get(nManager.Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
                 if (fileToSaveAs != "")
-                    XmlSerializer.Serialize(fileToSaveAs, Profile);
+                    XmlSerializer.Serialize(fileToSaveAs, _profile);
                 Close();
             }
             else
@@ -161,9 +166,9 @@ namespace Quester.Profile
 
         private void SaveSimpleProfile_Click(object sender, EventArgs e)
         {
-            if (Profile.Quests.Count > 0 || Profile.Questers.Count > 0)
+            if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
             {
-                XmlSerializer.Serialize(fullpath, Profile);
+                XmlSerializer.Serialize(_fullpath, _profile);
                 Close();
             }
             else
@@ -177,70 +182,223 @@ namespace Quester.Profile
             Close();
         }
 
+        private void MainFormMouseDown(object sender, MouseEventArgs e)
+        {
+            _flagClick = true;
+            _positionInitialeX = e.X;
+            _positionInitialeY = e.Y;
+        }
+
+        private void MainFormMouseUp(object sender, MouseEventArgs e)
+        {
+            _flagClick = false;
+        }
+
+
+        private void MainFormMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_flagClick)
+            {
+                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
+            }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ReduceButton_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void ReduceButton_MouseEnter(object sender, EventArgs e)
+        {
+            ReduceButton.Image = Resources.reduce_buttonG;
+        }
+
+        private void ReduceButton_MouseLeave(object sender, EventArgs e)
+        {
+            ReduceButton.Image = Resources.reduce_button;
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            CloseButton.Image = Resources.close_buttonG;
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            CloseButton.Image = Resources.close_button;
+        }
+
+        private void CancelSimpleProfileEdition_MouseEnter(object sender, EventArgs e)
+        {
+            CancelSimpleProfileEdition.Image = Resources.greenB;
+        }
+
+        private void CancelSimpleProfileEdition_MouseLeave(object sender, EventArgs e)
+        {
+            CancelSimpleProfileEdition.Image = Resources.blackB;
+        }
+
+        private void SaveSimpleProfile_MouseEnter(object sender, EventArgs e)
+        {
+            SaveSimpleProfile.Image = Resources.greenB;
+        }
+
+        private void SaveSimpleProfileAs_MouseEnter(object sender, EventArgs e)
+        {
+            SaveSimpleProfileAs.Image = Resources.greenB_150;
+        }
+
+        private void SaveSimpleProfileAs_MouseLeave(object sender, EventArgs e)
+        {
+            SaveSimpleProfileAs.Image = Resources.blueB_150;
+        }
+
+        private void SaveSimpleProfile_MouseLeave(object sender, EventArgs e)
+        {
+            SaveSimpleProfile.Image = Resources.blueB;
+        }
+
         private void AddNewQuest(object sender, EventArgs e)
         {
+            AddNewQuestButton.Enabled = false;
             MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
             RefreshProfileQuestList();
+            AddNewQuestButton.Enabled = true;
         }
 
         private void EditSelectedQuest(object sender, EventArgs e)
         {
+            EditSelectedQuestButton.Enabled = false;
             MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
             RefreshProfileQuestList(ProfileQuestList.SelectedIndex);
+            EditSelectedQuestButton.Enabled = true;
         }
 
         private void DeleteSelectedQuest(object sender, EventArgs e)
         {
+            DeleteSelectedQuestButton.Enabled = false;
             int selectedIndex = ProfileQuestList.SelectedIndex;
-            if (ProfileQuestList.Items.Count > 0 && ProfileQuestList.Items.Count == Profile.Quests.Count)
+            if (ProfileQuestList.Items.Count > 0 && ProfileQuestList.Items.Count == _profile.Quests.Count)
             {
-                Profile.Quests.RemoveAt(selectedIndex);
+                _profile.Quests.RemoveAt(selectedIndex);
             }
             RefreshProfileQuestList(selectedIndex);
+            DeleteSelectedQuestButton.Enabled = true;
         }
 
         private void AddNewQuester(object sender, EventArgs e)
         {
+            AddNewQuesterButton.Enabled = false;
             if (ObjectManager.Target.Guid == 0 || ObjectManager.Target.IsNpcQuestGiver)
             {
                 MessageBox.Show(@"The target is not a valid Npc Quest Giver");
                 return;
             }
-            Npc npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
-            Profile.Questers.Add(npc);
+            var npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
+            _profile.Questers.Add(npc);
             RefreshProfileQuesterList(ProfileQuesterList.Items.Count - 1);
+            AddNewQuesterButton.Enabled = true;
         }
 
         private void EditSelectedQuester(object sender, EventArgs e)
         {
+            EditSelectedQuesterButton.Enabled = false;
             int selectedIndex = ProfileQuesterList.SelectedIndex;
             if (ObjectManager.Target.Guid == 0 || ObjectManager.Target.IsNpcQuestGiver)
             {
                 MessageBox.Show(@"The target is not a valid Npc Quest Giver");
                 return;
             }
-            Npc npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
-            if (ProfileQuesterList.Items.Count <= 0 || ProfileQuesterList.Items.Count != Profile.Questers.Count) return;
-            if (!ProfileQuesterList.SelectedItem.ToString().Contains(npc.Entry + " -") || Profile.Questers[selectedIndex].Entry != npc.Entry)
+            var npc = new Npc {Entry = ObjectManager.Target.Entry, Name = ObjectManager.Target.Name, Position = ObjectManager.Target.Position};
+            if (ProfileQuesterList.Items.Count <= 0 || ProfileQuesterList.Items.Count != _profile.Questers.Count) return;
+            if (!ProfileQuesterList.SelectedItem.ToString().Contains(npc.Entry + " -") || _profile.Questers[selectedIndex].Entry != npc.Entry)
             {
                 MessageBox.Show(@"The NPC selected do not share the same EntryId as the current target, you may prefer to delete it first, then add.");
             }
             else
             {
-                Profile.Questers[selectedIndex].Name = npc.Name;
-                Profile.Questers[selectedIndex].Position = npc.Position;
+                _profile.Questers[selectedIndex].Name = npc.Name;
+                _profile.Questers[selectedIndex].Position = npc.Position;
             }
             RefreshProfileQuesterList(selectedIndex);
+            EditSelectedQuesterButton.Enabled = false;
         }
 
         private void DeleteSelectedQuester(object sender, EventArgs e)
         {
+            DeleteSelectedQuestButton.Enabled = false;
             int selectedIndex = ProfileQuesterList.SelectedIndex;
-            if (ProfileQuesterList.Items.Count > 0 && ProfileQuesterList.Items.Count == Profile.Questers.Count)
+            if (ProfileQuesterList.Items.Count > 0 && ProfileQuesterList.Items.Count == _profile.Questers.Count)
             {
-                Profile.Questers.RemoveAt(selectedIndex);
+                _profile.Questers.RemoveAt(selectedIndex);
             }
             RefreshProfileQuesterList(selectedIndex);
+            DeleteSelectedQuestButton.Enabled = true;
+        }
+
+        private void AddNewQuestButton_MouseEnter(object sender, EventArgs e)
+        {
+            AddNewQuestButton.Image = Resources.greenB_200;
+        }
+
+        private void EditSelectedQuestButton_MouseEnter(object sender, EventArgs e)
+        {
+            EditSelectedQuestButton.Image = Resources.greenB_200;
+        }
+
+        private void DeleteSelectedQuestButton_MouseEnter(object sender, EventArgs e)
+        {
+            DeleteSelectedQuestButton.Image = Resources.greenB_200;
+        }
+
+        private void AddNewQuestButton_MouseLeave(object sender, EventArgs e)
+        {
+            AddNewQuestButton.Image = Resources.blueB_200;
+        }
+
+        private void EditSelectedQuestButton_MouseLeave(object sender, EventArgs e)
+        {
+            EditSelectedQuestButton.Image = Resources.blueB_200;
+        }
+
+        private void DeleteSelectedQuestButton_MouseLeave(object sender, EventArgs e)
+        {
+            DeleteSelectedQuestButton.Image = Resources.blackB_200;
+        }
+
+        private void AddNewQuesterButton_MouseEnter(object sender, EventArgs e)
+        {
+            AddNewQuesterButton.Image = Resources.greenB_200;
+        }
+
+        private void EditSelectedQuesterButton_MouseEnter(object sender, EventArgs e)
+        {
+            EditSelectedQuesterButton.Image = Resources.greenB_200;
+        }
+
+        private void EditSelectedQuesterButton_MouseLeave(object sender, EventArgs e)
+        {
+            EditSelectedQuesterButton.Image = Resources.blueB_200;
+        }
+
+        private void DeleteSelectedQuesterButton_MouseEnter(object sender, EventArgs e)
+        {
+            DeleteSelectedQuesterButton.Image = Resources.greenB_200;
+        }
+
+        private void DeleteSelectedQuesterButton_MouseLeave(object sender, EventArgs e)
+        {
+            DeleteSelectedQuesterButton.Image = Resources.blackB_200;
+        }
+
+        private void AddNewQuesterButton_MouseLeave(object sender, EventArgs e)
+        {
+            AddNewQuesterButton.Image = Resources.blueB_200;
         }
     }
 }

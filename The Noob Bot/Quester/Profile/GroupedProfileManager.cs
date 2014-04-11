@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using Quester.Properties;
 
@@ -42,7 +43,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            GroupedProfileManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
+            GroupedProfileManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager) + " - " + Information.MainTitle;
             AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles).ToUpper();
             CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles).ToUpper();
             if (toolTip == null)

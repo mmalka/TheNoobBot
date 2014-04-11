@@ -121,26 +121,35 @@
   <data name="blackB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="greenB_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greenB_200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="blackB_242" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_242.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reduce_buttonG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reduce_buttonG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blueB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blueB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="close_buttonG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_buttonG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackB_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackB_200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="blueB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="blackB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blueB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,8 +163,8 @@
   <data name="greenB_242" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\greenB_242.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="close_buttonG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close_buttonG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blueB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blueB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blueB_242" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB_242.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,7 +172,7 @@
   <data name="reduce_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reduce_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blackB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blueB_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blueB_200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

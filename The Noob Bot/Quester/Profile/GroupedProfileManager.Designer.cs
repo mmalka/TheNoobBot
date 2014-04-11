@@ -247,7 +247,7 @@
             this.SaveGroupedProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGroupedProfile.ForeColor = System.Drawing.Color.White;
             this.SaveGroupedProfile.Image = global::Quester.Properties.Resources.blueB;
-            this.SaveGroupedProfile.Location = new System.Drawing.Point(434, 434);
+            this.SaveGroupedProfile.Location = new System.Drawing.Point(148, 434);
             this.SaveGroupedProfile.Margin = new System.Windows.Forms.Padding(0);
             this.SaveGroupedProfile.MaximumSize = new System.Drawing.Size(106, 29);
             this.SaveGroupedProfile.MinimumSize = new System.Drawing.Size(106, 29);
@@ -266,7 +266,7 @@
             this.CancelGroupedProfileEdition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelGroupedProfileEdition.ForeColor = System.Drawing.Color.White;
             this.CancelGroupedProfileEdition.Image = global::Quester.Properties.Resources.blackB;
-            this.CancelGroupedProfileEdition.Location = new System.Drawing.Point(148, 434);
+            this.CancelGroupedProfileEdition.Location = new System.Drawing.Point(434, 434);
             this.CancelGroupedProfileEdition.Margin = new System.Windows.Forms.Padding(0);
             this.CancelGroupedProfileEdition.MaximumSize = new System.Drawing.Size(106, 29);
             this.CancelGroupedProfileEdition.MinimumSize = new System.Drawing.Size(106, 29);

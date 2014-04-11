@@ -83,6 +83,16 @@ namespace Quester.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blackB_200 {
+            get {
+                object obj = ResourceManager.GetObject("blackB_200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blackB_242 {
             get {
                 object obj = ResourceManager.GetObject("blackB_242", resourceCulture);
@@ -116,6 +126,16 @@ namespace Quester.Properties {
         internal static System.Drawing.Bitmap blueB_150 {
             get {
                 object obj = ResourceManager.GetObject("blueB_150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blueB_200 {
+            get {
+                object obj = ResourceManager.GetObject("blueB_200", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +196,16 @@ namespace Quester.Properties {
         internal static System.Drawing.Bitmap greenB_150 {
             get {
                 object obj = ResourceManager.GetObject("greenB_150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenB_200 {
+            get {
+                object obj = ResourceManager.GetObject("greenB_200", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
