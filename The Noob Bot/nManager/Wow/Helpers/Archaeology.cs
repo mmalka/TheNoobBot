@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
 {
     public class Archaeology
     {
-        private static List<Digsite> _allDigsiteZone;
+        private static List<Digsite> _allDigsiteZone = new List<Digsite>();
 
         public static void Initialize()
         {
@@ -63,9 +63,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                // I don't know why it's null when called from DigSites List Management
-                // since it's a static method so the class is initialized fully before the 1st call can be made
-                if (_allDigsiteZone == null || _allDigsiteZone.Count <= 0 || ForceReloadDigsites)
+                if (_allDigsiteZone.Count <= 0 || ForceReloadDigsites)
                 {
                     ForceReloadDigsites = false;
                     List<Digsite> listDigsitesZone = new List<Digsite>();
