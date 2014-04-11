@@ -52,12 +52,6 @@
     <Compile Include="Profile\GroupedProfileManager.Designer.cs">
       <DependentUpon>GroupedProfileManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Profile\LoadQuesterProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Profile\LoadQuesterProfile.designer.cs">
-      <DependentUpon>LoadQuesterProfile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Profile\ProfileManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +61,12 @@
     <Compile Include="Profile\QuesterProfile.cs" />
     <Compile Include="Bot\QuesterSettings.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Profile\QuesterProfileLoader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\QuesterProfileLoader.designer.cs">
+      <DependentUpon>QuesterProfileLoader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Profile\SimpleProfileManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +74,11 @@
       <DependentUpon>SimpleProfileManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\QuestingTask.cs" />
     <Compile Include="Tasks\Script.cs" />
   </ItemGroup>
@@ -88,15 +93,58 @@
     <EmbeddedResource Include="Profile\GroupedProfileManager.resx">
       <DependentUpon>GroupedProfileManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Profile\LoadQuesterProfile.resx">
-      <DependentUpon>LoadQuesterProfile.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Profile\ProfileManager.resx">
       <DependentUpon>ProfileManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\QuesterProfileLoader.resx">
+      <DependentUpon>QuesterProfileLoader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\SimpleProfileManager.resx">
       <DependentUpon>SimpleProfileManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_buttonG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reduce_buttonG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reduce_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

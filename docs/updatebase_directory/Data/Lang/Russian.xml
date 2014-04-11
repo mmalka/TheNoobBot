@@ -1566,8 +1566,8 @@
       <Text>Вы не можете сохранить пустой Сгруппированный Профиль, если Вы хотите удалить его, Отменить, тогда удалите его из предыдущего окна</Text>
     </Translation>
     <Translation>
-      <Id>LoadQuesterProfile</Id>
-      <Text>Загрузить квестовый профиль</Text>
+      <Id>QuesterProfileLoader</Id>
+      <Text>Quester Profile Loader</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToLoad</Id>

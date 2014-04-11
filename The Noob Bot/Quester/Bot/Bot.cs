@@ -23,7 +23,7 @@ namespace Quester.Bot
             try
             {
                 Profile = new QuesterProfile();
-                LoadQuesterProfile f = new LoadQuesterProfile();
+                QuesterProfileLoader f = new QuesterProfileLoader();
                 f.ShowDialog();
                 if (!string.IsNullOrWhiteSpace(QuesterSettings.CurrentSettings.LastProfile) &&
                     ((QuesterSettings.CurrentSettings.LastProfileSimple &&

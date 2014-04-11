@@ -1567,8 +1567,8 @@
       <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
     </Translation>
     <Translation>
-      <Id>LoadQuesterProfile</Id>
-      <Text>Load a Quester Profile</Text>
+      <Id>QuesterProfileLoader</Id>
+      <Text>Quester Profile Loader</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToLoad</Id>

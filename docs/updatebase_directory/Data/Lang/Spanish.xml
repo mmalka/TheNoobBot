@@ -1566,8 +1566,8 @@
       <Text>No puedes guardar un Perfil Agrupado vacio, si quieres suprimirlo, Cancela y entonces suprímelo desde la ventana anterior</Text>
     </Translation>
     <Translation>
-      <Id>LoadQuesterProfile</Id>
-      <Text>Cargar un Perfil de Quester</Text>
+      <Id>QuesterProfileLoader</Id>
+      <Text>Quester Profile Loader</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToLoad</Id>

@@ -461,7 +461,7 @@ namespace nManager
             MoveDown,
             CantSaveEmptyGroupedNew,
             CantSaveEmptyGroupedExisting,
-            LoadQuesterProfile,
+            QuesterProfileLoader,
             NoSimpleProfileToLoad,
             NoGroupedProfileToLoad,
             SimpleProfilesList,
