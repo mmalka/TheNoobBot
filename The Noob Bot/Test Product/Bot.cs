@@ -31,7 +31,7 @@ namespace Test_Product
         {
             int d;
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 191605, 24780, 29561, 49586, 49588, 62822 });
+            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 191605, 24780, 29561, 49586, 49588, 62822, 211006 });
             while (true)
             {
                 Thread.Sleep(1000);
@@ -57,7 +57,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
                         Position = o.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.Mailbox
                     });
                 }
@@ -72,7 +71,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.Vendor
                     });
                 }
@@ -87,7 +85,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.Repair
                     });
                 }
@@ -100,7 +97,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.Innkeeper
                     });
                 }
@@ -148,7 +144,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = newtype
                     });
                 }
@@ -161,7 +156,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.SpiritHealer
                     });
                 }
@@ -174,7 +168,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.SpiritGuide
                     });
                 }
@@ -187,7 +180,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
                         Position = n.Position,
-                        SelectGossipOption = 0,
                         Type = Npc.NpcType.Mailbox
                     });
                 }
@@ -212,7 +204,6 @@ namespace Test_Product
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
                         Position = o.Position,
-                        SelectGossipOption = 0,
                         Type = newtype
                     });
                 }
