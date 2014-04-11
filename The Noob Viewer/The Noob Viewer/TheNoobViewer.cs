@@ -29,15 +29,6 @@ namespace TheNoobViewer
             Fisher = 3,
         }
 
-        enum Zones
-        {
-            Azeroth,
-            Kalimdor,
-            Northrend,
-            Expansion01,
-            TolBarad,
-        }
-
         public TheNoobViewer()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
@@ -110,6 +101,9 @@ namespace TheNoobViewer
                             break;
                         case "Outland":
                             npccontinent = "Expansion01";
+                            break;
+                        case "Maelstrom":
+                            npccontinent = "Deephome";
                             break;
                         default:
                             npccontinent = basecontinent;
