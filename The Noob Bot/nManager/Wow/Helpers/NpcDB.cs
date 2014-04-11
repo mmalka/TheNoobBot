@@ -83,6 +83,7 @@ namespace nManager.Wow.Helpers
                         ListNpc.Remove(npc1);
                         break;
                     }
+                    _listNpc.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                 }
             }
@@ -138,7 +139,10 @@ namespace nManager.Wow.Helpers
                         }
                     }
                     if (count != 0)
+                    {
+                        _listNpc.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1);  });
                         XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
+                    }
                     return count;
                 }
             }
@@ -162,6 +166,7 @@ namespace nManager.Wow.Helpers
                         ListNpc.Add(npc);
                     }
                     Logging.Write("List builded with " + ListNpc.Count() + "NPC inside.");
+                    _listNpc.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", ListNpc);
                 }
             }
