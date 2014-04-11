@@ -95,7 +95,7 @@ namespace nManager.Wow.Class
         /// <value>
         /// Point Type.
         /// </value>
-        [DefaultValue("")]
+        [DefaultValue("None")]
         public string Type
         {
             get { return _type; }
