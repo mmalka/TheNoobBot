@@ -19,7 +19,7 @@ namespace nManager.Wow.Class
             X = 0;
             Y = 0;
             Z = 0;
-            _type = "";
+            _type = "None";
         }
 
         /// <summary>
