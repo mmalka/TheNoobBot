@@ -87,7 +87,7 @@ namespace TheNoobViewer
                     float Y = float.Parse(position.SelectSingleNode("Y").InnerText);
                     float Z = float.Parse(position.SelectSingleNode("Z").InnerText);
 
-                    string faction = OneNPC.SelectSingleNode("Faction").InnerText;
+                    string faction = OneNPC.SelectSingleNode("Faction") != null ? OneNPC.SelectSingleNode("Faction").InnerText : "";
                     string basecontinent = OneNPC.SelectSingleNode("ContinentId").InnerText;
                     string npccontinent;
                     HopType iFaction = HopType.Alliance;
@@ -99,7 +99,7 @@ namespace TheNoobViewer
                         case "Alliance":
                             iFaction = HopType.Alliance;
                             break;
-                        case "Neutral":
+                        default:
                             iFaction = HopType.Neutral;
                             break;
                     }
