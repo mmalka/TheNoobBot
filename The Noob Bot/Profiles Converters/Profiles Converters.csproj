@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\HbQuestProfile.cs" />
     <Compile Include="Converters\HonorBuddyGrind.cs" />
     <Compile Include="Converters\GatherBuddy.cs" />
     <Compile Include="Converters\MMOLazyMyFlyer.cs" />
