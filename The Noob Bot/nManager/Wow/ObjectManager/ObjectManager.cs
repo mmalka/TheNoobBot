@@ -1218,6 +1218,7 @@ namespace nManager.Wow.ObjectManager
             foreach (WoWUnit u in GetObjectWoWUnit())
             {
                 if (u.IsValid && u.IsAlive && u.Attackable && !u.PlayerControlled && !u.NotSelectable &&
+                    UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
                     u.GetDistance < (u.AggroDistance*0.90f) &&
                     !(u.InCombat && !u.IsTargetingMe))
                 {
