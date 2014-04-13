@@ -581,7 +581,7 @@ namespace The_Noob_Bot
             // 
             this.LoggingTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.LoggingTextArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LoggingTextArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoggingTextArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.LoggingTextArea.Location = new System.Drawing.Point(13, 13);
             this.LoggingTextArea.Margin = new System.Windows.Forms.Padding(0);
             this.LoggingTextArea.MaximumSize = new System.Drawing.Size(398, 176);
@@ -593,6 +593,7 @@ namespace The_Noob_Bot
             this.LoggingTextArea.Size = new System.Drawing.Size(398, 176);
             this.LoggingTextArea.TabIndex = 0;
             this.LoggingTextArea.Text = "";
+            this.LoggingTextArea.VisibleChanged += new System.EventHandler(this.LoggingTextArea_VisibleChanged);
             // 
             // PanelAccount
             // 

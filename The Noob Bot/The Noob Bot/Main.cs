@@ -444,14 +444,12 @@ namespace The_Noob_Bot
             {
                 StartButton.Enabled = false;
                 Products.ProductStop();
-                StartButton.Text = "START PRODUCT";
                 StartButton.Enabled = true;
             }
             else
             {
                 StartButton.Enabled = false;
                 Products.ProductStart();
-                StartButton.Text = "STOP PRODUCT";
                 StartButton.Enabled = true;
             }
         }
@@ -672,6 +670,7 @@ namespace The_Noob_Bot
                 if (Products.IsStarted)
                 {
                     //StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.Stop);
+                    StartButton.Text = "STOP PRODUCT";
                     if (!StartButton.Hoovering)
                         StartButton.Image = Resources.blackB_200;
                     ProductSettingsButton.Enabled = false;
@@ -681,6 +680,7 @@ namespace The_Noob_Bot
                 else
                 {
                     //StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
+                    StartButton.Text = "START PRODUCT";
                     if (!StartButton.Hoovering)
                         StartButton.Image = Resources.blueB_200;
                     ProductSettingsButton.Enabled = true;
@@ -737,6 +737,15 @@ namespace The_Noob_Bot
         private void LoggingAreaTimer_Tick(object sender, EventArgs e)
         {
             AddLog();
+        }
+
+        private void LoggingTextArea_VisibleChanged(object sender, EventArgs e)
+        {
+            if (LoggingTextArea.Visible)
+                {
+                    LoggingTextArea.SelectionStart = LoggingTextArea.TextLength;
+                    LoggingTextArea.ScrollToCaret();
+                }
         }
     }
 }
