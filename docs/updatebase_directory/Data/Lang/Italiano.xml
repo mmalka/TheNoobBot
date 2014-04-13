@@ -1785,5 +1785,117 @@
       <Id>UseKeystones</Id>
       <Text>Use Keystones</Text>
     </Translation>
+    <Translation>
+      <Id>LatestLogEntry</Id>
+      <Text>Latest Log Entry :</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetLevel</Id>
+      <Text>Target's Level :</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetName</Id>
+      <Text>Target's Name :</Text>
+    </Translation>
+    <Translation>
+      <Id>TargetHealth</Id>
+      <Text>Target's Health :</Text>
+    </Translation>
+    <Translation>
+      <Id>HonorPerHour</Id>
+      <Text>Honor per Hour :</Text>
+    </Translation>
+    <Translation>
+      <Id>UnitKills</Id>
+      <Text>Unit Kills :</Text>
+    </Translation>
+    <Translation>
+      <Id>XPPerHour</Id>
+      <Text>XP per Hour :</Text>
+    </Translation>
+    <Translation>
+      <Id>PlayerNameChanged</Id>
+      <Text>Character changed, closing bot.</Text>
+    </Translation>
+    <Translation>
+      <Id>StopProduct</Id>
+      <Text>STOP PRODUCT</Text>
+    </Translation>
+    <Translation>
+      <Id>StartProduct</Id>
+      <Text>START PRODUCT</Text>
+    </Translation>
+    <Translation>
+      <Id>OnlineBots</Id>
+      <Text>Online bots : </Text>
+    </Translation>
+    <Translation>
+      <Id>SessionInfo</Id>
+      <Text>SESSION STARTED WITH ID</Text>
+    </Translation>
+    <Translation>
+      <Id>ItemsFounds</Id>
+      <Text>items found.</Text>
+    </Translation>
+    <Translation>
+      <Id>SwitchDxError1</Id>
+      <Text>Possible issue while botting detected, please try to switch DirectX version of your WoW client.</Text>
+    </Translation>
+    <Translation>
+      <Id>SwitchDxError2</Id>
+      <Text>Ignore this message if you really have ZERO items in your World of Warcraft bags.</Text>
+    </Translation>
+    <Translation>
+      <Id>RemoteSession</Id>
+      <Text>REMOTE SESSION</Text>
+    </Translation>
+    <Translation>
+      <Id>MyAccount</Id>
+      <Text>MY ACCOUNT</Text>
+    </Translation>
+    <Translation>
+      <Id>DevTools</Id>
+      <Text>DevTools</Text>
+    </Translation>
+    <Translation>
+      <Id>Website</Id>
+      <Text>Website</Text>
+    </Translation>
+    <Translation>
+      <Id>WantToSubscribe</Id>
+      <Text>WANT TO SUBSCRIBE ?</Text>
+    </Translation>
+    <Translation>
+      <Id>SelectOffer</Id>
+      <Text>Select an offer in the list below</Text>
+    </Translation>
+    <Translation>
+      <Id>PaymentPage</Id>
+      <Text>Open the payment page</Text>
+    </Translation>
+    <Translation>
+      <Id>AccountName</Id>
+      <Text>Account Name :</Text>
+    </Translation>
+    <Translation>
+      <Id>TimeLeft</Id>
+      <Text>Time Left :</Text>
+    </Translation>
+    <Translation>
+      <Id>SubscribeMonth</Id>
+      <Text>1 month - 6.99 euros or 4 allopass</Text>
+    </Translation>
+    <Translation>
+      <Id>SubscribeHalfYear</Id>
+      <Text>6 month - 19.99 euros</Text>
+    </Translation>
+    <Translation>
+      <Id>SubscribeMonthPlatinium</Id>
+      <Text>1 month PLATINIUM - 110 euros</Text>
+    </Translation>
+    <Translation>
+      <Id>SubscribeLifeTime</Id>
+      <Text>Life time - 44.99 euros</Text>
+    </Translation>
   </Translations>
 </Language>
