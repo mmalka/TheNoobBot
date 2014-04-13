@@ -16,7 +16,6 @@ namespace The_Noob_Bot
 {
     public partial class Login : Form
     {
-        
         private const string UpdateCheck = "573-567-555-554-606-605-593";
         private const string KeyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
         private Image _closeButtonImage;
@@ -420,26 +419,6 @@ namespace The_Noob_Bot
         {
             Register.BackColor = Color.FromArgb(232, 232, 232);
             Register.ForeColor = Color.FromArgb(98, 160, 229);
-        }
-
-        private void LoginButton_MouseEnter(object sender, EventArgs e)
-        {
-            LoginButton.Image = Resources.greenB;
-        }
-
-        private void LoginButton_MouseLeave(object sender, EventArgs e)
-        {
-            LoginButton.Image = Resources.blueB;
-        }
-
-        private void RefreshButton_MouseEnter(object sender, EventArgs e)
-        {
-            RefreshButton.Image = Resources.greenB;
-        }
-
-        private void RefreshButton_MouseLeave(object sender, EventArgs e)
-        {
-            RefreshButton.Image = Resources.blackB;
         }
 
         private void LoginButton_Click(object sender, EventArgs e)

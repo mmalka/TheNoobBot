@@ -138,15 +138,6 @@
     <None Include="Resources\Application.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blackB.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blueB.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\greenB.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\close_buttonG.png" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +151,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\tab_website.png" />
+    <None Include="Resources\tab_active_mainframe.png" />
+    <None Include="Resources\tab_inactive_mainframe.png" />
+    <None Include="Resources\blueB_260.png" />
+    <None Include="Resources\blueB_242.png" />
+    <None Include="Resources\blueB_200.png" />
+    <None Include="Resources\greenB_150.png" />
+    <None Include="Resources\greenB.png" />
+    <None Include="Resources\greenB_260.png" />
+    <None Include="Resources\greenB_242.png" />
+    <None Include="Resources\greenB_200.png" />
+    <None Include="Resources\blueB_150.png" />
+    <None Include="Resources\blueB.png" />
+    <None Include="Resources\blackB_260.png" />
+    <None Include="Resources\blackB_242.png" />
+    <None Include="Resources\blackB_200.png" />
+    <None Include="Resources\blackB_150.png" />
+    <None Include="Resources\blackB.png" />
     <None Include="Resources\Left-right.png" />
     <None Include="Resources\Up-down.png" />
     <None Include="Resources\Info.png" />

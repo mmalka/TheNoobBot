@@ -42,8 +42,6 @@
             this.Remember = new System.Windows.Forms.CheckBox();
             this.Register = new System.Windows.Forms.Label();
             this.LoginFormTitle = new System.Windows.Forms.Label();
-            this.LoginButton = new System.Windows.Forms.Label();
-            this.RefreshButton = new System.Windows.Forms.Label();
             this.FormFocusLogin = new System.Windows.Forms.PictureBox();
             this.FormFocusPassword = new System.Windows.Forms.PictureBox();
             this.WebsiteLink = new System.Windows.Forms.Label();
@@ -54,6 +52,8 @@
             this.EsterEggTrigger2 = new System.Windows.Forms.Panel();
             this.EsterEggTrigger3 = new System.Windows.Forms.Panel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.LoginButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.RefreshButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
@@ -265,42 +265,6 @@
             this.LoginFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
             this.LoginFormTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
-            // LoginButton
-            // 
-            this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginButton.ForeColor = System.Drawing.Color.White;
-            this.LoginButton.Image = global::The_Noob_Bot.Properties.Resources.blueB;
-            this.LoginButton.Location = new System.Drawing.Point(274, 184);
-            this.LoginButton.Margin = new System.Windows.Forms.Padding(0);
-            this.LoginButton.MaximumSize = new System.Drawing.Size(106, 30);
-            this.LoginButton.MinimumSize = new System.Drawing.Size(106, 30);
-            this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(106, 30);
-            this.LoginButton.TabIndex = 13;
-            this.LoginButton.Text = "CONNECT";
-            this.LoginButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
-            this.LoginButton.MouseEnter += new System.EventHandler(this.LoginButton_MouseEnter);
-            this.LoginButton.MouseLeave += new System.EventHandler(this.LoginButton_MouseLeave);
-            // 
-            // RefreshButton
-            // 
-            this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RefreshButton.ForeColor = System.Drawing.Color.White;
-            this.RefreshButton.Image = global::The_Noob_Bot.Properties.Resources.blackB;
-            this.RefreshButton.Location = new System.Drawing.Point(434, 184);
-            this.RefreshButton.Margin = new System.Windows.Forms.Padding(0);
-            this.RefreshButton.MaximumSize = new System.Drawing.Size(106, 30);
-            this.RefreshButton.MinimumSize = new System.Drawing.Size(106, 30);
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(106, 30);
-            this.RefreshButton.TabIndex = 14;
-            this.RefreshButton.Text = "REFRESH";
-            this.RefreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
-            this.RefreshButton.MouseEnter += new System.EventHandler(this.RefreshButton_MouseEnter);
-            this.RefreshButton.MouseLeave += new System.EventHandler(this.RefreshButton_MouseLeave);
-            // 
             // FormFocusLogin
             // 
             this.FormFocusLogin.ErrorImage = null;
@@ -429,20 +393,50 @@
             this.EsterEggTrigger3.MouseEnter += new System.EventHandler(this.EsterEggTrigger_MouseEnter);
             this.EsterEggTrigger3.MouseLeave += new System.EventHandler(this.EsterEggTrigger_MouseLeave);
             // 
+            // LoginButton
+            // 
+            this.LoginButton.AutoEllipsis = true;
+            this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LoginButton.ForeColor = System.Drawing.Color.Snow;
+            this.LoginButton.HooverImage = Properties.Resources.greenB;
+            this.LoginButton.Image = ((System.Drawing.Image)(resources.GetObject("LoginButton.Image")));
+            this.LoginButton.Location = new System.Drawing.Point(274, 184);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(106, 29);
+            this.LoginButton.TabIndex = 24;
+            this.LoginButton.Text = "CONNECT";
+            this.LoginButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.AutoEllipsis = true;
+            this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.RefreshButton.ForeColor = System.Drawing.Color.Snow;
+            this.RefreshButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("RefreshButton.HooverImage")));
+            this.RefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Image")));
+            this.RefreshButton.Location = new System.Drawing.Point(434, 184);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(106, 29);
+            this.RefreshButton.TabIndex = 25;
+            this.RefreshButton.Text = "REFRESH";
+            this.RefreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
             // Login
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 270);
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.EsterEggTrigger3);
             this.Controls.Add(this.EsterEggTrigger2);
             this.Controls.Add(this.EsterEggTrigger1);
             this.Controls.Add(this.LangSelection);
             this.Controls.Add(this.ForumLink);
             this.Controls.Add(this.WebsiteLink);
-            this.Controls.Add(this.RefreshButton);
-            this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.LoginFormTitle);
             this.Controls.Add(this.Register);
             this.Controls.Add(this.Remember);
@@ -495,8 +489,6 @@
         private System.Windows.Forms.CheckBox Remember;
         private System.Windows.Forms.Label Register;
         private System.Windows.Forms.Label LoginFormTitle;
-        private System.Windows.Forms.Label LoginButton;
-        private System.Windows.Forms.Label RefreshButton;
         private System.Windows.Forms.PictureBox FormFocusLogin;
         private System.Windows.Forms.PictureBox FormFocusPassword;
         private System.Windows.Forms.Label WebsiteLink;
@@ -507,6 +499,8 @@
         private System.Windows.Forms.Panel EsterEggTrigger2;
         private System.Windows.Forms.Panel EsterEggTrigger3;
         private System.Windows.Forms.ToolTip toolTip;
+        private nManager.Helpful.Forms.UserControls.TnbButton LoginButton;
+        private nManager.Helpful.Forms.UserControls.TnbButton RefreshButton;
     }
 }
 
