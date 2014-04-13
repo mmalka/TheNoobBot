@@ -118,18 +118,7 @@ namespace nManager.Wow.Bot.Tasks
                                         {
                                             if (looted)
                                             {
-                                                if (wowUnit.ExtraLootType == Enums.TypeFlag.None)
-                                                {
-                                                    int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
-                                                    if (mySkinningLevel > 0)
-                                                        mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
-                                                    if (wowUnit.GetSkillLevelRequired > mySkinningLevel)
-                                                    {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
-                                                        break;
-                                                    }
-                                                }
-                                                else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
+                                                if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
                                                 {
                                                     int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
                                                     if (myHerbalismLevel > 0)
@@ -157,6 +146,17 @@ namespace nManager.Wow.Bot.Tasks
                                                     if (myEngeneeringLevel > 0)
                                                         myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
                                                     if (wowUnit.GetSkillLevelRequired > myEngeneeringLevel)
+                                                    {
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        break;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
+                                                    if (mySkinningLevel > 0)
+                                                        mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
+                                                    if (wowUnit.GetSkillLevelRequired > mySkinningLevel)
                                                     {
                                                         nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
                                                         break;
