@@ -196,34 +196,35 @@ namespace The_Noob_Bot
             FightLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Fight);
             NavigationLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Navigator);
             DebugLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Debug);
-            /*lastLogL.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log);
-            labelX13.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log) + ":";
-            targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Level);
-            labelX11.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Health);
-            farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": 0 (0/" +
-                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": 0";
-            lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": 0 (0/" +
-                         nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": 0 (0/" +
-                           nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": 0 (0/" +
-                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": 0";
-            levelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level);
-            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Health);
-            expandablePanel2.TitleText = nManager.Translate.Get(nManager.Translate.Id.Account_Informations);
-            accountInfoL.Text = nManager.Translate.Get(nManager.Translate.Id.Information_account);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Remote) + ":";
-            tHome.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Home);
-            trer.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Log);
-            playerNameB.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Name);
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Product);
-            settingsB.Text = nManager.Translate.Get(nManager.Translate.Id.General_Settings);
-            startB.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
-            productSettingsB.Text = nManager.Translate.Get(nManager.Translate.Id.Product_Settings);
-            buttonX1.Text = nManager.Translate.Get(nManager.Translate.Id.Minimise);
-            metroTabItem2.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.My_tnb_Account);*/
+            HealthLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Health) + " :";
+            LatestLogLabel.Text = nManager.Translate.Get(nManager.Translate.Id.LatestLogEntry);
+            TargetLevelLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TargetLevel);
+            TargetHealthLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TargetHealth);
+            TargetNameLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TargetName);
+            FarmsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + " :";
+            HonorPerHourLabel.Text = nManager.Translate.Get(nManager.Translate.Id.HonorPerHour);
+            LootsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + " :";
+            DeathsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + " :";
+            UnitKillsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.UnitKills);
+            XPPerHourLabel.Text = nManager.Translate.Get(nManager.Translate.Id.XPPerHour);
+            RemoteSessionLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RemoteSession) + " :";
+            HomeTagButton.Text = nManager.Translate.Get(nManager.Translate.Id.Home).ToUpper();
+            LogTabButton.Text = nManager.Translate.Get(nManager.Translate.Id.Log).ToUpper();
+            AccountTabButton.Text = nManager.Translate.Get(nManager.Translate.Id.MyAccount).ToUpper();
+            MainSettingsButton.Text = nManager.Translate.Get(nManager.Translate.Id.General_Settings);
+            StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.StartProduct);
+            ProductSettingsButton.Text = nManager.Translate.Get(nManager.Translate.Id.Product_Settings);
+            DevToolsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.DevTools);
+            WebsiteLink.Text = nManager.Translate.Get(nManager.Translate.Id.Website);
+            WantToSubscribeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.WantToSubscribe);
+            ProductsListPriceLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SelectOffer);
+            GoToPaymentPageButton.Text = nManager.Translate.Get(nManager.Translate.Id.PaymentPage);
+            AccountNameLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AccountName);
+            TimeLeftLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TimeLeft);
+            ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeMonth));
+            ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeMonthPlatinium));
+            ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeHalfYear));
+            ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeLifeTime));
         }
 
         private void ThreadSpellBook()
@@ -258,13 +259,11 @@ namespace The_Noob_Bot
                             items.Add(item.Name);
                     }
 
-                    Logging.Write(items.Count + " items found.");
+                    Logging.Write(items.Count + " " + nManager.Translate.Get(nManager.Translate.Id.ItemsFounds));
                     if (items.Count == 0)
                     {
-                        Logging.Write(
-                            "Possible issue while botting detected, please try to switch DirectX version of your WoW client.");
-                        Logging.Write(
-                            "Ignore this message if you really have ZERO items in your World of Warcraft bags.");
+                        Logging.Write(nManager.Translate.Get(nManager.Translate.Id.SwitchDxError1));
+                        Logging.Write(nManager.Translate.Get(nManager.Translate.Id.SwitchDxError2));
                     }
                 }
                 if (nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0)
@@ -589,14 +588,14 @@ namespace The_Noob_Bot
                     if (_playerName != ObjectManager.Me.Name && !string.IsNullOrEmpty(ObjectManager.Me.Name) &&
                         ObjectManager.Me.IsValid)
                     {
-                        Logging.WriteError("Character changed, closing bot.");
+                        Logging.WriteError(nManager.Translate.Get(nManager.Translate.Id.PlayerNameChanged));
                         Pulsator.Dispose(true);
                     }
                 }
 
                 if (ObjectManager.Me.IsValid)
                 {
-                    if (Health.Value < ObjectManager.Me.HealthPercent - 1 || Health.Value > ObjectManager.Me.HealthPercent + 1)
+                    if (Health.Value < ObjectManager.Me.HealthPercent || Health.Value > ObjectManager.Me.HealthPercent)
                         Health.Value = (int) ObjectManager.Me.HealthPercent;
                     toolTip.SetToolTip(Health, ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
                 }
@@ -607,27 +606,17 @@ namespace The_Noob_Bot
                 }
                 if (Products.IsStarted && ObjectManager.Me.IsValid)
                 {
-                    XPPerHour.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": " +
-                                     Statistics.ExperienceByHr();
-                    HonorPerHour.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": " +
-                                        Statistics.HonorByHr();
-                    LootsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": " + Statistics.Loots +
-                                      " (" + Statistics.LootsByHr() + "/" +
-                                      nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    UnitKillsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": " + Statistics.Kills +
-                                          " (" + Statistics.KillsByHr() + "/" +
-                                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    DeathsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": " +
-                                       Statistics.Deaths + " (" + Statistics.DeathsByHr() + "/" +
-                                       nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    FarmsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": " + Statistics.Farms +
-                                      " (" + Statistics.FarmsByHr() + "/" +
-                                      nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    XPPerHour.Text = Statistics.ExperienceByHr().ToString();
+                    HonorPerHour.Text = Statistics.HonorByHr().ToString();
+                    LootsCount.Text = Statistics.Loots + " (" + Statistics.LootsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    UnitKillsCount.Text = Statistics.Kills + " (" + Statistics.KillsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    DeathsCount.Text = Statistics.Deaths + " (" + Statistics.DeathsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    FarmsCount.Text = Statistics.Farms + " (" + Statistics.FarmsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
                 }
                 if (ObjectManager.Target.IsValid)
                 {
                     TargetName.Text = ObjectManager.Target.Name;
-                    if (TargetHealth.Value < ObjectManager.Target.HealthPercent - 1 || TargetHealth.Value > ObjectManager.Target.HealthPercent + 1)
+                    if (TargetHealth.Value < ObjectManager.Target.HealthPercent || TargetHealth.Value > ObjectManager.Target.HealthPercent)
                         TargetHealth.Value = (int) ObjectManager.Target.HealthPercent;
                     toolTip.SetToolTip(TargetHealth, ObjectManager.Target.Health + "/" + ObjectManager.Target.MaxHealth);
                     TargetLevel.Text = ObjectManager.Target.Level.ToString();
@@ -669,8 +658,7 @@ namespace The_Noob_Bot
             {
                 if (Products.IsStarted)
                 {
-                    //StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.Stop);
-                    StartButton.Text = "STOP PRODUCT";
+                    StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.StopProduct).ToUpper();
                     if (!StartButton.Hoovering)
                         StartButton.Image = Resources.blackB_200;
                     ProductSettingsButton.Enabled = false;
@@ -679,8 +667,7 @@ namespace The_Noob_Bot
                 }
                 else
                 {
-                    //StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
-                    StartButton.Text = "START PRODUCT";
+                    StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.StartProduct).ToUpper();
                     if (!StartButton.Hoovering)
                         StartButton.Image = Resources.blueB_200;
                     ProductSettingsButton.Enabled = true;
@@ -711,12 +698,12 @@ namespace The_Noob_Bot
                 string timeLeft = Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
                 AccountName.Text = LoginServer.Login;
                 TimeLeft.Text = timeLeft;
-                OnlineBot.Text = "Online Bots: " + botOnline;
+                OnlineBot.Text = nManager.Translate.Get(nManager.Translate.Id.OnlineBots) + " " + botOnline;
                 AccountPanelTimer.Interval = 5000;
             }
             if (Remote.RemoteActive)
             {
-                RemoteSessionInfo.Text = "SESSION STARTED WITH ID " + Remote.SessionKey;
+                RemoteSessionInfo.Text = nManager.Translate.Get(nManager.Translate.Id.SessionInfo) + " " + Remote.SessionKey;
             }
             else
             {
@@ -742,10 +729,10 @@ namespace The_Noob_Bot
         private void LoggingTextArea_VisibleChanged(object sender, EventArgs e)
         {
             if (LoggingTextArea.Visible)
-                {
-                    LoggingTextArea.SelectionStart = LoggingTextArea.TextLength;
-                    LoggingTextArea.ScrollToCaret();
-                }
+            {
+                LoggingTextArea.SelectionStart = LoggingTextArea.TextLength;
+                LoggingTextArea.ScrollToCaret();
+            }
         }
     }
 }

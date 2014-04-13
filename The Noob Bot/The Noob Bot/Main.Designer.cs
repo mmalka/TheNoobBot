@@ -383,7 +383,7 @@ namespace The_Noob_Bot
             this.DeathsCount.Name = "DeathsCount";
             this.DeathsCount.Size = new System.Drawing.Size(115, 15);
             this.DeathsCount.TabIndex = 32;
-            this.DeathsCount.Text = "0";
+            this.DeathsCount.Text = "0 (0/hr)";
             // 
             // UnitKillsCount
             // 
@@ -394,7 +394,7 @@ namespace The_Noob_Bot
             this.UnitKillsCount.Name = "UnitKillsCount";
             this.UnitKillsCount.Size = new System.Drawing.Size(115, 15);
             this.UnitKillsCount.TabIndex = 31;
-            this.UnitKillsCount.Text = "0";
+            this.UnitKillsCount.Text = "0 (0/hr)";
             // 
             // XPPerHour
             // 
@@ -962,11 +962,6 @@ namespace The_Noob_Bot
             this.ProductsPriceList.FormattingEnabled = true;
             this.ProductsPriceList.HighlightColor = System.Drawing.Color.Gainsboro;
             this.ProductsPriceList.ItemHeight = 20;
-            this.ProductsPriceList.Items.AddRange(new object[] {
-            "1 month - 5.5 euros or 4 allopass",
-            "1 month PLATINIUM - 110 euros",
-            "6 month - 19.99 euros",
-            "Life time - 44.99 euros"});
             this.ProductsPriceList.Location = new System.Drawing.Point(286, 119);
             this.ProductsPriceList.Name = "ProductsPriceList";
             this.ProductsPriceList.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
