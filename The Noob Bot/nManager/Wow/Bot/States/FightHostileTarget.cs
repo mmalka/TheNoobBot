@@ -45,9 +45,8 @@ namespace nManager.Wow.Bot.States
                 // Get unit:
                 _unit = ObjectManager.ObjectManager.Target;
 
-                if (_unit.IsValid && !_unit.IsDead && _unit.IsAlive && _unit.Health > 0)
-                    if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated || _unit.Reaction == Reaction.Neutral)
-                        return true;
+                if (_unit.IsValid && !_unit.IsDead && _unit.IsAlive && _unit.Health > 0 && _unit.Attackable)
+                    return true;
 
                 // If in party, then search for the target if one member is in combat
                 if (Party.IsInGroup())
@@ -64,9 +63,8 @@ namespace nManager.Wow.Bot.States
                                 if (o == null)
                                     break;
                                 WoWUnit u = new WoWUnit(o.GetBaseAddress);
-                                if (u.IsValid && !u.IsDead && u.IsAlive && u.Health > 0)
-                                    if (u.Reaction == Reaction.Hostile || u.Reaction == Reaction.Hated || u.Reaction == Reaction.Neutral)
-                                        targets.Add(u);
+                                if (u.IsValid && !u.IsDead && u.IsAlive && u.Health > 0 && u.Attackable)
+                                    targets.Add(u);
                             }
                         }
                     }

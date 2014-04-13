@@ -1958,6 +1958,31 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool Attackable
+        {
+            get
+            {
+                try
+                {
+                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
+                        ((UnitRelation.GetReaction(Faction) == Reaction.Neutral &&
+                        GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlag) == 0) ||
+                        UnitRelation.GetReaction(Faction) < Reaction.Neutral);
+                    /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
+                        Donne ça en plus long et plus lent:
+                        UnitFlags f = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
+                        !f.HasFlag(UnitFlags.SelectableNotAttackable_1) && !f.HasFlag(UnitFlags.SelectableNotAttackable_2) &&
+                        !f.HasFlag(UnitFlags.NotAttackable) && !f.HasFlag(UnitFlags.Flag_9_0x200) &&
+                        !f.HasFlag(UnitFlags.SelectableNotAttackable_3)*/
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Attackable: " + e);
+                    return false;
+                }
+            }
+        }
+
         public bool NotAttackable
         {
             get
