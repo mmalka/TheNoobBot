@@ -1155,13 +1155,14 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (a.IsSkinnable && !withoutGuid.Contains(a.Guid))
                     {
-                        if (a.ExtraLootType == TypeFlag.None && a.GetSkillLevelRequired <= mySkinningLevel)
-                            list.Add(a);
-                        else if (a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT) && a.GetSkillLevelRequired <= myHerbalismLevel)
+                        if (a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT) && a.GetSkillLevelRequired <= myHerbalismLevel)
                             list.Add(a);
                         else if (a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT) && a.GetSkillLevelRequired <= myMiningLevel)
                             list.Add(a);
                         else if (a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT) && a.GetSkillLevelRequired <= myEngeneeringLevel)
+                            list.Add(a);
+                        else
+                            if (a.GetSkillLevelRequired <= mySkinningLevel)
                             list.Add(a);
                     }
                 }
