@@ -34,6 +34,8 @@ namespace nManager.Helpful.Forms.UserControls
             }
         }
 
+        public bool Hoovering = false;
+
         public override bool AutoSize
         {
             get { return false; }
@@ -42,10 +44,12 @@ namespace nManager.Helpful.Forms.UserControls
         private void OnMouseLeave(object sender, EventArgs e)
         {
             Image = _bImage;
+            Hoovering = false;
         }
 
         private void OnMouseEnter(object sender, EventArgs e)
         {
+            Hoovering = true;
             _bImage = Image;
             Image = HooverImage;
         }

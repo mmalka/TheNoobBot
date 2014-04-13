@@ -124,6 +124,12 @@
   <data name="blackB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="reduce_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reduce_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LeftRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Left-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -132,9 +138,6 @@
   </data>
   <data name="ButtonPlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,8 +157,8 @@
   <data name="FormFocus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FormFocus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blackB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blackB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,11 +172,20 @@
   <data name="ButtonRefresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tab_website" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tab_website.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoImageG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="controlbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\controlbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="barImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\barImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blueB_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB_200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,6 +205,12 @@
   <data name="Wrench" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Wrench.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="blackB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="UpDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Up-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -208,7 +226,7 @@
   <data name="blueB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tab_website" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tab_website.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="selectorBack_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectorBack_big.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

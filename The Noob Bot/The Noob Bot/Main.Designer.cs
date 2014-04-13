@@ -1,16 +1,18 @@
+﻿using nManager.Helpful.Forms.UserControls;
+
 namespace The_Noob_Bot
 {
-    internal partial class Main
+    partial class Main
     {
         /// <summary>
-        /// Required designer variable.
+        /// Variable nécessaire au concepteur.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Nettoyage des ressources utilisées.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,835 +22,1081 @@ namespace The_Noob_Bot
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Code généré par le Concepteur Windows Form
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+        /// le contenu de cette méthode avec l'éditeur de code.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.metroShell1 = new DevComponents.DotNetBar.Metro.MetroShell();
-            this.metroTabPanel1 = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
-            this.devToolsB = new DevComponents.DotNetBar.ButtonX();
-            this.targetHealthL = new DevComponents.DotNetBar.LabelX();
-            this.healthL = new DevComponents.DotNetBar.LabelX();
-            this.targetName = new DevComponents.DotNetBar.LabelX();
-			this.styleManager1 = new DevComponents.DotNetBar.StyleManager();
-            this.lastLogL = new DevComponents.DotNetBar.LabelX();
-            this.labelX13 = new DevComponents.DotNetBar.LabelX();
-            this.targetLevelL = new DevComponents.DotNetBar.LabelX();
-            this.labelX11 = new DevComponents.DotNetBar.LabelX();
-            this.targetHealthB = new DevComponents.DotNetBar.Controls.ProgressBarX();
-            this.farmsL = new DevComponents.DotNetBar.LabelX();
-            this.honorHrL = new DevComponents.DotNetBar.LabelX();
-            this.lootL = new DevComponents.DotNetBar.LabelX();
-            this.deathsL = new DevComponents.DotNetBar.LabelX();
-            this.killsL = new DevComponents.DotNetBar.LabelX();
-            this.xpHrL = new DevComponents.DotNetBar.LabelX();
-            this.levelL = new DevComponents.DotNetBar.LabelX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.healthB = new DevComponents.DotNetBar.Controls.ProgressBarX();
-            this.metroTabPanel2 = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
-            this.accountInfoL = new DevComponents.DotNetBar.LabelX();
-            this.remoteCb = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.tLogging = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.tHome = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.trer = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.metroTabItem2 = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.playerNameB = new DevComponents.DotNetBar.ButtonItem();
-            this.qatCustomizeItem1 = new DevComponents.DotNetBar.QatCustomizeItem();
-            this.metroStatusBar1 = new DevComponents.DotNetBar.Metro.MetroStatusBar();
-            this.statusBarText = new DevComponents.DotNetBar.LabelX();
-            this.myBotAccountTabTimer = new System.Windows.Forms.Timer(this.components);
-            this.listProductsCb = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.buttonProductManager = new System.Windows.Forms.Timer(this.components);
-            this.settingsB = new DevComponents.DotNetBar.ButtonX();
-            this.startB = new DevComponents.DotNetBar.ButtonX();
-            this.productSettingsB = new DevComponents.DotNetBar.ButtonX();
-            this.gameInformationTimer = new System.Windows.Forms.Timer(this.components);
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.metroShell1.SuspendLayout();
-            this.metroTabPanel1.SuspendLayout();
-            this.expandablePanel1.SuspendLayout();
-            this.metroTabPanel2.SuspendLayout();
-            this.expandablePanel2.SuspendLayout();
-            this.metroStatusBar1.SuspendLayout();
+            this.ControlMenu = new System.Windows.Forms.PictureBox();
+            this.ReduceButton = new System.Windows.Forms.PictureBox();
+            this.CloseButton = new System.Windows.Forms.PictureBox();
+            this.TopLeftLogo = new System.Windows.Forms.PictureBox();
+            this.MainFormTitle = new System.Windows.Forms.Label();
+            this.HomeTagButton = new System.Windows.Forms.Label();
+            this.LogTabButton = new System.Windows.Forms.Label();
+            this.AccountTabButton = new System.Windows.Forms.Label();
+            this.PanelHome = new System.Windows.Forms.Panel();
+            this.TargetName = new System.Windows.Forms.Label();
+            this.TargetLevel = new System.Windows.Forms.Label();
+            this.LatestLog = new System.Windows.Forms.Label();
+            this.TargetHealthLabel = new System.Windows.Forms.Label();
+            this.LatestLogLabel = new System.Windows.Forms.Label();
+            this.TargetLevelLabel = new System.Windows.Forms.Label();
+            this.TargetNameLabel = new System.Windows.Forms.Label();
+            this.FarmsCount = new System.Windows.Forms.Label();
+            this.DeathsCount = new System.Windows.Forms.Label();
+            this.UnitKillsCount = new System.Windows.Forms.Label();
+            this.XPPerHour = new System.Windows.Forms.Label();
+            this.LootsCount = new System.Windows.Forms.Label();
+            this.HonorPerHour = new System.Windows.Forms.Label();
+            this.FarmsLabel = new System.Windows.Forms.Label();
+            this.DeathsLabel = new System.Windows.Forms.Label();
+            this.UnitKillsLabel = new System.Windows.Forms.Label();
+            this.XPPerHourLabel = new System.Windows.Forms.Label();
+            this.LootsLabel = new System.Windows.Forms.Label();
+            this.HonorPerHourLabel = new System.Windows.Forms.Label();
+            this.HealthLabel = new System.Windows.Forms.Label();
+            this.PanelLog = new System.Windows.Forms.Panel();
+            this.DebugLogSwitchLabel = new System.Windows.Forms.Label();
+            this.NavigationLogSwitchLabel = new System.Windows.Forms.Label();
+            this.FightLogSwitchLabel = new System.Windows.Forms.Label();
+            this.NormalLogSwitchLabel = new System.Windows.Forms.Label();
+            this.LoggingTextArea = new System.Windows.Forms.RichTextBox();
+            this.PanelAccount = new System.Windows.Forms.Panel();
+            this.TimeLeft = new System.Windows.Forms.Label();
+            this.AccountName = new System.Windows.Forms.Label();
+            this.OnlineBot = new System.Windows.Forms.Label();
+            this.TimeLeftLabel = new System.Windows.Forms.Label();
+            this.AccountNameLabel = new System.Windows.Forms.Label();
+            this.ProductsListPriceLabel = new System.Windows.Forms.Label();
+            this.WantToSubscribeLabel = new System.Windows.Forms.Label();
+            this.RemoteSessionInfo = new System.Windows.Forms.Label();
+            this.RemoteSessionLabel = new System.Windows.Forms.Label();
+            this.WebsiteLink = new System.Windows.Forms.Label();
+            this.DevToolsLabel = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.HomePanelTimer = new System.Windows.Forms.Timer(this.components);
+            this.MainFormTimer = new System.Windows.Forms.Timer(this.components);
+            this.AccountPanelTimer = new System.Windows.Forms.Timer(this.components);
+            this.LoggingAreaTimer = new System.Windows.Forms.Timer(this.components);
+            this.ProductList = new nManager.Helpful.Forms.UserControls.TnbComboBox();
+            this.StartButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.ProductSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.MainSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.TargetHealth = new nManager.Helpful.Forms.UserControls.TnbProgressBar();
+            this.Health = new nManager.Helpful.Forms.UserControls.TnbProgressBar();
+            this.DebugLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.NavigationLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.FightLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.NormalLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.GoToPaymentPageButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.ProductsPriceList = new nManager.Helpful.Forms.UserControls.TnbComboBox();
+            this.RemoteSessionSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).BeginInit();
+            this.PanelHome.SuspendLayout();
+            this.PanelLog.SuspendLayout();
+            this.PanelAccount.SuspendLayout();
             this.SuspendLayout();
             // 
-            // metroShell1
-            // 
-            this.metroShell1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.metroShell1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.metroShell1.CaptionVisible = true;
-            this.metroShell1.Controls.Add(this.metroTabPanel1);
-            this.metroShell1.Controls.Add(this.metroTabPanel2);
-            this.metroShell1.Controls.Add(this.tLogging);
-            this.metroShell1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.metroShell1.ForeColor = System.Drawing.Color.Black;
-            this.metroShell1.HelpButtonText = "WEBSITE";
-            this.metroShell1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.tHome,
-            this.trer,
-            this.metroTabItem2});
-            this.metroShell1.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
-            this.metroShell1.Location = new System.Drawing.Point(0, 1);
-            this.metroShell1.Name = "metroShell1";
-            this.metroShell1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.playerNameB});
-			this.styleManager1.ManagerColorTint = System.Drawing.Color.WhiteSmoke;
-			this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
-			this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230))))), System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(181)))), ((int)(((byte)(22))))));
-            this.metroShell1.SettingsButtonVisible = false;
-            this.metroShell1.Size = new System.Drawing.Size(444, 229);
-            this.metroShell1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
-            this.metroShell1.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
-            this.metroShell1.SystemText.QatAddItemText = "&Add to Quick Access Toolbar";
-            this.metroShell1.SystemText.QatCustomizeMenuLabel = "<b>Customize Quick Access Toolbar</b>";
-            this.metroShell1.SystemText.QatCustomizeText = "&Customize Quick Access Toolbar...";
-            this.metroShell1.SystemText.QatDialogAddButton = "&Add >>";
-            this.metroShell1.SystemText.QatDialogCancelButton = "Cancel";
-            this.metroShell1.SystemText.QatDialogCaption = "Customize Quick Access Toolbar";
-            this.metroShell1.SystemText.QatDialogCategoriesLabel = "&Choose commands from:";
-            this.metroShell1.SystemText.QatDialogOkButton = "OK";
-            this.metroShell1.SystemText.QatDialogPlacementCheckbox = "&Place Quick Access Toolbar below the Ribbon";
-            this.metroShell1.SystemText.QatDialogRemoveButton = "&Remove";
-            this.metroShell1.SystemText.QatPlaceAboveRibbonText = "&Place Quick Access Toolbar above the Ribbon";
-            this.metroShell1.SystemText.QatPlaceBelowRibbonText = "&Place Quick Access Toolbar below the Ribbon";
-            this.metroShell1.SystemText.QatRemoveItemText = "&Remove from Quick Access Toolbar";
-            this.metroShell1.TabIndex = 0;
-            this.metroShell1.TabStripFont = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroShell1.Text = "metroShell1";
-            this.metroShell1.HelpButtonClick += new System.EventHandler(this.metroShell1_Click);
-            // 
-            // metroTabPanel1
-            // 
-            this.metroTabPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.metroTabPanel1.Controls.Add(this.expandablePanel1);
-            this.metroTabPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTabPanel1.Location = new System.Drawing.Point(0, 51);
-            this.metroTabPanel1.Name = "metroTabPanel1";
-            this.metroTabPanel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.metroTabPanel1.Size = new System.Drawing.Size(444, 178);
-            // 
-            // 
-            // 
-            this.metroTabPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.metroTabPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.metroTabPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.metroTabPanel1.TabIndex = 1;
-            // 
-            // expandablePanel1
-            // 
-            this.expandablePanel1.CanvasColor = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel1.Controls.Add(this.devToolsB);
-            this.expandablePanel1.Controls.Add(this.targetHealthL);
-            this.expandablePanel1.Controls.Add(this.healthL);
-            this.expandablePanel1.Controls.Add(this.targetName);
-            this.expandablePanel1.Controls.Add(this.lastLogL);
-            this.expandablePanel1.Controls.Add(this.labelX13);
-            this.expandablePanel1.Controls.Add(this.targetLevelL);
-            this.expandablePanel1.Controls.Add(this.labelX11);
-            this.expandablePanel1.Controls.Add(this.targetHealthB);
-            this.expandablePanel1.Controls.Add(this.farmsL);
-            this.expandablePanel1.Controls.Add(this.honorHrL);
-            this.expandablePanel1.Controls.Add(this.lootL);
-            this.expandablePanel1.Controls.Add(this.deathsL);
-            this.expandablePanel1.Controls.Add(this.killsL);
-            this.expandablePanel1.Controls.Add(this.xpHrL);
-            this.expandablePanel1.Controls.Add(this.levelL);
-            this.expandablePanel1.Controls.Add(this.labelX3);
-            this.expandablePanel1.Controls.Add(this.healthB);
-            this.expandablePanel1.ExpandButtonVisible = false;
-            this.expandablePanel1.Location = new System.Drawing.Point(6, 3);
-            this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(432, 169);
-            this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel1.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel1.Style.GradientAngle = 90;
-            this.expandablePanel1.TabIndex = 0;
-            this.expandablePanel1.TitleStyle.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel1.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel1.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel1.TitleStyle.GradientAngle = 90;
-            this.expandablePanel1.TitleText = "  Game Informations";
-            // 
-            // devToolsB
-            // 
-            this.devToolsB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.devToolsB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.devToolsB.Location = new System.Drawing.Point(362, 7);
-            this.devToolsB.Name = "devToolsB";
-            this.devToolsB.Size = new System.Drawing.Size(66, 15);
-            this.devToolsB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.devToolsB.TabIndex = 20;
-            this.devToolsB.Text = "Dev Tools";
-            this.devToolsB.Click += new System.EventHandler(this.devToolsB_Click);
-            // 
-            // targetHealthL
-            // 
-            this.targetHealthL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.targetHealthL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.targetHealthL.Font = new System.Drawing.Font("Segoe UI Semibold", 7F, System.Drawing.FontStyle.Italic);
-            this.targetHealthL.ForeColor = System.Drawing.Color.Black;
-            this.targetHealthL.Location = new System.Drawing.Point(331, 76);
-            this.targetHealthL.Name = "targetHealthL";
-            this.targetHealthL.Size = new System.Drawing.Size(99, 15);
-            this.targetHealthL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.targetHealthL.TabIndex = 19;
-            this.targetHealthL.Text = "-/-";
-            this.targetHealthL.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // healthL
-            // 
-            this.healthL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.healthL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.healthL.Font = new System.Drawing.Font("Segoe UI Semibold", 7F, System.Drawing.FontStyle.Italic);
-            this.healthL.ForeColor = System.Drawing.Color.Black;
-            this.healthL.Location = new System.Drawing.Point(48, 52);
-            this.healthL.Name = "healthL";
-            this.healthL.Size = new System.Drawing.Size(111, 15);
-            this.healthL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.healthL.TabIndex = 18;
-            this.healthL.Text = "-/-";
-            this.healthL.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // targetName
-            // 
-            this.targetName.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.targetName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.targetName.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.targetName.ForeColor = System.Drawing.Color.Black;
-            this.targetName.Location = new System.Drawing.Point(250, 34);
-            this.targetName.Name = "targetName";
-            this.targetName.Size = new System.Drawing.Size(179, 23);
-            this.targetName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.targetName.TabIndex = 17;
-            this.targetName.Text = "Target Name";
-            // 
-            // lastLogL
-            // 
-            this.lastLogL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.lastLogL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lastLogL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastLogL.ForeColor = System.Drawing.Color.Black;
-            this.lastLogL.Location = new System.Drawing.Point(257, 136);
-            this.lastLogL.Name = "lastLogL";
-            this.lastLogL.Size = new System.Drawing.Size(175, 23);
-            this.lastLogL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.lastLogL.TabIndex = 16;
-            this.lastLogL.Text = "Last Log";
-            // 
-            // labelX13
-            // 
-            this.labelX13.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX13.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX13.ForeColor = System.Drawing.Color.Black;
-            this.labelX13.Location = new System.Drawing.Point(250, 118);
-            this.labelX13.Name = "labelX13";
-            this.labelX13.Size = new System.Drawing.Size(82, 23);
-            this.labelX13.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.labelX13.TabIndex = 15;
-            this.labelX13.Text = "Last Log:";
-            // 
-            // targetLevelL
-            // 
-            this.targetLevelL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.targetLevelL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.targetLevelL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.targetLevelL.ForeColor = System.Drawing.Color.Black;
-            this.targetLevelL.Location = new System.Drawing.Point(250, 89);
-            this.targetLevelL.Name = "targetLevelL";
-            this.targetLevelL.Size = new System.Drawing.Size(82, 23);
-            this.targetLevelL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.targetLevelL.TabIndex = 14;
-            this.targetLevelL.Text = "Target Level";
-            // 
-            // labelX11
-            // 
-            this.labelX11.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX11.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX11.ForeColor = System.Drawing.Color.Black;
-            this.labelX11.Location = new System.Drawing.Point(250, 60);
-            this.labelX11.Name = "labelX11";
-            this.labelX11.Size = new System.Drawing.Size(72, 23);
-            this.labelX11.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.labelX11.TabIndex = 13;
-            this.labelX11.Text = "Target Health";
-            // 
-            // targetHealthB
-            // 
-            this.targetHealthB.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.targetHealthB.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.targetHealthB.ForeColor = System.Drawing.Color.Black;
-            this.targetHealthB.Location = new System.Drawing.Point(331, 64);
-            this.targetHealthB.Name = "targetHealthB";
-            this.targetHealthB.Size = new System.Drawing.Size(98, 12);
-            this.targetHealthB.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.targetHealthB.TabIndex = 12;
-            this.targetHealthB.Text = "progressBarX2";
-            // 
-            // farmsL
-            // 
-            this.farmsL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.farmsL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.farmsL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.farmsL.ForeColor = System.Drawing.Color.Black;
-            this.farmsL.Location = new System.Drawing.Point(133, 131);
-            this.farmsL.Name = "farmsL";
-            this.farmsL.Size = new System.Drawing.Size(111, 23);
-            this.farmsL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.farmsL.TabIndex = 11;
-            this.farmsL.Text = "Farms: 0 (0/hr)";
-            // 
-            // honorHrL
-            // 
-            this.honorHrL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.honorHrL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.honorHrL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.honorHrL.ForeColor = System.Drawing.Color.Black;
-            this.honorHrL.Location = new System.Drawing.Point(3, 102);
-            this.honorHrL.Name = "honorHrL";
-            this.honorHrL.Size = new System.Drawing.Size(124, 23);
-            this.honorHrL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.honorHrL.TabIndex = 10;
-            this.honorHrL.Text = "Honor/hr: 0";
-            // 
-            // lootL
-            // 
-            this.lootL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.lootL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lootL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lootL.ForeColor = System.Drawing.Color.Black;
-            this.lootL.Location = new System.Drawing.Point(3, 131);
-            this.lootL.Name = "lootL";
-            this.lootL.Size = new System.Drawing.Size(124, 23);
-            this.lootL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.lootL.TabIndex = 9;
-            this.lootL.Text = "Loots: 0 (0/hr)";
-            // 
-            // deathsL
-            // 
-            this.deathsL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.deathsL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.deathsL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deathsL.ForeColor = System.Drawing.Color.Black;
-            this.deathsL.Location = new System.Drawing.Point(133, 102);
-            this.deathsL.Name = "deathsL";
-            this.deathsL.Size = new System.Drawing.Size(111, 23);
-            this.deathsL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.deathsL.TabIndex = 8;
-            this.deathsL.Text = "Deaths: 0 (0/hr)";
-            // 
-            // killsL
-            // 
-            this.killsL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.killsL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.killsL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.killsL.ForeColor = System.Drawing.Color.Black;
-            this.killsL.Location = new System.Drawing.Point(133, 73);
-            this.killsL.Name = "killsL";
-            this.killsL.Size = new System.Drawing.Size(111, 23);
-            this.killsL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.killsL.TabIndex = 7;
-            this.killsL.Text = "Kills: 0 (0/hr)";
-            // 
-            // xpHrL
-            // 
-            this.xpHrL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.xpHrL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.xpHrL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xpHrL.ForeColor = System.Drawing.Color.Black;
-            this.xpHrL.Location = new System.Drawing.Point(3, 73);
-            this.xpHrL.Name = "xpHrL";
-            this.xpHrL.Size = new System.Drawing.Size(124, 23);
-            this.xpHrL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.xpHrL.TabIndex = 6;
-            this.xpHrL.Text = "XP/hr: 0";
-            // 
-            // levelL
-            // 
-            this.levelL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.levelL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.levelL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.levelL.ForeColor = System.Drawing.Color.Black;
-            this.levelL.Location = new System.Drawing.Point(165, 35);
-            this.levelL.Name = "levelL";
-            this.levelL.Size = new System.Drawing.Size(79, 23);
-            this.levelL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.levelL.TabIndex = 5;
-            this.levelL.Text = "Level";
-            // 
-            // labelX3
-            // 
-            this.labelX3.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(3, 35);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(39, 23);
-            this.labelX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.labelX3.TabIndex = 4;
-            this.labelX3.Text = "Health";
-            // 
-            // healthB
-            // 
-            this.healthB.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.healthB.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.healthB.ForeColor = System.Drawing.Color.Black;
-            this.healthB.Location = new System.Drawing.Point(48, 40);
-            this.healthB.Name = "healthB";
-            this.healthB.Size = new System.Drawing.Size(111, 12);
-            this.healthB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.healthB.TabIndex = 3;
-            this.healthB.Text = "progressBarX1";
-            // 
-            // metroTabPanel2
-            // 
-            this.metroTabPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.metroTabPanel2.Controls.Add(this.expandablePanel2);
-            this.metroTabPanel2.Controls.Add(this.remoteCb);
-            this.metroTabPanel2.Controls.Add(this.labelX1);
-            this.metroTabPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTabPanel2.Location = new System.Drawing.Point(0, 51);
-            this.metroTabPanel2.Name = "metroTabPanel2";
-            this.metroTabPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.metroTabPanel2.Size = new System.Drawing.Size(444, 178);
-            // 
-            // 
-            // 
-            this.metroTabPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.metroTabPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.metroTabPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.metroTabPanel2.TabIndex = 3;
-            this.metroTabPanel2.Visible = false;
-            // 
-            // expandablePanel2
-            // 
-            this.expandablePanel2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel2.Controls.Add(this.accountInfoL);
-            this.expandablePanel2.ExpandButtonVisible = false;
-            this.expandablePanel2.Location = new System.Drawing.Point(6, 35);
-            this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(432, 140);
-            this.expandablePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel2.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel2.Style.GradientAngle = 90;
-            this.expandablePanel2.TabIndex = 3;
-            this.expandablePanel2.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel2.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel2.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel2.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel2.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel2.TitleStyle.GradientAngle = 90;
-            this.expandablePanel2.TitleText = "Account Informations";
-            // 
-            // accountInfoL
-            // 
-            this.accountInfoL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.accountInfoL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.accountInfoL.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accountInfoL.ForeColor = System.Drawing.Color.Black;
-            this.accountInfoL.Location = new System.Drawing.Point(3, 31);
-            this.accountInfoL.Name = "accountInfoL";
-            this.accountInfoL.Size = new System.Drawing.Size(426, 179);
-            this.accountInfoL.TabIndex = 2;
-            this.accountInfoL.Text = "Information account";
-            this.accountInfoL.TextLineAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // remoteCb
-            // 
-            this.remoteCb.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.remoteCb.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.remoteCb.ForeColor = System.Drawing.Color.Black;
-            this.remoteCb.Location = new System.Drawing.Point(171, 7);
-            this.remoteCb.Name = "remoteCb";
-            this.remoteCb.Size = new System.Drawing.Size(66, 22);
-            this.remoteCb.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.remoteCb.TabIndex = 0;
-            this.remoteCb.ValueChanged += new System.EventHandler(this.remoteCb_ValueChanged);
-            // 
-            // labelX1
-            // 
-            this.labelX1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(9, 6);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(156, 23);
-            this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "Remote:";
-            // 
-            // tLogging
-            // 
-            this.tLogging.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.tLogging.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tLogging.Location = new System.Drawing.Point(0, 51);
-            this.tLogging.Name = "tLogging";
-            this.tLogging.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tLogging.Size = new System.Drawing.Size(444, 178);
-            // 
-            // 
-            // 
-            this.tLogging.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tLogging.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tLogging.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tLogging.TabIndex = 2;
-            this.tLogging.Visible = false;
-            // 
-            // tHome
-            // 
-            this.tHome.Checked = true;
-            this.tHome.Name = "tHome";
-            this.tHome.Panel = this.metroTabPanel1;
-            this.tHome.Text = "&Home";
-            // 
-            // trer
-            // 
-            this.trer.Name = "trer";
-            this.trer.Panel = this.tLogging;
-            this.trer.Text = "&Log";
-            // 
-            // metroTabItem2
-            // 
-            this.metroTabItem2.Name = "metroTabItem2";
-            this.metroTabItem2.Panel = this.metroTabPanel2;
-            this.metroTabItem2.Text = "&My Bot Account";
-            // 
-            // playerNameB
-            // 
-            this.playerNameB.Name = "playerNameB";
-            this.playerNameB.Text = "Player Name";
-            // 
-            // qatCustomizeItem1
-            // 
-            this.qatCustomizeItem1.BeginGroup = true;
-            this.qatCustomizeItem1.Name = "qatCustomizeItem1";
-            this.qatCustomizeItem1.Visible = false;
-            // 
-            // metroStatusBar1
-            // 
-            this.metroStatusBar1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.metroStatusBar1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.metroStatusBar1.ContainerControlProcessDialogKey = true;
-            this.metroStatusBar1.Controls.Add(this.statusBarText);
-            this.metroStatusBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.metroStatusBar1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroStatusBar1.ForeColor = System.Drawing.Color.Black;
-            this.metroStatusBar1.Location = new System.Drawing.Point(0, 308);
-            this.metroStatusBar1.Name = "metroStatusBar1";
-            this.metroStatusBar1.Size = new System.Drawing.Size(444, 21);
-            this.metroStatusBar1.TabIndex = 1;
-            this.metroStatusBar1.Text = "StatusBar";
-            // 
-            // statusBarText
-            // 
-            this.statusBarText.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.statusBarText.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.statusBarText.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusBarText.ForeColor = System.Drawing.Color.Black;
-            this.statusBarText.Location = new System.Drawing.Point(1, 1);
-            this.statusBarText.Name = "statusBarText";
-            this.statusBarText.Size = new System.Drawing.Size(214, 18);
-            this.statusBarText.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.statusBarText.TabIndex = 0;
-            this.statusBarText.Text = "statusBarText";
-            // 
-            // myBotAccountTabTimer
-            // 
-            this.myBotAccountTabTimer.Enabled = true;
-            this.myBotAccountTabTimer.Interval = 1000;
-            this.myBotAccountTabTimer.Tick += new System.EventHandler(this.myBotAccountTabTimer_Tick);
-            // 
-            // listProductsCb
-            // 
-            this.listProductsCb.DisplayMember = "Text";
-            this.listProductsCb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listProductsCb.ForeColor = System.Drawing.Color.Black;
-            this.listProductsCb.FormattingEnabled = true;
-            this.listProductsCb.ItemHeight = 16;
-            this.listProductsCb.Location = new System.Drawing.Point(85, 236);
-            this.listProductsCb.Name = "listProductsCb";
-            this.listProductsCb.Size = new System.Drawing.Size(353, 22);
-            this.listProductsCb.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.listProductsCb.TabIndex = 10;
-            this.listProductsCb.WatermarkColor = System.Drawing.Color.WhiteSmoke;
-            this.listProductsCb.SelectedIndexChanged += new System.EventHandler(this.listProductsCb_SelectedIndexChanged);
-            // 
-            // labelX2
-            // 
-            this.labelX2.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(9, 236);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(70, 23);
-            this.labelX2.TabIndex = 11;
-            this.labelX2.Text = "Product";
-            // 
-            // buttonProductManager
-            // 
-            this.buttonProductManager.Enabled = true;
-            this.buttonProductManager.Interval = 500;
-            this.buttonProductManager.Tick += new System.EventHandler(this.buttonProductManager_Tick);
-            // 
-            // settingsB
-            // 
-            this.settingsB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.settingsB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.settingsB.Image = global::The_Noob_Bot.Properties.Resources.Wrench;
-            this.settingsB.ImageFixedSize = new System.Drawing.Size(30, 30);
-            this.settingsB.Location = new System.Drawing.Point(334, 265);
-            this.settingsB.Name = "settingsB";
-            this.settingsB.Size = new System.Drawing.Size(104, 38);
-            this.settingsB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.settingsB.TabIndex = 7;
-            this.settingsB.Text = "General Settings";
-            this.settingsB.Click += new System.EventHandler(this.settingsB_Click);
-            // 
-            // startB
-            // 
-            this.startB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.startB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.startB.Enabled = false;
-            this.startB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startB.Image = global::The_Noob_Bot.Properties.Resources.Play;
-            this.startB.ImageFixedSize = new System.Drawing.Size(30, 30);
-            this.startB.Location = new System.Drawing.Point(9, 265);
-            this.startB.Name = "startB";
-            this.startB.Size = new System.Drawing.Size(206, 38);
-            this.startB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.startB.TabIndex = 9;
-            this.startB.Text = "Start";
-            this.startB.Click += new System.EventHandler(this.startB_Click);
-            // 
-            // productSettingsB
-            // 
-            this.productSettingsB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.productSettingsB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.productSettingsB.Enabled = false;
-            this.productSettingsB.Image = global::The_Noob_Bot.Properties.Resources.Application;
-            this.productSettingsB.ImageFixedSize = new System.Drawing.Size(30, 30);
-            this.productSettingsB.Location = new System.Drawing.Point(221, 265);
-            this.productSettingsB.Name = "productSettingsB";
-            this.productSettingsB.Size = new System.Drawing.Size(107, 38);
-            this.productSettingsB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.productSettingsB.TabIndex = 8;
-            this.productSettingsB.Text = "Product Settings";
-            this.productSettingsB.Click += new System.EventHandler(this.productSettingsB_Click);
-            // 
-            // gameInformationTimer
-            // 
-            this.gameInformationTimer.Enabled = true;
-            this.gameInformationTimer.Interval = 1500;
-            this.gameInformationTimer.Tick += new System.EventHandler(this.gameInformationTimer_Tick);
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonX1.Location = new System.Drawing.Point(280, 8);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(61, 15);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 21;
-            this.buttonX1.Text = "Minimise";
-            this.buttonX1.TextColor = System.Drawing.Color.Black;
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
+            // ControlMenu
+            // 
+            this.ControlMenu.BackColor = System.Drawing.Color.Black;
+            this.ControlMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ControlMenu.ErrorImage = null;
+            this.ControlMenu.Image = global::The_Noob_Bot.Properties.Resources.controlbar;
+            this.ControlMenu.InitialImage = null;
+            this.ControlMenu.Location = new System.Drawing.Point(0, 0);
+            this.ControlMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.ControlMenu.MaximumSize = new System.Drawing.Size(575, 43);
+            this.ControlMenu.MinimumSize = new System.Drawing.Size(575, 43);
+            this.ControlMenu.Name = "ControlMenu";
+            this.ControlMenu.Size = new System.Drawing.Size(575, 43);
+            this.ControlMenu.TabIndex = 0;
+            this.ControlMenu.TabStop = false;
+            this.ControlMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
+            this.ControlMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
+            this.ControlMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
+            // 
+            // ReduceButton
+            // 
+            this.ReduceButton.BackColor = System.Drawing.Color.Transparent;
+            this.ReduceButton.ErrorImage = null;
+            this.ReduceButton.Image = global::The_Noob_Bot.Properties.Resources.reduce_button;
+            this.ReduceButton.InitialImage = null;
+            this.ReduceButton.Location = new System.Drawing.Point(523, 13);
+            this.ReduceButton.Margin = new System.Windows.Forms.Padding(0);
+            this.ReduceButton.MaximumSize = new System.Drawing.Size(13, 14);
+            this.ReduceButton.MinimumSize = new System.Drawing.Size(13, 14);
+            this.ReduceButton.Name = "ReduceButton";
+            this.ReduceButton.Size = new System.Drawing.Size(13, 14);
+            this.ReduceButton.TabIndex = 1;
+            this.ReduceButton.TabStop = false;
+            this.ReduceButton.Click += new System.EventHandler(this.ReduceButton_Click);
+            this.ReduceButton.MouseEnter += new System.EventHandler(this.ReduceButton_MouseEnter);
+            this.ReduceButton.MouseLeave += new System.EventHandler(this.ReduceButton_MouseLeave);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseButton.ErrorImage = null;
+            this.CloseButton.Image = global::The_Noob_Bot.Properties.Resources.close_button;
+            this.CloseButton.InitialImage = null;
+            this.CloseButton.Location = new System.Drawing.Point(550, 13);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
+            this.CloseButton.MaximumSize = new System.Drawing.Size(13, 14);
+            this.CloseButton.MinimumSize = new System.Drawing.Size(13, 14);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(13, 14);
+            this.CloseButton.TabIndex = 2;
+            this.CloseButton.TabStop = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
+            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
+            // 
+            // TopLeftLogo
+            // 
+            this.TopLeftLogo.ErrorImage = null;
+            this.TopLeftLogo.Image = global::The_Noob_Bot.Properties.Resources.logoImageG;
+            this.TopLeftLogo.InitialImage = null;
+            this.TopLeftLogo.Location = new System.Drawing.Point(13, 3);
+            this.TopLeftLogo.Margin = new System.Windows.Forms.Padding(0);
+            this.TopLeftLogo.Name = "TopLeftLogo";
+            this.TopLeftLogo.Size = new System.Drawing.Size(30, 33);
+            this.TopLeftLogo.TabIndex = 4;
+            this.TopLeftLogo.TabStop = false;
+            this.TopLeftLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
+            this.TopLeftLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
+            this.TopLeftLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
+            // 
+            // MainFormTitle
+            // 
+            this.MainFormTitle.AutoEllipsis = true;
+            this.MainFormTitle.AutoSize = true;
+            this.MainFormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.MainFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainFormTitle.Location = new System.Drawing.Point(57, 4);
+            this.MainFormTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.MainFormTitle.MaximumSize = new System.Drawing.Size(450, 35);
+            this.MainFormTitle.MinimumSize = new System.Drawing.Size(450, 35);
+            this.MainFormTitle.Name = "MainFormTitle";
+            this.MainFormTitle.Size = new System.Drawing.Size(450, 35);
+            this.MainFormTitle.TabIndex = 12;
+            this.MainFormTitle.Text = "PlayerName - TheNoobBot - 3.0.0";
+            this.MainFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MainFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
+            this.MainFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
+            this.MainFormTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
+            // 
+            // HomeTagButton
+            // 
+            this.HomeTagButton.AutoEllipsis = true;
+            this.HomeTagButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeTagButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.HomeTagButton.Image = global::The_Noob_Bot.Properties.Resources.tab_active_mainframe;
+            this.HomeTagButton.Location = new System.Drawing.Point(1, 44);
+            this.HomeTagButton.Margin = new System.Windows.Forms.Padding(0);
+            this.HomeTagButton.MaximumSize = new System.Drawing.Size(108, 33);
+            this.HomeTagButton.MinimumSize = new System.Drawing.Size(108, 33);
+            this.HomeTagButton.Name = "HomeTagButton";
+            this.HomeTagButton.Size = new System.Drawing.Size(108, 33);
+            this.HomeTagButton.TabIndex = 13;
+            this.HomeTagButton.Text = "HOME";
+            this.HomeTagButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HomeTagButton.Click += new System.EventHandler(this.HomeTagButton_Click);
+            this.HomeTagButton.MouseEnter += new System.EventHandler(this.HomeTagButton_MouseEnter);
+            this.HomeTagButton.MouseLeave += new System.EventHandler(this.HomeTagButton_MouseLeave);
+            // 
+            // LogTabButton
+            // 
+            this.LogTabButton.AutoEllipsis = true;
+            this.LogTabButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogTabButton.ForeColor = System.Drawing.Color.Snow;
+            this.LogTabButton.Image = global::The_Noob_Bot.Properties.Resources.tab_inactive_mainframe;
+            this.LogTabButton.Location = new System.Drawing.Point(109, 44);
+            this.LogTabButton.Margin = new System.Windows.Forms.Padding(0);
+            this.LogTabButton.MaximumSize = new System.Drawing.Size(108, 33);
+            this.LogTabButton.MinimumSize = new System.Drawing.Size(108, 33);
+            this.LogTabButton.Name = "LogTabButton";
+            this.LogTabButton.Size = new System.Drawing.Size(108, 33);
+            this.LogTabButton.TabIndex = 14;
+            this.LogTabButton.Text = "LOG";
+            this.LogTabButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LogTabButton.Click += new System.EventHandler(this.LogTabButton_Click);
+            this.LogTabButton.MouseEnter += new System.EventHandler(this.LogTabButton_MouseEnter);
+            this.LogTabButton.MouseLeave += new System.EventHandler(this.LogTabButton_MouseLeave);
+            // 
+            // AccountTabButton
+            // 
+            this.AccountTabButton.AutoEllipsis = true;
+            this.AccountTabButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountTabButton.ForeColor = System.Drawing.Color.Snow;
+            this.AccountTabButton.Image = global::The_Noob_Bot.Properties.Resources.tab_inactive_mainframe;
+            this.AccountTabButton.Location = new System.Drawing.Point(217, 44);
+            this.AccountTabButton.Margin = new System.Windows.Forms.Padding(0);
+            this.AccountTabButton.MaximumSize = new System.Drawing.Size(108, 33);
+            this.AccountTabButton.MinimumSize = new System.Drawing.Size(108, 33);
+            this.AccountTabButton.Name = "AccountTabButton";
+            this.AccountTabButton.Size = new System.Drawing.Size(108, 33);
+            this.AccountTabButton.TabIndex = 15;
+            this.AccountTabButton.Text = "MY ACCOUNT";
+            this.AccountTabButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AccountTabButton.Click += new System.EventHandler(this.AccountTabButton_Click);
+            this.AccountTabButton.MouseEnter += new System.EventHandler(this.AccountTabButton_MouseEnter);
+            this.AccountTabButton.MouseLeave += new System.EventHandler(this.AccountTabButton_MouseLeave);
+            // 
+            // PanelHome
+            // 
+            this.PanelHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.PanelHome.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PanelHome.BackgroundImage")));
+            this.PanelHome.Controls.Add(this.TargetHealth);
+            this.PanelHome.Controls.Add(this.TargetName);
+            this.PanelHome.Controls.Add(this.TargetLevel);
+            this.PanelHome.Controls.Add(this.LatestLog);
+            this.PanelHome.Controls.Add(this.TargetHealthLabel);
+            this.PanelHome.Controls.Add(this.LatestLogLabel);
+            this.PanelHome.Controls.Add(this.TargetLevelLabel);
+            this.PanelHome.Controls.Add(this.TargetNameLabel);
+            this.PanelHome.Controls.Add(this.Health);
+            this.PanelHome.Controls.Add(this.FarmsCount);
+            this.PanelHome.Controls.Add(this.DeathsCount);
+            this.PanelHome.Controls.Add(this.UnitKillsCount);
+            this.PanelHome.Controls.Add(this.XPPerHour);
+            this.PanelHome.Controls.Add(this.LootsCount);
+            this.PanelHome.Controls.Add(this.HonorPerHour);
+            this.PanelHome.Controls.Add(this.FarmsLabel);
+            this.PanelHome.Controls.Add(this.DeathsLabel);
+            this.PanelHome.Controls.Add(this.UnitKillsLabel);
+            this.PanelHome.Controls.Add(this.XPPerHourLabel);
+            this.PanelHome.Controls.Add(this.LootsLabel);
+            this.PanelHome.Controls.Add(this.HonorPerHourLabel);
+            this.PanelHome.Controls.Add(this.HealthLabel);
+            this.PanelHome.Location = new System.Drawing.Point(1, 78);
+            this.PanelHome.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelHome.MaximumSize = new System.Drawing.Size(573, 203);
+            this.PanelHome.MinimumSize = new System.Drawing.Size(573, 203);
+            this.PanelHome.Name = "PanelHome";
+            this.PanelHome.Size = new System.Drawing.Size(573, 203);
+            this.PanelHome.TabIndex = 16;
+            // 
+            // TargetName
+            // 
+            this.TargetName.AutoEllipsis = true;
+            this.TargetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TargetName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TargetName.Location = new System.Drawing.Point(418, 12);
+            this.TargetName.Name = "TargetName";
+            this.TargetName.Size = new System.Drawing.Size(115, 15);
+            this.TargetName.TabIndex = 44;
+            this.TargetName.Text = "...";
+            // 
+            // TargetLevel
+            // 
+            this.TargetLevel.AutoEllipsis = true;
+            this.TargetLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TargetLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TargetLevel.Location = new System.Drawing.Point(418, 66);
+            this.TargetLevel.Name = "TargetLevel";
+            this.TargetLevel.Size = new System.Drawing.Size(115, 15);
+            this.TargetLevel.TabIndex = 42;
+            this.TargetLevel.Text = "...";
+            // 
+            // LatestLog
+            // 
+            this.LatestLog.AutoEllipsis = true;
+            this.LatestLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatestLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.LatestLog.Location = new System.Drawing.Point(298, 174);
+            this.LatestLog.Name = "LatestLog";
+            this.LatestLog.Size = new System.Drawing.Size(265, 15);
+            this.LatestLog.TabIndex = 41;
+            // 
+            // TargetHealthLabel
+            // 
+            this.TargetHealthLabel.AutoEllipsis = true;
+            this.TargetHealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TargetHealthLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TargetHealthLabel.Location = new System.Drawing.Point(298, 39);
+            this.TargetHealthLabel.Name = "TargetHealthLabel";
+            this.TargetHealthLabel.Size = new System.Drawing.Size(115, 15);
+            this.TargetHealthLabel.TabIndex = 38;
+            this.TargetHealthLabel.Text = "Target\'s Health :";
+            // 
+            // LatestLogLabel
+            // 
+            this.LatestLogLabel.AutoEllipsis = true;
+            this.LatestLogLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatestLogLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.LatestLogLabel.Location = new System.Drawing.Point(298, 147);
+            this.LatestLogLabel.Name = "LatestLogLabel";
+            this.LatestLogLabel.Size = new System.Drawing.Size(260, 15);
+            this.LatestLogLabel.TabIndex = 37;
+            this.LatestLogLabel.Text = "Latest Log Entry :";
+            // 
+            // TargetLevelLabel
+            // 
+            this.TargetLevelLabel.AutoEllipsis = true;
+            this.TargetLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TargetLevelLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TargetLevelLabel.Location = new System.Drawing.Point(298, 66);
+            this.TargetLevelLabel.Name = "TargetLevelLabel";
+            this.TargetLevelLabel.Size = new System.Drawing.Size(115, 15);
+            this.TargetLevelLabel.TabIndex = 36;
+            this.TargetLevelLabel.Text = "Target\'s Level :";
+            // 
+            // TargetNameLabel
+            // 
+            this.TargetNameLabel.AutoEllipsis = true;
+            this.TargetNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TargetNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TargetNameLabel.Location = new System.Drawing.Point(298, 12);
+            this.TargetNameLabel.Name = "TargetNameLabel";
+            this.TargetNameLabel.Size = new System.Drawing.Size(115, 15);
+            this.TargetNameLabel.TabIndex = 35;
+            this.TargetNameLabel.Text = "Target\'s Name :";
+            // 
+            // FarmsCount
+            // 
+            this.FarmsCount.AutoEllipsis = true;
+            this.FarmsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FarmsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.FarmsCount.Location = new System.Drawing.Point(128, 120);
+            this.FarmsCount.Name = "FarmsCount";
+            this.FarmsCount.Size = new System.Drawing.Size(115, 15);
+            this.FarmsCount.TabIndex = 33;
+            this.FarmsCount.Text = "0 (0/hr)";
+            // 
+            // DeathsCount
+            // 
+            this.DeathsCount.AutoEllipsis = true;
+            this.DeathsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeathsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.DeathsCount.Location = new System.Drawing.Point(128, 174);
+            this.DeathsCount.Name = "DeathsCount";
+            this.DeathsCount.Size = new System.Drawing.Size(115, 15);
+            this.DeathsCount.TabIndex = 32;
+            this.DeathsCount.Text = "0";
+            // 
+            // UnitKillsCount
+            // 
+            this.UnitKillsCount.AutoEllipsis = true;
+            this.UnitKillsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UnitKillsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.UnitKillsCount.Location = new System.Drawing.Point(128, 147);
+            this.UnitKillsCount.Name = "UnitKillsCount";
+            this.UnitKillsCount.Size = new System.Drawing.Size(115, 15);
+            this.UnitKillsCount.TabIndex = 31;
+            this.UnitKillsCount.Text = "0";
+            // 
+            // XPPerHour
+            // 
+            this.XPPerHour.AutoEllipsis = true;
+            this.XPPerHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.XPPerHour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.XPPerHour.Location = new System.Drawing.Point(128, 39);
+            this.XPPerHour.Name = "XPPerHour";
+            this.XPPerHour.Size = new System.Drawing.Size(115, 15);
+            this.XPPerHour.TabIndex = 30;
+            this.XPPerHour.Text = "0";
+            // 
+            // LootsCount
+            // 
+            this.LootsCount.AutoEllipsis = true;
+            this.LootsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LootsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.LootsCount.Location = new System.Drawing.Point(128, 93);
+            this.LootsCount.Name = "LootsCount";
+            this.LootsCount.Size = new System.Drawing.Size(115, 15);
+            this.LootsCount.TabIndex = 29;
+            this.LootsCount.Text = "0 (0/hr)";
+            // 
+            // HonorPerHour
+            // 
+            this.HonorPerHour.AutoEllipsis = true;
+            this.HonorPerHour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HonorPerHour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.HonorPerHour.Location = new System.Drawing.Point(128, 66);
+            this.HonorPerHour.Name = "HonorPerHour";
+            this.HonorPerHour.Size = new System.Drawing.Size(115, 15);
+            this.HonorPerHour.TabIndex = 28;
+            this.HonorPerHour.Text = "0";
+            // 
+            // FarmsLabel
+            // 
+            this.FarmsLabel.AutoEllipsis = true;
+            this.FarmsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FarmsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.FarmsLabel.Location = new System.Drawing.Point(8, 120);
+            this.FarmsLabel.Name = "FarmsLabel";
+            this.FarmsLabel.Size = new System.Drawing.Size(115, 15);
+            this.FarmsLabel.TabIndex = 26;
+            this.FarmsLabel.Text = "Farms :";
+            // 
+            // DeathsLabel
+            // 
+            this.DeathsLabel.AutoEllipsis = true;
+            this.DeathsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeathsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.DeathsLabel.Location = new System.Drawing.Point(8, 174);
+            this.DeathsLabel.Name = "DeathsLabel";
+            this.DeathsLabel.Size = new System.Drawing.Size(115, 15);
+            this.DeathsLabel.TabIndex = 25;
+            this.DeathsLabel.Text = "Deaths :";
+            // 
+            // UnitKillsLabel
+            // 
+            this.UnitKillsLabel.AutoEllipsis = true;
+            this.UnitKillsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UnitKillsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.UnitKillsLabel.Location = new System.Drawing.Point(8, 147);
+            this.UnitKillsLabel.Name = "UnitKillsLabel";
+            this.UnitKillsLabel.Size = new System.Drawing.Size(115, 15);
+            this.UnitKillsLabel.TabIndex = 24;
+            this.UnitKillsLabel.Text = "Unit Kills :";
+            // 
+            // XPPerHourLabel
+            // 
+            this.XPPerHourLabel.AutoEllipsis = true;
+            this.XPPerHourLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.XPPerHourLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.XPPerHourLabel.Location = new System.Drawing.Point(8, 39);
+            this.XPPerHourLabel.Name = "XPPerHourLabel";
+            this.XPPerHourLabel.Size = new System.Drawing.Size(115, 15);
+            this.XPPerHourLabel.TabIndex = 23;
+            this.XPPerHourLabel.Text = "XP per Hour :";
+            // 
+            // LootsLabel
+            // 
+            this.LootsLabel.AutoEllipsis = true;
+            this.LootsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LootsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.LootsLabel.Location = new System.Drawing.Point(8, 93);
+            this.LootsLabel.Name = "LootsLabel";
+            this.LootsLabel.Size = new System.Drawing.Size(115, 15);
+            this.LootsLabel.TabIndex = 22;
+            this.LootsLabel.Text = "Loots :";
+            // 
+            // HonorPerHourLabel
+            // 
+            this.HonorPerHourLabel.AutoEllipsis = true;
+            this.HonorPerHourLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HonorPerHourLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.HonorPerHourLabel.Location = new System.Drawing.Point(8, 66);
+            this.HonorPerHourLabel.Name = "HonorPerHourLabel";
+            this.HonorPerHourLabel.Size = new System.Drawing.Size(115, 15);
+            this.HonorPerHourLabel.TabIndex = 21;
+            this.HonorPerHourLabel.Text = "Honor per Hour :";
+            // 
+            // HealthLabel
+            // 
+            this.HealthLabel.AutoEllipsis = true;
+            this.HealthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HealthLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.HealthLabel.Location = new System.Drawing.Point(8, 12);
+            this.HealthLabel.Name = "HealthLabel";
+            this.HealthLabel.Size = new System.Drawing.Size(115, 15);
+            this.HealthLabel.TabIndex = 18;
+            this.HealthLabel.Text = "Health :";
+            // 
+            // PanelLog
+            // 
+            this.PanelLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.PanelLog.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PanelLog.BackgroundImage")));
+            this.PanelLog.Controls.Add(this.DebugLogSwitchButton);
+            this.PanelLog.Controls.Add(this.NavigationLogSwitchButton);
+            this.PanelLog.Controls.Add(this.FightLogSwitchButton);
+            this.PanelLog.Controls.Add(this.NormalLogSwitchButton);
+            this.PanelLog.Controls.Add(this.DebugLogSwitchLabel);
+            this.PanelLog.Controls.Add(this.NavigationLogSwitchLabel);
+            this.PanelLog.Controls.Add(this.FightLogSwitchLabel);
+            this.PanelLog.Controls.Add(this.NormalLogSwitchLabel);
+            this.PanelLog.Controls.Add(this.LoggingTextArea);
+            this.PanelLog.Location = new System.Drawing.Point(1, 78);
+            this.PanelLog.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelLog.MaximumSize = new System.Drawing.Size(573, 203);
+            this.PanelLog.MinimumSize = new System.Drawing.Size(573, 203);
+            this.PanelLog.Name = "PanelLog";
+            this.PanelLog.Size = new System.Drawing.Size(573, 203);
+            this.PanelLog.TabIndex = 17;
+            this.PanelLog.Visible = false;
+            // 
+            // DebugLogSwitchLabel
+            // 
+            this.DebugLogSwitchLabel.AutoEllipsis = true;
+            this.DebugLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DebugLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.DebugLogSwitchLabel.Location = new System.Drawing.Point(493, 109);
+            this.DebugLogSwitchLabel.Name = "DebugLogSwitchLabel";
+            this.DebugLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
+            this.DebugLogSwitchLabel.TabIndex = 12;
+            this.DebugLogSwitchLabel.Text = "Debug";
+            this.DebugLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // NavigationLogSwitchLabel
+            // 
+            this.NavigationLogSwitchLabel.AutoEllipsis = true;
+            this.NavigationLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NavigationLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.NavigationLogSwitchLabel.Location = new System.Drawing.Point(493, 77);
+            this.NavigationLogSwitchLabel.Name = "NavigationLogSwitchLabel";
+            this.NavigationLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
+            this.NavigationLogSwitchLabel.TabIndex = 11;
+            this.NavigationLogSwitchLabel.Text = "Navigation";
+            this.NavigationLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // FightLogSwitchLabel
+            // 
+            this.FightLogSwitchLabel.AutoEllipsis = true;
+            this.FightLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FightLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.FightLogSwitchLabel.Location = new System.Drawing.Point(493, 45);
+            this.FightLogSwitchLabel.Name = "FightLogSwitchLabel";
+            this.FightLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
+            this.FightLogSwitchLabel.TabIndex = 10;
+            this.FightLogSwitchLabel.Text = "Fight";
+            this.FightLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // NormalLogSwitchLabel
+            // 
+            this.NormalLogSwitchLabel.AutoEllipsis = true;
+            this.NormalLogSwitchLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.NormalLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NormalLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.NormalLogSwitchLabel.Location = new System.Drawing.Point(493, 13);
+            this.NormalLogSwitchLabel.Name = "NormalLogSwitchLabel";
+            this.NormalLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
+            this.NormalLogSwitchLabel.TabIndex = 9;
+            this.NormalLogSwitchLabel.Text = "Normal";
+            this.NormalLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LoggingTextArea
+            // 
+            this.LoggingTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.LoggingTextArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LoggingTextArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoggingTextArea.Location = new System.Drawing.Point(13, 13);
+            this.LoggingTextArea.Margin = new System.Windows.Forms.Padding(0);
+            this.LoggingTextArea.MaximumSize = new System.Drawing.Size(398, 176);
+            this.LoggingTextArea.MinimumSize = new System.Drawing.Size(398, 176);
+            this.LoggingTextArea.Name = "LoggingTextArea";
+            this.LoggingTextArea.ReadOnly = true;
+            this.LoggingTextArea.RightMargin = 355;
+            this.LoggingTextArea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.LoggingTextArea.Size = new System.Drawing.Size(398, 176);
+            this.LoggingTextArea.TabIndex = 0;
+            this.LoggingTextArea.Text = "";
+            // 
+            // PanelAccount
+            // 
+            this.PanelAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.PanelAccount.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PanelAccount.BackgroundImage")));
+            this.PanelAccount.Controls.Add(this.TimeLeft);
+            this.PanelAccount.Controls.Add(this.AccountName);
+            this.PanelAccount.Controls.Add(this.OnlineBot);
+            this.PanelAccount.Controls.Add(this.TimeLeftLabel);
+            this.PanelAccount.Controls.Add(this.GoToPaymentPageButton);
+            this.PanelAccount.Controls.Add(this.ProductsPriceList);
+            this.PanelAccount.Controls.Add(this.AccountNameLabel);
+            this.PanelAccount.Controls.Add(this.ProductsListPriceLabel);
+            this.PanelAccount.Controls.Add(this.WantToSubscribeLabel);
+            this.PanelAccount.Controls.Add(this.RemoteSessionInfo);
+            this.PanelAccount.Controls.Add(this.RemoteSessionSwitchButton);
+            this.PanelAccount.Controls.Add(this.RemoteSessionLabel);
+            this.PanelAccount.Location = new System.Drawing.Point(1, 78);
+            this.PanelAccount.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelAccount.MaximumSize = new System.Drawing.Size(573, 203);
+            this.PanelAccount.MinimumSize = new System.Drawing.Size(573, 203);
+            this.PanelAccount.Name = "PanelAccount";
+            this.PanelAccount.Size = new System.Drawing.Size(573, 203);
+            this.PanelAccount.TabIndex = 17;
+            this.PanelAccount.Visible = false;
+            // 
+            // TimeLeft
+            // 
+            this.TimeLeft.AutoEllipsis = true;
+            this.TimeLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.TimeLeft.Location = new System.Drawing.Point(9, 134);
+            this.TimeLeft.Name = "TimeLeft";
+            this.TimeLeft.Size = new System.Drawing.Size(225, 15);
+            this.TimeLeft.TabIndex = 15;
+            this.TimeLeft.Text = "0 days and 0 hours";
+            // 
+            // AccountName
+            // 
+            this.AccountName.AutoEllipsis = true;
+            this.AccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.AccountName.Location = new System.Drawing.Point(9, 83);
+            this.AccountName.Name = "AccountName";
+            this.AccountName.Size = new System.Drawing.Size(115, 15);
+            this.AccountName.TabIndex = 14;
+            this.AccountName.Text = "AccountName";
+            // 
+            // OnlineBot
+            // 
+            this.OnlineBot.AutoEllipsis = true;
+            this.OnlineBot.AutoSize = true;
+            this.OnlineBot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OnlineBot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.OnlineBot.Location = new System.Drawing.Point(9, 167);
+            this.OnlineBot.Name = "OnlineBot";
+            this.OnlineBot.Size = new System.Drawing.Size(93, 15);
+            this.OnlineBot.TabIndex = 13;
+            this.OnlineBot.Text = "0 Online Bots";
+            // 
+            // TimeLeftLabel
+            // 
+            this.TimeLeftLabel.AutoEllipsis = true;
+            this.TimeLeftLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeLeftLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TimeLeftLabel.Location = new System.Drawing.Point(9, 115);
+            this.TimeLeftLabel.Name = "TimeLeftLabel";
+            this.TimeLeftLabel.Size = new System.Drawing.Size(115, 15);
+            this.TimeLeftLabel.TabIndex = 11;
+            this.TimeLeftLabel.Text = "Time left:";
+            // 
+            // AccountNameLabel
+            // 
+            this.AccountNameLabel.AutoEllipsis = true;
+            this.AccountNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.AccountNameLabel.Location = new System.Drawing.Point(9, 64);
+            this.AccountNameLabel.Name = "AccountNameLabel";
+            this.AccountNameLabel.Size = new System.Drawing.Size(115, 15);
+            this.AccountNameLabel.TabIndex = 6;
+            this.AccountNameLabel.Text = "Account Login:";
+            // 
+            // ProductsListPriceLabel
+            // 
+            this.ProductsListPriceLabel.AutoEllipsis = true;
+            this.ProductsListPriceLabel.AutoSize = true;
+            this.ProductsListPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductsListPriceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(159)))), ((int)(((byte)(159)))));
+            this.ProductsListPriceLabel.Location = new System.Drawing.Point(286, 97);
+            this.ProductsListPriceLabel.Name = "ProductsListPriceLabel";
+            this.ProductsListPriceLabel.Size = new System.Drawing.Size(162, 12);
+            this.ProductsListPriceLabel.TabIndex = 5;
+            this.ProductsListPriceLabel.Text = "Select an offer in the list below";
+            this.ProductsListPriceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // WantToSubscribeLabel
+            // 
+            this.WantToSubscribeLabel.AutoEllipsis = true;
+            this.WantToSubscribeLabel.AutoSize = true;
+            this.WantToSubscribeLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.WantToSubscribeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WantToSubscribeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(161)))), ((int)(((byte)(75)))));
+            this.WantToSubscribeLabel.Location = new System.Drawing.Point(286, 65);
+            this.WantToSubscribeLabel.Name = "WantToSubscribeLabel";
+            this.WantToSubscribeLabel.Size = new System.Drawing.Size(180, 16);
+            this.WantToSubscribeLabel.TabIndex = 4;
+            this.WantToSubscribeLabel.Text = "WANT TO SUBSCRIBE ?";
+            this.WantToSubscribeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // RemoteSessionInfo
+            // 
+            this.RemoteSessionInfo.AutoEllipsis = true;
+            this.RemoteSessionInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoteSessionInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.RemoteSessionInfo.Location = new System.Drawing.Point(240, 14);
+            this.RemoteSessionInfo.Name = "RemoteSessionInfo";
+            this.RemoteSessionInfo.Size = new System.Drawing.Size(319, 15);
+            this.RemoteSessionInfo.TabIndex = 2;
+            this.RemoteSessionInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // RemoteSessionLabel
+            // 
+            this.RemoteSessionLabel.AutoEllipsis = true;
+            this.RemoteSessionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemoteSessionLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.RemoteSessionLabel.Location = new System.Drawing.Point(8, 14);
+            this.RemoteSessionLabel.Name = "RemoteSessionLabel";
+            this.RemoteSessionLabel.Size = new System.Drawing.Size(150, 13);
+            this.RemoteSessionLabel.TabIndex = 0;
+            this.RemoteSessionLabel.Text = "REMOTE SESSION";
+            this.RemoteSessionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // WebsiteLink
+            // 
+            this.WebsiteLink.AutoEllipsis = true;
+            this.WebsiteLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WebsiteLink.ForeColor = System.Drawing.Color.Snow;
+            this.WebsiteLink.Image = ((System.Drawing.Image)(resources.GetObject("WebsiteLink.Image")));
+            this.WebsiteLink.Location = new System.Drawing.Point(479, 44);
+            this.WebsiteLink.Margin = new System.Windows.Forms.Padding(0);
+            this.WebsiteLink.MaximumSize = new System.Drawing.Size(95, 33);
+            this.WebsiteLink.MinimumSize = new System.Drawing.Size(95, 33);
+            this.WebsiteLink.Name = "WebsiteLink";
+            this.WebsiteLink.Size = new System.Drawing.Size(95, 33);
+            this.WebsiteLink.TabIndex = 21;
+            this.WebsiteLink.Text = "    Website";
+            this.WebsiteLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WebsiteLink.Click += new System.EventHandler(this.WebsiteLink_Click);
+            this.WebsiteLink.MouseEnter += new System.EventHandler(this.WebsiteLink_MouseEnter);
+            this.WebsiteLink.MouseLeave += new System.EventHandler(this.WebsiteLink_MouseLeave);
+            // 
+            // DevToolsLabel
+            // 
+            this.DevToolsLabel.AutoEllipsis = true;
+            this.DevToolsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DevToolsLabel.ForeColor = System.Drawing.Color.Snow;
+            this.DevToolsLabel.Image = global::The_Noob_Bot.Properties.Resources.tab_inactive_mainframe;
+            this.DevToolsLabel.Location = new System.Drawing.Point(368, 44);
+            this.DevToolsLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.DevToolsLabel.MaximumSize = new System.Drawing.Size(108, 33);
+            this.DevToolsLabel.MinimumSize = new System.Drawing.Size(108, 33);
+            this.DevToolsLabel.Name = "DevToolsLabel";
+            this.DevToolsLabel.Size = new System.Drawing.Size(108, 33);
+            this.DevToolsLabel.TabIndex = 22;
+            this.DevToolsLabel.Text = "DevTools";
+            this.DevToolsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DevToolsLabel.Click += new System.EventHandler(this.DevToolsLabel_Click);
+            this.DevToolsLabel.MouseEnter += new System.EventHandler(this.DevToolsLabel_MouseEnter);
+            this.DevToolsLabel.MouseLeave += new System.EventHandler(this.DevToolsLabel_MouseLeave);
+            // 
+            // HomePanelTimer
+            // 
+            this.HomePanelTimer.Enabled = true;
+            this.HomePanelTimer.Interval = 1000;
+            this.HomePanelTimer.Tick += new System.EventHandler(this.MainPanelTimer_Tick);
+            // 
+            // MainFormTimer
+            // 
+            this.MainFormTimer.Enabled = true;
+            this.MainFormTimer.Interval = 250;
+            this.MainFormTimer.Tick += new System.EventHandler(this.MainFormTimer_Tick);
+            // 
+            // AccountPanelTimer
+            // 
+            this.AccountPanelTimer.Enabled = true;
+            this.AccountPanelTimer.Interval = 1000;
+            this.AccountPanelTimer.Tick += new System.EventHandler(this.AccountPanelTimer_Tick);
+            // 
+            // LoggingAreaTimer
+            // 
+            this.LoggingAreaTimer.Enabled = true;
+            this.LoggingAreaTimer.Tick += new System.EventHandler(this.LoggingAreaTimer_Tick);
+            // 
+            // ProductList
+            // 
+            this.ProductList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.ProductList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.ProductList.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.ProductList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProductList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.ProductList.FormattingEnabled = true;
+            this.ProductList.HighlightColor = System.Drawing.Color.Gainsboro;
+            this.ProductList.ItemHeight = 20;
+            this.ProductList.Location = new System.Drawing.Point(13, 293);
+            this.ProductList.Margin = new System.Windows.Forms.Padding(0);
+            this.ProductList.MaximumSize = new System.Drawing.Size(549, 0);
+            this.ProductList.MinimumSize = new System.Drawing.Size(549, 0);
+            this.ProductList.Name = "ProductList";
+            this.ProductList.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
+            this.ProductList.SelectorImage = global::The_Noob_Bot.Properties.Resources.selectorBack_big;
+            this.ProductList.Size = new System.Drawing.Size(549, 26);
+            this.ProductList.TabIndex = 20;
+            this.ProductList.SelectedIndexChanged += new System.EventHandler(this.ProductList_SelectedIndexChanged);
+            // 
+            // StartButton
+            // 
+            this.StartButton.AutoEllipsis = true;
+            this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartButton.ForeColor = System.Drawing.Color.Snow;
+            this.StartButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB_200;
+            this.StartButton.Image = global::The_Noob_Bot.Properties.Resources.blueB_200;
+            this.StartButton.Location = new System.Drawing.Point(12, 330);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(200, 29);
+            this.StartButton.TabIndex = 19;
+            this.StartButton.Text = "START PRODUCT";
+            this.StartButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // ProductSettingsButton
+            // 
+            this.ProductSettingsButton.AutoEllipsis = true;
+            this.ProductSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductSettingsButton.ForeColor = System.Drawing.Color.Snow;
+            this.ProductSettingsButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB_150;
+            this.ProductSettingsButton.Image = global::The_Noob_Bot.Properties.Resources.blackB_150;
+            this.ProductSettingsButton.Location = new System.Drawing.Point(238, 330);
+            this.ProductSettingsButton.Name = "ProductSettingsButton";
+            this.ProductSettingsButton.Size = new System.Drawing.Size(150, 29);
+            this.ProductSettingsButton.TabIndex = 18;
+            this.ProductSettingsButton.Text = "Product Settings";
+            this.ProductSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ProductSettingsButton.Click += new System.EventHandler(this.ProductSettingsButton_Click);
+            // 
+            // MainSettingsButton
+            // 
+            this.MainSettingsButton.AutoEllipsis = true;
+            this.MainSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainSettingsButton.ForeColor = System.Drawing.Color.Snow;
+            this.MainSettingsButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB_150;
+            this.MainSettingsButton.Image = global::The_Noob_Bot.Properties.Resources.blackB_150;
+            this.MainSettingsButton.Location = new System.Drawing.Point(413, 330);
+            this.MainSettingsButton.Name = "MainSettingsButton";
+            this.MainSettingsButton.Size = new System.Drawing.Size(150, 29);
+            this.MainSettingsButton.TabIndex = 17;
+            this.MainSettingsButton.Text = "General Settings";
+            this.MainSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MainSettingsButton.Click += new System.EventHandler(this.MainSettingsButton_Click);
+            // 
+            // TargetHealth
+            // 
+            this.TargetHealth.BarImage = global::The_Noob_Bot.Properties.Resources.barImg;
+            this.TargetHealth.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.TargetHealth.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.TargetHealth.DrawMode = System.Windows.Forms.DrawMode.Normal;
+            this.TargetHealth.Location = new System.Drawing.Point(418, 43);
+            this.TargetHealth.Name = "TargetHealth";
+            this.TargetHealth.Size = new System.Drawing.Size(115, 10);
+            this.TargetHealth.TabIndex = 48;
+            this.TargetHealth.Value = 90;
+            // 
+            // Health
+            // 
+            this.Health.BarImage = ((System.Drawing.Image)(resources.GetObject("Health.BarImage")));
+            this.Health.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.Health.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.Health.DrawMode = System.Windows.Forms.DrawMode.Normal;
+            this.Health.Location = new System.Drawing.Point(131, 16);
+            this.Health.Name = "Health";
+            this.Health.Size = new System.Drawing.Size(115, 10);
+            this.Health.TabIndex = 34;
+            this.Health.Value = 20;
+            // 
+            // DebugLogSwitchButton
+            // 
+            this.DebugLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.DebugLogSwitchButton.Location = new System.Drawing.Point(424, 109);
+            this.DebugLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.DebugLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.DebugLogSwitchButton.Name = "DebugLogSwitchButton";
+            this.DebugLogSwitchButton.OffText = "OFF";
+            this.DebugLogSwitchButton.OnText = "ON";
+            this.DebugLogSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.DebugLogSwitchButton.TabIndex = 16;
+            this.DebugLogSwitchButton.Value = false;
+            this.DebugLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
+            // 
+            // NavigationLogSwitchButton
+            // 
+            this.NavigationLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.NavigationLogSwitchButton.Location = new System.Drawing.Point(424, 77);
+            this.NavigationLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.NavigationLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.NavigationLogSwitchButton.Name = "NavigationLogSwitchButton";
+            this.NavigationLogSwitchButton.OffText = "OFF";
+            this.NavigationLogSwitchButton.OnText = "ON";
+            this.NavigationLogSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.NavigationLogSwitchButton.TabIndex = 15;
+            this.NavigationLogSwitchButton.Value = false;
+            this.NavigationLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
+            // 
+            // FightLogSwitchButton
+            // 
+            this.FightLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.FightLogSwitchButton.Location = new System.Drawing.Point(424, 45);
+            this.FightLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.FightLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.FightLogSwitchButton.Name = "FightLogSwitchButton";
+            this.FightLogSwitchButton.OffText = "OFF";
+            this.FightLogSwitchButton.OnText = "ON";
+            this.FightLogSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.FightLogSwitchButton.TabIndex = 14;
+            this.FightLogSwitchButton.Value = true;
+            this.FightLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
+            // 
+            // NormalLogSwitchButton
+            // 
+            this.NormalLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.NormalLogSwitchButton.Location = new System.Drawing.Point(424, 13);
+            this.NormalLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.NormalLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.NormalLogSwitchButton.Name = "NormalLogSwitchButton";
+            this.NormalLogSwitchButton.OffText = "OFF";
+            this.NormalLogSwitchButton.OnText = "ON";
+            this.NormalLogSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.NormalLogSwitchButton.TabIndex = 13;
+            this.NormalLogSwitchButton.Value = true;
+            this.NormalLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
+            // 
+            // GoToPaymentPageButton
+            // 
+            this.GoToPaymentPageButton.AutoEllipsis = true;
+            this.GoToPaymentPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.GoToPaymentPageButton.ForeColor = System.Drawing.Color.Snow;
+            this.GoToPaymentPageButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB_200;
+            this.GoToPaymentPageButton.Image = global::The_Noob_Bot.Properties.Resources.blueB_200;
+            this.GoToPaymentPageButton.Location = new System.Drawing.Point(286, 152);
+            this.GoToPaymentPageButton.Name = "GoToPaymentPageButton";
+            this.GoToPaymentPageButton.Size = new System.Drawing.Size(200, 29);
+            this.GoToPaymentPageButton.TabIndex = 10;
+            this.GoToPaymentPageButton.Text = "Open the payment page";
+            this.GoToPaymentPageButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.GoToPaymentPageButton.Click += new System.EventHandler(this.GoToPaymentPageButton_Click);
+            // 
+            // ProductsPriceList
+            // 
+            this.ProductsPriceList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.ProductsPriceList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.ProductsPriceList.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.ProductsPriceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductsPriceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProductsPriceList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductsPriceList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.ProductsPriceList.FormattingEnabled = true;
+            this.ProductsPriceList.HighlightColor = System.Drawing.Color.Gainsboro;
+            this.ProductsPriceList.ItemHeight = 20;
+            this.ProductsPriceList.Items.AddRange(new object[] {
+            "1 month - 5.5 euros or 4 allopass",
+            "1 month PLATINIUM - 110 euros",
+            "6 month - 19.99 euros",
+            "Life time - 44.99 euros"});
+            this.ProductsPriceList.Location = new System.Drawing.Point(286, 119);
+            this.ProductsPriceList.Name = "ProductsPriceList";
+            this.ProductsPriceList.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
+            this.ProductsPriceList.SelectorImage = ((System.Drawing.Image)(resources.GetObject("ProductsPriceList.SelectorImage")));
+            this.ProductsPriceList.Size = new System.Drawing.Size(200, 26);
+            this.ProductsPriceList.TabIndex = 9;
+            // 
+            // RemoteSessionSwitchButton
+            // 
+            this.RemoteSessionSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.RemoteSessionSwitchButton.Location = new System.Drawing.Point(162, 12);
+            this.RemoteSessionSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.RemoteSessionSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.RemoteSessionSwitchButton.Name = "RemoteSessionSwitchButton";
+            this.RemoteSessionSwitchButton.OffText = "OFF";
+            this.RemoteSessionSwitchButton.OnText = "ON";
+            this.RemoteSessionSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.RemoteSessionSwitchButton.TabIndex = 1;
+            this.RemoteSessionSwitchButton.Value = false;
+            this.RemoteSessionSwitchButton.ValueChanged += new System.EventHandler(this.RemoteSessionSwitchButton_ValueChanged);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.ClientSize = new System.Drawing.Size(445, 330);
-            this.Controls.Add(this.buttonX1);
-            this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.listProductsCb);
-            this.Controls.Add(this.metroStatusBar1);
-            this.Controls.Add(this.settingsB);
-            this.Controls.Add(this.metroShell1);
-            this.Controls.Add(this.startB);
-            this.Controls.Add(this.productSettingsB);
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(575, 371);
+            this.Controls.Add(this.DevToolsLabel);
+            this.Controls.Add(this.WebsiteLink);
+            this.Controls.Add(this.ProductList);
+            this.Controls.Add(this.StartButton);
+            this.Controls.Add(this.ProductSettingsButton);
+            this.Controls.Add(this.MainSettingsButton);
+            this.Controls.Add(this.AccountTabButton);
+            this.Controls.Add(this.LogTabButton);
+            this.Controls.Add(this.HomeTagButton);
+            this.Controls.Add(this.MainFormTitle);
+            this.Controls.Add(this.TopLeftLogo);
+            this.Controls.Add(this.CloseButton);
+            this.Controls.Add(this.ReduceButton);
+            this.Controls.Add(this.ControlMenu);
+            this.Controls.Add(this.PanelHome);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(445, 330);
-            this.MinimumSize = new System.Drawing.Size(445, 330);
+            this.MaximumSize = new System.Drawing.Size(575, 371);
+            this.MinimumSize = new System.Drawing.Size(575, 371);
             this.Name = "Main";
-            this.Text = "The Noob Bot";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Main";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
-            this.metroShell1.ResumeLayout(false);
-            this.metroShell1.PerformLayout();
-            this.metroTabPanel1.ResumeLayout(false);
-            this.expandablePanel1.ResumeLayout(false);
-            this.metroTabPanel2.ResumeLayout(false);
-            this.expandablePanel2.ResumeLayout(false);
-            this.metroStatusBar1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Main_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
+            this.PanelHome.ResumeLayout(false);
+            this.PanelLog.ResumeLayout(false);
+            this.PanelAccount.ResumeLayout(false);
+            this.PanelAccount.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.Metro.MetroShell metroShell1;
-        private DevComponents.DotNetBar.Metro.MetroTabPanel metroTabPanel1;
-        private DevComponents.DotNetBar.Metro.MetroTabPanel tLogging;
-
-        private DevComponents.DotNetBar.Metro.MetroTabItem trer;
-        private DevComponents.DotNetBar.ButtonItem playerNameB;
-        private DevComponents.DotNetBar.QatCustomizeItem qatCustomizeItem1;
-        private DevComponents.DotNetBar.Metro.MetroStatusBar metroStatusBar1;
-        private DevComponents.DotNetBar.Metro.MetroTabItem tHome;
-        private DevComponents.DotNetBar.Metro.MetroTabPanel metroTabPanel2;
-        private DevComponents.DotNetBar.Metro.MetroTabItem metroTabItem2;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.SwitchButton remoteCb;
-        private DevComponents.DotNetBar.LabelX accountInfoL;
-        private System.Windows.Forms.Timer myBotAccountTabTimer;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel2;
-        private DevComponents.DotNetBar.ButtonX startB;
-        private DevComponents.DotNetBar.ButtonX productSettingsB;
-        private DevComponents.DotNetBar.ButtonX settingsB;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx listProductsCb;
-        private System.Windows.Forms.Timer buttonProductManager;
-        private DevComponents.DotNetBar.LabelX farmsL;
-        private DevComponents.DotNetBar.LabelX honorHrL;
-        private DevComponents.DotNetBar.LabelX lootL;
-        private DevComponents.DotNetBar.LabelX deathsL;
-        private DevComponents.DotNetBar.LabelX killsL;
-        private DevComponents.DotNetBar.LabelX xpHrL;
-        private DevComponents.DotNetBar.LabelX levelL;
-        private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.Controls.ProgressBarX healthB;
-        private DevComponents.DotNetBar.LabelX lastLogL;
-        private DevComponents.DotNetBar.LabelX labelX13;
-        private DevComponents.DotNetBar.LabelX targetLevelL;
-        private DevComponents.DotNetBar.LabelX labelX11;
-        private DevComponents.DotNetBar.Controls.ProgressBarX targetHealthB;
-        private System.Windows.Forms.Timer gameInformationTimer;
-        private DevComponents.DotNetBar.LabelX targetName;
-        private DevComponents.DotNetBar.LabelX targetHealthL;
-		private DevComponents.DotNetBar.StyleManager styleManager1;
-        private DevComponents.DotNetBar.LabelX healthL;
-        private DevComponents.DotNetBar.LabelX statusBarText;
-        private DevComponents.DotNetBar.ButtonX devToolsB;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
-
-        private System.Windows.Forms.ToolTip labelsToolTip;
+        private System.Windows.Forms.PictureBox ControlMenu;
+        private System.Windows.Forms.PictureBox ReduceButton;
+        private System.Windows.Forms.PictureBox CloseButton;
+        private System.Windows.Forms.PictureBox TopLeftLogo;
+        private System.Windows.Forms.Label MainFormTitle;
+        private System.Windows.Forms.Label HomeTagButton;
+        private System.Windows.Forms.Label LogTabButton;
+        private System.Windows.Forms.Label AccountTabButton;
+        private System.Windows.Forms.Panel PanelHome;
+        private System.Windows.Forms.Panel PanelLog;
+        private System.Windows.Forms.Panel PanelAccount;
+        private System.Windows.Forms.Label RemoteSessionLabel;
+        private System.Windows.Forms.RichTextBox LoggingTextArea;
+        private System.Windows.Forms.Label DebugLogSwitchLabel;
+        private System.Windows.Forms.Label NavigationLogSwitchLabel;
+        private System.Windows.Forms.Label FightLogSwitchLabel;
+        private System.Windows.Forms.Label NormalLogSwitchLabel;
+        private TnbComboBox ProductList;
+        private TnbButton MainSettingsButton;
+        private TnbButton ProductSettingsButton;
+        private TnbButton StartButton;
+        private TnbSwitchButton NormalLogSwitchButton;
+        private TnbSwitchButton FightLogSwitchButton;
+        private TnbSwitchButton DebugLogSwitchButton;
+        private TnbSwitchButton NavigationLogSwitchButton;
+        private TnbSwitchButton RemoteSessionSwitchButton;
+        private System.Windows.Forms.Label RemoteSessionInfo;
+        private TnbButton GoToPaymentPageButton;
+        private TnbComboBox ProductsPriceList;
+        private System.Windows.Forms.Label AccountNameLabel;
+        private System.Windows.Forms.Label ProductsListPriceLabel;
+        private System.Windows.Forms.Label WantToSubscribeLabel;
+        private System.Windows.Forms.Label TimeLeft;
+        private System.Windows.Forms.Label AccountName;
+        private System.Windows.Forms.Label OnlineBot;
+        private System.Windows.Forms.Label TimeLeftLabel;
+        private System.Windows.Forms.Label FarmsLabel;
+        private System.Windows.Forms.Label DeathsLabel;
+        private System.Windows.Forms.Label UnitKillsLabel;
+        private System.Windows.Forms.Label XPPerHourLabel;
+        private System.Windows.Forms.Label LootsLabel;
+        private System.Windows.Forms.Label HonorPerHourLabel;
+        private System.Windows.Forms.Label HealthLabel;
+        private System.Windows.Forms.Label FarmsCount;
+        private System.Windows.Forms.Label DeathsCount;
+        private System.Windows.Forms.Label UnitKillsCount;
+        private System.Windows.Forms.Label XPPerHour;
+        private System.Windows.Forms.Label LootsCount;
+        private System.Windows.Forms.Label HonorPerHour;
+        private System.Windows.Forms.Label TargetName;
+        private System.Windows.Forms.Label TargetLevel;
+        private System.Windows.Forms.Label LatestLog;
+        private System.Windows.Forms.Label TargetHealthLabel;
+        private System.Windows.Forms.Label LatestLogLabel;
+        private System.Windows.Forms.Label TargetLevelLabel;
+        private System.Windows.Forms.Label TargetNameLabel;
+        private TnbProgressBar Health;
+        private TnbProgressBar TargetHealth;
+        private System.Windows.Forms.Label WebsiteLink;
+        private System.Windows.Forms.Label DevToolsLabel;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Timer HomePanelTimer;
+        private System.Windows.Forms.Timer MainFormTimer;
+        private System.Windows.Forms.Timer AccountPanelTimer;
+        private System.Windows.Forms.Timer LoggingAreaTimer;
     }
 }
 

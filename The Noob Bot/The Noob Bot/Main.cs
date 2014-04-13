@@ -1,84 +1,53 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Helpful.Forms;
-using nManager.Helpful.Forms.UserControls;
+using nManager.Products;
+using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using The_Noob_Bot.Properties;
+using Point = System.Drawing.Point;
+using Pulsator = nManager.Pulsator;
 
 namespace The_Noob_Bot
 {
-    internal partial class Main : DevComponents.DotNetBar.Metro.MetroAppForm
+    public partial class Main : Form
     {
-        private readonly MainMinimized _minimizedWindow;
-        public static string MinimizesWindowToolTip = "";
-        public static string MinimizesWindowBoutonText = "";
-        public static bool MinimizesWindowBoutonActive;
-        public static Image MinimizesWindowBoutonImage;
-
-        public void SetDefaultCulture(CultureInfo culture)
-        {
-            Type type = typeof (CultureInfo);
-            try
-            {
-                type.InvokeMember("s_userDefaultCulture",
-                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
-                    null,
-                    culture,
-                    new object[] {culture});
-                type.InvokeMember("s_userDefaultUICulture",
-                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
-                    null,
-                    culture,
-                    new object[] {culture});
-            }
-            catch
-            {
-            }
-        }
+        private readonly Image _activeBackground = Resources.tab_active_mainframe;
+        private readonly Color _activeColor = Color.FromArgb(98, 160, 229);
+        private readonly Image _inactiveBackground = Resources.tab_inactive_mainframe;
+        private readonly Color _inactiveColor = Color.FromArgb(232, 232, 232);
+        private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
+        private Image _closeButtonImage;
+        private bool _flagClick;
+        private bool _isAccountActive;
+        private bool _isHomeActive = true;
+        private bool _isLogActive;
+        private string _playerName = "";
+        private int _positionInitialeX;
+        private int _positionInitialeY;
+        private Image _reduceButtonImage;
+        private bool _started;
+        private bool _wowInTaskBarre;
 
         public Main()
         {
-            try
-            {
-                InitializeBot();
-                InitializeComponent();
-                Translate();
-                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    TopMost = true;
-                InitializeInterface();
-                InitializeUI();
-                _minimizedWindow = new MainMinimized();
-                _minimizedWindow.VisibleChanged += MinimizedVisibleChange;
-                Logging.Status = "Startup Complete";
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > Main(): " + ex);
-            }
-        }
-
-        private void InitializeInterface()
-        {
-            try
-            {
-                // Logging tab:
-                LoggingUC loggingUc = new LoggingUC {Size = new Size(tLogging.Size.Width, tLogging.Size.Height - 0)};
-                tLogging.Controls.Add(loggingUc);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > InitializeInterface(): " + ex);
-            }
+            InitializeBot();
+            InitializeComponent();
+            Translate();
+            if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                TopMost = true;
+            InitializeUI();
+            Logging.Status = "Startup Complete";
         }
 
         private void InitializeBot()
@@ -102,7 +71,7 @@ namespace The_Noob_Bot
 
                 new Remote();
 
-                Thread spellBook = new Thread(ThreadSpellBook) {Name = "SpellBook Loading"};
+                var spellBook = new Thread(ThreadSpellBook) {Name = "SpellBook Loading"};
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
                 if (nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis)
@@ -117,34 +86,174 @@ namespace The_Noob_Bot
         }
 
 
+        private void InitializeUI()
+        {
+            try
+            {
+                MainFormTitle.Text = ObjectManager.Me.Name + " - " + Information.MainTitle;
+                if (LoginServer.IsFreeVersion)
+                    MainFormTitle.Text += " - Trial";
+
+
+                // Products:
+                int i = 0;
+                int i2 = -1;
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Products\\", "*.dll"))
+                {
+                    string text = f.Replace(".dll", "");
+                    Translate.Id ret;
+                    if (Enum.TryParse(text.Replace(" ", "_") + "_Product_Description", true, out ret))
+                    {
+                        if (!string.IsNullOrEmpty(nManager.Translate.Get(ret)))
+                            text = text + " - " + nManager.Translate.Get(ret);
+                    }
+                    if (text == nManagerSetting.CurrentSetting.LastProductLoaded)
+                        i2 = i;
+                    ProductList.Items.Add(text);
+                    i++;
+                }
+                ProductList.DropDownStyle = ComboBoxStyle.DropDownList;
+                if (i2 >= 0)
+                    ProductList.SelectedIndex = i2;
+                Logging.OnChanged += SynchroniseLogging;
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Main > InitializeUI(): " + ex);
+            }
+        }
+
+        private void SynchroniseLogging(object sender, Logging.LoggingChangeEventArgs e)
+        {
+            try
+            {
+                lock (this)
+                {
+                    if ((e.Log.LogType & GetFlag()) == e.Log.LogType)
+                        _listLog.Add(e.Log);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("SynchroniseLoggin(object sender, Logging.LoggingChangeEventArgs e): " + ex);
+            }
+        }
+
+        private void AddLog()
+        {
+            try
+            {
+                lock (this)
+                {
+                    if (_listLog.Count > 0)
+                    {
+                        LoggingTextArea.AppendText(_listLog[0].ToString());
+                        LoggingTextArea.Select(LoggingTextArea.Text.Length - _listLog[0].ToString().Length,
+                            _listLog[0].ToString().Length);
+                        LoggingTextArea.SelectionColor = _listLog[0].Color;
+                        LoggingTextArea.AppendText(Environment.NewLine);
+                        _listLog.RemoveAt(0);
+                        LoggingTextArea.ScrollToCaret();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("AddLog(): " + e);
+            }
+        }
+
+        private Logging.LogType GetFlag()
+        {
+            try
+            {
+                var flag = Logging.LogType.None;
+
+                if (NormalLogSwitchButton.Value)
+                    flag |= Logging.LogType.S;
+                if (FightLogSwitchButton.Value)
+                    flag |= Logging.LogType.F;
+                if (NavigationLogSwitchButton.Value)
+                    flag |= Logging.LogType.N;
+                if (DebugLogSwitchButton.Value)
+                {
+                    flag |= Logging.LogType.D;
+                    flag |= Logging.LogType.E;
+                }
+
+                return flag;
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("GetFlag(): " + ex);
+            }
+            return Logging.LogType.None;
+        }
+
+        private void Translate()
+        {
+            NormalLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Normal);
+            FightLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Fight);
+            NavigationLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Navigator);
+            DebugLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Debug);
+            /*lastLogL.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log);
+            labelX13.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log) + ":";
+            targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Level);
+            labelX11.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Health);
+            farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": 0 (0/" +
+                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": 0";
+            lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": 0 (0/" +
+                         nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": 0 (0/" +
+                           nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": 0 (0/" +
+                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": 0";
+            levelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level);
+            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Health);
+            expandablePanel2.TitleText = nManager.Translate.Get(nManager.Translate.Id.Account_Informations);
+            accountInfoL.Text = nManager.Translate.Get(nManager.Translate.Id.Information_account);
+            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Remote) + ":";
+            tHome.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Home);
+            trer.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Log);
+            playerNameB.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Name);
+            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Product);
+            settingsB.Text = nManager.Translate.Get(nManager.Translate.Id.General_Settings);
+            startB.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
+            productSettingsB.Text = nManager.Translate.Get(nManager.Translate.Id.Product_Settings);
+            buttonX1.Text = nManager.Translate.Get(nManager.Translate.Id.Minimise);
+            metroTabItem2.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.My_tnb_Account);*/
+        }
+
         private void ThreadSpellBook()
         {
             try
             {
                 SpellManager.SpellBook();
 
-                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.FlyingMountName))
+                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
                 {
-                    nManager.nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetFlyMountName();
+                    nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetFlyMountName();
                 }
-                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.GroundMountName))
+                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
                 {
-                    nManager.nManagerSetting.CurrentSetting.GroundMountName = SpellManager.GetMountName();
+                    nManagerSetting.CurrentSetting.GroundMountName = SpellManager.GetMountName();
                 }
-                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.AquaticMountName))
+                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.AquaticMountName))
                 {
-                    nManager.nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
+                    nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
                 }
-                List<string> items = new List<string>();
+                var items = new List<string>();
                 List<WoWItem> itemsBag = Bag.GetBagItem();
-                if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
-                    nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0 ||
+                if (nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
+                    nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0 ||
                     itemsBag != null && itemsBag.Count > 0)
                 {
                     for (int i = 0; i < itemsBag.Count; i++)
                     {
                         WoWItem item = itemsBag[i];
-                        ItemInfo iteminfo = new ItemInfo(item.Entry);
+                        var iteminfo = new ItemInfo(item.Entry);
                         if (iteminfo.ItemRarity > 0)
                             items.Add(item.Name);
                     }
@@ -158,13 +267,13 @@ namespace The_Noob_Bot
                             "Ignore this message if you really have ZERO items in your World of Warcraft bags.");
                     }
                 }
-                if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0)
+                if (nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0)
                 {
-                    nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(items);
+                    nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(items);
                 }
-                if (nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
+                if (nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
-                    nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(items);
+                    nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(items);
                 }
             }
             catch (Exception ex)
@@ -173,351 +282,305 @@ namespace The_Noob_Bot
             }
         }
 
-        private void InitializeUI()
+        public void SetDefaultCulture(CultureInfo culture)
         {
+            Type type = typeof (CultureInfo);
             try
             {
-                GetSubcriptionInfo();
-                Text = Information.MainTitle;
-                if (LoginServer.IsFreeVersion)
-                    Text += " - Trial";
-                playerNameB.Text = ObjectManager.Me.Name;
-
-
-                // Products:
-                int i = 0;
-                int i2 = -1;
-                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Products\\", "*.dll"))
-                {
-                    string text = f.Replace(".dll", "");
-                    nManager.Translate.Id ret;
-                    if (Enum.TryParse(text.Replace(" ", "_") + "_Product_Description", true, out ret))
-                    {
-                        if (!string.IsNullOrEmpty(nManager.Translate.Get(ret)))
-                            text = text + " - " + nManager.Translate.Get(ret);
-                    }
-                    if (text == nManagerSetting.CurrentSetting.LastProductLoaded)
-                        i2 = i;
-                    listProductsCb.Items.Add(text);
-                    i++;
-                }
-                listProductsCb.DropDownStyle = ComboBoxStyle.DropDownList;
-                if (i2 >= 0)
-                    listProductsCb.SelectedIndex = i2;
-                Logging.OnChangedStatus += SynchroniseStatus;
+                type.InvokeMember("s_userDefaultCulture",
+                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                    null,
+                    culture,
+                    new object[] {culture});
+                type.InvokeMember("s_userDefaultUICulture",
+                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                    null,
+                    culture,
+                    new object[] {culture});
             }
-            catch (Exception ex)
+            catch
             {
-                Logging.WriteError("Main > InitializeUI(): " + ex);
             }
         }
 
-        private void SetToolTypeIfNeeded(Control label)
+        private void MainFormMouseDown(object sender, MouseEventArgs e)
         {
-            using (Graphics g = CreateGraphics())
+            _flagClick = true;
+            _positionInitialeX = e.X;
+            _positionInitialeY = e.Y;
+        }
+
+        private void MainFormMouseUp(object sender, MouseEventArgs e)
+        {
+            _flagClick = false;
+        }
+
+
+        private void MainFormMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_flagClick)
             {
-                SizeF size = g.MeasureString(label.Text, label.Font);
-                if (size.Width > label.Width)
-                {
-                    labelsToolTip.SetToolTip(label, label.Text);
-                }
+                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
             }
         }
 
-        private void Translate()
+        private void CloseButton_Click(object sender, EventArgs e)
         {
-            metroShell1.HelpButtonText = nManager.Translate.Get(nManager.Translate.Id.WEBSITE);
-            expandablePanel1.TitleText = "  " + nManager.Translate.Get(nManager.Translate.Id.Game_Informations);
-            devToolsB.Text = nManager.Translate.Get(nManager.Translate.Id.Dev_Tools);
-            targetName.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Name);
-            SetToolTypeIfNeeded(targetName);
-            lastLogL.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log);
-            SetToolTypeIfNeeded(lastLogL);
-            labelX13.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log) + ":";
-            SetToolTypeIfNeeded(labelX13);
-            targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Level);
-            SetToolTypeIfNeeded(targetLevelL);
-            labelX11.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Health);
-            SetToolTypeIfNeeded(labelX11);
-            farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": 0 (0/" +
-                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            SetToolTypeIfNeeded(farmsL);
-            honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": 0";
-            SetToolTypeIfNeeded(honorHrL);
-            lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": 0 (0/" +
-                         nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            SetToolTypeIfNeeded(lootL);
-            deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": 0 (0/" +
-                           nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            SetToolTypeIfNeeded(deathsL);
-            killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": 0 (0/" +
-                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-            SetToolTypeIfNeeded(killsL);
-            xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": 0";
-            SetToolTypeIfNeeded(xpHrL);
-            levelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level);
-            SetToolTypeIfNeeded(levelL);
-            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Health);
-            SetToolTypeIfNeeded(labelX3);
-            expandablePanel2.TitleText = nManager.Translate.Get(nManager.Translate.Id.Account_Informations);
-            SetToolTypeIfNeeded(expandablePanel2);
-            accountInfoL.Text = nManager.Translate.Get(nManager.Translate.Id.Information_account);
-            SetToolTypeIfNeeded(accountInfoL);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Remote) + ":";
-            SetToolTypeIfNeeded(labelX1);
-            tHome.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Home);
-
-            trer.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Log);
-
-            playerNameB.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Name);
-
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Product);
-            SetToolTypeIfNeeded(labelX2);
-            settingsB.Text = nManager.Translate.Get(nManager.Translate.Id.General_Settings);
-            SetToolTypeIfNeeded(settingsB);
-            startB.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
-            SetToolTypeIfNeeded(startB);
-            productSettingsB.Text = nManager.Translate.Get(nManager.Translate.Id.Product_Settings);
-            SetToolTypeIfNeeded(productSettingsB);
-            buttonX1.Text = nManager.Translate.Get(nManager.Translate.Id.Minimise);
-            SetToolTypeIfNeeded(buttonX1);
-            metroTabItem2.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.My_tnb_Account);
+            Close();
         }
 
-        private string _playerName = "";
-
-        private string _status = "";
-
-        private void SynchroniseStatus(object sender, Logging.StatusChangeEventArgs e)
+        private void ReduceButton_Click(object sender, EventArgs e)
         {
-            try
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void ReduceButton_MouseEnter(object sender, EventArgs e)
+        {
+            _reduceButtonImage = ReduceButton.Image;
+            ReduceButton.Image = Resources.reduce_buttonG;
+        }
+
+        private void ReduceButton_MouseLeave(object sender, EventArgs e)
+        {
+            ReduceButton.Image = _reduceButtonImage;
+            _reduceButtonImage = null;
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            _closeButtonImage = CloseButton.Image;
+            CloseButton.Image = Resources.close_buttonG;
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            CloseButton.Image = _closeButtonImage;
+            _closeButtonImage = null;
+        }
+
+        private void HomeTagButton_Click(object sender, EventArgs e)
+        {
+            if (!_isHomeActive)
             {
-                _status = e.Status;
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > SynchroniseStatus(object sender, Logging.StatusChangeEventArgs e): " + ex);
+                HomeTagButton.ForeColor = _activeColor;
+                HomeTagButton.Image = _activeBackground;
+                PanelHome.Visible = true;
+                _isHomeActive = true;
+                LogTabButton.ForeColor = _inactiveColor;
+                LogTabButton.Image = _inactiveBackground;
+                PanelLog.Visible = false;
+                _isLogActive = false;
+                AccountTabButton.ForeColor = _inactiveColor;
+                AccountTabButton.Image = _inactiveBackground;
+                PanelAccount.Visible = false;
+                _isAccountActive = false;
             }
         }
 
-        private void GetSubcriptionInfo()
+        private void Main_Load(object sender, EventArgs e)
         {
-            try
+            /*
+             * This function will add ALL the panels to the main control for the ease of use.
+             * If you need to edit one of the hidden panels, please do the following:
+             * remove the line this.Controls.Add(this.PanelHome); from the Main.Designer.cs
+             * add the line this.Controls.Add(this.THE_PANEL); instead.
+             * When you are done, please revert these 2 changes.
+             * 
+             * This is done so panels wont register themself to eachothers, and only ONE
+             * panel controls will be displayed at a time in the designer.
+             */
+            HomeTagButton.ForeColor = _activeColor;
+            //Controls.Add(PanelHome); // only if not active
+            HomeTagButton.Image = Resources.tab_active_mainframe;
+            PanelHome.Visible = true;
+            Controls.Add(PanelLog);
+            PanelLog.Visible = false;
+            Controls.Add(PanelAccount);
+            PanelAccount.Visible = false;
+            _isHomeActive = true;
+        }
+
+        private void LogTabButton_Click(object sender, EventArgs e)
+        {
+            if (!_isLogActive)
             {
-                Thread worker = new Thread(GetSubcriptionInfoThread) {Name = "Get Subcription Info"};
-                worker.Start();
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > GetSubcriptionInfo(): " + ex);
+                LogTabButton.ForeColor = _activeColor;
+                LogTabButton.Image = _activeBackground;
+                PanelLog.Visible = true;
+                _isLogActive = true;
+                HomeTagButton.ForeColor = _inactiveColor;
+                HomeTagButton.Image = _inactiveBackground;
+                _isHomeActive = false;
+                PanelHome.Visible = false;
+                AccountTabButton.ForeColor = _inactiveColor;
+                AccountTabButton.Image = _inactiveBackground;
+                PanelAccount.Visible = false;
+                _isAccountActive = false;
             }
         }
 
-        private string _subscriptionInfo;
-
-        private void GetSubcriptionInfoThread()
+        private void AccountTabButton_Click(object sender, EventArgs e)
         {
-            try
+            if (!_isAccountActive)
             {
-                string botOnline = Others.GetRequest("http://tech.thenoobbot.com/auth.php", "botOnline=true");
-                if (LoginServer.IsFreeVersion)
-                {
-                    while (LoginServer.IsFreeVersion)
-                    {
-                        int timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
-                        string timeLeft = Others.SecToHour(timeLeftSec/1000);
-                        _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
-                                            LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
-                                            nManager.Translate.Get(nManager.Translate.Id.Trial_version__time_left) +
-                                            ": " + timeLeft + " " + Environment.NewLine + Environment.NewLine +
-                                            nManager.Translate.Get(nManager.Translate.Id.Tnb_online) + ": " + botOnline;
-                        Thread.Sleep(1000);
-                    }
-                }
-                else
-                {
-                    string timeLeft =
-                        Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true",
-                            LoginServer.Login, LoginServer.Password)[0];
-                    _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
-                                        LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
-                                        "Subscription time left: " + timeLeft + " " + Environment.NewLine +
-                                        Environment.NewLine + "Bot online: " + botOnline;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > GetSubcriptionInfoThread(): " + ex);
+                AccountTabButton.ForeColor = _activeColor;
+                AccountTabButton.Image = _activeBackground;
+                PanelAccount.Visible = true;
+                _isAccountActive = true;
+                HomeTagButton.ForeColor = _inactiveColor;
+                HomeTagButton.Image = _inactiveBackground;
+                PanelHome.Visible = false;
+                _isHomeActive = false;
+                LogTabButton.ForeColor = _inactiveColor;
+                LogTabButton.Image = _inactiveBackground;
+                PanelLog.Visible = false;
+                _isLogActive = false;
             }
         }
 
-        private void myBotAccountTabTimer_Tick(object sender, EventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
-            try
+            if (Products.IsStarted)
             {
-                accountInfoL.Text = _subscriptionInfo;
+                StartButton.Enabled = false;
+                Products.ProductStop();
+                StartButton.Text = "START PRODUCT";
+                StartButton.Enabled = true;
             }
-            catch (Exception ex)
+            else
             {
-                Logging.WriteError("Main > myBotAccountTabTimer_Tick(object sender, EventArgs e): " + ex);
+                StartButton.Enabled = false;
+                Products.ProductStart();
+                StartButton.Text = "STOP PRODUCT";
+                StartButton.Enabled = true;
             }
         }
 
-        private void metroShell1_Click(object sender, EventArgs e)
+        private void HomeTagButton_MouseEnter(object sender, EventArgs e)
         {
-            try
+            HomeTagButton.Font = new Font(HomeTagButton.Font, HomeTagButton.Font.Style | FontStyle.Underline);
+        }
+
+        private void HomeTagButton_MouseLeave(object sender, EventArgs e)
+        {
+            HomeTagButton.Font = new Font(HomeTagButton.Font, HomeTagButton.Font.Style ^ FontStyle.Underline);
+        }
+
+        private void LogTabButton_MouseEnter(object sender, EventArgs e)
+        {
+            LogTabButton.Font = new Font(LogTabButton.Font, LogTabButton.Font.Style | FontStyle.Underline);
+        }
+
+        private void LogTabButton_MouseLeave(object sender, EventArgs e)
+        {
+            LogTabButton.Font = new Font(LogTabButton.Font, LogTabButton.Font.Style ^ FontStyle.Underline);
+        }
+
+        private void AccountTabButton_MouseEnter(object sender, EventArgs e)
+        {
+            AccountTabButton.Font = new Font(AccountTabButton.Font, AccountTabButton.Font.Style | FontStyle.Underline);
+        }
+
+        private void AccountTabButton_MouseLeave(object sender, EventArgs e)
+        {
+            AccountTabButton.Font = new Font(AccountTabButton.Font, AccountTabButton.Font.Style ^ FontStyle.Underline);
+        }
+
+        private void ProductSettingsButton_Click(object sender, EventArgs e)
+        {
+            ProductSettingsButton.Enabled = false;
+            Products.ProductSettings();
+            ProductSettingsButton.Enabled = true;
+        }
+
+        private void MainSettingsButton_Click(object sender, EventArgs e)
+        {
+            MainSettingsButton.Enabled = false;
+            var generalSettings = new GeneralSettings();
+            generalSettings.ShowDialog();
+            MainSettingsButton.Enabled = true;
+        }
+
+        private void LoggingSwitchs_ValueChanged(object sender, EventArgs e)
+        {
+            lock (this)
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > metroShell1_Click(object sender, EventArgs e): " + ex);
+                _listLog.Clear();
+                _listLog.AddRange(Logging.ReadList(GetFlag()));
+                LoggingTextArea.Clear();
             }
         }
 
-        private void remoteCb_ValueChanged(object sender, EventArgs e)
+        private void RemoteSessionSwitchButton_ValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Remote.RemoteActive = remoteCb.Value;
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > remoteCb_ValueChanged(object sender, EventArgs e): " + ex);
-            }
+            Remote.RemoteActive = RemoteSessionSwitchButton.Value;
         }
 
-        private void settingsB_Click(object sender, EventArgs e)
+        private void DevToolsLabel_MouseEnter(object sender, EventArgs e)
         {
-            try
-            {
-                GeneralSettings generalSettings = new GeneralSettings();
-                generalSettings.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > settingsB_Click(object sender, EventArgs e): " + ex);
-            }
+            DevToolsLabel.Font = new Font(DevToolsLabel.Font, DevToolsLabel.Font.Style | FontStyle.Bold);
+        }
+
+        private void DevToolsLabel_MouseLeave(object sender, EventArgs e)
+        {
+            DevToolsLabel.Font = new Font(DevToolsLabel.Font, DevToolsLabel.Font.Style ^ FontStyle.Bold);
+        }
+
+        private void WebsiteLink_MouseEnter(object sender, EventArgs e)
+        {
+            WebsiteLink.Font = new Font(WebsiteLink.Font, WebsiteLink.Font.Style | FontStyle.Bold);
+        }
+
+        private void WebsiteLink_MouseLeave(object sender, EventArgs e)
+        {
+            WebsiteLink.Font = new Font(WebsiteLink.Font, WebsiteLink.Font.Style ^ FontStyle.Bold);
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
-            try
-            {
-                nManager.Pulsator.Dispose(true);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > Main_FormClosed(object sender, FormClosedEventArgs e): " + ex);
-            }
+            Pulsator.Dispose(true);
         }
 
-        private void listProductsCb_SelectedIndexChanged(object sender, EventArgs e)
+        private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string productName = ProductList.Text;
+            nManagerSetting.CurrentSetting.LastProductLoaded = productName;
+            nManagerSetting.CurrentSetting.Save();
+            if (productName.Contains(" - "))
+            {
+                string[] texte2 = productName.Split('-');
+                if (texte2.Length > 0)
+                    productName = texte2[0].Remove(texte2[0].Length - 1);
+            }
+            if (productName != string.Empty)
+                if (productName != Products.ProductName)
+                {
+                    Products.DisposeProduct();
+                    Products.LoadProducts(productName);
+                }
+        }
+
+        private void DeveloperToolsThread()
         {
             try
             {
-                string productName = listProductsCb.Text;
-                nManagerSetting.CurrentSetting.LastProductLoaded = productName;
-                nManagerSetting.CurrentSetting.Save();
-                if (productName.Contains(" - "))
-                {
-                    string[] texte2 = productName.Split('-');
-                    if (texte2.Length > 0)
-                        productName = texte2[0].Remove(texte2[0].Length - 1);
-                }
-                if (productName != string.Empty)
-                    if (productName != nManager.Products.Products.ProductName)
-                    {
-                        nManager.Products.Products.DisposeProduct();
-                        nManager.Products.Products.LoadProducts(productName);
-                    }
+                var f = new DeveloperToolsMainFrame();
+                f.ShowDialog();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Main > listProductsCb_SelectedIndexChanged(object sender, EventArgs e): " + ex);
+                Logging.WriteError("Main > DeveloperToolsThread(): " + ex);
             }
         }
 
-        private void startB_Click(object sender, EventArgs e)
+        private void DevToolsLabel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (nManager.Products.Products.IsStarted)
-                {
-                    startB.Enabled = false;
-                    nManager.Products.Products.ProductStop();
-                    startB.Enabled = true;
-                }
-                else
-                {
-                    startB.Enabled = false;
-                    nManager.Products.Products.ProductStart();
-                    startB.Enabled = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > startB_Click(object sender, EventArgs e): " + ex);
-            }
+            var t = new Thread(DeveloperToolsThread) {Name = "DeveloperToolsForm"};
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
         }
 
-        private void productSettingsB_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                nManager.Products.Products.ProductSettings();
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > productSettingsB_Click(object sender, EventArgs e): " + ex);
-            }
-        }
-
-        private void buttonProductManager_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (nManager.Products.Products.IsAliveProduct)
-                {
-                    startB.Enabled = true;
-                    if (nManager.Products.Products.IsStarted)
-                    {
-                        startB.Text = nManager.Translate.Get(nManager.Translate.Id.Stop);
-                        startB.Image = Properties.Resources.Stop;
-                        productSettingsB.Enabled = false;
-                        settingsB.Enabled = false;
-                        listProductsCb.Enabled = false;
-                    }
-                    else
-                    {
-                        startB.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
-                        startB.Image = Properties.Resources.Play;
-                        productSettingsB.Enabled = true;
-                        settingsB.Enabled = true;
-                        listProductsCb.Enabled = true;
-                    }
-                }
-                else
-                {
-                    startB.Enabled = false;
-                    productSettingsB.Enabled = false;
-                    settingsB.Enabled = true;
-                    listProductsCb.Enabled = true;
-                }
-
-                MinimizesWindowBoutonText = startB.Text;
-                MinimizesWindowBoutonActive = startB.Enabled;
-                MinimizesWindowBoutonImage = startB.Image;
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > buttonProductManager_Tick(object sender, EventArgs e): " + ex);
-            }
-        }
-
-        private bool _wowInTaskBarre;
-
-        private void gameInformationTimer_Tick(object sender, EventArgs e)
+        private void MainPanelTimer_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -529,101 +592,71 @@ namespace The_Noob_Bot
                         ObjectManager.Me.IsValid)
                     {
                         Logging.WriteError("Character changed, closing bot.");
-                        nManager.Pulsator.Dispose(true);
+                        Pulsator.Dispose(true);
                     }
                 }
 
                 if (ObjectManager.Me.IsValid)
                 {
-                    healthB.Value = (int) ObjectManager.Me.HealthPercent;
-                    healthL.Text = ObjectManager.Me.Health + "/" +
-                                   ObjectManager.Me.MaxHealth;
-                    levelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " " + ObjectManager.Me.Level;
-                    statusBarText.Text = _status;
+                    if (Health.Value < ObjectManager.Me.HealthPercent - 1 || Health.Value > ObjectManager.Me.HealthPercent + 1)
+                        Health.Value = (int) ObjectManager.Me.HealthPercent;
+                    toolTip.SetToolTip(Health, ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
                 }
                 else
                 {
-                    healthB.Value = 0;
-                    healthL.Text = "-/-";
+                    Health.Value = 0;
+                    toolTip.SetToolTip(Health, "0/" + ObjectManager.Me.MaxHealth);
                 }
-                if (nManager.Products.Products.IsStarted && ObjectManager.Me.IsValid)
+                if (Products.IsStarted && ObjectManager.Me.IsValid)
                 {
-                    xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": " +
-                                 nManager.Statistics.ExperienceByHr();
-                    honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": " +
-                                    nManager.Statistics.HonorByHr();
-                    lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": " + nManager.Statistics.Loots +
-                                 " (" + nManager.Statistics.LootsByHr() + "/" +
-                                 nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": " + nManager.Statistics.Kills +
-                                  " (" + nManager.Statistics.KillsByHr() + "/" +
-                                  nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": " +
-                                   nManager.Statistics.Deaths + " (" + nManager.Statistics.DeathsByHr() + "/" +
-                                   nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": " + nManager.Statistics.Farms +
-                                  " (" + nManager.Statistics.FarmsByHr() + "/" +
-                                  nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    XPPerHour.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": " +
+                                     Statistics.ExperienceByHr();
+                    HonorPerHour.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": " +
+                                        Statistics.HonorByHr();
+                    LootsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": " + Statistics.Loots +
+                                      " (" + Statistics.LootsByHr() + "/" +
+                                      nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    UnitKillsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": " + Statistics.Kills +
+                                          " (" + Statistics.KillsByHr() + "/" +
+                                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    DeathsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": " +
+                                       Statistics.Deaths + " (" + Statistics.DeathsByHr() + "/" +
+                                       nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    FarmsCount.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": " + Statistics.Farms +
+                                      " (" + Statistics.FarmsByHr() + "/" +
+                                      nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
                 }
-                if (nManager.Products.Products.IsStarted)
-                    expandablePanel1.TitleText = "  " + nManager.Translate.Get(nManager.Translate.Id.Game_Informations) +
-                                                 " - " + nManager.Translate.Get(nManager.Translate.Id.Running_time) +
-                                                 ": " + Others.SecToHour(nManager.Statistics.RunningTimeInSec());
-
                 if (ObjectManager.Target.IsValid)
                 {
-                    targetName.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Name) + ": " +
-                                      ObjectManager.Target.Name;
-                    targetHealthB.Value = (int) ObjectManager.Target.HealthPercent;
-                    targetHealthL.Text = ObjectManager.Target.Health + "/" + ObjectManager.Target.MaxHealth;
-                    targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " " +
-                                        ObjectManager.Target.Level;
+                    TargetName.Text = ObjectManager.Target.Name;
+                    if (TargetHealth.Value < ObjectManager.Target.HealthPercent - 1 || TargetHealth.Value > ObjectManager.Target.HealthPercent + 1)
+                        TargetHealth.Value = (int) ObjectManager.Target.HealthPercent;
+                    toolTip.SetToolTip(TargetHealth, ObjectManager.Target.Health + "/" + ObjectManager.Target.MaxHealth);
+                    TargetLevel.Text = ObjectManager.Target.Level.ToString();
                 }
                 else
                 {
-                    targetName.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Name) + ": -";
-                    targetHealthB.Value = 0;
-                    targetHealthL.Text = "-/-";
-                    targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " -";
+                    TargetName.Text = @"-";
+                    TargetHealth.Value = 0;
+                    toolTip.SetToolTip(TargetHealth, "0/1");
+                    TargetLevel.Text = @"-";
                 }
                 Logging.Log log = Logging.ReadLast(Logging.LogType.S);
-                lastLogL.Text = log.ToString();
-                lastLogL.ForeColor = log.Color;
-
-                MinimizesWindowToolTip = "";
-                if (nManager.Products.Products.IsStarted)
-                    MinimizesWindowToolTip = " " + nManager.Translate.Get(nManager.Translate.Id.Running_time) + ": " +
-                                             Others.SecToHour(nManager.Statistics.RunningTimeInSec()) + " " +
-                                             Environment.NewLine;
-
-                MinimizesWindowToolTip = MinimizesWindowToolTip + " " +
-                                         nManager.Translate.Get(nManager.Translate.Id.Health) + " " + healthB.Value +
-                                         "% " + Environment.NewLine + " " + levelL.Text + " " + Environment.NewLine +
-                                         " " + xpHrL.Text + " " + Environment.NewLine + " " +
-                                         honorHrL.Text + " " + Environment.NewLine + " " + lootL.Text + " " +
-                                         Environment.NewLine + " " + killsL.Text + " " + Environment.NewLine + " " +
-                                         deathsL.Text +
-                                         " " + Environment.NewLine + " " + farmsL.Text + " " + Environment.NewLine + " " +
-                                         nManager.Translate.Get(nManager.Translate.Id.Last_log) + ": " + lastLogL.Text;
+                LatestLog.Text = log.ToString();
+                LatestLog.ForeColor = log.Color;
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Main > gameInformationTimer_Tick(object sender, EventArgs e): " + ex);
             }
 
-            if (Display.WindowInTaskBarre(nManager.Wow.Memory.WowProcess.MainWindowHandle) &&
-                nManager.Products.Products.IsStarted)
+            if (Display.WindowInTaskBarre(Memory.WowProcess.MainWindowHandle) &&
+                Products.IsStarted)
             {
                 if (!_wowInTaskBarre)
                 {
                     _wowInTaskBarre = true;
-                    Display.ShowWindow(nManager.Wow.Memory.WowProcess.MainWindowHandle);
-                    /*MessageBox.Show(
-                        nManager.Translate.Get(
-                            nManager.Translate.Id.
-                                The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window) +
-                        ".", nManager.Translate.Get(nManager.Translate.Id.Information), MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);*/
+                    Display.ShowWindow(Memory.WowProcess.MainWindowHandle);
                 }
             }
             else
@@ -632,50 +665,78 @@ namespace The_Noob_Bot
             }
         }
 
-        private void devToolsB_Click(object sender, EventArgs e)
+        private void MainFormTimer_Tick(object sender, EventArgs e)
         {
-            try
+            if (Products.IsAliveProduct)
             {
-                Thread t = new Thread(DeveloperToolsThread) { Name = "DeveloperToolsForm" };
-                t.SetApartmentState(ApartmentState.STA);
-                t.Start();
+                if (Products.IsStarted)
+                {
+                    //StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.Stop);
+                    if (!StartButton.Hoovering)
+                        StartButton.Image = Resources.blackB_200;
+                    ProductSettingsButton.Enabled = false;
+                    MainSettingsButton.Enabled = false;
+                    ProductList.Enabled = false;
+                }
+                else
+                {
+                    //StartButton.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
+                    if (!StartButton.Hoovering)
+                        StartButton.Image = Resources.blueB_200;
+                    ProductSettingsButton.Enabled = true;
+                    MainSettingsButton.Enabled = true;
+                    ProductList.Enabled = true;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Logging.WriteError("Main > devToolsB_Click(object sender, EventArgs e): " + ex);
+                ProductSettingsButton.Enabled = false;
+                MainSettingsButton.Enabled = true;
+                ProductList.Enabled = true;
             }
         }
 
-        private void DeveloperToolsThread()
+        private void AccountPanelTimer_Tick(object sender, EventArgs e)
         {
-            try
+            string botOnline = Others.GetRequest("http://tech.thenoobbot.com/auth.php", "botOnline=true");
+            if (LoginServer.IsFreeVersion)
             {
-                DeveloperToolsMainFrame f = new DeveloperToolsMainFrame();
-                f.ShowDialog();
+                int timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
+                AccountName.Text = LoginServer.Login;
+                TimeLeft.Text = Others.SecToHour(timeLeftSec/1000);
+                OnlineBot.Text = botOnline;
             }
-            catch (Exception ex)
+            else
             {
-                Logging.WriteError("Main > DeveloperToolsThread(): " + ex);
+                string timeLeft = Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
+                AccountName.Text = LoginServer.Login;
+                TimeLeft.Text = timeLeft;
+                OnlineBot.Text = "Online Bots: " + botOnline;
+                AccountPanelTimer.Interval = 5000;
+            }
+            if (Remote.RemoteActive)
+            {
+                RemoteSessionInfo.Text = "SESSION STARTED WITH ID " + Remote.SessionKey;
+            }
+            else
+            {
+                RemoteSessionInfo.Text = "";
             }
         }
 
-        private void buttonX1_Click(object sender, EventArgs e)
+        private void WebsiteLink_Click(object sender, EventArgs e)
         {
-            _minimizedWindow.Show();
-            Hide();
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
         }
 
-        private void MinimizedVisibleChange(object sender, EventArgs e)
+        private void GoToPaymentPageButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!_minimizedWindow.Visible)
-                    Show();
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Main > MinimizedVisivleChange(object sender, EventArgs e): " + ex);
-            }
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/get-a-bg-bot-wow/");
+        }
+
+        private void LoggingAreaTimer_Tick(object sender, EventArgs e)
+        {
+            AddLog();
         }
     }
 }

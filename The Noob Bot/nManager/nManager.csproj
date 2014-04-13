@@ -87,12 +87,6 @@
     <Compile Include="Helpful\Forms\TranslateTools.Designer.cs">
       <DependentUpon>TranslateTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpful\Forms\UserControls\LoggingUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Helpful\Forms\UserControls\LoggingUC.Designer.cs">
-      <DependentUpon>LoggingUC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpful\Forms\UserControls\TnbButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -300,9 +294,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\TranslateTools.resx">
       <DependentUpon>TranslateTools.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Helpful\Forms\UserControls\LoggingUC.resx">
-      <DependentUpon>LoggingUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

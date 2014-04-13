@@ -39,8 +39,12 @@ namespace The_Noob_Bot
         private readonly Thread _work;
         private bool _firstActive;
 
+        public static int SessionKey
+        {
+            get { return _sessionKey; }
+        }
         private const string RemoteScript = "http://tech.thenoobbot.com/remote.php";
-        private int _sessionKey;
+        private static int _sessionKey;
 
         internal Remote()
         {

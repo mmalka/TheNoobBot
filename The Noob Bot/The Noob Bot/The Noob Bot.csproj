@@ -67,12 +67,6 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainMinimized.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainMinimized.Designer.cs">
-      <DependentUpon>MainMinimized.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remote.cs" />
@@ -84,10 +78,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainMinimized.resx">
-      <DependentUpon>MainMinimized.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -151,6 +141,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\selectorBack_big.png" />
+    <None Include="Resources\barImg.png" />
+    <None Include="Resources\logoImageG.png" />
+    <None Include="Resources\controlbar.png" />
+    <None Include="Resources\reduce_button.png" />
+    <None Include="Resources\close_button.png" />
     <None Include="Resources\tab_website.png" />
     <None Include="Resources\tab_active_mainframe.png" />
     <None Include="Resources\tab_inactive_mainframe.png" />
