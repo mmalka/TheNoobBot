@@ -133,6 +133,9 @@
   <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="panelcontrolHeaderbottomborderonly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\panelcontrolHeaderbottomborderonly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -142,8 +145,17 @@
   <data name="greenB_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\greenB_200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="panelcontrolHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\panelcontrolHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="panelcontrolHeaderbottomborder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\panelcontrolHeaderbottomborder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="blackB_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="backgroundGeneralSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backgroundGeneralSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blueB_242" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB_242.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,6 +169,9 @@
   <data name="reduce_buttonG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reduce_buttonG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logoImageG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoImageG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="switchoffr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\switchoffr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,14 +184,17 @@
   <data name="blackB_242" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_242.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PanelExpendablePlusImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PanelExpendablePlusImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="controlbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\controlbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blackB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="selectorBack_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\selectorBack_big.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="switchonr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\switchonr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +205,14 @@
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="panelcontrolHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\panelcontrolHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PanelExpendableMinusImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PanelExpendableMinusImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PanelExpendablePlusImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PanelExpendablePlusImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="backgroundsettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backgroundsettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blackB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blackB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,7 +229,7 @@
   <data name="blueB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PanelExpendableMinusImg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PanelExpendableMinusImg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backgroundGeneral" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backgroundGeneral.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

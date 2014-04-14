@@ -90,6 +90,9 @@
     <Compile Include="Helpful\Forms\UserControls\TnbComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbControlMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Helpful\Forms\UserControls\TnbExpendablePanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -347,9 +350,6 @@
     <None Include="Resources\blackB_200.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PanelHeaderImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\panelcontrolHeader.png" />
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +357,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PanelExpendableMinusImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoImageG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controlbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundsettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelcontrolHeaderbottomborderonly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundGeneralSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelcontrolHeaderbottomborder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundGeneral.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

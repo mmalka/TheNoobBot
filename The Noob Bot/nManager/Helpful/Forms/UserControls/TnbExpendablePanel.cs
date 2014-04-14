@@ -15,12 +15,12 @@ namespace nManager.Helpful.Forms.UserControls
         private Color _borderColor = Color.FromArgb(52, 52, 52);
         private ButtonBorderStyle _borderStyle = ButtonBorderStyle.Solid;
         private Color _contentBackColor = Color.FromArgb(232, 232, 232);
-        private Size _contentSize = new Size(575, 200);
+        private Size _contentSize = new Size(573, 200);
         private bool _fold;
         private Image _folderImage = Resources.PanelExpendableMinusImg;
         private Color _headerBackColor = Color.FromArgb(250, 250, 250);
-        private Image _headerImage = Resources.panelcontrolHeader;
-        private Size _headerSize = new Size(575, 37);
+        private Image _headerImage = Resources.panelcontrolHeaderbottomborderonly;
+        private Size _headerSize = new Size(573, 36);
         private int _orderIndex = -1;
 
         private PictureBox _toggler;
@@ -148,7 +148,7 @@ namespace nManager.Helpful.Forms.UserControls
                 _orderIndex = value;
                 if (OnOrderChanged != null)
                     OnOrderChanged(this, EventArgs.Empty);
-                Invalidate();
+                //Invalidate();
             }
         }
 
@@ -158,7 +158,7 @@ namespace nManager.Helpful.Forms.UserControls
             get { return _headerSize; }
             set
             {
-                _headerSize = new Size(value.Width, 37);
+                _headerSize = new Size(value.Width, 36);
                 Invalidate();
             }
         }
@@ -220,9 +220,9 @@ namespace nManager.Helpful.Forms.UserControls
 
             if (m.Msg == WmPaint)
             {
-                Graphics g = Graphics.FromHwnd(Handle);
-                var mainRect = new Rectangle(0, 0, Width, Height);
-                ControlPaint.DrawBorder(g, mainRect, BorderColor, BorderStyle);
+                //Graphics g = Graphics.FromHwnd(Handle);
+                //var mainRect = new Rectangle(0, 0, Width, Height);
+                //ControlPaint.DrawBorder(g, mainRect, BorderColor, BorderStyle);
             }
         }
 
@@ -237,7 +237,7 @@ namespace nManager.Helpful.Forms.UserControls
             Controls.Add(_header);
             _header.Visible = true;
             _header.AutoSize = false;
-            _header.Text = "Spell Management - Manage your Spell priority";
+            _header.Text = @"Expendable Panel TitleText";
             _header.Font = TitleFont;
             _header.ForeColor = TitleForeColor;
             _header.TextAlign = ContentAlignment.MiddleCenter;

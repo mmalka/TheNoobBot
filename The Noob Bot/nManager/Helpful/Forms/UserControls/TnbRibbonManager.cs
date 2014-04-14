@@ -15,10 +15,10 @@ namespace nManager.Helpful.Forms.UserControls
         public TnbRibbonManager()
         {
             _panelAttached = new List<TnbExpendablePanel>();
-            Size = new Size(575, 450);
-            Location = new Point(0, 0);
+            Size = new Size(573, 370);
+            Location = new Point(573, 370);
             BorderStyle = BorderStyle.None;
-            base.AutoScroll = true;
+            base.AutoScroll = false;
             ControlAdded += OnControlAdd;
             ControlRemoved += OnControlDel;
             Click += Relocator;
@@ -48,6 +48,7 @@ namespace nManager.Helpful.Forms.UserControls
                     }
                 }
             }
+            Relocator();
         }
 
         private void OnControlDel(object sender, ControlEventArgs controlEventArgs)
