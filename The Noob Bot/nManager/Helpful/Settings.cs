@@ -5,9 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using DevComponents.DotNetBar;
-using DevComponents.DotNetBar.Controls;
-using DevComponents.DotNetBar.Metro;
+using nManager.Helpful.Forms.UserControls;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -84,7 +82,7 @@ namespace nManager.Helpful
             {
                 // Create Form
 
-                MetroForm form = new MetroForm
+                Form form = new Form
                     {
                         ClientSize = new Size(_sizeWinform),
                         Text = _windowName,
@@ -105,7 +103,7 @@ namespace nManager.Helpful
                     form.MaximizeBox = false;
                 }
                 // Create Tab Control
-                Panel panel = new Panel
+                TnbRibbonManager panel = new TnbRibbonManager
                     {
                         Anchor =
                             ((AnchorStyles.Top |
@@ -119,7 +117,7 @@ namespace nManager.Helpful
                         Size = new Size(_sizeWinform.X - 10, _sizeWinform.Y - 10)
                     };
 
-                List<ExpandablePanel> listExpandablePanel = new List<ExpandablePanel>();
+                List<TnbExpendablePanel> listExpandablePanel = new List<TnbExpendablePanel>();
                 Dictionary<string, int> expandablePanelPosY = new Dictionary<string, int>();
 
                 foreach (FormSetting f in _listFormSetting)
@@ -139,30 +137,11 @@ namespace nManager.Helpful
                     if (indexTab < 0)
                     {
                         //var tabPage = new TabPage { AutoScroll = true, Text = f.Category, UseVisualStyleBackColor = true };
-                        ExpandablePanel expandablePanel = new ExpandablePanel
+                        TnbExpendablePanel expandablePanel = new TnbExpendablePanel();
                             {
-                                CanvasColor = SystemColors.Control,
-                                ColorSchemeStyle =
-                                    eDotNetBarStyle.StyleManagerControlled,
-                                Dock = DockStyle.Top,
-                                Expanded = true,
-                                ExpandedBounds = new Rectangle(0, 0, 560, 161),
-                                ExpandOnTitleClick = true,
-                                Location = new Point(2, 2),
-                                AutoSize = true
+
                             };
-                        expandablePanel.Style.Alignment = StringAlignment.Center;
-                        expandablePanel.Style.BackColor1.ColorSchemePart = eColorSchemePart.PanelBackground;
-                        expandablePanel.Style.BackColor1.Color = Color.WhiteSmoke;
-                        expandablePanel.Style.Border = eBorderType.SingleLine;
-                        expandablePanel.Style.ForeColor.ColorSchemePart = eColorSchemePart.ItemText;
-                        expandablePanel.Style.GradientAngle = 90;
-                        expandablePanel.TitleStyle.Alignment = StringAlignment.Center;
-                        expandablePanel.TitleStyle.BackColor1.ColorSchemePart = eColorSchemePart.PanelBackground;
-                        expandablePanel.TitleStyle.BackColor2.Color = Color.FromArgb(70, 70, 70);
-                        expandablePanel.TitleStyle.Border = eBorderType.RaisedInner;
-                        expandablePanel.TitleStyle.ForeColor.ColorSchemePart = eColorSchemePart.PanelText;
-                        expandablePanel.TitleStyle.GradientAngle = 90;
+
                         expandablePanel.TitleText = f.Category;
                         listExpandablePanel.Add(expandablePanel);
                         expandablePanelPosY.Add(f.Category, 34);
@@ -196,7 +175,7 @@ namespace nManager.Helpful
                         switch (Type.GetTypeCode(fieldInfo.FieldType))
                         {
                             case TypeCode.Boolean: // CHECKBOX
-                                SwitchButton switchButton = new SwitchButton
+                                TnbSwitchButton switchButton = new TnbSwitchButton
                                     {
                                         BackColor = Color.WhiteSmoke,
                                         Value = (bool) fieldInfo.GetValue(this),
@@ -206,10 +185,7 @@ namespace nManager.Helpful
                                         OffText = Translate.Get(Translate.Id.NO),
                                         OnText = Translate.Get(Translate.Id.YES),
                                         Size = new Size(66, 22),
-                                        Style = eDotNetBarStyle.StyleManagerControlled
                                     };
-                                switchButton.BackgroundStyle.Class = "";
-                                switchButton.BackgroundStyle.CornerType = eCornerType.Square;
                                 label = new Label
                                     {
                                         Text = f.Description,
@@ -424,7 +400,7 @@ namespace nManager.Helpful
                     }
                 }
                 // Add tab in tab control:
-                foreach (ExpandablePanel tabPage in listExpandablePanel)
+                foreach (TnbExpendablePanel tabPage in listExpandablePanel)
                 {
                     panel.Controls.Add(tabPage);
                 }
@@ -457,7 +433,7 @@ namespace nManager.Helpful
                         switch (Type.GetTypeCode(fieldInfo.FieldType))
                         {
                             case TypeCode.Boolean:
-                                fieldInfo.SetValue(this, ((SwitchButton) controls[0]).Value);
+                                fieldInfo.SetValue(this, ((TnbSwitchButton) controls[0]).Value);
                                 break;
 
                             case TypeCode.Int16:
