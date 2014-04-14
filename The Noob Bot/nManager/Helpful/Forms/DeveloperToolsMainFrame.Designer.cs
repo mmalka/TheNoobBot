@@ -49,7 +49,7 @@
             this.SearchObjectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchObjectButton.ForeColor = System.Drawing.Color.White;
             this.SearchObjectButton.Image = global::nManager.Properties.Resources.blackB;
-            this.SearchObjectButton.Location = new System.Drawing.Point(411, 558);
+            this.SearchObjectButton.Location = new System.Drawing.Point(413, 558);
             this.SearchObjectButton.Margin = new System.Windows.Forms.Padding(0);
             this.SearchObjectButton.MaximumSize = new System.Drawing.Size(106, 29);
             this.SearchObjectButton.MinimumSize = new System.Drawing.Size(106, 29);
@@ -68,7 +68,7 @@
             this.TargetInfoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TargetInfoButton.ForeColor = System.Drawing.Color.White;
             this.TargetInfoButton.Image = global::nManager.Properties.Resources.blackB;
-            this.TargetInfoButton.Location = new System.Drawing.Point(300, 517);
+            this.TargetInfoButton.Location = new System.Drawing.Point(302, 517);
             this.TargetInfoButton.Margin = new System.Windows.Forms.Padding(0);
             this.TargetInfoButton.MaximumSize = new System.Drawing.Size(106, 29);
             this.TargetInfoButton.MinimumSize = new System.Drawing.Size(106, 29);
@@ -100,7 +100,7 @@
             this.GpsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GpsButton.ForeColor = System.Drawing.Color.White;
             this.GpsButton.Image = global::nManager.Properties.Resources.blackB;
-            this.GpsButton.Location = new System.Drawing.Point(189, 517);
+            this.GpsButton.Location = new System.Drawing.Point(190, 517);
             this.GpsButton.Margin = new System.Windows.Forms.Padding(0);
             this.GpsButton.MaximumSize = new System.Drawing.Size(106, 29);
             this.GpsButton.MinimumSize = new System.Drawing.Size(106, 29);
@@ -138,7 +138,7 @@
             this.TargetInfo2Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TargetInfo2Button.ForeColor = System.Drawing.Color.White;
             this.TargetInfo2Button.Image = global::nManager.Properties.Resources.blackB;
-            this.TargetInfo2Button.Location = new System.Drawing.Point(411, 517);
+            this.TargetInfo2Button.Location = new System.Drawing.Point(413, 517);
             this.TargetInfo2Button.Margin = new System.Windows.Forms.Padding(0);
             this.TargetInfo2Button.MaximumSize = new System.Drawing.Size(106, 29);
             this.TargetInfo2Button.MinimumSize = new System.Drawing.Size(106, 29);
@@ -157,7 +157,7 @@
             this.NpcFactionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NpcFactionButton.ForeColor = System.Drawing.Color.White;
             this.NpcFactionButton.Image = global::nManager.Properties.Resources.blackB;
-            this.NpcFactionButton.Location = new System.Drawing.Point(300, 558);
+            this.NpcFactionButton.Location = new System.Drawing.Point(302, 558);
             this.NpcFactionButton.Margin = new System.Windows.Forms.Padding(0);
             this.NpcFactionButton.MaximumSize = new System.Drawing.Size(106, 29);
             this.NpcFactionButton.MinimumSize = new System.Drawing.Size(106, 29);
@@ -176,7 +176,7 @@
             this.NpcTypeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NpcTypeButton.ForeColor = System.Drawing.Color.White;
             this.NpcTypeButton.Image = global::nManager.Properties.Resources.blackB;
-            this.NpcTypeButton.Location = new System.Drawing.Point(189, 558);
+            this.NpcTypeButton.Location = new System.Drawing.Point(190, 558);
             this.NpcTypeButton.Margin = new System.Windows.Forms.Padding(0);
             this.NpcTypeButton.MaximumSize = new System.Drawing.Size(106, 29);
             this.NpcTypeButton.MinimumSize = new System.Drawing.Size(106, 29);
@@ -214,7 +214,7 @@
             this.TranslationManagerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TranslationManagerButton.ForeColor = System.Drawing.Color.White;
             this.TranslationManagerButton.Image = global::nManager.Properties.Resources.blueB_242;
-            this.TranslationManagerButton.Location = new System.Drawing.Point(522, 517);
+            this.TranslationManagerButton.Location = new System.Drawing.Point(525, 517);
             this.TranslationManagerButton.Margin = new System.Windows.Forms.Padding(0);
             this.TranslationManagerButton.MaximumSize = new System.Drawing.Size(242, 29);
             this.TranslationManagerButton.MinimumSize = new System.Drawing.Size(242, 29);
@@ -233,7 +233,7 @@
             this.AllObjectsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AllObjectsButton.ForeColor = System.Drawing.Color.White;
             this.AllObjectsButton.Image = global::nManager.Properties.Resources.blackB_242;
-            this.AllObjectsButton.Location = new System.Drawing.Point(522, 558);
+            this.AllObjectsButton.Location = new System.Drawing.Point(525, 558);
             this.AllObjectsButton.Margin = new System.Windows.Forms.Padding(0);
             this.AllObjectsButton.MaximumSize = new System.Drawing.Size(242, 29);
             this.AllObjectsButton.MinimumSize = new System.Drawing.Size(242, 29);
