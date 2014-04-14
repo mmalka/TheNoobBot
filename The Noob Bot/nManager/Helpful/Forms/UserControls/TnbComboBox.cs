@@ -16,6 +16,7 @@ namespace nManager.Helpful.Forms.UserControls
 
         public TnbComboBox()
         {
+            MouseWheel += DisableMouseWheel;
             base.DrawMode = DrawMode.OwnerDrawFixed;
             base.BackColor = Color.FromArgb(232, 232, 232);
             base.ForeColor = Color.FromArgb(98, 160, 229);
@@ -24,6 +25,7 @@ namespace nManager.Helpful.Forms.UserControls
             FlatStyle = FlatStyle.Flat;
             DrawItem += AdvancedComboBox_DrawItem;
         }
+
 
         public new DrawMode DrawMode { get; set; }
 
@@ -108,6 +110,12 @@ namespace nManager.Helpful.Forms.UserControls
                 _selectorImage = value;
                 Invalidate();
             }
+        }
+
+        private void DisableMouseWheel(object sender, MouseEventArgs e)
+        {
+            var mwe = (HandledMouseEventArgs) e;
+            mwe.Handled = true;
         }
 
         protected override void WndProc(ref Message m)
