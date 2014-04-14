@@ -78,7 +78,8 @@ namespace Mimesis
             // 
             // MasterBotIPAddressLabel
             // 
-            this.MasterBotIPAddressLabel.ForeColor = System.Drawing.Color.Black;
+            this.MasterBotIPAddressLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MasterBotIPAddressLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MasterBotIPAddressLabel.Location = new System.Drawing.Point(12, 52);
             this.MasterBotIPAddressLabel.Name = "MasterBotIPAddressLabel";
             this.MasterBotIPAddressLabel.Size = new System.Drawing.Size(140, 22);
@@ -87,7 +88,8 @@ namespace Mimesis
             // 
             // labelX6
             // 
-            this.labelX6.ForeColor = System.Drawing.Color.Black;
+            this.labelX6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.labelX6.Location = new System.Drawing.Point(12, 133);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(277, 24);
@@ -97,7 +99,8 @@ namespace Mimesis
             // 
             // MasterBotIPPortLabel
             // 
-            this.MasterBotIPPortLabel.ForeColor = System.Drawing.Color.Black;
+            this.MasterBotIPPortLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MasterBotIPPortLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MasterBotIPPortLabel.Location = new System.Drawing.Point(12, 80);
             this.MasterBotIPPortLabel.Name = "MasterBotIPPortLabel";
             this.MasterBotIPPortLabel.Size = new System.Drawing.Size(140, 22);
@@ -107,7 +110,8 @@ namespace Mimesis
             // 
             // ActivatePartyModeLabel
             // 
-            this.ActivatePartyModeLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivatePartyModeLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActivatePartyModeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.ActivatePartyModeLabel.Location = new System.Drawing.Point(12, 110);
             this.ActivatePartyModeLabel.Name = "ActivatePartyModeLabel";
             this.ActivatePartyModeLabel.Size = new System.Drawing.Size(206, 22);
@@ -137,7 +141,7 @@ namespace Mimesis
             this.MainHeader.TabIndex = 24;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.MainHeader.TitleText = "TheNoobBot";
+            this.MainHeader.TitleText = "Mimesis Settings";
             // 
             // SaveAndCloseButton
             // 
