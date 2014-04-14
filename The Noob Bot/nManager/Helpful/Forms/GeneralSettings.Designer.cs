@@ -969,6 +969,11 @@ namespace nManager.Helpful.Forms
             // 
             this.StopTNBAfterXMinutes.ForeColor = System.Drawing.Color.Black;
             this.StopTNBAfterXMinutes.Location = new System.Drawing.Point(162, 247);
+            this.StopTNBAfterXMinutes.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
             this.StopTNBAfterXMinutes.Minimum = new decimal(new int[] {
             1,
             0,
@@ -978,7 +983,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBAfterXMinutes.Size = new System.Drawing.Size(77, 22);
             this.StopTNBAfterXMinutes.TabIndex = 24;
             this.StopTNBAfterXMinutes.Value = new decimal(new int[] {
-            80,
+            1440,
             0,
             0,
             0});
@@ -1806,10 +1811,10 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.LootingFarmingManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("LootingFarmingManagementPanelName.HeaderImage")));
             this.LootingFarmingManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 108);
+            this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 0);
             this.LootingFarmingManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.LootingFarmingManagementPanelName.Name = "LootingFarmingManagementPanelName";
-            this.LootingFarmingManagementPanelName.OrderIndex = 3;
+            this.LootingFarmingManagementPanelName.OrderIndex = -1;
             this.LootingFarmingManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
             this.LootingFarmingManagementPanelName.Size = new System.Drawing.Size(573, 36);
             this.LootingFarmingManagementPanelName.TabIndex = 5;
@@ -2195,19 +2200,12 @@ namespace nManager.Helpful.Forms
             // 
             this.GatheringSearchRadius.ForeColor = System.Drawing.Color.Black;
             this.GatheringSearchRadius.Location = new System.Drawing.Point(163, 244);
-            this.GatheringSearchRadius.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+            this.GatheringSearchRadius.Minimum = 5;
+            this.GatheringSearchRadius.Maximum = 300;
             this.GatheringSearchRadius.Name = "GatheringSearchRadius";
             this.GatheringSearchRadius.Size = new System.Drawing.Size(77, 22);
             this.GatheringSearchRadius.TabIndex = 30;
-            this.GatheringSearchRadius.Value = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
+            this.GatheringSearchRadius.Value = 35;
             // 
             // labelX22
             // 
@@ -2223,19 +2221,12 @@ namespace nManager.Helpful.Forms
             // 
             this.DontHarvestIfMoreThanXUnitInAggroRange.ForeColor = System.Drawing.Color.Black;
             this.DontHarvestIfMoreThanXUnitInAggroRange.Location = new System.Drawing.Point(163, 216);
-            this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = 0;
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = 100;
             this.DontHarvestIfMoreThanXUnitInAggroRange.Name = "DontHarvestIfMoreThanXUnitInAggroRange";
             this.DontHarvestIfMoreThanXUnitInAggroRange.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfMoreThanXUnitInAggroRange.TabIndex = 28;
-            this.DontHarvestIfMoreThanXUnitInAggroRange.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Value = 3;
             // 
             // labelX21
             // 
@@ -2343,19 +2334,12 @@ namespace nManager.Helpful.Forms
             // 
             this.DontHarvestIfPlayerNearRadius.ForeColor = System.Drawing.Color.Black;
             this.DontHarvestIfPlayerNearRadius.Location = new System.Drawing.Point(163, 188);
-            this.DontHarvestIfPlayerNearRadius.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.DontHarvestIfPlayerNearRadius.Minimum = 0;
+            this.DontHarvestIfPlayerNearRadius.Maximum = 50;
             this.DontHarvestIfPlayerNearRadius.Name = "DontHarvestIfPlayerNearRadius";
             this.DontHarvestIfPlayerNearRadius.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfPlayerNearRadius.TabIndex = 18;
-            this.DontHarvestIfPlayerNearRadius.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            this.DontHarvestIfPlayerNearRadius.Value = 10;
             // 
             // labelX12
             // 
@@ -2412,7 +2396,7 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.RegenerationManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("RegenerationManagementPanelName.HeaderImage")));
             this.RegenerationManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.RegenerationManagementPanelName.Location = new System.Drawing.Point(0, 72);
+            this.RegenerationManagementPanelName.Location = new System.Drawing.Point(0, 108);
             this.RegenerationManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.RegenerationManagementPanelName.Name = "RegenerationManagementPanelName";
             this.RegenerationManagementPanelName.OrderIndex = 2;
@@ -2461,24 +2445,12 @@ namespace nManager.Helpful.Forms
             // 
             this.DrinkBeverageWhenManaIsUnderXPercent.ForeColor = System.Drawing.Color.Black;
             this.DrinkBeverageWhenManaIsUnderXPercent.Location = new System.Drawing.Point(335, 77);
-            this.DrinkBeverageWhenManaIsUnderXPercent.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.DrinkBeverageWhenManaIsUnderXPercent.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.DrinkBeverageWhenManaIsUnderXPercent.Maximum = 99;
+            this.DrinkBeverageWhenManaIsUnderXPercent.Minimum = 1;
             this.DrinkBeverageWhenManaIsUnderXPercent.Name = "DrinkBeverageWhenManaIsUnderXPercent";
             this.DrinkBeverageWhenManaIsUnderXPercent.Size = new System.Drawing.Size(53, 22);
             this.DrinkBeverageWhenManaIsUnderXPercent.TabIndex = 23;
-            this.DrinkBeverageWhenManaIsUnderXPercent.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            0});
+            this.DrinkBeverageWhenManaIsUnderXPercent.Value = 35;
             // 
             // BeverageName
             // 
@@ -2522,24 +2494,12 @@ namespace nManager.Helpful.Forms
             // 
             this.EatFoodWhenHealthIsUnderXPercent.ForeColor = System.Drawing.Color.Black;
             this.EatFoodWhenHealthIsUnderXPercent.Location = new System.Drawing.Point(335, 49);
-            this.EatFoodWhenHealthIsUnderXPercent.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.EatFoodWhenHealthIsUnderXPercent.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.EatFoodWhenHealthIsUnderXPercent.Maximum = 99;
+            this.EatFoodWhenHealthIsUnderXPercent.Minimum = 1;
             this.EatFoodWhenHealthIsUnderXPercent.Name = "EatFoodWhenHealthIsUnderXPercent";
             this.EatFoodWhenHealthIsUnderXPercent.Size = new System.Drawing.Size(53, 22);
             this.EatFoodWhenHealthIsUnderXPercent.TabIndex = 18;
-            this.EatFoodWhenHealthIsUnderXPercent.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            0});
+            this.EatFoodWhenHealthIsUnderXPercent.Value = 35;
             // 
             // FoodName
             // 
@@ -2582,7 +2542,7 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.MountManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.HeaderImage")));
             this.MountManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.MountManagementPanelName.Location = new System.Drawing.Point(0, 36);
+            this.MountManagementPanelName.Location = new System.Drawing.Point(0, 72);
             this.MountManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.MountManagementPanelName.Name = "MountManagementPanelName";
             this.MountManagementPanelName.OrderIndex = 1;
@@ -2639,19 +2599,12 @@ namespace nManager.Helpful.Forms
             // 
             this.MinimumDistanceToUseMount.ForeColor = System.Drawing.Color.Black;
             this.MinimumDistanceToUseMount.Location = new System.Drawing.Point(162, 98);
-            this.MinimumDistanceToUseMount.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+            this.MinimumDistanceToUseMount.Minimum = 5;
+            this.MinimumDistanceToUseMount.Minimum = 200;
             this.MinimumDistanceToUseMount.Name = "MinimumDistanceToUseMount";
             this.MinimumDistanceToUseMount.Size = new System.Drawing.Size(77, 22);
             this.MinimumDistanceToUseMount.TabIndex = 18;
-            this.MinimumDistanceToUseMount.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
+            this.MinimumDistanceToUseMount.Value = 80;
             // 
             // labelX8
             // 
@@ -2761,7 +2714,7 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.SpellManagementSystemPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("SpellManagementSystemPanelName.HeaderImage")));
             this.SpellManagementSystemPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.SpellManagementSystemPanelName.Location = new System.Drawing.Point(0, 0);
+            this.SpellManagementSystemPanelName.Location = new System.Drawing.Point(0, 36);
             this.SpellManagementSystemPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.SpellManagementSystemPanelName.Name = "SpellManagementSystemPanelName";
             this.SpellManagementSystemPanelName.OrderIndex = 0;

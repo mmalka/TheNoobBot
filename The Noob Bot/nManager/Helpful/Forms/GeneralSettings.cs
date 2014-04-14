@@ -567,9 +567,9 @@ namespace nManager.Helpful.Forms
                 BeastNinjaSkinning.Value = managerSetting.BeastNinjaSkinning;
                 ActivateVeinsHarvesting.Value = managerSetting.ActivateVeinsHarvesting;
                 ActivateHerbsHarvesting.Value = managerSetting.ActivateHerbsHarvesting;
-                DontHarvestIfPlayerNearRadius.Value = (int) managerSetting.DontHarvestIfPlayerNearRadius;
+                DontHarvestIfPlayerNearRadius.Value = (decimal) managerSetting.DontHarvestIfPlayerNearRadius;
                 DontHarvestIfMoreThanXUnitInAggroRange.Value = managerSetting.DontHarvestIfMoreThanXUnitInAggroRange;
-                GatheringSearchRadius.Value = (int) managerSetting.GatheringSearchRadius;
+                GatheringSearchRadius.Value = (decimal)managerSetting.GatheringSearchRadius;
                 HarvestDuringLongDistanceMovements.Value = managerSetting.HarvestDuringLongDistanceMovements;
                 ActivateAutoSmelting.Value = managerSetting.ActivateAutoSmelting;
                 ActivateAutoProspecting.Value = managerSetting.ActivateAutoProspecting;
@@ -619,7 +619,7 @@ namespace nManager.Helpful.Forms
                 PlayASongIfNewWhispReceived.Value = managerSetting.PlayASongIfNewWhispReceived;
                 ActivatePathFindingFeature.Value = managerSetting.ActivatePathFindingFeature;
                 AllowTNBToSetYourMaxFps.Value = managerSetting.AllowTNBToSetYourMaxFps;
-                MaxDistanceToGoToMailboxesOrNPCs.Value = (int) managerSetting.MaxDistanceToGoToMailboxesOrNPCs;
+                MaxDistanceToGoToMailboxesOrNPCs.Value = (decimal) managerSetting.MaxDistanceToGoToMailboxesOrNPCs;
                 AutoConfirmOnBoPItems.Value = managerSetting.AutoConfirmOnBoPItems;
                 ActivateAlwaysOnTopFeature.Value = managerSetting.ActivateAlwaysOnTopFeature;
                 RepairWhenDurabilityIsUnderPercent.Value = managerSetting.RepairWhenDurabilityIsUnderPercent;
