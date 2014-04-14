@@ -19,7 +19,7 @@ namespace nManager.Helpful.Forms.UserControls
         private bool _fold;
         private Image _folderImage = Resources.PanelExpendableMinusImg;
         private Color _headerBackColor = Color.FromArgb(250, 250, 250);
-        private Image _headerImage = Resources.panelcontrolHeaderbottomborderonly;
+        private Image _headerImage = Resources.panelcontrolHeaderbottomborder;
         private Size _headerSize = new Size(573, 36);
         private int _orderIndex = -1;
 

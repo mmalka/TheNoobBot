@@ -73,26 +73,6 @@ namespace nManager.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap backgroundGeneralSettings {
-            get {
-                object obj = ResourceManager.GetObject("backgroundGeneralSettings", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap backgroundsettings {
-            get {
-                object obj = ResourceManager.GetObject("backgroundsettings", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap barImg {
             get {
                 object obj = ResourceManager.GetObject("barImg", resourceCulture);
@@ -316,16 +296,6 @@ namespace nManager.Properties {
         internal static System.Drawing.Bitmap panelcontrolHeaderbottomborder {
             get {
                 object obj = ResourceManager.GetObject("panelcontrolHeaderbottomborder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap panelcontrolHeaderbottomborderonly {
-            get {
-                object obj = ResourceManager.GetObject("panelcontrolHeaderbottomborderonly", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
