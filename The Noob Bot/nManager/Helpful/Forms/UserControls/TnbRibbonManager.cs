@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace nManager.Helpful.Forms.UserControls
 {
-    internal class TnbRibbonManager : Panel
+    public class TnbRibbonManager : Panel
     {
-        private List<TnbExpendablePanel> _panelAttached  = new List<TnbExpendablePanel>();
+        private List<TnbExpendablePanel> _panelAttached = new List<TnbExpendablePanel>();
 
         public TnbRibbonManager()
         {
@@ -34,7 +33,7 @@ namespace nManager.Helpful.Forms.UserControls
                 {
                     if (!_panelAttached.Contains(x as TnbExpendablePanel))
                     {
-                        TnbExpendablePanel y = x as TnbExpendablePanel;
+                        var y = x as TnbExpendablePanel;
                         if (_panelAttached.Count > 1)
                         {
                             if (y.OrderIndex == -1)
@@ -43,7 +42,7 @@ namespace nManager.Helpful.Forms.UserControls
                         }
                         y.OnStatusChanged += Relocator;
                         y.OnOrderChanged += Relocator;
-                        
+
                         _panelAttached.Add(y);
                     }
                 }
@@ -53,7 +52,7 @@ namespace nManager.Helpful.Forms.UserControls
 
         private void OnControlDel(object sender, ControlEventArgs controlEventArgs)
         {
-            List<int> tmpList = new List<int>();
+            var tmpList = new List<int>();
 
             for (int i = 0; i < _panelAttached.Count; i++)
             {

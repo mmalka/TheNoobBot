@@ -30,18 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.ControlMenu = new System.Windows.Forms.PictureBox();
-            this.ReduceButton = new System.Windows.Forms.PictureBox();
-            this.CloseButton = new System.Windows.Forms.PictureBox();
             this.SessionList = new System.Windows.Forms.ListBox();
-            this.TopLeftLogo = new System.Windows.Forms.PictureBox();
             this.Identifier = new System.Windows.Forms.TextBox();
             this.Password = new System.Windows.Forms.TextBox();
             this.keyLogoPassword = new System.Windows.Forms.PictureBox();
             this.manLogoIdentifier = new System.Windows.Forms.PictureBox();
             this.Remember = new System.Windows.Forms.CheckBox();
             this.Register = new System.Windows.Forms.Label();
-            this.LoginFormTitle = new System.Windows.Forms.Label();
             this.FormFocusLogin = new System.Windows.Forms.PictureBox();
             this.FormFocusPassword = new System.Windows.Forms.PictureBox();
             this.WebsiteLink = new System.Windows.Forms.Label();
@@ -52,73 +47,15 @@
             this.EsterEggTrigger2 = new System.Windows.Forms.Panel();
             this.EsterEggTrigger3 = new System.Windows.Forms.Panel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.LoginButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.RefreshButton = new nManager.Helpful.Forms.UserControls.TnbButton();
-            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).BeginInit();
+            this.LoginButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormFocusLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormFocusPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EasterEgg)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ControlMenu
-            // 
-            this.ControlMenu.BackColor = System.Drawing.Color.Black;
-            this.ControlMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ControlMenu.ErrorImage = null;
-            this.ControlMenu.Image = ((System.Drawing.Image)(resources.GetObject("ControlMenu.Image")));
-            this.ControlMenu.InitialImage = null;
-            this.ControlMenu.Location = new System.Drawing.Point(0, 0);
-            this.ControlMenu.Margin = new System.Windows.Forms.Padding(0);
-            this.ControlMenu.MaximumSize = new System.Drawing.Size(575, 43);
-            this.ControlMenu.MinimumSize = new System.Drawing.Size(575, 43);
-            this.ControlMenu.Name = "ControlMenu";
-            this.ControlMenu.Size = new System.Drawing.Size(575, 43);
-            this.ControlMenu.TabIndex = 0;
-            this.ControlMenu.TabStop = false;
-            this.ControlMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.ControlMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.ControlMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
-            // 
-            // ReduceButton
-            // 
-            this.ReduceButton.BackColor = System.Drawing.Color.Transparent;
-            this.ReduceButton.ErrorImage = null;
-            this.ReduceButton.Image = ((System.Drawing.Image)(resources.GetObject("ReduceButton.Image")));
-            this.ReduceButton.InitialImage = null;
-            this.ReduceButton.Location = new System.Drawing.Point(523, 13);
-            this.ReduceButton.Margin = new System.Windows.Forms.Padding(0);
-            this.ReduceButton.MaximumSize = new System.Drawing.Size(13, 14);
-            this.ReduceButton.MinimumSize = new System.Drawing.Size(13, 14);
-            this.ReduceButton.Name = "ReduceButton";
-            this.ReduceButton.Size = new System.Drawing.Size(13, 14);
-            this.ReduceButton.TabIndex = 1;
-            this.ReduceButton.TabStop = false;
-            this.ReduceButton.Click += new System.EventHandler(this.ReduceButton_Click);
-            this.ReduceButton.MouseEnter += new System.EventHandler(this.ReduceButton_MouseEnter);
-            this.ReduceButton.MouseLeave += new System.EventHandler(this.ReduceButton_MouseLeave);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
-            this.CloseButton.ErrorImage = null;
-            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
-            this.CloseButton.InitialImage = null;
-            this.CloseButton.Location = new System.Drawing.Point(550, 13);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
-            this.CloseButton.MaximumSize = new System.Drawing.Size(13, 14);
-            this.CloseButton.MinimumSize = new System.Drawing.Size(13, 14);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(13, 14);
-            this.CloseButton.TabIndex = 2;
-            this.CloseButton.TabStop = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
-            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
             // 
             // SessionList
             // 
@@ -133,21 +70,6 @@
             this.SessionList.Name = "SessionList";
             this.SessionList.Size = new System.Drawing.Size(266, 99);
             this.SessionList.TabIndex = 3;
-            // 
-            // TopLeftLogo
-            // 
-            this.TopLeftLogo.ErrorImage = null;
-            this.TopLeftLogo.Image = ((System.Drawing.Image)(resources.GetObject("TopLeftLogo.Image")));
-            this.TopLeftLogo.InitialImage = null;
-            this.TopLeftLogo.Location = new System.Drawing.Point(13, 3);
-            this.TopLeftLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.TopLeftLogo.Name = "TopLeftLogo";
-            this.TopLeftLogo.Size = new System.Drawing.Size(30, 35);
-            this.TopLeftLogo.TabIndex = 4;
-            this.TopLeftLogo.TabStop = false;
-            this.TopLeftLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.TopLeftLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.TopLeftLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
             // Identifier
             // 
@@ -245,25 +167,6 @@
             this.Register.Click += new System.EventHandler(this.Register_Click);
             this.Register.MouseEnter += new System.EventHandler(this.Register_MouseEnter);
             this.Register.MouseLeave += new System.EventHandler(this.Register_MouseLeave);
-            // 
-            // LoginFormTitle
-            // 
-            this.LoginFormTitle.AutoSize = true;
-            this.LoginFormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.LoginFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.LoginFormTitle.Location = new System.Drawing.Point(57, 4);
-            this.LoginFormTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.LoginFormTitle.MaximumSize = new System.Drawing.Size(450, 35);
-            this.LoginFormTitle.MinimumSize = new System.Drawing.Size(450, 35);
-            this.LoginFormTitle.Name = "LoginFormTitle";
-            this.LoginFormTitle.Size = new System.Drawing.Size(450, 35);
-            this.LoginFormTitle.TabIndex = 12;
-            this.LoginFormTitle.Text = "TheNoobBot";
-            this.LoginFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LoginFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.LoginFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.LoginFormTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
             // FormFocusLogin
             // 
@@ -393,21 +296,6 @@
             this.EsterEggTrigger3.MouseEnter += new System.EventHandler(this.EsterEggTrigger_MouseEnter);
             this.EsterEggTrigger3.MouseLeave += new System.EventHandler(this.EsterEggTrigger_MouseLeave);
             // 
-            // LoginButton
-            // 
-            this.LoginButton.AutoEllipsis = true;
-            this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.LoginButton.ForeColor = System.Drawing.Color.Snow;
-            this.LoginButton.HooverImage = Properties.Resources.greenB;
-            this.LoginButton.Image = ((System.Drawing.Image)(resources.GetObject("LoginButton.Image")));
-            this.LoginButton.Location = new System.Drawing.Point(274, 184);
-            this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(106, 29);
-            this.LoginButton.TabIndex = 24;
-            this.LoginButton.Text = "CONNECT";
-            this.LoginButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
-            // 
             // RefreshButton
             // 
             this.RefreshButton.AutoEllipsis = true;
@@ -423,12 +311,40 @@
             this.RefreshButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // LoginButton
+            // 
+            this.LoginButton.AutoEllipsis = true;
+            this.LoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LoginButton.ForeColor = System.Drawing.Color.Snow;
+            this.LoginButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB;
+            this.LoginButton.Image = ((System.Drawing.Image)(resources.GetObject("LoginButton.Image")));
+            this.LoginButton.Location = new System.Drawing.Point(274, 184);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(106, 29);
+            this.LoginButton.TabIndex = 24;
+            this.LoginButton.Text = "CONNECT";
+            this.LoginButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            // 
+            // MainHeader
+            // 
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(575, 43);
+            this.MainHeader.TabIndex = 26;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "Login - TheNoobBot DevVersionRestrict";
+            // 
             // Login
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 270);
+            this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.EsterEggTrigger3);
@@ -437,18 +353,13 @@
             this.Controls.Add(this.LangSelection);
             this.Controls.Add(this.ForumLink);
             this.Controls.Add(this.WebsiteLink);
-            this.Controls.Add(this.LoginFormTitle);
             this.Controls.Add(this.Register);
             this.Controls.Add(this.Remember);
             this.Controls.Add(this.manLogoIdentifier);
             this.Controls.Add(this.keyLogoPassword);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.Identifier);
-            this.Controls.Add(this.TopLeftLogo);
             this.Controls.Add(this.SessionList);
-            this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.ReduceButton);
-            this.Controls.Add(this.ControlMenu);
             this.Controls.Add(this.FormFocusPassword);
             this.Controls.Add(this.FormFocusLogin);
             this.Controls.Add(this.EasterEgg);
@@ -461,10 +372,6 @@
             this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseButton_Click);
             this.Shown += new System.EventHandler(this.MainFormOnLoad);
-            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormFocusLogin)).EndInit();
@@ -477,18 +384,13 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox ControlMenu;
-        private System.Windows.Forms.PictureBox ReduceButton;
-        private System.Windows.Forms.PictureBox CloseButton;
         private System.Windows.Forms.ListBox SessionList;
-        private System.Windows.Forms.PictureBox TopLeftLogo;
         private System.Windows.Forms.TextBox Identifier;
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.PictureBox keyLogoPassword;
         private System.Windows.Forms.PictureBox manLogoIdentifier;
         private System.Windows.Forms.CheckBox Remember;
         private System.Windows.Forms.Label Register;
-        private System.Windows.Forms.Label LoginFormTitle;
         private System.Windows.Forms.PictureBox FormFocusLogin;
         private System.Windows.Forms.PictureBox FormFocusPassword;
         private System.Windows.Forms.Label WebsiteLink;
@@ -501,6 +403,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private nManager.Helpful.Forms.UserControls.TnbButton LoginButton;
         private nManager.Helpful.Forms.UserControls.TnbButton RefreshButton;
+        private nManager.Helpful.Forms.UserControls.TnbControlMenu MainHeader;
     }
 }
 

@@ -63,6 +63,16 @@ namespace nManager.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _800x43_controlbar {
+            get {
+                object obj = ResourceManager.GetObject("800x43_controlbar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backgroundGeneral {
             get {
                 object obj = ResourceManager.GetObject("backgroundGeneral", resourceCulture);

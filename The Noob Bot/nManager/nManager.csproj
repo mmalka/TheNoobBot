@@ -368,15 +368,6 @@
     <None Include="Resources\controlbar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\backgroundsettings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\panelcontrolHeaderbottomborderonly.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\backgroundGeneralSettings.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\panelcontrolHeaderbottomborder.png" />
   </ItemGroup>
   <ItemGroup>
@@ -390,6 +381,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\greenB_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\800x43_controlbar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,13 +8,14 @@ namespace nManager.Helpful.Forms.UserControls
 {
     public sealed class TnbButton : Label
     {
+        public bool Hoovering = false;
         private Image _bImage;
         private Image _hooverImage = Resources.greenB;
 
         public TnbButton()
         {
             base.AutoSize = false;
-            Size  = new Size(106, 29);
+            Size = new Size(106, 29);
             TextAlign = ContentAlignment.MiddleCenter;
             Image = Resources.blackB;
             AutoEllipsis = true;
@@ -34,8 +35,6 @@ namespace nManager.Helpful.Forms.UserControls
                 Invalidate(); // causes control to be redrawn
             }
         }
-
-        public bool Hoovering = false;
 
         public override bool AutoSize
         {

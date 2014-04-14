@@ -18,11 +18,9 @@ namespace The_Noob_Bot
     {
         private const string UpdateCheck = "573-567-555-554-606-605-593";
         private const string KeyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
-        private Image _closeButtonImage;
         private bool _flagClick;
         private int _positionInitialeX;
         private int _positionInitialeY;
-        private Image _reduceButtonImage;
 
         public Login()
         {
@@ -69,7 +67,7 @@ namespace The_Noob_Bot
                 LangSelection.Text = langSelected.Remove(langSelected.Length - 1 - 3);
                 LangSelection.SelectedIndexChanged += LangSelection_SelectedIndexChanged;
 
-                LoginFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormTitle) + @" - " + Information.MainTitle;
+                MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.LoginFormTitle) + @" - " + Information.MainTitle;
                 Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
                 Remember.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRemember);
                 SetToolTypeIfNeeded(Remember);
@@ -463,30 +461,6 @@ namespace The_Noob_Bot
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             RefreshProcessList();
-        }
-
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            _reduceButtonImage = ReduceButton.Image;
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = _reduceButtonImage;
-            _reduceButtonImage = null;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            _closeButtonImage = CloseButton.Image;
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = _closeButtonImage;
-            _closeButtonImage = null;
         }
 
         private void WebsiteLink_MouseEnter(object sender, EventArgs e)

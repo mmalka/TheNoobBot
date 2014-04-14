@@ -43,7 +43,7 @@ namespace nManager.Helpful.Forms
         private string searchInputBox = "Type in the name of the WoWObject you are looking for:";
         private void Translate()
         {
-            DeveloperToolsFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Developer_Tools) + @" - " + Information.MainTitle;
+            MainHeader.Text = nManager.Translate.Get(nManager.Translate.Id.Developer_Tools) + @" - " + Information.MainTitle;
             LuaExecButton.Text = nManager.Translate.Get(nManager.Translate.Id.LuaExecButton);
             GpsButton.Text = nManager.Translate.Get(nManager.Translate.Id.GpsButton);
             TargetInfoButton.Text = nManager.Translate.Get(nManager.Translate.Id.TargetInfoButton);
@@ -106,26 +106,6 @@ namespace nManager.Helpful.Forms
         private void TargetInfoButton_MouseLeave(object sender, EventArgs e)
         {
             TargetInfoButton.Image = Resources.blackB;
-        }
-
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_button;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_button;
         }
 
         private void SearchObjectButton_Click(object sender, EventArgs e)

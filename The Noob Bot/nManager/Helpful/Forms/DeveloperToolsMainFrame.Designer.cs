@@ -29,13 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperToolsMainFrame));
-            this.TopLeftLogo = new System.Windows.Forms.PictureBox();
-            this.ControlMenu = new System.Windows.Forms.PictureBox();
-            this.ReduceButton = new System.Windows.Forms.PictureBox();
-            this.CloseButton = new System.Windows.Forms.PictureBox();
             this.SearchObjectButton = new System.Windows.Forms.Label();
             this.TargetInfoButton = new System.Windows.Forms.Label();
-            this.DeveloperToolsFormTitle = new System.Windows.Forms.Label();
             this.InformationArea = new System.Windows.Forms.TextBox();
             this.GpsButton = new System.Windows.Forms.Label();
             this.CsharpExecButton = new System.Windows.Forms.Label();
@@ -45,81 +40,8 @@
             this.LuaExecButton = new System.Windows.Forms.Label();
             this.TranslationManagerButton = new System.Windows.Forms.Label();
             this.AllObjectsButton = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.SuspendLayout();
-            // 
-            // TopLeftLogo
-            // 
-            this.TopLeftLogo.ErrorImage = null;
-            this.TopLeftLogo.Image = ((System.Drawing.Image)(resources.GetObject("TopLeftLogo.Image")));
-            this.TopLeftLogo.InitialImage = null;
-            this.TopLeftLogo.Location = new System.Drawing.Point(13, 3);
-            this.TopLeftLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.TopLeftLogo.Name = "TopLeftLogo";
-            this.TopLeftLogo.Size = new System.Drawing.Size(30, 33);
-            this.TopLeftLogo.TabIndex = 4;
-            this.TopLeftLogo.TabStop = false;
-            this.TopLeftLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.TopLeftLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.TopLeftLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
-            // 
-            // ControlMenu
-            // 
-            this.ControlMenu.BackColor = System.Drawing.Color.Black;
-            this.ControlMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ControlMenu.ErrorImage = null;
-            this.ControlMenu.Image = ((System.Drawing.Image)(resources.GetObject("ControlMenu.Image")));
-            this.ControlMenu.InitialImage = null;
-            this.ControlMenu.Location = new System.Drawing.Point(0, 0);
-            this.ControlMenu.Margin = new System.Windows.Forms.Padding(0);
-            this.ControlMenu.MaximumSize = new System.Drawing.Size(800, 43);
-            this.ControlMenu.MinimumSize = new System.Drawing.Size(800, 43);
-            this.ControlMenu.Name = "ControlMenu";
-            this.ControlMenu.Size = new System.Drawing.Size(800, 43);
-            this.ControlMenu.TabIndex = 1;
-            this.ControlMenu.TabStop = false;
-            this.ControlMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.ControlMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.ControlMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
-            // 
-            // ReduceButton
-            // 
-            this.ReduceButton.BackColor = System.Drawing.Color.Transparent;
-            this.ReduceButton.ErrorImage = null;
-            this.ReduceButton.Image = global::nManager.Properties.Resources.reduce_button;
-            this.ReduceButton.InitialImage = null;
-            this.ReduceButton.Location = new System.Drawing.Point(748, 13);
-            this.ReduceButton.Margin = new System.Windows.Forms.Padding(0);
-            this.ReduceButton.MaximumSize = new System.Drawing.Size(13, 14);
-            this.ReduceButton.MinimumSize = new System.Drawing.Size(13, 14);
-            this.ReduceButton.Name = "ReduceButton";
-            this.ReduceButton.Size = new System.Drawing.Size(13, 14);
-            this.ReduceButton.TabIndex = 1;
-            this.ReduceButton.TabStop = false;
-            this.ReduceButton.Click += new System.EventHandler(this.ReduceButton_Click);
-            this.ReduceButton.MouseEnter += new System.EventHandler(this.ReduceButton_MouseEnter);
-            this.ReduceButton.MouseLeave += new System.EventHandler(this.ReduceButton_MouseLeave);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
-            this.CloseButton.ErrorImage = null;
-            this.CloseButton.Image = global::nManager.Properties.Resources.close_button;
-            this.CloseButton.InitialImage = null;
-            this.CloseButton.Location = new System.Drawing.Point(775, 13);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
-            this.CloseButton.MaximumSize = new System.Drawing.Size(13, 14);
-            this.CloseButton.MinimumSize = new System.Drawing.Size(13, 14);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(13, 14);
-            this.CloseButton.TabIndex = 2;
-            this.CloseButton.TabStop = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
-            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
             // 
             // SearchObjectButton
             // 
@@ -158,25 +80,6 @@
             this.TargetInfoButton.Click += new System.EventHandler(this.TargetInfoButton_Click);
             this.TargetInfoButton.MouseEnter += new System.EventHandler(this.TargetInfoButton_MouseEnter);
             this.TargetInfoButton.MouseLeave += new System.EventHandler(this.TargetInfoButton_MouseLeave);
-            // 
-            // DeveloperToolsFormTitle
-            // 
-            this.DeveloperToolsFormTitle.AutoSize = true;
-            this.DeveloperToolsFormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.DeveloperToolsFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeveloperToolsFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.DeveloperToolsFormTitle.Location = new System.Drawing.Point(57, 4);
-            this.DeveloperToolsFormTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.DeveloperToolsFormTitle.MaximumSize = new System.Drawing.Size(675, 35);
-            this.DeveloperToolsFormTitle.MinimumSize = new System.Drawing.Size(675, 35);
-            this.DeveloperToolsFormTitle.Name = "DeveloperToolsFormTitle";
-            this.DeveloperToolsFormTitle.Size = new System.Drawing.Size(675, 35);
-            this.DeveloperToolsFormTitle.TabIndex = 20;
-            this.DeveloperToolsFormTitle.Text = "Developer Tools - TheNoobBot - 3.0.0";
-            this.DeveloperToolsFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DeveloperToolsFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.DeveloperToolsFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.DeveloperToolsFormTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
             // InformationArea
             // 
@@ -343,12 +246,25 @@
             this.AllObjectsButton.MouseEnter += new System.EventHandler(this.AllObjectsButton_MouseEnter);
             this.AllObjectsButton.MouseLeave += new System.EventHandler(this.AllObjectsButton_MouseLeave);
             // 
+            // MainHeader
+            // 
+            this.MainHeader.BackgroundImage = global::nManager.Properties.Resources._800x43_controlbar;
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(800, 43);
+            this.MainHeader.TabIndex = 34;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "Developer Tools - TheNoobBot - DevVersionRestrict";
+            // 
             // DeveloperToolsMainFrame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.AllObjectsButton);
             this.Controls.Add(this.TranslationManagerButton);
             this.Controls.Add(this.LuaExecButton);
@@ -360,11 +276,6 @@
             this.Controls.Add(this.InformationArea);
             this.Controls.Add(this.TargetInfoButton);
             this.Controls.Add(this.SearchObjectButton);
-            this.Controls.Add(this.TopLeftLogo);
-            this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.ReduceButton);
-            this.Controls.Add(this.DeveloperToolsFormTitle);
-            this.Controls.Add(this.ControlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(800, 600);
@@ -372,10 +283,6 @@
             this.Name = "DeveloperToolsMainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Translate Tools";
-            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,12 +290,6 @@
 
         #endregion
 
-
-        private System.Windows.Forms.PictureBox TopLeftLogo;
-        private System.Windows.Forms.PictureBox ControlMenu;
-        private System.Windows.Forms.PictureBox ReduceButton;
-        private System.Windows.Forms.PictureBox CloseButton;
-        private System.Windows.Forms.Label DeveloperToolsFormTitle;
         private System.Windows.Forms.Label SearchObjectButton;
         private System.Windows.Forms.Label TargetInfoButton;
         private System.Windows.Forms.TextBox InformationArea;
@@ -400,6 +301,7 @@
         private System.Windows.Forms.Label LuaExecButton;
         private System.Windows.Forms.Label TranslationManagerButton;
         private System.Windows.Forms.Label AllObjectsButton;
+        private UserControls.TnbControlMenu MainHeader;
     }
 }
 

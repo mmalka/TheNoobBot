@@ -658,7 +658,9 @@ namespace nManager.Helpful.Forms
         {
             try
             {
+                resetB.Enabled = false;
                 LoadSetting(new nManagerSetting());
+                resetB.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -670,7 +672,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                Dispose();
+                Close();
             }
             catch (Exception ex)
             {

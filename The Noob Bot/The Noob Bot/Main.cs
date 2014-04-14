@@ -27,15 +27,10 @@ namespace The_Noob_Bot
         private readonly Image _inactiveBackground = Resources.tab_inactive_mainframe;
         private readonly Color _inactiveColor = Color.FromArgb(232, 232, 232);
         private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
-        private Image _closeButtonImage;
-        private bool _flagClick;
         private bool _isAccountActive;
         private bool _isHomeActive = true;
         private bool _isLogActive;
         private string _playerName = "";
-        private int _positionInitialeX;
-        private int _positionInitialeY;
-        private Image _reduceButtonImage;
         private bool _started;
         private bool _wowInTaskBarre;
 
@@ -90,9 +85,9 @@ namespace The_Noob_Bot
         {
             try
             {
-                MainFormTitle.Text = ObjectManager.Me.Name + " - " + Information.MainTitle;
+                MainHeader.Text = ObjectManager.Me.Name + " - " + Information.MainTitle;
                 if (LoginServer.IsFreeVersion)
-                    MainFormTitle.Text += " - Trial";
+                    MainHeader.TitleText += " - Trial";
 
 
                 // Products:
@@ -301,62 +296,6 @@ namespace The_Noob_Bot
             {
             }
         }
-
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            _reduceButtonImage = ReduceButton.Image;
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = _reduceButtonImage;
-            _reduceButtonImage = null;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            _closeButtonImage = CloseButton.Image;
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = _closeButtonImage;
-            _closeButtonImage = null;
-        }
-
         private void HomeTagButton_Click(object sender, EventArgs e)
         {
             if (!_isHomeActive)

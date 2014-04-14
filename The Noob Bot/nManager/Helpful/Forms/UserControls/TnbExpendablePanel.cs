@@ -6,7 +6,7 @@ using nManager.Properties;
 
 namespace nManager.Helpful.Forms.UserControls
 {
-    internal class TnbExpendablePanel : Panel
+    public class TnbExpendablePanel : Panel
     {
         private const int WmPaint = 0x000F;
         private readonly Label _header = new Label();

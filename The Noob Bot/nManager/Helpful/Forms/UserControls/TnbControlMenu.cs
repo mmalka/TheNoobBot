@@ -6,18 +6,18 @@ using nManager.Properties;
 
 namespace nManager.Helpful.Forms.UserControls
 {
-    internal class TnbControlMenu : Panel
+    public class TnbControlMenu : Panel
     {
         private PictureBox _closeButton;
+        private bool _flagClick;
         private Image _logoImage = Resources.logoImageG;
+        private int _positionInitialeX;
+        private int _positionInitialeY;
         private PictureBox _reduceButton;
         private Font _titleFont = new Font(new FontFamily("Microsoft Sans Serif"), 12, GraphicsUnit.Point);
         private Color _titleForeColor = Color.FromArgb(222, 222, 222);
-        private Label _titleLabel = new Label();
+        private Label _titleLabel = new Label {Text = "TheNoobBot"};
         private PictureBox _tnbLogo;
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
 
         public TnbControlMenu()
         {
@@ -71,9 +71,10 @@ namespace nManager.Helpful.Forms.UserControls
 
         private void InitializeContent()
         {
-            _reduceButton = new PictureBox {Visible = true, Location = new Point(523, 13), Size = new Size(13, 14), Image = Resources.reduce_button};
+            SizeChanged += OnSizeChanged;
+            _reduceButton = new PictureBox {Visible = true, Location = new Point(Width - 52, 13), Size = new Size(13, 14), Image = Resources.reduce_button};
             _reduceButton.Click += OnReduce;
-            _closeButton = new PictureBox {Visible = true, Location = new Point(550, 13), Size = new Size(13, 14), Image = Resources.close_button};
+            _closeButton = new PictureBox {Visible = true, Location = new Point(Width - 25, 13), Size = new Size(13, 14), Image = Resources.close_button};
             _closeButton.Click += OnClose;
             _tnbLogo = new PictureBox {Visible = true, Location = new Point(13, 3), Size = new Size(30, 33), Image = LogoImage};
             _titleLabel = new Label
@@ -110,6 +111,13 @@ namespace nManager.Helpful.Forms.UserControls
             _reduceButton.MouseLeave += MouseLeaveReduceButton;
         }
 
+        private void OnSizeChanged(object sender, EventArgs e)
+        {
+            _closeButton.Location = new Point(Width - 25, 13);
+            _reduceButton.Location = new Point(Width - 52, 13);
+            _titleLabel.Size = new Size(Width - 115, 35);
+        }
+
         private void MouseEnterCloseButton(object sender, EventArgs eventArgs)
         {
             _closeButton.Image = Resources.close_buttonG;
@@ -124,6 +132,7 @@ namespace nManager.Helpful.Forms.UserControls
         {
             _reduceButton.Image = Resources.reduce_buttonG;
         }
+
         private void MouseLeaveReduceButton(object sender, EventArgs eventArgs)
         {
             _reduceButton.Image = Resources.reduce_button;
@@ -140,7 +149,7 @@ namespace nManager.Helpful.Forms.UserControls
             if (Form.ActiveForm != null)
                 Form.ActiveForm.WindowState = FormWindowState.Minimized;
         }
-        
+
         private void MainFormMouseDown(object sender, MouseEventArgs e)
         {
             _flagClick = true;
@@ -161,6 +170,5 @@ namespace nManager.Helpful.Forms.UserControls
                 Parent.Location = new Point(Parent.Left + (e.X - _positionInitialeX), Parent.Top + (e.Y - _positionInitialeY));
             }
         }
-
     }
 }

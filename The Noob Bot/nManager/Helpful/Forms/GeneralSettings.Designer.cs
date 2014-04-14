@@ -3436,7 +3436,6 @@ namespace nManager.Helpful.Forms
         private Label BroadcastingIPLocalLabel;
         private Label BroadcastingPortLabel;
         private NumericUpDown BroadcastingPort;
-        private TnbControlMenu tnbControlMenu1;
         private TnbControlMenu MainHeader;
     }
 }
