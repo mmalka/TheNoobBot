@@ -306,8 +306,8 @@ namespace nManager.Wow.ObjectManager
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
                     return SkillLine.None;
-                    //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
-                    //    return SkillLine.Lockpicking;
+                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                //    return SkillLine.Lockpicking;
             }
             return SkillLine.None;
         }
@@ -413,7 +413,7 @@ namespace nManager.Wow.ObjectManager
                         return false; // Quest check
 
                     // Refuse Dark Soil if we are below level 90 or we comleted achievement "Friends on the Farm"
-                    if (Entry == 210565 && (ObjectManager.Me.Level < 90 || Usefuls.IsCompletedAchievement(6552)))
+                    if (Entry == 210565 && (ObjectManager.Me.Level < 90 || Usefuls.IsCompletedAchievement(6552, true)))
                         return false;
 
                     //if (Entry == 214945) // Onyx Egg. Maybe we should disabled them when exalted with Cloud Serpents
