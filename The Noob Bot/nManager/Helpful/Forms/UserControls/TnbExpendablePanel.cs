@@ -22,20 +22,20 @@ namespace nManager.Helpful.Forms.UserControls
         private Image _headerImage = Resources.panelcontrolHeaderbottomborder;
         private Size _headerSize = new Size(573, 36);
         private int _orderIndex = -1;
+        private Font _titleFont = new Font(new FontFamily("Arial"), 8, FontStyle.Bold, GraphicsUnit.Point);
+        private Color _titleForeColor;
 
         private PictureBox _toggler;
         private Image _unfolderImage = Resources.PanelExpendablePlusImg;
-        private Color _titleForeColor;
-        private Font _titleFont;
 
         public TnbExpendablePanel()
         {
             var tmpSize = new Size(HeaderSize.Width, HeaderSize.Height + ContentSize.Height);
             Size = tmpSize;
-            TitleFont = new Font(new FontFamily("Arial"),8,FontStyle.Bold,GraphicsUnit.Point );
-            TitleForeColor = Color.White;
+            if (TitleForeColor == new Color())
+                TitleForeColor = Color.FromArgb(255, 255, 255);
             InitializeHeader();
-            Padding = new Padding(0,0,0,12);
+            Padding = new Padding(0, 0, 0, 12);
             base.BackColor = _contentBackColor;
         }
 
@@ -46,29 +46,26 @@ namespace nManager.Helpful.Forms.UserControls
             set
             {
                 _header.Text = value;
-                Invalidate();
             }
         }
 
         [Category("AaTnbControls")]
         public Color TitleForeColor
         {
-            get { return _titleForeColor; }
+            get { return _header.ForeColor; }
             set
             {
-                _titleForeColor = value;
-                Invalidate();
+                _header.ForeColor = value;
             }
         }
 
         [Category("AaTnbControls")]
         public Font TitleFont
         {
-            get { return _titleFont; }
+            get { return _header.Font; }
             set
             {
-                _titleFont = value;
-                Invalidate();
+                _header.Font = value;
             }
         }
 
@@ -79,30 +76,27 @@ namespace nManager.Helpful.Forms.UserControls
             set
             {
                 _borderStyle = value;
-                Invalidate();
+                Invalidate(); // redraw
             }
         }
 
         [Category("AaTnbControls")]
         public Image HeaderImage
         {
-            get { return _headerImage; }
+            get { return _header.Image; }
             set
             {
-                _headerImage = value;
-                Invalidate();
+                _header.Image = value;
             }
         }
 
         [Category("AaTnbControls")]
         public Color HeaderBackColor
         {
-            get { return _headerBackColor; }
+            get { return _header.BackColor; }
             set
             {
-                _headerBackColor = value;
-                Invalidate();
-                _header.Invalidate();
+                _header.BackColor = value;
             }
         }
 
@@ -183,7 +177,6 @@ namespace nManager.Helpful.Forms.UserControls
                 if (value != null)
                 {
                     _folderImage = value;
-                    Invalidate();
                 }
             }
         }
@@ -197,7 +190,6 @@ namespace nManager.Helpful.Forms.UserControls
                 if (value != null)
                 {
                     _unfolderImage = value;
-                    Invalidate();
                 }
             }
         }
@@ -231,7 +223,7 @@ namespace nManager.Helpful.Forms.UserControls
             _toggler = new PictureBox();
             Controls.Add(_toggler);
             _toggler.Image = !Fold ? FolderImage : UnfolderImage;
-            _toggler.Location = new Point(550, 17);
+            _toggler.Location = new Point(HeaderSize.Width - 40, 17);
             _toggler.Visible = true;
             _toggler.Size = new Size(7, 6);
             Controls.Add(_header);
