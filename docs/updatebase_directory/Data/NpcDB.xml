@@ -756,6 +756,54 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>980</Entry>
+    <Name>Grimnal</Name>
+    <Position>
+      <X>-10391.9551</X>
+      <Y>-3256.97046</Y>
+      <Z>21.7867889</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>980</Entry>
+    <Name>Grimnal</Name>
+    <Position>
+      <X>-10391.9551</X>
+      <Y>-3256.97046</Y>
+      <Z>21.7867889</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>981</Entry>
+    <Name>Hartash</Name>
+    <Position>
+      <X>-10399.4727</X>
+      <Y>-3270.429</Y>
+      <Z>21.75189</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>981</Entry>
+    <Name>Hartash</Name>
+    <Position>
+      <X>-10399.4727</X>
+      <Y>-3270.429</Y>
+      <Z>21.75189</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>982</Entry>
     <Name>Thultash</Name>
     <Position>
@@ -777,6 +825,30 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>984</Entry>
+    <Name>Thralosh</Name>
+    <Position>
+      <X>-10406.8457</X>
+      <Y>-3256.554</Y>
+      <Z>21.97611</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>984</Entry>
+    <Name>Thralosh</Name>
+    <Position>
+      <X>-10406.8457</X>
+      <Y>-3256.554</Y>
+      <Z>21.97611</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2918,6 +2990,18 @@
       <X>-5640.83154</X>
       <Y>-501.3918</Y>
       <Z>396.669525</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1694</Entry>
+    <Name>Loslor Rudge</Name>
+    <Position>
+      <X>-5499.7</X>
+      <Y>-664.575</Y>
+      <Z>395.312073</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -6403,18 +6487,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>3518</Entry>
-    <Name>Thomas Miller</Name>
-    <Position>
-      <X>-8879.762</X>
-      <Y>571.862366</Y>
-      <Z>93.29832</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>3522</Entry>
     <Name>Constance Brisboise</Name>
     <Position>
@@ -9149,6 +9221,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>4892</Entry>
+    <Name>Jensen Farran</Name>
+    <Position>
+      <X>-3779.60767</X>
+      <Y>-4542.269</Y>
+      <Z>11.3779964</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4892</Entry>
+    <Name>Jensen Farran</Name>
+    <Position>
+      <X>-3779.60767</X>
+      <Y>-4542.269</Y>
+      <Z>11.3779964</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>4893</Entry>
     <Name>Bartender Lillian</Name>
     <Position>
@@ -9182,6 +9278,30 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>CookingTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4896</Entry>
+    <Name>Charity Mipsy</Name>
+    <Position>
+      <X>-3843.46313</X>
+      <Y>-4516.154</Y>
+      <Z>9.762129</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4897</Entry>
+    <Name>Helenia Olden</Name>
+    <Position>
+      <X>-3834.53467</X>
+      <Y>-4462.9375</Y>
+      <Z>12.4883585</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -10107,6 +10227,18 @@
     <Faction>Alliance</Faction>
     <Type>JewelcraftingTrainer</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5392</Entry>
+    <Name>Yarr Hammerstone</Name>
+    <Position>
+      <X>-5528.87354</X>
+      <Y>-660.740356</Y>
+      <Z>393.32962</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>MiningTrainer</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>5411</Entry>
@@ -11048,6 +11180,28 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-7357.565</X>
+      <Y>-1315.57385</Y>
+      <Z>-263.300049</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-7357.565</X>
+      <Y>-1315.57385</Y>
+      <Z>-263.300049</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>6567</Entry>
     <Name>Ghok'kah</Name>
     <Position>
@@ -11571,6 +11725,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>7954</Entry>
+    <Name>Binjy Featherwhistle</Name>
+    <Position>
+      <X>-5457.24</X>
+      <Y>-618.481</Y>
+      <Z>393.396545</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>RidingTrainer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>7976</Entry>
     <Name>Thalgus Thunderfist</Name>
     <Position>
@@ -11592,6 +11758,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>7978</Entry>
+    <Name>Bimble Longberry</Name>
+    <Position>
+      <X>-4655.94775</X>
+      <Y>-931.149536</Y>
+      <Z>501.657959</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11802,6 +11980,30 @@
       <Z>123.228195</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>8176</Entry>
+    <Name>Gharash</Name>
+    <Position>
+      <X>-10406.9736</X>
+      <Y>-3265.74829</Y>
+      <Z>21.89355</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>8176</Entry>
+    <Name>Gharash</Name>
+    <Position>
+      <X>-10406.9736</X>
+      <Y>-3265.74829</Y>
+      <Z>21.89355</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -12110,6 +12312,18 @@
       <X>-10632.6436</X>
       <Y>1188.77515</Y>
       <Z>34.85568</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>9099</Entry>
+    <Name>Sraaz</Name>
+    <Position>
+      <X>-4868.285</X>
+      <Y>-1117.95984</Y>
+      <Z>502.187042</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -12782,6 +12996,18 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11052</Entry>
+    <Name>Timothy Worthington</Name>
+    <Position>
+      <X>-3846.73267</X>
+      <Y>-4449.222</Y>
+      <Z>17.2568684</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>TailoringTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>11069</Entry>
@@ -13535,6 +13761,18 @@
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>12939</Entry>
+    <Name>Doctor Gustaf VanHowzen</Name>
+    <Position>
+      <X>-3747.27441</X>
+      <Y>-4532.252</Y>
+      <Z>11.8983164</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>FirstAidTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>12941</Entry>
@@ -20573,6 +20811,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>23896</Entry>
+    <Name>"Dirty" Michael Crowe</Name>
+    <Position>
+      <X>-3849.316</X>
+      <Y>-4610.153</Y>
+      <Z>8.67637</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>23908</Entry>
     <Name>Jhet Ironbeard</Name>
     <Position>
@@ -20990,6 +21240,42 @@
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24834</Entry>
+    <Name>Galley Chief Grace</Name>
+    <Position>
+      <X>17.7361755</X>
+      <Y>-7.963644</Y>
+      <Z>6.09767962</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24843</Entry>
+    <Name>Engineer Combs</Name>
+    <Position>
+      <X>6.350558</X>
+      <Y>8.718207</Y>
+      <Z>6.09751272</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24843</Entry>
+    <Name>Engineer Combs</Name>
+    <Position>
+      <X>6.350558</X>
+      <Y>8.718207</Y>
+      <Z>6.09751272</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>24905</Entry>
@@ -27869,30 +28155,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>35642</Entry>
-    <Name>Jeeves</Name>
-    <Position>
-      <X>5919.402</X>
-      <Y>632.232666</Y>
-      <Z>646.558</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>35642</Entry>
-    <Name>Jeeves</Name>
-    <Position>
-      <X>5919.402</X>
-      <Y>632.232666</Y>
-      <Z>646.558</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>35790</Entry>
     <Name>Usuri Brightcoin</Name>
     <Position>
@@ -29902,6 +30164,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43769</Entry>
+    <Name>Bralla Cloudwing</Name>
+    <Position>
+      <X>-8845.4</X>
+      <Y>502.653</Y>
+      <Z>109.617035</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>RidingTrainer</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36346,6 +36620,17 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>50985</Entry>
+    <Name>Heated Forge</Name>
+    <Position>
+      <X>-10398.6</X>
+      <Y>-3260.64063</Y>
+      <Z>20.1859989</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>51142</Entry>
     <Name>Joeyray</Name>
     <Position>
@@ -36946,6 +37231,54 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>53410</Entry>
+    <Name>Lissah Spellwick</Name>
+    <Position>
+      <X>-3772.04346</X>
+      <Y>-4441.64746</Y>
+      <Z>65.02526</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>EnchantingTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>53410</Entry>
+    <Name>Lissah Spellwick</Name>
+    <Position>
+      <X>-3772.04346</X>
+      <Y>-4441.64746</Y>
+      <Z>65.02526</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>53415</Entry>
+    <Name>Theoden Manners</Name>
+    <Position>
+      <X>-3774.61646</X>
+      <Y>-4448.33154</Y>
+      <Z>65.02577</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>InscriptionTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>53415</Entry>
+    <Name>Theoden Manners</Name>
+    <Position>
+      <X>-3774.61646</X>
+      <Y>-4448.33154</Y>
+      <Z>65.02577</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>53421</Entry>
     <Name>Faena Woolybush</Name>
     <Position>
@@ -37497,6 +37830,18 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>58184</Entry>
+    <Name>Malaya Dawnchaser</Name>
+    <Position>
+      <X>-888.819458</X>
+      <Y>92.88889</Y>
+      <Z>13.2200127</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>58691</Entry>
     <Name>Bartender Tomro</Name>
     <Position>
@@ -37668,6 +38013,18 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>59310</Entry>
+    <Name>Teve Dawnchaser</Name>
+    <Position>
+      <X>-870.2882</X>
+      <Y>177.230911</Y>
+      <Z>13.2201195</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>59320</Entry>
     <Name>Steven Walker</Name>
     <Position>
@@ -37712,6 +38069,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>59569</Entry>
+    <Name>Brewmaster Blanche</Name>
+    <Position>
+      <X>2223.54321</X>
+      <Y>-1240.09229</Y>
+      <Z>420.6644</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>59582</Entry>
     <Name>Innkeeper Lei Lan</Name>
     <Position>
@@ -37745,6 +38113,39 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>59695</Entry>
+    <Name>Big Sal</Name>
+    <Position>
+      <X>3041.33765</X>
+      <Y>1227.51392</Y>
+      <Z>655.0033</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>59827</Entry>
+    <Name>Ironshaper Shou</Name>
+    <Position>
+      <X>3041.65723</X>
+      <Y>1245.348</Y>
+      <Z>654.254944</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>59827</Entry>
+    <Name>Ironshaper Shou</Name>
+    <Position>
+      <X>3041.65723</X>
+      <Y>1245.348</Y>
+      <Z>654.254944</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>59894</Entry>
     <Name>Brother Yakshoe</Name>
     <Position>
@@ -37775,6 +38176,17 @@
       <Z>423.973419</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>60166</Entry>
+    <Name>Cloudrunner Leng</Name>
+    <Position>
+      <X>911.5955</X>
+      <Y>349.366333</Y>
+      <Z>510.9656</Z>
+    </Position>
+    <Type>RidingTrainer</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -38067,6 +38479,39 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>62327</Entry>
+    <Name>Scribe Rinji</Name>
+    <Position>
+      <X>2018.158</X>
+      <Y>-1877.118</Y>
+      <Z>207.962219</Z>
+    </Position>
+    <Type>InscriptionTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>62328</Entry>
+    <Name>Woodcarver Liupo</Name>
+    <Position>
+      <X>1957.15454</X>
+      <Y>-1984.55383</Y>
+      <Z>211.671524</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>62328</Entry>
+    <Name>Woodcarver Liupo</Name>
+    <Position>
+      <X>1957.15454</X>
+      <Y>-1984.55383</Y>
+      <Z>211.671524</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>62656</Entry>
     <Name>Huo the Firestarter</Name>
     <Position>
@@ -38177,6 +38622,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>62867</Entry>
+    <Name>Bolo the Elder</Name>
+    <Position>
+      <X>2574.36279</X>
+      <Y>-1461.28821</Y>
+      <Z>407.1258</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>62868</Entry>
     <Name>Lana the Sea Breeze</Name>
     <Position>
@@ -38276,6 +38732,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>62879</Entry>
+    <Name>Rude Sho</Name>
+    <Position>
+      <X>-335.5486</X>
+      <Y>-602.303833</Y>
+      <Z>128.423553</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>62882</Entry>
     <Name>Kai the Restless</Name>
     <Position>
@@ -38297,6 +38764,28 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>62917</Entry>
+    <Name>Tong the Fixer</Name>
+    <Position>
+      <X>823.798645</X>
+      <Y>-175.203125</Y>
+      <Z>415.225159</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>62935</Entry>
+    <Name>Kama the Beast Tamer</Name>
+    <Position>
+      <X>782.6823</X>
+      <Y>-186.800354</Y>
+      <Z>402.39502</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -38592,28 +39081,6 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>64032</Entry>
-    <Name>Sage Whiteheart</Name>
-    <Position>
-      <X>871.239563</X>
-      <Y>337.621521</Y>
-      <Z>456.529572</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>64032</Entry>
-    <Name>Sage Whiteheart</Name>
-    <Position>
-      <X>871.239563</X>
-      <Y>337.621521</Y>
-      <Z>456.529572</Z>
-    </Position>
-    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -39677,6 +40144,39 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>65114</Entry>
+    <Name>Len the Hammer</Name>
+    <Position>
+      <X>1939.05212</X>
+      <Y>-1929.67017</Y>
+      <Z>207.27533</Z>
+    </Position>
+    <Type>BlacksmithingTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>65114</Entry>
+    <Name>Len the Hammer</Name>
+    <Position>
+      <X>1939.05212</X>
+      <Y>-1929.67017</Y>
+      <Z>207.27533</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>65114</Entry>
+    <Name>Len the Hammer</Name>
+    <Position>
+      <X>1939.05212</X>
+      <Y>-1929.67017</Y>
+      <Z>207.27533</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>65129</Entry>
     <Name>Zen Master Lao</Name>
     <Position>
@@ -39883,6 +40383,18 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>66222</Entry>
+    <Name>Elder Muur</Name>
+    <Position>
+      <X>2939.53467</X>
+      <Y>-526.1597</Y>
+      <Z>270.29126</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>FirstAidTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>66223</Entry>
     <Name>Elder Honeypaw</Name>
     <Position>
@@ -39916,6 +40428,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Innkeeper</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>66238</Entry>
+    <Name>Herim Woo</Name>
+    <Position>
+      <X>2979.322</X>
+      <Y>-585.7274</Y>
+      <Z>243.709641</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40116,6 +40640,30 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>MiningTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>66980</Entry>
+    <Name>Grower Miao</Name>
+    <Position>
+      <X>2929.39233</X>
+      <Y>-488.887146</Y>
+      <Z>268.856</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>HerbalismTrainer</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>66981</Entry>
+    <Name>Trapper Ri</Name>
+    <Position>
+      <X>2932.0564</X>
+      <Y>-486.859375</Y>
+      <Z>268.855682</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>SkinningTrainer</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40411,6 +40959,17 @@
       <Z>2.635106</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>67565</Entry>
+    <Name>Barnaby Fletcher</Name>
+    <Position>
+      <X>-250.699661</X>
+      <Y>584.2847</Y>
+      <Z>167.547836</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40732,6 +41291,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>70436</Entry>
+    <Name>Blacktalon Quartermaster</Name>
+    <Position>
+      <X>816.6059</X>
+      <Y>-159.8073</Y>
+      <Z>415.209259</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>70461</Entry>
     <Name>Milly Greenfield</Name>
     <Position>
@@ -40882,6 +41452,78 @@
       <Y>-4915.55566</Y>
       <Z>2.05643487</Z>
     </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73142</Entry>
+    <Name>Armsmaster Holinka</Name>
+    <Position>
+      <X>206.3177</X>
+      <Y>2206.07813</Y>
+      <Z>272.413574</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73142</Entry>
+    <Name>Armsmaster Holinka</Name>
+    <Position>
+      <X>206.3177</X>
+      <Y>2206.07813</Y>
+      <Z>272.413574</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73143</Entry>
+    <Name>Hayden Christophen</Name>
+    <Position>
+      <X>203.022568</X>
+      <Y>2197.02271</Y>
+      <Z>272.3725</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73144</Entry>
+    <Name>Lucan Malory</Name>
+    <Position>
+      <X>194.574661</X>
+      <Y>2200.32129</Y>
+      <Z>272.413544</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73144</Entry>
+    <Name>Lucan Malory</Name>
+    <Position>
+      <X>194.574661</X>
+      <Y>2200.32129</Y>
+      <Z>272.413544</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73147</Entry>
+    <Name>Ethan Natice</Name>
+    <Position>
+      <X>197.522568</X>
+      <Y>2209.10083</Y>
+      <Z>272.3729</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -46429,6 +47071,17 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>209919</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1664.69788</X>
+      <Y>644.680542</Y>
+      <Z>2.11277175</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>210058</Entry>
     <Name>Forge</Name>
     <Position>
@@ -46462,14 +47115,14 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
-    <Entry>211006</Entry>
-    <Name>Sunsong Ranch Mailbox</Name>
+    <Entry>211170</Entry>
+    <Name>Forge</Name>
     <Position>
-      <X>-181.579865</X>
-      <Y>666.1649</Y>
-      <Z>160.7073</Z>
+      <X>3039.78467</X>
+      <Y>1241.68579</Y>
+      <Z>654.210754</Z>
     </Position>
-    <Type>Mailbox</Type>
+    <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -46497,6 +47150,28 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>211464</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1942.87158</X>
+      <Y>-1928.26917</Y>
+      <Z>207.27507</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>211494</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>2562.44263</X>
+      <Y>-1448.05725</Y>
+      <Z>406.114716</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>211496</Entry>
     <Name>Forge</Name>
     <Position>
@@ -46517,6 +47192,17 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>211656</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2322.856</X>
+      <Y>1636.38367</Y>
+      <Z>507.819</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -46610,6 +47296,17 @@
       <Z>519.6933</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>212159</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-892.236145</X>
+      <Y>99.72396</Y>
+      <Z>13.0750332</Z>
+    </Position>
     <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -46878,6 +47575,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>214482</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>802.6597</X>
+      <Y>-187.230911</Y>
+      <Z>405.602448</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>214644</Entry>
     <Name>Forge</Name>
     <Position>
@@ -47117,6 +47825,17 @@
       <X>1850.856</X>
       <Y>4275.009</Y>
       <Z>148.832016</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>220068</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>222.52951</X>
+      <Y>2200.4375</Y>
+      <Z>271.2955</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
