@@ -895,7 +895,7 @@ namespace The_Noob_Bot
             this.MainHeader.TabIndex = 23;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.MainHeader.TitleText = "PlayerName - TheNoobBot - 3.0.0";
+            this.MainHeader.TitleText = "PlayerName - TheNoobBot - DevVersionRestrict";
             // 
             // Main
             // 

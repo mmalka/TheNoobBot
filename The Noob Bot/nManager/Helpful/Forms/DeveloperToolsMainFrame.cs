@@ -41,9 +41,10 @@ namespace nManager.Helpful.Forms
         }
 
         private string searchInputBox = "Type in the name of the WoWObject you are looking for:";
+
         private void Translate()
         {
-            MainHeader.Text = nManager.Translate.Get(nManager.Translate.Id.Developer_Tools) + @" - " + Information.MainTitle;
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Developer_Tools) + @" - " + Information.MainTitle;
             LuaExecButton.Text = nManager.Translate.Get(nManager.Translate.Id.LuaExecButton);
             GpsButton.Text = nManager.Translate.Get(nManager.Translate.Id.GpsButton);
             TargetInfoButton.Text = nManager.Translate.Get(nManager.Translate.Id.TargetInfoButton);
@@ -55,37 +56,6 @@ namespace nManager.Helpful.Forms
             SearchObjectButton.Text = nManager.Translate.Get(nManager.Translate.Id.SearchObjectButton);
             AllObjectsButton.Text = nManager.Translate.Get(nManager.Translate.Id.AllObjectsButton);
             searchInputBox = nManager.Translate.Get(nManager.Translate.Id.SearchObjectBox);
-        }
-
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
         }
 
         private void SearchObjectButton_MouseEnter(object sender, EventArgs e)

@@ -85,7 +85,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                MainHeader.Text = ObjectManager.Me.Name + " - " + Information.MainTitle;
+                MainHeader.TitleText = ObjectManager.Me.Name + " - " + Information.MainTitle;
                 if (LoginServer.IsFreeVersion)
                     MainHeader.TitleText += " - Trial";
 
@@ -296,6 +296,7 @@ namespace The_Noob_Bot
             {
             }
         }
+
         private void HomeTagButton_Click(object sender, EventArgs e)
         {
             if (!_isHomeActive)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
@@ -10,10 +9,6 @@ namespace Quester.Profile
 {
     public partial class QuesterProfileLoader : Form
     {
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
-
         public QuesterProfileLoader()
         {
             InitializeComponent();
@@ -24,7 +19,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            QuesterProfileLoaderFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileLoader) + " - " + Information.MainTitle;
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileLoader) + " - " + Information.MainTitle;
             SimpleProfilesListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfilesList).ToUpper();
             GroupedProfilesListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfilesList).ToUpper();
             LoadSimpleProfile.Text = nManager.Translate.Get(nManager.Translate.Id.LoadSimpleProfile);
@@ -88,37 +83,6 @@ namespace Quester.Profile
             }
         }
 
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
         private void LoadGroupedProfile_MouseEnter(object sender, EventArgs e)
         {
             LoadGroupedProfile.Image = Resources.greenB_242;
@@ -174,26 +138,6 @@ namespace Quester.Profile
             var f = new ProfileManager();
             f.ShowDialog();
             ShowQuesterProfileLoaderForm();
-        }
-
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_button;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_button;
         }
 
         private void QuesterProfileLoader_FormClosing(object sender, FormClosingEventArgs e)

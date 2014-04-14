@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using nManager;
@@ -12,9 +11,6 @@ namespace Quester.Profile
     {
         private readonly string _fullpath = "";
         private readonly QuesterProfile _profile = new QuesterProfile();
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
 
         public GroupedProfileManager(string path = "")
         {
@@ -43,7 +39,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            GroupedProfileManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager) + " - " + Information.MainTitle;
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager) + " - " + Information.MainTitle;
             AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles).ToUpper();
             CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles).ToUpper();
             if (toolTip == null)
@@ -239,57 +235,6 @@ namespace Quester.Profile
         private void MoveDownButton_Click(object sender, EventArgs e)
         {
             MoveItem(1);
-        }
-
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_button;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_button;
         }
 
         private void CancelGroupedProfileEdition_MouseEnter(object sender, EventArgs e)

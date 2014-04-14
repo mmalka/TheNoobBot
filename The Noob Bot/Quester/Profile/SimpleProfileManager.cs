@@ -7,7 +7,6 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
 using Quester.Properties;
-using Point = System.Drawing.Point;
 
 namespace Quester.Profile
 {
@@ -15,9 +14,6 @@ namespace Quester.Profile
     {
         private readonly string _fullpath = "";
         private readonly QuesterProfile _profile = new QuesterProfile();
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
 
         public SimpleProfileManager(string path = "")
         {
@@ -47,7 +43,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            SimpleProfileManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager) + " - " + Information.MainTitle;
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager) + " - " + Information.MainTitle;
             AddNewQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.AddNewQuest);
             EditSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuest);
             DeleteSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuest);
@@ -180,57 +176,6 @@ namespace Quester.Profile
         private void CancelSimpleProfileEdition_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_button;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_button;
         }
 
         private void CancelSimpleProfileEdition_MouseEnter(object sender, EventArgs e)

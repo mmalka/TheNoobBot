@@ -29,13 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleProfileManager));
-            this.ControlMenu = new System.Windows.Forms.PictureBox();
-            this.ReduceButton = new System.Windows.Forms.PictureBox();
-            this.CloseButton = new System.Windows.Forms.PictureBox();
             this.ProfileQuestList = new System.Windows.Forms.ListBox();
-            this.TopLeftLogo = new System.Windows.Forms.PictureBox();
             this.ProfileQuestersListLabel = new System.Windows.Forms.Label();
-            this.SimpleProfileManagerFormTitle = new System.Windows.Forms.Label();
             this.SaveSimpleProfileAs = new System.Windows.Forms.Label();
             this.ProfileQuestListLabel = new System.Windows.Forms.Label();
             this.ProfileQuesterList = new System.Windows.Forms.ListBox();
@@ -47,66 +42,8 @@
             this.DeleteSelectedQuesterButton = new System.Windows.Forms.Label();
             this.EditSelectedQuesterButton = new System.Windows.Forms.Label();
             this.AddNewQuesterButton = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).BeginInit();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.SuspendLayout();
-            // 
-            // ControlMenu
-            // 
-            this.ControlMenu.BackColor = System.Drawing.Color.Black;
-            this.ControlMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ControlMenu.ErrorImage = null;
-            this.ControlMenu.Image = ((System.Drawing.Image)(resources.GetObject("ControlMenu.Image")));
-            this.ControlMenu.InitialImage = null;
-            this.ControlMenu.Location = new System.Drawing.Point(0, 0);
-            this.ControlMenu.Margin = new System.Windows.Forms.Padding(0);
-            this.ControlMenu.MaximumSize = new System.Drawing.Size(575, 43);
-            this.ControlMenu.MinimumSize = new System.Drawing.Size(575, 43);
-            this.ControlMenu.Name = "ControlMenu";
-            this.ControlMenu.Size = new System.Drawing.Size(575, 43);
-            this.ControlMenu.TabIndex = 0;
-            this.ControlMenu.TabStop = false;
-            this.ControlMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.ControlMenu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.ControlMenu.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
-            // 
-            // ReduceButton
-            // 
-            this.ReduceButton.BackColor = System.Drawing.Color.Transparent;
-            this.ReduceButton.ErrorImage = null;
-            this.ReduceButton.Image = global::Quester.Properties.Resources.reduce_button;
-            this.ReduceButton.InitialImage = null;
-            this.ReduceButton.Location = new System.Drawing.Point(523, 13);
-            this.ReduceButton.Margin = new System.Windows.Forms.Padding(0);
-            this.ReduceButton.MaximumSize = new System.Drawing.Size(13, 14);
-            this.ReduceButton.MinimumSize = new System.Drawing.Size(13, 14);
-            this.ReduceButton.Name = "ReduceButton";
-            this.ReduceButton.Size = new System.Drawing.Size(13, 14);
-            this.ReduceButton.TabIndex = 1;
-            this.ReduceButton.TabStop = false;
-            this.ReduceButton.Click += new System.EventHandler(this.ReduceButton_Click);
-            this.ReduceButton.MouseEnter += new System.EventHandler(this.ReduceButton_MouseEnter);
-            this.ReduceButton.MouseLeave += new System.EventHandler(this.ReduceButton_MouseLeave);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
-            this.CloseButton.ErrorImage = null;
-            this.CloseButton.Image = global::Quester.Properties.Resources.close_button;
-            this.CloseButton.InitialImage = null;
-            this.CloseButton.Location = new System.Drawing.Point(550, 13);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
-            this.CloseButton.MaximumSize = new System.Drawing.Size(13, 14);
-            this.CloseButton.MinimumSize = new System.Drawing.Size(13, 14);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(13, 14);
-            this.CloseButton.TabIndex = 2;
-            this.CloseButton.TabStop = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseEnter);
-            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
             // 
             // ProfileQuestList
             // 
@@ -123,21 +60,6 @@
             this.ProfileQuestList.TabIndex = 3;
             this.ProfileQuestList.DoubleClick += new System.EventHandler(this.EditSelectedQuest);
             // 
-            // TopLeftLogo
-            // 
-            this.TopLeftLogo.ErrorImage = null;
-            this.TopLeftLogo.Image = ((System.Drawing.Image)(resources.GetObject("TopLeftLogo.Image")));
-            this.TopLeftLogo.InitialImage = null;
-            this.TopLeftLogo.Location = new System.Drawing.Point(13, 3);
-            this.TopLeftLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.TopLeftLogo.Name = "TopLeftLogo";
-            this.TopLeftLogo.Size = new System.Drawing.Size(30, 33);
-            this.TopLeftLogo.TabIndex = 4;
-            this.TopLeftLogo.TabStop = false;
-            this.TopLeftLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.TopLeftLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.TopLeftLogo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
-            // 
             // ProfileQuestersListLabel
             // 
             this.ProfileQuestersListLabel.AutoSize = true;
@@ -153,25 +75,6 @@
             this.ProfileQuestersListLabel.TabIndex = 11;
             this.ProfileQuestersListLabel.Text = "Profile\'s Questers List";
             this.ProfileQuestersListLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // SimpleProfileManagerFormTitle
-            // 
-            this.SimpleProfileManagerFormTitle.AutoSize = true;
-            this.SimpleProfileManagerFormTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.SimpleProfileManagerFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SimpleProfileManagerFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.SimpleProfileManagerFormTitle.Location = new System.Drawing.Point(57, 4);
-            this.SimpleProfileManagerFormTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.SimpleProfileManagerFormTitle.MaximumSize = new System.Drawing.Size(450, 35);
-            this.SimpleProfileManagerFormTitle.MinimumSize = new System.Drawing.Size(450, 35);
-            this.SimpleProfileManagerFormTitle.Name = "SimpleProfileManagerFormTitle";
-            this.SimpleProfileManagerFormTitle.Size = new System.Drawing.Size(450, 35);
-            this.SimpleProfileManagerFormTitle.TabIndex = 12;
-            this.SimpleProfileManagerFormTitle.Text = "Simple Profile Manager - The Noob Bot 3.0.0";
-            this.SimpleProfileManagerFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SimpleProfileManagerFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
-            this.SimpleProfileManagerFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);
-            this.SimpleProfileManagerFormTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseUp);
             // 
             // SaveSimpleProfileAs
             // 
@@ -375,12 +278,25 @@
             this.AddNewQuesterButton.MouseEnter += new System.EventHandler(this.AddNewQuesterButton_MouseEnter);
             this.AddNewQuesterButton.MouseLeave += new System.EventHandler(this.AddNewQuesterButton_MouseLeave);
             // 
+            // MainHeader
+            // 
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(575, 43);
+            this.MainHeader.TabIndex = 25;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "Simple Profile Manager - TheNoobBot DevVersionRestrict";
+            // 
             // SimpleProfileManager
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 475);
+            this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.AddNewQuesterButton);
             this.Controls.Add(this.EditSelectedQuesterButton);
             this.Controls.Add(this.DeleteSelectedQuesterButton);
@@ -392,13 +308,8 @@
             this.Controls.Add(this.ProfileQuesterList);
             this.Controls.Add(this.ProfileQuestListLabel);
             this.Controls.Add(this.SaveSimpleProfileAs);
-            this.Controls.Add(this.SimpleProfileManagerFormTitle);
             this.Controls.Add(this.ProfileQuestersListLabel);
-            this.Controls.Add(this.TopLeftLogo);
             this.Controls.Add(this.ProfileQuestList);
-            this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.ReduceButton);
-            this.Controls.Add(this.ControlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(575, 475);
@@ -406,10 +317,6 @@
             this.Name = "SimpleProfileManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SimpleProfileManager";
-            ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,13 +324,8 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox ControlMenu;
-        private System.Windows.Forms.PictureBox ReduceButton;
-        private System.Windows.Forms.PictureBox CloseButton;
         private System.Windows.Forms.ListBox ProfileQuestList;
-        private System.Windows.Forms.PictureBox TopLeftLogo;
         private System.Windows.Forms.Label ProfileQuestersListLabel;
-        private System.Windows.Forms.Label SimpleProfileManagerFormTitle;
         private System.Windows.Forms.Label SaveSimpleProfileAs;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label ProfileQuestListLabel;
@@ -436,6 +338,7 @@
         private System.Windows.Forms.Label DeleteSelectedQuesterButton;
         private System.Windows.Forms.Label EditSelectedQuesterButton;
         private System.Windows.Forms.Label AddNewQuesterButton;
+        private nManager.Helpful.Forms.UserControls.TnbControlMenu MainHeader;
     }
 }
 

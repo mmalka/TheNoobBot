@@ -10,11 +10,6 @@ namespace nManager.Helpful.Forms
     {
         private readonly Translate.Language _translation = new Translate.Language();
         private readonly Translate.Language _defaultLangage = XmlSerializer.Deserialize<Translate.Language>(Application.StartupPath + @"\Data\Lang\English.xml");
-        private Image _closeButtonImage;
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
-        private Image _reduceButtonImage;
 
         public TranslationManagementMainFrame()
         {
@@ -38,7 +33,7 @@ namespace nManager.Helpful.Forms
 
                 foreach (Translate.Translation translation in _defaultLangage.Translations)
                 {
-                    TranslationTable.Rows.Add(new object[] { translation.Id.ToString(), "", translation.Text });
+                    TranslationTable.Rows.Add(new object[] {translation.Id.ToString(), "", translation.Text});
                 }
             }
             catch (Exception e)
@@ -52,38 +47,12 @@ namespace nManager.Helpful.Forms
             SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose).ToUpper(); // SAVE AND CLOSE
             LoadButton.Text = nManager.Translate.Get(nManager.Translate.Id.LoadTranslationFile).ToUpper(); // LOAD A TRANSLATION FILE
             QuitButton.Text = nManager.Translate.Get(nManager.Translate.Id.CloseWithoutSaving).ToUpper(); // CLOSE WITHOUT SAVING
-            TranslateManagerFormTitle.Text = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools) + @" - " + Information.MainTitle;
-        }
-
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools) + @" - " + Information.MainTitle;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
         }
 
         private void LoadButton_MouseEnter(object sender, EventArgs e)
@@ -116,29 +85,6 @@ namespace nManager.Helpful.Forms
             QuitButton.Image = Resources.blackB_260;
         }
 
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
-        {
-            _reduceButtonImage = ReduceButton.Image;
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = _reduceButtonImage;
-            _reduceButtonImage = null;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            _closeButtonImage = CloseButton.Image;
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = _closeButtonImage;
-            _closeButtonImage = null;
-        }
         private void SaveGrid()
         {
             try
@@ -151,14 +97,14 @@ namespace nManager.Helpful.Forms
                     {
                         DataGridViewRow row = TranslationTable.Rows[i];
                         // Foreach is necessary since the user can sort the Grid, the indexes wont match.
-                        foreach (Translate.Id currId in Enum.GetValues(typeof(Translate.Id)))
+                        foreach (Translate.Id currId in Enum.GetValues(typeof (Translate.Id)))
                         {
                             if (currId.ToString() != row.Cells[0].Value.ToString())
                                 continue;
                             string textContent = row.Cells[1].Value == null || string.IsNullOrEmpty(row.Cells[1].Value.ToString()) ||
                                                  row.Cells[1].Value.ToString() == row.Cells[0].Value.ToString() || row.Cells[1].Value.ToString().Contains("_")
-                                                     ? row.Cells[2].Value.ToString()
-                                                     : row.Cells[1].Value.ToString();
+                                ? row.Cells[2].Value.ToString()
+                                : row.Cells[1].Value.ToString();
                             _translation.Translations.Add(new Translate.Translation
                             {
                                 Id = currId,
@@ -197,7 +143,7 @@ namespace nManager.Helpful.Forms
                     for (int i = 0; i < _defaultLangage.Translations.Count; i++)
                     {
                         Translate.Translation translation = _defaultLangage.Translations[i];
-                        TranslationTable.Rows.Add(new object[] { translation.Id.ToString(), currentLangage.Translations[i].Text, translation.Text });
+                        TranslationTable.Rows.Add(new object[] {translation.Id.ToString(), currentLangage.Translations[i].Text, translation.Text});
                     }
                 }
             }
@@ -233,7 +179,7 @@ namespace nManager.Helpful.Forms
                             lang.Translations.RemoveAt(foundAt);
                             if (string.IsNullOrEmpty(textFound))
                                 textFound = _defaultLangage.Translations[i].Text;
-                            lang.Translations.Insert(i, new Translate.Translation { Id = _defaultLangage.Translations[i].Id, Text = textFound });
+                            lang.Translations.Insert(i, new Translate.Translation {Id = _defaultLangage.Translations[i].Id, Text = textFound});
                         }
                         else
                         {
