@@ -75,7 +75,7 @@ namespace nManager.Helpful
             return _log;
         }
 
-        public static List<Log> ReadList(LogType logType)
+        public static List<Log> ReadList(LogType logType, bool setProcess = false)
         {
             try
             {
@@ -83,7 +83,11 @@ namespace nManager.Helpful
                 for (int i = 0; i < _log.Count; i++)
                 {
                     Log log = _log[i];
-                    if ((log.LogType & logType) == log.LogType) list.Add(log);
+                    if ((log.LogType & logType) == log.LogType)
+                    {
+                        log.Processed = true;
+                        list.Add(log);
+                    }
                 }
                 return list;
             }
@@ -249,7 +253,8 @@ namespace nManager.Helpful
                 if (File.Exists(Application.StartupPath + "\\Logs\\" + _logFileName))
                     _logFileName = DateTime.Now.ToString("d MMM yyyy HH") + "H" + DateTime.Now.ToString("mm") + " - " +
                                    Others.GetRandomString(Others.Random(4, 7)) + ".log.html";
-                LogQueue.Insert(0, new Log("Log file created: " + _logFileName, LogType.D, Color.MediumVioletRed));
+                WriteDebug("Log file created: " + _logFileName);
+                Write("Welcome to " + Information.MainTitle + ", if you have any trouble, please upload the FILE of this log from your /Logs/ directory on the community forum.");
             }
             catch (Exception exception)
             {
@@ -271,6 +276,7 @@ namespace nManager.Helpful
 
         public class Log
         {
+            public bool Processed;
             public Log()
             {
                 Text = "";

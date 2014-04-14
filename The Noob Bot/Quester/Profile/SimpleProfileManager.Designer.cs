@@ -327,7 +327,6 @@
         private System.Windows.Forms.ListBox ProfileQuestList;
         private System.Windows.Forms.Label ProfileQuestersListLabel;
         private System.Windows.Forms.Label SaveSimpleProfileAs;
-        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label ProfileQuestListLabel;
         private System.Windows.Forms.ListBox ProfileQuesterList;
         private System.Windows.Forms.Label SaveSimpleProfile;

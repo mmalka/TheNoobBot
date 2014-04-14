@@ -15,7 +15,6 @@ using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using The_Noob_Bot.Properties;
-using Point = System.Drawing.Point;
 using Pulsator = nManager.Pulsator;
 
 namespace The_Noob_Bot
@@ -125,7 +124,18 @@ namespace The_Noob_Bot
                 lock (this)
                 {
                     if ((e.Log.LogType & GetFlag()) == e.Log.LogType)
+                    {
+                        for (int i = Logging.List.Count - 1; i >= 0; i--)
+                        {
+                            Logging.Log log = Logging.List[i];
+                            if (log.DateTime == e.Log.DateTime && log.Text == e.Log.Text && log.LogType == e.Log.LogType && log.Color == e.Log.Color)
+                            {
+                                log.Processed = true;
+                                break;
+                            }
+                        }
                         _listLog.Add(e.Log);
+                    }
                 }
             }
             catch (Exception ex)
@@ -134,6 +144,7 @@ namespace The_Noob_Bot
             }
         }
 
+        private int _hardAdded;
         private void AddLog()
         {
             try
@@ -149,6 +160,21 @@ namespace The_Noob_Bot
                         LoggingTextArea.AppendText(Environment.NewLine);
                         _listLog.RemoveAt(0);
                         LoggingTextArea.ScrollToCaret();
+                    }
+                    else if (_hardAdded < 10)
+                    {
+                        if (Logging.List.Count > _listLog.Count)
+                        {
+                            foreach (Logging.Log log in Logging.List)
+                            {
+                                if ((log.LogType & GetFlag()) == log.LogType && !log.Processed)
+                                {
+                                    log.Processed = true;
+                                    _listLog.Add(log);
+                                    _hardAdded++;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -443,7 +469,7 @@ namespace The_Noob_Bot
             lock (this)
             {
                 _listLog.Clear();
-                _listLog.AddRange(Logging.ReadList(GetFlag()));
+                _listLog.AddRange(Logging.ReadList(GetFlag(), true));
                 LoggingTextArea.Clear();
             }
         }

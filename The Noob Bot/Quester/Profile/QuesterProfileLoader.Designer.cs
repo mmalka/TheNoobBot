@@ -201,7 +201,6 @@
         private System.Windows.Forms.Label GroupedProfilesListLabel;
         private System.Windows.Forms.Label LoadGroupedProfile;
         private System.Windows.Forms.Label QuesterProfileManagementSystemButton;
-        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label SimpleProfilesListLabel;
         private System.Windows.Forms.ListBox GroupedProfilesList;
         private System.Windows.Forms.Label LoadSimpleProfile;
