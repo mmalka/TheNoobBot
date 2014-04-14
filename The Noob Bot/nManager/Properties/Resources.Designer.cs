@@ -133,6 +133,16 @@ namespace nManager.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blackB_70 {
+            get {
+                object obj = ResourceManager.GetObject("blackB_70", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blueB {
             get {
                 object obj = ResourceManager.GetObject("blueB", resourceCulture);
@@ -166,6 +176,16 @@ namespace nManager.Properties {
         internal static System.Drawing.Bitmap blueB_260 {
             get {
                 object obj = ResourceManager.GetObject("blueB_260", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blueB_70 {
+            get {
+                object obj = ResourceManager.GetObject("blueB_70", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +276,16 @@ namespace nManager.Properties {
         internal static System.Drawing.Bitmap greenB_260 {
             get {
                 object obj = ResourceManager.GetObject("greenB_260", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenB_70 {
+            get {
+                object obj = ResourceManager.GetObject("greenB_70", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

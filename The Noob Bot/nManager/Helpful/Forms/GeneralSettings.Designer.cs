@@ -2753,7 +2753,7 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SpellManagementSystemPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SpellManagementSystemPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(556, 225);
+            this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(573, 225);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel);
@@ -2810,7 +2810,7 @@ namespace nManager.Helpful.Forms
             this.HealerClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
             this.HealerClass.HighlightColor = System.Drawing.Color.Gainsboro;
             this.HealerClass.ItemHeight = 20;
-            this.HealerClass.Location = new System.Drawing.Point(170, 80);
+            this.HealerClass.Location = new System.Drawing.Point(170, 89);
             this.HealerClass.Name = "HealerClass";
             this.HealerClass.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
             this.HealerClass.SelectorImage = ((System.Drawing.Image)(resources.GetObject("HealerClass.SelectorImage")));
@@ -2838,7 +2838,7 @@ namespace nManager.Helpful.Forms
             // 
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.BackColor = System.Drawing.Color.Transparent;
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.ForeColor = System.Drawing.Color.Black;
-            this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Location = new System.Drawing.Point(289, 224);
+            this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Location = new System.Drawing.Point(300, 234);
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Name = "BecomeApprenticeOfSecondarySkillsWhileQuestingLabel";
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.Size = new System.Drawing.Size(154, 22);
             this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel.TabIndex = 43;
@@ -2847,7 +2847,7 @@ namespace nManager.Helpful.Forms
             // BecomeApprenticeOfSecondarySkillsWhileQuesting
             // 
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Location = new System.Drawing.Point(448, 224);
+            this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Location = new System.Drawing.Point(459, 234);
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.MaximumSize = new System.Drawing.Size(60, 20);
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.MinimumSize = new System.Drawing.Size(60, 20);
             this.BecomeApprenticeOfSecondarySkillsWhileQuesting.Name = "BecomeApprenticeOfSecondarySkillsWhileQuesting";
@@ -2861,7 +2861,7 @@ namespace nManager.Helpful.Forms
             // 
             this.BecomeApprenticeIfNeededByProductLabel.BackColor = System.Drawing.Color.Transparent;
             this.BecomeApprenticeIfNeededByProductLabel.ForeColor = System.Drawing.Color.Black;
-            this.BecomeApprenticeIfNeededByProductLabel.Location = new System.Drawing.Point(12, 225);
+            this.BecomeApprenticeIfNeededByProductLabel.Location = new System.Drawing.Point(12, 235);
             this.BecomeApprenticeIfNeededByProductLabel.Name = "BecomeApprenticeIfNeededByProductLabel";
             this.BecomeApprenticeIfNeededByProductLabel.Size = new System.Drawing.Size(154, 22);
             this.BecomeApprenticeIfNeededByProductLabel.TabIndex = 41;
@@ -2870,7 +2870,7 @@ namespace nManager.Helpful.Forms
             // BecomeApprenticeIfNeededByProduct
             // 
             this.BecomeApprenticeIfNeededByProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.BecomeApprenticeIfNeededByProduct.Location = new System.Drawing.Point(171, 225);
+            this.BecomeApprenticeIfNeededByProduct.Location = new System.Drawing.Point(171, 235);
             this.BecomeApprenticeIfNeededByProduct.MaximumSize = new System.Drawing.Size(60, 20);
             this.BecomeApprenticeIfNeededByProduct.MinimumSize = new System.Drawing.Size(60, 20);
             this.BecomeApprenticeIfNeededByProduct.Name = "BecomeApprenticeIfNeededByProduct";
@@ -2884,7 +2884,7 @@ namespace nManager.Helpful.Forms
             // 
             this.TrainMountingCapacityLabel.BackColor = System.Drawing.Color.Transparent;
             this.TrainMountingCapacityLabel.ForeColor = System.Drawing.Color.Black;
-            this.TrainMountingCapacityLabel.Location = new System.Drawing.Point(289, 197);
+            this.TrainMountingCapacityLabel.Location = new System.Drawing.Point(300, 207);
             this.TrainMountingCapacityLabel.Name = "TrainMountingCapacityLabel";
             this.TrainMountingCapacityLabel.Size = new System.Drawing.Size(154, 22);
             this.TrainMountingCapacityLabel.TabIndex = 39;
@@ -2893,7 +2893,7 @@ namespace nManager.Helpful.Forms
             // TrainMountingCapacity
             // 
             this.TrainMountingCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.TrainMountingCapacity.Location = new System.Drawing.Point(448, 197);
+            this.TrainMountingCapacity.Location = new System.Drawing.Point(459, 207);
             this.TrainMountingCapacity.MaximumSize = new System.Drawing.Size(60, 20);
             this.TrainMountingCapacity.MinimumSize = new System.Drawing.Size(60, 20);
             this.TrainMountingCapacity.Name = "TrainMountingCapacity";
@@ -2907,7 +2907,7 @@ namespace nManager.Helpful.Forms
             // 
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.BackColor = System.Drawing.Color.Transparent;
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.ForeColor = System.Drawing.Color.Black;
-            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Location = new System.Drawing.Point(11, 197);
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Location = new System.Drawing.Point(11, 207);
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Name = "OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel";
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.Size = new System.Drawing.Size(154, 22);
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSumLabel.TabIndex = 37;
@@ -2916,7 +2916,7 @@ namespace nManager.Helpful.Forms
             // OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum
             // 
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Location = new System.Drawing.Point(170, 197);
+            this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Location = new System.Drawing.Point(170, 207);
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.MaximumSize = new System.Drawing.Size(60, 20);
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.MinimumSize = new System.Drawing.Size(60, 20);
             this.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum.Name = "OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum";
@@ -2930,7 +2930,7 @@ namespace nManager.Helpful.Forms
             // 
             this.OnlyTrainCurrentlyUsedSkillsLabel.BackColor = System.Drawing.Color.Transparent;
             this.OnlyTrainCurrentlyUsedSkillsLabel.ForeColor = System.Drawing.Color.Black;
-            this.OnlyTrainCurrentlyUsedSkillsLabel.Location = new System.Drawing.Point(289, 169);
+            this.OnlyTrainCurrentlyUsedSkillsLabel.Location = new System.Drawing.Point(300, 179);
             this.OnlyTrainCurrentlyUsedSkillsLabel.Name = "OnlyTrainCurrentlyUsedSkillsLabel";
             this.OnlyTrainCurrentlyUsedSkillsLabel.Size = new System.Drawing.Size(154, 22);
             this.OnlyTrainCurrentlyUsedSkillsLabel.TabIndex = 35;
@@ -2939,7 +2939,7 @@ namespace nManager.Helpful.Forms
             // OnlyTrainCurrentlyUsedSkills
             // 
             this.OnlyTrainCurrentlyUsedSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.OnlyTrainCurrentlyUsedSkills.Location = new System.Drawing.Point(448, 169);
+            this.OnlyTrainCurrentlyUsedSkills.Location = new System.Drawing.Point(459, 179);
             this.OnlyTrainCurrentlyUsedSkills.MaximumSize = new System.Drawing.Size(60, 20);
             this.OnlyTrainCurrentlyUsedSkills.MinimumSize = new System.Drawing.Size(60, 20);
             this.OnlyTrainCurrentlyUsedSkills.Name = "OnlyTrainCurrentlyUsedSkills";
@@ -2956,9 +2956,9 @@ namespace nManager.Helpful.Forms
             this.HealerClassResetSettingsButton.ForeColor = System.Drawing.Color.Snow;
             this.HealerClassResetSettingsButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("HealerClassResetSettingsButton.HooverImage")));
             this.HealerClassResetSettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("HealerClassResetSettingsButton.Image")));
-            this.HealerClassResetSettingsButton.Location = new System.Drawing.Point(415, 80);
+            this.HealerClassResetSettingsButton.Location = new System.Drawing.Point(415, 85);
             this.HealerClassResetSettingsButton.Name = "HealerClassResetSettingsButton";
-            this.HealerClassResetSettingsButton.Size = new System.Drawing.Size(98, 22);
+            this.HealerClassResetSettingsButton.Size = new System.Drawing.Size(106, 29);
             this.HealerClassResetSettingsButton.TabIndex = 49;
             this.HealerClassResetSettingsButton.Text = "Reset Settings";
             this.HealerClassResetSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2968,7 +2968,7 @@ namespace nManager.Helpful.Forms
             // 
             this.HealerClassLabel.BackColor = System.Drawing.Color.Transparent;
             this.HealerClassLabel.ForeColor = System.Drawing.Color.Black;
-            this.HealerClassLabel.Location = new System.Drawing.Point(11, 79);
+            this.HealerClassLabel.Location = new System.Drawing.Point(11, 88);
             this.HealerClassLabel.Name = "HealerClassLabel";
             this.HealerClassLabel.Size = new System.Drawing.Size(154, 22);
             this.HealerClassLabel.TabIndex = 32;
@@ -2979,11 +2979,11 @@ namespace nManager.Helpful.Forms
             this.HealerClassSettingsButton.AutoEllipsis = true;
             this.HealerClassSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.HealerClassSettingsButton.ForeColor = System.Drawing.Color.Snow;
-            this.HealerClassSettingsButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("HealerClassSettingsButton.HooverImage")));
-            this.HealerClassSettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("HealerClassSettingsButton.Image")));
-            this.HealerClassSettingsButton.Location = new System.Drawing.Point(328, 80);
+            this.HealerClassSettingsButton.HooverImage = global::nManager.Properties.Resources.greenB_70;
+            this.HealerClassSettingsButton.Image = global::nManager.Properties.Resources.blueB_70;
+            this.HealerClassSettingsButton.Location = new System.Drawing.Point(328, 86);
             this.HealerClassSettingsButton.Name = "HealerClassSettingsButton";
-            this.HealerClassSettingsButton.Size = new System.Drawing.Size(106, 29);
+            this.HealerClassSettingsButton.Size = new System.Drawing.Size(70, 29);
             this.HealerClassSettingsButton.TabIndex = 50;
             this.HealerClassSettingsButton.Text = "Settings";
             this.HealerClassSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2995,10 +2995,10 @@ namespace nManager.Helpful.Forms
             this.CombatClassResetSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.CombatClassResetSettingsButton.ForeColor = System.Drawing.Color.Snow;
             this.CombatClassResetSettingsButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("CombatClassResetSettingsButton.HooverImage")));
-            this.CombatClassResetSettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("CombatClassResetSettingsButton.Image")));
-            this.CombatClassResetSettingsButton.Location = new System.Drawing.Point(415, 53);
+            this.CombatClassResetSettingsButton.Image = global::nManager.Properties.Resources.blackB;
+            this.CombatClassResetSettingsButton.Location = new System.Drawing.Point(415, 51);
             this.CombatClassResetSettingsButton.Name = "CombatClassResetSettingsButton";
-            this.CombatClassResetSettingsButton.Size = new System.Drawing.Size(98, 22);
+            this.CombatClassResetSettingsButton.Size = new System.Drawing.Size(106, 29);
             this.CombatClassResetSettingsButton.TabIndex = 51;
             this.CombatClassResetSettingsButton.Text = "Reset Settings";
             this.CombatClassResetSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3008,7 +3008,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX59.BackColor = System.Drawing.Color.Transparent;
             this.labelX59.ForeColor = System.Drawing.Color.Black;
-            this.labelX59.Location = new System.Drawing.Point(11, 113);
+            this.labelX59.Location = new System.Drawing.Point(11, 123);
             this.labelX59.Name = "labelX59";
             this.labelX59.Size = new System.Drawing.Size(154, 22);
             this.labelX59.TabIndex = 28;
@@ -3017,7 +3017,7 @@ namespace nManager.Helpful.Forms
             // UseSpiritHealer
             // 
             this.UseSpiritHealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.UseSpiritHealer.Location = new System.Drawing.Point(170, 113);
+            this.UseSpiritHealer.Location = new System.Drawing.Point(170, 123);
             this.UseSpiritHealer.MaximumSize = new System.Drawing.Size(60, 20);
             this.UseSpiritHealer.MinimumSize = new System.Drawing.Size(60, 20);
             this.UseSpiritHealer.Name = "UseSpiritHealer";
@@ -3031,7 +3031,7 @@ namespace nManager.Helpful.Forms
             // 
             this.ActivateSkillsAutoTrainingLabel.BackColor = System.Drawing.Color.Transparent;
             this.ActivateSkillsAutoTrainingLabel.ForeColor = System.Drawing.Color.Black;
-            this.ActivateSkillsAutoTrainingLabel.Location = new System.Drawing.Point(12, 169);
+            this.ActivateSkillsAutoTrainingLabel.Location = new System.Drawing.Point(12, 179);
             this.ActivateSkillsAutoTrainingLabel.Name = "ActivateSkillsAutoTrainingLabel";
             this.ActivateSkillsAutoTrainingLabel.Size = new System.Drawing.Size(154, 22);
             this.ActivateSkillsAutoTrainingLabel.TabIndex = 24;
@@ -3040,7 +3040,7 @@ namespace nManager.Helpful.Forms
             // ActivateSkillsAutoTraining
             // 
             this.ActivateSkillsAutoTraining.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ActivateSkillsAutoTraining.Location = new System.Drawing.Point(171, 169);
+            this.ActivateSkillsAutoTraining.Location = new System.Drawing.Point(171, 179);
             this.ActivateSkillsAutoTraining.MaximumSize = new System.Drawing.Size(60, 20);
             this.ActivateSkillsAutoTraining.MinimumSize = new System.Drawing.Size(60, 20);
             this.ActivateSkillsAutoTraining.Name = "ActivateSkillsAutoTraining";
@@ -3054,7 +3054,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX4.BackColor = System.Drawing.Color.Transparent;
             this.labelX4.ForeColor = System.Drawing.Color.Black;
-            this.labelX4.Location = new System.Drawing.Point(289, 141);
+            this.labelX4.Location = new System.Drawing.Point(300, 151);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(154, 22);
             this.labelX4.TabIndex = 9;
@@ -3063,7 +3063,7 @@ namespace nManager.Helpful.Forms
             // DontPullMonsters
             // 
             this.DontPullMonsters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.DontPullMonsters.Location = new System.Drawing.Point(448, 141);
+            this.DontPullMonsters.Location = new System.Drawing.Point(459, 151);
             this.DontPullMonsters.MaximumSize = new System.Drawing.Size(60, 20);
             this.DontPullMonsters.MinimumSize = new System.Drawing.Size(60, 20);
             this.DontPullMonsters.Name = "DontPullMonsters";
@@ -3077,7 +3077,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX3.BackColor = System.Drawing.Color.Transparent;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(289, 113);
+            this.labelX3.Location = new System.Drawing.Point(300, 123);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(154, 22);
             this.labelX3.TabIndex = 7;
@@ -3086,7 +3086,7 @@ namespace nManager.Helpful.Forms
             // CanPullUnitsAlreadyInFight
             // 
             this.CanPullUnitsAlreadyInFight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(448, 113);
+            this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(459, 123);
             this.CanPullUnitsAlreadyInFight.MaximumSize = new System.Drawing.Size(60, 20);
             this.CanPullUnitsAlreadyInFight.MinimumSize = new System.Drawing.Size(60, 20);
             this.CanPullUnitsAlreadyInFight.Name = "CanPullUnitsAlreadyInFight";
@@ -3100,7 +3100,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX2.BackColor = System.Drawing.Color.Transparent;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(11, 141);
+            this.labelX2.Location = new System.Drawing.Point(11, 151);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(154, 22);
             this.labelX2.TabIndex = 5;
@@ -3109,7 +3109,7 @@ namespace nManager.Helpful.Forms
             // AutoAssignTalents
             // 
             this.AutoAssignTalents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.AutoAssignTalents.Location = new System.Drawing.Point(170, 142);
+            this.AutoAssignTalents.Location = new System.Drawing.Point(170, 152);
             this.AutoAssignTalents.MaximumSize = new System.Drawing.Size(60, 20);
             this.AutoAssignTalents.MinimumSize = new System.Drawing.Size(60, 20);
             this.AutoAssignTalents.Name = "AutoAssignTalents";
@@ -3134,11 +3134,11 @@ namespace nManager.Helpful.Forms
             this.CombatClassSettingsButton.AutoEllipsis = true;
             this.CombatClassSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.CombatClassSettingsButton.ForeColor = System.Drawing.Color.Snow;
-            this.CombatClassSettingsButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("CombatClassSettingsButton.HooverImage")));
-            this.CombatClassSettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("CombatClassSettingsButton.Image")));
-            this.CombatClassSettingsButton.Location = new System.Drawing.Point(328, 53);
+            this.CombatClassSettingsButton.HooverImage = global::nManager.Properties.Resources.greenB_70;
+            this.CombatClassSettingsButton.Image = global::nManager.Properties.Resources.blueB_70;
+            this.CombatClassSettingsButton.Location = new System.Drawing.Point(328, 51);
             this.CombatClassSettingsButton.Name = "CombatClassSettingsButton";
-            this.CombatClassSettingsButton.Size = new System.Drawing.Size(72, 22);
+            this.CombatClassSettingsButton.Size = new System.Drawing.Size(70, 29);
             this.CombatClassSettingsButton.TabIndex = 54;
             this.CombatClassSettingsButton.Text = "Settings";
             this.CombatClassSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
