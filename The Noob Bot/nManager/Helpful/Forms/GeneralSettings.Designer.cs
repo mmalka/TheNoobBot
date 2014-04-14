@@ -37,7 +37,7 @@ namespace nManager.Helpful.Forms
             this.closeB = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.resetB = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.saveAndCloseB = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.panel1 = new nManager.Helpful.Forms.UserControls.TnbRibbonManager();
+            this.MainPanel = new nManager.Helpful.Forms.UserControls.TnbRibbonManager();
             this.MimesisBroadcasterSettingsPanel = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.BroadcastingPort = new System.Windows.Forms.NumericUpDown();
             this.BroadcastingIPWan = new System.Windows.Forms.Label();
@@ -149,7 +149,7 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.ActivateLootStatisticsLabel = new System.Windows.Forms.Label();
             this.ActivateLootStatistics = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DontHarvestTheFollowingObjectsHelper = new System.Windows.Forms.Button();
             this.DontHarvestTheFollowingObjects = new System.Windows.Forms.TextBox();
             this.AutoConfirmOnBoPItems = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AutoConfirmOnBoPItemsLabel = new System.Windows.Forms.Label();
@@ -249,8 +249,8 @@ namespace nManager.Helpful.Forms
             this.AutoAssignTalents = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.CombatClassLabel = new System.Windows.Forms.Label();
             this.CombatClassSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.tnbControlMenu2 = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.panel1.SuspendLayout();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.MainPanel.SuspendLayout();
             this.MimesisBroadcasterSettingsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BroadcastingPort)).BeginInit();
             this.AdvancedSettingsPanelName.SuspendLayout();
@@ -327,32 +327,34 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
             // 
-            // panel1
+            // MainPanel
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.MimesisBroadcasterSettingsPanel);
-            this.panel1.Controls.Add(this.AdvancedSettingsPanelName);
-            this.panel1.Controls.Add(this.SecuritySystemPanelName);
-            this.panel1.Controls.Add(this.MailsManagementPanelName);
-            this.panel1.Controls.Add(this.NPCsRepairSellBuyPanelName);
-            this.panel1.Controls.Add(this.ReloggerManagementPanelName);
-            this.panel1.Controls.Add(this.LootingFarmingManagementPanelName);
-            this.panel1.Controls.Add(this.RegenerationManagementPanelName);
-            this.panel1.Controls.Add(this.MountManagementPanelName);
-            this.panel1.Controls.Add(this.SpellManagementSystemPanelName);
-            this.panel1.ForeColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(1, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(573, 360);
-            this.panel1.TabIndex = 3;
+            this.MainPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.MainPanel.AutoScroll = true;
+            this.MainPanel.AutoScrollMinSize = new System.Drawing.Size(0, 361);
+            this.MainPanel.BackColor = System.Drawing.Color.Transparent;
+            this.MainPanel.Controls.Add(this.MimesisBroadcasterSettingsPanel);
+            this.MainPanel.Controls.Add(this.AdvancedSettingsPanelName);
+            this.MainPanel.Controls.Add(this.SecuritySystemPanelName);
+            this.MainPanel.Controls.Add(this.MailsManagementPanelName);
+            this.MainPanel.Controls.Add(this.NPCsRepairSellBuyPanelName);
+            this.MainPanel.Controls.Add(this.ReloggerManagementPanelName);
+            this.MainPanel.Controls.Add(this.LootingFarmingManagementPanelName);
+            this.MainPanel.Controls.Add(this.RegenerationManagementPanelName);
+            this.MainPanel.Controls.Add(this.MountManagementPanelName);
+            this.MainPanel.Controls.Add(this.SpellManagementSystemPanelName);
+            this.MainPanel.ForeColor = System.Drawing.Color.Black;
+            this.MainPanel.Location = new System.Drawing.Point(1, 43);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(573, 360);
+            this.MainPanel.TabIndex = 3;
             // 
             // MimesisBroadcasterSettingsPanel
             // 
             this.MimesisBroadcasterSettingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MimesisBroadcasterSettingsPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MimesisBroadcasterSettingsPanel.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MimesisBroadcasterSettingsPanel.ContentSize = new System.Drawing.Size(573, 200);
+            this.MimesisBroadcasterSettingsPanel.ContentSize = new System.Drawing.Size(573, 158);
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingPort);
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingIPWan);
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingIPLan);
@@ -366,18 +368,19 @@ namespace nManager.Helpful.Forms
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingPortLabel);
             this.MimesisBroadcasterSettingsPanel.Fold = true;
             this.MimesisBroadcasterSettingsPanel.FolderImage = ((System.Drawing.Image)(resources.GetObject("MimesisBroadcasterSettingsPanel.FolderImage")));
+            this.MimesisBroadcasterSettingsPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MimesisBroadcasterSettingsPanel.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.MimesisBroadcasterSettingsPanel.HeaderImage = ((System.Drawing.Image)(resources.GetObject("MimesisBroadcasterSettingsPanel.HeaderImage")));
-            this.MimesisBroadcasterSettingsPanel.HeaderSize = new System.Drawing.Size(573, 36);
+            this.MimesisBroadcasterSettingsPanel.HeaderSize = new System.Drawing.Size(556, 36);
             this.MimesisBroadcasterSettingsPanel.Location = new System.Drawing.Point(0, 288);
             this.MimesisBroadcasterSettingsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MimesisBroadcasterSettingsPanel.Name = "MimesisBroadcasterSettingsPanel";
             this.MimesisBroadcasterSettingsPanel.OrderIndex = 8;
             this.MimesisBroadcasterSettingsPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.MimesisBroadcasterSettingsPanel.Size = new System.Drawing.Size(573, 36);
+            this.MimesisBroadcasterSettingsPanel.Size = new System.Drawing.Size(556, 36);
             this.MimesisBroadcasterSettingsPanel.TabIndex = 13;
-            this.MimesisBroadcasterSettingsPanel.TitleFont = null;
-            this.MimesisBroadcasterSettingsPanel.TitleForeColor = System.Drawing.Color.Empty;
+            this.MimesisBroadcasterSettingsPanel.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.MimesisBroadcasterSettingsPanel.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MimesisBroadcasterSettingsPanel.TitleText = "Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with t" +
                 "his session)";
             this.MimesisBroadcasterSettingsPanel.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MimesisBroadcasterSettingsPanel.UnfolderImage")));
@@ -514,7 +517,7 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.AdvancedSettingsPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.AdvancedSettingsPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(573, 103);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrameLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrame);
             this.AdvancedSettingsPanelName.Controls.Add(this.AlwaysOnTopFeatureLabel);
@@ -527,18 +530,19 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.Controls.Add(this.ActivatePathFindingFeature);
             this.AdvancedSettingsPanelName.Fold = true;
             this.AdvancedSettingsPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.FolderImage")));
+            this.AdvancedSettingsPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.AdvancedSettingsPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.AdvancedSettingsPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.HeaderImage")));
-            this.AdvancedSettingsPanelName.HeaderSize = new System.Drawing.Size(573, 36);
+            this.AdvancedSettingsPanelName.HeaderSize = new System.Drawing.Size(556, 36);
             this.AdvancedSettingsPanelName.Location = new System.Drawing.Point(0, 324);
             this.AdvancedSettingsPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.AdvancedSettingsPanelName.Name = "AdvancedSettingsPanelName";
             this.AdvancedSettingsPanelName.OrderIndex = 9;
             this.AdvancedSettingsPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.AdvancedSettingsPanelName.Size = new System.Drawing.Size(573, 36);
+            this.AdvancedSettingsPanelName.Size = new System.Drawing.Size(556, 36);
             this.AdvancedSettingsPanelName.TabIndex = 12;
-            this.AdvancedSettingsPanelName.TitleFont = null;
-            this.AdvancedSettingsPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.AdvancedSettingsPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.AdvancedSettingsPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.AdvancedSettingsPanelName.TitleText = "Advanced Settings";
             this.AdvancedSettingsPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.UnfolderImage")));
             // 
@@ -673,7 +677,7 @@ namespace nManager.Helpful.Forms
             this.SecuritySystemPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SecuritySystemPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SecuritySystemPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.SecuritySystemPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.SecuritySystemPanelName.ContentSize = new System.Drawing.Size(573, 354);
             this.SecuritySystemPanelName.Controls.Add(this.UseHearthstoneLabel);
             this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXMinutes);
             this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXStucks);
@@ -707,18 +711,19 @@ namespace nManager.Helpful.Forms
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfBagAreFull);
             this.SecuritySystemPanelName.Fold = true;
             this.SecuritySystemPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("SecuritySystemPanelName.FolderImage")));
+            this.SecuritySystemPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SecuritySystemPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.SecuritySystemPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("SecuritySystemPanelName.HeaderImage")));
-            this.SecuritySystemPanelName.HeaderSize = new System.Drawing.Size(573, 36);
+            this.SecuritySystemPanelName.HeaderSize = new System.Drawing.Size(556, 36);
             this.SecuritySystemPanelName.Location = new System.Drawing.Point(0, 252);
             this.SecuritySystemPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.SecuritySystemPanelName.Name = "SecuritySystemPanelName";
             this.SecuritySystemPanelName.OrderIndex = 7;
             this.SecuritySystemPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.SecuritySystemPanelName.Size = new System.Drawing.Size(573, 36);
+            this.SecuritySystemPanelName.Size = new System.Drawing.Size(556, 36);
             this.SecuritySystemPanelName.TabIndex = 11;
-            this.SecuritySystemPanelName.TitleFont = null;
-            this.SecuritySystemPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.SecuritySystemPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.SecuritySystemPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SecuritySystemPanelName.TitleText = "Security System Management (Allow to Pause, Stop Tnb, Close WoW)";
             this.SecuritySystemPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("SecuritySystemPanelName.UnfolderImage")));
             // 
@@ -736,7 +741,7 @@ namespace nManager.Helpful.Forms
             // ActiveStopTNBAfterXMinutes
             // 
             this.ActiveStopTNBAfterXMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ActiveStopTNBAfterXMinutes.Location = new System.Drawing.Point(335, 248);
+            this.ActiveStopTNBAfterXMinutes.Location = new System.Drawing.Point(408, 248);
             this.ActiveStopTNBAfterXMinutes.MaximumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBAfterXMinutes.MinimumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBAfterXMinutes.Name = "ActiveStopTNBAfterXMinutes";
@@ -749,7 +754,7 @@ namespace nManager.Helpful.Forms
             // ActiveStopTNBAfterXStucks
             // 
             this.ActiveStopTNBAfterXStucks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ActiveStopTNBAfterXStucks.Location = new System.Drawing.Point(335, 219);
+            this.ActiveStopTNBAfterXStucks.Location = new System.Drawing.Point(408, 219);
             this.ActiveStopTNBAfterXStucks.MaximumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBAfterXStucks.MinimumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBAfterXStucks.Name = "ActiveStopTNBAfterXStucks";
@@ -762,7 +767,7 @@ namespace nManager.Helpful.Forms
             // ActiveStopTNBIfReceivedAtMostXWhispers
             // 
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ActiveStopTNBIfReceivedAtMostXWhispers.Location = new System.Drawing.Point(335, 192);
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.Location = new System.Drawing.Point(408, 192);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.MaximumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.MinimumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Name = "ActiveStopTNBIfReceivedAtMostXWhispers";
@@ -775,7 +780,7 @@ namespace nManager.Helpful.Forms
             // ActiveStopTNBAfterXLevelup
             // 
             this.ActiveStopTNBAfterXLevelup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.ActiveStopTNBAfterXLevelup.Location = new System.Drawing.Point(335, 163);
+            this.ActiveStopTNBAfterXLevelup.Location = new System.Drawing.Point(408, 163);
             this.ActiveStopTNBAfterXLevelup.MaximumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBAfterXLevelup.MinimumSize = new System.Drawing.Size(60, 20);
             this.ActiveStopTNBAfterXLevelup.Name = "ActiveStopTNBAfterXLevelup";
@@ -847,7 +852,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX33.BackColor = System.Drawing.Color.Transparent;
             this.labelX33.ForeColor = System.Drawing.Color.Black;
-            this.labelX33.Location = new System.Drawing.Point(245, 246);
+            this.labelX33.Location = new System.Drawing.Point(318, 246);
             this.labelX33.Name = "labelX33";
             this.labelX33.Size = new System.Drawing.Size(154, 22);
             this.labelX33.TabIndex = 33;
@@ -867,7 +872,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX32.BackColor = System.Drawing.Color.Transparent;
             this.labelX32.ForeColor = System.Drawing.Color.Black;
-            this.labelX32.Location = new System.Drawing.Point(245, 219);
+            this.labelX32.Location = new System.Drawing.Point(318, 219);
             this.labelX32.Name = "labelX32";
             this.labelX32.Size = new System.Drawing.Size(154, 22);
             this.labelX32.TabIndex = 32;
@@ -877,7 +882,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX31.BackColor = System.Drawing.Color.Transparent;
             this.labelX31.ForeColor = System.Drawing.Color.Black;
-            this.labelX31.Location = new System.Drawing.Point(245, 163);
+            this.labelX31.Location = new System.Drawing.Point(318, 163);
             this.labelX31.Name = "labelX31";
             this.labelX31.Size = new System.Drawing.Size(154, 22);
             this.labelX31.TabIndex = 31;
@@ -1115,7 +1120,7 @@ namespace nManager.Helpful.Forms
             this.MailsManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MailsManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MailsManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MailsManagementPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.MailsManagementPanelName.ContentSize = new System.Drawing.Size(573, 316);
             this.MailsManagementPanelName.Controls.Add(this.MailPurple);
             this.MailsManagementPanelName.Controls.Add(this.MailBlue);
             this.MailsManagementPanelName.Controls.Add(this.MailGreen);
@@ -1137,18 +1142,19 @@ namespace nManager.Helpful.Forms
             this.MailsManagementPanelName.Controls.Add(this.labelX58);
             this.MailsManagementPanelName.Fold = true;
             this.MailsManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("MailsManagementPanelName.FolderImage")));
+            this.MailsManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MailsManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.MailsManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("MailsManagementPanelName.HeaderImage")));
-            this.MailsManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
+            this.MailsManagementPanelName.HeaderSize = new System.Drawing.Size(556, 36);
             this.MailsManagementPanelName.Location = new System.Drawing.Point(0, 216);
             this.MailsManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.MailsManagementPanelName.Name = "MailsManagementPanelName";
             this.MailsManagementPanelName.OrderIndex = 6;
             this.MailsManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.MailsManagementPanelName.Size = new System.Drawing.Size(573, 36);
+            this.MailsManagementPanelName.Size = new System.Drawing.Size(556, 36);
             this.MailsManagementPanelName.TabIndex = 10;
-            this.MailsManagementPanelName.TitleFont = null;
-            this.MailsManagementPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.MailsManagementPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.MailsManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MailsManagementPanelName.TitleText = "Mails Management (Allow you to send items to Alt. Char)";
             this.MailsManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MailsManagementPanelName.UnfolderImage")));
             // 
@@ -1352,7 +1358,7 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.NPCsRepairSellBuyPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.NPCsRepairSellBuyPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.NPCsRepairSellBuyPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.NPCsRepairSellBuyPanelName.ContentSize = new System.Drawing.Size(573, 316);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellPurple);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellBlue);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellGreen);
@@ -1378,18 +1384,19 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX46);
             this.NPCsRepairSellBuyPanelName.Fold = true;
             this.NPCsRepairSellBuyPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("NPCsRepairSellBuyPanelName.FolderImage")));
+            this.NPCsRepairSellBuyPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.NPCsRepairSellBuyPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.NPCsRepairSellBuyPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("NPCsRepairSellBuyPanelName.HeaderImage")));
-            this.NPCsRepairSellBuyPanelName.HeaderSize = new System.Drawing.Size(573, 36);
+            this.NPCsRepairSellBuyPanelName.HeaderSize = new System.Drawing.Size(556, 36);
             this.NPCsRepairSellBuyPanelName.Location = new System.Drawing.Point(0, 180);
             this.NPCsRepairSellBuyPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.NPCsRepairSellBuyPanelName.Name = "NPCsRepairSellBuyPanelName";
             this.NPCsRepairSellBuyPanelName.OrderIndex = 5;
             this.NPCsRepairSellBuyPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.NPCsRepairSellBuyPanelName.Size = new System.Drawing.Size(573, 36);
+            this.NPCsRepairSellBuyPanelName.Size = new System.Drawing.Size(556, 36);
             this.NPCsRepairSellBuyPanelName.TabIndex = 9;
-            this.NPCsRepairSellBuyPanelName.TitleFont = null;
-            this.NPCsRepairSellBuyPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.NPCsRepairSellBuyPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.NPCsRepairSellBuyPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.NPCsRepairSellBuyPanelName.TitleText = "NPCs Management - Repairer, Vendor (Selling or Buying)";
             this.NPCsRepairSellBuyPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("NPCsRepairSellBuyPanelName.UnfolderImage")));
             // 
@@ -1464,7 +1471,7 @@ namespace nManager.Helpful.Forms
             // SellItemsWhenLessThanXSlotLeft
             // 
             this.SellItemsWhenLessThanXSlotLeft.ForeColor = System.Drawing.Color.Black;
-            this.SellItemsWhenLessThanXSlotLeft.Location = new System.Drawing.Point(455, 138);
+            this.SellItemsWhenLessThanXSlotLeft.Location = new System.Drawing.Point(488, 138);
             this.SellItemsWhenLessThanXSlotLeft.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1482,7 +1489,7 @@ namespace nManager.Helpful.Forms
             // RepairWhenDurabilityIsUnderPercent
             // 
             this.RepairWhenDurabilityIsUnderPercent.ForeColor = System.Drawing.Color.Black;
-            this.RepairWhenDurabilityIsUnderPercent.Location = new System.Drawing.Point(455, 110);
+            this.RepairWhenDurabilityIsUnderPercent.Location = new System.Drawing.Point(488, 110);
             this.RepairWhenDurabilityIsUnderPercent.Maximum = new decimal(new int[] {
             99,
             0,
@@ -1506,7 +1513,7 @@ namespace nManager.Helpful.Forms
             // 
             this.SellItemsWhenLessThanXSlotLeftLabel.BackColor = System.Drawing.Color.Transparent;
             this.SellItemsWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
-            this.SellItemsWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(247, 136);
+            this.SellItemsWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(280, 136);
             this.SellItemsWhenLessThanXSlotLeftLabel.Name = "SellItemsWhenLessThanXSlotLeftLabel";
             this.SellItemsWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(196, 23);
             this.SellItemsWhenLessThanXSlotLeftLabel.TabIndex = 37;
@@ -1516,7 +1523,7 @@ namespace nManager.Helpful.Forms
             // 
             this.RepairWhenDurabilityIsUnderPercentLabel.BackColor = System.Drawing.Color.Transparent;
             this.RepairWhenDurabilityIsUnderPercentLabel.ForeColor = System.Drawing.Color.Black;
-            this.RepairWhenDurabilityIsUnderPercentLabel.Location = new System.Drawing.Point(246, 108);
+            this.RepairWhenDurabilityIsUnderPercentLabel.Location = new System.Drawing.Point(279, 108);
             this.RepairWhenDurabilityIsUnderPercentLabel.Name = "RepairWhenDurabilityIsUnderPercentLabel";
             this.RepairWhenDurabilityIsUnderPercentLabel.Size = new System.Drawing.Size(197, 23);
             this.RepairWhenDurabilityIsUnderPercentLabel.TabIndex = 36;
@@ -1591,7 +1598,7 @@ namespace nManager.Helpful.Forms
             // NumberOfFoodsWeGot
             // 
             this.NumberOfFoodsWeGot.ForeColor = System.Drawing.Color.Black;
-            this.NumberOfFoodsWeGot.Location = new System.Drawing.Point(406, 80);
+            this.NumberOfFoodsWeGot.Location = new System.Drawing.Point(466, 80);
             this.NumberOfFoodsWeGot.Name = "NumberOfFoodsWeGot";
             this.NumberOfFoodsWeGot.Size = new System.Drawing.Size(63, 22);
             this.NumberOfFoodsWeGot.TabIndex = 24;
@@ -1600,7 +1607,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX50.BackColor = System.Drawing.Color.Transparent;
             this.labelX50.ForeColor = System.Drawing.Color.Black;
-            this.labelX50.Location = new System.Drawing.Point(247, 80);
+            this.labelX50.Location = new System.Drawing.Point(280, 80);
             this.labelX50.Name = "labelX50";
             this.labelX50.Size = new System.Drawing.Size(154, 22);
             this.labelX50.TabIndex = 23;
@@ -1649,7 +1656,7 @@ namespace nManager.Helpful.Forms
             this.ReloggerManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.ReloggerManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.ReloggerManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.ReloggerManagementPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.ReloggerManagementPanelName.ContentSize = new System.Drawing.Size(573, 144);
             this.ReloggerManagementPanelName.Controls.Add(this.BattleNetSubAccount);
             this.ReloggerManagementPanelName.Controls.Add(this.labelX67);
             this.ReloggerManagementPanelName.Controls.Add(this.labelX38);
@@ -1660,18 +1667,19 @@ namespace nManager.Helpful.Forms
             this.ReloggerManagementPanelName.Controls.Add(this.labelX40);
             this.ReloggerManagementPanelName.Fold = true;
             this.ReloggerManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("ReloggerManagementPanelName.FolderImage")));
+            this.ReloggerManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.ReloggerManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.ReloggerManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("ReloggerManagementPanelName.HeaderImage")));
-            this.ReloggerManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
+            this.ReloggerManagementPanelName.HeaderSize = new System.Drawing.Size(556, 36);
             this.ReloggerManagementPanelName.Location = new System.Drawing.Point(0, 144);
             this.ReloggerManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.ReloggerManagementPanelName.Name = "ReloggerManagementPanelName";
             this.ReloggerManagementPanelName.OrderIndex = 4;
             this.ReloggerManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.ReloggerManagementPanelName.Size = new System.Drawing.Size(573, 36);
+            this.ReloggerManagementPanelName.Size = new System.Drawing.Size(556, 36);
             this.ReloggerManagementPanelName.TabIndex = 7;
-            this.ReloggerManagementPanelName.TitleFont = null;
-            this.ReloggerManagementPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.ReloggerManagementPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.ReloggerManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.ReloggerManagementPanelName.TitleText = "AutoRelogger - (Allow you to automaticly relog your char after a disconnection)";
             this.ReloggerManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("ReloggerManagementPanelName.UnfolderImage")));
             // 
@@ -1757,10 +1765,10 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.LootingFarmingManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.LootingFarmingManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.LootingFarmingManagementPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.LootingFarmingManagementPanelName.ContentSize = new System.Drawing.Size(573, 518);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatisticsLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatistics);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.button1);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjectsHelper);
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjects);
             this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItems);
             this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItemsLabel);
@@ -1808,18 +1816,19 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateMonsterLooting);
             this.LootingFarmingManagementPanelName.Fold = true;
             this.LootingFarmingManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("LootingFarmingManagementPanelName.FolderImage")));
+            this.LootingFarmingManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.LootingFarmingManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.LootingFarmingManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("LootingFarmingManagementPanelName.HeaderImage")));
-            this.LootingFarmingManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 0);
+            this.LootingFarmingManagementPanelName.HeaderSize = new System.Drawing.Size(556, 36);
+            this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 108);
             this.LootingFarmingManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.LootingFarmingManagementPanelName.Name = "LootingFarmingManagementPanelName";
-            this.LootingFarmingManagementPanelName.OrderIndex = -1;
+            this.LootingFarmingManagementPanelName.OrderIndex = 3;
             this.LootingFarmingManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.LootingFarmingManagementPanelName.Size = new System.Drawing.Size(573, 36);
+            this.LootingFarmingManagementPanelName.Size = new System.Drawing.Size(556, 36);
             this.LootingFarmingManagementPanelName.TabIndex = 5;
-            this.LootingFarmingManagementPanelName.TitleFont = null;
-            this.LootingFarmingManagementPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.LootingFarmingManagementPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.LootingFarmingManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.LootingFarmingManagementPanelName.TitleText = "Looting/Farming Management";
             this.LootingFarmingManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("LootingFarmingManagementPanelName.UnfolderImage")));
             // 
@@ -1846,17 +1855,17 @@ namespace nManager.Helpful.Forms
             this.ActivateLootStatistics.TabIndex = 67;
             this.ActivateLootStatistics.Value = false;
             // 
-            // button1
+            // DontHarvestTheFollowingObjectsHelper
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(500, 160);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(18, 22);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "?";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.DontHaverstObjectsTutorial_Click);
+            this.DontHarvestTheFollowingObjectsHelper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.DontHarvestTheFollowingObjectsHelper.ForeColor = System.Drawing.Color.Black;
+            this.DontHarvestTheFollowingObjectsHelper.Location = new System.Drawing.Point(500, 160);
+            this.DontHarvestTheFollowingObjectsHelper.Name = "DontHarvestTheFollowingObjectsHelper";
+            this.DontHarvestTheFollowingObjectsHelper.Size = new System.Drawing.Size(18, 20);
+            this.DontHarvestTheFollowingObjectsHelper.TabIndex = 64;
+            this.DontHarvestTheFollowingObjectsHelper.Text = "?";
+            this.DontHarvestTheFollowingObjectsHelper.UseVisualStyleBackColor = false;
+            this.DontHarvestTheFollowingObjectsHelper.Click += new System.EventHandler(this.DontHaverstObjectsTutorial_Click);
             // 
             // DontHarvestTheFollowingObjects
             // 
@@ -2200,12 +2209,24 @@ namespace nManager.Helpful.Forms
             // 
             this.GatheringSearchRadius.ForeColor = System.Drawing.Color.Black;
             this.GatheringSearchRadius.Location = new System.Drawing.Point(163, 244);
-            this.GatheringSearchRadius.Minimum = 5;
-            this.GatheringSearchRadius.Maximum = 300;
+            this.GatheringSearchRadius.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.GatheringSearchRadius.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.GatheringSearchRadius.Name = "GatheringSearchRadius";
             this.GatheringSearchRadius.Size = new System.Drawing.Size(77, 22);
             this.GatheringSearchRadius.TabIndex = 30;
-            this.GatheringSearchRadius.Value = 35;
+            this.GatheringSearchRadius.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
             // 
             // labelX22
             // 
@@ -2221,12 +2242,19 @@ namespace nManager.Helpful.Forms
             // 
             this.DontHarvestIfMoreThanXUnitInAggroRange.ForeColor = System.Drawing.Color.Black;
             this.DontHarvestIfMoreThanXUnitInAggroRange.Location = new System.Drawing.Point(163, 216);
-            this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = 0;
-            this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = 100;
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.DontHarvestIfMoreThanXUnitInAggroRange.Name = "DontHarvestIfMoreThanXUnitInAggroRange";
             this.DontHarvestIfMoreThanXUnitInAggroRange.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfMoreThanXUnitInAggroRange.TabIndex = 28;
-            this.DontHarvestIfMoreThanXUnitInAggroRange.Value = 3;
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // labelX21
             // 
@@ -2334,12 +2362,19 @@ namespace nManager.Helpful.Forms
             // 
             this.DontHarvestIfPlayerNearRadius.ForeColor = System.Drawing.Color.Black;
             this.DontHarvestIfPlayerNearRadius.Location = new System.Drawing.Point(163, 188);
-            this.DontHarvestIfPlayerNearRadius.Minimum = 0;
-            this.DontHarvestIfPlayerNearRadius.Maximum = 50;
+            this.DontHarvestIfPlayerNearRadius.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             this.DontHarvestIfPlayerNearRadius.Name = "DontHarvestIfPlayerNearRadius";
             this.DontHarvestIfPlayerNearRadius.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfPlayerNearRadius.TabIndex = 18;
-            this.DontHarvestIfPlayerNearRadius.Value = 10;
+            this.DontHarvestIfPlayerNearRadius.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // labelX12
             // 
@@ -2379,7 +2414,7 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.RegenerationManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.RegenerationManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.RegenerationManagementPanelName.ContentSize = new System.Drawing.Size(573, 83);
+            this.RegenerationManagementPanelName.ContentSize = new System.Drawing.Size(573, 78);
             this.RegenerationManagementPanelName.Controls.Add(this.DoRegenManaIfLow);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX9);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX10);
@@ -2393,18 +2428,19 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.Controls.Add(this.labelX11);
             this.RegenerationManagementPanelName.Fold = true;
             this.RegenerationManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("RegenerationManagementPanelName.FolderImage")));
+            this.RegenerationManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.RegenerationManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.RegenerationManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("RegenerationManagementPanelName.HeaderImage")));
-            this.RegenerationManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.RegenerationManagementPanelName.Location = new System.Drawing.Point(0, 108);
+            this.RegenerationManagementPanelName.HeaderSize = new System.Drawing.Size(556, 36);
+            this.RegenerationManagementPanelName.Location = new System.Drawing.Point(0, 72);
             this.RegenerationManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.RegenerationManagementPanelName.Name = "RegenerationManagementPanelName";
             this.RegenerationManagementPanelName.OrderIndex = 2;
             this.RegenerationManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.RegenerationManagementPanelName.Size = new System.Drawing.Size(573, 36);
+            this.RegenerationManagementPanelName.Size = new System.Drawing.Size(556, 36);
             this.RegenerationManagementPanelName.TabIndex = 4;
-            this.RegenerationManagementPanelName.TitleFont = null;
-            this.RegenerationManagementPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.RegenerationManagementPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.RegenerationManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.RegenerationManagementPanelName.TitleText = "Regeneration Management - Food / Drink && percentage to be used";
             this.RegenerationManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("RegenerationManagementPanelName.UnfolderImage")));
             // 
@@ -2445,12 +2481,24 @@ namespace nManager.Helpful.Forms
             // 
             this.DrinkBeverageWhenManaIsUnderXPercent.ForeColor = System.Drawing.Color.Black;
             this.DrinkBeverageWhenManaIsUnderXPercent.Location = new System.Drawing.Point(335, 77);
-            this.DrinkBeverageWhenManaIsUnderXPercent.Maximum = 99;
-            this.DrinkBeverageWhenManaIsUnderXPercent.Minimum = 1;
+            this.DrinkBeverageWhenManaIsUnderXPercent.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.DrinkBeverageWhenManaIsUnderXPercent.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.DrinkBeverageWhenManaIsUnderXPercent.Name = "DrinkBeverageWhenManaIsUnderXPercent";
             this.DrinkBeverageWhenManaIsUnderXPercent.Size = new System.Drawing.Size(53, 22);
             this.DrinkBeverageWhenManaIsUnderXPercent.TabIndex = 23;
-            this.DrinkBeverageWhenManaIsUnderXPercent.Value = 35;
+            this.DrinkBeverageWhenManaIsUnderXPercent.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
             // 
             // BeverageName
             // 
@@ -2494,12 +2542,24 @@ namespace nManager.Helpful.Forms
             // 
             this.EatFoodWhenHealthIsUnderXPercent.ForeColor = System.Drawing.Color.Black;
             this.EatFoodWhenHealthIsUnderXPercent.Location = new System.Drawing.Point(335, 49);
-            this.EatFoodWhenHealthIsUnderXPercent.Maximum = 99;
-            this.EatFoodWhenHealthIsUnderXPercent.Minimum = 1;
+            this.EatFoodWhenHealthIsUnderXPercent.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.EatFoodWhenHealthIsUnderXPercent.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.EatFoodWhenHealthIsUnderXPercent.Name = "EatFoodWhenHealthIsUnderXPercent";
             this.EatFoodWhenHealthIsUnderXPercent.Size = new System.Drawing.Size(53, 22);
             this.EatFoodWhenHealthIsUnderXPercent.TabIndex = 18;
-            this.EatFoodWhenHealthIsUnderXPercent.Value = 35;
+            this.EatFoodWhenHealthIsUnderXPercent.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
             // 
             // FoodName
             // 
@@ -2524,7 +2584,7 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MountManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MountManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MountManagementPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.MountManagementPanelName.ContentSize = new System.Drawing.Size(573, 144);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountName);
             this.MountManagementPanelName.Controls.Add(this.labelX66);
             this.MountManagementPanelName.Controls.Add(this.labelX57);
@@ -2539,25 +2599,26 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.Controls.Add(this.UseGroundMount);
             this.MountManagementPanelName.Fold = true;
             this.MountManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.FolderImage")));
+            this.MountManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MountManagementPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.MountManagementPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.HeaderImage")));
-            this.MountManagementPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.MountManagementPanelName.Location = new System.Drawing.Point(0, 72);
+            this.MountManagementPanelName.HeaderSize = new System.Drawing.Size(556, 36);
+            this.MountManagementPanelName.Location = new System.Drawing.Point(0, 36);
             this.MountManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.MountManagementPanelName.Name = "MountManagementPanelName";
             this.MountManagementPanelName.OrderIndex = 1;
             this.MountManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.MountManagementPanelName.Size = new System.Drawing.Size(573, 36);
+            this.MountManagementPanelName.Size = new System.Drawing.Size(556, 36);
             this.MountManagementPanelName.TabIndex = 3;
-            this.MountManagementPanelName.TitleFont = null;
-            this.MountManagementPanelName.TitleForeColor = System.Drawing.Color.Empty;
+            this.MountManagementPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.MountManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MountManagementPanelName.TitleText = "Ingame Mount Management - (Allow you to use Ground/Fly/Swim mount)";
             this.MountManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.UnfolderImage")));
             // 
             // AquaticMountName
             // 
             this.AquaticMountName.ForeColor = System.Drawing.Color.Black;
-            this.AquaticMountName.Location = new System.Drawing.Point(162, 192);
+            this.AquaticMountName.Location = new System.Drawing.Point(161, 138);
             this.AquaticMountName.Name = "AquaticMountName";
             this.AquaticMountName.Size = new System.Drawing.Size(144, 22);
             this.AquaticMountName.TabIndex = 22;
@@ -2566,7 +2627,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX66.BackColor = System.Drawing.Color.Transparent;
             this.labelX66.ForeColor = System.Drawing.Color.Black;
-            this.labelX66.Location = new System.Drawing.Point(3, 190);
+            this.labelX66.Location = new System.Drawing.Point(2, 136);
             this.labelX66.Name = "labelX66";
             this.labelX66.Size = new System.Drawing.Size(154, 22);
             this.labelX66.TabIndex = 21;
@@ -2576,7 +2637,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX57.BackColor = System.Drawing.Color.Transparent;
             this.labelX57.ForeColor = System.Drawing.Color.Black;
-            this.labelX57.Location = new System.Drawing.Point(3, 126);
+            this.labelX57.Location = new System.Drawing.Point(316, 85);
             this.labelX57.Name = "labelX57";
             this.labelX57.Size = new System.Drawing.Size(154, 22);
             this.labelX57.TabIndex = 20;
@@ -2585,7 +2646,7 @@ namespace nManager.Helpful.Forms
             // IgnoreFightIfMounted
             // 
             this.IgnoreFightIfMounted.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.IgnoreFightIfMounted.Location = new System.Drawing.Point(162, 126);
+            this.IgnoreFightIfMounted.Location = new System.Drawing.Point(475, 85);
             this.IgnoreFightIfMounted.MaximumSize = new System.Drawing.Size(60, 20);
             this.IgnoreFightIfMounted.MinimumSize = new System.Drawing.Size(60, 20);
             this.IgnoreFightIfMounted.Name = "IgnoreFightIfMounted";
@@ -2598,19 +2659,31 @@ namespace nManager.Helpful.Forms
             // MinimumDistanceToUseMount
             // 
             this.MinimumDistanceToUseMount.ForeColor = System.Drawing.Color.Black;
-            this.MinimumDistanceToUseMount.Location = new System.Drawing.Point(162, 98);
-            this.MinimumDistanceToUseMount.Minimum = 5;
-            this.MinimumDistanceToUseMount.Minimum = 200;
+            this.MinimumDistanceToUseMount.Location = new System.Drawing.Point(161, 79);
+            this.MinimumDistanceToUseMount.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.MinimumDistanceToUseMount.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.MinimumDistanceToUseMount.Name = "MinimumDistanceToUseMount";
             this.MinimumDistanceToUseMount.Size = new System.Drawing.Size(77, 22);
             this.MinimumDistanceToUseMount.TabIndex = 18;
-            this.MinimumDistanceToUseMount.Value = 80;
+            this.MinimumDistanceToUseMount.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             // 
             // labelX8
             // 
             this.labelX8.BackColor = System.Drawing.Color.Transparent;
             this.labelX8.ForeColor = System.Drawing.Color.Black;
-            this.labelX8.Location = new System.Drawing.Point(3, 98);
+            this.labelX8.Location = new System.Drawing.Point(2, 79);
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(154, 22);
             this.labelX8.TabIndex = 16;
@@ -2619,7 +2692,7 @@ namespace nManager.Helpful.Forms
             // FlyingMountName
             // 
             this.FlyingMountName.ForeColor = System.Drawing.Color.Black;
-            this.FlyingMountName.Location = new System.Drawing.Point(162, 165);
+            this.FlyingMountName.Location = new System.Drawing.Point(161, 111);
             this.FlyingMountName.Name = "FlyingMountName";
             this.FlyingMountName.Size = new System.Drawing.Size(144, 22);
             this.FlyingMountName.TabIndex = 15;
@@ -2628,7 +2701,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX7.BackColor = System.Drawing.Color.Transparent;
             this.labelX7.ForeColor = System.Drawing.Color.Black;
-            this.labelX7.Location = new System.Drawing.Point(3, 162);
+            this.labelX7.Location = new System.Drawing.Point(2, 108);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(154, 22);
             this.labelX7.TabIndex = 14;
@@ -2637,7 +2710,7 @@ namespace nManager.Helpful.Forms
             // GroundMountName
             // 
             this.GroundMountName.ForeColor = System.Drawing.Color.Black;
-            this.GroundMountName.Location = new System.Drawing.Point(162, 73);
+            this.GroundMountName.Location = new System.Drawing.Point(161, 54);
             this.GroundMountName.Name = "GroundMountName";
             this.GroundMountName.Size = new System.Drawing.Size(144, 22);
             this.GroundMountName.TabIndex = 13;
@@ -2646,7 +2719,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX6.BackColor = System.Drawing.Color.Transparent;
             this.labelX6.ForeColor = System.Drawing.Color.Black;
-            this.labelX6.Location = new System.Drawing.Point(3, 70);
+            this.labelX6.Location = new System.Drawing.Point(2, 51);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(154, 22);
             this.labelX6.TabIndex = 12;
@@ -2656,7 +2729,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX5.BackColor = System.Drawing.Color.Transparent;
             this.labelX5.ForeColor = System.Drawing.Color.Black;
-            this.labelX5.Location = new System.Drawing.Point(3, 43);
+            this.labelX5.Location = new System.Drawing.Point(316, 54);
             this.labelX5.Name = "labelX5";
             this.labelX5.Size = new System.Drawing.Size(154, 22);
             this.labelX5.TabIndex = 11;
@@ -2665,7 +2738,7 @@ namespace nManager.Helpful.Forms
             // UseGroundMount
             // 
             this.UseGroundMount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.UseGroundMount.Location = new System.Drawing.Point(162, 43);
+            this.UseGroundMount.Location = new System.Drawing.Point(475, 54);
             this.UseGroundMount.MaximumSize = new System.Drawing.Size(60, 20);
             this.UseGroundMount.MinimumSize = new System.Drawing.Size(60, 20);
             this.UseGroundMount.Name = "UseGroundMount";
@@ -2680,7 +2753,7 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SpellManagementSystemPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SpellManagementSystemPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(573, 200);
+            this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(556, 225);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel);
@@ -2711,18 +2784,19 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassSettingsButton);
             this.SpellManagementSystemPanelName.Fold = true;
             this.SpellManagementSystemPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("SpellManagementSystemPanelName.FolderImage")));
+            this.SpellManagementSystemPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SpellManagementSystemPanelName.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.SpellManagementSystemPanelName.HeaderImage = ((System.Drawing.Image)(resources.GetObject("SpellManagementSystemPanelName.HeaderImage")));
-            this.SpellManagementSystemPanelName.HeaderSize = new System.Drawing.Size(573, 36);
-            this.SpellManagementSystemPanelName.Location = new System.Drawing.Point(0, 36);
+            this.SpellManagementSystemPanelName.HeaderSize = new System.Drawing.Size(556, 36);
+            this.SpellManagementSystemPanelName.Location = new System.Drawing.Point(0, 0);
             this.SpellManagementSystemPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.SpellManagementSystemPanelName.Name = "SpellManagementSystemPanelName";
             this.SpellManagementSystemPanelName.OrderIndex = 0;
             this.SpellManagementSystemPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.SpellManagementSystemPanelName.Size = new System.Drawing.Size(573, 36);
+            this.SpellManagementSystemPanelName.Size = new System.Drawing.Size(556, 36);
             this.SpellManagementSystemPanelName.TabIndex = 50;
-            this.SpellManagementSystemPanelName.TitleFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpellManagementSystemPanelName.TitleForeColor = System.Drawing.Color.White;
+            this.SpellManagementSystemPanelName.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
+            this.SpellManagementSystemPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SpellManagementSystemPanelName.TitleText = "Spell Management System - Combat/Healer Class";
             this.SpellManagementSystemPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("SpellManagementSystemPanelName.UnfolderImage")));
             // 
@@ -3070,19 +3144,19 @@ namespace nManager.Helpful.Forms
             this.CombatClassSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CombatClassSettingsButton.Click += new System.EventHandler(this.CombatClassSettingsButton_Click);
             // 
-            // tnbControlMenu2
+            // MainHeader
             // 
-            this.tnbControlMenu2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tnbControlMenu2.BackgroundImage")));
-            this.tnbControlMenu2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tnbControlMenu2.Location = new System.Drawing.Point(0, 0);
-            this.tnbControlMenu2.LogoImage = ((System.Drawing.Image)(resources.GetObject("tnbControlMenu2.LogoImage")));
-            this.tnbControlMenu2.Margin = new System.Windows.Forms.Padding(0);
-            this.tnbControlMenu2.Name = "tnbControlMenu2";
-            this.tnbControlMenu2.Size = new System.Drawing.Size(575, 43);
-            this.tnbControlMenu2.TabIndex = 7;
-            this.tnbControlMenu2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tnbControlMenu2.TitleForeColor = System.Drawing.Color.White;
-            this.tnbControlMenu2.TitleText = "Titre de la fenêtre";
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Margin = new System.Windows.Forms.Padding(0);
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(575, 43);
+            this.MainHeader.TabIndex = 7;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainHeader.TitleForeColor = System.Drawing.Color.White;
+            this.MainHeader.TitleText = "Titre de la fenêtre";
             // 
             // GeneralSettings
             // 
@@ -3094,8 +3168,8 @@ namespace nManager.Helpful.Forms
             this.Controls.Add(this.closeB);
             this.Controls.Add(this.resetB);
             this.Controls.Add(this.saveAndCloseB);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.tnbControlMenu2);
+            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.MainHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3104,7 +3178,7 @@ namespace nManager.Helpful.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "General Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GeneralSettings_FormClosing);
-            this.panel1.ResumeLayout(false);
+            this.MainPanel.ResumeLayout(false);
             this.MimesisBroadcasterSettingsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BroadcastingPort)).EndInit();
             this.AdvancedSettingsPanelName.ResumeLayout(false);
@@ -3146,7 +3220,7 @@ namespace nManager.Helpful.Forms
 
         #endregion
 
-        private TnbRibbonManager panel1;
+        private TnbRibbonManager MainPanel;
         private TnbExpendablePanel MountManagementPanelName;
         private TnbExpendablePanel SpellManagementSystemPanelName;
         private Label labelX8;
@@ -3331,7 +3405,7 @@ namespace nManager.Helpful.Forms
         private Label UseRobotLabel;
         private TnbSwitchButton UseRobot;
         private TextBox DontHarvestTheFollowingObjects;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button DontHarvestTheFollowingObjectsHelper;
         private nManager.Helpful.Forms.UserControls.TnbButton HealerClassResetSettingsButton;
         private Label HealerClassLabel;
         private TnbComboBox HealerClass;
@@ -3363,6 +3437,6 @@ namespace nManager.Helpful.Forms
         private Label BroadcastingPortLabel;
         private NumericUpDown BroadcastingPort;
         private TnbControlMenu tnbControlMenu1;
-        private TnbControlMenu tnbControlMenu2;
+        private TnbControlMenu MainHeader;
     }
 }

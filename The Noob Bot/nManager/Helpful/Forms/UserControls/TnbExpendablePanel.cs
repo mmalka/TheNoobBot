@@ -18,12 +18,8 @@ namespace nManager.Helpful.Forms.UserControls
         private Size _contentSize = new Size(573, 200);
         private bool _fold;
         private Image _folderImage = Resources.PanelExpendableMinusImg;
-        private Color _headerBackColor = Color.FromArgb(250, 250, 250);
-        private Image _headerImage = Resources.panelcontrolHeaderbottomborder;
         private Size _headerSize = new Size(573, 36);
         private int _orderIndex = -1;
-        private Font _titleFont = new Font(new FontFamily("Arial"), 8, FontStyle.Bold, GraphicsUnit.Point);
-        private Color _titleForeColor;
 
         private PictureBox _toggler;
         private Image _unfolderImage = Resources.PanelExpendablePlusImg;
@@ -32,6 +28,8 @@ namespace nManager.Helpful.Forms.UserControls
         {
             var tmpSize = new Size(HeaderSize.Width, HeaderSize.Height + ContentSize.Height);
             Size = tmpSize;
+            if (HeaderImage == null)
+                HeaderImage = Resources.panelcontrolHeaderbottomborder;
             if (TitleForeColor == new Color())
                 TitleForeColor = Color.FromArgb(255, 255, 255);
             InitializeHeader();
@@ -43,30 +41,21 @@ namespace nManager.Helpful.Forms.UserControls
         public string TitleText
         {
             get { return _header.Text; }
-            set
-            {
-                _header.Text = value;
-            }
+            set { _header.Text = value; }
         }
 
         [Category("AaTnbControls")]
         public Color TitleForeColor
         {
             get { return _header.ForeColor; }
-            set
-            {
-                _header.ForeColor = value;
-            }
+            set { _header.ForeColor = value; }
         }
 
         [Category("AaTnbControls")]
         public Font TitleFont
         {
             get { return _header.Font; }
-            set
-            {
-                _header.Font = value;
-            }
+            set { _header.Font = value; }
         }
 
         [Category("AaTnbControls")]
@@ -84,20 +73,14 @@ namespace nManager.Helpful.Forms.UserControls
         public Image HeaderImage
         {
             get { return _header.Image; }
-            set
-            {
-                _header.Image = value;
-            }
+            set { _header.Image = value; }
         }
 
         [Category("AaTnbControls")]
         public Color HeaderBackColor
         {
             get { return _header.BackColor; }
-            set
-            {
-                _header.BackColor = value;
-            }
+            set { _header.BackColor = value; }
         }
 
         public new Color BackColor

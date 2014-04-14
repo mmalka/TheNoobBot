@@ -1,11 +1,10 @@
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Helpers;
 
 namespace nManager.Helpful.Forms
 {
@@ -37,7 +36,7 @@ namespace nManager.Helpful.Forms
                 {
                     HealerClass.Items.Add(f);
                 }
-                var firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
+                IPAddress firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
                 BroadcastingIPLan.Text = firstInterfaceLanIPv4 != null ? firstInterfaceLanIPv4.ToString() : "No Lan IPv4 found";
                 BroadcastingIPWan.Text = Others.GetClientIPAddress;
             }
@@ -49,9 +48,9 @@ namespace nManager.Helpful.Forms
 
         private void SetToolTypeIfNeeded(Control label)
         {
-            using (System.Drawing.Graphics g = CreateGraphics())
+            using (Graphics g = CreateGraphics())
             {
-                System.Drawing.SizeF size = g.MeasureString(label.Text, label.Font);
+                SizeF size = g.MeasureString(label.Text, label.Font);
                 if (size.Width > label.Width)
                 {
                     labelsToolTip.SetToolTip(label, label.Text);
@@ -269,7 +268,7 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(saveAndCloseB);
             labelX68.Text = Translate.Get(Translate.Id.Auto_Make_Elemental);
             SetToolTypeIfNeeded(labelX68);
-            Text = Translate.Get(Translate.Id.General_Settings);
+            MainHeader.TitleText = Translate.Get(Translate.Id.General_Settings) + " - " + Information.MainTitle;
             labelX73.Text = Translate.Get(Translate.Id.Uncap_MaxFPS);
             SetToolTypeIfNeeded(labelX73);
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
@@ -281,7 +280,7 @@ namespace nManager.Helpful.Forms
             SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
             SetToolTypeIfNeeded(SellItemsWhenLessThanXSlotLeftLabel);
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
-            SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel); 
+            SetToolTypeIfNeeded(RepairWhenDurabilityIsUnderPercentLabel);
             UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
             SetToolTypeIfNeeded(UseHearthstoneLabel);
             UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
@@ -427,9 +426,9 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.FlyingMountName = FlyingMountName.Text;
                 nManagerSetting.CurrentSetting.AquaticMountName = AquaticMountName.Text;
                 nManagerSetting.CurrentSetting.FoodName = FoodName.Text;
-                nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent = (int)EatFoodWhenHealthIsUnderXPercent.Value;
+                nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent = (int) EatFoodWhenHealthIsUnderXPercent.Value;
                 nManagerSetting.CurrentSetting.BeverageName = BeverageName.Text;
-                nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent = (int)DrinkBeverageWhenManaIsUnderXPercent.Value;
+                nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent = (int) DrinkBeverageWhenManaIsUnderXPercent.Value;
                 nManagerSetting.CurrentSetting.DoRegenManaIfLow = DoRegenManaIfLow.Value;
                 nManagerSetting.CurrentSetting.ActivateMonsterLooting = ActivateMonsterLooting.Value;
                 nManagerSetting.CurrentSetting.ActivateLootStatistics = ActivateLootStatistics.Value;
@@ -438,18 +437,18 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.BeastNinjaSkinning = BeastNinjaSkinning.Value;
                 nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = ActivateVeinsHarvesting.Value;
                 nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = ActivateHerbsHarvesting.Value;
-                nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius = (int)DontHarvestIfPlayerNearRadius.Value;
-                nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange = (int)DontHarvestIfMoreThanXUnitInAggroRange.Value;
-                nManagerSetting.CurrentSetting.GatheringSearchRadius = (int)GatheringSearchRadius.Value;
+                nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius = (int) DontHarvestIfPlayerNearRadius.Value;
+                nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange = (int) DontHarvestIfMoreThanXUnitInAggroRange.Value;
+                nManagerSetting.CurrentSetting.GatheringSearchRadius = (int) GatheringSearchRadius.Value;
                 nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements = HarvestDuringLongDistanceMovements.Value;
                 nManagerSetting.CurrentSetting.ActivateAutoSmelting = ActivateAutoSmelting.Value;
                 nManagerSetting.CurrentSetting.ActivateAutoProspecting = ActivateAutoProspecting.Value;
-                nManagerSetting.CurrentSetting.TimeBetweenEachProspectingAttempt = (int)TimeBetweenEachProspectingAttempt.Value;
+                nManagerSetting.CurrentSetting.TimeBetweenEachProspectingAttempt = (int) TimeBetweenEachProspectingAttempt.Value;
                 nManagerSetting.CurrentSetting.OnlyUseProspectingInTown = OnlyUseProspectingInTown.Value;
                 nManagerSetting.CurrentSetting.MineralsToProspect.Clear();
                 nManagerSetting.CurrentSetting.MineralsToProspect.AddRange(Others.TextToArrayByLine(MineralsToProspect.Text));
                 nManagerSetting.CurrentSetting.ActivateAutoMilling = ActivateAutoMilling.Value;
-                nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt = (int)TimeBetweenEachMillingAttempt.Value;
+                nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt = (int) TimeBetweenEachMillingAttempt.Value;
                 nManagerSetting.CurrentSetting.OnlyUseMillingInTown = OnlyUseMillingInTown.Value;
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Clear();
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.AddRange(Others.TextToArrayByLine(HerbsToBeMilled.Text));
@@ -460,8 +459,8 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount = EmailOfTheBattleNetAccount.Text;
                 nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount = PasswordOfTheBattleNetAccount.Text;
                 nManagerSetting.CurrentSetting.BattleNetSubAccount = BattleNetSubAccount.Text;
-                nManagerSetting.CurrentSetting.NumberOfFoodsWeGot = (int)NumberOfFoodsWeGot.Value;
-                nManagerSetting.CurrentSetting.NumberOfBeverageWeGot = (int)NumberOfBeverageWeGot.Value;
+                nManagerSetting.CurrentSetting.NumberOfFoodsWeGot = (int) NumberOfFoodsWeGot.Value;
+                nManagerSetting.CurrentSetting.NumberOfBeverageWeGot = (int) NumberOfBeverageWeGot.Value;
                 nManagerSetting.CurrentSetting.ActivateAutoRepairFeature = ActivateAutoRepairFeature.Value;
                 nManagerSetting.CurrentSetting.ActivateAutoSellingFeature = ActivateAutoSellingFeature.Value;
                 nManagerSetting.CurrentSetting.SellGray = SellGray.Checked;
@@ -488,21 +487,21 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.StopTNBIfBagAreFull = StopTNBIfBagAreFull.Value;
                 nManagerSetting.CurrentSetting.StopTNBIfHonorPointsLimitReached = StopTNBIfHonorPointsLimitReached.Value;
                 nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported = StopTNBIfPlayerHaveBeenTeleported.Value;
-                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup = (int)StopTNBAfterXLevelup.Value;
-                nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers = (int)StopTNBIfReceivedAtMostXWhispers.Value;
-                nManagerSetting.CurrentSetting.StopTNBAfterXStucks = (int)StopTNBAfterXStucks.Value;
-                nManagerSetting.CurrentSetting.StopTNBAfterXMinutes = (int)StopTNBAfterXMinutes.Value;
+                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup = (int) StopTNBAfterXLevelup.Value;
+                nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers = (int) StopTNBIfReceivedAtMostXWhispers.Value;
+                nManagerSetting.CurrentSetting.StopTNBAfterXStucks = (int) StopTNBAfterXStucks.Value;
+                nManagerSetting.CurrentSetting.StopTNBAfterXMinutes = (int) StopTNBAfterXMinutes.Value;
                 nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer = PauseTNBIfNearByPlayer.Value;
                 nManagerSetting.CurrentSetting.RecordWhispsInLogFiles = RecordWhispsInLogFiles.Value;
                 nManagerSetting.CurrentSetting.PlayASongIfNewWhispReceived = PlayASongIfNewWhispReceived.Value;
                 nManagerSetting.CurrentSetting.ActivatePathFindingFeature = ActivatePathFindingFeature.Value;
                 nManagerSetting.CurrentSetting.AllowTNBToSetYourMaxFps = AllowTNBToSetYourMaxFps.Value;
-                nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs = (int)MaxDistanceToGoToMailboxesOrNPCs.Value;
+                nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs = (int) MaxDistanceToGoToMailboxesOrNPCs.Value;
                 nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems = AutoConfirmOnBoPItems.Value;
                 nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature = ActivateAlwaysOnTopFeature.Value;
-                nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent = (int)RepairWhenDurabilityIsUnderPercent.Value;
-                nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft = (int)SellItemsWhenLessThanXSlotLeft.Value;
-                nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft = (int)SendMailWhenLessThanXSlotLeft.Value;
+                nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent = (int) RepairWhenDurabilityIsUnderPercent.Value;
+                nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft = (int) SellItemsWhenLessThanXSlotLeft.Value;
+                nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft = (int) SendMailWhenLessThanXSlotLeft.Value;
                 nManagerSetting.CurrentSetting.UseHearthstone = UseHearthstone.Value;
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXLevelup = ActiveStopTNBAfterXLevelup.Value;
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXMinutes = ActiveStopTNBAfterXMinutes.Value;
@@ -514,7 +513,7 @@ namespace nManager.Helpful.Forms
                 int oldPort = nManagerSetting.CurrentSetting.BroadcastingPort;
                 bool oldStatus = nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis;
                 nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
-                nManagerSetting.CurrentSetting.BroadcastingPort = (int)BroadcastingPort.Value;
+                nManagerSetting.CurrentSetting.BroadcastingPort = (int) BroadcastingPort.Value;
                 nManagerSetting.CurrentSetting.Save();
                 if (oldStatus && !ActivateBroadcastingMimesis.Value)
                     Communication.Shutdown(oldPort); // Display the port used before the settings edition.
@@ -569,7 +568,7 @@ namespace nManager.Helpful.Forms
                 ActivateHerbsHarvesting.Value = managerSetting.ActivateHerbsHarvesting;
                 DontHarvestIfPlayerNearRadius.Value = (decimal) managerSetting.DontHarvestIfPlayerNearRadius;
                 DontHarvestIfMoreThanXUnitInAggroRange.Value = managerSetting.DontHarvestIfMoreThanXUnitInAggroRange;
-                GatheringSearchRadius.Value = (decimal)managerSetting.GatheringSearchRadius;
+                GatheringSearchRadius.Value = (decimal) managerSetting.GatheringSearchRadius;
                 HarvestDuringLongDistanceMovements.Value = managerSetting.HarvestDuringLongDistanceMovements;
                 ActivateAutoSmelting.Value = managerSetting.ActivateAutoSmelting;
                 ActivateAutoProspecting.Value = managerSetting.ActivateAutoProspecting;
@@ -686,8 +685,8 @@ namespace nManager.Helpful.Forms
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
                     DialogResult ret = MessageBox.Show(string.Format("{0}?", Translate.Get(Translate.Id.Do_you_want_save_this_setting)),
-                                                       Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
-                                                       MessageBoxIcon.Question);
+                        Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
                     if (ret == DialogResult.Yes)
                         SaveSetting();
                 }
