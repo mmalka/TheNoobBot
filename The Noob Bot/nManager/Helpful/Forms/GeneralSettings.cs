@@ -19,7 +19,6 @@ namespace nManager.Helpful.Forms
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
 
-                LoadSetting(nManagerSetting.CurrentSetting);
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
                 {
                     CombatClass.Items.Add(f);
@@ -36,6 +35,7 @@ namespace nManager.Helpful.Forms
                 {
                     HealerClass.Items.Add(f);
                 }
+                LoadSetting(nManagerSetting.CurrentSetting);
                 IPAddress firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
                 BroadcastingIPLan.Text = firstInterfaceLanIPv4 != null ? firstInterfaceLanIPv4.ToString() : "No Lan IPv4 found";
                 BroadcastingIPWan.Text = Others.GetClientIPAddress;

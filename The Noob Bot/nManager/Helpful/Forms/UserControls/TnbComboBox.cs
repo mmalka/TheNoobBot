@@ -38,6 +38,34 @@ namespace nManager.Helpful.Forms.UserControls
             }
         }
 
+
+        [Category("Appearance")]
+        public new string Text
+        {
+            get
+            {
+                if (Items.Count > 0)
+                {
+                    if (SelectedIndex != -1)
+                        return Items[SelectedIndex].ToString();
+                }
+                return "";
+            }
+            set
+            {
+                if (Items.Count > 0)
+                {
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        object item = Items[i];
+                        if (item.ToString() != value) continue;
+                        SelectedIndex = i;
+                        return;
+                    }
+                }
+            }
+        }
+
         [Category("Appearance")]
         public Color SelectorBorderColor
         {
