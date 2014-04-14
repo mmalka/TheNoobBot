@@ -125,5 +125,8 @@
     <ClInclude Include="Detour\DetourStatus.h">
       <Filter>Detour</Filter>
     </ClInclude>
+    <ClInclude Include="Detour\DetourMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

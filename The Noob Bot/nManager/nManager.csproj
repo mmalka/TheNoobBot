@@ -36,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="fasmdll_managed, Version=1.0.3829.8764, Culture=neutral, PublicKeyToken=53d73c680b668dc5, processorArchitecture=x86">
