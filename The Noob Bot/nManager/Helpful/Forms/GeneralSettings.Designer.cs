@@ -354,7 +354,7 @@ namespace nManager.Helpful.Forms
             this.MimesisBroadcasterSettingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MimesisBroadcasterSettingsPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MimesisBroadcasterSettingsPanel.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MimesisBroadcasterSettingsPanel.ContentSize = new System.Drawing.Size(573, 158);
+            this.MimesisBroadcasterSettingsPanel.ContentSize = new System.Drawing.Size(556, 158);
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingPort);
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingIPWan);
             this.MimesisBroadcasterSettingsPanel.Controls.Add(this.BroadcastingIPLan);
@@ -517,7 +517,7 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.AdvancedSettingsPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.AdvancedSettingsPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(573, 103);
+            this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(556, 103);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrameLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrame);
             this.AdvancedSettingsPanelName.Controls.Add(this.AlwaysOnTopFeatureLabel);
@@ -677,7 +677,7 @@ namespace nManager.Helpful.Forms
             this.SecuritySystemPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SecuritySystemPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SecuritySystemPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.SecuritySystemPanelName.ContentSize = new System.Drawing.Size(573, 354);
+            this.SecuritySystemPanelName.ContentSize = new System.Drawing.Size(556, 354);
             this.SecuritySystemPanelName.Controls.Add(this.UseHearthstoneLabel);
             this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXMinutes);
             this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXStucks);
@@ -1120,7 +1120,7 @@ namespace nManager.Helpful.Forms
             this.MailsManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MailsManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MailsManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MailsManagementPanelName.ContentSize = new System.Drawing.Size(573, 316);
+            this.MailsManagementPanelName.ContentSize = new System.Drawing.Size(556, 316);
             this.MailsManagementPanelName.Controls.Add(this.MailPurple);
             this.MailsManagementPanelName.Controls.Add(this.MailBlue);
             this.MailsManagementPanelName.Controls.Add(this.MailGreen);
@@ -1358,7 +1358,7 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.NPCsRepairSellBuyPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.NPCsRepairSellBuyPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.NPCsRepairSellBuyPanelName.ContentSize = new System.Drawing.Size(573, 316);
+            this.NPCsRepairSellBuyPanelName.ContentSize = new System.Drawing.Size(556, 316);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellPurple);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellBlue);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellGreen);
@@ -1656,7 +1656,7 @@ namespace nManager.Helpful.Forms
             this.ReloggerManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.ReloggerManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.ReloggerManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.ReloggerManagementPanelName.ContentSize = new System.Drawing.Size(573, 144);
+            this.ReloggerManagementPanelName.ContentSize = new System.Drawing.Size(556, 144);
             this.ReloggerManagementPanelName.Controls.Add(this.BattleNetSubAccount);
             this.ReloggerManagementPanelName.Controls.Add(this.labelX67);
             this.ReloggerManagementPanelName.Controls.Add(this.labelX38);
@@ -1765,7 +1765,7 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.LootingFarmingManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.LootingFarmingManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.LootingFarmingManagementPanelName.ContentSize = new System.Drawing.Size(573, 518);
+            this.LootingFarmingManagementPanelName.ContentSize = new System.Drawing.Size(556, 518);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatisticsLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatistics);
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjectsHelper);
@@ -2414,7 +2414,7 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.RegenerationManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.RegenerationManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.RegenerationManagementPanelName.ContentSize = new System.Drawing.Size(573, 78);
+            this.RegenerationManagementPanelName.ContentSize = new System.Drawing.Size(556, 78);
             this.RegenerationManagementPanelName.Controls.Add(this.DoRegenManaIfLow);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX9);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX10);
@@ -2584,7 +2584,7 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MountManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MountManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MountManagementPanelName.ContentSize = new System.Drawing.Size(573, 144);
+            this.MountManagementPanelName.ContentSize = new System.Drawing.Size(556, 144);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountName);
             this.MountManagementPanelName.Controls.Add(this.labelX66);
             this.MountManagementPanelName.Controls.Add(this.labelX57);
@@ -2753,7 +2753,7 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SpellManagementSystemPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.SpellManagementSystemPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(573, 225);
+            this.SpellManagementSystemPanelName.ContentSize = new System.Drawing.Size(556, 225);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
             this.SpellManagementSystemPanelName.Controls.Add(this.BecomeApprenticeOfSecondarySkillsWhileQuestingLabel);

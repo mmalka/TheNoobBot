@@ -6,7 +6,7 @@ using nManager.Properties;
 
 namespace nManager.Helpful.Forms.UserControls
 {
-    public class TnbExpendablePanel : Panel
+    public sealed class TnbExpendablePanel : Panel
     {
         private const int WmPaint = 0x000F;
         private readonly Label _header = new Label();
@@ -15,10 +15,10 @@ namespace nManager.Helpful.Forms.UserControls
         private Color _borderColor = Color.FromArgb(52, 52, 52);
         private ButtonBorderStyle _borderStyle = ButtonBorderStyle.Solid;
         private Color _contentBackColor = Color.FromArgb(232, 232, 232);
-        private Size _contentSize = new Size(573, 200);
+        private Size _contentSize = new Size(556, 200);
         private bool _fold;
         private Image _folderImage = Resources.PanelExpendableMinusImg;
-        private Size _headerSize = new Size(573, 36);
+        private Size _headerSize = new Size(556, 36);
         private int _orderIndex = -1;
 
         private PictureBox _toggler;
@@ -109,10 +109,10 @@ namespace nManager.Helpful.Forms.UserControls
                     var tmpSize = new Size(HeaderSize.Width, HeaderSize.Height + ContentSize.Height);
                     _toggler.Image = Resources.PanelExpendableMinusImg;
                     Size = tmpSize;
+                    MaximumSize = new Size(HeaderSize.Width, 0);
                 }
                 if (OnStatusChanged != null)
                     OnStatusChanged(this, EventArgs.Empty);
-                Invalidate();
             }
         }
 
@@ -125,7 +125,6 @@ namespace nManager.Helpful.Forms.UserControls
                 _orderIndex = value;
                 if (OnOrderChanged != null)
                     OnOrderChanged(this, EventArgs.Empty);
-                //Invalidate();
             }
         }
 
@@ -133,22 +132,14 @@ namespace nManager.Helpful.Forms.UserControls
         public Size HeaderSize
         {
             get { return _headerSize; }
-            set
-            {
-                _headerSize = new Size(value.Width, 36);
-                Invalidate();
-            }
+            set { _headerSize = new Size(value.Width, 36); }
         }
 
         [Category("AaTnbControls")]
         public Size ContentSize
         {
-            get { return _contentSize; }
-            set
-            {
-                _contentSize = new Size(HeaderSize.Width, value.Height);
-                Invalidate();
-            }
+            get { return new Size(HeaderSize.Width, _contentSize.Height); }
+            set { _contentSize = new Size(HeaderSize.Width, value.Height); }
         }
 
         [Category("AaTnbControls")]
