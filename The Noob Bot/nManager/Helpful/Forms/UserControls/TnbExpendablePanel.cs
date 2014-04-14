@@ -25,22 +25,48 @@ namespace nManager.Helpful.Forms.UserControls
 
         private PictureBox _toggler;
         private Image _unfolderImage = Resources.PanelExpendablePlusImg;
+        private Color _titleForeColor;
+        private Font _titleFont;
 
         public TnbExpendablePanel()
         {
             var tmpSize = new Size(HeaderSize.Width, HeaderSize.Height + ContentSize.Height);
             Size = tmpSize;
+            TitleFont = new Font(new FontFamily("Arial"),8,FontStyle.Bold,GraphicsUnit.Point );
+            TitleForeColor = Color.White;
             InitializeHeader();
             base.BackColor = _contentBackColor;
         }
 
         [Category("AaTnbControls")]
-        public string HeaderText
+        public string TitleText
         {
             get { return _header.Text; }
             set
             {
                 _header.Text = value;
+                Invalidate();
+            }
+        }
+
+        [Category("AaTnbControls")]
+        public Color TitleForeColor
+        {
+            get { return _titleForeColor; }
+            set
+            {
+                _titleForeColor = value;
+                Invalidate();
+            }
+        }
+
+        [Category("AaTnbControls")]
+        public Font TitleFont
+        {
+            get { return _titleFont; }
+            set
+            {
+                _titleFont = value;
                 Invalidate();
             }
         }
@@ -94,12 +120,14 @@ namespace nManager.Helpful.Forms.UserControls
                 _fold = value;
                 if (value)
                 {
+                    AutoSize = false;
                     var tmpSize = new Size(HeaderSize.Width, HeaderSize.Height);
                     _toggler.Image = Resources.PanelExpendablePlusImg;
                     Size = tmpSize;
                 }
                 else
                 {
+                    AutoSize = true;
                     var tmpSize = new Size(HeaderSize.Width, HeaderSize.Height + ContentSize.Height);
                     _toggler.Image = Resources.PanelExpendableMinusImg;
                     Size = tmpSize;
@@ -209,8 +237,8 @@ namespace nManager.Helpful.Forms.UserControls
             _header.Visible = true;
             _header.AutoSize = false;
             _header.Text = "Spell Management - Manage your Spell priority";
-            _header.Font = new Font("Arial", 11, FontStyle.Bold);
-            _header.ForeColor = Color.White;
+            _header.Font = TitleFont;
+            _header.ForeColor = TitleForeColor;
             _header.TextAlign = ContentAlignment.MiddleCenter;
             _header.Size = HeaderSize;
             _header.Location = new Point(0, 0);
