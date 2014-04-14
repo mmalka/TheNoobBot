@@ -93,7 +93,13 @@
     <Compile Include="Helpful\Forms\UserControls\TnbComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbExpendablePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Helpful\Forms\UserControls\TnbProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbRibbonManager.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helpful\Forms\UserControls\TnbSwitchButton.cs">
@@ -344,7 +350,16 @@
     <None Include="Resources\blackB_200.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\greenB_2001.png" />
+    <None Include="Resources\PanelHeaderImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelcontrolHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanelExpendablePlusImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanelExpendableMinusImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

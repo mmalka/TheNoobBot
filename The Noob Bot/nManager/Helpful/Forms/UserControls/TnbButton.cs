@@ -14,6 +14,7 @@ namespace nManager.Helpful.Forms.UserControls
         public TnbButton()
         {
             base.AutoSize = false;
+            Size  = new Size(106, 29);
             TextAlign = ContentAlignment.MiddleCenter;
             Image = Resources.blackB;
             AutoEllipsis = true;
