@@ -35,6 +35,7 @@ namespace nManager.Helpful.Forms.UserControls
             TitleFont = new Font(new FontFamily("Arial"),8,FontStyle.Bold,GraphicsUnit.Point );
             TitleForeColor = Color.White;
             InitializeHeader();
+            Padding = new Padding(0,0,0,12);
             base.BackColor = _contentBackColor;
         }
 
