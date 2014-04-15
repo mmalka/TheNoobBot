@@ -144,7 +144,9 @@ namespace TheNoobViewer
                         var image = new PathImage(continent, Hops, NpcDB, autoZoom, zoom, ignorewater);
                         image.Generate(GetScreen().Width, GetScreen().Height, out zoom);
                         textBox1.Visible = false;
+                        this.Controls.Remove(pictureBox1);
                         pictureBox1.Image = image.Result;
+                        this.Controls.Add(pictureBox1);
                         toolStripStatusLabel1.Text = Hops.Count + " nodes in the path";
                     }
                     catch
