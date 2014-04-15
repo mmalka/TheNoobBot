@@ -10,7 +10,7 @@ public class Main : IProduct
 {
     #region IProduct Members
 
-    private formMain formMain;
+    private MainForm formMain;
 
     public void Initialize()
     {
@@ -141,7 +141,7 @@ public class Main : IProduct
                     Objective = objectiveQuest2
                 });
             XmlSerializer.Serialize(Application.StartupPath + @"\test.xml", hbQuest);*/
-            formMain = new formMain();
+            formMain = new MainForm();
             formMain.Show();
             _isStarted = true;
             Others.ProductStatusLog(Products.ProductName, 4);

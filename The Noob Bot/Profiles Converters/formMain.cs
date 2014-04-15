@@ -1,30 +1,33 @@
 using System;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
+using nManager.Products;
+using Profiles_Converters.Converters;
 
 namespace Profiles_Converters
 {
-    public partial class formMain : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class MainForm : Form
     {
-        public formMain()
+        public MainForm()
         {
             InitializeComponent();
             Translate();
-            if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+            if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 TopMost = true;
         }
 
         private void Translate()
         {
             convertB.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles) + " (Pirox Fly gatherer, ";
-            labelX4.Text = " grind) " + nManager.Translate.Get(nManager.Translate.Id.to) + " The Noob Bot profiles";
-            Text = nManager.Translate.Get(nManager.Translate.Id.Profiles_Converters);
+            MainContent.Text = string.Format("{0}(Pirox Fly gatherer, MMOLazy MyFlyer, Gather Buddy,  WowRobot Gather Fly, HonorBuddy  grind) {1} TheNoobBot profiles.",
+                nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles), nManager.Translate.Get(nManager.Translate.Id.to));
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profiles_Converters);
         }
 
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            nManager.Products.Products.ProductStop();
+            Products.ProductStop();
         }
 
 
@@ -40,41 +43,41 @@ namespace Profiles_Converters
             int success = 0;
             foreach (string file in files)
             {
-                if (!nManager.Products.Products.IsStarted)
+                if (!Products.IsStarted)
                     return;
 
 
-                if (Converters.HonorBuddyGrind.IsHonorBuddyGrindProfile(file))
+                if (HonorBuddyGrind.IsHonorBuddyGrindProfile(file))
                 {
-                    if (Converters.HonorBuddyGrind.Convert(file))
+                    if (HonorBuddyGrind.Convert(file))
                         success++;
                     else
                         error++;
                 }
-                else if (Converters.GatherBuddy.IsGatherBuddyProfile(file))
+                else if (GatherBuddy.IsGatherBuddyProfile(file))
                 {
-                    if (Converters.GatherBuddy.Convert(file))
+                    if (GatherBuddy.Convert(file))
                         success++;
                     else
                         error++;
                 }
-                else if (Converters.MMOLazyMyFlyer.IsMMoLazyFlyerProfile(file))
+                else if (MMOLazyMyFlyer.IsMMoLazyFlyerProfile(file))
                 {
-                    if (Converters.MMOLazyMyFlyer.Convert(file))
+                    if (MMOLazyMyFlyer.Convert(file))
                         success++;
                     else
                         error++;
                 }
-                else if (Converters.PiroxFlyGatherer.IsPiroxFlyGathererProfile(file))
+                else if (PiroxFlyGatherer.IsPiroxFlyGathererProfile(file))
                 {
-                    if (Converters.PiroxFlyGatherer.Convert(file))
+                    if (PiroxFlyGatherer.Convert(file))
                         success++;
                     else
                         error++;
                 }
-                else if (Converters.WowRobotGatherFly.IsWowRobotGatherFlyProfile(file))
+                else if (WowRobotGatherFly.IsWowRobotGatherFlyProfile(file))
                 {
-                    if (Converters.WowRobotGatherFly.Convert(file))
+                    if (WowRobotGatherFly.Convert(file))
                         success++;
                     else
                         error++;
