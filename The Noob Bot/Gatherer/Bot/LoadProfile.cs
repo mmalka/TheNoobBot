@@ -1,10 +1,11 @@
 using System;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 
 namespace Gatherer.Bot
 {
-    public partial class LoadProfile : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class LoadProfile : Form
     {
         public LoadProfile()
         {
@@ -15,9 +16,9 @@ namespace Gatherer.Bot
                 // Complete List Profiles
                 RefreshProfileList();
                 TopMost = true;
-                listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
-                listProfileCb.Text = GathererSetting.CurrentSetting.ProfileName;
-                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                ProfileList.DropDownStyle = ComboBoxStyle.DropDownList;
+                ProfileList.Text = GathererSetting.CurrentSetting.ProfileName;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
             }
             catch (Exception e)
@@ -28,23 +29,23 @@ namespace Gatherer.Bot
 
         private void Translate()
         {
-            loadProfileB.Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Profile) + ":";
-            createProfileB.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile) + " Gatherer";
+            LoadProfileButton.Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile);
+            SelectProfileLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Profile) + ":";
+            ProfileCreatorButton.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Load_Profile) + " Gatherer";
         }
 
         private void RefreshProfileList()
         {
             try
             {
-                string profileName = listProfileCb.Text;
-                listProfileCb.Items.Clear();
+                string profileName = ProfileList.Text;
+                ProfileList.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Gatherer\\", "*.xml"))
                 {
-                    listProfileCb.Items.Add(f);
+                    ProfileList.Items.Add(f);
                 }
-                listProfileCb.Text = profileName;
+                ProfileList.Text = profileName;
             }
             catch (Exception e)
             {
@@ -56,7 +57,7 @@ namespace Gatherer.Bot
         {
             try
             {
-                GathererSetting.CurrentSetting.ProfileName = listProfileCb.Text;
+                GathererSetting.CurrentSetting.ProfileName = ProfileList.Text;
                 GathererSetting.CurrentSetting.Save();
                 Dispose();
             }
@@ -67,18 +68,18 @@ namespace Gatherer.Bot
             }
         }
 
-        private void createProfileB_Click(object sender, EventArgs ex)
+        private void ProfileCreator_Click(object sender, EventArgs ex)
         {
             try
             {
-                ProfileCreator f = new ProfileCreator();
+                var f = new ProfileCreator();
                 f.ShowDialog();
                 RefreshProfileList();
             }
             catch (Exception e)
             {
                 Logging.WriteError(
-                    "Gatherer > Bot > LoadProfile > createProfileB_Click(object sender, EventArgs ex): " + e);
+                    "Gatherer > Bot > LoadProfile > ProfileCreator_Click(object sender, EventArgs ex): " + e);
             }
         }
 

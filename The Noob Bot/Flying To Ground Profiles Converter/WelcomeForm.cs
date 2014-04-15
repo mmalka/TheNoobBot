@@ -1,13 +1,12 @@
 using System;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
 namespace Flying_To_Ground_Profiles_Converter
 {
-    public partial class WelcomeForm : MetroForm
+    public partial class WelcomeForm : Form
     {
         public WelcomeForm()
         {
@@ -19,7 +18,11 @@ namespace Flying_To_Ground_Profiles_Converter
 
         private void Translate()
         {
-            // TODO: Translate the labels.
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.FtGConverterHeaderText) + " - " + Information.MainTitle;
+            FtGConverterLine1.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterLine1);
+            FtGConverterLine2.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterLine2);
+            FtGConverterLine3.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterLine3);
+            FtGConverterButton.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterButton);
         }
 
         private void form_FormClosing(object sender, FormClosingEventArgs e)
@@ -30,8 +33,8 @@ namespace Flying_To_Ground_Profiles_Converter
 
         private void convertB_Click(object sender, EventArgs e)
         {
-            convertB.Enabled = false;
-            convertB.Text = nManager.Translate.Get(nManager.Translate.Id.In_progress);
+            FtGConverterButton.Enabled = false;
+            FtGConverterButton.Text = nManager.Translate.Get(nManager.Translate.Id.In_progress);
             string[] files =
                 Others.DialogBoxOpenFileMultiselect(
                     Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
@@ -72,9 +75,9 @@ namespace Flying_To_Ground_Profiles_Converter
             }
 
             MessageBox.Show(string.Format("{0}, {1} {2}, {3} {4} ", nManager.Translate.Get(nManager.Translate.Id.Convertion_finish), success,
-                                          nManager.Translate.Get(nManager.Translate.Id.success), error, nManager.Translate.Get(nManager.Translate.Id.errors)));
-            convertB.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles);
-            convertB.Enabled = true;
+                nManager.Translate.Get(nManager.Translate.Id.success), error, nManager.Translate.Get(nManager.Translate.Id.errors)));
+            FtGConverterButton.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles);
+            FtGConverterButton.Enabled = true;
         }
     }
 }

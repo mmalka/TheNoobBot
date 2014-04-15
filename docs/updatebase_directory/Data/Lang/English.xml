@@ -899,7 +899,7 @@
     </Translation>
     <Translation>
       <Id>Do_you_want_save_this_setting</Id>
-      <Text>Do you want save this setting</Text>
+      <Text>Do you want to save these settings</Text>
     </Translation>
     <Translation>
       <Id>Requis</Id>
@@ -1896,6 +1896,26 @@
     <Translation>
       <Id>SubscribeLifeTime</Id>
       <Text>Life time - 44.99 euros</Text>
+    </Translation>
+    <Translation>
+      <Id>FtGConverterLine1</Id>
+      <Text>The Flying To Ground Profiles Converter works with Gatherer, Grinder and Fisherbot profiles.</Text>
+    </Translation>
+    <Translation>
+      <Id>FtGConverterLine2</Id>
+      <Text>The conversion process can take minutes. The generated profiles might not be good Grounds profiles, </Text>
+    </Translation>
+    <Translation>
+      <Id>FtGConverterLine3</Id>
+      <Text>if you have issue with the generated profile, just create one by hand for this zone.</Text>
+    </Translation>
+    <Translation>
+      <Id>FtGConverterButton</Id>
+      <Text>Select Flying profiles to convert into Ground profiles</Text>
+    </Translation>
+    <Translation>
+      <Id>FtGConverterHeaderText</Id>
+      <Text>Flying to Ground Converter</Text>
     </Translation>
   </Translations>
 </Language>

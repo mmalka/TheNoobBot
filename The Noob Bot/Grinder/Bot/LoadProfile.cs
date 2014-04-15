@@ -1,11 +1,12 @@
 using System;
 using System.Windows.Forms;
 using Grinder.Profile;
+using nManager;
 using nManager.Helpful;
 
 namespace Grinder.Bot
 {
-    public partial class LoadProfile : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class LoadProfile : Form
     {
         public LoadProfile()
         {
@@ -16,9 +17,9 @@ namespace Grinder.Bot
                 // Complete List Profiles
                 RefreshProfileList();
                 TopMost = true;
-                listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
-                listProfileCb.Text = GrinderSetting.CurrentSetting.ProfileName;
-                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                ProfileList.DropDownStyle = ComboBoxStyle.DropDownList;
+                ProfileList.Text = GrinderSetting.CurrentSetting.ProfileName;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
             }
             catch (Exception e)
@@ -29,23 +30,23 @@ namespace Grinder.Bot
 
         private void Translate()
         {
-            loadProfileB.Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Profile) + ":";
-            createProfileB.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile) + " Grinder";
+            LoadProfileButton.Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile);
+            SelectProfileLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Profile) + ":";
+            ProfileCreatorButton.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Load_Profile) + " Grinder";
         }
 
         private void RefreshProfileList()
         {
             try
             {
-                string profileName = listProfileCb.Text;
-                listProfileCb.Items.Clear();
+                string profileName = ProfileList.Text;
+                ProfileList.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Grinder\\", "*.xml"))
                 {
-                    listProfileCb.Items.Add(f);
+                    ProfileList.Items.Add(f);
                 }
-                listProfileCb.Text = profileName;
+                ProfileList.Text = profileName;
             }
             catch (Exception e)
             {
@@ -57,7 +58,7 @@ namespace Grinder.Bot
         {
             try
             {
-                GrinderSetting.CurrentSetting.ProfileName = listProfileCb.Text;
+                GrinderSetting.CurrentSetting.ProfileName = ProfileList.Text;
                 GrinderSetting.CurrentSetting.Save();
                 Dispose();
             }
@@ -71,7 +72,7 @@ namespace Grinder.Bot
         {
             try
             {
-                ProfileCreator f = new ProfileCreator();
+                var f = new ProfileCreator();
                 f.ShowDialog();
                 RefreshProfileList();
             }

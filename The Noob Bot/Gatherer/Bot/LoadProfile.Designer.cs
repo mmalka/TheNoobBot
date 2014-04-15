@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Gatherer.Bot
 {
     partial class LoadProfile
@@ -28,84 +31,98 @@ namespace Gatherer.Bot
         /// </summary>
         private void InitializeComponent()
         {
-            this.loadProfileB = new DevComponents.DotNetBar.ButtonX();
-            this.listProfileCb = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.createProfileB = new DevComponents.DotNetBar.ButtonX();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadProfile));
+            this.SelectProfileLabel = new System.Windows.Forms.Label();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.ProfileCreatorButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.LoadProfileButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.ProfileList = new nManager.Helpful.Forms.UserControls.TnbComboBox();
             this.SuspendLayout();
             // 
-            // loadProfileB
+            // SelectProfileLabel
             // 
-            this.loadProfileB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.loadProfileB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.loadProfileB.Location = new System.Drawing.Point(4, 67);
-            this.loadProfileB.Name = "loadProfileB";
-            this.loadProfileB.Size = new System.Drawing.Size(277, 23);
-            this.loadProfileB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.loadProfileB.TabIndex = 1;
-            this.loadProfileB.Text = "Load Profile";
-            this.loadProfileB.Click += new System.EventHandler(this.loadProfileB_Click);
+            this.SelectProfileLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectProfileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.SelectProfileLabel.Location = new System.Drawing.Point(8, 58);
+            this.SelectProfileLabel.Name = "SelectProfileLabel";
+            this.SelectProfileLabel.Size = new System.Drawing.Size(177, 22);
+            this.SelectProfileLabel.TabIndex = 2;
+            this.SelectProfileLabel.Text = "Select a profile :";
             // 
-            // listProfileCb
+            // MainHeader
             // 
-            this.listProfileCb.DisplayMember = "Text";
-            this.listProfileCb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listProfileCb.ForeColor = System.Drawing.Color.Black;
-            this.listProfileCb.FormattingEnabled = true;
-            this.listProfileCb.ItemHeight = 16;
-            this.listProfileCb.Location = new System.Drawing.Point(4, 39);
-            this.listProfileCb.Name = "listProfileCb";
-            this.listProfileCb.Size = new System.Drawing.Size(277, 22);
-            this.listProfileCb.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.listProfileCb.TabIndex = 0;
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(320, 43);
+            this.MainHeader.TabIndex = 4;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "Load Profile";
             // 
-            // labelX1
+            // ProfileCreatorButton
             // 
-            this.labelX1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ProfileCreatorButton.AutoEllipsis = true;
+            this.ProfileCreatorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.ProfileCreatorButton.ForeColor = System.Drawing.Color.Snow;
+            this.ProfileCreatorButton.Location = new System.Drawing.Point(205, 55);
+            this.ProfileCreatorButton.Name = "ProfileCreatorButton";
+            this.ProfileCreatorButton.Size = new System.Drawing.Size(106, 29);
+            this.ProfileCreatorButton.TabIndex = 3;
+            this.ProfileCreatorButton.Text = "Profile creator";
+            this.ProfileCreatorButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ProfileCreatorButton.Click += new System.EventHandler(this.ProfileCreator_Click);
             // 
+            // LoadProfileButton
             // 
+            this.LoadProfileButton.AutoEllipsis = true;
+            this.LoadProfileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LoadProfileButton.ForeColor = System.Drawing.Color.Snow;
+            this.LoadProfileButton.Location = new System.Drawing.Point(99, 131);
+            this.LoadProfileButton.Name = "LoadProfileButton";
+            this.LoadProfileButton.Size = new System.Drawing.Size(106, 29);
+            this.LoadProfileButton.TabIndex = 1;
+            this.LoadProfileButton.Text = "Load Profile";
+            this.LoadProfileButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LoadProfileButton.Click += new System.EventHandler(this.loadProfileB_Click);
             // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(4, 12);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(75, 23);
-            this.labelX1.TabIndex = 2;
-            this.labelX1.Text = "Profile:";
+            // ProfileList
             // 
-            // createProfileB
-            // 
-            this.createProfileB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.createProfileB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.createProfileB.Location = new System.Drawing.Point(159, 12);
-            this.createProfileB.Name = "createProfileB";
-            this.createProfileB.Size = new System.Drawing.Size(122, 23);
-            this.createProfileB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.createProfileB.TabIndex = 3;
-            this.createProfileB.Text = "Profile creator";
-            this.createProfileB.Click += new System.EventHandler(this.createProfileB_Click);
+            this.ProfileList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.ProfileList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.ProfileList.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.ProfileList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProfileList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProfileList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.ProfileList.FormattingEnabled = true;
+            this.ProfileList.HighlightColor = System.Drawing.Color.Gainsboro;
+            this.ProfileList.ItemHeight = 16;
+            this.ProfileList.Location = new System.Drawing.Point(12, 98);
+            this.ProfileList.Name = "ProfileList";
+            this.ProfileList.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
+            this.ProfileList.SelectorImage = ((System.Drawing.Image)(resources.GetObject("ProfileList.SelectorImage")));
+            this.ProfileList.Size = new System.Drawing.Size(296, 22);
+            this.ProfileList.TabIndex = 0;
             // 
             // LoadProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(284, 91);
-            this.Controls.Add(this.createProfileB);
-            this.Controls.Add(this.labelX1);
-            this.Controls.Add(this.loadProfileB);
-            this.Controls.Add(this.listProfileCb);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.ClientSize = new System.Drawing.Size(320, 172);
+            this.Controls.Add(this.MainHeader);
+            this.Controls.Add(this.ProfileCreatorButton);
+            this.Controls.Add(this.SelectProfileLabel);
+            this.Controls.Add(this.LoadProfileButton);
+            this.Controls.Add(this.ProfileList);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(300, 129);
-            this.MinimumSize = new System.Drawing.Size(300, 129);
             this.Name = "LoadProfile";
+            this.Padding = new System.Windows.Forms.Padding(12);
             this.ShowIcon = false;
-            this.ShowInTaskbar = true;
-            this.Text = "Load Gatherer Profile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Load Grinder Profile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadProfile_FormClosing);
             this.ResumeLayout(false);
 
@@ -113,9 +130,10 @@ namespace Gatherer.Bot
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX loadProfileB;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx listProfileCb;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.ButtonX createProfileB;
+        private TnbButton LoadProfileButton;
+        private TnbComboBox ProfileList;
+        private Label SelectProfileLabel;
+        private TnbButton ProfileCreatorButton;
+        private TnbControlMenu MainHeader;
     }
 }

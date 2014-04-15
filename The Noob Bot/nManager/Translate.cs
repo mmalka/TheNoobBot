@@ -543,8 +543,12 @@ namespace nManager
             SubscribeMonth,
             SubscribeMonthPlatinium,
             SubscribeHalfYear,
-            SubscribeLifeTime
-
+            SubscribeLifeTime,
+            FtGConverterHeaderText,
+            FtGConverterLine1,
+            FtGConverterLine2,
+            FtGConverterLine3,
+            FtGConverterButton
         };
 
         [Serializable]

@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Flying_To_Ground_Profiles_Converter
 {
     partial class WelcomeForm
@@ -29,81 +32,85 @@ namespace Flying_To_Ground_Profiles_Converter
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
-            this.convertB = new DevComponents.DotNetBar.ButtonX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.FtGConverterLine1 = new System.Windows.Forms.Label();
+            this.FtGConverterLine2 = new System.Windows.Forms.Label();
+            this.FtGConverterLine3 = new System.Windows.Forms.Label();
+            this.FtGConverterButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.SuspendLayout();
             // 
-            // convertB
+            // FtGConverterLine1
             // 
-            this.convertB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.convertB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.convertB.Location = new System.Drawing.Point(12, 95);
-            this.convertB.Name = "convertB";
-            this.convertB.Size = new System.Drawing.Size(481, 35);
-            this.convertB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.convertB.TabIndex = 0;
-            this.convertB.Text = "Select Flying profiles to convert into Ground profiles";
-            this.convertB.Click += new System.EventHandler(this.convertB_Click);
+            this.FtGConverterLine1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.FtGConverterLine1.Location = new System.Drawing.Point(12, 52);
+            this.FtGConverterLine1.Name = "FtGConverterLine1";
+            this.FtGConverterLine1.Size = new System.Drawing.Size(560, 17);
+            this.FtGConverterLine1.TabIndex = 1;
+            this.FtGConverterLine1.Text = "The Flying To Ground Profiles Converter works with Gatherer, Grinder and Fisherbo" +
+                "t profiles.";
             // 
-            // labelX1
+            // FtGConverterLine2
             // 
+            this.FtGConverterLine2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.FtGConverterLine2.Location = new System.Drawing.Point(12, 72);
+            this.FtGConverterLine2.Name = "FtGConverterLine2";
+            this.FtGConverterLine2.Size = new System.Drawing.Size(560, 17);
+            this.FtGConverterLine2.TabIndex = 2;
+            this.FtGConverterLine2.Text = "The conversion process can take minutes. The generated profiles might not be good" +
+                " Grounds profiles, ";
             // 
+            // FtGConverterLine3
             // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(12, -2);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(481, 17);
-            this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "The <i>Flying To Ground Profiles Converter</i> works with <b>Gatherer</b>, <b>Gri" +
-                "nder</b> and <b>Fisherbot</b> profiles.";
-            // 
-            // labelX2
-            // 
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(12, 21);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(481, 17);
-            this.labelX2.TabIndex = 2;
-            this.labelX2.Text = "The conversion process <u>can take minutes</u>. The generated profiles might not " +
-                "be good Grounds profiles, ";
-            // 
-            // labelX3
-            // 
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.Class = "";
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(12, 56);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(481, 17);
-            this.labelX3.TabIndex = 3;
-            this.labelX3.Text = "if you have issue with the generated profile, just create one by hand for this zo" +
+            this.FtGConverterLine3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.FtGConverterLine3.Location = new System.Drawing.Point(12, 92);
+            this.FtGConverterLine3.Name = "FtGConverterLine3";
+            this.FtGConverterLine3.Size = new System.Drawing.Size(560, 17);
+            this.FtGConverterLine3.TabIndex = 3;
+            this.FtGConverterLine3.Text = "if you have issue with the generated profile, just create one by hand for this zo" +
                 "ne.";
+            // 
+            // FtGConverterButton
+            // 
+            this.FtGConverterButton.AutoEllipsis = true;
+            this.FtGConverterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.FtGConverterButton.ForeColor = System.Drawing.Color.Snow;
+            this.FtGConverterButton.HooverImage = global::Flying_To_Ground_Profiles_Converter.Properties.Resources.greenB_260;
+            this.FtGConverterButton.Image = global::Flying_To_Ground_Profiles_Converter.Properties.Resources.blueB_260;
+            this.FtGConverterButton.Location = new System.Drawing.Point(157, 114);
+            this.FtGConverterButton.Name = "FtGConverterButton";
+            this.FtGConverterButton.Size = new System.Drawing.Size(260, 29);
+            this.FtGConverterButton.TabIndex = 0;
+            this.FtGConverterButton.Text = "Select Flying profiles to convert into Ground profiles";
+            this.FtGConverterButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FtGConverterButton.Click += new System.EventHandler(this.convertB_Click);
+            // 
+            // MainHeader
+            // 
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(575, 43);
+            this.MainHeader.TabIndex = 4;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "TheNoobBot";
             // 
             // WelcomeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(503, 136);
-            this.Controls.Add(this.labelX3);
-            this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.labelX1);
-            this.Controls.Add(this.convertB);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(575, 153);
+            this.Controls.Add(this.MainHeader);
+            this.Controls.Add(this.FtGConverterLine3);
+            this.Controls.Add(this.FtGConverterLine2);
+            this.Controls.Add(this.FtGConverterLine1);
+            this.Controls.Add(this.FtGConverterButton);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(519, 174);
-            this.MinimumSize = new System.Drawing.Size(519, 174);
             this.Name = "WelcomeForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -115,9 +122,10 @@ namespace Flying_To_Ground_Profiles_Converter
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX convertB;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.LabelX labelX3;
+        private TnbButton FtGConverterButton;
+        private Label FtGConverterLine1;
+        private Label FtGConverterLine2;
+        private Label FtGConverterLine3;
+        private TnbControlMenu MainHeader;
     }
 }
