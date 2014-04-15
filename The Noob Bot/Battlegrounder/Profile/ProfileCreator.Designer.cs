@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Battlegrounder.Profile
 {
     partial class ProfileCreator
@@ -29,46 +32,40 @@ namespace Battlegrounder.Profile
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileCreator));
-            this.recordWayB = new DevComponents.DotNetBar.ButtonX();
-            this.SaveButton = new DevComponents.DotNetBar.ButtonX();
+            this.recordWayB = new TnbButton();
+            this.SaveButton = new TnbButton();
             this.RecordedPoints = new System.Windows.Forms.ListBox();
-            this.DistanceBetweenRecord = new DevComponents.Editors.IntegerInput();
-            this.DistanceBetweenRecordLabel = new DevComponents.DotNetBar.LabelX();
-            this.DeleteButton = new DevComponents.DotNetBar.ButtonX();
-            this.DeleteButtonBlackListRadius = new DevComponents.DotNetBar.ButtonX();
+            this.DistanceBetweenRecord = new NumericUpDown();
+            this.DistanceBetweenRecordLabel = new Label();
+            this.DeleteButton = new TnbButton();
+            this.DeleteButtonBlackListRadius = new TnbButton();
             this.RecordedBlackListRadius = new System.Windows.Forms.ListBox();
-            this.Radius = new DevComponents.Editors.IntegerInput();
-            this.AddToBlackList = new DevComponents.DotNetBar.ButtonX();
-            this.LoadButton = new DevComponents.DotNetBar.ButtonX();
-            this.CurrentBattleground = new DevComponents.DotNetBar.LabelX();
-            this.RefreshCurrentBattleground = new DevComponents.DotNetBar.ButtonX();
+            this.Radius = new NumericUpDown();
+            this.AddToBlackList = new TnbButton();
+            this.LoadButton = new TnbButton();
+            this.CurrentBattleground = new Label();
+            this.RefreshCurrentBattleground = new TnbButton();
             this.ZoneList = new System.Windows.Forms.ListBox();
-            this.DelZoneButton = new DevComponents.DotNetBar.ButtonX();
-            this.AddZoneButton = new DevComponents.DotNetBar.ButtonX();
+            this.DelZoneButton = new TnbButton();
+            this.AddZoneButton = new TnbButton();
             ((System.ComponentModel.ISupportInitialize)(this.DistanceBetweenRecord)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Radius)).BeginInit();
             this.SuspendLayout();
             // 
             // recordWayB
             // 
-            this.recordWayB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.recordWayB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.recordWayB.Location = new System.Drawing.Point(12, 284);
             this.recordWayB.Name = "recordWayB";
             this.recordWayB.Size = new System.Drawing.Size(338, 22);
-            this.recordWayB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.recordWayB.TabIndex = 1;
             this.recordWayB.Text = "Record Way";
             this.recordWayB.Click += new System.EventHandler(this.recordWayB_Click);
             // 
             // SaveButton
             // 
-            this.SaveButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.SaveButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.SaveButton.Location = new System.Drawing.Point(305, 8);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(56, 18);
-            this.SaveButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SaveButton.TabIndex = 2;
             this.SaveButton.Text = "Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -85,31 +82,17 @@ namespace Battlegrounder.Profile
             // 
             // DistanceBetweenRecord
             // 
-            this.DistanceBetweenRecord.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.DistanceBetweenRecord.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.DistanceBetweenRecord.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.DistanceBetweenRecord.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.DistanceBetweenRecord.ForeColor = System.Drawing.Color.Black;
             this.DistanceBetweenRecord.Location = new System.Drawing.Point(139, 5);
-            this.DistanceBetweenRecord.MaxValue = 200;
-            this.DistanceBetweenRecord.MinValue = 1;
+            this.DistanceBetweenRecord.Maximum = 200;
+            this.DistanceBetweenRecord.Minimum = 1;
             this.DistanceBetweenRecord.Name = "DistanceBetweenRecord";
-            this.DistanceBetweenRecord.ShowUpDown = true;
             this.DistanceBetweenRecord.Size = new System.Drawing.Size(90, 22);
             this.DistanceBetweenRecord.TabIndex = 5;
             this.DistanceBetweenRecord.Value = 10;
             // 
             // DistanceBetweenRecordLabel
             // 
-            this.DistanceBetweenRecordLabel.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.DistanceBetweenRecordLabel.BackgroundStyle.Class = "";
-            this.DistanceBetweenRecordLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.DistanceBetweenRecordLabel.ForeColor = System.Drawing.Color.Black;
             this.DistanceBetweenRecordLabel.Location = new System.Drawing.Point(1, 4);
             this.DistanceBetweenRecordLabel.Name = "DistanceBetweenRecordLabel";
@@ -119,24 +102,18 @@ namespace Battlegrounder.Profile
             // 
             // DeleteButton
             // 
-            this.DeleteButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.DeleteButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.DeleteButton.Location = new System.Drawing.Point(324, 150);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(36, 22);
-            this.DeleteButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DeleteButton.TabIndex = 8;
             this.DeleteButton.Text = "Del";
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // DeleteButtonBlackListRadius
             // 
-            this.DeleteButtonBlackListRadius.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.DeleteButtonBlackListRadius.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.DeleteButtonBlackListRadius.Location = new System.Drawing.Point(324, 320);
             this.DeleteButtonBlackListRadius.Name = "DeleteButtonBlackListRadius";
             this.DeleteButtonBlackListRadius.Size = new System.Drawing.Size(36, 17);
-            this.DeleteButtonBlackListRadius.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DeleteButtonBlackListRadius.TabIndex = 10;
             this.DeleteButtonBlackListRadius.Text = "Del";
             this.DeleteButtonBlackListRadius.Click += new System.EventHandler(this.DeleteButtonBlackListRadius_Click);
@@ -153,54 +130,35 @@ namespace Battlegrounder.Profile
             // 
             // Radius
             // 
-            this.Radius.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.Radius.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.Radius.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.Radius.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.Radius.ForeColor = System.Drawing.Color.Black;
             this.Radius.Location = new System.Drawing.Point(12, 393);
-            this.Radius.MinValue = 1;
+            this.Radius.Minimum = 1;
+            this.Radius.Maximum = 200;
             this.Radius.Name = "Radius";
-            this.Radius.ShowUpDown = true;
             this.Radius.Size = new System.Drawing.Size(108, 22);
             this.Radius.TabIndex = 11;
             this.Radius.Value = 35;
             // 
             // AddToBlackList
             // 
-            this.AddToBlackList.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.AddToBlackList.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.AddToBlackList.Location = new System.Drawing.Point(126, 392);
             this.AddToBlackList.Name = "AddToBlackList";
             this.AddToBlackList.Size = new System.Drawing.Size(224, 22);
-            this.AddToBlackList.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AddToBlackList.TabIndex = 12;
             this.AddToBlackList.Text = "Add this position to Black list Radius";
             this.AddToBlackList.Click += new System.EventHandler(this.AddToBlackList_Click);
             // 
             // LoadButton
             // 
-            this.LoadButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.LoadButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.LoadButton.Location = new System.Drawing.Point(244, 8);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(56, 18);
-            this.LoadButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.LoadButton.TabIndex = 18;
             this.LoadButton.Text = "Load";
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // CurrentBattleground
             // 
-            this.CurrentBattleground.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.CurrentBattleground.BackgroundStyle.Class = "";
-            this.CurrentBattleground.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.CurrentBattleground.ForeColor = System.Drawing.Color.Black;
             this.CurrentBattleground.Location = new System.Drawing.Point(1, 32);
             this.CurrentBattleground.Name = "CurrentBattleground";
@@ -210,12 +168,9 @@ namespace Battlegrounder.Profile
             // 
             // RefreshCurrentBattleground
             // 
-            this.RefreshCurrentBattleground.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.RefreshCurrentBattleground.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.RefreshCurrentBattleground.Location = new System.Drawing.Point(284, 33);
             this.RefreshCurrentBattleground.Name = "RefreshCurrentBattleground";
             this.RefreshCurrentBattleground.Size = new System.Drawing.Size(76, 21);
-            this.RefreshCurrentBattleground.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.RefreshCurrentBattleground.TabIndex = 20;
             this.RefreshCurrentBattleground.Text = "Refresh";
             this.RefreshCurrentBattleground.Click += new System.EventHandler(this.RefreshCurrentBattleground_Click);
@@ -233,24 +188,18 @@ namespace Battlegrounder.Profile
             // 
             // DelZoneButton
             // 
-            this.DelZoneButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.DelZoneButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.DelZoneButton.Location = new System.Drawing.Point(325, 60);
             this.DelZoneButton.Name = "DelZoneButton";
             this.DelZoneButton.Size = new System.Drawing.Size(36, 22);
-            this.DelZoneButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DelZoneButton.TabIndex = 22;
             this.DelZoneButton.Text = "Del";
             this.DelZoneButton.Click += new System.EventHandler(this.DelZoneButton_Click);
             // 
             // AddZoneButton
             // 
-            this.AddZoneButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.AddZoneButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.AddZoneButton.Location = new System.Drawing.Point(284, 60);
             this.AddZoneButton.Name = "AddZoneButton";
             this.AddZoneButton.Size = new System.Drawing.Size(36, 22);
-            this.AddZoneButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AddZoneButton.TabIndex = 23;
             this.AddZoneButton.Text = "Add";
             this.AddZoneButton.Click += new System.EventHandler(this.AddZoneButton_Click);
@@ -295,21 +244,21 @@ namespace Battlegrounder.Profile
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX recordWayB;
-        private DevComponents.DotNetBar.ButtonX SaveButton;
+        private TnbButton recordWayB;
+        private TnbButton SaveButton;
         private System.Windows.Forms.ListBox RecordedPoints;
-        private DevComponents.Editors.IntegerInput DistanceBetweenRecord;
-        private DevComponents.DotNetBar.LabelX DistanceBetweenRecordLabel;
-        private DevComponents.DotNetBar.ButtonX DeleteButton;
-        private DevComponents.DotNetBar.ButtonX DeleteButtonBlackListRadius;
+        private NumericUpDown DistanceBetweenRecord;
+        private Label DistanceBetweenRecordLabel;
+        private TnbButton DeleteButton;
+        private TnbButton DeleteButtonBlackListRadius;
         private System.Windows.Forms.ListBox RecordedBlackListRadius;
-        private DevComponents.Editors.IntegerInput Radius;
-        private DevComponents.DotNetBar.ButtonX AddToBlackList;
-        private DevComponents.DotNetBar.ButtonX LoadButton;
-        private DevComponents.DotNetBar.LabelX CurrentBattleground;
-        private DevComponents.DotNetBar.ButtonX RefreshCurrentBattleground;
+        private NumericUpDown Radius;
+        private TnbButton AddToBlackList;
+        private TnbButton LoadButton;
+        private Label CurrentBattleground;
+        private TnbButton RefreshCurrentBattleground;
         private System.Windows.Forms.ListBox ZoneList;
-        private DevComponents.DotNetBar.ButtonX DelZoneButton;
-        private DevComponents.DotNetBar.ButtonX AddZoneButton;
+        private TnbButton DelZoneButton;
+        private TnbButton AddZoneButton;
     }
 }

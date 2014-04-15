@@ -11,7 +11,7 @@ using nManager.Wow.ObjectManager;
 
 namespace Grinder.Profile
 {
-    public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class ProfileCreator : Form
     {
         private GrinderProfile _profile = new GrinderProfile();
 
@@ -176,8 +176,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Player Level
-                    maxLevelPlayer.ValueObject = (int) _profile.GrinderZones[_idZone].MaxLevel;
-                    minLevelPlayer.ValueObject = (int) _profile.GrinderZones[_idZone].MinLevel;
+                    maxLevelPlayer.Value = (int) _profile.GrinderZones[_idZone].MaxLevel;
+                    minLevelPlayer.Value = (int) _profile.GrinderZones[_idZone].MinLevel;
                 }
                 catch
                 {
@@ -185,8 +185,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target Level
-                    maxLevelTarget.ValueObject = (int) _profile.GrinderZones[_idZone].MaxTargetLevel;
-                    minLevelTarget.ValueObject = (int) _profile.GrinderZones[_idZone].MinTargetLevel;
+                    maxLevelTarget.Value = (int) _profile.GrinderZones[_idZone].MaxTargetLevel;
+                    minLevelTarget.Value = (int) _profile.GrinderZones[_idZone].MinTargetLevel;
                 }
                 catch
                 {
@@ -286,7 +286,7 @@ namespace Grinder.Profile
                     Point lastPoint = _profile.GrinderZones[_idZone].Points[_profile.GrinderZones[_idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
-                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
+                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > (double) nSeparatorDistance.Value) &&
                          lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
@@ -343,7 +343,7 @@ namespace Grinder.Profile
                         Position =
                             ObjectManager.Me
                                          .Position,
-                        Radius = radiusN.Value
+                        Radius = (float) radiusN.Value
                     });
                 RefreshForm();
             }

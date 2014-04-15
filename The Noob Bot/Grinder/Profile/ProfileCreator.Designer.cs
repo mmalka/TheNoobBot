@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Grinder.Profile
 {
     partial class ProfileCreator
@@ -28,40 +31,40 @@ namespace Grinder.Profile
         /// </summary>
         private void InitializeComponent()
         {
-            this.recordWayB = new DevComponents.DotNetBar.ButtonX();
-            this.saveB = new DevComponents.DotNetBar.ButtonX();
+            this.recordWayB = new TnbButton();
+            this.saveB = new TnbButton();
             this.listPoint = new System.Windows.Forms.ListBox();
-            this.nSeparatorDistance = new DevComponents.Editors.IntegerInput();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.delB = new DevComponents.DotNetBar.ButtonX();
-            this.delBlackRadius = new DevComponents.DotNetBar.ButtonX();
+            this.nSeparatorDistance = new NumericUpDown();
+            this.labelX1 = new Label();
+            this.delB = new TnbButton();
+            this.delBlackRadius = new TnbButton();
             this.listBlackRadius = new System.Windows.Forms.ListBox();
-            this.radiusN = new DevComponents.Editors.IntegerInput();
-            this.addBlackB = new DevComponents.DotNetBar.ButtonX();
-            this.addNpcB = new DevComponents.DotNetBar.ButtonX();
-            this.delNpcB = new DevComponents.DotNetBar.ButtonX();
+            this.radiusN = new NumericUpDown();
+            this.addBlackB = new TnbButton();
+            this.addNpcB = new TnbButton();
+            this.delNpcB = new TnbButton();
             this.listNpc = new System.Windows.Forms.ListBox();
-            this.npcTypeC = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.loadB = new DevComponents.DotNetBar.ButtonX();
-            this.nameNpcTb = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.addByNameNpcB = new DevComponents.DotNetBar.ButtonX();
-            this.listZoneCb = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.addZoneB = new DevComponents.DotNetBar.ButtonX();
-            this.zoneNameTb = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.delZoneB = new DevComponents.DotNetBar.ButtonX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.labelX4 = new DevComponents.DotNetBar.LabelX();
-            this.minLevelPlayer = new DevComponents.Editors.IntegerInput();
-            this.labelX5 = new DevComponents.DotNetBar.LabelX();
-            this.maxLevelPlayer = new DevComponents.Editors.IntegerInput();
-            this.maxLevelTarget = new DevComponents.Editors.IntegerInput();
-            this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.minLevelTarget = new DevComponents.Editors.IntegerInput();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
-            this.listEntryTb = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.addTargetEntryB = new DevComponents.DotNetBar.ButtonX();
-            this.labelX8 = new DevComponents.DotNetBar.LabelX();
+            this.npcTypeC = new TnbComboBox();
+            this.loadB = new TnbButton();
+            this.nameNpcTb = new TextBox();
+            this.addByNameNpcB = new TnbButton();
+            this.listZoneCb = new TnbComboBox();
+            this.labelX2 = new Label();
+            this.addZoneB = new TnbButton();
+            this.zoneNameTb = new TextBox();
+            this.delZoneB = new TnbButton();
+            this.labelX3 = new Label();
+            this.labelX4 = new Label();
+            this.minLevelPlayer = new NumericUpDown();
+            this.labelX5 = new Label();
+            this.maxLevelPlayer = new NumericUpDown();
+            this.maxLevelTarget = new NumericUpDown();
+            this.labelX6 = new Label();
+            this.minLevelTarget = new NumericUpDown();
+            this.labelX7 = new Label();
+            this.listEntryTb = new TextBox();
+            this.addTargetEntryB = new TnbButton();
+            this.labelX8 = new Label();
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radiusN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minLevelPlayer)).BeginInit();
@@ -72,24 +75,18 @@ namespace Grinder.Profile
             // 
             // recordWayB
             // 
-            this.recordWayB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.recordWayB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.recordWayB.Location = new System.Drawing.Point(12, 304);
             this.recordWayB.Name = "recordWayB";
             this.recordWayB.Size = new System.Drawing.Size(352, 23);
-            this.recordWayB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.recordWayB.TabIndex = 1;
             this.recordWayB.Text = "Record Way";
             this.recordWayB.Click += new System.EventHandler(this.recordWayB_Click);
             // 
             // saveB
             // 
-            this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.saveB.Location = new System.Drawing.Point(318, 8);
             this.saveB.Name = "saveB";
             this.saveB.Size = new System.Drawing.Size(58, 19);
-            this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.saveB.TabIndex = 2;
             this.saveB.Text = "Save";
             this.saveB.Click += new System.EventHandler(this.saveB_Click);
@@ -106,30 +103,17 @@ namespace Grinder.Profile
             // 
             // nSeparatorDistance
             // 
-            this.nSeparatorDistance.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.nSeparatorDistance.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.nSeparatorDistance.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.nSeparatorDistance.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.nSeparatorDistance.ForeColor = System.Drawing.Color.Black;
             this.nSeparatorDistance.Location = new System.Drawing.Point(145, 5);
-            this.nSeparatorDistance.MaxValue = 200;
-            this.nSeparatorDistance.MinValue = 3;
+            this.nSeparatorDistance.Maximum = 200;
+            this.nSeparatorDistance.Minimum = 3;
             this.nSeparatorDistance.Name = "nSeparatorDistance";
-            this.nSeparatorDistance.ShowUpDown = true;
             this.nSeparatorDistance.Size = new System.Drawing.Size(94, 22);
             this.nSeparatorDistance.TabIndex = 5;
             this.nSeparatorDistance.Value = 5;
             // 
             // labelX1
             // 
-            this.labelX1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.ForeColor = System.Drawing.Color.Black;
             this.labelX1.Location = new System.Drawing.Point(1, 4);
             this.labelX1.Name = "labelX1";
@@ -139,24 +123,18 @@ namespace Grinder.Profile
             // 
             // delB
             // 
-            this.delB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.delB.Location = new System.Drawing.Point(339, 164);
             this.delB.Name = "delB";
             this.delB.Size = new System.Drawing.Size(37, 23);
-            this.delB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.delB.TabIndex = 8;
             this.delB.Text = "Del";
             this.delB.Click += new System.EventHandler(this.delB_Click);
             // 
             // delBlackRadius
             // 
-            this.delBlackRadius.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delBlackRadius.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.delBlackRadius.Location = new System.Drawing.Point(339, 341);
             this.delBlackRadius.Name = "delBlackRadius";
             this.delBlackRadius.Size = new System.Drawing.Size(37, 18);
-            this.delBlackRadius.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.delBlackRadius.TabIndex = 10;
             this.delBlackRadius.Text = "Del";
             this.delBlackRadius.Click += new System.EventHandler(this.delBlackRadius_Click);
@@ -173,54 +151,38 @@ namespace Grinder.Profile
             // 
             // radiusN
             // 
-            this.radiusN.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.radiusN.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.radiusN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.radiusN.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.radiusN.ForeColor = System.Drawing.Color.Black;
             this.radiusN.Location = new System.Drawing.Point(12, 417);
-            this.radiusN.MinValue = 1;
+            this.radiusN.Minimum = 1;
+            this.radiusN.Maximum = 200;
             this.radiusN.Name = "radiusN";
-            this.radiusN.ShowUpDown = true;
             this.radiusN.Size = new System.Drawing.Size(113, 22);
             this.radiusN.TabIndex = 11;
             this.radiusN.Value = 35;
             // 
             // addBlackB
             // 
-            this.addBlackB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addBlackB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.addBlackB.Location = new System.Drawing.Point(131, 416);
             this.addBlackB.Name = "addBlackB";
             this.addBlackB.Size = new System.Drawing.Size(233, 23);
-            this.addBlackB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.addBlackB.TabIndex = 12;
             this.addBlackB.Text = "Add this position to Black list Radius";
             this.addBlackB.Click += new System.EventHandler(this.addBlackB_Click);
             // 
             // addNpcB
             // 
-            this.addNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.addNpcB.Location = new System.Drawing.Point(160, 506);
             this.addNpcB.Name = "addNpcB";
             this.addNpcB.Size = new System.Drawing.Size(216, 23);
-            this.addNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.addNpcB.TabIndex = 16;
             this.addNpcB.Text = "Add Target to Npc list";
             this.addNpcB.Click += new System.EventHandler(this.addNpcB_Click);
             // 
             // delNpcB
             // 
-            this.delNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.delNpcB.Location = new System.Drawing.Point(339, 445);
             this.delNpcB.Name = "delNpcB";
             this.delNpcB.Size = new System.Drawing.Size(37, 18);
-            this.delNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.delNpcB.TabIndex = 14;
             this.delNpcB.Text = "Del";
             this.delNpcB.Click += new System.EventHandler(this.delNpcB_Click);
@@ -245,29 +207,19 @@ namespace Grinder.Profile
             this.npcTypeC.Location = new System.Drawing.Point(12, 507);
             this.npcTypeC.Name = "npcTypeC";
             this.npcTypeC.Size = new System.Drawing.Size(142, 22);
-            this.npcTypeC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.npcTypeC.TabIndex = 17;
             // 
             // loadB
             // 
-            this.loadB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.loadB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.loadB.Location = new System.Drawing.Point(254, 8);
             this.loadB.Name = "loadB";
             this.loadB.Size = new System.Drawing.Size(58, 19);
-            this.loadB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.loadB.TabIndex = 18;
             this.loadB.Text = "Load";
             this.loadB.Click += new System.EventHandler(this.loadB_Click);
             // 
             // nameNpcTb
             // 
-            this.nameNpcTb.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.nameNpcTb.Border.Class = "TextBoxBorder";
-            this.nameNpcTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.nameNpcTb.ForeColor = System.Drawing.Color.Black;
             this.nameNpcTb.Location = new System.Drawing.Point(160, 536);
             this.nameNpcTb.Name = "nameNpcTb";
@@ -277,12 +229,9 @@ namespace Grinder.Profile
             // 
             // addByNameNpcB
             // 
-            this.addByNameNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addByNameNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.addByNameNpcB.Location = new System.Drawing.Point(247, 535);
             this.addByNameNpcB.Name = "addByNameNpcB";
             this.addByNameNpcB.Size = new System.Drawing.Size(129, 23);
-            this.addByNameNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.addByNameNpcB.TabIndex = 20;
             this.addByNameNpcB.Text = "Add by Name to Npc list";
             this.addByNameNpcB.Click += new System.EventHandler(this.addByNameNpcB_Click);
@@ -297,17 +246,11 @@ namespace Grinder.Profile
             this.listZoneCb.Location = new System.Drawing.Point(66, 34);
             this.listZoneCb.Name = "listZoneCb";
             this.listZoneCb.Size = new System.Drawing.Size(246, 22);
-            this.listZoneCb.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.listZoneCb.TabIndex = 21;
             this.listZoneCb.SelectedIndexChanged += new System.EventHandler(this.listZoneCb_SelectedIndexChanged);
             // 
             // labelX2
             // 
-            this.labelX2.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
             this.labelX2.Location = new System.Drawing.Point(1, 34);
             this.labelX2.Name = "labelX2";
@@ -317,24 +260,15 @@ namespace Grinder.Profile
             // 
             // addZoneB
             // 
-            this.addZoneB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addZoneB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.addZoneB.Location = new System.Drawing.Point(318, 34);
             this.addZoneB.Name = "addZoneB";
             this.addZoneB.Size = new System.Drawing.Size(58, 23);
-            this.addZoneB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.addZoneB.TabIndex = 23;
             this.addZoneB.Text = "Add Zone";
             this.addZoneB.Click += new System.EventHandler(this.addZoneB_Click);
             // 
             // zoneNameTb
             // 
-            this.zoneNameTb.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.zoneNameTb.Border.Class = "TextBoxBorder";
-            this.zoneNameTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.zoneNameTb.ForeColor = System.Drawing.Color.Black;
             this.zoneNameTb.Location = new System.Drawing.Point(77, 71);
             this.zoneNameTb.Name = "zoneNameTb";
@@ -344,23 +278,15 @@ namespace Grinder.Profile
             // 
             // delZoneB
             // 
-            this.delZoneB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delZoneB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.delZoneB.Location = new System.Drawing.Point(318, 71);
             this.delZoneB.Name = "delZoneB";
             this.delZoneB.Size = new System.Drawing.Size(58, 23);
-            this.delZoneB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.delZoneB.TabIndex = 25;
             this.delZoneB.Text = "Del Zone";
             this.delZoneB.Click += new System.EventHandler(this.delZoneB_Click);
             // 
             // labelX3
             // 
-            this.labelX3.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
             this.labelX3.Location = new System.Drawing.Point(1, 71);
             this.labelX3.Name = "labelX3";
@@ -370,11 +296,6 @@ namespace Grinder.Profile
             // 
             // labelX4
             // 
-            this.labelX4.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.ForeColor = System.Drawing.Color.Black;
             this.labelX4.Location = new System.Drawing.Point(1, 105);
             this.labelX4.Name = "labelX4";
@@ -384,19 +305,11 @@ namespace Grinder.Profile
             // 
             // minLevelPlayer
             // 
-            this.minLevelPlayer.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.minLevelPlayer.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.minLevelPlayer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.minLevelPlayer.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.minLevelPlayer.ForeColor = System.Drawing.Color.Black;
             this.minLevelPlayer.Location = new System.Drawing.Point(71, 106);
-            this.minLevelPlayer.MaxValue = 90;
-            this.minLevelPlayer.MinValue = 1;
+            this.minLevelPlayer.Maximum = 90;
+            this.minLevelPlayer.Minimum = 1;
             this.minLevelPlayer.Name = "minLevelPlayer";
-            this.minLevelPlayer.ShowUpDown = true;
             this.minLevelPlayer.Size = new System.Drawing.Size(43, 22);
             this.minLevelPlayer.TabIndex = 28;
             this.minLevelPlayer.Value = 1;
@@ -404,11 +317,6 @@ namespace Grinder.Profile
             // 
             // labelX5
             // 
-            this.labelX5.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.ForeColor = System.Drawing.Color.Black;
             this.labelX5.Location = new System.Drawing.Point(115, 105);
             this.labelX5.Name = "labelX5";
@@ -418,19 +326,11 @@ namespace Grinder.Profile
             // 
             // maxLevelPlayer
             // 
-            this.maxLevelPlayer.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.maxLevelPlayer.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.maxLevelPlayer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.maxLevelPlayer.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.maxLevelPlayer.ForeColor = System.Drawing.Color.Black;
             this.maxLevelPlayer.Location = new System.Drawing.Point(138, 106);
-            this.maxLevelPlayer.MaxValue = 90;
-            this.maxLevelPlayer.MinValue = 1;
+            this.maxLevelPlayer.Maximum = 90;
+            this.maxLevelPlayer.Minimum = 1;
             this.maxLevelPlayer.Name = "maxLevelPlayer";
-            this.maxLevelPlayer.ShowUpDown = true;
             this.maxLevelPlayer.Size = new System.Drawing.Size(43, 22);
             this.maxLevelPlayer.TabIndex = 30;
             this.maxLevelPlayer.Value = 90;
@@ -438,19 +338,11 @@ namespace Grinder.Profile
             // 
             // maxLevelTarget
             // 
-            this.maxLevelTarget.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.maxLevelTarget.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.maxLevelTarget.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.maxLevelTarget.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.maxLevelTarget.ForeColor = System.Drawing.Color.Black;
             this.maxLevelTarget.Location = new System.Drawing.Point(329, 107);
-            this.maxLevelTarget.MaxValue = 100;
-            this.maxLevelTarget.MinValue = 1;
+            this.maxLevelTarget.Maximum = 100;
+            this.maxLevelTarget.Minimum = 1;
             this.maxLevelTarget.Name = "maxLevelTarget";
-            this.maxLevelTarget.ShowUpDown = true;
             this.maxLevelTarget.Size = new System.Drawing.Size(43, 22);
             this.maxLevelTarget.TabIndex = 34;
             this.maxLevelTarget.Value = 100;
@@ -458,11 +350,6 @@ namespace Grinder.Profile
             // 
             // labelX6
             // 
-            this.labelX6.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.ForeColor = System.Drawing.Color.Black;
             this.labelX6.Location = new System.Drawing.Point(306, 106);
             this.labelX6.Name = "labelX6";
@@ -472,19 +359,11 @@ namespace Grinder.Profile
             // 
             // minLevelTarget
             // 
-            this.minLevelTarget.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.minLevelTarget.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.minLevelTarget.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.minLevelTarget.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.minLevelTarget.ForeColor = System.Drawing.Color.Black;
             this.minLevelTarget.Location = new System.Drawing.Point(259, 106);
-            this.minLevelTarget.MaxValue = 100;
-            this.minLevelTarget.MinValue = 1;
+            this.minLevelTarget.Maximum = 100;
+            this.minLevelTarget.Minimum = 1;
             this.minLevelTarget.Name = "minLevelTarget";
-            this.minLevelTarget.ShowUpDown = true;
             this.minLevelTarget.Size = new System.Drawing.Size(43, 22);
             this.minLevelTarget.TabIndex = 32;
             this.minLevelTarget.Value = 1;
@@ -492,11 +371,6 @@ namespace Grinder.Profile
             // 
             // labelX7
             // 
-            this.labelX7.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.ForeColor = System.Drawing.Color.Black;
             this.labelX7.Location = new System.Drawing.Point(187, 105);
             this.labelX7.Name = "labelX7";
@@ -506,12 +380,6 @@ namespace Grinder.Profile
             // 
             // listEntryTb
             // 
-            this.listEntryTb.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.listEntryTb.Border.Class = "TextBoxBorder";
-            this.listEntryTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.listEntryTb.ForeColor = System.Drawing.Color.Black;
             this.listEntryTb.Location = new System.Drawing.Point(77, 136);
             this.listEntryTb.Name = "listEntryTb";
@@ -521,23 +389,15 @@ namespace Grinder.Profile
             // 
             // addTargetEntryB
             // 
-            this.addTargetEntryB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addTargetEntryB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.addTargetEntryB.Location = new System.Drawing.Point(318, 135);
             this.addTargetEntryB.Name = "addTargetEntryB";
             this.addTargetEntryB.Size = new System.Drawing.Size(58, 23);
-            this.addTargetEntryB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.addTargetEntryB.TabIndex = 36;
             this.addTargetEntryB.Text = "Add Target";
             this.addTargetEntryB.Click += new System.EventHandler(this.addTargetEntryB_Click);
             // 
             // labelX8
             // 
-            this.labelX8.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.ForeColor = System.Drawing.Color.Black;
             this.labelX8.Location = new System.Drawing.Point(1, 135);
             this.labelX8.Name = "labelX8";
@@ -547,8 +407,6 @@ namespace Grinder.Profile
             // 
             // ProfileCreator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ClientSize = new System.Drawing.Size(379, 562);
             this.Controls.Add(this.labelX8);
@@ -605,39 +463,39 @@ namespace Grinder.Profile
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX recordWayB;
-        private DevComponents.DotNetBar.ButtonX saveB;
+        private TnbButton recordWayB;
+        private TnbButton saveB;
         private System.Windows.Forms.ListBox listPoint;
-        private DevComponents.Editors.IntegerInput nSeparatorDistance;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.ButtonX delB;
-        private DevComponents.DotNetBar.ButtonX delBlackRadius;
+        private NumericUpDown nSeparatorDistance;
+        private Label labelX1;
+        private TnbButton delB;
+        private TnbButton delBlackRadius;
         private System.Windows.Forms.ListBox listBlackRadius;
-        private DevComponents.Editors.IntegerInput radiusN;
-        private DevComponents.DotNetBar.ButtonX addBlackB;
-        private DevComponents.DotNetBar.ButtonX addNpcB;
-        private DevComponents.DotNetBar.ButtonX delNpcB;
+        private NumericUpDown radiusN;
+        private TnbButton addBlackB;
+        private TnbButton addNpcB;
+        private TnbButton delNpcB;
         private System.Windows.Forms.ListBox listNpc;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx npcTypeC;
-        private DevComponents.DotNetBar.ButtonX loadB;
-        private DevComponents.DotNetBar.Controls.TextBoxX nameNpcTb;
-        private DevComponents.DotNetBar.ButtonX addByNameNpcB;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx listZoneCb;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.ButtonX addZoneB;
-        private DevComponents.DotNetBar.Controls.TextBoxX zoneNameTb;
-        private DevComponents.DotNetBar.ButtonX delZoneB;
-        private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.LabelX labelX4;
-        private DevComponents.Editors.IntegerInput minLevelPlayer;
-        private DevComponents.DotNetBar.LabelX labelX5;
-        private DevComponents.Editors.IntegerInput maxLevelPlayer;
-        private DevComponents.Editors.IntegerInput maxLevelTarget;
-        private DevComponents.DotNetBar.LabelX labelX6;
-        private DevComponents.Editors.IntegerInput minLevelTarget;
-        private DevComponents.DotNetBar.LabelX labelX7;
-        private DevComponents.DotNetBar.Controls.TextBoxX listEntryTb;
-        private DevComponents.DotNetBar.ButtonX addTargetEntryB;
-        private DevComponents.DotNetBar.LabelX labelX8;
+        private TnbComboBox npcTypeC;
+        private TnbButton loadB;
+        private TextBox nameNpcTb;
+        private TnbButton addByNameNpcB;
+        private TnbComboBox listZoneCb;
+        private Label labelX2;
+        private TnbButton addZoneB;
+        private TextBox zoneNameTb;
+        private TnbButton delZoneB;
+        private Label labelX3;
+        private Label labelX4;
+        private NumericUpDown minLevelPlayer;
+        private Label labelX5;
+        private NumericUpDown maxLevelPlayer;
+        private NumericUpDown maxLevelTarget;
+        private Label labelX6;
+        private NumericUpDown minLevelTarget;
+        private Label labelX7;
+        private TextBox listEntryTb;
+        private TnbButton addTargetEntryB;
+        private Label labelX8;
     }
 }

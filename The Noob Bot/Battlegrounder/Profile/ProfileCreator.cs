@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
@@ -11,7 +10,7 @@ using Math = nManager.Helpful.Math;
 
 namespace Battlegrounder.Profile
 {
-    public partial class ProfileCreator : MetroForm
+    public partial class ProfileCreator : Form
     {
         private bool _loopRecordPoint;
         private BattlegrounderProfile _profile = new BattlegrounderProfile();
@@ -220,7 +219,7 @@ namespace Battlegrounder.Profile
                             _profile.BattlegrounderZones[_idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
-                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > DistanceBetweenRecord.Value) &&
+                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > (double) DistanceBetweenRecord.Value) &&
                          lastRotation != (int) Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
@@ -291,7 +290,7 @@ namespace Battlegrounder.Profile
                         {
                             Position =
                                 ObjectManager.Me.Position,
-                            Radius = Radius.Value
+                            Radius = (float) Radius.Value
                         });
                     RefreshForm();
                 }
