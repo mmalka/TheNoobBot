@@ -6,22 +6,21 @@ using System.Windows.Forms;
 using Battlegrounder.Bot;
 using Battlegrounder.Profile;
 using Battlegrounder.Profiletype;
-using DevComponents.DotNetBar.Controls;
-using DevComponents.DotNetBar.Metro;
 using nManager;
 using nManager.Helpful;
+using nManager.Helpful.Forms.UserControls;
 using Battleground = nManager.Wow.Helpers.Battleground;
 
 namespace Battlegrounder
 {
-    public partial class SettingsBattlegrounderForm : MetroForm
+    public partial class SettingsBattlegrounderForm : Form
     {
         private static readonly BattlegrounderProfileType ProfileTypeFile =
             XmlSerializer.Deserialize<BattlegrounderProfileType>(Application.StartupPath +
                                                                  "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml");
 
-        private readonly List<SwitchButton> _listsb =
-            new List<SwitchButton>();
+        private readonly List<TnbSwitchButton> _listsb =
+            new List<TnbSwitchButton>();
 
         public SettingsBattlegrounderForm()
         {
@@ -58,11 +57,11 @@ namespace Battlegrounder
             RandomBattleground.Text = nManager.Translate.Get(nManager.Translate.Id.RandomBattleground);
             RequeueAfterXMinutesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RequeueAfterXMinutes);
             SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Settings_Battlegrounder);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Settings_Battlegrounder) + " - " + Information.MainTitle;
         }
 
         private void SaveButtonClick(object sender,
-                                     EventArgs e)
+            EventArgs e)
         {
             Save();
         }
@@ -70,35 +69,35 @@ namespace Battlegrounder
         private void Save()
         {
             BattlegrounderSetting.CurrentSetting.AlteracValley = AlteracValleySwitch.Value;
-            ComboboxItem alteracValleyProfileTypeInfo = AlteracValleyProfileType.SelectedItem as ComboboxItem;
+            var alteracValleyProfileTypeInfo = AlteracValleyProfileType.SelectedItem as ComboboxItem;
             if (alteracValleyProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType =
                     alteracValleyProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile = XMLProfileListAlteracValley.Text;
 
             BattlegrounderSetting.CurrentSetting.WarsongGulch = WarsongGulchSwitch.Value;
-            ComboboxItem warsongGulchProfileTypeInfo = WarsongGulchProfileType.SelectedItem as ComboboxItem;
+            var warsongGulchProfileTypeInfo = WarsongGulchProfileType.SelectedItem as ComboboxItem;
             if (warsongGulchProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType =
                     warsongGulchProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile = XMLProfileListWarsongGulch.Text;
 
             BattlegrounderSetting.CurrentSetting.ArathiBasin = ArathiBasinSwitch.Value;
-            ComboboxItem arathiBasinProfileTypeInfo = ArathiBasinProfileType.SelectedItem as ComboboxItem;
+            var arathiBasinProfileTypeInfo = ArathiBasinProfileType.SelectedItem as ComboboxItem;
             if (arathiBasinProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.ArathiBasinProfileType =
                     arathiBasinProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile = XMLProfileListArathiBasin.Text;
 
             BattlegrounderSetting.CurrentSetting.EyeoftheStorm = EyeoftheStormSwitch.Value;
-            ComboboxItem eyeoftheStormProfileTypeInfo = EyeoftheStormProfileType.SelectedItem as ComboboxItem;
+            var eyeoftheStormProfileTypeInfo = EyeoftheStormProfileType.SelectedItem as ComboboxItem;
             if (eyeoftheStormProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.EyeoftheStormProfileType =
                     eyeoftheStormProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile = XMLProfileListEyeoftheStorm.Text;
 
             BattlegrounderSetting.CurrentSetting.StrandoftheAncients = StrandoftheAncientsSwitch.Value;
-            ComboboxItem strandoftheAncientsProfileTypeInfo = StrandoftheAncientsProfileType.SelectedItem as ComboboxItem;
+            var strandoftheAncientsProfileTypeInfo = StrandoftheAncientsProfileType.SelectedItem as ComboboxItem;
             if (strandoftheAncientsProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType =
                     strandoftheAncientsProfileTypeInfo.Value.ToString();
@@ -106,34 +105,34 @@ namespace Battlegrounder
                 XMLProfileListStrandoftheAncients.Text;
 
             BattlegrounderSetting.CurrentSetting.IsleofConquest = IsleofConquestSwitch.Value;
-            ComboboxItem isleofConquestProfileTypeInfo = IsleofConquestProfileType.SelectedItem as ComboboxItem;
+            var isleofConquestProfileTypeInfo = IsleofConquestProfileType.SelectedItem as ComboboxItem;
             if (isleofConquestProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType =
                     isleofConquestProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile = XMLProfileListIsleofConquest.Text;
 
             BattlegrounderSetting.CurrentSetting.TwinPeaks = TwinPeaksSwitch.Value;
-            ComboboxItem twinPeaksProfileTypeInfo = TwinPeaksProfileType.SelectedItem as ComboboxItem;
+            var twinPeaksProfileTypeInfo = TwinPeaksProfileType.SelectedItem as ComboboxItem;
             if (twinPeaksProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.TwinPeaksProfileType = twinPeaksProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile = XMLProfileListTwinPeaks.Text;
 
             BattlegrounderSetting.CurrentSetting.BattleforGilneas = BattleforGilneasSwitch.Value;
-            ComboboxItem battleforGilneasProfileTypeInfo = BattleforGilneasProfileType.SelectedItem as ComboboxItem;
+            var battleforGilneasProfileTypeInfo = BattleforGilneasProfileType.SelectedItem as ComboboxItem;
             if (battleforGilneasProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.BattleforGilneasProfileType =
                     battleforGilneasProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile = XMLProfileListBattleforGilneas.Text;
 
             BattlegrounderSetting.CurrentSetting.TempleofKotmogu = TempleOfKotmoguSwitch.Value;
-            ComboboxItem templeofKotmoguProfileTypeInfo = TempleofKotmoguProfileType.SelectedItem as ComboboxItem;
+            var templeofKotmoguProfileTypeInfo = TempleofKotmoguProfileType.SelectedItem as ComboboxItem;
             if (templeofKotmoguProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.TempleofKotmoguProfileType =
                     templeofKotmoguProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile = XMLProfileListTempleofKotmogu.Text;
 
             BattlegrounderSetting.CurrentSetting.SilvershardMines = SilvershardMinesSwitch.Value;
-            ComboboxItem silvershardMinesProfileTypeInfo = SilvershardMinesProfileType.SelectedItem as ComboboxItem;
+            var silvershardMinesProfileTypeInfo = SilvershardMinesProfileType.SelectedItem as ComboboxItem;
             if (silvershardMinesProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.SilvershardMinesProfileType =
                     silvershardMinesProfileTypeInfo.Value.ToString();
@@ -141,7 +140,7 @@ namespace Battlegrounder
 
             BattlegrounderSetting.CurrentSetting.RandomBattleground = RandomBattlegroundSwitch.Value;
             BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutes = RequeueAfterXMinutesSwitch.Value;
-            BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer = RequeueAfterXMinutes.Value;
+            BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer = (int) RequeueAfterXMinutes.Value;
             BattlegrounderSetting.CurrentSetting.Save();
             Dispose();
         }
@@ -178,10 +177,10 @@ namespace Battlegrounder
                 if (ProfileTypeFile.Battlegrounds.Count > 0)
                     RefreshProfileListType();
                 else
-                    MessageBox.Show("Cannot load Profile Types list.");
+                    MessageBox.Show(@"Cannot load Profile Types list.");
             }
             else
-                MessageBox.Show("Cannot load Profile Types list.");
+                MessageBox.Show(@"Cannot load Profile Types list.");
             RefreshProfileList();
             XMLProfileListAlteracValley.Text = BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile;
             XMLProfileListWarsongGulch.Text = BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile;
@@ -197,17 +196,17 @@ namespace Battlegrounder
         }
 
         private void RandomBattlegroundSwitchValueChanged(object sender,
-                                                          EventArgs e)
+            EventArgs e)
         {
-            SwitchButton sbi = sender as SwitchButton;
+            var sbi = sender as TnbSwitchButton;
             if (sbi != null && sbi.Value)
             {
                 if (CountSwitchActive() > 0)
                 {
                     sbi.Value = false;
                     MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorRandomQueue), "",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
             }
         }
@@ -218,15 +217,15 @@ namespace Battlegrounder
         }
 
         private void CheckAllSwitchEvent(object sender,
-                                         EventArgs e)
+            EventArgs e)
         {
-            SwitchButton sbi = sender as SwitchButton;
+            var sbi = sender as TnbSwitchButton;
             if (RandomBattlegroundSwitch.Value)
             {
                 if (sbi != null) sbi.Value = false;
                 MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorSingleRandomQueue), "",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 return;
             }
 
@@ -234,25 +233,25 @@ namespace Battlegrounder
             {
                 if (sbi != null) sbi.Value = false;
                 MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorMultipleQueue), "",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 
         private void CloseNoSaveButtonClick(object sender,
-                                            EventArgs e)
+            EventArgs e)
         {
             Dispose();
         }
 
         private void CreateProfileBClick(object sender,
-                                         EventArgs e)
+            EventArgs e)
         {
             try
             {
                 if (Battleground.IsInBattleground())
                 {
-                    ProfileCreator f = new ProfileCreator();
+                    var f = new ProfileCreator();
                     f.ShowDialog();
                 }
                 else
@@ -287,11 +286,11 @@ namespace Battlegrounder
                 {
                     for (int i = 0; i <= battleground.ProfileTypes.Count - 1; i++)
                     {
-                        ComboboxItem item = new ComboboxItem
-                            {
-                                Text = battleground.ProfileTypes[i].ProfileTypeName,
-                                Value = battleground.ProfileTypes[i].ProfileTypeId
-                            };
+                        var item = new ComboboxItem
+                        {
+                            Text = battleground.ProfileTypes[i].ProfileTypeName,
+                            Value = battleground.ProfileTypes[i].ProfileTypeId
+                        };
                         if (battleground.BattlegroundId == AlteracValley.Name)
                         {
                             AlteracValleyProfileType.Items.Add(item);
