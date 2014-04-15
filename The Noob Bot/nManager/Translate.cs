@@ -548,7 +548,8 @@ namespace nManager
             FtGConverterLine1,
             FtGConverterLine2,
             FtGConverterLine3,
-            FtGConverterButton
+            FtGConverterButton,
+            TrackerPopUp
         };
 
         [Serializable]

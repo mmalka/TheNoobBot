@@ -66,6 +66,8 @@ namespace Gatherer.Bot
             this.ProfileCreatorButton.AutoEllipsis = true;
             this.ProfileCreatorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.ProfileCreatorButton.ForeColor = System.Drawing.Color.Snow;
+            this.ProfileCreatorButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("ProfileCreatorButton.HooverImage")));
+            this.ProfileCreatorButton.Image = ((System.Drawing.Image)(resources.GetObject("ProfileCreatorButton.Image")));
             this.ProfileCreatorButton.Location = new System.Drawing.Point(205, 55);
             this.ProfileCreatorButton.Name = "ProfileCreatorButton";
             this.ProfileCreatorButton.Size = new System.Drawing.Size(106, 29);
@@ -79,6 +81,8 @@ namespace Gatherer.Bot
             this.LoadProfileButton.AutoEllipsis = true;
             this.LoadProfileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.LoadProfileButton.ForeColor = System.Drawing.Color.Snow;
+            this.LoadProfileButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("LoadProfileButton.HooverImage")));
+            this.LoadProfileButton.Image = ((System.Drawing.Image)(resources.GetObject("LoadProfileButton.Image")));
             this.LoadProfileButton.Location = new System.Drawing.Point(99, 131);
             this.LoadProfileButton.Name = "LoadProfileButton";
             this.LoadProfileButton.Size = new System.Drawing.Size(106, 29);
@@ -108,6 +112,7 @@ namespace Gatherer.Bot
             // LoadProfile
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.BackgroundImage = global::Gatherer.Properties.Resources.backgroundLoadProduct;
             this.ClientSize = new System.Drawing.Size(320, 172);
             this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.ProfileCreatorButton);

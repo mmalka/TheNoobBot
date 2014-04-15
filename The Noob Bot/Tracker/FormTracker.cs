@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using nManager;
+using nManager.Products;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
 
 namespace Tracker
 {
-    public partial class FormTracker : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class FormTracker : Form
     {
         public FormTracker()
         {
@@ -14,38 +16,38 @@ namespace Tracker
             Translate();
             ConfigForm();
             UpdateTrackInGame();
-            if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+            if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 TopMost = true;
         }
 
         private void Translate()
         {
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.By_npc_name) + ":";
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Object_type) + ":";
-            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Creature_type) + ":";
-            Text = nManager.Translate.Get(nManager.Translate.Id.Tracker);
+            TrackByNPCNameLabel.Text = nManager.Translate.Get(nManager.Translate.Id.By_npc_name) + ":";
+            TrackByObjectTypeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Object_type) + ":";
+            TrackByCreatureTypeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Creature_type) + ":";
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Tracker);
         }
 
         private void ConfigForm()
         {
             foreach (string value in Enum.GetNames(typeof (TrackCreatureFlags)))
             {
-                ctNoTrack.Items.Add(value);
+                CreatureTrackableList.Items.Add(value);
             }
 
             foreach (string value in Enum.GetNames(typeof (TrackObjectFlags)))
             {
-                otNoTrack.Items.Add(value);
+                ObjectTrackableList.Items.Add(value);
             }
         }
 
         private void unDelTrack_Click(object sender, EventArgs e)
         {
-            if (unTrack.SelectedItems.Count > 0)
+            if (TrackedByNameList.SelectedItems.Count > 0)
             {
-                for (int i = unTrack.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = TrackedByNameList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    unTrack.Items.RemoveAt(unTrack.SelectedIndices[i]);
+                    TrackedByNameList.Items.RemoveAt(TrackedByNameList.SelectedIndices[i]);
                 }
             }
         }
@@ -54,9 +56,9 @@ namespace Tracker
         {
             if (unNoTrack.Text.Replace(" ", "").Length > 0)
             {
-                if (!unTrack.Items.Contains(unNoTrack.Text))
+                if (!TrackedByNameList.Items.Contains(unNoTrack.Text))
                 {
-                    unTrack.Items.Add(unNoTrack.Text);
+                    TrackedByNameList.Items.Add(unNoTrack.Text);
                     unNoTrack.Text = "";
                 }
             }
@@ -64,12 +66,12 @@ namespace Tracker
 
         private void otAddTrack_Click(object sender, EventArgs e)
         {
-            if (otNoTrack.SelectedItems.Count > 0)
+            if (ObjectTrackableList.SelectedItems.Count > 0)
             {
-                for (int i = otNoTrack.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = ObjectTrackableList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    if (!otTrack.Items.Contains(otNoTrack.Items[otNoTrack.SelectedIndices[i]]))
-                        otTrack.Items.Add(otNoTrack.Items[otNoTrack.SelectedIndices[i]]);
+                    if (!ObjectTrackedList.Items.Contains(ObjectTrackableList.Items[ObjectTrackableList.SelectedIndices[i]]))
+                        ObjectTrackedList.Items.Add(ObjectTrackableList.Items[ObjectTrackableList.SelectedIndices[i]]);
                 }
                 UpdateTrackInGame();
             }
@@ -77,11 +79,11 @@ namespace Tracker
 
         private void otDelTrack_Click(object sender, EventArgs e)
         {
-            if (otTrack.SelectedItems.Count > 0)
+            if (ObjectTrackedList.SelectedItems.Count > 0)
             {
-                for (int i = otTrack.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = ObjectTrackedList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    otTrack.Items.RemoveAt(otTrack.SelectedIndices[i]);
+                    ObjectTrackedList.Items.RemoveAt(ObjectTrackedList.SelectedIndices[i]);
                 }
                 UpdateTrackInGame();
             }
@@ -89,12 +91,12 @@ namespace Tracker
 
         private void ctAddTrack_Click(object sender, EventArgs e)
         {
-            if (ctNoTrack.SelectedItems.Count > 0)
+            if (CreatureTrackableList.SelectedItems.Count > 0)
             {
-                for (int i = ctNoTrack.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = CreatureTrackableList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    if (!ctTrack.Items.Contains(ctNoTrack.Items[ctNoTrack.SelectedIndices[i]]))
-                        ctTrack.Items.Add(ctNoTrack.Items[ctNoTrack.SelectedIndices[i]]);
+                    if (!CreatureTrackedList.Items.Contains(CreatureTrackableList.Items[CreatureTrackableList.SelectedIndices[i]]))
+                        CreatureTrackedList.Items.Add(CreatureTrackableList.Items[CreatureTrackableList.SelectedIndices[i]]);
                 }
                 UpdateTrackInGame();
             }
@@ -102,11 +104,11 @@ namespace Tracker
 
         private void ctDelTrack_Click(object sender, EventArgs e)
         {
-            if (ctTrack.SelectedItems.Count > 0)
+            if (CreatureTrackedList.SelectedItems.Count > 0)
             {
-                for (int i = ctTrack.SelectedIndices.Count - 1; i >= 0; i--)
+                for (int i = CreatureTrackedList.SelectedIndices.Count - 1; i >= 0; i--)
                 {
-                    ctTrack.Items.RemoveAt(ctTrack.SelectedIndices[i]);
+                    CreatureTrackedList.Items.RemoveAt(CreatureTrackedList.SelectedIndices[i]);
                 }
                 UpdateTrackInGame();
             }
@@ -114,17 +116,17 @@ namespace Tracker
 
         private void UpdateTrackInGame()
         {
-            List<string> listUnitFlag = new List<string>();
-            for (int i = 0; i <= ctTrack.Items.Count - 1; i++)
+            var listUnitFlag = new List<string>();
+            for (int i = 0; i <= CreatureTrackedList.Items.Count - 1; i++)
             {
-                listUnitFlag.Add(ctTrack.Items[i].ToString());
+                listUnitFlag.Add(CreatureTrackedList.Items[i].ToString());
             }
             nManager.Wow.Helpers.Tracker.TrackCreatureFlags(listUnitFlag);
 
-            List<string> listObjectFlag = new List<string>();
-            for (int i = 0; i <= otTrack.Items.Count - 1; i++)
+            var listObjectFlag = new List<string>();
+            for (int i = 0; i <= ObjectTrackedList.Items.Count - 1; i++)
             {
-                listObjectFlag.Add(otTrack.Items[i].ToString());
+                listObjectFlag.Add(ObjectTrackedList.Items[i].ToString());
             }
             nManager.Wow.Helpers.Tracker.TrackObjectFlags(listObjectFlag);
         }
@@ -133,16 +135,16 @@ namespace Tracker
         {
             try
             {
-                if (unTrack.Items.Count > 0)
+                if (TrackedByNameList.Items.Count > 0)
                 {
-                    List<string> listName = new List<string>();
-                    for (int i = 0; i <= unTrack.Items.Count - 1; i++)
+                    var listName = new List<string>();
+                    for (int i = 0; i <= TrackedByNameList.Items.Count - 1; i++)
                     {
-                        listName.Add(unTrack.Items[i].ToString());
+                        listName.Add(TrackedByNameList.Items[i].ToString());
                         Application.DoEvents();
                     }
 
-                    List<WoWUnit> tList = new List<WoWUnit>();
+                    var tList = new List<WoWUnit>();
                     tList.AddRange(ObjectManager.GetObjectWoWUnit());
                     for (int i = 0; i <= tList.Count - 1; i++)
                     {
@@ -158,8 +160,13 @@ namespace Tracker
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer1.Enabled = false;
-            nManager.Products.Products.ProductStop();
+            FormTrackerTimer.Enabled = false;
+            Products.ProductStop();
+        }
+
+        private void FormTracker_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.TrackerPopUp));
         }
     }
 }

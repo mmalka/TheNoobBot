@@ -1918,5 +1918,9 @@
       <Id>FtGConverterHeaderText</Id>
       <Text>Flying to Ground Converter</Text>
     </Translation>
+    <Translation>
+      <Id>TrackerPopUp</Id>
+      <Text>You must keep the tracking window open and check your Ingame Minimap to see results of the tracking.</Text>
+    </Translation>
   </Translations>
 </Language>
