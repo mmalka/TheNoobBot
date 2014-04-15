@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gatherer.Properties {
+namespace Fisherbot.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Gatherer.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Gatherer.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fisherbot.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,39 +63,29 @@ namespace Gatherer.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _320x22_controlbar {
-            get {
-                object obj = ResourceManager.GetObject("320x22_controlbar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap backgroundLoadProduct {
-            get {
-                object obj = ResourceManager.GetObject("backgroundLoadProduct", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap blackB {
-            get {
-                object obj = ResourceManager.GetObject("blackB", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap blackB_150 {
             get {
                 object obj = ResourceManager.GetObject("blackB_150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blackB_200 {
+            get {
+                object obj = ResourceManager.GetObject("blackB_200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blackB_242 {
+            get {
+                object obj = ResourceManager.GetObject("blackB_242", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +123,9 @@ namespace Gatherer.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap greenB {
+        internal static System.Drawing.Bitmap greenB_150 {
             get {
-                object obj = ResourceManager.GetObject("greenB", resourceCulture);
+                object obj = ResourceManager.GetObject("greenB_150", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +133,19 @@ namespace Gatherer.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap greenB_150 {
+        internal static System.Drawing.Bitmap greenB_200 {
             get {
-                object obj = ResourceManager.GetObject("greenB_150", resourceCulture);
+                object obj = ResourceManager.GetObject("greenB_200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenB_242 {
+            get {
+                object obj = ResourceManager.GetObject("greenB_242", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,16 +166,6 @@ namespace Gatherer.Properties {
         internal static System.Drawing.Bitmap greenB_70 {
             get {
                 object obj = ResourceManager.GetObject("greenB_70", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap selectorBack_big {
-            get {
-                object obj = ResourceManager.GetObject("selectorBack_big", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

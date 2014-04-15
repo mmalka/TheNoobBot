@@ -4,14 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using Math = nManager.Helpful.Math;
 
 namespace Gatherer.Bot
 {
-    public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class ProfileCreator : Form
     {
+        private bool _loopRecordPoint;
         private GathererProfile _profile = new GathererProfile();
 
         public ProfileCreator()
@@ -47,7 +52,7 @@ namespace Gatherer.Bot
             loadB.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
             nameNpcTb.Text = nManager.Translate.Get(nManager.Translate.Id.Name);
             addByNameNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_by_Name_to_Npc_list);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
         }
 
         private void saveB_Click(object sender, EventArgs ex)
@@ -56,7 +61,7 @@ namespace Gatherer.Bot
             {
                 string file =
                     Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Gatherer\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (file != "")
                 {
@@ -76,7 +81,7 @@ namespace Gatherer.Bot
             {
                 string file =
                     Others.DialogBoxOpenFile(Application.StartupPath + "\\Profiles\\Gatherer\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (File.Exists(file))
                 {
@@ -153,7 +158,6 @@ namespace Gatherer.Bot
 
 
         // WAY
-        private bool _loopRecordPoint;
 
         private void recordWayB_Click(object sender, EventArgs ex)
         {
@@ -194,12 +198,12 @@ namespace Gatherer.Bot
                     Point lastPoint = _profile.Points[_profile.Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
-                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
-                         lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > (double) nSeparatorDistance.Value) &&
+                         lastRotation != (int) Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.Points.Add(ObjectManager.Me.Position);
-                        lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
+                        lastRotation = (int) Math.RadianToDegree(ObjectManager.Me.Rotation);
                         RefreshForm();
                     }
                     Application.DoEvents();
@@ -247,7 +251,7 @@ namespace Gatherer.Bot
             try
             {
                 _profile.BlackListRadius.Add(new GathererBlackListRadius
-                    {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
+                {Position = ObjectManager.Me.Position, Radius = (float) radiusN.Value});
                 RefreshForm();
             }
             catch (Exception ex)
@@ -279,18 +283,18 @@ namespace Gatherer.Bot
                 if (!ObjectManager.Me.IsValid || !ObjectManager.Target.IsValid)
                     return;
 
-                Npc npc = new Npc
-                    {
-                        ContinentId =
-                            (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
-                        Entry = ObjectManager.Target.Entry,
-                        Faction =
-                            (Npc.FactionType)
+                var npc = new Npc
+                {
+                    ContinentId =
+                        (ContinentId) (Usefuls.ContinentId),
+                    Entry = ObjectManager.Target.Entry,
+                    Faction =
+                        (Npc.FactionType)
                             Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
-                        Name = ObjectManager.Target.Name,
-                        Position = ObjectManager.Target.Position,
-                        Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
-                    };
+                    Name = ObjectManager.Target.Name,
+                    Position = ObjectManager.Target.Position,
+                    Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
+                };
                 _profile.Npc.Add(npc);
                 RefreshForm();
             }
@@ -313,7 +317,7 @@ namespace Gatherer.Bot
                     return;
                 }
 
-                Npc npc = new Npc();
+                var npc = new Npc();
 
                 List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
 
@@ -350,13 +354,13 @@ namespace Gatherer.Bot
                 }
 
                 npc.ContinentId =
-                    (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId);
+                    (ContinentId) (Usefuls.ContinentId);
                 npc.Faction =
                     (Npc.FactionType)
-                    Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                        Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
                 npc.Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true);
 
-                if (nManager.Wow.Helpers.Usefuls.IsOutdoors)
+                if (Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
 
                 _profile.Npc.Add(npc);

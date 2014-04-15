@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow.MemoryClass;
-using The_Noob_Bot.Properties;
 using Process = System.Diagnostics.Process;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
 

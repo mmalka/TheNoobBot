@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Fisherbot
 {
     partial class SettingsFisherbotForm
@@ -29,274 +32,259 @@ namespace Fisherbot
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsFisherbotForm));
-            this.useLure = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.fishSchool = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.fishSchoolProfil = new System.Windows.Forms.ComboBox();
-            this.lureName = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.labelX4 = new DevComponents.DotNetBar.LabelX();
-            this.FisherbotPoolName = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX5 = new DevComponents.DotNetBar.LabelX();
-            this.weaponName = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.saveB = new DevComponents.DotNetBar.ButtonX();
-            this.profileCreatorB = new DevComponents.DotNetBar.ButtonX();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
-            this.precisionMode = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.useLure = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.fishSchool = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.UseLureLabel = new System.Windows.Forms.Label();
+            this.ActivateFishingHole = new System.Windows.Forms.Label();
+            this.fishSchoolProfil = new nManager.Helpful.Forms.UserControls.TnbComboBox();
+            this.lureName = new System.Windows.Forms.TextBox();
+            this.labelX3 = new System.Windows.Forms.Label();
+            this.FishingPoleName = new System.Windows.Forms.Label();
+            this.FisherbotPoolName = new System.Windows.Forms.TextBox();
+            this.LeftWeaponName = new System.Windows.Forms.Label();
+            this.weaponName = new System.Windows.Forms.TextBox();
+            this.labelX6 = new System.Windows.Forms.Label();
+            this.saveB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.profileCreatorB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.labelX7 = new System.Windows.Forms.Label();
+            this.precisionMode = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.tnbControlMenu1 = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.FishingSchoolsProfile = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // useLure
             // 
-            this.useLure.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.useLure.BackgroundStyle.Class = "";
-            this.useLure.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.useLure.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.useLure.ForeColor = System.Drawing.Color.Black;
-            this.useLure.Location = new System.Drawing.Point(130, 12);
+            this.useLure.Location = new System.Drawing.Point(247, 97);
+            this.useLure.MaximumSize = new System.Drawing.Size(60, 20);
+            this.useLure.MinimumSize = new System.Drawing.Size(60, 20);
             this.useLure.Name = "useLure";
-            this.useLure.Size = new System.Drawing.Size(63, 21);
-            this.useLure.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.useLure.OffText = "OFF";
+            this.useLure.OnText = "ON";
+            this.useLure.Size = new System.Drawing.Size(60, 20);
             this.useLure.TabIndex = 2;
+            this.useLure.Value = false;
             // 
             // fishSchool
             // 
-            this.fishSchool.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.fishSchool.BackgroundStyle.Class = "";
-            this.fishSchool.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.fishSchool.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.fishSchool.ForeColor = System.Drawing.Color.Black;
-            this.fishSchool.Location = new System.Drawing.Point(130, 49);
+            this.fishSchool.Location = new System.Drawing.Point(247, 176);
+            this.fishSchool.MaximumSize = new System.Drawing.Size(60, 20);
+            this.fishSchool.MinimumSize = new System.Drawing.Size(60, 20);
             this.fishSchool.Name = "fishSchool";
-            this.fishSchool.Size = new System.Drawing.Size(63, 21);
-            this.fishSchool.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.fishSchool.OffText = "OFF";
+            this.fishSchool.OnText = "ON";
+            this.fishSchool.Size = new System.Drawing.Size(60, 20);
             this.fishSchool.TabIndex = 3;
+            this.fishSchool.Value = false;
             // 
-            // labelX1
+            // UseLureLabel
             // 
-            this.labelX1.BackColor = System.Drawing.Color.White;
+            this.UseLureLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.UseLureLabel.Location = new System.Drawing.Point(10, 100);
+            this.UseLureLabel.Name = "UseLureLabel";
+            this.UseLureLabel.Size = new System.Drawing.Size(112, 22);
+            this.UseLureLabel.TabIndex = 4;
+            this.UseLureLabel.Text = "Use Lure";
+            this.UseLureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ActivateFishingHole
             // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(12, 12);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(112, 22);
-            this.labelX1.TabIndex = 4;
-            this.labelX1.Text = "Use Lure";
-            // 
-            // labelX2
-            // 
-            this.labelX2.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(12, 49);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(112, 22);
-            this.labelX2.TabIndex = 5;
-            this.labelX2.Text = "Fish School";
+            this.ActivateFishingHole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.ActivateFishingHole.Location = new System.Drawing.Point(10, 175);
+            this.ActivateFishingHole.Name = "ActivateFishingHole";
+            this.ActivateFishingHole.Size = new System.Drawing.Size(201, 22);
+            this.ActivateFishingHole.TabIndex = 5;
+            this.ActivateFishingHole.Text = "Fish in Fishing Schools";
+            this.ActivateFishingHole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fishSchoolProfil
             // 
             this.fishSchoolProfil.BackColor = System.Drawing.Color.White;
+            this.fishSchoolProfil.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.fishSchoolProfil.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.fishSchoolProfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fishSchoolProfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fishSchoolProfil.ForeColor = System.Drawing.Color.Black;
             this.fishSchoolProfil.FormattingEnabled = true;
-            this.fishSchoolProfil.Location = new System.Drawing.Point(66, 76);
+            this.fishSchoolProfil.HighlightColor = System.Drawing.Color.Gainsboro;
+            this.fishSchoolProfil.ItemHeight = 20;
+            this.fishSchoolProfil.Location = new System.Drawing.Point(162, 202);
             this.fishSchoolProfil.Name = "fishSchoolProfil";
-            this.fishSchoolProfil.Size = new System.Drawing.Size(224, 21);
+            this.fishSchoolProfil.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
+            this.fishSchoolProfil.SelectorImage = ((System.Drawing.Image)(resources.GetObject("fishSchoolProfil.SelectorImage")));
+            this.fishSchoolProfil.Size = new System.Drawing.Size(145, 26);
             this.fishSchoolProfil.TabIndex = 12;
             // 
             // lureName
             // 
-            this.lureName.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.lureName.Border.Class = "TextBoxBorder";
-            this.lureName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lureName.ForeColor = System.Drawing.Color.Black;
-            this.lureName.Location = new System.Drawing.Point(130, 138);
+            this.lureName.Location = new System.Drawing.Point(130, 121);
             this.lureName.Name = "lureName";
-            this.lureName.Size = new System.Drawing.Size(151, 22);
+            this.lureName.Size = new System.Drawing.Size(178, 22);
             this.lureName.TabIndex = 13;
             // 
             // labelX3
             // 
-            this.labelX3.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX3.BackgroundStyle.Class = "";
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(12, 138);
+            this.labelX3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.labelX3.Location = new System.Drawing.Point(10, 122);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(112, 22);
             this.labelX3.TabIndex = 14;
             this.labelX3.Text = "Lure Name*";
+            this.labelX3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // labelX4
+            // FishingPoleName
             // 
-            this.labelX4.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX4.BackgroundStyle.Class = "";
-            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.ForeColor = System.Drawing.Color.Black;
-            this.labelX4.Location = new System.Drawing.Point(12, 170);
-            this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(112, 22);
-            this.labelX4.TabIndex = 16;
-            this.labelX4.Text = "Fishing pole Name";
+            this.FishingPoleName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.FishingPoleName.Location = new System.Drawing.Point(10, 260);
+            this.FishingPoleName.Name = "FishingPoleName";
+            this.FishingPoleName.Size = new System.Drawing.Size(112, 22);
+            this.FishingPoleName.TabIndex = 16;
+            this.FishingPoleName.Text = "Fishing Pole Name";
+            this.FishingPoleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FisherbotPoolName
             // 
-            this.FisherbotPoolName.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.FisherbotPoolName.Border.Class = "TextBoxBorder";
-            this.FisherbotPoolName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.FisherbotPoolName.ForeColor = System.Drawing.Color.Black;
-            this.FisherbotPoolName.Location = new System.Drawing.Point(130, 170);
+            this.FisherbotPoolName.Location = new System.Drawing.Point(158, 258);
             this.FisherbotPoolName.Name = "FisherbotPoolName";
             this.FisherbotPoolName.Size = new System.Drawing.Size(151, 22);
             this.FisherbotPoolName.TabIndex = 15;
             // 
-            // labelX5
+            // LeftWeaponName
             // 
-            this.labelX5.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX5.BackgroundStyle.Class = "";
-            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.ForeColor = System.Drawing.Color.Black;
-            this.labelX5.Location = new System.Drawing.Point(12, 202);
-            this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(112, 22);
-            this.labelX5.TabIndex = 18;
-            this.labelX5.Text = "Weapon Name";
+            this.LeftWeaponName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.LeftWeaponName.Location = new System.Drawing.Point(10, 288);
+            this.LeftWeaponName.Name = "LeftWeaponName";
+            this.LeftWeaponName.Size = new System.Drawing.Size(112, 22);
+            this.LeftWeaponName.TabIndex = 18;
+            this.LeftWeaponName.Text = "Left Weapon Name";
+            this.LeftWeaponName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // weaponName
             // 
-            this.weaponName.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.weaponName.Border.Class = "TextBoxBorder";
-            this.weaponName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.weaponName.ForeColor = System.Drawing.Color.Black;
-            this.weaponName.Location = new System.Drawing.Point(130, 202);
+            this.weaponName.Location = new System.Drawing.Point(158, 286);
             this.weaponName.Name = "weaponName";
             this.weaponName.Size = new System.Drawing.Size(151, 22);
             this.weaponName.TabIndex = 17;
             // 
             // labelX6
             // 
-            this.labelX6.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX6.BackgroundStyle.Class = "";
-            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.ForeColor = System.Drawing.Color.Black;
-            this.labelX6.Location = new System.Drawing.Point(12, 229);
+            this.labelX6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.labelX6.Location = new System.Drawing.Point(10, 144);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(269, 22);
+            this.labelX6.Size = new System.Drawing.Size(294, 22);
             this.labelX6.TabIndex = 19;
-            this.labelX6.Text = "* = If special. If empty, default items is used";
-            this.labelX6.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.labelX6.Text = "If empty, default items will be used.";
+            this.labelX6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // saveB
             // 
-            this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.saveB.Location = new System.Drawing.Point(209, 0);
+            this.saveB.AutoEllipsis = true;
+            this.saveB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.saveB.ForeColor = System.Drawing.Color.Snow;
+            this.saveB.HooverImage = ((System.Drawing.Image)(resources.GetObject("saveB.HooverImage")));
+            this.saveB.Image = global::Fisherbot.Properties.Resources.blueB;
+            this.saveB.Location = new System.Drawing.Point(202, 54);
             this.saveB.Name = "saveB";
-            this.saveB.Size = new System.Drawing.Size(81, 21);
-            this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.saveB.Size = new System.Drawing.Size(106, 29);
             this.saveB.TabIndex = 20;
             this.saveB.Text = "Save and Close";
+            this.saveB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.saveB.Click += new System.EventHandler(this.saveB_Click);
             // 
             // profileCreatorB
             // 
-            this.profileCreatorB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.profileCreatorB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.profileCreatorB.Location = new System.Drawing.Point(212, 50);
+            this.profileCreatorB.AutoEllipsis = true;
+            this.profileCreatorB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.profileCreatorB.ForeColor = System.Drawing.Color.Snow;
+            this.profileCreatorB.HooverImage = ((System.Drawing.Image)(resources.GetObject("profileCreatorB.HooverImage")));
+            this.profileCreatorB.Image = ((System.Drawing.Image)(resources.GetObject("profileCreatorB.Image")));
+            this.profileCreatorB.Location = new System.Drawing.Point(86, 54);
             this.profileCreatorB.Name = "profileCreatorB";
-            this.profileCreatorB.Size = new System.Drawing.Size(78, 21);
-            this.profileCreatorB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.profileCreatorB.Size = new System.Drawing.Size(106, 29);
             this.profileCreatorB.TabIndex = 21;
             this.profileCreatorB.Text = "Profile Creator";
+            this.profileCreatorB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.profileCreatorB.Click += new System.EventHandler(this.profileCreatorB_Click);
             // 
             // labelX7
             // 
-            this.labelX7.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX7.BackgroundStyle.Class = "";
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.ForeColor = System.Drawing.Color.Black;
-            this.labelX7.Location = new System.Drawing.Point(12, 102);
+            this.labelX7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.labelX7.Location = new System.Drawing.Point(10, 236);
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(190, 22);
             this.labelX7.TabIndex = 23;
-            this.labelX7.Text = "Precision Mode (fish school)";
+            this.labelX7.Text = "Retry until it land in the Fishing School";
+            this.labelX7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // precisionMode
             // 
-            this.precisionMode.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.precisionMode.BackgroundStyle.Class = "";
-            this.precisionMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.precisionMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.precisionMode.ForeColor = System.Drawing.Color.Black;
-            this.precisionMode.Location = new System.Drawing.Point(217, 103);
+            this.precisionMode.Location = new System.Drawing.Point(247, 233);
+            this.precisionMode.MaximumSize = new System.Drawing.Size(60, 20);
+            this.precisionMode.MinimumSize = new System.Drawing.Size(60, 20);
             this.precisionMode.Name = "precisionMode";
-            this.precisionMode.Size = new System.Drawing.Size(63, 21);
-            this.precisionMode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.precisionMode.OffText = "OFF";
+            this.precisionMode.OnText = "ON";
+            this.precisionMode.Size = new System.Drawing.Size(60, 20);
             this.precisionMode.TabIndex = 22;
+            this.precisionMode.Value = false;
+            // 
+            // tnbControlMenu1
+            // 
+            this.tnbControlMenu1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tnbControlMenu1.BackgroundImage")));
+            this.tnbControlMenu1.Location = new System.Drawing.Point(0, 0);
+            this.tnbControlMenu1.LogoImage = ((System.Drawing.Image)(resources.GetObject("tnbControlMenu1.LogoImage")));
+            this.tnbControlMenu1.Name = "tnbControlMenu1";
+            this.tnbControlMenu1.Size = new System.Drawing.Size(320, 43);
+            this.tnbControlMenu1.TabIndex = 24;
+            this.tnbControlMenu1.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tnbControlMenu1.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.tnbControlMenu1.TitleText = "TheNoobBot";
+            // 
+            // FishingSchoolsProfile
+            // 
+            this.FishingSchoolsProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.FishingSchoolsProfile.Location = new System.Drawing.Point(10, 204);
+            this.FishingSchoolsProfile.Name = "FishingSchoolsProfile";
+            this.FishingSchoolsProfile.Size = new System.Drawing.Size(141, 22);
+            this.FishingSchoolsProfile.TabIndex = 25;
+            this.FishingSchoolsProfile.Text = "Fishing Schools Profile";
+            this.FishingSchoolsProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // SettingsFisherbotForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(292, 252);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(320, 321);
+            this.Controls.Add(this.FishingSchoolsProfile);
+            this.Controls.Add(this.tnbControlMenu1);
             this.Controls.Add(this.labelX7);
             this.Controls.Add(this.precisionMode);
             this.Controls.Add(this.profileCreatorB);
             this.Controls.Add(this.saveB);
             this.Controls.Add(this.labelX6);
-            this.Controls.Add(this.labelX5);
+            this.Controls.Add(this.LeftWeaponName);
             this.Controls.Add(this.weaponName);
-            this.Controls.Add(this.labelX4);
+            this.Controls.Add(this.FishingPoleName);
             this.Controls.Add(this.FisherbotPoolName);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.lureName);
             this.Controls.Add(this.fishSchoolProfil);
-            this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.labelX1);
+            this.Controls.Add(this.ActivateFishingHole);
+            this.Controls.Add(this.UseLureLabel);
             this.Controls.Add(this.fishSchool);
             this.Controls.Add(this.useLure);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SettingsFisherbotForm";
@@ -304,27 +292,30 @@ namespace Fisherbot
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings Fisherbot";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.Controls.SwitchButton useLure;
-        private DevComponents.DotNetBar.Controls.SwitchButton fishSchool;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private System.Windows.Forms.ComboBox fishSchoolProfil;
-        private DevComponents.DotNetBar.Controls.TextBoxX lureName;
-        private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.Controls.TextBoxX FisherbotPoolName;
-        private DevComponents.DotNetBar.LabelX labelX4;
-        private DevComponents.DotNetBar.LabelX labelX5;
-        private DevComponents.DotNetBar.Controls.TextBoxX weaponName;
-        private DevComponents.DotNetBar.LabelX labelX6;
-        private DevComponents.DotNetBar.ButtonX saveB;
-        private DevComponents.DotNetBar.ButtonX profileCreatorB;
-        private DevComponents.DotNetBar.LabelX labelX7;
-        private DevComponents.DotNetBar.Controls.SwitchButton precisionMode;
+        private TnbSwitchButton useLure;
+        private TnbSwitchButton fishSchool;
+        private Label UseLureLabel;
+        private Label ActivateFishingHole;
+        private TnbComboBox fishSchoolProfil;
+        private TextBox lureName;
+        private Label labelX3;
+        private TextBox FisherbotPoolName;
+        private Label FishingPoleName;
+        private Label LeftWeaponName;
+        private TextBox weaponName;
+        private Label labelX6;
+        private TnbButton saveB;
+        private TnbButton profileCreatorB;
+        private Label labelX7;
+        private TnbSwitchButton precisionMode;
+        private TnbControlMenu tnbControlMenu1;
+        private Label FishingSchoolsProfile;
 
     }
 }

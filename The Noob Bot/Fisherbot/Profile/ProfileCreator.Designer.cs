@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Fisherbot.Profile
 {
     partial class ProfileCreator
@@ -28,190 +31,256 @@ namespace Fisherbot.Profile
         /// </summary>
         private void InitializeComponent()
         {
-            this.recordWayB = new DevComponents.DotNetBar.ButtonX();
-            this.saveB = new DevComponents.DotNetBar.ButtonX();
-            this.listPoint = new System.Windows.Forms.ListBox();
-            this.nSeparatorDistance = new DevComponents.Editors.IntegerInput();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.delB = new DevComponents.DotNetBar.ButtonX();
-            this.delBlackRadius = new DevComponents.DotNetBar.ButtonX();
-            this.listBlackRadius = new System.Windows.Forms.ListBox();
-            this.radiusN = new DevComponents.Editors.IntegerInput();
-            this.addBlackB = new DevComponents.DotNetBar.ButtonX();
-            this.loadB = new DevComponents.DotNetBar.ButtonX();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileCreator));
+            this.ListOfPointsRecorded = new System.Windows.Forms.ListBox();
+            this.nSeparatorDistance = new System.Windows.Forms.NumericUpDown();
+            this.RecordingIntervalDistance = new System.Windows.Forms.Label();
+            this.BlacklistRadiusList = new System.Windows.Forms.ListBox();
+            this.radiusN = new System.Windows.Forms.NumericUpDown();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.LoadaProfileButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.addBlackB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.delBlackRadius = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.RemoveListPointButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.SaveProfileButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.recordWayB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.BlackListRadius = new System.Windows.Forms.Label();
+            this.FishingSchoolFishingLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radiusN)).BeginInit();
             this.SuspendLayout();
             // 
-            // recordWayB
+            // ListOfPointsRecorded
             // 
-            this.recordWayB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.recordWayB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.recordWayB.Location = new System.Drawing.Point(12, 241);
-            this.recordWayB.Name = "recordWayB";
-            this.recordWayB.Size = new System.Drawing.Size(352, 23);
-            this.recordWayB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.recordWayB.TabIndex = 1;
-            this.recordWayB.Text = "Record Way";
-            this.recordWayB.Click += new System.EventHandler(this.recordWayB_Click);
-            // 
-            // saveB
-            // 
-            this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.saveB.Location = new System.Drawing.Point(318, 8);
-            this.saveB.Name = "saveB";
-            this.saveB.Size = new System.Drawing.Size(58, 19);
-            this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.saveB.TabIndex = 2;
-            this.saveB.Text = "Save";
-            this.saveB.Click += new System.EventHandler(this.saveB_Click);
-            // 
-            // listPoint
-            // 
-            this.listPoint.BackColor = System.Drawing.Color.White;
-            this.listPoint.ForeColor = System.Drawing.Color.Black;
-            this.listPoint.FormattingEnabled = true;
-            this.listPoint.Location = new System.Drawing.Point(1, 36);
-            this.listPoint.Name = "listPoint";
-            this.listPoint.Size = new System.Drawing.Size(375, 199);
-            this.listPoint.TabIndex = 4;
+            this.ListOfPointsRecorded.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.ListOfPointsRecorded.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.ListOfPointsRecorded.FormattingEnabled = true;
+            this.ListOfPointsRecorded.Location = new System.Drawing.Point(13, 95);
+            this.ListOfPointsRecorded.Name = "ListOfPointsRecorded";
+            this.ListOfPointsRecorded.Size = new System.Drawing.Size(551, 95);
+            this.ListOfPointsRecorded.TabIndex = 4;
             // 
             // nSeparatorDistance
             // 
-            this.nSeparatorDistance.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.nSeparatorDistance.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.nSeparatorDistance.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.nSeparatorDistance.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.nSeparatorDistance.ForeColor = System.Drawing.Color.Black;
-            this.nSeparatorDistance.Location = new System.Drawing.Point(145, 5);
-            this.nSeparatorDistance.MaxValue = 200;
-            this.nSeparatorDistance.MinValue = 1;
+            this.nSeparatorDistance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.nSeparatorDistance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.nSeparatorDistance.Location = new System.Drawing.Point(191, 199);
+            this.nSeparatorDistance.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nSeparatorDistance.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nSeparatorDistance.Name = "nSeparatorDistance";
-            this.nSeparatorDistance.ShowUpDown = true;
-            this.nSeparatorDistance.Size = new System.Drawing.Size(94, 22);
+            this.nSeparatorDistance.Size = new System.Drawing.Size(42, 22);
             this.nSeparatorDistance.TabIndex = 5;
-            this.nSeparatorDistance.Value = 2;
+            this.nSeparatorDistance.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
-            // labelX1
+            // RecordingIntervalDistance
             // 
-            this.labelX1.BackColor = System.Drawing.Color.White;
+            this.RecordingIntervalDistance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.RecordingIntervalDistance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.RecordingIntervalDistance.Location = new System.Drawing.Point(10, 192);
+            this.RecordingIntervalDistance.Name = "RecordingIntervalDistance";
+            this.RecordingIntervalDistance.Size = new System.Drawing.Size(170, 29);
+            this.RecordingIntervalDistance.TabIndex = 6;
+            this.RecordingIntervalDistance.Text = "Separation distance record:";
+            this.RecordingIntervalDistance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // BlacklistRadiusList
             // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(1, 4);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(138, 23);
-            this.labelX1.TabIndex = 6;
-            this.labelX1.Text = "Separation distance record:";
-            // 
-            // delB
-            // 
-            this.delB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.delB.Location = new System.Drawing.Point(339, 36);
-            this.delB.Name = "delB";
-            this.delB.Size = new System.Drawing.Size(37, 23);
-            this.delB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.delB.TabIndex = 8;
-            this.delB.Text = "Del";
-            this.delB.Click += new System.EventHandler(this.delB_Click);
-            // 
-            // delBlackRadius
-            // 
-            this.delBlackRadius.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delBlackRadius.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.delBlackRadius.Location = new System.Drawing.Point(339, 278);
-            this.delBlackRadius.Name = "delBlackRadius";
-            this.delBlackRadius.Size = new System.Drawing.Size(37, 18);
-            this.delBlackRadius.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.delBlackRadius.TabIndex = 10;
-            this.delBlackRadius.Text = "Del";
-            this.delBlackRadius.Click += new System.EventHandler(this.delBlackRadius_Click);
-            // 
-            // listBlackRadius
-            // 
-            this.listBlackRadius.BackColor = System.Drawing.Color.White;
-            this.listBlackRadius.ForeColor = System.Drawing.Color.Black;
-            this.listBlackRadius.FormattingEnabled = true;
-            this.listBlackRadius.Location = new System.Drawing.Point(1, 278);
-            this.listBlackRadius.Name = "listBlackRadius";
-            this.listBlackRadius.Size = new System.Drawing.Size(375, 69);
-            this.listBlackRadius.TabIndex = 9;
+            this.BlacklistRadiusList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.BlacklistRadiusList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.BlacklistRadiusList.FormattingEnabled = true;
+            this.BlacklistRadiusList.Location = new System.Drawing.Point(13, 241);
+            this.BlacklistRadiusList.Name = "BlacklistRadiusList";
+            this.BlacklistRadiusList.Size = new System.Drawing.Size(551, 95);
+            this.BlacklistRadiusList.TabIndex = 9;
             // 
             // radiusN
             // 
-            this.radiusN.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.radiusN.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.radiusN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.radiusN.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.radiusN.ForeColor = System.Drawing.Color.Black;
-            this.radiusN.Location = new System.Drawing.Point(12, 354);
-            this.radiusN.MinValue = 1;
+            this.radiusN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.radiusN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.radiusN.Location = new System.Drawing.Point(191, 344);
+            this.radiusN.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.radiusN.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.radiusN.Name = "radiusN";
-            this.radiusN.ShowUpDown = true;
-            this.radiusN.Size = new System.Drawing.Size(113, 22);
+            this.radiusN.Size = new System.Drawing.Size(42, 22);
             this.radiusN.TabIndex = 11;
-            this.radiusN.Value = 35;
+            this.radiusN.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
+            // 
+            // MainHeader
+            // 
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(575, 43);
+            this.MainHeader.TabIndex = 19;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "Fisherbot Profile Creator - The Noob Bot DevVersionRestrict";
+            // 
+            // LoadaProfileButton
+            // 
+            this.LoadaProfileButton.AutoEllipsis = true;
+            this.LoadaProfileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.LoadaProfileButton.ForeColor = System.Drawing.Color.Snow;
+            this.LoadaProfileButton.HooverImage = global::Fisherbot.Properties.Resources.greenB_150;
+            this.LoadaProfileButton.Image = global::Fisherbot.Properties.Resources.blackB_150;
+            this.LoadaProfileButton.Location = new System.Drawing.Point(413, 54);
+            this.LoadaProfileButton.Name = "LoadaProfileButton";
+            this.LoadaProfileButton.Size = new System.Drawing.Size(150, 29);
+            this.LoadaProfileButton.TabIndex = 18;
+            this.LoadaProfileButton.Text = "Load an existing profile";
+            this.LoadaProfileButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LoadaProfileButton.Click += new System.EventHandler(this.loadB_Click);
             // 
             // addBlackB
             // 
-            this.addBlackB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addBlackB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.addBlackB.Location = new System.Drawing.Point(131, 353);
+            this.addBlackB.AutoEllipsis = true;
+            this.addBlackB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.addBlackB.ForeColor = System.Drawing.Color.Snow;
+            this.addBlackB.HooverImage = global::Fisherbot.Properties.Resources.greenB_260;
+            this.addBlackB.Image = global::Fisherbot.Properties.Resources.blackB_260;
+            this.addBlackB.Location = new System.Drawing.Point(303, 346);
             this.addBlackB.Name = "addBlackB";
-            this.addBlackB.Size = new System.Drawing.Size(233, 23);
-            this.addBlackB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.addBlackB.Size = new System.Drawing.Size(260, 29);
             this.addBlackB.TabIndex = 12;
             this.addBlackB.Text = "Add this position to Black list Radius";
+            this.addBlackB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.addBlackB.Click += new System.EventHandler(this.addBlackB_Click);
             // 
-            // loadB
+            // delBlackRadius
             // 
-            this.loadB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.loadB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.loadB.Location = new System.Drawing.Point(254, 8);
-            this.loadB.Name = "loadB";
-            this.loadB.Size = new System.Drawing.Size(58, 19);
-            this.loadB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.loadB.TabIndex = 18;
-            this.loadB.Text = "Load";
-            this.loadB.Click += new System.EventHandler(this.loadB_Click);
+            this.delBlackRadius.AutoEllipsis = true;
+            this.delBlackRadius.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.delBlackRadius.ForeColor = System.Drawing.Color.Snow;
+            this.delBlackRadius.HooverImage = global::Fisherbot.Properties.Resources.greenB_70;
+            this.delBlackRadius.Image = global::Fisherbot.Properties.Resources.blackB_70;
+            this.delBlackRadius.Location = new System.Drawing.Point(493, 242);
+            this.delBlackRadius.Name = "delBlackRadius";
+            this.delBlackRadius.Size = new System.Drawing.Size(70, 29);
+            this.delBlackRadius.TabIndex = 10;
+            this.delBlackRadius.Text = "Del";
+            this.delBlackRadius.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delBlackRadius.Click += new System.EventHandler(this.delBlackRadius_Click);
+            // 
+            // RemoveListPointButton
+            // 
+            this.RemoveListPointButton.AutoEllipsis = true;
+            this.RemoveListPointButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.RemoveListPointButton.ForeColor = System.Drawing.Color.Snow;
+            this.RemoveListPointButton.HooverImage = global::Fisherbot.Properties.Resources.greenB_70;
+            this.RemoveListPointButton.Image = global::Fisherbot.Properties.Resources.blackB_70;
+            this.RemoveListPointButton.Location = new System.Drawing.Point(493, 96);
+            this.RemoveListPointButton.Name = "RemoveListPointButton";
+            this.RemoveListPointButton.Size = new System.Drawing.Size(70, 29);
+            this.RemoveListPointButton.TabIndex = 8;
+            this.RemoveListPointButton.Text = "Del";
+            this.RemoveListPointButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RemoveListPointButton.Click += new System.EventHandler(this.delB_Click);
+            // 
+            // SaveProfileButton
+            // 
+            this.SaveProfileButton.AutoEllipsis = true;
+            this.SaveProfileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.SaveProfileButton.ForeColor = System.Drawing.Color.Snow;
+            this.SaveProfileButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("SaveProfileButton.HooverImage")));
+            this.SaveProfileButton.Image = global::Fisherbot.Properties.Resources.blueB;
+            this.SaveProfileButton.Location = new System.Drawing.Point(457, 385);
+            this.SaveProfileButton.Name = "SaveProfileButton";
+            this.SaveProfileButton.Size = new System.Drawing.Size(106, 29);
+            this.SaveProfileButton.TabIndex = 2;
+            this.SaveProfileButton.Text = "Save";
+            this.SaveProfileButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SaveProfileButton.Click += new System.EventHandler(this.saveB_Click);
+            // 
+            // recordWayB
+            // 
+            this.recordWayB.AutoEllipsis = true;
+            this.recordWayB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.recordWayB.ForeColor = System.Drawing.Color.Snow;
+            this.recordWayB.HooverImage = global::Fisherbot.Properties.Resources.greenB_260;
+            this.recordWayB.Image = global::Fisherbot.Properties.Resources.blackB_260;
+            this.recordWayB.Location = new System.Drawing.Point(303, 201);
+            this.recordWayB.Name = "recordWayB";
+            this.recordWayB.Size = new System.Drawing.Size(260, 29);
+            this.recordWayB.TabIndex = 1;
+            this.recordWayB.Text = "Record Way";
+            this.recordWayB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.recordWayB.Click += new System.EventHandler(this.recordWayB_Click);
+            // 
+            // BlackListRadius
+            // 
+            this.BlackListRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.BlackListRadius.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.BlackListRadius.Location = new System.Drawing.Point(10, 338);
+            this.BlackListRadius.Name = "BlackListRadius";
+            this.BlackListRadius.Size = new System.Drawing.Size(170, 29);
+            this.BlackListRadius.TabIndex = 20;
+            this.BlackListRadius.Text = "BlackList Radius";
+            this.BlackListRadius.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // FishingSchoolFishingLabel
+            // 
+            this.FishingSchoolFishingLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FishingSchoolFishingLabel.Location = new System.Drawing.Point(17, 55);
+            this.FishingSchoolFishingLabel.Name = "FishingSchoolFishingLabel";
+            this.FishingSchoolFishingLabel.Size = new System.Drawing.Size(390, 37);
+            this.FishingSchoolFishingLabel.TabIndex = 21;
+            this.FishingSchoolFishingLabel.Text = "It\'s only necessary to create a profile if you want to fish in Fishing Holes, oth" +
+                "erwise, just run the FisherBot without any profile.";
             // 
             // ProfileCreator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(379, 379);
-            this.Controls.Add(this.loadB);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(575, 426);
+            this.Controls.Add(this.FishingSchoolFishingLabel);
+            this.Controls.Add(this.BlackListRadius);
+            this.Controls.Add(this.MainHeader);
+            this.Controls.Add(this.LoadaProfileButton);
             this.Controls.Add(this.addBlackB);
             this.Controls.Add(this.radiusN);
             this.Controls.Add(this.delBlackRadius);
-            this.Controls.Add(this.listBlackRadius);
-            this.Controls.Add(this.delB);
-            this.Controls.Add(this.labelX1);
+            this.Controls.Add(this.BlacklistRadiusList);
+            this.Controls.Add(this.RemoveListPointButton);
+            this.Controls.Add(this.RecordingIntervalDistance);
             this.Controls.Add(this.nSeparatorDistance);
-            this.Controls.Add(this.listPoint);
-            this.Controls.Add(this.saveB);
+            this.Controls.Add(this.ListOfPointsRecorded);
+            this.Controls.Add(this.SaveProfileButton);
             this.Controls.Add(this.recordWayB);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(395, 417);
-            this.MinimumSize = new System.Drawing.Size(395, 417);
             this.Name = "ProfileCreator";
             this.ShowIcon = false;
-            this.ShowInTaskbar = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).EndInit();
@@ -222,16 +291,19 @@ namespace Fisherbot.Profile
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX recordWayB;
-        private DevComponents.DotNetBar.ButtonX saveB;
-        private System.Windows.Forms.ListBox listPoint;
-        private DevComponents.Editors.IntegerInput nSeparatorDistance;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.ButtonX delB;
-        private DevComponents.DotNetBar.ButtonX delBlackRadius;
-        private System.Windows.Forms.ListBox listBlackRadius;
-        private DevComponents.Editors.IntegerInput radiusN;
-        private DevComponents.DotNetBar.ButtonX addBlackB;
-        private DevComponents.DotNetBar.ButtonX loadB;
+        private TnbButton recordWayB;
+        private TnbButton SaveProfileButton;
+        private System.Windows.Forms.ListBox ListOfPointsRecorded;
+        private NumericUpDown nSeparatorDistance;
+        private Label RecordingIntervalDistance;
+        private TnbButton RemoveListPointButton;
+        private TnbButton delBlackRadius;
+        private System.Windows.Forms.ListBox BlacklistRadiusList;
+        private NumericUpDown radiusN;
+        private TnbButton addBlackB;
+        private TnbButton LoadaProfileButton;
+        private TnbControlMenu MainHeader;
+        private Label BlackListRadius;
+        private Label FishingSchoolFishingLabel;
     }
 }

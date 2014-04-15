@@ -6,7 +6,7 @@ using nManager.Helpful;
 
 namespace Fisherbot
 {
-    public partial class SettingsFisherbotForm : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class SettingsFisherbotForm : Form
     {
         public SettingsFisherbotForm()
         {
@@ -20,11 +20,11 @@ namespace Fisherbot
 
         private void Translate()
         {
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Use_Lure);
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Fish_School);
+            UseLureLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Use_Lure);
+            ActivateFishingHole.Text = nManager.Translate.Get(nManager.Translate.Id.Fish_School);
             labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Lure_Name) + "*";
-            labelX4.Text = nManager.Translate.Get(nManager.Translate.Id.Fishing_Pole_Name);
-            labelX5.Text = nManager.Translate.Get(nManager.Translate.Id.Weapon_Name);
+            FishingPoleName.Text = nManager.Translate.Get(nManager.Translate.Id.Fishing_Pole_Name);
+            LeftWeaponName.Text = nManager.Translate.Get(nManager.Translate.Id.Weapon_Name);
             labelX6.Text = "* = " + nManager.Translate.Get(nManager.Translate.Id.If_special__If_empty__default_items_is_used);
             saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
             profileCreatorB.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);

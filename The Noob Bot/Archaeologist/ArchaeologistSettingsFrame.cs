@@ -1,36 +1,24 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 using Archaeologist.Bot;
 using Archaeologist.Properties;
-using Microsoft.CSharp;
 using nManager;
 using nManager.Helpful;
-using nManager.Helpful.Interface;
-using nManager.Properties;
-using nManager.Wow;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
-using nManager.Wow.Patchables;
 using Point = System.Drawing.Point;
 
 namespace Archaeologist
 {
     public partial class ArchaeologistSettingsFrame : Form
     {
+        private string _activeDigsiteColumn = "Active";
+        private string _digsiteNameColumn = "Digsite's Name";
         private bool _flagClick;
         private int _positionInitialeX;
         private int _positionInitialeY;
-        private string _digsiteNameColumn = "Digsite's Name";
         private string _priorityDigsiteColumn = "Priority";
-        private string _activeDigsiteColumn = "Active";
 
         public ArchaeologistSettingsFrame()
         {
@@ -54,7 +42,7 @@ namespace Archaeologist
                 DigSitesTable.Columns.Add("DigSitePriority", _priorityDigsiteColumn);
                 DigSitesTable.Columns[2].Width = 40;
                 DigSitesTable.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                DataGridViewCheckBoxColumn columnActive = new DataGridViewCheckBoxColumn();
+                var columnActive = new DataGridViewCheckBoxColumn();
                 DigSitesTable.Columns.Add(columnActive);
                 DigSitesTable.Columns[3].Name = "DigSitePriority";
                 DigSitesTable.Columns[3].HeaderText = _activeDigsiteColumn;
@@ -63,7 +51,7 @@ namespace Archaeologist
 
                 foreach (Digsite digsite in Archaeology.GetAllDigsitesZone())
                 {
-                    DigSitesTable.Rows.Add(new object[] { digsite.id, digsite.name, digsite.PriorityDigsites, digsite.Active });
+                    DigSitesTable.Rows.Add(new object[] {digsite.id, digsite.name, digsite.PriorityDigsites, digsite.Active});
                 }
             }
             catch (Exception e)
@@ -150,14 +138,14 @@ namespace Archaeologist
         {
             try
             {
-                if (DigSitesTable.CurrentRow != null) 
+                if (DigSitesTable.CurrentRow != null)
                     DigSitesTable.CurrentRow.DataGridView.EndEdit();
                 SaveAndCloseButton.Enabled = false;
                 ArchaeologistSetting.CurrentSetting.SolvingEveryXMin = (int) SolvingEveryXMin.Value;
                 ArchaeologistSetting.CurrentSetting.MaxTryByDigsite = (int) MaxTryByDigsite.Value;
                 ArchaeologistSetting.CurrentSetting.UseKeystones = UseKeystones.Checked;
                 ArchaeologistSetting.CurrentSetting.Save();
-                List<Digsite> digsite = new List<Digsite>();
+                var digsite = new List<Digsite>();
                 for (int i = 0; i < DigSitesTable.Rows.Count - 1; i++)
                 {
                     DataGridViewRow row = DigSitesTable.Rows[i];
@@ -186,7 +174,7 @@ namespace Archaeologist
 
         private void DigSitesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-                DigSitesTable.Rows[e.RowIndex].Cells[e.ColumnIndex].DataGridView.BeginEdit(true);
+            DigSitesTable.Rows[e.RowIndex].Cells[e.ColumnIndex].DataGridView.BeginEdit(true);
         }
     }
 }

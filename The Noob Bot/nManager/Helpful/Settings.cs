@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using nManager.Helpful.Forms;
 using nManager.Helpful.Forms.UserControls;
 using nManager.Properties;
 using nManager.Wow.Helpers;
@@ -79,6 +81,7 @@ namespace nManager.Helpful
 
         private const int LineSpacing = 12;
         private readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
+        private readonly ComponentResourceManager resources = new ComponentResourceManager(typeof (DeveloperToolsMainFrame));
         private Form _mainForm;
         private TnbControlMenu _mainHeader;
         private TnbRibbonManager _mainPanel;
@@ -98,6 +101,7 @@ namespace nManager.Helpful
                     ShowIcon = false,
                     StartPosition = FormStartPosition.CenterParent,
                     Text = _windowName,
+                    Icon = ((Icon) (resources.GetObject("$this.Icon"))),
                     BackgroundImage = Resources.backgroundCustomSettings,
                     Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, (0))
                 };

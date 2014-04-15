@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using nManager.Helpful.Forms.UserControls;
+
 namespace Gatherer.Bot
 {
     partial class ProfileCreator
@@ -28,252 +31,317 @@ namespace Gatherer.Bot
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.recordWayB = new DevComponents.DotNetBar.ButtonX();
-            this.saveB = new DevComponents.DotNetBar.ButtonX();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileCreator));
             this.listPoint = new System.Windows.Forms.ListBox();
-            this.nSeparatorDistance = new DevComponents.Editors.IntegerInput();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.delB = new DevComponents.DotNetBar.ButtonX();
-            this.delBlackRadius = new DevComponents.DotNetBar.ButtonX();
+            this.nSeparatorDistance = new System.Windows.Forms.NumericUpDown();
+            this.labelX1 = new System.Windows.Forms.Label();
             this.listBlackRadius = new System.Windows.Forms.ListBox();
-            this.radiusN = new DevComponents.Editors.IntegerInput();
-            this.addBlackB = new DevComponents.DotNetBar.ButtonX();
-            this.addNpcB = new DevComponents.DotNetBar.ButtonX();
-            this.delNpcB = new DevComponents.DotNetBar.ButtonX();
+            this.radiusN = new System.Windows.Forms.NumericUpDown();
             this.listNpc = new System.Windows.Forms.ListBox();
-            this.npcTypeC = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.loadB = new DevComponents.DotNetBar.ButtonX();
-            this.nameNpcTb = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.addByNameNpcB = new DevComponents.DotNetBar.ButtonX();
+            this.nameNpcTb = new System.Windows.Forms.TextBox();
+            this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.addByNameNpcB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.loadB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.npcTypeC = new nManager.Helpful.Forms.UserControls.TnbComboBox();
+            this.addNpcB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.delNpcB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.addBlackB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.delBlackRadius = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.delB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.saveB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.recordWayB = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.BlackListRadius = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radiusN)).BeginInit();
             this.SuspendLayout();
             // 
-            // recordWayB
-            // 
-            this.recordWayB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.recordWayB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.recordWayB.Location = new System.Drawing.Point(12, 241);
-            this.recordWayB.Name = "recordWayB";
-            this.recordWayB.Size = new System.Drawing.Size(352, 23);
-            this.recordWayB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.recordWayB.TabIndex = 1;
-            this.recordWayB.Text = "Record Way";
-            this.recordWayB.Click += new System.EventHandler(this.recordWayB_Click);
-            // 
-            // saveB
-            // 
-            this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.saveB.Location = new System.Drawing.Point(318, 8);
-            this.saveB.Name = "saveB";
-            this.saveB.Size = new System.Drawing.Size(58, 19);
-            this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.saveB.TabIndex = 2;
-            this.saveB.Text = "Save";
-            this.saveB.Click += new System.EventHandler(this.saveB_Click);
-            // 
             // listPoint
             // 
-            this.listPoint.BackColor = System.Drawing.Color.White;
-            this.listPoint.ForeColor = System.Drawing.Color.Black;
+            this.listPoint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.listPoint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.listPoint.FormattingEnabled = true;
-            this.listPoint.Location = new System.Drawing.Point(1, 36);
+            this.listPoint.Location = new System.Drawing.Point(13, 95);
             this.listPoint.Name = "listPoint";
-            this.listPoint.Size = new System.Drawing.Size(375, 199);
+            this.listPoint.Size = new System.Drawing.Size(551, 95);
             this.listPoint.TabIndex = 4;
             // 
             // nSeparatorDistance
             // 
-            this.nSeparatorDistance.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.nSeparatorDistance.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.nSeparatorDistance.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.nSeparatorDistance.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.nSeparatorDistance.ForeColor = System.Drawing.Color.Black;
-            this.nSeparatorDistance.Location = new System.Drawing.Point(145, 5);
-            this.nSeparatorDistance.MaxValue = 200;
-            this.nSeparatorDistance.MinValue = 3;
+            this.nSeparatorDistance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.nSeparatorDistance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.nSeparatorDistance.Location = new System.Drawing.Point(191, 199);
+            this.nSeparatorDistance.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nSeparatorDistance.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.nSeparatorDistance.Name = "nSeparatorDistance";
-            this.nSeparatorDistance.ShowUpDown = true;
-            this.nSeparatorDistance.Size = new System.Drawing.Size(94, 22);
+            this.nSeparatorDistance.Size = new System.Drawing.Size(42, 22);
             this.nSeparatorDistance.TabIndex = 5;
-            this.nSeparatorDistance.Value = 20;
+            this.nSeparatorDistance.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
             // labelX1
             // 
-            this.labelX1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(1, 4);
+            this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.labelX1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.labelX1.Location = new System.Drawing.Point(10, 192);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(138, 23);
+            this.labelX1.Size = new System.Drawing.Size(170, 29);
             this.labelX1.TabIndex = 6;
             this.labelX1.Text = "Separation distance record:";
-            // 
-            // delB
-            // 
-            this.delB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.delB.Location = new System.Drawing.Point(339, 36);
-            this.delB.Name = "delB";
-            this.delB.Size = new System.Drawing.Size(37, 23);
-            this.delB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.delB.TabIndex = 8;
-            this.delB.Text = "Del";
-            this.delB.Click += new System.EventHandler(this.delB_Click);
-            // 
-            // delBlackRadius
-            // 
-            this.delBlackRadius.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delBlackRadius.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.delBlackRadius.Location = new System.Drawing.Point(339, 278);
-            this.delBlackRadius.Name = "delBlackRadius";
-            this.delBlackRadius.Size = new System.Drawing.Size(37, 18);
-            this.delBlackRadius.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.delBlackRadius.TabIndex = 10;
-            this.delBlackRadius.Text = "Del";
-            this.delBlackRadius.Click += new System.EventHandler(this.delBlackRadius_Click);
+            this.labelX1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // listBlackRadius
             // 
-            this.listBlackRadius.BackColor = System.Drawing.Color.White;
-            this.listBlackRadius.ForeColor = System.Drawing.Color.Black;
+            this.listBlackRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.listBlackRadius.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.listBlackRadius.FormattingEnabled = true;
-            this.listBlackRadius.Location = new System.Drawing.Point(1, 278);
+            this.listBlackRadius.Location = new System.Drawing.Point(13, 241);
             this.listBlackRadius.Name = "listBlackRadius";
-            this.listBlackRadius.Size = new System.Drawing.Size(375, 69);
+            this.listBlackRadius.Size = new System.Drawing.Size(551, 95);
             this.listBlackRadius.TabIndex = 9;
             // 
             // radiusN
             // 
-            this.radiusN.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.radiusN.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.radiusN.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.radiusN.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.radiusN.ForeColor = System.Drawing.Color.Black;
-            this.radiusN.Location = new System.Drawing.Point(12, 354);
-            this.radiusN.MinValue = 1;
+            this.radiusN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.radiusN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.radiusN.Location = new System.Drawing.Point(191, 344);
+            this.radiusN.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.radiusN.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.radiusN.Name = "radiusN";
-            this.radiusN.ShowUpDown = true;
-            this.radiusN.Size = new System.Drawing.Size(113, 22);
+            this.radiusN.Size = new System.Drawing.Size(42, 22);
             this.radiusN.TabIndex = 11;
-            this.radiusN.Value = 35;
+            this.radiusN.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
             // 
-            // addBlackB
+            // listNpc
             // 
-            this.addBlackB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addBlackB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.addBlackB.Location = new System.Drawing.Point(131, 353);
-            this.addBlackB.Name = "addBlackB";
-            this.addBlackB.Size = new System.Drawing.Size(233, 23);
-            this.addBlackB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.addBlackB.TabIndex = 12;
-            this.addBlackB.Text = "Add this position to Black list Radius";
-            this.addBlackB.Click += new System.EventHandler(this.addBlackB_Click);
+            this.listNpc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.listNpc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.listNpc.FormattingEnabled = true;
+            this.listNpc.Location = new System.Drawing.Point(13, 389);
+            this.listNpc.Name = "listNpc";
+            this.listNpc.Size = new System.Drawing.Size(360, 43);
+            this.listNpc.TabIndex = 13;
+            this.listNpc.Visible = false;
+            // 
+            // nameNpcTb
+            // 
+            this.nameNpcTb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.nameNpcTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.nameNpcTb.Location = new System.Drawing.Point(206, 423);
+            this.nameNpcTb.Name = "nameNpcTb";
+            this.nameNpcTb.Size = new System.Drawing.Size(78, 22);
+            this.nameNpcTb.TabIndex = 19;
+            this.nameNpcTb.Text = "Name";
+            this.nameNpcTb.Visible = false;
+            // 
+            // MainHeader
+            // 
+            this.MainHeader.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.BackgroundImage")));
+            this.MainHeader.Location = new System.Drawing.Point(0, 0);
+            this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));
+            this.MainHeader.Name = "MainHeader";
+            this.MainHeader.Size = new System.Drawing.Size(575, 43);
+            this.MainHeader.TabIndex = 21;
+            this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            this.MainHeader.TitleText = "Gatherer Profile Creator - The Noob Bot DevVersionRestrict";
+            // 
+            // addByNameNpcB
+            // 
+            this.addByNameNpcB.AutoEllipsis = true;
+            this.addByNameNpcB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.addByNameNpcB.ForeColor = System.Drawing.Color.Snow;
+            this.addByNameNpcB.HooverImage = ((System.Drawing.Image)(resources.GetObject("addByNameNpcB.HooverImage")));
+            this.addByNameNpcB.Image = ((System.Drawing.Image)(resources.GetObject("addByNameNpcB.Image")));
+            this.addByNameNpcB.Location = new System.Drawing.Point(238, 385);
+            this.addByNameNpcB.Name = "addByNameNpcB";
+            this.addByNameNpcB.Size = new System.Drawing.Size(124, 22);
+            this.addByNameNpcB.TabIndex = 20;
+            this.addByNameNpcB.Text = "Add by Name to Npc list";
+            this.addByNameNpcB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addByNameNpcB.Visible = false;
+            this.addByNameNpcB.Click += new System.EventHandler(this.addByNameNpcB_Click);
+            // 
+            // loadB
+            // 
+            this.loadB.AutoEllipsis = true;
+            this.loadB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.loadB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.loadB.HooverImage = global::Gatherer.Properties.Resources.greenB_150;
+            this.loadB.Image = global::Gatherer.Properties.Resources.blackB_150;
+            this.loadB.Location = new System.Drawing.Point(413, 54);
+            this.loadB.Name = "loadB";
+            this.loadB.Size = new System.Drawing.Size(150, 29);
+            this.loadB.TabIndex = 18;
+            this.loadB.Text = "Load an existing profile";
+            this.loadB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.loadB.Click += new System.EventHandler(this.loadB_Click);
+            // 
+            // npcTypeC
+            // 
+            this.npcTypeC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.npcTypeC.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.npcTypeC.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.npcTypeC.DisplayMember = "Text";
+            this.npcTypeC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.npcTypeC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.npcTypeC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.npcTypeC.FormattingEnabled = true;
+            this.npcTypeC.HighlightColor = System.Drawing.Color.Gainsboro;
+            this.npcTypeC.ItemHeight = 16;
+            this.npcTypeC.Location = new System.Drawing.Point(44, 423);
+            this.npcTypeC.Name = "npcTypeC";
+            this.npcTypeC.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
+            this.npcTypeC.SelectorImage = ((System.Drawing.Image)(resources.GetObject("npcTypeC.SelectorImage")));
+            this.npcTypeC.Size = new System.Drawing.Size(136, 22);
+            this.npcTypeC.TabIndex = 17;
+            this.npcTypeC.Visible = false;
             // 
             // addNpcB
             // 
-            this.addNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.addNpcB.Location = new System.Drawing.Point(160, 443);
+            this.addNpcB.AutoEllipsis = true;
+            this.addNpcB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.addNpcB.ForeColor = System.Drawing.Color.Snow;
+            this.addNpcB.HooverImage = ((System.Drawing.Image)(resources.GetObject("addNpcB.HooverImage")));
+            this.addNpcB.Image = ((System.Drawing.Image)(resources.GetObject("addNpcB.Image")));
+            this.addNpcB.Location = new System.Drawing.Point(16, 385);
             this.addNpcB.Name = "addNpcB";
-            this.addNpcB.Size = new System.Drawing.Size(216, 23);
-            this.addNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.addNpcB.Size = new System.Drawing.Size(207, 22);
             this.addNpcB.TabIndex = 16;
             this.addNpcB.Text = "Add Target to Npc list";
+            this.addNpcB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addNpcB.Visible = false;
             this.addNpcB.Click += new System.EventHandler(this.addNpcB_Click);
             // 
             // delNpcB
             // 
-            this.delNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.delNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.delNpcB.Location = new System.Drawing.Point(339, 382);
+            this.delNpcB.AutoEllipsis = true;
+            this.delNpcB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.delNpcB.ForeColor = System.Drawing.Color.Snow;
+            this.delNpcB.HooverImage = ((System.Drawing.Image)(resources.GetObject("delNpcB.HooverImage")));
+            this.delNpcB.Image = ((System.Drawing.Image)(resources.GetObject("delNpcB.Image")));
+            this.delNpcB.Location = new System.Drawing.Point(379, 397);
             this.delNpcB.Name = "delNpcB";
-            this.delNpcB.Size = new System.Drawing.Size(37, 18);
-            this.delNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.delNpcB.Size = new System.Drawing.Size(36, 17);
             this.delNpcB.TabIndex = 14;
             this.delNpcB.Text = "Del";
+            this.delNpcB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delNpcB.Visible = false;
             this.delNpcB.Click += new System.EventHandler(this.delNpcB_Click);
             // 
-            // listNpc
+            // addBlackB
             // 
-            this.listNpc.BackColor = System.Drawing.Color.White;
-            this.listNpc.ForeColor = System.Drawing.Color.Black;
-            this.listNpc.FormattingEnabled = true;
-            this.listNpc.Location = new System.Drawing.Point(1, 382);
-            this.listNpc.Name = "listNpc";
-            this.listNpc.Size = new System.Drawing.Size(375, 56);
-            this.listNpc.TabIndex = 13;
+            this.addBlackB.AutoEllipsis = true;
+            this.addBlackB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.addBlackB.ForeColor = System.Drawing.Color.Snow;
+            this.addBlackB.HooverImage = global::Gatherer.Properties.Resources.greenB_260;
+            this.addBlackB.Image = global::Gatherer.Properties.Resources.blackB_260;
+            this.addBlackB.Location = new System.Drawing.Point(303, 346);
+            this.addBlackB.Name = "addBlackB";
+            this.addBlackB.Size = new System.Drawing.Size(260, 29);
+            this.addBlackB.TabIndex = 12;
+            this.addBlackB.Text = "Add this position to Black list Radius";
+            this.addBlackB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addBlackB.Click += new System.EventHandler(this.addBlackB_Click);
             // 
-            // npcTypeC
+            // delBlackRadius
             // 
-            this.npcTypeC.DisplayMember = "Text";
-            this.npcTypeC.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.npcTypeC.ForeColor = System.Drawing.Color.Black;
-            this.npcTypeC.FormattingEnabled = true;
-            this.npcTypeC.ItemHeight = 16;
-            this.npcTypeC.Location = new System.Drawing.Point(12, 444);
-            this.npcTypeC.Name = "npcTypeC";
-            this.npcTypeC.Size = new System.Drawing.Size(142, 22);
-            this.npcTypeC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.npcTypeC.TabIndex = 17;
+            this.delBlackRadius.AutoEllipsis = true;
+            this.delBlackRadius.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.delBlackRadius.ForeColor = System.Drawing.Color.Snow;
+            this.delBlackRadius.HooverImage = global::Gatherer.Properties.Resources.greenB_70;
+            this.delBlackRadius.Image = global::Gatherer.Properties.Resources.blackB_70;
+            this.delBlackRadius.Location = new System.Drawing.Point(493, 242);
+            this.delBlackRadius.Name = "delBlackRadius";
+            this.delBlackRadius.Size = new System.Drawing.Size(70, 29);
+            this.delBlackRadius.TabIndex = 10;
+            this.delBlackRadius.Text = "Del";
+            this.delBlackRadius.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delBlackRadius.Click += new System.EventHandler(this.delBlackRadius_Click);
             // 
-            // loadB
+            // delB
             // 
-            this.loadB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.loadB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.loadB.Location = new System.Drawing.Point(254, 8);
-            this.loadB.Name = "loadB";
-            this.loadB.Size = new System.Drawing.Size(58, 19);
-            this.loadB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.loadB.TabIndex = 18;
-            this.loadB.Text = "Load";
-            this.loadB.Click += new System.EventHandler(this.loadB_Click);
+            this.delB.AutoEllipsis = true;
+            this.delB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.delB.ForeColor = System.Drawing.Color.Snow;
+            this.delB.HooverImage = global::Gatherer.Properties.Resources.greenB_70;
+            this.delB.Image = global::Gatherer.Properties.Resources.blackB_70;
+            this.delB.Location = new System.Drawing.Point(493, 96);
+            this.delB.Name = "delB";
+            this.delB.Size = new System.Drawing.Size(70, 29);
+            this.delB.TabIndex = 8;
+            this.delB.Text = "Del";
+            this.delB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delB.Click += new System.EventHandler(this.delB_Click);
             // 
-            // nameNpcTb
+            // saveB
             // 
-            this.nameNpcTb.BackColor = System.Drawing.Color.White;
+            this.saveB.AutoEllipsis = true;
+            this.saveB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.saveB.ForeColor = System.Drawing.Color.Snow;
+            this.saveB.HooverImage = global::Gatherer.Properties.Resources.greenB;
+            this.saveB.Image = global::Gatherer.Properties.Resources.blueB;
+            this.saveB.Location = new System.Drawing.Point(457, 385);
+            this.saveB.Name = "saveB";
+            this.saveB.Size = new System.Drawing.Size(106, 29);
+            this.saveB.TabIndex = 2;
+            this.saveB.Text = "Save";
+            this.saveB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.saveB.Click += new System.EventHandler(this.saveB_Click);
             // 
+            // recordWayB
             // 
+            this.recordWayB.AutoEllipsis = true;
+            this.recordWayB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.recordWayB.ForeColor = System.Drawing.Color.Snow;
+            this.recordWayB.HooverImage = global::Gatherer.Properties.Resources.greenB_260;
+            this.recordWayB.Image = global::Gatherer.Properties.Resources.blackB_260;
+            this.recordWayB.Location = new System.Drawing.Point(303, 201);
+            this.recordWayB.Name = "recordWayB";
+            this.recordWayB.Size = new System.Drawing.Size(260, 29);
+            this.recordWayB.TabIndex = 1;
+            this.recordWayB.Text = "Record Way";
+            this.recordWayB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.recordWayB.Click += new System.EventHandler(this.recordWayB_Click);
             // 
-            this.nameNpcTb.Border.Class = "TextBoxBorder";
-            this.nameNpcTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.nameNpcTb.ForeColor = System.Drawing.Color.Black;
-            this.nameNpcTb.Location = new System.Drawing.Point(160, 473);
-            this.nameNpcTb.Name = "nameNpcTb";
-            this.nameNpcTb.Size = new System.Drawing.Size(81, 22);
-            this.nameNpcTb.TabIndex = 19;
-            this.nameNpcTb.Text = "Name";
+            // BlackListRadius
             // 
-            // addByNameNpcB
-            // 
-            this.addByNameNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addByNameNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.addByNameNpcB.Location = new System.Drawing.Point(247, 472);
-            this.addByNameNpcB.Name = "addByNameNpcB";
-            this.addByNameNpcB.Size = new System.Drawing.Size(129, 23);
-            this.addByNameNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.addByNameNpcB.TabIndex = 20;
-            this.addByNameNpcB.Text = "Add by Name to Npc list";
-            this.addByNameNpcB.Click += new System.EventHandler(this.addByNameNpcB_Click);
+            this.BlackListRadius.Location = new System.Drawing.Point(10, 338);
+            this.BlackListRadius.Name = "BlackListRadius";
+            this.BlackListRadius.Size = new System.Drawing.Size(170, 29);
+            this.BlackListRadius.TabIndex = 22;
+            this.BlackListRadius.Text = "BlackList Radius";
             // 
             // ProfileCreator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(379, 495);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(575, 426);
+            this.Controls.Add(this.BlackListRadius);
+            this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.addByNameNpcB);
             this.Controls.Add(this.nameNpcTb);
             this.Controls.Add(this.loadB);
@@ -291,14 +359,14 @@ namespace Gatherer.Bot
             this.Controls.Add(this.listPoint);
             this.Controls.Add(this.saveB);
             this.Controls.Add(this.recordWayB);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(395, 533);
-            this.MinimumSize = new System.Drawing.Size(395, 533);
             this.Name = "ProfileCreator";
             this.ShowIcon = false;
-            this.ShowInTaskbar = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).EndInit();
@@ -310,22 +378,24 @@ namespace Gatherer.Bot
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX recordWayB;
-        private DevComponents.DotNetBar.ButtonX saveB;
+        private TnbButton recordWayB;
+        private TnbButton saveB;
         private System.Windows.Forms.ListBox listPoint;
-        private DevComponents.Editors.IntegerInput nSeparatorDistance;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.ButtonX delB;
-        private DevComponents.DotNetBar.ButtonX delBlackRadius;
+        private NumericUpDown nSeparatorDistance;
+        private Label labelX1;
+        private TnbButton delB;
+        private TnbButton delBlackRadius;
         private System.Windows.Forms.ListBox listBlackRadius;
-        private DevComponents.Editors.IntegerInput radiusN;
-        private DevComponents.DotNetBar.ButtonX addBlackB;
-        private DevComponents.DotNetBar.ButtonX addNpcB;
-        private DevComponents.DotNetBar.ButtonX delNpcB;
+        private NumericUpDown radiusN;
+        private TnbButton addBlackB;
+        private TnbButton addNpcB;
+        private TnbButton delNpcB;
         private System.Windows.Forms.ListBox listNpc;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx npcTypeC;
-        private DevComponents.DotNetBar.ButtonX loadB;
-        private DevComponents.DotNetBar.Controls.TextBoxX nameNpcTb;
-        private DevComponents.DotNetBar.ButtonX addByNameNpcB;
+        private TnbComboBox npcTypeC;
+        private TnbButton loadB;
+        private TextBox nameNpcTb;
+        private TnbButton addByNameNpcB;
+        private TnbControlMenu MainHeader;
+        private Label BlackListRadius;
     }
 }

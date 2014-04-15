@@ -2,14 +2,16 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 
 namespace Fisherbot.Profile
 {
-    public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class ProfileCreator : Form
     {
+        private bool _loopRecordPoint;
         private FisherbotProfile _profile = new FisherbotProfile();
 
         public ProfileCreator()
@@ -28,12 +30,12 @@ namespace Fisherbot.Profile
         private void Translate()
         {
             recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
-            saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record);
-            delB.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
+            SaveProfileButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
+            RecordingIntervalDistance.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record);
+            RemoveListPointButton.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             delBlackRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             addBlackB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
         }
 
         private void saveB_Click(object sender, EventArgs ex)
@@ -42,7 +44,7 @@ namespace Fisherbot.Profile
             {
                 string file =
                     Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Fisherbot\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (file != "")
                 {
@@ -62,7 +64,7 @@ namespace Fisherbot.Profile
             {
                 string file =
                     Others.DialogBoxOpenFile(Application.StartupPath + "\\Profiles\\Fisherbot\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (File.Exists(file))
                 {
@@ -97,12 +99,12 @@ namespace Fisherbot.Profile
             try
             {
                 // Way
-                listPoint.Items.Clear();
+                ListOfPointsRecorded.Items.Clear();
                 foreach (Point p in _profile.Points)
                 {
-                    listPoint.Items.Add(p.ToString());
+                    ListOfPointsRecorded.Items.Add(p.ToString());
                 }
-                listPoint.SelectedIndex = listPoint.Items.Count - 1;
+                ListOfPointsRecorded.SelectedIndex = ListOfPointsRecorded.Items.Count - 1;
             }
             catch
             {
@@ -111,12 +113,12 @@ namespace Fisherbot.Profile
             try
             {
                 // BlackList
-                listBlackRadius.Items.Clear();
+                BlacklistRadiusList.Items.Clear();
                 foreach (FisherbotBlackListRadius b in _profile.BlackListRadius)
                 {
-                    listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
+                    BlacklistRadiusList.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
                 }
-                listBlackRadius.SelectedIndex = listBlackRadius.Items.Count - 1;
+                BlacklistRadiusList.SelectedIndex = BlacklistRadiusList.Items.Count - 1;
             }
             catch
             {
@@ -125,7 +127,6 @@ namespace Fisherbot.Profile
 
 
         // WAY
-        private bool _loopRecordPoint;
 
         private void recordWayB_Click(object sender, EventArgs ex)
         {
@@ -165,7 +166,7 @@ namespace Fisherbot.Profile
                     Point lastPoint = _profile.Points[_profile.Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
-                    if ((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) ||
+                    if ((lastPoint.DistanceTo(ObjectManager.Me.Position) > (double) nSeparatorDistance.Value) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.Points.Add(ObjectManager.Me.Position);
@@ -185,8 +186,8 @@ namespace Fisherbot.Profile
         {
             try
             {
-                if (listPoint.SelectedIndex >= 0)
-                    _profile.Points.RemoveAt(listPoint.SelectedIndex);
+                if (ListOfPointsRecorded.SelectedIndex >= 0)
+                    _profile.Points.RemoveAt(ListOfPointsRecorded.SelectedIndex);
                 RefreshForm();
             }
             catch (Exception e)
@@ -200,8 +201,8 @@ namespace Fisherbot.Profile
         {
             try
             {
-                if (listBlackRadius.SelectedIndex >= 0)
-                    _profile.BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
+                if (BlacklistRadiusList.SelectedIndex >= 0)
+                    _profile.BlackListRadius.RemoveAt(BlacklistRadiusList.SelectedIndex);
                 RefreshForm();
             }
             catch (Exception ex)
@@ -216,7 +217,7 @@ namespace Fisherbot.Profile
             try
             {
                 _profile.BlackListRadius.Add(new FisherbotBlackListRadius
-                    {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
+                {Position = ObjectManager.Me.Position, Radius = (float) radiusN.Value});
                 RefreshForm();
             }
             catch (Exception ex)
