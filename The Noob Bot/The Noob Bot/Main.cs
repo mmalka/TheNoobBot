@@ -26,6 +26,7 @@ namespace The_Noob_Bot
         private readonly Image _inactiveBackground = Resources.tab_inactive_mainframe;
         private readonly Color _inactiveColor = Color.FromArgb(232, 232, 232);
         private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
+        private int _hardAdded;
         private bool _isAccountActive;
         private bool _isHomeActive = true;
         private bool _isLogActive;
@@ -144,7 +145,6 @@ namespace The_Noob_Bot
             }
         }
 
-        private int _hardAdded;
         private void AddLog()
         {
             try
@@ -597,6 +597,7 @@ namespace The_Noob_Bot
                 Logging.Log log = Logging.ReadLast(Logging.LogType.S);
                 LatestLog.Text = log.ToString();
                 LatestLog.ForeColor = log.Color;
+                BotStartedSinceLabel.Text = nManager.Translate.Get(nManager.Translate.Id.tnb_started_since) + @" : " + Others.SecToHour((Others.Times - LoginServer.StartTime)/1000);
             }
             catch (Exception ex)
             {
