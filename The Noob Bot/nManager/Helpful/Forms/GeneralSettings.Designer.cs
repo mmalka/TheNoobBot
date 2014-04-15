@@ -3156,7 +3156,7 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TabIndex = 7;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
-            this.MainHeader.TitleText = "Titre de la fenêtre";
+            this.MainHeader.TitleText = "General Settings";
             // 
             // GeneralSettings
             // 
