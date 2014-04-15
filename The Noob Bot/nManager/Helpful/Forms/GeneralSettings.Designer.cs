@@ -3146,7 +3146,7 @@ namespace nManager.Helpful.Forms
             // 
             // MainHeader
             // 
-            this.MainHeader.BackgroundImage = global::nManager.Properties.Resources.backgroundCustomSettings;
+            this.MainHeader.BackgroundImage = global::nManager.Properties.Resources._800x43_controlbar;
             this.MainHeader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.MainHeader.Location = new System.Drawing.Point(0, 0);
             this.MainHeader.LogoImage = ((System.Drawing.Image)(resources.GetObject("MainHeader.LogoImage")));

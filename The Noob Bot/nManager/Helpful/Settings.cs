@@ -128,7 +128,7 @@ namespace nManager.Helpful
                     Location = new Point(-7, 24),
                     TabIndex = 0,
                     Name = "MainPanel",
-                    Size = new Size(573, 360),
+                    Size = new Size(573, 359),
                 };
                 _mainForm.Controls.Add(_mainPanel);
                 var listExpandablePanel = new List<TnbExpendablePanel>();
@@ -435,6 +435,7 @@ namespace nManager.Helpful
                     _mainPanel.Controls.Add(tabPage);
                 }
                 _mainPanel.Click += GiveFocusToMainPanel;
+                _mainForm.Shown += GiveFocusToMainPanel;
                 _mainForm.ShowDialog();
                 ReadForm(_mainForm);
             }
