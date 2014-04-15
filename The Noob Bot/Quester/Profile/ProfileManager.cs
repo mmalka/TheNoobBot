@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
+using nManager;
 using nManager.Helpful;
 
 namespace Quester.Profile
 {
-    public partial class ProfileManager : MetroForm
+    public partial class ProfileManager : Form
     {
         public ProfileManager()
         {
@@ -25,7 +25,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            Text = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileManagementSystem); // Form Title
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileManagementSystem) + Information.MainTitle;
 
             ProfileManagerGroupedLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
             ProfileManagerSimpleLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager);
@@ -45,20 +45,20 @@ namespace Quester.Profile
             RefreshSimpleProfileList();
         }
 
-        private void RefreshGroupedProfileList(bool Load = false)
+        private void RefreshGroupedProfileList(bool load = false)
         {
             try
             {
-                int CurrentSelection = ExistingGroupedProfiles.SelectedIndex;
+                int currentSelection = ExistingGroupedProfiles.SelectedIndex;
                 ExistingGroupedProfiles.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\", "*.xml"))
                 {
                     ExistingGroupedProfiles.Items.Add(f);
                 }
-                if (Load && ExistingGroupedProfiles.Items.Count > 0)
+                if (load && ExistingGroupedProfiles.Items.Count > 0)
                     ExistingGroupedProfiles.SelectedIndex = 0;
-                else if (CurrentSelection <= ExistingGroupedProfiles.Items.Count - 1 && ExistingGroupedProfiles.Items.Count > 0)
-                    ExistingGroupedProfiles.SelectedIndex = CurrentSelection;
+                else if (currentSelection <= ExistingGroupedProfiles.Items.Count - 1 && ExistingGroupedProfiles.Items.Count > 0)
+                    ExistingGroupedProfiles.SelectedIndex = currentSelection;
                 else if (ExistingGroupedProfiles.Items.Count > 0)
                     ExistingGroupedProfiles.SelectedIndex = 0;
                 if (ExistingGroupedProfiles.Items.Count > 0)
@@ -78,20 +78,20 @@ namespace Quester.Profile
             }
         }
 
-        private void RefreshSimpleProfileList(bool Load = false)
+        private void RefreshSimpleProfileList(bool load = false)
         {
             try
             {
-                int CurrentSelection = ExistingSimpleProfiles.SelectedIndex;
+                int currentSelection = ExistingSimpleProfiles.SelectedIndex;
                 ExistingSimpleProfiles.Items.Clear();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Quester\\", "*.xml"))
                 {
                     ExistingSimpleProfiles.Items.Add(f);
                 }
-                if (Load && ExistingSimpleProfiles.Items.Count > 0)
+                if (load && ExistingSimpleProfiles.Items.Count > 0)
                     ExistingSimpleProfiles.SelectedIndex = 0;
-                else if (CurrentSelection <= ExistingSimpleProfiles.Items.Count - 1 && ExistingSimpleProfiles.Items.Count > 0)
-                    ExistingSimpleProfiles.SelectedIndex = CurrentSelection;
+                else if (currentSelection <= ExistingSimpleProfiles.Items.Count - 1 && ExistingSimpleProfiles.Items.Count > 0)
+                    ExistingSimpleProfiles.SelectedIndex = currentSelection;
                 else if (ExistingSimpleProfiles.Items.Count > 0)
                     ExistingSimpleProfiles.SelectedIndex = 0;
                 if (ExistingSimpleProfiles.Items.Count > 0)
@@ -111,18 +111,18 @@ namespace Quester.Profile
             }
         }
 
-        private void ProfileManagerAddGrouped_Click()
+        private void ProfileManagerAddGrouped_Click(object sender, EventArgs e)
         {
-            GroupedProfileManager f = new GroupedProfileManager();
+            var f = new GroupedProfileManager();
             f.ShowDialog();
             RefreshGroupedProfileList();
         }
 
-        private void DoProfileManagerEditGrouped()
+        private void DoProfileManagerEditGrouped(object sender, EventArgs e)
         {
             if (ExistingGroupedProfiles.Items.Count > 0)
             {
-                GroupedProfileManager f = new GroupedProfileManager(ExistingGroupedProfiles.Items[ExistingGroupedProfiles.SelectedIndex].ToString());
+                var f = new GroupedProfileManager(ExistingGroupedProfiles.Items[ExistingGroupedProfiles.SelectedIndex].ToString());
                 f.ShowDialog();
             }
             else
@@ -130,12 +130,12 @@ namespace Quester.Profile
             RefreshGroupedProfileList();
         }
 
-        private void ProfileManagerGroupedDocumentation_Click()
+        private void ProfileManagerGroupedDocumentation_Click(object sender, EventArgs e)
         {
             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=165&t=5983");
         }
 
-        private void ProfileManagerRemoveGrouped_Click()
+        private void ProfileManagerRemoveGrouped_Click(object sender, EventArgs e)
         {
             if (ExistingGroupedProfiles.Items.Count > 0)
             {
@@ -144,7 +144,7 @@ namespace Quester.Profile
                 if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
                 {
                     DialogResult check = MessageBox.Show(string.Format("{0}", nManager.Translate.Get(nManager.Translate.Id.RemoveGroupedProfile) + path + " ?"),
-                                                         nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (check == DialogResult.Yes)
                         File.Delete(fullpath);
                 }
@@ -152,18 +152,18 @@ namespace Quester.Profile
             RefreshGroupedProfileList();
         }
 
-        private void ProfileManagerAdd_Click()
+        private void ProfileManagerAdd_Click(object sender, EventArgs e)
         {
-            SimpleProfileManager f = new SimpleProfileManager();
+            var f = new SimpleProfileManager();
             f.ShowDialog();
             RefreshProfileManagerForm();
         }
 
-        private void DoProfileManagerEditSimple()
+        private void DoProfileManagerEditSimple(object sender, EventArgs e)
         {
             if (ExistingSimpleProfiles.Items.Count > 0)
             {
-                SimpleProfileManager f = new SimpleProfileManager(ExistingSimpleProfiles.Items[ExistingSimpleProfiles.SelectedIndex].ToString());
+                var f = new SimpleProfileManager(ExistingSimpleProfiles.Items[ExistingSimpleProfiles.SelectedIndex].ToString());
                 f.ShowDialog();
             }
             else
@@ -171,12 +171,12 @@ namespace Quester.Profile
             RefreshProfileManagerForm();
         }
 
-        private void ProfileManagerSimpleDocumentation_Click()
+        private void ProfileManagerSimpleDocumentation_Click(object sender, EventArgs e)
         {
             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=165&t=5986");
         }
 
-        private void ProfileManagerRemove_Click()
+        private void ProfileManagerRemove_Click(object sender, EventArgs e)
         {
             if (ExistingSimpleProfiles.Items.Count > 0)
             {
@@ -185,7 +185,7 @@ namespace Quester.Profile
                 if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
                 {
                     DialogResult check = MessageBox.Show(string.Format("{0}", nManager.Translate.Get(nManager.Translate.Id.RemoveSimple) + path + " ?"),
-                                                         nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (check == DialogResult.Yes)
                         File.Delete(fullpath);
                 }
