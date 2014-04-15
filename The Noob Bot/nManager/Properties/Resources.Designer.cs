@@ -73,6 +73,16 @@ namespace nManager.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backgroundCustomSettings {
+            get {
+                object obj = ResourceManager.GetObject("backgroundCustomSettings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backgroundGeneral {
             get {
                 object obj = ResourceManager.GetObject("backgroundGeneral", resourceCulture);

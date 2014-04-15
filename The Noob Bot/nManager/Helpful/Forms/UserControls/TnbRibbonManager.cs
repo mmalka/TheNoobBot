@@ -40,6 +40,11 @@ namespace nManager.Helpful.Forms.UserControls
                                 y.OrderIndex = _panelAttached[_panelAttached.Count - 1].OrderIndex + 1;
                             y.Location = Relocator();
                         }
+                        else
+                        {
+                            if (y.OrderIndex == -1)
+                                y.OrderIndex = 0;
+                        }
                         y.OnStatusChanged += Relocator;
                         y.OnOrderChanged += Relocator;
 

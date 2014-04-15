@@ -30,7 +30,7 @@ namespace The_Noob_Bot
         private bool _isHomeActive = true;
         private bool _isLogActive;
         private string _playerName = "";
-        private bool _started;
+        //private bool _started;
         private bool _wowInTaskBarre;
 
         public Main()

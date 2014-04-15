@@ -1481,7 +1481,7 @@ public class DeathknightApprentice
 
         public DeathknightApprenticeSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Deathknight Apprentice Settings");
+            ConfigWinForm("Deathknight Apprentice Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -2449,7 +2449,7 @@ public class DeathknightBlood
 
         public DeathknightBloodSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Deathknight Blood Settings");
+            ConfigWinForm("Deathknight Blood Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -3396,7 +3396,7 @@ public class DeathknightUnholy
 
         public DeathknightUnholySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Deathknight Unholy Settings");
+            ConfigWinForm("Deathknight Unholy Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -4390,7 +4390,7 @@ public class DeathknightFrost
 
         public DeathknightFrostSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Deathknight Frost Settings");
+            ConfigWinForm("Deathknight Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -5332,7 +5332,7 @@ public class MageArcane
 
         public MageArcaneSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Mage Arcane Settings");
+            ConfigWinForm("Mage Arcane Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -6289,7 +6289,7 @@ public class MageFrost
 
         public MageFrostSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Mage Frost Settings");
+            ConfigWinForm("Mage Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -7063,7 +7063,7 @@ public class MageFire
 
         public MageFireSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Mage Fire Settings");
+            ConfigWinForm("Mage Fire Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -7895,7 +7895,7 @@ public class WarlockDemonology
 
         public WarlockDemonologySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Warlock Demonology Settings");
+            ConfigWinForm("Warlock Demonology Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -9421,7 +9421,7 @@ public class WarlockAffliction
 
         public WarlockAfflictionSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Warlock Affliction Settings");
+            ConfigWinForm("Warlock Affliction Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -10248,7 +10248,7 @@ public class DruidBalance
 
         public DruidBalanceSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Druid Balance Settings");
+            ConfigWinForm("Druid Balance Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -11099,7 +11099,7 @@ public class DruidFeral
 
         public DruidFeralSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Druid Feral Settings");
+            ConfigWinForm("Druid Feral Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -11763,7 +11763,7 @@ public class DruidRestoration
 
         public DruidRestorationSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Druid Restoration Settings");
+            ConfigWinForm("Druid Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -12507,7 +12507,7 @@ public class DruidGuardian
 
         public DruidGuardianSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Druid Guardian Settings");
+            ConfigWinForm("Druid Guardian Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -13031,7 +13031,7 @@ public class PaladinHoly
 
         public PaladinHolySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
+            ConfigWinForm("Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
@@ -13564,7 +13564,7 @@ public class PaladinProtection
 
         public PaladinProtectionSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
+            ConfigWinForm("Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
@@ -14192,7 +14192,7 @@ public class PaladinRetribution
 
         public PaladinRetributionSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Paladin Retribution Settings");
+            ConfigWinForm("Paladin Retribution Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -15076,7 +15076,7 @@ public class ShamanEnhancement
 
         public ShamanEnhancementSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Shaman Enhancement Settings");
+            ConfigWinForm("Shaman Enhancement Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -15956,7 +15956,7 @@ public class ShamanRestoration
 
         public ShamanRestorationSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Shaman Restoration Settings");
+            ConfigWinForm("Shaman Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -16803,7 +16803,7 @@ public class ShamanElemental
 
         public ShamanElementalSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Shaman Elemental Settings");
+            ConfigWinForm("Shaman Elemental Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -17581,7 +17581,7 @@ public class PriestShadow
 
         public PriestShadowSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Shadow Priest Settings");
+            ConfigWinForm("Shadow Priest Settings");
             /* Professions and Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -18288,7 +18288,7 @@ public class PriestDiscipline
 
         public PriestDisciplineSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Discipline Priest Settings");
+            ConfigWinForm("Discipline Priest Settings");
             /* Professions and Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -19012,7 +19012,7 @@ public class PriestHoly
 
         public PriestHolySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Holy Priest Settings");
+            ConfigWinForm("Holy Priest Settings");
             /* Professions and Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
@@ -19770,7 +19770,7 @@ public class RogueCombat
 
         public RogueCombatSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Rogue Combat Settings");
+            ConfigWinForm("Rogue Combat Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -20509,7 +20509,7 @@ public class RogueSubtlety
 
         public RogueSubtletySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Rogue Subtlety Settings");
+            ConfigWinForm("Rogue Subtlety Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -21258,7 +21258,7 @@ public class RogueAssassination
 
         public RogueAssassinationSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Rogue Assassination Settings");
+            ConfigWinForm("Rogue Assassination Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -22089,7 +22089,7 @@ public class WarriorArms
 
         public WarriorArmsSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Warrior Arms Settings");
+            ConfigWinForm("Warrior Arms Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -22951,7 +22951,7 @@ public class WarriorProtection
 
         public WarriorProtectionSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Warrior Protection Settings");
+            ConfigWinForm("Warrior Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -23744,7 +23744,7 @@ public class WarriorFury
 
         public WarriorFurySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Warrior Fury Settings");
+            ConfigWinForm("Warrior Fury Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -24547,7 +24547,7 @@ public class HunterMarksmanship
 
         public HunterMarksmanshipSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Hunter Marksmanship Settings");
+            ConfigWinForm("Hunter Marksmanship Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -25403,7 +25403,7 @@ public class HunterBeastMastery
 
         public HunterBeastMasterySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Hunter BeastMastery Settings");
+            ConfigWinForm("Hunter BeastMastery Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -26233,7 +26233,7 @@ public class HunterSurvival
 
         public HunterSurvivalSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Hunter Survival Settings");
+            ConfigWinForm("Hunter Survival Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -26896,7 +26896,7 @@ public class MonkBrewmaster
 
         public MonkBrewmasterSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Brewmaster Monk Settings");
+            ConfigWinForm("Brewmaster Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent For Decast", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent For Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -27514,7 +27514,7 @@ public class MonkWindwalker
 
         public MonkWindwalkerSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Windwalker Monk Settings");
+            ConfigWinForm("Windwalker Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent For Decast", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent For Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -28185,7 +28185,7 @@ public class MonkMistweaver
 
         public MonkMistweaverSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Mistweaver Monk Settings");
+            ConfigWinForm("Mistweaver Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent For Decast", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent For Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");

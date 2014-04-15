@@ -454,7 +454,7 @@ public class CaptureTheFlag
 
         public CaptureTheFlagSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(500, 400), "Capture The Flag module Settings");
+            ConfigWinForm("Capture The Flag module Settings");
             AddControlInWinForm("Play The Flag", "PlayTheFlag", "Main settings", "bool");
         }
 

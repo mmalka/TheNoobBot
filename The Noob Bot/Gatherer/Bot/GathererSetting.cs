@@ -11,7 +11,7 @@ namespace Gatherer.Bot
     {
         private GathererSetting()
         {
-            ConfigWinForm(new Point(400, 100), "Gatherer " + Translate.Get(Translate.Id.Settings));
+            ConfigWinForm("Gatherer " + Translate.Get(Translate.Id.Settings));
             AddControlInWinForm(Translate.Get(Translate.Id.Pathing_Reverse_Direction), "pathingReverseDirection");
         }
 

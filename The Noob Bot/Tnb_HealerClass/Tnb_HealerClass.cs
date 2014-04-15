@@ -858,7 +858,7 @@ public class DruidRestoration
 
         public DruidRestorationSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Druid Restoration Settings");
+            ConfigWinForm("Druid Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials",
                                 "AtPercentage");
@@ -1304,7 +1304,7 @@ public class PaladinHoly
 
         public PaladinHolySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
+            ConfigWinForm("Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials",
                                 "AtPercentage");
@@ -2049,7 +2049,7 @@ public class ShamanRestoration
 
         public ShamanRestorationSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Shaman Restoration Settings");
+            ConfigWinForm("Shaman Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials",
                                 "AtPercentage");
@@ -2690,7 +2690,7 @@ public class PriestDiscipline
 
         public PriestDisciplineSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Discipline Priest Settings");
+            ConfigWinForm("Discipline Priest Settings");
             /* Professions and Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
@@ -3334,7 +3334,7 @@ public class PriestHoly
 
         public PriestHolySettings()
         {
-            ConfigWinForm(new Point(500, 400), "Holy Priest Settings");
+            ConfigWinForm("Holy Priest Settings");
             /* Professions and Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
@@ -3968,7 +3968,7 @@ public class MonkMistweaver
 
         public MonkMistweaverSettings()
         {
-            ConfigWinForm(new Point(500, 400), "Mistweaver Monk Settings");
+            ConfigWinForm("Mistweaver Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");

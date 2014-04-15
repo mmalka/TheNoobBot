@@ -15,15 +15,11 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
-using Point = System.Drawing.Point;
 
 namespace nManager.Helpful.Forms
 {
     public partial class DeveloperToolsMainFrame : Form
     {
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
 
         public DeveloperToolsMainFrame()
         {

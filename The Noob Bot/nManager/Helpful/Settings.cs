@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful.Forms.UserControls;
+using nManager.Properties;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -40,7 +41,7 @@ namespace nManager.Helpful
             {
                 if (File.Exists(settingsPath))
                 {
-                    T t = XmlSerializer.Deserialize<T>(settingsPath);
+                    var t = XmlSerializer.Deserialize<T>(settingsPath);
                     return t;
                 }
             }
@@ -76,128 +77,149 @@ namespace nManager.Helpful
 
         #region Winform
 
+        private const int LineSpacing = 12;
+        private readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
+        private Form _mainForm;
+        private TnbControlMenu _mainHeader;
+        private TnbRibbonManager _mainPanel;
+        private string _windowName = "Settings";
+
         public void ToForm()
         {
             try
             {
                 // Create Form
-
-                Form form = new Form
-                    {
-                        ClientSize = new Size(_sizeWinform),
-                        Text = _windowName,
-                        ShowIcon = false,
-                        ShowInTaskbar = false,
-                        AutoScaleDimensions = new SizeF(6F, 13F),
-                        AutoScaleMode = AutoScaleMode.Font,
-                        Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0),
-                        //ClientSize = new Size(625, 396),
-                        //DoubleBuffered = true,
-                    };
-                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    form.TopMost = true;
-
-                if (!_resizableWinform)
+                _mainForm = new Form
                 {
-                    form.FormBorderStyle = FormBorderStyle.FixedSingle;
-                    form.MaximizeBox = false;
-                }
-                // Create Tab Control
-                TnbRibbonManager panel = new TnbRibbonManager
-                    {
-                        Anchor =
-                            ((AnchorStyles.Top |
-                              AnchorStyles.Bottom)
-                             | AnchorStyles.Left)
-                            | AnchorStyles.Right,
-                        AutoScroll = true,
-                        BackColor = Color.Transparent,
-                        Location = new Point(5, 5),
-                        Name = "panel",
-                        Size = new Size(_sizeWinform.X - 10, _sizeWinform.Y - 10)
-                    };
+                    BackColor = Color.FromArgb(232, 232, 232),
+                    Size = new Size(575, 403),
+                    FormBorderStyle = FormBorderStyle.None,
+                    Name = "MainForm",
+                    ShowIcon = false,
+                    StartPosition = FormStartPosition.CenterParent,
+                    Text = _windowName,
+                    BackgroundImage = Resources.backgroundCustomSettings,
+                    Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, (0))
+                };
+                _mainForm.Load += GiveFocusToMainPanel;
+                _mainForm.Click += GiveFocusToMainPanel;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    _mainForm.TopMost = true;
+                _mainHeader = new TnbControlMenu
+                {
+                    BackgroundImageLayout = ImageLayout.None,
+                    Location = new Point(0, 0),
+                    Margin = new Padding(0),
+                    Name = "MainHeader",
+                    Size = new Size(575, 43),
+                    TitleFont = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                    TitleForeColor = Color.FromArgb(250, 250, 250),
+                    TitleText = _windowName,
+                };
 
-                List<TnbExpendablePanel> listExpandablePanel = new List<TnbExpendablePanel>();
-                Dictionary<string, int> expandablePanelPosY = new Dictionary<string, int>();
+                _mainForm.Controls.Add(_mainHeader);
+                _mainPanel = new TnbRibbonManager
+                {
+                    Anchor = AnchorStyles.None,
+                    AutoScroll = true,
+                    AutoScrollMinSize = new Size(0, 361),
+                    BackColor = Color.Transparent,
+                    ForeColor = Color.FromArgb(52, 52, 52),
+                    Location = new Point(-7, 24),
+                    TabIndex = 0,
+                    Name = "MainPanel",
+                    Size = new Size(573, 360),
+                };
+                _mainForm.Controls.Add(_mainPanel);
+                var listExpandablePanel = new List<TnbExpendablePanel>();
+                var lastLineY = new Dictionary<string, int>();
 
                 foreach (FormSetting f in _listFormSetting)
                 {
-                    Label label;
+                    Label label = null;
 
-                    // Create or Seclect Tab:
                     int indexTab = -1;
-                    for (int i = 0; i <= listExpandablePanel.Count - 1; i++)
+                    for (int i = listExpandablePanel.Count - 1; i >= 0; i--)
                     {
-                        if (listExpandablePanel[i].TitleText == f.Category)
-                        {
-                            indexTab = i;
-                            break;
-                        }
+                        if (listExpandablePanel[i].TitleText != f.Category) continue;
+                        indexTab = i;
+                        break;
                     }
                     if (indexTab < 0)
                     {
-                        //var tabPage = new TabPage { AutoScroll = true, Text = f.Category, UseVisualStyleBackColor = true };
-                        TnbExpendablePanel expandablePanel = new TnbExpendablePanel();
-                            {
-
-                            };
-
-                        expandablePanel.TitleText = f.Category;
-                        listExpandablePanel.Add(expandablePanel);
-                        expandablePanelPosY.Add(f.Category, 34);
+                        var newPanel = new TnbExpendablePanel
+                        {
+                            BackColor = Color.FromArgb(232, 232, 232),
+                            BorderColor = Color.FromArgb(52, 52, 52),
+                            BorderStyle = ButtonBorderStyle.Solid,
+                            ContentSize = new Size(556, 0),
+                            Fold = false,
+                            AutoSize = true,
+                            HeaderBackColor = Color.FromArgb(250, 250, 250),
+                            HeaderSize = new Size(556, 36),
+                            Location = new Point(0, 0),
+                            Margin = new Padding(0),
+                            Padding = new Padding(0, 0, 0, LineSpacing),
+                            Size = new Size(556, 36),
+                            TitleFont = new Font("Segoe UI", 7.65F, FontStyle.Bold),
+                            TitleForeColor = Color.FromArgb(232, 232, 232),
+                            TitleText = f.Category,
+                        };
+                        newPanel.Click += GiveFocusToMainPanel;
+                        listExpandablePanel.Add(newPanel);
+                        lastLineY.Add(f.Category, newPanel.HeaderSize.Height + LineSpacing);
                         indexTab = listExpandablePanel.Count - 1;
                     }
                     int posY;
-                    expandablePanelPosY.TryGetValue(f.Category, out posY);
-
-                    // If is description only (not field):
+                    lastLineY.TryGetValue(f.Category, out posY);
                     if (f.FieldName == string.Empty)
                     {
+                        // It's a description label for a field.
                         label = new Label
-                            {
-                                Text = f.Description,
-                                Location = new Point(10, posY),
-                                Size = new Size(80, 17),
-                                AutoSize = true,
-                                BackColor = Color.Transparent,
-                            };
+                        {
+                            Text = f.Description,
+                            Location = new Point(LineSpacing, posY),
+                            Size = new Size(80, 17),
+                            AutoSize = true,
+                            BackColor = Color.FromArgb(232, 232, 232),
+                            ForeColor = Color.FromArgb(52, 52, 52)
+                        };
                         listExpandablePanel[indexTab].Controls.Add(label);
-                        expandablePanelPosY.Remove(f.Category);
-                        expandablePanelPosY.Add(f.Category, posY + 25);
+                        lastLineY.Remove(f.Category);
+                        lastLineY.Add(f.Category, posY + LineSpacing);
                         continue;
                     }
 
-                    // If is Field:
                     FieldInfo fieldInfo = GetType().GetField(f.FieldName);
                     if (fieldInfo != null)
                     {
+                        // It's a field.
                         NumericUpDown numericUpDown;
                         switch (Type.GetTypeCode(fieldInfo.FieldType))
                         {
-                            case TypeCode.Boolean: // CHECKBOX
-                                TnbSwitchButton switchButton = new TnbSwitchButton
-                                    {
-                                        BackColor = Color.WhiteSmoke,
-                                        Value = (bool) fieldInfo.GetValue(this),
-                                        ForeColor = Color.Black,
-                                        Location = new Point(10, posY),
-                                        Name = f.FieldName,
-                                        OffText = Translate.Get(Translate.Id.NO),
-                                        OnText = Translate.Get(Translate.Id.YES),
-                                        Size = new Size(66, 22),
-                                    };
+                            case TypeCode.Boolean:
+                                var switchButton = new TnbSwitchButton
+                                {
+                                    Value = (bool) fieldInfo.GetValue(this),
+                                    ForeColor = Color.FromArgb(52, 52, 52),
+                                    Location = new Point(LineSpacing, posY),
+                                    Name = f.FieldName,
+                                    OffText = Translate.Get(Translate.Id.NO),
+                                    OnText = Translate.Get(Translate.Id.YES),
+                                    Size = new Size(60, 20),
+                                };
                                 label = new Label
-                                    {
-                                        Text = f.Description,
-                                        Location = new Point(66 + 10, posY),
-                                        Size = new Size(80, 17),
-                                        AutoSize = true,
-                                        BackColor = Color.Transparent,
-                                    };
+                                {
+                                    Text = f.Description,
+                                    Location = new Point(LineSpacing + switchButton.Size.Width + LineSpacing, posY + 4),
+                                    Size = new Size(80, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.Transparent,
+                                };
                                 listExpandablePanel[indexTab].Controls.Add(label);
 
-                                expandablePanelPosY.Remove(f.Category);
-                                expandablePanelPosY.Add(f.Category, posY + 28);
+                                lastLineY.Remove(f.Category);
+                                lastLineY.Add(f.Category, posY + LineSpacing + switchButton.Size.Height);
                                 listExpandablePanel[indexTab].Controls.Add(switchButton);
                                 break;
 
@@ -205,84 +227,83 @@ namespace nManager.Helpful
                             case TypeCode.Int32:
                             case TypeCode.Int64:
                                 numericUpDown = new NumericUpDown
+                                {
+                                    Location = new Point(LineSpacing, posY),
+                                    Maximum = new decimal(new[]
                                     {
-                                        Location = new Point(10, posY),
-                                        Maximum = new decimal(new[]
-                                            {
-                                                -1592738368,
-                                                7,
-                                                0,
-                                                0
-                                            }),
-                                        Minimum = new decimal(new[]
-                                            {
-                                                -1592738368,
-                                                7,
-                                                0,
-                                                -2147483648
-                                            }),
-                                        Name = f.FieldName,
-                                        Size = new Size(120, 20),
-                                        Value = Convert.ToInt64(fieldInfo.GetValue(this))
-                                    };
+                                        -1592738368,
+                                        7,
+                                        0,
+                                        0
+                                    }),
+                                    Minimum = new decimal(new[]
+                                    {
+                                        -1592738368,
+                                        7,
+                                        0,
+                                        -2147483648
+                                    }),
+                                    Name = f.FieldName,
+                                    Size = new Size(120, 20),
+                                    Value = Convert.ToInt64(fieldInfo.GetValue(this))
+                                };
                                 label = new Label
-                                    {
-                                        Text = f.Description,
-                                        Location = new Point(120 + 10, posY),
-                                        Size = new Size(80, 17),
-                                        AutoSize = true,
-                                        BackColor = Color.Transparent,
-                                    };
+                                {
+                                    Text = f.Description,
+                                    Location = new Point(LineSpacing + numericUpDown.Size.Width + LineSpacing, posY + 2),
+                                    Size = new Size(80, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.Transparent,
+                                };
                                 if (f.SettingsType == "Percentage")
                                 {
                                     numericUpDown.Maximum = new decimal(100);
                                     numericUpDown.Minimum = new decimal(0);
                                     numericUpDown.Size = new Size(66, 22);
-                                    label.Location = new Point(66 + 10, posY);
+                                    label.Location = new Point(LineSpacing + numericUpDown.Size.Width + LineSpacing, posY + 2);
                                 }
-                                expandablePanelPosY.Remove(f.Category);
-                                expandablePanelPosY.Add(f.Category, posY + 25);
+                                lastLineY.Remove(f.Category);
+                                lastLineY.Add(f.Category, posY + LineSpacing + numericUpDown.Size.Height);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
                                 listExpandablePanel[indexTab].Controls.Add(label);
-
                                 break;
 
                             case TypeCode.UInt16:
                             case TypeCode.UInt32:
                             case TypeCode.UInt64:
                                 numericUpDown = new NumericUpDown
+                                {
+                                    Location = new Point(LineSpacing, posY),
+                                    Maximum = new decimal(new[]
                                     {
-                                        Location = new Point(10, posY),
-                                        Maximum = new decimal(new[]
-                                            {
-                                                -1592738368,
-                                                7,
-                                                0,
-                                                0
-                                            }),
-                                        Name = f.FieldName,
-                                        Size = new Size(120, 20),
-                                        Value = Convert.ToUInt64(fieldInfo.GetValue(this))
-                                    };
+                                        -1592738368,
+                                        7,
+                                        0,
+                                        0
+                                    }),
+                                    Name = f.FieldName,
+                                    Size = new Size(120, 20),
+                                    Value = Convert.ToUInt64(fieldInfo.GetValue(this))
+                                };
 
 
                                 label = new Label
-                                    {
-                                        Text = f.Description,
-                                        Location = new Point(120 + 10, posY),
-                                        Size = new Size(80, 17),
-                                        AutoSize = true,
-                                        BackColor = Color.Transparent,
-                                    };
+                                {
+                                    Text = f.Description,
+                                    Location = new Point(LineSpacing + numericUpDown.Size.Width + LineSpacing, posY + 2),
+                                    Size = new Size(80, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.Transparent,
+                                };
                                 if (f.SettingsType == "Percentage")
                                 {
                                     numericUpDown.Maximum = new decimal(100);
                                     numericUpDown.Minimum = new decimal(0);
                                     numericUpDown.Size = new Size(66, 22);
-                                    label.Location = new Point(66 + 10, posY);
+                                    label.Location = new Point(LineSpacing + numericUpDown.Size.Width + LineSpacing, posY + 2);
                                 }
-                                expandablePanelPosY.Remove(f.Category);
-                                expandablePanelPosY.Add(f.Category, posY + 25);
+                                lastLineY.Remove(f.Category);
+                                lastLineY.Add(f.Category, posY + LineSpacing + numericUpDown.Size.Height);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
                                 listExpandablePanel[indexTab].Controls.Add(label);
                                 break;
@@ -290,131 +311,142 @@ namespace nManager.Helpful
                             case TypeCode.Single:
                             case TypeCode.Double:
                                 numericUpDown = new NumericUpDown
+                                {
+                                    Location = new Point(LineSpacing, posY),
+                                    DecimalPlaces = 3,
+                                    Increment = new decimal(new[]
                                     {
-                                        Location = new Point(10, posY),
-                                        DecimalPlaces = 3,
-                                        Increment = new decimal(new[]
-                                            {
-                                                1,
-                                                0,
-                                                0,
-                                                65536
-                                            }),
-                                        Maximum = new decimal(new[]
-                                            {
-                                                -1592738368,
-                                                7,
-                                                0,
-                                                0
-                                            }),
-                                        Minimum = new decimal(new[]
-                                            {
-                                                -1592738368,
-                                                7,
-                                                0,
-                                                -2147483648
-                                            }),
-                                        Name = f.FieldName,
-                                        Size = new Size(120, 20),
-                                        Value = Convert.ToDecimal(fieldInfo.GetValue(this))
-                                    };
+                                        1,
+                                        0,
+                                        0,
+                                        65536
+                                    }),
+                                    Maximum = new decimal(new[]
+                                    {
+                                        -1592738368,
+                                        7,
+                                        0,
+                                        0
+                                    }),
+                                    Minimum = new decimal(new[]
+                                    {
+                                        -1592738368,
+                                        7,
+                                        0,
+                                        -2147483648
+                                    }),
+                                    Name = f.FieldName,
+                                    Size = new Size(120, 20),
+                                    Value = Convert.ToDecimal(fieldInfo.GetValue(this))
+                                };
                                 label = new Label
-                                    {
-                                        Text = f.Description,
-                                        Location = new Point(120 + 10, posY),
-                                        Size = new Size(80, 17),
-                                        AutoSize = true,
-                                        BackColor = Color.Transparent,
-                                    };
-                                expandablePanelPosY.Remove(f.Category);
-                                expandablePanelPosY.Add(f.Category, posY + 25);
+                                {
+                                    Text = f.Description,
+                                    Location = new Point(LineSpacing + numericUpDown.Size.Width + LineSpacing, posY + 2),
+                                    Size = new Size(80, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.Transparent,
+                                };
+                                lastLineY.Remove(f.Category);
+                                lastLineY.Add(f.Category, posY + LineSpacing + numericUpDown.Size.Height);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
                                 listExpandablePanel[indexTab].Controls.Add(label);
                                 break;
 
                             case TypeCode.String:
-                                TextBox textBox = new TextBox
-                                    {
-                                        Location = new Point(10, posY),
-                                        Name = f.FieldName,
-                                        Size = new Size(100, 20),
-                                        TabIndex = 3,
-                                        Text = Convert.ToString(fieldInfo.GetValue(this))
-                                    };
+                                var textBox = new TextBox
+                                {
+                                    Location = new Point(LineSpacing, posY),
+                                    Name = f.FieldName,
+                                    Size = new Size(100, 20),
+                                    TabIndex = 3,
+                                    Text = Convert.ToString(fieldInfo.GetValue(this))
+                                };
                                 label = new Label
-                                    {
-                                        Text = f.Description,
-                                        Location = new Point(100 + 10, posY),
-                                        Size = new Size(80, 17),
-                                        AutoSize = true,
-                                        BackColor = Color.Transparent,
-                                    };
+                                {
+                                    Text = f.Description,
+                                    Location = new Point(LineSpacing + textBox.Size.Width + LineSpacing, posY + 2),
+                                    Size = new Size(80, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.Transparent,
+                                };
 
-                                expandablePanelPosY.Remove(f.Category);
-                                expandablePanelPosY.Add(f.Category, posY + 25);
+                                lastLineY.Remove(f.Category);
+                                lastLineY.Add(f.Category, posY + LineSpacing + textBox.Size.Height);
                                 listExpandablePanel[indexTab].Controls.Add(label);
                                 listExpandablePanel[indexTab].Controls.Add(textBox);
                                 break;
                         }
                         if (f.SettingsType.Contains("Percentage") && f.SettingsType != "Percentage")
                         {
+                            int Spacing = 0;
+                            if (label != null)
+                            {
+                                Spacing = label.Size.Width + label.Location.X;
+                            }
                             string labelName = "";
                             FieldInfo percentageField = GetType().GetField(f.FieldName + f.SettingsType);
                             if (percentageField != null)
                             {
-                                NumericUpDown percentage = new NumericUpDown
-                                    {
-                                        Location = new Point(10 + 180 + 66 + 100 + 60, posY),
-                                        Maximum = new decimal(100),
-                                        Minimum = new decimal(0),
-                                        Name = f.FieldName + f.SettingsType,
-                                        Size = new Size(38, 22),
-                                        Value = Convert.ToUInt64(percentageField.GetValue(this))
-                                    };
                                 switch (f.SettingsType)
                                 {
                                     case "AtPercentage":
-                                        labelName = "At Percentage"; // if (UsePowerWordShieldAtPercentage == 10) 
+                                        labelName = "at this percentage:"; // if (UsePowerWordShieldAtPercentage == 10) 
                                         break;
                                     case "BelowPercentage":
-                                        labelName = "Below Percentage"; // if (UsePowerWordShieldBelowPercentage < 10) 
+                                        labelName = "below this percentage:"; // if (UsePowerWordShieldBelowPercentage < 10) 
                                         break;
                                     case "AbovePercentage":
-                                        labelName = "Above Percentage"; // if (UsePowerWordShieldAbovePercentage > 10) 
+                                        labelName = "above this percentage:"; // if (UsePowerWordShieldAbovePercentage > 10) 
                                         break;
                                 }
-                                Label percentageLabel = new Label
-                                    {
-                                        Text = labelName,
-                                        Location = new Point(10 + 180 + 66 + 60, posY),
-                                        Size = new Size(90, 17),
-                                        AutoSize = true,
-                                        BackColor = Color.Transparent,
-                                        ForeColor = Color.Aqua,
-                                    };
-                                //label.Location = new Point(66 + 10, posY);
+                                var percentageLabel = new Label
+                                {
+                                    Text = labelName,
+                                    Location = new Point(LineSpacing + Spacing, posY + 4),
+                                    Size = new Size(90, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.FromArgb(232, 232, 232),
+                                    ForeColor = Color.FromArgb(52, 52, 52),
+                                };
+                                var percentage = new NumericUpDown
+                                {
+                                    Location = new Point(LineSpacing + percentageLabel.Location.X + percentageLabel.Width + LineSpacing, posY + 2),
+                                    Maximum = new decimal(100),
+                                    Minimum = new decimal(0),
+                                    Name = f.FieldName + f.SettingsType,
+                                    Size = new Size(38, 22),
+                                    Value = Convert.ToUInt64(percentageField.GetValue(this))
+                                };
                                 listExpandablePanel[indexTab].Controls.Add(percentageLabel);
                                 listExpandablePanel[indexTab].Controls.Add(percentage);
                             }
                         }
                     }
                 }
-                // Add tab in tab control:
+                bool isFirst = true;
                 foreach (TnbExpendablePanel tabPage in listExpandablePanel)
                 {
-                    panel.Controls.Add(tabPage);
+                    if (!isFirst)
+                    {
+                        tabPage.Fold = true;
+                    }
+                    isFirst = false;
+                    _mainPanel.Controls.Add(tabPage);
                 }
-                // Add tab control in form:
-                form.Controls.Add(panel);
-                // Show form:
-                form.ShowDialog();
-                // Get changed settings:
-                ReadForm(form);
+                _mainPanel.Click += GiveFocusToMainPanel;
+                _mainForm.ShowDialog();
+                ReadForm(_mainForm);
             }
             catch (Exception e)
             {
                 Logging.WriteError("Settings > ToForm(): " + e);
             }
+        }
+
+        private void GiveFocusToMainPanel(object sender, EventArgs e)
+        {
+            _mainPanel.Focus();
         }
 
         private void ReadForm(Form form)
@@ -440,23 +472,23 @@ namespace nManager.Helpful
                             case TypeCode.Int32:
                             case TypeCode.Int64:
                                 fieldInfo.SetValue(this,
-                                                   Convert.ChangeType(((NumericUpDown) controls[0]).Value,
-                                                                      fieldInfo.FieldType));
+                                    Convert.ChangeType(((NumericUpDown) controls[0]).Value,
+                                        fieldInfo.FieldType));
                                 break;
 
                             case TypeCode.UInt16:
                             case TypeCode.UInt32:
                             case TypeCode.UInt64:
                                 fieldInfo.SetValue(this,
-                                                   Convert.ChangeType(((NumericUpDown) controls[0]).Value,
-                                                                      fieldInfo.FieldType));
+                                    Convert.ChangeType(((NumericUpDown) controls[0]).Value,
+                                        fieldInfo.FieldType));
                                 break;
 
                             case TypeCode.Single:
                             case TypeCode.Double:
                                 fieldInfo.SetValue(this,
-                                                   Convert.ChangeType(((NumericUpDown) controls[0]).Value,
-                                                                      fieldInfo.FieldType));
+                                    Convert.ChangeType(((NumericUpDown) controls[0]).Value,
+                                        fieldInfo.FieldType));
                                 break;
 
                             case TypeCode.String:
@@ -469,8 +501,8 @@ namespace nManager.Helpful
                             FieldInfo fieldInfoP = GetType().GetField(f.FieldName + f.SettingsType);
                             if (fieldInfoP != null && controlsP.Length > 0)
                                 fieldInfoP.SetValue(this,
-                                                    Convert.ChangeType(((NumericUpDown) controlsP[0]).Value,
-                                                                       fieldInfoP.FieldType));
+                                    Convert.ChangeType(((NumericUpDown) controlsP[0]).Value,
+                                        fieldInfoP.FieldType));
                         }
                     }
                 }
@@ -481,20 +513,13 @@ namespace nManager.Helpful
             }
         }
 
-        private readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
-        private Point _sizeWinform = new Point(300, 500);
-        private string _windowName = "Settings";
-        private bool _resizableWinform;
-
-        public void ConfigWinForm(Point size, string windowName = "Settings", bool resizable = false)
+        public void ConfigWinForm(string windowName = "Settings")
         {
-            _sizeWinform = size;
             _windowName = windowName;
-            _resizableWinform = resizable;
         }
 
         protected void AddControlInWinForm(string description, string fieldName, string category = "Main",
-                                           string settingsType = "")
+            string settingsType = "")
         {
             try
             {
