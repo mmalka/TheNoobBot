@@ -50,6 +50,7 @@
             this.RefreshButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.LoginButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.LoginMainFormTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormFocusLogin)).BeginInit();
@@ -338,6 +339,11 @@
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
             this.MainHeader.TitleText = "Login - TheNoobBot DevVersionRestrict";
             // 
+            // LoginMainFormTimer
+            // 
+            this.LoginMainFormTimer.Interval = 2500;
+            this.LoginMainFormTimer.Tick += new System.EventHandler(this.RefreshButton_Click);
+            // 
             // Login
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -404,6 +410,7 @@
         private nManager.Helpful.Forms.UserControls.TnbButton LoginButton;
         private nManager.Helpful.Forms.UserControls.TnbButton RefreshButton;
         private nManager.Helpful.Forms.UserControls.TnbControlMenu MainHeader;
+        private System.Windows.Forms.Timer LoginMainFormTimer;
     }
 }
 
