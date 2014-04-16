@@ -2666,7 +2666,7 @@ namespace nManager.Helpful.Forms
             0,
             0});
             this.MinimumDistanceToUseMount.Minimum = new decimal(new int[] {
-            200,
+            1,
             0,
             0,
             0});
@@ -2674,7 +2674,7 @@ namespace nManager.Helpful.Forms
             this.MinimumDistanceToUseMount.Size = new System.Drawing.Size(77, 22);
             this.MinimumDistanceToUseMount.TabIndex = 18;
             this.MinimumDistanceToUseMount.Value = new decimal(new int[] {
-            200,
+            15,
             0,
             0,
             0});
