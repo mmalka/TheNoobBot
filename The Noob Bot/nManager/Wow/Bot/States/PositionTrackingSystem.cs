@@ -24,7 +24,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting) return false;
                 _currPosition = string.Format("CurrentPositionTracker({0}, {1}, {2}, {3});", ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
-                                              ObjectManager.ObjectManager.Me.Position.Z, ObjectManager.ObjectManager.Me.Position.Type);
+                    ObjectManager.ObjectManager.Me.Position.Z, ObjectManager.ObjectManager.Me.Position.Type);
                 if (_currPosition == _lastPosition) return false;
                 _lastPosition = _currPosition;
                 return _canWrite.IsReady;

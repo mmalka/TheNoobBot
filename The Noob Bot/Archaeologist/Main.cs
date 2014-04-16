@@ -121,7 +121,7 @@ public class Main : IProduct
             {
                 MessageBox.Show(
                     string.Format("{0}\n{1}{2}{3}{4}", Translate.Get(Translate.Id.ArchaeologistTipOffMessage), _looting,
-                                  _useground, _mindistground, _usefly), Translate.Get(Translate.Id.ArchaeologistTipOffTitle));
+                        _useground, _mindistground, _usefly), Translate.Get(Translate.Id.ArchaeologistTipOffTitle));
             }
         }
         catch (Exception e)

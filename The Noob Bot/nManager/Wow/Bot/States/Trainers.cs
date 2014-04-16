@@ -16,18 +16,18 @@ namespace nManager.Wow.Bot.States
         private static uint _lastPrimarySkillsWhishList;
 
         public static List<KeyValuePair<string, int>> SkillList = new List<KeyValuePair<string, int>>()
-            {
-                new KeyValuePair<string, int>("Archaeology", Skill.GetValue(SkillLine.Archaeology)),
-                new KeyValuePair<string, int>("Fishing", Skill.GetValue(SkillLine.Fishing)),
-                new KeyValuePair<string, int>("Mining", Skill.GetValue(SkillLine.Mining)),
-                new KeyValuePair<string, int>("Herbalism", Skill.GetValue(SkillLine.Herbalism)),
-                new KeyValuePair<string, int>("Skinning", Skill.GetValue(SkillLine.Skinning)),
-                new KeyValuePair<string, int>("Riding", Skill.GetValue(SkillLine.Riding)),
-                // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
-                // I have an idea of a ProfessionsManager product, where you just ask "level this skill to 600" and it will do it.
-                // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
-                // For the moment, the code stays here, ready to use anytime we need it.
-                /*new KeyValuePair<string, int>("Alchemy", Skill.GetValue(SkillLine.Alchemy)),
+        {
+            new KeyValuePair<string, int>("Archaeology", Skill.GetValue(SkillLine.Archaeology)),
+            new KeyValuePair<string, int>("Fishing", Skill.GetValue(SkillLine.Fishing)),
+            new KeyValuePair<string, int>("Mining", Skill.GetValue(SkillLine.Mining)),
+            new KeyValuePair<string, int>("Herbalism", Skill.GetValue(SkillLine.Herbalism)),
+            new KeyValuePair<string, int>("Skinning", Skill.GetValue(SkillLine.Skinning)),
+            new KeyValuePair<string, int>("Riding", Skill.GetValue(SkillLine.Riding)),
+            // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
+            // I have an idea of a ProfessionsManager product, where you just ask "level this skill to 600" and it will do it.
+            // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
+            // For the moment, the code stays here, ready to use anytime we need it.
+            /*new KeyValuePair<string, int>("Alchemy", Skill.GetValue(SkillLine.Alchemy)),
                 new KeyValuePair<string, int>("Cooking", Skill.GetValue(SkillLine.Cooking)),
                 new KeyValuePair<string, int>("FirstAid", Skill.GetValue(SkillLine.FirstAid)),
                 new KeyValuePair<string, int>("Tailoring", Skill.GetValue(SkillLine.Tailoring)),
@@ -37,7 +37,7 @@ namespace nManager.Wow.Bot.States
                 new KeyValuePair<string, int>("Blacksmithing", Skill.GetValue(SkillLine.Blacksmithing)),
                 new KeyValuePair<string, int>("Jewelcrafting", Skill.GetValue(SkillLine.Jewelcrafting)),
                 new KeyValuePair<string, int>("Leatherworking", Skill.GetValue(SkillLine.Leatherworking)),*/
-            };
+        };
 
         private static readonly Spell Mining = new Spell("Smelting"); // Mining is not part of the SpellBook
         private static readonly Spell Alchemy = new Spell("Alchemy");

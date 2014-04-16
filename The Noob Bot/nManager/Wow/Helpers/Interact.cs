@@ -33,26 +33,26 @@ namespace nManager.Wow.Helpers
                     uint p2 = b.ReadUInt32();
 
                     string[] asm = new[]
-                        {
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                            ,
-                            "test eax, eax",
-                            "je @out",
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                            "test eax, eax",
-                            "je @out",
-                            "push " + p2,
-                            "push " + p1,
-                            "mov ecx, eax",
-                            "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__Interact),
-                            "add esp, 8",
-                            "@out:",
-                            "retn"
-                        };
+                    {
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                        ,
+                        "test eax, eax",
+                        "je @out",
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        "test eax, eax",
+                        "je @out",
+                        "push " + p2,
+                        "push " + p1,
+                        "mov ecx, eax",
+                        "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__Interact),
+                        "add esp, 8",
+                        "@out:",
+                        "retn"
+                    };
 
                     Memory.WowMemory.InjectAndExecute(asm);
                     if (stopMove)
@@ -77,7 +77,7 @@ namespace nManager.Wow.Helpers
                     return;
                 if (to.Type == WoWObjectType.Unit)
                     ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
-                                                        ObjectManager.ObjectManager.Me.Position.Z, to.Guid, (Int32) ClickToMoveType.NpcInteract, 0.5f);
+                        ObjectManager.ObjectManager.Me.Position.Z, to.Guid, (Int32) ClickToMoveType.NpcInteract, 0.5f);
                 else
                     InteractWith(baseAddress);
             }

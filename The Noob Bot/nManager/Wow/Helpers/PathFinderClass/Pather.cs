@@ -8,7 +8,6 @@ using RecastLayer;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using Math = System.Math;
-
 using dtPolyRef = System.UInt64;
 
 namespace nManager.Wow.Helpers.PathFinderClass
@@ -154,10 +153,10 @@ namespace nManager.Wow.Helpers.PathFinderClass
             {
                 float[] extents = new[] {2.5f, 2.5f, 2.5f};
                 return (from danger in dangers
-                        let loc = danger.Location.ToRecast().ToFloatArray()
-                        let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
-                        where polyRef != 0
-                        select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
+                    let loc = danger.Location.ToRecast().ToFloatArray()
+                    let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
+                    where polyRef != 0
+                    select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
             }
             catch (Exception exception)
             {
@@ -398,7 +397,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     Logging.Write("Downloading \"" + fileName + "\"...");
                     if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
-                                             _meshPath + "\\" + fileName + ".gz"))
+                        _meshPath + "\\" + fileName + ".gz"))
                         return false;
                     if (!GZip.Decompress(_meshPath + "\\" + fileName + ".gz"))
                         return false;
@@ -424,7 +423,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             foreach (KeyValuePair<Tuple<int, int>, int> entry in _loadedTiles)
             {
                 //Logging.Write("Found " + entry.Key.Item1 + "," + entry.Key.Item2 + " time " + entry.Value);
-                if (entry.Value < Others.TimesSec - (15 * 60)) // 15 * 60 = 15 mins
+                if (entry.Value < Others.TimesSec - (15*60)) // 15 * 60 = 15 mins
                 {
                     RemoveTile(entry.Key.Item1, entry.Key.Item2);
                     Logging.Write("Unloading old tile (" + entry.Key.Item1 + ", " + entry.Key.Item2 + ")");
@@ -608,7 +607,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 _mesh = new NavMesh();
                 _loadedTiles = new Dictionary<Tuple<int, int>, int>();
                 if (_loadTileCheck == null)
-                    _loadTileCheck = new Helpful.Timer(60 * 1000); // 1 min
+                    _loadTileCheck = new Helpful.Timer(60*1000); // 1 min
                 DetourStatus status;
 
                 // check if this is a dungeon and initialize our mesh accordingly

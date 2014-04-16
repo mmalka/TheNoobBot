@@ -21,7 +21,7 @@ namespace Prospecting
                 MessageBox.Show(
                     nManager.Translate.Get(
                         nManager.Translate.Id
-                                .Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List));
+                            .Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List));
                 nManager.Products.Products.ProductStop();
                 return;
             }

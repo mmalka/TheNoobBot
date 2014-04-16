@@ -419,15 +419,15 @@ namespace nManager.Wow.MemoryClass
         internal static string ProtectHook()
         {
             List<string> asm = new List<string>
-                {
-                    "mov edx, edx",
-                    "mov edi, edi",
-                    "xchg ebp, ebp",
-                    "mov esp, esp",
-                    "xchg esp, esp",
-                    "xchg edx, edx",
-                    "mov edi, edi"
-                };
+            {
+                "mov edx, edx",
+                "mov edi, edi",
+                "xchg ebp, ebp",
+                "mov esp, esp",
+                "xchg esp, esp",
+                "xchg edx, edx",
+                "mov edi, edi"
+            };
 
 
             // asm.Add("nop");

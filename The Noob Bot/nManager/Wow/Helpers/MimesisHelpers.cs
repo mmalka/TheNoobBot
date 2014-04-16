@@ -48,7 +48,7 @@ namespace nManager.Wow.Helpers
             BinaryFormatter binForm = new BinaryFormatter();
             memStream.Write(arrBytes, 0, arrBytes.Length);
             memStream.Seek(0, System.IO.SeekOrigin.Begin);
-            T obj = (T)binForm.Deserialize(memStream);
+            T obj = (T) binForm.Deserialize(memStream);
             return obj;
         }
 
@@ -76,12 +76,12 @@ namespace nManager.Wow.Helpers
 
         public static T BytesToStruct<T>(byte[] arr)
         {
-            T str = (T)Activator.CreateInstance(typeof(T));
+            T str = (T) Activator.CreateInstance(typeof (T));
             int size = Marshal.SizeOf(str);
             IntPtr ptr = Marshal.AllocHGlobal(size);
 
             Marshal.Copy(arr, 0, ptr, size);
-            str = (T)Marshal.PtrToStructure(ptr, str.GetType());
+            str = (T) Marshal.PtrToStructure(ptr, str.GetType());
             Marshal.FreeHGlobal(ptr);
 
             return str;
@@ -89,14 +89,14 @@ namespace nManager.Wow.Helpers
 
         public static byte[] StringToBytes(string str)
         {
-            byte[] bytes = new byte[str.Length * sizeof(char)];
+            byte[] bytes = new byte[str.Length*sizeof (char)];
             System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
             return bytes;
         }
 
         public static string BytesToString(byte[] bytes)
         {
-            char[] chars = new char[bytes.Length / sizeof(char)];
+            char[] chars = new char[bytes.Length/sizeof (char)];
             System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
             return new string(chars);
         }

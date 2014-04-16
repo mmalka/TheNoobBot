@@ -15,14 +15,16 @@ namespace nManager.Helpful
             try
             {
                 Bitmap b = new Bitmap(size.Width, size.Height);
-                using (Graphics g = Graphics.FromImage((Image)b))
+                using (Graphics g = Graphics.FromImage((Image) b))
                 {
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.DrawImage(imgToResize, 0, 0, size.Width, size.Height);
                 }
                 return b;
             }
-            catch { }
+            catch
+            {
+            }
             return null;
         }
 
@@ -52,12 +54,13 @@ namespace nManager.Helpful
             SlimDX.Direct3D9.Device device;
 
             #region Get Direct3D Device
+
             // Retrieve the existing Direct3D device if we already created one for the given handle
             if (_direct3DDeviceCache.ContainsKey(hWnd))
             {
                 device = _direct3DDeviceCache[hWnd];
             }
-            // We need to create a new device
+                // We need to create a new device
             else
             {
                 // Setup the device creation parameters
@@ -76,10 +79,13 @@ namespace nManager.Helpful
                 device = new SlimDX.Direct3D9.Device(_direct3D9, adapterInfo.Adapter, SlimDX.Direct3D9.DeviceType.Hardware, hWnd, SlimDX.Direct3D9.CreateFlags.SoftwareVertexProcessing, parameters);
                 _direct3DDeviceCache.Add(hWnd, device);
             }
+
             #endregion
 
             // Capture the screen and copy the region into a Bitmap
-            using (SlimDX.Direct3D9.Surface surface = SlimDX.Direct3D9.Surface.CreateOffscreenPlain(device, adapterInfo.CurrentDisplayMode.Width, adapterInfo.CurrentDisplayMode.Height, SlimDX.Direct3D9.Format.A8R8G8B8, SlimDX.Direct3D9.Pool.SystemMemory))
+            using (
+                SlimDX.Direct3D9.Surface surface = SlimDX.Direct3D9.Surface.CreateOffscreenPlain(device, adapterInfo.CurrentDisplayMode.Width, adapterInfo.CurrentDisplayMode.Height, SlimDX.Direct3D9.Format.A8R8G8B8,
+                    SlimDX.Direct3D9.Pool.SystemMemory))
             {
                 device.GetFrontBufferData(0, surface);
 
@@ -87,7 +93,6 @@ namespace nManager.Helpful
                 // where they previously expected a RECT type structure for their Rectangle
                 bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(surface, SlimDX.Direct3D9.ImageFileFormat.Bmp, new Rectangle(region.Left, region.Top, region.Width, region.Height)));
                 // Previous SlimDX bug workaround: new Rectangle(region.Left, region.Top, region.Right, region.Bottom)));
-
             }
 
             return bitmap;
@@ -95,6 +100,7 @@ namespace nManager.Helpful
     }
 
     #region Native Win32 Interop
+
     /// <summary>
     /// The RECT structure defines the coordinates of the upper-left and lower-right corners of a rectangle.
     /// </summary>
@@ -116,10 +122,7 @@ namespace nManager.Helpful
 
         public Rectangle AsRectangle
         {
-            get
-            {
-                return new Rectangle(this.Left, this.Top, this.Right - this.Left, this.Bottom - this.Top);
-            }
+            get { return new Rectangle(this.Left, this.Top, this.Right - this.Left, this.Bottom - this.Top); }
         }
 
         public static RECT FromXYWH(int x, int y, int width, int height)
@@ -173,10 +176,11 @@ namespace nManager.Helpful
             Rectangle clientRect = NativeMethods.GetClientRect(hWnd);
 
             // This gives us the width of the left, right and bottom chrome - we can then determine the top height
-            int chromeWidth = (int)((windowRect.Width - clientRect.Width) / 2);
+            int chromeWidth = (int) ((windowRect.Width - clientRect.Width)/2);
 
             return new Rectangle(new Point(windowRect.X + chromeWidth, windowRect.Y + (windowRect.Height - clientRect.Height - chromeWidth)), clientRect.Size);
         }
     }
+
     #endregion
 }

@@ -800,7 +800,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns></returns>
         [DllImport("kernel32", EntryPoint = "VirtualAllocEx")]
         public static extern uint VirtualAllocEx(IntPtr hProcess, uint dwAddress, int nSize, uint dwAllocationType,
-                                                 uint dwProtect);
+            uint dwProtect);
 
         /// <summary>
         /// Releases, decommits, or releases and decommits a region of memory within the virtual address space of a specified process.

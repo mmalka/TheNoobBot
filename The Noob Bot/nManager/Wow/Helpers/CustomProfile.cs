@@ -86,8 +86,8 @@ namespace nManager.Wow.Helpers
         }
 
         public static void LoadCustomProfile(string pathToCustomProfileFile, bool settingOnly = false,
-                                             bool resetSettings = false,
-                                             bool cSharpFile = true)
+            bool resetSettings = false,
+            bool cSharpFile = true)
         {
             try
             {
@@ -106,13 +106,13 @@ namespace nManager.Wow.Helpers
                     CodeDomProvider cc = new CSharpCodeProvider();
                     CompilerParameters cp = new CompilerParameters();
                     IEnumerable<string> assemblies = AppDomain.CurrentDomain
-                                                              .GetAssemblies()
-                                                              .Where(
-                                                                  a =>
-                                                                  !a.IsDynamic &&
-                                                                  !a.CodeBase.Contains(
-                                                                      (Process.GetCurrentProcess().ProcessName + ".exe")))
-                                                              .Select(a => a.Location);
+                        .GetAssemblies()
+                        .Where(
+                            a =>
+                                !a.IsDynamic &&
+                                !a.CodeBase.Contains(
+                                    (Process.GetCurrentProcess().ProcessName + ".exe")))
+                        .Select(a => a.Location);
                     cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                     StreamReader sr = File.OpenText(pathToCustomProfileFile);
                     string toCompile = sr.ReadToEnd();
@@ -120,7 +120,7 @@ namespace nManager.Wow.Helpers
                     if (cr.Errors.HasErrors)
                     {
                         String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n",
-                                                                                (current, err) => current + (err + "\n"));
+                            (current, err) => current + (err + "\n"));
                         Logging.WriteError(text);
                         MessageBox.Show(text);
                         return;
@@ -151,7 +151,7 @@ namespace nManager.Wow.Helpers
                     }
 
                     _worker = new Thread(_instanceFromOtherAssembly.Initialize)
-                        {IsBackground = true, Name = _threadName};
+                    {IsBackground = true, Name = _threadName};
                     _worker.Start();
                 }
                 else

@@ -25,7 +25,8 @@ namespace Battlegrounder.Profile
                 Translate();
                 RefreshListZones();
                 CurrentBattlegroundInfo();
-                TopMost = true;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    TopMost = true;
             }
             catch (Exception e)
             {

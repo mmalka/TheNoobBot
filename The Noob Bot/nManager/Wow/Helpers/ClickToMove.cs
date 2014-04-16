@@ -8,7 +8,7 @@ namespace nManager.Wow.Helpers
     public class ClickToMove
     {
         public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt64 guid, Int32 action,
-                                                   Single precision)
+            Single precision)
         {
             try
             {
@@ -32,28 +32,28 @@ namespace nManager.Wow.Helpers
 
                 // BOOL __thiscall CGPlayer_C__ClickToMove(WoWActivePlayer *this, CLICKTOMOVETYPE clickType, WGUID *interactGuid, WOWPOS *clickPos, float precision)
                 string[] asm = new[]
-                    {
-                        "call " +
-                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                        ,
-                        "test eax, eax",
-                        "je @out",
-                        "call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "test eax, eax",
-                        "je @out",
-                        "mov edx, [" + precisionCodecave + "]",
-                        "push edx",
-                        "push " + posCodecave,
-                        "push " + guidCodecave,
-                        "push " + action,
-                        "mov ecx, eax",
-                        "call " +
-                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__InitializeTrackingState),
-                        "@out:",
-                        "retn"
-                    };
+                {
+                    "call " +
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                    ,
+                    "test eax, eax",
+                    "je @out",
+                    "call " +
+                    (Memory.WowProcess.WowModule +
+                     (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                    "test eax, eax",
+                    "je @out",
+                    "mov edx, [" + precisionCodecave + "]",
+                    "push edx",
+                    "push " + posCodecave,
+                    "push " + guidCodecave,
+                    "push " + action,
+                    "mov ecx, eax",
+                    "call " +
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__InitializeTrackingState),
+                    "@out:",
+                    "retn"
+                };
 
                 Memory.WowMemory.InjectAndExecute(asm);
                 Logging.WriteNavigator("MoveTo(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision +
@@ -76,7 +76,7 @@ namespace nManager.Wow.Helpers
             {
                 return
                     (Enums.ClickToMoveType)
-                    Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.ClickToMove.CTM_PUSH);
+                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.ClickToMove.CTM_PUSH);
             }
             catch (Exception exception)
             {

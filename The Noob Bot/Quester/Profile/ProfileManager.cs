@@ -15,7 +15,8 @@ namespace Quester.Profile
                 InitializeComponent();
                 Translate();
                 RefreshProfileManagerForm();
-                TopMost = true;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    TopMost = true;
             }
             catch (Exception e)
             {

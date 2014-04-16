@@ -99,7 +99,7 @@ namespace nManager.Wow.Helpers
                 float anotherZ = PathFinder.GetZPosition(_middlePoint.X + 8, _middlePoint.Y + 8, _middlePoint.Z, true);
                 if (!IsInside(_middlePoint) || curZ == 0 || (uint) (anotherZ - curZ) >= 11 ||
                     TraceLine.TraceLineGo(new Point(_middlePoint.X, _middlePoint.Y, curZ),
-                                          new Point(_middlePoint.X, _middlePoint.Y, curZ + 50)))
+                        new Point(_middlePoint.X, _middlePoint.Y, curZ + 50)))
                 {
                     bool found = false;
                     int delta = 0;
@@ -113,7 +113,7 @@ namespace nManager.Wow.Helpers
                             anotherZ = PathFinder.GetZPosition(_middlePoint.X + delta + 8, _middlePoint.Y, _middlePoint.Z, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_middlePoint.X + delta, _middlePoint.Y, curZ),
-                                                       new Point(_middlePoint.X + delta, _middlePoint.Y, curZ + 50)))
+                                    new Point(_middlePoint.X + delta, _middlePoint.Y, curZ + 50)))
                             {
                                 _middlePoint = new Point(_middlePoint.X + delta, _middlePoint.Y, curZ + 5f);
                                 found = true;
@@ -126,7 +126,7 @@ namespace nManager.Wow.Helpers
                             anotherZ = PathFinder.GetZPosition(_middlePoint.X - delta - 8, _middlePoint.Y, _middlePoint.Z, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_middlePoint.X - delta, _middlePoint.Y, curZ),
-                                                       new Point(_middlePoint.X - delta, _middlePoint.Y, curZ + 50)))
+                                    new Point(_middlePoint.X - delta, _middlePoint.Y, curZ + 50)))
                             {
                                 _middlePoint = new Point(_middlePoint.X - delta, _middlePoint.Y, curZ + 5f);
                                 found = true;
@@ -139,7 +139,7 @@ namespace nManager.Wow.Helpers
                             anotherZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y + delta + 8, _middlePoint.Z, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_middlePoint.X, _middlePoint.Y + delta, curZ),
-                                                       new Point(_middlePoint.X, _middlePoint.Y + delta, curZ + 50)))
+                                    new Point(_middlePoint.X, _middlePoint.Y + delta, curZ + 50)))
                             {
                                 _middlePoint = new Point(_middlePoint.X, _middlePoint.Y + delta, curZ + 5f);
                                 found = true;
@@ -152,7 +152,7 @@ namespace nManager.Wow.Helpers
                             anotherZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y - delta - 8, _middlePoint.Z, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_middlePoint.X, _middlePoint.Y - delta, curZ),
-                                                       new Point(_middlePoint.X, _middlePoint.Y - delta, curZ + 50)))
+                                    new Point(_middlePoint.X, _middlePoint.Y - delta, curZ + 50)))
                             {
                                 _middlePoint = new Point(_middlePoint.X, _middlePoint.Y - delta, curZ + 5f);
                                 found = true;
@@ -182,7 +182,7 @@ namespace nManager.Wow.Helpers
                 if ((_setPoints[i].Y < y && _setPoints[j].Y >= y || _setPoints[j].Y < y && _setPoints[i].Y >= y)
                     && (_setPoints[i].X <= x || _setPoints[j].X <= x))
                 {
-                    if (_setPoints[i].X + (y - _setPoints[i].Y) / (_setPoints[j].Y - _setPoints[i].Y) * (_setPoints[j].X - _setPoints[i].X) < x)
+                    if (_setPoints[i].X + (y - _setPoints[i].Y)/(_setPoints[j].Y - _setPoints[i].Y)*(_setPoints[j].X - _setPoints[i].X) < x)
                     {
                         oddNodes = !oddNodes;
                     }

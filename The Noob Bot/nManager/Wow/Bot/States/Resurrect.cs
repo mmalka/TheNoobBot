@@ -90,8 +90,8 @@ namespace nManager.Wow.Bot.States
                 {
                     _failed = false;
                     Logging.Write(ObjectManager.ObjectManager.Me.WowClass == WoWClass.Warlock
-                                      ? "The player have been resurrected using his Soulstone."
-                                      : "The player have been resurrected using a Soulstone offered by a Warlock.");
+                        ? "The player have been resurrected using his Soulstone."
+                        : "The player have been resurrected using a Soulstone offered by a Warlock.");
                     Statistics.Deaths++;
                     return;
                 }

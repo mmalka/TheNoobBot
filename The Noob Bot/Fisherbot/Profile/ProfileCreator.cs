@@ -20,6 +20,8 @@ namespace Fisherbot.Profile
             {
                 InitializeComponent();
                 Translate();
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    TopMost = true;
             }
             catch (Exception e)
             {

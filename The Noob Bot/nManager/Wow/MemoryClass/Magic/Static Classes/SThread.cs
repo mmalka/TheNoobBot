@@ -154,7 +154,7 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             uint dwThreadId;
             return CreateRemoteThread(hProcess, dwStartAddress, dwParameter, ThreadFlags.THREAD_EXECUTE_IMMEDIATELY,
-                                      out dwThreadId);
+                out dwThreadId);
         }
 
         /// <summary>
@@ -166,10 +166,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// /// <param name="dwThreadId">[Out] The id of the created thread.</param>
         /// <returns>Returns the handle of the created thread.</returns>
         public static IntPtr CreateRemoteThread(IntPtr hProcess, uint dwStartAddress, uint dwParameter,
-                                                out uint dwThreadId)
+            out uint dwThreadId)
         {
             return CreateRemoteThread(hProcess, dwStartAddress, dwParameter, ThreadFlags.THREAD_EXECUTE_IMMEDIATELY,
-                                      out dwThreadId);
+                out dwThreadId);
         }
 
         /// <summary>
@@ -182,12 +182,12 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="dwThreadId">[Out] The id of the created thread.</param>
         /// <returns>Returns the handle of the created thread.</returns>
         public static IntPtr CreateRemoteThread(IntPtr hProcess, uint dwStartAddress, uint dwParameter,
-                                                uint dwCreationFlags, out uint dwThreadId)
+            uint dwCreationFlags, out uint dwThreadId)
         {
             IntPtr hThread, lpThreadId;
 
             hThread = Imports.CreateRemoteThread(hProcess, IntPtr.Zero, 0, (IntPtr) dwStartAddress, (IntPtr) dwParameter,
-                                                 dwCreationFlags, out lpThreadId);
+                dwCreationFlags, out lpThreadId);
             dwThreadId = (uint) lpThreadId;
 
             return hThread;

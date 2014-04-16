@@ -122,7 +122,7 @@ public class Main : IProduct
             {
                 MessageBox.Show(
                     string.Format("{0}\n{1}{2}{3}", Translate.Get(Translate.Id.BattlegrounderTipOffMessage), _looting,
-                                  _radius, _useground), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
+                        _radius, _useground), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
             }
         }
         catch (Exception e)

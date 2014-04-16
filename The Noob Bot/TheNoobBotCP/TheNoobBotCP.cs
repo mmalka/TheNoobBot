@@ -159,7 +159,7 @@ public class CaptureTheFlag
                         Main.InternalDontStartFights = true;
                         Main.InternalIgnoreFight = false;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _hordeFlagPositionInCTFModule : _allianceFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
-                                     ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat);
+                            ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat);
                     }
                     else if (ObjectManager.Me.IsHoldingWGFlag)
                     {
@@ -171,7 +171,7 @@ public class CaptureTheFlag
                             Main.InternalDontStartFights = true;
                             Main.InternalIgnoreFight = false;
                             InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _hordeFlagPositionInCTFModule : _allianceFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
-                                         ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat);
+                                ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat);
                         }
                         // Go to my base and wait in a protected area until I can capture it.
                         // Search & Destroy the Hostile Flag holder if not so far from my base.
@@ -185,7 +185,7 @@ public class CaptureTheFlag
                         Main.InternalDontStartFights = true;
                         Main.InternalIgnoreFight = false;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _allianceFlagPositionInCTFModule : _hordeFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
-                                     ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat, "Take");
+                            ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat, "Take");
                         // Search & Destroy the Hostile Flag holder.
                     }
 
@@ -197,7 +197,7 @@ public class CaptureTheFlag
                         Main.InternalDontStartFights = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _allianceFlagPositionInCTFModule : _hordeFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
-                                     ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat, "Take");
+                            ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat, "Take");
                         // Go to the ennemy base and wait in a protected area until I can take it.
                         // Protect the ally Flag holder.
                         // Search & Destroy the Hostile Flag holder.
@@ -210,7 +210,7 @@ public class CaptureTheFlag
                         Main.InternalDontStartFights = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _allianceFlagPositionInCTFModule : _hordeFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
-                                     ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat, "Take");
+                            ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false), ObjectManager.Me.InCombat, "Take");
                         // Go to the ennemy base and wait in a protected area until I can take it.
                         // Protect the ally Flag holder.
                     }
@@ -466,7 +466,7 @@ public class CaptureTheFlag
             if (File.Exists(currentSettingsFile))
                 return
                     CurrentSetting =
-                    Load<CaptureTheFlagSettings>(currentSettingsFile);
+                        Load<CaptureTheFlagSettings>(currentSettingsFile);
             return new CaptureTheFlagSettings();
         }
     }

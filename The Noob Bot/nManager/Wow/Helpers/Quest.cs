@@ -183,7 +183,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (highestPriceValue < value)
                     {
-                        highestPriceValue = (uint)value;
+                        highestPriceValue = (uint) value;
                         valuePriceChoice = i;
                     }
                 }
@@ -223,9 +223,9 @@ namespace nManager.Wow.Helpers
                 {
                     PlayerQuest playerQuest =
                         (PlayerQuest)
-                        Memory.WowMemory.Memory.ReadObject(
-                            (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
-                            typeof (PlayerQuest));
+                            Memory.WowMemory.Memory.ReadObject(
+                                (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
+                                typeof (PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
                         list.Add(playerQuest.ID);

@@ -69,7 +69,7 @@ namespace Flying_To_Ground_Profiles_Converter.Conversion
                     return true;
                 }
                 Logging.Write(string.Format("The Flying profile {0} have not been saved correctly, make sure you have access right on the directory {1}.",
-                                            flyingProfileName, pathDir));
+                    flyingProfileName, pathDir));
                 return false;
             }
             catch

@@ -45,7 +45,7 @@ namespace nManager.Helpful.Forms
         {
             _flagClick = false;
         }
-        
+
         private void MainFormMouseMove(object sender, MouseEventArgs e)
         {
             if (_flagClick)

@@ -60,13 +60,13 @@ namespace Profiles_Converters.Converters
                                     try
                                     {
                                         _profile.Points.Add(new Point(
-                                                                Others.ToSingle(
-                                                                    positionTempsString[0]),
-                                                                Others.ToSingle(
-                                                                    positionTempsString[1]),
-                                                                Others.ToSingle(
-                                                                    positionTempsString[2]),
-                                                                "Flying"));
+                                            Others.ToSingle(
+                                                positionTempsString[0]),
+                                            Others.ToSingle(
+                                                positionTempsString[1]),
+                                            Others.ToSingle(
+                                                positionTempsString[2]),
+                                            "Flying"));
                                     }
                                     catch
                                     {
@@ -145,11 +145,11 @@ namespace Profiles_Converters.Converters
                                     XAttribute z = childHotspots.Attribute("Z") ?? childHotspots.Attribute("z");
                                     float xF;
                                     if (float.TryParse(x.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
-                                                       out xF))
+                                        out xF))
                                     {
                                         float yF;
                                         if (float.TryParse(y.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
-                                                           out yF))
+                                            out yF))
                                         {
                                             float zF;
                                             if (float.TryParse(z.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out zF))
@@ -168,7 +168,7 @@ namespace Profiles_Converters.Converters
 
                     string fileName = Path.GetFileNameWithoutExtension(path);
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
-                                                _profile))
+                        _profile))
                     {
                         Logging.Write("Conversion Success (GatherBuddy to Gatherer bot): " + fileName);
                         return true;

@@ -16,7 +16,6 @@ namespace Grinder.Bot
                 Translate();
                 // Complete List Profiles
                 RefreshProfileList();
-                TopMost = true;
                 ProfileList.DropDownStyle = ComboBoxStyle.DropDownList;
                 ProfileList.Text = GrinderSetting.CurrentSetting.ProfileName;
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)

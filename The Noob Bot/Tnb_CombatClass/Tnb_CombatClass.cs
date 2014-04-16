@@ -15403,7 +15403,8 @@ public class ShamanRestoration
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        if (MySettings.UseWaterShield && !WaterShield.HaveBuff && WaterShield.KnownSpell && WaterShield.IsSpellUsable && (!MySettings.UseLightningShield && !MySettings.UseEarthShield || ObjectManager.Me.ManaPercentage < 5))
+        if (MySettings.UseWaterShield && !WaterShield.HaveBuff && WaterShield.KnownSpell && WaterShield.IsSpellUsable &&
+            (!MySettings.UseLightningShield && !MySettings.UseEarthShield || ObjectManager.Me.ManaPercentage < 5))
         {
             WaterShield.LaunchOnSelf();
             return;
@@ -15413,7 +15414,8 @@ public class ShamanRestoration
             EarthShield.Launch();
             return;
         }
-        if (MySettings.UseLightningShield && !MySettings.UseEarthShield && (ObjectManager.Me.ManaPercentage > 10 || !MySettings.UseWaterShield) && LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff)
+        if (MySettings.UseLightningShield && !MySettings.UseEarthShield && (ObjectManager.Me.ManaPercentage > 10 || !MySettings.UseWaterShield) && LightningShield.KnownSpell && LightningShield.IsSpellUsable &&
+            !LightningShield.HaveBuff)
         {
             LightningShield.LaunchOnSelf();
             return;
@@ -17615,9 +17617,9 @@ public class PriestShadow
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Dispersion when health low", "UseDispersionHealth", "Defensive Cooldown",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Dispersion when mana low", "UseDispersionMana", "Defensive Cooldown",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown", "AtPercentage");
@@ -17628,7 +17630,7 @@ public class PriestShadow
             /* Healing Spell */
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell", "AtPercentage");
@@ -18329,7 +18331,7 @@ public class PriestDiscipline
             /* Healing Spell */
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell", "AtPercentage");
@@ -18774,8 +18776,8 @@ public class PriestHoly
             MySettings.UseLightWellAtPercentage && MySettings.UseLightWell)
         {
             SpellManager.CastSpellByIDAndPosition(724,
-                                                  ObjectManager.Target
-                                                               .Position);
+                ObjectManager.Target
+                    .Position);
             return;
         }
         if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
@@ -19056,7 +19058,7 @@ public class PriestHoly
             AddControlInWinForm("Use Circle of Healing", "UseCircleofHealing", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell", "AtPercentage");

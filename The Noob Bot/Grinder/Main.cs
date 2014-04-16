@@ -119,7 +119,7 @@ public class Main : IProduct
             {
                 MessageBox.Show(
                     string.Format("{0}\n{1}{2}{3}{4}", Translate.Get(Translate.Id.GrinderTipOffMessage), _looting,
-                                  _radius, _useground, _usefly), Translate.Get(Translate.Id.GrinderTipOffTitle));
+                        _radius, _useground, _usefly), Translate.Get(Translate.Id.GrinderTipOffTitle));
             }
         }
         catch (Exception e)

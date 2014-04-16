@@ -514,7 +514,7 @@ namespace nManager.Wow.Helpers
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats(); " + randomString +
                                         " = lagHome + lagWorld");
-                        _lastLatency = Others.ToInt32(Lua.GetLocalizedText(randomString)) / 2;
+                        _lastLatency = Others.ToInt32(Lua.GetLocalizedText(randomString))/2;
                         return _lastLatency;
                     }
                     catch (Exception e)
@@ -550,9 +550,9 @@ namespace nManager.Wow.Helpers
             {
                 return
                     (MovementFlags)
-                    Memory.WowMemory.Memory.ReadInt(
-                        Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) +
-                        (uint) Addresses.MovementFlagsOffsets.Offset2);
+                        Memory.WowMemory.Memory.ReadInt(
+                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) +
+                            (uint) Addresses.MovementFlagsOffsets.Offset2);
             }
         }
 
@@ -889,7 +889,8 @@ namespace nManager.Wow.Helpers
             string randomString3 = Others.GetRandomString(Others.Random(4, 10));
             string query;
             if (meOnly)
-                query = "_, _, _, " + randomString2 + ", _, _, _, _, _, _, _, _, " + randomString3 + " = GetAchievementInfo(" + achievementId + "); if " + randomString2 + " and " + randomString3 + " then " + randomString + "=\"1\" else " + randomString + "=\"0\" end;";
+                query = "_, _, _, " + randomString2 + ", _, _, _, _, _, _, _, _, " + randomString3 + " = GetAchievementInfo(" + achievementId + "); if " + randomString2 + " and " + randomString3 + " then " +
+                        randomString + "=\"1\" else " + randomString + "=\"0\" end;";
             else
                 query = "_, _, _, " + randomString2 + " = GetAchievementInfo(" + achievementId + "); if " + randomString2 + " then " + randomString + "=\"1\" else " + randomString + "=\"0\" end;";
             Lua.LuaDoString(query);

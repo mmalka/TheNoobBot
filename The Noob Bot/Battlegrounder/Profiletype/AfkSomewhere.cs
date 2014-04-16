@@ -32,7 +32,7 @@ namespace Battlegrounder.Profiletype
                         BattlegrounderZone battleground in
                             _currentProfile.BattlegrounderZones.Where(
                                 battleground => battleground.BattlegroundId == battlegroundId)
-                                           .Where(battleground => battleground.IsValid()))
+                                .Where(battleground => battleground.IsValid()))
                     {
                         _points = battleground.Points;
                         _i = Randomized.Next(_points.Count);

@@ -62,35 +62,35 @@ namespace nManager.Wow.Helpers
 
                 // Write the asm stuff for Lua_DoString
                 string[] asm = new[]
-                    {
-                        "mov eax, " + doStringArgCodecave,
-                        "push 0",
-                        "push eax",
-                        "push eax",
-                        "mov eax, " +
-                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.FrameScript_ExecuteBuffer)
-                        , // Lua_DoString
-                        "call eax",
-                        "add esp, 0xC",
-                        "@out:",
-                        "retn"
-                    };
+                {
+                    "mov eax, " + doStringArgCodecave,
+                    "push 0",
+                    "push eax",
+                    "push eax",
+                    "mov eax, " +
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.FrameScript_ExecuteBuffer)
+                    , // Lua_DoString
+                    "call eax",
+                    "add esp, 0xC",
+                    "@out:",
+                    "retn"
+                };
 
                 if (!notInGameMode)
                 {
                     List<string> tempsAsm = new List<string>
-                        {
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                            "test eax, eax",
-                            "je @out",
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                            "test eax, eax",
-                            "je @out"
-                        };
+                    {
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                        "test eax, eax",
+                        "je @out",
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        "test eax, eax",
+                        "je @out"
+                    };
 
                     tempsAsm.AddRange(asm);
 
@@ -100,17 +100,17 @@ namespace nManager.Wow.Helpers
                 {
                     List<string> tempsAsm = new List<string>
 // ReSharper disable RedundantEmptyObjectOrCollectionInitializer
-                        {
-                            //"call " + ( Memory.WowProcess.WowModule +  (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                            //"test eax, eax",
-                            //"jne @out",
-                            //"call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                            //"test eax, eax",
-                            //"jne @out",
-                            //"mov eax, [" + ( Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.isLoadingOrConnecting + "]"),
-                            //"test eax, eax",
-                            //"jne @out"
-                        };
+                    {
+                        //"call " + ( Memory.WowProcess.WowModule +  (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                        //"test eax, eax",
+                        //"jne @out",
+                        //"call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        //"test eax, eax",
+                        //"jne @out",
+                        //"mov eax, [" + ( Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.isLoadingOrConnecting + "]"),
+                        //"test eax, eax",
+                        //"jne @out"
+                    };
 // ReSharper restore RedundantEmptyObjectOrCollectionInitializer
 
                     tempsAsm.AddRange(asm);
@@ -147,30 +147,30 @@ namespace nManager.Wow.Helpers
                 // Console.WriteLine("GetLocalizedText(" + Commandline + ")");
 
                 string[] asm = new[]
-                    {
-                        "call " +
-                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                        ,
-                        "test eax, eax",
-                        "je @out",
-                        "call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "test eax, eax",
-                        "je @out",
-                        "call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "mov ecx, eax",
-                        "push -1",
-                        "mov edx, " + luaGetLocalizedTextSpace + "",
-                        "push edx",
-                        "call " +
-                        (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.FrameScript__GetLocalizedText),
-                        "@out:",
-                        "retn"
-                    };
+                {
+                    "call " +
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                    ,
+                    "test eax, eax",
+                    "je @out",
+                    "call " +
+                    (Memory.WowProcess.WowModule +
+                     (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                    "test eax, eax",
+                    "je @out",
+                    "call " +
+                    (Memory.WowProcess.WowModule +
+                     (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                    "mov ecx, eax",
+                    "push -1",
+                    "mov edx, " + luaGetLocalizedTextSpace + "",
+                    "push edx",
+                    "call " +
+                    (Memory.WowProcess.WowModule +
+                     (uint) Addresses.FunctionWow.FrameScript__GetLocalizedText),
+                    "@out:",
+                    "retn"
+                };
 
                 // Inject the shit
                 string sResult = Encoding.UTF8.GetString(Memory.WowMemory.InjectAndExecute(asm, true));

@@ -38,7 +38,7 @@ namespace nManager.Wow.Helpers
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
                     if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
-                                              Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                        Enums.CGWorldFrameHitFlags.HitTestLiquid))
                     {
                         // The destination is in water
                         if (
@@ -93,7 +93,7 @@ namespace nManager.Wow.Helpers
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
                     if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
-                                              Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                        Enums.CGWorldFrameHitFlags.HitTestLiquid))
                     {
                         // The destination is in water
                         if (
@@ -150,7 +150,7 @@ namespace nManager.Wow.Helpers
         /// <param name="loadAllTile"></param>
         /// <returns></returns>
         public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
-                                           bool addFromAndStart = true, bool loadAllTile = false)
+            bool addFromAndStart = true, bool loadAllTile = false)
         {
             List<Point> locList = new List<Point>();
             resultSuccess = true;

@@ -142,7 +142,7 @@ namespace nManager.Wow.Helpers
                     {
                         bool resultSuccess;
                         tempPoints = PathFinder.FindPath(tempPoints[tempPoints.Count() - 1], new Point(inputPoint.X, inputPoint.Y, curr), Usefuls.ContinentNameMpq,
-                                                         out resultSuccess);
+                            out resultSuccess);
                         if (!resultSuccess)
                         {
                             failCounter++;
@@ -583,9 +583,9 @@ namespace nManager.Wow.Helpers
                     float dx = 1.5f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
                     float dy = 1.5f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
                     Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
-                                              ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
+                        ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
-                                                  ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
+                        ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     if (ObjectManager.ObjectManager.Me.IsMounted && !TraceLine.TraceLineGo(_distmountAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
@@ -595,9 +595,9 @@ namespace nManager.Wow.Helpers
                         return;
                     }
                     _jumpOverAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
-                                                 ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
+                        ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
                     inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
-                                        ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
+                        ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
                     if (!TraceLine.TraceLineGo(_jumpOverAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Jumping over.");
@@ -636,71 +636,71 @@ namespace nManager.Wow.Helpers
                         if (j == 1)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
-                                                                ObjectManager.ObjectManager.Me.Position.Y - 10,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move,
-                                                                0.5f); // try 'backward'
+                                ObjectManager.ObjectManager.Me.Position.Y - 10,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move,
+                                0.5f); // try 'backward'
                             Logging.WriteDebug("UnStuck - Backward done.");
                         }
                         else if (j == 2)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Y - 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move,
-                                                                0.5f); // try 'back left'
+                                ObjectManager.ObjectManager.Me.Position.Y - 14,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move,
+                                0.5f); // try 'back left'
                             Logging.WriteDebug("UnStuck - Backward Left done.");
                         }
                         else if (j == 3)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 10,
-                                                                ObjectManager.ObjectManager.Me.Position.Y,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'left'
+                                ObjectManager.ObjectManager.Me.Position.Y,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'left'
                             Logging.WriteDebug("UnStuck - Left done.");
                         }
                         else if (j == 4)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Y + 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move,
-                                                                0.5f); // try 'forward left'
+                                ObjectManager.ObjectManager.Me.Position.Y + 14,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move,
+                                0.5f); // try 'forward left'
                             Logging.WriteDebug("UnStuck - Forward Left done.");
                         }
                         else if (j == 5)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
-                                                                ObjectManager.ObjectManager.Me.Position.Y + 10,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move,
-                                                                0.5f); // try 'forward'
+                                ObjectManager.ObjectManager.Me.Position.Y + 10,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move,
+                                0.5f); // try 'forward'
                             Logging.WriteDebug("UnStuck - Forward done.");
                         }
                         else if (j == 6)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Y + 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move,
-                                                                0.5f); // try 'forward right'
+                                ObjectManager.ObjectManager.Me.Position.Y + 14,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move,
+                                0.5f); // try 'forward right'
                             Logging.WriteDebug("UnStuck - Forward Right done.");
                         }
                         else if (j == 7)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 10,
-                                                                ObjectManager.ObjectManager.Me.Position.Y,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'right'
+                                ObjectManager.ObjectManager.Me.Position.Y,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'right'
                             Logging.WriteDebug("UnStuck - Right done.");
                         }
                         else if (j == 8)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Y - 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move,
-                                                                0.5f); // try 'back right'
+                                ObjectManager.ObjectManager.Me.Position.Y - 14,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move,
+                                0.5f); // try 'back right'
                             Logging.WriteDebug("UnStuck - Backward Right done.");
                         }
 
@@ -748,9 +748,9 @@ namespace nManager.Wow.Helpers
                 if (ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.None)
                 {
                     ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
-                                                        ObjectManager.ObjectManager.Me.Position.Y,
-                                                        ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                        (int) ClickToMoveType.Move, 0.5f);
+                        ObjectManager.ObjectManager.Me.Position.Y,
+                        ObjectManager.ObjectManager.Me.Position.Z, 0,
+                        (int) ClickToMoveType.Move, 0.5f);
                     Logging.WriteDebug("Flying UnStuck - Reset position to our current location and StopMove.");
                     // Reset position to our current location and StopMove.
                     StopMove();
@@ -778,66 +778,66 @@ namespace nManager.Wow.Helpers
                         if (j == 1)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
-                                                                ObjectManager.ObjectManager.Me.Position.Y - 15,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'backward'
+                                ObjectManager.ObjectManager.Me.Position.Y - 15,
+                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'backward'
                             Logging.WriteDebug("Flying UnStuck - Backward done.");
                         }
                         else if (j == 2)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 17,
-                                                                ObjectManager.ObjectManager.Me.Position.Y - 17,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'back left'
+                                ObjectManager.ObjectManager.Me.Position.Y - 17,
+                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'back left'
                             Logging.WriteDebug("Flying UnStuck - Backward Left done.");
                         }
                         else if (j == 3)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 15,
-                                                                ObjectManager.ObjectManager.Me.Position.Y,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z,
-                                                                0, (int) ClickToMoveType.Move, 0.5f); // try 'left'
+                                ObjectManager.ObjectManager.Me.Position.Y,
+                                ObjectManager.ObjectManager.Me.Position.Z + z,
+                                0, (int) ClickToMoveType.Move, 0.5f); // try 'left'
                             Logging.WriteDebug("Flying UnStuck - Left done.");
                         }
                         else if (j == 4)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 17,
-                                                                ObjectManager.ObjectManager.Me.Position.Y + 17,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'forward left'
+                                ObjectManager.ObjectManager.Me.Position.Y + 17,
+                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'forward left'
                             Logging.WriteDebug("Flying UnStuck - Forward Left done.");
                         }
                         else if (j == 5)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
-                                                                ObjectManager.ObjectManager.Me.Position.Y + 15,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'forward'
+                                ObjectManager.ObjectManager.Me.Position.Y + 15,
+                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'forward'
                             Logging.WriteDebug("Flying UnStuck - Forward done.");
                         }
                         else if (j == 6)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 15,
-                                                                ObjectManager.ObjectManager.Me.Position.Y + 17,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f);
+                                ObjectManager.ObjectManager.Me.Position.Y + 17,
+                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
+                                (int) ClickToMoveType.Move, 0.5f);
                             // try 'forward right'
                             Logging.WriteDebug("Flying UnStuck - Forward Right done.");
                         }
                         else if (j == 7)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 15,
-                                                                ObjectManager.ObjectManager.Me.Position.Y,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z,
-                                                                0, (int) ClickToMoveType.Move, 0.5f); // try 'right'
+                                ObjectManager.ObjectManager.Me.Position.Y,
+                                ObjectManager.ObjectManager.Me.Position.Z + z,
+                                0, (int) ClickToMoveType.Move, 0.5f); // try 'right'
                             Logging.WriteDebug("Flying UnStuck - Right done.");
                         }
                         else if (j == 8)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 17,
-                                                                ObjectManager.ObjectManager.Me.Position.Y - 14,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f); // try 'back right'
+                                ObjectManager.ObjectManager.Me.Position.Y - 14,
+                                ObjectManager.ObjectManager.Me.Position.Z + z, 0,
+                                (int) ClickToMoveType.Move, 0.5f); // try 'back right'
                             Logging.WriteDebug("Flying UnStuck - Backward Right done.");
                         }
                         Thread.Sleep(100);
@@ -847,9 +847,9 @@ namespace nManager.Wow.Helpers
                         if (ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.None)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
-                                                                ObjectManager.ObjectManager.Me.Position.Y,
-                                                                ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int) ClickToMoveType.Move, 0.5f);
+                                ObjectManager.ObjectManager.Me.Position.Y,
+                                ObjectManager.ObjectManager.Me.Position.Z, 0,
+                                (int) ClickToMoveType.Move, 0.5f);
                             Logging.WriteDebug("Flying UnStuck - Reset position to our current location and StopMove.");
                             // Reset position to our current location and StopMove.
                             StopMove();
@@ -953,7 +953,7 @@ namespace nManager.Wow.Helpers
                         _points = new List<Point>();
                         _points.AddRange(points);
                         _currentTargetedPoint = Math.NearestPointOfListPoints(_points,
-                                                                              ObjectManager.ObjectManager.Me.Position);
+                            ObjectManager.ObjectManager.Me.Position);
                         _loop = true;
                         _movement = true;
                     }
@@ -1141,7 +1141,7 @@ namespace nManager.Wow.Helpers
                     if (ClickToMove.GetClickToMovePosition().DistanceTo(position) > 1 ||
                         ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
                         ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0,
-                                                            (int) ClickToMoveType.Move, 0.5f);
+                            (int) ClickToMoveType.Move, 0.5f);
 
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
@@ -1311,8 +1311,8 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                        System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
-                                          (obj.Position.X - localPlayerPosition.X)));
+                            System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                                (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
@@ -1339,8 +1339,8 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                        System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
-                                          (obj.Position.X - localPlayerPosition.X)));
+                            System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                                (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
@@ -1368,8 +1368,8 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                        System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
-                                          (obj.Position.X - localPlayerPosition.X)));
+                            System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                                (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
@@ -1397,7 +1397,7 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                        System.Math.Atan2((position.Y - localPlayerPosition.Y), (position.X - localPlayerPosition.X)));
+                            System.Math.Atan2((position.Y - localPlayerPosition.Y), (position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
@@ -1496,7 +1496,7 @@ namespace nManager.Wow.Helpers
         {
             if (_trakedTargetGuid != Player.Guid)
             {
-                _trakedTarget = new Npc { Entry = Player.Entry, Position = Player.Position, Name = Player.Name, Guid = Player.Guid };
+                _trakedTarget = new Npc {Entry = Player.Entry, Position = Player.Position, Name = Player.Name, Guid = Player.Guid};
                 _trakedTargetGuid = Player.Guid;
             }
             return FindTarget(ref _trakedTarget, SpecialRange);
@@ -1524,7 +1524,7 @@ namespace nManager.Wow.Helpers
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 if (Target.Guid == 0)
                     Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
-                _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
+                _maxTimerForStuckDetection = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
                 if (!patherResult)
                     points.Add(Target.Position);
                 float groundDistance = Math.DistanceListPoint(points);
@@ -1540,15 +1540,16 @@ namespace nManager.Wow.Helpers
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
                 {
                     baseAddress = UpdateTarget(ref Target, out requiresUpdate);
-                    if (LongMove.IsLongMove)    // we are in longmove
+                    if (LongMove.IsLongMove) // we are in longmove
                     {
-                        if (baseAddress == 0)   // we don't have the target in our radar
-                            return 0;           // Then return
+                        if (baseAddress == 0) // we don't have the target in our radar
+                            return 0; // Then return
                         else
                             LongMove.StopLongMove(); // We have the target, then we can stop the long move
                     }
                     else if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly)
-                    {   // We are not in longmove but we don't have the target and we can fly, let's longmove then
+                    {
+                        // We are not in longmove but we don't have the target and we can fly, let's longmove then
                         StopMove();
                         Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
                         LongMove.LongMoveByNewThread(Target.Position);
@@ -1575,7 +1576,7 @@ namespace nManager.Wow.Helpers
                     if (_maxTimerForStuckDetection.IsReady)
                     {
                         WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry),
-                                                                                                       Target.Position);
+                            Target.Position);
                         WoWUnit TargetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
                         if (TargetIsUnit.IsValid)
                             nManagerSetting.AddBlackList(TargetIsUnit.Guid);

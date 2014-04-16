@@ -22,22 +22,22 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.WriteFloat(result_Codecave, 0);
 
                     string[] asm = new[]
-                        {
-                            "call " +
-                            (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                            "test eax, eax",
-                            "je @out",
-                            "call " +
-                            (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                            "test eax, eax",
-                            "je @out",
-                            "mov ecx, " + baseAddress,
-                            "call " + VTable,
-                            "mov eax, " + result_Codecave,
-                            "fstp dword [eax]",
-                            "@out:",
-                            "retn"
-                        };
+                    {
+                        "call " +
+                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                        "test eax, eax",
+                        "je @out",
+                        "call " +
+                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        "test eax, eax",
+                        "je @out",
+                        "mov ecx, " + baseAddress,
+                        "call " + VTable,
+                        "mov eax, " + result_Codecave,
+                        "fstp dword [eax]",
+                        "@out:",
+                        "retn"
+                    };
 
 
                     Memory.WowMemory.InjectAndExecute(asm);

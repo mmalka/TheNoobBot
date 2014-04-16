@@ -148,10 +148,10 @@ namespace Grinder.Bot
                 {
                     if (i + 1 > Profile.GrinderZones[ZoneIdProfile].Points.Count - 1)
                         pointsTemps.AddRange(PathFinder.FindPath(Profile.GrinderZones[ZoneIdProfile].Points[i],
-                                                                 Profile.GrinderZones[ZoneIdProfile].Points[0]));
+                            Profile.GrinderZones[ZoneIdProfile].Points[0]));
                     else
                         pointsTemps.AddRange(PathFinder.FindPath(Profile.GrinderZones[ZoneIdProfile].Points[i],
-                                                                 Profile.GrinderZones[ZoneIdProfile].Points[i + 1]));
+                            Profile.GrinderZones[ZoneIdProfile].Points[i + 1]));
                 }
                 Profile.GrinderZones[ZoneIdProfile].Hotspots = false;
                 Profile.GrinderZones[ZoneIdProfile].Points.Clear();

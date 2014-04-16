@@ -58,7 +58,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 return GetReaction(new WoWUnit(localObj.GetBaseAddress).Faction,
-                                   new WoWUnit(mobObj.GetBaseAddress).Faction);
+                    new WoWUnit(mobObj.GetBaseAddress).Faction);
             }
             catch (Exception exception)
             {

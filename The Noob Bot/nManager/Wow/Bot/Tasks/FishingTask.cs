@@ -57,7 +57,7 @@ namespace nManager.Wow.Bot.Tasks
         /// <param name="precision"> </param>
         /// <param name="useLure"> </param>
         public static void LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = "",
-                                    bool precision = false)
+            bool precision = false)
         {
             try
             {

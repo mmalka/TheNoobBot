@@ -20,7 +20,7 @@ namespace nManager.Wow.Helpers
         private static void EnumWoWEventsDumper()
         {
             string eventsList = "";
-            for (uint i = 0; i <= EventsCount-1; i++)
+            for (uint i = 0; i <= EventsCount - 1; i++)
             {
                 uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 0x4*i);
                 if (ptrCurrentEvent > 0)
@@ -45,7 +45,7 @@ namespace nManager.Wow.Helpers
             uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 4*eventId);
             if (ptrCurrentEvent <= 0) return 0;
             uint currentEventNamePtr = Memory.WowMemory.Memory.ReadUInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetName);
-            return currentEventNamePtr > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint)Addresses.EventsListener.EventOffsetCount) : 0;
+            return currentEventNamePtr > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetCount) : 0;
         }
 
         private static bool IsAttached(WoWEventsType eventType)
@@ -82,7 +82,7 @@ namespace nManager.Wow.Helpers
                     _hookedEvents.Add(new HookedEventInfo(method, eventType, GetEventFireCount(eventType)));
                 }
                 if (_threadHookEvent == null)
-                    _threadHookEvent = new Thread(Hook) { Name = "Hook of Events" };
+                    _threadHookEvent = new Thread(Hook) {Name = "Hook of Events"};
                 if (!_threadHookEvent.IsAlive)
                     _threadHookEvent.Start();
             }
@@ -126,7 +126,7 @@ namespace nManager.Wow.Helpers
                     foreach (HookedEventInfo current in _hookedEvents)
                     {
                         if (current.PreviousCurrentEventFireCount >= GetEventFireCount(current.EventType)) continue;
-                        Thread thread = new Thread(current.CallBack) { Name = "Fire callback for Event: " + current.EventType };
+                        Thread thread = new Thread(current.CallBack) {Name = "Fire callback for Event: " + current.EventType};
                         thread.Start();
                         current.PreviousCurrentEventFireCount++;
                     }

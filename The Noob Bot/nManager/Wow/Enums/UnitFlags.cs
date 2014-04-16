@@ -136,5 +136,4 @@ namespace nManager.Wow.Enums
         MINING_LOOT = 0x200,
         ENGENEERING_LOOT = 0x8000,
     }
-
 }

@@ -861,7 +861,7 @@ public class DruidRestoration
             ConfigWinForm("Druid Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
@@ -1307,7 +1307,7 @@ public class PaladinHoly
             ConfigWinForm("Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
@@ -2052,7 +2052,7 @@ public class ShamanRestoration
             ConfigWinForm("Shaman Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
@@ -2730,7 +2730,7 @@ public class PriestDiscipline
             /* Healing Spell */
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell", "AtPercentage");
@@ -3174,8 +3174,8 @@ public class PriestHoly
             _mySettings.UseLightWellAtPercentage && _mySettings.UseLightWell)
         {
             SpellManager.CastSpellByIDAndPosition(724,
-                                                  ObjectManager.Target
-                                                               .Position);
+                ObjectManager.Target
+                    .Position);
             return;
         }
         if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.TargetHaveBuff &&
@@ -3377,7 +3377,7 @@ public class PriestHoly
             AddControlInWinForm("Use Circle of Healing", "UseCircleofHealing", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell",
-                                "AtPercentage");
+                "AtPercentage");
             AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell", "AtPercentage");

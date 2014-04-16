@@ -306,8 +306,8 @@ namespace nManager.Wow.ObjectManager
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
                     return SkillLine.None;
-                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
-                //    return SkillLine.Lockpicking;
+                    //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                    //    return SkillLine.Lockpicking;
             }
             return SkillLine.None;
         }

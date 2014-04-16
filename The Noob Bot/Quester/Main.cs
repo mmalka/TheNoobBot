@@ -134,7 +134,7 @@ public class Main : IProduct
             {
                 MessageBox.Show(
                     string.Format("{0}\n{1}{2}{3}{4}{5}{6}", Translate.Get(Translate.Id.QuesterTipOffMessage), _selling, _sellingQuality, _looting,
-                                  _radius, _useground, _usefly), Translate.Get(Translate.Id.QuesterTipOffTitle));
+                        _radius, _useground, _usefly), Translate.Get(Translate.Id.QuesterTipOffTitle));
             }
         }
         catch (Exception e)

@@ -1365,8 +1365,8 @@ namespace nManager.Wow.ObjectManager
                 uint instancePointer = Party.GetPartyPointer(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE);
                 uint homePointer = Party.GetPartyPointer();
                 return instancePointer > 0
-                           ? PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE
-                           : (homePointer > 0 ? PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME : PartyEnums.PartyType.None);
+                    ? PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE
+                    : (homePointer > 0 ? PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME : PartyEnums.PartyType.None);
             }
         }
 
@@ -1436,7 +1436,7 @@ namespace nManager.Wow.ObjectManager
                             Memory.WowMemory.Memory.ReadUInt(
                                 Memory.WowMemory.Memory.ReadUInt(BaseAddress +
                                                                  (uint)
-                                                                 Addresses.UnitField.DBCacheRow) +
+                                                                     Addresses.UnitField.DBCacheRow) +
                                 (uint) Addresses.UnitField.CachedName));
                 }
                 catch (Exception e)
@@ -1462,8 +1462,8 @@ namespace nManager.Wow.ObjectManager
                             Memory.WowMemory.Memory.ReadUInt(
                                 Memory.WowMemory.Memory.ReadUInt(BaseAddress +
                                                                  (uint)
-                                                                 Addresses.UnitField.DBCacheRow) +
-                                (uint)Addresses.UnitField.CachedSubName));
+                                                                     Addresses.UnitField.DBCacheRow) +
+                                (uint) Addresses.UnitField.CachedSubName));
                 }
                 catch (Exception e)
                 {
@@ -1479,9 +1479,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.UnitField.DBCacheRow);
-                    int cachedtype = Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint)Addresses.UnitField.CachedTypeFlag);
-                    return (TypeFlag)cachedtype;
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                    int cachedtype = Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedTypeFlag);
+                    return (TypeFlag) cachedtype;
                 }
                 catch (Exception e)
                 {
@@ -1512,19 +1512,19 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 if (Level > 88)
-                    return 550 + ((Level - 88) * 15);
+                    return 550 + ((Level - 88)*15);
                 else if (Level > 83)
-                    return 450 + ((Level - 83) * 20);
+                    return 450 + ((Level - 83)*20);
                 else if (Level > 80)
-                    return 435 + ((Level - 80) * 5);
+                    return 435 + ((Level - 80)*5);
                 else if (Level > 73)
-                    return 365 + ((Level - 73) * 10);
+                    return 365 + ((Level - 73)*10);
                 else if (Level > 20)
-                    return Level * 5;
+                    return Level*5;
                 else if (Level < 10)
                     return 1;
                 else // between level 10 and 20
-                    return (Level * 10) - 100;
+                    return (Level*10) - 100;
             }
         }
 
@@ -1967,9 +1967,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
-                        ((UnitRelation.GetReaction(Faction) == Reaction.Neutral &&
-                        GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlag) == 0) ||
-                        UnitRelation.GetReaction(Faction) < Reaction.Neutral);
+                           ((UnitRelation.GetReaction(Faction) == Reaction.Neutral &&
+                             GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlag) == 0) ||
+                            UnitRelation.GetReaction(Faction) < Reaction.Neutral);
                     /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
                         Donne ça en plus long et plus lent:
                         UnitFlags f = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);

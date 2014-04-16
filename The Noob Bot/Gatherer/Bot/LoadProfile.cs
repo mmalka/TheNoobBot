@@ -15,7 +15,6 @@ namespace Gatherer.Bot
                 Translate();
                 // Complete List Profiles
                 RefreshProfileList();
-                TopMost = true;
                 ProfileList.DropDownStyle = ComboBoxStyle.DropDownList;
                 ProfileList.Text = GathererSetting.CurrentSetting.ProfileName;
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)

@@ -51,8 +51,8 @@ namespace Profiles_Converters.Converters
                                     .Trim()
                                     .Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
                             Point item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture),
-                                                   float.Parse(strArray[1], CultureInfo.InvariantCulture),
-                                                   float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
+                                float.Parse(strArray[1], CultureInfo.InvariantCulture),
+                                float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
                             _profile.Points.Add(item);
                         }
                     }
@@ -61,7 +61,7 @@ namespace Profiles_Converters.Converters
                     string fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
-                                                _profile))
+                        _profile))
                     {
                         Logging.Write("Conversion Success (Pirox Fly Gatherer to Gatherer bot): " + fileName);
                         return true;

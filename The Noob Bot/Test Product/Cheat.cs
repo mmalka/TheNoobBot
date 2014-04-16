@@ -44,7 +44,7 @@ namespace Test_Product
             {
                 if (
                     Memory.WowMemory.Memory.ReadBytes(Memory.WowProcess.WowModule + afk,
-                                                      AfkOrigine.Count())[0] == AfkOrigine[0])
+                        AfkOrigine.Count())[0] == AfkOrigine[0])
                     return false;
             }
             catch (Exception exception)

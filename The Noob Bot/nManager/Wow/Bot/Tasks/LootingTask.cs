@@ -104,7 +104,7 @@ namespace nManager.Wow.Bot.Tasks
                                                 {
                                                     nManagerSetting.AddBlackList(u.Guid, 2600);
                                                 }
-                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                 break;
                                             }
                                         }
@@ -125,7 +125,7 @@ namespace nManager.Wow.Bot.Tasks
                                                         myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
                                                     if (wowUnit.GetSkillLevelRequired > myHerbalismLevel)
                                                     {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                         break;
                                                     }
                                                 }
@@ -136,7 +136,7 @@ namespace nManager.Wow.Bot.Tasks
                                                         myMiningLevel += Skill.GetSkillBonus(Enums.SkillLine.Mining);
                                                     if (wowUnit.GetSkillLevelRequired > myMiningLevel)
                                                     {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                         break;
                                                     }
                                                 }
@@ -147,7 +147,7 @@ namespace nManager.Wow.Bot.Tasks
                                                         myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
                                                     if (wowUnit.GetSkillLevelRequired > myEngeneeringLevel)
                                                     {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                         break;
                                                     }
                                                 }
@@ -158,7 +158,7 @@ namespace nManager.Wow.Bot.Tasks
                                                         mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
                                                     if (wowUnit.GetSkillLevelRequired > mySkinningLevel)
                                                     {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                         break;
                                                     }
                                                 }
@@ -171,8 +171,8 @@ namespace nManager.Wow.Bot.Tasks
                                                 Thread.Sleep(100);
                                             }
                                             if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                                    !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
                                                     Usefuls.IsFlying))))
                                             {
                                                 return;

@@ -9,14 +9,14 @@ namespace nManager.Helpful.Win32
 
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer,
-                                                    int dwSize, out int lpNumberOfBytesRead);
+            int dwSize, out int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
         public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize,
-                                                     out int lpNumberOfBytesWritten);
+            out int lpNumberOfBytesWritten);
 
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hHandle);
@@ -36,7 +36,7 @@ namespace nManager.Helpful.Win32
         [DllImport(@"user32.dll", EntryPoint = "SetWindowPos", CallingConvention = CallingConvention.StdCall,
             SetLastError = true)]
         public static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy,
-                                              uint uFlags);
+            uint uFlags);
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetDesktopWindow();
@@ -52,12 +52,12 @@ namespace nManager.Helpful.Win32
 
         [DllImport("gdi32.dll")]
         public static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest,
-                                         int nWidth, int nHeight, IntPtr hObjectSource,
-                                         int nXSrc, int nYSrc, int dwRop);
+            int nWidth, int nHeight, IntPtr hObjectSource,
+            int nXSrc, int nYSrc, int dwRop);
 
         [DllImport("gdi32.dll")]
         public static extern IntPtr CreateCompatibleBitmap(IntPtr hDC, int nWidth,
-                                                           int nHeight);
+            int nHeight);
 
         [DllImport("gdi32.dll")]
         public static extern IntPtr CreateCompatibleDC(IntPtr hDC);

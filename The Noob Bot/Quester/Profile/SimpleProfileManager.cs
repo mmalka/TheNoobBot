@@ -33,7 +33,8 @@ namespace Quester.Profile
                     RefreshProfileQuestList();
                     RefreshProfileQuesterList();
                 }
-                TopMost = true;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    TopMost = true;
             }
             catch (Exception e)
             {

@@ -40,7 +40,7 @@ namespace nManager.Wow.Bot.States
 
                 return Party.IsInGroup() &&
                        Party.GetPartyPlayersGUID()
-                            .Any(playerInMyParty => new WoWUnit((uint) playerInMyParty).HealthPercent < 100);
+                           .Any(playerInMyParty => new WoWUnit((uint) playerInMyParty).HealthPercent < 100);
             }
         }
 
@@ -51,7 +51,7 @@ namespace nManager.Wow.Bot.States
             while (ObjectManager.ObjectManager.Me.HealthPercent < 100 ||
                    (Party.IsInGroup() &&
                     Party.GetPartyPlayersGUID()
-                         .Any(playerInMyParty => new WoWUnit((uint) playerInMyParty).HealthPercent < 100)))
+                        .Any(playerInMyParty => new WoWUnit((uint) playerInMyParty).HealthPercent < 100)))
             {
                 Thread.Sleep(200);
             }

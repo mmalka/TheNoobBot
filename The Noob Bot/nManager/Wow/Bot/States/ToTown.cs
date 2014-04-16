@@ -143,17 +143,17 @@ namespace nManager.Wow.Bot.States
                         portableMailbox.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
                     {
                         mailBox = new Npc
-                            {
-                                Entry = portableMailbox.Entry,
-                                Position = portableMailbox.Position,
-                                Name = portableMailbox.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 0,
-                                Type = Npc.NpcType.Mailbox
-                            };
+                        {
+                            Entry = portableMailbox.Entry,
+                            Position = portableMailbox.Position,
+                            Name = portableMailbox.Name,
+                            ContinentId = (ContinentId) Usefuls.ContinentId,
+                            Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                ? Npc.FactionType.Horde
+                                : Npc.FactionType.Alliance,
+                            SelectGossipOption = 0,
+                            Type = Npc.NpcType.Mailbox
+                        };
                     }
                 }
                 if (mailBox == null && NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0)
@@ -183,15 +183,15 @@ namespace nManager.Wow.Bot.States
                             if (drixBlackwrench.IsValid && drixBlackwrench.IsAlive)
                             {
                                 Npc drixBlackwrenchNpc = new Npc
-                                    {
-                                        Entry = drixBlackwrench.Entry,
-                                        Position = drixBlackwrench.Position,
-                                        Name = drixBlackwrench.Name,
-                                        ContinentId = (ContinentId) Usefuls.ContinentId,
-                                        Faction = Npc.FactionType.Horde,
-                                        SelectGossipOption = 0,
-                                        Type = Npc.NpcType.Repair
-                                    };
+                                {
+                                    Entry = drixBlackwrench.Entry,
+                                    Position = drixBlackwrench.Position,
+                                    Name = drixBlackwrench.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = Npc.FactionType.Horde,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Repair
+                                };
                                 listNPCs.Add(drixBlackwrenchNpc);
                             }
                         }
@@ -203,15 +203,15 @@ namespace nManager.Wow.Bot.States
                             if (gnimo.IsValid && gnimo.IsAlive)
                             {
                                 Npc gnimoNpc = new Npc
-                                    {
-                                        Entry = gnimo.Entry,
-                                        Position = gnimo.Position,
-                                        Name = gnimo.Name,
-                                        ContinentId = (ContinentId) Usefuls.ContinentId,
-                                        Faction = Npc.FactionType.Alliance,
-                                        SelectGossipOption = 0,
-                                        Type = Npc.NpcType.Repair
-                                    };
+                                {
+                                    Entry = gnimo.Entry,
+                                    Position = gnimo.Position,
+                                    Name = gnimo.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = Npc.FactionType.Alliance,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Repair
+                                };
                                 listNPCs.Add(gnimoNpc);
                             }
                         }
@@ -233,17 +233,17 @@ namespace nManager.Wow.Bot.States
                         if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
                         {
                             Npc cousinSlowhandsNpc = new Npc
-                                {
-                                    Entry = cousinSlowhands.Entry,
-                                    Position = cousinSlowhands.Position,
-                                    Name = cousinSlowhands.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
-                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                                  ? Npc.FactionType.Horde
-                                                  : Npc.FactionType.Alliance,
-                                    SelectGossipOption = 0,
-                                    Type = Npc.NpcType.Repair
-                                };
+                            {
+                                Entry = cousinSlowhands.Entry,
+                                Position = cousinSlowhands.Position,
+                                Name = cousinSlowhands.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                    ? Npc.FactionType.Horde
+                                    : Npc.FactionType.Alliance,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Repair
+                            };
                             listNPCs.Add(cousinSlowhandsNpc);
                         }
                     }
@@ -296,15 +296,15 @@ namespace nManager.Wow.Bot.States
                             if (mojodishu.IsValid && mojodishu.IsAlive)
                             {
                                 Npc mojodishuNpc = new Npc
-                                    {
-                                        Entry = mojodishu.Entry,
-                                        Position = mojodishu.Position,
-                                        Name = mojodishu.Name,
-                                        ContinentId = (ContinentId) Usefuls.ContinentId,
-                                        Faction = Npc.FactionType.Horde,
-                                        SelectGossipOption = 0,
-                                        Type = Npc.NpcType.Vendor
-                                    };
+                                {
+                                    Entry = mojodishu.Entry,
+                                    Position = mojodishu.Position,
+                                    Name = mojodishu.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = Npc.FactionType.Horde,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Vendor
+                                };
                                 listNPCs.Add(mojodishuNpc);
                             }
                         }
@@ -316,15 +316,15 @@ namespace nManager.Wow.Bot.States
                             if (hakmuddArgus.IsValid && hakmuddArgus.IsAlive)
                             {
                                 Npc hakmuddArgusNpc = new Npc
-                                    {
-                                        Entry = hakmuddArgus.Entry,
-                                        Position = hakmuddArgus.Position,
-                                        Name = hakmuddArgus.Name,
-                                        ContinentId = (ContinentId) Usefuls.ContinentId,
-                                        Faction = Npc.FactionType.Alliance,
-                                        SelectGossipOption = 0,
-                                        Type = Npc.NpcType.Vendor
-                                    };
+                                {
+                                    Entry = hakmuddArgus.Entry,
+                                    Position = hakmuddArgus.Position,
+                                    Name = hakmuddArgus.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = Npc.FactionType.Alliance,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Vendor
+                                };
                                 listNPCs.Add(hakmuddArgusNpc);
                             }
                         }
@@ -346,15 +346,15 @@ namespace nManager.Wow.Bot.States
                         if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
                         {
                             Npc cousinSlowhandsNpc = new Npc
-                                {
-                                    Entry = cousinSlowhands.Entry,
-                                    Position = cousinSlowhands.Position,
-                                    Name = cousinSlowhands.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
-                                    Faction = Npc.FactionType.Neutral,
-                                    SelectGossipOption = 0,
-                                    Type = Npc.NpcType.Vendor
-                                };
+                            {
+                                Entry = cousinSlowhands.Entry,
+                                Position = cousinSlowhands.Position,
+                                Name = cousinSlowhands.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = Npc.FactionType.Neutral,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Vendor
+                            };
                             listNPCs.Add(cousinSlowhandsNpc);
                         }
                     }
@@ -433,7 +433,7 @@ namespace nManager.Wow.Bot.States
                             if (nManagerSetting.CurrentSetting.SellPurple)
                                 vQuality.Add(WoWItemQuality.Epic);
                             Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems,
-                                             nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
+                                nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
                             Thread.Sleep(3000);
                             if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft)
                                 _suspendSelling = true;
@@ -474,10 +474,10 @@ namespace nManager.Wow.Bot.States
                                 Interact.InteractWith(baseAddress);
                                 Thread.Sleep(1000);
                                 Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient,
-                                                 nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
-                                                 nManagerSetting.CurrentSetting.ForceToMailTheseItems,
-                                                 nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality,
-                                                 out mailSendingCompleted);
+                                    nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
+                                    nManagerSetting.CurrentSetting.ForceToMailTheseItems,
+                                    nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality,
+                                    out mailSendingCompleted);
                                 Thread.Sleep(500);
                             }
                             if (mailSendingCompleted)
@@ -584,17 +584,17 @@ namespace nManager.Wow.Bot.States
             if (!unitRobot.IsValid || !unitRobot.IsAlive)
                 return null;
             Npc npcRobot = new Npc
-                {
-                    Entry = unitRobot.Entry,
-                    Position = unitRobot.Position,
-                    Name = unitRobot.Name,
-                    ContinentId = (ContinentId) Usefuls.ContinentId,
-                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                  ? Npc.FactionType.Horde
-                                  : Npc.FactionType.Alliance,
-                    SelectGossipOption = gossipOption,
-                    Type = type
-                };
+            {
+                Entry = unitRobot.Entry,
+                Position = unitRobot.Position,
+                Name = unitRobot.Name,
+                ContinentId = (ContinentId) Usefuls.ContinentId,
+                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                    ? Npc.FactionType.Horde
+                    : Npc.FactionType.Alliance,
+                SelectGossipOption = gossipOption,
+                Type = type
+            };
             return npcRobot;
         }
     }

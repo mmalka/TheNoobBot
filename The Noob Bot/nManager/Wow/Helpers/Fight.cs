@@ -33,7 +33,7 @@ namespace nManager.Wow.Helpers
                 }
 
                 if (ObjectManager.ObjectManager.Me.IsMounted && CombatClass.InRange(targetNpc))
-                      MountTask.DismountMount();
+                    MountTask.DismountMount();
 
                 InFight = true;
 

@@ -58,7 +58,9 @@ namespace nManager.Wow.Helpers
                 }
             }
         }
+
         public static bool ForceReloadDigsites = false;
+
         public static List<Digsite> GetAllDigsitesZone()
         {
             try
@@ -77,7 +79,7 @@ namespace nManager.Wow.Helpers
                                                                      "\\Data\\ArchaeologistDigsites.xml");
                         listDigsitesZone = GenerateOrUpdate(listDigsitesZone);
                         XmlSerializer.Serialize(Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
-                                                listDigsitesZone);
+                            listDigsitesZone);
                         listDigsitesZone = listDigsitesZone.OrderByDescending(c => c.PriorityDigsites).ToList();
 
                         Logging.Write(listDigsitesZone.Count + " Archaeology Digsites Zones in the data base.");
@@ -122,14 +124,14 @@ namespace nManager.Wow.Helpers
             if (doUpdate)
             {
                 List<Digsite> finalList = fullList.Concat(listDigsitesZoneFromXML)
-                                                  .ToLookup(p => p.id)
-                                                  .Select(g => g.Aggregate((p1, p2) => new Digsite
-                                                      {
-                                                          id = p1.id,
-                                                          name = p1.name,
-                                                          PriorityDigsites = p2.PriorityDigsites,
-                                                          Active = p2.Active
-                                                      })).ToList();
+                    .ToLookup(p => p.id)
+                    .Select(g => g.Aggregate((p1, p2) => new Digsite
+                    {
+                        id = p1.id,
+                        name = p1.name,
+                        PriorityDigsites = p2.PriorityDigsites,
+                        Active = p2.Active
+                    })).ToList();
                 return finalList;
             }
             return /*finalList = */ fullList;
@@ -248,9 +250,9 @@ namespace nManager.Wow.Helpers
                                 {
                                     string[] sDigsites = s.Split(Others.ToChar(separator));
                                     DigsitesZoneLua tDigsitesZoneLua = new DigsitesZoneLua
-                                        {
-                                            name = sDigsites[0],
-                                        };
+                                    {
+                                        name = sDigsites[0],
+                                    };
                                     resultList.Add(tDigsitesZoneLua);
                                 }
                                 catch

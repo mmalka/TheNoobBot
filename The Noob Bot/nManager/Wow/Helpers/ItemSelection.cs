@@ -18,18 +18,18 @@ namespace nManager.Wow.Helpers
             WoWItemSubClass TheItemSubClassRec = WoWItemSubClass.FromNameAndClass(questRewardItem.ItemSubType, classId);
             uint subClassId = TheItemSubClassRec.Record.SubClassId;
 
-            Logging.WriteDebug("Item \"" + questRewardItem.ItemName + "\" equip \"" + questRewardItem.ItemEquipLoc + "\" class " + (Enums.WoWItemClass)classId + " subclass " + subClassId +
-                   " has a value of " + questRewardItem.ItemSellPrice);
+            Logging.WriteDebug("Item \"" + questRewardItem.ItemName + "\" equip \"" + questRewardItem.ItemEquipLoc + "\" class " + (Enums.WoWItemClass) classId + " subclass " + subClassId +
+                               " has a value of " + questRewardItem.ItemSellPrice);
 
-            if ((Enums.WoWItemClass)classId == Enums.WoWItemClass.Armor)
-                if ((Enums.WowItemSubClassArmor)subClassId == EquipmentAndStats.EquipableArmorItemType
+            if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Armor)
+                if ((Enums.WowItemSubClassArmor) subClassId == EquipmentAndStats.EquipableArmorItemType
                     || questRewardItem.ItemEquipLoc == "INVTYPE_CLOAK" || questRewardItem.ItemEquipLoc == "INVTYPE_NECK"
                     || questRewardItem.ItemEquipLoc == "INVTYPE_FINGER" || questRewardItem.ItemEquipLoc == "INVTYPE_TRINKET"
                     || (questRewardItem.ItemEquipLoc == "INVTYPE_SHIELD" && EquipmentAndStats.HasShield))
                     if (CheckItemStats(link))
                         itemValueForMe = -1; // Just to trigger the next checks
-            if ((Enums.WoWItemClass)classId == Enums.WoWItemClass.Weapon)
-                if (EquipmentAndStats.EquipableWeapons.Contains((Enums.WowItemSubClassWeapon)subClassId))
+            if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Weapon)
+                if (EquipmentAndStats.EquipableWeapons.Contains((Enums.WowItemSubClassWeapon) subClassId))
                     if (CheckItemStats(link))
                         itemValueForMe = -1;
             if (itemValueForMe != 0) // Item interesting
@@ -96,21 +96,21 @@ namespace nManager.Wow.Helpers
                     string linkEquip2 = Lua.GetLocalizedText(sLink);
                     ItemInfo equipedItem2 = new ItemInfo(linkEquip2);
 
-                    if ((questRewardItem.ItemRarity > equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel - (5 * equipedItem2.ItemLevel / 100)))
+                    if ((questRewardItem.ItemRarity > equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel - (5*equipedItem2.ItemLevel/100)))
                         || (questRewardItem.ItemRarity == equipedItem2.ItemRarity && questRewardItem.ItemLevel > equipedItem2.ItemLevel)
-                        || (questRewardItem.ItemRarity < equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel + (5 * equipedItem2.ItemLevel / 100))))
+                        || (questRewardItem.ItemRarity < equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel + (5*equipedItem2.ItemLevel/100))))
                     {
                         itemValueForMe = -1;
                         slot = (questRewardItem.ItemEquipLoc == "INVTYPE_FINGER" ? "INVSLOT_FINGER2" : "INVSLOT_TRINKET2");
                     }
                 }
-                if ((questRewardItem.ItemRarity > equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel - (5 * equipedItem.ItemLevel / 100)))
+                if ((questRewardItem.ItemRarity > equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel - (5*equipedItem.ItemLevel/100)))
                     || (questRewardItem.ItemRarity == equipedItem.ItemRarity && questRewardItem.ItemLevel > equipedItem.ItemLevel)
-                    || (questRewardItem.ItemRarity < equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel + (5 * equipedItem.ItemLevel / 100))))
+                    || (questRewardItem.ItemRarity < equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel + (5*equipedItem.ItemLevel/100))))
                     itemValueForMe = -1;
             }
             if (itemValueForMe == 0)
-                itemValueForMe = (int)questRewardItem.ItemSellPrice;
+                itemValueForMe = (int) questRewardItem.ItemSellPrice;
 
             equipment = questRewardItem;
             equipment.xItemEquipSlot = slot;

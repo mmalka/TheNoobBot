@@ -35,7 +35,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public static string GetDetourSupportedVersion()
         {
-            int val = (int)DetourLayer.SupportedVersion.value;
+            int val = (int) DetourLayer.SupportedVersion.value;
             return val.ToString();
         }
 

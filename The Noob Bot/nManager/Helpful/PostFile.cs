@@ -13,7 +13,7 @@ namespace nManager.Helpful
             string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
             byte[] boundarybytes = Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
             byte[] boundarybytesF = Encoding.ASCII.GetBytes("--" + boundary + "\r\n");
-                // the first time it itereates, you need to make sure it doesn't put too many new paragraphs down or it completely messes up poor webbrick.  
+            // the first time it itereates, you need to make sure it doesn't put too many new paragraphs down or it completely messes up poor webbrick.  
 
 
             var wr = (HttpWebRequest) WebRequest.Create(url);

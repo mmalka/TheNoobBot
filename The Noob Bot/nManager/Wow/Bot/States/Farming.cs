@@ -81,8 +81,8 @@ namespace nManager.Wow.Bot.States
             if (
                 players.Any(
                     p =>
-                    p.Position.DistanceTo2D(node.Position) <=
-                    nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius))
+                        p.Position.DistanceTo2D(node.Position) <=
+                        nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius))
             {
                 Logging.Write("Player near the node");
                 nManagerSetting.AddBlackList(node.Guid, 15*1000);

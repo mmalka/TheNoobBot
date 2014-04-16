@@ -49,7 +49,7 @@ namespace Profiles_Converters.Converters
                     string fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
-                                                _profile))
+                        _profile))
                     {
                         Logging.Write("Conversion Success (MMOLazy MyFlyer to Gatherer bot): " + fileName);
                         return true;

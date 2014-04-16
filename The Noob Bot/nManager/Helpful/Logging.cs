@@ -216,15 +216,15 @@ namespace nManager.Helpful
                         try
                         {
                             LoggingChangeEventArgs e = new LoggingChangeEventArgs
+                            {
+                                Log = new Log
                                 {
-                                    Log = new Log
-                                        {
-                                            Color = LogQueue[0].Color,
-                                            DateTime = LogQueue[0].DateTime,
-                                            LogType = LogQueue[0].LogType,
-                                            Text = LogQueue[0].Text
-                                        }
-                                };
+                                    Color = LogQueue[0].Color,
+                                    DateTime = LogQueue[0].DateTime,
+                                    LogType = LogQueue[0].LogType,
+                                    Text = LogQueue[0].Text
+                                }
+                            };
                             if (OnChanged != null)
                                 OnChanged(null, e);
                         }
@@ -277,6 +277,7 @@ namespace nManager.Helpful
         public class Log
         {
             public bool Processed;
+
             public Log()
             {
                 Text = "";

@@ -108,8 +108,8 @@ namespace nManager.Wow.Helpers
             try
             {
                 return ObjectManager.ObjectManager.Me.GetCurrentPartyType == PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME
-                           ? ObjectManager.ObjectManager.Me.IsHomePartyLeader
-                           : ObjectManager.ObjectManager.Me.IsInstancePartyLeader;
+                    ? ObjectManager.ObjectManager.Me.IsHomePartyLeader
+                    : ObjectManager.ObjectManager.Me.IsInstancePartyLeader;
             }
             catch (Exception e)
             {
@@ -157,8 +157,8 @@ namespace nManager.Wow.Helpers
                 return
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
                                                      (uint)
-                                                     ((PartyEnums.PartyType) (uint) Addresses.Party.PartyOffset +
-                                                      (partyType - PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)*(int) (PartyEnums.PartyType) 4));
+                                                         ((PartyEnums.PartyType) (uint) Addresses.Party.PartyOffset +
+                                                          (partyType - PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)*(int) (PartyEnums.PartyType) 4));
             }
             catch (Exception e)
             {

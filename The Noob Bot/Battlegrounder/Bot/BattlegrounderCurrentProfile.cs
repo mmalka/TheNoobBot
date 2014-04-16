@@ -108,7 +108,7 @@ namespace Battlegrounder.Bot
                             Profiletype.Battleground battleground in
                                 ProfileTypeFile.Battlegrounds.Where(
                                     battleground =>
-                                    battleground.BattlegroundId == Battleground.GetCurrentBattleground().ToString()))
+                                        battleground.BattlegroundId == Battleground.GetCurrentBattleground().ToString()))
                         {
                             if (battleground.BattlegroundId == BattlegroundId.AlteracValley.ToString())
                             {
@@ -116,8 +116,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -151,8 +151,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -186,8 +186,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.ArathiBasinProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.ArathiBasinProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -221,8 +221,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.EyeoftheStormProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.EyeoftheStormProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -256,8 +256,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -293,8 +293,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -328,8 +328,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.BattleforGilneasProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.BattleforGilneasProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -364,8 +364,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.TwinPeaksProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.TwinPeaksProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -399,8 +399,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.TempleofKotmoguProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.TempleofKotmoguProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -434,8 +434,8 @@ namespace Battlegrounder.Bot
                                     ProfileType profileType in
                                         battleground.ProfileTypes.Where(
                                             profileType =>
-                                            profileType.ProfileTypeId ==
-                                            BattlegrounderSetting.CurrentSetting.SilvershardMinesProfileType))
+                                                profileType.ProfileTypeId ==
+                                                BattlegrounderSetting.CurrentSetting.SilvershardMinesProfileType))
                                 {
                                     switch (profileType.ProfileTypeId)
                                     {
@@ -522,7 +522,7 @@ namespace Battlegrounder.Bot
                 SelectZone();
                 Dictionary<Point, float> blackListDic =
                     _currentProfile.BattlegrounderZones.SelectMany(zone => zone.BlackListRadius)
-                                   .ToDictionary(b => b.Position, b => b.Radius);
+                        .ToDictionary(b => b.Position, b => b.Radius);
                 nManagerSetting.AddRangeBlackListZone(blackListDic);
             }
             else if (_afkSomewhere)
@@ -562,12 +562,12 @@ namespace Battlegrounder.Bot
                     if (i + 1 > _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Count - 1)
                         pointsTemps.AddRange(
                             PathFinder.FindPath(_currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i],
-                                                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points[0]));
+                                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points[0]));
                     else
                         pointsTemps.AddRange(
                             PathFinder.FindPath(_currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i],
-                                                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i + 1
-                                                    ]));
+                                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i + 1
+                                    ]));
                 }
                 _currentProfile.BattlegrounderZones[_zoneIdProfile].Hotspots = false;
                 _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Clear();

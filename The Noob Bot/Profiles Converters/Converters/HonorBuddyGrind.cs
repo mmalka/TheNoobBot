@@ -195,23 +195,23 @@ namespace Profiles_Converters.Converters
                                                                         Others.ToSingle(z.Value));
                                                                 _profile.GrinderZones[
                                                                     _profile.GrinderZones.Count() - 1].BlackListRadius.
-                                                                                                       Add(new GrinderBlackListRadius
-                                                                                                           {
-                                                                                                               Position
-                                                                                                                   =
-                                                                                                                   pT,
-                                                                                                               Radius
-                                                                                                                   =
-                                                                                                                   System
-                                                                                                               .Convert
-                                                                                                               .ToSingle
-                                                                                                               (
-                                                                                                                   r
-                                                                                                                       .Value
-                                                                                                                       .Replace
-                                                                                                                       (".",
-                                                                                                                        ","))
-                                                                                                           });
+                                                                    Add(new GrinderBlackListRadius
+                                                                    {
+                                                                        Position
+                                                                            =
+                                                                            pT,
+                                                                        Radius
+                                                                            =
+                                                                            System
+                                                                                .Convert
+                                                                                .ToSingle
+                                                                                (
+                                                                                    r
+                                                                                        .Value
+                                                                                        .Replace
+                                                                                        (".",
+                                                                                            ","))
+                                                                    });
                                                             }
                                                         }
                                                     }
@@ -249,7 +249,7 @@ namespace Profiles_Converters.Converters
                                                 {
                                                     string[] factionTempsString =
                                                         tempsfaction.Replace("  ", " ")
-                                                                    .Split(' ');
+                                                            .Split(' ');
                                                     foreach (string t in factionTempsString)
                                                     {
                                                         try
@@ -257,10 +257,10 @@ namespace Profiles_Converters.Converters
                                                             if (t != "")
                                                                 _profile.GrinderZones[
                                                                     _profile.GrinderZones.Count() - 1].TargetFactions
-                                                                                                      .Add(
-                                                                                                          System.Convert
-                                                                                                                .ToUInt32
-                                                                                                              (t));
+                                                                    .Add(
+                                                                        System.Convert
+                                                                            .ToUInt32
+                                                                            (t));
                                                         }
                                                         catch
                                                         {
@@ -315,7 +315,7 @@ namespace Profiles_Converters.Converters
 
                     string fileName = Path.GetFileNameWithoutExtension(path);
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Grinder\\" + fileName + ".xml",
-                                                _profile))
+                        _profile))
                     {
                         Logging.Write("Conversion Success (HonorBuddy Grind to Grinder bot): " + fileName);
                         return true;

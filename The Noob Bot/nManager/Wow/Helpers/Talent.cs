@@ -13,9 +13,10 @@ namespace nManager.Wow.Helpers
         private static int GetNumUnspentTalents()
         {
             string res = Others.GetRandomString(Others.Random(4, 10));
-           int numUnspent = Others.ToInt32(Lua.LuaDoString(res + " = GetNumUnspentTalents()", res));
+            int numUnspent = Others.ToInt32(Lua.LuaDoString(res + " = GetNumUnspentTalents()", res));
             return numUnspent;
         }
+
         public static void DoTalents()
         {
             try
@@ -31,7 +32,7 @@ namespace nManager.Wow.Helpers
                     var talents = advised.Split('|');
                     foreach (string s in talents)
                     {
-                        Lua.LuaDoString("PlayerTalentFrame_SelectTalent("+ s +")");
+                        Lua.LuaDoString("PlayerTalentFrame_SelectTalent(" + s + ")");
                     }
 
                     Lua.RunMacroText("/click PlayerTalentFrameTalentsLearnButton");

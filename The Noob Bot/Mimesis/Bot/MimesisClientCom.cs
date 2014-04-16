@@ -11,7 +11,7 @@ using nManager.Wow.Enums;
 
 namespace Mimesis.Bot
 {
-    class MimesisClientCom
+    internal class MimesisClientCom
     {
         private static TcpClient client = null;
         private static IPEndPoint serviceEndPoint = null;
@@ -22,7 +22,7 @@ namespace Mimesis.Bot
         {
             Logging.Write("Connecting to " + MimesisSettings.CurrentSetting.MasterIPAddress + ":" + MimesisSettings.CurrentSetting.MasterIPPort + " ...");
             client = new TcpClient();
-            
+
             if (serviceEndPoint == null)
                 serviceEndPoint = new IPEndPoint(IPAddress.Parse(MimesisSettings.CurrentSetting.MasterIPAddress), MimesisSettings.CurrentSetting.MasterIPPort);
             try
@@ -50,7 +50,7 @@ namespace Mimesis.Bot
                 {
                     NetworkStream clientStream = client.GetStream();
                     byte[] opCodeAndSize = new byte[2];
-                    opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.Disconnect;
+                    opCodeAndSize[0] = (byte) MimesisHelpers.opCodes.Disconnect;
                     opCodeAndSize[1] = 0;
                     clientStream.Write(opCodeAndSize, 0, 2);
                     clientStream.Flush();
@@ -69,7 +69,7 @@ namespace Mimesis.Bot
         {
             byte[] opCodeAndSize = new byte[2];
             byte[] buffer;
-            opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.QueryGuid;
+            opCodeAndSize[0] = (byte) MimesisHelpers.opCodes.QueryGuid;
             opCodeAndSize[1] = 0;
 
             NetworkStream clientStream = client.GetStream();
@@ -89,8 +89,8 @@ namespace Mimesis.Bot
                 Logging.WriteError("MimesisClientCom > GetMasterGuid(): " + e);
                 return 0;
             }
-            if ((MimesisHelpers.opCodes)opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyGuid)
-                return (ulong)BitConverter.ToInt64(buffer, 0);
+            if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyGuid)
+                return (ulong) BitConverter.ToInt64(buffer, 0);
             return 0;
         }
 
@@ -98,7 +98,7 @@ namespace Mimesis.Bot
         {
             byte[] opCodeAndSize = new byte[2];
             byte[] buffer;
-            opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.QueryPosition;
+            opCodeAndSize[0] = (byte) MimesisHelpers.opCodes.QueryPosition;
             opCodeAndSize[1] = 0;
 
             NetworkStream clientStream = client.GetStream();
@@ -118,7 +118,7 @@ namespace Mimesis.Bot
                 Logging.WriteError("MimesisClientCom > GetMasterPosition(): " + e);
                 return new Point();
             }
-            if ((MimesisHelpers.opCodes)opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyPosition)
+            if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyPosition)
                 return MimesisHelpers.BytesToObject<Point>(buffer);
             return new Point();
         }
@@ -129,8 +129,8 @@ namespace Mimesis.Bot
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetRealmName()");
             byte[] bufferName = MimesisHelpers.StringToBytes(ObjectManager.Me.Name + "-" + Lua.GetLocalizedText(randomString));
-            opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.RequestGrouping;
-            opCodeAndSize[1] = (byte)bufferName.Length;
+            opCodeAndSize[0] = (byte) MimesisHelpers.opCodes.RequestGrouping;
+            opCodeAndSize[1] = (byte) bufferName.Length;
             NetworkStream clientStream = client.GetStream();
             clientStream.Write(opCodeAndSize, 0, 2);
             clientStream.Write(bufferName, 0, bufferName.Length); // It's hardcoded "PlayerName-RealmName"
@@ -146,7 +146,7 @@ namespace Mimesis.Bot
                 return;
             }
             EventsListener.HookEvent(WoWEventsType.GROUP_ROSTER_UPDATE, callback => CloseGroupPopup());
-            System.Threading.Thread.Sleep(250 + 2 * Usefuls.Latency);
+            System.Threading.Thread.Sleep(250 + 2*Usefuls.Latency);
             Lua.LuaDoString("AcceptGroup()");
         }
 
@@ -160,7 +160,7 @@ namespace Mimesis.Bot
         {
             byte[] opCodeAndSize = new byte[2];
             byte[] buffer = new byte[1];
-            opCodeAndSize[0] = (byte)MimesisHelpers.opCodes.QueryEvent;
+            opCodeAndSize[0] = (byte) MimesisHelpers.opCodes.QueryEvent;
             opCodeAndSize[1] = 0;
 
             NetworkStream clientStream = client.GetStream();
@@ -183,7 +183,7 @@ namespace Mimesis.Bot
                 Logging.WriteError("MimesisClientCom > ProcessEvents(): " + e);
                 return;
             }
-            if ((MimesisHelpers.opCodes)opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyEvent && opCodeAndSize[1] > 0)
+            if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyEvent && opCodeAndSize[1] > 0)
             {
                 MimesisHelpers.MimesisEvent evt = MimesisHelpers.BytesToStruct<MimesisHelpers.MimesisEvent>(buffer);
                 List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.TargetId);

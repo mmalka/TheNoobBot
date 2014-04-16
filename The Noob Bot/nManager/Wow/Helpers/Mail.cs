@@ -8,15 +8,15 @@ namespace nManager.Wow.Helpers
     public class Mail
     {
         public static void SendMessage(string target, string titleMsg, string txtMsg, List<String> itemSend,
-                                       List<string> itemNoSend, List<Enums.WoWItemQuality> itemQuality,
-                                       out bool mailSendingCompleted)
+            List<string> itemNoSend, List<Enums.WoWItemQuality> itemQuality,
+            out bool mailSendingCompleted)
         {
             try
             {
                 string syntaxSellItem = itemSend.Aggregate("", (current, s) => current + " or namei == \"" + s + "\" ");
 
                 string syntaxQualityItem = itemQuality.Aggregate(" 1 == 2 ",
-                                                                 (current, s) => current + " or r == " + (uint) s + " ");
+                    (current, s) => current + " or r == " + (uint) s + " ");
 
                 string syntaxNoSellItem = "";
                 string syntaxNoSellItemEnd = "";
@@ -24,7 +24,7 @@ namespace nManager.Wow.Helpers
                 {
                     syntaxNoSellItemEnd = " end ";
                     syntaxNoSellItem = itemNoSend.Aggregate(" if ",
-                                                            (current, s) => current + " and namei ~= \"" + s + "\" ");
+                        (current, s) => current + " and namei ~= \"" + s + "\" ");
                     syntaxNoSellItem = syntaxNoSellItem.Replace("if  and", "if ");
                     syntaxNoSellItem = syntaxNoSellItem + " then ";
                 }

@@ -251,8 +251,8 @@ namespace nManager.Wow.Helpers
             try
             {
                 return (from t in ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(668)
-                        where t.CreatedBy == ObjectManager.ObjectManager.Me.Guid
-                        select t.GetBaseAddress).FirstOrDefault();
+                    where t.CreatedBy == ObjectManager.ObjectManager.Me.Guid
+                    select t.GetBaseAddress).FirstOrDefault();
             }
             catch (Exception e)
             {

@@ -57,8 +57,8 @@ namespace nManager.Wow.Bot.States
                 _unit = new WoWPlayer(0);
                 List<WoWPlayer> listUnit = new List<WoWPlayer>();
                 listUnit.AddRange(ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                      ? ObjectManager.ObjectManager.GetWoWUnitAlliance()
-                                      : ObjectManager.ObjectManager.GetWoWUnitHorde());
+                    ? ObjectManager.ObjectManager.GetWoWUnitAlliance()
+                    : ObjectManager.ObjectManager.GetWoWUnitHorde());
 
                 _unit = ObjectManager.ObjectManager.GetNearestWoWPlayer(listUnit);
 

@@ -103,7 +103,7 @@ namespace nManager.Helpful
             try
             {
                 Native.SetCursorPos(Display.GetWindowPosX(mainWindowHandle) + posX,
-                                    Display.GetWindowPosY(mainWindowHandle) + posY);
+                    Display.GetWindowPosY(mainWindowHandle) + posY);
             }
             catch (Exception exception)
             {

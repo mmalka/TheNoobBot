@@ -105,11 +105,11 @@ namespace nManager.Wow.Helpers
                 return
                     Memory.WowMemory.Memory.ReadUTF8String(
                         (uint)
-                        (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
-                         (uint) Addresses.Chat.msgFormatedChat +
-                         (int) Addresses.Chat.NextMessage*
-                         Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.Chat.chatBufferPos)));
+                            (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
+                             (uint) Addresses.Chat.msgFormatedChat +
+                             (int) Addresses.Chat.NextMessage*
+                             Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
+                                                             (uint) Addresses.Chat.chatBufferPos)));
             }
             catch (Exception exception)
             {
@@ -251,8 +251,8 @@ namespace nManager.Wow.Helpers
                 string stream =
                     Memory.WowMemory.Memory.ReadASCIIString(
                         (uint)
-                        (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
-                         (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(CurrentMsg)));
+                            (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
+                             (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(CurrentMsg)));
 
                 Message unMsg = new Message();
                 if (stream != "")

@@ -20,14 +20,14 @@ namespace nManager.Wow.Helpers
         }
 
         public static void SellItems(List<String> itemSell, List<string> itemNoSell,
-                                     List<Enums.WoWItemQuality> itemQuality)
+            List<Enums.WoWItemQuality> itemQuality)
         {
             try
             {
                 string syntaxSellItem = itemSell.Aggregate("", (current, s) => current + " or namei == \"" + s + "\" ");
 
                 string syntaxQualityItem = itemQuality.Aggregate(" 1 == 2 ",
-                                                                 (current, s) => current + " or r == " + (uint) s + " ");
+                    (current, s) => current + " or r == " + (uint) s + " ");
 
                 string syntaxNoSellItem = "";
                 string syntaxNoSellItemEnd = "";
@@ -35,7 +35,7 @@ namespace nManager.Wow.Helpers
                 {
                     syntaxNoSellItemEnd = " end ";
                     syntaxNoSellItem = itemNoSell.Aggregate(" if ",
-                                                            (current, s) => current + " and namei ~= \"" + s + "\" ");
+                        (current, s) => current + " and namei ~= \"" + s + "\" ");
                     syntaxNoSellItem = syntaxNoSellItem.Replace("if  and", "if ");
                     syntaxNoSellItem = syntaxNoSellItem + " then ";
                 }

@@ -29,7 +29,8 @@ namespace Quester.Profile
                     SaveGroupedProfile.Hide();
                     ShowGroupedProfileManagerForm();
                 }
-                TopMost = true;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    TopMost = true;
             }
             catch (Exception e)
             {

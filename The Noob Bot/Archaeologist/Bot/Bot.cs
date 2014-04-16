@@ -48,12 +48,12 @@ namespace Archaeologist.Bot
                 Fsm.AddState(new ProspectingState {Priority = 3});
                 Fsm.AddState(new Farming {Priority = 2});
                 Fsm.AddState(new ArchaeologyStates
-                    {
-                        Priority = 1,
-                        SolvingEveryXMin = ArchaeologistSetting.CurrentSetting.SolvingEveryXMin,
-                        MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.MaxTryByDigsite,
-                        UseKeystones = ArchaeologistSetting.CurrentSetting.UseKeystones
-                    });
+                {
+                    Priority = 1,
+                    SolvingEveryXMin = ArchaeologistSetting.CurrentSetting.SolvingEveryXMin,
+                    MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.MaxTryByDigsite,
+                    UseKeystones = ArchaeologistSetting.CurrentSetting.UseKeystones
+                });
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

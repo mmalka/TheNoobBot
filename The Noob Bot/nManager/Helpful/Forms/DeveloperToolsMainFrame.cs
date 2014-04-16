@@ -20,7 +20,6 @@ namespace nManager.Helpful.Forms
 {
     public partial class DeveloperToolsMainFrame : Form
     {
-
         public DeveloperToolsMainFrame()
         {
             try

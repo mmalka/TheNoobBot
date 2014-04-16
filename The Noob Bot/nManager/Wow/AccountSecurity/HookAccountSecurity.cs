@@ -40,10 +40,10 @@ namespace nManager.Wow.AccountSecurity
                     {
                         _accountSecurityThreadIsAlive = true;
                         Thread checkUpdateThreadLaunch = new Thread(LoopAccountSecurityThread)
-                            {
-                                Name =
-                                    "loopAccountSecurity"
-                            };
+                        {
+                            Name =
+                                "loopAccountSecurity"
+                        };
                         checkUpdateThreadLaunch.Start();
                     }
                 }
@@ -68,7 +68,7 @@ namespace nManager.Wow.AccountSecurity
                             {
                                 DumpScan dumpScanTemps =
                                     (DumpScan)
-                                    Memory.WowMemory.Memory.ReadObject(CurrentAddressReadDump, typeof (DumpScan));
+                                        Memory.WowMemory.Memory.ReadObject(CurrentAddressReadDump, typeof (DumpScan));
                                 if (dumpScanTemps.Length > 0)
                                 {
                                     string specialAddress = GetSpecialAddressScan(dumpScanTemps);
@@ -76,9 +76,9 @@ namespace nManager.Wow.AccountSecurity
                                     {
                                         Memory.WowProcess.KillWowProcess();
                                         Others.GetRequest("http://tech.thenoobbot.com/newScanAccountSecurity.php",
-                                                          "msg=" + specialAddress);
+                                            "msg=" + specialAddress);
                                         Logging.Write("Suspect activity at this adresse: " + specialAddress,
-                                                      Logging.LogType.S, Color.Red);
+                                            Logging.LogType.S, Color.Red);
                                         AccountSecurity.DialogNewScan();
                                     }
                                 }
@@ -343,7 +343,7 @@ namespace nManager.Wow.AccountSecurity
                     return;
 
                 Memory.WowMemory.Memory.WriteBytes(ScanFunction,
-                                                   new byte[] {0x8B, 0xCA, 0x8B, 0xF8, 0xC1, 0xE9, 0x02, 0x74, 0x02});
+                    new byte[] {0x8B, 0xCA, 0x8B, 0xF8, 0xC1, 0xE9, 0x02, 0x74, 0x02});
 
                 // Free last hook
                 if (_codeCaveScanDump > 0)
@@ -451,7 +451,7 @@ namespace nManager.Wow.AccountSecurity
 
                     MemoryClass.Usefuls.PatternResult result =
                         MemoryClass.Usefuls.FindPattern(new byte[] {0x8b, 0xca, 0x8b, 0xf8, 0xc1, 0xe9, 2, 0x74, 2},
-                                                        "xxxxxxxxx");
+                            "xxxxxxxxx");
                     ScanFunction = (result != null) ? result.dwAddress : 0;
                 }
             }

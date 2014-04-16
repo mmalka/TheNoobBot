@@ -84,14 +84,14 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 // elevate in a 45° angle instead of 90°
                                 Point direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                                     node.Position,
-                                                                                     (node.Position.Z + 2.5f) - ObjectManager.ObjectManager.Me.Position.Z);
+                                    node.Position,
+                                    (node.Position.Z + 2.5f) - ObjectManager.ObjectManager.Me.Position.Z);
                                 // if there is an obstacle, then go mostly vertical but not 90° to prevent spinning around
                                 if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
-                                                          direction,
-                                                          CGWorldFrameHitFlags.HitTestAllButLiquid))
+                                    direction,
+                                    CGWorldFrameHitFlags.HitTestAllButLiquid))
                                     direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                                   node.Position, 1.0f);
+                                        node.Position, 1.0f);
                                 MovementManager.MoveTo(direction.X, direction.Y, node.Position.Z + 5.0f);
                             }
                             else

@@ -13,12 +13,12 @@ namespace nManager.Helpful
 
         [DllImport("kernel32")]
         private static extern long WritePrivateProfileString(string section,
-                                                             string key, string val, string filePath);
+            string key, string val, string filePath);
 
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section,
-                                                          string key, string def, StringBuilder retVal,
-                                                          int size, string filePath);
+            string key, string def, StringBuilder retVal,
+            int size, string filePath);
 
         /// <summary>
         /// INIFile Constructor.
@@ -70,7 +70,7 @@ namespace nManager.Helpful
             {
                 StringBuilder temp = new StringBuilder(255);
                 GetPrivateProfileString(section, key, "", temp,
-                                        255, _path);
+                    255, _path);
                 return temp.ToString();
             }
             catch (Exception exception)

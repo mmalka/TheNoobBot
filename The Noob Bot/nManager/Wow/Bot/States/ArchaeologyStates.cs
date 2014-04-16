@@ -289,8 +289,8 @@ namespace nManager.Wow.Bot.States
                                 if (moreMovementNeeded)
                                     Logging.Write("Landing on the digsite");
                                 else
-                                    Logging.Write("Not inside, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
-                                MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                                    Logging.Write("Not inside, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
+                                MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                             }
                         }
                         else
@@ -307,7 +307,7 @@ namespace nManager.Wow.Bot.States
                     // Find loot with Survey
                     nbLootAttempt = 0;
                     t = ObjectManager.ObjectManager.GetNearestWoWGameObject(
-                            ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(Archaeology.SurveyList));
+                        ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(Archaeology.SurveyList));
                     if (t.GetBaseAddress <= 0 || myState == LocState.GoingNextPoint ||
                         // recast if we moved even if last is still spawned
                         myState == LocState.Looting)
@@ -328,7 +328,8 @@ namespace nManager.Wow.Bot.States
                         if (nbCastSurveyError > 3)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(qPOI.MiddlePoint) < 5)
-                            { // This means we are in a wrong digsite
+                            {
+                                // This means we are in a wrong digsite
                                 List<Digsite> listDigsitesZone;
                                 if (!_inSecondDigSiteWithSameName)
                                     listDigsitesZone = Archaeology.GetDigsitesZoneAvailable(t.Name);
@@ -359,7 +360,7 @@ namespace nManager.Wow.Bot.States
                                 if (qPOI != null)
                                 {
                                     Point destination = qPOI.MiddlePoint;
-                                    Logging.Write("Too many errors, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
+                                    Logging.Write("Too many errors, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
                                     MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                                 }
                             }
@@ -412,9 +413,9 @@ namespace nManager.Wow.Bot.States
                                 _lastGreenPosition = new Point();
                                 Point destination = qPOI.MiddlePoint;
                                 _AntiPingPong = false;
-                                Logging.Write("Stuck, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
+                                Logging.Write("Stuck, then go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
                                 MountTask.Mount();
-                                MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                                MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                                 return;
                             }
                             if (_AntiPingPong)
@@ -459,9 +460,8 @@ namespace nManager.Wow.Bot.States
                                         p.Z = PathFinder.GetZPosition(p, true); //(t.DisplayId == 10101 ? false : true));
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else
-                                            if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d * 5 && d > 30)
-                                                valid = false;
+                                        else if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d*5 && d > 30)
+                                            valid = false;
                                     }
                                 }
                                 if (!valid || p.Z == 0 || !qPOI.IsInside(p) || !(!IamOutOfWater || IsPointOutOfWater(p)))
@@ -480,9 +480,8 @@ namespace nManager.Wow.Bot.States
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else
-                                                if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d * 5 && d > 30)
-                                                    valid = false;
+                                            else if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d*5 && d > 30)
+                                                valid = false;
                                         }
                                     }
                                 }
@@ -521,7 +520,7 @@ namespace nManager.Wow.Bot.States
                         // Go to next position
                         if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
                             nbStuck >= 2)
-                        // Use fly mount
+                            // Use fly mount
                         {
                             p.Z = PathFinder.GetZPosition(p);
 
@@ -538,7 +537,7 @@ namespace nManager.Wow.Bot.States
                             }
                             MountTask.Mount();
                             LongMove.LongMoveByNewThread(p);
-                            Timer timer = new Timer(2000 * points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position) / 3);
+                            Timer timer = new Timer(2000*points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position)/3);
 
                             while (LongMove.IsLongMove && !timer.IsReady &&
                                    ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 0.5f)
@@ -569,7 +568,7 @@ namespace nManager.Wow.Bot.States
                             float d1 = Math.DistanceListPoint(points);
                             float d2 = points[0].DistanceTo(points[points.Count - 1]);
                             // here we will try to shortcut the path using a fly mount
-                            if (MountTask.GetMountCapacity() == MountCapacity.Fly && d1 > 80 && d1 > (d2 * 2))
+                            if (MountTask.GetMountCapacity() == MountCapacity.Fly && d1 > 80 && d1 > (d2*2))
                             {
                                 Point startpoint = new Point(ObjectManager.ObjectManager.Me.Position);
                                 Point endpoint = new Point(points[points.Count - 1]);
@@ -581,8 +580,8 @@ namespace nManager.Wow.Bot.States
                                 Point pref2 = new Point(endpoint);
                                 pref2.Z = zref;
                                 bool badres = TraceLine.TraceLineGo(startpoint, pref1) ||
-                                    TraceLine.TraceLineGo(pref1, pref2) ||
-                                    TraceLine.TraceLineGo(pref2, endpoint);
+                                              TraceLine.TraceLineGo(pref1, pref2) ||
+                                              TraceLine.TraceLineGo(pref2, endpoint);
                                 if (!badres)
                                 {
                                     Logging.Write("Flying to shortcut the path");
@@ -606,10 +605,10 @@ namespace nManager.Wow.Bot.States
                             //    for (int i = 0; i < points.Count; i++)
                             //        points[i].Type = "swimming";
                             MovementManager.Go(points);
-                            float d = Math.DistanceListPoint(points) / 3;
+                            float d = Math.DistanceListPoint(points)/3;
                             if (d > 200)
                                 d = 200;
-                            float tm_t = 1000 * d / 2 + 1500;
+                            float tm_t = 1000*d/2 + 1500;
                             if (Usefuls.IsSwimming)
                                 tm_t /= 0.6f;
                             Timer timer = new Timer(tm_t);

@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
         }
 
         public static bool TraceLineGo(Point from, Point to,
-                                       Enums.CGWorldFrameHitFlags hitFlags = Enums.CGWorldFrameHitFlags.HitTestAll)
+            Enums.CGWorldFrameHitFlags hitFlags = Enums.CGWorldFrameHitFlags.HitTestAll)
         {
             try
             {
@@ -71,31 +71,31 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.WriteInt(resultRet, 0);
 
                     string[] asm = new[]
-                        {
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                            "test eax, eax",
-                            "je @out",
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                            "test eax, eax",
-                            "je @out",
-                            "push " + 0,
-                            "push " + (uint) hitFlags,
-                            "push " + distance,
-                            "push " + result,
-                            "push " + start,
-                            "push " + end,
-                            "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.CGWorldFrame__Intersect),
-                            "mov [" + resultRet + "], al",
-                            "add esp, " + (uint) 0x18,
-                            "@out:",
-                            "retn"
-                        };
+                    {
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                        "test eax, eax",
+                        "je @out",
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        "test eax, eax",
+                        "je @out",
+                        "push " + 0,
+                        "push " + (uint) hitFlags,
+                        "push " + distance,
+                        "push " + result,
+                        "push " + start,
+                        "push " + end,
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.CGWorldFrame__Intersect),
+                        "mov [" + resultRet + "], al",
+                        "add esp, " + (uint) 0x18,
+                        "@out:",
+                        "retn"
+                    };
 
 
                     Memory.WowMemory.InjectAndExecute(asm);

@@ -51,11 +51,11 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="dwThreadId">[Out] The id of the created thread.</param>
         /// <returns>Returns the handle of the created thread.</returns>
         public IntPtr CreateRemoteThread(uint dwStartAddress, uint dwParameter, uint dwCreationFlags,
-                                         out uint dwThreadId)
+            out uint dwThreadId)
         {
             if (m_bProcessOpen)
                 return SThread.CreateRemoteThread(m_hProcess, dwStartAddress, dwParameter, dwCreationFlags,
-                                                  out dwThreadId);
+                    out dwThreadId);
 
             dwThreadId = 0;
             return IntPtr.Zero;
@@ -71,7 +71,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public IntPtr CreateRemoteThread(uint dwStartAddress, uint dwParameter, out uint dwThreadId)
         {
             return CreateRemoteThread(dwStartAddress, dwParameter, ThreadFlags.THREAD_EXECUTE_IMMEDIATELY,
-                                      out dwThreadId);
+                out dwThreadId);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             uint dwThreadId;
             return CreateRemoteThread(dwStartAddress, dwParameter, ThreadFlags.THREAD_EXECUTE_IMMEDIATELY,
-                                      out dwThreadId);
+                out dwThreadId);
         }
 
         /// <summary>

@@ -333,7 +333,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.PickUpObject)
             {
                 if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
-                  questObjective.CurrentCount = ItemsManager.GetItemCount(questObjective.CollectItemId); // Auto update current amount.
+                    questObjective.CurrentCount = ItemsManager.GetItemCount(questObjective.CollectItemId); // Auto update current amount.
                 if (questObjective.CurrentCount == questObjective.CollectCount && questObjective.CollectCount > 0)
                     return;
                 WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));

@@ -14,7 +14,7 @@ namespace nManager.Wow.Helpers
                 {
                     string codeLua =
                         Others.ReadFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt")
-                              .Replace(Environment.NewLine, " ");
+                            .Replace(Environment.NewLine, " ");
                     Lua.LuaDoString(codeLua);
                 }
             }

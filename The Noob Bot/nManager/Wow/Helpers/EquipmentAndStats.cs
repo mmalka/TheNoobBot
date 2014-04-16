@@ -38,49 +38,49 @@ namespace nManager.Wow.Helpers
 
             // Template lists
             List<WoWStatistic> IntelBased = new List<WoWStatistic>()
-                {
-                    WoWStatistic.INTELLECT,
-                    WoWStatistic.STAMINA,
-                    WoWStatistic.HASTE_RATING,
-                    WoWStatistic.CRIT_RATING,
-                    WoWStatistic.SPELL_POWER,
-                    WoWStatistic.MASTERY_RATING
-                };
+            {
+                WoWStatistic.INTELLECT,
+                WoWStatistic.STAMINA,
+                WoWStatistic.HASTE_RATING,
+                WoWStatistic.CRIT_RATING,
+                WoWStatistic.SPELL_POWER,
+                WoWStatistic.MASTERY_RATING
+            };
             List<WoWStatistic> Heal = new List<WoWStatistic>()
-                {
-                    WoWStatistic.SPIRIT
-                };
+            {
+                WoWStatistic.SPIRIT
+            };
             Heal.AddRange(IntelBased);
             List<WoWStatistic> MagicDPS = new List<WoWStatistic>()
-                {
-                    WoWStatistic.HIT_RATING
-                };
+            {
+                WoWStatistic.HIT_RATING
+            };
             MagicDPS.AddRange(IntelBased);
             List<WoWStatistic> AgilityBased = new List<WoWStatistic>()
-                {
-                    WoWStatistic.AGILITY,
-                    WoWStatistic.STAMINA,
-                    WoWStatistic.HASTE_RATING,
-                    WoWStatistic.CRIT_RATING,
-                    WoWStatistic.ATTACK_POWER,
-                    WoWStatistic.MASTERY_RATING,
-                    WoWStatistic.HIT_RATING,
-                    WoWStatistic.EXPERTISE_RATING
-                };
+            {
+                WoWStatistic.AGILITY,
+                WoWStatistic.STAMINA,
+                WoWStatistic.HASTE_RATING,
+                WoWStatistic.CRIT_RATING,
+                WoWStatistic.ATTACK_POWER,
+                WoWStatistic.MASTERY_RATING,
+                WoWStatistic.HIT_RATING,
+                WoWStatistic.EXPERTISE_RATING
+            };
             List<WoWStatistic> StrenghBased = new List<WoWStatistic>()
-                {
-                    WoWStatistic.STRENGTH,
-                    WoWStatistic.STAMINA,
-                    WoWStatistic.HASTE_RATING,
-                    WoWStatistic.MASTERY_RATING,
-                    WoWStatistic.HIT_RATING,
-                    WoWStatistic.EXPERTISE_RATING
-                };
+            {
+                WoWStatistic.STRENGTH,
+                WoWStatistic.STAMINA,
+                WoWStatistic.HASTE_RATING,
+                WoWStatistic.MASTERY_RATING,
+                WoWStatistic.HIT_RATING,
+                WoWStatistic.EXPERTISE_RATING
+            };
             List<WoWStatistic> StrenghDPS = new List<WoWStatistic>()
-                {
-                    WoWStatistic.CRIT_RATING,
-                    WoWStatistic.ATTACK_POWER
-                };
+            {
+                WoWStatistic.CRIT_RATING,
+                WoWStatistic.ATTACK_POWER
+            };
             StrenghDPS.AddRange(StrenghBased);
 
             // Armor and weapons

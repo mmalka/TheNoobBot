@@ -201,11 +201,11 @@ namespace Fisherbot.Bot
             Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
             if (FisherbotSetting.CurrentSetting.FishSchool)
                 FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.UseLure,
-                                     FisherbotSetting.CurrentSetting.LureName,
-                                     FisherbotSetting.CurrentSetting.PrecisionMode);
+                    FisherbotSetting.CurrentSetting.LureName,
+                    FisherbotSetting.CurrentSetting.PrecisionMode);
             else
                 FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
-                                     FisherbotSetting.CurrentSetting.LureName);
+                    FisherbotSetting.CurrentSetting.LureName);
 
             timer = FisherbotSetting.CurrentSetting.FishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(10*60*1000 + 10*1000);
             while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&

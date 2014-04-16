@@ -62,8 +62,8 @@ namespace nManager.Wow.Helpers
             {
                 m_header =
                     (DBCStruct.WoWClientDB)
-                    Memory.WowMemory.Memory.ReadObject(Memory.WowProcess.WowModule + offset,
-                                                       typeof (DBCStruct.WoWClientDB));
+                        Memory.WowMemory.Memory.ReadObject(Memory.WowProcess.WowModule + offset,
+                            typeof (DBCStruct.WoWClientDB));
 
                 m_rows = new Dictionary<int, T>(m_header.numRows);
                 m_rowAddresses = new Dictionary<int, uint>(m_header.numRows);

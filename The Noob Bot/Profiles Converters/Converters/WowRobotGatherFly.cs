@@ -53,7 +53,7 @@ namespace Profiles_Converters.Converters
                     string fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
-                                                profile))
+                        profile))
                     {
                         Logging.Write("Conversion Success (WowRobot to Gatherer bot): " + fileName);
                         return true;

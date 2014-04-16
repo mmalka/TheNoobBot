@@ -156,8 +156,8 @@ namespace nManager.Helpful
         {
             try
             {
-                float dy = (float)System.Math.Sin(angle) * distance;
-                float dx = (float)System.Math.Cos(angle) * distance;
+                float dy = (float) System.Math.Sin(angle)*distance;
+                float dx = (float) System.Math.Cos(angle)*distance;
                 return new Point(a.X + dx, a.Y + dy, a.Z);
             }
             catch (Exception exception)

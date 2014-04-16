@@ -213,9 +213,9 @@ namespace nManager.Wow.Bot.States
             {
                 _threadSound = true;
                 SoundPlayer myPlayer = new SoundPlayer
-                    {
-                        SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
-                    };
+                {
+                    SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
+                };
                 while (_threadSound)
                 {
                     myPlayer.PlaySync();
@@ -230,8 +230,8 @@ namespace nManager.Wow.Bot.States
         private void ThreadMessageBoxNewWhisper()
         {
             MessageBox.Show(Translate.Get(Translate.Id.New_whisper) + @": " + _msgNewWhisper,
-                            Translate.Get(Translate.Id.New_whisper), MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
+                Translate.Get(Translate.Id.New_whisper), MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
             _threadSound = false;
         }
 
@@ -257,7 +257,7 @@ namespace nManager.Wow.Bot.States
                 Logging.Write(Translate.Get(Translate.Id.HearthstoneNotFound));
             Memory.WowProcess.KillWowProcess();
             MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
+                MessageBoxIcon.Warning);
             Process.GetCurrentProcess().Kill();
         }
     }

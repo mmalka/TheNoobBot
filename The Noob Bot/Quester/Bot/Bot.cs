@@ -32,9 +32,9 @@ namespace Quester.Bot
                       File.Exists(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + QuesterSettings.CurrentSettings.LastProfile))))
                 {
                     Profile = QuesterSettings.CurrentSettings.LastProfileSimple
-                                  ? XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)
-                                  : XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" +
-                                                                              QuesterSettings.CurrentSettings.LastProfile);
+                        ? XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)
+                        : XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" +
+                                                                    QuesterSettings.CurrentSettings.LastProfile);
 
                     foreach (Include include in Profile.Includes)
                     {

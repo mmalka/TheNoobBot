@@ -23,7 +23,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="Delimiter">Determines how the string will be split.  If null, defaults to ' '.</param>
         /// <returns>Returns 0 on failure, or the address of the start of the pattern on success.</returns>
         public static uint FindPattern(IntPtr hProcess, ProcessModule pMod, string szPattern, string szMask,
-                                       params char[] Delimiter)
+            params char[] Delimiter)
         {
             return FindPattern(hProcess, (uint) pMod.BaseAddress, pMod.ModuleMemorySize, szPattern, szMask, Delimiter);
         }
@@ -38,7 +38,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="Delimiter">Determines how the string will be split.  If null, defaults to ' '.</param>
         /// <returns>Returns 0 on failure, or the address of the start of the pattern on success.</returns>
         public static uint FindPattern(IntPtr hProcess, ProcessModule[] pMods, string szPattern, string szMask,
-                                       params char[] Delimiter)
+            params char[] Delimiter)
         {
             return FindPattern(hProcess, new ProcessModuleCollection(pMods), szPattern, szMask, Delimiter);
         }
@@ -53,7 +53,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="Delimiter">Determines how the string will be split.  If null, defaults to ' '.</param>
         /// <returns>Returns 0 on failure, or the address of the start of the pattern on success.</returns>
         public static uint FindPattern(IntPtr hProcess, ProcessModuleCollection pMods, string szPattern, string szMask,
-                                       params char[] Delimiter)
+            params char[] Delimiter)
         {
             uint dwRet = 0;
 
@@ -80,7 +80,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="Delimiter">Determines how the string will be split.  If null, defaults to ' '.</param>
         /// <returns>Returns 0 on failure, or the address of the start of the pattern on success.</returns>
         public static uint FindPattern(IntPtr hProcess, uint dwStart, int nSize, string szPattern, string szMask,
-                                       params char[] Delimiter)
+            params char[] Delimiter)
         {
             if (Delimiter == null)
                 Delimiter = new char[1] {' '};
