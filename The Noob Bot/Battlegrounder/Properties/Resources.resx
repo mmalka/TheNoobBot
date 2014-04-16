@@ -118,16 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greenB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greenB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="blueB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="greenB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greenB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blueB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blueB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackB_260" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackB_260.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackB_70" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackB_70.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="800x43_controlbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\800x43_controlbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blackB_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackB_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="greenB_70" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greenB_70.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

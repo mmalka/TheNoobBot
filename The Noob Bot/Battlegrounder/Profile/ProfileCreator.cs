@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
@@ -12,9 +13,9 @@ namespace Battlegrounder.Profile
 {
     public partial class ProfileCreator : Form
     {
+        private int _idZone;
         private bool _loopRecordPoint;
         private BattlegrounderProfile _profile = new BattlegrounderProfile();
-        private int _idZone;
 
         public ProfileCreator()
         {
@@ -40,17 +41,17 @@ namespace Battlegrounder.Profile
             DeleteButton.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             DeleteButtonBlackListRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             AddToBlackList.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
         }
 
         private void SaveButton_Click(object sender,
-                                      EventArgs ex)
+            EventArgs ex)
         {
             try
             {
                 string file =
                     Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Battlegrounder\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (file != "")
                 {
@@ -66,13 +67,13 @@ namespace Battlegrounder.Profile
 
 
         private void LoadButton_Click(object sender,
-                                      EventArgs e)
+            EventArgs e)
         {
             try
             {
                 string file =
                     Others.DialogBoxOpenFile(Application.StartupPath + "\\Profiles\\Battlegrounder\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (File.Exists(file))
                 {
@@ -93,7 +94,7 @@ namespace Battlegrounder.Profile
         }
 
         private void ProfileCreator_FormClosing(object sender,
-                                                FormClosingEventArgs ex)
+            FormClosingEventArgs ex)
         {
             try
             {
@@ -175,7 +176,7 @@ namespace Battlegrounder.Profile
         // WAY
 
         private void recordWayB_Click(object sender,
-                                      EventArgs ex)
+            EventArgs ex)
         {
             try
             {
@@ -238,7 +239,7 @@ namespace Battlegrounder.Profile
         }
 
         private void DeleteButton_Click(object sender,
-                                        EventArgs ex)
+            EventArgs ex)
         {
             try
             {
@@ -259,7 +260,7 @@ namespace Battlegrounder.Profile
 
         // BLACK LIST
         private void DeleteButtonBlackListRadius_Click(object sender,
-                                                       EventArgs e)
+            EventArgs e)
         {
             try
             {
@@ -280,18 +281,18 @@ namespace Battlegrounder.Profile
         }
 
         private void AddToBlackList_Click(object sender,
-                                          EventArgs e)
+            EventArgs e)
         {
             try
             {
                 if (CanRecord())
                 {
                     _profile.BattlegrounderZones[_idZone].BlackListRadius.Add(new BattlegrounderBlackListRadius
-                        {
-                            Position =
-                                ObjectManager.Me.Position,
-                            Radius = (float) Radius.Value
-                        });
+                    {
+                        Position =
+                            ObjectManager.Me.Position,
+                        Radius = (float) Radius.Value
+                    });
                     RefreshForm();
                 }
             }
@@ -303,14 +304,14 @@ namespace Battlegrounder.Profile
         }
 
         private void RefreshCurrentBattleground_Click(object sender,
-                                                      EventArgs e)
+            EventArgs e)
         {
             CurrentBattlegroundInfo();
         }
 
         public void CurrentBattlegroundInfo()
         {
-            Battleground bg = new Battleground();
+            var bg = new Battleground();
             if (Battleground.IsInBattleground())
             {
                 if (!string.IsNullOrEmpty(bg.NonLocalizedName))
@@ -343,7 +344,7 @@ namespace Battlegrounder.Profile
         }
 
         private void DelZoneButton_Click(object sender,
-                                         EventArgs ex)
+            EventArgs ex)
         {
             try
             {
@@ -363,7 +364,7 @@ namespace Battlegrounder.Profile
         }
 
         private void AddZoneButton_Click(object sender,
-                                         EventArgs ex)
+            EventArgs ex)
         {
             try
             {
@@ -378,14 +379,14 @@ namespace Battlegrounder.Profile
                         return;
                     }
 
-                    Battleground bg = new Battleground();
+                    var bg = new Battleground();
                     _profile.BattlegrounderZones.Add(new BattlegrounderZone
-                        {
-                            Name = bg.NonLocalizedName,
-                            BattlegroundId =
-                                Battleground.GetCurrentBattleground()
-                                            .ToString()
-                        });
+                    {
+                        Name = bg.NonLocalizedName,
+                        BattlegroundId =
+                            Battleground.GetCurrentBattleground()
+                                .ToString()
+                    });
                     _idZone = _profile.BattlegrounderZones.Count - 1;
                     RefreshListZones();
                 }
@@ -399,7 +400,7 @@ namespace Battlegrounder.Profile
         }
 
         private void ZoneList_SelectedIndexChanged(object sender,
-                                                   EventArgs e)
+            EventArgs e)
         {
             try
             {
