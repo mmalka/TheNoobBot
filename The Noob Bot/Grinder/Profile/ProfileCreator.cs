@@ -7,12 +7,17 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using Math = nManager.Helpful.Math;
 
 namespace Grinder.Profile
 {
     public partial class ProfileCreator : Form
     {
+        private int _idZone;
+        private bool _loopRecordPoint;
         private GrinderProfile _profile = new GrinderProfile();
 
         public ProfileCreator()
@@ -30,7 +35,7 @@ namespace Grinder.Profile
                 npcTypeC.Text = Npc.NpcType.None.ToString();
 
                 RefreshListZones();
-                    TopMost = true;
+                TopMost = true;
             }
             catch (Exception e)
             {
@@ -51,19 +56,19 @@ namespace Grinder.Profile
             loadB.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
             nameNpcTb.Text = nManager.Translate.Get(nManager.Translate.Id.Name);
             addByNameNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_by_Name_to_Npc_list);
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.List_Zones) + ":";
+            ListOfZonesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.List_Zones) + ":";
             addZoneB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Zone);
             delZoneB.Text = nManager.Translate.Get(nManager.Translate.Id.Del_Zone);
-            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Zone_Name) + ":";
-            labelX4.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Lvl) + " " +
-                           nManager.Translate.Get(nManager.Translate.Id.Min);
-            labelX5.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
-            labelX6.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
-            labelX7.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Lvl) + " " +
-                           nManager.Translate.Get(nManager.Translate.Id.Min);
+            ZoneNameLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Zone_Name) + ":";
+            ZoneMinLevel.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Lvl) + " " +
+                                nManager.Translate.Get(nManager.Translate.Id.Min);
+            ZoneMaxLevelLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
+            TargetMaxLevelLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
+            TargetMinLevelLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Lvl) + " " +
+                                       nManager.Translate.Get(nManager.Translate.Id.Min);
             addTargetEntryB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Target);
             labelX8.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Ids);
-            Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
         }
 
         private void saveB_Click(object sender, EventArgs ex)
@@ -72,7 +77,7 @@ namespace Grinder.Profile
             {
                 string file =
                     Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Grinder\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (file != "")
                 {
@@ -92,7 +97,7 @@ namespace Grinder.Profile
             {
                 string file =
                     Others.DialogBoxOpenFile(Application.StartupPath + "\\Profiles\\Grinder\\",
-                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+                        "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
 
                 if (File.Exists(file))
                 {
@@ -122,8 +127,6 @@ namespace Grinder.Profile
             }
         }
 
-        private int _idZone;
-
         private void RefreshListZones()
         {
             lock (typeof (ProfileCreator))
@@ -140,7 +143,7 @@ namespace Grinder.Profile
                     foreach (GrinderZone p in _profile.GrinderZones)
                     {
                         // if (!listZoneCb.Items.Contains(p.Name))
-                        listZoneCb.Items.Add(p.Name);
+                        listZoneCb.Items.Add(p.Name + " - Level " + p.MinLevel + " to " + p.MaxLevel + " with " + p.TargetEntry.Count + " targets");
                     }
                     if (listZoneCb.SelectedIndex != _idZone)
                     {
@@ -245,7 +248,6 @@ namespace Grinder.Profile
 
 
         // WAY
-        private bool _loopRecordPoint;
 
         private void recordWayB_Click(object sender, EventArgs ex)
         {
@@ -287,11 +289,11 @@ namespace Grinder.Profile
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > (double) nSeparatorDistance.Value) &&
-                         lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                         lastRotation != (int) Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.GrinderZones[_idZone].Points.Add(ObjectManager.Me.Position);
-                        lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
+                        lastRotation = (int) Math.RadianToDegree(ObjectManager.Me.Rotation);
                         RefreshForm();
                     }
                     Application.DoEvents();
@@ -339,12 +341,12 @@ namespace Grinder.Profile
             try
             {
                 _profile.GrinderZones[_idZone].BlackListRadius.Add(new GrinderBlackListRadius
-                    {
-                        Position =
-                            ObjectManager.Me
-                                         .Position,
-                        Radius = (float) radiusN.Value
-                    });
+                {
+                    Position =
+                        ObjectManager.Me
+                            .Position,
+                    Radius = (float) radiusN.Value
+                });
                 RefreshForm();
             }
             catch (Exception ex)
@@ -375,18 +377,18 @@ namespace Grinder.Profile
                 if (!ObjectManager.Me.IsValid || !ObjectManager.Target.IsValid)
                     return;
 
-                Npc npc = new Npc
-                    {
-                        ContinentId =
-                            (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
-                        Entry = ObjectManager.Target.Entry,
-                        Faction =
-                            (Npc.FactionType)
+                var npc = new Npc
+                {
+                    ContinentId =
+                        (ContinentId) (Usefuls.ContinentId),
+                    Entry = ObjectManager.Target.Entry,
+                    Faction =
+                        (Npc.FactionType)
                             Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
-                        Name = ObjectManager.Target.Name,
-                        Position = ObjectManager.Target.Position,
-                        Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
-                    };
+                    Name = ObjectManager.Target.Name,
+                    Position = ObjectManager.Target.Position,
+                    Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
+                };
                 _profile.GrinderZones[_idZone].Npc.Add(npc);
                 RefreshForm();
             }
@@ -409,7 +411,7 @@ namespace Grinder.Profile
                     return;
                 }
 
-                Npc npc = new Npc();
+                var npc = new Npc();
 
                 List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
 
@@ -446,13 +448,13 @@ namespace Grinder.Profile
                 }
 
                 npc.ContinentId =
-                    (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId);
+                    (ContinentId) (Usefuls.ContinentId);
                 npc.Faction =
                     (Npc.FactionType)
-                    Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                        Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
                 npc.Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true);
 
-                if (nManager.Wow.Helpers.Usefuls.IsOutdoors)
+                if (Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
 
                 _profile.GrinderZones[_idZone].Npc.Add(npc);
@@ -482,7 +484,7 @@ namespace Grinder.Profile
         {
             try
             {
-                _profile.GrinderZones.Add(new GrinderZone {Name = nManager.Wow.Helpers.Usefuls.MapZoneName});
+                _profile.GrinderZones.Add(new GrinderZone {Name = Usefuls.MapZoneName});
                 _idZone = _profile.GrinderZones.Count - 1;
                 RefreshListZones();
             }
@@ -596,6 +598,10 @@ namespace Grinder.Profile
             {
                 Logging.WriteError("addTargetEntryB_Click(object sender, EventArgs e): " + ex);
             }
+        }
+
+        private void EditZoneButton_Click(object sender, EventArgs e)
+        {
         }
     }
 }

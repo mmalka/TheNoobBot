@@ -13,17 +13,17 @@ namespace Grinder.Profile
     [Serializable]
     public class GrinderZone
     {
-        public string Name = "";
+        public List<GrinderBlackListRadius> BlackListRadius = new List<GrinderBlackListRadius>();
         public bool Hotspots;
-        public uint MinLevel = 0;
         public uint MaxLevel = 90;
-        public uint MinTargetLevel = 0;
         public uint MaxTargetLevel = 90;
+        public uint MinLevel = 1;
+        public uint MinTargetLevel = 1;
+        public string Name = "";
+        public List<Npc> Npc = new List<Npc>();
+        public List<Point> Points = new List<Point>();
         public List<int> TargetEntry = new List<int>();
         public List<uint> TargetFactions = new List<uint>();
-        public List<Point> Points = new List<Point>();
-        public List<Npc> Npc = new List<Npc>();
-        public List<GrinderBlackListRadius> BlackListRadius = new List<GrinderBlackListRadius>();
 
         internal bool IsValid()
         {
