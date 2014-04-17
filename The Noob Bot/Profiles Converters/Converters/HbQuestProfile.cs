@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Profiles_Converters.Converters
 {
-    public class HBProfile
+    public class HBProfile2
     {
         public string Name = "ProfileTest1";
         public int MinLevel = 1;

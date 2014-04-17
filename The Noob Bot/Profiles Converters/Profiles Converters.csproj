@@ -42,11 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\HBProfileSchema.cs" />
     <Compile Include="Converters\HbQuestProfile.cs" />
     <Compile Include="Converters\HonorBuddyGrind.cs" />
     <Compile Include="Converters\GatherBuddy.cs" />
     <Compile Include="Converters\MMOLazyMyFlyer.cs" />
     <Compile Include="Converters\PiroxFlyGatherer.cs" />
+    <Compile Include="Converters\QuestProfileSchema.cs" />
     <Compile Include="Converters\WowRobotGatherFly.cs" />
     <Compile Include="formMain.cs">
       <SubType>Form</SubType>
