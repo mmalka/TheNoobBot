@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using Profiles_Converters;
 using nManager.Helpful;
+using Profiles_Converters;
 using nManager.Products;
 using Profiles_Converters.Converters;
+using Quester.Profile;
+using Quest = Profiles_Converters.Converters.Quest;
 
 public class Main : IProduct
 {
@@ -41,6 +43,49 @@ public class Main : IProduct
     {
         try
         {
+            /*var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[H - Quest] 85-86 The Jade Forest [Kick].xml");
+            if (hbProfile.Items == null || !hbProfile.Items.Any())
+            {
+                return;
+            }
+            var count = hbProfile.Items.Length;
+            if (count > hbProfile.ItemsElementName.Length)
+                count = hbProfile.ItemsElementName.Length;
+            var machin = new Quester.Profile.Quest();
+            for (int i = 0; i < count; i++)
+            {
+                var name = hbProfile.ItemsElementName[i];
+                var value = hbProfile.Items[i];
+                Logging.Write(name + ": " + value);
+                if (value.ToString().Contains("Profiles_Converters.Converters"))
+                {
+                    if (value is Vendors)
+                    {
+                        Vendors vendors = value as Vendors;
+                        foreach (var vendor in vendors.Items)
+                        {
+                            Logging.Write(vendor.Entry + ";" + vendor.Name + ";" + vendor.Nav + ";" + vendor.Type + ";" + vendor.X + ";" + vendor.Y + ";" + vendor.Z);
+                        }
+                    }
+                    else if (value is Mailboxes)
+                    {
+                        Mailboxes mailboxes = value as Mailboxes;
+                    }
+                    else if (value is Blackspots)
+                    {
+                        Blackspots blackspots = value as Blackspots;
+                    }
+                    else if (value is AvoidMobs)
+                    {
+                        AvoidMobs avoidMobs = value as AvoidMobs;
+                    }
+                    else if (value is Quest)
+                    {
+                        Quest quest = value as Quest;
+                    }
+                }
+            }*/
+            // subProfile = hbProfile;
             /*HBProfile hbQuest = new HBProfile();
             hbQuest.Vendors = new List<HBProfile.Vendor>
             {
