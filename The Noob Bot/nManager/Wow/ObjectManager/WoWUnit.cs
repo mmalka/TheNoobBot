@@ -1511,8 +1511,8 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                if (Level > 88)
-                    return 550 + ((Level - 88)*15);
+                if (Level > 87)
+                    return 500 + ((Level - 87)*20);
                 else if (Level > 83)
                     return 450 + ((Level - 83)*20);
                 else if (Level > 80)
