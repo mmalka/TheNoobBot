@@ -79,6 +79,10 @@
       <Name>nManager</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Quester\Quester.csproj">
+      <Project>{96CA8810-5B34-47A7-8253-EDCA42FA02C4}</Project>
+      <Name>Quester</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="formMain.resx">
