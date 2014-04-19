@@ -1,2405 +1,507 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace Profiles_Converters.Converters
 {
-    /// <remarks />
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
-    public class turninObjectiveType : object, INotifyPropertyChanged
+    public class turninObjectiveType : object
     {
-        private navType navField;
-
-        private bool navFieldSpecified;
-
-        private float xField;
-
-        private float yField;
-
-        private float zField;
-
         public turninObjectiveType()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public float X { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public float X
-        {
-            get { return xField; }
-            set
-            {
-                xField = value;
-                RaisePropertyChanged("X");
-            }
-        }
+        public float Y { get; set; }
 
-        /// <remarks />
         [XmlAttribute]
-        public float Y
-        {
-            get { return yField; }
-            set
-            {
-                yField = value;
-                RaisePropertyChanged("Y");
-            }
-        }
-
-        /// <remarks />
-        [XmlAttribute]
-        public float Z
-        {
-            get { return zField; }
-            set
-            {
-                zField = value;
-                RaisePropertyChanged("Z");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public float Z { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
-    public class objectiveMetaType : object, INotifyPropertyChanged
+    public class objectiveMetaType : object
     {
-        private string collectCountField;
+        [XmlElement("CollectFrom", typeof (CollectFrom)), XmlElement("Hotspots", typeof (Hotspots)), XmlElement("TargetMaxLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"),
+         XmlElement("TargetMinLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("TurnIn", typeof (turninObjectiveType), Form = XmlSchemaForm.Unqualified),
+         XmlChoiceIdentifier("ItemsElementName")]
+        public object[] Items { get; set; }
 
-        private string itemIdField;
-        private ItemsChoiceType3[] itemsElementNameField;
-        private object[] itemsField;
+        [XmlElement("ItemsElementName"), XmlIgnore]
+        public ItemsChoiceType3[] ItemsElementName { get; set; }
 
-        private string killCountField;
-
-        private string mobIdField;
-
-        private string nameField;
-
-        private string objectIdField;
-
-        private objectiveTypeType typeField;
-
-        private string useCountField;
-
-        /// <remarks />
-        [XmlElement("CollectFrom", typeof (CollectFrom))]
-        [XmlElement("Hotspots", typeof (Hotspots))]
-        [XmlElement("TargetMaxLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger")]
-        [XmlElement("TargetMinLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger")]
-        [XmlElement("TurnIn", typeof (turninObjectiveType), Form = XmlSchemaForm.Unqualified)]
-        [XmlChoiceIdentifier("ItemsElementName")]
-        public object[] Items
-        {
-            get { return itemsField; }
-            set
-            {
-                itemsField = value;
-                RaisePropertyChanged("Items");
-            }
-        }
-
-        /// <remarks />
-        [XmlElement("ItemsElementName")]
-        [XmlIgnore]
-        public ItemsChoiceType3[] ItemsElementName
-        {
-            get { return itemsElementNameField; }
-            set
-            {
-                itemsElementNameField = value;
-                RaisePropertyChanged("ItemsElementName");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string CollectCount
-        {
-            get { return collectCountField; }
-            set
-            {
-                collectCountField = value;
-                RaisePropertyChanged("CollectCount");
-            }
-        }
+        public string CollectCount { get; set; }
 
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string ItemId
-        {
-            get { return itemIdField; }
-            set
-            {
-                itemIdField = value;
-                RaisePropertyChanged("ItemId");
-            }
-        }
+        public string ItemId { get; set; }
 
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string KillCount
-        {
-            get { return killCountField; }
-            set
-            {
-                killCountField = value;
-                RaisePropertyChanged("KillCount");
-            }
-        }
+        public string KillCount { get; set; }
 
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string MobId
-        {
-            get { return mobIdField; }
-            set
-            {
-                mobIdField = value;
-                RaisePropertyChanged("MobId");
-            }
-        }
+        public string MobId { get; set; }
 
-        /// <remarks />
         [XmlAttribute]
-        public string Name
-        {
-            get { return nameField; }
-            set
-            {
-                nameField = value;
-                RaisePropertyChanged("Name");
-            }
-        }
+        public string Name { get; set; }
 
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string ObjectId
-        {
-            get { return objectIdField; }
-            set
-            {
-                objectIdField = value;
-                RaisePropertyChanged("ObjectId");
-            }
-        }
+        public string ObjectId { get; set; }
 
-        /// <remarks />
         [XmlAttribute]
-        public objectiveTypeType Type
-        {
-            get { return typeField; }
-            set
-            {
-                typeField = value;
-                RaisePropertyChanged("Type");
-            }
-        }
+        public objectiveTypeType Type { get; set; }
 
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string UseCount
-        {
-            get { return useCountField; }
-            set
-            {
-                useCountField = value;
-                RaisePropertyChanged("UseCount");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string UseCount { get; set; }
     }
 
-    /// <remarks />
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class CollectFrom : object, INotifyPropertyChanged
+    public class CollectFrom : object
     {
-        private object[] itemsField;
-
-        /// <remarks />
-        [XmlElement("GameObject", typeof (gameObjectType), Form = XmlSchemaForm.Unqualified)]
-        [XmlElement("Mob", typeof (mobObjectiveType), Form = XmlSchemaForm.Unqualified)]
-        [XmlElement("Vendor", typeof (vendorObjectiveType), Form = XmlSchemaForm.Unqualified)]
-        public object[] Items
-        {
-            get { return itemsField; }
-            set
-            {
-                itemsField = value;
-                RaisePropertyChanged("Items");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        [XmlElement("GameObject", typeof (gameObjectType), Form = XmlSchemaForm.Unqualified), XmlElement("Mob", typeof (mobObjectiveType), Form = XmlSchemaForm.Unqualified),
+         XmlElement("Vendor", typeof (vendorObjectiveType), Form = XmlSchemaForm.Unqualified)]
+        public object[] Items { get; set; }
     }
 
-    /// <remarks />
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
-    public class gameObjectType : object, INotifyPropertyChanged
+    public class gameObjectType : object
     {
-        private string idField;
-        private string nameField;
-        private navType navField;
-
-        private bool navFieldSpecified;
-
         public gameObjectType()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public string Name { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
 
-        /// <remarks />
-        [XmlAttribute]
-        public string Name
-        {
-            get { return nameField; }
-            set
-            {
-                nameField = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string Id
-        {
-            get { return idField; }
-            set
-            {
-                idField = value;
-                RaisePropertyChanged("Id");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string Id { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
-    public class mobObjectiveType : object, INotifyPropertyChanged
+    public class mobObjectiveType : object
     {
-        private string entryField;
-        private string idField;
-        private string nameField;
-        private navType navField;
-
-        private bool navFieldSpecified;
-
         public mobObjectiveType()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public string Name { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
 
-        /// <remarks />
-        [XmlAttribute]
-        public string Name
-        {
-            get { return nameField; }
-            set
-            {
-                nameField = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string Id
-        {
-            get { return idField; }
-            set
-            {
-                idField = value;
-                RaisePropertyChanged("Id");
-            }
-        }
+        public string Id { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute(DataType = "positiveInteger")]
-        public string Entry
-        {
-            get { return entryField; }
-            set
-            {
-                entryField = value;
-                RaisePropertyChanged("Entry");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string Entry { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
-    public class vendorObjectiveType : object, INotifyPropertyChanged
+    public class vendorObjectiveType : object
     {
-        private string idField;
-        private string nameField;
-        private navType navField;
-
-        private bool navFieldSpecified;
-
         public vendorObjectiveType()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public string Name { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
 
-        /// <remarks />
-        [XmlAttribute]
-        public string Name
-        {
-            get { return nameField; }
-            set
-            {
-                nameField = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string Id
-        {
-            get { return idField; }
-            set
-            {
-                idField = value;
-                RaisePropertyChanged("Id");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string Id { get; set; }
     }
-    /// <remarks />
+
     [Serializable]
     [XmlType(IncludeInSchema = false)]
     public enum ItemsChoiceType3
     {
-        /// <remarks />
         CollectFrom,
-
-        /// <remarks />
         Hotspots,
-
-        /// <remarks />
         TargetMaxLevel,
-
-        /// <remarks />
         TargetMinLevel,
-
-        /// <remarks />
         TurnIn,
     }
 
-    /// <remarks />
+
     [Serializable]
     public enum objectiveTypeType
     {
-        /// <remarks />
         TurnIn,
-
-        /// <remarks />
         CollectItem,
-
-        /// <remarks />
         KillMob,
-
-        /// <remarks />
         UseObject,
     }
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class CustomBehavior : object, INotifyPropertyChanged
+    public class CustomBehavior : object
     {
-        private string allowBotStopField;
+        [XmlElement("Hotspot", typeof (point3dType)), XmlElement("HuntingGrounds", typeof (CustomBehaviorHuntingGrounds), Form = XmlSchemaForm.Unqualified)]
+        public object[] Items { get; set; }
 
-        private byte attackButtonField;
 
-        private bool attackButtonFieldSpecified;
-
-        private uint buyItemIdField;
-
-        private bool buyItemIdFieldSpecified;
-
-        private byte collectItemCountField;
-
-        private bool collectItemCountFieldSpecified;
-
-        private ushort collectItemIdField;
-
-        private bool collectItemIdFieldSpecified;
-
-        private string collectUntilField;
-        private ushort collectionDistanceField;
-
-        private bool collectionDistanceFieldSpecified;
-
-        private string destNameField;
-
-        private string doMailField;
-        private string doRepairField;
-
-        private string doSellField;
-
-        private string fileField;
-
-        private string goalTextField;
-
-        private byte gossipOptionsField;
-
-        private bool gossipOptionsFieldSpecified;
-
-        private booleanType groundMountFarmingModeField;
-
-        private bool groundMountFarmingModeFieldSpecified;
-
-        private byte huntingGroundRadiusField;
-
-        private bool huntingGroundRadiusFieldSpecified;
-
-        private ushort idsField;
-
-        private bool idsFieldSpecified;
-
-        private string ignoreMobsInBlackspotsField;
-
-        private ushort interactByUsingItemIdField;
-
-        private bool interactByUsingItemIdFieldSpecified;
-        private object[] itemsField;
-
-        private booleanType killBetweenHotspotsField;
-
-        private bool killBetweenHotspotsFieldSpecified;
-
-        private string logColorField;
-
-        private string luaField;
-
-        private string macroField;
-
-        private ushort maxRangeField;
-
-        private bool maxRangeFieldSpecified;
-
-        private ushort maxRangeToUseItemField;
-
-        private bool maxRangeToUseItemFieldSpecified;
-
-        private ushort minRangeField;
-
-        private bool minRangeFieldSpecified;
-
-        private uint mobId1Field;
-
-        private bool mobId1FieldSpecified;
-
-        private uint mobId2Field;
-
-        private bool mobId2FieldSpecified;
-
-        private uint mobId3Field;
-
-        private bool mobId3FieldSpecified;
-
-        private uint mobId4Field;
-
-        private bool mobId4FieldSpecified;
-
-        private uint mobId5Field;
-
-        private bool mobId5FieldSpecified;
-
-        private uint mobId6Field;
-
-        private bool mobId6FieldSpecified;
-        private uint mobIdField;
-
-        private bool mobIdFieldSpecified;
-
-        private string mobIdsField;
-
-        private string mobStateField;
-
-        private byte nonCompeteDistanceField;
-
-        private bool nonCompeteDistanceFieldSpecified;
-
-        private byte numOfTimesField;
-
-        private bool numOfTimesFieldSpecified;
-
-        private uint objectIdField;
-
-        private bool objectIdFieldSpecified;
-
-        private string objectTypeField;
-
-        private string preInteractMountStrategyField;
-
-        private uint questIdField;
-
-        private bool questIdFieldSpecified;
-
-        private byte questObjectiveIndexField;
-
-        private bool questObjectiveIndexFieldSpecified;
-
-        private byte rangeField;
-
-        private bool rangeFieldSpecified;
-
-        private string soundCueField;
-
-        private byte soundCueIntervalField;
-
-        private bool soundCueIntervalFieldSpecified;
-
-        private string textField;
-
-        private string typeField;
-
-        private string useTypeField;
-
-        private byte useWhenMobHasHealthPercentField;
-
-        private bool useWhenMobHasHealthPercentFieldSpecified;
-
-        private ushort vehicleMountIdField;
-
-        private bool vehicleMountIdFieldSpecified;
-
-        private string waitForNpcsField;
-
-        private uint waitTimeField;
-
-        private bool waitTimeFieldSpecified;
-
-        private decimal xField;
-
-        private bool xFieldSpecified;
-
-        private decimal yField;
-
-        private bool yFieldSpecified;
-
-        private decimal zField;
-
-        private bool zFieldSpecified;
-
-        /// <remarks />
-        [XmlElement("Hotspot", typeof (point3dType))]
-        [XmlElement("HuntingGrounds", typeof (CustomBehaviorHuntingGrounds), Form = XmlSchemaForm.Unqualified)]
-        public object[] Items
-        {
-            get { return itemsField; }
-            set
-            {
-                itemsField = value;
-                RaisePropertyChanged("Items");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string AllowBotStop
-        {
-            get { return allowBotStopField; }
-            set
-            {
-                allowBotStopField = value;
-                RaisePropertyChanged("AllowBotStop");
-            }
-        }
+        public string AllowBotStop { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public byte AttackButton
-        {
-            get { return attackButtonField; }
-            set
-            {
-                attackButtonField = value;
-                RaisePropertyChanged("AttackButton");
-            }
-        }
+        public byte AttackButton { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool AttackButtonSpecified
-        {
-            get { return attackButtonFieldSpecified; }
-            set
-            {
-                attackButtonFieldSpecified = value;
-                RaisePropertyChanged("AttackButtonSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint BuyItemId
-        {
-            get { return buyItemIdField; }
-            set
-            {
-                buyItemIdField = value;
-                RaisePropertyChanged("BuyItemId");
-            }
-        }
+        public uint BuyItemId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool BuyItemIdSpecified
-        {
-            get { return buyItemIdFieldSpecified; }
-            set
-            {
-                buyItemIdFieldSpecified = value;
-                RaisePropertyChanged("BuyItemIdSpecified");
-            }
-        }
 
-        /// <remarks />
         [XmlAttribute]
-        public ushort CollectionDistance
-        {
-            get { return collectionDistanceField; }
-            set
-            {
-                collectionDistanceField = value;
-                RaisePropertyChanged("CollectionDistance");
-            }
-        }
+        public ushort CollectionDistance { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool CollectionDistanceSpecified
-        {
-            get { return collectionDistanceFieldSpecified; }
-            set
-            {
-                collectionDistanceFieldSpecified = value;
-                RaisePropertyChanged("CollectionDistanceSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public byte CollectItemCount
-        {
-            get { return collectItemCountField; }
-            set
-            {
-                collectItemCountField = value;
-                RaisePropertyChanged("CollectItemCount");
-            }
-        }
+        public byte CollectItemCount { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool CollectItemCountSpecified
-        {
-            get { return collectItemCountFieldSpecified; }
-            set
-            {
-                collectItemCountFieldSpecified = value;
-                RaisePropertyChanged("CollectItemCountSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public ushort CollectItemId
-        {
-            get { return collectItemIdField; }
-            set
-            {
-                collectItemIdField = value;
-                RaisePropertyChanged("CollectItemId");
-            }
-        }
+        public ushort CollectItemId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool CollectItemIdSpecified
-        {
-            get { return collectItemIdFieldSpecified; }
-            set
-            {
-                collectItemIdFieldSpecified = value;
-                RaisePropertyChanged("CollectItemIdSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string CollectUntil
-        {
-            get { return collectUntilField; }
-            set
-            {
-                collectUntilField = value;
-                RaisePropertyChanged("CollectUntil");
-            }
-        }
+        public string CollectUntil { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string DestName
-        {
-            get { return destNameField; }
-            set
-            {
-                destNameField = value;
-                RaisePropertyChanged("DestName");
-            }
-        }
+        public string DestName { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string DoRepair
-        {
-            get { return doRepairField; }
-            set
-            {
-                doRepairField = value;
-                RaisePropertyChanged("DoRepair");
-            }
-        }
+        public string DoRepair { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string DoMail
-        {
-            get { return doMailField; }
-            set
-            {
-                doMailField = value;
-                RaisePropertyChanged("DoMail");
-            }
-        }
+        public string DoMail { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string DoSell
-        {
-            get { return doSellField; }
-            set
-            {
-                doSellField = value;
-                RaisePropertyChanged("DoSell");
-            }
-        }
+        public string DoSell { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string File
-        {
-            get { return fileField; }
-            set
-            {
-                fileField = value;
-                RaisePropertyChanged("File");
-            }
-        }
+        public string File { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string GoalText
-        {
-            get { return goalTextField; }
-            set
-            {
-                goalTextField = value;
-                RaisePropertyChanged("GoalText");
-            }
-        }
+        public string GoalText { get; set; }
 
-        /// <remarks />
         [XmlAttribute]
-        public byte GossipOptions
-        {
-            get { return gossipOptionsField; }
-            set
-            {
-                gossipOptionsField = value;
-                RaisePropertyChanged("GossipOptions");
-            }
-        }
+        public byte GossipOptions { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool GossipOptionsSpecified
-        {
-            get { return gossipOptionsFieldSpecified; }
-            set
-            {
-                gossipOptionsFieldSpecified = value;
-                RaisePropertyChanged("GossipOptionsSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public booleanType GroundMountFarmingMode
-        {
-            get { return groundMountFarmingModeField; }
-            set
-            {
-                groundMountFarmingModeField = value;
-                RaisePropertyChanged("GroundMountFarmingMode");
-            }
-        }
+        public booleanType GroundMountFarmingMode { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool GroundMountFarmingModeSpecified
-        {
-            get { return groundMountFarmingModeFieldSpecified; }
-            set
-            {
-                groundMountFarmingModeFieldSpecified = value;
-                RaisePropertyChanged("GroundMountFarmingModeSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public byte HuntingGroundRadius
-        {
-            get { return huntingGroundRadiusField; }
-            set
-            {
-                huntingGroundRadiusField = value;
-                RaisePropertyChanged("HuntingGroundRadius");
-            }
-        }
+        public byte HuntingGroundRadius { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool HuntingGroundRadiusSpecified
-        {
-            get { return huntingGroundRadiusFieldSpecified; }
-            set
-            {
-                huntingGroundRadiusFieldSpecified = value;
-                RaisePropertyChanged("HuntingGroundRadiusSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public ushort Ids
-        {
-            get { return idsField; }
-            set
-            {
-                idsField = value;
-                RaisePropertyChanged("Ids");
-            }
-        }
+        public ushort Ids { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool IdsSpecified
-        {
-            get { return idsFieldSpecified; }
-            set
-            {
-                idsFieldSpecified = value;
-                RaisePropertyChanged("IdsSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string IgnoreMobsInBlackspots
-        {
-            get { return ignoreMobsInBlackspotsField; }
-            set
-            {
-                ignoreMobsInBlackspotsField = value;
-                RaisePropertyChanged("IgnoreMobsInBlackspots");
-            }
-        }
+        public string IgnoreMobsInBlackspots { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public ushort InteractByUsingItemId
-        {
-            get { return interactByUsingItemIdField; }
-            set
-            {
-                interactByUsingItemIdField = value;
-                RaisePropertyChanged("InteractByUsingItemId");
-            }
-        }
+        public ushort InteractByUsingItemId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool InteractByUsingItemIdSpecified
-        {
-            get { return interactByUsingItemIdFieldSpecified; }
-            set
-            {
-                interactByUsingItemIdFieldSpecified = value;
-                RaisePropertyChanged("InteractByUsingItemIdSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public booleanType KillBetweenHotspots
-        {
-            get { return killBetweenHotspotsField; }
-            set
-            {
-                killBetweenHotspotsField = value;
-                RaisePropertyChanged("KillBetweenHotspots");
-            }
-        }
+        public booleanType KillBetweenHotspots { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool KillBetweenHotspotsSpecified
-        {
-            get { return killBetweenHotspotsFieldSpecified; }
-            set
-            {
-                killBetweenHotspotsFieldSpecified = value;
-                RaisePropertyChanged("KillBetweenHotspotsSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string LogColor
-        {
-            get { return logColorField; }
-            set
-            {
-                logColorField = value;
-                RaisePropertyChanged("LogColor");
-            }
-        }
+        public string LogColor { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string Lua
-        {
-            get { return luaField; }
-            set
-            {
-                luaField = value;
-                RaisePropertyChanged("Lua");
-            }
-        }
+        public string Lua { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string Macro
-        {
-            get { return macroField; }
-            set
-            {
-                macroField = value;
-                RaisePropertyChanged("Macro");
-            }
-        }
+        public string Macro { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public ushort MaxRange
-        {
-            get { return maxRangeField; }
-            set
-            {
-                maxRangeField = value;
-                RaisePropertyChanged("MaxRange");
-            }
-        }
+        public ushort MaxRange { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MaxRangeSpecified
-        {
-            get { return maxRangeFieldSpecified; }
-            set
-            {
-                maxRangeFieldSpecified = value;
-                RaisePropertyChanged("MaxRangeSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public ushort MaxRangeToUseItem
-        {
-            get { return maxRangeToUseItemField; }
-            set
-            {
-                maxRangeToUseItemField = value;
-                RaisePropertyChanged("MaxRangeToUseItem");
-            }
-        }
+        public ushort MaxRangeToUseItem { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MaxRangeToUseItemSpecified
-        {
-            get { return maxRangeToUseItemFieldSpecified; }
-            set
-            {
-                maxRangeToUseItemFieldSpecified = value;
-                RaisePropertyChanged("MaxRangeToUseItemSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public ushort MinRange
-        {
-            get { return minRangeField; }
-            set
-            {
-                minRangeField = value;
-                RaisePropertyChanged("MinRange");
-            }
-        }
+        public ushort MinRange { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MinRangeSpecified
-        {
-            get { return minRangeFieldSpecified; }
-            set
-            {
-                minRangeFieldSpecified = value;
-                RaisePropertyChanged("MinRangeSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId
-        {
-            get { return mobIdField; }
-            set
-            {
-                mobIdField = value;
-                RaisePropertyChanged("MobId");
-            }
-        }
+        public uint MobId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobIdSpecified
-        {
-            get { return mobIdFieldSpecified; }
-            set
-            {
-                mobIdFieldSpecified = value;
-                RaisePropertyChanged("MobIdSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId1
-        {
-            get { return mobId1Field; }
-            set
-            {
-                mobId1Field = value;
-                RaisePropertyChanged("MobId1");
-            }
-        }
+        public uint MobId1 { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobId1Specified
-        {
-            get { return mobId1FieldSpecified; }
-            set
-            {
-                mobId1FieldSpecified = value;
-                RaisePropertyChanged("MobId1Specified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId2
-        {
-            get { return mobId2Field; }
-            set
-            {
-                mobId2Field = value;
-                RaisePropertyChanged("MobId2");
-            }
-        }
+        public uint MobId2 { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobId2Specified
-        {
-            get { return mobId2FieldSpecified; }
-            set
-            {
-                mobId2FieldSpecified = value;
-                RaisePropertyChanged("MobId2Specified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId3
-        {
-            get { return mobId3Field; }
-            set
-            {
-                mobId3Field = value;
-                RaisePropertyChanged("MobId3");
-            }
-        }
+        public uint MobId3 { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobId3Specified
-        {
-            get { return mobId3FieldSpecified; }
-            set
-            {
-                mobId3FieldSpecified = value;
-                RaisePropertyChanged("MobId3Specified");
-            }
-        }
 
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId4
-        {
-            get { return mobId4Field; }
-            set
-            {
-                mobId4Field = value;
-                RaisePropertyChanged("MobId4");
-            }
-        }
+        public uint MobId4 { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobId4Specified
-        {
-            get { return mobId4FieldSpecified; }
-            set
-            {
-                mobId4FieldSpecified = value;
-                RaisePropertyChanged("MobId4Specified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId5
-        {
-            get { return mobId5Field; }
-            set
-            {
-                mobId5Field = value;
-                RaisePropertyChanged("MobId5");
-            }
-        }
+        public uint MobId5 { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobId5Specified
-        {
-            get { return mobId5FieldSpecified; }
-            set
-            {
-                mobId5FieldSpecified = value;
-                RaisePropertyChanged("MobId5Specified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint MobId6
-        {
-            get { return mobId6Field; }
-            set
-            {
-                mobId6Field = value;
-                RaisePropertyChanged("MobId6");
-            }
-        }
+        public uint MobId6 { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool MobId6Specified
-        {
-            get { return mobId6FieldSpecified; }
-            set
-            {
-                mobId6FieldSpecified = value;
-                RaisePropertyChanged("MobId6Specified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string MobIds
-        {
-            get { return mobIdsField; }
-            set
-            {
-                mobIdsField = value;
-                RaisePropertyChanged("MobIds");
-            }
-        }
+        public string MobIds { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string MobState
-        {
-            get { return mobStateField; }
-            set
-            {
-                mobStateField = value;
-                RaisePropertyChanged("MobState");
-            }
-        }
+        public string MobState { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public byte NonCompeteDistance
-        {
-            get { return nonCompeteDistanceField; }
-            set
-            {
-                nonCompeteDistanceField = value;
-                RaisePropertyChanged("NonCompeteDistance");
-            }
-        }
+        public byte NonCompeteDistance { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NonCompeteDistanceSpecified
-        {
-            get { return nonCompeteDistanceFieldSpecified; }
-            set
-            {
-                nonCompeteDistanceFieldSpecified = value;
-                RaisePropertyChanged("NonCompeteDistanceSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public byte NumOfTimes
-        {
-            get { return numOfTimesField; }
-            set
-            {
-                numOfTimesField = value;
-                RaisePropertyChanged("NumOfTimes");
-            }
-        }
+        public byte NumOfTimes { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NumOfTimesSpecified
-        {
-            get { return numOfTimesFieldSpecified; }
-            set
-            {
-                numOfTimesFieldSpecified = value;
-                RaisePropertyChanged("NumOfTimesSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public uint ObjectId
-        {
-            get { return objectIdField; }
-            set
-            {
-                objectIdField = value;
-                RaisePropertyChanged("ObjectId");
-            }
-        }
+        public uint ObjectId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool ObjectIdSpecified
-        {
-            get { return objectIdFieldSpecified; }
-            set
-            {
-                objectIdFieldSpecified = value;
-                RaisePropertyChanged("ObjectIdSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string ObjectType
-        {
-            get { return objectTypeField; }
-            set
-            {
-                objectTypeField = value;
-                RaisePropertyChanged("ObjectType");
-            }
-        }
+        public string ObjectType { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string PreInteractMountStrategy
-        {
-            get { return preInteractMountStrategyField; }
-            set
-            {
-                preInteractMountStrategyField = value;
-                RaisePropertyChanged("PreInteractMountStrategy");
-            }
-        }
+        public string PreInteractMountStrategy { get; set; }
 
-        /// <remarks />
         [XmlAttribute]
-        public uint QuestId
-        {
-            get { return questIdField; }
-            set
-            {
-                questIdField = value;
-                RaisePropertyChanged("QuestId");
-            }
-        }
+        public uint QuestId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool QuestIdSpecified
-        {
-            get { return questIdFieldSpecified; }
-            set
-            {
-                questIdFieldSpecified = value;
-                RaisePropertyChanged("QuestIdSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public byte QuestObjectiveIndex
-        {
-            get { return questObjectiveIndexField; }
-            set
-            {
-                questObjectiveIndexField = value;
-                RaisePropertyChanged("QuestObjectiveIndex");
-            }
-        }
+        public byte QuestObjectiveIndex { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool QuestObjectiveIndexSpecified
-        {
-            get { return questObjectiveIndexFieldSpecified; }
-            set
-            {
-                questObjectiveIndexFieldSpecified = value;
-                RaisePropertyChanged("QuestObjectiveIndexSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public byte Range
-        {
-            get { return rangeField; }
-            set
-            {
-                rangeField = value;
-                RaisePropertyChanged("Range");
-            }
-        }
+        public byte Range { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool RangeSpecified
-        {
-            get { return rangeFieldSpecified; }
-            set
-            {
-                rangeFieldSpecified = value;
-                RaisePropertyChanged("RangeSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string SoundCue
-        {
-            get { return soundCueField; }
-            set
-            {
-                soundCueField = value;
-                RaisePropertyChanged("SoundCue");
-            }
-        }
+        public string SoundCue { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public byte SoundCueInterval
-        {
-            get { return soundCueIntervalField; }
-            set
-            {
-                soundCueIntervalField = value;
-                RaisePropertyChanged("SoundCueInterval");
-            }
-        }
+        public byte SoundCueInterval { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool SoundCueIntervalSpecified
-        {
-            get { return soundCueIntervalFieldSpecified; }
-            set
-            {
-                soundCueIntervalFieldSpecified = value;
-                RaisePropertyChanged("SoundCueIntervalSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string Text
-        {
-            get { return textField; }
-            set
-            {
-                textField = value;
-                RaisePropertyChanged("Text");
-            }
-        }
+        public string Text { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string Type
-        {
-            get { return typeField; }
-            set
-            {
-                typeField = value;
-                RaisePropertyChanged("Type");
-            }
-        }
+        public string Type { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string UseType
-        {
-            get { return useTypeField; }
-            set
-            {
-                useTypeField = value;
-                RaisePropertyChanged("UseType");
-            }
-        }
+        public string UseType { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public byte UseWhenMobHasHealthPercent
-        {
-            get { return useWhenMobHasHealthPercentField; }
-            set
-            {
-                useWhenMobHasHealthPercentField = value;
-                RaisePropertyChanged("UseWhenMobHasHealthPercent");
-            }
-        }
+        public byte UseWhenMobHasHealthPercent { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool UseWhenMobHasHealthPercentSpecified
-        {
-            get { return useWhenMobHasHealthPercentFieldSpecified; }
-            set
-            {
-                useWhenMobHasHealthPercentFieldSpecified = value;
-                RaisePropertyChanged("UseWhenMobHasHealthPercentSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public ushort VehicleMountId
-        {
-            get { return vehicleMountIdField; }
-            set
-            {
-                vehicleMountIdField = value;
-                RaisePropertyChanged("VehicleMountId");
-            }
-        }
+        public ushort VehicleMountId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool VehicleMountIdSpecified
-        {
-            get { return vehicleMountIdFieldSpecified; }
-            set
-            {
-                vehicleMountIdFieldSpecified = value;
-                RaisePropertyChanged("VehicleMountIdSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string WaitForNpcs
-        {
-            get { return waitForNpcsField; }
-            set
-            {
-                waitForNpcsField = value;
-                RaisePropertyChanged("WaitForNpcs");
-            }
-        }
+        public string WaitForNpcs { get; set; }
 
-        /// <remarks />
         [XmlAttribute]
-        public uint WaitTime
-        {
-            get { return waitTimeField; }
-            set
-            {
-                waitTimeField = value;
-                RaisePropertyChanged("WaitTime");
-            }
-        }
+        public uint WaitTime { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool WaitTimeSpecified
-        {
-            get { return waitTimeFieldSpecified; }
-            set
-            {
-                waitTimeFieldSpecified = value;
-                RaisePropertyChanged("WaitTimeSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public decimal X
-        {
-            get { return xField; }
-            set
-            {
-                xField = value;
-                RaisePropertyChanged("X");
-            }
-        }
+        public decimal X { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool XSpecified
-        {
-            get { return xFieldSpecified; }
-            set
-            {
-                xFieldSpecified = value;
-                RaisePropertyChanged("XSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public decimal Y
-        {
-            get { return yField; }
-            set
-            {
-                yField = value;
-                RaisePropertyChanged("Y");
-            }
-        }
+        public decimal Y { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool YSpecified
-        {
-            get { return yFieldSpecified; }
-            set
-            {
-                yFieldSpecified = value;
-                RaisePropertyChanged("YSpecified");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public decimal Z
-        {
-            get { return zField; }
-            set
-            {
-                zField = value;
-                RaisePropertyChanged("Z");
-            }
-        }
-
-        /// <remarks />
-        [XmlIgnore]
-        public bool ZSpecified
-        {
-            get { return zFieldSpecified; }
-            set
-            {
-                zFieldSpecified = value;
-                RaisePropertyChanged("ZSpecified");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public decimal Z { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
-    public class CustomBehaviorHuntingGrounds : object, INotifyPropertyChanged
+    public class CustomBehaviorHuntingGrounds : object
     {
-        private point3dType hotspotField;
+        public point3dType Hotspot { get; set; }
 
-        private string waypointVisitStrategyField;
 
-        /// <remarks />
-        public point3dType Hotspot
-        {
-            get { return hotspotField; }
-            set
-            {
-                hotspotField = value;
-                RaisePropertyChanged("Hotspot");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute]
-        public string WaypointVisitStrategy
-        {
-            get { return waypointVisitStrategyField; }
-            set
-            {
-                waypointVisitStrategyField = value;
-                RaisePropertyChanged("WaypointVisitStrategy");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string WaypointVisitStrategy { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class MoveTo : object, INotifyPropertyChanged
+    public class MoveTo : object
     {
-        private string destNameField;
-
-        private navType navField;
-
-        private bool navFieldSpecified;
-        private uint questIdField;
-
-        private bool questIdFieldSpecified;
-
-        private float xField;
-
-        private float yField;
-
-        private float zField;
-
         public MoveTo()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string DestName
-        {
-            get { return destNameField; }
-            set
-            {
-                destNameField = value;
-                RaisePropertyChanged("DestName");
-            }
-        }
+        public string DestName { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public uint QuestId
-        {
-            get { return questIdField; }
-            set
-            {
-                questIdField = value;
-                RaisePropertyChanged("QuestId");
-            }
-        }
+        public uint QuestId { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool QuestIdSpecified
-        {
-            get { return questIdFieldSpecified; }
-            set
-            {
-                questIdFieldSpecified = value;
-                RaisePropertyChanged("QuestIdSpecified");
-            }
-        }
 
-        /// <remarks />
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public float X { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
 
-        /// <remarks />
         [XmlAttribute]
-        public float X
-        {
-            get { return xField; }
-            set
-            {
-                xField = value;
-                RaisePropertyChanged("X");
-            }
-        }
+        public float Y { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public float Y
-        {
-            get { return yField; }
-            set
-            {
-                yField = value;
-                RaisePropertyChanged("Y");
-            }
-        }
-
-        /// <remarks />
-        [XmlAttribute]
-        public float Z
-        {
-            get { return zField; }
-            set
-            {
-                zField = value;
-                RaisePropertyChanged("Z");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public float Z { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class PickUp : object, INotifyPropertyChanged
+    public class PickUp : object
     {
-        private uint giverIdField;
-
-        private string giverNameField;
-
-        private navType navField;
-
-        private bool navFieldSpecified;
-
-        private uint questIdField;
-        private string questNameField;
-
-        private float xField;
-
-        private float yField;
-
-        private float zField;
-
         public PickUp()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public uint GiverId
-        {
-            get { return giverIdField; }
-            set
-            {
-                giverIdField = value;
-                RaisePropertyChanged("GiverId");
-            }
-        }
+        public uint GiverId { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string GiverName
-        {
-            get { return giverNameField; }
-            set
-            {
-                giverNameField = value;
-                RaisePropertyChanged("GiverName");
-            }
-        }
+        public string GiverName { get; set; }
 
-        /// <remarks />
+
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public string QuestName { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
 
-        /// <remarks />
         [XmlAttribute]
-        public string QuestName
-        {
-            get { return questNameField; }
-            set
-            {
-                questNameField = value;
-                RaisePropertyChanged("QuestName");
-            }
-        }
+        public uint QuestId { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public uint QuestId
-        {
-            get { return questIdField; }
-            set
-            {
-                questIdField = value;
-                RaisePropertyChanged("QuestId");
-            }
-        }
+        public float X { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public float X
-        {
-            get { return xField; }
-            set
-            {
-                xField = value;
-                RaisePropertyChanged("X");
-            }
-        }
+        public float Y { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public float Y
-        {
-            get { return yField; }
-            set
-            {
-                yField = value;
-                RaisePropertyChanged("Y");
-            }
-        }
-
-        /// <remarks />
-        [XmlAttribute]
-        public float Z
-        {
-            get { return zField; }
-            set
-            {
-                zField = value;
-                RaisePropertyChanged("Z");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public float Z { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class Quest : object, INotifyPropertyChanged
+    public class Quest : object
     {
-        private string idField;
-        private object[] itemsField;
+        [XmlElement("Objective", typeof (objectiveMetaType), Form = XmlSchemaForm.Unqualified), XmlElement("TurnIn", typeof (turninObjectiveType), Form = XmlSchemaForm.Unqualified)]
+        public object[] Items { get; set; }
 
-        private string nameField;
 
-        /// <remarks />
-        [XmlElement("Objective", typeof (objectiveMetaType), Form = XmlSchemaForm.Unqualified)]
-        [XmlElement("TurnIn", typeof (turninObjectiveType), Form = XmlSchemaForm.Unqualified)]
-        public object[] Items
-        {
-            get { return itemsField; }
-            set
-            {
-                itemsField = value;
-                RaisePropertyChanged("Items");
-            }
-        }
-
-        /// <remarks />
         [XmlAttribute(DataType = "positiveInteger")]
-        public string Id
-        {
-            get { return idField; }
-            set
-            {
-                idField = value;
-                RaisePropertyChanged("Id");
-            }
-        }
+        public string Id { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string Name
-        {
-            get { return nameField; }
-            set
-            {
-                nameField = value;
-                RaisePropertyChanged("Name");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public string Name { get; set; }
     }
 
-    /// <remarks />
+
     [Serializable]
-    [DebuggerStepThrough]
-    [DesignerCategory("code")]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class TurnIn : object, INotifyPropertyChanged
+    public class TurnIn : object
     {
-        private navType navField;
-
-        private bool navFieldSpecified;
-
-        private uint questIdField;
-        private string questNameField;
-        private uint turnInIdField;
-        private string turnInNameField;
-
-        private float xField;
-
-        private float yField;
-
-        private float zField;
-
         public TurnIn()
         {
-            navField = navType.Run;
+            Nav = navType.Run;
         }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public string TurnInName
-        {
-            get { return turnInNameField; }
-            set
-            {
-                turnInNameField = value;
-                RaisePropertyChanged("TurnInName");
-            }
-        }
+        public string TurnInName { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public uint TurnInId
-        {
-            get { return turnInIdField; }
-            set
-            {
-                turnInIdField = value;
-                RaisePropertyChanged("TurnInId");
-            }
-        }
+        public uint TurnInId { get; set; }
 
-        /// <remarks />
+
+        [XmlAttribute, DefaultValue(navType.Run)]
+        public navType Nav { get; set; }
+
         [XmlAttribute]
-        [DefaultValue(navType.Run)]
-        public navType Nav
-        {
-            get { return navField; }
-            set
-            {
-                navField = value;
-                RaisePropertyChanged("Nav");
-            }
-        }
+        public string QuestName { get; set; }
 
-        /// <remarks />
-        [XmlIgnore]
-        public bool NavSpecified
-        {
-            get { return navFieldSpecified; }
-            set
-            {
-                navFieldSpecified = value;
-                RaisePropertyChanged("NavSpecified");
-            }
-        }
 
-        /// <remarks />
         [XmlAttribute]
-        public string QuestName
-        {
-            get { return questNameField; }
-            set
-            {
-                questNameField = value;
-                RaisePropertyChanged("QuestName");
-            }
-        }
+        public uint QuestId { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public uint QuestId
-        {
-            get { return questIdField; }
-            set
-            {
-                questIdField = value;
-                RaisePropertyChanged("QuestId");
-            }
-        }
+        public float X { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public float X
-        {
-            get { return xField; }
-            set
-            {
-                xField = value;
-                RaisePropertyChanged("X");
-            }
-        }
+        public float Y { get; set; }
 
-        /// <remarks />
+
         [XmlAttribute]
-        public float Y
-        {
-            get { return yField; }
-            set
-            {
-                yField = value;
-                RaisePropertyChanged("Y");
-            }
-        }
-
-        /// <remarks />
-        [XmlAttribute]
-        public float Z
-        {
-            get { return zField; }
-            set
-            {
-                zField = value;
-                RaisePropertyChanged("Z");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if ((propertyChanged != null))
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        public float Z { get; set; }
     }
 }

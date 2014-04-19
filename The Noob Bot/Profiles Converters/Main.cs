@@ -94,7 +94,7 @@ public class Main : IProduct
                         }
                     }
                         // avoidmob dosn't gather a valid Entry yet.
-                        /*else if (value is AvoidMobs)
+                    else if (value is AvoidMobs)
                     {
                         AvoidMobs avoidMobs = value as AvoidMobs;
                         foreach (var avoidMob in avoidMobs.Items)
@@ -105,7 +105,7 @@ public class Main : IProduct
                             });
                             //Logging.Write(avoidMob.Entry + ";" + avoidMob.Name);
                         }
-                    }*/
+                    }
                     else if (value is Quest && (value as Quest).Id != null) // if id = null, then we are parsing the QuestOrder.
                     {
                         var quest = value as Quest;
@@ -204,78 +204,6 @@ public class Main : IProduct
                                         tnbProfile.Quests.Add(tmpQuest);
                                     }
                                 }
-                                /*
-                                            else
-                                            {
-                                                var tnbObjective = Objective.None;
-                                                if (objective.UseCount != null && Others.ToInt32(objective.UseCount) > 0)
-                                                {
-                                                    tnbObjective = Objective.UseItem;
-                                                }
-                                                else if (objective.KillCount != null && Others.ToInt32(objective.KillCount) > 0)
-                                                {
-                                                    tnbObjective = Objective.KillMob;
-                                                }
-                                                else if (objective.Type == objectiveTypeType.CollectItem)
-                                                {
-                                                    tnbObjective = Objective.KillMob;
-                                                }
-                                                else if (objective.Type == objectiveTypeType.UseObject)
-                                                {
-                                                    tnbObjective = Objective.PickUpObject;
-                                                }
-                                                else if (objective.Type == objectiveTypeType.TurnIn)
-                                                    tnbObjective = Objective.TurnInQuest;
-
-                                                int collectCount = objective.CollectCount != null ? Others.ToInt32(objective.CollectCount) : 0;
-                                                int collectItemId = objective.ItemId != null ? Others.ToInt32(objective.ItemId) : 0;
-                                                int killCount = objective.KillCount != null ? Convert.ToInt32(objective.KillCount) : 0;
-                                                int mobId = objective.MobId != null ? Convert.ToInt32(objective.MobId) : 0;
-                                                var tnbHotspots = new List<Point>();
-                                                if (objective.Items != null && objective.Items.Length == 1 && objective.ItemsElementName[0] == ItemsChoiceType3.Hotspots)
-                                                {
-                                                    var hotspotses = objective.Items[0] as point3dType[];
-                                                    if (hotspotses != null)
-                                                    {
-                                                        var tnbHotspot = new Point();
-                                                        foreach (point3dType hotspot in hotspotses)
-                                                        {
-                                                            tnbHotspot.X = hotspot.X;
-                                                            tnbHotspot.Y = hotspot.Y;
-                                                            tnbHotspot.Z = hotspot.Z;
-                                                            tnbHotspots.Add(tnbHotspot);
-                                                        }
-                                                    }
-                                                }
-                                                var tmpObjective = new QuestObjective
-                                                {
-                                                    CollectCount = collectCount,
-                                                    CollectItemId = collectItemId,
-                                                    Count = killCount,
-                                                    Entry = new List<int> {mobId,},
-                                                    Name = objective.Name,
-                                                    Objective = tnbObjective,
-                                                    Hotspots = tnbHotspots,
-                                                };
-                                                /*Logging.Write("Name: " + objective.Name);
-                                                Logging.Write("CollectCount: " + objective.CollectCount);
-                                                Logging.Write("ItemId: " + objective.ItemId);
-                                                Logging.Write("KillCount: " + objective.KillCount);
-                                                Logging.Write("MobId: " + objective.MobId);
-                                                Logging.Write("ObjectId: " + objective.ObjectId);
-                                                Logging.Write("Type: " + objective.Type);
-                                                Logging.Write("UseCount: " + objective.UseCount);
-                                                tmpQuest.Objectives.Add(tmpObjective);
-                                                tnbProfile.Quests.Add(tmpQuest);
-                                            }
-                                        }
-                                        if (qContent is turninObjectiveType)
-                                        {
-                                            continue;
-                                            var turninobjective = qContent as turninObjectiveType;
-                                            Logging.Write("TurnInObjectiveType: " + turninobjective.Nav + ";" + turninobjective.X + ";" + turninobjective.Y + ";" + turninobjective.Z);
-                                        }*/
-                                
                             }
                         }
                     }
@@ -283,107 +211,6 @@ public class Main : IProduct
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", tnbProfile);
             XmlSerializer.Serialize(Application.StartupPath + @"\test_HB_ReExtract.xml", hbProfile);
-            // subProfile = hbProfile;
-            /*HBProfile hbQuest = new HBProfile();
-            hbQuest.Vendors = new List<HBProfile.Vendor>
-            {
-                new HBProfile.Vendor {Id = 1, Name = "Vendor1", Type = "Food", X = 15, Y = -30, Z = 45.15}
-            };
-            hbQuest.Mailboxes = new List<HBProfile.Mailbox>
-            {
-                new HBProfile.Mailbox {X = 10, Y = 20.10, Z = 30.20}
-            };
-            hbQuest.Blackspots = new List<HBProfile.Blackspot>
-            {
-                new HBProfile.Blackspot
-                {
-                    Name = "Blackspot1",
-                    X = -1,
-                    Y = -1.2,
-                    Z = 1.3,
-                    Radius = 10,
-                    Height = 20
-                },
-                new HBProfile.Blackspot
-                {
-                    Name = "Blackspot2",
-                    X = 1,
-                    Y = 1.2,
-                    Z = -1.3,
-                    Radius = 10,
-                    Height = 20
-                },
-            };
-            hbQuest.AvoidMobs = new List<HBProfile.Mob>()
-            {
-                new HBProfile.Mob
-                {
-                    Id = 1,
-                    Name = "Mob1"
-                }
-            };
-            hbQuest.Quest = new List<HBProfile.QuestTemplate>();
-            var objectiveQuest1 = new List<HBProfile.QuestObjective>();
-            objectiveQuest1.Add(new HBProfile.QuestObjective()
-            {
-                Hotspots = new List<HBProfile.Hotspot>
-                {
-                    new HBProfile.Hotspot
-                    {
-                        X = 10,
-                        Y = 10,
-                        Z = 20
-                    },
-                },
-                KillCount = 20,
-                MobId = 100,
-                Type = HBProfile.ObjectiveType.ApplyBuff
-            });
-            objectiveQuest1.Add(new HBProfile.QuestObjective()
-            {
-                Hotspots = new List<HBProfile.Hotspot>
-                {
-                    new HBProfile.Hotspot
-                    {
-                        X = 20,
-                        Y = 20,
-                        Z = 10
-                    },
-                },
-                KillCount = 20,
-                MobId = 200,
-                Type = HBProfile.ObjectiveType.KillMob
-            });
-            var objectiveQuest2 = new List<HBProfile.QuestObjective>();
-            objectiveQuest2.Add(new HBProfile.QuestObjective()
-            {
-                Hotspots = new List<HBProfile.Hotspot>
-                {
-                    new HBProfile.Hotspot
-                    {
-                        X = 20,
-                        Y = 20,
-                        Z = 10
-                    },
-                },
-                KillCount = 20,
-                MobId = 200,
-                Type = HBProfile.ObjectiveType.KillMob
-            });
-            hbQuest.Quest.Add(new HBProfile.QuestTemplate
-            {
-                Id = 32,
-                Name = "Quest1",
-                Objective = objectiveQuest1,
-            });
-            hbQuest.Quest.Add(
-                new HBProfile.QuestTemplate
-                {
-                    Id = 23,
-                    Name = "Quest2",
-                    Objective = objectiveQuest2
-                });
-            XmlSerializer.Serialize(Application.StartupPath + @"\test.xml", hbQuest);*/
             formMain = new MainForm();
             formMain.Show();
             _isStarted = true;
