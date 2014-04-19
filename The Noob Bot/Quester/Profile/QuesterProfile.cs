@@ -149,8 +149,8 @@ namespace Quester.Profile
             return Factions != null && Factions.Count > 0;
         }
 
-        public int CollectItemId = 0;
-        public int CollectCount = 0;
+        [DefaultValue(0)] public int CollectItemId = 0;
+        [DefaultValue(0)] public int CollectCount = 0;
         public List<Point> Hotspots = new List<Point>();
 
         public bool ShouldSerializeHotspots()

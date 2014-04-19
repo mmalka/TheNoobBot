@@ -68,7 +68,8 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class CollectFrom : object
     {
-        [XmlElement("GameObject", typeof (gameObjectType), Form = XmlSchemaForm.Unqualified), XmlElement("Mob", typeof (mobObjectiveType), Form = XmlSchemaForm.Unqualified),
+        [XmlElement("Object", typeof (gameObjectType), Form = XmlSchemaForm.Unqualified), 
+        XmlElement("Mob", typeof (mobObjectiveType), Form = XmlSchemaForm.Unqualified),
          XmlElement("Vendor", typeof (vendorObjectiveType), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
     }
@@ -165,17 +166,14 @@ namespace Profiles_Converters.Converters
         [XmlElement("Hotspot", typeof (point3dType)), XmlElement("HuntingGrounds", typeof (CustomBehaviorHuntingGrounds), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
 
-
         [XmlAttribute]
         public string AllowBotStop { get; set; }
-
 
         [XmlAttribute]
         public byte AttackButton { get; set; }
 
         [XmlAttribute]
         public uint BuyItemId { get; set; }
-
 
         [XmlAttribute]
         public ushort CollectionDistance { get; set; }
@@ -189,26 +187,20 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string CollectUntil { get; set; }
 
-
         [XmlAttribute]
         public string DestName { get; set; }
-
 
         [XmlAttribute]
         public string DoRepair { get; set; }
 
-
         [XmlAttribute]
         public string DoMail { get; set; }
-
 
         [XmlAttribute]
         public string DoSell { get; set; }
 
-
         [XmlAttribute]
         public string File { get; set; }
-
 
         [XmlAttribute]
         public string GoalText { get; set; }
@@ -217,7 +209,7 @@ namespace Profiles_Converters.Converters
         public byte GossipOptions { get; set; }
 
         [XmlAttribute]
-        public booleanType GroundMountFarmingMode { get; set; }
+        public bool GroundMountFarmingMode { get; set; }
 
         [XmlAttribute]
         public byte HuntingGroundRadius { get; set; }
@@ -228,24 +220,20 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string IgnoreMobsInBlackspots { get; set; }
 
-
         [XmlAttribute]
         public ushort InteractByUsingItemId { get; set; }
 
         [XmlAttribute]
-        public booleanType KillBetweenHotspots { get; set; }
+        public bool KillBetweenHotspots { get; set; }
 
         [XmlAttribute]
         public string LogColor { get; set; }
 
-
         [XmlAttribute]
         public string Lua { get; set; }
 
-
         [XmlAttribute]
         public string Macro { get; set; }
-
 
         [XmlAttribute]
         public ushort MaxRange { get; set; }
@@ -268,7 +256,6 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public uint MobId3 { get; set; }
 
-
         [XmlAttribute]
         public uint MobId4 { get; set; }
 
@@ -281,10 +268,8 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string MobIds { get; set; }
 
-
         [XmlAttribute]
         public string MobState { get; set; }
-
 
         [XmlAttribute]
         public byte NonCompeteDistance { get; set; }
@@ -297,7 +282,6 @@ namespace Profiles_Converters.Converters
 
         [XmlAttribute]
         public string ObjectType { get; set; }
-
 
         [XmlAttribute]
         public string PreInteractMountStrategy { get; set; }
@@ -314,21 +298,17 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string SoundCue { get; set; }
 
-
         [XmlAttribute]
         public byte SoundCueInterval { get; set; }
 
         [XmlAttribute]
         public string Text { get; set; }
 
-
         [XmlAttribute]
         public string Type { get; set; }
 
-
         [XmlAttribute]
         public string UseType { get; set; }
-
 
         [XmlAttribute]
         public byte UseWhenMobHasHealthPercent { get; set; }

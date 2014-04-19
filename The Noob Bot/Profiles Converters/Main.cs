@@ -101,7 +101,8 @@ public class Main : IProduct
                         {
                             tnbProfile.AvoidMobs.Add(new Npc()
                             {
-                                Entry = Others.ToInt32(avoidMob.Entry), Name = avoidMob.Name
+                                Entry = (int) avoidMob.Id,
+                                Name = avoidMob.Name
                             });
                             //Logging.Write(avoidMob.Entry + ";" + avoidMob.Name);
                         }
@@ -149,7 +150,6 @@ public class Main : IProduct
                                     };
 
                                     tmpQuest.Objectives.Add(tmpObjective);
-                                    tnbProfile.Quests.Add(tmpQuest);
                                 }
                                 else if (objective.Type == objectiveTypeType.CollectItem)
                                 {
@@ -159,6 +159,8 @@ public class Main : IProduct
                                     if (objective.Items == null)
                                         return;
                                     var mobList = new List<int>();
+                                    var objList = new List<int>();
+                                    var vndList = new List<int>();
                                     for (int i2 = 0; i2 < objective.Items.Length; i2++)
                                     {
                                         if (objective.Items[i2] == null)
@@ -179,33 +181,57 @@ public class Main : IProduct
                                             var o = objective.Items[i2] as CollectFrom;
                                             if (o == null || o.Items == null || o.Items.Length <= 0)
                                                 continue;
-                                            foreach (object mob in o.Items)
+                                            foreach (object typeUnit in o.Items)
                                             {
-                                                if (mob is mobObjectiveType)
+                                                if (typeUnit is mobObjectiveType)
                                                 {
-                                                    var mo = mob as mobObjectiveType;
-                                                    if (mo.Id != null)
-                                                        mobList.Add(Others.ToInt32(mo.Id));
+                                                    var mob = typeUnit as mobObjectiveType;
+                                                    if (mob.Id != null)
+                                                        mobList.Add(Others.ToInt32(mob.Id));
                                                 }
-                                                else 
-                                                    return;
+                                                if (typeUnit is gameObjectType)
+                                                {
+                                                    var obj = typeUnit as gameObjectType;
+                                                    if (obj.Id != null)
+                                                        objList.Add(Others.ToInt32(obj.Id));
+                                                }
+                                                if (typeUnit is vendorObjectiveType)
+                                                {
+                                                    var vnd = typeUnit as vendorObjectiveType;
+                                                    if (vnd.Id != null)
+                                                        vndList.Add(Others.ToInt32(vnd.Id));
+                                                }
                                             }
                                         }
-                                        var tmpObjective = new QuestObjective
-                                        {
-                                            CollectCount = collectCount,
-                                            CollectItemId = collectItemId,
-                                            Entry = new List<int>(),
-                                            Objective = Objective.KillMob,
-                                            Hotspots = hotspotsList,
-                                        };
-                                    tmpObjective.Entry.AddRange(mobList);
-                                        tmpQuest.Objectives.Add(tmpObjective);
-                                        tnbProfile.Quests.Add(tmpQuest);
                                     }
+                                    var tmpObjective = new QuestObjective
+                                    {
+                                        CollectCount = collectCount,
+                                        CollectItemId = collectItemId,
+                                        Entry = new List<int>(),
+                                        Objective = Objective.KillMob,
+                                        Hotspots = hotspotsList,
+                                    };
+                                    if (objList.Count > 0 && mobList.Count <= 0)
+                                    {
+                                        tmpObjective.Entry = objList;
+                                        tmpObjective.Objective = Objective.PickUpObject;
+                                    }
+                                    else if (vndList.Count > 0 && mobList.Count <= 0)
+                                    {
+                                        tmpObjective.Entry = vndList;
+                                        tmpObjective.Objective = Objective.BuyItem;
+                                    }
+                                    else
+                                    {
+                                        tmpObjective.Entry = mobList;
+                                        tmpObjective.Objective = Objective.KillMob;
+                                    }
+                                    tmpQuest.Objectives.Add(tmpObjective);
                                 }
                             }
                         }
+                        tnbProfile.Quests.Add(tmpQuest);
                     }
                 }
             }
