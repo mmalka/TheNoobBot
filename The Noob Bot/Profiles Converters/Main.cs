@@ -47,6 +47,7 @@ public class Main : IProduct
     {
         try
         {
+            System.Diagnostics.Stopwatch timer = System.Diagnostics.Stopwatch.StartNew();
             var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[H - Quest] 85-86 The Jade Forest [Kick].xml");
             if (hbProfile.Items == null || !hbProfile.Items.Any())
             {
@@ -56,6 +57,9 @@ public class Main : IProduct
             if (count > hbProfile.ItemsElementName.Length)
                 count = hbProfile.ItemsElementName.Length;
             var tnbProfile = new QuesterProfile();
+            var tnbTmpNpcList = new List<Npc>();
+            var pickUpList = new List<KeyValuePair<int, uint>>(); // QuestId, Quest.PickUp
+            var turnInList = new List<KeyValuePair<int, uint>>(); // QuestId, Quest.TurnIn
             for (int i = 0; i < count; i++)
             {
                 ItemsChoiceType2 name = hbProfile.ItemsElementName[i];
@@ -83,7 +87,7 @@ public class Main : IProduct
                     if (value is Blackspots)
                     {
                         var blackspots = value as Blackspots;
-                        foreach (blackspotType blackspot in blackspots.Blackspot)
+                        foreach (BlackspotType blackspot in blackspots.Blackspot)
                         {
                             tnbProfile.Blackspots.Add(new QuesterBlacklistRadius
                             {
@@ -118,10 +122,10 @@ public class Main : IProduct
                             return;
                         foreach (object qContent in quest.Items)
                         {
-                            if (qContent is objectiveMetaType)
+                            if (qContent is ObjectiveMetaType)
                             {
-                                var objective = qContent as objectiveMetaType;
-                                if (objective.Type == objectiveTypeType.KillMob)
+                                var objective = qContent as ObjectiveMetaType;
+                                if (objective.Type == ObjectiveTypeType.KillMob)
                                 {
                                     int killCount = objective.KillCount != null ? Convert.ToInt32(objective.KillCount) : 0;
                                     int mobId = objective.MobId != null ? Convert.ToInt32(objective.MobId) : 0;
@@ -135,7 +139,7 @@ public class Main : IProduct
                                         var o = objective.Items[i2] as Hotspots;
                                         if (o == null || o.Hotspot == null)
                                             continue;
-                                        foreach (point3dType hot in o.Hotspot)
+                                        foreach (Point3DType hot in o.Hotspot)
                                         {
                                             var tnbPoint = new Point {X = hot.X, Y = hot.Y, Z = hot.Z};
                                             hotspotsList.Add(tnbPoint);
@@ -151,7 +155,7 @@ public class Main : IProduct
 
                                     tmpQuest.Objectives.Add(tmpObjective);
                                 }
-                                else if (objective.Type == objectiveTypeType.CollectItem)
+                                else if (objective.Type == ObjectiveTypeType.CollectItem)
                                 {
                                     int collectCount = objective.CollectCount != null ? Convert.ToInt32(objective.CollectCount) : 0;
                                     int collectItemId = objective.ItemId != null ? Convert.ToInt32(objective.ItemId) : 0;
@@ -170,7 +174,7 @@ public class Main : IProduct
                                             var o = objective.Items[i2] as Hotspots;
                                             if (o != null && o.Hotspot == null)
                                                 continue;
-                                            foreach (point3dType hot in o.Hotspot)
+                                            foreach (Point3DType hot in o.Hotspot)
                                             {
                                                 var tnbPoint = new Point {X = hot.X, Y = hot.Y, Z = hot.Z};
                                                 hotspotsList.Add(tnbPoint);
@@ -183,21 +187,21 @@ public class Main : IProduct
                                                 continue;
                                             foreach (object typeUnit in o.Items)
                                             {
-                                                if (typeUnit is mobObjectiveType)
+                                                if (typeUnit is MobObjectiveType)
                                                 {
-                                                    var mob = typeUnit as mobObjectiveType;
+                                                    var mob = typeUnit as MobObjectiveType;
                                                     if (mob.Id != null)
                                                         mobList.Add(Others.ToInt32(mob.Id));
                                                 }
-                                                if (typeUnit is gameObjectType)
+                                                if (typeUnit is GameObjectType)
                                                 {
-                                                    var obj = typeUnit as gameObjectType;
+                                                    var obj = typeUnit as GameObjectType;
                                                     if (obj.Id != null)
                                                         objList.Add(Others.ToInt32(obj.Id));
                                                 }
-                                                if (typeUnit is vendorObjectiveType)
+                                                if (typeUnit is VendorObjectiveType)
                                                 {
-                                                    var vnd = typeUnit as vendorObjectiveType;
+                                                    var vnd = typeUnit as VendorObjectiveType;
                                                     if (vnd.Id != null)
                                                         vndList.Add(Others.ToInt32(vnd.Id));
                                                 }
@@ -233,10 +237,72 @@ public class Main : IProduct
                         }
                         tnbProfile.Quests.Add(tmpQuest);
                     }
+                    else
+                    {
+                        if (value is QuestOrderType)
+                        {
+                            var questOrder = value as QuestOrderType;
+                            for (int j = 0; j < questOrder.Items.Length; j++)
+                            {
+                                var qOrder = questOrder.Items[j];
+                                if (qOrder is PickUp)
+                                {
+                                    var pickUp = qOrder as PickUp;
+                                    var tnbNpc = new Npc
+                                    {
+                                        Entry = (int)pickUp.GiverId,
+                                        Name = pickUp.GiverName,
+                                        Position = new Point { X = pickUp.X, Y = pickUp.Y, Z = pickUp.Z },
+                                    };
+                                    if (tnbNpc.Position.IsValid)
+                                        tnbTmpNpcList.Add(tnbNpc);
+                                    pickUpList.Add(new KeyValuePair<int, uint>((int)pickUp.QuestId, pickUp.GiverId));
+                                }
+                                else if (qOrder is TurnIn)
+                                {
+                                    var turnIn = qOrder as TurnIn;
+                                    var tnbNpc = new Npc
+                                    {
+                                        Entry = (int)turnIn.TurnInId,
+                                        Name = turnIn.TurnInName,
+                                        Position = new Point { X = turnIn.X, Y = turnIn.Y, Z = turnIn.Z },
+                                    };
+                                    if (tnbNpc.Position.IsValid)
+                                        tnbTmpNpcList.Add(tnbNpc);
+                                    turnInList.Add(new KeyValuePair<int, uint>((int)turnIn.QuestId, turnIn.TurnInId));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (pickUpList.Count > 0)
+            {
+                foreach (var tnbQuest in tnbProfile.Quests)
+                {
+                    foreach (var keyValuePair in pickUpList)
+                    {
+                        if (keyValuePair.Key == tnbQuest.Id)
+                        {
+                            tnbQuest.PickUp = (int)keyValuePair.Value;
+                        }
+                    }
+                }
+                foreach (var tmpNPC in tnbTmpNpcList)
+                {
+                    bool found = false;
+                    foreach (var npc in tnbProfile.Questers)
+                    {
+                        if (npc.Entry == tmpNPC.Entry && npc.Position.X == tmpNPC.Position.X)
+                            found = true;
+                    }
+                    if(!found)
+                        tnbProfile.Questers.Add(tmpNPC);
                 }
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", tnbProfile);
             XmlSerializer.Serialize(Application.StartupPath + @"\test_HB_ReExtract.xml", hbProfile);
+            MessageBox.Show(timer.ElapsedMilliseconds.ToString());
             formMain = new MainForm();
             formMain.Show();
             _isStarted = true;

@@ -6,15 +6,15 @@ using System.Xml.Serialization;
 namespace Profiles_Converters.Converters
 {
     [Serializable]
-    public class turninObjectiveType : object
+    public class TurninObjectiveType : object
     {
-        public turninObjectiveType()
+        public TurninObjectiveType()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public float X { get; set; }
@@ -28,10 +28,10 @@ namespace Profiles_Converters.Converters
 
 
     [Serializable]
-    public class objectiveMetaType : object
+    public class ObjectiveMetaType : object
     {
         [XmlElement("CollectFrom", typeof (CollectFrom)), XmlElement("Hotspots", typeof (Hotspots)), XmlElement("TargetMaxLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"),
-         XmlElement("TargetMinLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("TurnIn", typeof (turninObjectiveType), Form = XmlSchemaForm.Unqualified),
+         XmlElement("TargetMinLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("TurnIn", typeof (TurninObjectiveType), Form = XmlSchemaForm.Unqualified),
          XmlChoiceIdentifier("ItemsElementName")]
         public object[] Items { get; set; }
 
@@ -57,7 +57,7 @@ namespace Profiles_Converters.Converters
         public string ObjectId { get; set; }
 
         [XmlAttribute]
-        public objectiveTypeType Type { get; set; }
+        public ObjectiveTypeType Type { get; set; }
 
         [XmlAttribute(DataType = "positiveInteger")]
         public string UseCount { get; set; }
@@ -68,22 +68,22 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class CollectFrom : object
     {
-        [XmlElement("Object", typeof (gameObjectType), Form = XmlSchemaForm.Unqualified), 
-        XmlElement("Mob", typeof (mobObjectiveType), Form = XmlSchemaForm.Unqualified),
-         XmlElement("Vendor", typeof (vendorObjectiveType), Form = XmlSchemaForm.Unqualified)]
+        [XmlElement("Object", typeof (GameObjectType), Form = XmlSchemaForm.Unqualified), 
+        XmlElement("Mob", typeof (MobObjectiveType), Form = XmlSchemaForm.Unqualified),
+         XmlElement("Vendor", typeof (VendorObjectiveType), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
     }
 
     [Serializable]
-    public class gameObjectType : object
+    public class GameObjectType : object
     {
-        public gameObjectType()
+        public GameObjectType()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public string Name { get; set; }
@@ -95,15 +95,15 @@ namespace Profiles_Converters.Converters
 
 
     [Serializable]
-    public class mobObjectiveType : object
+    public class MobObjectiveType : object
     {
-        public mobObjectiveType()
+        public MobObjectiveType()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public string Name { get; set; }
@@ -119,15 +119,15 @@ namespace Profiles_Converters.Converters
 
 
     [Serializable]
-    public class vendorObjectiveType : object
+    public class VendorObjectiveType : object
     {
-        public vendorObjectiveType()
+        public VendorObjectiveType()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public string Name { get; set; }
@@ -150,7 +150,7 @@ namespace Profiles_Converters.Converters
 
 
     [Serializable]
-    public enum objectiveTypeType
+    public enum ObjectiveTypeType
     {
         TurnIn,
         CollectItem,
@@ -163,7 +163,7 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class CustomBehavior : object
     {
-        [XmlElement("Hotspot", typeof (point3dType)), XmlElement("HuntingGrounds", typeof (CustomBehaviorHuntingGrounds), Form = XmlSchemaForm.Unqualified)]
+        [XmlElement("Hotspot", typeof (Point3DType)), XmlElement("HuntingGrounds", typeof (CustomBehaviorHuntingGrounds), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
 
         [XmlAttribute]
@@ -337,7 +337,7 @@ namespace Profiles_Converters.Converters
     [XmlType(AnonymousType = true)]
     public class CustomBehaviorHuntingGrounds : object
     {
-        public point3dType Hotspot { get; set; }
+        public Point3DType Hotspot { get; set; }
 
 
         [XmlAttribute]
@@ -352,7 +352,7 @@ namespace Profiles_Converters.Converters
     {
         public MoveTo()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
 
@@ -364,8 +364,8 @@ namespace Profiles_Converters.Converters
         public uint QuestId { get; set; }
 
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
 
         [XmlAttribute]
@@ -388,7 +388,7 @@ namespace Profiles_Converters.Converters
     {
         public PickUp()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
 
@@ -400,8 +400,8 @@ namespace Profiles_Converters.Converters
         public string GiverName { get; set; }
 
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
 
         [XmlAttribute]
@@ -430,7 +430,7 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class Quest : object
     {
-        [XmlElement("Objective", typeof (objectiveMetaType), Form = XmlSchemaForm.Unqualified), XmlElement("TurnIn", typeof (turninObjectiveType), Form = XmlSchemaForm.Unqualified)]
+        [XmlElement("Objective", typeof (ObjectiveMetaType), Form = XmlSchemaForm.Unqualified), XmlElement("TurnIn", typeof (TurninObjectiveType), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
 
 
@@ -450,7 +450,7 @@ namespace Profiles_Converters.Converters
     {
         public TurnIn()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
 
@@ -462,8 +462,8 @@ namespace Profiles_Converters.Converters
         public uint TurnInId { get; set; }
 
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public string QuestName { get; set; }

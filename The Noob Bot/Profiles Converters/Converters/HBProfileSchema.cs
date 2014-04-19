@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.ComponentModel;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -10,18 +11,18 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class AvoidMobs : object
     {
-        [XmlElement("AvoidMob", typeof (mobType), Form = XmlSchemaForm.Unqualified), XmlElement("Mob", typeof (mobType), Form = XmlSchemaForm.Unqualified), XmlChoiceIdentifier("ItemsElementName")]
-        public mobType[] Items { get; set; }
+        [XmlElement("AvoidMob", typeof (MobType), Form = XmlSchemaForm.Unqualified), XmlElement("Mob", typeof (MobType), Form = XmlSchemaForm.Unqualified), XmlChoiceIdentifier("ItemsElementName")]
+        public MobType[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
         public ItemsChoiceType[] ItemsElementName { get; set; }
     }
 
 
-    [XmlInclude(typeof (blacklistMobType))]
-    [XmlInclude(typeof (avoidmobType))]
+    [XmlInclude(typeof (BlacklistMobType))]
+    [XmlInclude(typeof (AvoidmobType))]
     [Serializable]
-    public class mobType : object
+    public class MobType : object
     {
         [XmlAttribute]
         public string Name { get; set; }
@@ -31,66 +32,58 @@ namespace Profiles_Converters.Converters
     }
 
     [Serializable]
-    public class subProfileType : object
+    public class SubProfileType : object
     {
         [XmlElement("AvoidMobs", typeof (AvoidMobs)), XmlElement("Blacklist", typeof (Blacklist)), XmlElement("Blackspots", typeof (Blackspots)),
          XmlElement("ContinentId", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "nonNegativeInteger"), XmlElement("ForceMail", typeof (ForceMail)), XmlElement("GrindArea", typeof (GrindArea)),
-         XmlElement("Hotspots", typeof(Hotspots)), XmlElement("MailBlue", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailGreen", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MailGrey", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailPurple", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MailWhite", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Mailboxes", typeof(Mailboxes)),
+         XmlElement("Hotspots", typeof (Hotspots)), XmlElement("MailBlue", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailGreen", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("MailGrey", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailPurple", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("MailWhite", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Mailboxes", typeof (Mailboxes)),
          XmlElement("MaxLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("MinDurability", typeof (float), Form = XmlSchemaForm.Unqualified),
          XmlElement("MinFreeBagSlots", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "nonNegativeInteger"),
          XmlElement("MinLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("Name", typeof (string), Form = XmlSchemaForm.Unqualified),
-         XmlElement("ProtectedItems", typeof(ProtectedItems)), XmlElement("SellBlue", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("SellGreen", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellGrey", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("SellPurple", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellWhite", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("TargetElites", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Vendors", typeof(Vendors)), XmlElement("Quest", typeof(Quest)), XmlElement("QuestOrder", typeof(questOrderType)),
+         XmlElement("ProtectedItems", typeof (ProtectedItems)), XmlElement("SellBlue", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("SellGreen", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellGrey", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("SellPurple", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellWhite", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("TargetElites", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Vendors", typeof (Vendors)), XmlElement("Quest", typeof (Quest)),
+         XmlElement("QuestOrder", typeof (QuestOrderType)),
          XmlChoiceIdentifier("ItemsElementName")]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
         public ItemsChoiceType2[] ItemsElementName { get; set; }
     }
+
     [Serializable]
-    public class questOrderType : object
+    public class QuestOrderType : object
     {
-        [XmlElement("AvoidMobs", typeof(AvoidMobs)), XmlElement("Blacklist", typeof(Blacklist)), XmlElement("Blackspots", typeof(Blackspots)),
-         XmlElement("ContinentId", typeof(string), Form = XmlSchemaForm.Unqualified, DataType = "nonNegativeInteger"), XmlElement("ForceMail", typeof(ForceMail)), XmlElement("GrindArea", typeof(GrindArea)),
-         XmlElement("Hotspots", typeof(Hotspots)), XmlElement("MailBlue", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailGreen", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MailGrey", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailPurple", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MailWhite", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Mailboxes", typeof(Mailboxes)),
-         XmlElement("MaxLevel", typeof(string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("MinDurability", typeof(float), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MinFreeBagSlots", typeof(string), Form = XmlSchemaForm.Unqualified, DataType = "nonNegativeInteger"),
-         XmlElement("MinLevel", typeof(string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("Name", typeof(string), Form = XmlSchemaForm.Unqualified),
-         XmlElement("ProtectedItems", typeof(ProtectedItems)), XmlElement("SellBlue", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("SellGreen", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellGrey", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("SellPurple", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellWhite", typeof(Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("TargetElites", typeof(Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Vendors", typeof(Vendors)), XmlElement("Quest", typeof(Quest)), XmlElement("QuestOrder", typeof(Quest)),
-         XmlChoiceIdentifier("ItemsElementName")]
+        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof(TurnIn))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
-        public ItemsChoiceType2[] ItemsElementName { get; set; }
+        public ItemsChoiceType4[] ItemsElementName { get; set; }
     }
+
+    // <PickUp QuestName="Through the Dark Portal" QuestId="10119" GiverName="Watch Commander Relthorn Netherwane" GiverId="16841" X="-11814.47" Y="-3196.079" Z="-31.03" />
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class Blacklist : object
     {
         [XmlElement("Mob", Form = XmlSchemaForm.Unqualified)]
-        public blacklistMobType[] Mob { get; set; }
+        public BlacklistMobType[] Mob { get; set; }
     }
 
 
     [Serializable]
-    public class blacklistMobType : mobType
+    public class BlacklistMobType : MobType
     {
         [XmlAttribute]
-        public blacklistFlagsType Flags { get; set; }
+        public BlacklistFlagsType Flags { get; set; }
     }
 
     [Serializable]
-    public enum blacklistFlagsType
+    public enum BlacklistFlagsType
     {
         All,
         Combat,
@@ -106,13 +99,13 @@ namespace Profiles_Converters.Converters
     public class Blackspots : object
     {
         [XmlElement("Blackspot", Form = XmlSchemaForm.Unqualified)]
-        public blackspotType[] Blackspot { get; set; }
+        public BlackspotType[] Blackspot { get; set; }
     }
 
     [Serializable]
-    public class blackspotType : object
+    public class BlackspotType : object
     {
-        public blackspotType()
+        public BlackspotType()
         {
             Height = 0F;
         }
@@ -139,11 +132,11 @@ namespace Profiles_Converters.Converters
     public class ForceMail : object
     {
         [XmlElement("Item", Form = XmlSchemaForm.Unqualified)]
-        public itemType[] Items { get; set; }
+        public ItemType[] Items { get; set; }
     }
 
     [Serializable]
-    public class itemType : object
+    public class ItemType : object
     {
         [XmlAttribute]
         public string Name { get; set; }
@@ -175,12 +168,12 @@ namespace Profiles_Converters.Converters
     public class Hotspots : object
     {
         [XmlElement("Hotspot")]
-        public point3dType[] Hotspot { get; set; }
+        public Point3DType[] Hotspot { get; set; }
     }
 
     [Serializable]
     [XmlRoot("Hotspot", Namespace = "", IsNullable = false)]
-    public class point3dType : object
+    public class Point3DType : object
     {
         [XmlAttribute]
         public float X { get; set; }
@@ -214,20 +207,20 @@ namespace Profiles_Converters.Converters
     public class Mailboxes : object
     {
         [XmlElement("Mailbox", Form = XmlSchemaForm.Unqualified)]
-        public mailboxType[] Items { get; set; }
+        public MailboxType[] Items { get; set; }
     }
 
 
     [Serializable]
-    public class mailboxType : object
+    public class MailboxType : object
     {
-        public mailboxType()
+        public MailboxType()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public float X { get; set; }
@@ -241,7 +234,7 @@ namespace Profiles_Converters.Converters
 
 
     [Serializable]
-    public enum navType
+    public enum NavType
     {
         Fly,
         Run,
@@ -252,14 +245,8 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class ProtectedItems : object
     {
-        private itemType[] itemsField;
-
         [XmlElement("Item", Form = XmlSchemaForm.Unqualified)]
-        public itemType[] Items
-        {
-            get { return itemsField; }
-            set { itemsField = value; }
-        }
+        public ItemType[] Items { get; set; }
     }
 
 
@@ -268,24 +255,17 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class Vendors : object
     {
-        private vendorType[] itemsField;
-
-
         [XmlElement("Vendor", Form = XmlSchemaForm.Unqualified)]
-        public vendorType[] Items
-        {
-            get { return itemsField; }
-            set { itemsField = value; }
-        }
+        public VendorType[] Items { get; set; }
     }
 
 
     [Serializable]
-    public class vendorType : object
+    public class VendorType : object
     {
-        public vendorType()
+        public VendorType()
         {
-            Nav = navType.Run;
+            Nav = NavType.Run;
         }
 
         [XmlAttribute(DataType = "positiveInteger")]
@@ -297,11 +277,11 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string Name { get; set; }
 
-        [XmlAttribute, DefaultValue(navType.Run)]
-        public navType Nav { get; set; }
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
 
         [XmlAttribute]
-        public vendorTypeType Type { get; set; }
+        public VendorTypeType Type { get; set; }
 
         [XmlAttribute]
         public float X { get; set; }
@@ -315,12 +295,11 @@ namespace Profiles_Converters.Converters
 
 
     [Serializable]
-    public enum vendorTypeType
+    public enum VendorTypeType
     {
         Food,
         Repair,
     }
-
 
     [Serializable]
     [XmlType(IncludeInSchema = false)]
@@ -356,9 +335,18 @@ namespace Profiles_Converters.Converters
         QuestOrder
     }
 
+    [Serializable]
+    [XmlType(IncludeInSchema = false)]
+    public enum ItemsChoiceType4
+    {
+        Quest,
+        PickUp,
+        TurnIn
+    }
+
 
     [Serializable]
-    public class avoidmobType : mobType
+    public class AvoidmobType : MobType
     {
     }
 
@@ -374,9 +362,9 @@ namespace Profiles_Converters.Converters
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
-    public class HBProfile : subProfileType
+    public class HBProfile : SubProfileType
     {
         [XmlElement("SubProfile", Form = XmlSchemaForm.Unqualified)]
-        public subProfileType[] Items1 { get; set; }
+        public SubProfileType[] Items1 { get; set; }
     }
 }
