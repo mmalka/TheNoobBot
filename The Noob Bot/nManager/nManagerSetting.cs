@@ -220,7 +220,7 @@ namespace nManager
         public bool ActivateHerbsHarvesting = true;
         public float DontHarvestIfPlayerNearRadius = 10;
         public int DontHarvestIfMoreThanXUnitInAggroRange = 3;
-        public float GatheringSearchRadius = 100;
+        public float GatheringSearchRadius = 80;
         public bool HarvestDuringLongDistanceMovements;
         public bool ActivateAutoSmelting;
         public bool ActivateAutoProspecting;

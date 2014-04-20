@@ -394,7 +394,7 @@ namespace nManager.Helpful.Forms
             0,
             0});
             this.BroadcastingPort.Minimum = new decimal(new int[] {
-            1,
+            1024,
             0,
             0,
             0});
@@ -626,6 +626,11 @@ namespace nManager.Helpful.Forms
             this.MaxDistanceToGoToMailboxesOrNPCs.Location = new System.Drawing.Point(162, 76);
             this.MaxDistanceToGoToMailboxesOrNPCs.Minimum = new decimal(new int[] {
             1,
+            0,
+            0,
+            0});
+            this.MaxDistanceToGoToMailboxesOrNPCs.Maximum = new decimal(new int[] {
+            10000,
             0,
             0,
             0});
@@ -1011,6 +1016,10 @@ namespace nManager.Helpful.Forms
             1,
             0,
             0,
+            0}); this.StopTNBAfterXStucks.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
             0});
             this.StopTNBAfterXStucks.Name = "StopTNBAfterXStucks";
             this.StopTNBAfterXStucks.Size = new System.Drawing.Size(77, 22);
@@ -1037,6 +1046,11 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfReceivedAtMostXWhispers.Location = new System.Drawing.Point(162, 191);
             this.StopTNBIfReceivedAtMostXWhispers.Minimum = new decimal(new int[] {
             1,
+            0,
+            0,
+            0});
+            this.StopTNBIfReceivedAtMostXWhispers.Maximum = new decimal(new int[] {
+            100,
             0,
             0,
             0});
@@ -1232,6 +1246,10 @@ namespace nManager.Helpful.Forms
             this.SendMailWhenLessThanXSlotLeft.Location = new System.Drawing.Point(211, 79);
             this.SendMailWhenLessThanXSlotLeft.Minimum = new decimal(new int[] {
             1,
+            0,
+            0,
+            0}); this.SendMailWhenLessThanXSlotLeft.Maximum = new decimal(new int[] {
+            200,
             0,
             0,
             0});
@@ -1477,6 +1495,11 @@ namespace nManager.Helpful.Forms
             0,
             0,
             0});
+            this.SellItemsWhenLessThanXSlotLeft.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.SellItemsWhenLessThanXSlotLeft.Name = "SellItemsWhenLessThanXSlotLeft";
             this.SellItemsWhenLessThanXSlotLeft.Size = new System.Drawing.Size(41, 22);
             this.SellItemsWhenLessThanXSlotLeft.TabIndex = 39;
@@ -1491,7 +1514,7 @@ namespace nManager.Helpful.Forms
             this.RepairWhenDurabilityIsUnderPercent.ForeColor = System.Drawing.Color.Black;
             this.RepairWhenDurabilityIsUnderPercent.Location = new System.Drawing.Point(488, 110);
             this.RepairWhenDurabilityIsUnderPercent.Maximum = new decimal(new int[] {
-            99,
+            100,
             0,
             0,
             0});
@@ -1932,6 +1955,11 @@ namespace nManager.Helpful.Forms
             0,
             0,
             0});
+            this.TimeBetweenEachMillingAttempt.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.TimeBetweenEachMillingAttempt.Name = "TimeBetweenEachMillingAttempt";
             this.TimeBetweenEachMillingAttempt.Size = new System.Drawing.Size(77, 22);
             this.TimeBetweenEachMillingAttempt.TabIndex = 57;
@@ -2047,6 +2075,10 @@ namespace nManager.Helpful.Forms
             this.TimeBetweenEachProspectingAttempt.Location = new System.Drawing.Point(163, 354);
             this.TimeBetweenEachProspectingAttempt.Minimum = new decimal(new int[] {
             1,
+            0,
+            0,
+            0}); this.TimeBetweenEachProspectingAttempt.Maximum = new decimal(new int[] {
+            200,
             0,
             0,
             0});
@@ -2215,7 +2247,7 @@ namespace nManager.Helpful.Forms
             0,
             0});
             this.GatheringSearchRadius.Minimum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -2223,7 +2255,7 @@ namespace nManager.Helpful.Forms
             this.GatheringSearchRadius.Size = new System.Drawing.Size(77, 22);
             this.GatheringSearchRadius.TabIndex = 30;
             this.GatheringSearchRadius.Value = new decimal(new int[] {
-            35,
+            50,
             0,
             0,
             0});
@@ -2243,7 +2275,12 @@ namespace nManager.Helpful.Forms
             this.DontHarvestIfMoreThanXUnitInAggroRange.ForeColor = System.Drawing.Color.Black;
             this.DontHarvestIfMoreThanXUnitInAggroRange.Location = new System.Drawing.Point(163, 216);
             this.DontHarvestIfMoreThanXUnitInAggroRange.Minimum = new decimal(new int[] {
-            100,
+            0,
+            0,
+            0,
+            0});
+            this.DontHarvestIfMoreThanXUnitInAggroRange.Maximum = new decimal(new int[] {
+            10,
             0,
             0,
             0});
@@ -2251,7 +2288,7 @@ namespace nManager.Helpful.Forms
             this.DontHarvestIfMoreThanXUnitInAggroRange.Size = new System.Drawing.Size(77, 22);
             this.DontHarvestIfMoreThanXUnitInAggroRange.TabIndex = 28;
             this.DontHarvestIfMoreThanXUnitInAggroRange.Value = new decimal(new int[] {
-            100,
+            3,
             0,
             0,
             0});
@@ -2362,6 +2399,11 @@ namespace nManager.Helpful.Forms
             // 
             this.DontHarvestIfPlayerNearRadius.ForeColor = System.Drawing.Color.Black;
             this.DontHarvestIfPlayerNearRadius.Location = new System.Drawing.Point(163, 188);
+            this.DontHarvestIfPlayerNearRadius.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.DontHarvestIfPlayerNearRadius.Maximum = new decimal(new int[] {
             50,
             0,
