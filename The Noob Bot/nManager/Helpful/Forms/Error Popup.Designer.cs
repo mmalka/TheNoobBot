@@ -111,7 +111,7 @@ namespace nManager.Helpful.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ErrorPopup";
-            this.ShowIcon = false;
+            
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Error";

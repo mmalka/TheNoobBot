@@ -111,6 +111,7 @@ namespace Gatherer.Bot
             // 
             // LoadProfile
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.BackgroundImage = global::Gatherer.Properties.Resources.backgroundLoadProduct;
             this.ClientSize = new System.Drawing.Size(320, 172);
@@ -126,7 +127,7 @@ namespace Gatherer.Bot
             this.MaximizeBox = false;
             this.Name = "LoadProfile";
             this.Padding = new System.Windows.Forms.Padding(12);
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Load Grinder Profile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadProfile_FormClosing);

@@ -89,7 +89,7 @@ namespace Profiles_Converters
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profiles Converters";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form_FormClosing);

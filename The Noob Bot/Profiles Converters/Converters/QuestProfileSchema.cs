@@ -68,8 +68,8 @@ namespace Profiles_Converters.Converters
     [XmlRoot(Namespace = "", IsNullable = false)]
     public class CollectFrom : object
     {
-        [XmlElement("Object", typeof (GameObjectType), Form = XmlSchemaForm.Unqualified), 
-        XmlElement("Mob", typeof (MobObjectiveType), Form = XmlSchemaForm.Unqualified),
+        [XmlElement("Object", typeof (GameObjectType), Form = XmlSchemaForm.Unqualified),
+         XmlElement("Mob", typeof (MobObjectiveType), Form = XmlSchemaForm.Unqualified),
          XmlElement("Vendor", typeof (VendorObjectiveType), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
     }

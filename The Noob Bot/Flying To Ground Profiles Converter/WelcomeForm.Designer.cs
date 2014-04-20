@@ -112,7 +112,7 @@ namespace Flying_To_Ground_Profiles_Converter
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "WelcomeForm";
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Flying To Ground Profiles Converter";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form_FormClosing);

@@ -15,6 +15,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using The_Noob_Bot.Properties;
+using Math = System.Math;
 using Pulsator = nManager.Pulsator;
 
 namespace The_Noob_Bot
@@ -43,6 +44,14 @@ namespace The_Noob_Bot
                 TopMost = true;
             InitializeUI();
             Logging.Status = "Startup Complete";
+            using (Graphics g = CreateGraphics())
+            {
+                if (Math.Abs(g.DpiX - 96F) < 0.1)
+                {
+                    Logging.Write("There is a problem with your Windows Font Size configuration.");
+                    Logging.Write("Please set it to 100% size or you may have problems reading TheNoobBot's forms. hint: http://www.wikihow.com/Change-Font-Size-on-a-Computer");
+                }
+            }
         }
 
         private void InitializeBot()

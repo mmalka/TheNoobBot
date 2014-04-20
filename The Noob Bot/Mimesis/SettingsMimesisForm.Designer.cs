@@ -154,6 +154,7 @@ namespace Mimesis
             this.ClientSize = new System.Drawing.Size(320, 178);
             this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.ActivatePartyMode);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.ActivatePartyModeLabel);
             this.Controls.Add(this.SaveAndCloseButton);
             this.Controls.Add(this.MasterBotIPPortLabel);
@@ -166,7 +167,7 @@ namespace Mimesis
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SettingsMimesisForm";
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mimesis Settings";
             ((System.ComponentModel.ISupportInitialize)(this.MimesisMasterPort)).EndInit();

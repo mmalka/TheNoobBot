@@ -634,6 +634,7 @@ namespace Grinder.Profile
             this.Controls.Add(this.addZoneB);
             this.Controls.Add(this.ListOfZonesLabel);
             this.Controls.Add(this.listZoneCb);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.addByNameNpcB);
             this.Controls.Add(this.nameNpcTb);
             this.Controls.Add(this.loadB);
@@ -657,7 +658,7 @@ namespace Grinder.Profile
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "ProfileCreator";
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);

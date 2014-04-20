@@ -226,8 +226,8 @@ namespace Quester.Profile
             // 
             // ProfileManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 335);
@@ -253,7 +253,7 @@ namespace Quester.Profile
             this.MaximumSize = new System.Drawing.Size(575, 335);
             this.MinimumSize = new System.Drawing.Size(575, 335);
             this.Name = "ProfileManager";
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quester Profile Management System";
             this.ResumeLayout(false);

@@ -288,7 +288,7 @@ namespace Fisherbot
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SettingsFisherbotForm";
-            this.ShowIcon = false;
+            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings Fisherbot";
             this.ResumeLayout(false);

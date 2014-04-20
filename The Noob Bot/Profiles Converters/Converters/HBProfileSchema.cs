@@ -57,7 +57,7 @@ namespace Profiles_Converters.Converters
     [Serializable]
     public class QuestOrderType : object
     {
-        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof(TurnIn))]
+        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
