@@ -50,7 +50,7 @@ namespace nManager.Wow.Bot.Tasks
                     Point n = new Point(node.Position);
                     n.Z = n.Z + 2.5f;
                     Point n2 = new Point(n);
-                    n2.Z = n2.Z + 100;
+                    n2.Z = n2.Z + 30;
                     if (TraceLine.TraceLineGo(n2, n, CGWorldFrameHitFlags.HitTestAllButLiquid))
                     {
                         Logging.Write("Node stuck");
