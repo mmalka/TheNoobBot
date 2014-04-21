@@ -45,6 +45,9 @@ namespace Profiles_Converters.Converters
         public string ItemId { get; set; }
 
         [XmlAttribute(DataType = "positiveInteger")]
+        public string QuestId { get; set; }
+
+        [XmlAttribute(DataType = "positiveInteger")]
         public string KillCount { get; set; }
 
         [XmlAttribute(DataType = "positiveInteger")]
@@ -513,7 +516,7 @@ namespace Profiles_Converters.Converters
         public string Condition { get; set; }
 
         [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
-         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While))]
+         XmlElement("CustomBehavior", typeof(CustomBehavior)), XmlElement("If", typeof(If)), XmlElement("While", typeof(While)), XmlElement("Objective", typeof(ObjectiveMetaType)), XmlElement("MoveTo", typeof(MoveTo))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
@@ -529,7 +532,7 @@ namespace Profiles_Converters.Converters
         public string Condition { get; set; }
 
         [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
-         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While))]
+         XmlElement("CustomBehavior", typeof(CustomBehavior)), XmlElement("If", typeof(If)), XmlElement("Objective", typeof (ObjectiveMetaType)), XmlElement("While", typeof(While)), XmlElement("MoveTo", typeof(MoveTo))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]

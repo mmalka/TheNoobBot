@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.ComponentModel;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -58,7 +57,8 @@ namespace Profiles_Converters.Converters
     public class QuestOrderType : object
     {
         [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
-         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While))]
+         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("Objective", typeof (ObjectiveMetaType)), XmlElement("While", typeof (While)),
+         XmlElement("MoveTo", typeof (MoveTo))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
@@ -347,7 +347,9 @@ namespace Profiles_Converters.Converters
         TurnIn,
         CustomBehavior,
         If,
-        While
+        Objective,
+        While,
+        MoveTo
     }
 
 
