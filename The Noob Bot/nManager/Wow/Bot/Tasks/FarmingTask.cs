@@ -37,7 +37,7 @@ namespace nManager.Wow.Bot.Tasks
                 nodes = nodes.OrderBy(x => x.GetDistance).ToList();
                 foreach (WoWGameObject node in nodes.Where(node => node.IsValid))
                 {
-                    Logging.Write("Farm " + node.Name + " > " + node.Position);
+                    Logging.Write("Farm " + node.Name + " (" + node.Entry + ") > " + node.Position.X + "; " + node.Position.Y + "; " + node.Position.Z);
                     float zT;
                     Point pt = node.Position;
                     pt.Z = pt.Z + 1.5f;
