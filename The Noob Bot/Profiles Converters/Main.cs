@@ -8,6 +8,7 @@ using nManager.Products;
 using nManager.Wow.Class;
 using Profiles_Converters;
 using Profiles_Converters.Converters;
+using Profiles_Converters.WebParser;
 using Quester.Profile;
 using Quest = Profiles_Converters.Converters.Quest;
 
@@ -48,7 +49,7 @@ public class Main : IProduct
         try
         {
             System.Diagnostics.Stopwatch timer = System.Diagnostics.Stopwatch.StartNew();
-            var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[H - Quest] 85-86 The Jade Forest [Kick].xml");
+            var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] EK 12-58 [Kick].xml");
             if (hbProfile.Items == null || !hbProfile.Items.Any())
             {
                 return;
@@ -250,26 +251,26 @@ public class Main : IProduct
                                     var pickUp = qOrder as PickUp;
                                     var tnbNpc = new Npc
                                     {
-                                        Entry = (int)pickUp.GiverId,
+                                        Entry = (int) pickUp.GiverId,
                                         Name = pickUp.GiverName,
-                                        Position = new Point { X = pickUp.X, Y = pickUp.Y, Z = pickUp.Z },
+                                        Position = new Point {X = pickUp.X, Y = pickUp.Y, Z = pickUp.Z},
                                     };
                                     if (tnbNpc.Position.IsValid)
                                         tnbTmpNpcList.Add(tnbNpc);
-                                    pickUpList.Add(new KeyValuePair<int, uint>((int)pickUp.QuestId, pickUp.GiverId));
+                                    pickUpList.Add(new KeyValuePair<int, uint>((int) pickUp.QuestId, pickUp.GiverId));
                                 }
                                 else if (qOrder is TurnIn)
                                 {
                                     var turnIn = qOrder as TurnIn;
                                     var tnbNpc = new Npc
                                     {
-                                        Entry = (int)turnIn.TurnInId,
+                                        Entry = (int) turnIn.TurnInId,
                                         Name = turnIn.TurnInName,
-                                        Position = new Point { X = turnIn.X, Y = turnIn.Y, Z = turnIn.Z },
+                                        Position = new Point {X = turnIn.X, Y = turnIn.Y, Z = turnIn.Z},
                                     };
                                     if (tnbNpc.Position.IsValid)
                                         tnbTmpNpcList.Add(tnbNpc);
-                                    turnInList.Add(new KeyValuePair<int, uint>((int)turnIn.QuestId, turnIn.TurnInId));
+                                    turnInList.Add(new KeyValuePair<int, uint>((int) turnIn.QuestId, turnIn.TurnInId));
                                 }
                             }
                         }
@@ -282,12 +283,28 @@ public class Main : IProduct
                 {
                     foreach (var keyValuePair in pickUpList)
                     {
-                        if (keyValuePair.Key == tnbQuest.Id)
+                        if (keyValuePair.Key == tnbQuest.Id && tnbQuest.PickUp == 0)
                         {
-                            tnbQuest.PickUp = (int)keyValuePair.Value;
+                            tnbQuest.PickUp = (int) keyValuePair.Value;
                         }
                     }
                 }
+            }
+            if (turnInList.Count > 0)
+            {
+                foreach (var tnbQuest in tnbProfile.Quests)
+                {
+                    foreach (var keyValuePair in turnInList)
+                    {
+                        if (keyValuePair.Key == tnbQuest.Id && tnbQuest.TurnIn == 0)
+                        {
+                            tnbQuest.TurnIn = (int) keyValuePair.Value;
+                        }
+                    }
+                }
+            }
+            if (tnbTmpNpcList.Count > 0)
+            {
                 foreach (var tmpNPC in tnbTmpNpcList)
                 {
                     bool found = false;
@@ -296,8 +313,29 @@ public class Main : IProduct
                         if (npc.Entry == tmpNPC.Entry && npc.Position.X == tmpNPC.Position.X)
                             found = true;
                     }
-                    if(!found)
+                    if (!found)
                         tnbProfile.Questers.Add(tmpNPC);
+                }
+            }
+            List<Quester.Profile.Quest> questsToRemove = new List<Quester.Profile.Quest>();
+            foreach (Quester.Profile.Quest q in tnbProfile.Quests)
+            {
+                if (q.MinLevel == 0 || q.MaxLevel == 0 || q.QuestLevel == 0)
+                {
+                    var qInfo = WowHead.GetQuestObject(q.Id);
+                    if (!qInfo.IsValid)
+                    {
+                        questsToRemove.Add(q);
+                        continue;
+                    }
+                    q.MinLevel = qInfo.ReqMinLevel;
+                    q.MaxLevel = qInfo.ReqMaxLevel;
+                    q.QuestLevel = qInfo.Level;
+                    if (qInfo.Race != 0)
+                        q.RaceMask = qInfo.Race;
+                    if (qInfo.Classs != 0)
+                        q.ClassMask = qInfo.Classs;
+                    Logging.Write("Update quest: " + q.Name + "(" + q.Id + "), minLevel = " + q.MinLevel + ", maxLevel = " + q.MaxLevel + ", raceMask = " + q.RaceMask + ", classMask = " + q.ClassMask);
                 }
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", tnbProfile);
