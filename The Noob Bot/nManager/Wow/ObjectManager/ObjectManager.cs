@@ -1568,6 +1568,37 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitQuester(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcQuestGiver) list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitQuester(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitQuester()
+        {
+            try
+            {
+                return GetWoWUnitQuester(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitQuester(): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWPlayer> GetWoWUnitAlliance(List<WoWPlayer> listWoWUnit)
         {
             try

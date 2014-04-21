@@ -31,7 +31,7 @@ namespace Test_Product
         {
             int d;
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] {32638, 32639, 32641, 32642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
+            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006 });
             while (true)
             {
                 Thread.Sleep(1000);
@@ -45,6 +45,9 @@ namespace Test_Product
                 List<WoWUnit> SpiritHealers = ObjectManager.GetWoWUnitSpiritHealer();
                 List<WoWUnit> SpiritGuides = ObjectManager.GetWoWUnitSpiritGuide();
                 List<WoWUnit> NpcMailboxes = ObjectManager.GetWoWUnitMailbox();
+                List<Npc> npcRadarQuesters = new List<Npc>();
+                List<WoWUnit> NpcQuesters = ObjectManager.GetWoWUnitQuester();
+                List<WoWGameObject> ObjectQuesters = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver);
                 List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Chair);
                 foreach (WoWGameObject o in Mailboxes)
                 {
@@ -183,6 +186,30 @@ namespace Test_Product
                         Type = Npc.NpcType.Mailbox
                     });
                 }
+                foreach (WoWUnit n in NpcQuesters)
+                {
+                    npcRadarQuesters.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        Type = Npc.NpcType.QuestGiver
+                    });
+                }
+                foreach (WoWGameObject o in ObjectQuesters)
+                {
+                    npcRadarQuesters.Add(new Npc
+                    {
+                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        Entry = o.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
+                        Name = o.Name,
+                        Position = o.Position,
+                        Type = Npc.NpcType.QuestGiver
+                    });
+                }
                 foreach (WoWGameObject o in Forges)
                 {
                     Npc.NpcType newtype;
@@ -210,8 +237,64 @@ namespace Test_Product
                 d = NpcDB.AddNpcRange(npcRadar, true);
                 if (d > 0)
                     Logging.Write("Found " + d + " new NPCs/Mailboxes in memory");
+                d = AddQuesters(npcRadarQuesters, true);
+                if (d == 1)
+                    Logging.Write("Found " + d + " new Quest Giver in memory");
+                else if (d > 1)
+                    Logging.Write("Found " + d + " new Quest Givers in memory");
             }
         }
+
+        public static int AddQuesters(List<Npc> npcqList, bool neutralIfPossible = false)
+        {
+            int count = 0;
+            List<Npc> qesterList = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
+            if (qesterList == null)
+                qesterList = new List<Npc>();
+            for (int i = 0; i < npcqList.Count; i++)
+            {
+                Npc npc = npcqList[i];
+                if (npc.Name == null || npc.Name == "")
+                    continue;
+                bool found = false;
+                bool factionChange = false;
+                Npc oldNpc = new Npc();
+                for (int i2 = 0; i2 < qesterList.Count; i2++)
+                {
+                    Npc npc1 = qesterList[i2];
+                    if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 60)
+                    {
+                        found = true;
+                        if (npc1.Faction != npc.Faction && npc1.Faction != Npc.FactionType.Neutral)
+                        {
+                            if (neutralIfPossible)
+                                npc.Faction = Npc.FactionType.Neutral;
+                            oldNpc = npc1;
+                            factionChange = true;
+                        }
+                        break;
+                    }
+                }
+                if (found && factionChange)
+                {
+                    qesterList.Remove(oldNpc);
+                    qesterList.Add(npc);
+                    count++;
+                }
+                else if (!found)
+                {
+                    qesterList.Add(npc);
+                    count++;
+                }
+            }
+            if (count != 0)
+            {
+                qesterList.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
+                XmlSerializer.Serialize(Application.StartupPath + "\\Data\\QuestersDB.xml", qesterList);
+            }
+            return count;
+        }
+
 
         public static bool Pulse()
         {

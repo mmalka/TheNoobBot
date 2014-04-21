@@ -125,6 +125,7 @@ namespace nManager.Wow.Class
             Auctioneer,
             StableMaster,
             GuildBanker,
+            QuestGiver,
         }
     }
 }
