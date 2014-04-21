@@ -523,6 +523,7 @@ namespace nManager.Wow.Helpers
             return new List<Spell>();
         }
 
+        // Localized spell names
         private static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
 
         public static SpellInfoLua GetSpellInfo(uint id)
@@ -601,6 +602,7 @@ namespace nManager.Wow.Helpers
             return new SpellInfoLua();
         }
 
+        // Create a localized cache for spell names
         public static void SpellInfoCreateCache(List<uint> listId)
         {
             try
@@ -781,14 +783,16 @@ namespace nManager.Wow.Helpers
 
         public class SpellListManager
         {
+            // English spell dictionary (id, name)
             public static Dictionary<uint, string> ListSpell { get; private set; }
-            private static readonly object LoadSpellListeLock = new object();
+            private static readonly object LoadSpellListLock = new object();
 
-            internal static void LoadSpellListe(string fileName)
+            // Load data\spell.txt (English)
+            internal static void LoadSpellList(string fileName)
             {
                 try
                 {
-                    lock (LoadSpellListeLock)
+                    lock (LoadSpellListLock)
                     {
                         if (ListSpell == null)
                         {
@@ -823,6 +827,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
+            // Get the spell id using the provided English spell name
             public static List<uint> SpellIdByName(string spellName)
             {
                 lock ("SpellIdByName")
@@ -876,6 +881,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
+            // return an English spell name from the id
             public static string SpellNameById(UInt32 spellId)
             {
                 try

@@ -262,18 +262,33 @@ namespace The_Noob_Bot
             try
             {
                 SpellManager.SpellBook();
-
+                string EnUsName;
                 if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
                 {
-                    nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetFlyMountName();
+                    EnUsName = SpellManager.GetFlyMountName();
+                    if (EnUsName != "")
+                    {
+                        Spell temp = new Spell(EnUsName);
+                        nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetSpellInfo(temp.Id).Name;
+                    }
                 }
                 if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
                 {
-                    nManagerSetting.CurrentSetting.GroundMountName = SpellManager.GetMountName();
+                    EnUsName = SpellManager.GetMountName();
+                    if (EnUsName != "")
+                    {
+                        Spell temp = new Spell(EnUsName);
+                        nManagerSetting.CurrentSetting.GroundMountName = SpellManager.GetSpellInfo(temp.Id).Name;
+                    }
                 }
                 if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.AquaticMountName))
                 {
-                    nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
+                    EnUsName = SpellManager.GetAquaticMountName();
+                    if (EnUsName != "")
+                    {
+                        Spell temp = new Spell(EnUsName);
+                        nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetSpellInfo(temp.Id).Name;
+                    }
                 }
                 var items = new List<string>();
                 List<WoWItem> itemsBag = Bag.GetBagItem();
