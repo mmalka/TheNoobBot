@@ -57,14 +57,14 @@ namespace Profiles_Converters.Converters
     [Serializable]
     public class QuestOrderType : object
     {
-        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn))]
+        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
+         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
         public ItemsChoiceType4[] ItemsElementName { get; set; }
     }
 
-    // <PickUp QuestName="Through the Dark Portal" QuestId="10119" GiverName="Watch Commander Relthorn Netherwane" GiverId="16841" X="-11814.47" Y="-3196.079" Z="-31.03" />
     [Serializable]
     [XmlType(AnonymousType = true)]
     [XmlRoot(Namespace = "", IsNullable = false)]
@@ -219,6 +219,9 @@ namespace Profiles_Converters.Converters
             Nav = NavType.Run;
         }
 
+        [XmlAttribute]
+        public string Name { get; set; }
+
         [XmlAttribute, DefaultValue(NavType.Run)]
         public NavType Nav { get; set; }
 
@@ -341,7 +344,10 @@ namespace Profiles_Converters.Converters
     {
         Quest,
         PickUp,
-        TurnIn
+        TurnIn,
+        CustomBehavior,
+        If,
+        While
     }
 
 

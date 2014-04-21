@@ -60,6 +60,7 @@ public class Main : IProduct
             var tnbProfile = new QuesterProfile();
             var tnbTmpNpcList = new List<Npc>();
             var pickUpList = new List<KeyValuePair<int, uint>>(); // QuestId, Quest.PickUp
+            var itemPickUpList = new List<KeyValuePair<int, uint>>(); // QuestId, Quest.ItemPickUp 
             var turnInList = new List<KeyValuePair<int, uint>>(); // QuestId, Quest.TurnIn
             for (int i = 0; i < count; i++)
             {
@@ -257,7 +258,10 @@ public class Main : IProduct
                                     };
                                     if (tnbNpc.Position.IsValid)
                                         tnbTmpNpcList.Add(tnbNpc);
-                                    pickUpList.Add(new KeyValuePair<int, uint>((int) pickUp.QuestId, pickUp.GiverId));
+                                    if (pickUp.GiverType == "Item")
+                                        itemPickUpList.Add(new KeyValuePair<int, uint>((int) pickUp.QuestId, pickUp.GiverId));
+                                    else
+                                        pickUpList.Add(new KeyValuePair<int, uint>((int) pickUp.QuestId, pickUp.GiverId));
                                 }
                                 else if (qOrder is TurnIn)
                                 {
@@ -290,6 +294,19 @@ public class Main : IProduct
                     }
                 }
             }
+            if (itemPickUpList.Count > 0)
+            {
+                foreach (var tnbQuest in tnbProfile.Quests)
+                {
+                    foreach (var keyValuePair in itemPickUpList)
+                    {
+                        if (keyValuePair.Key == tnbQuest.Id && tnbQuest.ItemPickUp == 0)
+                        {
+                            tnbQuest.ItemPickUp = (int) keyValuePair.Value;
+                        }
+                    }
+                }
+            }
             if (turnInList.Count > 0)
             {
                 foreach (var tnbQuest in tnbProfile.Quests)
@@ -317,7 +334,7 @@ public class Main : IProduct
                         tnbProfile.Questers.Add(tmpNPC);
                 }
             }
-            List<Quester.Profile.Quest> questsToRemove = new List<Quester.Profile.Quest>();
+            /*List<Quester.Profile.Quest> questsToRemove = new List<Quester.Profile.Quest>();
             foreach (Quester.Profile.Quest q in tnbProfile.Quests)
             {
                 if (q.MinLevel == 0 || q.MaxLevel == 0 || q.QuestLevel == 0)
@@ -337,7 +354,7 @@ public class Main : IProduct
                         q.ClassMask = qInfo.Classs;
                     Logging.Write("Update quest: " + q.Name + "(" + q.Id + "), minLevel = " + q.MinLevel + ", maxLevel = " + q.MaxLevel + ", raceMask = " + q.RaceMask + ", classMask = " + q.ClassMask);
                 }
-            }
+            }*/
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", tnbProfile);
             XmlSerializer.Serialize(Application.StartupPath + @"\test_HB_ReExtract.xml", hbProfile);
             MessageBox.Show(timer.ElapsedMilliseconds.ToString());

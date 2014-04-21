@@ -1,15 +1,9 @@
-﻿//required namespaces
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using nManager.Helpful;
-using Profiles_Converters.Converters;
 
 namespace Profiles_Converters.WebParser
 {
@@ -102,7 +96,6 @@ namespace Profiles_Converters.WebParser
             int stop4 = result3.IndexOf(end4, start4, StringComparison.Ordinal);
             string result4 = result3.Substring(start4, stop4 - start4);
 
-            // tMarkup.printHtml('
             QuestInfo qInfo = new QuestInfo();
             var qObject = JsonConvert.DeserializeObject<RootObject>(result);
             qInfo.Category = qObject.category;

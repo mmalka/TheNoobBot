@@ -166,168 +166,253 @@ namespace Profiles_Converters.Converters
         [XmlElement("Hotspot", typeof (Point3DType)), XmlElement("HuntingGrounds", typeof (CustomBehaviorHuntingGrounds), Form = XmlSchemaForm.Unqualified)]
         public object[] Items { get; set; }
 
-        [XmlAttribute]
-        public string AllowBotStop { get; set; }
-
-        [XmlAttribute]
-        public byte AttackButton { get; set; }
-
-        [XmlAttribute]
-        public uint BuyItemId { get; set; }
-
-        [XmlAttribute]
-        public ushort CollectionDistance { get; set; }
-
-        [XmlAttribute]
-        public byte CollectItemCount { get; set; }
-
-        [XmlAttribute]
-        public ushort CollectItemId { get; set; }
-
-        [XmlAttribute]
-        public string CollectUntil { get; set; }
-
-        [XmlAttribute]
-        public string DestName { get; set; }
-
-        [XmlAttribute]
-        public string DoRepair { get; set; }
-
-        [XmlAttribute]
-        public string DoMail { get; set; }
-
-        [XmlAttribute]
-        public string DoSell { get; set; }
-
+        [DefaultValue("")]
         [XmlAttribute]
         public string File { get; set; }
 
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string AllowBotStop { get; set; }
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string Names { get; set; }
+
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string ProfileName { get; set; }
+
+
+        [DefaultValue(0)]
+        [XmlAttribute]
+        public byte AttackButton { get; set; }
+
+        [DefaultValue(0)]
+        [XmlAttribute]
+        public uint BuyItemId { get; set; }
+
+        [DefaultValue(0)]
+        [XmlAttribute]
+        public ushort CollectionDistance { get; set; }
+
+        [DefaultValue(0)]
+        [XmlAttribute]
+        public byte CollectItemCount { get; set; }
+
+        [DefaultValue(0)]
+        [XmlAttribute]
+        public ushort CollectItemId { get; set; }
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string CollectUntil { get; set; }
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string DestName { get; set; }
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string DoRepair { get; set; }
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string DoMail { get; set; }
+
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string DoSell { get; set; }
+
+        [DefaultValue("")]
         [XmlAttribute]
         public string GoalText { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public byte GossipOptions { get; set; }
 
+        [DefaultValue(false)]
         [XmlAttribute]
         public bool GroundMountFarmingMode { get; set; }
 
+        [DefaultValue(false)]
+        [XmlAttribute]
+        public bool AllowBrokenPlugIns { get; set; }
+
+        [DefaultValue(false)]
+        [XmlAttribute]
+        public bool AllowBrokenAddOns { get; set; }
+
+        [DefaultValue(false)]
+        [XmlAttribute]
+        public bool AutoEquip { get; set; }
+
+        [DefaultValue(false)]
+        [XmlAttribute(AttributeName = "state")]
+        public bool State { get; set; }
+
+        [DefaultValue(0)]
         [XmlAttribute]
         public byte HuntingGroundRadius { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
-        public ushort Ids { get; set; }
+        public string Ids { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string IgnoreMobsInBlackspots { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public ushort InteractByUsingItemId { get; set; }
 
+        [DefaultValue("")]
+        [XmlAttribute]
+        public string InteractByGossipOptions { get; set; }
+
+        [DefaultValue(false)]
         [XmlAttribute]
         public bool KillBetweenHotspots { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string LogColor { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string Lua { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string Macro { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public ushort MaxRange { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public ushort MaxRangeToUseItem { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public ushort MinRange { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId1 { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId2 { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId3 { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId4 { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId5 { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint MobId6 { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string MobIds { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string MobState { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public byte NonCompeteDistance { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
-        public byte NumOfTimes { get; set; }
+        public uint NumOfTimes { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint ObjectId { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string ObjectType { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string PreInteractMountStrategy { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint QuestId { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public byte QuestObjectiveIndex { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
-        public byte Range { get; set; }
+        public float Range { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string SoundCue { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public byte SoundCueInterval { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string Text { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string Type { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string UseType { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public byte UseWhenMobHasHealthPercent { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public ushort VehicleMountId { get; set; }
 
+        [DefaultValue("")]
         [XmlAttribute]
         public string WaitForNpcs { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public uint WaitTime { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public decimal X { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public decimal Y { get; set; }
 
+        [DefaultValue(0)]
         [XmlAttribute]
         public decimal Z { get; set; }
     }
@@ -391,39 +476,65 @@ namespace Profiles_Converters.Converters
             Nav = NavType.Run;
         }
 
-
         [XmlAttribute]
         public uint GiverId { get; set; }
-
 
         [XmlAttribute]
         public string GiverName { get; set; }
 
-
         [XmlAttribute, DefaultValue(NavType.Run)]
         public NavType Nav { get; set; }
-
 
         [XmlAttribute]
         public string QuestName { get; set; }
 
-
         [XmlAttribute]
         public uint QuestId { get; set; }
-
 
         [XmlAttribute]
         public float X { get; set; }
 
-
         [XmlAttribute]
         public float Y { get; set; }
 
-
         [XmlAttribute]
         public float Z { get; set; }
+
+        [XmlAttribute]
+        public string GiverType { get; set; }
     }
 
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    [XmlRoot(Namespace = "", IsNullable = false)]
+    public class While : object
+    {
+        [XmlAttribute]
+        public string Condition { get; set; }
+
+        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
+         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While))]
+        public object[] Items { get; set; }
+
+        [XmlElement("ItemsElementName"), XmlIgnore]
+        public ItemsChoiceType4[] ItemsElementName { get; set; }
+    }
+
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    [XmlRoot(Namespace = "", IsNullable = false)]
+    public class If : object
+    {
+        [XmlAttribute]
+        public string Condition { get; set; }
+
+        [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
+         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While))]
+        public object[] Items { get; set; }
+
+        [XmlElement("ItemsElementName"), XmlIgnore]
+        public ItemsChoiceType4[] ItemsElementName { get; set; }
+    }
 
     [Serializable]
     [XmlType(AnonymousType = true)]
