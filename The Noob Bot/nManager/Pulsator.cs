@@ -21,7 +21,7 @@ namespace nManager
                 if (MD5Key != _tempSecretKey)
                     return;
 
-                SpellManager.SpellListManager.LoadSpellListe(Application.StartupPath + "\\Data\\spell.txt");
+                SpellManager.SpellListManager.LoadSpellList(Application.StartupPath + "\\Data\\spell.txt");
                 Wow.Memory.WowProcess = new Process(processId);
                 Wow.Memory.WowMemory = new Hook();
                 if (Wow.Helpers.Usefuls.WowVersion == Information.TargetWowBuild)
