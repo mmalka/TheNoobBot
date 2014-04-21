@@ -46,7 +46,7 @@ namespace The_Noob_Bot
             Logging.Status = "Startup Complete";
             using (Graphics g = CreateGraphics())
             {
-                if (Math.Abs(g.DpiX - 96F) < 0.1)
+                if (Math.Abs(g.DpiX - 96F) > 0.1)
                 {
                     Logging.Write("There is a problem with your Windows Font Size configuration.");
                     Logging.Write("Please set it to 100% size or you may have problems reading TheNoobBot's forms. hint: http://www.wikihow.com/Change-Font-Size-on-a-Computer");
