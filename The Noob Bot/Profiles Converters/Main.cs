@@ -221,9 +221,24 @@ public class Main : IProduct
                     q.QuestLevel = qInfo.Level;
                     if (qInfo.Race != 0)
                         q.RaceMask = qInfo.Race;
+                    else if (qInfo.Side != 0 && q.RaceMask == 0)
+                    {
+                        if (qInfo.Side == 1)
+                        {
+                            q.RaceMask = 16778317;
+                        }
+                        else if (qInfo.Side == 2)
+                        {
+                            q.RaceMask = 33555378; 
+                        }
+                        else if (qInfo.Side == 3)
+                        {
+                            q.RaceMask = 50333695; // or not set
+                        }
+                    }
                     if (qInfo.Classs != 0)
                         q.ClassMask = qInfo.Classs;
-                    Logging.Write("Update quest: " + q.Name + "(" + q.Id + "), minLevel = " + q.MinLevel + ", maxLevel = " + q.MaxLevel + ", raceMask = " + q.RaceMask + ", classMask = " + q.ClassMask);
+                    Logging.Write("Update quest: " + q.Name + "(" + q.Id + "), questLevel = " + q.QuestLevel + ", minLevel = " + q.MinLevel + ", maxLevel = " + q.MaxLevel + ", raceMask = " + q.RaceMask + ", classMask = " + q.ClassMask);
                 }
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", _tnbProfile);
