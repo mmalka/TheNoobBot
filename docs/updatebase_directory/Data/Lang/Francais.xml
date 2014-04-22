@@ -1264,7 +1264,7 @@
     </Translation>
     <Translation>
       <Id>WoW_Client_64bit</Id>
-      <Text>Erreur : World of Warcraft 64bit trouvé Attention: TheNoobBot n'est pas compatible avec Wow x64. Merci de supprimer ou renommer le fichier WoW-64.exe du dossier du jeu.</Text>
+      <Text>Erreur : World of Warcraft 64bit trouvé Attention: TheNoobBot n'est pas compatible avec Wow x64. Merci d'utiliser l'option "Lancer le client 32-bit" dans les préférences de jeu du client Battle.net.</Text>
     </Translation>
     <Translation>
       <Id>Title_WoW_Client_64bit</Id>

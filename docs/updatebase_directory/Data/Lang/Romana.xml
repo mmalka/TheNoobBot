@@ -1263,7 +1263,7 @@
     </Translation>
     <Translation>
       <Id>WoW_Client_64bit</Id>
-      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please Use option: "Launch 32-bit client (instead of 64-bit)" in the Game Settings of Battle.net client.</Text>
     </Translation>
     <Translation>
       <Id>Title_WoW_Client_64bit</Id>
