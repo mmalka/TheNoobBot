@@ -23,11 +23,25 @@ namespace Profiles_Converters.Converters
     [Serializable]
     public class MobType : object
     {
+        private uint _entryId;
+
         [XmlAttribute]
         public string Name { get; set; }
 
-        [XmlAttribute]
-        public uint Id { get; set; }
+        [XmlIgnore]
+        [XmlAttribute("Id")]
+        public uint Id // alias for reading
+        {
+            get { return _entryId; }
+            set { _entryId = value; }
+        }
+
+        [XmlAttribute("Entry")]
+        public uint Entry // force write Entry only
+        {
+            get { return _entryId; }
+            set { _entryId = value; }
+        }
     }
 
     [Serializable]
@@ -120,11 +134,8 @@ namespace Profiles_Converters.Converters
             Height = 0F;
         }
 
-        [XmlAttribute, DefaultValue(typeof (float), "0")]
-        public float Height { get; set; }
-
-        [XmlAttribute]
-        public float Radius { get; set; }
+        [XmlAttribute, DefaultValue("")]
+        public string Name { get; set; }
 
         [XmlAttribute]
         public float X { get; set; }
@@ -134,6 +145,12 @@ namespace Profiles_Converters.Converters
 
         [XmlAttribute]
         public float Z { get; set; }
+
+        [XmlAttribute]
+        public float Radius { get; set; }
+
+        [XmlAttribute, DefaultValue(typeof (float), "0")]
+        public float Height { get; set; }
     }
 
     [Serializable]
@@ -281,17 +298,14 @@ namespace Profiles_Converters.Converters
             Nav = NavType.Run;
         }
 
+        [XmlAttribute]
+        public string Name { get; set; }
+
         [XmlAttribute(DataType = "positiveInteger")]
         public string Entry { get; set; }
 
         [XmlAttribute(DataType = "positiveInteger")]
         public string Entry2 { get; set; }
-
-        [XmlAttribute]
-        public string Name { get; set; }
-
-        [XmlAttribute, DefaultValue(NavType.Run)]
-        public NavType Nav { get; set; }
 
         [XmlAttribute]
         public VendorTypeType Type { get; set; }
@@ -304,6 +318,9 @@ namespace Profiles_Converters.Converters
 
         [XmlAttribute]
         public float Z { get; set; }
+
+        [XmlAttribute, DefaultValue(NavType.Run)]
+        public NavType Nav { get; set; }
     }
 
 
