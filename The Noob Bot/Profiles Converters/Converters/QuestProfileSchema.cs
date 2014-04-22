@@ -237,23 +237,23 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(false)]
         [XmlAttribute]
-        public bool GroundMountFarmingMode { get; set; }
+        public AdvancedBoolean GroundMountFarmingMode { get; set; }
 
         [DefaultValue(false)]
         [XmlAttribute]
-        public bool AllowBrokenPlugIns { get; set; }
+        public AdvancedBoolean AllowBrokenPlugIns { get; set; }
 
         [DefaultValue(false)]
         [XmlAttribute]
-        public bool AllowBrokenAddOns { get; set; }
+        public AdvancedBoolean AllowBrokenAddOns { get; set; }
 
         [DefaultValue(false)]
         [XmlAttribute]
-        public bool AutoEquip { get; set; }
+        public AdvancedBoolean AutoEquip { get; set; }
 
         [DefaultValue(false)]
         [XmlAttribute(AttributeName = "state")]
-        public bool State { get; set; }
+        public AdvancedBoolean State { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
@@ -277,7 +277,7 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(false)]
         [XmlAttribute]
-        public bool KillBetweenHotspots { get; set; }
+        public AdvancedBoolean KillBetweenHotspots { get; set; }
 
         [DefaultValue("")]
         [XmlAttribute]

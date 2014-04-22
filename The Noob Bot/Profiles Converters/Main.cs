@@ -55,7 +55,7 @@ public class Main : IProduct
         try
         {
             Stopwatch timer = Stopwatch.StartNew();
-            var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] EK 12-58 [Kick].xml");
+            var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] 85-86 The Jade Forest [Kick].xml");
             if (hbProfile.Items == null || !hbProfile.Items.Any())
             {
                 return;

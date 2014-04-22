@@ -35,22 +35,29 @@ namespace Profiles_Converters.Converters
     {
         [XmlElement("AvoidMobs", typeof (AvoidMobs)), XmlElement("Blacklist", typeof (Blacklist)), XmlElement("Blackspots", typeof (Blackspots)),
          XmlElement("ContinentId", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "nonNegativeInteger"), XmlElement("ForceMail", typeof (ForceMail)), XmlElement("GrindArea", typeof (GrindArea)),
-         XmlElement("Hotspots", typeof (Hotspots)), XmlElement("MailBlue", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailGreen", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MailGrey", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailPurple", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("MailWhite", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Mailboxes", typeof (Mailboxes)),
+         XmlElement("Hotspots", typeof(Hotspots)), XmlElement("MailBlue", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailGreen", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("MailGrey", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified), XmlElement("MailPurple", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("MailWhite", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified), XmlElement("Mailboxes", typeof(Mailboxes)),
          XmlElement("MaxLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("MinDurability", typeof (float), Form = XmlSchemaForm.Unqualified),
          XmlElement("MinFreeBagSlots", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "nonNegativeInteger"),
          XmlElement("MinLevel", typeof (string), Form = XmlSchemaForm.Unqualified, DataType = "positiveInteger"), XmlElement("Name", typeof (string), Form = XmlSchemaForm.Unqualified),
-         XmlElement("ProtectedItems", typeof (ProtectedItems)), XmlElement("SellBlue", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("SellGreen", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellGrey", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("SellPurple", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellWhite", typeof (Boolean), Form = XmlSchemaForm.Unqualified),
-         XmlElement("TargetElites", typeof (Boolean), Form = XmlSchemaForm.Unqualified), XmlElement("Vendors", typeof (Vendors)), XmlElement("Quest", typeof (Quest)),
+         XmlElement("ProtectedItems", typeof(ProtectedItems)), XmlElement("SellBlue", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("SellGreen", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellGrey", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("SellPurple", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified), XmlElement("SellWhite", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified),
+         XmlElement("TargetElites", typeof(AdvancedBoolean), Form = XmlSchemaForm.Unqualified), XmlElement("Vendors", typeof(Vendors)), XmlElement("Quest", typeof(Quest)),
          XmlElement("QuestOrder", typeof (QuestOrderType)),
          XmlChoiceIdentifier("ItemsElementName")]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
         public ItemsChoiceType2[] ItemsElementName { get; set; }
+    }
+
+    [Serializable]
+    public enum AdvancedBoolean : uint
+    {
+        True = 1,
+        False = 0,
     }
 
     [Serializable]
