@@ -195,7 +195,7 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort CollectionDistance { get; set; }
+        public uint CollectionDistance { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
@@ -203,7 +203,7 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort CollectItemId { get; set; }
+        public uint CollectItemId { get; set; }
 
         [DefaultValue("")]
         [XmlAttribute]
@@ -267,7 +267,7 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort InteractByUsingItemId { get; set; }
+        public uint InteractByUsingItemId { get; set; }
 
         [DefaultValue("")]
         [XmlAttribute]
@@ -291,15 +291,15 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort MaxRange { get; set; }
+        public uint MaxRange { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort MaxRangeToUseItem { get; set; }
+        public uint MaxRangeToUseItem { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort MinRange { get; set; }
+        public uint MinRange { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
@@ -395,7 +395,7 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public ushort VehicleMountId { get; set; }
+        public uint VehicleMountId { get; set; }
 
         [DefaultValue("")]
         [XmlAttribute]

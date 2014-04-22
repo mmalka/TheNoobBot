@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using Newtonsoft.Json;
 using nManager.Helpful;
 
@@ -9,38 +10,9 @@ namespace Profiles_Converters.WebParser
 {
     internal class WowHead
     {
-        public class QuestInfo
-        {
-            public QuestInfo()
-            {
-                IsValid = false;
-            }
-
-            public bool IsValid { get; set; }
-            public int Category { get; set; }
-            public int Category2 { get; set; }
-            public int Classs { get; set; }
-            public int Id { get; set; }
-            public List<List<int>> Itemchoices { get; set; }
-            public List<List<int>> Itemrewards { get; set; }
-            public int Level { get; set; }
-            public int Money { get; set; }
-            public string Name { get; set; }
-            public int Race { get; set; }
-            public List<List<int>> Reprewards { get; set; }
-            public int Reqclass { get; set; }
-            public int ReqMinLevel { get; set; }
-            public int ReqMaxLevel { get; set; }
-            public int Reqrace { get; set; }
-            public int Side { get; set; }
-            public int Wflags { get; set; }
-            public int Type { get; set; }
-            public int XP { get; set; }
-        }
-
         private static string RetrieveContent(int questId)
         {
-            HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://www.wowhead.com/quest=" + questId);
+            var request = (HttpWebRequest) WebRequest.Create("http://www.wowhead.com/quest=" + questId);
             request.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3";
             request.Accept = "Accept: text/html,application/xhtml+xml,application/xml";
 
@@ -48,14 +20,14 @@ namespace Profiles_Converters.WebParser
             try
             {
                 request.Proxy = WebProxy.GetDefaultProxy();
-                HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+                var response = (HttpWebResponse) request.GetResponse();
                 Stream stream = response.GetResponseStream();
-                System.Text.Encoding ec = System.Text.Encoding.GetEncoding("utf-8");
+                Encoding ec = Encoding.GetEncoding("utf-8");
                 var reader = new StreamReader(stream, ec);
                 strData = reader.ReadToEnd();
                 if (strData.Contains("Error"))
                 {
-                    Exception e = new Exception(strData);
+                    var e = new Exception(strData);
                     throw e;
                 }
             }
@@ -69,7 +41,7 @@ namespace Profiles_Converters.WebParser
 
         public static QuestInfo GetQuestObject(int questId)
         {
-            var content = RetrieveContent(questId);
+            string content = RetrieveContent(questId);
             string beginning = "'};\n$.extend(true, g_quests, _);\n_ = g_quests;\n$.extend(g_quests[" + questId + "], ";
             const string end = ");\nvar _ = {};";
             const string beginning2 = "<div id=\"infobox-contents0\"></div>";
@@ -103,7 +75,7 @@ namespace Profiles_Converters.WebParser
             int stop4 = result3.IndexOf(end4, start4, StringComparison.Ordinal);
             string result4 = result3.Substring(start4, stop4 - start4);
 
-            QuestInfo qInfo = new QuestInfo();
+            var qInfo = new QuestInfo();
             var qObject = JsonConvert.DeserializeObject<RootObject>(result);
             qInfo.Category = qObject.category;
             qInfo.Category2 = qObject.category2;
@@ -125,6 +97,35 @@ namespace Profiles_Converters.WebParser
             qInfo.XP = qObject.xp;
             qInfo.IsValid = true;
             return qInfo;
+        }
+
+        public class QuestInfo
+        {
+            public QuestInfo()
+            {
+                IsValid = false;
+            }
+
+            public bool IsValid { get; set; }
+            public int Category { get; set; }
+            public int Category2 { get; set; }
+            public int Classs { get; set; }
+            public int Id { get; set; }
+            public List<List<int>> Itemchoices { get; set; }
+            public List<List<int>> Itemrewards { get; set; }
+            public int Level { get; set; }
+            public int Money { get; set; }
+            public string Name { get; set; }
+            public int Race { get; set; }
+            public List<List<int>> Reprewards { get; set; }
+            public int Reqclass { get; set; }
+            public int ReqMinLevel { get; set; }
+            public int ReqMaxLevel { get; set; }
+            public int Reqrace { get; set; }
+            public int Side { get; set; }
+            public int Wflags { get; set; }
+            public int Type { get; set; }
+            public int XP { get; set; }
         }
 
         public class RootObject
