@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
@@ -229,9 +230,9 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string GoalText { get; set; }
 
-        [DefaultValue(0)]
+        [DefaultValue("1")]
         [XmlAttribute]
-        public byte GossipOptions { get; set; }
+        public string GossipOptions { get; set; }
 
         [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute]
@@ -407,15 +408,15 @@ namespace Profiles_Converters.Converters
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public decimal X { get; set; }
+        public float X { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public decimal Y { get; set; }
+        public float Y { get; set; }
 
         [DefaultValue(0)]
         [XmlAttribute]
-        public decimal Z { get; set; }
+        public float Z { get; set; }
     }
 
 
