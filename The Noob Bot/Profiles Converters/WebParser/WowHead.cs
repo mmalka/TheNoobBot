@@ -76,7 +76,7 @@ namespace Profiles_Converters.WebParser
             const string end2 = "'infobox-contents0'";
             const string beginning3 = "ext/javascript\">\n\t\t\tMarkup.printHtml('\\";
             const string end3 = @"', ";
-            const string beginning4 = @"color\x3Dr4\x5D";
+            string beginning4 = @"color\x3Dr4\x5D";
             const string end4 = @"\x5B\";
             int start = content.IndexOf(beginning, StringComparison.Ordinal) + beginning.Length;
             if (start <= 0 || start == beginning.Length - 1)
@@ -93,6 +93,13 @@ namespace Profiles_Converters.WebParser
             int stop3 = result2.IndexOf(end3, start3, StringComparison.Ordinal);
             string result3 = result2.Substring(start3, stop3 - start3);
             int start4 = result3.IndexOf(beginning4, StringComparison.Ordinal) + beginning4.Length;
+            int result4Add = -1;
+            if (start4 <= 0 || start4 == beginning4.Length - 1)
+            {
+                beginning4 = @"color\x3Dr3\x5D";
+                start4 = result3.IndexOf(beginning4, StringComparison.Ordinal) + beginning4.Length;
+                result4Add = 1;
+            }
             int stop4 = result3.IndexOf(end4, start4, StringComparison.Ordinal);
             string result4 = result3.Substring(start4, stop4 - start4);
 
@@ -111,7 +118,7 @@ namespace Profiles_Converters.WebParser
             qInfo.Reprewards = qObject.reprewards;
             qInfo.Reqclass = qObject.reqclass;
             qInfo.ReqMinLevel = qObject.reqlevel;
-            qInfo.ReqMaxLevel = Others.ToInt32(result4) - 1;
+            qInfo.ReqMaxLevel = Others.ToInt32(result4) + result4Add;
             qInfo.Side = qObject.side;
             qInfo.Wflags = qObject.wflags;
             qInfo.Type = qObject.type;

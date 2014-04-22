@@ -181,11 +181,9 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string Names { get; set; }
 
-
         [DefaultValue("")]
         [XmlAttribute]
         public string ProfileName { get; set; }
-
 
         [DefaultValue(0)]
         [XmlAttribute]
@@ -235,23 +233,23 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public byte GossipOptions { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute]
         public AdvancedBoolean GroundMountFarmingMode { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute]
         public AdvancedBoolean AllowBrokenPlugIns { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute]
         public AdvancedBoolean AllowBrokenAddOns { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute]
         public AdvancedBoolean AutoEquip { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute(AttributeName = "state")]
         public AdvancedBoolean State { get; set; }
 
@@ -275,7 +273,7 @@ namespace Profiles_Converters.Converters
         [XmlAttribute]
         public string InteractByGossipOptions { get; set; }
 
-        [DefaultValue(false)]
+        [DefaultValue(AdvancedBoolean.False)]
         [XmlAttribute]
         public AdvancedBoolean KillBetweenHotspots { get; set; }
 
@@ -516,7 +514,8 @@ namespace Profiles_Converters.Converters
         public string Condition { get; set; }
 
         [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
-         XmlElement("CustomBehavior", typeof(CustomBehavior)), XmlElement("If", typeof(If)), XmlElement("While", typeof(While)), XmlElement("Objective", typeof(ObjectiveMetaType)), XmlElement("MoveTo", typeof(MoveTo))]
+         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("While", typeof (While)), XmlElement("Objective", typeof (ObjectiveMetaType)),
+         XmlElement("MoveTo", typeof (MoveTo))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]
@@ -532,7 +531,8 @@ namespace Profiles_Converters.Converters
         public string Condition { get; set; }
 
         [XmlElement("Quest", typeof (Quest)), XmlChoiceIdentifier("ItemsElementName"), XmlElement("PickUp", typeof (PickUp)), XmlElement("TurnIn", typeof (TurnIn)),
-         XmlElement("CustomBehavior", typeof(CustomBehavior)), XmlElement("If", typeof(If)), XmlElement("Objective", typeof (ObjectiveMetaType)), XmlElement("While", typeof(While)), XmlElement("MoveTo", typeof(MoveTo))]
+         XmlElement("CustomBehavior", typeof (CustomBehavior)), XmlElement("If", typeof (If)), XmlElement("Objective", typeof (ObjectiveMetaType)), XmlElement("While", typeof (While)),
+         XmlElement("MoveTo", typeof (MoveTo))]
         public object[] Items { get; set; }
 
         [XmlElement("ItemsElementName"), XmlIgnore]

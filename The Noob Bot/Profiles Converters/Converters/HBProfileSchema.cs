@@ -57,7 +57,9 @@ namespace Profiles_Converters.Converters
     public enum AdvancedBoolean : uint
     {
         True = 1,
+        @true = 1,
         False = 0,
+        @false = 0,
     }
 
     [Serializable]
