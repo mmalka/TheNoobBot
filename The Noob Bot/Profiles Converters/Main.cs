@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+//using System.Diagnostics;
+//using System.Linq;
 using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
@@ -9,9 +9,9 @@ using nManager.Products;
 using nManager.Wow.Class;
 using Profiles_Converters;
 using Profiles_Converters.Converters;
-using Profiles_Converters.WebParser;
+//using Profiles_Converters.WebParser;
 using Quester.Profile;
-using Quest = Profiles_Converters.Converters.Quest;
+//using Quest = Profiles_Converters.Converters.Quest;
 
 public class Main : IProduct
 {
@@ -53,7 +53,7 @@ public class Main : IProduct
     public void Start()
     {
         try
-        {
+        {/*
             Stopwatch timer = Stopwatch.StartNew();
             var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] 85-86 The Jade Forest [Kick].xml");
             if (hbProfile.Items == null || !hbProfile.Items.Any())
@@ -86,7 +86,7 @@ public class Main : IProduct
                             Logging.Write(mailbox.Nav + ";" + mailbox.X + ";" + mailbox.Y + ";" + mailbox.Z);
                         }
                     }
-                    else */
+                    else /*
                     if (value is Blackspots)
                     {
                         var blackspots = value as Blackspots;
@@ -244,7 +244,7 @@ public class Main : IProduct
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", _tnbProfile);
             XmlSerializer.Serialize(Application.StartupPath + @"\test_HB_ReExtract.xml", hbProfile);
-            MessageBox.Show(timer.ElapsedMilliseconds.ToString());
+            MessageBox.Show(timer.ElapsedMilliseconds.ToString());*/
             formMain = new MainForm();
             formMain.Show();
             _isStarted = true;
