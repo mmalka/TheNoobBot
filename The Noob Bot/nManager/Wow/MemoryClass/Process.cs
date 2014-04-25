@@ -64,7 +64,7 @@ namespace nManager.Wow.MemoryClass
         /// <typeparam></typeparam>
         /// <param name="processName"></param>
         /// <returns name="processHandle"></returns>
-        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "pandashan.dat")
+        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "pandawow.exe")
         {
             try
             {
@@ -139,7 +139,7 @@ namespace nManager.Wow.MemoryClass
 
                 System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(ProcessId);
                 MainWindowHandle = processById.MainWindowHandle;
-                WowModule = GetModule("pandashan.dat");
+                WowModule = GetModule("pandawow.exe");
                 return ProcessHandle;
             }
             catch (Exception e)

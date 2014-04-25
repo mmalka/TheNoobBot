@@ -67,7 +67,7 @@ namespace nManager.Wow.MemoryClass
         {
             BlackMagic memory = new Magic.BlackMagic(processId);
             uint pDevice =
-                memory.ReadUInt((uint) memory.GetModule("pandashan.dat").BaseAddress +
+                memory.ReadUInt((uint) memory.GetModule("pandawow.exe").BaseAddress +
                                 (uint) Patchables.Addresses.Hooking.DX_DEVICE);
             uint pEnd = memory.ReadUInt(pDevice + (uint) Patchables.Addresses.Hooking.DX_DEVICE_IDX);
             if (pEnd == 0)

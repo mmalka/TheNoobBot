@@ -617,7 +617,7 @@ namespace nManager.Wow.MemoryClass
                 BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
-                foreach (ProcessModule v in from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" || v.ModuleName.ToLower() == "pandashan.dat" select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" || v.ModuleName.ToLower() == "pandawow.exe" select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
@@ -638,7 +638,7 @@ namespace nManager.Wow.MemoryClass
                 BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
-                foreach (ProcessModule v in from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" || v.ModuleName.ToLower() == "pandashan.dat" select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" || v.ModuleName.ToLower() == "pandawow.exe" select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }

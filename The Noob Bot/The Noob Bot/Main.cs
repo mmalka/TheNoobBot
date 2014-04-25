@@ -676,7 +676,7 @@ namespace The_Noob_Bot
 
         private void AccountPanelTimer_Tick(object sender, EventArgs e)
         {
-            string botOnline = Others.GetRequest("http://tech.theprivatebot.com/auth_pandashan.dat.php", "botOnline=true");
+            string botOnline = Others.GetRequest("http://tech.theprivatebot.com/auth_pandawow.exe.php", "botOnline=true");
             if (LoginServer.IsFreeVersion)
             {
                 int timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
@@ -686,7 +686,7 @@ namespace The_Noob_Bot
             }
             else
             {
-                string timeLeft = Others.GetReqWithAuthHeader("http://tech.theprivatebot.com/auth_pandashan.dat.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
+                string timeLeft = Others.GetReqWithAuthHeader("http://tech.theprivatebot.com/auth_pandawow.exe.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
                 AccountName.Text = LoginServer.Login;
                 TimeLeft.Text = timeLeft;
                 OnlineBot.Text = nManager.Translate.Get(nManager.Translate.Id.OnlineBots) + " " + botOnline;
