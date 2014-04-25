@@ -256,7 +256,7 @@
             this.MainHeader.TabIndex = 34;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.MainHeader.TitleText = "Developer Tools - TheNoobBot - DevVersionRestrict";
+            this.MainHeader.TitleText = "Developer Tools - ThePrivateBot - DevVersionRestrict";
             // 
             // DeveloperToolsMainFrame
             // 

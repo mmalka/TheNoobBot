@@ -33,7 +33,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (!_inPause && !Products.Products.InPause)
                     {
-                        Logging.Write("Game got disconnect or in loading, pausing TheNoobbot, please relog manually or make sure the relogger feature is activated.");
+                        Logging.Write("Game got disconnect or in loading, pausing ThePrivateBot, please relog manually or make sure the relogger feature is activated.");
                         _inPause = true;
                         Products.Products.InPause = true;
                         _gameOffline = true;

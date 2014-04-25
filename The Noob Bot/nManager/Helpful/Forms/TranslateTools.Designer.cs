@@ -121,7 +121,7 @@
             this.MainHeader.TabIndex = 22;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.MainHeader.TitleText = "Translate Manager - TheNoobBot - DevVersionRestrict";
+            this.MainHeader.TitleText = "Translate Manager - ThePrivateBot - DevVersionRestrict";
             // 
             // TranslationManagementMainFrame
             // 

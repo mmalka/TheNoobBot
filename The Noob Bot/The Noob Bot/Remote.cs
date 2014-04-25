@@ -44,7 +44,7 @@ namespace The_Noob_Bot
             get { return _sessionKey; }
         }
 
-        private const string RemoteScript = "http://tech.thenoobbot.com/remote.php";
+        private const string RemoteScript = "http://tech.theprivatebot.com/remote.php";
         private static int _sessionKey;
 
         internal Remote()

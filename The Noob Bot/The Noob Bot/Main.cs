@@ -49,7 +49,7 @@ namespace The_Noob_Bot
                 if (Math.Abs(g.DpiX - 96F) > 0.1)
                 {
                     Logging.Write("There is a problem with your Windows Font Size configuration.");
-                    Logging.Write("Please set it to 100% size or you may have problems reading TheNoobBot's forms. hint: http://www.wikihow.com/Change-Font-Size-on-a-Computer");
+                    Logging.Write("Please set it to 100% size or you may have problems reading ThePrivateBot's forms. hint: http://www.wikihow.com/Change-Font-Size-on-a-Computer");
                 }
             }
         }
@@ -676,7 +676,7 @@ namespace The_Noob_Bot
 
         private void AccountPanelTimer_Tick(object sender, EventArgs e)
         {
-            string botOnline = Others.GetRequest("http://tech.thenoobbot.com/auth.php", "botOnline=true");
+            string botOnline = Others.GetRequest("http://tech.theprivatebot.com/auth.php", "botOnline=true");
             if (LoginServer.IsFreeVersion)
             {
                 int timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
@@ -686,7 +686,7 @@ namespace The_Noob_Bot
             }
             else
             {
-                string timeLeft = Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
+                string timeLeft = Others.GetReqWithAuthHeader("http://tech.theprivatebot.com/auth.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
                 AccountName.Text = LoginServer.Login;
                 TimeLeft.Text = timeLeft;
                 OnlineBot.Text = nManager.Translate.Get(nManager.Translate.Id.OnlineBots) + " " + botOnline;
@@ -704,12 +704,12 @@ namespace The_Noob_Bot
 
         private void WebsiteLink_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
         }
 
         private void GoToPaymentPageButton_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/get-a-bg-bot-wow/");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/get-a-bg-bot-wow/");
         }
 
         private void LoggingAreaTimer_Tick(object sender, EventArgs e)

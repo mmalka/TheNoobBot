@@ -26,8 +26,8 @@
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
-                System.Windows.Forms.MessageBox.Show("Update available, please update on TheNoobBot.com.");
-                nManager.Helpful.Logging.WriteDebug("Update available, please update on TheNoobBot.com.");
+                System.Windows.Forms.MessageBox.Show("Update available, please update on ThePrivateBot.com.");
+                nManager.Helpful.Logging.WriteDebug("Update available, please update on ThePrivateBot.com.");
                 nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xE3CB00;
                 System.Threading.Thread.Sleep(1000 * 60 * 3);
                 while (true)

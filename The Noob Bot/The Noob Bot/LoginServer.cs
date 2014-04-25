@@ -472,7 +472,7 @@ namespace The_Noob_Bot
                             {
                                 case DialogResult.Yes:
                                     Others.OpenWebBrowserOrApplication(resultLog);
-                                    Others.OpenWebBrowserOrApplication("http://theprivatebot.com/downloads/latest.php");
+                                    Others.OpenWebBrowserOrApplication("http://theprivatebot.com/downloads/latest-pandashan.php");
 
                                     try
                                     {

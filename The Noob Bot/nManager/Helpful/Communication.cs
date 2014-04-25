@@ -43,7 +43,7 @@ namespace nManager.Helpful
             }
             if (done)
             {
-                Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+                Logging.Write("This ThePrivateBot session is no longer broadcasting its position and actions on port " + port + " for others ThePrivateBot sessions with Mimesis started.");
                 // We now unhook these events
                 EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED);
                 EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED);
@@ -56,7 +56,7 @@ namespace nManager.Helpful
             try
             {
                 _tcpListener.Start();
-                Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
+                Logging.Write("This ThePrivateBot session is now broadcasting its position and actions on port " + port + " for others ThePrivateBot sessions with Mimesis started.");
                 try
                 {
                     _requireHook = true;

@@ -16,7 +16,7 @@ namespace nManager.Helpful.Forms.UserControls
         private PictureBox _reduceButton;
         private Font _titleFont = new Font(new FontFamily("Microsoft Sans Serif"), 12, GraphicsUnit.Point);
         private Color _titleForeColor = Color.FromArgb(222, 222, 222);
-        private Label _titleLabel = new Label {Text = "TheNoobBot"};
+        private Label _titleLabel = new Label {Text = "ThePrivateBot"};
         private PictureBox _tnbLogo;
 
         public TnbControlMenu()

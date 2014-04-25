@@ -1,5 +1,5 @@
 ﻿/*
-* CustomProfile for TheNoobBot
+* CustomProfile for ThePrivateBot
 * Credit : Vesper
 */
 
@@ -59,7 +59,7 @@ public class Main : ICustomProfile
 
     public void Dispose()
     {
-        Logging.WriteFight("TheNoobBot example Custom Profile stopped.");
+        Logging.WriteFight("ThePrivateBot example Custom Profile stopped.");
         Loop = false;
     }
 
@@ -71,7 +71,7 @@ public class Main : ICustomProfile
                 Loop = true;
             InternalIgnoreFight = false;
             InternalDontStartFights = false;
-            Logging.Write("Loading TheNoobBot ProfileType C# Profile system.");
+            Logging.Write("Loading ThePrivateBot ProfileType C# Profile system.");
             CurrentBattlegroundId = Battleground.GetCurrentBattleground();
             if (CurrentBattlegroundId != BattlegroundId.None)
                 if (CurrentBattlegroundId == BattlegroundId.WarsongGulch || CurrentBattlegroundId == BattlegroundId.TwinPeaks)
@@ -99,7 +99,7 @@ public class Main : ICustomProfile
         {
             Logging.WriteError("Initialize(): " + exception);
         }
-        Logging.WriteFight("TheNoobBot example Custom Profile stopped. Loop shutdown.");
+        Logging.WriteFight("ThePrivateBot example Custom Profile stopped. Loop shutdown.");
     }
 
     #endregion
@@ -220,7 +220,7 @@ public class CaptureTheFlag
             }
             catch (Exception e)
             {
-                Logging.WriteError("Custom Profile > TheNoobBotCP > CaptureTheFlagWG > Loop: " + e);
+                Logging.WriteError("Custom Profile > ThePrivateBotCP > CaptureTheFlagWG > Loop: " + e);
             }
             Thread.Sleep(100);
         }

@@ -288,7 +288,7 @@
             this.MainHeader.TabIndex = 25;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.MainHeader.TitleText = "Simple Profile Manager - TheNoobBot DevVersionRestrict";
+            this.MainHeader.TitleText = "Simple Profile Manager - ThePrivateBot DevVersionRestrict";
             // 
             // SimpleProfileManager
             // 

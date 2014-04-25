@@ -154,7 +154,7 @@
             this.DeveloperToolsFormTitle.Name = "DeveloperToolsFormTitle";
             this.DeveloperToolsFormTitle.Size = new System.Drawing.Size(675, 35);
             this.DeveloperToolsFormTitle.TabIndex = 20;
-            this.DeveloperToolsFormTitle.Text = "Developer Tools - TheNoobBot - 3.0.0";
+            this.DeveloperToolsFormTitle.Text = "Developer Tools - ThePrivateBot - 3.0.0";
             this.DeveloperToolsFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.DeveloperToolsFormTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseDown);
             this.DeveloperToolsFormTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainFormMouseMove);

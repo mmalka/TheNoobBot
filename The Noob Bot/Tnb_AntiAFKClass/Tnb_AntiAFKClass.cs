@@ -1,5 +1,5 @@
 ﻿/*
-* CombatClass for TheNoobBot
+* CombatClass for ThePrivateBot
 * Credit : Vesper
 */
 

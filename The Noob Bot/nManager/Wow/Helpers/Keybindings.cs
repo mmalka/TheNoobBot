@@ -43,7 +43,7 @@ namespace nManager.Wow.Helpers
                     if (!string.IsNullOrEmpty(key))
                     {
                         if (k1 == "BUTTON3" || k2 == "BUTTON3")
-                            Logging.WriteDebug(action + " were bind to a mouse button, as TheNoobBot does not support mouse button, currently trying to bind it with key: " + key + ".");
+                            Logging.WriteDebug(action + " were bind to a mouse button, as ThePrivateBot does not support mouse button, currently trying to bind it with key: " + key + ".");
                         else
                             Logging.WriteDebug(action + " were not bind, currently trying to bind it with key: " + key + ".");
                         SetKeyByAction(action, key);

@@ -20,7 +20,7 @@ namespace Profiles_Converters
         private void Translate()
         {
             convertB.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles);
-            MainContent.Text = string.Format("{0}(Pirox Fly gatherer, MMOLazy MyFlyer, Gather Buddy,  WowRobot Gather Fly, HonorBuddy  grind) {1} TheNoobBot profiles.",
+            MainContent.Text = string.Format("{0}(Pirox Fly gatherer, MMOLazy MyFlyer, Gather Buddy,  WowRobot Gather Fly, HonorBuddy  grind) {1} ThePrivateBot profiles.",
                 nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles), nManager.Translate.Get(nManager.Translate.Id.to));
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profiles_Converters);
         }

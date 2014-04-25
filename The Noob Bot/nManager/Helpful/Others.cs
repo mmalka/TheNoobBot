@@ -538,7 +538,7 @@ namespace nManager.Helpful
                 if (!String.IsNullOrWhiteSpace(data))
                     url = url + "?" + data;
                 HttpWebRequest httpWRequest = (HttpWebRequest) WebRequest.Create(url);
-                httpWRequest.UserAgent = "TheNoobBot";
+                httpWRequest.UserAgent = "ThePrivateBot";
                 httpWResponse = (HttpWebResponse) httpWRequest.GetResponse();
                 sr = new StreamReader(httpWResponse.GetResponseStream(), Encoding.GetEncoding("iso-8859-1"));
                 result = sr.ReadToEnd();
@@ -578,7 +578,7 @@ namespace nManager.Helpful
                 //Commenting out above required change to App.Config
                 webRequest.ContentType = "application/x-www-form-urlencoded";
                 webRequest.Method = "POST";
-                ((HttpWebRequest) webRequest).UserAgent = "TheNoobBot";
+                ((HttpWebRequest) webRequest).UserAgent = "ThePrivateBot";
                 byte[] bytes = Encoding.UTF8.GetBytes(parameters);
                 Stream os = null;
                 try
@@ -938,7 +938,7 @@ namespace nManager.Helpful
                     authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                     req.Headers["Authorization"] = "Basic " + authInfo;
                 }
-                ((HttpWebRequest) req).UserAgent = "TheNoobBot";
+                ((HttpWebRequest) req).UserAgent = "ThePrivateBot";
 
                 WebResponse response = req.GetResponse();
                 string headerResult = "";

@@ -404,7 +404,7 @@ namespace The_Noob_Bot
 
         private void Register_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/login/?action=register");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/login/?action=register");
         }
 
         private void Register_MouseEnter(object sender, EventArgs e)
@@ -489,12 +489,12 @@ namespace The_Noob_Bot
 
         private void ForumLink_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/community/");
         }
 
         private void WebsiteLink_Click(object sender, EventArgs e)
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+            Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
         }
 
         private void EsterEggTrigger_MouseEnter(object sender, EventArgs e)

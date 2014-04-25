@@ -1,5 +1,5 @@
 ﻿/*
-* CombatClass for TheNoobBot
+* CombatClass for ThePrivateBot
 * Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
 */

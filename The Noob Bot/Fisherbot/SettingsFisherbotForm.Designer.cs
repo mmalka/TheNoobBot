@@ -246,7 +246,7 @@ namespace Fisherbot
             this.tnbControlMenu1.TabIndex = 24;
             this.tnbControlMenu1.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.tnbControlMenu1.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.tnbControlMenu1.TitleText = "TheNoobBot";
+            this.tnbControlMenu1.TitleText = "ThePrivateBot";
             // 
             // FishingSchoolsProfile
             // 

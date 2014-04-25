@@ -94,7 +94,7 @@ namespace Flying_To_Ground_Profiles_Converter
             this.MainHeader.TabIndex = 4;
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            this.MainHeader.TitleText = "TheNoobBot";
+            this.MainHeader.TitleText = "ThePrivateBot";
             // 
             // WelcomeForm
             // 
