@@ -1105,19 +1105,16 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(100);
                 }
 
-                Timer timer = new Timer(1*1000*2);
+                Timer timer = new Timer(1*1000*1);
                 Timer timerWaypoint = new Timer(1*1000*(30/3));
                 double distance = (double) position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
                 if (distance > 45)
                     timerWaypoint = new Timer(1*1000*(distance/3));
-
-                if (distance < 45 && distance > 40)
+                else if (distance > 40)
                     timerWaypoint = new Timer(1*1000*(45/3));
-
-                if (distance < 40 && distance > 35)
+                else if (distance > 35)
                     timerWaypoint = new Timer(1*1000*(40/3));
-
-                if (distance < 35 && distance > 30)
+                else if (distance > 30)
                     timerWaypoint = new Timer(1*1000*(35/3));
 
                 Point oldPos = ObjectManager.ObjectManager.Me.Position;
