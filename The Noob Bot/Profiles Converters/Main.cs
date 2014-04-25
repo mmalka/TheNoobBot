@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Diagnostics;
-//using System.Linq;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.Class;
+using nManager.Wow.Helpers;
 using Profiles_Converters;
 using Profiles_Converters.Converters;
-//using Profiles_Converters.WebParser;
+using Profiles_Converters.WebParser;
 using Quester.Profile;
+using Quest = Profiles_Converters.Converters.Quest;
+
 //using Quest = Profiles_Converters.Converters.Quest;
 
 public class Main : IProduct
@@ -53,9 +56,9 @@ public class Main : IProduct
     public void Start()
     {
         try
-        {/*
+        {
             Stopwatch timer = Stopwatch.StartNew();
-            var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] 85-86 The Jade Forest [Kick].xml");
+            var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] EK 12-58 [Kick].xml");
             if (hbProfile.Items == null || !hbProfile.Items.Any())
             {
                 return;
@@ -70,24 +73,23 @@ public class Main : IProduct
                 Logging.Write(name + ": " + value);
                 if (value.ToString().Contains("Profiles_Converters.Converters"))
                 {
-                    /*if (value is Vendors)
+                    if (value is Vendors)
                     {
-                        Vendors vendors = value as Vendors;
-                        foreach (var vendor in vendors.Items)
+                        var vendors = value as Vendors;
+                        foreach (VendorType vendor in vendors.Items)
                         {
                             Logging.Write(vendor.Entry + ";" + vendor.Name + ";" + vendor.Nav + ";" + vendor.Type + ";" + vendor.X + ";" + vendor.Y + ";" + vendor.Z);
                         }
                     }
                     else if (value is Mailboxes)
                     {
-                        Mailboxes mailboxes = value as Mailboxes;
-                        foreach (var mailbox in mailboxes.Items)
+                        var mailboxes = value as Mailboxes;
+                        foreach (MailboxType mailbox in mailboxes.Items)
                         {
                             Logging.Write(mailbox.Nav + ";" + mailbox.X + ";" + mailbox.Y + ";" + mailbox.Z);
                         }
                     }
-                    else /*
-                    if (value is Blackspots)
+                    else if (value is Blackspots)
                     {
                         var blackspots = value as Blackspots;
                         foreach (BlackspotType blackspot in blackspots.Blackspot)
@@ -219,6 +221,10 @@ public class Main : IProduct
                     q.MinLevel = qInfo.ReqMinLevel;
                     q.MaxLevel = qInfo.ReqMaxLevel;
                     q.QuestLevel = qInfo.Level;
+                    if (q.TurnIn == 0)
+                        q.TurnIn = qInfo.TurnIn;
+                    if (q.PickUp == 0)
+                        q.PickUp = qInfo.PickUp;
                     if (qInfo.Race != 0)
                         q.RaceMask = qInfo.Race;
                     else if (qInfo.Side != 0 && q.RaceMask == 0)
@@ -241,10 +247,51 @@ public class Main : IProduct
                     Logging.Write("Update quest: " + q.Name + "(" + q.Id + "), questLevel = " + q.QuestLevel + ", minLevel = " + q.MinLevel + ", maxLevel = " + q.MaxLevel + ", raceMask = " + q.RaceMask +
                                   ", classMask = " + q.ClassMask);
                 }
+                bool turnInfound = false;
+                bool pickUpfound = false;
+                foreach (Npc npc in _tnbProfile.Questers)
+                {
+                    if (q.TurnIn != 0 && npc.Entry == q.TurnIn)
+                    {
+                        turnInfound = true;
+                        if (pickUpfound)
+                            break;
+                    }
+                    if (q.PickUp != 0 && npc.Entry == q.PickUp)
+                    {
+                        pickUpfound = true;
+                        if (turnInfound)
+                            break;
+                    }
+                }
+                if (!turnInfound && q.TurnIn != 0)
+                {
+                    Npc npw = QuestersDB.GetNpcByEntry(q.TurnIn);
+                    if (npw.Entry > 0)
+                    {
+                        _tnbProfile.Questers.Add(npw);
+                        Logging.Write("Add Quester entry " + q.TurnIn + " for Quest " + q.Name + " from QuestersDB.");
+                    }
+                    else
+                        Logging.WriteError("Quester id: " + q.TurnIn + " not found in QuestersDB.");
+                }
+                if (!pickUpfound && q.PickUp != 0 && q.TurnIn != q.PickUp)
+                {
+                    Npc npw = QuestersDB.GetNpcByEntry(q.PickUp);
+                    if (npw.Entry > 0)
+                    {
+                        _tnbProfile.Questers.Add(npw);
+                        Logging.Write("Add Quester entry " + q.TurnIn + " for Quest " + q.Name + " from QuestersDB.");
+                    }
+                    else
+                    {
+                        Logging.WriteError("Quester id: " + q.PickUp + " not found in QuestersDB.");
+                    }
+                }
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", _tnbProfile);
             XmlSerializer.Serialize(Application.StartupPath + @"\test_HB_ReExtract.xml", hbProfile);
-            MessageBox.Show(timer.ElapsedMilliseconds.ToString());*/
+            MessageBox.Show(timer.ElapsedMilliseconds.ToString());
             formMain = new MainForm();
             formMain.Show();
             _isStarted = true;
@@ -493,7 +540,7 @@ public class Main : IProduct
                 }
                 if (qOrderCustom.File == "MoveTo")
                 {
-                    emptyObjective = new QuestObjective {Objective = Objective.MoveTo, Position = new Point {X = (float) qOrderCustom.X, Y = (float) qOrderCustom.Y, Z = (float) qOrderCustom.Z}};
+                    emptyObjective = new QuestObjective {Objective = Objective.MoveTo, Position = new Point {X = qOrderCustom.X, Y = qOrderCustom.Y, Z = qOrderCustom.Z}};
                 }
                 else if (qOrderCustom.File == "WaitTimer")
                 {

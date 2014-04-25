@@ -42,41 +42,54 @@ namespace Profiles_Converters.WebParser
         public static QuestInfo GetQuestObject(int questId)
         {
             string content = RetrieveContent(questId);
-            string beginning = "'};\n$.extend(true, g_quests, _);\n_ = g_quests;\n$.extend(g_quests[" + questId + "], ";
-            const string end = ");\nvar _ = {};";
-            const string beginning2 = "<div id=\"infobox-contents0\"></div>";
-            const string end2 = "'infobox-contents0'";
-            const string beginning3 = "ext/javascript\">\n\t\t\tMarkup.printHtml('\\";
-            const string end3 = @"', ";
-            string beginning4 = @"color\x3Dr4\x5D";
-            const string end4 = @"\x5B\";
-            int start = content.IndexOf(beginning, StringComparison.Ordinal) + beginning.Length;
-            if (start <= 0 || start == beginning.Length - 1)
+            string questInfoJsonBlockStart = "'};\n$.extend(true, g_quests, _);\n_ = g_quests;\n$.extend(g_quests[" + questId + "], ";
+            const string questInfoJsonBlockEnd = ");\nvar _ = {};";
+            const string questInfoJsBlockStart = "<div id=\"infobox-contents0\"></div>";
+            const string questInfoJsBlockEnd = "'infobox-contents0'";
+            const string questCoreInfoJsBlockStart = "ext/javascript\">\n\t\t\tMarkup.printHtml('\\";
+            const string questCoreInfoJsBlockEnd = @"', ";
+            string greyLevelColorStart = @"color\x3Dr4\x5D";
+            const string greyLevelColorEnd = @"\x5B\";
+            const string questPickUpStart = @"\x5DStart\x3A\x20\x5Burl\x3D\x2Fnpc\x3D";
+            const string questPickUpEnd = @"\x5D\";
+            const string questTurnInStart = @"\x5DEnd\x3A\x20\x5Burl\x3D\x2Fnpc\x3D";
+            const string questTurnInEnd = @"\x5D\";
+            int questInfoJsonBlockStartIndex = content.IndexOf(questInfoJsonBlockStart, StringComparison.Ordinal) + questInfoJsonBlockStart.Length;
+            if (questInfoJsonBlockStartIndex <= 0 || questInfoJsonBlockStartIndex == questInfoJsonBlockStart.Length - 1)
             {
                 Logging.WriteError("Quest " + questId + " is marked as invalid;");
                 return new QuestInfo();
             }
-            int start2 = content.IndexOf(beginning2, StringComparison.Ordinal) + beginning2.Length;
-            int stop = content.IndexOf(end, start, StringComparison.Ordinal);
-            int stop2 = content.IndexOf(end2, start2, StringComparison.Ordinal);
-            string result = content.Substring(start, stop - start);
-            string result2 = content.Substring(start2, stop2 - start2);
-            int start3 = result2.IndexOf(beginning3, StringComparison.Ordinal) + beginning3.Length;
-            int stop3 = result2.IndexOf(end3, start3, StringComparison.Ordinal);
-            string result3 = result2.Substring(start3, stop3 - start3);
-            int start4 = result3.IndexOf(beginning4, StringComparison.Ordinal) + beginning4.Length;
-            int result4Add = -1;
-            if (start4 <= 0 || start4 == beginning4.Length - 1)
+            int questInfoJsBlockStartIndex = content.IndexOf(questInfoJsBlockStart, StringComparison.Ordinal) + questInfoJsBlockStart.Length;
+            int questInfoJsonBlockEndIndex = content.IndexOf(questInfoJsonBlockEnd, questInfoJsonBlockStartIndex, StringComparison.Ordinal);
+            int questInfoJsBlockEndIndex = content.IndexOf(questInfoJsBlockEnd, questInfoJsBlockStartIndex, StringComparison.Ordinal);
+            string questInfoJsonResult = content.Substring(questInfoJsonBlockStartIndex, questInfoJsonBlockEndIndex - questInfoJsonBlockStartIndex);
+            string questInfoJsResult = content.Substring(questInfoJsBlockStartIndex, questInfoJsBlockEndIndex - questInfoJsBlockStartIndex);
+            int questCoreInfoJsBlockStartIndex = questInfoJsResult.IndexOf(questCoreInfoJsBlockStart, StringComparison.Ordinal) + questCoreInfoJsBlockStart.Length;
+            int questCoreInfoJsBlockEndIndex = questInfoJsResult.IndexOf(questCoreInfoJsBlockEnd, questCoreInfoJsBlockStartIndex, StringComparison.Ordinal);
+            string questCoreInfoJsBlockResult = questInfoJsResult.Substring(questCoreInfoJsBlockStartIndex, questCoreInfoJsBlockEndIndex - questCoreInfoJsBlockStartIndex);
+            int greyLevelColorStartIndex = questCoreInfoJsBlockResult.IndexOf(greyLevelColorStart, StringComparison.Ordinal) + greyLevelColorStart.Length;
+            int maxLevelAdjustment = -1;
+            if (greyLevelColorStartIndex <= 0 || greyLevelColorStartIndex == greyLevelColorStart.Length - 1)
             {
-                beginning4 = @"color\x3Dr3\x5D";
-                start4 = result3.IndexOf(beginning4, StringComparison.Ordinal) + beginning4.Length;
-                result4Add = 1;
+                greyLevelColorStart = @"color\x3Dr3\x5D"; // use green instead
+                greyLevelColorStartIndex = questCoreInfoJsBlockResult.IndexOf(greyLevelColorStart, StringComparison.Ordinal) + greyLevelColorStart.Length;
+                maxLevelAdjustment = 1;
             }
-            int stop4 = result3.IndexOf(end4, start4, StringComparison.Ordinal);
-            string result4 = result3.Substring(start4, stop4 - start4);
+            int greyLevelColorEndIndex = questCoreInfoJsBlockResult.IndexOf(greyLevelColorEnd, greyLevelColorStartIndex, StringComparison.Ordinal);
+            ;
+            string greyLevelColorResult = questCoreInfoJsBlockResult.Substring(greyLevelColorStartIndex, greyLevelColorEndIndex - greyLevelColorStartIndex);
+
+            int questPickUpStartIndex = questCoreInfoJsBlockResult.IndexOf(questPickUpStart, StringComparison.Ordinal) + questPickUpStart.Length;
+            int questPickUpEndIndex = questCoreInfoJsBlockResult.IndexOf(questPickUpEnd, questPickUpStartIndex, StringComparison.Ordinal);
+            string questPickUpId = questCoreInfoJsBlockResult.Substring(questPickUpStartIndex, questPickUpEndIndex - questPickUpStartIndex);
+
+            int questTurnInStartIndex = questCoreInfoJsBlockResult.IndexOf(questTurnInStart, StringComparison.Ordinal) + questTurnInStart.Length;
+            int questTurnInEndIndex = questCoreInfoJsBlockResult.IndexOf(questTurnInEnd, questTurnInStartIndex, StringComparison.Ordinal);
+            string questTurnInId = questCoreInfoJsBlockResult.Substring(questTurnInStartIndex, questTurnInEndIndex - questTurnInStartIndex);
 
             var qInfo = new QuestInfo();
-            var qObject = JsonConvert.DeserializeObject<RootObject>(result);
+            var qObject = JsonConvert.DeserializeObject<RootObject>(questInfoJsonResult);
             qInfo.Category = qObject.category;
             qInfo.Category2 = qObject.category2;
             qInfo.Classs = qObject.classs;
@@ -90,11 +103,13 @@ namespace Profiles_Converters.WebParser
             qInfo.Reprewards = qObject.reprewards;
             qInfo.Reqclass = qObject.reqclass;
             qInfo.ReqMinLevel = qObject.reqlevel;
-            qInfo.ReqMaxLevel = Others.ToInt32(result4) + result4Add;
+            qInfo.ReqMaxLevel = Others.ToInt32(greyLevelColorResult) + maxLevelAdjustment;
             qInfo.Side = qObject.side;
             qInfo.Wflags = qObject.wflags;
             qInfo.Type = qObject.type;
             qInfo.XP = qObject.xp;
+            qInfo.PickUp = Others.ToInt32(questPickUpId);
+            qInfo.TurnIn = Others.ToInt32(questTurnInId);
             qInfo.IsValid = true;
             return qInfo;
         }
@@ -126,6 +141,8 @@ namespace Profiles_Converters.WebParser
             public int Wflags { get; set; }
             public int Type { get; set; }
             public int XP { get; set; }
+            public int PickUp { get; set; }
+            public int TurnIn { get; set; }
         }
 
         public class RootObject
