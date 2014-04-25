@@ -214,6 +214,7 @@ namespace nManager.Wow.Bot.Tasks
                 Lua.LuaDoString(
                     "for slot = 1, GetNumLootItems() do " +
                     //"  if GetLootSlotType(slot) != 2 then " +
+                    "    LootSlot(slot)        " +
                     "    ConfirmLootSlot(slot) " +
                     //"  end " +
                     "end");
