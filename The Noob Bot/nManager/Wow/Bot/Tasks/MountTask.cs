@@ -347,6 +347,7 @@ namespace nManager.Wow.Bot.Tasks
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
                         tryMounting = 0;
+                        Thread.Sleep(100);
                         Takeoff();
                     }
                 }
