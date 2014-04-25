@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Helpful.Win32;
 
@@ -64,12 +65,19 @@ namespace nManager.Wow.MemoryClass
         /// <typeparam></typeparam>
         /// <param name="processName"></param>
         /// <returns name="processHandle"></returns>
-        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "pandawow.exe")
+        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "PandaWoW")
         {
             try
             {
-                System.Diagnostics.Process[] processesByNameList =
-                    System.Diagnostics.Process.GetProcessesByName(processName);
+                System.Diagnostics.Process[] processesByNameList = new System.Diagnostics.Process[0];
+                foreach (var process in System.Diagnostics.Process.GetProcesses())
+                {
+                    if (String.Equals(process.ProcessName, processName, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Array.Resize(ref processesByNameList, processesByNameList.Length + 1);
+                        processesByNameList[processesByNameList.Length - 1] = process;
+                    }
+                }
                 return processesByNameList;
             }
             catch (Exception e)
