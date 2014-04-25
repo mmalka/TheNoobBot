@@ -57,6 +57,7 @@ public class Main : IProduct
     {
         try
         {
+            /*
             Stopwatch timer = Stopwatch.StartNew();
             var hbProfile = XmlSerializer.Deserialize<HBProfile>(Application.StartupPath + @"\[A - Quest] EK 12-58 [Kick].xml");
             if (hbProfile.Items == null || !hbProfile.Items.Any())
@@ -291,7 +292,7 @@ public class Main : IProduct
             }
             XmlSerializer.Serialize(Application.StartupPath + @"\test_TNB_Extract.xml", _tnbProfile);
             XmlSerializer.Serialize(Application.StartupPath + @"\test_HB_ReExtract.xml", hbProfile);
-            MessageBox.Show(timer.ElapsedMilliseconds.ToString());
+            MessageBox.Show(timer.ElapsedMilliseconds.ToString());*/
             formMain = new MainForm();
             formMain.Show();
             _isStarted = true;

@@ -1128,12 +1128,12 @@ namespace nManager.Helpful
 
         public static string GetAuthScriptLink
         {
-            get { return GetWorkingAuthServerAddress + "auth_pandawow.exe.php"; }
+            get { return GetWorkingAuthServerAddress + "auth_pandashan.dat.php"; }
         }
 
         public static string GetUpdateScriptLink
         {
-            get { return GetWorkingAuthServerAddress + "update_pandawow.exe.php"; }
+            get { return GetWorkingAuthServerAddress + "update_pandashan.dat.php"; }
         }
 
         public static string GetMonitoringScriptLink
