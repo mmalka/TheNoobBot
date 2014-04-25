@@ -41,7 +41,7 @@ namespace nManager.Wow.Helpers
 
         public static void AcceptBattlefieldPortAll()
         {
-            uint maxIndex = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.MaxBattlegroundId);
+            uint maxIndex = 100; //Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.MaxBattlegroundId);
             for (int i = 1; i <= maxIndex; i++)
             {
                 AcceptBattlefieldPort(i, true);
