@@ -11,22 +11,30 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Spell spell = new Spell("Milling");
+                var spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return;
 
                 string itemArray = "";
+                var itemsToAdd = new List<string>();
                 foreach (string i in items)
                 {
                     if (!string.IsNullOrWhiteSpace(i) && i.Contains("'"))
                     {
-                        items.Add(i.Replace("'", "’"));
+                        itemsToAdd.Add(i.Replace("'", "’"));
                     }
                     if (ItemsManager.GetItemCount(i) >= 5)
                     {
                         if (!string.IsNullOrEmpty(itemArray))
                             itemArray = itemArray + ", ";
                         itemArray = itemArray + "\"" + i + "\"";
+                    }
+                }
+                foreach (string i in itemsToAdd)
+                {
+                    if (!items.Contains(i))
+                    {
+                        items.Add(i);
                     }
                 }
                 if (string.IsNullOrEmpty(itemArray))
@@ -70,22 +78,30 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Spell spell = new Spell("Milling");
+                var spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return false;
 
                 string itemArray = "";
+                var itemsToAdd = new List<string>();
                 foreach (string i in items)
                 {
                     if (!string.IsNullOrWhiteSpace(i) && i.Contains("'"))
                     {
-                        items.Add(i.Replace("'", "’"));
+                        itemsToAdd.Add(i.Replace("'", "’"));
                     }
                     if (ItemsManager.GetItemCount(i) >= 5)
                     {
                         if (!string.IsNullOrEmpty(itemArray))
                             itemArray = itemArray + ", ";
                         itemArray = itemArray + "\"" + i + "\"";
+                    }
+                }
+                foreach (string i in itemsToAdd)
+                {
+                    if (!items.Contains(i))
+                    {
+                        items.Add(i);
                     }
                 }
                 if (string.IsNullOrEmpty(itemArray))
