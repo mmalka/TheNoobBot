@@ -7658,12 +7658,12 @@ public class WarlockDemonology
         {
             if (ObjectManager.Me.DemonicFury > 199)
             {
-                if (MySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
+                if (MySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable && !ObjectManager.Target.HaveBuff(146739))
                 {
                     Corruption.Launch();
                 }
 
-                if (MySettings.UseMetamorphosis)
+                if (MySettings.UseMetamorphosis && Metamorphosis.KnownSpell)
                 {
                     MetamorphosisCombat();
                 }
