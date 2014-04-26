@@ -137,7 +137,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    float num = 20 - (((int) ObjectManager.Me.Level - (int) Level)*1.1f);
+                    float num = (Level <= 5 ? 12 : 20) - (((int) ObjectManager.Me.Level - (int) Level)*1.1f);
                     if (num < 5)
                         num = 5;
                     else if (num > 45)
