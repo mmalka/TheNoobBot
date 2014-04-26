@@ -19,7 +19,6 @@ namespace Profiles_Converters.WebParser
             string strData = "";
             try
             {
-                request.Proxy = WebProxy.GetDefaultProxy();
                 var response = (HttpWebResponse) request.GetResponse();
                 Stream stream = response.GetResponseStream();
                 Encoding ec = Encoding.GetEncoding("utf-8");

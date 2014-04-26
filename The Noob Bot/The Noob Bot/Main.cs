@@ -252,7 +252,7 @@ namespace The_Noob_Bot
             AccountNameLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AccountName);
             TimeLeftLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TimeLeft);
             ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeMonth));
-            ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeMonthPlatinium));
+            //ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeMonthPlatinium));
             ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeHalfYear));
             ProductsPriceList.Items.Add(nManager.Translate.Get(nManager.Translate.Id.SubscribeLifeTime));
         }
