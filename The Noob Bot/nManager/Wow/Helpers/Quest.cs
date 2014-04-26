@@ -195,6 +195,24 @@ namespace nManager.Wow.Helpers
                 }
             }
 
+            if (itemToEquip == null) // We have nothing to equip from rewards choice, let's take a look at reward with no choice
+            {
+                randomString = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomString + " = GetNumQuestRewards()");
+                numRewards = Others.ToInt32(Lua.GetLocalizedText(randomString));
+                for (uint i = 1; i <= numRewards; i++)
+                {
+                    string sLink = Others.GetRandomString(Others.Random(4, 10));
+                    string command = sLink + " = GetQuestItemLink(\"reward\", " + i + "); ";
+                    Lua.LuaDoString(command);
+                    string link = Lua.GetLocalizedText(sLink);
+                    if (ItemSelection.EvaluateItemStatsVsEquiped(link, out tempItem) <= 0)
+                    {
+                        itemToEquip = tempItem;
+                    }
+                }
+            }
+
             if (valueEquipementChoice > 0)
             {
                 Logging.WriteDebug("Going to select reward " + valueEquipementChoice + " for item stats");
