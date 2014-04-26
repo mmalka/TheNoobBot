@@ -8,6 +8,7 @@ using nManager.Wow.Helpers;
 using nManager.Helpful;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Enums;
+using nManager.Wow.Bot.Tasks;
 
 namespace Mimesis.Bot
 {
@@ -17,6 +18,7 @@ namespace Mimesis.Bot
         private static IPEndPoint serviceEndPoint = null;
         public static List<MimesisHelpers.MimesisEvent> myTaskList = new List<MimesisHelpers.MimesisEvent>();
         public static List<int> myQuestList = Quest.GetLogQuestId();
+        private static uint RollId = 0;
 
         public static bool Connect()
         {
@@ -126,6 +128,7 @@ namespace Mimesis.Bot
         public static void JoinGroup()
         {
             byte[] opCodeAndSize = new byte[2];
+            byte[] buffer;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetRealmName()");
             byte[] bufferName = MimesisHelpers.StringToBytes(ObjectManager.Me.Name + "-" + Lua.GetLocalizedText(randomString));
@@ -139,6 +142,10 @@ namespace Mimesis.Bot
             try
             {
                 int bytesRead = clientStream.Read(opCodeAndSize, 0, 2);
+                int len = opCodeAndSize[1]; // It's 4 (one uint)
+                buffer = new byte[len];
+                bytesRead += clientStream.Read(buffer, 0, len);
+                RollId = BitConverter.ToUInt32(buffer, 0);
             }
             catch (Exception e)
             {
@@ -154,6 +161,7 @@ namespace Mimesis.Bot
         {
             Lua.LuaDoString("StaticPopup_Hide(\"PARTY_INVITE\")");
             EventsListener.UnHookEvent(WoWEventsType.GROUP_ROSTER_UPDATE);
+            EventsListener.HookEvent(WoWEventsType.START_LOOT_ROLL, callback => RollItem());
         }
 
         public static void ProcessEvents()
@@ -186,15 +194,18 @@ namespace Mimesis.Bot
             if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyEvent && opCodeAndSize[1] > 0)
             {
                 MimesisHelpers.MimesisEvent evt = MimesisHelpers.BytesToStruct<MimesisHelpers.MimesisEvent>(buffer);
-                List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.TargetId);
                 switch (evt.eType)
                 {
                     case MimesisHelpers.eventType.pickupQuest:
-                        Logging.WriteDebug("Received pickupquest " + evt.QuestId);
+                        Logging.WriteDebug("Received pickupquest " + evt.EventValue2);
                         myTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.turninQuest:
-                        Logging.WriteDebug("Received turninquest " + evt.QuestId);
+                        Logging.WriteDebug("Received turninquest " + evt.EventValue2);
+                        myTaskList.Add(evt);
+                        break;
+                    case MimesisHelpers.eventType.mount:
+                        Logging.WriteDebug("Received mount type " + (MountCapacity) evt.EventValue1);
                         myTaskList.Add(evt);
                         break;
                 }
@@ -206,26 +217,43 @@ namespace Mimesis.Bot
             if (!HasTaskToDo())
                 return;
             MimesisHelpers.MimesisEvent evt = myTaskList[0];
-            List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.TargetId);
+            switch (evt.eType)
+            {
+                case MimesisHelpers.eventType.pickupQuest:
+                case MimesisHelpers.eventType.turninQuest:
+                    List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.EventValue1);
             if (listU.Count > 0)
             {
                 WoWUnit u = listU[0];
                 Npc quester = new Npc();
-                quester.Entry = evt.TargetId;
+                        quester.Entry = evt.EventValue1;
                 quester.Position = u.Position;
                 quester.Name = u.Name;
 
-                switch (evt.eType)
-                {
-                    case MimesisHelpers.eventType.pickupQuest:
-                        //Logging.WriteDebug("Run pickup..");
-                        Quest.QuestPickUp(ref quester, "not implemented", evt.QuestId);
-                        break;
-                    case MimesisHelpers.eventType.turninQuest:
-                        //Logging.WriteDebug("Run turnin..");
-                        Quest.QuestTurnIn(ref quester, "not implemented", evt.QuestId);
-                        break;
-                }
+                        if (evt.eType == MimesisHelpers.eventType.pickupQuest)
+                            Quest.QuestPickUp(ref quester, evt.EventString1, evt.EventValue2);
+                        else
+                            Quest.QuestTurnIn(ref quester, Quest.GetLogQuestTitle(evt.EventValue2) , evt.EventValue2);
+                    }
+                    break;
+                case MimesisHelpers.eventType.mount:
+                    switch ((MountCapacity)evt.EventValue1)
+                    {
+                        case MountCapacity.Ground:
+                            MountTask.MountingGroundMount(true);
+                            break;
+                        case MountCapacity.Fly:
+                            MountTask.MountingFlyingMount(true);
+                            break;
+                        case MountCapacity.Swimm:
+                            MountTask.MountingAquaticMount(true);
+                            break;
+                        default:
+                            MountTask.DismountMount(true);
+                            break;
+                    }
+                    myTaskList.Remove(evt);
+                    break;
             }
         }
 
@@ -246,7 +274,7 @@ namespace Mimesis.Bot
                 MimesisHelpers.MimesisEvent evtToRemove = new MimesisHelpers.MimesisEvent();
                 foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
                 {
-                    if (evt.eType == MimesisHelpers.eventType.pickupQuest && evt.QuestId == questId)
+                    if (evt.eType == MimesisHelpers.eventType.pickupQuest && evt.EventValue2 == questId)
                     {
                         evtToRemove = evt;
                         break;
@@ -274,7 +302,7 @@ namespace Mimesis.Bot
                 MimesisHelpers.MimesisEvent evtToRemove = new MimesisHelpers.MimesisEvent();
                 foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
                 {
-                    if (evt.eType == MimesisHelpers.eventType.turninQuest && evt.QuestId == questId)
+                    if (evt.eType == MimesisHelpers.eventType.turninQuest && evt.EventValue2 == questId)
                     {
                         evtToRemove = evt;
                         break;
@@ -292,25 +320,31 @@ namespace Mimesis.Bot
         }
 
         // We need the roll Id, but since the events have no data, how ?
-        public static void RollItem(string argument)
+        public static void RollItem()
         {
-            // For this event, argument0 is an int: RoolId
-            int RoolId = Others.ToInt32(argument);
-
+            RollId++;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString("_, " + randomString + " = GetLootRollItemLink(" + RoolId + ")");
+            Lua.LuaDoString("_, " + randomString + " = GetLootRollItemLink(" + RollId + ")");
             string itemLink = Lua.GetLocalizedText(randomString);
 
             // Then we need to use new code located in nManager/Wow/Helpers/ItemSelection.cs
 
-            Lua.LuaDoString("RollOnLoot(" + RoolId + ", 2)"); // Roll "Greed"
+            Lua.LuaDoString("RollOnLoot(" + RollId + ", 2)"); // Roll "Greed"
+            Logging.Write("Doing Loot Roll Greed on RollId=" + RollId);
             // 0 - Pass (declines the loot)
             // 1 - Roll "need" (wins if highest roll)
             // 2 - Roll "greed" (wins if highest roll and no other member rolls "need")
             // 3 - Disenchant
 
             // register event CONFIRM_LOOT_ROLL
-            // Do ConfirmLootRoll(id) when called back
+            EventsListener.HookEvent(WoWEventsType.CONFIRM_LOOT_ROLL, callback => ConfirmLootRoll(RollId));
+        }
+
+        public static void ConfirmLootRoll(uint id)
+        {
+            Logging.Write("Confirm Roll on RollId=" + id);
+            Lua.LuaDoString("ConfirmLootRoll(" + id + ")");
+            EventsListener.UnHookEvent(WoWEventsType.CONFIRM_LOOT_ROLL);
         }
     }
 }

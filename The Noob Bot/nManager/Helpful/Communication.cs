@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Helpers;
 using nManager.Wow.Enums;
+using nManager.Wow.Bot.Tasks;
 
 namespace nManager.Helpful
 {
@@ -18,13 +19,9 @@ namespace nManager.Helpful
         private static List<int> _currentQuestList;
         private static List<MimesisHelpers.MimesisEvent> _globalList;
         private static Timer _cleanupTimer;
-        private static bool _requireHook;
         private static Object _myLock = new Object();
-
-        public static bool RequiresHook
-        {
-            get { return _requireHook; }
-        }
+        private static MountCapacity _myMountStatus = MountCapacity.Feet;
+        private static uint RollId = 0;
 
         public static void Shutdown(int port = 6543)
         {
@@ -47,7 +44,6 @@ namespace nManager.Helpful
                 // We now unhook these events
                 EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED);
                 EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED);
-                _requireHook = false;
             }
         }
 
@@ -59,7 +55,6 @@ namespace nManager.Helpful
                 Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
                 try
                 {
-                    _requireHook = true;
                     EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
                     EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
                 }
@@ -113,7 +108,7 @@ namespace nManager.Helpful
                 }
                 else
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(200);
                     if (_cleanupTimer.IsReady) // Every 5 seconds, we drop the head event from the list
                     {
                         lock (_myLock)
@@ -126,6 +121,30 @@ namespace nManager.Helpful
                         }
                         _cleanupTimer.Reset();
                     }
+                    // Now check if mount status changed
+                    bool update = false;
+                    if (MountTask.OnGroundMount() && _myMountStatus != MountCapacity.Ground)
+                    {
+                        update = true;
+                        _myMountStatus = MountCapacity.Ground;
+                    }
+                    else if (MountTask.OnFlyMount() && _myMountStatus != MountCapacity.Fly)
+                    {
+                        update = true;
+                        _myMountStatus = MountCapacity.Fly;
+                    }
+                    else if (MountTask.OnAquaticMount() && _myMountStatus != MountCapacity.Swimm)
+                    {
+                        update = true;
+                        _myMountStatus = MountCapacity.Swimm;
+                    }
+                    else if (_myMountStatus != MountCapacity.Feet)
+                    {
+                        update = true;
+                        _myMountStatus = MountCapacity.Feet;
+                    }
+                    if (update)
+                        EventMount();
                 }
             }
         }
@@ -147,20 +166,21 @@ namespace nManager.Helpful
             MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
             evt.SerialNumber = _eventSerialNumber;
             evt.eType = MimesisHelpers.eventType.pickupQuest;
-            evt.TargetId = questGiver.Entry;
+            evt.EventValue1 = questGiver.Entry;
             // we diff current quest list vs old one
             List<int> newQuestList = Quest.GetLogQuestId();
             foreach (var quest in newQuestList)
             {
                 if (!_currentQuestList.Contains(quest))
                 {
-                    evt.QuestId = quest;
+                    evt.EventValue2 = quest;
+                    evt.EventString1 = Quest.GetLogQuestTitle(quest);
                     break;
                 }
             }
             // now add this new event to the globale list
             lock (_myLock) _globalList.Add(evt);
-            _currentQuestList.Add(evt.QuestId);
+            _currentQuestList.Add(evt.EventValue2);
             _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it
         }
 
@@ -192,11 +212,24 @@ namespace nManager.Helpful
             MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
             evt.SerialNumber = _eventSerialNumber;
             evt.eType = MimesisHelpers.eventType.turninQuest;
-            evt.TargetId = questGiver.Entry;
-            evt.QuestId = questId;
+            evt.EventValue1 = questGiver.Entry;
+            evt.EventValue2 = questId;
             // now add this new event to the globale list
             lock (_myLock) _globalList.Add(evt);
             _currentQuestList.Remove(questId);
+            _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it
+        }
+
+        public static void EventMount()
+        {
+            // Build an event in _globalEvent
+            _eventSerialNumber++;
+            MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
+            evt.SerialNumber = _eventSerialNumber;
+            evt.eType = MimesisHelpers.eventType.mount;
+            evt.EventValue1 = (int) _myMountStatus;
+            // now add this new event to the globale list
+            lock (_myLock) _globalList.Add(evt);
             _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it
         }
 
@@ -268,7 +301,7 @@ namespace nManager.Helpful
                                     MimesisHelpers.MimesisEvent mevent = eventList[0];
                                     byte[] bufferEvent = MimesisHelpers.StructToBytes(mevent);
                                     opCodeAndLen[1] = (byte) bufferEvent.Length;
-                                    Logging.WriteDebug("Sending to client event " + mevent.eType + " for quest " + mevent.QuestId);
+                                    Logging.WriteDebug("Sending to client event " + mevent.eType + " for quest " + mevent.EventValue2);
                                     clientStream.Write(opCodeAndLen, 0, 2);
                                     clientStream.Write(bufferEvent, 0, bufferEvent.Length);
                                     eventList.Remove(mevent);
@@ -280,11 +313,14 @@ namespace nManager.Helpful
                                 }
                                 break;
                             case MimesisHelpers.opCodes.RequestGrouping:
+                                if (!ObjectManager.Me.IsHomePartyLeader)
+                                    RollId = 0;
                                 string sentName = MimesisHelpers.BytesToString(message);
                                 Lua.LuaDoString("InviteUnit(\"" + sentName + "\")");
                                 opCodeAndLen[0] = (byte) MimesisHelpers.opCodes.ReplyGrouping;
-                                opCodeAndLen[1] = 0;
+                                opCodeAndLen[1] = 4;
                                 clientStream.Write(opCodeAndLen, 0, 2);
+                                clientStream.Write(BitConverter.GetBytes(RollId), 0, 4);
                                 break;
                                 /* Some more things to replicate
                              * - TAXIMAP_OPENED

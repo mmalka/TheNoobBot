@@ -16,8 +16,6 @@ namespace nManager.Wow.Helpers
             ReplyPosition = 11,
             QueryEvent = 2,
             ReplyEvent = 21,
-            ReplyQuestPickup = 21,
-            ReplyQuestTurnIn = 22,
             QueryGuid = 3,
             ReplyGuid = 31,
             RequestGrouping = 4,
@@ -31,6 +29,7 @@ namespace nManager.Wow.Helpers
             pickupQuest = 1,
             turninQuest = 2,
             interactObject = 3,
+            mount = 4,
         }
 
         [Serializable]
@@ -38,8 +37,9 @@ namespace nManager.Wow.Helpers
         {
             public uint SerialNumber;
             public eventType eType;
-            public int TargetId;
-            public int QuestId;
+            public int EventValue1;
+            public int EventValue2;
+            public string EventString1;
         }
 
         public static T BytesToObject<T>(byte[] arrBytes)
