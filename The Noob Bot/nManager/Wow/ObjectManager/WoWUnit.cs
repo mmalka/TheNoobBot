@@ -1473,6 +1473,88 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public int QuestItem1
+        {
+            get
+            {
+                try
+                {
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem1);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > QuestItem1: " + e);
+                    return 0;
+                }
+            }
+        }
+        public int QuestItem2
+        {
+            get
+            {
+                try
+                {
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem2);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > QuestItem2: " + e);
+                    return 0;
+                }
+            }
+        }
+        public int QuestItem3
+        {
+            get
+            {
+                try
+                {
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem3);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > QuestItem3: " + e);
+                    return 0;
+                }
+            }
+        }
+        public int QuestItem4
+        {
+            get
+            {
+                try
+                {
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem4);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > QuestItem4: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public int ModelId
+        {
+            get
+            {
+                try
+                {
+                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedModelId1);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > ModelId: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public TypeFlag ExtraLootType
         {
             get

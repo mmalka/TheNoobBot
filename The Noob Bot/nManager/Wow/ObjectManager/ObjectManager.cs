@@ -807,6 +807,38 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitByQuestLoot(List<WoWUnit> listWoWUnit, int lootId)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if ((a.QuestItem1 == lootId || a.QuestItem2 == lootId || a.QuestItem3 == lootId || a.QuestItem4 == lootId) && !a.Invisible)
+                        list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitByQuestLoot(List<WoWUnit> listWoWUnit, int lootId): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitByQuestLoot(int lootId)
+        {
+            try
+            {
+                return GetWoWUnitByQuestLoot(GetObjectWoWUnit(), lootId);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitByQuestLoot(int lootId): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
         {
             try

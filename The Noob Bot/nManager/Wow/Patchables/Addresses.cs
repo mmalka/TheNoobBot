@@ -133,6 +133,11 @@
             CachedSubName = 0x0,
             CachedName = 0x6C,
             CachedTypeFlag = 0x4C,
+            CachedQuestItem1 = 0x30,
+            CachedQuestItem2 = 0x34,
+            CachedQuestItem3 = 0x38,
+            CachedQuestItem4 = 0x3C,
+            CachedModelId1 = 0x5C,
         }
 
         /// <summary>

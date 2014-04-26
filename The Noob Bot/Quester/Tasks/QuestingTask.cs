@@ -274,8 +274,13 @@ namespace Quester.Tasks
                     return;
                 }
 
-                WoWUnit wowUnit =
-                    ObjectManager.GetNearestWoWUnit(
+                WoWUnit wowUnit = new WoWUnit(0);
+                if (questObjective.CollectItemId != 0)
+                    wowUnit = ObjectManager.GetNearestWoWUnit(
+                        ObjectManager.GetWoWUnitByQuestLoot(questObjective.CollectItemId));
+
+                if (!wowUnit.IsValid)
+                    wowUnit = ObjectManager.GetNearestWoWUnit(
                         ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
 
                 if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
@@ -419,7 +424,7 @@ namespace Quester.Tasks
                         ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
-                        else
+                        else if (questObjective.Count == 0) // Then -1 is making the objectif never ending
                             questObjective.IsObjectiveCompleted = true;
                         Thread.Sleep(questObjective.WaitMs);
                         Quest.GetSetIgnoreFight = false;
