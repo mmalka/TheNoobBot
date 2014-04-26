@@ -56,7 +56,7 @@ namespace Quester.Tasks
                         (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
                             if (!Quest.GetQuestCompleted(quest.NeedQuestNotCompletedId)) // Quest done which discalify this one
-                                if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
+                                if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // One of these quest need to be completed
                                     quest.NeedQuestCompletedId.Count == 0)
                                     if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCount(quest.ItemPickUp) > 0))
                                         if (Script.Run(quest.ScriptCondition)) // Condition
@@ -375,7 +375,7 @@ namespace Quester.Tasks
                     if (questObjective.Entry.Count > 0)
                     {
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry), true);
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -400,7 +400,7 @@ namespace Quester.Tasks
                         if (questObjective.Entry.Count > 0)
                         {
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry), true);
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -745,13 +745,8 @@ namespace Quester.Tasks
                         {
                             questObjective.Position = new Point(unit.Position);
                         }
-                        else
-                        {
-                            return;
-                        }
                     }
-
-                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.IsValid && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
@@ -1071,7 +1066,7 @@ namespace Quester.Tasks
         private static void CheckMandatoryFieldsByObjective(QuestObjective questObjective)
         {
             return;
-            // Todo make this functions till the end.
+            /* Todo make this functions till the end.
             switch (questObjective.Objective)
             {
                 case Objective.None:
@@ -1095,7 +1090,7 @@ namespace Quester.Tasks
                 case Objective.UseVehicle:
                 case Objective.Wait:
                     break;
-            }
+            }*/
         }
 
         private static void CheckMandatoryFieldsByType(QuestObjective questObjective, bool cEntry, bool cPosition = false, bool cCollectItemId = false, bool cCountItemId = false)

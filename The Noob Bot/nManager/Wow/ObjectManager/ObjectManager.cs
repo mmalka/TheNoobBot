@@ -504,7 +504,7 @@ namespace nManager.Wow.ObjectManager
             return new WoWUnit(0);
         }
 
-        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit)
+        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false)
         {
             try
             {
@@ -512,7 +512,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid) && !a.NotSelectable)
+                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid) && (ignorenotSelectable || !a.NotSelectable))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
