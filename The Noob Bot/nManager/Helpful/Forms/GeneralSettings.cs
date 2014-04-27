@@ -431,7 +431,6 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent = (int) DrinkBeverageWhenManaIsUnderXPercent.Value;
                 nManagerSetting.CurrentSetting.DoRegenManaIfLow = DoRegenManaIfLow.Value;
                 nManagerSetting.CurrentSetting.ActivateMonsterLooting = ActivateMonsterLooting.Value;
-                nManagerSetting.CurrentSetting.ActivateLootStatistics = ActivateLootStatistics.Value;
                 nManagerSetting.CurrentSetting.ActivateChestLooting = ActivateChestLooting.Value;
                 nManagerSetting.CurrentSetting.ActivateBeastSkinning = ActivateBeastSkinning.Value;
                 nManagerSetting.CurrentSetting.BeastNinjaSkinning = BeastNinjaSkinning.Value;
@@ -510,6 +509,11 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
                 nManagerSetting.CurrentSetting.AutoCloseChatFrame = AutoCloseChatFrame.Value;
+                if (nManagerSetting.CurrentSetting.ActivateLootStatistics && !ActivateLootStatistics.Value)
+                    Others.LootStatistics(false);
+                else if (!nManagerSetting.CurrentSetting.ActivateLootStatistics && ActivateLootStatistics.Value)
+                    Others.LootStatistics();
+                nManagerSetting.CurrentSetting.ActivateLootStatistics = ActivateLootStatistics.Value;
                 int oldPort = nManagerSetting.CurrentSetting.BroadcastingPort;
                 bool oldStatus = nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis;
                 nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;

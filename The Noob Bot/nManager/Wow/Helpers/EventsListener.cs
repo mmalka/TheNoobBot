@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -48,7 +49,7 @@ namespace nManager.Wow.Helpers
             return currentEventNamePtr > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetCount) : 0;
         }
 
-        private static bool IsAttached(WoWEventsType eventType)
+        private static bool IsAttached(WoWEventsType eventType, string callBack, bool sendsFireCount = false)
         {
             try
             {
@@ -56,7 +57,7 @@ namespace nManager.Wow.Helpers
                 {
                     foreach (HookedEventInfo c in _hookedEvents)
                     {
-                        if (c.EventType == eventType) return true;
+                        if (c.EventType == eventType && c.CallBackName == callBack && c.SendsFireCount == sendsFireCount) return true;
                     }
                 }
                 return false;
@@ -68,40 +69,45 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static void HookEvent(WoWEventsType eventType, CallBack method, bool forceHook = false)
+        public static void HookEvent(WoWEventsType eventType, Expression<CallBack> method, bool requestFireCount = false)
         {
             try
             {
-                if (IsAttached(eventType) && !forceHook)
+                Logging.WriteDebug("Init HookEvent for event: " + eventType + " with CallBack: " + method + " and requestFireCount: " + requestFireCount);
+                if (IsAttached(eventType, method.ToString(), requestFireCount))
                 {
-                    Logging.WriteError("The event " + eventType.ToString() + " is already hooked and parameter forceHook is passed with false.");
+                    Logging.WriteError("The event " + eventType + " with method " + method + " and parameter requestFireCount set to " + requestFireCount +
+                                       " is already hooked in the exact same way, duplicates of HookEvent is a bad code manner, make sure to UnHook your event when your Stop() your plugin.");
                     return;
                 }
                 lock (_ourLock)
                 {
-                    _hookedEvents.Add(new HookedEventInfo(method, eventType, GetEventFireCount(eventType)));
+                    CallBack callBack = method.Compile();
+                    _hookedEvents.Add(new HookedEventInfo(callBack, eventType, GetEventFireCount(eventType), method.ToString(), requestFireCount));
                 }
-                if (_threadHookEvent == null)
+                if (_threadHookEvent == null || !_threadHookEvent.IsAlive)
+                {
                     _threadHookEvent = new Thread(Hook) {Name = "Hook of Events"};
-                if (!_threadHookEvent.IsAlive)
                     _threadHookEvent.Start();
+                }
             }
             catch (Exception arg)
             {
-                Logging.WriteError("HookEvent(WoWEventsType eventType, CallBack method, bool forceHook = false): " + arg);
+                Logging.WriteError("HookEvent(WoWEventsType eventType, Expression<CallBack> method, bool requestFireCount = false): " + arg);
             }
         }
 
-        public static void UnHookEvent(WoWEventsType eventType)
+        public static void UnHookEvent(WoWEventsType eventType, Expression<CallBack> method, bool requestFireCount = false)
         {
             try
             {
+                Logging.WriteDebug("Init UnHookEvent for event: " + eventType + " with CallBack: " + method + " and requestFireCount: " + requestFireCount);
                 lock (_ourLock)
                 {
                     HookedEventInfo toRemove = null;
                     foreach (HookedEventInfo current in _hookedEvents)
                     {
-                        if (current.EventType == eventType)
+                        if (current.EventType == eventType && current.CallBackName == method.ToString() && current.SendsFireCount == requestFireCount)
                         {
                             toRemove = current;
                             break;
@@ -113,7 +119,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception err)
             {
-                Logging.WriteError("UnHookEvent(WoWEventsType eventType): " + err);
+                Logging.WriteError("UnHookEvent(WoWEventsType eventType, string methodName, bool requestFireCount = false): " + err);
             }
         }
 
@@ -137,15 +143,19 @@ namespace nManager.Wow.Helpers
 
         private class HookedEventInfo
         {
+            internal readonly string CallBackName;
             internal readonly WoWEventsType EventType;
+            internal readonly bool SendsFireCount;
             private readonly CallBack _callBack;
             internal int PreviousCurrentEventFireCount = -1;
 
-            internal HookedEventInfo(CallBack callBack, WoWEventsType id, int idUsedLastCount)
+            internal HookedEventInfo(CallBack callBack, WoWEventsType id, int idUsedLastCount, string callBackName, bool sendsFireCount)
             {
                 _callBack = callBack;
                 EventType = id;
                 PreviousCurrentEventFireCount = idUsedLastCount;
+                CallBackName = callBackName;
+                SendsFireCount = sendsFireCount;
             }
 
             internal void CallBack()
@@ -155,12 +165,12 @@ namespace nManager.Wow.Helpers
                     case WoWEventsType.CHAT_MSG_LOOT:
                         // when looting multiple items, fire multiples times, we want to make sure to jump to the latest eventFireCount.
                         Thread.Sleep(500); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
-                        _callBack(GetEventFireCount(EventType));
-                        break;
-                    default:
-                        _callBack(null);
                         break;
                 }
+                if (SendsFireCount)
+                    _callBack(GetEventFireCount(EventType));
+                else
+                    _callBack(null);
             }
         }
     }

@@ -62,8 +62,9 @@ namespace Mimesis.Bot
                 }
             }
             Logging.Write("Disconnected from main bot.");
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED);
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED);
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
+            EventsListener.UnHookEvent(WoWEventsType.START_LOOT_ROLL, callback => RollItem());
             client.Close();
         }
 
@@ -152,6 +153,7 @@ namespace Mimesis.Bot
                 Logging.WriteError("MimesisClientCom > JoinGroup(): " + e);
                 return;
             }
+            EventsListener.UnHookEvent(WoWEventsType.GROUP_ROSTER_UPDATE, callback => CloseGroupPopup());
             EventsListener.HookEvent(WoWEventsType.GROUP_ROSTER_UPDATE, callback => CloseGroupPopup());
             System.Threading.Thread.Sleep(250 + 2*Usefuls.Latency);
             Lua.LuaDoString("AcceptGroup()");
@@ -160,7 +162,7 @@ namespace Mimesis.Bot
         public static void CloseGroupPopup()
         {
             Lua.LuaDoString("StaticPopup_Hide(\"PARTY_INVITE\")");
-            EventsListener.UnHookEvent(WoWEventsType.GROUP_ROSTER_UPDATE);
+            EventsListener.UnHookEvent(WoWEventsType.GROUP_ROSTER_UPDATE, callback => CloseGroupPopup());
             EventsListener.HookEvent(WoWEventsType.START_LOOT_ROLL, callback => RollItem());
         }
 
@@ -344,7 +346,7 @@ namespace Mimesis.Bot
         {
             Logging.Write("Confirm Roll on RollId=" + id);
             Lua.LuaDoString("ConfirmLootRoll(" + id + ")");
-            EventsListener.UnHookEvent(WoWEventsType.CONFIRM_LOOT_ROLL);
+            EventsListener.UnHookEvent(WoWEventsType.CONFIRM_LOOT_ROLL, callback => ConfirmLootRoll(RollId));
         }
     }
 }

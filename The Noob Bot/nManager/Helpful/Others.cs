@@ -1124,6 +1124,20 @@ namespace nManager.Helpful
             }
         }
 
+        public static void LootStatistics(bool startOrStop = true)
+        {
+            if (startOrStop)
+            {
+                Logging.Write("Initializing LootStatistics module, may take few seconds.");
+                CheckInventoryForLatestLoot(0); // Generate the initial _stockList.
+                EventsListener.HookEvent(WoWEventsType.CHAT_MSG_LOOT, callBack => CheckInventoryForLatestLoot((int)callBack), true);
+            }
+            else
+            {
+                EventsListener.UnHookEvent(WoWEventsType.CHAT_MSG_LOOT, callBack => CheckInventoryForLatestLoot((int)callBack), true);
+            }
+        }
+
         #endregion
 
         public static string GetAuthScriptLink

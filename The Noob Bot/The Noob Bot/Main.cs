@@ -12,6 +12,7 @@ using nManager.Helpful.Forms;
 using nManager.Products;
 using nManager.Wow;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using The_Noob_Bot.Properties;
@@ -82,6 +83,11 @@ namespace The_Noob_Bot
                     Communication.Listen();
 
                 _playerName = ObjectManager.Me.Name;
+
+                if (nManagerSetting.CurrentSetting.ActivateLootStatistics)
+                {
+                    Others.LootStatistics();
+                }
             }
             catch (Exception ex)
             {

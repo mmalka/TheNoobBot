@@ -75,8 +75,6 @@ namespace Grinder.Bot
                 Fsm.States.Clear();
 
                 Fsm.AddState(new Pause {Priority = 100});
-                if (nManagerSetting.CurrentSetting.ActivateLootStatistics)
-                    Fsm.AddState(new LootStatistics {Priority = 99});
                 Fsm.AddState(new SelectProfileState {Priority = 14});
                 Fsm.AddState(new Resurrect {Priority = 13});
                 Fsm.AddState(new IsAttacked {Priority = 12});
