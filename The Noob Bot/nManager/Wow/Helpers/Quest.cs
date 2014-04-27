@@ -158,7 +158,7 @@ namespace nManager.Wow.Helpers
         public static ItemInfo CompleteQuest()
         {
             Lua.LuaDoString("CompleteQuest()");
-            Thread.Sleep(500);
+            Thread.Sleep(300);
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetNumQuestChoices()");
             int numRewards = Others.ToInt32(Lua.GetLocalizedText(randomString));
@@ -268,6 +268,8 @@ namespace nManager.Wow.Helpers
 
         public static void AbandonQuest(int questId)
         {
+            if (questId == 0)
+                return;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + questId + ")");
             int index = Others.ToInt32(Lua.GetLocalizedText(randomString));
@@ -306,17 +308,17 @@ namespace nManager.Wow.Helpers
             {
                 Quest.CloseQuestWindow();
                 Interact.InteractWith(baseAddress);
-                Thread.Sleep(Usefuls.Latency + 600);
-                ObjectManager.WoWObject targetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
-                if (targetIsObject.IsValid)
-                    Thread.Sleep(2500); // to let the Gameobject open
+                Thread.Sleep(Usefuls.Latency + 350);
+                ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
+                if (targetIsGameObject.IsValid)
+                    Thread.Sleep(2750); // to let the Gameobject open
                 Logging.Write("PickUp Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();
                 // GetNumGossipActiveQuests() == 1 because of auto accepted quests
                 if (!(Quest.GetNumGossipAvailableQuests() == 1 && Quest.GetNumGossipActiveQuests() == 1) && id == questId)
                 {
                     Quest.AcceptQuest();
-                    Thread.Sleep(Usefuls.Latency + 500);
+                    Thread.Sleep(Usefuls.Latency + 250);
                 }
                 if (Quest.GetLogQuestId().Contains(questId))
                 {
@@ -329,12 +331,12 @@ namespace nManager.Wow.Helpers
                         for (int i = 1; i <= Quest.GetNumGossipAvailableQuests(); i++)
                         {
                             Quest.SelectGossipAvailableQuest(i);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             id = Quest.GetQuestID();
                             if (id == questId)
                             {
                                 Quest.AcceptQuest();
-                                Thread.Sleep(Usefuls.Latency + 500);
+                                Thread.Sleep(Usefuls.Latency + 250);
                                 id = Quest.GetQuestID();
                                 Quest.CloseQuestWindow();
                                 if (id != questId)
@@ -342,10 +344,10 @@ namespace nManager.Wow.Helpers
                                 break;
                             }
                             Quest.CloseQuestWindow();
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             Quest.AbandonQuest(id);
                             Interact.InteractWith(baseAddress);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 350);
                         }
                     }
                     else
@@ -359,7 +361,7 @@ namespace nManager.Wow.Helpers
                             if (id == questId)
                             {
                                 Quest.AcceptQuest();
-                                Thread.Sleep(Usefuls.Latency + 500);
+                                Thread.Sleep(Usefuls.Latency + 250);
                                 id = Quest.GetQuestID();
                                 Quest.CloseQuestWindow();
                                 if (id != questId)
@@ -367,10 +369,10 @@ namespace nManager.Wow.Helpers
                                 break;
                             }
                             Quest.CloseQuestWindow();
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             Quest.AbandonQuest(id);
                             Interact.InteractWith(baseAddress);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 350);
                             gossipid++;
                         }
                     }
@@ -392,16 +394,16 @@ namespace nManager.Wow.Helpers
             {
                 Quest.CloseQuestWindow();
                 Interact.InteractWith(baseAddress);
-                Thread.Sleep(Usefuls.Latency + 600);
-                ObjectManager.WoWObject targetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
-                if (targetIsObject.IsValid)
-                    Thread.Sleep(2500); // to let the Gameobject open
+                Thread.Sleep(Usefuls.Latency + 350);
+                ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
+                if (targetIsGameObject.IsValid)
+                    Thread.Sleep(2750); // to let the Gameobject open
                 Logging.Write("turnIn Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();
                 if (id == questId) // this may fail
                 {
                     equip = Quest.CompleteQuest();
-                    Thread.Sleep(Usefuls.Latency + 500);
+                    Thread.Sleep(Usefuls.Latency + 250);
                 }
                 if (!Quest.GetLogQuestId().Contains(questId)) // It's no more in the quest log, then we did turn in it sucessfuly
                 {
@@ -417,12 +419,12 @@ namespace nManager.Wow.Helpers
                         for (int i = 1; i <= Quest.GetNumGossipActiveQuests(); i++)
                         {
                             Quest.SelectGossipActiveQuest(i);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             id = Quest.GetQuestID();
                             if (id == questId)
                             {
                                 equip = Quest.CompleteQuest();
-                                Thread.Sleep(Usefuls.Latency + 500);
+                                Thread.Sleep(Usefuls.Latency + 250);
                                 // here it can be the next quest id presented automatically when the current one is turned in
                                 id = Quest.GetQuestID();
                                 Quest.CloseQuestWindow();
@@ -432,9 +434,9 @@ namespace nManager.Wow.Helpers
                                 break;
                             }
                             Quest.CloseQuestWindow();
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             Interact.InteractWith(baseAddress);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 350);
                         }
                     }
                     else
@@ -443,20 +445,20 @@ namespace nManager.Wow.Helpers
                         while (Quest.GetActiveTitle(gossipid) != "")
                         {
                             Quest.SelectActiveQuest(gossipid);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             id = Quest.GetQuestID();
                             if (id == questId)
                             {
                                 equip = Quest.CompleteQuest();
-                                Thread.Sleep(Usefuls.Latency + 500);
+                                Thread.Sleep(Usefuls.Latency + 250);
                                 Quest.CloseQuestWindow();
                                 Quest.FinishedQuestSet.Add(questId);
                                 break;
                             }
                             Quest.CloseQuestWindow();
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             Interact.InteractWith(baseAddress);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 350);
                             gossipid++;
                         }
                     }
@@ -464,7 +466,10 @@ namespace nManager.Wow.Helpers
             }
             Thread.Sleep(Usefuls.Latency);
             if (equip != null)
+            {
                 ItemSelection.EquipItem(equip);
+                Thread.Sleep(Usefuls.Latency + 250);
+            }
         }
 
         [StructLayout(LayoutKind.Sequential)]
