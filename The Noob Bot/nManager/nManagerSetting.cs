@@ -29,7 +29,7 @@ namespace nManager
             }
             set { _currentSetting = value; }
         }
-
+        
         #region BlackListGuid
 
         private static readonly Dictionary<ulong, int> _blackListGuidByTime = new Dictionary<ulong, int>();
@@ -286,5 +286,8 @@ namespace nManager
         public bool AutoCloseChatFrame = true;
         public bool ActivateBroadcastingMimesis = false;
         public int BroadcastingPort = 6543;
+        public List<string> ActivatedPluginsList = new List<string>();
+        public bool ActivatePluginsSystem = true;
+        public bool LaunchExpiredPlugins = false;
     }
 }

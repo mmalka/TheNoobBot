@@ -9,10 +9,10 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Helpful.Forms;
+using nManager.Plugins;
 using nManager.Products;
 using nManager.Wow;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using The_Noob_Bot.Properties;
@@ -80,14 +80,22 @@ namespace The_Noob_Bot
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
                 if (nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis)
-                    Communication.Listen();
-
-                _playerName = ObjectManager.Me.Name;
-
+                {
+                    var startListenThread = new Thread(Communication.Listen) {Name = "Mimesis Broadcaster Loading"};
+                    startListenThread.Start();
+                }
                 if (nManagerSetting.CurrentSetting.ActivateLootStatistics)
                 {
-                    Others.LootStatistics();
+                    var lootStatisticsThread = new Thread(() => Others.LootStatistics()) {Name = "LootStatistics Loading"};
+                    lootStatisticsThread.Start();
                 }
+                if (nManagerSetting.CurrentSetting.ActivatePluginsSystem)
+                {
+                    var loadPluginsThread = new Thread(Plugins.LoadPlugins) {Name = "Plugins Loading"};
+                    loadPluginsThread.Start();
+                }
+
+                _playerName = ObjectManager.Me.Name;
             }
             catch (Exception ex)
             {
@@ -274,7 +282,7 @@ namespace The_Noob_Bot
                     EnUsName = SpellManager.GetFlyMountName();
                     if (EnUsName != "")
                     {
-                        Spell temp = new Spell(EnUsName);
+                        var temp = new Spell(EnUsName);
                         nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetSpellInfo(temp.Id).Name;
                     }
                 }
@@ -283,7 +291,7 @@ namespace The_Noob_Bot
                     EnUsName = SpellManager.GetMountName();
                     if (EnUsName != "")
                     {
-                        Spell temp = new Spell(EnUsName);
+                        var temp = new Spell(EnUsName);
                         nManagerSetting.CurrentSetting.GroundMountName = SpellManager.GetSpellInfo(temp.Id).Name;
                     }
                 }
@@ -292,7 +300,7 @@ namespace The_Noob_Bot
                     EnUsName = SpellManager.GetAquaticMountName();
                     if (EnUsName != "")
                     {
-                        Spell temp = new Spell(EnUsName);
+                        var temp = new Spell(EnUsName);
                         nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetSpellInfo(temp.Id).Name;
                     }
                 }

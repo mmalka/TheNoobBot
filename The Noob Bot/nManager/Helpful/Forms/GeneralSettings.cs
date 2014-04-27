@@ -3,7 +3,9 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Windows.Forms;
+using nManager.Plugins;
 using nManager.Wow.Bot.Tasks;
 
 namespace nManager.Helpful.Forms
@@ -18,7 +20,7 @@ namespace nManager.Helpful.Forms
                 TranslateForm();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
-
+                Plugins.Plugins.DisposePlugins();
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
                 {
                     CombatClass.Items.Add(f);
@@ -34,6 +36,14 @@ namespace nManager.Helpful.Forms
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
                 {
                     HealerClass.Items.Add(f);
+                }
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.dll"))
+                {
+                    AvailablePluginsList.Items.Add(f);
+                }
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.cs"))
+                {
+                    AvailablePluginsList.Items.Add(f);
                 }
                 LoadSetting(nManagerSetting.CurrentSetting);
                 IPAddress firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
@@ -401,6 +411,10 @@ namespace nManager.Helpful.Forms
             ActivateBroadcastingMimesis.OnText = onText;
             AutoCloseChatFrame.OffText = offText;
             AutoCloseChatFrame.OnText = onText;
+            ActivatePluginsSystem.OffText = offText;
+            ActivatePluginsSystem.OnText = onText;
+            LaunchExpiredPlugins.OffText = offText;
+            LaunchExpiredPlugins.OnText = onText;
         }
 
         private void SaveSetting()
@@ -518,6 +532,15 @@ namespace nManager.Helpful.Forms
                 bool oldStatus = nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis;
                 nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis = ActivateBroadcastingMimesis.Value;
                 nManagerSetting.CurrentSetting.BroadcastingPort = (int) BroadcastingPort.Value;
+                nManagerSetting.CurrentSetting.ActivatePluginsSystem = ActivatePluginsSystem.Value;
+                nManagerSetting.CurrentSetting.LaunchExpiredPlugins = LaunchExpiredPlugins.Value;
+                nManagerSetting.CurrentSetting.ActivatedPluginsList.Clear();
+                foreach (string s in ActivatedPluginsList.Items)
+                {
+                    nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
+                }
+                if (nManagerSetting.CurrentSetting.ActivatePluginsSystem)
+                    Plugins.Plugins.LoadPlugins();
                 nManagerSetting.CurrentSetting.Save();
                 if (oldStatus && !ActivateBroadcastingMimesis.Value)
                     Communication.Shutdown(oldPort); // Display the port used before the settings edition.
@@ -638,6 +661,17 @@ namespace nManager.Helpful.Forms
                 AutoCloseChatFrame.Value = managerSetting.AutoCloseChatFrame;
                 ActivateBroadcastingMimesis.Value = managerSetting.ActivateBroadcastingMimesis;
                 BroadcastingPort.Value = managerSetting.BroadcastingPort;
+                ActivatePluginsSystem.Value = managerSetting.ActivatePluginsSystem;
+                LaunchExpiredPlugins.Value = managerSetting.LaunchExpiredPlugins;
+                ActivatedPluginsList.Items.Clear();
+                foreach (string s in managerSetting.ActivatedPluginsList)
+                {
+                    if (AvailablePluginsList.Items.Contains(s))
+                    {
+                        AvailablePluginsList.Items.Remove(s);
+                        ActivatedPluginsList.Items.Add(s);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -694,7 +728,11 @@ namespace nManager.Helpful.Forms
                         Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
                     if (ret == DialogResult.Yes)
+                    {
                         SaveSetting();
+                    }
+                    else if (nManagerSetting.CurrentSetting.ActivatePluginsSystem)
+                        Plugins.Plugins.LoadPlugins();
                 }
             }
             catch (Exception ex)
@@ -727,6 +765,72 @@ namespace nManager.Helpful.Forms
         private void HealerClassResetSettingsButton_Click(object sender, EventArgs e)
         {
             Wow.Helpers.HealerClass.ResetConfigurationHealerClass(Application.StartupPath + "\\HealerClass\\" + HealerClass.Text);
+        }
+
+        private void LoadPlugin(object sender, EventArgs e)
+        {
+            ActivatePlugin.Enabled = false;
+            if (AvailablePluginsList.Items.Count <= 0 || AvailablePluginsList.SelectedIndex < 0)
+            {
+                MessageBox.Show(@"There is no plugins available or selected.");
+                return;
+            }
+            var p = new Plugin { PathToPluginFile = Application.StartupPath + "\\Plugins\\" + AvailablePluginsList.SelectedItem };
+            if (!p.IsAlive)
+            {
+                MessageBox.Show(@"This plugin cannot be activated, read error logs for more informations.");
+            }
+            else if (!LaunchExpiredPlugins.Value && p.IsExpired)
+            {
+                MessageBox.Show(@"This plugin is expired and LaunchExpiredPlugins is OFF.");
+            }
+            else
+            {
+                ActivatedPluginsList.Items.Add(AvailablePluginsList.SelectedItem);
+                AvailablePluginsList.Items.Remove(AvailablePluginsList.SelectedItem);
+            }
+            Plugins.Plugins.DisposePlugins();
+            ActivatePlugin.Enabled = true;
+        }
+
+        private void UnLoadPlugin(object sender, EventArgs e)
+        {
+            DeactivatePlugin.Enabled = false;
+            if (ActivatedPluginsList.Items.Count <= 0 || ActivatedPluginsList.SelectedIndex < 0)
+            {
+                MessageBox.Show(@"There is no plugins activated or selected.");
+                return;
+            }
+            AvailablePluginsList.Items.Add(ActivatedPluginsList.SelectedItem);
+            ActivatedPluginsList.Items.Remove(ActivatedPluginsList.SelectedItem);
+            Plugins.Plugins.DisposePlugins();
+            DeactivatePlugin.Enabled = true;
+        }
+
+        private void ConfigurePlugin(object sender, EventArgs e)
+        {
+            ActivatedPluginSettings.Enabled = false;
+            if (ActivatedPluginsList.Items.Count <= 0 || ActivatedPluginsList.SelectedIndex < 0)
+            {
+                MessageBox.Show(@"There is no plugins activated or selected.");
+                return;
+            }
+            var p = new Plugin {PathToPluginFile = Application.StartupPath + "\\Plugins\\" + ActivatedPluginsList.SelectedItem};
+            p.ShowConfigurationPlugin();
+            ActivatedPluginSettings.Enabled = true;
+        }
+
+        private void ResetPlugin(object sender, EventArgs e)
+        {
+            ActivatedPluginResetSettings.Enabled = false;
+            if (ActivatedPluginsList.Items.Count <= 0 || ActivatedPluginsList.SelectedIndex < 0)
+            {
+                MessageBox.Show(@"There is no plugins activated or selected.");
+                return;
+            }
+            var p = new Plugin {PathToPluginFile = Application.StartupPath + "\\Plugins\\" + ActivatedPluginsList.SelectedItem};
+            p.ResetConfigurationPlugin();
+            ActivatedPluginResetSettings.Enabled = true;
         }
     }
 }

@@ -123,6 +123,8 @@
     <Compile Include="Helpful\XmlSerializer.cs" />
     <Compile Include="Information.cs" />
     <Compile Include="nManagerSetting.cs" />
+    <Compile Include="Plugins\IPlugins.cs" />
+    <Compile Include="Plugins\Plugins.cs" />
     <Compile Include="Products\IProduct.cs" />
     <Compile Include="Products\Products.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
