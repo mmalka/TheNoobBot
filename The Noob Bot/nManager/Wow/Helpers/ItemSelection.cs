@@ -121,7 +121,7 @@ namespace nManager.Wow.Helpers
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             string command = randomString + "='' ";
-            command += "stats=GetItemStats(" + link + "); ";
+            command += "stats=GetItemStats(\"" + link + "\"); ";
             command += "for key,value in pairs(stats) do ";
             command += randomString + "=" + randomString + " .. key .. '^' .. value .. '^' ";
             command += "end;";
