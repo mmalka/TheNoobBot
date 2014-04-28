@@ -63,15 +63,20 @@ namespace The_Noob_Bot
                 SetDefaultCulture(CultureInfo.InvariantCulture);
                 ScriptOnlineManager.LoadScript();
                 // Create folder:
-                Directory.CreateDirectory(Application.StartupPath + "\\Logs\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Settings\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Talents\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\Meshes\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\Data\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\Products\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Logs\");
+                Directory.CreateDirectory(Application.StartupPath + @"\CombatClasses\");
+                Directory.CreateDirectory(Application.StartupPath + @"\CombatClasses\Settings\");
+                Directory.CreateDirectory(Application.StartupPath + @"\CombatClasses\Talents\");
+                Directory.CreateDirectory(Application.StartupPath + @"\HealerClasses\");
+                Directory.CreateDirectory(Application.StartupPath + @"\HealerClasses\Settings\");
+                Directory.CreateDirectory(Application.StartupPath + @"\HealerClasses\Talents\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Meshes\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Settings\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Data\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Products\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Plugins\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Plugins\Settings\");
+                Directory.CreateDirectory(Application.StartupPath + @"\Profiles\");
                 ConfigWowForThisBot.ConfigWow();
 
                 new Remote();
