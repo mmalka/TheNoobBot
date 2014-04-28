@@ -1217,7 +1217,7 @@ public class DeathknightApprentice
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -1694,7 +1694,7 @@ public class DeathknightBlood
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -2699,7 +2699,7 @@ public class DeathknightUnholy
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -5571,7 +5571,7 @@ public class MageFrost
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -6517,7 +6517,7 @@ public class MageFire
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -10475,7 +10475,7 @@ public class DruidFeral
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -11975,7 +11975,7 @@ public class DruidGuardian
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -12697,7 +12697,7 @@ public class PaladinHoly
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -13200,7 +13200,7 @@ public class PaladinProtection
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -13759,7 +13759,7 @@ public class PaladinRetribution
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -14425,7 +14425,7 @@ public class ShamanEnhancement
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -15316,7 +15316,7 @@ public class ShamanRestoration
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -16199,7 +16199,7 @@ public class ShamanElemental
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -17036,7 +17036,7 @@ public class PriestShadow
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -17794,7 +17794,7 @@ public class PriestDiscipline
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -18498,7 +18498,7 @@ public class PriestHoly
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -21490,7 +21490,7 @@ public class WarriorArms
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -26457,7 +26457,7 @@ public class MonkBrewmaster
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -27102,7 +27102,7 @@ public class MonkWindwalker
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
@@ -27723,7 +27723,7 @@ public class MonkMistweaver
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(1);
         }
     }
 
