@@ -87,7 +87,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            QuesterSettings.CurrentSettings.ToForm();
+            QuesterSettings.CurrentSettings.Save();
             Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)

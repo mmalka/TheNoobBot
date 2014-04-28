@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Quester.Bot;
 using Quester.Profile;
 using nManager;
 using nManager.Helpful;
@@ -24,12 +25,6 @@ namespace Quester.Tasks
         public static bool completed = false;
         private static int EntryListRow = 0;
 
-// ReSharper disable ConvertToConstant.Local
-        // todo: Add thoses to Product Settings of the Quester.
-        private static bool _HARDMODE_ = false; // if (true) { Ignore QuestLevel }
-        private static bool _DEVMODE_ = true; // On error: if (true) { Dispose Quester } else { doIgnoreCurrentQuest + continue }
-// ReSharper restore ConvertToConstant.Local
-
         public static void SelectQuest()
         {
             QuestStatus = "Select Quest";
@@ -52,8 +47,8 @@ namespace Quester.Tasks
                 }
                 foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
-                    if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
-                        (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
+                    if (ObjectManager.Me.Level >= quest.MinLevel && (ObjectManager.Me.Level <= quest.MaxLevel || QuesterSettings.CurrentSettings.IgnoreQuestsMaxLevel) &&
+                        (QuesterSettings.CurrentSettings.IgnoreQuestsLevel || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
                             if (!Quest.GetQuestCompleted(quest.NeedQuestNotCompletedId)) // Quest done which discalify this one
                                 if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // One of these quest need to be completed
@@ -1126,7 +1121,7 @@ namespace Quester.Tasks
 
             if (errors == 0)
                 return;
-            if (_DEVMODE_)
+            if (QuesterSettings.CurrentSettings.ActivateDevMode)
             {
                 Bot.Bot.Dispose();
                 return;

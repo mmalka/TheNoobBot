@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 
@@ -9,6 +10,14 @@ namespace Quester.Bot
     public class QuesterSettings : Settings
     {
         public static QuesterSettings CurrentSettings { get; set; }
+
+        private QuesterSettings()
+        {
+            ConfigWinForm("Quester " + Translate.Get(Translate.Id.Settings));
+            AddControlInWinForm("Do quests ASAP, ignore recommanded level", "IgnoreQuestsLevel", "Quests Management");
+            AddControlInWinForm("Ignore quests max level", "IgnoreQuestsMaxLevel", "Quests Management");
+            AddControlInWinForm("Activate Developer Mode", "ActivateDevMode", "Advanced settings");
+        }
 
         public bool Save()
         {
@@ -45,5 +54,8 @@ namespace Quester.Bot
         internal float QuesterRotation = 0;
         public string LastProfile = "";
         public bool LastProfileSimple = true;
+        public bool IgnoreQuestsLevel = false;
+        public bool IgnoreQuestsMaxLevel = false;
+        public bool ActivateDevMode = false;
     }
 }
