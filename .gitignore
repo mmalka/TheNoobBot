@@ -4,6 +4,7 @@ Thumbs.db
 *.obj
 *.exe
 *.pdb
+*.sln.DotSettings.user
 *.user
 *.sdf
 *.aps
@@ -35,6 +36,10 @@ docs/updatebase_directory/CombatClasses/Tnb_AntiAFKClass.cs
 docs/updatebase_directory/CombatClasses/Tnb_AntiAFKClass.dll
 docs/updatebase_directory/HealerClasses/Tnb_HealerClass.cs
 docs/updatebase_directory/HealerClasses/Tnb_HealerClass.dll
+docs/updatebase_directory/Plugins/Tnb_TheAutoEquipper.cs
+docs/updatebase_directory/Plugins/Tnb_TheAutoEquipper.dll
+docs/updatebase_directory/Plugins/Tnb_TheBroadcaster.cs
+docs/updatebase_directory/Plugins/Tnb_TheBroadcaster.dll
 docs/updatebase_directory/Profiles/Battlegrounder/ProfileType/CSharpProfile/TheNoobBotCP.cs
 docs/updatebase_directory/Profiles/Battlegrounder/ProfileType/CSharpProfile/TheNoobBotCP.dll
 docs/updatebase_directory/RecastLayer.dll
