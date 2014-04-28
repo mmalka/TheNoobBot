@@ -108,7 +108,7 @@ public static class MyPluginClass
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
     public static string TargetVersion = "3.0";
-    public static string Version = "1.0.0";
+    public static string Version = "1.0.1";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
@@ -217,10 +217,14 @@ public static class MyPluginClass
             var spell = new Spell(id);
             if (spell.Name != "" && spell.KnownSpell)
             {
-                AvailableInterruptersPVP.Add(spell);
-                AvailableInterruptersPve.Add(spell);
+                if (MySettings.ActivateInterruptPVP)
+                    AvailableInterruptersPVP.Add(spell);
+                if (MySettings.ActivateInterruptPve)
+                    AvailableInterruptersPve.Add(spell);
             }
         }
+        if (!MySettings.ActivateInterruptPve)
+            return;
         string[] spellListPve = MySettings.SpellListPve.Split(',');
         foreach (string sId in spellListPve)
         {
@@ -265,11 +269,11 @@ public static class MyPluginClass
         public MyPluginSettings()
         {
             ConfigWinForm(Name + " Spells Management");
-            AddControlInWinForm("List of spells to don't interrupt (ignore) : ", "DontInterruptSpellList", Name + " Spells Management");
-            AddControlInWinForm("Auto Interrupt in PVP", "ActivateInterruptPVP : ", Name + " Spells Management");
-            AddControlInWinForm("List of spells that can interrupt in PVP", "SpellListPVP", Name + " Spells Management");
+            AddControlInWinForm("List of spells to not interrupt (ignore) :", "DontInterruptSpellList", Name + " Spells Management", "List");
+            AddControlInWinForm("Auto Interrupt in PVP", "ActivateInterruptPVP", Name + " Spells Management");
+            AddControlInWinForm("List of spells that can interrupt in PVP :", "SpellListPVP", Name + " Spells Management", "List");
             AddControlInWinForm("Auto Interrupt in PVE", "ActivateInterruptPve", Name + " Spells Management");
-            AddControlInWinForm("List of spells that can only interrupt in PVE : ", "SpellListPve", Name + " Spells Management");
+            AddControlInWinForm("List of spells that can only interrupt in PVE (will complete the PVP list in PVE) :", "SpellListPve", Name + " Spells Management", "List");
         }
 
         public static MyPluginSettings CurrentSetting { get; set; }

@@ -80,8 +80,9 @@ namespace nManager.Helpful
         #region Winform
 
         private const int LineSpacing = 12;
+        private const int LineSpacingLabel = 5;
         private readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
-        private readonly ComponentResourceManager resources = new ComponentResourceManager(typeof (DeveloperToolsMainFrame));
+        private readonly ComponentResourceManager _resources = new ComponentResourceManager(typeof (DeveloperToolsMainFrame));
         private Form _mainForm;
         private TnbControlMenu _mainHeader;
         private TnbRibbonManager _mainPanel;
@@ -101,7 +102,7 @@ namespace nManager.Helpful
                     ShowIcon = false,
                     StartPosition = FormStartPosition.CenterParent,
                     Text = _windowName,
-                    Icon = ((Icon) (resources.GetObject("$this.Icon"))),
+                    Icon = ((Icon) (_resources.GetObject("$this.Icon"))),
                     BackgroundImage = Resources.backgroundCustomSettings,
                     Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, (0))
                 };
@@ -370,13 +371,22 @@ namespace nManager.Helpful
                                 {
                                     Text = f.Description,
                                     Location = new Point(LineSpacing + textBox.Size.Width + LineSpacing, posY + 2),
+                                    TextAlign = ContentAlignment.MiddleLeft,
                                     Size = new Size(80, 17),
                                     AutoSize = true,
                                     BackColor = Color.Transparent,
                                 };
+                                if (f.SettingsType == "List")
+                                {
+                                    label.Size = new Size(532, 20);
+                                    label.Location = new Point(LineSpacing, posY + 2);
+                                    label.TextAlign = ContentAlignment.BottomLeft;
+                                    textBox.Size = new Size(532, 20);
+                                    textBox.Location = new Point(LineSpacing, posY + label.Height + LineSpacingLabel);
+                                }
 
                                 lastLineY.Remove(f.Category);
-                                lastLineY.Add(f.Category, posY + LineSpacing + textBox.Size.Height);
+                                lastLineY.Add(f.Category, textBox.Location.Y + textBox.Size.Height + LineSpacing);
                                 listExpandablePanel[indexTab].Controls.Add(label);
                                 listExpandablePanel[indexTab].Controls.Add(textBox);
                                 break;

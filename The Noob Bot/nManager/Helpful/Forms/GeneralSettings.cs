@@ -773,9 +773,10 @@ namespace nManager.Helpful.Forms
             if (AvailablePluginsList.Items.Count <= 0 || AvailablePluginsList.SelectedIndex < 0)
             {
                 MessageBox.Show(@"There is no plugins available or selected.");
+                ActivatePlugin.Enabled = true;
                 return;
             }
-            var p = new Plugin { PathToPluginFile = Application.StartupPath + "\\Plugins\\" + AvailablePluginsList.SelectedItem };
+            var p = new Plugin {PathToPluginFile = Application.StartupPath + "\\Plugins\\" + AvailablePluginsList.SelectedItem};
             if (!p.IsAlive)
             {
                 MessageBox.Show(@"This plugin cannot be activated, read error logs for more informations.");
@@ -799,6 +800,7 @@ namespace nManager.Helpful.Forms
             if (ActivatedPluginsList.Items.Count <= 0 || ActivatedPluginsList.SelectedIndex < 0)
             {
                 MessageBox.Show(@"There is no plugins activated or selected.");
+                DeactivatePlugin.Enabled = true;
                 return;
             }
             AvailablePluginsList.Items.Add(ActivatedPluginsList.SelectedItem);
@@ -813,6 +815,7 @@ namespace nManager.Helpful.Forms
             if (ActivatedPluginsList.Items.Count <= 0 || ActivatedPluginsList.SelectedIndex < 0)
             {
                 MessageBox.Show(@"There is no plugins activated or selected.");
+                ActivatedPluginSettings.Enabled = true;
                 return;
             }
             var p = new Plugin {PathToPluginFile = Application.StartupPath + "\\Plugins\\" + ActivatedPluginsList.SelectedItem};
@@ -826,6 +829,7 @@ namespace nManager.Helpful.Forms
             if (ActivatedPluginsList.Items.Count <= 0 || ActivatedPluginsList.SelectedIndex < 0)
             {
                 MessageBox.Show(@"There is no plugins activated or selected.");
+                ActivatedPluginResetSettings.Enabled = true;
                 return;
             }
             var p = new Plugin {PathToPluginFile = Application.StartupPath + "\\Plugins\\" + ActivatedPluginsList.SelectedItem};
