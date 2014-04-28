@@ -146,6 +146,9 @@ namespace Quester.Tasks
             {
                 if (questObjective.CurrentCount >= questObjective.CollectCount)
                     return true;
+                if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0 &&
+                        ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
+                    return true;
                 return false;
             }
 
@@ -332,21 +335,15 @@ namespace Quester.Tasks
             // PICK UP OBJECT
             if (questObjective.Objective == Objective.PickUpObject)
             {
-                if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
-                    questObjective.CurrentCount = ItemsManager.GetItemCount(questObjective.CollectItemId); // Auto update current amount.
-                if (questObjective.CurrentCount == questObjective.CollectCount && questObjective.CollectCount > 0)
+                if (questObjective.CurrentCount >= questObjective.CollectCount && questObjective.CollectCount > 0)
                     return;
                 WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-
                 if (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
                     FarmingTask.Pulse(new List<WoWGameObject> {node});
                     if (Statistics.Farms > tNumber)
-                    {
                         questObjective.CurrentCount++;
-                        MovementManager.StopMove();
-                    }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
@@ -354,7 +351,7 @@ namespace Quester.Tasks
                     MountTask.Mount();
                     // Need GoTo Zone:
                     if (
-                        questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
+                        questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
                     {
                         MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
                     }
