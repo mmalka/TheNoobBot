@@ -540,7 +540,7 @@ namespace nManager.Helpful.Forms
                     nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
                 }
                 if (nManagerSetting.CurrentSetting.ActivatePluginsSystem)
-                    Plugins.Plugins.LoadPlugins();
+                    Plugins.Plugins.ReLoadPlugins();
                 nManagerSetting.CurrentSetting.Save();
                 if (oldStatus && !ActivateBroadcastingMimesis.Value)
                     Communication.Shutdown(oldPort); // Display the port used before the settings edition.
@@ -732,7 +732,7 @@ namespace nManager.Helpful.Forms
                         SaveSetting();
                     }
                     else if (nManagerSetting.CurrentSetting.ActivatePluginsSystem)
-                        Plugins.Plugins.LoadPlugins();
+                        Plugins.Plugins.ReLoadPlugins();
                 }
             }
             catch (Exception ex)

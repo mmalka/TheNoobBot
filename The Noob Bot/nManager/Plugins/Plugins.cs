@@ -16,7 +16,7 @@ namespace nManager.Plugins
     {
         public static List<Plugin> ListLoadedPlugins = new List<Plugin>();
 
-        public static void LoadPlugins()
+        public static void ReLoadPlugins()
         {
             try
             {

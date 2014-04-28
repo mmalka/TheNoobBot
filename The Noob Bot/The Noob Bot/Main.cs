@@ -93,7 +93,7 @@ namespace The_Noob_Bot
                 }
                 if (nManagerSetting.CurrentSetting.ActivatePluginsSystem)
                 {
-                    var loadPluginsThread = new Thread(Plugins.LoadPlugins) {Name = "Plugins Loading"};
+                    var loadPluginsThread = new Thread(Plugins.ReLoadPlugins) {Name = "Plugins Loading"};
                     loadPluginsThread.Start();
                 }
                 _playerName = ObjectManager.Me.Name;

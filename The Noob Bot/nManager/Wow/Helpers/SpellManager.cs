@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using nManager.Helpful;
+using nManager.Plugins;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
@@ -476,6 +477,7 @@ namespace nManager.Wow.Helpers
                 {
                     HealerClass.ResetHealerClass();
                 }
+                Plugins.Plugins.ReLoadPlugins();
                 Logging.Write("Character's SpellBook fully updated. Found " + _spellBookID.Count + " spells, mounts and professions.");
             }
             catch (Exception exception)
