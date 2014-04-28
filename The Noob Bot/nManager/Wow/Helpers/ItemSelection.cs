@@ -22,7 +22,7 @@ namespace nManager.Wow.Helpers
                                " has a value of " + questRewardItem.ItemSellPrice);
 
             if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Armor)
-                if ((Enums.WowItemSubClassArmor) subClassId == EquipmentAndStats.EquipableArmorItemType
+                if ((Enums.WowItemSubClassArmor) subClassId <= EquipmentAndStats.EquipableArmorItemType
                     || questRewardItem.ItemEquipLoc == "INVTYPE_CLOAK" || questRewardItem.ItemEquipLoc == "INVTYPE_NECK"
                     || questRewardItem.ItemEquipLoc == "INVTYPE_FINGER" || questRewardItem.ItemEquipLoc == "INVTYPE_TRINKET"
                     || (questRewardItem.ItemEquipLoc == "INVTYPE_SHIELD" && EquipmentAndStats.HasShield))
