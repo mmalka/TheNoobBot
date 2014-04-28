@@ -244,7 +244,7 @@ public class Main : ICombatClass
                     }
                     else
                     {
-                        Logging.WriteFight("Mage without Spec");
+                        Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Mage Frost Combat class...");
                         InternalRange = 30.0f;
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MageFrost);
@@ -634,7 +634,8 @@ public class Main : ICombatClass
                     }
                     else
                     {
-                        Logging.WriteFight("Shaman without Spec");
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Shaman Restoration Combat class...");
                         InternalRange = 30.0f;
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.ShamanRestoration);
                         new ShamanRestoration();
@@ -817,7 +818,8 @@ public class Main : ICombatClass
                     }
                     else
                     {
-                        Logging.WriteFight("Rogue without Spec");
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Rogue Combat Combat class...");
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueCombat);
                         new RogueCombat();
                     }

@@ -78,6 +78,8 @@ namespace The_Noob_Bot
 
                 var spellBook = new Thread(ThreadSpellBook) {Name = "SpellBook Loading"};
                 spellBook.Start();
+                var loadSpecThread = new Thread(EquipmentAndStats.LoadWoWSpecialization) {Name = "WoWSpecialization Loading"};
+                loadSpecThread.Start();
                 MovementManager.LaunchThreadMovementManager();
                 if (nManagerSetting.CurrentSetting.ActivateBroadcastingMimesis)
                 {
@@ -94,7 +96,6 @@ namespace The_Noob_Bot
                     var loadPluginsThread = new Thread(Plugins.LoadPlugins) {Name = "Plugins Loading"};
                     loadPluginsThread.Start();
                 }
-
                 _playerName = ObjectManager.Me.Name;
             }
             catch (Exception ex)

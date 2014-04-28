@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using nManager.Wow.Enums;
 
 namespace nManager.Wow.Helpers
@@ -325,6 +326,60 @@ namespace nManager.Wow.Helpers
                     InternalEquipementStats.AddRange(Heal);
                     break;
                 default:
+                    break;
+            }
+        }
+
+        public static void LoadWoWSpecialization()
+        {
+            while (ObjectManager.ObjectManager.Me.WowClass == WoWClass.None)
+            {
+                Thread.Sleep(10);
+            }
+            if (CombatClass.IsAliveCombatClass || HealerClass.IsAliveHealerClass)
+                return; 
+            // This has low chance to be loaded after a CombatClass is started, but in case, 
+            // we prioritize CombatClass values. This is in order to get our spec if we don't start any product.
+            WoWSpecialization mySpec = ObjectManager.ObjectManager.Me.WowSpecialization(true);
+            if (mySpec != WoWSpecialization.None)
+            {
+                SetPlayerSpe(ObjectManager.ObjectManager.Me.WowSpecialization());
+                return;
+            }
+            switch (ObjectManager.ObjectManager.Me.WowClass)
+            {
+                case WoWClass.DeathKnight:
+                    SetPlayerSpe(WoWSpecialization.DeathknightUnholy);
+                    break;
+                case WoWClass.Druid:
+                    SetPlayerSpe(WoWSpecialization.DruidBalance);
+                    break;
+                case WoWClass.Hunter:
+                    SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
+                    break;
+                case WoWClass.Mage:
+                    SetPlayerSpe(WoWSpecialization.MageFrost);
+                    break;
+                case WoWClass.Monk:
+                    SetPlayerSpe(WoWSpecialization.MonkBrewmaster);
+                    break;
+                case WoWClass.Paladin:
+                    SetPlayerSpe(WoWSpecialization.PaladinRetribution);
+                    break;
+                case WoWClass.Priest:
+                    SetPlayerSpe(WoWSpecialization.PriestShadow);
+                    break;
+                case WoWClass.Rogue:
+                    SetPlayerSpe(WoWSpecialization.RogueCombat);
+                    break;
+                case WoWClass.Shaman:
+                    SetPlayerSpe(WoWSpecialization.ShamanRestoration);
+                    break;
+                case WoWClass.Warlock:
+                    SetPlayerSpe(WoWSpecialization.WarlockDemonology);
+                    break;
+                case WoWClass.Warrior:
+                    SetPlayerSpe(WoWSpecialization.WarriorArms);
                     break;
             }
         }
