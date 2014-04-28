@@ -729,15 +729,13 @@
             <int>44937</int>
           </Entry>
           <UseSpellId>172</UseSpellId>
-          <Range>15</Range>
+          <Range>10</Range>
           <Count>5</Count>
-          <Hotspots>
-            <Point>
-              <X>10331.89</X>
-              <Y>-6370.064</Y>
-              <Z>33.70367</Z>
-            </Point>
-          </Hotspots>
+          <Position>
+            <X>10331.89</X>
+            <Y>-6370.064</Y>
+            <Z>33.70367</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
