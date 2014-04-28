@@ -1942,6 +1942,20 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public int CastingSpellId
+        {
+            get
+            {
+                var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint)Addresses.UnitField.CastingSpellID);
+                if (spellId > 0)
+                    return spellId;
+                spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID);
+                if (spellId > 0)
+                    return spellId;
+                return 0;
+            }
+        }
+
         public bool CanInterruptCurrentCast
         {
             get

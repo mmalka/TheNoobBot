@@ -108,7 +108,7 @@ public static class MyPluginClass
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
     public static string TargetVersion = "3.0";
-    public static string Version = "1.0.1";
+    public static string Version = "1.0.2";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
@@ -160,12 +160,12 @@ public static class MyPluginClass
     {
         if (!IsTargetEnnemyPlayer())
             return;
-        if (ObjectManager.Target.CanInterruptCurrentCast)
+        if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
         {
             var rnd = new Random();
             int sleepTime = rnd.Next(100, 400);
             Thread.Sleep(sleepTime); // Wait randomly between 70ms to 400ms before interrupt for account safety reason.
-            while (ObjectManager.Target.CanInterruptCurrentCast)
+            while (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
             {
                 foreach (Spell kicker in AvailableInterruptersPVP)
                 {
@@ -186,12 +186,12 @@ public static class MyPluginClass
     {
         if (!ObjectManager.Target.InCombatWithMe)
             return; // We don't wanna pull creatures.
-        if (ObjectManager.Target.CanInterruptCurrentCast)
+        if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
         {
             var rnd = new Random();
             int sleepTime = rnd.Next(100, 400);
             Thread.Sleep(sleepTime); // Wait randomly between 70ms to 400ms before interrupt for account safety reason.
-            while (ObjectManager.Target.CanInterruptCurrentCast)
+            while (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
             {
                 foreach (Spell kicker in AvailableInterruptersPve)
                 {
@@ -206,6 +206,19 @@ public static class MyPluginClass
                 }
             }
         }
+    }
+
+    public static bool IsSpellInIgnoreList()
+    {
+        string[] spellListPVP = MySettings.DontInterruptSpellList.Split(',');
+        foreach (string sId in spellListPVP)
+        {
+            if (sId.Contains(ObjectManager.Target.CastingSpellId.ToString()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void GetAllAvailableInterrupters()
@@ -262,7 +275,7 @@ public static class MyPluginClass
     {
         public bool ActivateInterruptPVP = true;
         public bool ActivateInterruptPve = true;
-        public string DontInterruptSpellList = "Not implemented yet. (useful against bosses and weak players spells)";
+        public string DontInterruptSpellList = "";
         public string SpellListPVP = "106839, 78675, 147362, 34490, 2139, 116705, 31935, 96231, 1766, 57994, 19647, 115782, 6552, 47528";
         public string SpellListPve = "15487, 47476";
 
