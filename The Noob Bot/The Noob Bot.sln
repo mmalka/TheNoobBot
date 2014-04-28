@@ -48,9 +48,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flying To Ground Profiles C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mimesis", "Mimesis\Mimesis.csproj", "{1A9E977D-F935-4AA6-818C-ED44E59DCE1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBroadcaster", "TheBroadcaster\TheBroadcaster.csproj", "{B9E62B7F-0820-44C1-A025-D6D13E058CDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TnbBroadcaster", "TheBroadcaster\TnbBroadcaster.csproj", "{B9E62B7F-0820-44C1-A025-D6D13E058CDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAutoEquipper", "TheAutoEquipper\TheAutoEquipper.csproj", "{795DAD05-8002-4741-9EFC-1740C44F930D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TnbAutoEquipper", "TheAutoEquipper\TnbAutoEquipper.csproj", "{795DAD05-8002-4741-9EFC-1740C44F930D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

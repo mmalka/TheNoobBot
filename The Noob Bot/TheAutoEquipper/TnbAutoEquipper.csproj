@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9E62B7F-0820-44C1-A025-D6D13E058CDF}</ProjectGuid>
+    <ProjectGuid>{795DAD05-8002-4741-9EFC-1740C44F930D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheBroadcaster</RootNamespace>
-    <AssemblyName>TheBroadcaster</AssemblyName>
+    <RootNamespace>TnbAutoEquipper</RootNamespace>
+    <AssemblyName>TnbAutoEquipper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -54,8 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tnb_Broadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TnbAutoEquipper.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -74,6 +74,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)TnbAutoEquipper.cs" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i
+xcopy "$(ProjectDir)TnbAutoEquipper.cs" "$(TargetDir)" /y /i</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

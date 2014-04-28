@@ -107,7 +107,7 @@ public static class MyPluginClass
 {
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
-    public static string Name = "The Broadcaster";
+    public static string Name = "Broadcaster";
     public static string TargetVersion = "3.0";
     public static string Version = "1.0.0";
 
