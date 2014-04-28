@@ -1017,13 +1017,13 @@ namespace nManager.Helpful
             thread.Start();
         }
 
-        private static readonly Dictionary<int, int> ItemStock = new Dictionary<int, int>();
-        private static readonly Object CheckInventoryLock = new Object();
+        public static readonly Dictionary<int, int> ItemStock = new Dictionary<int, int>();
         private static int _oldEventFireCount = -1; // the first call call it with param (0)
 
+        public static EventHandler ItemStockUpdated;
         public static void CheckInventoryForLatestLoot(int eventFireCount)
         {
-            lock (CheckInventoryLock)
+            lock (ItemStock)
             {
                 try
                 {
@@ -1068,6 +1068,8 @@ namespace nManager.Helpful
                         foreach (KeyValuePair<int, int> pair in newLoots)
                         {
                             // Can do anything here, like equip cool items etc.
+                            if (ItemStockUpdated != null)
+                                ItemStockUpdated(pair, new EventArgs());
                             Logging.Write("You recieve loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
                         }
                     }

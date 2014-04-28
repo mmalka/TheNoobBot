@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using nManager;
@@ -98,7 +97,7 @@ public class Main : IPlugins
         {
             Logging.WriteError("IPlugins.Main.Initialize(bool configOnly, bool resetSettings = false): " + e);
         }
-        Logging.Write(string.Format("The plugin {0} has stopped.", Name));
+        Logging.WriteDebug(string.Format("The plugin {0} has stopped.", Name));
     }
 }
 
@@ -108,65 +107,26 @@ public class Main : IPlugins
 
 public static class MyPluginClass
 {
-    public static bool InternalLoop = true;
+    public static bool InternalLoop = true; // Keep your plugin started.
     public static string Author = "Vesper";
-    public static string Name = "AutoEquipper";
-    public static string TargetVersion = "3.0";
+    public static string Name = "SDK Plugin Template";
+    public static string TargetVersion = "3.0.x"; // Only the two first numbers are checked.
     public static string Version = "1.0.0";
-    public static string Description = "Always check the inventory on new loot for a better item for our class/specialization.";
-
-    private static readonly object ParseItemLock = new object();
+    public static string Description = "An empty template for the plugins system of TheNoobBot.";
 
     public static void Init()
     {
         // Do some init stuff here.
-        if (!nManagerSetting.CurrentSetting.ActivateLootStatistics)
-        {
-            Logging.WriteDebug(string.Format("The plugin {0} needs ActivateLootStatistics to be activated in General Settings.", Name));
-            return;
-        }
-        while (Others.ItemStock.Count <= 0)
-        {
-            Thread.Sleep(100); // wait for LootStatistics to finish its first run.
-        }
-        foreach (var itemStock in Others.ItemStock)
-        {
-            ParseItemStock(itemStock, new EventArgs()); // Parse the inventory once before subscribing to new loots.
-        }
-        Others.ItemStockUpdated += ParseItemStock; // Subscribe to TheNoobBot event OnLoot, return the every single new loots.
         MainLoop();
-    }
-
-    private static void ParseItemStock(object sender, EventArgs e)
-    {
-        lock (ParseItemLock)
-        {
-            if (!(sender is KeyValuePair<int, int>))
-                return;
-            var itemStock = (KeyValuePair<int, int>) sender;
-            string itemName = ItemsManager.GetItemNameById(itemStock.Key);
-            ItemInfo itemInfo;
-            if (ItemSelection.EvaluateItemStatsVsEquiped(itemName, out itemInfo) < 0)
-            {
-                if (itemInfo != null)
-                {
-                    while (!Usefuls.InGame || ObjectManager.Me.InCombat || ObjectManager.Me.IsDeadMe || ObjectManager.Me.InTransport)
-                    {
-                        Thread.Sleep(100); // We wait until we are free to equipp the item.
-                    }
-                    Logging.WriteDebug(Name + ": Equipp " + itemName);
-                    ItemsManager.EquipItemByName(itemName); // Equipp now and we will reEquipp each better items till the ends of new loots.
-                    Thread.Sleep(100);
-                }
-            }
-        }
     }
 
     public static void MainLoop()
     {
         while (InternalLoop)
         {
-            Thread.Sleep(100);
+		    // Code your plugin here. Don't forget to remove the logging following line.
+            Logging.Write("Plugin '" + Name + "' running...");
+            Thread.Sleep(1000);
         }
     }
 }

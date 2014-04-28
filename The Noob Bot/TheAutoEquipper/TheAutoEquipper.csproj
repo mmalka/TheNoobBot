@@ -74,6 +74,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)Tnb_AutoEquipper.cs" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Tnb_AutoEquipper.dll" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i
+xcopy "$(ProjectDir)Tnb_AutoEquipper.cs" "$(TargetDir)" /y /i</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
