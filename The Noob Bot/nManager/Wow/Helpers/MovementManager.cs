@@ -1477,6 +1477,7 @@ namespace nManager.Wow.Helpers
         {
             if (_trakedTargetGuid != Object.Guid)
             {
+                StopMove();
                 _trakedTarget = new Npc {Entry = Object.Entry, Position = Object.Position, Name = Object.Name};
                 _trakedTargetGuid = Object.Guid;
                 resetTimers();
@@ -1488,6 +1489,7 @@ namespace nManager.Wow.Helpers
         {
             if (_trakedTargetGuid != Unit.Guid)
             {
+                StopMove();
                 _trakedTarget = new Npc {Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name};
                 _trakedTargetGuid = Unit.Guid;
                 resetTimers();
