@@ -175,20 +175,15 @@ namespace nManager.Plugins
                     _threadName = "Plugin " + _instanceFromOtherAssembly.Name;
                     if (settingOnly && resetSettings)
                     {
-                        _worker = new Thread(_instanceFromOtherAssembly.ResetConfiguration) {IsBackground = true, Name = _threadName};
+                        _instanceFromOtherAssembly.ResetConfiguration();
+                        return;
                     }
-                    else if (settingOnly)
+                    if (settingOnly)
                     {
-                        _worker = new Thread(_instanceFromOtherAssembly.ShowConfiguration) {IsBackground = true, Name = _threadName};
+                        _instanceFromOtherAssembly.ShowConfiguration();
+                        return;
                     }
-                    else if (onlyCheckVersion)
-                    {
-                        _worker = new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName};
-                    }
-                    else
-                    {
-                        _worker = new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
-                    }
+                    _worker = onlyCheckVersion ? new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName} : new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
                     _worker.Start();
                 }
             }
@@ -231,6 +226,7 @@ namespace nManager.Plugins
         {
             try
             {
+                Plugins.DisposePlugins();
                 LoadPlugin(true);
             }
             catch (Exception exception)
@@ -243,6 +239,7 @@ namespace nManager.Plugins
         {
             try
             {
+                Plugins.DisposePlugins();
                 LoadPlugin(true, true);
             }
             catch (Exception exception)

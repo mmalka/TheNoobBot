@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MyPluginSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ActivateInterruptPVP>true</ActivateInterruptPVP>
+  <ActivateInterruptPve>true</ActivateInterruptPve>
+  <DontInterruptSpellList>Not implemented yet. (useful against bosses and weak players spells)</DontInterruptSpellList>
+  <SpellListPVP>106839, 78675, 147362, 34490, 2139, 116705, 31935, 96231, 1766, 57994, 19647, 115782, 6552, 47528</SpellListPVP>
+  <SpellListPve>15487, 47476</SpellListPve>
+</MyPluginSettings>
