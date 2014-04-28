@@ -40,6 +40,8 @@ docs/updatebase_directory/Plugins/TnbAutoEquipper.cs
 docs/updatebase_directory/Plugins/TnbAutoEquipper.dll
 docs/updatebase_directory/Plugins/TnbBroadcaster.cs
 docs/updatebase_directory/Plugins/TnbBroadcaster.dll
+docs/updatebase_directory/Plugins/TnbAutoInterrupt.cs
+docs/updatebase_directory/Plugins/TnbAutoInterrupt.dll
 docs/updatebase_directory/Profiles/Battlegrounder/ProfileType/CSharpProfile/TheNoobBotCP.cs
 docs/updatebase_directory/Profiles/Battlegrounder/ProfileType/CSharpProfile/TheNoobBotCP.dll
 docs/updatebase_directory/RecastLayer.dll

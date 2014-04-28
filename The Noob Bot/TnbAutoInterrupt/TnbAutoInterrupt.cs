@@ -1,0 +1,289 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+using nManager.Helpful;
+using nManager.Plugins;
+using nManager.Wow.Class;
+using nManager.Wow.Enums;
+using nManager.Wow.ObjectManager;
+
+#region Interface Implementation - Edition Expert only
+
+public class Main : IPlugins
+{
+    private bool _checkFieldRunning;
+
+    public bool Loop
+    {
+        get { return MyPluginClass.InternalLoop; }
+        set { MyPluginClass.InternalLoop = value; }
+    }
+
+    public string Name
+    {
+        get { return MyPluginClass.Name; }
+    }
+
+    public string Author
+    {
+        get { return MyPluginClass.Author; }
+    }
+
+    public string Description
+    {
+        get { return MyPluginClass.Description; }
+    }
+
+    public string TargetVersion
+    {
+        get { return MyPluginClass.TargetVersion; }
+    }
+
+    public string Version
+    {
+        get { return MyPluginClass.Version; }
+    }
+
+    public bool IsStarted
+    {
+        get { return Loop && !_checkFieldRunning; }
+    }
+
+    public void Dispose()
+    {
+        Loop = false;
+    }
+
+    public void Initialize()
+    {
+        Logging.WriteDebug(string.Format("The plugin {0} is loading.", Name));
+        Initialize(false);
+    }
+
+    public void ShowConfiguration()
+    {
+        MyPluginClass.ShowConfiguration();
+    }
+
+    public void ResetConfiguration()
+    {
+        MyPluginClass.ResetConfiguration();
+    }
+
+    public void CheckFields() // do not edit.
+    {
+        _checkFieldRunning = true;
+        Loop = true;
+        while (Loop)
+        {
+            Thread.Sleep(1000); // Don't do any action.
+        }
+    }
+
+    public void Initialize(bool configOnly, bool resetSettings = false)
+    {
+        try
+        {
+            if (!configOnly && !resetSettings)
+                Loop = true;
+            MyPluginClass.Init();
+        }
+        catch (Exception e)
+        {
+            Logging.WriteError("IPlugins.Main.Initialize(bool configOnly, bool resetSettings = false): " + e);
+        }
+        Logging.Write(string.Format("The plugin {0} has stopped.", Name));
+    }
+}
+
+#endregion
+
+#region Plugin core - Your plugin should be coded here
+
+public static class MyPluginClass
+{
+    public static bool InternalLoop = true;
+    public static string Author = "Vesper";
+    public static string Name = "AutoInterrupt";
+    public static string TargetVersion = "3.0";
+    public static string Version = "1.0.0";
+    public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
+
+    private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
+    private static readonly List<Spell> AvailableInterruptersPve = new List<Spell>();
+    private static readonly MyPluginSettings MySettings = MyPluginSettings.GetSettings();
+
+    public static void Init()
+    {
+        GetAllAvailableInterrupters();
+        if (AvailableInterruptersPVP.Count <= 0 && AvailableInterruptersPve.Count <= 0)
+        {
+            Logging.WriteDebug(Name + ": No spell capable of interrupt has been found.");
+            return;
+        }
+        MainLoop();
+    }
+
+    public static void MainLoop()
+    {
+        while (InternalLoop)
+        {
+            CheckToInterrupt();
+            Thread.Sleep(1);
+        }
+    }
+
+    public static void CheckToInterrupt()
+    {
+        if (ObjectManager.Me.Target <= 0 || ObjectManager.Target.IsDead)
+            return;
+        if (ObjectManager.Target.Type == WoWObjectType.Player)
+            InterruptPVP();
+        if (ObjectManager.Target.Type == WoWObjectType.Unit)
+            InterruptPve();
+    }
+
+    public static bool IsTargetEnnemyPlayer()
+    {
+        if (ObjectManager.Target is WoWPlayer)
+        {
+            var p = ObjectManager.Target as WoWPlayer;
+            if (p.PlayerFaction != ObjectManager.Me.PlayerFaction)
+                return true;
+        }
+        return false;
+    }
+
+    public static void InterruptPVP()
+    {
+        if (!IsTargetEnnemyPlayer())
+            return;
+        if (ObjectManager.Target.CanInterruptCurrentCast)
+        {
+            var rnd = new Random();
+            int sleepTime = rnd.Next(100, 400);
+            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 400ms before interrupt for account safety reason.
+            while (ObjectManager.Target.CanInterruptCurrentCast)
+            {
+                foreach (Spell kicker in AvailableInterruptersPVP)
+                {
+                    if (ObjectManager.Target.GetDistance > kicker.MaxRangeHostile)
+                        continue; // We are too far for this spell, try another one ASAP.
+                    if (ObjectManager.Target.GetDistance < kicker.MinRangeFriend)
+                        continue; // We are too close for this spell, try another one ASAP.
+                    if (!kicker.IsSpellUsable)
+                        continue; // This spell is on cooldown.
+                    kicker.Launch();
+                    Logging.Write(ObjectManager.Target.Name + " interrupted.");
+                }
+            }
+        }
+    }
+
+    public static void InterruptPve()
+    {
+        if (!ObjectManager.Target.InCombatWithMe)
+            return; // We don't wanna pull creatures.
+        if (ObjectManager.Target.CanInterruptCurrentCast)
+        {
+            var rnd = new Random();
+            int sleepTime = rnd.Next(100, 400);
+            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 400ms before interrupt for account safety reason.
+            while (ObjectManager.Target.CanInterruptCurrentCast)
+            {
+                foreach (Spell kicker in AvailableInterruptersPve)
+                {
+                    if (ObjectManager.Target.GetDistance > kicker.MaxRangeHostile)
+                        continue; // We are too far for this spell, try another one ASAP.
+                    if (ObjectManager.Target.GetDistance < kicker.MinRangeFriend)
+                        continue; // We are too close for this spell, try another one ASAP.
+                    if (!kicker.IsSpellUsable)
+                        continue; // This spell is on cooldown.
+                    kicker.Launch();
+                    Logging.Write(ObjectManager.Target.Name + " interrupted.");
+                }
+            }
+        }
+    }
+
+    public static void GetAllAvailableInterrupters()
+    {
+        string[] spellListPVP = MySettings.SpellListPVP.Split(',');
+        foreach (string sId in spellListPVP)
+        {
+            uint id = Others.ToUInt32(sId.Trim());
+            var spell = new Spell(id);
+            if (spell.Name != "" && spell.KnownSpell)
+            {
+                AvailableInterruptersPVP.Add(spell);
+                AvailableInterruptersPve.Add(spell);
+            }
+        }
+        string[] spellListPve = MySettings.SpellListPve.Split(',');
+        foreach (string sId in spellListPve)
+        {
+            uint id = Others.ToUInt32(sId.Trim());
+            var spell = new Spell(id);
+            if (spell.Name != "" && spell.KnownSpell)
+            {
+                AvailableInterruptersPve.Add(spell);
+            }
+        }
+    }
+
+    public static void ResetConfiguration()
+    {
+        string currentSettingsFile = Application.StartupPath + "\\Plugins\\Settings\\" + Name + ".xml";
+        var currentSetting = new MyPluginSettings();
+        currentSetting.ToForm();
+        currentSetting.Save(currentSettingsFile);
+    }
+
+    public static void ShowConfiguration()
+    {
+        string currentSettingsFile = Application.StartupPath + "\\Plugins\\Settings\\" + Name + ".xml";
+        var currentSetting = new MyPluginSettings();
+        if (File.Exists(currentSettingsFile))
+        {
+            currentSetting = Settings.Load<MyPluginSettings>(currentSettingsFile);
+        }
+        currentSetting.ToForm();
+        currentSetting.Save(currentSettingsFile);
+    }
+
+    [Serializable]
+    public class MyPluginSettings : Settings
+    {
+        public bool ActivateInterruptPVP = true;
+        public bool ActivateInterruptPve = true;
+        public string DontInterruptSpellList = "Not implemented yet. (useful against bosses and weak players spells)";
+        public string SpellListPVP = "106839, 78675, 147362, 34490, 2139, 116705, 31935, 96231, 1766, 57994, 19647, 115782, 6552, 47528";
+        public string SpellListPve = "15487, 47476";
+
+        public MyPluginSettings()
+        {
+            ConfigWinForm(Name + " Spells Management");
+            AddControlInWinForm("List of spells to don't interrupt (ignore) : ", "DontInterruptSpellList", Name + " Spells Management");
+            AddControlInWinForm("Auto Interrupt in PVP", "ActivateInterruptPVP : ", Name + " Spells Management");
+            AddControlInWinForm("List of spells that can interrupt in PVP", "SpellListPVP", Name + " Spells Management");
+            AddControlInWinForm("Auto Interrupt in PVE", "ActivateInterruptPve", Name + " Spells Management");
+            AddControlInWinForm("List of spells that can only interrupt in PVE : ", "SpellListPve", Name + " Spells Management");
+        }
+
+        public static MyPluginSettings CurrentSetting { get; set; }
+
+        public static MyPluginSettings GetSettings()
+        {
+            string currentSettingsFile = Application.StartupPath + "\\Plugins\\Settings\\" + Name + ".xml";
+            if (File.Exists(currentSettingsFile))
+            {
+                return CurrentSetting = Load<MyPluginSettings>(currentSettingsFile);
+            }
+            return new MyPluginSettings();
+        }
+    }
+}
+
+#endregion

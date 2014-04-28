@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{795DAD05-8002-4741-9EFC-1740C44F930D}</ProjectGuid>
+    <ProjectGuid>{748C2F11-7470-42D9-9878-B4C77456F482}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TnbAutoEquipper</RootNamespace>
