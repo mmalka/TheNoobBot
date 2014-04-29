@@ -235,7 +235,8 @@ namespace nManager.Wow.Helpers
                     if (!ObjectManager.ObjectManager.Me.IsCast)
                     {
                         Interact.InteractWith(targetNpc.GetBaseAddress);
-                        MovementManager.StopMove();
+                        if (CombatClass.GetRange > 5)
+                            MovementManager.StopMove();
                     }
                     Thread.Sleep(100);
                     Point positionStartTarget = targetNpc.Position;
@@ -254,14 +255,10 @@ namespace nManager.Wow.Helpers
                                 return 0;
                         }
                     }
-                    if (MovementManager.InMovement)
-                    {
-                        MovementManager.StopMove();
-                    }
 
                     InFight = true;
                     Thread.Sleep(500);
-                    if (CombatClass.InRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove &&
+                    if (CombatClass.InRange(targetNpc) && CombatClass.GetRange > 5 && ObjectManager.ObjectManager.Me.GetMove &&
                         !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         MovementManager.StopMoveTo();
@@ -270,7 +267,8 @@ namespace nManager.Wow.Helpers
                         !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         Interact.InteractWith(targetNpc.GetBaseAddress);
-                        MovementManager.StopMove();
+                        if (CombatClass.GetRange > 5)
+                            MovementManager.StopMove();
                         // Initial Target
                     }
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid &&
@@ -286,7 +284,8 @@ namespace nManager.Wow.Helpers
                             !ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Interact.InteractWith(ObjectManager.ObjectManager.Target.GetBaseAddress);
-                            MovementManager.StopMove();
+                            if (CombatClass.GetRange > 5)
+                                MovementManager.StopMove();
                             // Switch Target
                             targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
                             goto figthStart;

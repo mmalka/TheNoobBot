@@ -86,7 +86,7 @@ namespace nManager.Wow.Bot.States
             if (ObjectManager.ObjectManager.Me.IsMounted)
                 return;
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
-            ulong unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
+            ulong unkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
