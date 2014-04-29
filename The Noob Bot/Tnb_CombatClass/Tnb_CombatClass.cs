@@ -13974,7 +13974,7 @@ public class PaladinRetribution
                     (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
-                    _inquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+                    _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
                 }
                 if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
                     HolyAvenger.Launch();
@@ -13986,7 +13986,7 @@ public class PaladinRetribution
                     (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
-                    _inquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+                    _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
                 }
                 if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
                     AvengingWrath.Launch();
@@ -14022,7 +14022,7 @@ public class PaladinRetribution
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             Inquisition.Launch();
-            _inquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+            _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
             return;
         }
         if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
