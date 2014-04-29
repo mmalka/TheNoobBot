@@ -112,7 +112,7 @@ public static class MyPluginClass
     public static string Author = "Vesper";
     public static string Name = "AutoEquipper";
     public static string TargetVersion = "3.0";
-    public static string Version = "1.0.0";
+    public static string Version = "1.0.1";
     public static string Description = "Always check the inventory on new loot for a better item for our class/specialization.";
 
     private static readonly object ParseItemLock = new object();
@@ -133,6 +133,8 @@ public static class MyPluginClass
         {
             ParseItemStock(itemStock, new EventArgs()); // Parse the inventory once before subscribing to new loots.
         }
+        if (Others.ItemStockUpdated != null)
+            Others.ItemStockUpdated -= ParseItemStock;
         Others.ItemStockUpdated += ParseItemStock; // Subscribe to TheNoobBot event OnLoot, return the every single new loots.
         MainLoop();
     }
