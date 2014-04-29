@@ -429,6 +429,12 @@ namespace nManager.Wow.Helpers
                                 // here it can be the next quest id presented automatically when the current one is turned in
                                 id = Quest.GetQuestID();
                                 Quest.CloseQuestWindow();
+                                if (Quest.GetLogQuestId().Contains(questId))
+                                {
+                                    equip = null;
+                                    Logging.WriteError("Could not turn-in quest " + questId + ": \"" + questName + "\"");
+                                    break;
+                                }
                                 Quest.FinishedQuestSet.Add(questId);
                                 // If it was auto-accepted, then abandon it. I'll make this better later.
                                 Quest.AbandonQuest(id);
@@ -453,6 +459,12 @@ namespace nManager.Wow.Helpers
                                 equip = Quest.CompleteQuest();
                                 Thread.Sleep(Usefuls.Latency + 500);
                                 Quest.CloseQuestWindow();
+                                if (Quest.GetLogQuestId().Contains(questId))
+                                {
+                                    equip = null;
+                                    Logging.WriteError("Could not turn-in quest " + questId + ": \"" + questName + "\"");
+                                    break;
+                                }
                                 Quest.FinishedQuestSet.Add(questId);
                                 break;
                             }
