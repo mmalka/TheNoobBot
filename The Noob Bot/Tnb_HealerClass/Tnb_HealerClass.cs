@@ -466,7 +466,6 @@ public class DruidRestoration
             catch
             {
             }
-            Thread.Sleep(1);
         }
     }
 
@@ -1084,7 +1083,6 @@ public class PaladinHoly
             catch
             {
             }
-            Thread.Sleep(1);
         }
     }
 
@@ -1557,7 +1555,6 @@ public class ShamanRestoration
             catch
             {
             }
-            Thread.Sleep(1);
         }
     }
 
@@ -2316,7 +2313,6 @@ public class PriestDiscipline
             catch
             {
             }
-            Thread.Sleep(1);
         }
     }
 
@@ -2939,7 +2935,6 @@ public class PriestHoly
             catch
             {
             }
-            Thread.Sleep(1);
         }
     }
 
@@ -3590,7 +3585,6 @@ public class MonkMistweaver
             catch
             {
             }
-            Thread.Sleep(1);
         }
     }
 
