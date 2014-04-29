@@ -79,7 +79,11 @@ namespace StormLib
         {
             RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
             if (key == null)
-                return null;
+            {
+                key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\VirtualStore\MACHINE\SOFTWARE\Wow6432Node\Blizzard Entertainment\World of Warcraft");
+                if (key == null)
+                    return null;
+            }
             Object val = key.GetValue("InstallPath");
             if (val == null)
                 return null;
