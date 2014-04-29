@@ -297,6 +297,25 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void InteractTarget(ref Npc npc, uint baseAddress)
+        {
+            ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
+            Interact.InteractWith(baseAddress);
+            if (targetIsGameObject.IsValid)
+            {
+                Thread.Sleep(3100);
+                return;
+            }
+            Thread.Sleep(Usefuls.Latency + 500);
+            if (ObjectManager.ObjectManager.Target.GetBaseAddress == 0 || ObjectManager.ObjectManager.Target.GetBaseAddress != baseAddress)
+            {
+                Logging.WriteDebug("Using LUA to target " + npc.Name);
+                Lua.LuaDoString("TargetUnit(\"" + npc.Name + "\")");
+                Thread.Sleep(Usefuls.Latency + 500);
+                Interact.InteractWith(ObjectManager.ObjectManager.Target.GetBaseAddress);
+            }
+        }
+
         public static void QuestPickUp(ref Npc npc, string questName, int questId)
         {
             //Start target finding based on QuestGiver.
@@ -306,12 +325,12 @@ namespace nManager.Wow.Helpers
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
-                Quest.CloseQuestWindow();
-                Interact.InteractWith(baseAddress);
+                /*Interact.InteractWith(baseAddress);
                 Thread.Sleep(Usefuls.Latency + 500);
                 ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
                 if (targetIsGameObject.IsValid)
-                    Thread.Sleep(2600); // to let the Gameobject open
+                    Thread.Sleep(2600); // to let the Gameobject open*/
+                InteractTarget(ref npc, baseAddress);
                 Logging.Write("PickUp Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();
                 // GetNumGossipActiveQuests() == 1 because of auto accepted quests
@@ -393,12 +412,12 @@ namespace nManager.Wow.Helpers
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
-                Quest.CloseQuestWindow();
-                Interact.InteractWith(baseAddress);
+                /*Interact.InteractWith(baseAddress);
                 Thread.Sleep(Usefuls.Latency + 500);
                 ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
                 if (targetIsGameObject.IsValid)
-                    Thread.Sleep(2600); // to let the Gameobject open
+                    Thread.Sleep(2600); // to let the Gameobject open*/
+                InteractTarget(ref npc, baseAddress);
                 Logging.Write("turnIn Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();
                 if (id == questId) // this may fail
