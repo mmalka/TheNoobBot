@@ -1473,7 +1473,7 @@ namespace nManager.Wow.Helpers
             _updatePathSpecialTimer = new Timer(2000);
         }
 
-        public static uint FindTarget(WoWGameObject Object, float SpecialRange = 0)
+        public static uint FindTarget(WoWGameObject Object, float SpecialRange = 0, bool doMount = true)
         {
             if (_trakedTargetGuid != Object.Guid)
             {
@@ -1482,10 +1482,10 @@ namespace nManager.Wow.Helpers
                 _trakedTargetGuid = Object.Guid;
                 resetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange);
+            return FindTarget(ref _trakedTarget, SpecialRange, doMount);
         }
 
-        public static uint FindTarget(WoWUnit Unit, float SpecialRange = 0)
+        public static uint FindTarget(WoWUnit Unit, float SpecialRange = 0, bool doMount = true)
         {
             if (_trakedTargetGuid != Unit.Guid)
             {
@@ -1494,10 +1494,10 @@ namespace nManager.Wow.Helpers
                 _trakedTargetGuid = Unit.Guid;
                 resetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange);
+            return FindTarget(ref _trakedTarget, SpecialRange, doMount);
         }
 
-        public static uint FindTarget(WoWPlayer Player, float SpecialRange = 0)
+        public static uint FindTarget(WoWPlayer Player, float SpecialRange = 0, bool doMount = true)
         {
             if (_trakedTargetGuid != Player.Guid)
             {
@@ -1505,7 +1505,7 @@ namespace nManager.Wow.Helpers
                 _trakedTargetGuid = Player.Guid;
                 resetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange);
+            return FindTarget(ref _trakedTarget, SpecialRange, doMount);
         }
 
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true)
