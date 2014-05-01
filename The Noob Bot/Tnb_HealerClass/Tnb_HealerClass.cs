@@ -16,7 +16,6 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
 public class Main : IHealerClass
@@ -93,7 +92,7 @@ public class Main : IHealerClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\HealerClasses\\Settings\\Druid_Restoration.xml";
-                            DruidRestoration.DruidRestorationSettings currentSetting = new DruidRestoration.DruidRestorationSettings();
+                            var currentSetting = new DruidRestoration.DruidRestorationSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<DruidRestoration.DruidRestorationSettings>(currentSettingsFile);
@@ -128,7 +127,7 @@ public class Main : IHealerClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\HealerClasses\\Settings\\Paladin_Holy.xml";
-                            PaladinHoly.PaladinHolySettings currentSetting = new PaladinHoly.PaladinHolySettings();
+                            var currentSetting = new PaladinHoly.PaladinHolySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<PaladinHoly.PaladinHolySettings>(currentSettingsFile);
@@ -163,7 +162,7 @@ public class Main : IHealerClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\HealerClasses\\Settings\\Shaman_Restoration.xml";
-                            ShamanRestoration.ShamanRestorationSettings currentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                            var currentSetting = new ShamanRestoration.ShamanRestorationSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
@@ -198,7 +197,7 @@ public class Main : IHealerClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\HealerClasses\\Settings\\Priest_Discipline.xml";
-                            PriestDiscipline.PriestDisciplineSettings currentSetting = new PriestDiscipline.PriestDisciplineSettings();
+                            var currentSetting = new PriestDiscipline.PriestDisciplineSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<PriestDiscipline.PriestDisciplineSettings>(currentSettingsFile);
@@ -218,7 +217,7 @@ public class Main : IHealerClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\HealerClasses\\Settings\\Priest_Holy.xml";
-                            PriestHoly.PriestHolySettings currentSetting = new PriestHoly.PriestHolySettings();
+                            var currentSetting = new PriestHoly.PriestHolySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<PriestHoly.PriestHolySettings>(currentSettingsFile);
@@ -253,7 +252,7 @@ public class Main : IHealerClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\HealerClasses\\Settings\\Monk_Mistweaver.xml";
-                            MonkMistweaver.MonkMistweaverSettings currentSetting = new MonkMistweaver.MonkMistweaverSettings();
+                            var currentSetting = new MonkMistweaver.MonkMistweaverSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<MonkMistweaver.MonkMistweaverSettings>(currentSettingsFile);
@@ -398,30 +397,29 @@ public class DruidRestoration
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     }
                     else
-                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
                         {
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
-                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                ObjectManager.Me.Target = ObjectManager.Me.Guid;
                             }
                             else if (Party.IsInGroup())
                             {
                                 double lowestHp = 100;
-                                WoWUnit lowestHpPlayer = new WoWUnit(0);
+                                var lowestHpPlayer = new WoWUnit(0);
                                 foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
-                                    WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                     if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
@@ -440,11 +438,11 @@ public class DruidRestoration
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
                             }
                             else
                             {
@@ -1015,30 +1013,29 @@ public class PaladinHoly
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     }
                     else
-                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
                         {
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
-                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                ObjectManager.Me.Target = ObjectManager.Me.Guid;
                             }
                             else if (Party.IsInGroup())
                             {
                                 double lowestHp = 100;
-                                WoWUnit lowestHpPlayer = new WoWUnit(0);
+                                var lowestHpPlayer = new WoWUnit(0);
                                 foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
-                                    WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                     if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
@@ -1057,11 +1054,11 @@ public class PaladinHoly
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
                             }
                             else
                             {
@@ -1487,10 +1484,10 @@ public class ShamanRestoration
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     }
                     else
-                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -1498,19 +1495,19 @@ public class ShamanRestoration
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
                             }
                             else if (Party.IsInGroup())
                             {
                                 double lowestHp = 100;
-                                WoWUnit lowestHpPlayer = new WoWUnit(0);
+                                var lowestHpPlayer = new WoWUnit(0);
                                 foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
-                                    WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                     if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
@@ -1529,11 +1526,11 @@ public class ShamanRestoration
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
                             }
                             else
                             {
@@ -2245,10 +2242,10 @@ public class PriestDiscipline
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     }
                     else
-                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -2256,19 +2253,19 @@ public class PriestDiscipline
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
                             }
                             else if (Party.IsInGroup())
                             {
                                 double lowestHp = 100;
-                                WoWUnit lowestHpPlayer = new WoWUnit(0);
+                                var lowestHpPlayer = new WoWUnit(0);
                                 foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
-                                    WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                     if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
@@ -2287,11 +2284,11 @@ public class PriestDiscipline
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
                             }
                             else
                             {
@@ -2599,7 +2596,7 @@ public class PriestDiscipline
             if (unit != null)
                 if (unit.IsValid)
                 {
-                    Interact.InteractWith(unit.GetBaseAddress);
+                    ObjectManager.Me.Target = unit.Guid;
                     Shadowfiend.Launch();
                 }
         }
@@ -2867,10 +2864,10 @@ public class PriestHoly
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     }
                     else
-                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -2878,19 +2875,19 @@ public class PriestHoly
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
                             }
                             else if (Party.IsInGroup())
                             {
                                 double lowestHp = 100;
-                                WoWUnit lowestHpPlayer = new WoWUnit(0);
+                                var lowestHpPlayer = new WoWUnit(0);
                                 foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
-                                    WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                     if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
@@ -2909,11 +2906,11 @@ public class PriestHoly
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
                             }
                             else
                             {
@@ -3237,7 +3234,7 @@ public class PriestHoly
             if (unit != null)
                 if (unit.IsValid)
                 {
-                    Interact.InteractWith(unit.GetBaseAddress);
+                    ObjectManager.Me.Target = unit.Guid;
                     Shadowfiend.Launch();
                 }
         }
@@ -3413,13 +3410,13 @@ public class MonkMistweaver
 
     #region General Timers & Variables
 
-    private Timer _grappleWeaponTimer = new Timer(0);
-    private Timer _healingSphereTimer = new Timer(0);
-/*
+    /*
         private Timer _serpentsZealTimer = new Timer(0);
 */
     private Timer _alchFlaskTimer = new Timer(0);
     private Timer _engineeringTimer = new Timer(0);
+    private Timer _grappleWeaponTimer = new Timer(0);
+    private Timer _healingSphereTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
     private Timer _trinketTimer = new Timer(0);
 
@@ -3517,10 +3514,10 @@ public class MonkMistweaver
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     }
                     else
-                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -3528,19 +3525,19 @@ public class MonkMistweaver
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
                             }
                             else if (Party.IsInGroup())
                             {
                                 double lowestHp = 100;
-                                WoWUnit lowestHpPlayer = new WoWUnit(0);
+                                var lowestHpPlayer = new WoWUnit(0);
                                 foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
-                                    WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                     if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
@@ -3559,11 +3556,11 @@ public class MonkMistweaver
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
+                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
                             }
                             else
                             {
