@@ -3635,7 +3635,6 @@ public class DeathknightFrost
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -4630,7 +4629,6 @@ public class MageArcane
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -7290,7 +7288,6 @@ public class WarlockDemonology
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -8118,7 +8115,6 @@ public class WarlockDestruction
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -8863,7 +8859,6 @@ public class WarlockAffliction
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -9640,7 +9635,6 @@ public class DruidBalance
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -11304,7 +11298,6 @@ public class DruidRestoration
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -19987,7 +19980,6 @@ public class RogueSubtlety
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -20721,7 +20713,6 @@ public class RogueAssassination
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -22308,7 +22299,6 @@ public class WarriorProtection
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -23170,7 +23160,6 @@ public class WarriorFury
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -23967,7 +23956,6 @@ public class HunterMarksmanship
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -24770,7 +24758,6 @@ public class HunterBeastMastery
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 
@@ -25628,7 +25615,6 @@ public class HunterSurvival
             catch
             {
             }
-            Thread.Sleep(250);
         }
     }
 

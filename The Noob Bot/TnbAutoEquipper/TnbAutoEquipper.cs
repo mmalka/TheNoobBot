@@ -168,7 +168,7 @@ public static class MyPluginClass
     {
         while (InternalLoop)
         {
-            Thread.Sleep(100);
+            Thread.Sleep(1);
         }
     }
 }
