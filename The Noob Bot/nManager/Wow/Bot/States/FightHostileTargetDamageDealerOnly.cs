@@ -48,7 +48,10 @@ namespace nManager.Wow.Bot.States
             if (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.Me.IsMounted)
                 MountTask.DismountMount();
             else if (ObjectManager.ObjectManager.Me.IsMounted)
-                Logging.Write("Please dismount as soon as is possible ! This product is passive.");
+            {
+                Thread.Sleep(200);
+                Logging.Write("Please dismount as soon as is possible ! This product is passive when you are not yet in combat.");
+            }
             Logging.Write("Currently attacking " + _unit.Name + " (lvl " + _unit.Level + ")");
             ulong unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)

@@ -234,15 +234,15 @@ namespace nManager.Wow.Helpers
 
                     if (!ObjectManager.ObjectManager.Me.IsCast)
                     {
-                        Interact.InteractWith(targetNpc.GetBaseAddress);
-                        if (CombatClass.GetRange > 5)
-                            MovementManager.StopMove();
+                        if (CombatClass.GetRange <= 5) // Initiate auto attack on melees + target.
+                            Interact.InteractWith(targetNpc.GetBaseAddress);
+                        ObjectManager.ObjectManager.Me.Target = targetNpc.Guid;
                     }
                     Thread.Sleep(100);
                     Point positionStartTarget = targetNpc.Position;
                     figthStart:
-                    // If pos start is very different
-                    if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
+                    // If pos start is far, we will Loop to it anyway.
+                    if (targetNpc.Position.DistanceTo(positionStartTarget) > CombatClass.GetRange + 5f)
                         return 0;
                     if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
                     {
@@ -258,18 +258,16 @@ namespace nManager.Wow.Helpers
 
                     InFight = true;
                     Thread.Sleep(500);
-                    if (CombatClass.InRange(targetNpc) && CombatClass.GetRange > 5 && ObjectManager.ObjectManager.Me.GetMove &&
-                        !ObjectManager.ObjectManager.Me.IsCast)
+                    if (CombatClass.InRange(targetNpc) && CombatClass.GetRange > 5 && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
                     {
-                        MovementManager.StopMoveTo();
+                        Logging.Write("Your class recquires you to stop moving in order to cast spell, as this product is passive, we wont try to force stop.");
                     }
                     if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
                         !ObjectManager.ObjectManager.Me.IsCast)
                     {
-                        Interact.InteractWith(targetNpc.GetBaseAddress);
-                        if (CombatClass.GetRange > 5)
-                            MovementManager.StopMove();
-                        // Initial Target
+                        if (CombatClass.GetRange <= 5) // Initiate auto attack on melees + target.
+                            Interact.InteractWith(targetNpc.GetBaseAddress);
+                        ObjectManager.ObjectManager.Me.Target = targetNpc.Guid;
                     }
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid &&
                            InFight &&
@@ -280,20 +278,22 @@ namespace nManager.Wow.Helpers
                             return targetNpc.Guid;
 
                         // Target mob if not target
-                        if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
-                            !ObjectManager.ObjectManager.Me.IsCast)
+                        if (ObjectManager.ObjectManager.Me.Target != targetNpc.Guid && !targetNpc.IsDead && !ObjectManager.ObjectManager.Me.IsCast)
                         {
-                            Interact.InteractWith(ObjectManager.ObjectManager.Target.GetBaseAddress);
-                            if (CombatClass.GetRange > 5)
-                                MovementManager.StopMove();
+                            // Player has switched the target.
+                            if (ObjectManager.ObjectManager.Me.Target == 0)
+                                return 0; // if player have no target anymore, don't do anything.
+                            if (CombatClass.GetRange <= 5) // Initiate auto attack on melees.
+                                Interact.InteractWith(ObjectManager.ObjectManager.Target.GetBaseAddress);
                             // Switch Target
                             targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
                             goto figthStart;
                         }
 
                         // Face player to mob
-                        MovementManager.Face(targetNpc);
-                        Thread.Sleep(50);
+                        MovementManager.Face(targetNpc, false); 
+                        // If we are not facing anymore, it's because of player moves in 99% of the case, so wait for the next player move to apply the facing.
+                        Thread.Sleep(10);
                     }
                 }
                 InFight = false;

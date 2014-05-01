@@ -1300,7 +1300,8 @@ namespace nManager.Wow.Helpers
         /// Faces the Unit.
         /// </summary>
         /// <param name="obj">The Unit.</param>
-        public static void Face(WoWUnit obj)
+        /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
+        public static void Face(WoWUnit obj, bool doMove = true)
         {
             try
             {
@@ -1316,7 +1317,8 @@ namespace nManager.Wow.Helpers
                 if (dif <= System.Math.PI/4)
                     return;
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
-                MicroMove();
+                if (doMove)
+                    MicroMove();
             }
             catch (Exception exception)
             {
@@ -1328,7 +1330,8 @@ namespace nManager.Wow.Helpers
         /// Faces the specified Player.
         /// </summary>
         /// <param name="obj">The Player.</param>
-        public static void Face(WoWPlayer obj)
+        /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
+        public static void Face(WoWPlayer obj, bool doMove = true)
         {
             try
             {
@@ -1345,7 +1348,8 @@ namespace nManager.Wow.Helpers
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
-                MicroMove();
+                if (doMove)
+                    MicroMove();
             }
             catch (Exception exception)
             {
@@ -1357,7 +1361,8 @@ namespace nManager.Wow.Helpers
         /// Faces the specified GameObject.
         /// </summary>
         /// <param name="obj">The GameObject.</param>
-        public static void Face(WoWGameObject obj)
+        /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
+        public static void Face(WoWGameObject obj, bool doMove = true)
         {
             try
             {
@@ -1374,7 +1379,8 @@ namespace nManager.Wow.Helpers
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
-                MicroMove();
+                if (doMove)
+                    MicroMove();
             }
             catch (Exception exception)
             {
@@ -1386,7 +1392,8 @@ namespace nManager.Wow.Helpers
         /// Faces the specified position.
         /// </summary>
         /// <param name="position">The position.</param>
-        public static void Face(Point position)
+        /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
+        public static void Face(Point position, bool doMove = true)
         {
             try
             {
@@ -1402,7 +1409,8 @@ namespace nManager.Wow.Helpers
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
-                MicroMove();
+                if (doMove)
+                    MicroMove();
             }
             catch (Exception exception)
             {
