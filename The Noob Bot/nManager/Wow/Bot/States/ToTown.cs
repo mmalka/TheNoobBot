@@ -405,8 +405,10 @@ namespace nManager.Wow.Bot.States
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(500);
                         if (target.SelectGossipOption != 0)
+                        {
                             Lua.LuaDoString("SelectGossipOption(" + target.SelectGossipOption + ")");
-                        Thread.Sleep(1000);
+                            Thread.Sleep(500);
+                        }
 
                         if ((target.Type == Npc.NpcType.Repair || target.Type == Npc.NpcType.Vendor) && target.SelectGossipOption == 0)
                         {
