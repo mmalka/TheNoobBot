@@ -33,7 +33,7 @@ namespace nManager.Wow.Class
 
         public string InternalData { get; set; }
 
-        [DefaultValue(1)] public int SelectGossipOption = 1;
+        [DefaultValue(0)] public int SelectGossipOption = 0;
 
         public Point Position
         {
