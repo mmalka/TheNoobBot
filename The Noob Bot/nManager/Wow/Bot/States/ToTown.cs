@@ -408,6 +408,33 @@ namespace nManager.Wow.Bot.States
                             Lua.LuaDoString("SelectGossipOption(" + target.SelectGossipOption + ")");
                         Thread.Sleep(1000);
 
+                        if ((target.Type == Npc.NpcType.Repair || target.Type == Npc.NpcType.Vendor) && target.SelectGossipOption == 0)
+                        {
+                            // Do select the vendor gossip if needed
+                            string randomString = Others.GetRandomString(Others.Random(4, 10));
+                            Lua.LuaDoString(randomString + " = GetNumGossipOptions()");
+                            int nbGossip = Others.ToInt32(Lua.GetLocalizedText(randomString));
+                            if (nbGossip > 0)
+                            {
+                                string luaResultStr = Others.GetRandomString(Others.Random(4, 10));
+                                string luaTable = Others.GetRandomString(Others.Random(4, 10));
+                                string luaCode = "local " + luaTable + " = { GetGossipOptions() } ";
+                                luaCode += luaResultStr + " = 0 ";
+                                luaCode += "for id,value in pairs(" + luaTable + ") do ";
+                                luaCode += "if value == \"vendor\" then " + luaResultStr + " = id/2 ";
+                                luaCode += "end end";
+                                Lua.LuaDoString(luaCode);
+                                string toto = Lua.GetLocalizedText(luaResultStr);
+                                int optionNumber = Others.ToInt32(toto);
+                                if (optionNumber > 0)
+                                {
+                                    Lua.LuaDoString("SelectGossipOption(" + optionNumber + ")");
+                                    Thread.Sleep(500 + Usefuls.Latency);
+                                }
+                                else
+                                    Logging.WriteError("Couldn't find a Vendor option for NPC " + npc.Name);
+                            }
+                        }
                         // NPC Repairer
                         if (target.Type == Npc.NpcType.Repair)
                         {
@@ -452,6 +479,8 @@ namespace nManager.Wow.Bot.States
                             }
                             // End NPC Seller
                         }
+                        if (target.Type == Npc.NpcType.Repair || target.Type == Npc.NpcType.Vendor)
+                            Lua.LuaDoString("CloseGossip()");
 
                         // MailBox
                         if (target.Type == Npc.NpcType.Mailbox)
