@@ -340,9 +340,8 @@ namespace nManager.Wow.Bot.States
                                   " of " + skillLine.ToString() + "." + oldRank);
                 }
                 Interact.InteractWith(baseAddress);
-                Thread.Sleep(500);
-                Trainer.TrainingSpell();
-                Thread.Sleep(1000);
+                Thread.Sleep(500 + Usefuls.Latency);
+                Gossip.TrainAllAvailableSpells();
                 TeacherFoundNoSpam.Remove(bestTeacher);
                 SpellManager.UpdateSpellBook();
             }

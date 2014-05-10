@@ -499,7 +499,7 @@ namespace Quester.Tasks
                         MovementManager.StopMove();
                         Interact.InteractWith(baseAddress);
 
-                        if (questObjective.GossipOptionsInteractWith != -1)
+                        if (questObjective.GossipOptionsInteractWith != 0)
                         {
                             Thread.Sleep(Usefuls.Latency + 500);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
@@ -969,17 +969,18 @@ namespace Quester.Tasks
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500 + Usefuls.Latency);
-                    if (!Taxi.IsTaxiWindowOpen())
+                    if (!Gossip.IsTaxiWindowOpen())
                     {
-                        Taxi.FindAndOpenTaxiGossip();
-                        Thread.Sleep(500 + Usefuls.Latency);
+                        Gossip.SelectGossip(Gossip.GossipOption.Taxi);
+                        //Taxi.FindAndOpenTaxiGossip();
+                        //Thread.Sleep(500 + Usefuls.Latency);
                     }
-                    if (!Taxi.IsTaxiWindowOpen())
+                    if (!Gossip.IsTaxiWindowOpen())
                     {
-                        Logging.Write("There is a big problem !!!!!!");
+                        Logging.Write("There is a problem with taxi master " + taxiMan.Name);
                         return;
                     }
-                    Taxi.TakeTaxi(questObjective.FlightDestinationX, questObjective.FlightDestinationY);
+                    Gossip.TakeTaxi(questObjective.FlightDestinationX, questObjective.FlightDestinationY);
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
                 }
