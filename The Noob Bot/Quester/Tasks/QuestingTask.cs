@@ -972,8 +972,6 @@ namespace Quester.Tasks
                     if (!Gossip.IsTaxiWindowOpen())
                     {
                         Gossip.SelectGossip(Gossip.GossipOption.Taxi);
-                        //Taxi.FindAndOpenTaxiGossip();
-                        //Thread.Sleep(500 + Usefuls.Latency);
                     }
                     if (!Gossip.IsTaxiWindowOpen())
                     {
