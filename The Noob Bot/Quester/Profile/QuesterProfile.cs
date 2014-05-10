@@ -181,7 +181,7 @@ namespace Quester.Profile
         [DefaultValue(false)] public bool IgnoreFight = false;
 
         // InteractWith
-        [DefaultValue(-1)] public int GossipOptionsInteractWith = -1;
+        [DefaultValue(0)] public int GossipOptionsInteractWith = 0;
 
         // UseSpell
         [DefaultValue(0)] public int UseSpellId = 0;
