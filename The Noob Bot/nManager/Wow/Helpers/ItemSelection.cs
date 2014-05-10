@@ -96,17 +96,19 @@ namespace nManager.Wow.Helpers
                     string linkEquip2 = Lua.GetLocalizedText(sLink);
                     ItemInfo equipedItem2 = new ItemInfo(linkEquip2);
 
-                    if ((questRewardItem.ItemRarity > equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel - (5*equipedItem2.ItemLevel/100)))
+                    if (equipedItem2.ItemRarity < 7 && // Just consider equiped Heirloom > all
+                        ((questRewardItem.ItemRarity > equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel - (5*equipedItem2.ItemLevel/100) * (questRewardItem.ItemRarity - equipedItem2.ItemRarity)))
                         || (questRewardItem.ItemRarity == equipedItem2.ItemRarity && questRewardItem.ItemLevel > equipedItem2.ItemLevel)
-                        || (questRewardItem.ItemRarity < equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel + (5*equipedItem2.ItemLevel/100))))
+                        || (questRewardItem.ItemRarity < equipedItem2.ItemRarity && questRewardItem.ItemLevel > (equipedItem2.ItemLevel + (5*equipedItem2.ItemLevel/100) * (equipedItem2.ItemRarity - questRewardItem.ItemRarity)))))
                     {
                         itemValueForMe = -1;
                         slot = (questRewardItem.ItemEquipLoc == "INVTYPE_FINGER" ? "INVSLOT_FINGER2" : "INVSLOT_TRINKET2");
                     }
                 }
-                if ((questRewardItem.ItemRarity > equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel - (5*equipedItem.ItemLevel/100)))
+                if (equipedItem.ItemRarity < 7 && // Just consider equiped Heirloom > all
+                    ((questRewardItem.ItemRarity > equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel - (5*equipedItem.ItemLevel/100) * (questRewardItem.ItemRarity - equipedItem.ItemRarity)))
                     || (questRewardItem.ItemRarity == equipedItem.ItemRarity && questRewardItem.ItemLevel > equipedItem.ItemLevel)
-                    || (questRewardItem.ItemRarity < equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel + (5*equipedItem.ItemLevel/100))))
+                    || (questRewardItem.ItemRarity < equipedItem.ItemRarity && questRewardItem.ItemLevel > (equipedItem.ItemLevel + (5*equipedItem.ItemLevel/100) * (equipedItem.ItemRarity - questRewardItem.ItemRarity)))))
                     itemValueForMe = -1;
             }
             if (itemValueForMe == 0)
