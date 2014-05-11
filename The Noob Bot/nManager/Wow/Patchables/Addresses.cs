@@ -129,6 +129,7 @@
             ChannelSpellID = 0xCD0, // Script_UnitChannelInfo
             CanInterrupt = 0xC64, // check // Script_UnitCastingInfo/Script_UnitChannelInfo
             TransportGUID = 0x830, // CGUnit_C__HasVehicleTransport
+            TaxiStatus = 0xC0,
             DBCacheRow = 0x9B4, // CGUnit_C__GetUnitName
             CachedSubName = 0x0,
             CachedName = 0x6C,
@@ -278,7 +279,7 @@
         /// </summary>
         public enum Quests
         {
-            QuestGiverStatus = 0xB4, // check
+            QuestGiverStatus = 0xBC,
             // TODO Retrieve unknown Quests offsets
             ActiveQuests = 0x0, //not found
             SelectedQuestId = 0x0, //not found
