@@ -75,7 +75,7 @@ namespace Fisherbot.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6, "FSM Fisherbot");
+                Fsm.StartEngine(5, "FSM Fisherbot");
 
                 return true;
             }

@@ -55,7 +55,7 @@ namespace Archaeologist.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6, "FSM Archaeologist");
+                Fsm.StartEngine(5, "FSM Archaeologist");
                 Archaeology.Initialize();
                 return true;
             }

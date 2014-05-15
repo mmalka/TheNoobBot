@@ -34,7 +34,7 @@ namespace Mimesis.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6, "FSM Mimesis");
+                Fsm.StartEngine(5, "FSM Mimesis");
 
                 return true;
             }

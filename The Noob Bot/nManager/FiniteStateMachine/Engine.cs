@@ -17,6 +17,7 @@ namespace nManager.FiniteStateMachine
 
         private Thread _workerThread;
         private readonly bool _showStateInStatus;
+        private System.Diagnostics.Stopwatch _stopWatch;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Engine"/> class.
@@ -130,6 +131,7 @@ namespace nManager.FiniteStateMachine
             {
                 // We want to round a bit here.
                 int sleepTime = 1000/framesPerSecond;
+                _stopWatch = new System.Diagnostics.Stopwatch();
 
                 Running = true;
 
@@ -148,9 +150,15 @@ namespace nManager.FiniteStateMachine
             {
                 while (Running)
                 {
+                    _stopWatch.Start();
                     Pulse();
                     // Sleep for a 'frame'
-                    Thread.Sleep((int) sleepTime);
+                    if (_stopWatch.ElapsedMilliseconds < (int) sleepTime)
+                    {
+                        int wait = (int) sleepTime - (int) _stopWatch.ElapsedMilliseconds;
+                        Thread.Sleep(wait);
+                    }
+                    _stopWatch.Reset();
                 }
             }
             catch (Exception ex)
