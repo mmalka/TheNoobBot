@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
+using System.Collections.Concurrent;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -64,9 +65,9 @@ namespace nManager.Wow.ObjectManager
                         }
                         else
                         {
-                            ObjectManager.ObjectDictionary = new Dictionary<ulong, WoWObject>();
+                            ObjectManager.ObjectDictionary = new ConcurrentDictionary<ulong, WoWObject>();
                         }
-                        Thread.Sleep(100); // 70
+                        Thread.Sleep(650);
                     }
                 }
             }

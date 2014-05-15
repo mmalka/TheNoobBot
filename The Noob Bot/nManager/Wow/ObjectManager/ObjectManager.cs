@@ -8,6 +8,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
+using System.Collections.Concurrent;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -16,14 +17,15 @@ namespace nManager.Wow.ObjectManager
         private static readonly object Locker = new object();
         private static uint _lastTargetBase;
         private static uint _lastPetBase;
+        private static List<WoWObject> _objectList;
         public static List<ulong> BlackListMobAttack = new List<ulong>();
 
         static ObjectManager()
         {
             try
             {
-                ObjectList = new List<WoWObject>();
-                ObjectDictionary = new Dictionary<ulong, WoWObject>();
+                _objectList = new List<WoWObject>();
+                ObjectDictionary = new ConcurrentDictionary<ulong, WoWObject>();
                 Me = new WoWPlayer(0);
             }
             catch (Exception e)
@@ -34,8 +36,15 @@ namespace nManager.Wow.ObjectManager
 
         private static uint ObjectManagerAddress { get; set; }
 
-        public static List<WoWObject> ObjectList { get; private set; }
-        public static Dictionary<ulong, WoWObject> ObjectDictionary { get; set; }
+        public static List<WoWObject> ObjectList
+        {
+            get
+            {
+                lock (Locker)
+                    return _objectList.ToList();
+            }
+        }
+        public static ConcurrentDictionary<ulong, WoWObject> ObjectDictionary { get; set; }
         public static WoWPlayer Me { get; private set; }
 
         public static WoWUnit Target
@@ -127,20 +136,20 @@ namespace nManager.Wow.ObjectManager
 
                     // Clear out old references.
                     List<ulong> toRemove = new List<ulong>();
-                    List<WoWObject> list = new List<WoWObject>();
+                    _objectList = new List<WoWObject>();
                     foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
                     {
                         if (o.Value.IsValid)
-                            list.Add(o.Value);
+                            _objectList.Add(o.Value);
                         else
                             toRemove.Add(o.Key);
                     }
-                    // All done! Just make sure we pass up a valid list to the ObjectList.
-                    ObjectList = list;
 
+                    // All done! Just make sure we pass up a valid list to the ObjectList.
                     foreach (ulong guid in toRemove)
                     {
-                        ObjectDictionary.Remove(guid);
+                        WoWObject object1;
+                        ObjectDictionary.TryRemove(guid, out object1);
                     }
                 }
             }
@@ -225,7 +234,7 @@ namespace nManager.Wow.ObjectManager
                             {
                                 // We have a valid object that isn't in the object list already.
                                 // So lets add it.
-                                ObjectDictionary.Add(objGuid, obj);
+                                ObjectDictionary.TryAdd(objGuid, obj);
                             }
                         }
                         else
@@ -268,37 +277,15 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        private static IEnumerable<WoWObject> GetObjectByType(WoWObjectType type)
-        {
-            try
-            {
-                WoWObject[] objects = ObjectList.ToArray();
-
-
-                // Simply print each objects GUID and position.
-                List<WoWObject> list = new List<WoWObject>();
-                foreach (WoWObject o in objects)
-                {
-                    if (o.Type == type) list.Add(new WoWObject(o.GetBaseAddress));
-                }
-                return list;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetObjectByType(WoWObjectType type): " + e);
-                return new List<WoWObject>();
-            }
-        }
-
+        // Make all base list construction fast
         public static List<WoWUnit> GetObjectWoWUnit()
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Unit);
-                List<WoWUnit> list = new List<WoWUnit>();
-                foreach (WoWObject a in tempsListObj)
-                    list.Add(new WoWUnit(a.GetBaseAddress));
-                return list;
+                List<WoWUnit> result = new List<WoWUnit>();
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.Unit) result.Add(new WoWUnit(o.GetBaseAddress));
+                return result;
             }
             catch (Exception e)
             {
@@ -307,18 +294,30 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static List<WoWUnit> GetObjectWoWUnitInCombat()
+        {
+            try
+            {
+                List<WoWUnit> result = new List<WoWUnit>();
+                foreach (WoWUnit u in GetObjectWoWUnit())
+                    if (u.InCombat && u.Attackable) result.Add(new WoWUnit(u.GetBaseAddress));
+                return result;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWUnitInCombat(): " + e);
+                return new List<WoWUnit>();
+            }
+        }
+
         public static List<WoWContainer> GetObjectWoWContainer()
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Container);
-                List<WoWContainer> list = new List<WoWContainer>();
-                foreach (WoWObject a in tempsListObj)
-                {
-                    WoWContainer container = new WoWContainer(a.GetBaseAddress);
-                    list.Add(container);
-                }
-                return list;
+                List<WoWContainer> result = new List<WoWContainer>();
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.Container) result.Add(new WoWContainer(o.GetBaseAddress));
+                return result;
             }
             catch (Exception e)
             {
@@ -331,11 +330,10 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Corpse);
-                List<WoWCorpse> list = new List<WoWCorpse>();
-                foreach (WoWObject a in tempsListObj)
-                    list.Add(new WoWCorpse(a.GetBaseAddress));
-                return list;
+                List<WoWCorpse> result = new List<WoWCorpse>();
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.Corpse) result.Add(new WoWCorpse(o.GetBaseAddress));
+                return result;
             }
             catch (Exception e)
             {
@@ -348,11 +346,10 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
-                List<WoWItem> list = new List<WoWItem>();
-                foreach (WoWObject a in tempsListObj)
-                    list.Add(new WoWItem(a.GetBaseAddress));
-                return list;
+                List<WoWItem> result = new List<WoWItem>();
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.Item) result.Add(new WoWItem(o.GetBaseAddress));
+                return result;
             }
             catch (Exception e)
             {
@@ -365,19 +362,15 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
-                foreach (WoWObject a in tempsListObj)
-                {
-                    if (a.Entry == entry)
-                    {
-                        return new WoWItem(a.GetBaseAddress);
-                    }
-                }
+                List<WoWItem> itemList = GetObjectWoWItem();
+                foreach (WoWItem i in itemList)
+                    if (i.Entry == entry)
+                        return new WoWItem(i.GetBaseAddress);
                 return new WoWItem(0);
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWItemById(uint entry): " + e);
+                Logging.WriteError("GetWoWItemById(int entry): " + e);
                 return new WoWItem(0);
             }
         }
@@ -386,19 +379,21 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
-                List<WoWGameObject> retList = new List<WoWGameObject>();
-                foreach (WoWObject a in tempsListObj)
+                List<WoWGameObject> result = new List<WoWGameObject>();
+                foreach (WoWObject o in ObjectList)
                 {
-                    WoWGameObject b = new WoWGameObject(a.GetBaseAddress);
-                    if (b.GOType == reqtype)
-                        retList.Add(b);
+                    if (o.Type == WoWObjectType.GameObject)
+                    {
+                        WoWGameObject go = new WoWGameObject(o.GetBaseAddress);
+                        if (go.GOType == reqtype)
+                            result.Add(go);
+                    }
                 }
-                return retList;
+                return result;
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetObjectWoWGameObject(): " + e);
+                Logging.WriteError("GetWoWGameObjectOfType(WoWGameObjectType reqtype): " + e);
                 return new List<WoWGameObject>();
             }
         }
@@ -407,11 +402,11 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
-                List<WoWGameObject> list = new List<WoWGameObject>();
-                foreach (WoWObject a in tempsListObj)
-                    list.Add(new WoWGameObject(a.GetBaseAddress));
-                return list;
+                List<WoWGameObject> result = new List<WoWGameObject>();
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.GameObject)
+                        result.Add(new WoWGameObject(o.GetBaseAddress));
+                return result;
             }
             catch (Exception e)
             {
@@ -424,17 +419,14 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
-                foreach (WoWObject a in tempsListObj)
-                {
-                    if (a.Guid == guid)
-                        return new WoWPlayer(a.GetBaseAddress);
-                }
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.Player && o.Guid == guid)
+                        return new WoWPlayer(o.GetBaseAddress);
                 return null;
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetObjectWoWPlayer(uint guid): " + e);
+                Logging.WriteError("GetObjectWoWPlayer(ulong guid): " + e);
                 return null;
             }
         }
@@ -443,14 +435,11 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
-                List<WoWPlayer> list = new List<WoWPlayer>();
-                foreach (WoWObject a in tempsListObj)
-                {
-                    if (a.GetBaseAddress != Me.GetBaseAddress) list.Add(new WoWPlayer(a.GetBaseAddress));
-                }
-                return
-                    list;
+                List<WoWPlayer> result = new List<WoWPlayer>();
+                foreach (WoWObject o in ObjectList)
+                    if (o.Type == WoWObjectType.Player && o.GetBaseAddress != Me.GetBaseAddress)
+                        result.Add(new WoWPlayer(o.GetBaseAddress));
+                return result;
             }
             catch (Exception e)
             {
@@ -459,35 +448,20 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static List<WoWObject> GetObjectWoW()
-        {
-            try
-            {
-                return ObjectList;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetObjectWoW(): " + e);
-            }
-            return new List<WoWObject>();
-        }
-
         public static List<WoWPlayer> GetObjectWoWPlayerTargetMe()
         {
             try
             {
-                List<WoWPlayer> tempsList = new List<WoWPlayer>();
-                tempsList.AddRange(GetObjectWoWPlayer());
-                List<WoWPlayer> list = new List<WoWPlayer>();
-                foreach (WoWPlayer a in tempsList)
+                List<WoWPlayer> result = new List<WoWPlayer>();
+                foreach (WoWPlayer p in GetObjectWoWPlayer())
                 {
-                    if (a.IsTargetingMe) list.Add(new WoWPlayer(a.GetBaseAddress));
+                    if (p.IsTargetingMe) result.Add(new WoWPlayer(p.GetBaseAddress));
                 }
-                return list;
+                return result;
             }
             catch (Exception e)
             {
-                Logging.WriteError(" GetObjectWoWPlayerTargetMe(): " + e);
+                Logging.WriteError("GetObjectWoWPlayerTargetMe(): " + e);
                 return new List<WoWPlayer>();
             }
         }
@@ -567,7 +541,6 @@ namespace nManager.Wow.ObjectManager
             {
                 WoWGameObject objectReturn = new WoWGameObject(0);
                 float tempDistance = 9999999.0f;
-                //foreach (var a in listWoWGameObject.Where(a => a.Position.DistanceTo(point) < tempDistance))
                 foreach (WoWGameObject a in listWoWGameObject)
                 {
                     if (a.Position.DistanceTo(point) < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
@@ -591,7 +564,6 @@ namespace nManager.Wow.ObjectManager
             {
                 WoWGameObject objectReturn = new WoWGameObject(0);
                 float tempDistance = 9999999.0f;
-                //foreach (var a in listWoWGameObject.Where(a => a.GetDistance < tempDistance))
                 foreach (WoWGameObject a in listWoWGameObject)
                 {
                     if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
@@ -1305,7 +1277,7 @@ namespace nManager.Wow.ObjectManager
                     List<Point> points = PathFinder.FindPath(u.Position, out r);
                     if (!r)
                         points.Add(u.Position);
-                    if (Helpful.Math.DistanceListPoint(points) < u.AggroDistance*4)
+                    if (Helpful.Math.DistanceListPoint(points) < u.AggroDistance*3)
                         return new WoWUnit(u.GetBaseAddress);
                 }
             }
