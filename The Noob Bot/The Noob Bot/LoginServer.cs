@@ -351,9 +351,9 @@ namespace The_Noob_Bot
                 while (Usefuls.InGame)
                 {
                     Statistics.OffsetStats = 0xB5;
-                    Thread.Sleep(50);
+                    Thread.Sleep(500);
                 }
-                Thread.Sleep(50);
+                Thread.Sleep(500);
             }
             //LoginThread.Abort();
         }
