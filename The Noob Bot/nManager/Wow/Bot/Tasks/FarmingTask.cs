@@ -230,7 +230,7 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     if ((int) node.GetBaseAddress > 0)
                     {
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.0f)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 5.0f)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
                                 nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
@@ -277,6 +277,8 @@ namespace nManager.Wow.Bot.Tasks
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
+                            if (!node.IsHerb || (node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())))
+                                MountTask.DismountMount();
                             return;
                         }
                         Interact.InteractWith(node.GetBaseAddress);
