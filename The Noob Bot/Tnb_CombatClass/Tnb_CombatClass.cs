@@ -1199,24 +1199,19 @@ public class DeathknightApprentice
                             }
 
                             if (ObjectManager.Target.GetDistance < 30)
-                            {
                                 Combat();
-                            }
                         }
                         if (!ObjectManager.Me.IsCast)
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
-                {
                     Thread.Sleep(500);
-                }
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -1666,33 +1661,26 @@ public class DeathknightBlood
                             {
                                 LC = 1;
                                 if (ObjectManager.Target.GetDistance < 30)
-                                {
                                     LowCombat();
-                                }
                             }
                             else
                             {
                                 LC = 0;
                                 if (ObjectManager.Target.GetDistance < 30)
-                                {
                                     Combat();
-                                }
                             }
                         }
                         if (!ObjectManager.Me.IsCast)
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
-                {
                     Thread.Sleep(500);
-                }
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -2670,33 +2658,26 @@ public class DeathknightUnholy
                             {
                                 LC = 1;
                                 if (ObjectManager.Target.GetDistance < 30)
-                                {
                                     LowCombat();
-                                }
                             }
                             else
                             {
                                 LC = 0;
                                 if (ObjectManager.Target.GetDistance < 30)
-                                {
                                     Combat();
-                                }
                             }
                         }
                         if (!ObjectManager.Me.IsCast)
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
-                {
                     Thread.Sleep(500);
-                }
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -3608,33 +3589,26 @@ public class DeathknightFrost
                             {
                                 LC = 1;
                                 if (ObjectManager.Target.GetDistance < 30)
-                                {
                                     LowCombat();
-                                }
                             }
                             else
                             {
                                 LC = 0;
                                 if (ObjectManager.Target.GetDistance < 30)
-                                {
                                     Combat();
-                                }
                             }
                         }
                         if (!ObjectManager.Me.IsCast)
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
-                {
                     Thread.Sleep(500);
-                }
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -4598,37 +4572,27 @@ public class MageArcane
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-
                                 if (ObjectManager.Target.GetDistance < 41)
-                                {
                                     LowCombat();
-                                }
                             }
                             else
                             {
                                 LC = 0;
-
                                 if (ObjectManager.Target.GetDistance < 41)
-                                {
                                     Combat();
-                                }
                             }
                         }
-
                         if (!ObjectManager.Me.IsCast)
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
-                {
                     Thread.Sleep(500);
-                }
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -5531,41 +5495,31 @@ public class MageFrost
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-
                                 if (ObjectManager.Target.GetDistance < 41)
-                                {
                                     LowCombat();
-                                }
                             }
                             else
                             {
                                 LC = 0;
-
                                 if (ObjectManager.Target.GetDistance < 41)
-                                {
                                     Combat();
-                                }
                             }
                         }
 
                         if (!ObjectManager.Me.IsCast)
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
-                {
                     Thread.Sleep(500);
-                }
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -6511,6 +6465,7 @@ public class MageFire
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -7288,6 +7243,7 @@ public class WarlockDemonology
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -8110,11 +8066,13 @@ public class WarlockDestruction
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -8355,7 +8313,7 @@ public class WarlockDestruction
             && ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
-            ItemsManager.UseItem("Healthstone");
+            ItemsManager.UseItem(5512); // "Healthstone" works only with US or UK client
             _healthstoneTimer = new Timer(1000*60*2);
             return;
         }
@@ -8473,7 +8431,7 @@ public class WarlockDestruction
         {
             // Blizzard API Calls for Immolate using Corruption Function
             if (MySettings.UseFireandBrimstone && MySettings.UseImmolate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable
-                && !ObjectManager.Target.HaveBuff(348) && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
+                && !ObjectManager.Target.HaveBuff(348) && !ObjectManager.Target.HaveBuff(146739) && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
             {
                 FireandBrimstone.Launch();
                 Thread.Sleep(200);
@@ -8520,7 +8478,7 @@ public class WarlockDestruction
             return;
         }
         if (MySettings.UseImmolate && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
-            && !ObjectManager.Target.HaveBuff(348) || _immolateTimer.IsReady)
+            && !ObjectManager.Target.HaveBuff(348 )&& !ObjectManager.Target.HaveBuff(146739) || _immolateTimer.IsReady)
         {
             Corruption.Launch();
             _immolateTimer = new Timer(1000*12);
@@ -8854,11 +8812,13 @@ public class WarlockAffliction
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -9635,6 +9595,7 @@ public class DruidBalance
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -9965,7 +9926,6 @@ public class DruidBalance
             Tranquility.Launch();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(100);
                 Thread.Sleep(100);
             }
             return;
@@ -10459,11 +10419,13 @@ public class DruidFeral
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -10769,7 +10731,6 @@ public class DruidFeral
             Tranquility.Launch();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(100);
                 Thread.Sleep(100);
             }
             return;
@@ -11293,11 +11254,13 @@ public class DruidRestoration
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -11586,7 +11549,6 @@ public class DruidRestoration
             Tranquility.Launch();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(100);
                 Thread.Sleep(100);
             }
             return;
@@ -11957,11 +11919,13 @@ public class DruidGuardian
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -12159,7 +12123,6 @@ public class DruidGuardian
             Tranquility.Launch();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(100);
                 Thread.Sleep(100);
             }
             return;
@@ -12683,6 +12646,7 @@ public class PaladinHoly
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -13180,11 +13144,13 @@ public class PaladinProtection
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -13743,6 +13709,7 @@ public class PaladinRetribution
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -14408,6 +14375,7 @@ public class ShamanEnhancement
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -15298,6 +15266,7 @@ public class ShamanRestoration
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -16180,6 +16149,7 @@ public class ShamanElemental
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -17016,6 +16986,7 @@ public class PriestShadow
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -17773,6 +17744,7 @@ public class PriestDiscipline
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -18476,6 +18448,7 @@ public class PriestHoly
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -19225,7 +19198,7 @@ public class RogueCombat
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(100);
         }
     }
 
@@ -19980,6 +19953,7 @@ public class RogueSubtlety
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -20708,11 +20682,13 @@ public class RogueAssassination
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -21460,11 +21436,13 @@ public class WarriorArms
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -22294,11 +22272,13 @@ public class WarriorProtection
                             Patrolling();
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -23160,6 +23140,7 @@ public class WarriorFury
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -23956,6 +23937,7 @@ public class HunterMarksmanship
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -24758,6 +24740,7 @@ public class HunterBeastMastery
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -25610,11 +25593,13 @@ public class HunterSurvival
                         }
                     }
                 }
-                Thread.Sleep(500);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -26426,6 +26411,7 @@ public class MonkBrewmaster
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -27070,6 +27056,7 @@ public class MonkWindwalker
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
@@ -27690,6 +27677,7 @@ public class MonkMistweaver
             catch
             {
             }
+            Thread.Sleep(100);
         }
     }
 
