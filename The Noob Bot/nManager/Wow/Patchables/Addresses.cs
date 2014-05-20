@@ -81,7 +81,7 @@
         /// </summary>
         public enum GameInfo
         {
-            continentId = 0xADF5E8,
+            continentId = 0xADE5E8,
             continentIdOffset = 0xF0, // ClntObjMgrGetMapID
             buildWowVersion = 0xB93E74,
             gameState = 0xD64B0E,
@@ -280,10 +280,10 @@
         /// </summary>
         public enum ActivateSettings
         {
-            AutoInteract_Activate_Pointer = 0xD65848, // CGUnit_C__CanAutoInteract
-            AutoDismount_Activate_Pointer = 0xD65850, // CGUnit_C__CanAutoDismount
-            AutoLoot_Activate_Pointer = 0xD65868, // CGGameUI__IsAutoLooting
-            AutoSelfCast_Activate_Pointer = 0xD65874, // CGGame_UI__IsAutoSelfCast
+            AutoInteract_Activate_Pointer = 0xD64D30, // CGUnit_C__CanAutoInteract
+            AutoDismount_Activate_Pointer = 0xD64D38, // CGUnit_C__CanAutoDismount
+            AutoLoot_Activate_Pointer = 0xD64D50, // CGGameUI__IsAutoLooting
+            AutoSelfCast_Activate_Pointer = 0xD64D5C, // CGGame_UI__IsAutoSelfCast
             Activate_Offset = 0x30,
         }
 

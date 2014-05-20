@@ -111,8 +111,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "AutoEquipper";
-    public static string TargetVersion = "3.1";
-    public static string Version = "1.1.0";
+    public static string TargetVersion = "3.2.x";
+    public static string Version = "1.1.1";
     public static string Description = "Always check the inventory on new loot for a better item for our class/specialization.";
 
     private static readonly object ParseItemLock = new object();

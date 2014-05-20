@@ -107,8 +107,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
-    public static string TargetVersion = "3.1";
-    public static string Version = "1.1.0";
+    public static string TargetVersion = "3.2.x";
+    public static string Version = "1.1.1";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
