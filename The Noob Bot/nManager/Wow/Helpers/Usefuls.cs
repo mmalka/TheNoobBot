@@ -78,24 +78,6 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static string GetLastWowErrorMessage
-        {
-            get
-            {
-                try
-                {
-                    return
-                        Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
-                                                               (uint) Addresses.GameInfo.lastWowErrorMessage);
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("GetLastWowErrorMessage: " + exception);
-                    return "";
-                }
-            }
-        }
-
         public static bool InGame
         {
             get
