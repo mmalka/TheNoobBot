@@ -63,17 +63,17 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xC8B710, //t 
-            ItemSubClass = 0xC8BB88, //t 
-            Spell = 0xC8C0D8, //t 
-            SpellCastTimes = 0xC8CB00, //t 
-            SpellRange = 0xC8D054, //t 
-            SpellMisc = 0xC8C020, //t 
-            FactionTemplate = 0xC8ADC8, //t 
-            Lock = 0xC8BF50, //t 
-            Map = 0xC8DFFC, //t 
-            ResearchSite = 0xC8C688, //t 
-            QuestPOIPoint = 0xC8C4D0, //t 
+            ItemClass = 0xC8B718,
+            ItemSubClass = 0xC8BB90,
+            FactionTemplate = 0xC8ADD0,
+            SpellCastTimes = 0xC8CB08,
+            Lock = 0xC8BF58,
+            QuestPOIPoint = 0xC8C4D8,
+            ResearchSite = 0xC8C690,
+            Spell = 0xC8D0E0,
+            SpellRange = 0xC8D05C,
+            SpellMisc = 0xC8CF28,
+            Map = 0xC8E004,
         }
 
         /// <summary>
@@ -83,7 +83,7 @@
         {
             continentId = 0xADF5E8,
             continentIdOffset = 0xF0, // ClntObjMgrGetMapID
-            buildWowVersion = 0xB93E74,
+            buildWowVersion = 0xB94E74,
             gameState = 0xD65B16,
             isLoadingOrConnecting = 0xC958B0,
             AreaId = 0xB635B0, 
