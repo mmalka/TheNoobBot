@@ -103,7 +103,7 @@ namespace nManager.Plugins
             {
                 string[] targetVersion = _instanceFromOtherAssembly.TargetVersion.Split('.');
                 string[] currentVersion = Information.Version.Split('.');
-                return targetVersion.Length >= 2 && targetVersion[0] == currentVersion[0] && targetVersion[1] == currentVersion[1];
+                return targetVersion.Length < 2 || targetVersion[0] != currentVersion[0] || targetVersion[1] != currentVersion[1];
             }
         }
 
