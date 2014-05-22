@@ -108,7 +108,7 @@ public static class MyPluginClass
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
     public static string TargetVersion = "3.2.x";
-    public static string Version = "1.1.1";
+    public static string Version = "1.2.0";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
@@ -123,6 +123,14 @@ public static class MyPluginClass
             Logging.WriteDebug(Name + ": No spell capable of interrupt has been found.");
             return;
         }
+        foreach (Spell spell in AvailableInterruptersPVP)
+        {
+            Logging.Write("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVP.");
+        }
+        foreach (Spell spell in AvailableInterruptersPve)
+        {
+            Logging.Write("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVE.");
+        }
         MainLoop();
     }
 
@@ -131,26 +139,32 @@ public static class MyPluginClass
         while (InternalLoop)
         {
             CheckToInterrupt();
-            Thread.Sleep(1);
+            Thread.Sleep(10);
         }
     }
 
     public static void CheckToInterrupt()
     {
         if (ObjectManager.Me.Target <= 0 || ObjectManager.Target.IsDead)
+        {
             return;
+        }
         if (ObjectManager.Target.Type == WoWObjectType.Player)
+        {
             InterruptPVP();
+        }
         if (ObjectManager.Target.Type == WoWObjectType.Unit)
+        {
             InterruptPve();
+        }
     }
 
     public static bool IsTargetEnnemyPlayer()
     {
-        if (ObjectManager.Target is WoWPlayer)
+        if (ObjectManager.Target.Type == WoWObjectType.Player)
         {
-            var p = ObjectManager.Target as WoWPlayer;
-            if (p.PlayerFaction != ObjectManager.Me.PlayerFaction)
+            var p = new WoWPlayer(ObjectManager.Target.GetBaseAddress);
+            if (p.IsValid && p.PlayerFaction != ObjectManager.Me.PlayerFaction)
                 return true;
         }
         return false;
@@ -163,20 +177,26 @@ public static class MyPluginClass
         if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
         {
             var rnd = new Random();
-            int sleepTime = rnd.Next(100, 400);
-            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 400ms before interrupt for account safety reason.
+            int sleepTime = rnd.Next(70, 250);
+            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 250ms before interrupt for account safety reason.
             while (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
             {
                 foreach (Spell kicker in AvailableInterruptersPVP)
                 {
                     if (ObjectManager.Target.GetDistance > kicker.MaxRangeHostile)
+                    {
                         continue; // We are too far for this spell, try another one ASAP.
+                    }
                     if (ObjectManager.Target.GetDistance < kicker.MinRangeFriend)
+                    {
                         continue; // We are too close for this spell, try another one ASAP.
+                    }
                     if (!kicker.IsSpellUsable)
+                    {
                         continue; // This spell is on cooldown.
+                    }
                     kicker.Launch();
-                    Logging.Write(ObjectManager.Target.Name + " interrupted.");
+                    Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " have been interrupted.");
                 }
             }
         }
@@ -189,20 +209,26 @@ public static class MyPluginClass
         if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
         {
             var rnd = new Random();
-            int sleepTime = rnd.Next(100, 400);
-            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 400ms before interrupt for account safety reason.
+            int sleepTime = rnd.Next(70, 250);
+            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 250ms before interrupt for account safety reason.
             while (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
             {
                 foreach (Spell kicker in AvailableInterruptersPve)
                 {
                     if (ObjectManager.Target.GetDistance > kicker.MaxRangeHostile)
+                    {
                         continue; // We are too far for this spell, try another one ASAP.
+                    }
                     if (ObjectManager.Target.GetDistance < kicker.MinRangeFriend)
+                    {
                         continue; // We are too close for this spell, try another one ASAP.
+                    }
                     if (!kicker.IsSpellUsable)
+                    {
                         continue; // This spell is on cooldown.
+                    }
                     kicker.Launch();
-                    Logging.Write(ObjectManager.Target.Name + " interrupted.");
+                    Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " have been interrupted.");
                 }
             }
         }
@@ -215,6 +241,7 @@ public static class MyPluginClass
         {
             if (sId.Contains(ObjectManager.Target.CastingSpellId.ToString()))
             {
+                Logging.Write("Target is casting spellId " + ObjectManager.Target.CastingSpellId + " but it's ignored.");
                 return true;
             }
         }
