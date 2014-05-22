@@ -485,25 +485,21 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof (Usefuls))
+                try
                 {
-                    try
-                    {
-                        if (!_timerLatency.IsReady)
-                            return _lastLatency;
-
-                        _timerLatency = new Timer(30*1000);
-                        string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats(); " + randomString +
-                                        " = lagHome + lagWorld");
-                        _lastLatency = Others.ToInt32(Lua.GetLocalizedText(randomString))/2;
+                    if (!_timerLatency.IsReady)
                         return _lastLatency;
-                    }
-                    catch (Exception e)
-                    {
-                        Logging.WriteError("Latency: " + e);
-                        return 0;
-                    }
+
+                    _timerLatency = new Timer(30*1000);
+                    string luaResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString("_,_,_,worldLag=GetNetStats() " + luaResult + "=worldLag");
+                    _lastLatency = Others.ToInt32(Lua.GetLocalizedText(luaResult));
+                    return _lastLatency;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("Latency: " + e);
+                    return 0;
                 }
             }
         }
@@ -887,7 +883,7 @@ namespace nManager.Wow.Helpers
         }
 
         private static readonly Object ThisLock = new Object();
-        private static readonly Timer AfkTimer = new Timer(500);
+        private static readonly Timer AfkTimer = new Timer(5000);
         private static string _key;
 
         public static void UpdateLastHardwareAction()
