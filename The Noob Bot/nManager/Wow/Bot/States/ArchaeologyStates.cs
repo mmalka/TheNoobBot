@@ -323,7 +323,7 @@ namespace nManager.Wow.Bot.States
                         myState = LocState.Survey;
                         if (ObjectManager.ObjectManager.Me.InCombat)
                             return;
-                        Thread.Sleep(500 + Usefuls.Latency); // let's wait a fair bit
+                        Thread.Sleep(1000 + Usefuls.Latency); // let's wait a fair bit
                         nbCastSurveyError++;
                         if (nbCastSurveyError > 3)
                         {
