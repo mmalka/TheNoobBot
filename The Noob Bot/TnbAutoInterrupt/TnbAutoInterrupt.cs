@@ -139,7 +139,7 @@ public static class MyPluginClass
         while (InternalLoop)
         {
             CheckToInterrupt();
-            Thread.Sleep(10);
+            Thread.Sleep(200);
         }
     }
 
@@ -191,12 +191,13 @@ public static class MyPluginClass
                     {
                         continue; // We are too close for this spell, try another one ASAP.
                     }
-                    if (!kicker.IsSpellUsable)
+                    if (!kicker.IsSpellUsableAndReadyInMs(0))
                     {
                         continue; // This spell is on cooldown.
                     }
                     kicker.Launch();
                     Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " have been interrupted.");
+                    Thread.Sleep(500);
                 }
             }
         }
@@ -204,7 +205,7 @@ public static class MyPluginClass
 
     public static void InterruptPve()
     {
-        if (!ObjectManager.Target.InCombatWithMe)
+        if (!ObjectManager.Target.InCombat)
             return; // We don't wanna pull creatures.
         if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
         {
@@ -223,12 +224,13 @@ public static class MyPluginClass
                     {
                         continue; // We are too close for this spell, try another one ASAP.
                     }
-                    if (!kicker.IsSpellUsable)
+                    if (!kicker.IsSpellUsableAndReadyInMs(0))
                     {
                         continue; // This spell is on cooldown.
                     }
                     kicker.Launch();
                     Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " have been interrupted.");
+                    Thread.Sleep(500);
                 }
             }
         }
