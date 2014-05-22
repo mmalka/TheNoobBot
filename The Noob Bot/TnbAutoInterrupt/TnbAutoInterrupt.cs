@@ -191,12 +191,12 @@ public static class MyPluginClass
                     {
                         continue; // We are too close for this spell, try another one ASAP.
                     }
-                    if (!kicker.IsSpellUsableAndReadyInMs(0))
+                    if (!kicker.IsSpellUsable)
                     {
                         continue; // This spell is on cooldown.
                     }
                     kicker.Launch();
-                    Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " have been interrupted.");
+                    Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " has been interrupted.");
                     Thread.Sleep(500);
                 }
             }
@@ -224,12 +224,12 @@ public static class MyPluginClass
                     {
                         continue; // We are too close for this spell, try another one ASAP.
                     }
-                    if (!kicker.IsSpellUsableAndReadyInMs(0))
+                    if (!kicker.IsSpellUsable)
                     {
                         continue; // This spell is on cooldown.
                     }
                     kicker.Launch();
-                    Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " have been interrupted.");
+                    Logging.Write("SpellId " + ObjectManager.Target.CastingSpellId + " from " + ObjectManager.Target.Name + " has been interrupted.");
                     Thread.Sleep(500);
                 }
             }
