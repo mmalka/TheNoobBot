@@ -6,7 +6,7 @@
     public interface IPlugins
     {
         /// <summary>
-        ///     Name of the Plugin.
+        ///     Internal loop, used to keep alive or stop the Plugin.
         /// </summary>
         bool Loop { get; set; }
 
@@ -26,7 +26,7 @@
         string Description { get; }
 
         /// <summary>
-        ///     TheNoobBot's target version of this Plugin.
+        ///     TheNoobBot's target version of this Plugin. Limited to the 2 first numbers.
         /// </summary>
         string TargetVersion { get; }
 
