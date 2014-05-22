@@ -166,6 +166,19 @@ namespace nManager.Wow.Class
             }
         }
 
+        public bool IsSpellUsableAndReadyInMs(int time)
+        {
+            try
+            {
+                return SpellManager.IsSpellUsableAndReadyInMsLUA(this, time);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Spell > IsSpellUsableAndReadyInMs(int time): " + exception);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Return true if the player distance from casting a spell to a Hostile unit is good.
         /// Else, return false.
@@ -466,7 +479,6 @@ namespace nManager.Wow.Class
                     SpellManager.CastSpellByNameLUA(NameInGame);
                 else
                     SpellManager.CastSpellByNameLUA(NameInGame, unitId);
-                Thread.Sleep(600);
                 while (ObjectManager.ObjectManager.Me.IsCast && waitIsCast)
                 {
                     Thread.Sleep(100);

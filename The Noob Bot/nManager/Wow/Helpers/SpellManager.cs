@@ -92,6 +92,74 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
+        public static bool IsSpellUsableAndReadyInMsLUA(Spell spell, int time)
+        {
+            try
+            {
+                string luaVarUsable = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarNoMana = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarTime = Others.GetRandomString(Others.Random(4, 10));
+
+                string luaResultUsable = Others.GetRandomString(Others.Random(4, 10));
+                float timeSec = (time < 0 ? 0 : time) / 1000f;
+
+                string luaCode = luaVarUsable + "," + luaVarNoMana + "=IsUsableSpell(\"" + spell.NameInGame + "\"); ";
+                luaCode += "if " + luaVarUsable + " and not " + luaVarNoMana + " then ";
+                luaCode += luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(" + spell.Id + ") ";
+                luaCode += luaVarTime + "=GetTime() ";
+                luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
+                luaCode += luaResultUsable + "=\"1\" ";
+                luaCode += "else ";
+                luaCode += "if " + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + " < " + timeSec + " then ";
+                luaCode += luaResultUsable + "=\"1\" ";
+                luaCode += "else ";
+                luaCode += luaResultUsable + "=\"0\" ";
+                luaCode += "end ";
+                luaCode += "end ";
+                luaCode += "else ";
+                luaCode += luaResultUsable + "=\"0\" ";
+                luaCode += "end ";
+
+                Lua.LuaDoString(luaCode, false, false);
+                string ret = Lua.GetLocalizedText(luaResultUsable);
+                return (ret == "1");
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("IsSpellReadyInMs(Spell spell, int time): " + exception);
+                return false;
+            }
+        }
+
+        public static int GetGCDLeft()
+        {
+            try
+            {
+                string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarTime = Others.GetRandomString(Others.Random(4, 10));
+                string luaResult = Others.GetRandomString(Others.Random(4, 10));
+
+                string luaCode = luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(61304) ";
+                luaCode += luaVarTime + "=GetTime() ";
+                luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
+                luaCode += luaResult + " = -1 ";
+                luaCode += "else ";
+                luaCode += luaResult + " = (" + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + ")*1000 ";
+                luaCode += "end";
+
+                Lua.LuaDoString(luaCode, false, false);
+                return (int)(Others.ToSingle(Lua.GetLocalizedText(luaResult)));
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetGCDLeft(): " + exception);
+                return 0;
+            }
+        }
+
         public static string GetClientNameBySpellName(List<string> spellList)
         {
             try
