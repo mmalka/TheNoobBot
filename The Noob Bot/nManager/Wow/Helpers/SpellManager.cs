@@ -112,7 +112,7 @@ namespace nManager.Wow.Helpers
                 luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
                 luaCode += luaResultUsable + "=\"1\" ";
                 luaCode += "else ";
-                luaCode += "if " + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + " < " + timeSec + " then ";
+                luaCode += "if " + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + " <= " + timeSec + " then ";
                 luaCode += luaResultUsable + "=\"1\" ";
                 luaCode += "else ";
                 luaCode += luaResultUsable + "=\"0\" ";
@@ -145,7 +145,7 @@ namespace nManager.Wow.Helpers
                 string luaCode = luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(61304) ";
                 luaCode += luaVarTime + "=GetTime() ";
                 luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
-                luaCode += luaResult + " = -1 ";
+                luaCode += luaResult + " = 0 ";
                 luaCode += "else ";
                 luaCode += luaResult + " = (" + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + ")*1000 ";
                 luaCode += "end";
