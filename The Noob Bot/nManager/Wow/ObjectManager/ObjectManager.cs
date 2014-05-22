@@ -17,7 +17,10 @@ namespace nManager.Wow.ObjectManager
         private static readonly object Locker = new object();
         private static uint _lastTargetBase;
         private static uint _lastPetBase;
+        // All Objects except Units are in _objectList
         private static List<WoWObject> _objectList;
+        // Units are in separate list _unitList
+        private static List<WoWUnit> _unitList;
         public static List<ulong> BlackListMobAttack = new List<ulong>();
 
         static ObjectManager()
@@ -137,10 +140,16 @@ namespace nManager.Wow.ObjectManager
                     // Clear out old references.
                     List<ulong> toRemove = new List<ulong>();
                     _objectList = new List<WoWObject>();
+                    _unitList = new List<WoWUnit>();
                     foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
                     {
                         if (o.Value.IsValid)
-                            _objectList.Add(o.Value);
+                        {
+                            if (o.Value.Type == WoWObjectType.Unit)
+                                _unitList.Add(new WoWUnit(o.Value.GetBaseAddress));
+                            else
+                                _objectList.Add(o.Value);
+                        }
                         else
                             toRemove.Add(o.Key);
                     }
@@ -282,10 +291,8 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWUnit> result = new List<WoWUnit>();
-                foreach (WoWObject o in ObjectList)
-                    if (o.Type == WoWObjectType.Unit) result.Add(new WoWUnit(o.GetBaseAddress));
-                return result;
+                lock (Locker)
+                    return _unitList.ToList();
             }
             catch (Exception e)
             {
@@ -777,6 +784,19 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
+        {
+            try
+            {
+                return GetWoWUnitByEntry(GetObjectWoWUnit(), entrys);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitByEntry(List<int> entrys): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWUnit> GetWoWUnitByEntry(int entry)
         {
             try
@@ -856,19 +876,6 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("GetWoWUnitSummonedOrCreatedByMeAndFighting(): " + e);
             }
             return new WoWUnit(0);
-        }
-
-        public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
-        {
-            try
-            {
-                return GetWoWUnitByEntry(GetObjectWoWUnit(), entrys);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetWoWUnitByEntry(List<int> entrys): " + e);
-            }
-            return new List<WoWUnit>();
         }
 
         public static List<WoWGameObject> GetWoWGameObjectByName(List<WoWGameObject> listWoWGameObject,
