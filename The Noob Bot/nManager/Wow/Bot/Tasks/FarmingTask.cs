@@ -160,15 +160,15 @@ namespace nManager.Wow.Bot.Tasks
                                 return;
                             }
                             Interact.InteractWith(node.GetBaseAddress);
-                            Thread.Sleep(Usefuls.Latency + 200);
+                            Thread.Sleep(Usefuls.Latency + 250);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
                             {
                                 Interact.InteractWith(node.GetBaseAddress);
-                                Thread.Sleep(Usefuls.Latency + 200);
+                                Thread.Sleep(Usefuls.Latency + 250);
                             }
                             while (ObjectManager.ObjectManager.Me.IsCast)
                             {
-                                Thread.Sleep(50);
+                                Thread.Sleep(100);
                             }
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
