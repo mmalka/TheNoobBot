@@ -103,7 +103,7 @@ namespace nManager.Wow.Helpers
                 string luaVarTime = Others.GetRandomString(Others.Random(4, 10));
 
                 string luaResultUsable = Others.GetRandomString(Others.Random(4, 10));
-                float timeSec = (time < 0 ? 0 : time) / 1000f;
+                float timeSec = (time < 0 ? 0 : time / 1000f);
 
                 string luaCode = luaVarUsable + "," + luaVarNoMana + "=IsUsableSpell(\"" + spell.NameInGame + "\"); ";
                 luaCode += "if " + luaVarUsable + " and not " + luaVarNoMana + " then ";
