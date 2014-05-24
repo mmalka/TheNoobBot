@@ -91,7 +91,7 @@
     </Translation>
     <Translation>
       <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
-      <Text>Password incorrect, please go to http://thenoobbot.com/ to request a password if you lost it</Text>
+      <Text>Dit kodeord er forkert, gå til http://thenoobbot.com for at få et nyt tilsendt hvis du har glemt dit.</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
@@ -99,7 +99,7 @@
     </Translation>
     <Translation>
       <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
-      <Text>Login error, make sure no antivirus is blocking TheNoobBot and try again later</Text>
+      <Text>Login fejl, hver sikker på der ikke er et antivirus som blokere TheNoobBot og prøv igen senere</Text>
     </Translation>
     <Translation>
       <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
@@ -107,7 +107,7 @@
     </Translation>
     <Translation>
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
-      <Text>TheNoobBot is started in trial mode, the session will be terminated after 20 minutes</Text>
+      <Text>TheNoobBot's prøveperiode er startet, den vil lukke ned efter 20 minutter</Text>
     </Translation>
     <Translation>
       <Id>LatestUpdateVersion</Id>
@@ -123,11 +123,11 @@
     </Translation>
     <Translation>
       <Id>LatestUpdateTitle</Id>
-      <Text>TheNoobBot, an update is available</Text>
+      <Text>TheNoobBot, en opdatering er tilgængelig</Text>
     </Translation>
     <Translation>
       <Id>Suspect_Activity</Id>
-      <Text>Suspekt handling</Text>
+      <Text>Suspekt Aktivitet</Text>
     </Translation>
     <Translation>
       <Id>TheNoobBotServerIsOffline</Id>
@@ -135,7 +135,7 @@
     </Translation>
     <Translation>
       <Id>WoWIsReducedError</Id>
-      <Text>You have reduced WoW to your TaskBar, but TheNoobBot requires it to be at least in background of your others applications.</Text>
+      <Text>Du har minimeret WoW til proceslinjen, men TheNoobBot kræver at være i bagrunden af dine andre programmer. </Text>
     </Translation>
     <Translation>
       <Id>Information</Id>
@@ -171,11 +171,11 @@
     </Translation>
     <Translation>
       <Id>XP_HR</Id>
-      <Text>XP/time</Text>
+      <Text>XP / Timen</Text>
     </Translation>
     <Translation>
       <Id>Honor_HR</Id>
-      <Text>Honor/time</Text>
+      <Text>Honor / Timen</Text>
     </Translation>
     <Translation>
       <Id>Loots</Id>
@@ -331,7 +331,7 @@
     </Translation>
     <Translation>
       <Id>NPCNotFound</Id>
-      <Text>NPC not found, make sure to write as it appear in your client language.</Text>
+      <Text>NPC er ikke fundet, vær sikker på at skrive som det ser ud i din klients sprog.</Text>
     </Translation>
     <Translation>
       <Id>Separation_distance_record</Id>
@@ -555,7 +555,7 @@
     </Translation>
     <Translation>
       <Id>YES</Id>
-      <Text>Ja</Text>
+      <Text>JA</Text>
     </Translation>
     <Translation>
       <Id>Close_game</Id>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Id>NPCsRepairSellBuyPanelName</Id>
-      <Text>Vendor (Sælger eller Køber)</Text>
+      <Text>NPCs indstillinger - Reparer(Sælger eller Køber)</Text>
     </Translation>
     <Translation>
       <Id>Force_Sell_List__one_item_by_line</Id>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Id>LootingFarmingManagementPanelName</Id>
-      <Text>Looting &amp;&amp; Farming indstillinger</Text>
+      <Text>Looting &amp; Farming indstillinger</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_only_in_town</Id>
@@ -787,7 +787,7 @@
     </Translation>
     <Translation>
       <Id>RegenerationManagementPanelName</Id>
-      <Text>Mad / Drikke &amp;&amp; procent</Text>
+      <Text>Mad / Drikke og procent</Text>
     </Translation>
     <Translation>
       <Id>on</Id>
@@ -843,7 +843,7 @@
     </Translation>
     <Translation>
       <Id>OnlyTrainCurrentlyUsedSkills</Id>
-      <Text>Only train currently used skills</Text>
+      <Text>Træn kun færdigheder som bruges nu</Text>
     </Translation>
     <Translation>
       <Id>TrainMountingCapacity</Id>
@@ -851,15 +851,15 @@
     </Translation>
     <Translation>
       <Id>OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum</Id>
-      <Text>Only train if we have 2 times more money than required</Text>
+      <Text>Træn kun hvis vi har dobbelt så mange penge som der skal bruges</Text>
     </Translation>
     <Translation>
       <Id>BecomeApprenticeIfNeededByProduct</Id>
-      <Text>Become apprentice if needed by product</Text>
+      <Text>Bliv lærling hvis det er nødvendigt efter produktet</Text>
     </Translation>
     <Translation>
       <Id>BecomeApprenticeOfSecondarySkillsWhileQuesting</Id>
-      <Text>Become apprentice of secondary skills while questing</Text>
+      <Text>Bliv lærling i sekundære færdigheder mens questing</Text>
     </Translation>
     <Translation>
       <Id>Don_t_start_fighting</Id>
@@ -923,15 +923,15 @@
     </Translation>
     <Translation>
       <Id>ThisAquaticMountDoesNotExist</Id>
-      <Text>This aquatic mount does not exist: </Text>
+      <Text>Dette vand mount findes ikke:</Text>
     </Translation>
     <Translation>
       <Id>ThisFlyingMountDoesNotExist</Id>
-      <Text>This flying mount does not exist: </Text>
+      <Text>Dette fly mount findes ikke:</Text>
     </Translation>
     <Translation>
       <Id>ThisGroundMountDoesNotExist</Id>
-      <Text>This ground mount does not exist: </Text>
+      <Text>Dette ground mount findes ikke:</Text>
     </Translation>
     <Translation>
       <Id>Please_select_exe_in_the_install_folder_of_the_game</Id>
@@ -943,35 +943,35 @@
     </Translation>
     <Translation>
       <Id>UpdateRequiredCasesTitle</Id>
-      <Text>This version of the bot is not compatible with this version of World of Warcraft</Text>
+      <Text>Denne udgave af TheNoobBot er ikke kompatibel med denne udgave af World of Wacraft</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCases</Id>
-      <Text>Please use the right version of the bot or wait for an update if not yet available.</Text>
+      <Text>Brug den rigtige udgave af botten eller vent på en opdatering hvis den ikke er tilgængelig endnu</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireOlderTheNoobBotTitle</Id>
-      <Text>This version of TheNoobBot is too advanced for this version of WoW</Text>
+      <Text>Denne udgave af TheNoobBot er for avanceret for denne udgave af World of Warcraft</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireOlderTheNoobBot</Id>
-      <Text>This version is for WoW Build </Text>
+      <Text>Denne udgave er til WoW Build</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireNewerTheNoobBotTitle</Id>
-      <Text>This version of WoW is too advanced for this version of TheNoobBot</Text>
+      <Text>Denne udgave af WoW er for avanceret for TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireNewerTheNoobBot</Id>
-      <Text>This version is for WoW Build </Text>
+      <Text>Denne udgave er til WoW Build </Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCase1</Id>
-      <Text>Case 1: You may have a version of TheNoobBot too recent for this WoW version</Text>
+      <Text>Tilfælde 1: Du har måske en udgave af TheNoobBot for ny til din World of Warcraft patch.</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCase2</Id>
-      <Text>Case 2: You may have a version of WoW too recent for this TheNoobBot version</Text>
+      <Text>Tilfælde 2: Du har måske en udgave af World of Warcraft der er for ny til TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>RunningWoWBuildDot</Id>
@@ -979,15 +979,15 @@
     </Translation>
     <Translation>
       <Id>RunningWoWBuild</Id>
-      <Text> but you are running WoW Build </Text>
+      <Text>men du kre WoW Build </Text>
     </Translation>
     <Translation>
       <Id>PleaseDownloadOlder</Id>
-      <Text>Please download an older version of TheNoobBot on our forum "News and release". (WoW usually update US realms before EU/RU)</Text>
+      <Text>Download en ældre udgivelse af TheNoobBot på vores forum under "News and Realeases" (WoW opdatere normal US før EU/RU)</Text>
     </Translation>
     <Translation>
       <Id>PleaseDownloadNewer</Id>
-      <Text>Please download a newer version of TheNoobBot on our forum "News and release". (You may wait until an update is available)</Text>
+      <Text>Du skal downloade en nyere udgivelse af TheNoobBot på vores forum under "News and Release" (Måske skal du vente til der er en opdatering klar)</Text>
     </Translation>
     <Translation>
       <Id>Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb</Id>
@@ -1011,7 +1011,7 @@
     </Translation>
     <Translation>
       <Id>ResetSettings</Id>
-      <Text>Reset Settings</Text>
+      <Text>Reset Indstillinger</Text>
     </Translation>
     <Translation>
       <Id>Please_select_an_profile</Id>
@@ -1051,7 +1051,7 @@
     </Translation>
     <Translation>
       <Id>level_upper</Id>
-      <Text>level upper</Text>
+      <Text>level over</Text>
     </Translation>
     <Translation>
       <Id>Player_Teleported</Id>
@@ -1079,7 +1079,7 @@
     </Translation>
     <Translation>
       <Id>Auto_Make_Elemental</Id>
-      <Text>Auto Make Elemental</Text>
+      <Text>Automatisk Lav Elemental</Text>
     </Translation>
     <Translation>
       <Id>Nodes_List_Manager</Id>
@@ -1087,19 +1087,19 @@
     </Translation>
     <Translation>
       <Id>Smelting_Product_Description</Id>
-      <Text>(Ore)</Text>
+      <Text>(Smeltning tillader os at lave ore til barer</Text>
     </Translation>
     <Translation>
       <Id>Milling_Product_Description</Id>
-      <Text>(Herb)</Text>
+      <Text>(Milling bliver brugt til at få pigmenter ud af blomster)</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_Product_Description</Id>
-      <Text>(Ore)</Text>
+      <Text>(Prospecting tillader indsamling af gems fra en ore)</Text>
     </Translation>
     <Translation>
       <Id>Profiles_Converters_Product_Description</Id>
-      <Text>(WowRobot/Pirox/HonorBuddy og flere)</Text>
+      <Text>(Konventer profiler fra WowRobot/Pirox/HonorBuddy.. til TNB profiler)</Text>
     </Translation>
     <Translation>
       <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
@@ -1119,11 +1119,11 @@
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
-      <Text>(Heal yourself and Party members - BETA)</Text>
+      <Text>(Heal dig selv and Gruppe medlemmer- BETA)</Text>
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text>(Fish in Fishing School as well as outside)</Text>
+      <Text>(Fisk i Fishing School og ude af dem)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
@@ -1131,19 +1131,19 @@
     </Translation>
     <Translation>
       <Id>Quester_Product_Description</Id>
-      <Text>(XP mens questing)</Text>
+      <Text>(Klar quests så din karakter kommer op i level - Beta)</Text>
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
-      <Text>(Do archaeology to farms exp, achievements and items.)</Text>
+      <Text>(Gør archaeology til at farme exp, achievements and items.)</Text>
     </Translation>
     <Translation>
       <Id>Mimesis_Product_Description</Id>
-      <Text>(Do follow, assist and quests with its Master - Beta)</Text>
+      <Text>(Følg, hjælp og quests med dens mester - Beta)</Text>
     </Translation>
     <Translation>
       <Id>By_npc_name</Id>
-      <Text>By npc name</Text>
+      <Text>Af npc navn</Text>
     </Translation>
     <Translation>
       <Id>Object_type</Id>
@@ -1263,371 +1263,371 @@
     </Translation>
     <Translation>
       <Id>WoW_Client_64bit</Id>
-      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please Use option: "Launch 32-bit client (instead of 64-bit)" in the Game Settings of Battle.net client.</Text>
+      <Text>Advarsel: WoW kører i 64bit, men TheNoobBot er ikke kompatibel med det, du skal bruge valgmuligheden "Start 32-bit client (instead of 64-bit)"I spil indstillingerne i din launcher. </Text>
     </Translation>
     <Translation>
       <Id>Title_WoW_Client_64bit</Id>
-      <Text>Error : World of Warcraft 64bit detected</Text>
+      <Text>Fejl: World of Warcraft 64bit fundet</Text>
     </Translation>
     <Translation>
       <Id>Uncap_MaxFPS</Id>
-      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Text>AutoRelogger - (Gør det muligt at logge ind på din karakter efter du er blevet disconnect)</Text>
     </Translation>
     <Translation>
       <Id>AlwaysOnTop</Id>
-      <Text>Always on Top</Text>
+      <Text>Altid øverst</Text>
     </Translation>
     <Translation>
       <Id>No_mounts_in_settings</Id>
-      <Text>There is neither Ground mount nor Flying mount set in your general settings, this may impact your botting experience, make sure to at least define one of them.</Text>
+      <Text>Der er hverken Ground mount eller flyve mount sat i dine generelle indstillinger, dette kan påvirke din botting oplevelse, så sørg for at mindst definere én af dem.</Text>
     </Translation>
     <Translation>
       <Id>AutoConfirmOnBoPItems</Id>
-      <Text>Auto Confirm on BoP Items</Text>
+      <Text>Automatisk bekræft BoP items</Text>
     </Translation>
     <Translation>
       <Id>JoinQueue</Id>
-      <Text>Join Queue</Text>
+      <Text>Deltag Queue</Text>
     </Translation>
     <Translation>
       <Id>RequeueingInProcess</Id>
-      <Text>Requeueing in Process</Text>
+      <Text>Requeueing er i gang</Text>
     </Translation>
     <Translation>
       <Id>Battleground_Ended</Id>
-      <Text>Battleground has ended.</Text>
+      <Text>Battleground er slut.</Text>
     </Translation>
     <Translation>
       <Id>NotInBg</Id>
-      <Text>You must be in a battle in order to use the Profile Creator.</Text>
+      <Text>Du må være i krig for at kunne bruge Profil Creater</Text>
     </Translation>
     <Translation>
       <Id>SendMailWhenLessThanXSlotLeft</Id>
-      <Text>Send Mail when less than X slot left</Text>
+      <Text>Send post når der er mindre end X antal pladser tilbage</Text>
     </Translation>
     <Translation>
       <Id>SellItemsWhenLessThanXSlotLeft</Id>
-      <Text>Sell items when less than X slot left</Text>
+      <Text>Sell items når der er mindre end X antal pladser tilbage</Text>
     </Translation>
     <Translation>
       <Id>RepairWhenDurabilityIsUnderPercent</Id>
-      <Text>Repair when Durability is under than X %</Text>
+      <Text>Reparer når Durability er mindre end X %</Text>
     </Translation>
     <Translation>
       <Id>RequeueAfterXMinutes</Id>
-      <Text>Requeue after X minutes</Text>
+      <Text>Requeue efter X antal minutter</Text>
     </Translation>
     <Translation>
       <Id>ErrorMultipleQueue</Id>
-      <Text>You can only be queued for 2 battles at once.</Text>
+      <Text>Du kan kun være i kø for 2 battleground på en gang</Text>
     </Translation>
     <Translation>
       <Id>ErrorRandomQueue</Id>
-      <Text>Can't queue for Random Battleground while in another Battleground queue.</Text>
+      <Text>Kan ikke queue op for tilfældig Battleground når du allerede er i en</Text>
     </Translation>
     <Translation>
       <Id>ErrorSingleRandomQueue</Id>
-      <Text>Can't do that while in a Random Battleground queue.</Text>
+      <Text>Kan ikke gøre dette når du er i en Tilfældig Battleground kø</Text>
     </Translation>
     <Translation>
       <Id>CantDuplicateZone</Id>
-      <Text>You can't have the same zone twice inside the same profile.</Text>
+      <Text>Du kan ikke have den samme zone to gange i samme profil</Text>
     </Translation>
     <Translation>
       <Id>CantRecordInWrongZone</Id>
-      <Text>You must select the current Battleground corresponding zone prior to start recording.</Text>
+      <Text>Du skal vælge den aktuelle Battleground tilsvarendes zone forud for at starte optagelsen.</Text>
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffTitle</Id>
-      <Text>Battlegrounder - Settings Tip-off</Text>
+      <Text>Battlegrounder - Indstillinger Tip-off</Text>
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Battlegrounder product: </Text>
+      <Text>Dine Generelle indstillinger er ikke optimeret til Battlegrounder produkt:</Text>
     </Translation>
     <Translation>
       <Id>GrinderTipOffTitle</Id>
-      <Text>Grinder - Settings Tip-off</Text>
+      <Text>Grinder - Indstillinger Tip-off</Text>
     </Translation>
     <Translation>
       <Id>GrinderTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Grinder product: </Text>
+      <Text>Dine Generelle indstillinger er ikke optimeret til Grinder produktet:</Text>
     </Translation>
     <Translation>
       <Id>GathererTipOffTitle</Id>
-      <Text>Gatherer - Settings Tip-off</Text>
+      <Text>Gatherer - IndstillingerTip-off</Text>
     </Translation>
     <Translation>
       <Id>GathererTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Gatherer product: </Text>
+      <Text>Dine Generelle indstillinger er ikke optimeret til Gatherer produktet:</Text>
     </Translation>
     <Translation>
       <Id>QuesterTipOffTitle</Id>
-      <Text>Quester - Settings Tip-off</Text>
+      <Text>Quester - IndstillingerTip-off</Text>
     </Translation>
     <Translation>
       <Id>QuesterTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Quester product: </Text>
+      <Text>Dine Generelle indstillinger er ikke optimeret til Quester produkett:</Text>
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffTitle</Id>
-      <Text>Archaeologist - Settings Tip-off</Text>
+      <Text>Archaeologist - Indstillinger Tip-off</Text>
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Archaeologist product: </Text>
+      <Text>Dine Generelle indstillinger er ikke optimeret til Archaeologist produkt:</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOn</Id>
-      <Text>We highly recommand to activate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
+      <Text>Vi anbefalder at aktivere Looting funktionen i General Indstillinger =&gt;Looting and Farming Indstillinger =&gt; Loot monstre =&gt; JA</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOff</Id>
-      <Text>We highly recommand to deactivate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
+      <Text>Vi anbefalder at deaktivere Looting funktionen i General Indstillinger =&gt;Looting and Farming Indstillinger =&gt; Loot monstre =&gt; JA</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOnArchaeologist</Id>
-      <Text>We recommand to activate the Looting function for Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
+      <Text>Vi anbefalder at aktivere Looting funktionen for Pandaria  i General Indstillinger =&gt;Looting and Farming Indstillinger =&gt; Loot monstre =&gt; JA</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOffArchaeologist</Id>
-      <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
+      <Text>Vi anbefalder at deaktivere Looting funktionen for Pandaria  i General Indstillinger =&gt;Looting and Farming Indstillinger =&gt; Loot monstre =&gt; JA</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingOnQuester</Id>
-      <Text>We highly recommand to activate the Selling function while questing, in General Settings =&gt; NPCs Management - Repairer, Vendor (Selling or Buying) =&gt; Selling =&gt; ON</Text>
+      <Text>Vi anbefalder stærkt at aktivere Selling funktionen, mens søgende, i General Settings =&gt; NPCs Indstillinger - Reparer (Sælger eller Købe) =&gt; Salg =&gt; ON</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingQualityQuester</Id>
-      <Text>We also recommand to activate selling for Grey, White and Green items to avoid getting your bags full / not able to sell its content.</Text>
+      <Text>Vi abefalder også at man aktivere salg af grå items, hvide og grønne for at ungå en fuld taske</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusLow</Id>
-      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; -30</Text>
+      <Text>Vi anbefaler at indstille Søg Radius værdi højst til 30 yards i General Settings =&gt; Looting &amp; Farming muligheder =&gt; Søgeradius =&gt; -30</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusHigh</Id>
-      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; 100+</Text>
+      <Text>Vi anbefaler at indstille Søg Radius værdi mindst til 100 meter i General Settings =&gt; Looting &amp; Farming muligheder =&gt; Søgeradius =&gt; 100 +</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOn</Id>
-      <Text>We highly recommand to activate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; YES.</Text>
+      <Text>Vi anbefaler at aktivere Ground Mount i General Settings =&gt; Mount muligheder =&gt; Brug Ground Mount =&gt; JA.</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOff</Id>
-      <Text>We highly recommand to deactivate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; NO.</Text>
+      <Text>Vi anbefaler at deaktivere Ground Mount i General Settings =&gt; Mount muligheder =&gt; Brug Ground Mount =&gt; NEJ.</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyGroundMount</Id>
-      <Text>We highly recommand to set a Ground Mount Name in General Settings =&gt; Mount options =&gt; Ground =&gt; Name of the Mount.</Text>
+      <Text>Vi anbefaler at tilgive navnet på et Ground Mount i General Settings =&gt; Mount muligheder =&gt; Ground =&gt; Navn på Mount.</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyFlyingMount</Id>
-      <Text>We highly recommand to set a Flying Mount Name in General Settings =&gt; Mount options =&gt; Flying =&gt; Name of the Mount.</Text>
+      <Text>Vi anbefaler at tilgive navnet på et Flyve Mount i General Settings =&gt; Mount muligheder =&gt; Flyve=&gt; Navn på Mount.</Text>
     </Translation>
     <Translation>
       <Id>TipOffMinimumDistanceToUseGroundMount</Id>
-      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings =&gt; Mount options.</Text>
+      <Text>Vi anbefaler at indstille Mindste afstand til at bruge Ground Mount til 30 i Generelle indstillinger =&gt; Mount muligheder.</Text>
     </Translation>
     <Translation>
       <Id>UseHearthstone</Id>
-      <Text>Use Hearthstone</Text>
+      <Text>Brug Hearthstone</Text>
     </Translation>
     <Translation>
       <Id>HearthstoneNotFound</Id>
-      <Text>Use Hearthstone prior to log-off activated, but HearthStone not found.</Text>
+      <Text>Brug Hearstone før log-off, men Hearstone er ikke fundet i din taske.</Text>
     </Translation>
     <Translation>
       <Id>UseMollE</Id>
-      <Text>Use MOLL-E if up</Text>
+      <Text>BrugMOLL-E hvis den er der</Text>
     </Translation>
     <Translation>
       <Id>UseRobot</Id>
-      <Text>Use Robot when up</Text>
+      <Text>Brug Robot når den er oppe</Text>
     </Translation>
     <Translation>
       <Id>ReloggerManagementPanelName</Id>
-      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Text>AutoRelogger - (Gør det muligt at automatisk at logge ind på din karakter efter disconnect)</Text>
     </Translation>
     <Translation>
       <Id>QuesterProfileManagementSystem</Id>
-      <Text>Quester Profile Management System</Text>
+      <Text>Quester Profil System</Text>
     </Translation>
     <Translation>
       <Id>GroupedProfileManager</Id>
-      <Text>Grouped Profile Manager</Text>
+      <Text>Gruppe Profil Indstillinger</Text>
     </Translation>
     <Translation>
       <Id>SimpleProfileManager</Id>
-      <Text>Simple Profile Manager</Text>
+      <Text>Simpel Profil Indstillinger</Text>
     </Translation>
     <Translation>
       <Id>GroupedQuestProfileFile</Id>
-      <Text>Grouped Quest Profile File</Text>
+      <Text>Gruppe Quest Profil fil</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToEdit</Id>
-      <Text>There is no Grouped Profile to edit</Text>
+      <Text>Der er ikke nogen Gruppe Quest profil at redigere</Text>
     </Translation>
     <Translation>
       <Id>RemoveGroupedProfile</Id>
-      <Text>Remove Grouped Profile</Text>
+      <Text>Fjern Gruppe Quest Profil</Text>
     </Translation>
     <Translation>
       <Id>Confirm</Id>
-      <Text>Confirm</Text>
+      <Text>Bekræft</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToDelete</Id>
-      <Text>There is no Grouped Profile to delete.</Text>
+      <Text>Der er ikke nogen Gruppe Quest profil at slette</Text>
     </Translation>
     <Translation>
       <Id>FeatureNotYetAvailable</Id>
-      <Text>This feature is not yet available</Text>
+      <Text>Denne tilføjelse er ikke brugbar endnu</Text>
     </Translation>
     <Translation>
       <Id>AddGrouped</Id>
-      <Text>Create a grouped profile</Text>
+      <Text>Lav en Gruppe Quest profil</Text>
     </Translation>
     <Translation>
       <Id>EditGrouped</Id>
-      <Text>Edit a grouped profile</Text>
+      <Text>Rediger en Gruppe Quest profil</Text>
     </Translation>
     <Translation>
       <Id>GroupedDocumentation</Id>
-      <Text>Grouped Profile Documentation</Text>
+      <Text>Gruppe Profil dokumentation</Text>
     </Translation>
     <Translation>
       <Id>RemoveGrouped</Id>
-      <Text>Remove a grouped profile</Text>
+      <Text>Fjern en Gruppe Quest profil</Text>
     </Translation>
     <Translation>
       <Id>AddSimple</Id>
-      <Text>Create a simple profile</Text>
+      <Text>Lav en enkel profil</Text>
     </Translation>
     <Translation>
       <Id>EditSimple</Id>
-      <Text>Edit a simple profile</Text>
+      <Text>Rediger en enkel profil</Text>
     </Translation>
     <Translation>
       <Id>SimpleDocumentation</Id>
-      <Text>Simple Profile Documentation</Text>
+      <Text>Enkel Profil Dokumentation</Text>
     </Translation>
     <Translation>
       <Id>RemoveSimple</Id>
-      <Text>Remove a simple profile</Text>
+      <Text>Slet en enkel profil</Text>
     </Translation>
     <Translation>
       <Id>AvailableSimpleProfiles</Id>
-      <Text>Available profiles :</Text>
+      <Text>Mulige profiler:</Text>
     </Translation>
     <Translation>
       <Id>CurrentlyGroupedProfiles</Id>
-      <Text>Currently grouped profiles :</Text>
+      <Text>Aktuelle Gruppe Quest profiler:</Text>
     </Translation>
     <Translation>
       <Id>GroupSelectedProfile</Id>
-      <Text>Group the selected profile</Text>
+      <Text>Gør Quest profilen til en Gruppe Quest profil</Text>
     </Translation>
     <Translation>
       <Id>UngroupSelectedProfile</Id>
-      <Text>Ungroup selected profile</Text>
+      <Text>Fjern den valgte profil fra Quest Gruppen</Text>
     </Translation>
     <Translation>
       <Id>UngroupAllProfiles</Id>
-      <Text>Ungroup ALL Profiles</Text>
+      <Text>Fjern alle profiler fra Quest Gruppen</Text>
     </Translation>
     <Translation>
       <Id>SaveAsAndClose</Id>
-      <Text>Save as new &amp;&amp; Close</Text>
+      <Text>Gems om ny &amp;&amp; Luk ned</Text>
     </Translation>
     <Translation>
       <Id>SaveAndClose</Id>
-      <Text>Save &amp;&amp; Close</Text>
+      <Text>Gem &amp;&amp; Luk</Text>
     </Translation>
     <Translation>
       <Id>CancelAndClose</Id>
-      <Text>Cancel &amp;&amp; Close</Text>
+      <Text>Annuler &amp;&amp; Luk</Text>
     </Translation>
     <Translation>
       <Id>MoveUp</Id>
-      <Text>Move Up</Text>
+      <Text>Flyt up</Text>
     </Translation>
     <Translation>
       <Id>MoveDown</Id>
-      <Text>Move Down</Text>
+      <Text>Flyt ned</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedNew</Id>
-      <Text>You can't save an empty Grouped Profile</Text>
+      <Text>Du kan ikke gemme en tom Gruppe Quest profil</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedExisting</Id>
-      <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+      <Text>Du kan ikke gemme en tom Gruppe Quest profil, hvis du vil slette den skal du, annulere og slette den via det tidligere vindue </Text>
     </Translation>
     <Translation>
       <Id>QuesterProfileLoader</Id>
-      <Text>Quester Profile Loader</Text>
+      <Text>Quester Profil Loader</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToLoad</Id>
-      <Text>There is no simple profiles to load, make sure to download the latest TheNoobBot version to get profiles</Text>
+      <Text>Der er ingen enkle profiler til at indlæse, sørg for at hente den nyeste TheNoobBot version for at få profiler</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToLoad</Id>
-      <Text>There is no grouped profiles to load, please create one or download one from TheNoobBot community forum</Text>
+      <Text>Der er ikke nogle Gruppe Quest profiler at loade, lav en eller download dem fra vores forum</Text>
     </Translation>
     <Translation>
       <Id>SimpleProfilesList</Id>
-      <Text>Simple Profile List</Text>
+      <Text>enkel profil liste</Text>
     </Translation>
     <Translation>
       <Id>GroupedProfilesList</Id>
-      <Text>Grouped Profile List</Text>
+      <Text>Gruppe Quest Profil liste</Text>
     </Translation>
     <Translation>
       <Id>LoadSimpleProfile</Id>
-      <Text>Load a Simple Profile</Text>
+      <Text>Load en enkel profil</Text>
     </Translation>
     <Translation>
       <Id>LoadGroupedProfile</Id>
-      <Text>Load a Grouped Profile</Text>
+      <Text>Load en Gruppe Quest Profil</Text>
     </Translation>
     <Translation>
       <Id>ProfileQuestList</Id>
-      <Text>Profile's Quest List :</Text>
+      <Text>Profilens Quest liste</Text>
     </Translation>
     <Translation>
       <Id>AddNewQuest</Id>
-      <Text>Add a new Quest</Text>
+      <Text>Tilføj en ny quest</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuest</Id>
-      <Text>Edit the selected Quest</Text>
+      <Text>Rediger den valgte Quest</Text>
     </Translation>
     <Translation>
       <Id>DeleteSelectedQuest</Id>
-      <Text>Delete the selected Quest</Text>
+      <Text>Slet den valgte Quest</Text>
     </Translation>
     <Translation>
       <Id>SimpleQuestProfileFile</Id>
-      <Text>Simple Quest Profile File</Text>
+      <Text>Enkel Quest Profil fil</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptySimpleNew</Id>
-      <Text>You can't save an empty Simple Profile</Text>
+      <Text>Du kan ikke gemme en tom enkel profil</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptySimpleExisting</Id>
-      <Text>You can't save an empty Simple Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+      <Text>Du kan ikke gemme en tom enkel profil, hvis du vil slette den, annuler og slet den fra det tidligere vindue</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToEdit</Id>
-      <Text>There is no Simple Profile to edit</Text>
+      <Text>Der er ikke nogen enkel profil at redigere</Text>
     </Translation>
     <Translation>
       <Id>AutoCloseChatFrame</Id>
-      <Text>Auto Close Chat</Text>
+      <Text>Automatisk Luk Chatten</Text>
     </Translation>
     <Translation>
       <Id>Settings_Mimesis</Id>
@@ -1635,19 +1635,19 @@
     </Translation>
     <Translation>
       <Id>MasterBotIPAddress</Id>
-      <Text>IP Address of the master Bot</Text>
+      <Text>IP Addressen af master Bot</Text>
     </Translation>
     <Translation>
       <Id>MasterBotIPPort</Id>
-      <Text>Port used by the master bot</Text>
+      <Text>Port brug af master bot</Text>
     </Translation>
     <Translation>
       <Id>ActivatePartyMode</Id>
-      <Text>Party Mode (Asks master to invite us)</Text>
+      <Text>Gruppe Tilstand (Beder master om at invitere os)</Text>
     </Translation>
     <Translation>
       <Id>MimesisBroadcasterSettings</Id>
-      <Text>Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with this session)</Text>
+      <Text>(Andre sessioner med en påbegyndt Mimesis kan TeamPlay med denne session)</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingPortDefault</Id>
@@ -1663,7 +1663,7 @@
     </Translation>
     <Translation>
       <Id>ActivateBroadcastingMimesis</Id>
-      <Text>Activate Broadcasting</Text>
+      <Text>Aktiver Broadcasting</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingIPLocal</Id>
@@ -1675,19 +1675,19 @@
     </Translation>
     <Translation>
       <Id>ProfileQuesterList</Id>
-      <Text>Profile's Questers List :</Text>
+      <Text>Profil Quester Liste</Text>
     </Translation>
     <Translation>
       <Id>AddNewQuester</Id>
-      <Text>Add the target NPC</Text>
+      <Text>Tilføj targets npc</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuester</Id>
-      <Text>Edit the selected NPC</Text>
+      <Text>Rediger den valgte NPC</Text>
     </Translation>
     <Translation>
       <Id>DeleteSelectedQuester</Id>
-      <Text>Delete the selected NPC</Text>
+      <Text>Slet den valgteNPC</Text>
     </Translation>
     <Translation>
       <Id>LoginFormTitle</Id>
@@ -1699,19 +1699,19 @@
     </Translation>
     <Translation>
       <Id>LoginFormRemember</Id>
-      <Text>SAVE</Text>
+      <Text>GEM</Text>
     </Translation>
     <Translation>
       <Id>LoginFormStart</Id>
-      <Text>CONNECT</Text>
+      <Text>TILSLUT</Text>
     </Translation>
     <Translation>
       <Id>LoginFormRefresh</Id>
-      <Text>REFRESH</Text>
+      <Text>OPDATER</Text>
     </Translation>
     <Translation>
       <Id>LoginFormWebsite</Id>
-      <Text>WEBSITE</Text>
+      <Text>HJEMMESIDE</Text>
     </Translation>
     <Translation>
       <Id>LoginFormForum</Id>
@@ -1719,19 +1719,19 @@
     </Translation>
     <Translation>
       <Id>LoginFormRegister</Id>
-      <Text>REGISTER</Text>
+      <Text>REGISTRER</Text>
     </Translation>
     <Translation>
       <Id>LoadTranslationFile</Id>
-      <Text>Load a translation file</Text>
+      <Text>Load en oversættelses profil</Text>
     </Translation>
     <Translation>
       <Id>LuaExecButton</Id>
-      <Text>Execute LUA code</Text>
+      <Text>Kør en LUA kode</Text>
     </Translation>
     <Translation>
       <Id>GpsButton</Id>
-      <Text>GPS infos</Text>
+      <Text>GPS Info </Text>
     </Translation>
     <Translation>
       <Id>TargetInfoButton</Id>
@@ -1743,51 +1743,51 @@
     </Translation>
     <Translation>
       <Id>TranslationManagerButton</Id>
-      <Text>Open Translation Manager</Text>
+      <Text>Åben Oversættelses Indstillinger</Text>
     </Translation>
     <Translation>
       <Id>CsharpExecButton</Id>
-      <Text>Execute C# code</Text>
+      <Text>Kør C# code</Text>
     </Translation>
     <Translation>
       <Id>NpcTypeButton</Id>
-      <Text>NPC Type List</Text>
+      <Text>NPC Type Liste</Text>
     </Translation>
     <Translation>
       <Id>NpcFactionButton</Id>
-      <Text>NPC Faction List</Text>
+      <Text>NPC Faction Liste</Text>
     </Translation>
     <Translation>
       <Id>SearchObjectButton</Id>
-      <Text>Search Object</Text>
+      <Text>Søg Objekt</Text>
     </Translation>
     <Translation>
       <Id>AllObjectsButton</Id>
-      <Text>Get all objects informations</Text>
+      <Text>Få alt information om objektet</Text>
     </Translation>
     <Translation>
       <Id>SearchObjectBox</Id>
-      <Text>Type in the name of the WoWObject you are looking for:</Text>
+      <Text>Skriv navnet på WoWObjektet du leder efter:</Text>
     </Translation>
     <Translation>
       <Id>Active</Id>
-      <Text>Active</Text>
+      <Text>Aktiv</Text>
     </Translation>
     <Translation>
       <Id>DigsiteName</Id>
-      <Text>Digsite's Name</Text>
+      <Text>Digsite's Navn</Text>
     </Translation>
     <Translation>
       <Id>Priority</Id>
-      <Text>Priority</Text>
+      <Text>Prioritet</Text>
     </Translation>
     <Translation>
       <Id>UseKeystones</Id>
-      <Text>Use Keystones</Text>
+      <Text>Brug Keystones</Text>
     </Translation>
     <Translation>
       <Id>LatestLogEntry</Id>
-      <Text>Latest Log Entry :</Text>
+      <Text>Seneste Log Entry:</Text>
     </Translation>
     <Translation>
       <Id>TargetLevel</Id>
@@ -1795,35 +1795,35 @@
     </Translation>
     <Translation>
       <Id>TargetName</Id>
-      <Text>Target's Name :</Text>
+      <Text>Target's Navn :</Text>
     </Translation>
     <Translation>
       <Id>TargetHealth</Id>
-      <Text>Target's Health :</Text>
+      <Text>Target's Liv :</Text>
     </Translation>
     <Translation>
       <Id>HonorPerHour</Id>
-      <Text>Honor per Hour :</Text>
+      <Text>Honor i Timen :</Text>
     </Translation>
     <Translation>
       <Id>UnitKills</Id>
-      <Text>Unit Kills :</Text>
+      <Text>Endhed Drab:</Text>
     </Translation>
     <Translation>
       <Id>XPPerHour</Id>
-      <Text>XP per Hour :</Text>
+      <Text>XP i timen :</Text>
     </Translation>
     <Translation>
       <Id>PlayerNameChanged</Id>
-      <Text>Character changed, closing bot.</Text>
+      <Text>Karakter skift, lukker botten.</Text>
     </Translation>
     <Translation>
       <Id>StopProduct</Id>
-      <Text>STOP PRODUCT</Text>
+      <Text>STOP PRODUKT</Text>
     </Translation>
     <Translation>
       <Id>StartProduct</Id>
-      <Text>START PRODUCT</Text>
+      <Text>START PRODUKT</Text>
     </Translation>
     <Translation>
       <Id>OnlineBots</Id>
@@ -1831,19 +1831,19 @@
     </Translation>
     <Translation>
       <Id>SessionInfo</Id>
-      <Text>SESSION STARTED WITH ID</Text>
+      <Text>SESSION STARTET MED ID</Text>
     </Translation>
     <Translation>
       <Id>ItemsFounds</Id>
-      <Text>items found.</Text>
+      <Text>items fundet.</Text>
     </Translation>
     <Translation>
       <Id>SwitchDxError1</Id>
-      <Text>Possible issue while botting detected, please try to switch DirectX version of your WoW client.</Text>
+      <Text>Mulig fejl fundet imens botting, prøv at ændre DirectX af WoW</Text>
     </Translation>
     <Translation>
       <Id>SwitchDxError2</Id>
-      <Text>Ignore this message if you really have ZERO items in your World of Warcraft bags.</Text>
+      <Text>Ignoerer denne besked hvis du virkelig har 0 items i din tasker</Text>
     </Translation>
     <Translation>
       <Id>RemoteSession</Id>
@@ -1851,7 +1851,7 @@
     </Translation>
     <Translation>
       <Id>MyAccount</Id>
-      <Text>MY ACCOUNT</Text>
+      <Text>MIN KONTO</Text>
     </Translation>
     <Translation>
       <Id>DevTools</Id>
@@ -1859,67 +1859,67 @@
     </Translation>
     <Translation>
       <Id>Website</Id>
-      <Text>Website</Text>
+      <Text>HJEMMESIDE</Text>
     </Translation>
     <Translation>
       <Id>WantToSubscribe</Id>
-      <Text>WANT TO SUBSCRIBE ?</Text>
+      <Text>VIL DU TILMELDE?</Text>
     </Translation>
     <Translation>
       <Id>SelectOffer</Id>
-      <Text>Select an offer in the list below</Text>
+      <Text>Vælg et tilbud i listen under</Text>
     </Translation>
     <Translation>
       <Id>PaymentPage</Id>
-      <Text>Open the payment page</Text>
+      <Text>Åben betalings siden</Text>
     </Translation>
     <Translation>
       <Id>AccountName</Id>
-      <Text>Account Name :</Text>
+      <Text>Konto navn :</Text>
     </Translation>
     <Translation>
       <Id>TimeLeft</Id>
-      <Text>Time Left :</Text>
+      <Text>Tid Tilbage:</Text>
     </Translation>
     <Translation>
       <Id>SubscribeMonth</Id>
-      <Text>1 month - 6.99 euros or 4 allopass</Text>
+      <Text>1 måned - 6.99 euros or 4 allopass</Text>
     </Translation>
     <Translation>
       <Id>SubscribeHalfYear</Id>
-      <Text>6 month - 19.99 euros</Text>
+      <Text>6 måneder - 19.99 euros</Text>
     </Translation>
     <Translation>
       <Id>SubscribeMonthPlatinium</Id>
-      <Text>1 month PLATINIUM - 110 euros</Text>
+      <Text>1 månedPLATINIUM - 110 euros</Text>
     </Translation>
     <Translation>
       <Id>SubscribeLifeTime</Id>
-      <Text>Life time - 44.99 euros</Text>
+      <Text>Livstid - 44.99 euros</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine1</Id>
-      <Text>The Flying To Ground Profiles Converter works with Gatherer, Grinder and Fisherbot profiles.</Text>
+      <Text>Flyve til Groud Profil Konventer virker kun med Gatherer, Grinder og Fiskebot profiler.</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine2</Id>
-      <Text>The conversion process can take minutes. The generated profiles might not be good Grounds profiles, </Text>
+      <Text>Konverterings processen kan tage minutter. De genererede profiler er måske ikke gode grund profiler</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine3</Id>
-      <Text>if you have issue with the generated profile, just create one by hand for this zone.</Text>
+      <Text>hvis du har problem med den genererede profil, bare opret en ved hånden for denne zone.</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterButton</Id>
-      <Text>Select Flying profiles to convert into Ground profiles</Text>
+      <Text>Vælg Flyve profiler der skal konventeres til Ground profiler</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterHeaderText</Id>
-      <Text>Flying to Ground Converter</Text>
+      <Text>Flyve til Ground Konverter</Text>
     </Translation>
     <Translation>
       <Id>TrackerPopUp</Id>
-      <Text>You must keep the tracking window open and check your Ingame Minimap to see results of the tracking.</Text>
+      <Text>Du skal holde tracking vinduet åbent og tjekke dit Minikort for at se resultaterne af sporing.</Text>
     </Translation>
   </Translations>
 </Language>
