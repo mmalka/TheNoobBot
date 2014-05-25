@@ -1379,55 +1379,55 @@
     </Translation>
     <Translation>
       <Id>TipOffLootingOn</Id>
-      <Text>We highly recommand to activate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
+      <Text>We highly recommend to activate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOff</Id>
-      <Text>We highly recommand to deactivate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
+      <Text>We highly recommend to deactivate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOnArchaeologist</Id>
-      <Text>We recommand to activate the Looting function for Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
+      <Text>We recommend to activate the Looting function for Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOffArchaeologist</Id>
-      <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
+      <Text>We highly recommend to deactivate the Looting function out of Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingOnQuester</Id>
-      <Text>We highly recommand to activate the Selling function while questing, in General Settings =&gt; NPCs Management - Repairer, Vendor (Selling or Buying) =&gt; Selling =&gt; ON</Text>
+      <Text>We highly recommend to activate the Selling function while questing, in General Settings =&gt; NPCs Management - Repairer, Vendor (Selling or Buying) =&gt; Selling =&gt; ON</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingQualityQuester</Id>
-      <Text>We also recommand to activate selling for Grey, White and Green items to avoid getting your bags full / not able to sell its content.</Text>
+      <Text>We also recommend to activate selling for Grey, White and Green items to avoid getting your bags full / not able to sell its content.</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusLow</Id>
-      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; -30</Text>
+      <Text>We highly recommend to set the Search Radius value at most to 30 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; -30</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusHigh</Id>
-      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; 100+</Text>
+      <Text>We highly recommend to set the Search Radius value at least to 100 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; 100+</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOn</Id>
-      <Text>We highly recommand to activate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; YES.</Text>
+      <Text>We highly recommend to activate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; YES.</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOff</Id>
-      <Text>We highly recommand to deactivate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; NO.</Text>
+      <Text>We highly recommend to deactivate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; NO.</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyGroundMount</Id>
-      <Text>We highly recommand to set a Ground Mount Name in General Settings =&gt; Mount options =&gt; Ground =&gt; Name of the Mount.</Text>
+      <Text>We highly recommend to set a Ground Mount Name in General Settings =&gt; Mount options =&gt; Ground =&gt; Name of the Mount.</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyFlyingMount</Id>
-      <Text>We highly recommand to set a Flying Mount Name in General Settings =&gt; Mount options =&gt; Flying =&gt; Name of the Mount.</Text>
+      <Text>We highly recommend to set a Flying Mount Name in General Settings =&gt; Mount options =&gt; Flying =&gt; Name of the Mount.</Text>
     </Translation>
     <Translation>
       <Id>TipOffMinimumDistanceToUseGroundMount</Id>
-      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings =&gt; Mount options.</Text>
+      <Text>We highly recommend to set the Minimum distance to use Ground Mount to 30 in General Settings =&gt; Mount options.</Text>
     </Translation>
     <Translation>
       <Id>UseHearthstone</Id>
