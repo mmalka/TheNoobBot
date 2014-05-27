@@ -1087,7 +1087,7 @@ namespace nManager.Wow.Helpers
                         Logging.WriteError("ThreadMoveTo()#1: " + exception);
                         _loopMoveTo = false;
                     }
-                    Thread.Sleep(250);
+                    Thread.Sleep(70);
                 }
             }
             catch (Exception exception)
