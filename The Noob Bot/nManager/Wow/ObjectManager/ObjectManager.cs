@@ -88,9 +88,8 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (_lastPetBase > 0)
                     {
-                        WoWUnit unit = new WoWUnit(_lastPetBase);
-                        if (unit.Health > 0 && (unit.SummonedBy == Me.Guid || unit.CreatedBy == Me.Guid))
-                            return unit;
+                        if (new WoWUnit(_lastPetBase).Health > 0 && new WoWUnit(_lastPetBase).SummonedBy == Me.Guid)
+                            return new WoWUnit(_lastPetBase);
                         _lastPetBase = 0;
                     }
 
@@ -98,17 +97,7 @@ namespace nManager.Wow.ObjectManager
                         Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint) Addresses.Player.petGUID);
 
                     if (guidPet > 0)
-                    {
-                        _lastPetBase = GetObjectByGuid(guidPet).GetBaseAddress;
-                        return new WoWUnit(_lastPetBase);
-                    }
-                    // Now let's try to find other "pets" like Chaman Totems for example
-                    WoWUnit u = GetWoWUnitSummonedOrCreatedByMeAndFighting();
-                    if (u.IsValid)
-                    {
-                        _lastPetBase = 0; // We don't want this "pet" to be recorded as pet next tick
-                        return u;
-                    }
+                        return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
                     return new WoWUnit(0);
                 }
                 catch (Exception e)
@@ -820,42 +809,6 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("GetWoWUnitByQuestLoot(int lootId): " + e);
             }
             return new List<WoWUnit>();
-        }
-
-        public static WoWUnit GetWoWUnitSummonedOrCreatedByMeAndFighting(List<WoWUnit> listWoWUnit)
-        {
-            try
-            {
-                // We could do better by iterating listWoWUnit 2 times to get all "pets" then attackers
-                // but it's a lot slower and this code works fine even with totems, they have the proper target
-                foreach (WoWUnit a in listWoWUnit)
-                {
-                    if ((a.SummonedBy == Me.Guid || a.CreatedBy == Me.Guid) && a.Target != 0)
-                    {
-                        WoWUnit u = new WoWUnit(GetObjectByGuid(a.Target).GetBaseAddress);
-                        if (u.IsValid && u.InCombat && u.Target == a.Guid)
-                            return a;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetWoWUnitSummonedOrCreatedByMeAndFighting(List<WoWUnit> listWoWUnit): " + e);
-            }
-            return new WoWUnit(0);
-        }
-
-        public static WoWUnit GetWoWUnitSummonedOrCreatedByMeAndFighting()
-        {
-            try
-            {
-                return GetWoWUnitSummonedOrCreatedByMeAndFighting(GetObjectWoWUnit());
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetWoWUnitSummonedOrCreatedByMeAndFighting(): " + e);
-            }
-            return new WoWUnit(0);
         }
 
         public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
