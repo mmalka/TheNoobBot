@@ -400,8 +400,10 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
+                    if (MountTask.GetMountCapacity() < MountCapacity.Fly)
+                        Logging.Write("This profile needs you to be able to fly.");
                     if (!Usefuls.IsFlying)
-                        MountTask.Mount(false);
+                        MountTask.MountingFlyingMount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint;
