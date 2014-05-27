@@ -24043,25 +24043,25 @@ public class HunterMarksmanship
 
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
             && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1 && ObjectManager.Me.InCombat)
         {
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2 && ObjectManager.Me.InCombat)
         {
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3 && ObjectManager.Me.InCombat)
         {
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4 && ObjectManager.Me.InCombat)
         {
             CallPet4.Launch();
@@ -24069,7 +24069,7 @@ public class HunterMarksmanship
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5 && ObjectManager.Me.InCombat)
             {
                 CallPet5.Launch();
@@ -24852,25 +24852,25 @@ public class HunterBeastMastery
 
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
             && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1 && ObjectManager.Me.InCombat)
         {
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2 && ObjectManager.Me.InCombat)
         {
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3 && ObjectManager.Me.InCombat)
         {
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4 && ObjectManager.Me.InCombat)
         {
             CallPet4.Launch();
@@ -24878,7 +24878,7 @@ public class HunterBeastMastery
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5 && ObjectManager.Me.InCombat)
             {
                 CallPet5.Launch();
@@ -24930,7 +24930,7 @@ public class HunterBeastMastery
         {
             FeignDeath.Launch();
             Thread.Sleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 return;
             Thread.Sleep(5000);
             return;
@@ -25711,25 +25711,25 @@ public class HunterSurvival
 
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
             && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1 && ObjectManager.Me.InCombat)
         {
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2 && ObjectManager.Me.InCombat)
         {
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3 && ObjectManager.Me.InCombat)
         {
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                  && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4 && ObjectManager.Me.InCombat)
         {
             CallPet4.Launch();
@@ -25737,7 +25737,7 @@ public class HunterSurvival
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5 && ObjectManager.Me.InCombat)
             {
                 CallPet5.Launch();
@@ -25789,7 +25789,7 @@ public class HunterSurvival
         {
             FeignDeath.Launch();
             Thread.Sleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 return;
             Thread.Sleep(5000);
             return;
