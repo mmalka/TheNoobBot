@@ -93,7 +93,7 @@ namespace nManager.Wow.Bot.Tasks
                 // We are in Vashjir and the Abyssal Seahorse is selected
                 if (_aquaMount == _localizedAbysalMountName &&
                     (Usefuls.AreaId == 5146 || Usefuls.AreaId == 4815 ||
-                     Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144))
+                     Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144 || Usefuls.AreaId == 615 || Usefuls.AreaId == 610 || Usefuls.AreaId == 614))
                 {
                     return MountCapacity.Swimm;
                 }
