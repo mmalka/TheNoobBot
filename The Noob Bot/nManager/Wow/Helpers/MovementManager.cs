@@ -428,13 +428,12 @@ namespace nManager.Wow.Helpers
                         }
                         if (!ObjectManager.ObjectManager.Me.IsMounted)
                             return;
-                        while (!Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
+                        while (MountTask.OnFlyMount() && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
                             MovementsAction.Ascend(true);
-                            Thread.Sleep(300);
+                            Thread.Sleep(50);
                             MovementsAction.Ascend(false);
                         }
-
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 15 && _movement)
                         {
                             idPoint++;
@@ -500,10 +499,11 @@ namespace nManager.Wow.Helpers
                         {
                             return;
                         }
+
                         while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
                             MovementsAction.Ascend(true);
-                            Thread.Sleep(300);
+                            Thread.Sleep(50);
                             MovementsAction.Ascend(false);
                         }
 
@@ -1543,7 +1543,7 @@ namespace nManager.Wow.Helpers
                 float groundDistance = Math.DistanceListPoint(points);
                 _cacheTargetAddress = baseAddress;
                 _updatePathSpecialTimer = new Timer(2000);
-                _maxTimerForStuckDetection = new Timer(((int)groundDistance/3*1000) + 4000);
+                _maxTimerForStuckDetection = new Timer(((int) groundDistance/3*1000) + 4000);
                 Go(points);
                 return baseAddress;
             }
