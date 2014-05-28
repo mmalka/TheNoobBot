@@ -23834,6 +23834,7 @@ public class HunterMarksmanship
 
     public readonly Spell AimedShot = new Spell("Aimed Shot");
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
@@ -24041,41 +24042,54 @@ public class HunterMarksmanship
             ItemsManager.UseItem(75525);
     }
 
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall)
+        {
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
+            {
+                Dismiss.Launch();
+                Thread.Sleep(1500);
+            }
+        }
+    }
+
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1)
+        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
+            DismissPet();
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2)
+        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
+            DismissPet();
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3)
+        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
+            DismissPet();
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4)
+        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
+            DismissPet();
             CallPet4.Launch();
             Thread.Sleep(1000);
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5)
+            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
             {
+                DismissPet();
                 CallPet5.Launch();
                 Thread.Sleep(1000);
             }
         }
+
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
             && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
             && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
@@ -24481,6 +24495,7 @@ public class HunterMarksmanship
         public bool UseMendPet = true;
         public bool UseMisdirection = true;
         public bool UseMultiShot = true;
+        public bool DismissOnCall = true;
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
@@ -24524,6 +24539,7 @@ public class HunterMarksmanship
             /* Offensive Spell */
             AddControlInWinForm("Use Aimed Shot", "UseAimedShot", "Offensive Spell");
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
@@ -24635,6 +24651,7 @@ public class HunterBeastMastery
     #region Offensive Spell
 
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
@@ -24850,37 +24867,49 @@ public class HunterBeastMastery
             ItemsManager.UseItem(75525);
     }
 
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall)
+        {
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
+            {
+                Dismiss.Launch();
+                Thread.Sleep(1500);
+            }
+        }
+    }
+
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1)
+        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
+            DismissPet();
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2)
+        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
+            DismissPet();
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3)
+        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
+            DismissPet();
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4)
+        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
+            DismissPet();
             CallPet4.Launch();
             Thread.Sleep(1000);
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5)
+            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
             {
+                DismissPet();
                 CallPet5.Launch();
                 Thread.Sleep(1000);
             }
@@ -25336,6 +25365,7 @@ public class HunterBeastMastery
         public bool UseMendPet = true;
         public bool UseMisdirection = true;
         public bool UseMultiShot = true;
+        public bool DismissOnCall = true;
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
@@ -25379,6 +25409,7 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
@@ -25494,6 +25525,7 @@ public class HunterSurvival
 
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
     public readonly Spell BlackArrow = new Spell("Black Arrow");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
@@ -25709,37 +25741,49 @@ public class HunterSurvival
             ItemsManager.UseItem(75525);
     }
 
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall)
+        {
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
+            {
+                Dismiss.Launch();
+                Thread.Sleep(1500);
+            }
+        }
+    }
+
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1)
+        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
+            DismissPet();
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2)
+        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
+            DismissPet();
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3)
+        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
+            DismissPet();
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4)
+        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
+            DismissPet();
             CallPet4.Launch();
             Thread.Sleep(1000);
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5)
+            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
             {
+                DismissPet();
                 CallPet5.Launch();
                 Thread.Sleep(1000);
             }
@@ -26169,6 +26213,7 @@ public class HunterSurvival
         public bool UseMendPet = true;
         public bool UseMisdirection = true;
         public bool UseMultiShot = true;
+        public bool DismissOnCall = true;
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
@@ -26211,6 +26256,7 @@ public class HunterSurvival
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
             AddControlInWinForm("Use Black Arrow", "UseBlackArrow", "Offensive Spell");
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
