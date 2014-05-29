@@ -61,15 +61,13 @@ namespace nManager.Wow.Bot.Tasks
                     MovementManager.StopMove();
                     MovementManager.MoveTo(node.Position.X, node.Position.Y, zT, true);
 
-                    int timer = Others.Times +
-                                ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position)/3*1000) +
-                                4000;
+                    Helpful.Timer timer = new Helpful.Timer(((int)ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) / 3 * 1000) + 5000);
                     bool toMine = false;
 
                     while (node.IsValid && Products.Products.IsStarted &&
                            !ObjectManager.ObjectManager.Me.IsDeadMe &&
                            !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
-                           Others.Times < timer)
+                           !timer.IsReady)
                     {
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) >= 10.0f)
                         {
@@ -151,7 +149,7 @@ namespace nManager.Wow.Bot.Tasks
                                     }
                                 }
                             }
-                            Thread.Sleep(Usefuls.Latency + 250);
+                            Thread.Sleep(Usefuls.Latency + 200);
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
@@ -160,11 +158,11 @@ namespace nManager.Wow.Bot.Tasks
                                 return;
                             }
                             Interact.InteractWith(node.GetBaseAddress);
-                            Thread.Sleep(Usefuls.Latency + 250);
+                            Thread.Sleep(Usefuls.Latency + 400);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
                             {
                                 Interact.InteractWith(node.GetBaseAddress);
-                                Thread.Sleep(Usefuls.Latency + 250);
+                                Thread.Sleep(Usefuls.Latency + 400);
                             }
                             while (ObjectManager.ObjectManager.Me.IsCast)
                             {
@@ -201,7 +199,6 @@ namespace nManager.Wow.Bot.Tasks
                             Thread.Sleep(50);
                             MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
                         }
-
                         if (States.Farming.PlayerNearest(node))
                         {
                             Logging.Write("Player near the node, farm canceled");
@@ -209,7 +206,7 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                     }
-                    if (Others.Times > timer)
+                    if (timer.IsReady)
                         nManagerSetting.AddBlackList(node.Guid);
                     MovementManager.StopMove();
                     Logging.Write("Farm failed");
@@ -228,7 +225,7 @@ namespace nManager.Wow.Bot.Tasks
                 nodes = nodes.OrderBy(x => x.GetDistance).ToList();
                 foreach (WoWGameObject node in nodes)
                 {
-                    if ((int) node.GetBaseAddress > 0)
+                    if (node.IsValid)
                     {
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 5.0f)
                         {
