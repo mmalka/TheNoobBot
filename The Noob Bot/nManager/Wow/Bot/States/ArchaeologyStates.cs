@@ -81,7 +81,7 @@ namespace nManager.Wow.Bot.States
                 ObjectManager.WoWGameObject u =
                     ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
-                if (u.GetBaseAddress > 0)
+                if (u.IsValid)
                     return true;
 
                 List<Digsite> listDigsitesZone = Archaeology.GetDigsitesZoneAvailable();
@@ -179,7 +179,7 @@ namespace nManager.Wow.Bot.States
                     ObjectManager.WoWGameObject t =
                         ObjectManager.ObjectManager.GetNearestWoWGameObject(
                             ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
-                    if (t.GetBaseAddress > 0) // If found then loot
+                    if (t.IsValid) // If found then loot
                     {
                         nbCastSurveyError = 0;
                         _lastGreenPosition = new Point();
@@ -308,7 +308,7 @@ namespace nManager.Wow.Bot.States
                     nbLootAttempt = 0;
                     t = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(Archaeology.SurveyList));
-                    if (t.GetBaseAddress <= 0 || myState == LocState.GoingNextPoint ||
+                    if (t.GetBaseAddress == 0 || myState == LocState.GoingNextPoint ||
                         // recast if we moved even if last is still spawned
                         myState == LocState.Looting)
                         // after we looted we need to recast survey spell, even if the previous one is still spawned

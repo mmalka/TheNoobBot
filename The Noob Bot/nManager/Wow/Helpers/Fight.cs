@@ -123,7 +123,7 @@ namespace nManager.Wow.Helpers
                     MovementManager.StopMoveTo();
                 }
                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
-                       targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
+                       targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
                     if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe &&
@@ -270,8 +270,7 @@ namespace nManager.Wow.Helpers
                         ObjectManager.ObjectManager.Me.Target = targetNpc.Guid;
                     }
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid &&
-                           InFight &&
-                           targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
+                           InFight && targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                     {
                         // Target Pos Verif
                         if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
