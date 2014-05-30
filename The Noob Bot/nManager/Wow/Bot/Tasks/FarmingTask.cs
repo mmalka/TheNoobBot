@@ -34,7 +34,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                nodes = nodes.OrderBy(x => x.GetDistance).ToList();
+                nodes = nodes.OrderBy(x => x.GetDistance);
                 foreach (WoWGameObject node in nodes.Where(node => node.IsValid))
                 {
                     Logging.Write("Farm " + node.Name + " (" + node.Entry + ") > " + node.Position.X + "; " + node.Position.Y + "; " + node.Position.Z);
@@ -222,7 +222,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                nodes = nodes.OrderBy(x => x.GetDistance).ToList();
+                nodes = nodes.OrderBy(x => x.GetDistance);
                 foreach (WoWGameObject node in nodes)
                 {
                     if (node.IsValid)

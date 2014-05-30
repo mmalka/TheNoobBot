@@ -17,7 +17,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                woWUnits = woWUnits.OrderBy(x => x.GetDistance).ToList();
+                woWUnits = woWUnits.OrderBy(x => x.GetDistance);
                 foreach (WoWUnit wowUnit in woWUnits)
                 {
                     try
