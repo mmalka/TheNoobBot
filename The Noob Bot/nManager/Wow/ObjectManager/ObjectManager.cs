@@ -317,7 +317,7 @@ namespace nManager.Wow.ObjectManager
             {
                 List<WoWUnit> result = new List<WoWUnit>();
                 foreach (WoWUnit u in GetObjectWoWUnit())
-                    if (u.InCombat && u.Attackable) result.Add(new WoWUnit(u.GetBaseAddress));
+                    if (u.InCombat && u.Attackable) result.Add(u);
                 return result;
             }
             catch (Exception e)
