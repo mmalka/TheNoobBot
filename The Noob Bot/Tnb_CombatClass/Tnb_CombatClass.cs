@@ -23928,6 +23928,7 @@ public class HunterMarksmanship
 
     public readonly Spell AimedShot = new Spell("Aimed Shot");
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
@@ -23939,9 +23940,9 @@ public class HunterMarksmanship
     public readonly Spell MultiShot = new Spell("Multi-Shot");
     public readonly Spell SerpentSting = new Spell("Serpent Sting");
     public readonly Spell SteadyShot = new Spell("Steady Shot");
-/*
-        private Timer _serpentStingTimer = new Timer(0);
-*/
+    /*
+            private Timer _serpentStingTimer = new Timer(0);
+    */
 
     #endregion
 
@@ -24135,41 +24136,54 @@ public class HunterMarksmanship
             ItemsManager.UseItem(75525);
     }
 
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall)
+        {
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
+            {
+                Dismiss.Launch();
+                Thread.Sleep(1500);
+            }
+        }
+    }
+
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1 && ObjectManager.Me.InCombat)
+        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
+            DismissPet();
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
+            DismissPet();
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
+            DismissPet();
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
+            DismissPet();
             CallPet4.Launch();
             Thread.Sleep(1000);
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5 && ObjectManager.Me.InCombat)
+            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
             {
+                DismissPet();
                 CallPet5.Launch();
                 Thread.Sleep(1000);
             }
         }
+
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
             && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
             && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
@@ -24192,7 +24206,7 @@ public class HunterMarksmanship
         if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
-            Timer maxTimeTimer = new Timer(1000*2);
+            Timer maxTimeTimer = new Timer(1000 * 2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 Thread.Sleep(300);
@@ -24267,7 +24281,7 @@ public class HunterMarksmanship
             && MySettings.UseWarStomp)
         {
             WarStomp.Launch();
-            _onCd = new Timer(1000*2);
+            _onCd = new Timer(1000 * 2);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
@@ -24275,7 +24289,7 @@ public class HunterMarksmanship
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
-            _onCd = new Timer(1000*8);
+            _onCd = new Timer(1000 * 8);
         }
     }
 
@@ -24309,7 +24323,7 @@ public class HunterMarksmanship
             && _mendPetTimer.IsReady)
         {
             MendPet.Launch();
-            _mendPetTimer = new Timer(1000*10);
+            _mendPetTimer = new Timer(1000 * 10);
         }
     }
 
@@ -24378,7 +24392,7 @@ public class HunterMarksmanship
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
+            _engineeringTimer = new Timer(1000 * 60);
             return;
         }
         if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
@@ -24414,7 +24428,7 @@ public class HunterMarksmanship
             && DireBeast.IsHostileDistanceGood && _direBeastTimer.IsReady)
         {
             DireBeast.Launch();
-            _direBeastTimer = new Timer(1000*15);
+            _direBeastTimer = new Timer(1000 * 15);
             return;
         }
         if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
@@ -24575,6 +24589,7 @@ public class HunterMarksmanship
         public bool UseMendPet = true;
         public bool UseMisdirection = true;
         public bool UseMultiShot = true;
+        public bool DismissOnCall = true;
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
@@ -24618,6 +24633,7 @@ public class HunterMarksmanship
             /* Offensive Spell */
             AddControlInWinForm("Use Aimed Shot", "UseAimedShot", "Offensive Spell");
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
@@ -24729,6 +24745,7 @@ public class HunterBeastMastery
     #region Offensive Spell
 
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
@@ -24944,37 +24961,49 @@ public class HunterBeastMastery
             ItemsManager.UseItem(75525);
     }
 
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall)
+        {
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
+            {
+                Dismiss.Launch();
+                Thread.Sleep(1500);
+            }
+        }
+    }
+
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1 && ObjectManager.Me.InCombat)
+        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
+            DismissPet();
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
+            DismissPet();
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
+            DismissPet();
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
+            DismissPet();
             CallPet4.Launch();
             Thread.Sleep(1000);
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5 && ObjectManager.Me.InCombat)
+            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
             {
+                DismissPet();
                 CallPet5.Launch();
                 Thread.Sleep(1000);
             }
@@ -25002,7 +25031,7 @@ public class HunterBeastMastery
         if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
-            Timer maxTimeTimer = new Timer(1000*2);
+            Timer maxTimeTimer = new Timer(1000 * 2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 Thread.Sleep(300);
@@ -25024,7 +25053,7 @@ public class HunterBeastMastery
         {
             FeignDeath.Launch();
             Thread.Sleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 return;
             Thread.Sleep(5000);
             return;
@@ -25077,7 +25106,7 @@ public class HunterBeastMastery
             && MySettings.UseWarStomp)
         {
             WarStomp.Launch();
-            _onCd = new Timer(1000*2);
+            _onCd = new Timer(1000 * 2);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
@@ -25085,14 +25114,14 @@ public class HunterBeastMastery
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
-            _onCd = new Timer(1000*8);
+            _onCd = new Timer(1000 * 8);
             return;
         }
         if (Intimidation.IsSpellUsable && Intimidation.KnownSpell && MySettings.UseIntimidation
             && (ObjectManager.Me.HealthPercent < 80 || ObjectManager.Pet.Health < 80))
         {
             Intimidation.Launch();
-            _onCd = new Timer(1000*3);
+            _onCd = new Timer(1000 * 3);
         }
     }
 
@@ -25107,7 +25136,7 @@ public class HunterBeastMastery
             Lua.RunMacroText("/target Player");
             Thread.Sleep(200);
             Lua.RunMacroText("/cast Spirit Mend");
-            _spiritMendTimer = new Timer(1000*40);
+            _spiritMendTimer = new Timer(1000 * 40);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
@@ -25134,7 +25163,7 @@ public class HunterBeastMastery
             && _mendPetTimer.IsReady)
         {
             MendPet.Launch();
-            _mendPetTimer = new Timer(1000*10);
+            _mendPetTimer = new Timer(1000 * 10);
         }
     }
 
@@ -25199,7 +25228,7 @@ public class HunterBeastMastery
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
+            _engineeringTimer = new Timer(1000 * 60);
             return;
         }
         if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
@@ -25223,7 +25252,7 @@ public class HunterBeastMastery
             && DireBeast.IsHostileDistanceGood && _direBeastTimer.IsReady)
         {
             DireBeast.Launch();
-            _direBeastTimer = new Timer(1000*15);
+            _direBeastTimer = new Timer(1000 * 15);
             return;
         }
         if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
@@ -25274,7 +25303,7 @@ public class HunterBeastMastery
         {
             Lua.RunMacroText("/cast Ancient Hysteria");
             Logging.WriteFight("Launch Core Hound Pet Ancient Hysteria");
-            _ancientHysteriaTimer = new Timer(1000*60*6);
+            _ancientHysteriaTimer = new Timer(1000 * 60 * 6);
             return;
         }
         if (ObjectManager.Pet.BuffStack(19623) == 5 && FocusFire.IsSpellUsable &&
@@ -25297,14 +25326,14 @@ public class HunterBeastMastery
             && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
         {
             SerpentSting.Launch();
-            _serpentStingTimer = new Timer(1000*12);
+            _serpentStingTimer = new Timer(1000 * 12);
             return;
         }
         if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
             && MySettings.UseCobraShot && _serpentStingTimer.IsReady)
         {
             CobraShot.Launch();
-            _serpentStingTimer = new Timer(1000*12);
+            _serpentStingTimer = new Timer(1000 * 12);
             return;
         }
         if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
@@ -25326,7 +25355,7 @@ public class HunterBeastMastery
             {
                 Lua.RunMacroText("/cast Froststorm Breath");
                 Logging.WriteFight("Launch Chimera Pet AoE");
-                _froststormBreathTimer = new Timer(1000*8);
+                _froststormBreathTimer = new Timer(1000 * 8);
                 return;
             }
             if (MySettings.UseWormPet && ObjectManager.Target.GetDistance < 10
@@ -25335,7 +25364,7 @@ public class HunterBeastMastery
             {
                 Lua.RunMacroText("/cast Burrow Attack");
                 Logging.WriteFight("Launch Worm Pet AoE");
-                _burrowAttackTimer = new Timer(1000*20);
+                _burrowAttackTimer = new Timer(1000 * 20);
             }
             return;
         }
@@ -25430,6 +25459,7 @@ public class HunterBeastMastery
         public bool UseMendPet = true;
         public bool UseMisdirection = true;
         public bool UseMultiShot = true;
+        public bool DismissOnCall = true;
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
@@ -25473,6 +25503,7 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
@@ -25588,6 +25619,7 @@ public class HunterSurvival
 
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
     public readonly Spell BlackArrow = new Spell("Black Arrow");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
@@ -25803,37 +25835,49 @@ public class HunterSurvival
             ItemsManager.UseItem(75525);
     }
 
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall)
+        {
+            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
+            {
+                Dismiss.Launch();
+                Thread.Sleep(1500);
+            }
+        }
+    }
+
     private void Pet()
     {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && MySettings.UsePet1 && ObjectManager.Me.InCombat)
+        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
+            DismissPet();
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && MySettings.UsePet2 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
+            DismissPet();
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && MySettings.UsePet3 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
+            DismissPet();
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
-        else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && MySettings.UsePet4 && ObjectManager.Me.InCombat)
+        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
+            DismissPet();
             CallPet4.Launch();
             Thread.Sleep(1000);
         }
         else
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && MySettings.UsePet5 && ObjectManager.Me.InCombat)
+            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
             {
+                DismissPet();
                 CallPet5.Launch();
                 Thread.Sleep(1000);
             }
@@ -25861,7 +25905,7 @@ public class HunterSurvival
         if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
-            Timer maxTimeTimer = new Timer(1000*2);
+            Timer maxTimeTimer = new Timer(1000 * 2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 Thread.Sleep(300);
@@ -25883,7 +25927,7 @@ public class HunterSurvival
         {
             FeignDeath.Launch();
             Thread.Sleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 return;
             Thread.Sleep(5000);
             return;
@@ -25936,7 +25980,7 @@ public class HunterSurvival
             && MySettings.UseWarStomp)
         {
             WarStomp.Launch();
-            _onCd = new Timer(1000*2);
+            _onCd = new Timer(1000 * 2);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
@@ -25944,7 +25988,7 @@ public class HunterSurvival
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
-            _onCd = new Timer(1000*8);
+            _onCd = new Timer(1000 * 8);
         }
     }
 
@@ -25978,7 +26022,7 @@ public class HunterSurvival
             && _mendPetTimer.IsReady)
         {
             MendPet.Launch();
-            _mendPetTimer = new Timer(1000*10);
+            _mendPetTimer = new Timer(1000 * 10);
         }
     }
 
@@ -26047,7 +26091,7 @@ public class HunterSurvival
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
+            _engineeringTimer = new Timer(1000 * 60);
             return;
         }
         if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
@@ -26071,7 +26115,7 @@ public class HunterSurvival
             && DireBeast.IsHostileDistanceGood && _direBeastTimer.IsReady)
         {
             DireBeast.Launch();
-            _direBeastTimer = new Timer(1000*15);
+            _direBeastTimer = new Timer(1000 * 15);
             return;
         }
         if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
@@ -26122,14 +26166,14 @@ public class HunterSurvival
             && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
         {
             SerpentSting.Launch();
-            _serpentStingTimer = new Timer(1000*12);
+            _serpentStingTimer = new Timer(1000 * 12);
             return;
         }
         if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
             && MySettings.UseCobraShot && _serpentStingTimer.IsReady)
         {
             CobraShot.Launch();
-            _serpentStingTimer = new Timer(1000*12);
+            _serpentStingTimer = new Timer(1000 * 12);
             return;
         }
         if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
@@ -26263,6 +26307,7 @@ public class HunterSurvival
         public bool UseMendPet = true;
         public bool UseMisdirection = true;
         public bool UseMultiShot = true;
+        public bool DismissOnCall = true;
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
@@ -26305,6 +26350,7 @@ public class HunterSurvival
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
             AddControlInWinForm("Use Black Arrow", "UseBlackArrow", "Offensive Spell");
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
