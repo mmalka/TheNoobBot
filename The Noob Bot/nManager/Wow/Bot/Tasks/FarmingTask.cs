@@ -61,7 +61,7 @@ namespace nManager.Wow.Bot.Tasks
                     MovementManager.StopMove();
                     MovementManager.MoveTo(node.Position.X, node.Position.Y, zT, true);
 
-                    Helpful.Timer timer = new Helpful.Timer(((int)ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) / 3 * 1000) + 5000);
+                    Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) / 3 * 1000) + 5000);
                     bool toMine = false;
 
                     while (node.IsValid && Products.Products.IsStarted &&

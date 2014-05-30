@@ -52,7 +52,7 @@ namespace nManager.Wow.Bot.Tasks
                                     points.Add(ObjectManager.ObjectManager.Me.Position);
                                     points.Add(wowUnit.Position);
                                 }
-                                Timer timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                                Timer timer = new Timer((int) (Math.DistanceListPoint(points) / 3 * 1000) + 5000);
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
                                        Products.Products.IsStarted &&
                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&

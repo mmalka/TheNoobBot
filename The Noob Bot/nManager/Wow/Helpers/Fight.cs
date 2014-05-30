@@ -69,7 +69,7 @@ namespace nManager.Wow.Helpers
                     if (!resultSucces && !Usefuls.IsFlying && MountTask.GetMountCapacity() >= MountCapacity.Fly)
                         MountTask.Mount();
                     MovementManager.Go(points);
-                    timer = Others.Times + ((int) Math.DistanceListPoint(points)/3*1000) + 15000;
+                    timer = Others.Times + (int) (Math.DistanceListPoint(points)/3*1000) + 15000;
 
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
                            targetNpc.Health > 0 && targetNpc.IsValid &&
@@ -105,7 +105,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
                 timer = Others.Times +
-                        ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
+                        (int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
                         5000;
                 if (MovementManager.InMovement)
                 {
