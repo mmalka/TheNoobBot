@@ -13619,6 +13619,7 @@ public class PaladinRetribution
     public readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
     public readonly Spell Judgment = new Spell("Judgment");
     public readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
+    public readonly Spell ExecutionSentence = new Spell("Execution Sentence");
 
     #endregion
 
@@ -13674,42 +13675,41 @@ public class PaladinRetribution
 
     #endregion
 
+    private int curAction = 0;
+
     public PaladinRetribution()
     {
         Main.InternalRange = 5.0f;
-
         UInt64 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
             try
             {
-                if (!ObjectManager.Me.IsDeadMe)
+                if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.IsMounted)
+                    Thread.Sleep(500);
+                else if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance < 41)
                 {
-                    if (!ObjectManager.Me.IsMounted)
+                    if (ObjectManager.Me.Target != lastTarget)
                     {
-                        if (Fight.InFight && ObjectManager.Me.Target > 0)
-                        {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Judgment.IsHostileDistanceGood || Exorcism.IsHostileDistanceGood))
-                            {
-                                Pull();
-                                lastTarget = ObjectManager.Me.Target;
-                            }
-                            if (ObjectManager.Target.GetDistance < 41)
-                                Combat();
-                        }
-                        if (!ObjectManager.Me.IsCast)
-                            Patrolling();
+                        lastTarget = ObjectManager.Me.Target;
+                        Pull();
+                    }
+                    Spell toCast = CombatGCDSpell();
+                    Fight.WaitGCDLoop();
+                    if (toCast != null)
+                    {
+                        toCast.Launch();
+                        Thread.Sleep(Usefuls.Latency);
                     }
                 }
                 else
                     Thread.Sleep(500);
+// Missing Patroling() and other parts of Combat()
             }
             catch
             {
             }
-            Thread.Sleep(100);
         }
     }
 
@@ -13731,16 +13731,102 @@ public class PaladinRetribution
         }
     }
 
+    private Spell CombatGCDSpell()
+    {
+        int timeLeft = SpellManager.GetGCDLeft();
+        System.Diagnostics.Stopwatch timeChecker = new System.Diagnostics.Stopwatch();
+        timeChecker.Start();
+
+        if (ExecutionSentence.KnownSpell && ExecutionSentence.IsHostileDistanceGood &&
+            ExecutionSentence.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return ExecutionSentence;
+        if (MySettings.UseHammerOfJustice && HammerOfJustice.KnownSpell && HammerOfJustice.IsHostileDistanceGood &&
+            ObjectManager.Target.IsStunnable &&
+            HammerOfJustice.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return HammerOfJustice;
+        bool haveDivinePurpose = ObjectManager.Me.HaveBuff(90174);
+        uint myHolyPower = ObjectManager.Me.HolyPower;
+        bool haveInquisitionBuf = Inquisition.HaveBuff;
+        if (MySettings.UseInquisition && Inquisition.KnownSpell && (_inquisitionToUseInPriotiy.IsReady || !haveInquisitionBuf) &&
+            (myHolyPower >= 3 || haveDivinePurpose) &&
+            Inquisition.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+        {
+            _inquisitionToUseInPriotiy = new Timer(1000 * (20 * 3 - 6));
+            return Inquisition;
+        }
+        int nbUnitsAttackMe = ObjectManager.GetNumberAttackPlayer(8);
+        bool isWillbeReadyTemplareDivine = TemplarsVerdict.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds);
+        if (isWillbeReadyTemplareDivine && (nbUnitsAttackMe <= 3 || (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) &&
+            TemplarsVerdict.KnownSpell && (!Inquisition.KnownSpell || haveInquisitionBuf) &&
+            TemplarsVerdict.IsHostileDistanceGood && (haveDivinePurpose || myHolyPower == 5 ||
+            (myHolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+            return TemplarsVerdict;
+        if (isWillbeReadyTemplareDivine && (nbUnitsAttackMe > 3 || (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) &&
+            DivineStorm.KnownSpell && MySettings.UseDivineStorm && (!Inquisition.KnownSpell || haveInquisitionBuf) &&
+            DivineStorm.IsHostileDistanceGood && (haveDivinePurpose || myHolyPower == 5 ||
+            (myHolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+            return DivineStorm;
+        if (MySettings.UseHammerOfWrath && HammerOfWrath.KnownSpell && HammerOfWrath.IsHostileDistanceGood &&
+            HammerOfWrath.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return HammerOfWrath;
+        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsHostileDistanceGood &&
+            Exorcism.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return Exorcism;
+        bool targetHasWeakenedBlows = ObjectManager.Target.HaveBuff(115798);
+        if (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsHostileDistanceGood &&
+            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell ||
+            (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell &&
+            (nbUnitsAttackMe <= 3 && (targetHasWeakenedBlows || !MySettings.RefreshWeakenedBlows)))) &&
+            CrusaderStrike.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return CrusaderStrike;
+        if (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsHostileDistanceGood &&
+            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell ||
+            (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell &&
+            (nbUnitsAttackMe >= 4 || (!targetHasWeakenedBlows && MySettings.RefreshWeakenedBlows)))) &&
+            HammerOfTheRighteous.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return HammerOfTheRighteous;
+        if (MySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsHostileDistanceGood &&
+            Judgment.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return Judgment;
+        if (isWillbeReadyTemplareDivine && (nbUnitsAttackMe <= 3 || (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) &&
+            TemplarsVerdict.KnownSpell && (!Inquisition.KnownSpell || haveInquisitionBuf) &&
+            TemplarsVerdict.IsHostileDistanceGood && (haveDivinePurpose || myHolyPower >= 3))
+            return TemplarsVerdict;
+        if (isWillbeReadyTemplareDivine && (nbUnitsAttackMe > 3 || (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) &&
+            DivineStorm.KnownSpell && (!Inquisition.KnownSpell || haveInquisitionBuf) &&
+            DivineStorm.IsHostileDistanceGood && (haveDivinePurpose || myHolyPower >= 3))
+            return DivineStorm;
+        // Since we have a GCD available and spell to cast, we can use the Sacred Shield. (Loss of DPS if not placed here.)
+        if (MySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsHostileDistanceGood &&
+            SacredShield.IsSpellUsableAndReadyInMs(timeLeft - (int)timeChecker.ElapsedMilliseconds))
+            return SacredShield;
+        Logging.Write("Nothing and " + timeChecker.ElapsedMilliseconds + "ms passed.");
+        return null;
+    }
+
+
     private void Combat()
     {
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
-        Heal();
-        DPSCycle();
-        Buffs();
+        switch (curAction)
+        {
+            case 1:
+                DPSBurst();
+                break;
+            case 6:
+            case 16:
+                Heal();
+                break;
+            case 20:
+                Buffs();
+                break;
+            default:
+                DPSCycle();
+                break;
+        }
+        if (++curAction > 20)
+            curAction = 0;
     }
 
     private void Patrolling()
@@ -13852,6 +13938,8 @@ public class PaladinRetribution
 
     private void Heal()
     {
+        if (ObjectManager.Me.HealthPercent >= 95)
+            return;
         if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat)
         {
             if (MySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
@@ -13962,34 +14050,41 @@ public class PaladinRetribution
 
     private void DPSCycle()
     {
+        if (ExecutionSentence.KnownSpell && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
+        {
+            ExecutionSentence.Launch();
+            return;
+        }
         if (MySettings.UseHammerOfJustice && HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && HammerOfJustice.IsHostileDistanceGood &&
             ObjectManager.Target.IsStunnable)
         {
             HammerOfJustice.Launch();
             return;
         }
-        if (MySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || _inquisitionToUseInPriotiy.IsReady) &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        bool haveDivinePurpose = ObjectManager.Me.HaveBuff(90174);
+        if (MySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (_inquisitionToUseInPriotiy.IsReady || !Inquisition.HaveBuff) &&
+            (ObjectManager.Me.HolyPower >= 3 || haveDivinePurpose))
         {
             Inquisition.Launch();
             _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
+        int nbUnitsAttackMe = ObjectManager.GetNumberAttackPlayer();
+        if ((nbUnitsAttackMe <= 3 ||
              (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell &&
             (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable &&
             TemplarsVerdict.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
+            (haveDivinePurpose || ObjectManager.Me.HolyPower == 5 ||
              (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             TemplarsVerdict.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
+        if ((nbUnitsAttackMe > 3 ||
              (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
             MySettings.UseDivineStorm && (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
             DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
+            (haveDivinePurpose || ObjectManager.Me.HolyPower == 5 ||
              (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             DivineStorm.Launch();
@@ -14026,22 +14121,22 @@ public class PaladinRetribution
             Judgment.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
+        if ((nbUnitsAttackMe <= 3 ||
              (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) &&
             TemplarsVerdict.KnownSpell &&
             (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
             TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+            (haveDivinePurpose || ObjectManager.Me.HolyPower >= 3))
         {
             TemplarsVerdict.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
+        if ((nbUnitsAttackMe > 3 ||
              (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) &&
             DivineStorm.KnownSpell &&
             (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
             DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+            (haveDivinePurpose || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
             return;
