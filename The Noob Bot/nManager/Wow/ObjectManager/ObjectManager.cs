@@ -16,7 +16,6 @@ namespace nManager.Wow.ObjectManager
     {
         private static readonly object Locker = new object();
         private static uint _lastTargetBase;
-        private static uint _lastPetBase;
         // All Objects except Units are in _objectList
         private static List<WoWObject> _objectList;
         // Units and Gameobjects are in separate lists
