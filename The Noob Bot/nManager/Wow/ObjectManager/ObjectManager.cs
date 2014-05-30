@@ -28,7 +28,6 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                _objectList = new List<WoWObject>();
                 ObjectDictionary = new ConcurrentDictionary<ulong, WoWObject>();
                 Me = new WoWPlayer(0);
             }
@@ -90,29 +89,15 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (_lastPetBase > 0)
-                    {
-                        WoWUnit unit = new WoWUnit(_lastPetBase);
-                        if (unit.Health > 0 && (unit.SummonedBy == Me.Guid || unit.CreatedBy == Me.Guid))
-                            return unit;
-                        _lastPetBase = 0;
-                    }
-
-                    ulong guidPet =
-                        Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint) Addresses.Player.petGUID);
-
+                    ulong guidPet = Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
                     if (guidPet > 0)
-                    {
-                        _lastPetBase = GetObjectByGuid(guidPet).GetBaseAddress;
-                        return new WoWUnit(_lastPetBase);
-                    }
+                        return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
+
                     // Now let's try to find other "pets" like Chaman Totems for example
                     WoWUnit u = GetWoWUnitSummonedOrCreatedByMeAndFighting();
                     if (u.IsValid)
-                    {
-                        _lastPetBase = 0; // We don't want this "pet" to be recorded as pet next tick
                         return u;
-                    }
+
                     return new WoWUnit(0);
                 }
                 catch (Exception e)
