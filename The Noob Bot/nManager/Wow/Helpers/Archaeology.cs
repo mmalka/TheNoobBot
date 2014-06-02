@@ -31,7 +31,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static List<int> SurveyList = new List<int> {10103, 10102, 10101};
+        public static List<uint> SurveyList = new List<uint> {10103, 10102, 10101};
         private static List<int> _archaeologyItemsFindList;
 
         public static List<int> ArchaeologyItemsFindList

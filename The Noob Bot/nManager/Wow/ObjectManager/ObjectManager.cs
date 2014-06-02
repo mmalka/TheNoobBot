@@ -932,7 +932,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<WoWGameObject> listWoWGameObject,
-            List<int> displayId)
+            List<uint> displayId)
         {
             try
             {
@@ -952,11 +952,11 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWGameObject>();
         }
 
-        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(int displayId)
+        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(uint displayId)
         {
             try
             {
-                List<int> tListInt = new List<int> {displayId};
+                List<uint> tListInt = new List<uint> {displayId};
                 return GetWoWGameObjectByDisplayId(tListInt);
             }
             catch (Exception e)
@@ -966,7 +966,7 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWGameObject>();
         }
 
-        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<int> displayId)
+        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<uint> displayId)
         {
             try
             {
