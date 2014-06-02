@@ -86,7 +86,8 @@
             buildWowVersion = 0xB94E74,
             gameState = 0xD65B16,
             isLoadingOrConnecting = 0xC958B0,
-            AreaId = 0xB635B0, 
+            AreaId = 0xB595B4,
+            MapTextureId = 0xB635B0,
             zoneMap = 0xD65B0C,
             subZoneMap = 0xD65B08,
             // saving

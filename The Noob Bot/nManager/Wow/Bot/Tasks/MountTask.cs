@@ -92,12 +92,8 @@ namespace nManager.Wow.Bot.Tasks
             {
                 // We are in Vashjir and the Abyssal Seahorse is selected
                 if (_aquaMount == _localizedAbysalMountName)
-                {
-                    string luaResult = Others.GetRandomString(Others.Random(4, 10));
-                    string luaCode = "SetMapToCurrentZone() " + luaResult + ",_=GetMapInfo()";
-                    Lua.LuaDoString(luaCode);
-                    bool vashjir = Lua.GetLocalizedText(luaResult).Contains("Vashjir");
-                    if (vashjir)
+                {   //  Kelp'thar Forest       || Abyssal Depths         || Shimmering Expanse
+                    if (Usefuls.AreaId == 4815 || Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144)
                     {
                         return MountCapacity.Swimm;
                     }
