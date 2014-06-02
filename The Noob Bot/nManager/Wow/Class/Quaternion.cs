@@ -66,7 +66,7 @@ namespace nManager.Wow.Class
         {
             x = ix;
             y = iy;
-            y = iz;
+            z = iz;
             w = iw;
         }
 
