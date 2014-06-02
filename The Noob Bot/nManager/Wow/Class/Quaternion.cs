@@ -84,8 +84,8 @@ namespace nManager.Wow.Class
             z = (packedData << 43 >> 43) * b;
 
             float W = x * x + y * y + z * z;
-            if (System.Math.Abs(W - 1.0f) >= b)
-                w = (float)System.Math.Sqrt(1.0f - W);
+            if (Math.Abs(W - 1.0f) >= b)
+                w = (float) Math.Sqrt(1.0f - W);
             else
                 w = 0.0f;
         }
