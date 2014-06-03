@@ -104,8 +104,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     Quaternion q = Rotations;
-                    float angle = (float)System.Math.Atan2(0.0 + (q.x * q.y + q.z * q.w) * 2.0, 1.0 - (q.y * q.y + q.z * q.z) * 2.0);
-                    return (angle < 0.0f ? angle + (float)(2 * System.Math.PI) : angle);
+                    float angle = (float) System.Math.Atan2(0.0 + (q.X * q.Y + q.Z * q.W) * 2.0, 1.0 - (q.Y * q.Y + q.Z * q.Z) * 2.0);
+                    return (angle < 0.0f ? angle + (float) (2 * System.Math.PI) : angle);
                 }
                 catch (Exception e)
                 {
@@ -219,7 +219,7 @@ namespace nManager.Wow.ObjectManager
         public uint QuestItem3 { get { return QuestItem(2); } }
         public uint QuestItem4 { get { return QuestItem(3); } }
 
-        public uint Data(uint offset)
+        private uint Data(uint offset)
         {
             try
             {

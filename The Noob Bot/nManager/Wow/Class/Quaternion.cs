@@ -11,83 +11,84 @@ namespace nManager.Wow.Class
     [Serializable]
     public class Quaternion
     {
-
         /// <summary>
-        /// Gets or sets the x Rotation.
+        /// Get the X Cartesian Rotation.
         /// </summary>
         /// <value>
-        /// The X Position.
+        /// The X Cartesian Rotation.
         /// </value>
-        public float x { get; set; }
+        public float X { get; private set; }
 
         /// <summary>
-        /// Gets or sets the y Rotation.
+        /// Get the Y Cartesian Rotation.
         /// </summary>
         /// <value>
-        /// The X Position.
+        /// The Y Cartesian Rotation.
         /// </value>
-        public float y { get; set; }
+        public float Y { get; private set; }
 
         /// <summary>
-        /// Gets or sets the z Rotation.
+        /// Get the Z Eucliden Rotation.
         /// </summary>
         /// <value>
-        /// The X Position.
+        /// The Z Eucliden Rotation.
         /// </value>
-        public float z { get; set; }
+        public float Z { get; private set; }
 
         /// <summary>
-        /// Gets or sets the w Rotation.
+        /// Get the W Cartesian Rotation.
         /// </summary>
         /// <value>
-        /// The X Position.
+        /// The W Cartesian Rotation.
         /// </value>
-        public float w { get; set; }
+        public float W { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Quaternion"/> class.
         /// </summary>
-        public Quaternion()
+        /// <param name="x">The x Cartesian rotation.</param>
+        /// <param name="y">The y Cartesian rotation.</param>
+        /// <param name="z">The z Eucliden rotation.</param>
+        /// <param name="w">The w Cartesian rotation.</param>
+        public Quaternion(float x, float y, float z, float w)
         {
-            x = 0;
-            y = 0;
-            y = 0;
-            w = 0;
+            X = x;
+            Y = y;
+            Z = z;
+            W = w;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Quaternion"/> class.
         /// </summary>
-        /// <param name="x">The x rotation.</param>
-        /// <param name="y">The y rotation.</param>
-        /// <param name="z">The z rotation.</param>
-        /// <param name="w">The w rotation.</param>
-        public Quaternion(float ix, float iy, float iz, float iw)
+        /// <param name="w">The w Cartesian rotation.</param>
+        /// <param name="v">The v 3D vector for axis of rotation.</param>
+        public Quaternion(float w, Point v)
         {
-            x = ix;
-            y = iy;
-            z = iz;
-            w = iw;
+            X = v.X;
+            Y = v.Y;
+            Z = v.Z;
+            W = w;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Quaternion"/> class from a packed int64.
         /// </summary>
-        /// /// <param name="packedData">The packed int64 data.</param>
+        /// <param name="packedData">The packed int64 data.</param>
         public Quaternion(Int64 packedData)
         {
             const float a = 1 / 2097152.0f;
             const float b = 1 / 1048576.0f;
 
-            x = (packedData >> 42) * a;
-            y = (packedData << 22 >> 43) * b;
-            z = (packedData << 43 >> 43) * b;
+            X = (packedData >> 42) * a;
+            Y = (packedData << 22 >> 43) * b;
+            Z = (packedData << 43 >> 43) * b;
 
-            double W = x * x + y * y + z * z;
-            if (Math.Abs(W - 1.0) >= b)
-                w = (float) Math.Sqrt(1.0 - W);
+            double w = X * X + Y * Y + Z * Z;
+            if (Math.Abs(w - 1.0) >= b)
+                W = (float) Math.Sqrt(1.0 - w);
             else
-                w = 0.0f;
+                W = 0.0f;
         }
     }
 }
