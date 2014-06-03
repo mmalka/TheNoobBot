@@ -162,8 +162,8 @@
             GAMEOBJECT_FIELD_X = 0x1F4,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
-            PackedRotationQuaternion = 0x108,
-            TransformationMatrice = 0x1C4, // about CGObject_C Virtual Fct 52
+            PackedRotationQuaternion = 0x108, // I have no idea about what fct is behind this
+            TransformationMatrice = 0x1C4, // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x1C0, // CGGameObject_C::GetName
             CachedName = 0xB0, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
