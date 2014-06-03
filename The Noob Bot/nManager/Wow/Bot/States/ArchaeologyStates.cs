@@ -323,7 +323,7 @@ namespace nManager.Wow.Bot.States
                         myState = LocState.Survey;
                         if (ObjectManager.ObjectManager.Me.InCombat)
                             return;
-                        Thread.Sleep(1000 + Usefuls.Latency); // let's wait a fair bit
+                        Thread.Sleep(1750 + Usefuls.Latency); // let's wait a fair bit
                         nbCastSurveyError++;
                         if (nbCastSurveyError > 3)
                         {
@@ -437,7 +437,7 @@ namespace nManager.Wow.Bot.States
                         {
                             float d = distance;
                             p0 = new Point(t.Position);
-                            angle = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
+                            angle = t.Orientation;
                             p = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
 
                             p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
