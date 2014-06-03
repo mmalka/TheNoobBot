@@ -754,8 +754,7 @@ namespace nManager.Wow.Helpers
                         ObjectManager.ObjectManager.Me.Position.Z, 0,
                         (int) ClickToMoveType.Move, 0.5f);
                     Logging.WriteDebug("Flying UnStuck - Reset position to our current location.");
-                    // Reset position to our current location and StopMove.
-                    //StopMove();
+                    // Reset position to our current location.
                 }
                 MovementsAction.Ascend(true);
                 Thread.Sleep(Others.Random(200, 500));
@@ -853,10 +852,9 @@ namespace nManager.Wow.Helpers
                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
                                 (int) ClickToMoveType.Move, 0.5f);
                             Logging.WriteDebug("Flying UnStuck - Reset position to our current location and elevate");
-                            // Reset position to our current location and StopMove.
-                            //StopMove();
+                            // Reset position to our current location and alevate a bit.
                             MovementsAction.Ascend(true);
-                            Thread.Sleep(Others.Random(200, 500));
+                            Thread.Sleep(Others.Random(100, 300));
                             MovementsAction.Ascend(false);
                         }
 
