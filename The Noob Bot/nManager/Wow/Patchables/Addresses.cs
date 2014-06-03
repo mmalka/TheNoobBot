@@ -86,7 +86,8 @@
             buildWowVersion = 0xB94E74,
             gameState = 0xD65B16,
             isLoadingOrConnecting = 0xC958B0,
-            AreaId = 0xB635B0, 
+            AreaId = 0xB595B4,
+            MapTextureId = 0xB635B0,
             zoneMap = 0xD65B0C,
             subZoneMap = 0xD65B08,
             // saving
@@ -161,11 +162,13 @@
             GAMEOBJECT_FIELD_X = 0x1F4,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
+            PackedRotationQuaternion = 0x108, // I have no idea about what fct is behind this
+            TransformationMatrice = 0x1C4, // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x1C0, // CGGameObject_C::GetName
             CachedName = 0xB0, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
-            CachedData1 = 0x18,
-            CachedData8 = 0x34, // (Data0 + 8 * 0x04)
+            CachedSize = CachedData0 + (0x04 * 32), // just after the 32 data uint32
+            CachedQuestItem1 = CachedSize + 0x04, // just after the size float
         }
 
         /// <summary>

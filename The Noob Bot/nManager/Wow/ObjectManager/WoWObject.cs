@@ -88,7 +88,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (BaseAddress > 0)
+                    if (BaseAddress != 0)
                         return GetDescriptor<UInt64>(Descriptors.ObjectFields.Guid);
                     return 0;
                 }

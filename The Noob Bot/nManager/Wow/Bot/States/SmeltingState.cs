@@ -80,7 +80,7 @@ namespace nManager.Wow.Bot.States
 
 
                     MovementManager.Go(pointssmelting);
-                    Timer timer = new Timer(((int) Math.DistanceListPoint(pointssmelting)/3*1000) + 5000);
+                    Timer timer = new Timer((int) (Math.DistanceListPoint(pointssmelting)/3*1000) + 5000);
                     Thread.Sleep(700);
                     while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
                            !(ObjectManager.ObjectManager.Me.InCombat &&

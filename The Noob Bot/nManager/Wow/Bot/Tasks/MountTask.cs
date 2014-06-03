@@ -91,13 +91,14 @@ namespace nManager.Wow.Bot.Tasks
             if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) && Usefuls.IsSwimming && _aquaMount != string.Empty)
             {
                 // We are in Vashjir and the Abyssal Seahorse is selected
-                if (_aquaMount == _localizedAbysalMountName &&
-                    (Usefuls.AreaId == 5146 || Usefuls.AreaId == 4815 ||
-                     Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144 || Usefuls.AreaId == 615 || Usefuls.AreaId == 610 || Usefuls.AreaId == 614))
-                {
-                    return MountCapacity.Swimm;
+                if (_aquaMount == _localizedAbysalMountName)
+                {   //  Kelp'thar Forest       || Abyssal Depths         || Shimmering Expanse
+                    if (Usefuls.AreaId == 4815 || Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144)
+                    {
+                        return MountCapacity.Swimm;
+                    }
                 }
-                if (_aquaMount != _localizedAbysalMountName)
+                else // (_aquaMount != _localizedAbysalMountName)
                 {
                     return MountCapacity.Swimm;
                 }

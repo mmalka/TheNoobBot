@@ -16,15 +16,17 @@ namespace nManager.Wow.ObjectManager
     {
         private static readonly object Locker = new object();
         private static uint _lastTargetBase;
-        private static uint _lastPetBase;
+        // All Objects except Units are in _objectList
         private static List<WoWObject> _objectList;
+        // Units and Gameobjects are in separate lists
+        private static List<WoWUnit> _unitList;
+        private static List<WoWGameObject> _gameobjectList;
         public static List<ulong> BlackListMobAttack = new List<ulong>();
 
         static ObjectManager()
         {
             try
             {
-                _objectList = new List<WoWObject>();
                 ObjectDictionary = new ConcurrentDictionary<ulong, WoWObject>();
                 Me = new WoWPlayer(0);
             }
@@ -86,18 +88,15 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (_lastPetBase > 0)
-                    {
-                        if (new WoWUnit(_lastPetBase).Health > 0 && new WoWUnit(_lastPetBase).SummonedBy == Me.Guid)
-                            return new WoWUnit(_lastPetBase);
-                        _lastPetBase = 0;
-                    }
-
-                    ulong guidPet =
-                        Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint) Addresses.Player.petGUID);
-
+                    ulong guidPet = Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
                     if (guidPet > 0)
                         return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
+
+                    // Now let's try to find other "pets" like Chaman Totems for example
+                    WoWUnit u = GetWoWUnitSummonedOrCreatedByMeAndFighting();
+                    if (u.IsValid)
+                        return u;
+
                     return new WoWUnit(0);
                 }
                 catch (Exception e)
@@ -126,10 +125,25 @@ namespace nManager.Wow.ObjectManager
                     // Clear out old references.
                     List<ulong> toRemove = new List<ulong>();
                     _objectList = new List<WoWObject>();
+                    _unitList = new List<WoWUnit>();
+                    _gameobjectList = new List<WoWGameObject>();
                     foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
                     {
                         if (o.Value.IsValid)
-                            _objectList.Add(o.Value);
+                        {
+                            switch (o.Value.Type)
+                            {
+                                case WoWObjectType.Unit:
+                                    _unitList.Add(new WoWUnit(o.Value.GetBaseAddress));
+                                    break;
+                                case WoWObjectType.GameObject:
+                                    _gameobjectList.Add(new WoWGameObject(o.Value.GetBaseAddress));
+                                    break;
+                                default:
+                                    _objectList.Add(o.Value);
+                                    break;
+                            }
+                        }
                         else
                             toRemove.Add(o.Key);
                     }
@@ -271,10 +285,8 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWUnit> result = new List<WoWUnit>();
-                foreach (WoWObject o in ObjectList)
-                    if (o.Type == WoWObjectType.Unit) result.Add(new WoWUnit(o.GetBaseAddress));
-                return result;
+                lock (Locker)
+                    return _unitList.ToList();
             }
             catch (Exception e)
             {
@@ -289,7 +301,7 @@ namespace nManager.Wow.ObjectManager
             {
                 List<WoWUnit> result = new List<WoWUnit>();
                 foreach (WoWUnit u in GetObjectWoWUnit())
-                    if (u.InCombat && u.Attackable) result.Add(new WoWUnit(u.GetBaseAddress));
+                    if (u.InCombat && u.Attackable) result.Add(u);
                 return result;
             }
             catch (Exception e)
@@ -369,11 +381,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWGameObject> result = new List<WoWGameObject>();
-                foreach (WoWObject o in ObjectList)
+                lock (Locker)
                 {
-                    if (o.Type == WoWObjectType.GameObject)
+                    foreach (WoWGameObject go in _gameobjectList)
                     {
-                        WoWGameObject go = new WoWGameObject(o.GetBaseAddress);
                         if (go.GOType == reqtype)
                             result.Add(go);
                     }
@@ -391,11 +402,8 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWGameObject> result = new List<WoWGameObject>();
-                foreach (WoWObject o in ObjectList)
-                    if (o.Type == WoWObjectType.GameObject)
-                        result.Add(new WoWGameObject(o.GetBaseAddress));
-                return result;
+                lock (Locker)
+                    return _gameobjectList.ToList();
             }
             catch (Exception e)
             {
@@ -766,6 +774,19 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
+        public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
+        {
+            try
+            {
+                return GetWoWUnitByEntry(GetObjectWoWUnit(), entrys);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitByEntry(List<int> entrys): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
         public static List<WoWUnit> GetWoWUnitByEntry(int entry)
         {
             try
@@ -811,17 +832,40 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
+        public static WoWUnit GetWoWUnitSummonedOrCreatedByMeAndFighting(List<WoWUnit> listWoWUnit)
         {
             try
             {
-                return GetWoWUnitByEntry(GetObjectWoWUnit(), entrys);
+                // We could do better by iterating listWoWUnit 2 times to get all "pets" then attackers
+                // but it's a lot slower and this code works fine even with totems, they have the proper target
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if ((a.SummonedBy == Me.Guid || a.CreatedBy == Me.Guid) && a.Target != 0)
+                    {
+                        WoWUnit u = new WoWUnit(GetObjectByGuid(a.Target).GetBaseAddress);
+                        if (u.IsValid && u.InCombat && u.Target == a.Guid)
+                            return a;
+                    }
+                }
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWUnitByEntry(List<int> entrys): " + e);
+                Logging.WriteError("GetWoWUnitSummonedOrCreatedByMeAndFighting(List<WoWUnit> listWoWUnit): " + e);
             }
-            return new List<WoWUnit>();
+            return new WoWUnit(0);
+        }
+
+        public static WoWUnit GetWoWUnitSummonedOrCreatedByMeAndFighting()
+        {
+            try
+            {
+                return GetWoWUnitSummonedOrCreatedByMeAndFighting(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitSummonedOrCreatedByMeAndFighting(): " + e);
+            }
+            return new WoWUnit(0);
         }
 
         public static List<WoWGameObject> GetWoWGameObjectByName(List<WoWGameObject> listWoWGameObject,
@@ -888,7 +932,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<WoWGameObject> listWoWGameObject,
-            List<int> displayId)
+            List<uint> displayId)
         {
             try
             {
@@ -908,11 +952,11 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWGameObject>();
         }
 
-        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(int displayId)
+        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(uint displayId)
         {
             try
             {
-                List<int> tListInt = new List<int> {displayId};
+                List<uint> tListInt = new List<uint> {displayId};
                 return GetWoWGameObjectByDisplayId(tListInt);
             }
             catch (Exception e)
@@ -922,7 +966,7 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWGameObject>();
         }
 
-        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<int> displayId)
+        public static List<WoWGameObject> GetWoWGameObjectByDisplayId(List<uint> displayId)
         {
             try
             {
@@ -1242,6 +1286,7 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWUnit> objectReturn = new List<WoWUnit>();
+                bool inGroup = Party.IsInGroup();
                 foreach (WoWUnit a in listWoWUnit)
                 {
                     if ((!BlackListMobAttack.Contains(a.Guid)) || (a.GetMove && !TraceLine.TraceLineGo(a.Position)))
@@ -1249,7 +1294,7 @@ namespace nManager.Wow.ObjectManager
                         bool petAttacked = false;
                         try
                         {
-                            if (Pet.GetBaseAddress > 0)
+                            if (Pet.IsValid)
                                 if (a.InCombat && !a.IsDead && a.Target == Pet.Guid && !Pet.IsDead)
                                     petAttacked = true;
                         }
@@ -1257,8 +1302,13 @@ namespace nManager.Wow.ObjectManager
                         {
                             Logging.WriteError("GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)#1: " + e);
                         }
-                        if ((a.IsTargetingMe && a.InCombat && !a.IsDead) || petAttacked)
-                            objectReturn.Add(a);
+                        if (!a.IsDead && a.InCombat)
+                        {
+                            if (petAttacked || a.IsTargetingMe)
+                                objectReturn.Add(a);
+                            else if (inGroup && a.Attackable && a.GetDistance < (a.AggroDistance * 0.7f))
+                                objectReturn.Add(a);
+                        }
                     }
                 }
                 return objectReturn;

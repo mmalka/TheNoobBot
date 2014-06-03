@@ -17,7 +17,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                woWUnits = woWUnits.OrderBy(x => x.GetDistance).ToList();
+                woWUnits = woWUnits.OrderBy(x => x.GetDistance);
                 foreach (WoWUnit wowUnit in woWUnits)
                 {
                     try
@@ -31,7 +31,7 @@ namespace nManager.Wow.Bot.Tasks
                             MovementManager.StopMove();
                             Thread.Sleep(100);
 
-                            if ((int) wowUnit.GetBaseAddress > 0)
+                            if (wowUnit.IsValid)
                             {
                                 bool looted = false;
                                 if (wowUnit.IsLootable)
@@ -52,8 +52,8 @@ namespace nManager.Wow.Bot.Tasks
                                     points.Add(ObjectManager.ObjectManager.Me.Position);
                                     points.Add(wowUnit.Position);
                                 }
-                                Timer timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 5000);
-                                while (!ObjectManager.ObjectManager.Me.IsDeadMe && (int) wowUnit.GetBaseAddress > 0 &&
+                                Timer timer = new Timer((int) (Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                                while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
                                        Products.Products.IsStarted &&
                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
                                        !(ObjectManager.ObjectManager.Me.InCombat &&

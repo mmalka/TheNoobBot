@@ -43,16 +43,14 @@ namespace Fisherbot.Bot
                 if (FisherbotSetting.CurrentSetting.FishSchool)
                 {
                     // Get farm:
-                    _node = new WoWGameObject(0);
                     _node =
                         ObjectManager.GetNearestWoWGameObject(
                             ObjectManager.GetWoWGameObjectOfType(nManager.Wow.Enums.WoWGameObjectType.FishingHole));
 
-                    if (_node.IsValid && _node.GetBaseAddress > 0)
-                        if (!nManagerSetting.IsBlackListedZone(_node.Position) &&
-                            _node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                            !nManagerSetting.IsBlackListed(_node.Guid) && _node.IsValid)
-                            return true;
+                    if (_node.IsValid && !nManagerSetting.IsBlackListedZone(_node.Position) &&
+                        _node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
+                        !nManagerSetting.IsBlackListed(_node.Guid))
+                        return true;
                 }
                 else
                 {
@@ -157,8 +155,7 @@ namespace Fisherbot.Bot
                 int nbIsSwimming = 0;
                 timer = new nManager.Helpful.Timer(1000*8);
                 while ((Usefuls.IsSwimming || _node.GetDistance > DistanceMax || _node.GetDistance < DistanceMin) &&
-                       (int) _node.GetBaseAddress > 0 && Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
-                       !ObjectManager.Me.InCombat && !timer.IsReady)
+                       Products.IsStarted && !ObjectManager.Me.IsDeadMe && !ObjectManager.Me.InCombat && !timer.IsReady)
                 {
                     if (nbIsSwimming*100 > TimeTryFindGoodPos)
                     {

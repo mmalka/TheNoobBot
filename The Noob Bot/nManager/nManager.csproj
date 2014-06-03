@@ -33,7 +33,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -43,7 +44,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Others\fasmdll_managed.dll</HintPath>
     </Reference>
-    <Reference Include="SlimDX, Version=2.0.7.41, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
+    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Others\SlimDX.dll</HintPath>
     </Reference>
@@ -150,6 +151,7 @@
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
+    <Compile Include="Wow\Class\Quaternion.cs" />
     <Compile Include="Wow\Enums\MovementFlags.cs" />
     <Compile Include="Wow\Enums\WoWEventsType.cs" />
     <Compile Include="Wow\Enums\WoWGender.cs" />

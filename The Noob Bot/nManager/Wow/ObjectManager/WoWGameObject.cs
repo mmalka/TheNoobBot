@@ -42,13 +42,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int DisplayId
+        public uint DisplayId
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.GameObjectFields.DisplayID);
+                    return GetDescriptor<uint>(Descriptors.GameObjectFields.DisplayID);
                 }
                 catch (Exception e)
                 {
@@ -94,6 +94,24 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("GameObjectFields > Position: " + e);
                 }
                 return new Point();
+            }
+        }
+
+        public float Orientation
+        {
+            get
+            {
+                try
+                {
+                    Quaternion q = Rotations;
+                    float angle = (float) System.Math.Atan2(0.0 + (q.X * q.Y + q.Z * q.W) * 2.0, 1.0 - (q.Y * q.Y + q.Z * q.Z) * 2.0);
+                    return (angle < 0.0f ? angle + (float) (2 * System.Math.PI) : angle);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObject > Orientation: " + e);
+                    return 0.0f;
+                }
             }
         }
 
@@ -149,78 +167,108 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public float ParentRotation
+        public Quaternion Rotations
         {
             get
             {
-                try
-                {
-                    return GetDescriptor<float>(Descriptors.GameObjectFields.ParentRotation);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("GameObjectFields > ParentRotation: " + e);
-                }
-                return 0;
+                Int64 packedQuaternion = Memory.WowMemory.Memory.ReadInt64(BaseAddress +
+                    (uint)Addresses.GameObject.PackedRotationQuaternion);
+                return new Quaternion(packedQuaternion);
             }
         }
 
-        public uint Data0
+        public float Size
         {
             get
             {
                 try
                 {
                     return
-                        Memory.WowMemory.Memory.ReadUInt(
-                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
-                            (uint) Addresses.GameObject.CachedData0);
+                        Memory.WowMemory.Memory.ReadFloat(
+                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) +
+                            (uint)Addresses.GameObject.CachedSize);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("GameObject > data0: " + e);
+                    Logging.WriteError("GameObject > Size: " + e);
+                    return 0;
                 }
+            }
+        }
+
+        private uint QuestItem(uint offset)
+        {
+            try
+            {
+                if (offset > 3)
+                    return 0;
+                return
+                    Memory.WowMemory.Memory.ReadUInt(
+                        Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) +
+                        (uint)Addresses.GameObject.CachedQuestItem1 + (0x04 * offset));
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GameObject > Data(" + offset + "): " + e);
                 return 0;
             }
         }
 
-        public uint Data1
+        public uint QuestItem1 { get { return QuestItem(0); } }
+        public uint QuestItem2 { get { return QuestItem(1); } }
+        public uint QuestItem3 { get { return QuestItem(2); } }
+        public uint QuestItem4 { get { return QuestItem(3); } }
+
+        private uint Data(uint offset)
         {
-            get
+            try
             {
-                try
-                {
-                    return
-                        Memory.WowMemory.Memory.ReadUInt(
-                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
-                            (uint) Addresses.GameObject.CachedData1);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("GameObject > data1: " + e);
-                }
+                if (offset > 31)
+                    return 0;
+                return
+                    Memory.WowMemory.Memory.ReadUInt(
+                        Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) +
+                        (uint)Addresses.GameObject.CachedData0 + (0x04 * offset));
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GameObject > Data(" + offset + "): " + e);
                 return 0;
             }
         }
 
-        public uint Data8
-        {
-            get
-            {
-                try
-                {
-                    return
-                        Memory.WowMemory.Memory.ReadUInt(
-                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
-                            (uint) Addresses.GameObject.CachedData8);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("GameObject > data8: " + e);
-                }
-                return 0;
-            }
-        }
+        public uint Data0 { get { return Data(0); } }
+        public uint Data1 { get { return Data(1); } }
+        public uint Data2 { get { return Data(2); } }
+        public uint Data3 { get { return Data(3); } }
+        public uint Data4 { get { return Data(4); } }
+        public uint Data5 { get { return Data(5); } }
+        public uint Data6 { get { return Data(6); } }
+        public uint Data7 { get { return Data(7); } }
+        public uint Data8 { get { return Data(8); } }
+        public uint Data9 { get { return Data(9); } }
+        public uint Data10 { get { return Data(10); } }
+        public uint Data11 { get { return Data(11); } }
+        public uint Data12 { get { return Data(12); } }
+        public uint Data13 { get { return Data(13); } }
+        public uint Data14 { get { return Data(14); } }
+        public uint Data15 { get { return Data(15); } }
+        public uint Data16 { get { return Data(16); } }
+        public uint Data17 { get { return Data(17); } }
+        public uint Data18 { get { return Data(18); } }
+        public uint Data19 { get { return Data(19); } }
+        public uint Data20 { get { return Data(20); } }
+        public uint Data21 { get { return Data(21); } }
+        public uint Data22 { get { return Data(22); } }
+        public uint Data23 { get { return Data(23); } }
+        public uint Data24 { get { return Data(24); } }
+        public uint Data25 { get { return Data(25); } }
+        public uint Data26 { get { return Data(26); } }
+        public uint Data27 { get { return Data(27); } }
+        public uint Data28 { get { return Data(28); } }
+        public uint Data29 { get { return Data(29); } }
+        public uint Data30 { get { return Data(30); } }
+        public uint Data31 { get { return Data(31); } }
 
         public WoWGameObjectType GOType
         {

@@ -433,9 +433,10 @@ namespace nManager.Wow.Helpers
                         while (MountTask.OnFlyMount() && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
                             MovementsAction.Ascend(true);
-                            Thread.Sleep(50);
+                            Thread.Sleep(200);
                             MovementsAction.Ascend(false);
                         }
+
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 15 && _movement)
                         {
                             idPoint++;
@@ -505,7 +506,7 @@ namespace nManager.Wow.Helpers
                         while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
                             MovementsAction.Ascend(true);
-                            Thread.Sleep(50);
+                            Thread.Sleep(200);
                             MovementsAction.Ascend(false);
                         }
 
@@ -753,12 +754,11 @@ namespace nManager.Wow.Helpers
                         ObjectManager.ObjectManager.Me.Position.Y,
                         ObjectManager.ObjectManager.Me.Position.Z, 0,
                         (int) ClickToMoveType.Move, 0.5f);
-                    Logging.WriteDebug("Flying UnStuck - Reset position to our current location and StopMove.");
-                    // Reset position to our current location and StopMove.
-                    StopMove();
+                    Logging.WriteDebug("Flying UnStuck - Reset position to our current location.");
+                    // Reset position to our current location.
                 }
                 MovementsAction.Ascend(true);
-                Thread.Sleep(Others.Random(500, 1000));
+                Thread.Sleep(Others.Random(200, 500));
                 MovementsAction.Ascend(false);
                 Logging.WriteDebug("Flying UnStuck - Jump attempt done.");
 
@@ -852,9 +852,11 @@ namespace nManager.Wow.Helpers
                                 ObjectManager.ObjectManager.Me.Position.Y,
                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
                                 (int) ClickToMoveType.Move, 0.5f);
-                            Logging.WriteDebug("Flying UnStuck - Reset position to our current location and StopMove.");
-                            // Reset position to our current location and StopMove.
-                            StopMove();
+                            Logging.WriteDebug("Flying UnStuck - Reset position to our current location and elevate");
+                            // Reset position to our current location and alevate a bit.
+                            MovementsAction.Ascend(true);
+                            Thread.Sleep(Others.Random(100, 300));
+                            MovementsAction.Ascend(false);
                         }
 
                         if (i == 7)
@@ -1089,7 +1091,7 @@ namespace nManager.Wow.Helpers
                         Logging.WriteError("ThreadMoveTo()#1: " + exception);
                         _loopMoveTo = false;
                     }
-                    Thread.Sleep(70);
+                    Thread.Sleep(50);
                 }
             }
             catch (Exception exception)
@@ -1545,7 +1547,7 @@ namespace nManager.Wow.Helpers
                 float groundDistance = Math.DistanceListPoint(points);
                 _cacheTargetAddress = baseAddress;
                 _updatePathSpecialTimer = new Timer(2000);
-                _maxTimerForStuckDetection = new Timer(((int) groundDistance/3*1000) + 4000);
+                _maxTimerForStuckDetection = new Timer((int) (groundDistance/3*1000) + 4000);
                 Go(points);
                 return baseAddress;
             }
@@ -1583,7 +1585,7 @@ namespace nManager.Wow.Helpers
                         List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                         if (!patherResult)
                             points.Add(Target.Position);
-                        _maxTimerForStuckDetection = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
+                        _maxTimerForStuckDetection = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 4000);
                         Go(points);
                         return baseAddress;
                     }

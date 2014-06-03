@@ -106,28 +106,22 @@ namespace nManager.Wow.Bot.Tasks
 
                             if (objBobber.IsValid)
                             {
-                                if (objBobber.GetBaseAddress > 0)
-                                {
-                                    WoWGameObject node = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
-                                    if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid &&
-                                        _guidNode > 0 && _precision)
-                                        continue;
+                                WoWGameObject node = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
+                                if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid &&
+                                    _guidNode > 0 && _precision)
+                                    continue;
 
-                                    while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
-                                           (int) objBobber.GetBaseAddress > 0 &&
-                                           1 !=
-                                           Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) Patchables.Addresses.Fishing.BobberHasMoved))
-                                    {
-                                        Thread.Sleep(50);
-                                        Application.DoEvents();
-                                    }
-                                    if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
-                                        (int) objBobber.GetBaseAddress > 0)
-                                    {
-                                        Interact.InteractWith(objBobber.GetBaseAddress);
-                                        Statistics.Farms++;
-                                        Others.Wait(1000);
-                                    }
+                                while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid &&
+                                        1 != Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) Patchables.Addresses.Fishing.BobberHasMoved))
+                                {
+                                    Thread.Sleep(50);
+                                    Application.DoEvents();
+                                }
+                                if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid)
+                                {
+                                    Interact.InteractWith(objBobber.GetBaseAddress);
+                                    Statistics.Farms++;
+                                    Others.Wait(1000);
                                 }
                             }
                         }

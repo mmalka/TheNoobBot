@@ -69,7 +69,7 @@ namespace nManager.Wow.Helpers
                     if (!resultSucces && !Usefuls.IsFlying && MountTask.GetMountCapacity() >= MountCapacity.Fly)
                         MountTask.Mount();
                     MovementManager.Go(points);
-                    timer = Others.Times + ((int) Math.DistanceListPoint(points)/3*1000) + 15000;
+                    timer = Others.Times + (int) (Math.DistanceListPoint(points)/3*1000) + 15000;
 
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
                            targetNpc.Health > 0 && targetNpc.IsValid &&
@@ -105,7 +105,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
                 timer = Others.Times +
-                        ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
+                        (int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
                         5000;
                 if (MovementManager.InMovement)
                 {
@@ -123,7 +123,7 @@ namespace nManager.Wow.Helpers
                     MovementManager.StopMoveTo();
                 }
                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
-                       targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
+                       targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
                     if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe &&
@@ -270,8 +270,7 @@ namespace nManager.Wow.Helpers
                         ObjectManager.ObjectManager.Me.Target = targetNpc.Guid;
                     }
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid &&
-                           InFight &&
-                           targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
+                           InFight && targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                     {
                         // Target Pos Verif
                         if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
@@ -326,6 +325,18 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("StopFight(): " + exception);
                 InFight = false;
             }
+        }
+
+        public static void WaitGCDLoop()
+        {
+            if (ObjectManager.ObjectManager.Me.InCombat)
+            {
+                int gcdleft = SpellManager.GetGCDLeft();
+                if (gcdleft >= 0)
+                    Thread.Sleep(gcdleft);
+            }
+            else
+                Thread.Sleep(1000);
         }
     }
 }

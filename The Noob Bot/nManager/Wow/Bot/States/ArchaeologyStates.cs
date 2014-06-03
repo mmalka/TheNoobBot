@@ -81,7 +81,7 @@ namespace nManager.Wow.Bot.States
                 ObjectManager.WoWGameObject u =
                     ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
-                if (u.GetBaseAddress > 0)
+                if (u.IsValid)
                     return true;
 
                 List<Digsite> listDigsitesZone = Archaeology.GetDigsitesZoneAvailable();
@@ -179,7 +179,7 @@ namespace nManager.Wow.Bot.States
                     ObjectManager.WoWGameObject t =
                         ObjectManager.ObjectManager.GetNearestWoWGameObject(
                             ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
-                    if (t.GetBaseAddress > 0) // If found then loot
+                    if (t.IsValid) // If found then loot
                     {
                         nbCastSurveyError = 0;
                         _lastGreenPosition = new Point();
@@ -308,7 +308,7 @@ namespace nManager.Wow.Bot.States
                     nbLootAttempt = 0;
                     t = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(Archaeology.SurveyList));
-                    if (t.GetBaseAddress <= 0 || myState == LocState.GoingNextPoint ||
+                    if (t.GetBaseAddress == 0 || myState == LocState.GoingNextPoint ||
                         // recast if we moved even if last is still spawned
                         myState == LocState.Looting)
                         // after we looted we need to recast survey spell, even if the previous one is still spawned
@@ -323,7 +323,7 @@ namespace nManager.Wow.Bot.States
                         myState = LocState.Survey;
                         if (ObjectManager.ObjectManager.Me.InCombat)
                             return;
-                        Thread.Sleep(500 + Usefuls.Latency); // let's wait a fair bit
+                        Thread.Sleep(1750 + Usefuls.Latency); // let's wait a fair bit
                         nbCastSurveyError++;
                         if (nbCastSurveyError > 3)
                         {
@@ -437,7 +437,7 @@ namespace nManager.Wow.Bot.States
                         {
                             float d = distance;
                             p0 = new Point(t.Position);
-                            angle = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
+                            angle = t.Orientation;
                             p = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
 
                             p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
