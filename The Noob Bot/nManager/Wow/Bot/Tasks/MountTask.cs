@@ -279,10 +279,11 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMoveTo();
                     Thread.Sleep(100);
                     if (Usefuls.IsSwimming)
-                    {
                         Logging.WriteNavigator("Going out of water");
+                    while (Usefuls.IsSwimming)
+                    {
                         MovementsAction.Ascend(true);
-                        Thread.Sleep(1750);
+                        Thread.Sleep(500);
                         MovementsAction.Ascend(false);
                     }
                     if (Usefuls.IsOutdoors)
