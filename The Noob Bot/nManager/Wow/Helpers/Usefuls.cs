@@ -883,7 +883,7 @@ namespace nManager.Wow.Helpers
         }
 
         private static readonly Object ThisLock = new Object();
-        private static readonly Timer AfkTimer = new Timer(5000);
+        private static readonly Timer AfkTimer = new Timer(500);
         private static string _key;
 
         public static void UpdateLastHardwareAction()
