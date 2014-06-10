@@ -7,6 +7,8 @@ namespace nManager.Wow.Helpers
 {
     public class ClickToMove
     {
+        private static Vector3 cache = new Vector3();
+
         public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt64 guid, Int32 action,
             Single precision)
         {
@@ -56,11 +58,14 @@ namespace nManager.Wow.Helpers
                 };
 
                 Memory.WowMemory.InjectAndExecute(asm);
-                Logging.WriteNavigator("MoveTo(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision +
-                                       ")");
                 Memory.WowMemory.Memory.FreeMemory(posCodecave);
                 Memory.WowMemory.Memory.FreeMemory(guidCodecave);
                 Memory.WowMemory.Memory.FreeMemory(precisionCodecave);
+                if (cache != new Vector3(x, y, z))
+                {
+                    Logging.WriteNavigator("MoveTo(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision + ")");
+                    cache = new Vector3(x, y, z);
+                }
             }
             catch (Exception exception)
             {
