@@ -253,6 +253,8 @@ public static class MyPluginClass
     public static void GetAllAvailableInterrupters()
     {
         string[] spellListPVP = MySettings.SpellListPVP.Split(',');
+        AvailableInterruptersPve.Clear();
+        AvailableInterruptersPVP.Clear();
         foreach (string sId in spellListPVP)
         {
             uint id = Others.ToUInt32(sId.Trim());
