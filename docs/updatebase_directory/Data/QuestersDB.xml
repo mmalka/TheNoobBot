@@ -2954,9 +2954,9 @@
     <Entry>2080</Entry>
     <Name>Denalan</Name>
     <Position>
-      <X>9506.866</X>
-      <Y>713.71875</Y>
-      <Z>1255.88538</Z>
+      <X>10116.9268</X>
+      <Y>1654.17358</Y>
+      <Z>1324.57275</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -3217,9 +3217,9 @@
     <Entry>2198</Entry>
     <Name>Crier Goodman</Name>
     <Position>
-      <X>-8523.876</X>
-      <Y>640.6815</Y>
-      <Z>99.98955</Z>
+      <X>-8744.874</X>
+      <Y>582.710938</Y>
+      <Z>97.5936</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -3773,6 +3773,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>2652</Entry>
+    <Name>Witherbark Venomblood</Name>
+    <Position>
+      <X>-2367.13647</X>
+      <Y>-2510.341</Y>
+      <Z>75.3439941</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>2657</Entry>
     <Name>Legends of the Earth</Name>
     <Position>
@@ -3820,6 +3832,17 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>2702</Entry>
+    <Name>Felhunter Trainer</Name>
+    <Position>
+      <X>-1510.33679</X>
+      <Y>-2170.79</Y>
+      <Z>17.2629642</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>2708</Entry>
     <Name>Archmage Malin</Name>
     <Position>
@@ -3851,6 +3874,18 @@
       <Y>-3035.17554</Y>
       <Z>32.2551956</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2734</Entry>
+    <Name>Ridge Stalker Patriarch</Name>
+    <Position>
+      <X>-3917.21</X>
+      <Y>-890.293</Y>
+      <Z>-0.779882</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -5450,9 +5485,9 @@
     <Entry>3518</Entry>
     <Name>Thomas Miller</Name>
     <Position>
-      <X>-8834.851</X>
-      <Y>672.297546</Y>
-      <Z>98.31732</Z>
+      <X>-8872.396</X>
+      <Y>574.5489</Y>
+      <Z>93.65904</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -5474,9 +5509,9 @@
     <Entry>3520</Entry>
     <Name>Ol' Emma</Name>
     <Position>
-      <X>-8712.001</X>
-      <Y>654.418</Y>
-      <Z>99.44996</Z>
+      <X>-8817.02</X>
+      <Y>572.441162</Y>
+      <Z>94.44268</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -6127,7 +6162,7 @@
   </Npc>
   <Npc>
     <Entry>4090</Entry>
-    <Name>Forge</Name>
+    <Name>Astarii Starseeker</Name>
     <Position>
       <X>9664.45</X>
       <Y>2520.06</Y>
@@ -8354,9 +8389,9 @@
     <Entry>6175</Entry>
     <Name>John Turner</Name>
     <Position>
-      <X>-4981.943</X>
-      <Y>-964.2849</Y>
-      <Z>501.659454</Z>
+      <X>-4914.38867</X>
+      <Y>-907.5252</Y>
+      <Z>501.659363</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -12770,6 +12805,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>15119</Entry>
+    <Name>Barrus</Name>
+    <Position>
+      <X>-4964.69141</X>
+      <Y>-936.287354</Y>
+      <Z>501.6597</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>15126</Entry>
     <Name>Rutherford Twing</Name>
     <Position>
@@ -13246,6 +13293,17 @@
       <Z>-17.6620522</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15624</Entry>
+    <Name>Forest Wisp</Name>
+    <Position>
+      <X>10207.9521</X>
+      <Y>1910.02625</Y>
+      <Z>1333.4801</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -20729,6 +20787,116 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>24965</Entry>
+    <Name>Vindicator Xayann</Name>
+    <Position>
+      <X>12886.59</X>
+      <Y>-6870.30469</Y>
+      <Z>10.59631</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24967</Entry>
+    <Name>Captain Theris Dawnhearth</Name>
+    <Position>
+      <X>12890.7334</X>
+      <Y>-6881.462</Y>
+      <Z>10.5960426</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25032</Entry>
+    <Name>Eldara Dawnrunner</Name>
+    <Position>
+      <X>12885.2549</X>
+      <Y>-6874.068</Y>
+      <Z>10.605114</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25034</Entry>
+    <Name>Tradesman Portanuus</Name>
+    <Position>
+      <X>12791.2725</X>
+      <Y>-6874.636</Y>
+      <Z>13.3905144</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25057</Entry>
+    <Name>Battlemage Arynna</Name>
+    <Position>
+      <X>12790.5713</X>
+      <Y>-6883.055</Y>
+      <Z>13.3921547</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25061</Entry>
+    <Name>Harbinger Inuuro</Name>
+    <Position>
+      <X>12790.7559</X>
+      <Y>-6887.278</Y>
+      <Z>13.390811</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25069</Entry>
+    <Name>Magister Ilastar</Name>
+    <Position>
+      <X>12672.81</X>
+      <Y>-6942.99854</Y>
+      <Z>36.25574</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25108</Entry>
+    <Name>Vindicator Kaalan</Name>
+    <Position>
+      <X>12703.4082</X>
+      <Y>-6984.768</Y>
+      <Z>25.60218</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25112</Entry>
+    <Name>Anchorite Ayuri</Name>
+    <Position>
+      <X>12731.73</X>
+      <Y>-6910.249</Y>
+      <Z>12.236062</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25133</Entry>
+    <Name>Astromancer Darnarian</Name>
+    <Position>
+      <X>12784.4287</X>
+      <Y>-6882.11963</Y>
+      <Z>13.3918972</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25140</Entry>
     <Name>Lord Torvos</Name>
     <Position>
@@ -20746,6 +20914,17 @@
       <X>-1854.01917</X>
       <Y>5435.058</Y>
       <Z>-10.4762478</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25169</Entry>
+    <Name>Archmage Ne'thul</Name>
+    <Position>
+      <X>12942.1064</X>
+      <Y>-6970.36963</Y>
+      <Z>19.0259037</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -27580,6 +27759,17 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>36915</Entry>
+    <Name>Erunak Stonespeaker</Name>
+    <Position>
+      <X>-4455.174</X>
+      <Y>3803.01123</Y>
+      <Z>-81.9949951</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>36918</Entry>
     <Name>Lorekeeper's Summoning Stone</Name>
     <Position>
@@ -29056,6 +29246,18 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>39887</Entry>
+    <Name>Captain Taylor</Name>
+    <Position>
+      <X>-4440.316</X>
+      <Y>3817.341</Y>
+      <Z>-82.81887</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>39893</Entry>
@@ -35979,6 +36181,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>54334</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>-8840.929</X>
+      <Y>641.2292</Y>
+      <Z>96.47598</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>54614</Entry>
     <Name>Mishka</Name>
     <Position>
@@ -35997,6 +36211,18 @@
       <X>-455.59375</X>
       <Y>-2068.39771</Y>
       <Z>28.7312317</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>54616</Entry>
+    <Name>Sully "The Pickle" McLeary</Name>
+    <Position>
+      <X>-51.2890053</X>
+      <Y>-1438.17932</Y>
+      <Z>138.3563</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -36115,6 +36341,18 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>55196</Entry>
+    <Name>Bold Karasshi</Name>
+    <Position>
+      <X>-183.59201</X>
+      <Y>-2331.50171</Y>
+      <Z>35.8490868</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>55209</Entry>
     <Name>Traumatized Nectarbreeze Farmer</Name>
     <Position>
@@ -36208,6 +36446,18 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>55382</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>5787.83838</X>
+      <Y>635.0799</Y>
+      <Z>647.826843</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>55488</Entry>
     <Name>Corastrasza</Name>
     <Position>
@@ -36296,6 +36546,28 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>56111</Entry>
+    <Name>Lin Tenderpaw</Name>
+    <Position>
+      <X>-393.4566</X>
+      <Y>1899.10071</Y>
+      <Z>133.185852</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56113</Entry>
+    <Name>Clever Ashyo</Name>
+    <Position>
+      <X>200.236115</X>
+      <Y>275.8229</Y>
+      <Z>153.830521</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>56114</Entry>
     <Name>Kang Bramblestaff</Name>
     <Position>
@@ -36307,12 +36579,45 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>56133</Entry>
+    <Name>Chen Stormstout</Name>
+    <Position>
+      <X>166.9427</X>
+      <Y>-275.458344</Y>
+      <Z>236.261322</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56138</Entry>
+    <Name>Li Li</Name>
+    <Position>
+      <X>159.826385</X>
+      <Y>-276.229156</Y>
+      <Z>235.097931</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>56204</Entry>
     <Name>Pang Thunderfoot</Name>
     <Position>
       <X>545.8316</X>
       <Y>-606.114563</Y>
       <Z>263.370667</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56205</Entry>
+    <Name>Liang Thunderfoot</Name>
+    <Position>
+      <X>466.4566</X>
+      <Y>-273.286469</Y>
+      <Z>211.014954</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
@@ -36349,6 +36654,17 @@
       <Z>0.823708236</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56312</Entry>
+    <Name>Shang Thunderfoot</Name>
+    <Position>
+      <X>189.623779</X>
+      <Y>-246.5418</Y>
+      <Z>236.017609</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -36419,12 +36735,45 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>56720</Entry>
+    <Name>Loon Mai</Name>
+    <Position>
+      <X>-392.342</X>
+      <Y>1911.93921</Y>
+      <Z>134.1159</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56773</Entry>
+    <Name>Yan</Name>
+    <Position>
+      <X>214.427078</X>
+      <Y>300.232635</Y>
+      <Z>153.789063</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>56774</Entry>
     <Name>Bolo</Name>
     <Position>
       <X>1604.36633</X>
       <Y>-1744.60071</Y>
       <Z>263.98938</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56802</Entry>
+    <Name>Zhang Yue</Name>
+    <Position>
+      <X>364.694458</X>
+      <Y>331.182281</Y>
+      <Z>189.532761</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
@@ -36474,6 +36823,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>57298</Entry>
+    <Name>Farmer Fung</Name>
+    <Position>
+      <X>-256.7396</X>
+      <Y>602.8403</Y>
+      <Z>167.547852</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>57319</Entry>
     <Name>Elder Sage Storm-Sing</Name>
     <Position>
@@ -36491,6 +36851,17 @@
       <X>769.5035</X>
       <Y>-2311.40625</Y>
       <Z>127.953163</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>57385</Entry>
+    <Name>Gai Lan</Name>
+    <Position>
+      <X>-257.534729</X>
+      <Y>1164.84729</Y>
+      <Z>169.599167</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
@@ -36694,6 +37065,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>58705</Entry>
+    <Name>Fish Fellreed</Name>
+    <Position>
+      <X>310.283</X>
+      <Y>1041.27954</Y>
+      <Z>145.654739</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>58706</Entry>
     <Name>Gina Mudclaw</Name>
     <Position>
@@ -36823,6 +37205,17 @@
       <Z>31.36735</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>58736</Entry>
+    <Name>Gladecaster Lang</Name>
+    <Position>
+      <X>236.065979</X>
+      <Y>286.0295</Y>
+      <Z>153.59465</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -36960,6 +37353,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>59074</Entry>
+    <Name>Uncle Gao</Name>
+    <Position>
+      <X>-700.5052</X>
+      <Y>1167.83679</Y>
+      <Z>166.141434</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>StormstoutBrewery</ContinentId>
   </Npc>
   <Npc>
     <Entry>59076</Entry>
@@ -37229,6 +37633,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>59704</Entry>
+    <Name>Chen Stormstout</Name>
+    <Position>
+      <X>-725.65625</X>
+      <Y>1277.70142</Y>
+      <Z>115.844864</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>StormstoutBrewery</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>59716</Entry>
     <Name>Ji-Lu the Lucky</Name>
     <Position>
@@ -37249,6 +37664,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>59822</Entry>
+    <Name>Auntie Stormstout</Name>
+    <Position>
+      <X>-724.4809</X>
+      <Y>1272.599</Y>
+      <Z>115.84507</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>StormstoutBrewery</ContinentId>
   </Npc>
   <Npc>
     <Entry>60135</Entry>
@@ -38517,6 +38943,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>63778</Entry>
+    <Name>Messenger Grummle</Name>
+    <Position>
+      <X>-383.786255</X>
+      <Y>1953.02319</Y>
+      <Z>128.565384</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>63822</Entry>
     <Name>Tani</Name>
     <Position>
@@ -38864,6 +39301,17 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>64361</Entry>
+    <Name>Chen Stormstout</Name>
+    <Position>
+      <X>-673.5896</X>
+      <Y>1147.22412</Y>
+      <Z>166.786514</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>StormstoutBrewery</ContinentId>
   </Npc>
   <Npc>
     <Entry>64395</Entry>
@@ -39395,6 +39843,17 @@
       <X>-3706.71533</X>
       <Y>-1578.64063</Y>
       <Z>91.77882</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>66436</Entry>
+    <Name>Grazzle the Great</Name>
+    <Position>
+      <X>-4653.96338</X>
+      <Y>-3802.34717</Y>
+      <Z>44.0771675</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -39969,6 +40428,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>138492</Entry>
+    <Name>Shards of Myzrael</Name>
+    <Position>
+      <X>-942.842041</X>
+      <Y>-3116.74658</Y>
+      <Z>48.4206467</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>142122</Entry>
     <Name>Wanted Poster</Name>
     <Position>
@@ -40000,6 +40470,114 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142702</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-42.53125</X>
+      <Y>-2481.27783</Y>
+      <Z>119.151222</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142703</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-38.5920143</X>
+      <Y>-2468.75879</Y>
+      <Z>121.658989</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142704</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-38.47222</X>
+      <Y>-2468.802</Y>
+      <Z>121.80735</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142705</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-43.7708321</X>
+      <Y>-2481.3855</Y>
+      <Z>118.982094</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142706</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-43.8072929</X>
+      <Y>-2480.731</Y>
+      <Z>118.917183</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142707</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-38.7291679</X>
+      <Y>-2468.43066</Y>
+      <Z>121.503906</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142712</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-15.880208</X>
+      <Y>-2789.75171</Y>
+      <Z>121.683609</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142713</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-14.65625</X>
+      <Y>-2460.389</Y>
+      <Z>122.163467</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>142714</Entry>
+    <Name>Venom Bottle</Name>
+    <Position>
+      <X>-15.161458</X>
+      <Y>-2460.21875</Y>
+      <Z>122.175034</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>144063</Entry>
@@ -40269,6 +40847,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>176392</Entry>
+    <Name>Scourge Cauldron</Name>
+    <Position>
+      <X>1690.46875</X>
+      <Y>-2272.5625</Y>
+      <Z>58.9361725</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>177226</Entry>
@@ -40544,6 +41133,18 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>181649</Entry>
+    <Name>Featherbeard's Journal</Name>
+    <Position>
+      <X>48.70215</X>
+      <Y>-2092.29517</Y>
+      <Z>111.44986</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>182062</Entry>
@@ -41692,6 +42293,50 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>202759</Entry>
+    <Name>Sunken Horde Chest</Name>
+    <Position>
+      <X>-4674.71533</X>
+      <Y>3449.50513</Y>
+      <Z>-89.4745</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>202859</Entry>
+    <Name>Half-buried Footlocker</Name>
+    <Position>
+      <X>-4904.2</X>
+      <Y>3767.13</Y>
+      <Z>-150.324</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>202871</Entry>
+    <Name>Sunken Crate</Name>
+    <Position>
+      <X>-4782.672</X>
+      <Y>3678.60083</Y>
+      <Z>-123.160973</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>202916</Entry>
+    <Name>Sandy Mound</Name>
+    <Position>
+      <X>-5045.19775</X>
+      <Y>3527.33081</Y>
+      <Z>-130.4431</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>202975</Entry>
     <Name>Submerged Outhouse</Name>
     <Position>
@@ -41736,6 +42381,28 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>203301</Entry>
+    <Name>Naga Tridents</Name>
+    <Position>
+      <X>-5324.021</X>
+      <Y>3378.74487</Y>
+      <Z>-132.727051</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>203395</Entry>
+    <Name>Alliance S.E.A.L. Equipment</Name>
+    <Position>
+      <X>-4519.67725</X>
+      <Y>3980.74487</Y>
+      <Z>-85.93116</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>203733</Entry>
     <Name>Bounty Board</Name>
     <Position>
@@ -41778,6 +42445,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Maelstrom</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>204275</Entry>
+    <Name>Altar of Shadra</Name>
+    <Position>
+      <X>-401.765625</X>
+      <Y>-2891.20483</Y>
+      <Z>84.4003754</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>204344</Entry>
@@ -42203,6 +42881,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>210542</Entry>
+    <Name>Tina's Note</Name>
+    <Position>
+      <X>211.012161</X>
+      <Y>909.9427</Y>
+      <Z>180.0223</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>210543</Entry>
     <Name>Fish's Note</Name>
     <Position>
@@ -42214,12 +42903,34 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>210544</Entry>
+    <Name>Sho's Note</Name>
+    <Position>
+      <X>294.783</X>
+      <Y>1519.41492</Y>
+      <Z>454.405457</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>210950</Entry>
     <Name>Fung's Note</Name>
     <Position>
       <X>210.335068</X>
       <Y>785.2014</Y>
       <Z>164.115692</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>211316</Entry>
+    <Name>The Commander's Cache</Name>
+    <Position>
+      <X>-367.852448</X>
+      <Y>1900.231</Y>
+      <Z>150.179886</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
@@ -42478,6 +43189,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>215705</Entry>
+    <Name>Tillers Shrine</Name>
+    <Position>
+      <X>-187.59201</X>
+      <Y>637.0868</Y>
+      <Z>165.409286</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>216322</Entry>
     <Name>Bounty Board</Name>
     <Position>
@@ -42495,6 +43217,28 @@
       <X>-1021.7066</X>
       <Y>-1064.217</Y>
       <Z>0.9051602</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>218750</Entry>
+    <Name>Work Orders</Name>
+    <Position>
+      <X>-178.197922</X>
+      <Y>626.8507</Y>
+      <Z>168.18338</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>218765</Entry>
+    <Name>Empty Crate</Name>
+    <Position>
+      <X>-177.90799</X>
+      <Y>653.5</Y>
+      <Z>166.124222</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>

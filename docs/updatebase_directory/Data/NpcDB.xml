@@ -2472,6 +2472,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>1460</Entry>
+    <Name>Unger Statforth</Name>
+    <Position>
+      <X>-3702.429</X>
+      <Y>-776.723938</Y>
+      <Z>0.478511781</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>1461</Entry>
     <Name>Murndan Derth</Name>
     <Position>
@@ -6900,6 +6912,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>3562</Entry>
+    <Name>Alaindia</Name>
+    <Position>
+      <X>9758.657</X>
+      <Y>2423.458</Y>
+      <Z>1334.127</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>3587</Entry>
     <Name>Lyrai</Name>
     <Position>
@@ -7425,6 +7449,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>3937</Entry>
+    <Name>Kira Songshine</Name>
+    <Position>
+      <X>-9487.034</X>
+      <Y>79.3785858</Y>
+      <Z>56.15472</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>3948</Entry>
     <Name>Honni Goldenoat</Name>
     <Position>
@@ -7763,18 +7799,6 @@
       <X>10086</X>
       <Y>2254.92</Y>
       <Z>1332.99731</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4169</Entry>
-    <Name>Jaeana</Name>
-    <Position>
-      <X>9757.826</X>
-      <Y>2286.39478</Y>
-      <Z>1327.60352</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -9339,12 +9363,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4886</Entry>
-    <Name>Hans Weston</Name>
+    <Entry>4885</Entry>
+    <Name>Gregor MacVince</Name>
     <Position>
-      <X>-3797.941</X>
-      <Y>-4367.98633</Y>
-      <Z>16.7937527</Z>
+      <X>-3835.71362</X>
+      <Y>-4397.685</Y>
+      <Z>10.934844</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -9360,6 +9384,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4886</Entry>
+    <Name>Hans Weston</Name>
+    <Position>
+      <X>-3797.941</X>
+      <Y>-4367.98633</Y>
+      <Z>16.7937527</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9383,7 +9419,7 @@
       <Z>16.79273</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9395,18 +9431,6 @@
       <Z>16.79273</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4889</Entry>
-    <Name>Torq Ironblast</Name>
-    <Position>
-      <X>-3712.462</X>
-      <Y>-4519.097</Y>
-      <Z>11.8978329</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -9423,15 +9447,15 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4890</Entry>
-    <Name>Piter Verance</Name>
+    <Entry>4889</Entry>
+    <Name>Torq Ironblast</Name>
     <Position>
-      <X>-3708.592</X>
-      <Y>-4513.14746</Y>
-      <Z>11.8978148</Z>
+      <X>-3712.462</X>
+      <Y>-4519.097</Y>
+      <Z>11.8978329</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9444,6 +9468,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4890</Entry>
+    <Name>Piter Verance</Name>
+    <Position>
+      <X>-3708.592</X>
+      <Y>-4513.14746</Y>
+      <Z>11.8978148</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9587,7 +9623,7 @@
       <Z>16.7880917</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>EngineeringTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9599,7 +9635,7 @@
       <Z>16.7880917</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>EngineeringTrainer</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -12093,16 +12129,15 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>7978</Entry>
-    <Name>Bimble Longberry</Name>
+    <Entry>8126</Entry>
+    <Name>Nixx Sprocketspring</Name>
     <Position>
-      <X>-4702.95752</X>
-      <Y>-933.5318</Y>
-      <Z>501.668854</Z>
+      <X>-7131.993</X>
+      <Y>-3839.665</Y>
+      <Z>8.981604</Z>
     </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
+    <Type>EngineeringTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>8128</Entry>
@@ -12468,6 +12503,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>8361</Entry>
+    <Name>Chepi</Name>
+    <Position>
+      <X>-1222.71973</X>
+      <Y>136.229141</Y>
+      <Z>133.3991</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -17653,6 +17700,17 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>18542</Entry>
+    <Name>Alexston Chrome</Name>
+    <Position>
+      <X>-8158.849</X>
+      <Y>-4859.132</Y>
+      <Z>-24.8649254</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>18564</Entry>
     <Name>Horde Field Scout</Name>
     <Position>
@@ -19015,7 +19073,7 @@
       <Z>101.902954</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19027,7 +19085,7 @@
       <Z>101.902954</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21667,6 +21725,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>24291</Entry>
+    <Name>Anton</Name>
+    <Position>
+      <X>291.175751</X>
+      <Y>-4194.71338</Y>
+      <Z>254.41362</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>24330</Entry>
     <Name>Orson Locke</Name>
     <Position>
@@ -21941,18 +22011,6 @@
     <Entry>25010</Entry>
     <Name>Engineer Brightbuckle</Name>
     <Position>
-      <X>11.2341509</X>
-      <Y>-1.311023</Y>
-      <Z>6.099485</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>25010</Entry>
-    <Name>Engineer Brightbuckle</Name>
-    <Position>
       <X>7885.766</X>
       <Y>1261.28259</Y>
       <Z>5.789233</Z>
@@ -21960,6 +22018,18 @@
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25010</Entry>
+    <Name>Engineer Brightbuckle</Name>
+    <Position>
+      <X>11.2341509</X>
+      <Y>-1.311023</Y>
+      <Z>6.099485</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>25012</Entry>
@@ -21991,6 +22061,17 @@
       <X>12791.2725</X>
       <Y>-6874.636</Y>
       <Z>13.3914576</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25035</Entry>
+    <Name>Tyrael Flamekissed</Name>
+    <Position>
+      <X>12689.3184</X>
+      <Y>-6964.384</Y>
+      <Z>15.6375408</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
@@ -22115,6 +22196,50 @@
       <X>12942.1514</X>
       <Y>-6975.30957</Y>
       <Z>20.3406372</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26089</Entry>
+    <Name>Kayri</Name>
+    <Position>
+      <X>12686.7217</X>
+      <Y>-6972.245</Y>
+      <Z>36.2523346</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26090</Entry>
+    <Name>Karynna</Name>
+    <Position>
+      <X>12669.3223</X>
+      <Y>-6955.06641</Y>
+      <Z>36.25461</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26091</Entry>
+    <Name>Olus</Name>
+    <Position>
+      <X>12678.9727</X>
+      <Y>-6973.004</Y>
+      <Z>36.253624</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>26092</Entry>
+    <Name>Soryn</Name>
+    <Position>
+      <X>12687.3779</X>
+      <Y>-6942.77</Y>
+      <Z>36.25463</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
@@ -23097,7 +23222,7 @@
       <Z>7.713065</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -23109,7 +23234,7 @@
       <Z>7.713065</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -29040,6 +29165,17 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>36915</Entry>
+    <Name>Erunak Stonespeaker</Name>
+    <Position>
+      <X>-4455.174</X>
+      <Y>3803.01123</Y>
+      <Z>-81.9949951</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>37072</Entry>
     <Name>Rogg</Name>
     <Position>
@@ -30716,7 +30852,7 @@
       <Y>-2095.55</Y>
       <Z>1205.802</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30727,7 +30863,7 @@
       <Y>-2095.55</Y>
       <Z>1205.802</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -36305,6 +36441,18 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>49587</Entry>
+    <Name>Guild Herald</Name>
+    <Position>
+      <X>724.4967</X>
+      <Y>241.035889</Y>
+      <Z>519.7309</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>49591</Entry>
     <Name>Naveen Tendernose</Name>
     <Position>
@@ -39091,7 +39239,7 @@
       <Y>-2507.23779</Y>
       <Z>152.295959</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -39102,7 +39250,7 @@
       <Y>-2507.23779</Y>
       <Z>152.295959</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -39419,6 +39567,17 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>59822</Entry>
+    <Name>Auntie Stormstout</Name>
+    <Position>
+      <X>-724.4809</X>
+      <Y>1272.599</Y>
+      <Z>115.84507</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>StormstoutBrewery</ContinentId>
   </Npc>
   <Npc>
     <Entry>59827</Entry>
@@ -43258,7 +43417,7 @@
       <Y>-5008.741</Y>
       <Z>2.05605173</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43269,7 +43428,7 @@
       <Y>-5008.741</Y>
       <Z>2.05605173</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -49420,6 +49579,17 @@
       <X>2073.22363</X>
       <Y>212.395172</Y>
       <Z>479.600952</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>215348</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-187.3802</X>
+      <Y>-1487.39063</Y>
+      <Z>72.84015</Z>
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
