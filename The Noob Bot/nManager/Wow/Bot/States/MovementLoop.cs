@@ -93,11 +93,35 @@ namespace nManager.Wow.Bot.States
                 currentPoint = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
                 MovementManager.PointId = currentPoint;
             }
-            else // If the path did not change, let's return to the last point we were using
+            // If the path did not change, let's find a good next point
+            else if (PathLoop[MovementManager.PointId].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 2.0f)
             {
                 currentPoint = MovementManager.PointId + 1;
                 if (currentPoint > PathLoop.Count - 1)
                     currentPoint = 0;
+                int point = currentPoint;
+                int lookup = 0;
+                Vector3 me = new Vector3(ObjectManager.ObjectManager.Me.Position);
+                do
+                {
+                    int pointNext = (point + 1 <= PathLoop.Count - 1 ? point + 1 : 0);
+                    Vector3 v0 = new Vector3(PathLoop[point]);
+                    Vector3 v1 = new Vector3(PathLoop[pointNext]);
+                    float angle = (v1 - v0).Angle2D(v0 - me);
+                    if (System.Math.Abs(angle) <= (System.Math.PI / 3f))
+                    {
+                        Logging.WriteNavigator("Next Point is " + (point - currentPoint) + " ahead, his angle is " + System.Math.Round(angle * 180 / System.Math.PI, 2) + "°");
+                        currentPoint = point;
+                        break;
+                    }
+                    point = pointNext;
+                    lookup++;
+                } while (lookup <= 10);
+                MovementManager.PointId = currentPoint;
+            }
+            else
+            {
+                currentPoint = MovementManager.PointId;
             }
             if (_loopPathId == -1f)
                 _loopPathId = pathIdentity;
