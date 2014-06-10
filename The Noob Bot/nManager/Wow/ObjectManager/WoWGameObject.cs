@@ -135,6 +135,46 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public string IconName
+        {
+            get
+            {
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(
+                            Memory.WowMemory.Memory.ReadUInt(
+                                Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) +
+                                (uint)Addresses.GameObject.CachedIconName));
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObjectFields > IconName: " + e);
+                }
+                return "";
+            }
+        }
+
+        public string CastBarCaption
+        {
+            get
+            {
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(
+                            Memory.WowMemory.Memory.ReadUInt(
+                                Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) +
+                                (uint)Addresses.GameObject.CachedCastBarCaption));
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObjectFields > CastBarCaption: " + e);
+                }
+                return "";
+            }
+        }
+
         public override float GetDistance
         {
             get
@@ -209,7 +249,7 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GameObject > Data(" + offset + "): " + e);
+                Logging.WriteError("GameObject > QuestItem(" + offset + "): " + e);
                 return 0;
             }
         }

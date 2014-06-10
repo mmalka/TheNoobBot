@@ -78,6 +78,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public float Orientation
+        {
+            get
+            {
+                try
+                {
+                    return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.UnitField.UNIT_FIELD_R);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Orientation: " + e);
+                }
+                return 0;
+            }
+        }
+
         public int Health
         {
             get
@@ -1473,70 +1489,28 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int QuestItem1
+        private uint QuestItem(uint offset)
         {
-            get
+            try
             {
-                try
-                {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem1);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > QuestItem1: " + e);
+                if (offset > 3)
                     return 0;
-                }
+                return
+                    Memory.WowMemory.Memory.ReadUInt(
+                        Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow) +
+                        (uint) Addresses.UnitField.CachedQuestItem1 + (0x04 * offset));
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > QuestItem(" + offset + "): " + e);
+                return 0;
             }
         }
-        public int QuestItem2
-        {
-            get
-            {
-                try
-                {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem2);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > QuestItem2: " + e);
-                    return 0;
-                }
-            }
-        }
-        public int QuestItem3
-        {
-            get
-            {
-                try
-                {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem3);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > QuestItem3: " + e);
-                    return 0;
-                }
-            }
-        }
-        public int QuestItem4
-        {
-            get
-            {
-                try
-                {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedQuestItem4);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > QuestItem4: " + e);
-                    return 0;
-                }
-            }
-        }
+
+        public uint QuestItem1 { get { return QuestItem(0); } }
+        public uint QuestItem2 { get { return QuestItem(1); } }
+        public uint QuestItem3 { get { return QuestItem(2); } }
+        public uint QuestItem4 { get { return QuestItem(3); } }
 
         public int ModelId
         {

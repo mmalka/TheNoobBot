@@ -143,9 +143,6 @@
             CachedName = 0x6C,
             CachedTypeFlag = 0x4C,
             CachedQuestItem1 = 0x30,
-            CachedQuestItem2 = 0x34,
-            CachedQuestItem3 = 0x38,
-            CachedQuestItem4 = 0x3C,
             CachedModelId1 = 0x5C,
             // saving
             UnitClassificationOffset1 = DBCacheRow, // Script_UnitClassification + 0x39 (CGUnit_C::GetCreatureRank)
@@ -165,6 +162,8 @@
             PackedRotationQuaternion = 0x108, // I have no idea about what fct is behind this
             TransformationMatrice = 0x1C4, // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x1C0, // CGGameObject_C::GetName
+            CachedIconName = 0x08,
+            CachedCastBarCaption = 0x0C,
             CachedName = 0xB0, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
             CachedSize = CachedData0 + (0x04 * 32), // just after the 32 data uint32
