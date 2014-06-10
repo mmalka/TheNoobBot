@@ -152,6 +152,7 @@
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
     <Compile Include="Wow\Class\Quaternion.cs" />
+    <Compile Include="Wow\Class\Vector3.cs" />
     <Compile Include="Wow\Enums\MovementFlags.cs" />
     <Compile Include="Wow\Enums\WoWEventsType.cs" />
     <Compile Include="Wow\Enums\WoWGender.cs" />

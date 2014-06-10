@@ -9,6 +9,46 @@ namespace nManager.Wow.Class
     /// Point class
     /// </summary>
     [Serializable]
+    public class Point : Vector3
+    {
+        [DefaultValue("None")]
+        public string Type { get; set; }
+
+        public Point()
+        {
+            X = 0;
+            Y = 0;
+            Z = 0;
+            Type = "None";
+        }
+
+        public Point(float x, float y, float z, string type = "None")
+        {
+            X = x;
+            Y = y;
+            Z = z;
+            Type = type;
+        }
+
+        public Point(Point other)
+        {
+            X = other.X;
+            Y = other.Y;
+            Z = other.Z;
+            Type = other.Type;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} ; {1} ; {2} ; {3}", X, Y, Z, Type);
+        }
+    }
+
+    /*
+    /// <summary>
+    /// Point class
+    /// </summary>
+    [Serializable]
     public class Point
     {
         /// <summary>
@@ -327,5 +367,5 @@ namespace nManager.Wow.Class
             }
             return new Point();
         }
-    }
+    }*/
 }
