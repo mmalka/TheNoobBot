@@ -110,6 +110,8 @@ namespace nManager.Wow.Helpers
 
         public static int GetItemIdByName(string name)
         {
+            if (name == "")
+                return 0;
             try
             {
                 if (ItemIdCache.ContainsKey(name))
