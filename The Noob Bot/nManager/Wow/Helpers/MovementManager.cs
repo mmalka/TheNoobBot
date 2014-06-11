@@ -1379,7 +1379,7 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI/4)
+                if (dif <= System.Math.PI/4 && obj.GOType != WoWGameObjectType.FishingHole)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1419,6 +1419,25 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("Face(Point position): " + exception);
+            }
+        }
+
+        /// <summary>
+        /// Faces the specified position.
+        /// </summary>
+        /// <param name="angle">The angle.</param>
+        /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
+        public static void Face(float angle, bool doMove = true)
+        {
+            try
+            {
+                ObjectManager.ObjectManager.Me.Rotation = angle;
+                if (doMove)
+                    MicroMove();
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Face(float angle): " + exception);
             }
         }
 

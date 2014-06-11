@@ -25,6 +25,7 @@ namespace Fisherbot.Bot
         private const float DistanceMin = 13f;
         private const float DistanceMax = 19f;
         private const int TimeTryFindGoodPos = 7000;
+        private nManager.Helpful.Timer timer;
 
         public override bool NeedToRun
         {
@@ -73,7 +74,46 @@ namespace Fisherbot.Bot
 
         public override void Run()
         {
-            nManager.Helpful.Timer timer;
+            if (!Products.IsStarted || ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
+                return;
+            if (!FisherbotSetting.CurrentSetting.FishSchool)
+            {
+                // If we have a saved position and we don't fish, then go to position
+                if (FisherbotSetting.CurrentSetting.FisherbotPosition.IsValid &&
+                    !FishingTask.IsLaunched)
+                {
+                    LongMove.LongMoveGo(FisherbotSetting.CurrentSetting.FisherbotPosition);
+                    MovementManager.Face(FisherbotSetting.CurrentSetting.FisherbotRotation);
+                }
+                // If we don't fish or the timer is null, then start a new timer, save position and fish
+                if (timer == null || !FishingTask.IsLaunched)
+                {
+                    timer = new nManager.Helpful.Timer(10*60*1000 + 10*1000);
+                    FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;
+                    FisherbotSetting.CurrentSetting.FisherbotRotation = ObjectManager.Me.Rotation;
+                    Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
+                    FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
+                        FisherbotSetting.CurrentSetting.LureName);
+                }
+                // If the timer ended, stop fishing, equip weapon, null the timer
+                else if (timer.IsReady)
+                {
+                    FishingTask.StopLoopFish();
+                    ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
+                    timer = null;
+                }
+                // We are in timer, we fish, then save the position
+                else
+                {
+                    FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;
+                    FisherbotSetting.CurrentSetting.FisherbotRotation = ObjectManager.Me.Rotation;
+                    Thread.Sleep(500);
+                }
+                // No more while, we test what we need and return
+                return;
+            }
+
+            // Nodes fishing code
             if (_node.IsValid)
             {
                 FisherbotSetting.CurrentSetting.FisherbotPosition =
@@ -143,11 +183,7 @@ namespace Fisherbot.Bot
             if (_node.IsValid)
                 MovementManager.Face(_node);
             else
-            {
-                ObjectManager.Me.Rotation = FisherbotSetting.CurrentSetting.FisherbotRotation;
-                //MovementsAction.StrafeLeft(true, true);
-                //MovementsAction.StrafeRight(true, true);
-            }
+                MovementManager.Face(FisherbotSetting.CurrentSetting.FisherbotRotation);
 
             // Ce met a la bonne distance du banc de poisson
             if (_node.IsValid)
@@ -196,15 +232,11 @@ namespace Fisherbot.Bot
 
             // Fish
             Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
-            if (FisherbotSetting.CurrentSetting.FishSchool)
-                FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.UseLure,
-                    FisherbotSetting.CurrentSetting.LureName,
-                    FisherbotSetting.CurrentSetting.PrecisionMode);
-            else
-                FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
-                    FisherbotSetting.CurrentSetting.LureName);
+            FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.UseLure,
+                FisherbotSetting.CurrentSetting.LureName,
+                FisherbotSetting.CurrentSetting.PrecisionMode);
 
-            timer = FisherbotSetting.CurrentSetting.FishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(10*60*1000 + 10*1000);
+            timer = new nManager.Helpful.Timer(2*60*1000);
             while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&
                    !ObjectManager.Me.IsDeadMe &&
                    !ObjectManager.Me.InCombat && !timer.IsReady &&
@@ -217,7 +249,6 @@ namespace Fisherbot.Bot
                 }
                 Thread.Sleep(300);
             }
-
             FishingTask.StopLoopFish();
             ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
         }

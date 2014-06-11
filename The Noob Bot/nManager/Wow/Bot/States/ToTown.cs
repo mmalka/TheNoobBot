@@ -126,7 +126,15 @@ namespace nManager.Wow.Bot.States
         {
             List<Npc> listNPCs = new List<Npc>();
             Npc mailBox = null;
-
+            // Stop fisher if needed
+            if (Products.Products.ProductName == "Fisherbot" && FishingTask.IsLaunched)
+            {
+                FishingTask.StopLoopFish();
+                // Then break the cast
+                MovementsAction.MoveBackward(true);
+                Thread.Sleep(50);
+                MovementsAction.MoveBackward(false);
+            }
             // If we need to send items.
             if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature && !_suspendMailing &&
                 nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty &&
