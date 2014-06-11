@@ -36,6 +36,8 @@ namespace The_Noob_Bot
             this.LogTabButton = new System.Windows.Forms.Label();
             this.AccountTabButton = new System.Windows.Forms.Label();
             this.PanelHome = new System.Windows.Forms.Panel();
+            this.BotStartedSinceLabel = new System.Windows.Forms.Label();
+            this.TargetHealth = new nManager.Helpful.Forms.UserControls.TnbProgressBar();
             this.TargetName = new System.Windows.Forms.Label();
             this.TargetLevel = new System.Windows.Forms.Label();
             this.LatestLog = new System.Windows.Forms.Label();
@@ -43,6 +45,7 @@ namespace The_Noob_Bot
             this.LatestLogLabel = new System.Windows.Forms.Label();
             this.TargetLevelLabel = new System.Windows.Forms.Label();
             this.TargetNameLabel = new System.Windows.Forms.Label();
+            this.Health = new nManager.Helpful.Forms.UserControls.TnbProgressBar();
             this.FarmsCount = new System.Windows.Forms.Label();
             this.DeathsCount = new System.Windows.Forms.Label();
             this.UnitKillsCount = new System.Windows.Forms.Label();
@@ -57,20 +60,18 @@ namespace The_Noob_Bot
             this.HonorPerHourLabel = new System.Windows.Forms.Label();
             this.HealthLabel = new System.Windows.Forms.Label();
             this.PanelLog = new System.Windows.Forms.Panel();
-            this.DebugLogSwitchLabel = new System.Windows.Forms.Label();
-            this.NavigationLogSwitchLabel = new System.Windows.Forms.Label();
-            this.FightLogSwitchLabel = new System.Windows.Forms.Label();
-            this.NormalLogSwitchLabel = new System.Windows.Forms.Label();
-            this.LoggingTextArea = new System.Windows.Forms.RichTextBox();
             this.PanelAccount = new System.Windows.Forms.Panel();
             this.TimeLeft = new System.Windows.Forms.Label();
             this.AccountName = new System.Windows.Forms.Label();
             this.OnlineBot = new System.Windows.Forms.Label();
             this.TimeLeftLabel = new System.Windows.Forms.Label();
+            this.GoToPaymentPageButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.ProductsPriceList = new nManager.Helpful.Forms.UserControls.TnbComboBox();
             this.AccountNameLabel = new System.Windows.Forms.Label();
             this.ProductsListPriceLabel = new System.Windows.Forms.Label();
             this.WantToSubscribeLabel = new System.Windows.Forms.Label();
             this.RemoteSessionInfo = new System.Windows.Forms.Label();
+            this.RemoteSessionSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.RemoteSessionLabel = new System.Windows.Forms.Label();
             this.WebsiteLink = new System.Windows.Forms.Label();
             this.DevToolsLabel = new System.Windows.Forms.Label();
@@ -79,21 +80,11 @@ namespace The_Noob_Bot
             this.MainFormTimer = new System.Windows.Forms.Timer(this.components);
             this.AccountPanelTimer = new System.Windows.Forms.Timer(this.components);
             this.LoggingAreaTimer = new System.Windows.Forms.Timer(this.components);
-            this.BotStartedSinceLabel = new System.Windows.Forms.Label();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.ProductList = new nManager.Helpful.Forms.UserControls.TnbComboBox();
             this.StartButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.ProductSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.TargetHealth = new nManager.Helpful.Forms.UserControls.TnbProgressBar();
-            this.Health = new nManager.Helpful.Forms.UserControls.TnbProgressBar();
-            this.DebugLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.NavigationLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.FightLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.NormalLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.GoToPaymentPageButton = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.ProductsPriceList = new nManager.Helpful.Forms.UserControls.TnbComboBox();
-            this.RemoteSessionSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.PanelHome.SuspendLayout();
             this.PanelLog.SuspendLayout();
             this.PanelAccount.SuspendLayout();
@@ -191,6 +182,29 @@ namespace The_Noob_Bot
             this.PanelHome.Size = new System.Drawing.Size(573, 203);
             this.PanelHome.TabIndex = 16;
             // 
+            // BotStartedSinceLabel
+            // 
+            this.BotStartedSinceLabel.AutoEllipsis = true;
+            this.BotStartedSinceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BotStartedSinceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.BotStartedSinceLabel.Location = new System.Drawing.Point(298, 120);
+            this.BotStartedSinceLabel.Name = "BotStartedSinceLabel";
+            this.BotStartedSinceLabel.Size = new System.Drawing.Size(260, 15);
+            this.BotStartedSinceLabel.TabIndex = 49;
+            this.BotStartedSinceLabel.Text = "Bot started since :";
+            // 
+            // TargetHealth
+            // 
+            this.TargetHealth.BarImage = global::The_Noob_Bot.Properties.Resources.barImg;
+            this.TargetHealth.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.TargetHealth.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.TargetHealth.DrawMode = System.Windows.Forms.DrawMode.Normal;
+            this.TargetHealth.Location = new System.Drawing.Point(418, 43);
+            this.TargetHealth.Name = "TargetHealth";
+            this.TargetHealth.Size = new System.Drawing.Size(115, 10);
+            this.TargetHealth.TabIndex = 48;
+            this.TargetHealth.Value = 90;
+            // 
             // TargetName
             // 
             this.TargetName.AutoEllipsis = true;
@@ -266,6 +280,18 @@ namespace The_Noob_Bot
             this.TargetNameLabel.Size = new System.Drawing.Size(115, 15);
             this.TargetNameLabel.TabIndex = 35;
             this.TargetNameLabel.Text = "Target\'s Name :";
+            // 
+            // Health
+            // 
+            this.Health.BarImage = ((System.Drawing.Image)(resources.GetObject("Health.BarImage")));
+            this.Health.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.Health.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.Health.DrawMode = System.Windows.Forms.DrawMode.Normal;
+            this.Health.Location = new System.Drawing.Point(131, 16);
+            this.Health.Name = "Health";
+            this.Health.Size = new System.Drawing.Size(115, 10);
+            this.Health.TabIndex = 34;
+            this.Health.Value = 20;
             // 
             // FarmsCount
             // 
@@ -414,15 +440,6 @@ namespace The_Noob_Bot
             // 
             this.PanelLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.PanelLog.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PanelLog.BackgroundImage")));
-            this.PanelLog.Controls.Add(this.DebugLogSwitchButton);
-            this.PanelLog.Controls.Add(this.NavigationLogSwitchButton);
-            this.PanelLog.Controls.Add(this.FightLogSwitchButton);
-            this.PanelLog.Controls.Add(this.NormalLogSwitchButton);
-            this.PanelLog.Controls.Add(this.DebugLogSwitchLabel);
-            this.PanelLog.Controls.Add(this.NavigationLogSwitchLabel);
-            this.PanelLog.Controls.Add(this.FightLogSwitchLabel);
-            this.PanelLog.Controls.Add(this.NormalLogSwitchLabel);
-            this.PanelLog.Controls.Add(this.LoggingTextArea);
             this.PanelLog.Location = new System.Drawing.Point(1, 78);
             this.PanelLog.Margin = new System.Windows.Forms.Padding(0);
             this.PanelLog.MaximumSize = new System.Drawing.Size(573, 203);
@@ -431,73 +448,6 @@ namespace The_Noob_Bot
             this.PanelLog.Size = new System.Drawing.Size(573, 203);
             this.PanelLog.TabIndex = 17;
             this.PanelLog.Visible = false;
-            // 
-            // DebugLogSwitchLabel
-            // 
-            this.DebugLogSwitchLabel.AutoEllipsis = true;
-            this.DebugLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DebugLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.DebugLogSwitchLabel.Location = new System.Drawing.Point(493, 109);
-            this.DebugLogSwitchLabel.Name = "DebugLogSwitchLabel";
-            this.DebugLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
-            this.DebugLogSwitchLabel.TabIndex = 12;
-            this.DebugLogSwitchLabel.Text = "Debug";
-            this.DebugLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // NavigationLogSwitchLabel
-            // 
-            this.NavigationLogSwitchLabel.AutoEllipsis = true;
-            this.NavigationLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NavigationLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.NavigationLogSwitchLabel.Location = new System.Drawing.Point(493, 77);
-            this.NavigationLogSwitchLabel.Name = "NavigationLogSwitchLabel";
-            this.NavigationLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
-            this.NavigationLogSwitchLabel.TabIndex = 11;
-            this.NavigationLogSwitchLabel.Text = "Navigation";
-            this.NavigationLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // FightLogSwitchLabel
-            // 
-            this.FightLogSwitchLabel.AutoEllipsis = true;
-            this.FightLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FightLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.FightLogSwitchLabel.Location = new System.Drawing.Point(493, 45);
-            this.FightLogSwitchLabel.Name = "FightLogSwitchLabel";
-            this.FightLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
-            this.FightLogSwitchLabel.TabIndex = 10;
-            this.FightLogSwitchLabel.Text = "Fight";
-            this.FightLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // NormalLogSwitchLabel
-            // 
-            this.NormalLogSwitchLabel.AutoEllipsis = true;
-            this.NormalLogSwitchLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.NormalLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NormalLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.NormalLogSwitchLabel.Location = new System.Drawing.Point(493, 13);
-            this.NormalLogSwitchLabel.Name = "NormalLogSwitchLabel";
-            this.NormalLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
-            this.NormalLogSwitchLabel.TabIndex = 9;
-            this.NormalLogSwitchLabel.Text = "Normal";
-            this.NormalLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LoggingTextArea
-            // 
-            this.LoggingTextArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.LoggingTextArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LoggingTextArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.LoggingTextArea.Location = new System.Drawing.Point(13, 13);
-            this.LoggingTextArea.Margin = new System.Windows.Forms.Padding(0);
-            this.LoggingTextArea.MaximumSize = new System.Drawing.Size(398, 176);
-            this.LoggingTextArea.MinimumSize = new System.Drawing.Size(398, 176);
-            this.LoggingTextArea.Name = "LoggingTextArea";
-            this.LoggingTextArea.ReadOnly = true;
-            this.LoggingTextArea.RightMargin = 355;
-            this.LoggingTextArea.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.LoggingTextArea.Size = new System.Drawing.Size(398, 176);
-            this.LoggingTextArea.TabIndex = 0;
-            this.LoggingTextArea.Text = "";
-            this.LoggingTextArea.VisibleChanged += new System.EventHandler(this.LoggingTextArea_VisibleChanged);
             // 
             // PanelAccount
             // 
@@ -569,6 +519,40 @@ namespace The_Noob_Bot
             this.TimeLeftLabel.TabIndex = 11;
             this.TimeLeftLabel.Text = "Time left:";
             // 
+            // GoToPaymentPageButton
+            // 
+            this.GoToPaymentPageButton.AutoEllipsis = true;
+            this.GoToPaymentPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.GoToPaymentPageButton.ForeColor = System.Drawing.Color.Snow;
+            this.GoToPaymentPageButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB_200;
+            this.GoToPaymentPageButton.Image = global::The_Noob_Bot.Properties.Resources.blueB_200;
+            this.GoToPaymentPageButton.Location = new System.Drawing.Point(286, 152);
+            this.GoToPaymentPageButton.Name = "GoToPaymentPageButton";
+            this.GoToPaymentPageButton.Size = new System.Drawing.Size(200, 29);
+            this.GoToPaymentPageButton.TabIndex = 10;
+            this.GoToPaymentPageButton.Text = "Open the payment page";
+            this.GoToPaymentPageButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.GoToPaymentPageButton.Click += new System.EventHandler(this.GoToPaymentPageButton_Click);
+            // 
+            // ProductsPriceList
+            // 
+            this.ProductsPriceList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.ProductsPriceList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.ProductsPriceList.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            this.ProductsPriceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductsPriceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProductsPriceList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductsPriceList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.ProductsPriceList.FormattingEnabled = true;
+            this.ProductsPriceList.HighlightColor = System.Drawing.Color.Gainsboro;
+            this.ProductsPriceList.ItemHeight = 20;
+            this.ProductsPriceList.Location = new System.Drawing.Point(286, 119);
+            this.ProductsPriceList.Name = "ProductsPriceList";
+            this.ProductsPriceList.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
+            this.ProductsPriceList.SelectorImage = ((System.Drawing.Image)(resources.GetObject("ProductsPriceList.SelectorImage")));
+            this.ProductsPriceList.Size = new System.Drawing.Size(200, 26);
+            this.ProductsPriceList.TabIndex = 9;
+            // 
             // AccountNameLabel
             // 
             this.AccountNameLabel.AutoEllipsis = true;
@@ -617,6 +601,20 @@ namespace The_Noob_Bot
             this.RemoteSessionInfo.Size = new System.Drawing.Size(319, 15);
             this.RemoteSessionInfo.TabIndex = 2;
             this.RemoteSessionInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // RemoteSessionSwitchButton
+            // 
+            this.RemoteSessionSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.RemoteSessionSwitchButton.Location = new System.Drawing.Point(162, 12);
+            this.RemoteSessionSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.RemoteSessionSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.RemoteSessionSwitchButton.Name = "RemoteSessionSwitchButton";
+            this.RemoteSessionSwitchButton.OffText = "OFF";
+            this.RemoteSessionSwitchButton.OnText = "ON";
+            this.RemoteSessionSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.RemoteSessionSwitchButton.TabIndex = 1;
+            this.RemoteSessionSwitchButton.Value = false;
+            this.RemoteSessionSwitchButton.ValueChanged += new System.EventHandler(this.RemoteSessionSwitchButton_ValueChanged);
             // 
             // RemoteSessionLabel
             // 
@@ -685,22 +683,6 @@ namespace The_Noob_Bot
             this.AccountPanelTimer.Enabled = true;
             this.AccountPanelTimer.Interval = 1000;
             this.AccountPanelTimer.Tick += new System.EventHandler(this.AccountPanelTimer_Tick);
-            // 
-            // LoggingAreaTimer
-            // 
-            this.LoggingAreaTimer.Enabled = true;
-            this.LoggingAreaTimer.Tick += new System.EventHandler(this.LoggingAreaTimer_Tick);
-            // 
-            // BotStartedSinceLabel
-            // 
-            this.BotStartedSinceLabel.AutoEllipsis = true;
-            this.BotStartedSinceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BotStartedSinceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.BotStartedSinceLabel.Location = new System.Drawing.Point(298, 120);
-            this.BotStartedSinceLabel.Name = "BotStartedSinceLabel";
-            this.BotStartedSinceLabel.Size = new System.Drawing.Size(260, 15);
-            this.BotStartedSinceLabel.TabIndex = 49;
-            this.BotStartedSinceLabel.Text = "Bot started since :";
             // 
             // MainHeader
             // 
@@ -782,134 +764,6 @@ namespace The_Noob_Bot
             this.MainSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.MainSettingsButton.Click += new System.EventHandler(this.MainSettingsButton_Click);
             // 
-            // TargetHealth
-            // 
-            this.TargetHealth.BarImage = global::The_Noob_Bot.Properties.Resources.barImg;
-            this.TargetHealth.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
-            this.TargetHealth.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.TargetHealth.DrawMode = System.Windows.Forms.DrawMode.Normal;
-            this.TargetHealth.Location = new System.Drawing.Point(418, 43);
-            this.TargetHealth.Name = "TargetHealth";
-            this.TargetHealth.Size = new System.Drawing.Size(115, 10);
-            this.TargetHealth.TabIndex = 48;
-            this.TargetHealth.Value = 90;
-            // 
-            // Health
-            // 
-            this.Health.BarImage = ((System.Drawing.Image)(resources.GetObject("Health.BarImage")));
-            this.Health.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
-            this.Health.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.Health.DrawMode = System.Windows.Forms.DrawMode.Normal;
-            this.Health.Location = new System.Drawing.Point(131, 16);
-            this.Health.Name = "Health";
-            this.Health.Size = new System.Drawing.Size(115, 10);
-            this.Health.TabIndex = 34;
-            this.Health.Value = 20;
-            // 
-            // DebugLogSwitchButton
-            // 
-            this.DebugLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.DebugLogSwitchButton.Location = new System.Drawing.Point(424, 109);
-            this.DebugLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
-            this.DebugLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
-            this.DebugLogSwitchButton.Name = "DebugLogSwitchButton";
-            this.DebugLogSwitchButton.OffText = "OFF";
-            this.DebugLogSwitchButton.OnText = "ON";
-            this.DebugLogSwitchButton.Size = new System.Drawing.Size(60, 20);
-            this.DebugLogSwitchButton.TabIndex = 16;
-            this.DebugLogSwitchButton.Value = false;
-            this.DebugLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
-            // 
-            // NavigationLogSwitchButton
-            // 
-            this.NavigationLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.NavigationLogSwitchButton.Location = new System.Drawing.Point(424, 77);
-            this.NavigationLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
-            this.NavigationLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
-            this.NavigationLogSwitchButton.Name = "NavigationLogSwitchButton";
-            this.NavigationLogSwitchButton.OffText = "OFF";
-            this.NavigationLogSwitchButton.OnText = "ON";
-            this.NavigationLogSwitchButton.Size = new System.Drawing.Size(60, 20);
-            this.NavigationLogSwitchButton.TabIndex = 15;
-            this.NavigationLogSwitchButton.Value = false;
-            this.NavigationLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
-            // 
-            // FightLogSwitchButton
-            // 
-            this.FightLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.FightLogSwitchButton.Location = new System.Drawing.Point(424, 45);
-            this.FightLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
-            this.FightLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
-            this.FightLogSwitchButton.Name = "FightLogSwitchButton";
-            this.FightLogSwitchButton.OffText = "OFF";
-            this.FightLogSwitchButton.OnText = "ON";
-            this.FightLogSwitchButton.Size = new System.Drawing.Size(60, 20);
-            this.FightLogSwitchButton.TabIndex = 14;
-            this.FightLogSwitchButton.Value = true;
-            this.FightLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
-            // 
-            // NormalLogSwitchButton
-            // 
-            this.NormalLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.NormalLogSwitchButton.Location = new System.Drawing.Point(424, 13);
-            this.NormalLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
-            this.NormalLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
-            this.NormalLogSwitchButton.Name = "NormalLogSwitchButton";
-            this.NormalLogSwitchButton.OffText = "OFF";
-            this.NormalLogSwitchButton.OnText = "ON";
-            this.NormalLogSwitchButton.Size = new System.Drawing.Size(60, 20);
-            this.NormalLogSwitchButton.TabIndex = 13;
-            this.NormalLogSwitchButton.Value = true;
-            this.NormalLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
-            // 
-            // GoToPaymentPageButton
-            // 
-            this.GoToPaymentPageButton.AutoEllipsis = true;
-            this.GoToPaymentPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.GoToPaymentPageButton.ForeColor = System.Drawing.Color.Snow;
-            this.GoToPaymentPageButton.HooverImage = global::The_Noob_Bot.Properties.Resources.greenB_200;
-            this.GoToPaymentPageButton.Image = global::The_Noob_Bot.Properties.Resources.blueB_200;
-            this.GoToPaymentPageButton.Location = new System.Drawing.Point(286, 152);
-            this.GoToPaymentPageButton.Name = "GoToPaymentPageButton";
-            this.GoToPaymentPageButton.Size = new System.Drawing.Size(200, 29);
-            this.GoToPaymentPageButton.TabIndex = 10;
-            this.GoToPaymentPageButton.Text = "Open the payment page";
-            this.GoToPaymentPageButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.GoToPaymentPageButton.Click += new System.EventHandler(this.GoToPaymentPageButton_Click);
-            // 
-            // ProductsPriceList
-            // 
-            this.ProductsPriceList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.ProductsPriceList.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
-            this.ProductsPriceList.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.ProductsPriceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ProductsPriceList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ProductsPriceList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProductsPriceList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
-            this.ProductsPriceList.FormattingEnabled = true;
-            this.ProductsPriceList.HighlightColor = System.Drawing.Color.Gainsboro;
-            this.ProductsPriceList.ItemHeight = 20;
-            this.ProductsPriceList.Location = new System.Drawing.Point(286, 119);
-            this.ProductsPriceList.Name = "ProductsPriceList";
-            this.ProductsPriceList.SelectorBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(106)))), ((int)(((byte)(194)))));
-            this.ProductsPriceList.SelectorImage = ((System.Drawing.Image)(resources.GetObject("ProductsPriceList.SelectorImage")));
-            this.ProductsPriceList.Size = new System.Drawing.Size(200, 26);
-            this.ProductsPriceList.TabIndex = 9;
-            // 
-            // RemoteSessionSwitchButton
-            // 
-            this.RemoteSessionSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.RemoteSessionSwitchButton.Location = new System.Drawing.Point(162, 12);
-            this.RemoteSessionSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
-            this.RemoteSessionSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
-            this.RemoteSessionSwitchButton.Name = "RemoteSessionSwitchButton";
-            this.RemoteSessionSwitchButton.OffText = "OFF";
-            this.RemoteSessionSwitchButton.OnText = "ON";
-            this.RemoteSessionSwitchButton.Size = new System.Drawing.Size(60, 20);
-            this.RemoteSessionSwitchButton.TabIndex = 1;
-            this.RemoteSessionSwitchButton.Value = false;
-            this.RemoteSessionSwitchButton.ValueChanged += new System.EventHandler(this.RemoteSessionSwitchButton_ValueChanged);
-            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -953,19 +807,10 @@ namespace The_Noob_Bot
         private System.Windows.Forms.Panel PanelLog;
         private System.Windows.Forms.Panel PanelAccount;
         private System.Windows.Forms.Label RemoteSessionLabel;
-        private System.Windows.Forms.RichTextBox LoggingTextArea;
-        private System.Windows.Forms.Label DebugLogSwitchLabel;
-        private System.Windows.Forms.Label NavigationLogSwitchLabel;
-        private System.Windows.Forms.Label FightLogSwitchLabel;
-        private System.Windows.Forms.Label NormalLogSwitchLabel;
         private TnbComboBox ProductList;
         private TnbButton MainSettingsButton;
         private TnbButton ProductSettingsButton;
         private TnbButton StartButton;
-        private TnbSwitchButton NormalLogSwitchButton;
-        private TnbSwitchButton FightLogSwitchButton;
-        private TnbSwitchButton DebugLogSwitchButton;
-        private TnbSwitchButton NavigationLogSwitchButton;
         private TnbSwitchButton RemoteSessionSwitchButton;
         private System.Windows.Forms.Label RemoteSessionInfo;
         private TnbButton GoToPaymentPageButton;

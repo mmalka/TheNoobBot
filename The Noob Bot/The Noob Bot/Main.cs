@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Helpful.Forms;
+using nManager.Helpful.Forms.UserControls;
 using nManager.Plugins;
 using nManager.Products;
 using nManager.Wow;
@@ -41,6 +42,7 @@ namespace The_Noob_Bot
             InitializeBot();
             InitializeComponent();
             Translate();
+            InitializeLogging();
             if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 TopMost = true;
             InitializeUI();
@@ -109,6 +111,11 @@ namespace The_Noob_Bot
             }
         }
 
+        private void InitializeLogging()
+        {
+            LoggingUC LogMainWindow = new LoggingUC { Size = new Size(PanelLog.Size.Width, PanelLog.Size.Height) };
+            PanelLog.Controls.Add(LogMainWindow);
+        }
 
         private void InitializeUI()
         {
@@ -139,7 +146,6 @@ namespace The_Noob_Bot
                 ProductList.DropDownStyle = ComboBoxStyle.DropDownList;
                 if (i2 >= 0)
                     ProductList.SelectedIndex = i2;
-                Logging.OnChanged += SynchroniseLogging;
             }
             catch (Exception ex)
             {
@@ -147,105 +153,8 @@ namespace The_Noob_Bot
             }
         }
 
-        private void SynchroniseLogging(object sender, Logging.LoggingChangeEventArgs e)
-        {
-            try
-            {
-                lock (this)
-                {
-                    if ((e.Log.LogType & GetFlag()) == e.Log.LogType)
-                    {
-                        for (int i = Logging.List.Count - 1; i >= 0; i--)
-                        {
-                            Logging.Log log = Logging.List[i];
-                            if (log.DateTime == e.Log.DateTime && log.Text == e.Log.Text && log.LogType == e.Log.LogType && log.Color == e.Log.Color)
-                            {
-                                log.Processed = true;
-                                break;
-                            }
-                        }
-                        _listLog.Add(e.Log);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("SynchroniseLoggin(object sender, Logging.LoggingChangeEventArgs e): " + ex);
-            }
-        }
-
-        private void AddLog()
-        {
-            try
-            {
-                lock (this)
-                {
-                    if (_listLog.Count > 0)
-                    {
-                        LoggingTextArea.AppendText(_listLog[0].ToString());
-                        LoggingTextArea.Select(LoggingTextArea.Text.Length - _listLog[0].ToString().Length,
-                            _listLog[0].ToString().Length);
-                        LoggingTextArea.SelectionColor = _listLog[0].Color;
-                        LoggingTextArea.AppendText(Environment.NewLine);
-                        _listLog.RemoveAt(0);
-                        LoggingTextArea.ScrollToCaret();
-                    }
-                    else if (_hardAdded < 10)
-                    {
-                        if (Logging.List.Count > _listLog.Count)
-                        {
-                            foreach (Logging.Log log in Logging.List)
-                            {
-                                if ((log.LogType & GetFlag()) == log.LogType && !log.Processed)
-                                {
-                                    log.Processed = true;
-                                    _listLog.Add(log);
-                                    _hardAdded++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("AddLog(): " + e);
-            }
-        }
-
-        private Logging.LogType GetFlag()
-        {
-            try
-            {
-                var flag = Logging.LogType.None;
-
-                if (NormalLogSwitchButton.Value)
-                    flag |= Logging.LogType.S;
-                if (FightLogSwitchButton.Value)
-                    flag |= Logging.LogType.F;
-                if (NavigationLogSwitchButton.Value)
-                    flag |= Logging.LogType.N;
-                if (DebugLogSwitchButton.Value)
-                {
-                    flag |= Logging.LogType.D;
-                    flag |= Logging.LogType.E;
-                }
-
-                return flag;
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("GetFlag(): " + ex);
-            }
-            return Logging.LogType.None;
-        }
-
         private void Translate()
         {
-            NormalLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Normal);
-            FightLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Fight);
-            NavigationLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Navigator);
-            DebugLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Debug);
             HealthLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Health) + " :";
             LatestLogLabel.Text = nManager.Translate.Get(nManager.Translate.Id.LatestLogEntry);
             TargetLevelLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TargetLevel);
@@ -508,16 +417,6 @@ namespace The_Noob_Bot
             MainSettingsButton.Enabled = true;
         }
 
-        private void LoggingSwitchs_ValueChanged(object sender, EventArgs e)
-        {
-            lock (this)
-            {
-                _listLog.Clear();
-                _listLog.AddRange(Logging.ReadList(GetFlag(), true));
-                LoggingTextArea.Clear();
-            }
-        }
-
         private void RemoteSessionSwitchButton_ValueChanged(object sender, EventArgs e)
         {
             Remote.RemoteActive = RemoteSessionSwitchButton.Value;
@@ -730,20 +629,6 @@ namespace The_Noob_Bot
         private void GoToPaymentPageButton_Click(object sender, EventArgs e)
         {
             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/get-a-bg-bot-wow/");
-        }
-
-        private void LoggingAreaTimer_Tick(object sender, EventArgs e)
-        {
-            AddLog();
-        }
-
-        private void LoggingTextArea_VisibleChanged(object sender, EventArgs e)
-        {
-            if (LoggingTextArea.Visible)
-            {
-                LoggingTextArea.SelectionStart = LoggingTextArea.TextLength;
-                LoggingTextArea.ScrollToCaret();
-            }
         }
     }
 }
