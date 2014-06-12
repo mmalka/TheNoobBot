@@ -215,7 +215,7 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0xD0F388, //t  // GetClickToMoveStruct
+            CTM = 0xD0F390, //t  // GetClickToMoveStruct
             CTM_PUSH = CTM + 0x1C, //t 
             CTM_X = CTM + 0x8C, //t 
             CTM_Y = CTM_X + 0x4, //t 
