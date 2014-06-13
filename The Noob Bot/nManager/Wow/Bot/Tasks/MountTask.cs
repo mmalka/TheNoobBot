@@ -33,6 +33,7 @@ namespace nManager.Wow.Bot.Tasks
         private static string _groundMount;
         private static string _flyMount;
         public static bool SettingsHasChanged;
+        private static Timer dismountTimer = new Timer(0);
 
         public static MountCapacity GetMountCapacity()
         {
@@ -389,6 +390,11 @@ namespace nManager.Wow.Bot.Tasks
             MovementsAction.Descend(false, false, useLuaToLand);
         }
 
+        public static bool JustDismounted()
+        {
+            return !dismountTimer.IsReady;
+        }
+
         public static void DismountMount(bool stopMove = true)
         {
             try
@@ -407,6 +413,7 @@ namespace nManager.Wow.Bot.Tasks
                         if (Usefuls.IsFlying)
                             Land();
                         Usefuls.DisMount();
+                        dismountTimer = new Timer(4000);
                         Thread.Sleep(300 + Usefuls.Latency);
                     }
                 }

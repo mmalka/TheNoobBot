@@ -24056,6 +24056,8 @@ public class HunterMarksmanship
 
     private void Pet()
     {
+        if (MountTask.JustDismounted())
+            return;
         if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
             DismissPet();
@@ -24881,6 +24883,8 @@ public class HunterBeastMastery
 
     private void Pet()
     {
+        if (MountTask.JustDismounted())
+            return;
         if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
             DismissPet();
@@ -25755,6 +25759,8 @@ public class HunterSurvival
 
     private void Pet()
     {
+        if (MountTask.JustDismounted())
+            return;
         if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
         {
             DismissPet();
