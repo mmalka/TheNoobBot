@@ -410,11 +410,13 @@ namespace nManager.Wow.Bot.Tasks
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
                         Logging.Write("Dismount in progress.");
-                        if (Usefuls.IsFlying)
+                        bool flying = Usefuls.IsFlying;
+                        if (flying)
                             Land();
                         Usefuls.DisMount();
-                        dismountTimer = new Timer(4000);
-                        Thread.Sleep(300 + Usefuls.Latency);
+                        if (flying)
+                            dismountTimer = new Timer(5000);
+                        Thread.Sleep(200 + Usefuls.Latency);
                     }
                 }
             }
