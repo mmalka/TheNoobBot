@@ -129,7 +129,8 @@ namespace nManager
         {
             try
             {
-                _blackListZone.Add(position, radius);
+                if (!_blackListZone.ContainsKey(position))
+                    _blackListZone.Add(position, radius);
             }
             catch (Exception e)
             {
@@ -143,7 +144,8 @@ namespace nManager
             {
                 foreach (KeyValuePair<Point, float> f in listBlackZone)
                 {
-                    _blackListZone.Add(f.Key, f.Value);
+                    if (!_blackListZone.ContainsKey(f.Key))
+                        _blackListZone.Add(f.Key, f.Value);
                 }
             }
             catch (Exception e)

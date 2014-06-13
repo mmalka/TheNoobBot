@@ -57,7 +57,8 @@ namespace Grinder.Bot
                 {
                     foreach (GrinderBlackListRadius b in zone.BlackListRadius)
                     {
-                        blackListDic.Add(b.Position, b.Radius);
+                        if (!blackListDic.ContainsKey(b.Position))
+                            blackListDic.Add(b.Position, b.Radius);
                     }
                 }
                 nManagerSetting.AddRangeBlackListZone(blackListDic);
