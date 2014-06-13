@@ -98,11 +98,10 @@ namespace nManager.Wow.Bot.States
                         if (t.PriorityDigsites > priority && !BlackListDigsites.Contains(t.id))
                             priority = t.PriorityDigsites;
                     }
-                    // Now remove all digsites which are blacklisted or have lower priority but not the active one
+                    // Now remove all digsites which are blacklisted or have lower priority
                     for (int digSiteIndex = listDigsitesZone.Count - 1; digSiteIndex >= 0; digSiteIndex--)
                     {
                         if (BlackListDigsites.Contains(listDigsitesZone[digSiteIndex].id) ||
-                                !listDigsitesZone[digSiteIndex].Active ||
                                 listDigsitesZone[digSiteIndex].PriorityDigsites != priority)
                         {
                             listDigsitesZone.RemoveAt(digSiteIndex);
