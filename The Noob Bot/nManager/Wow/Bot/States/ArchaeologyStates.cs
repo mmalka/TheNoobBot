@@ -90,19 +90,31 @@ namespace nManager.Wow.Bot.States
                 if (listDigsitesZone.Count > 0)
                 {
                     Digsite tDigsitesZone = new Digsite {id = 0, name = ""};
-                    float distance = 99999999999999999f;
-                    float priority = -999999999999f;
+                    float distance = System.Single.MaxValue;
+                    float priority = System.Single.MinValue;
+                    // Get the max priority in the list of available dig sites
                     foreach (Digsite t in listDigsitesZone)
                     {
-                        if (BlackListDigsites.Contains(t.id) || !t.Active) continue;
-                        if (!(t.PriorityDigsites >= priority) &&
-                            ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
-                            continue;
+                        if (t.PriorityDigsites > priority && !BlackListDigsites.Contains(t.id))
+                            priority = t.PriorityDigsites;
+                    }
+                    // Now remove all digsites which are blacklisted or have lower priority but not the active one
+                    for (int digSiteIndex = listDigsitesZone.Count - 1; digSiteIndex >= 0; digSiteIndex--)
+                    {
+                        if (BlackListDigsites.Contains(listDigsitesZone[digSiteIndex].id) ||
+                                !listDigsitesZone[digSiteIndex].Active ||
+                                listDigsitesZone[digSiteIndex].PriorityDigsites != priority)
+                        {
+                            listDigsitesZone.RemoveAt(digSiteIndex);
+                        }
+                    }
+                    foreach (Digsite t in listDigsitesZone)
+                    {
                         WoWResearchSite OneSite = WoWResearchSite.FromName(t.name);
                         WoWQuestPOIPoint Polygon = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
                         Point center = Polygon.Center;
                         float dist = center.DistanceTo(ObjectManager.ObjectManager.Me.Position);
-                        if (!(dist < distance) && ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
+                        if (dist > distance && ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
                             continue;
                         if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
                         {
@@ -114,7 +126,6 @@ namespace nManager.Wow.Bot.States
                             if (_bestPathStatus)
                                 _bestPathId = _pathFound.Count - 1;
                         }
-                        priority = t.PriorityDigsites;
                         distance = dist;
                         tDigsitesZone = t;
                         qPOI = Polygon;
