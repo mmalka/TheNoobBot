@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Archaeologist.Bot;
 using Archaeologist.Properties;
@@ -174,7 +175,8 @@ namespace Archaeologist
 
         private void DigSitesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DigSitesTable.Rows[e.RowIndex].Cells[e.ColumnIndex].DataGridView.BeginEdit(true);
+            if (DigSitesTable.Rows.Count < e.RowIndex && DigSitesTable.Rows[e.RowIndex].Cells.Count < e.ColumnIndex)
+                DigSitesTable.Rows[e.RowIndex].Cells[e.ColumnIndex].DataGridView.BeginEdit(true);
         }
     }
 }
