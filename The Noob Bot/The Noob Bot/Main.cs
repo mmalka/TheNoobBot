@@ -28,8 +28,6 @@ namespace The_Noob_Bot
         private readonly Color _activeColor = Color.FromArgb(98, 160, 229);
         private readonly Image _inactiveBackground = Resources.tab_inactive_mainframe;
         private readonly Color _inactiveColor = Color.FromArgb(232, 232, 232);
-        private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
-        private int _hardAdded;
         private bool _isAccountActive;
         private bool _isHomeActive = true;
         private bool _isLogActive;
