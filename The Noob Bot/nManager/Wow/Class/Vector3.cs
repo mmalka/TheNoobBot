@@ -116,6 +116,8 @@ namespace nManager.Wow.Class
 
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
+            if ((object)v1 == null) return ((object)v2 == null);
+            if ((object)v2 == null) return ((object)v1 == null);
             return
                (
                     (v1.X == v2.X) &&
