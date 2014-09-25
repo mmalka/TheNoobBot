@@ -613,6 +613,11 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static uint GetMapId()
+        {
+            return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId);
+        }
+
         public static string ContinentNameMpq
         {
             get
