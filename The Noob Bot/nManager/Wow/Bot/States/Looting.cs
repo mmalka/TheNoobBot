@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using nManager.FiniteStateMachine;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -42,7 +43,7 @@ namespace nManager.Wow.Bot.States
                     nManagerSetting.CurrentSetting.BeastNinjaSkinning)
                     tUnit.AddRange(
                         ObjectManager.ObjectManager.GetWoWUnitSkinnable(
-                            new List<ulong>(nManagerSetting.GetListGuidBlackListed())));
+                            new List<Int128>(nManagerSetting.GetListGuidBlackListed())));
 
                 foreach (WoWUnit woWUnit in tUnit)
                 {

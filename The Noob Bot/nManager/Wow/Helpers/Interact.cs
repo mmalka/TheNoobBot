@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
 
                     // GUID (uint64) to uint32 + uint32
                     Stream t = new MemoryStream(8);
-                    byte[] ta = BitConverter.GetBytes(to.Guid);
+                    byte[] ta = to.Guid.ToByteArray();
                     t.Write(ta, 0, ta.Length);
                     t.Position = 0;
                     BinaryReader b = new BinaryReader(t);

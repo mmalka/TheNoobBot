@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using nManager.Wow.Class;
 
 namespace nManager.Wow.MemoryClass.Magic
 {
@@ -245,6 +246,44 @@ namespace nManager.Wow.MemoryClass.Magic
         public static uint ReadUInt(IntPtr hProcess, uint dwAddress)
         {
             return ReadUInt(hProcess, dwAddress, false);
+        }
+
+        /// <summary>
+        /// Reads a signed integer from memory.
+        /// </summary>
+        /// <param name="hProcess">Handle to the process in question.</param>
+        /// <param name="dwAddress">Address at which memory will be read.</param>
+        /// <param name="bReverse">Determines whether bytes will be reversed before returning or not (big-endian or little-endian)</param>
+        /// <returns>Returns memory read from external process.</returns>
+        public static Int128 ReadInt128(IntPtr hProcess, uint dwAddress, bool bReverse)
+        {
+            try
+            {
+                int size128 = Marshal.SizeOf(typeof(Int128));
+                byte[] buf = ReadBytes(hProcess, dwAddress, size128);
+                if (buf == null)
+                    throw new Exception("ReadInt failed.");
+
+                if (bReverse)
+                    Array.Reverse(buf);
+
+                return new Int128(buf);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Reads a signed integer from memory.
+        /// </summary>
+        /// <param name="hProcess">Handle to the process in question.</param>
+        /// <param name="dwAddress">Address at which memory will be read.</param>
+        /// <returns>Returns memory read from external process.</returns>
+        public static int ReadInt128(IntPtr hProcess, uint dwAddress)
+        {
+            return ReadInt(hProcess, dwAddress, false);
         }
 
         /// <summary>
@@ -674,7 +713,21 @@ namespace nManager.Wow.MemoryClass.Magic
         public static bool WriteInt(IntPtr hProcess, uint dwAddress, int Value)
         {
             byte[] lpBytes = BitConverter.GetBytes(Value);
-            return WriteBytes(hProcess, dwAddress, lpBytes, sizeof (int));
+            return WriteBytes(hProcess, dwAddress, lpBytes, sizeof(int));
+        }
+
+        /// <summary>
+        /// Writes a signed 32-bit integer to another process' memory.
+        /// </summary>
+        /// <param name="hProcess">Handle to the process to which value will be written.</param>
+        /// <param name="dwAddress">Address to which value will be written.</param>
+        /// <param name="Value">Value that will be written to memory.</param>
+        /// <returns>Returns true on success, false on failure.</returns>
+        public static bool WriteInt128(IntPtr hProcess, uint dwAddress, Int128 Value)
+        {
+            byte[] lpBytes = Value.ToByteArray();
+            int size128 = Marshal.SizeOf(typeof(Int128));
+            return WriteBytes(hProcess, dwAddress, lpBytes, size128);
         }
 
         /// <summary>

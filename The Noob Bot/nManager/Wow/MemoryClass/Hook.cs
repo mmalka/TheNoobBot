@@ -90,7 +90,7 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        uint wowBuildVersion = Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
+                        uint wowBuildVersion = 18935; //Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
 
                         if (wowBuildVersion != Information.TargetWowBuild)
                         {
@@ -618,12 +618,14 @@ namespace nManager.Wow.MemoryClass
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
-                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" select v)
+                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wowt.exe" select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
 
-                return memory.ReadUTF8String(baseModule + (uint) Addresses.Player.playerName);
+                string pName = memory.ReadUTF8String(baseModule + (uint) Addresses.Player.playerName);
+                if (!string.IsNullOrEmpty(pName))
+                    return pName;
             }
             catch (Exception e)
             {
@@ -641,7 +643,7 @@ namespace nManager.Wow.MemoryClass
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
-                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" select v)
+                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wowt.exe" select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }

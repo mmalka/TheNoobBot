@@ -277,7 +277,7 @@ namespace nManager.Helpful
                                 clientStream.Write(bufferPos, 0, bufferPos.Length);
                                 break;
                             case MimesisHelpers.opCodes.QueryGuid:
-                                byte[] bufferGuid = BitConverter.GetBytes(ObjectManager.Me.Guid);
+                                byte[] bufferGuid = ObjectManager.Me.Guid.ToByteArray();
                                 opCodeAndLen[0] = (byte) MimesisHelpers.opCodes.ReplyGuid;
                                 opCodeAndLen[1] = (byte) bufferGuid.Length;
                                 clientStream.Write(opCodeAndLen, 0, 2);

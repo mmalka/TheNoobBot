@@ -96,9 +96,9 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public ulong Owner
+        public Int128 Owner
         {
-            get { return GetDescriptor<ulong>(GetBaseAddress, (uint) Descriptors.ItemFields.Owner); }
+            get { return GetDescriptor<Int128>(GetBaseAddress, (uint) Descriptors.ItemFields.Owner); }
         }
 
         public T GetDescriptor<T>(Descriptors.ItemFields field) where T : struct

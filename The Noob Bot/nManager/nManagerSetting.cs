@@ -32,9 +32,9 @@ namespace nManager
         
         #region BlackListGuid
 
-        private static readonly Dictionary<ulong, int> _blackListGuidByTime = new Dictionary<ulong, int>();
+        private static readonly Dictionary<Int128, int> _blackListGuidByTime = new Dictionary<Int128, int>();
 
-        public static bool IsBlackListed(ulong guid)
+        public static bool IsBlackListed(Int128 guid)
         {
             try
             {
@@ -46,17 +46,17 @@ namespace nManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("IsBlackListed(ulong guid): " + e);
+                Logging.WriteError("IsBlackListed(Int128 guid): " + e);
                 return false;
             }
         }
 
-        public static List<ulong> GetListGuidBlackListed()
+        public static List<Int128> GetListGuidBlackListed()
         {
             try
             {
-                List<ulong> ret = new List<ulong>();
-                foreach (KeyValuePair<ulong, int> i in _blackListGuidByTime)
+                List<Int128> ret = new List<Int128>();
+                foreach (KeyValuePair<Int128, int> i in _blackListGuidByTime)
                 {
                     if (i.Value == -1 || i.Value <= Others.Times)
                         ret.Add(i.Key);
@@ -66,11 +66,11 @@ namespace nManager
             catch (Exception e)
             {
                 Logging.WriteError("GetListGuidBlackListed(): " + e);
-                return new List<ulong>();
+                return new List<Int128>();
             }
         }
 
-        public static void AddBlackList(ulong guid, int timeInMilisec = -1)
+        public static void AddBlackList(Int128 guid, int timeInMilisec = -1)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace nManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("AddBlackList(ulong guid, int timeInMilisec = -1): " + e);
+                Logging.WriteError("AddBlackList(Int128 guid, int timeInMilisec = -1): " + e);
             }
         }
 

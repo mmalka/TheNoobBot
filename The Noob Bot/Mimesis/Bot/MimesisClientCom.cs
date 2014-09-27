@@ -68,7 +68,7 @@ namespace Mimesis.Bot
             client.Close();
         }
 
-        public static ulong GetMasterGuid()
+        public static Int128 GetMasterGuid()
         {
             byte[] opCodeAndSize = new byte[2];
             byte[] buffer;
@@ -93,7 +93,7 @@ namespace Mimesis.Bot
                 return 0;
             }
             if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyGuid)
-                return (ulong) BitConverter.ToInt64(buffer, 0);
+                return (Int128) new Int128(buffer);
             return 0;
         }
 

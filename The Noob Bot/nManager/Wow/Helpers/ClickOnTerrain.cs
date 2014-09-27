@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
         [StructLayout(LayoutKind.Explicit, Size = 0x20)]
         public struct StructClickOnTerrain
         {
-            [FieldOffset(0x0)] public ulong Guid;
+            [FieldOffset(0x0)] public Int128 Guid;
             [FieldOffset(0x8)] public float X;
             [FieldOffset(0xC)] public float Y;
             [FieldOffset(0x10)] public float Z;

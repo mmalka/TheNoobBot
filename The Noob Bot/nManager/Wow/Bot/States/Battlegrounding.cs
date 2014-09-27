@@ -3,6 +3,7 @@ using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -84,7 +85,7 @@ namespace nManager.Wow.Bot.States
         {
             MountTask.DismountMount();
             Logging.Write("Engage fight against player " + _unit.Name + " (lvl " + _unit.Level + ")");
-            ulong unkillableMob = Fight.StartFight(_unit.Guid);
+            Int128 unkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting its position.");

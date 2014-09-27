@@ -157,8 +157,8 @@
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
+    <Compile Include="Wow\Class\Int128.cs" />
     <Compile Include="Wow\Class\Quaternion.cs" />
-    <Compile Include="Wow\Class\SmartGuid.cs" />
     <Compile Include="Wow\Class\Vector3.cs" />
     <Compile Include="Wow\Enums\GuidType.cs" />
     <Compile Include="Wow\Enums\MovementFlags.cs" />

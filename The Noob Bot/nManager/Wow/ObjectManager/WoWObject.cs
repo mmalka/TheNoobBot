@@ -82,14 +82,14 @@ namespace nManager.Wow.ObjectManager
         }
 
         // These are simple descriptors, or other funcs that should be shared across objects.
-        public UInt64 Guid
+        public Int128 Guid
         {
             get
             {
                 try
                 {
                     if (BaseAddress != 0)
-                        return GetDescriptor<UInt64>(Descriptors.ObjectFields.Guid);
+                        return GetDescriptor<Int128>(Descriptors.ObjectFields.Guid);
                     return 0;
                 }
                 catch (Exception e)
@@ -280,6 +280,12 @@ namespace nManager.Wow.ObjectManager
                     if (typeof (T) == typeof (ulong))
                     {
                         ret = Memory.WowMemory.Memory.ReadUInt64(addressGD);
+                        return (T) ret;
+                    }
+
+                    if (typeof (T) == typeof (Int128))
+                    {
+                        ret = Memory.WowMemory.Memory.ReadInt128(addressGD);
                         return (T) ret;
                     }
 

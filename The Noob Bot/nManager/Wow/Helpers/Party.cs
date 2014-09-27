@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
@@ -8,7 +9,7 @@ namespace nManager.Wow.Helpers
 {
     public static class Party
     {
-        public static ulong GetPartyLeaderGUID()
+        public static Int128 GetPartyLeaderGUID()
         {
             try
             {
@@ -37,9 +38,9 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static List<UInt64> GetPartyPlayersGUID()
+        public static List<Int128> GetPartyPlayersGUID()
         {
-            List<ulong> partyPlayersGUID = new List<UInt64>();
+            List<Int128> partyPlayersGUID = new List<Int128>();
             try
             {
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
@@ -50,7 +51,7 @@ namespace nManager.Wow.Helpers
                     {
                         uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
                         if (partyPlayer <= 0) continue;
-                        ulong currentPlayerGUID =
+                        Int128 currentPlayerGUID =
                             Memory.WowMemory.Memory.ReadUInt64(
                                 partyPlayer + (uint) Addresses.Party.PlayerGuid);
                         if (currentPlayerGUID > 0)
@@ -63,7 +64,7 @@ namespace nManager.Wow.Helpers
             catch (Exception e)
             {
                 Logging.WriteError("Party > GetPartyGUID(): " + e);
-                partyPlayersGUID = new List<UInt64>();
+                partyPlayersGUID = new List<Int128>();
             }
             return partyPlayersGUID;
         }

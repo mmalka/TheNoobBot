@@ -9,7 +9,7 @@ namespace nManager.Wow.Helpers
     {
         private static Vector3 cache = new Vector3();
 
-        public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt64 guid, Int32 action,
+        public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, Int128 guid, Int32 action,
             Single precision)
         {
             try
@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                 if (posCodecave <= 0 || guidCodecave <= 0 || precisionCodecave <= 0)
                     return;
                 // Write value:
-                Memory.WowMemory.Memory.WriteUInt64(guidCodecave, guid);
+                Memory.WowMemory.Memory.WriteInt128(guidCodecave, guid);
                 Memory.WowMemory.Memory.WriteFloat(precisionCodecave, precision);
 
                 Memory.WowMemory.Memory.WriteFloat(posCodecave, x);

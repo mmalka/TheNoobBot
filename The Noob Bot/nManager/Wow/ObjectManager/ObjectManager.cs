@@ -21,13 +21,13 @@ namespace nManager.Wow.ObjectManager
         // Units and Gameobjects are in separate lists
         private static List<WoWUnit> _unitList;
         private static List<WoWGameObject> _gameobjectList;
-        public static List<ulong> BlackListMobAttack = new List<ulong>();
+        public static List<Int128> BlackListMobAttack = new List<Int128>();
 
         static ObjectManager()
         {
             try
             {
-                ObjectDictionary = new ConcurrentDictionary<ulong, WoWObject>();
+                ObjectDictionary = new ConcurrentDictionary<Int128, WoWObject>();
                 Me = new WoWPlayer(0);
             }
             catch (Exception e)
@@ -46,7 +46,7 @@ namespace nManager.Wow.ObjectManager
                     return _objectList.ToList();
             }
         }
-        public static ConcurrentDictionary<ulong, WoWObject> ObjectDictionary { get; set; }
+        public static ConcurrentDictionary<Int128, WoWObject> ObjectDictionary { get; set; }
         public static WoWPlayer Me { get; private set; }
 
         public static WoWUnit Target
@@ -88,7 +88,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    ulong guidPet = Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
+                    Int128 guidPet = Memory.WowMemory.Memory.ReadInt128(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
                     if (guidPet > 0)
                         return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
 
@@ -114,7 +114,7 @@ namespace nManager.Wow.ObjectManager
                 lock (Locker)
                 {
                     // Remove invalid objects.
-                    foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
+                    foreach (KeyValuePair<Int128, WoWObject> o in ObjectDictionary)
                     {
                         o.Value.UpdateBaseAddress(0);
                     }
@@ -123,11 +123,11 @@ namespace nManager.Wow.ObjectManager
                     ReadObjectList();
 
                     // Clear out old references.
-                    List<ulong> toRemove = new List<ulong>();
+                    List<Int128> toRemove = new List<Int128>();
                     _objectList = new List<WoWObject>();
                     _unitList = new List<WoWUnit>();
                     _gameobjectList = new List<WoWGameObject>();
-                    foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
+                    foreach (KeyValuePair<Int128, WoWObject> o in ObjectDictionary)
                     {
                         if (o.Value.IsValid)
                         {
@@ -149,7 +149,7 @@ namespace nManager.Wow.ObjectManager
                     }
 
                     // All done! Just make sure we pass up a valid list to the ObjectList.
-                    foreach (ulong guid in toRemove)
+                    foreach (Int128 guid in toRemove)
                     {
                         WoWObject object1;
                         ObjectDictionary.TryRemove(guid, out object1);
@@ -176,8 +176,7 @@ namespace nManager.Wow.ObjectManager
                                                          Addresses.ObjectManagerClass.clientConnection) +
                         (uint) Addresses.ObjectManager.objectManager);
 
-                ulong localPlayerGuid =
-                    Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
+                Int128 localPlayerGuid = Memory.WowMemory.Memory.ReadInt128(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
 
                 // Get the first object in the linked list.
                 int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.firstObject);
@@ -186,7 +185,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     try
                     {
-                        ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint) currentObject + (uint) Addresses.ObjectManager.objectGUID);
+                        Int128 objGuid = Memory.WowMemory.Memory.ReadInt128((uint)currentObject + (uint)Addresses.ObjectManager.objectGUID);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
                             WoWObjectType objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);
@@ -266,7 +265,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         // Management Object
-        public static WoWObject GetObjectByGuid(ulong guid)
+        public static WoWObject GetObjectByGuid(Int128 guid)
         {
             try
             {
@@ -275,7 +274,7 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetObjectByGuid(ulong guid): " + e);
+                Logging.WriteError("GetObjectByGuid(Int128 guid): " + e);
                 return new WoWObject(0);
             }
         }
@@ -412,7 +411,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static WoWPlayer GetObjectWoWPlayer(ulong guid)
+        public static WoWPlayer GetObjectWoWPlayer(Int128 guid)
         {
             try
             {
@@ -423,7 +422,7 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetObjectWoWPlayer(ulong guid): " + e);
+                Logging.WriteError("GetObjectWoWPlayer(Int128 guid): " + e);
                 return null;
             }
         }
@@ -1182,7 +1181,7 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWPlayer>();
         }
 
-        public static List<WoWUnit> GetWoWUnitSkinnable(List<WoWUnit> listWoWUnit, List<ulong> withoutGuid)
+        public static List<WoWUnit> GetWoWUnitSkinnable(List<WoWUnit> listWoWUnit, List<Int128> withoutGuid)
         {
             try
             {
@@ -1217,12 +1216,12 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWUnitSkinnable(List<WoWUnit> listWoWUnit, List<ulong> withoutGuid): " + e);
+                Logging.WriteError("GetWoWUnitSkinnable(List<WoWUnit> listWoWUnit, List<Int128> withoutGuid): " + e);
             }
             return new List<WoWUnit>();
         }
 
-        public static List<WoWUnit> GetWoWUnitSkinnable(List<ulong> withoutGuid)
+        public static List<WoWUnit> GetWoWUnitSkinnable(List<Int128> withoutGuid)
         {
             try
             {
@@ -1230,7 +1229,7 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWUnitSkinnable(List<ulong> withoutGuid): " + e);
+                Logging.WriteError("GetWoWUnitSkinnable(List<Int128> withoutGuid): " + e);
             }
             return new List<WoWUnit>();
         }

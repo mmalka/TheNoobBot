@@ -13,7 +13,7 @@ namespace nManager.Wow.Helpers
     {
         public static bool InFight { get; set; }
 
-        public static ulong StartFight(ulong guid = 0)
+        public static Int128 StartFight(Int128 guid = default(Int128))
         {
             MovementManager.StopMove();
             WoWUnit targetNpc = null;
@@ -195,7 +195,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("StartFight(ulong guid = 0, bool inBg = false): " + exception);
+                Logging.WriteError("StartFight(Int128 guid = 0, bool inBg = false): " + exception);
                 InFight = false;
             }
             try
@@ -210,7 +210,7 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static ulong StartFightDamageDealer(ulong guid = 0)
+        public static Int128 StartFightDamageDealer(Int128 guid = default(Int128))
         {
             WoWUnit targetNpc = null;
             try
@@ -299,7 +299,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("StartFightDamageDealer(ulong guid = 0, bool inBg = false): " + exception);
+                Logging.WriteError("StartFightDamageDealer(Int128 guid = 0, bool inBg = false): " + exception);
                 InFight = false;
             }
             try

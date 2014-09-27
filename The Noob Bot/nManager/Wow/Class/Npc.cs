@@ -14,10 +14,10 @@ namespace nManager.Wow.Class
         }
 
         private int _entry;
-        private ulong _guid;
+        private Int128 _guid;
 
         [XmlIgnore]
-        public ulong Guid
+        public Int128 Guid
         {
             get { return _guid; }
             set { _guid = value; }

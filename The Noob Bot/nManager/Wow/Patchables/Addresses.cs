@@ -10,13 +10,13 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0x0; // 0xFF6668
+            public static uint clientConnection = 0xFF6668;
             public static uint sCurMgr = 0xDD9B68; // ??
         }
 
         public enum ObjectManager
         {
-            objectManager = 0x462C, // toUpdate 62C
+            objectManager = 0x62C, // toUpdate 62C
             localGuid = 0xE8, // toUpdate
             objectGUID = 0x28, // toUpdate
             objectTYPE = 0xC, // toUpdate

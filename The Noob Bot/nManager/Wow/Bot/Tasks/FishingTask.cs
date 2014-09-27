@@ -15,7 +15,7 @@ namespace nManager.Wow.Bot.Tasks
 
         private static Spell fishingSpell;
 
-        private static ulong _guidNode;
+        private static Int128 _guidNode;
         private static bool _precision;
         private static string _lureName = "";
         private static bool _useLure;
@@ -56,7 +56,7 @@ namespace nManager.Wow.Bot.Tasks
         /// <param name="lureName"> </param>
         /// <param name="precision"> </param>
         /// <param name="useLure"> </param>
-        public static void LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = "",
+        public static void LoopFish(Int128 guidNode = default(Int128), bool useLure = false, string lureName = "",
             bool precision = false)
         {
             try
@@ -78,7 +78,7 @@ namespace nManager.Wow.Bot.Tasks
             catch (Exception e)
             {
                 Logging.WriteError(
-                    "FishingTask > LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = \"\", bool precision = false): " +
+                    "FishingTask > LoopFish(Int128 guidNode = 0, bool useLure = false, string lureName = \"\", bool precision = false): " +
                     e);
             }
         }

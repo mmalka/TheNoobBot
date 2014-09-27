@@ -223,7 +223,7 @@ namespace nManager.Wow.ObjectManager
                     {
                         try
                         {
-                            ulong itemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
+                            Int128 itemGuidOwner = GetDescriptor<Int128>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
                             if (!EquippedItems.IsEquippedItemByGuid(o.Guid) || itemGuidOwner != Guid)
                                 continue;
                             int itemMaxDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.MaxDurability);

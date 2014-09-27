@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
@@ -45,7 +46,7 @@ namespace nManager.Wow.Helpers
 
                     listItems.AddRange(from o in objects
                         let itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint) Descriptors.ObjectFields.Entry)
-                        let itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner)
+                        let itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner)
                         where itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid
                         select o);
                 }
@@ -61,21 +62,21 @@ namespace nManager.Wow.Helpers
 
         public static WoWItem GetEquippedItem(int invSlot)
         {
-            ulong guid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
+            Int128 guid = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
             List<WoWItem> items = ObjectManager.ObjectManager.GetObjectWoWItem();
             WoWItem first = items.FirstOrDefault(x => x.Guid == guid);
             WoWItem item = first ?? new WoWItem(0);
             return item;
         }
 
-        public static bool IsEquippedItemByGuid(ulong guid)
+        public static bool IsEquippedItemByGuid(Int128 guid)
         {
             int slot;
-            ulong tmpguid = 0;
+            Int128 tmpguid = 0;
             bool success = false;
             for (slot = 0; slot < 19; slot++)
             {
-                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*2));
+                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*2));
                 if (tmpguid != guid) continue;
                 success = true;
                 break;

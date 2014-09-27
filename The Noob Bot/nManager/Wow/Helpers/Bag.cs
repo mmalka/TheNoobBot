@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 
@@ -72,7 +73,7 @@ namespace nManager.Wow.Helpers
                                         Descriptors
                                             .ObjectFields
                                             .Entry);
-                                ulong itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(
+                                Int128 itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>(
                                     o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
 
                                 if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid &&

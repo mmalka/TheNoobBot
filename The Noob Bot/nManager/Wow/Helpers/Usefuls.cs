@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
@@ -356,7 +357,7 @@ namespace nManager.Wow.Helpers
 
                         for (int b = 0; b <= nbBag - 1; b++)
                         {
-                            ulong bagGuid = Memory.WowMemory.Memory.ReadUInt64(Process.Process.wowModule + (uint)Addresses.Container.EquippedBagGUID + (uint)(b * 0x8));
+                            Int128 bagGuid = Memory.WowMemory.Memory.ReadUInt64(Process.Process.wowModule + (uint)Addresses.Container.EquippedBagGUID + (uint)(b * 0x8));
 
                             if (bagGuid > 0)
                             {
@@ -379,7 +380,7 @@ namespace nManager.Wow.Helpers
                         freeSlot += BACKPACK_SLOT;
                         for (int s = 0; s <= BACKPACK_SLOT - 1; s++)
                         {
-                            if (ObjectManager.Me.GetDescriptor<ulong>(Descriptors.PlayerFields.PLAYER_FIELD_PACK_SLOT_1 + (s * 0x8)) > 0)
+                            if (ObjectManager.Me.GetDescriptor<Int128>(Descriptors.PlayerFields.PLAYER_FIELD_PACK_SLOT_1 + (s * 0x8)) > 0)
                                 freeSlot--;
                         }
 
@@ -818,7 +819,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static string GetPlayerName(ulong guid)
+        public static string GetPlayerName(Int128 guid)
         {
             try
             {
@@ -827,7 +828,7 @@ namespace nManager.Wow.Helpers
                 uint baseAddresse =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.nameStorePtr + (uint) Addresses.PlayerNameStore.nameBaseOffset);
 
-                ulong shortGUID = guid & 0xffffffff;
+                Int128 shortGUID = guid & 0xffffffff;
                 if (mask == 0xffffffff)
                     return "";
 
@@ -854,7 +855,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetPlayerName(ulong guid): " + e);
+                Logging.WriteError("GetPlayerName(Int128 guid): " + e);
                 return "";
             }
         }

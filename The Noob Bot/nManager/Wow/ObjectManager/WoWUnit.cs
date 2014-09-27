@@ -1329,13 +1329,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public UInt64 Target
+        public Int128 Target
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<ulong>(Descriptors.UnitFields.Target);
+                    return GetDescriptor<Int128>(Descriptors.UnitFields.Target);
                 }
                 catch (Exception e)
                 {
@@ -1347,7 +1347,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    Memory.WowMemory.Memory.WriteUInt64(
+                    Memory.WowMemory.Memory.WriteInt128(
                         Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors) +
                         (uint) Descriptors.UnitFields.Target*Descriptors.Multiplicator, value);
                 }
@@ -1808,13 +1808,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public ulong SummonedBy
+        public Int128 SummonedBy
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<ulong>(Descriptors.UnitFields.SummonedBy);
+                    return GetDescriptor<Int128>(Descriptors.UnitFields.SummonedBy);
                 }
                 catch (Exception e)
                 {
@@ -1824,13 +1824,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public ulong CreatedBy
+        public Int128 CreatedBy
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<ulong>(Descriptors.UnitFields.CreatedBy);
+                    return GetDescriptor<Int128>(Descriptors.UnitFields.CreatedBy);
                 }
                 catch (Exception e)
                 {
@@ -2103,7 +2103,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public ulong TransportGuid
+        public Int128 TransportGuid
         {
             get
             {

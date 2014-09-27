@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Class;
 
 namespace nManager.Wow.MemoryClass.Magic
 {
@@ -95,6 +96,17 @@ namespace nManager.Wow.MemoryClass.Magic
         public bool WriteInt(uint dwAddress, int Value)
         {
             return SMemory.WriteInt(this.m_hProcess, dwAddress, Value);
+        }
+
+        /// <summary>
+        /// Writes a value to another process' memory.
+        /// </summary>
+        /// <param name="dwAddress">Address at which value will be written.</param>
+        /// <param name="Value">Value that will be written to memory.</param>
+        /// <returns>Returns true on success, false on failure.</returns>
+        public bool WriteInt128(uint dwAddress, Int128 Value)
+        {
+            return SMemory.WriteInt128(this.m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -312,6 +324,33 @@ namespace nManager.Wow.MemoryClass.Magic
                 throw new Exception("Process is not open for read/write.");
 
             return SMemory.ReadUInt(this.m_hProcess, dwAddress, bReverse);
+        }
+
+        /// <summary>
+        /// Reads a value from memory.
+        /// </summary>
+        /// <param name="dwAddress">Address at which value will be read.</param>
+        /// <exception cref="Exception">Throws general exception on failure.</exception>
+        /// <returns>Returns the value that was read from memory.</returns>
+        public Int128 ReadInt128(uint dwAddress)
+        {
+            return this.ReadInt128(dwAddress, false);
+        }
+
+        /// <summary>
+        /// Reads a value from memory.
+        /// </summary>
+        /// <param name="dwAddress">Address at which value will be read.</param>
+        /// <param name="bReverse">Determines whether bytes read will be reversed or not (Little endian or big endian).  Usually 'false'.</param>
+        /// <exception cref="Exception">Throws general exception on failure.</exception>
+        /// <returns>Returns the value that was read from memory.</returns>
+        /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
+        public Int128 ReadInt128(uint dwAddress, bool bReverse)
+        {
+            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+                throw new Exception("Process is not open for read/write.");
+
+            return SMemory.ReadInt128(this.m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
