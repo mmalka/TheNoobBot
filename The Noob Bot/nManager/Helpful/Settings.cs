@@ -60,12 +60,16 @@ namespace nManager.Helpful
         public static string AdviserFilePathAndName(string productName)
         {
             string fileName;
+            Timer checkTimer = new Timer(10000); // give up after 10 seconds
             try
             {
+                checkTimer.Reset();
                 while (ObjectManager.Me.WowClass.ToString() == "None")
                 {
                     Thread.Sleep(10);
                     Application.DoEvents();
+                    if (checkTimer.IsReady)
+                        break;
                 }
                 fileName = productName + "-" + Others.DelSpecialChar(ObjectManager.Me.Name) + "." + ObjectManager.Me.WowClass + "." + Others.DelSpecialChar(Usefuls.RealmName) + ".xml";
             }
