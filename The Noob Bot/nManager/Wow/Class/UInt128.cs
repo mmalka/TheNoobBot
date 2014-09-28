@@ -123,14 +123,6 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         public UInt128(decimal value)
         {
-            if (value < 0)
-            {
-                UInt128 n = -new UInt128(-value);
-                _hi = n._hi;
-                _lo = n._lo;
-                return;
-            }
-
             int[] bits = decimal.GetBits(value);
             _hi = (uint) bits[2];
             _lo = (uint) bits[0] | (ulong) bits[1] << 32;
@@ -160,14 +152,6 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         public UInt128(short value)
         {
-            if (value < 0)
-            {
-                UInt128 n = -new UInt128(-(value + 1)) - 1;
-                _hi = n._hi;
-                _lo = n._lo;
-                return;
-            }
-
             _hi = 0;
             _lo = (ulong) value;
         }
@@ -178,14 +162,6 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         public UInt128(int value)
         {
-            if (value < 0)
-            {
-                UInt128 n = -new UInt128(-(value + 1)) - 1;
-                _hi = n._hi;
-                _lo = n._lo;
-                return;
-            }
-
             _hi = 0;
             _lo = (ulong) value;
         }
@@ -196,14 +172,6 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         public UInt128(long value)
         {
-            if (value < 0)
-            {
-                UInt128 n = -new UInt128(-(value + 1)) - 1;
-                _hi = n._hi;
-                _lo = n._lo;
-                return;
-            }
-
             _hi = 0;
             _lo = (ulong) value;
         }
@@ -214,14 +182,6 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         public UInt128(sbyte value)
         {
-            if (value < 0)
-            {
-                UInt128 n = -new UInt128(-(value + 1)) - 1;
-                _hi = n._hi;
-                _lo = n._lo;
-                return;
-            }
-
             _hi = 0;
             _lo = (ulong) value;
         }
@@ -417,40 +377,64 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Returns a <see cref="System.String" /> that represents this instance.
+        /// Converts the numeric value of the current <see cref="UInt128"/> object to its equivalent string representation by using the specified format and culture-specific format information.
         /// </summary>
-        /// <returns>
-        ///     A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString()
+        /// <param name="format">A standard or custom numeric format string.</param>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <returns>The string representation of the current <see cref="UInt128"/> value as specified by the <paramref name="format"/> and <paramref name="formatProvider"/> parameters.</returns>
+        /// <exception cref="FormatException"><paramref name="format"/> is not a valid format string.</exception>
+        /// <remarks>
+        /// The <paramref name="format"/> parameter can be any valid standard numeric format specifier, or any combination of custom numeric format specifiers. 
+        /// If <paramref name="format"/> is equal to <see cref="String.Empty"/> or is <see langword="null"/>, the return value of the current <see cref="UInt128"/> object is formatted with the general format specifier ("G"). 
+        /// If <paramref name="format"/> is any other value, the method throws a <see cref="FormatException"/>.
+        /// <para>
+        /// The <paramref name="formatProvider"/> parameter is an <see cref="IFormatProvider"/> implementation. 
+        /// Its <see cref="IFormatProvider.GetFormat"/> method returns a <see cref="NumberFormatInfo"/> object that provides culture-specific information about the format of the string returned by this method. 
+        /// When the <see cref="ToString(String, IFormatProvider)"/> method is invoked, it calls the <paramref name="formatProvider"/> parameter's <see cref="IFormatProvider.GetFormat"/> method and passes it a <see cref="Type"/> object that represents the <see cref="NumberFormatInfo"/> type. 
+        /// The <see cref="IFormatProvider.GetFormat"/> method then returns the <see cref="NumberFormatInfo"/> object that provides information for formatting the <see cref="UInt128"/> object, such as the negative sign symbol, the group separator symbol, or the decimal point symbol. 
+        /// There are three ways to use the <paramref name="formatProvider"/> parameter to supply formatting information to the <see cref="ToString(String, IFormatProvider)"/> method: 
+        /// <list type="bullet">
+        ///   <item>
+        ///   You can pass a <see cref="CultureInfo"/> object that represents the culture that provides numeric formatting information. 
+        ///   Its <see cref="CultureInfo.GetFormat"/> method returns the <see cref="NumberFormatInfo"/> object that provides numeric formatting information.
+        ///   </item>
+        ///   <item>You can pass the actual <see cref="NumberFormatInfo"/> object that provides formatting information. (Its implementation of <see cref="NumberFormatInfo.GetFormat"/> just returns itself.)</item>
+        ///   <item>
+        ///   You can pas a custom object that implements <see cref="IFormatProvider"/> and uses the <see cref="IFormatProvider.GetFormat"/> method 
+        ///   to instantiate and return the <see cref="NumberFormatInfo"/> object that provides formatting information.
+        ///   </item>
+        /// </list>
+        /// If <paramref name="formatProvider"/> is <see langword="null"/>, the formatting of the returned string is based on the <see cref="NumberFormatInfo "/> object of the current culture.
+        /// </para>
+        /// </remarks>
+        public string ToString(string format, IFormatProvider formatProvider)
         {
-            return ToString(null, null);
+            return ((BigInteger)this).ToString(format, formatProvider);
         }
 
         /// <summary>
-        ///     Returns a <see cref="System.String" /> that represents this instance.
+        /// Converts the numeric value of the current <see cref="UInt128"/> object to its equivalent string representation by using the specified format.
+        /// Uses <see cref="CultureInfo.CurrentCulture"/> as the format provider.
         /// </summary>
-        /// <param name="format">The format. Only x, X, g, G, d, D are supported.</param>
-        /// <returns>
-        ///     A <see cref="System.String" /> that represents this instance.
-        /// </returns>
+        /// <param name="format">A standard or custom numeric format string.</param>
+        /// <returns>The string representation of the current <see cref="UInt128"/> value as specified by the <paramref name="format"/> parameter.</returns>
+        /// <exception cref="FormatException"><paramref name="format"/> is not a valid format string.</exception>
+        /// <remarks>
+        /// See <see cref="ToString(string, IFormatProvider)"/> for remarks.
+        /// </remarks>
         public string ToString(string format)
         {
             return ToString(format, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
-        ///     Converts the numeric value of the current <see cref="UInt128" /> object to its equivalent string representation by
-        ///     using the specified culture-specific format information.
-        ///     Uses "G" format.
+        /// Converts the numeric value of the current <see cref="UInt128"/> object to its equivalent string representation by using the specified culture-specific format information.
+        /// Uses "G" format.
         /// </summary>
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
-        /// <returns>
-        ///     The string representation of the current <see cref="UInt128" /> value as specified by the
-        ///     <paramref name="provider" /> parameter.
-        /// </returns>
+        /// <returns>The string representation of the current <see cref="UInt128"/> value as specified by the <paramref name="provider"/> parameter.</returns>
         /// <remarks>
-        ///     See <see cref="ToString(string, IFormatProvider)" /> for remarks.
+        /// See <see cref="ToString(string, IFormatProvider)"/> for remarks.
         /// </remarks>
         public string ToString(IFormatProvider provider)
         {
@@ -458,51 +442,17 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Returns a <see cref="System.String" /> that represents this instance.
+        /// Converts the numeric value of the current <see cref="UInt128"/> object to its equivalent string representation.
+        /// Uses "G" format.
+        /// Uses <see cref="CultureInfo.CurrentCulture"/> as the format provider.
         /// </summary>
-        /// <param name="format">The format. Only x, X, g, G, d, D are supported.</param>
-        /// <param name="formatProvider">An object that supplies culture-specific formatting information about this instance.</param>
-        /// <returns>
-        ///     A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        /// <returns>The string representation of the current <see cref="UInt128"/> value.</returns>
+        /// <remarks>
+        /// See <see cref="ToString(string, IFormatProvider)"/> for remarks.
+        /// </remarks>
+        public override string ToString()
         {
-            if (formatProvider == null)
-            {
-                formatProvider = CultureInfo.CurrentCulture;
-            }
-
-            if (!string.IsNullOrEmpty(format))
-            {
-                char ch = format[0];
-                if ((ch == 'x') || (ch == 'X'))
-                {
-                    int min;
-                    int.TryParse(format.Substring(1).Trim(), out min);
-                    return ToHexaString(ch == 'X', min);
-                }
-
-                if (((ch != 'G') && (ch != 'g')) && ((ch != 'D') && (ch != 'd')))
-                    throw new NotSupportedException("Not supported format: " + format);
-            }
-
-            return ToString((NumberFormatInfo) formatProvider.GetFormat(typeof (NumberFormatInfo)));
-        }
-
-        private string ToHexaString(bool caps, int min)
-        {
-            var sb = new StringBuilder();
-            string x = caps ? "X" : "x";
-            if ((min < 0) || (min > 16) || (_hi != 0))
-            {
-                sb.Append(min > 16 ? _hi.ToString(x + (min - 16)) : _hi.ToString(x));
-                sb.Append(_lo.ToString(x + "16"));
-            }
-            else
-            {
-                sb.Append(_lo.ToString(x + min));
-            }
-            return sb.ToString();
+            return ToString(CultureInfo.CurrentCulture);
         }
 
         /// <summary>
