@@ -122,7 +122,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.ObjectFields.Entry);
+                    return GetDescriptor<int>(Descriptors.ObjectFields.EntryID);
                 }
                 catch (Exception e)
                 {

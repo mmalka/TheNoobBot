@@ -72,7 +72,7 @@ namespace nManager.Wow.Helpers
                                     (uint)
                                         Descriptors
                                             .ObjectFields
-                                            .Entry);
+                                            .EntryID);
                                 UInt128 itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>(
                                     o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
 

@@ -45,7 +45,7 @@ namespace nManager.Wow.Helpers
                     List<WoWItem> objects = ObjectManager.ObjectManager.GetObjectWoWItem();
 
                     listItems.AddRange(from o in objects
-                        let itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint) Descriptors.ObjectFields.Entry)
+                                       let itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint)Descriptors.ObjectFields.EntryID)
                         let itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner)
                         where itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid
                         select o);

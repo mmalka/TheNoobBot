@@ -1654,7 +1654,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.SpiritHealer);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SpiritHealer);
                 }
                 catch (Exception e)
                 {
@@ -1670,7 +1670,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.SpiritHealer);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SpiritHealer);
                 }
                 catch (Exception e)
                 {
@@ -1686,7 +1686,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.CanRepair);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanRepair);
                 }
                 catch (Exception e)
                 {
@@ -1702,7 +1702,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.Taxi);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Taxi);
                 }
                 catch (Exception e)
                 {
@@ -1718,7 +1718,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.MailInfo);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.MailInfo);
                 }
                 catch (Exception e)
                 {
@@ -1734,7 +1734,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.QuestGiver);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver);
                 }
                 catch (Exception e)
                 {
@@ -1750,7 +1750,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.Vendor);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Vendor);
                 }
                 catch (Exception e)
                 {
@@ -1766,7 +1766,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.Innkeeper);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Innkeeper);
                 }
                 catch (Exception e)
                 {
@@ -1782,7 +1782,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.SellsFood);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SellsFood);
                 }
                 catch (Exception e)
                 {
@@ -1798,7 +1798,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.CanTrain);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanTrain);
                 }
                 catch (Exception e)
                 {
@@ -2038,7 +2038,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
                            ((UnitRelation.GetReaction(Faction) == Reaction.Neutral &&
-                             GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlag) == 0) ||
+                             GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0) ||
                             UnitRelation.GetReaction(Faction) < Reaction.Neutral);
                     /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
                         Donne ça en plus long et plus lent:
