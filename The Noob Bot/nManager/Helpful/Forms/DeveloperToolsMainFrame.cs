@@ -348,7 +348,7 @@ namespace nManager.Helpful.Forms
                 if (ObjectManager.Target.IsValid)
                 {
                     string questStatusText = "";
-                    if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.QuestGiver))
+                    if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver))
                     {
                         var questStatusFlag =
                             (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
@@ -365,7 +365,7 @@ namespace nManager.Helpful.Forms
                         "IsDead : " + ObjectManager.Target.IsDead + Environment.NewLine +
                         "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                         "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
-                        "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag) + Environment.NewLine +
+                        "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags) + Environment.NewLine +
                         questStatusText +
                         "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
                 }

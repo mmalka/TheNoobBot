@@ -16,9 +16,10 @@ namespace DescriptorsDump
             InitializeComponent();
         }
 
-        private void dumpB_Click(object sender, EventArgs e)
+        private void DumpBClick(object sender, EventArgs e)
         {
-            dumpTB.Text = Dump.Go(prefixEnumTB.Text, multiplyCB.Checked);
+            var result = Dump.Go(prefixEnumTB.Text, multiplyCB.Checked, checkBoxUpper.Checked, checkBoxRemLocal.Checked);
+            dumpTB.Text = result;
         }
     }
 }
