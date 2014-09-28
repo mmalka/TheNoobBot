@@ -11,18 +11,17 @@
         public class ObjectManagerClass
         {
             public static uint clientConnection = 0xFF6668;
-            public static uint sCurMgr = 0xDD9B68; // ??
+            public static uint sCurMgr = 0xDD9B68; // It's the direct pointer to objectManager clientConn+objectManager
         }
 
         public enum ObjectManager
         {
             objectManager = 0x62C, // toUpdate 62C
-            localGuid = 0xE8, // toUpdate
-            objectGUID = 0x28, // toUpdate
-            objectTYPE = 0xC, // toUpdate
-            // These are 'hard coded' in the client. I don't remember the last time they changed.
-            firstObject = 0xCC, // toUpdate
-            nextObject = 0x34, // toUpdate
+            localGuid = 0x110,
+            objectGUID = 0x28,
+            objectTYPE = 0xC, // ClntObjMgrGetActivePlayer
+            firstObject = 0xD8, // ClntObjMgrEnumVisibleObjects
+            nextObject = 0x3C,
         }
 
         /// <summary>
