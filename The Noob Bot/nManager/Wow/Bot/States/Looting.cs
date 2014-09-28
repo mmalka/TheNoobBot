@@ -43,7 +43,7 @@ namespace nManager.Wow.Bot.States
                     nManagerSetting.CurrentSetting.BeastNinjaSkinning)
                     tUnit.AddRange(
                         ObjectManager.ObjectManager.GetWoWUnitSkinnable(
-                            new List<Int128>(nManagerSetting.GetListGuidBlackListed())));
+                            new List<UInt128>(nManagerSetting.GetListGuidBlackListed())));
 
                 foreach (WoWUnit woWUnit in tUnit)
                 {

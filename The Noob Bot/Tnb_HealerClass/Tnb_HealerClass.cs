@@ -413,7 +413,7 @@ public class DruidRestoration
                             {
                                 double lowestHp = 100;
                                 var lowestHpPlayer = new WoWUnit(0);
-                                foreach (Int128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
@@ -1029,7 +1029,7 @@ public class PaladinHoly
                             {
                                 double lowestHp = 100;
                                 var lowestHpPlayer = new WoWUnit(0);
-                                foreach (Int128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
@@ -1501,7 +1501,7 @@ public class ShamanRestoration
                             {
                                 double lowestHp = 100;
                                 var lowestHpPlayer = new WoWUnit(0);
-                                foreach (Int128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
@@ -2259,7 +2259,7 @@ public class PriestDiscipline
                             {
                                 double lowestHp = 100;
                                 var lowestHpPlayer = new WoWUnit(0);
-                                foreach (Int128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
@@ -2881,7 +2881,7 @@ public class PriestHoly
                             {
                                 double lowestHp = 100;
                                 var lowestHpPlayer = new WoWUnit(0);
-                                foreach (Int128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
@@ -3531,7 +3531,7 @@ public class MonkMistweaver
                             {
                                 double lowestHp = 100;
                                 var lowestHpPlayer = new WoWUnit(0);
-                                foreach (Int128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
                                     if (playerInMyParty <= 0) continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);

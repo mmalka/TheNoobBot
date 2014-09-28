@@ -1,92 +1,131 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
+using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 
 namespace nManager.Wow.Class
 {
     /// <summary>
     ///     Represents a 128-bit signed integer.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    [TypeConverter(typeof (Int128Converter))]
-    public struct Int128 : IComparable<Int128>, IComparable, IEquatable<Int128>, IConvertible, IFormattable
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    [TypeConverter(typeof (UInt128Converter))]
+    public struct UInt128 : IComparable<UInt128>, IComparable, IEquatable<UInt128>, IConvertible, IFormattable
     {
         private ulong _hi;
         private ulong _lo;
 
-        private const ulong HiNeg = 0x8000000000000000;
+        /// <summary>
+        ///     The number of bytes this type will take.
+        /// </summary>
+        public const int SizeOf = 16;
 
         /// <summary>
-        ///     Gets a value that represents the number 0 (zero).
+        ///     A Zero UInt128 value.
         /// </summary>
-        public static Int128 Zero = GetZero();
+        public static readonly UInt128 Zero = 0;
 
         /// <summary>
-        ///     Represents the largest possible value of an Int128.
+        ///     A One UInt128 value.
         /// </summary>
-        public static Int128 MaxValue = GetMaxValue();
+        public static readonly UInt128 One = 1;
 
         /// <summary>
-        ///     Represents the smallest possible value of an Int128.
+        ///     Represents the smallest possible value of an UInt128.
         /// </summary>
-        public static Int128 MinValue = GetMinValue();
+        public static readonly UInt128 MinValue = 0;
 
-        private static Int128 GetMaxValue()
+        /// <summary>
+        ///     Represents the largest possible value of an UInt128.
+        /// </summary>
+        public static readonly UInt128 MaxValue = new UInt128(ulong.MaxValue, ulong.MaxValue);
+
+        public GuidType GetWoWType
         {
-            return new Int128(long.MaxValue, ulong.MaxValue);
+            get { return (GuidType) (_hi >> 58); }
+            set { _hi |= (ulong) value << 58; }
         }
 
-        private static Int128 GetMinValue()
+        public GuidSubType GetWoWSubType
         {
-            return new Int128(0x8000000000000000, 0);
+            get { return (GuidSubType) (_lo >> 56); }
+            set { _lo |= (ulong) value << 56; }
         }
 
-        private static Int128 GetZero()
+        public ushort GetWoWRealmId
         {
-            return new Int128();
+            get { return (ushort) ((_hi >> 42) & 0x1FFF); }
+            set { _hi |= (ulong) value << 42; }
+        }
+
+        public ushort GetWoWServerId
+        {
+            get { return (ushort) ((_lo >> 40) & 0x1FFF); }
+            set { _lo |= (ulong) value << 40; }
+        }
+
+        public ushort GetWoWMapId
+        {
+            get { return (ushort) ((_hi >> 29) & 0x1FFF); }
+            set { _hi |= (ulong) value << 29; }
+        }
+
+        public uint GetWoWId
+        {
+            get { return (uint) (_hi & 0xFFFFFF) >> 6; }
+            set { _hi |= (ulong) value << 6; }
+        }
+
+        public ulong CreationBits
+        {
+            get { return _lo & 0xFFFFFFFFFF; }
+            set { _lo |= value; }
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(byte value)
+        public UInt128(byte value)
         {
             _hi = 0;
             _lo = value;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">if set to <c>true</c> [value].</param>
-        public Int128(bool value)
+        public UInt128(bool value)
         {
             _hi = 0;
             _lo = (ulong) (value ? 1 : 0);
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(char value)
+        public UInt128(char value)
         {
             _hi = 0;
             _lo = value;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(decimal value)
+        public UInt128(decimal value)
         {
             if (value < 0)
             {
-                Int128 n = -new Int128(-value);
+                UInt128 n = -new UInt128(-value);
                 _hi = n._hi;
                 _lo = n._lo;
                 return;
@@ -98,32 +137,32 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(double value)
+        public UInt128(double value)
             : this((decimal) value)
         {
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(float value)
+        public UInt128(float value)
             : this((decimal) value)
         {
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(short value)
+        public UInt128(short value)
         {
             if (value < 0)
             {
-                Int128 n = -new Int128(-(value + 1)) - 1;
+                UInt128 n = -new UInt128(-(value + 1)) - 1;
                 _hi = n._hi;
                 _lo = n._lo;
                 return;
@@ -134,14 +173,14 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(int value)
+        public UInt128(int value)
         {
             if (value < 0)
             {
-                Int128 n = -new Int128(-(value + 1)) - 1;
+                UInt128 n = -new UInt128(-(value + 1)) - 1;
                 _hi = n._hi;
                 _lo = n._lo;
                 return;
@@ -152,14 +191,14 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(long value)
+        public UInt128(long value)
         {
             if (value < 0)
             {
-                Int128 n = -new Int128(-(value + 1)) - 1;
+                UInt128 n = -new UInt128(-(value + 1)) - 1;
                 _hi = n._hi;
                 _lo = n._lo;
                 return;
@@ -170,14 +209,14 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(sbyte value)
+        public UInt128(sbyte value)
         {
             if (value < 0)
             {
-                Int128 n = -new Int128(-(value + 1)) - 1;
+                UInt128 n = -new UInt128(-(value + 1)) - 1;
                 _hi = n._hi;
                 _lo = n._lo;
                 return;
@@ -188,49 +227,49 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(ushort value)
+        public UInt128(ushort value)
         {
             _hi = 0;
             _lo = value;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(uint value)
+        public UInt128(uint value)
         {
             _hi = 0;
             _lo = value;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(ulong value)
+        public UInt128(ulong value)
         {
             _hi = 0;
             _lo = value;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(Guid value)
+        public UInt128(Guid value)
             : this(value.ToByteArray())
         {
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Int128(byte[] value)
+        public UInt128(byte[] value)
         {
             if (value == null)
                 throw new ArgumentNullException("value");
@@ -242,18 +281,78 @@ namespace nManager.Wow.Class
             _lo = BitConverter.ToUInt64(value, 0);
         }
 
-        private Int128(ulong hi, ulong lo)
+        /// <summary>
+        ///     Creates a value using two 64 bit values.
+        /// </summary>
+        /// <param name="hi">The most significant 64 bits of the value.</param>
+        /// <param name="lo">The least significant 64 bits of the value.</param>
+        private UInt128(ulong hi, ulong lo)
         {
             _hi = hi;
             _lo = lo;
         }
 
+
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Int128" /> struct.
+        ///     Conversion of a <see cref="BigInteger" /> object to an unsigned 128-bit integer value.
         /// </summary>
-        /// <param name="sign">The sign.</param>
+        /// <param name="value">The value to convert to an unsigned 128-bit integer.</param>
+        /// <exception cref="OverflowException">
+        ///     The <paramref name="value" /> parameter represents a number less than
+        ///     <see cref="UInt128.MinValue" /> or greater than <see cref="UInt128.MaxValue" />.
+        /// </exception>
+        public UInt128(BigInteger value)
+            : this((ulong) (value >> 64), (ulong) (value & ulong.MaxValue))
+        {
+        }
+
+        /// <summary>
+        ///     Defines an explicit conversion of a <see cref="BigInteger" /> object to an unsigned 128-bit integer value.
+        /// </summary>
+        /// <param name="value">The value to convert to an unsigned 128-bit integer.</param>
+        /// <returns>The 128 bit value created by equivalent to <paramref name="value" />.</returns>
+        /// <exception cref="OverflowException">
+        ///     The <paramref name="value" /> parameter represents a number less than
+        ///     <see cref="UInt128.MinValue" /> or greater than <see cref="UInt128.MaxValue" />.
+        /// </exception>
+        public static explicit operator UInt128(BigInteger value)
+        {
+            return new UInt128(value);
+        }
+
+        /// <summary>
+        ///     Converts the 128 bits unsigned integer to a <see cref="BigInteger" />.
+        /// </summary>
+        /// <param name="value">The 128 bit value to convert.</param>
+        /// <returns>The <see cref="BigInteger" /> value converted from the 128 bit value.</returns>
+        public static implicit operator BigInteger(UInt128 value)
+        {
+            return value.ToBigInteger();
+        }
+
+        private BigInteger ToBigInteger()
+        {
+            BigInteger value = _hi;
+            value <<= 64;
+            value += _lo;
+            return value;
+        }
+
+        /// <summary>
+        ///     Converts a 64 bit unsigned integer to a 128 bit unsigned integer by taking all the 64 bits.
+        /// </summary>
+        /// <param name="value">The 64 bit value to convert.</param>
+        /// <returns>The 128 bit value created by taking all the 64 bits of the 64 bit value.</returns>
+        public static implicit operator UInt128(ulong value)
+        {
+            return new UInt128(0, value);
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="UInt128" /> struct.
+        /// </summary>
         /// <param name="ints">The ints.</param>
-        public Int128(int sign, uint[] ints)
+        public UInt128(uint[] ints)
         {
             if (ints == null)
                 throw new ArgumentNullException("ints");
@@ -280,30 +379,6 @@ namespace nManager.Wow.Class
 
             _lo = BitConverter.ToUInt64(lo, 0);
             _hi = BitConverter.ToUInt64(hi, 0);
-
-            if (sign < 0)
-            {
-                _hi |= HiNeg;
-            }
-            else
-            {
-                _hi &= ~HiNeg;
-            }
-        }
-
-        /// <summary>
-        ///     Gets a number that indicates the sign (negative, positive, or zero) of the current Int128 object.
-        /// </summary>
-        /// <value>A number that indicates the sign of the Int128 object</value>
-        public int Sign
-        {
-            get
-            {
-                if (_hi == 0 && _lo == 0)
-                    return 0;
-
-                return ((_hi & HiNeg) == 0) ? 1 : -1;
-            }
         }
 
         /// <summary>
@@ -326,7 +401,7 @@ namespace nManager.Wow.Class
         /// </returns>
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            return (obj is UInt128) && base.Equals(obj);
         }
 
         /// <summary>
@@ -336,7 +411,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     true if obj has the same value as this instance; otherwise, false.
         /// </returns>
-        public bool Equals(Int128 obj)
+        public bool Equals(UInt128 obj)
         {
             return _hi == obj._hi && _lo == obj._lo;
         }
@@ -361,7 +436,25 @@ namespace nManager.Wow.Class
         /// </returns>
         public string ToString(string format)
         {
-            return ToString(format, null);
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        ///     Converts the numeric value of the current <see cref="UInt128" /> object to its equivalent string representation by
+        ///     using the specified culture-specific format information.
+        ///     Uses "G" format.
+        /// </summary>
+        /// <param name="provider">An object that supplies culture-specific formatting information.</param>
+        /// <returns>
+        ///     The string representation of the current <see cref="UInt128" /> value as specified by the
+        ///     <paramref name="provider" /> parameter.
+        /// </returns>
+        /// <remarks>
+        ///     See <see cref="ToString(string, IFormatProvider)" /> for remarks.
+        /// </remarks>
+        public string ToString(IFormatProvider provider)
+        {
+            return ToString("G", provider);
         }
 
         /// <summary>
@@ -410,38 +503,6 @@ namespace nManager.Wow.Class
                 sb.Append(_lo.ToString(x + min));
             }
             return sb.ToString();
-        }
-
-        private string ToString(NumberFormatInfo info)
-        {
-            if (Sign == 0)
-                return "0";
-
-            var sb = new StringBuilder();
-            var ten = new Int128(10);
-            Int128 current = this;
-            current._hi &= ~HiNeg;
-            while (true)
-            {
-                Int128 r;
-                current = DivRem(current, ten, out r);
-                if (r._lo > 0 || current.Sign != 0 || (sb.Length == 0))
-                {
-#if !WINDOWS_PHONE && !SILVERLIGHT
-                    sb.Insert(0, (char) ('0' + r._lo));
-#else
-                    sb.Insert(0, new[] { (char)('0' + r._lo) });
-#endif
-                }
-                if (current.Sign == 0)
-                    break;
-            }
-
-            string s = sb.ToString();
-            if ((Sign < 0) && (s != "0"))
-                return info.NegativeSign + s;
-
-            return s;
         }
 
         /// <summary>
@@ -757,80 +818,81 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Converts the string representation of a number to its Int128 equivalent.
+        ///     Converts the string representation of a number to its UInt128 equivalent.
         /// </summary>
         /// <param name="value">A string that contains a number to convert.</param>
         /// <returns>
         ///     A value that is equivalent to the number specified in the value parameter.
         /// </returns>
-        public static Int128 Parse(string value)
+        public static UInt128 Parse(string value)
         {
             return Parse(value, NumberStyles.Integer, NumberFormatInfo.CurrentInfo);
         }
 
         /// <summary>
-        ///     Converts the string representation of a number in a specified style format to its Int128 equivalent.
+        ///     Converts the string representation of a number in a specified style format to its UInt128 equivalent.
         /// </summary>
         /// <param name="value">A string that contains a number to convert.</param>
         /// <param name="style">A bitwise combination of the enumeration values that specify the permitted format of value.</param>
         /// <returns>
         ///     A value that is equivalent to the number specified in the value parameter.
         /// </returns>
-        public static Int128 Parse(string value, NumberStyles style)
+        public static UInt128 Parse(string value, NumberStyles style)
         {
             return Parse(value, style, NumberFormatInfo.CurrentInfo);
         }
 
         /// <summary>
-        ///     Converts the string representation of a number in a culture-specific format to its Int128 equivalent.
+        ///     Converts the string representation of a number in a culture-specific format to its UInt128 equivalent.
         /// </summary>
         /// <param name="value">A string that contains a number to convert.</param>
         /// <param name="provider">An object that provides culture-specific formatting information about value.</param>
         /// <returns>
         ///     A value that is equivalent to the number specified in the value parameter.
         /// </returns>
-        public static Int128 Parse(string value, IFormatProvider provider)
+        public static UInt128 Parse(string value, IFormatProvider provider)
         {
-            return Parse(value, NumberStyles.Integer, NumberFormatInfo.GetInstance(provider));
+            return Parse(value, NumberStyles.Integer, provider);
         }
 
         /// <summary>
-        ///     Converts the string representation of a number in a specified style and culture-specific format to its Int128
+        ///     Converts the string representation of a number in a specified style and culture-specific format to its UInt128
         ///     equivalent.
         /// </summary>
         /// <param name="value">A string that contains a number to convert.</param>
         /// <param name="style">A bitwise combination of the enumeration values that specify the permitted format of value.</param>
         /// <param name="provider">An object that provides culture-specific formatting information about value.</param>
         /// <returns>A value that is equivalent to the number specified in the value parameter.</returns>
-        public static Int128 Parse(string value, NumberStyles style, IFormatProvider provider)
+        public static UInt128 Parse(string value, NumberStyles style, IFormatProvider provider)
         {
-            Int128 result;
-            if (!TryParse(value, style, provider, out result))
-                throw new ArgumentException(null, "value");
+            BigInteger bigIntegerValue = BigInteger.Parse(value, style, provider);
+            if (bigIntegerValue < 0 || bigIntegerValue > MaxValue)
+                throw new OverflowException("Value was either too large or too small for an UInt128.");
 
-            return result;
+            return (UInt128) bigIntegerValue;
         }
 
         /// <summary>
-        ///     Tries to convert the string representation of a number to its Int128 equivalent, and returns a value that indicates
+        ///     Tries to convert the string representation of a number to its UInt128 equivalent, and returns a value that
+        ///     indicates
         ///     whether the conversion succeeded..
         /// </summary>
         /// <param name="value">The string representation of a number.</param>
         /// <param name="result">
-        ///     When this method returns, contains the Int128 equivalent to the number that is contained in value,
-        ///     or Int128.Zero if the conversion failed. This parameter is passed uninitialized.
+        ///     When this method returns, contains the UInt128 equivalent to the number that is contained in value,
+        ///     or UInt128.Zero if the conversion failed. This parameter is passed uninitialized.
         /// </param>
         /// <returns>
         ///     true if the value parameter was converted successfully; otherwise, false.
         /// </returns>
-        public static bool TryParse(string value, out Int128 result)
+        public static bool TryParse(string value, out UInt128 result)
         {
             return TryParse(value, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
         }
 
         /// <summary>
         ///     Tries to convert the string representation of a number in a specified style and culture-specific format to its
-        ///     Int128 equivalent, and returns a value that indicates whether the conversion succeeded..
+        ///     UInt128 equivalent, and returns a value that indicates whether the conversion succeeded..
         /// </summary>
         /// <param name="value">
         ///     The string representation of a number. The string is interpreted using the style specified by
@@ -842,96 +904,21 @@ namespace nManager.Wow.Class
         /// </param>
         /// <param name="provider">An object that supplies culture-specific formatting information about value.</param>
         /// <param name="result">
-        ///     When this method returns, contains the Int128 equivalent to the number that is contained in value,
-        ///     or Int128.Zero if the conversion failed. This parameter is passed uninitialized.
+        ///     When this method returns, contains the UInt128 equivalent to the number that is contained in value,
+        ///     or UInt128.Zero if the conversion failed. This parameter is passed uninitialized.
         /// </param>
         /// <returns>true if the value parameter was converted successfully; otherwise, false.</returns>
-        public static bool TryParse(string value, NumberStyles style, IFormatProvider provider, out Int128 result)
+        public static bool TryParse(string value, NumberStyles style, IFormatProvider provider, out UInt128 result)
         {
-            result = Zero;
-            if (string.IsNullOrEmpty(value))
+            BigInteger bigIntegerValue;
+            bool success = BigInteger.TryParse(value, style, provider, out bigIntegerValue);
+            if (success && (bigIntegerValue < 0 || bigIntegerValue > MaxValue))
+            {
+                result = Zero;
                 return false;
-
-            if (value.StartsWith("x", StringComparison.OrdinalIgnoreCase))
-            {
-                style |= NumberStyles.AllowHexSpecifier;
-                value = value.Substring(1);
             }
-            else if (value.StartsWith("0x", StringComparison.OrdinalIgnoreCase))
-            {
-                style |= NumberStyles.AllowHexSpecifier;
-                value = value.Substring(2);
-            }
-
-            if ((style & NumberStyles.AllowHexSpecifier) == NumberStyles.AllowHexSpecifier)
-                return TryParseHex(value, out result);
-
-            return TryParseNum(value, out result);
-        }
-
-        private static bool TryParseHex(string value, out Int128 result)
-        {
-            if (value.Length > 32)
-                throw new OverflowException();
-
-            result = Zero;
-            bool hi = false;
-            int pos = 0;
-            for (int i = value.Length - 1; i >= 0; i--)
-            {
-                char ch = value[i];
-                ulong b;
-                if ((ch >= '0') && (ch <= '9'))
-                {
-                    b = (ulong) (ch - '0');
-                }
-                else if ((ch >= 'A') && (ch <= 'F'))
-                {
-                    b = (ulong) (ch - 'A' + 10);
-                }
-                else if ((ch >= 'a') && (ch <= 'f'))
-                {
-                    b = (ulong) (ch - 'a' + 10);
-                }
-                else
-                    return false;
-
-                if (hi)
-                {
-                    result._hi |= b << pos;
-                    pos += 4;
-                }
-                else
-                {
-                    result._lo |= b << pos;
-                    pos += 4;
-                    if (pos == 64)
-                    {
-                        pos = 0;
-                        hi = true;
-                    }
-                }
-            }
-            return true;
-        }
-
-        private static bool TryParseNum(string value, out Int128 result)
-        {
-            result = Zero;
-            foreach (char ch in value)
-            {
-                byte b;
-                if ((ch >= '0') && (ch <= '9'))
-                {
-                    b = (byte) (ch - '0');
-                }
-                else
-                    return false;
-
-                result = 10*result;
-                result += b;
-            }
-            return true;
+            result = (UInt128) bigIntegerValue;
+            return success;
         }
 
         /// <summary>
@@ -1033,71 +1020,72 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Compares two Int128 values and returns an integer that indicates whether the first value is less than, equal to, or
+        ///     Compares two UInt128 values and returns an integer that indicates whether the first value is less than, equal to,
+        ///     or
         ///     greater than the second value.
         /// </summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns>A signed integer that indicates the relative values of left and right, as shown in the following table.</returns>
-        public static int Compare(Int128 left, object right)
+        public static int Compare(UInt128 left, object right)
         {
-            if (right is Int128)
-                return Compare(left, (Int128) right);
+            if (right is UInt128)
+                return Compare(left, (UInt128) right);
 
             // NOTE: this could be optimized type per type
             if (right is bool)
-                return Compare(left, new Int128((bool) right));
+                return Compare(left, new UInt128((bool) right));
 
             if (right is byte)
-                return Compare(left, new Int128((byte) right));
+                return Compare(left, new UInt128((byte) right));
 
             if (right is char)
-                return Compare(left, new Int128((char) right));
+                return Compare(left, new UInt128((char) right));
 
             if (right is decimal)
-                return Compare(left, new Int128((decimal) right));
+                return Compare(left, new UInt128((decimal) right));
 
             if (right is double)
-                return Compare(left, new Int128((double) right));
+                return Compare(left, new UInt128((double) right));
 
             if (right is short)
-                return Compare(left, new Int128((short) right));
+                return Compare(left, new UInt128((short) right));
 
             if (right is int)
-                return Compare(left, new Int128((int) right));
+                return Compare(left, new UInt128((int) right));
 
             if (right is long)
-                return Compare(left, new Int128((long) right));
+                return Compare(left, new UInt128((long) right));
 
             if (right is sbyte)
-                return Compare(left, new Int128((sbyte) right));
+                return Compare(left, new UInt128((sbyte) right));
 
             if (right is float)
-                return Compare(left, new Int128((float) right));
+                return Compare(left, new UInt128((float) right));
 
             if (right is ushort)
-                return Compare(left, new Int128((ushort) right));
+                return Compare(left, new UInt128((ushort) right));
 
             if (right is uint)
-                return Compare(left, new Int128((uint) right));
+                return Compare(left, new UInt128((uint) right));
 
             if (right is ulong)
-                return Compare(left, new Int128((ulong) right));
+                return Compare(left, new UInt128((ulong) right));
 
             var bytes = right as byte[];
             if ((bytes != null) && (bytes.Length != 16))
-                return Compare(left, new Int128(bytes));
+                return Compare(left, new UInt128(bytes));
 
             if (right is Guid)
-                return Compare(left, new Int128((Guid) right));
+                return Compare(left, new UInt128((Guid) right));
 
             throw new ArgumentException();
         }
 
         /// <summary>
-        ///     Converts an Int128 value to a byte array.
+        ///     Converts an UInt128 value to a byte array.
         /// </summary>
-        /// <returns>The value of the current Int128 object converted to an array of bytes.</returns>
+        /// <returns>The value of the current UInt128 object converted to an array of bytes.</returns>
         public byte[] ToByteArray()
         {
             var bytes = new byte[16];
@@ -1115,27 +1103,10 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     A signed number indicating the relative values of this instance and value.
         /// </returns>
-        public static int Compare(Int128 left, Int128 right)
+        public static int Compare(UInt128 left, UInt128 right)
         {
-            if (left.Sign < 0)
-            {
-                if (right.Sign >= 0)
-                    return -1;
-
-                ulong xhi = left._hi & ~HiNeg;
-                ulong yhi = right._hi & ~HiNeg;
-                if (xhi != yhi)
-                    return -xhi.CompareTo(yhi);
-
-                return -left._lo.CompareTo(right._lo);
-            }
-
-            if (right.Sign < 0)
-                return 1;
-
             if (left._hi != right._hi)
                 return left._hi.CompareTo(right._hi);
-
             return left._lo.CompareTo(right._lo);
         }
 
@@ -1144,240 +1115,228 @@ namespace nManager.Wow.Class
         /// </summary>
         /// <param name="value">An integer to compare.</param>
         /// <returns>A signed number indicating the relative values of this instance and value.</returns>
-        public int CompareTo(Int128 value)
+        public int CompareTo(UInt128 value)
         {
             return Compare(this, value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.Boolean" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.Boolean" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">if set to <c>true</c> [value].</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(bool value)
+        public static implicit operator UInt128(bool value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.Byte" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.Byte" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(byte value)
+        public static implicit operator UInt128(byte value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.Char" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.Char" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(char value)
+        public static implicit operator UInt128(char value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="System.Decimal" /> to <see cref="Int128" />.
+        ///     Performs an explicit conversion from <see cref="System.Decimal" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator Int128(decimal value)
+        public static explicit operator UInt128(decimal value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="System.Double" /> to <see cref="Int128" />.
+        ///     Performs an explicit conversion from <see cref="System.Double" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator Int128(double value)
+        public static explicit operator UInt128(double value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.Int16" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.Int16" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(short value)
+        public static implicit operator UInt128(short value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.Int32" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.Int32" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(int value)
+        public static implicit operator UInt128(int value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.Int64" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.Int64" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(long value)
+        public static implicit operator UInt128(long value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.SByte" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.SByte" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(sbyte value)
+        public static implicit operator UInt128(sbyte value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="System.Single" /> to <see cref="Int128" />.
+        ///     Performs an explicit conversion from <see cref="System.Single" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator Int128(float value)
+        public static explicit operator UInt128(float value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.UInt16" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.UInt16" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(ushort value)
+        public static implicit operator UInt128(ushort value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.UInt32" /> to <see cref="Int128" />.
+        ///     Performs an implicit conversion from <see cref="System.UInt32" /> to <see cref="UInt128" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(uint value)
+        public static implicit operator UInt128(uint value)
         {
-            return new Int128(value);
+            return new UInt128(value);
         }
 
         /// <summary>
-        ///     Performs an implicit conversion from <see cref="System.UInt64" /> to <see cref="Int128" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Boolean" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static implicit operator Int128(ulong value)
+        public static explicit operator bool(UInt128 value)
         {
-            return new Int128(value);
+            return value != 0;
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Boolean" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Byte" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator bool(Int128 value)
+        public static explicit operator byte(UInt128 value)
         {
-            return value.Sign != 0;
-        }
-
-        /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Byte" />.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>
-        ///     The result of the conversion.
-        /// </returns>
-        public static explicit operator byte(Int128 value)
-        {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
-            if ((value.Sign < 0) || (value._lo > 0xFF))
+            if (value._lo > 0xFF)
                 throw new OverflowException();
 
             return (byte) value._lo;
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Char" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Char" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator char(Int128 value)
+        public static explicit operator char(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return (char) 0;
 
-            if ((value.Sign < 0) || (value._lo > 0xFFFF))
+            if (value._lo > 0xFFFF)
                 throw new OverflowException();
 
             return (char) (ushort) value._lo;
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Decimal" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Decimal" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator decimal(Int128 value)
+        public static explicit operator decimal(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
-            return new decimal((int) (value._lo & 0xFFFFFFFF), (int) (value._lo >> 32), (int) (value._hi & 0xFFFFFFFF), value.Sign < 0, 0);
+            return new decimal((int) (value._lo & 0xFFFFFFFF), (int) (value._lo >> 32), (int) (value._hi & 0xFFFFFFFF), false, 0);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Double" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Double" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator double(Int128 value)
+        public static explicit operator double(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
             double d;
@@ -1389,15 +1348,15 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Single" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Single" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator float(Int128 value)
+        public static explicit operator float(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
             float f;
@@ -1409,112 +1368,106 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Int16" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Int16" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator short(Int128 value)
+        public static explicit operator short(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
-            if (value._lo > 0x8000)
+            if (value._lo > 32767)
                 throw new OverflowException();
 
-            if ((value._lo == 0x8000) && (value.Sign > 0))
-                throw new OverflowException();
-
-            return (short) ((int) value._lo*value.Sign);
+            return (short) ((int) value._lo);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Int32" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Int32" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator int(Int128 value)
+        public static explicit operator int(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
-            if (value._lo > 0x80000000)
+            if (value._lo > int.MaxValue)
                 throw new OverflowException();
 
-            if ((value._lo == 0x80000000) && (value.Sign > 0))
-                throw new OverflowException();
-
-            return ((int) value._lo*value.Sign);
+            return ((int) value._lo);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.Int64" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.Int64" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator long(Int128 value)
+        public static explicit operator long(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
             if (value._lo > long.MaxValue)
                 throw new OverflowException();
 
-            return ((long) value._lo*value.Sign);
+            return ((long) value._lo);
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.UInt32" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.UInt32" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator uint(Int128 value)
+        public static explicit operator uint(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
-            if ((value.Sign < 0) || (value._lo > uint.MaxValue))
+            if ((value._lo > uint.MaxValue))
                 throw new OverflowException();
 
             return (uint) value._lo;
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.UInt16" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.UInt16" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator ushort(Int128 value)
+        public static explicit operator ushort(UInt128 value)
         {
-            if (value.Sign == 0)
+            if (value == 0)
                 return 0;
 
-            if ((value.Sign < 0) || (value._lo > ushort.MaxValue))
+            if (value._lo > ushort.MaxValue)
                 throw new OverflowException();
 
             return (ushort) value._lo;
         }
 
         /// <summary>
-        ///     Performs an explicit conversion from <see cref="Int128" /> to <see cref="System.UInt64" />.
+        ///     Performs an explicit conversion from <see cref="UInt128" /> to <see cref="System.UInt64" />.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>
         ///     The result of the conversion.
         /// </returns>
-        public static explicit operator ulong(Int128 value)
+        public static explicit operator ulong(UInt128 value)
         {
-            if ((value.Sign < 0) || (value._hi != 0))
-                throw new OverflowException();
+            if ((value._hi != 0))
+                throw new OverflowException("Value was too large for a UInt64.");
 
             return value._lo;
         }
@@ -1527,7 +1480,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static bool operator >(Int128 left, Int128 right)
+        public static bool operator >(UInt128 left, UInt128 right)
         {
             return Compare(left, right) > 0;
         }
@@ -1540,7 +1493,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static bool operator <(Int128 left, Int128 right)
+        public static bool operator <(UInt128 left, UInt128 right)
         {
             return Compare(left, right) < 0;
         }
@@ -1553,7 +1506,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static bool operator >=(Int128 left, Int128 right)
+        public static bool operator >=(UInt128 left, UInt128 right)
         {
             return Compare(left, right) >= 0;
         }
@@ -1566,7 +1519,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static bool operator <=(Int128 left, Int128 right)
+        public static bool operator <=(UInt128 left, UInt128 right)
         {
             return Compare(left, right) <= 0;
         }
@@ -1579,7 +1532,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static bool operator !=(Int128 left, Int128 right)
+        public static bool operator !=(UInt128 left, UInt128 right)
         {
             return Compare(left, right) != 0;
         }
@@ -1592,7 +1545,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static bool operator ==(Int128 left, Int128 right)
+        public static bool operator ==(UInt128 left, UInt128 right)
         {
             return Compare(left, right) == 0;
         }
@@ -1604,7 +1557,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator +(Int128 value)
+        public static UInt128 operator +(UInt128 value)
         {
             return value;
         }
@@ -1616,42 +1569,39 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator -(Int128 value)
+        public static UInt128 operator -(UInt128 value)
         {
             return Negate(value);
         }
 
         /// <summary>
-        ///     Negates a specified Int128 value.
+        ///     Negates a specified UInt128 value.
         /// </summary>
         /// <param name="value">The value to negate.</param>
         /// <returns>The result of the value parameter multiplied by negative one (-1).</returns>
-        public static Int128 Negate(Int128 value)
+        public static UInt128 Negate(UInt128 value)
         {
-            return new Int128(~value._hi, ~value._lo) + 1;
+            return new UInt128(~value._hi, ~value._lo) + 1;
         }
 
         /// <summary>
         ///     Gets the absolute value this object.
         /// </summary>
         /// <returns>The absolute value.</returns>
-        public Int128 ToAbs()
+        public UInt128 ToAbs()
         {
             return Abs(this);
         }
 
         /// <summary>
-        ///     Gets the absolute value of an Int128 object.
+        ///     Gets the absolute value of an UInt128 object.
         /// </summary>
         /// <param name="value">A number.</param>
         /// <returns>
         ///     The absolute value.
         /// </returns>
-        public static Int128 Abs(Int128 value)
+        public static UInt128 Abs(UInt128 value)
         {
-            if (value.Sign < 0)
-                return -value;
-
             return value;
         }
 
@@ -1663,16 +1613,9 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator +(Int128 left, Int128 right)
+        public static UInt128 operator +(UInt128 left, UInt128 right)
         {
-            Int128 add = left;
-            add._hi += right._hi;
-            add._lo += right._lo;
-            if (add._lo < left._lo)
-            {
-                add._hi++;
-            }
-            return add;
+            return Add(left, right);
         }
 
         /// <summary>
@@ -1683,58 +1626,62 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator -(Int128 left, Int128 right)
+        public static UInt128 operator -(UInt128 left, UInt128 right)
         {
-            return left + -right;
+            return Subtract(left, right);
         }
 
         /// <summary>
-        ///     Adds two Int128 values and returns the result.
+        ///     Adds two UInt128 values and returns the result.
         /// </summary>
         /// <param name="left">The first value to add.</param>
         /// <param name="right">The second value to add.</param>
         /// <returns>The sum of left and right.</returns>
-        public static Int128 Add(Int128 left, Int128 right)
+        public static UInt128 Add(UInt128 left, UInt128 right)
         {
-            return left + right;
+            ulong leastSignificant = left._lo + right._lo;
+            bool overflow = (leastSignificant < Math.Max(left._lo, right._lo));
+            return new UInt128(left._hi + right._hi + (ulong) (overflow ? 1 : 0), leastSignificant);
         }
 
         /// <summary>
-        ///     Subtracts one Int128 value from another and returns the result.
+        ///     Subtracts one UInt128 value from another and returns the result.
         /// </summary>
         /// <param name="left">The value to subtract from (the minuend).</param>
         /// <param name="right">The value to subtract (the subtrahend).</param>
         /// <returns>The result of subtracting right from left.</returns>
-        public static Int128 Subtract(Int128 left, Int128 right)
+        public static UInt128 Subtract(UInt128 left, UInt128 right)
         {
-            return left - right;
+            ulong leastSignificant = left._lo - right._lo;
+            bool overflow = (leastSignificant > left._lo);
+            return new UInt128(left._hi - right._hi - (ulong) (overflow ? 1 : 0), leastSignificant);
         }
 
         /// <summary>
-        ///     Divides one Int128 value by another and returns the result.
+        ///     Divides one UInt128 value by another and returns the result.
         /// </summary>
         /// <param name="dividend">The value to be divided.</param>
         /// <param name="divisor">The value to divide by.</param>
         /// <returns>The quotient of the division.</returns>
-        public static Int128 Divide(Int128 dividend, Int128 divisor)
+        public static UInt128 Divide(UInt128 dividend, UInt128 divisor)
         {
-            Int128 integer;
+            UInt128 integer;
             return DivRem(dividend, divisor, out integer);
         }
 
         /// <summary>
-        ///     Divides one Int128 value by another, returns the result, and returns the remainder in an output parameter.
+        ///     Divides one UInt128 value by another, returns the result, and returns the remainder in an output parameter.
         /// </summary>
         /// <param name="dividend">The value to be divided.</param>
         /// <param name="divisor">The value to divide by.</param>
         /// <param name="remainder">
-        ///     When this method returns, contains an Int128 value that represents the remainder from the
+        ///     When this method returns, contains an UInt128 value that represents the remainder from the
         ///     division. This parameter is passed uninitialized.
         /// </param>
         /// <returns>
         ///     The quotient of the division.
         /// </returns>
-        public static Int128 DivRem(Int128 dividend, Int128 divisor, out Int128 remainder)
+        public static UInt128 DivRem(UInt128 dividend, UInt128 divisor, out UInt128 remainder)
         {
             if (divisor == 0)
                 throw new DivideByZeroException();
@@ -1742,8 +1689,8 @@ namespace nManager.Wow.Class
             uint[] quotient;
             uint[] rem;
             DivRem(dividend.ToUIn32Array(), divisor.ToUIn32Array(), out quotient, out rem);
-            remainder = new Int128(1, rem);
-            return new Int128(dividend.Sign*divisor.Sign, quotient);
+            remainder = new UInt128(rem);
+            return new UInt128(quotient); // toCheck
         }
 
         private static void DivRem(uint[] dividend, uint[] divisor, out uint[] quotient, out uint[] remainder)
@@ -1934,14 +1881,14 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Performs integer division on two Int128 values and returns the remainder.
+        ///     Performs integer division on two UInt128 values and returns the remainder.
         /// </summary>
         /// <param name="dividend">The value to be divided.</param>
         /// <param name="divisor">The value to divide by.</param>
         /// <returns>The remainder after dividing dividend by divisor.</returns>
-        public static Int128 Remainder(Int128 dividend, Int128 divisor)
+        public static UInt128 Remainder(UInt128 dividend, UInt128 divisor)
         {
-            Int128 remainder;
+            UInt128 remainder;
             DivRem(dividend, divisor, out remainder);
             return remainder;
         }
@@ -1954,7 +1901,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator %(Int128 dividend, Int128 divisor)
+        public static UInt128 operator %(UInt128 dividend, UInt128 divisor)
         {
             return Remainder(dividend, divisor);
         }
@@ -1967,7 +1914,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator /(Int128 dividend, Int128 divisor)
+        public static UInt128 operator /(UInt128 dividend, UInt128 divisor)
         {
             return Divide(dividend, divisor);
         }
@@ -1976,7 +1923,7 @@ namespace nManager.Wow.Class
         ///     Converts an int128 value to an unsigned long array.
         /// </summary>
         /// <returns>
-        ///     The value of the current Int128 object converted to an array of unsigned integers.
+        ///     The value of the current UInt128 object converted to an array of unsigned integers.
         /// </returns>
         public ulong[] ToUIn64Array()
         {
@@ -1986,7 +1933,7 @@ namespace nManager.Wow.Class
         /// <summary>
         ///     Converts an int128 value to an unsigned integer array.
         /// </summary>
-        /// <returns>The value of the current Int128 object converted to an array of unsigned integers.</returns>
+        /// <returns>The value of the current UInt128 object converted to an array of unsigned integers.</returns>
         public uint[] ToUIn32Array()
         {
             var ints = new uint[4];
@@ -2001,12 +1948,12 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        ///     Returns the product of two Int128 values.
+        ///     Returns the product of two UInt128 values.
         /// </summary>
         /// <param name="left">The first number to multiply.</param>
         /// <param name="right">The second number to multiply.</param>
         /// <returns>The product of the left and right parameters.</returns>
-        public static Int128 Multiply(Int128 left, Int128 right)
+        public static UInt128 Multiply(UInt128 left, UInt128 right)
         {
             uint[] xInts = left.ToUIn32Array();
             uint[] yInts = right.ToUIn32Array();
@@ -2030,7 +1977,7 @@ namespace nManager.Wow.Class
                     remainder = remainder >> 32;
                 }
             }
-            return new Int128(left.Sign*right.Sign, mulInts);
+            return new UInt128(mulInts); //toCheck
         }
 
         /// <summary>
@@ -2041,7 +1988,7 @@ namespace nManager.Wow.Class
         /// <returns>
         ///     The result of the operator.
         /// </returns>
-        public static Int128 operator *(Int128 left, Int128 right)
+        public static UInt128 operator *(UInt128 left, UInt128 right)
         {
             return Multiply(left, right);
         }
@@ -2052,29 +1999,9 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         /// <param name="shift">The shift.</param>
         /// <returns>The result of the operator.</returns>
-        public static Int128 operator >>(Int128 value, int shift)
+        public static UInt128 operator >>(UInt128 value, int shift)
         {
-            if (shift == 0)
-                return value;
-
-            if (shift < 0)
-                return value << -shift;
-
-            shift = shift%128;
-
-            var shifted = new Int128();
-
-            if (shift > 63)
-            {
-                shifted._lo = value._hi >> (shift - 64);
-                shifted._hi = 0;
-            }
-            else
-            {
-                shifted._hi = value._hi >> shift;
-                shifted._lo = (value._hi << (64 - shift)) | (value._lo >> shift);
-            }
-            return shifted;
+            return RightShift(value, shift);
         }
 
         /// <summary>
@@ -2083,30 +2010,43 @@ namespace nManager.Wow.Class
         /// <param name="value">The value.</param>
         /// <param name="shift">The shift.</param>
         /// <returns>The result of the operator.</returns>
-        public static Int128 operator <<(Int128 value, int shift)
+        public static UInt128 operator <<(UInt128 value, int shift)
         {
-            if (shift == 0)
+            return LeftShift(value, shift);
+        }
+
+
+        /// <summary>
+        ///     Shifts its first operand right by the number of bits specified by its second operand.
+        /// </summary>
+        /// <param name="value">The value to shift.</param>
+        /// <param name="numberOfBits">The number of bits to shift.</param>
+        /// <returns>The value after it was shifted by the given number of bits.</returns>
+        public static UInt128 RightShift(UInt128 value, int numberOfBits)
+        {
+            if (numberOfBits >= 128)
+                return Zero;
+            if (numberOfBits >= 64)
+                return new UInt128(0, value._hi >> (numberOfBits - 64));
+            if (numberOfBits == 0)
                 return value;
+            return new UInt128(value._hi >> numberOfBits, (value._lo >> numberOfBits) + (value._hi << (64 - numberOfBits)));
+        }
 
-            if (shift < 0)
-                return value >> -shift;
-
-            shift = shift%128;
-
-            var shifted = new Int128();
-
-            if (shift > 63)
-            {
-                shifted._hi = value._lo << (shift - 64);
-                shifted._lo = 0;
-            }
-            else
-            {
-                ulong ul = value._lo >> (64 - shift);
-                shifted._hi = ul | (value._hi << shift);
-                shifted._lo = value._lo << shift;
-            }
-            return shifted;
+        /// <summary>
+        ///     Shifts its first operand left by the number of bits specified by its second operand.
+        /// </summary>
+        /// <param name="value">The value to shift.</param>
+        /// <param name="numberOfBits">The number of bits to shift.</param>
+        /// <returns>The value after it was shifted by the given number of bits.</returns>
+        public static UInt128 LeftShift(UInt128 value, int numberOfBits)
+        {
+            numberOfBits %= 128;
+            if (numberOfBits >= 64)
+                return new UInt128(value._lo << (numberOfBits - 64), 0);
+            if (numberOfBits == 0)
+                return value;
+            return new UInt128((value._hi << numberOfBits) + (value._lo >> (64 - numberOfBits)), value._lo << numberOfBits);
         }
 
         /// <summary>
@@ -2115,7 +2055,7 @@ namespace nManager.Wow.Class
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
         /// <returns>The result of the operator.</returns>
-        public static Int128 operator |(Int128 left, Int128 right)
+        public static UInt128 operator |(UInt128 left, UInt128 right)
         {
             if (left == 0)
                 return right;
@@ -2123,7 +2063,7 @@ namespace nManager.Wow.Class
             if (right == 0)
                 return left;
 
-            Int128 result = left;
+            UInt128 result = left;
             result._hi |= right._hi;
             result._lo |= right._lo;
             return result;
@@ -2135,21 +2075,26 @@ namespace nManager.Wow.Class
         /// <param name="left">The left.</param>
         /// <param name="right">The right.</param>
         /// <returns>The result of the operator.</returns>
-        public static Int128 operator &(Int128 left, Int128 right)
+        public static UInt128 operator &(UInt128 left, UInt128 right)
         {
-            if (left == 0 || right == 0)
-                return Zero;
-
-            Int128 result = left;
-            result._hi &= right._hi;
-            result._lo &= right._lo;
-            return result;
+            return BitwiseAnd(left, right);
         }
 
         /// <summary>
-        ///     Converts a String type to a Int128 type, and vice versa.
+        ///     Bitwise ands between two values.
         /// </summary>
-        public class Int128Converter : TypeConverter
+        /// <param name="left">The first value to do bitwise and.</param>
+        /// <param name="right">The second value to do bitwise and.</param>
+        /// <returns>The two values after they were bitwise anded.</returns>
+        public static UInt128 BitwiseAnd(UInt128 left, UInt128 right)
+        {
+            return new UInt128(left._hi & right._hi, left._lo & right._lo);
+        }
+
+        /// <summary>
+        ///     Converts a String type to a UInt128 type, and vice versa.
+        /// </summary>
+        public class UInt128Converter : TypeConverter
         {
             /// <summary>
             ///     Returns whether this converter can convert an object of the given type to the type of this converter, using the
@@ -2184,11 +2129,11 @@ namespace nManager.Wow.Class
             {
                 if (value != null)
                 {
-                    Int128 i;
+                    UInt128 i;
                     if (TryParse(string.Format("{0}", value), out i))
                         return i;
                 }
-                return new Int128();
+                return new UInt128();
             }
 
             /// <summary>

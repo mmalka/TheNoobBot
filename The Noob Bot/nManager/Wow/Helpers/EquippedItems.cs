@@ -46,7 +46,7 @@ namespace nManager.Wow.Helpers
 
                     listItems.AddRange(from o in objects
                         let itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint) Descriptors.ObjectFields.Entry)
-                        let itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner)
+                        let itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner)
                         where itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid
                         select o);
                 }
@@ -62,21 +62,21 @@ namespace nManager.Wow.Helpers
 
         public static WoWItem GetEquippedItem(int invSlot)
         {
-            Int128 guid = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
+            UInt128 guid = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
             List<WoWItem> items = ObjectManager.ObjectManager.GetObjectWoWItem();
             WoWItem first = items.FirstOrDefault(x => x.Guid == guid);
             WoWItem item = first ?? new WoWItem(0);
             return item;
         }
 
-        public static bool IsEquippedItemByGuid(Int128 guid)
+        public static bool IsEquippedItemByGuid(UInt128 guid)
         {
             int slot;
-            Int128 tmpguid = 0;
+            UInt128 tmpguid = 0;
             bool success = false;
             for (slot = 0; slot < 19; slot++)
             {
-                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*2));
+                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*2));
                 if (tmpguid != guid) continue;
                 success = true;
                 break;

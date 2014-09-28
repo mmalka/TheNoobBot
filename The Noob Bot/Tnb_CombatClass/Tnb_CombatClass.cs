@@ -1181,7 +1181,7 @@ public class DeathknightApprentice
     public DeathknightApprentice()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -1638,7 +1638,7 @@ public class DeathknightBlood
     public DeathknightBlood()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
         LowHP();
 
         while (Main.InternalLoop)
@@ -2635,7 +2635,7 @@ public class DeathknightUnholy
     public DeathknightUnholy()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
         LowHP();
 
         while (Main.InternalLoop)
@@ -3566,7 +3566,7 @@ public class DeathknightFrost
     public DeathknightFrost()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
         LowHP();
 
         while (Main.InternalLoop)
@@ -4551,7 +4551,7 @@ public class MageArcane
     public MageArcane()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
         LowHP();
 
         while (Main.InternalLoop)
@@ -5478,7 +5478,7 @@ public class MageFrost
     public MageFrost()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
         LowHP();
 
         while (Main.InternalLoop)
@@ -6421,7 +6421,7 @@ public class MageFire
     public MageFire()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -7202,7 +7202,7 @@ public class WarlockDemonology
     public WarlockDemonology()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -8031,7 +8031,7 @@ public class WarlockDestruction
     public WarlockDestruction()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -8777,7 +8777,7 @@ public class WarlockAffliction
     public WarlockAffliction()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -9560,7 +9560,7 @@ public class DruidBalance
     public DruidBalance()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -10386,7 +10386,7 @@ public class DruidFeral
     public DruidFeral()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -11229,7 +11229,7 @@ public class DruidRestoration
     public DruidRestoration()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -11885,7 +11885,7 @@ public class DruidGuardian
     public DruidGuardian()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -12617,7 +12617,7 @@ public class PaladinHoly
     {
         Main.InternalRange = 30f;
 
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -13121,7 +13121,7 @@ public class PaladinProtection
     {
         Main.InternalRange = 5.0f;
 
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -13679,7 +13679,7 @@ public class PaladinRetribution
     {
         Main.InternalRange = 5.0f;
 
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -14333,7 +14333,7 @@ public class ShamanEnhancement
     public ShamanEnhancement()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -15224,7 +15224,7 @@ public class ShamanRestoration
     public ShamanRestoration()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -16108,7 +16108,7 @@ public class ShamanElemental
     public ShamanElemental()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -16943,7 +16943,7 @@ public class PriestShadow
     public PriestShadow()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -17710,7 +17710,7 @@ public class PriestDiscipline
     public PriestDiscipline()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -18414,7 +18414,7 @@ public class PriestHoly
     public PriestHoly()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -19154,7 +19154,7 @@ public class RogueCombat
     public RogueCombat()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -19911,7 +19911,7 @@ public class RogueSubtlety
     public RogueSubtlety()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -20646,7 +20646,7 @@ public class RogueAssassination
     public RogueAssassination()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -21400,7 +21400,7 @@ public class WarriorArms
     public WarriorArms()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -22236,7 +22236,7 @@ public class WarriorProtection
     public WarriorProtection()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -23098,7 +23098,7 @@ public class WarriorFury
     public WarriorFury()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -23896,7 +23896,7 @@ public class HunterMarksmanship
     public HunterMarksmanship()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -24717,7 +24717,7 @@ public class HunterBeastMastery
     public HunterBeastMastery()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -25590,7 +25590,7 @@ public class HunterSurvival
     public HunterSurvival()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -26432,7 +26432,7 @@ public class MonkBrewmaster
     public MonkBrewmaster()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -27077,7 +27077,7 @@ public class MonkWindwalker
     public MonkWindwalker()
     {
         Main.InternalRange = 5.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {
@@ -27698,7 +27698,7 @@ public class MonkMistweaver
     public MonkMistweaver()
     {
         Main.InternalRange = 30.0f;
-        Int128 lastTarget = 0;
+        UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
         {

@@ -32,9 +32,9 @@ namespace nManager
         
         #region BlackListGuid
 
-        private static readonly Dictionary<Int128, int> _blackListGuidByTime = new Dictionary<Int128, int>();
+        private static readonly Dictionary<UInt128, int> _blackListGuidByTime = new Dictionary<UInt128, int>();
 
-        public static bool IsBlackListed(Int128 guid)
+        public static bool IsBlackListed(UInt128 guid)
         {
             try
             {
@@ -46,17 +46,17 @@ namespace nManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("IsBlackListed(Int128 guid): " + e);
+                Logging.WriteError("IsBlackListed(UInt128 guid): " + e);
                 return false;
             }
         }
 
-        public static List<Int128> GetListGuidBlackListed()
+        public static List<UInt128> GetListGuidBlackListed()
         {
             try
             {
-                List<Int128> ret = new List<Int128>();
-                foreach (KeyValuePair<Int128, int> i in _blackListGuidByTime)
+                List<UInt128> ret = new List<UInt128>();
+                foreach (KeyValuePair<UInt128, int> i in _blackListGuidByTime)
                 {
                     if (i.Value == -1 || i.Value <= Others.Times)
                         ret.Add(i.Key);
@@ -66,11 +66,11 @@ namespace nManager
             catch (Exception e)
             {
                 Logging.WriteError("GetListGuidBlackListed(): " + e);
-                return new List<Int128>();
+                return new List<UInt128>();
             }
         }
 
-        public static void AddBlackList(Int128 guid, int timeInMilisec = -1)
+        public static void AddBlackList(UInt128 guid, int timeInMilisec = -1)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace nManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("AddBlackList(Int128 guid, int timeInMilisec = -1): " + e);
+                Logging.WriteError("AddBlackList(UInt128 guid, int timeInMilisec = -1): " + e);
             }
         }
 

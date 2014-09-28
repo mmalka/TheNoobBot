@@ -73,7 +73,7 @@ namespace nManager.Wow.Helpers
                                         Descriptors
                                             .ObjectFields
                                             .Entry);
-                                Int128 itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<Int128>(
+                                UInt128 itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>(
                                     o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
 
                                 if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid &&

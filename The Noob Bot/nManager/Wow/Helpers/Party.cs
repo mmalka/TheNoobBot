@@ -9,7 +9,7 @@ namespace nManager.Wow.Helpers
 {
     public static class Party
     {
-        public static Int128 GetPartyLeaderGUID()
+        public static UInt128 GetPartyLeaderGUID()
         {
             try
             {
@@ -38,9 +38,9 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static List<Int128> GetPartyPlayersGUID()
+        public static List<UInt128> GetPartyPlayersGUID()
         {
-            List<Int128> partyPlayersGUID = new List<Int128>();
+            List<UInt128> partyPlayersGUID = new List<UInt128>();
             try
             {
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
@@ -51,7 +51,7 @@ namespace nManager.Wow.Helpers
                     {
                         uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
                         if (partyPlayer <= 0) continue;
-                        Int128 currentPlayerGUID =
+                        UInt128 currentPlayerGUID =
                             Memory.WowMemory.Memory.ReadUInt64(
                                 partyPlayer + (uint) Addresses.Party.PlayerGuid);
                         if (currentPlayerGUID > 0)
@@ -64,7 +64,7 @@ namespace nManager.Wow.Helpers
             catch (Exception e)
             {
                 Logging.WriteError("Party > GetPartyGUID(): " + e);
-                partyPlayersGUID = new List<Int128>();
+                partyPlayersGUID = new List<UInt128>();
             }
             return partyPlayersGUID;
         }

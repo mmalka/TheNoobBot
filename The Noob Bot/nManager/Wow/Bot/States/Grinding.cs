@@ -81,7 +81,7 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
-            Int128 unkillableMob = Fight.StartFight(_unit.Guid);
+            UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");

@@ -54,7 +54,7 @@ namespace nManager.Wow.Bot.States
                 Logging.Write("Please dismount as soon as is possible ! This product is passive when you are not yet in combat.");
             }
             Logging.Write("Currently attacking " + _unit.Name + " (lvl " + _unit.Level + ")");
-            Int128 unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
+            UInt128 unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
@@ -87,7 +87,7 @@ namespace nManager.Wow.Bot.States
             if (Party.IsInGroup())
             {
                 List<WoWUnit> targets = new List<WoWUnit>();
-                foreach (Int128 playerGuid in Party.GetPartyPlayersGUID())
+                foreach (UInt128 playerGuid in Party.GetPartyPlayersGUID())
                 {
                     if (playerGuid != ObjectManager.ObjectManager.Me.Guid)
                     {

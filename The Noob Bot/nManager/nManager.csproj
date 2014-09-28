@@ -53,6 +53,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
     <Compile Include="Wow\Class\Int128.cs" />
     <Compile Include="Wow\Class\Quaternion.cs" />
+    <Compile Include="Wow\Class\UInt128.cs" />
     <Compile Include="Wow\Class\Vector3.cs" />
     <Compile Include="Wow\Enums\GuidType.cs" />
     <Compile Include="Wow\Enums\MovementFlags.cs" />

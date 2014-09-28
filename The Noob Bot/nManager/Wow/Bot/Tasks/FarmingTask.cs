@@ -13,7 +13,7 @@ namespace nManager.Wow.Bot.Tasks
 {
     public static class FarmingTask
     {
-        private static Int128 _lastnode;
+        private static UInt128 _lastnode;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {

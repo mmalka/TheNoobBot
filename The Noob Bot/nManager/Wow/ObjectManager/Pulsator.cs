@@ -66,7 +66,7 @@ namespace nManager.Wow.ObjectManager
                         }
                         else
                         {
-                            ObjectManager.ObjectDictionary = new ConcurrentDictionary<Int128, WoWObject>();
+                            ObjectManager.ObjectDictionary = new ConcurrentDictionary<UInt128, WoWObject>();
                         }
                         Thread.Sleep(650);
                     }

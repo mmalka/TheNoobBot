@@ -26,13 +26,13 @@ namespace nManager.Wow.ObjectManager
         {
         }
 
-        public Int128 CreatedBy
+        public UInt128 CreatedBy
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<Int128>(Descriptors.GameObjectFields.CreatedBy);
+                    return GetDescriptor<UInt128>(Descriptors.GameObjectFields.CreatedBy);
                 }
                 catch (Exception e)
                 {

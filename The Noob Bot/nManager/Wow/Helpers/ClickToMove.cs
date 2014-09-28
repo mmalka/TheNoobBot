@@ -9,7 +9,7 @@ namespace nManager.Wow.Helpers
     {
         private static Vector3 cache = new Vector3();
 
-        public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, Int128 guid, Int32 action,
+        public static void CGPlayer_C__ClickToMove(Single x, Single y, Single z, UInt128 guid, Int32 action,
             Single precision)
         {
             try

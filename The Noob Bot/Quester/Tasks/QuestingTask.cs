@@ -294,7 +294,7 @@ namespace Quester.Tasks
                     if (MovementManager.InMovement)
                         return;
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
-                    Int128 Unkillable = Fight.StartFight(wowUnit.Guid);
+                    UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
                     if (!wowUnit.IsDead && Unkillable != 0)
                     {
                         nManagerSetting.AddBlackList(Unkillable, 3*60*1000);

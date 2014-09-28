@@ -96,9 +96,9 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Int128 Owner
+        public UInt128 Owner
         {
-            get { return GetDescriptor<Int128>(GetBaseAddress, (uint) Descriptors.ItemFields.Owner); }
+            get { return GetDescriptor<UInt128>(GetBaseAddress, (uint) Descriptors.ItemFields.Owner); }
         }
 
         public T GetDescriptor<T>(Descriptors.ItemFields field) where T : struct

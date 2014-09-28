@@ -1465,7 +1465,7 @@ namespace nManager.Wow.Helpers
         private static Timer _updatePathSpecialTimer = new Timer();
         private static Timer _maxTimerForStuckDetection = new Timer();
         private static Npc _trakedTarget = new Npc();
-        private static Int128 _trakedTargetGuid;
+        private static UInt128 _trakedTargetGuid;
 
         public static uint UpdateTarget(ref Npc Target, out bool asMoved)
         {

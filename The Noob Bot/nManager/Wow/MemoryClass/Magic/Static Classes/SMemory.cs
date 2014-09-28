@@ -255,11 +255,11 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="dwAddress">Address at which memory will be read.</param>
         /// <param name="bReverse">Determines whether bytes will be reversed before returning or not (big-endian or little-endian)</param>
         /// <returns>Returns memory read from external process.</returns>
-        public static Int128 ReadInt128(IntPtr hProcess, uint dwAddress, bool bReverse)
+        public static UInt128 ReadInt128(IntPtr hProcess, uint dwAddress, bool bReverse)
         {
             try
             {
-                int size128 = Marshal.SizeOf(typeof(Int128));
+                int size128 = Marshal.SizeOf(typeof(UInt128));
                 byte[] buf = ReadBytes(hProcess, dwAddress, size128);
                 if (buf == null)
                     throw new Exception("ReadInt failed.");
@@ -267,7 +267,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 if (bReverse)
                     Array.Reverse(buf);
 
-                return new Int128(buf);
+                return new UInt128(buf);
             }
             catch
             {
@@ -723,10 +723,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="dwAddress">Address to which value will be written.</param>
         /// <param name="Value">Value that will be written to memory.</param>
         /// <returns>Returns true on success, false on failure.</returns>
-        public static bool WriteInt128(IntPtr hProcess, uint dwAddress, Int128 Value)
+        public static bool WriteInt128(IntPtr hProcess, uint dwAddress, UInt128 Value)
         {
             byte[] lpBytes = Value.ToByteArray();
-            int size128 = Marshal.SizeOf(typeof(Int128));
+            int size128 = Marshal.SizeOf(typeof(UInt128));
             return WriteBytes(hProcess, dwAddress, lpBytes, size128);
         }
 

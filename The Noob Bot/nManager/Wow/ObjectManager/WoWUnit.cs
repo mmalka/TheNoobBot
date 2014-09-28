@@ -1329,13 +1329,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Int128 Target
+        public UInt128 Target
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<Int128>(Descriptors.UnitFields.Target);
+                    return GetDescriptor<UInt128>(Descriptors.UnitFields.Target);
                 }
                 catch (Exception e)
                 {
@@ -1808,13 +1808,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Int128 SummonedBy
+        public UInt128 SummonedBy
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<Int128>(Descriptors.UnitFields.SummonedBy);
+                    return GetDescriptor<UInt128>(Descriptors.UnitFields.SummonedBy);
                 }
                 catch (Exception e)
                 {
@@ -1824,13 +1824,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Int128 CreatedBy
+        public UInt128 CreatedBy
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<Int128>(Descriptors.UnitFields.CreatedBy);
+                    return GetDescriptor<UInt128>(Descriptors.UnitFields.CreatedBy);
                 }
                 catch (Exception e)
                 {
@@ -2103,7 +2103,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Int128 TransportGuid
+        public UInt128 TransportGuid
         {
             get
             {

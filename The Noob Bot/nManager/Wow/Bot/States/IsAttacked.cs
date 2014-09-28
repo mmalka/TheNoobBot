@@ -74,7 +74,7 @@ namespace nManager.Wow.Bot.States
         {
             MountTask.DismountMount();
             Logging.Write("Player Attacked by " + _unit.Name + " (lvl " + _unit.Level + ")");
-            Int128 unkillableMob = Fight.StartFight(_unit.Guid);
+            UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Blacklisting " + _unit.Name);
