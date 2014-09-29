@@ -23,14 +23,8 @@ namespace nManager.Wow.Helpers
                     if (to.Guid <= 0)
                         return;
 
-                    // GUID (uint64) to uint32 + uint32
-                    Stream t = new MemoryStream(8);
-                    byte[] ta = to.Guid.ToByteArray();
-                    t.Write(ta, 0, ta.Length);
-                    t.Position = 0;
-                    BinaryReader b = new BinaryReader(t);
-                    uint p1 = b.ReadUInt32();
-                    uint p2 = b.ReadUInt32();
+                    uint codecaveGUID = Memory.WowMemory.Memory.AllocateMemory(0x10);
+                    Memory.WowMemory.Memory.WriteBytes(codecaveGUID, to.Guid.ToByteArray());
 
                     string[] asm = new[]
                     {
@@ -45,16 +39,17 @@ namespace nManager.Wow.Helpers
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                         "test eax, eax",
                         "je @out",
-                        "push " + p2,
-                        "push " + p1,
+                        "push " + codecaveGUID,
                         "mov ecx, eax",
                         "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__Interact),
-                        "add esp, 8",
+                        "add esp, 4",
                         "@out:",
                         "retn"
                     };
 
                     Memory.WowMemory.InjectAndExecute(asm);
+
+                    Memory.WowMemory.Memory.FreeMemory(codecaveGUID); // essaye ça
                     if (stopMove)
                         MovementManager.StopMove();
                     Thread.Sleep(Usefuls.Latency);
