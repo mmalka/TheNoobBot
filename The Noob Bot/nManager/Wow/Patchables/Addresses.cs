@@ -258,7 +258,7 @@
         public enum PlayerNameStore
         {
             nameStorePtr = 0xDAE3F0 + 0x8,
-            nameMaskOffset = 0x24, // ??
+            nameMaskOffset = 0x24, // function need to be fixed for UInt128 guid + offsets needs to be found
             nameBaseOffset = 0x18, // ??
             nameStringOffset = 0x21, // ??
         }
@@ -288,13 +288,13 @@
         /// </summary>
         public enum Quests
         {
-            QuestGiverStatus = 0xBC, // toUpdate 
+            QuestGiverStatus = 0xF4,
             // TODO Retrieve unknown Quests offsets
-            ActiveQuests = 0x0, // toUpdate //not found
-            SelectedQuestId = 0x0, // toUpdate //not found
-            TitleText = 0x0, // toUpdate //not found
-            GossipQuests = 0x0, // toUpdate //not found
-            GossipQuestNext = 0x0, // toUpdate //not found
+            /*ActiveQuests = 0x0,
+            SelectedQuestId = 0x0,
+            TitleText = 0x0,
+            GossipQuests = 0x0,
+            GossipQuestNext = 0x0,*/
         }
 
         /// <summary>

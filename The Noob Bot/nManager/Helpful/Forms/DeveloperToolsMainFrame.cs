@@ -15,11 +15,14 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
+using Point = nManager.Wow.Class.Point;
 
 namespace nManager.Helpful.Forms
 {
     public partial class DeveloperToolsMainFrame : Form
     {
+        private string searchInputBox = "Type in the name of the WoWObject you are looking for:";
+
         public DeveloperToolsMainFrame()
         {
             try
@@ -34,8 +37,6 @@ namespace nManager.Helpful.Forms
                 Logging.WriteError("DeveloperToolsMainFrame > DeveloperToolsMainFrame(): " + e);
             }
         }
-
-        private string searchInputBox = "Type in the name of the WoWObject you are looking for:";
 
         private void Translate()
         {
@@ -353,7 +354,9 @@ namespace nManager.Helpful.Forms
                         var questStatusFlag =
                             (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                         if (questStatusFlag > 0x0)
+                        {
                             questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
+                        }
                     }
                     InformationArea.Text =
                         "Name: " + ObjectManager.Target.Name + Environment.NewLine +
@@ -485,7 +488,7 @@ namespace nManager.Helpful.Forms
                     TargetInfoButton.Enabled = true;
                     return;
                 }
-                Wow.Class.Point pos = ObjectManager.Target.Position;
+                Point pos = ObjectManager.Target.Position;
                 if (Usefuls.IsOutdoors)
                     pos.Type = "Flying";
                 InformationArea.Text =
