@@ -1166,22 +1166,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public float UnitSpeed
-        {
-            get
-            {
-                try
-                {
-                    return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.UnitField.UNIT_SPEED);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > UnitSpeed: " + e);
-                    return 0;
-                }
-            }
-        }
-
         public override float GetDistance
         {
             get
@@ -1446,7 +1430,27 @@ namespace nManager.Wow.ObjectManager
                     {
                         return Usefuls.GetPlayerName(Guid);
                     }
+                    /* CUSTOM
 
+                    while (false) // top
+                    {
+                        var pointer1 = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
+                        uint x = (uint) Addresses.UnitField.CachedName;
+                    Yolo:
+                        var pointer2 = Memory.WowMemory.Memory.ReadUInt(pointer1 + x);
+                        var test = Memory.WowMemory.Memory.ReadUTF8String(pointer2);
+                        if (test == "Magistrice Erona")
+                            Logging.Write("name = " + test + ", Found with x = " + x + ", y = ");
+                        else
+                        {
+                            x += 4;
+                            if (x > 300)
+                                break;
+                            goto Yolo;
+                        }
+                    }
+
+                    CUSTOM */
                     return
                         Memory.WowMemory.Memory.ReadUTF8String(
                             Memory.WowMemory.Memory.ReadUInt(

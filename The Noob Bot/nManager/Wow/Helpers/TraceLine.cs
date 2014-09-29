@@ -72,11 +72,11 @@ namespace nManager.Wow.Helpers
 
                     string[] asm = new[]
                     {
-                        "call " +
+                        /*"call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                         "test eax, eax",
-                        "je @out",
+                        "je @out",*/
                         "call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),

@@ -20,6 +20,18 @@ namespace nManager.Wow.Class
         private ulong _hi;
         private ulong _lo;
 
+        public ulong High
+        {
+            get { return _hi; }
+            set { _hi = value; }
+        }
+
+        public ulong Low
+        {
+            get { return _lo; }
+            set { _lo = value; }
+        }
+
         /// <summary>
         ///     The number of bytes this type will take.
         /// </summary>

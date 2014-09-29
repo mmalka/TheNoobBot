@@ -228,7 +228,6 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                // Makes life easier...
                 return GetDescriptor<T>((uint) field);
             }
             catch (Exception e)

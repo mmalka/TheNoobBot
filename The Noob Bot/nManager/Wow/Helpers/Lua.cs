@@ -80,11 +80,11 @@ namespace nManager.Wow.Helpers
                 {
                     List<string> tempsAsm = new List<string>
                     {
-                        "call " +
+                        /*"call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                         "test eax, eax",
-                        "je @out",
+                        "je @out",*/
                         "call " +
                         (Memory.WowProcess.WowModule +
                          (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
@@ -148,11 +148,11 @@ namespace nManager.Wow.Helpers
 
                 string[] asm = new[]
                 {
-                    "call " +
+                    /*"call " +
                     (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
                     ,
                     "test eax, eax",
-                    "je @out",
+                    "je @out",*/
                     "call " +
                     (Memory.WowProcess.WowModule +
                      (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),

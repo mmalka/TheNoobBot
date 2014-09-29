@@ -80,6 +80,23 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    /* CUSTOM
+                    uint i = (uint)(Addresses.GameObject.GAMEOBJECT_FIELD_X + (-500));
+                    while (false)
+                    {
+                        Logging.Write("New check, i=" + i);
+                        var pt = new Point(
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 4),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 8));
+                        if (pt.X > -12000 && pt.X < 12000 && pt.Y > -12000 && pt.Y < 12000 && pt.Z > -12000 && pt.Z < 12000)
+                            Logging.Write(pt.ToString());
+                        i += 4;
+                        if (i > 0x1200)
+                            break;
+                    }
+
+                    CUSTOM */
                     return
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +

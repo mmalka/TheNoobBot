@@ -29,24 +29,24 @@
         /// </summary>
         public enum Hooking
         {
-            DX_DEVICE = 0xD41DB8, // toUpdate
-            DX_DEVICE_IDX = 0x2820, // toUpdate // DX9_DEVICE_IDX_FOUND  (ida func)
-            ENDSCENE_IDX = 0xA8, // toUpdate
+            DX_DEVICE = 0xD41DB8, // ClientInitializeGame, first offset
+            DX_DEVICE_IDX = 0x2854, // DX9_DEVICE_IDX_FOUND (AC8A2)
+            ENDSCENE_IDX = 0xA8,
         }
 
         /// <summary> Movement Flags</summary>
         /// [[base+offset1]+offset2]
         public enum MovementFlagsOffsets
         {
-            Offset1 = 0xEC, // toUpdate
-            Offset2 = 0x38, // toUpdate
+            Offset1 = 0x124, // near any movement flag
+            Offset2 = 0x40,
         }
 
         public enum Party
         {
             PartyOffset = 0xF1205C, // Script_SendChatMessage First offset/4th block
             NumOfPlayers = 0xCC, // Script_GetNumGroupMembers
-            NumOfPlayers_SuBGroup = 0xD0, // toUpdate
+            NumOfPlayers_SuBGroup = 0xD0, // NumOFPlayers+4 (toCheck)
             PlayerGuid = 0x10, // toUpdate
         }
 
@@ -63,17 +63,12 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xC8B718, // toUpdate
+            ItemClass = 0xDAB938, // GetItemClassDBC
             ItemSubClass = 0xC8BB90, // toUpdate
-            FactionTemplate = 0xC8ADD0, // toUpdate
-            SpellCastTimes = 0xC8CB08, // toUpdate
-            Lock = 0xC8BF58, // toUpdate
+            FactionTemplate = 0xDAAE3C, // missing rows but looks ok, may update struct as well
+            Lock = 0xDAC294, // toCheck
             QuestPOIPoint = 0xC8C4D8, // toUpdate
             ResearchSite = 0xC8C690, // toUpdate
-            Spell = 0xC8D0E0, // toUpdate
-            SpellRange = 0xC8D05C, // toUpdate
-            SpellMisc = 0xC8CF28, // toUpdate
-            Map = 0xC8E004, // toUpdate
         }
 
         /// <summary>
@@ -128,11 +123,10 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_SPEED = 0x80, // toUpdate
-            UNIT_FIELD_X = 0x838, // toUpdate
-            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // toUpdate
-            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // toUpdate
-            UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // toUpdate
+            UNIT_FIELD_X = 0xA50, // found with a ugly while
+            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
+            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
+            UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0xF38, // Script_UnitCastingInfo
             ChannelSpellID = 0xF58, // Script_UnitChannelInfo
             CanInterrupt = 0xC64, // toUpdate // check // Script_UnitCastingInfo/Script_UnitChannelInfo
@@ -140,7 +134,7 @@
             TaxiStatus = 0xC0, // toUpdate
             DBCacheRow = 0xBC4, // toChecklel // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // toUpdate
-            CachedName = 0x6C, // toUpdate
+            CachedName = 0x7C,
             CachedTypeFlag = 0x4C, // toUpdate
             CachedQuestItem1 = 0x30, // toUpdate
             CachedModelId1 = 0x5C, // toUpdate
@@ -156,9 +150,9 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0x1F4, // toUpdate
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // toUpdate
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // toUpdate
+            GAMEOBJECT_FIELD_X = 0x2A0,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             PackedRotationQuaternion = 0x108, // toUpdate // I have no idea about what fct is behind this
             TransformationMatrice = 0x1C4, // toUpdate // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
