@@ -16,7 +16,7 @@
 
         public enum ObjectManager
         {
-            objectManager = 0x62C, // toUpdate 62C
+            objectManager = 0x62C, // to be used with clientConnection or bypassed if using sCurMgr.
             localGuid = 0x110,
             objectGUID = 0x28,
             objectTYPE = 0xC, // ClntObjMgrGetActivePlayer
@@ -29,7 +29,7 @@
         /// </summary>
         public enum Hooking
         {
-            DX_DEVICE = 0xBB2FB8, // toUpdate
+            DX_DEVICE = 0xD41DB8, // toUpdate
             DX_DEVICE_IDX = 0x2820, // toUpdate // DX9_DEVICE_IDX_FOUND  (ida func)
             ENDSCENE_IDX = 0xA8, // toUpdate
         }
@@ -44,9 +44,9 @@
 
         public enum Party
         {
-            PartyOffset = 0xDC28EC, // toUpdate // Script_SendChatMessage First offset/4th block
-            NumOfPlayers = 0xC4, // toUpdate
-            NumOfPlayers_SuBGroup = 0xC8, // toUpdate
+            PartyOffset = 0xF1205C, // Script_SendChatMessage First offset/4th block
+            NumOfPlayers = 0xCC, // Script_GetNumGroupMembers
+            NumOfPlayers_SuBGroup = 0xD0, // toUpdate
             PlayerGuid = 0x10, // toUpdate
         }
 
@@ -55,7 +55,7 @@
         /// </summary>
         public enum PetBattle
         {
-            IsInBattle = 0xB61B20, // toUpdate // LUA: Script_C_PetBattles_IsInBattle
+            IsInBattle = 0xCBF020, // LUA: Script_C_PetBattles_IsInBattle
         }
 
         /// <summary>
@@ -101,14 +101,14 @@
         public enum Player
         {
             petGUID = 0xDD4A00, // toUpdate
-            playerName = 0xEC4668, // toUpdate
+            playerName = 0xFF66A8, // ida: GetPlayerName
             PlayerComboPoint = 0xD65BF9, // toUpdate
             RetrieveCorpseWindow = 0xD65BCC, // toUpdate
             // Some offsets to refine descriptor
             SkillValue = 0x200, // toUpdate
             SkillMaxValue = 0x400, // toUpdate
             // saving
-            RuneStartCooldown = 0xDD73D0, // toUpdate // Script_GetRuneCount
+            RuneStartCooldown = 0xDD73EC, // Script_GetRuneCount
         }
 
         /// <summary>
@@ -116,7 +116,7 @@
         /// </summary>
         public enum EventsListener
         {
-            EventsCount = 0xBA61D0, // toUpdate
+            EventsCount = 0xD35048,
             BaseEvents = EventsCount + 0x4, // toUpdate
             EventOffsetName = 0x14, // toUpdate
             EventOffsetCount = 0x48, // toUpdate
@@ -133,22 +133,22 @@
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // toUpdate
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // toUpdate
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // toUpdate
-            CastingSpellID = 0xCB8, // toUpdate // Script_UnitCastingInfo
-            ChannelSpellID = 0xCD0, // toUpdate // Script_UnitChannelInfo
+            CastingSpellID = 0xF38, // Script_UnitCastingInfo
+            ChannelSpellID = 0xF58, // Script_UnitChannelInfo
             CanInterrupt = 0xC64, // toUpdate // check // Script_UnitCastingInfo/Script_UnitChannelInfo
             TransportGUID = 0x830, // toUpdate // CGUnit_C__HasVehicleTransport
             TaxiStatus = 0xC0, // toUpdate
-            DBCacheRow = 0x9B4, // toUpdate // CGUnit_C__GetUnitName
+            DBCacheRow = 0xBC4, // toChecklel // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // toUpdate
             CachedName = 0x6C, // toUpdate
             CachedTypeFlag = 0x4C, // toUpdate
             CachedQuestItem1 = 0x30, // toUpdate
             CachedModelId1 = 0x5C, // toUpdate
             // saving
-            UnitClassificationOffset1 = DBCacheRow, // toUpdate // Script_UnitClassification + 0x39 (CGUnit_C::GetCreatureRank)
+            UnitClassificationOffset1 = DBCacheRow, // Script_UnitClassification + 0x39 (CGUnit_C::GetCreatureRank)
             UnitClassificationOffset2 = 0x20, // toUpdate // Script_UnitClassification + 0x39 (CGUnit_C::GetCreatureRank)
-            IsBossOffset1 = DBCacheRow, // toUpdate
-            IsBossOffset2 = 0x4C, // toUpdate // function wow IsBoss() (or function at Script_UnitLevel + 0xB7)
+            IsBossOffset1 = DBCacheRow,
+            IsBossOffset2 = 0x5C, // toUpdate // function wow IsBoss() (or function at Script_UnitLevel + 0xB7)
         }
 
         /// <summary>

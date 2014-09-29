@@ -170,11 +170,7 @@ namespace nManager.Wow.ObjectManager
                 while (Addresses.ObjectManagerClass.clientConnection == 0)
                     Thread.Sleep(10);
 
-                ObjectManagerAddress =
-                    Memory.WowMemory.Memory.ReadUInt(
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         Addresses.ObjectManagerClass.clientConnection) +
-                        (uint) Addresses.ObjectManager.objectManager);
+                ObjectManagerAddress = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.sCurMgr);
 
                 UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadInt128(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
 
