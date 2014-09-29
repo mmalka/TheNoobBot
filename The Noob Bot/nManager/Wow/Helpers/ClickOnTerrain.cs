@@ -13,9 +13,9 @@ namespace nManager.Wow.Helpers
         public struct StructClickOnTerrain
         {
             [FieldOffset(0x0)] public UInt128 Guid;
-            [FieldOffset(0x8)] public float X;
-            [FieldOffset(0xC)] public float Y;
-            [FieldOffset(0x10)] public float Z;
+            [FieldOffset(0x10)] public float X;
+            [FieldOffset(0x14)] public float Y;
+            [FieldOffset(0x18)] public float Z;
         }
 
         #endregion Strut
