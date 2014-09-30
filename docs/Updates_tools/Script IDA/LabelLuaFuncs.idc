@@ -1,12 +1,5 @@
 #include <idc.idc>
 
-/************************************************************************
-   Desc:		Label each lua function based on its appropriate name
-   Author:  kynox
-   Credit:	bobbysing for RenameFunc
-   Website: http://www.gamedeception.net
-*************************************************************************/
-
 // 1 = Success, 0 = Failure
 static RenameFunc( dwAddress, sFunction )
 {
@@ -50,44 +43,82 @@ static HandleLuaFunc( structBase )
 	RenameFunc( funcAddr, form( "Script_%s", funcName ) );
 }
 
+static HandleLuaFuncWithClass( structBase, className )
+{
+ 	auto funcName, funcAddr;
+	funcName = Luafunc_GetName( structBase );
+	funcAddr = Luafunc_GetFunc( structBase );	
+
+	RenameFunc( funcAddr, form( "Script_%s_%s", className, funcName ) );
+}
+
 static main()
 {
+	// Normal func:
 	auto registerFunc, xRef;
-	registerFunc = FindBinary( 0, SEARCH_DOWN, "8B 45 08 50 56 E8 ? ? ? ? 6A ? 56 E8 ? ? ? ? 68 ? ? ? ? 56" );
+	registerFunc = FindBinary( 0, SEARCH_DOWN, "55 8B EC A1  ?  ?  ?  ? 56 6A  ? FF 75  ? 8B F0 50 E8  ?  ?  ?  ? FF 75  ? 56" );
 	
 	if ( registerFunc == BADADDR )
 	{
-		Message( "LabelLuaFuncs: Error, couldn't find registerFunc.\n" );
+		Message( "LabelLuaFuncs: Error, couldn't find FrameScript_RegisterFunction.\n" );
 		return;
 	}
 	
-	registerFunc = PrevFunction( registerFunc );
-	
+	registerFunc = NextFunction(PrevFunction( registerFunc ));
+
 	for( xRef = RfirstB( registerFunc ); xRef != BADADDR; xRef = RnextB( registerFunc, xRef ) )
 	{
-		auto movAddr, cmpAddr, structBase;
-		movAddr = PrevHead( PrevHead( xRef, 8 ), 8 );
+		auto structBase, numFuncs, i;
+
+		structBase = Dword(xRef - 0x4);
 		
-		cmpAddr = NextHead( xRef, xRef+8 );
-		cmpAddr = NextHead( cmpAddr, cmpAddr+8 );
-		cmpAddr = NextHead( cmpAddr, cmpAddr+8 );
-		
-		structBase = GetOperandValue( movAddr, 1 );
-		
-		if ( strstr( GetDisasm( movAddr ), "[" ) > -1 )
+		if (Byte( xRef + 0xA ) == 0x83)
 		{
-			auto numFuncs, i;
-			numFuncs = GetOperandValue( cmpAddr, 1 ) / 8;
-			
-			for ( i = 0; i < numFuncs; i++ )
+			numFuncs = Byte( xRef + 0xC );
+		}
+		else
+		{
+			numFuncs = Dword( xRef + 0xC );
+		}
+		
+		if (numFuncs < 50000)
+		{
+			Message( "Found 0x%x, count: 0x%x, (xref: 0x%x)\n", structBase,  numFuncs, xRef);
+			for ( i = 0; i < numFuncs; i = i + 0x8 )
 			{
-				HandleLuaFunc( structBase );
-				
-				structBase = structBase + 8;
-			}		
-		} else
+				HandleLuaFunc( structBase + i );
+			}	
+		}
+	}
+	
+	// Special func:
+	registerFunc = BADADDR;
+	xRef = BADADDR;
+	
+	registerFunc = FindBinary( 0, SEARCH_DOWN, "83 C4 1C 43 3B 5D 0C" );
+	
+	if ( registerFunc == BADADDR )
+	{
+		Message( "LabelLuaFuncs: Error, couldn't find FrameScript_RegisterSpecialFunction.\n" );
+		return;
+	}
+	
+	registerFunc = NextFunction( PrevFunction( registerFunc ) );
+ 
+	for( xRef = RfirstB( registerFunc ); xRef != BADADDR; xRef = RnextB( registerFunc, xRef ) )
+	{
+		auto offsetClassName,className;
+		structBase = Dword( xRef - 0x5 + 0x1 );
+		numFuncs = Byte( xRef - 0x7 + 0x1 );
+		offsetClassName = Dword( xRef - 0xC + 0x1 );
+		className = GetString( offsetClassName, -1, ASCSTR_C );
+		if (numFuncs < 50000)
 		{
-			HandleLuaFunc( structBase );
+			Message( "Found 0x%x, count: 0x%x\n", structBase,  numFuncs);
+			for ( i = 0; i < numFuncs * 0x8; i = i + 0x8 )
+			{
+				HandleLuaFuncWithClass( structBase + i,  className);
+			}	
 		}
 	}
 }
