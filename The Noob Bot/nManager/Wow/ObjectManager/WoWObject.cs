@@ -284,7 +284,7 @@ namespace nManager.Wow.ObjectManager
 
                     if (typeof (T) == typeof (UInt128))
                     {
-                        ret = Memory.WowMemory.Memory.ReadInt128(addressGD);
+                        ret = Memory.WowMemory.Memory.ReadUInt128(addressGD);
                         return (T) ret;
                     }
 

@@ -2113,7 +2113,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadUInt64(GetBaseAddress + (uint) Addresses.UnitField.TransportGUID);
+                    return Memory.WowMemory.Memory.ReadUInt128(GetBaseAddress + (uint) Addresses.UnitField.TransportGUID);
                 }
                 catch (Exception e)
                 {

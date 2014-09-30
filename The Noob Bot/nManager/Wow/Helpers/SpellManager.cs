@@ -607,9 +607,9 @@ namespace nManager.Wow.Helpers
                     string randomString = Others.GetRandomString(Others.Random(5, 10));
                     string result = Lua.LuaDoString(
                         randomString + " = \"\"; " +
-                        "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(" + id + "); " +
+                        "local name, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(" + id + "); " +
                         randomString +
-                        " = tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange);"
+                        " = tostring(name) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(castTime) .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellId);"
                         , randomString);
                     if (!string.IsNullOrWhiteSpace(result))
                     {
@@ -626,29 +626,17 @@ namespace nManager.Wow.Helpers
                             // name
                             if (!string.IsNullOrWhiteSpace(slipped[0]) && slipped[0] != "nil")
                                 spellInfo.Name = slipped[0];
-                            // rank
-                            if (!string.IsNullOrWhiteSpace(slipped[1]))
-                                spellInfo.Rank = slipped[1];
                             // icon
                             if (!string.IsNullOrWhiteSpace(slipped[2]))
                                 spellInfo.Icon = slipped[2];
-                            // cost
-                            if (!string.IsNullOrWhiteSpace(slipped[3]) && int.TryParse(slipped[3].Replace(".", ","), out intOut))
-                                spellInfo.Cost = intOut;
-                            // isFunnel
-                            if (!string.IsNullOrWhiteSpace(slipped[4]) && slipped[4].ToLower() == "true")
-                                spellInfo.IsFunnel = true;
-                            // powerType
-                            if (!string.IsNullOrWhiteSpace(slipped[5]) && int.TryParse(slipped[5].Replace(".", ","), out intOut))
-                                spellInfo.PowerType = (PowerType) intOut;
                             // castTime
-                            if (!string.IsNullOrWhiteSpace(slipped[6]) && int.TryParse(slipped[6].Replace(".", ","), out intOut))
+                            if (!string.IsNullOrWhiteSpace(slipped[3]) && int.TryParse(slipped[3].Replace(".", ","), out intOut))
                                 spellInfo.CastTime = intOut;
                             // minRange
-                            if (!string.IsNullOrWhiteSpace(slipped[7]) && float.TryParse(slipped[7].Replace(".", ","), out floatOut))
+                            if (!string.IsNullOrWhiteSpace(slipped[4]) && float.TryParse(slipped[4].Replace(".", ","), out floatOut))
                                 spellInfo.MinRange = floatOut;
                             // maxRange
-                            if (!string.IsNullOrWhiteSpace(slipped[8]) && float.TryParse(slipped[8].Replace(".", ","), out floatOut))
+                            if (!string.IsNullOrWhiteSpace(slipped[5]) && float.TryParse(slipped[5].Replace(".", ","), out floatOut))
                                 spellInfo.MaxRange = floatOut;
 
                             _spellInfos.Add(id, spellInfo);
@@ -692,9 +680,9 @@ namespace nManager.Wow.Helpers
                     string command = randomString + " = \"\"; " +
                                      "local spellBookList = " + listIdString + " " +
                                      "for arrayId = 1, table.getn(spellBookList) do " +
-                                     "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(spellBookList[arrayId]); " +
+                                     "local name, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(spellBookList[arrayId]); " +
                                      randomString + " = " + randomString +
-                                     " .. tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellBookList[arrayId]);" +
+                                     " .. tostring(name) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(castTime) .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellId);" +
                                      randomString + " = " + randomString + " .. \"||\"" +
                                      "end ";
                     string result = Lua.LuaDoString(command, randomString);
@@ -717,38 +705,24 @@ namespace nManager.Wow.Helpers
                                     // name
                                     if (!string.IsNullOrWhiteSpace(slipped[0]) && slipped[0] != "nil")
                                         spellInfo.Name = slipped[0];
-                                    // rank
-                                    if (!string.IsNullOrWhiteSpace(slipped[1]))
-                                        spellInfo.Rank = slipped[1];
                                     // icon
-                                    if (!string.IsNullOrWhiteSpace(slipped[2]))
-                                        spellInfo.Icon = slipped[2];
-                                    // cost
-                                    if (!string.IsNullOrWhiteSpace(slipped[3]) &&
-                                        int.TryParse(slipped[3].Replace(".", ","), out intOut))
-                                        spellInfo.Cost = intOut;
-                                    // isFunnel
-                                    if (!string.IsNullOrWhiteSpace(slipped[4]) && slipped[4].ToLower() == "true")
-                                        spellInfo.IsFunnel = true;
-                                    // powerType
-                                    if (!string.IsNullOrWhiteSpace(slipped[5]) &&
-                                        int.TryParse(slipped[5].Replace(".", ","), out intOut))
-                                        spellInfo.PowerType = (PowerType) intOut;
+                                    if (!string.IsNullOrWhiteSpace(slipped[1]))
+                                        spellInfo.Icon = slipped[1];
                                     // castTime
-                                    if (!string.IsNullOrWhiteSpace(slipped[6]) &&
-                                        int.TryParse(slipped[6].Replace(".", ","), out intOut))
+                                    if (!string.IsNullOrWhiteSpace(slipped[2]) &&
+                                        int.TryParse(slipped[2].Replace(".", ","), out intOut))
                                         spellInfo.CastTime = intOut;
                                     // minRange
-                                    if (!string.IsNullOrWhiteSpace(slipped[7]) &&
-                                        float.TryParse(slipped[7].Replace(".", ","), out floatOut))
+                                    if (!string.IsNullOrWhiteSpace(slipped[3]) &&
+                                        float.TryParse(slipped[3].Replace(".", ","), out floatOut))
                                         spellInfo.MinRange = floatOut;
                                     // maxRange
-                                    if (!string.IsNullOrWhiteSpace(slipped[8]) &&
-                                        float.TryParse(slipped[8].Replace(".", ","), out floatOut))
+                                    if (!string.IsNullOrWhiteSpace(slipped[4]) &&
+                                        float.TryParse(slipped[4].Replace(".", ","), out floatOut))
                                         spellInfo.MaxRange = floatOut;
                                     // ID
-                                    if (!string.IsNullOrWhiteSpace(slipped[9]) &&
-                                        int.TryParse(slipped[9].Replace(".", ","), out intOut))
+                                    if (!string.IsNullOrWhiteSpace(slipped[5]) &&
+                                        int.TryParse(slipped[5].Replace(".", ","), out intOut))
                                         spellInfo.ID = (uint) intOut;
 
                                     if (listId.Contains(spellInfo.ID))
@@ -786,7 +760,7 @@ namespace nManager.Wow.Helpers
             public string Icon = "";
             public int Cost;
             public bool IsFunnel;
-            public Enums.PowerType PowerType;
+            public PowerType PowerType;
             public int CastTime;
             public float MinRange;
             public float MaxRange;

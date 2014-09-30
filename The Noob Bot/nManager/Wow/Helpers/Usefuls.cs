@@ -17,67 +17,22 @@ namespace nManager.Wow.Helpers
 {
     public class Usefuls
     {
-        /// <summary>
-        /// Make key registre Wow.
-        /// </summary>
-        /// <returns></returns>
-        public static void MakeWowRegistry()
-        {
-            try
-            {
-                MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game)));
-                string path = Others.DialogBoxOpenFile("", "Profile files (Wow.exe)|Wow.exe");
-                RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft") ??
-                                  Registry.LocalMachine.CreateSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
-                if (key != null) key.SetValue("InstallPath", path.Replace("Wow.exe", ""), RegistryValueKind.String);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("MakeWowRegistry(): " + e);
-            }
-        }
+        private static int _lastContainerNumFreeSlots;
+        private static Timer _timerContainerNumFreeSlots = new Timer(0);
 
+        private static int _lastHonorPoint;
+        private static readonly Timer TimerHonorPoint = new Timer(1000);
 
-        /// <summary>
-        /// Launch World Of Warcraft.
-        /// </summary>
-        /// <typeparam></typeparam>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static int LaunchWow(string param = "")
-        {
-            try
-            {
-                RegistryKey registre = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft");
-                if (registre == null)
-                {
-                    MakeWowRegistry();
-                    LaunchWow();
-                    return 0;
-                }
-                object val = registre.GetValue("InstallPath");
-                if (val == null)
-                {
-                    MakeWowRegistry();
-                    LaunchWow();
-                    return 0;
-                }
-                if (!File.Exists(val + "Wow.exe"))
-                {
-                    MakeWowRegistry();
-                    LaunchWow();
-                    return 0;
-                }
-                Process proc = new Process {StartInfo = {FileName = val + "Wow.exe", Arguments = param}};
-                proc.Start();
-                return proc.Id;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("LaunchWow(): " + e);
-            }
-            return 0;
-        }
+        private static Timer _timePlayerUsingVehicle = new Timer(0);
+        private static bool _lastResultPlayerUsingVehicle;
+
+        private static int _lastLatency;
+        private static Timer _timerLatency = new Timer(0);
+        private static readonly List<int> AchievementsDoneCache = new List<int>();
+        private static readonly List<int> AchievementsNotDoneCache = new List<int>();
+        private static readonly Object ThisLock = new Object();
+        private static readonly Timer AfkTimer = new Timer(500);
+        private static string _key;
 
         public static bool InGame
         {
@@ -178,151 +133,6 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static int _lastContainerNumFreeSlots;
-        private static Timer _timerContainerNumFreeSlots = new Timer(0);
-
-        public static int ContainerNumFreeSlots(BagType bagType)
-        {
-            int unspecified = 0;
-            int quiver = 0;
-            int ammoPouch = 0;
-            int soulBag = 0;
-            int leatherworkingBag = 0;
-            int inscriptionBag = 0;
-            int herbBag = 0;
-            int enchantingBag = 0;
-            int engineeringBag = 0;
-            int keyring = 0;
-            int gemBag = 0;
-            int miningBag = 0;
-            int unknown = 0;
-            int vanityPets = 0;
-            int lureBag = 0;
-            string bag0FreeSlots = Others.GetRandomString(Others.Random(4, 10));
-            string bag0Type = Others.GetRandomString(Others.Random(4, 10));
-            string bag1FreeSlots = Others.GetRandomString(Others.Random(4, 10));
-            string bag1Type = Others.GetRandomString(Others.Random(4, 10));
-            string bag2FreeSlots = Others.GetRandomString(Others.Random(4, 10));
-            string bag2Type = Others.GetRandomString(Others.Random(4, 10));
-            string bag3FreeSlots = Others.GetRandomString(Others.Random(4, 10));
-            string bag3Type = Others.GetRandomString(Others.Random(4, 10));
-            string bag4FreeSlots = Others.GetRandomString(Others.Random(4, 10));
-            string bag4Type = Others.GetRandomString(Others.Random(4, 10));
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(bag0FreeSlots + "," + bag0Type + " = GetContainerNumFreeSlots(0); " +
-                            bag1FreeSlots + "," + bag1Type + " = GetContainerNumFreeSlots(1); " +
-                            bag2FreeSlots + "," + bag2Type + " = GetContainerNumFreeSlots(2); " +
-                            bag3FreeSlots + "," + bag3Type + " = GetContainerNumFreeSlots(3); " +
-                            bag4FreeSlots + "," + bag4Type + " = GetContainerNumFreeSlots(4); " +
-                            "if(" + bag1Type + " == nil) then " + bag1Type + " = 16777216 end " +
-                            "if(" + bag2Type + " == nil) then " + bag2Type + " = 16777216 end " +
-                            "if(" + bag3Type + " == nil) then " + bag3Type + " = 16777216 end " +
-                            "if(" + bag4Type + " == nil) then " + bag4Type + " = 16777216 end " +
-                            randomString + " = " + bag0FreeSlots + " .. \",\" .. " + bag0Type + " .. \";\" .. " + bag1FreeSlots + " .. \",\" .. " + bag1Type + " .. \";\" .. " +
-                            bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
-                            " .. \",\" .. " + bag4Type);
-            string result = Lua.GetLocalizedText(randomString);
-            if (!string.IsNullOrEmpty(result) && result.Contains(";"))
-            {
-                string[][] bags = result.Split(';').Select(s => s.Split(',')).ToArray();
-                foreach (string[] t in bags)
-                {
-                    if (t.Count() <= 1)
-                        continue;
-                    if (t[0] == "0")
-                        continue;
-                    int currBagFreeSlots = Others.ToInt32(t[0]);
-                    BagType currBagType = (BagType) Others.ToInt32(t[1]);
-                    if (currBagType == BagType.Unspecified)
-                    {
-                        unspecified += currBagFreeSlots;
-                        continue;
-                    }
-                    if (currBagType.HasFlag(BagType.None) || !currBagType.HasFlag(bagType))
-                        continue;
-                    switch (bagType)
-                    {
-                        case BagType.MiningBag:
-                            miningBag += currBagFreeSlots;
-                            break;
-                        case BagType.HerbBag:
-                            herbBag += currBagFreeSlots;
-                            break;
-                        case BagType.LeatherworkingBag:
-                            leatherworkingBag += currBagFreeSlots;
-                            break;
-                        case BagType.GemBag:
-                            gemBag += currBagFreeSlots;
-                            break;
-                        case BagType.EnchantingBag:
-                            enchantingBag += currBagFreeSlots;
-                            break;
-                        case BagType.InscriptionBag:
-                            inscriptionBag += currBagFreeSlots;
-                            break;
-                        case BagType.LureBag:
-                            lureBag += currBagFreeSlots;
-                            break;
-                        case BagType.SoulBag:
-                            soulBag += currBagFreeSlots;
-                            break;
-                        case BagType.VanityPets:
-                            vanityPets += currBagFreeSlots;
-                            break;
-                        case BagType.Unknown:
-                            unknown += currBagFreeSlots;
-                            break;
-                        case BagType.AmmoPouch:
-                            ammoPouch += currBagFreeSlots;
-                            break;
-                        case BagType.Keyring:
-                            keyring += currBagFreeSlots;
-                            break;
-                        case BagType.Quiver:
-                            quiver += currBagFreeSlots;
-                            break;
-                        case BagType.EngineeringBag:
-                            engineeringBag += currBagFreeSlots;
-                            break;
-                    }
-                }
-                switch (bagType)
-                {
-                    case BagType.Unspecified:
-                        return unspecified;
-                    case BagType.MiningBag:
-                        return miningBag + unspecified;
-                    case BagType.HerbBag:
-                        return herbBag + unspecified;
-                    case BagType.LeatherworkingBag:
-                        return leatherworkingBag + unspecified;
-                    case BagType.GemBag:
-                        return gemBag + unspecified;
-                    case BagType.EnchantingBag:
-                        return enchantingBag + unspecified;
-                    case BagType.InscriptionBag:
-                        return inscriptionBag + unspecified;
-                    case BagType.LureBag:
-                        return lureBag + unspecified;
-                    case BagType.SoulBag:
-                        return soulBag + unspecified;
-                    case BagType.VanityPets:
-                        return vanityPets + unspecified;
-                    case BagType.Unknown:
-                        return unknown + unspecified;
-                    case BagType.AmmoPouch:
-                        return ammoPouch + unspecified;
-                    case BagType.Keyring:
-                        return keyring + unspecified;
-                    case BagType.Quiver:
-                        return quiver + unspecified;
-                    case BagType.EngineeringBag:
-                        return engineeringBag + unspecified;
-                }
-            }
-            return 0;
-        }
-
         public static int GetContainerNumFreeSlots
         {
             get
@@ -401,9 +211,6 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static int _lastHonorPoint;
-        private static readonly Timer TimerHonorPoint = new Timer(1000);
-
         public static int GetHonorPoint
         {
             get
@@ -447,9 +254,6 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static Timer _timePlayerUsingVehicle = new Timer(0);
-        private static bool _lastResultPlayerUsingVehicle;
-
         public static bool PlayerUsingVehicle
         {
             get
@@ -479,9 +283,6 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static int _lastLatency;
-        private static Timer _timerLatency = new Timer(0);
-
         public static int Latency
         {
             get
@@ -502,24 +303,6 @@ namespace nManager.Wow.Helpers
                     Logging.WriteError("Latency: " + e);
                     return 0;
                 }
-            }
-        }
-
-        public static bool MovementStatus(MovementFlags flags)
-        {
-            try
-            {
-                return (Convert.ToBoolean(
-                    Memory.WowMemory.Memory.ReadInt(
-                        Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                         (uint) Addresses.MovementFlagsOffsets.Offset1)
-                        + (uint) Addresses.MovementFlagsOffsets.Offset2)
-                    & (int) flags));
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("MovementStatus: " + e);
-                return false;
             }
         }
 
@@ -612,11 +395,6 @@ namespace nManager.Wow.Helpers
                     return "Azeroth";
                 }
             }
-        }
-
-        public static uint GetMapId()
-        {
-            return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId);
         }
 
         public static string ContinentNameMpq
@@ -760,7 +538,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return 18935;
+                    return 18950;
                     return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
                 }
                 catch (Exception e)
@@ -769,6 +547,233 @@ namespace nManager.Wow.Helpers
                     return 0;
                 }
             }
+        }
+
+        /// <summary>
+        ///     Make key registre Wow.
+        /// </summary>
+        /// <returns></returns>
+        public static void MakeWowRegistry()
+        {
+            try
+            {
+                MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game)));
+                string path = Others.DialogBoxOpenFile("", "Profile files (Wow.exe)|Wow.exe");
+                RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft") ??
+                                  Registry.LocalMachine.CreateSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
+                if (key != null) key.SetValue("InstallPath", path.Replace("Wow.exe", ""), RegistryValueKind.String);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("MakeWowRegistry(): " + e);
+            }
+        }
+
+
+        /// <summary>
+        ///     Launch World Of Warcraft.
+        /// </summary>
+        /// <typeparam></typeparam>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static int LaunchWow(string param = "")
+        {
+            try
+            {
+                RegistryKey registre = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft");
+                if (registre == null)
+                {
+                    MakeWowRegistry();
+                    LaunchWow();
+                    return 0;
+                }
+                object val = registre.GetValue("InstallPath");
+                if (val == null)
+                {
+                    MakeWowRegistry();
+                    LaunchWow();
+                    return 0;
+                }
+                if (!File.Exists(val + "Wow.exe"))
+                {
+                    MakeWowRegistry();
+                    LaunchWow();
+                    return 0;
+                }
+                var proc = new Process {StartInfo = {FileName = val + "Wow.exe", Arguments = param}};
+                proc.Start();
+                return proc.Id;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("LaunchWow(): " + e);
+            }
+            return 0;
+        }
+
+        public static int ContainerNumFreeSlots(BagType bagType)
+        {
+            int unspecified = 0;
+            int quiver = 0;
+            int ammoPouch = 0;
+            int soulBag = 0;
+            int leatherworkingBag = 0;
+            int inscriptionBag = 0;
+            int herbBag = 0;
+            int enchantingBag = 0;
+            int engineeringBag = 0;
+            int keyring = 0;
+            int gemBag = 0;
+            int miningBag = 0;
+            int unknown = 0;
+            int vanityPets = 0;
+            int lureBag = 0;
+            string bag0FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag0Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag1FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag1Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag2FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag2Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag3FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag3Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag4FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag4Type = Others.GetRandomString(Others.Random(4, 10));
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(bag0FreeSlots + "," + bag0Type + " = GetContainerNumFreeSlots(0); " +
+                            bag1FreeSlots + "," + bag1Type + " = GetContainerNumFreeSlots(1); " +
+                            bag2FreeSlots + "," + bag2Type + " = GetContainerNumFreeSlots(2); " +
+                            bag3FreeSlots + "," + bag3Type + " = GetContainerNumFreeSlots(3); " +
+                            bag4FreeSlots + "," + bag4Type + " = GetContainerNumFreeSlots(4); " +
+                            "if(" + bag1Type + " == nil) then " + bag1Type + " = 16777216 end " +
+                            "if(" + bag2Type + " == nil) then " + bag2Type + " = 16777216 end " +
+                            "if(" + bag3Type + " == nil) then " + bag3Type + " = 16777216 end " +
+                            "if(" + bag4Type + " == nil) then " + bag4Type + " = 16777216 end " +
+                            randomString + " = " + bag0FreeSlots + " .. \",\" .. " + bag0Type + " .. \";\" .. " + bag1FreeSlots + " .. \",\" .. " + bag1Type + " .. \";\" .. " +
+                            bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
+                            " .. \",\" .. " + bag4Type);
+            string result = Lua.GetLocalizedText(randomString);
+            if (!string.IsNullOrEmpty(result) && result.Contains(";"))
+            {
+                string[][] bags = result.Split(';').Select(s => s.Split(',')).ToArray();
+                foreach (var t in bags)
+                {
+                    if (t.Count() <= 1)
+                        continue;
+                    if (t[0] == "0")
+                        continue;
+                    int currBagFreeSlots = Others.ToInt32(t[0]);
+                    var currBagType = (BagType) Others.ToInt32(t[1]);
+                    if (currBagType == BagType.Unspecified)
+                    {
+                        unspecified += currBagFreeSlots;
+                        continue;
+                    }
+                    if (currBagType.HasFlag(BagType.None) || !currBagType.HasFlag(bagType))
+                        continue;
+                    switch (bagType)
+                    {
+                        case BagType.MiningBag:
+                            miningBag += currBagFreeSlots;
+                            break;
+                        case BagType.HerbBag:
+                            herbBag += currBagFreeSlots;
+                            break;
+                        case BagType.LeatherworkingBag:
+                            leatherworkingBag += currBagFreeSlots;
+                            break;
+                        case BagType.GemBag:
+                            gemBag += currBagFreeSlots;
+                            break;
+                        case BagType.EnchantingBag:
+                            enchantingBag += currBagFreeSlots;
+                            break;
+                        case BagType.InscriptionBag:
+                            inscriptionBag += currBagFreeSlots;
+                            break;
+                        case BagType.LureBag:
+                            lureBag += currBagFreeSlots;
+                            break;
+                        case BagType.SoulBag:
+                            soulBag += currBagFreeSlots;
+                            break;
+                        case BagType.VanityPets:
+                            vanityPets += currBagFreeSlots;
+                            break;
+                        case BagType.Unknown:
+                            unknown += currBagFreeSlots;
+                            break;
+                        case BagType.AmmoPouch:
+                            ammoPouch += currBagFreeSlots;
+                            break;
+                        case BagType.Keyring:
+                            keyring += currBagFreeSlots;
+                            break;
+                        case BagType.Quiver:
+                            quiver += currBagFreeSlots;
+                            break;
+                        case BagType.EngineeringBag:
+                            engineeringBag += currBagFreeSlots;
+                            break;
+                    }
+                }
+                switch (bagType)
+                {
+                    case BagType.Unspecified:
+                        return unspecified;
+                    case BagType.MiningBag:
+                        return miningBag + unspecified;
+                    case BagType.HerbBag:
+                        return herbBag + unspecified;
+                    case BagType.LeatherworkingBag:
+                        return leatherworkingBag + unspecified;
+                    case BagType.GemBag:
+                        return gemBag + unspecified;
+                    case BagType.EnchantingBag:
+                        return enchantingBag + unspecified;
+                    case BagType.InscriptionBag:
+                        return inscriptionBag + unspecified;
+                    case BagType.LureBag:
+                        return lureBag + unspecified;
+                    case BagType.SoulBag:
+                        return soulBag + unspecified;
+                    case BagType.VanityPets:
+                        return vanityPets + unspecified;
+                    case BagType.Unknown:
+                        return unknown + unspecified;
+                    case BagType.AmmoPouch:
+                        return ammoPouch + unspecified;
+                    case BagType.Keyring:
+                        return keyring + unspecified;
+                    case BagType.Quiver:
+                        return quiver + unspecified;
+                    case BagType.EngineeringBag:
+                        return engineeringBag + unspecified;
+                }
+            }
+            return 0;
+        }
+
+        public static bool MovementStatus(MovementFlags flags)
+        {
+            try
+            {
+                return (Convert.ToBoolean(
+                    Memory.WowMemory.Memory.ReadInt(
+                        Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                         (uint) Addresses.MovementFlagsOffsets.Offset1)
+                        + (uint) Addresses.MovementFlagsOffsets.Offset2)
+                    & (int) flags));
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("MovementStatus: " + e);
+                return false;
+            }
+        }
+
+        public static uint GetMapId()
+        {
+            return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId);
         }
 
         public static void DisMount()
@@ -823,45 +828,26 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                uint mask =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.nameStorePtr + (uint) Addresses.PlayerNameStore.nameMaskOffset);
-                uint baseAddresse =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.nameStorePtr + (uint) Addresses.PlayerNameStore.nameBaseOffset);
-
-                UInt128 shortGUID = guid & 0xffffffff;
-                if (mask == 0xffffffff)
-                    return "";
-
-                uint offset = 12*(uint) (mask & shortGUID);
-                uint current = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset + 8);
-                offset = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset);
-
-                if (current == 0 || (current & 0x1) == 0x1)
-                    return "";
-
-                uint testGUID = Memory.WowMemory.Memory.ReadUInt(current);
-
-                while (testGUID != shortGUID)
+                uint next = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.PlayerNameStorePtr + (uint) Addresses.PlayerNameStore.PlayerNameNextOffset);
+                uint ptr = next;
+                while (true)
                 {
-                    current = Memory.WowMemory.Memory.ReadUInt(current + offset + 4);
-                    if (current == 0 || (current & 0x1) == 0x1)
-                        return "";
-                    testGUID = Memory.WowMemory.Memory.ReadUInt(current);
-                    Thread.Sleep(5);
+                    uint ncstart = ptr + 16;
+                    if (Memory.WowMemory.Memory.ReadUInt128(ncstart) == guid)
+                        return Memory.WowMemory.Memory.ReadUTF8String(ncstart + (uint) Addresses.PlayerNameStore.PlayerNameStringOffset);
+                    ptr = Memory.WowMemory.Memory.ReadUInt(ptr);
+                    if (ptr == 0) 
+                        break;
+                    if (ptr == next) 
+                        break;
                 }
-
-
-                return Memory.WowMemory.Memory.ReadUTF8String(current + (uint) Addresses.PlayerNameStore.nameStringOffset);
             }
             catch (Exception e)
             {
                 Logging.WriteError("GetPlayerName(UInt128 guid): " + e);
-                return "";
             }
+            return "Unknow";
         }
-
-        private static readonly List<int> AchievementsDoneCache = new List<int>();
-        private static readonly List<int> AchievementsNotDoneCache = new List<int>();
 
         public static bool IsCompletedAchievement(int achievementId, bool meOnly = false)
         {
@@ -888,10 +874,6 @@ namespace nManager.Wow.Helpers
             AchievementsNotDoneCache.Add(achievementId);
             return false;
         }
-
-        private static readonly Object ThisLock = new Object();
-        private static readonly Timer AfkTimer = new Timer(500);
-        private static string _key;
 
         public static void UpdateLastHardwareAction()
         {

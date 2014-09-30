@@ -90,7 +90,7 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        uint wowBuildVersion = 18935; //Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
+                        uint wowBuildVersion = 18950; //Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
 
                         if (wowBuildVersion != Information.TargetWowBuild)
                         {
@@ -391,9 +391,11 @@ namespace nManager.Wow.MemoryClass
         private void CheckEndsceneHook()
         {
             byte jmp = Memory.ReadByte(JumpAddress);
-            if (jmp == 0xE9) return;
+            if (jmp == 0xE9) 
+                return;
             ThreadHooked = false;
-            Logging.WriteError("ThreadHooked: False; JmpAddress: " + jmp);
+            Logging.WriteError("ThreadHooked: UnHooked; JmpAddress: " + jmp.ToString("X") + ", trying to reHook.");
+            Hooking();
         }
 
         private uint GetJumpAdresse()

@@ -332,9 +332,9 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="dwAddress">Address at which value will be read.</param>
         /// <exception cref="Exception">Throws general exception on failure.</exception>
         /// <returns>Returns the value that was read from memory.</returns>
-        public UInt128 ReadInt128(uint dwAddress)
+        public UInt128 ReadUInt128(uint dwAddress)
         {
-            return this.ReadInt128(dwAddress, false);
+            return this.ReadUInt128(dwAddress, false);
         }
 
         /// <summary>
@@ -345,12 +345,12 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <exception cref="Exception">Throws general exception on failure.</exception>
         /// <returns>Returns the value that was read from memory.</returns>
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
-        public UInt128 ReadInt128(uint dwAddress, bool bReverse)
+        public UInt128 ReadUInt128(uint dwAddress, bool bReverse)
         {
             if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadInt128(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadUInt128(this.m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>

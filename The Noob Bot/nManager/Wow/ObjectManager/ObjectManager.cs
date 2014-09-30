@@ -88,7 +88,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    UInt128 guidPet = Memory.WowMemory.Memory.ReadInt128(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
+                    UInt128 guidPet = Memory.WowMemory.Memory.ReadUInt128(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
                     if (guidPet > 0)
                         return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
 
@@ -170,9 +170,8 @@ namespace nManager.Wow.ObjectManager
                 while (Addresses.ObjectManagerClass.clientConnection == 0)
                     Thread.Sleep(10);
 
-                ObjectManagerAddress = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.sCurMgr);
-
-                UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadInt128(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
+                ObjectManagerAddress = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.clientConnection) + (uint)Addresses.ObjectManager.objectManager);
+                UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadUInt128(ObjectManagerAddress + (uint)Addresses.ObjectManager.localGuid);
 
                 // Get the first object in the linked list.
                 int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.firstObject);
@@ -181,7 +180,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     try
                     {
-                        UInt128 objGuid = Memory.WowMemory.Memory.ReadInt128((uint)currentObject + (uint)Addresses.ObjectManager.objectGUID);
+                        UInt128 objGuid = Memory.WowMemory.Memory.ReadUInt128((uint)currentObject + (uint)Addresses.ObjectManager.objectGUID);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
                             WoWObjectType objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);

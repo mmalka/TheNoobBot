@@ -255,7 +255,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <param name="dwAddress">Address at which memory will be read.</param>
         /// <param name="bReverse">Determines whether bytes will be reversed before returning or not (big-endian or little-endian)</param>
         /// <returns>Returns memory read from external process.</returns>
-        public static UInt128 ReadInt128(IntPtr hProcess, uint dwAddress, bool bReverse)
+        public static UInt128 ReadUInt128(IntPtr hProcess, uint dwAddress, bool bReverse)
         {
             try
             {
