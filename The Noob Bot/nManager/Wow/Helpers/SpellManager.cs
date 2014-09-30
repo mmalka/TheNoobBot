@@ -615,7 +615,7 @@ namespace nManager.Wow.Helpers
                     {
                         string[] ar = {"##"};
                         string[] slipped = result.Split(ar, StringSplitOptions.None);
-                        if (slipped.Length == 9)
+                        if (slipped.Length == 6)
                         {
                             SpellInfoLua spellInfo = new SpellInfoLua();
                             int intOut;
@@ -696,7 +696,7 @@ namespace nManager.Wow.Helpers
                                 if (string.IsNullOrWhiteSpace(s))
                                     break;
                                 string[] slipped = s.Split(new[] {"##"}, StringSplitOptions.None);
-                                if (slipped.Length == 10)
+                                if (slipped.Length == 6)
                                 {
                                     SpellInfoLua spellInfo = new SpellInfoLua();
                                     int intOut;
