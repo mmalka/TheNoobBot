@@ -473,7 +473,7 @@ namespace nManager.Wow.Class
                 if (StopMove)
                 {
                     if (ObjectManager.ObjectManager.Me.GetMove)
-                        MovementManager.StopMoveTo();
+                        MovementManager.StopMove();
                 }
                 if (unitId == null)
                     SpellManager.CastSpellByNameLUA(NameInGame);
