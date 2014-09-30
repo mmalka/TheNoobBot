@@ -133,11 +133,11 @@
             TransportGUID = 0xA40, // CGUnit_C__HasVehicleTransport
             TaxiStatus = 0xC0, // toFind // toUpdate
             DBCacheRow = 0xBC4, // CGUnit_C__GetUnitName
-            CachedSubName = 0x0, // toFind // toUpdate
-            CachedName = 0x7C, // toFind
-            CachedTypeFlag = 0x4C, // toFind // toUpdate
-            CachedQuestItem1 = 0x30, // toFind // toUpdate
-            CachedModelId1 = 0x5C, // toFind // toUpdate
+            CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
+            CachedName = 0x7C,
+            CachedTypeFlag = 0x4C, // toFind, I can check memory if I have a demo-value ?
+            CachedQuestItem1 = 0x30, // toFind, I can check memory if I have a demo-value ?
+            CachedModelId1 = 0x5C, // toFind, I can check memory if I have a demo-value ?
             // saving
             UnitClassificationOffset1 = DBCacheRow, // toFind // Script_UnitClassification + 0x39 (CGUnit_C::GetCreatureRank)
             UnitClassificationOffset2 = 0x20, // toFind // toUpdate // Script_UnitClassification + 0x39 (CGUnit_C::GetCreatureRank)
@@ -150,9 +150,9 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0x2A0, // toFind
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // toFind
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // toFind
+            GAMEOBJECT_FIELD_X = 0x2A0,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             PackedRotationQuaternion = 0x108, // toFind // toUpdate // I have no idea about what fct is behind this
             TransformationMatrice = 0x1C4, // toFind // toUpdate // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
@@ -287,13 +287,13 @@
         /// </summary>
         public enum Quests
         {
-            QuestGiverStatus = 0xF4, // toFind
+            QuestGiverStatus = 0xF4,
             // TODO Retrieve unknown Quests offsets
-            /*ActiveQuests = 0x0, // toFind
-            SelectedQuestId = 0x0, // toFind
-            TitleText = 0x0, // toFind
-            GossipQuests = 0x0, // toFind
-            GossipQuestNext = 0x0, // toFind*/
+            /*ActiveQuests = 0x0,
+            SelectedQuestId = 0x0,
+            TitleText = 0x0,
+            GossipQuests = 0x0,
+            GossipQuestNext = 0x0,*/
         }
 
         /// <summary>
