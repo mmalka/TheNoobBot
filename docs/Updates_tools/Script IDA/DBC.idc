@@ -1,28 +1,24 @@
-// Script adapted from Kynox's solution
 #include <ida.idc>
  
 static main(){
     auto curAddr, xref, count, sPath, hFile;
  
-	//curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 81 EC 08 01 00 00 56 57 8B 7D 08 8D 45 FC 50 FF 37 33 F6 89 4D F8" ); //17128
- 
-    curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 81 EC 08 01 00 00 53 57 8B 7D 08 8D 45 FC 50 FF 37 33 DB 89 4D F8" ); //17345
- 
+	// WowClientDB_Common__LoadInternal1
+	curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 53 56 57 FF 75 0C 8B 7D 08 8B D9" );
+	
     if ( curAddr == BADADDR ){
-        Message("Can't find WowClientDB_Common__Load, aborting...\n");
+        Message("Can't find WowClientDB_Common__LoadInternal1, aborting...\n");
         return;
     }
- 
+	// WowClientDB_Common__Load
+	curAddr = NextFunction( curAddr );
+	
 	// store it where our database file is!
 	sPath = ExtractPath( GetIdbPath() ) + "ClientDBCTables.h";
  
 	// open our header file
 	hFile = fopen( sPath, "w" );
 	if ( hFile != -1 ){
-		fprintf( hFile, "Client DB Dumper - IDC Script\n" );
-		fprintf( hFile, "Credits:\n" );
-		fprintf( hFile, "Kynox\n" );
-		fprintf( hFile, "-----------------------------------*/\n\n" );
 		fprintf( hFile, "typedef enum ClientDB{\n\n" );
 	}
  
@@ -80,9 +76,11 @@ static main(){
         		break;
         	}
  
+			// Rename ida:
+			RenameFunc( dbStruct, form( "%sDBTable", dbName ) );
 			// save to file!
 			if ( hFile != -1 ){
-				fprintf( hFile, "\t%sDBTable = 0x%X,\n", dbName, dbStruct);
+				fprintf( hFile, "\t%sDBTable = 0x%X,\n", dbName, dbStruct );
 			}
  
 			// IDA doesn't make these dwords dammit! Let's do it!
@@ -98,13 +96,37 @@ static main(){
    		} while( 1 );
     }
  
-    Message("Saved %u tables to %s\n", count, sPath);
+    Message("Saved and renamed %u tables to %s\n", count, sPath);
  
 	if ( hFile != -1 ){
 		fprintf( hFile, "} ClientDB;\n" );
 	}
  
 	fclose(hFile);
+}
+
+// 1 = Success, 0 = Failure
+static RenameFunc( dwAddress, sFunction )
+{
+	auto dwRet;
+
+	dwRet = MakeNameEx( dwAddress, sFunction, SN_NOWARN );
+
+	if( dwRet == 0 )
+	{
+		auto sTemp, i;
+		for( i = 0; i < 32; i++ )
+		{
+			sTemp = form( "%s_%i", sFunction, i );
+
+			if( ( dwRet = MakeNameEx( dwAddress, sTemp, SN_NOWARN ) ) != 0 )
+			{
+				Message( "Info: Renamed to %s instead of %s\n", sTemp, sFunction );
+				break;
+			}
+		}
+	}
+	return dwRet;	
 }
  
 static ExtractPath( sPath ){
@@ -121,38 +143,4 @@ static WoWDb_GetName( dbBase ){
  
     // Return the the token after \ and before .
     return substr( dbName, strstr( dbName, "\\" ) + 1, -5 );
-}
- 
-static GetWoWVersionString(){
-	auto sVersion, sBuild, sDate;
- 
-	sVersion = FindBinary( INF_BASEADDR, SEARCH_DOWN, "\"=> WoW Version %s (%s) %s\"" );
- 
-	if( sVersion == BADADDR )
-	{
-		Message( "Version format string not found" );
-		return 0;
-	}
- 
-	sVersion = DfirstB( sVersion );
- 
-	if( sVersion == BADADDR )
-	{
-		Message( "Version string unreferences" );
-		return 0;
-	}
- 
-	sVersion = PrevHead( sVersion, 0 );
-	sBuild = PrevHead( sVersion, 0 );
-	sDate = PrevHead( sBuild, 0 );
- 
-	sVersion = GetOperandValue( sVersion, 1 );
-	sBuild = GetOperandValue( sBuild, 1 );
-	sDate = GetOperandValue( sDate, 1 );
- 
-	sVersion = GetString( sVersion, -1, ASCSTR_C );
-	sBuild = GetString( sBuild, -1, ASCSTR_C );
-	sDate = GetString( sDate, -1, ASCSTR_C );
- 
-	return form( "Version: %s  Build number: %s  Build date: %s\n", sVersion, sBuild, sDate );
 }
