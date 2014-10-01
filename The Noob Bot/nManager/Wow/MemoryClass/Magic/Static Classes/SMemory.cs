@@ -259,8 +259,7 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             try
             {
-                int size128 = Marshal.SizeOf(typeof(UInt128));
-                byte[] buf = ReadBytes(hProcess, dwAddress, size128);
+                byte[] buf = ReadBytes(hProcess, dwAddress, Marshal.SizeOf(typeof(UInt128)));
                 if (buf == null)
                     throw new Exception("ReadInt failed.");
 

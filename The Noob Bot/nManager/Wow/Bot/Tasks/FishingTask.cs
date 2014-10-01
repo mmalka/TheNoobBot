@@ -114,6 +114,22 @@ namespace nManager.Wow.Bot.Tasks
                                 while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid &&
                                         1 != Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) Patchables.Addresses.Fishing.BobberHasMoved))
                                 {
+                                    /*
+                                     * BobberHasMoved FINDER 
+                                     uint i = 148;
+                                    while (false)
+                                    {
+                                        short info = Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) i);
+                                        if (info == 1)
+                                        {
+                                            Logging.Write("Info is " + info + " with i=" + i);
+                                        }
+                                        i += 4;
+                                        if (i > 350)
+                                            i = 148;
+                                        Thread.Sleep(30);
+                                    }
+                                */
                                     Thread.Sleep(50);
                                     Application.DoEvents();
                                 }
