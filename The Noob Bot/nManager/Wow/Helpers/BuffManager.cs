@@ -59,7 +59,7 @@ namespace nManager.Wow.Helpers
                         UInt128 auraCreatorGuid = Memory.WowMemory.Memory.ReadUInt128(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCreatorGuid);
                         uint auraSpellId = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId);
                         string auraSpellName = SpellManager.GetSpellInfo(Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId)).Name;
-                        byte auraUnk1 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk1);
+                        byte auraFlags = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraStructFlags);
                         byte auraStackCount = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCount);
                         byte auraCasterLevel = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCasterLevel);
                         byte auraUnk2 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2);
@@ -73,7 +73,7 @@ namespace nManager.Wow.Helpers
                             Logging.WriteDebug("AuraCreatorGuid: " + auraCreatorGuid);
                             Logging.WriteDebug("AuraSpellId: " + auraSpellId);
                             Logging.WriteDebug("AuraName: " + auraSpellName);
-                            Logging.WriteDebug("AuraUnk1: " + auraUnk1);
+                            Logging.WriteDebug("AuraFlags: " + auraFlags);
                             Logging.WriteDebug("AuraCount: " + auraStackCount);
                             Logging.WriteDebug("AuraCasterLevel: " + auraCasterLevel);
                             Logging.WriteDebug("AuraUnk2: " + auraUnk2);
