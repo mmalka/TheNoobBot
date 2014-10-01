@@ -154,25 +154,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int ComboPoint
-        {
-            get
-            {
-                try
-                {
-                    int val =
-                        Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.Player.PlayerComboPoint);
-                    return val;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > ComboPoint: " + e);
-                }
-                return 0;
-            }
-        }
-
         public new bool InCombat
         {
             get

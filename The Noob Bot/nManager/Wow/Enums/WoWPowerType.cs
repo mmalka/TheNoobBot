@@ -7,7 +7,7 @@
         Rage = 0x1,
         Focus = 0x2,
         Energy = 0x3,
-        Hapiness = 0x4,
+        ComboPoint = 0x4,
         Runes = 0x5,
         RunicPower = 0x6,
         SoulShards = 0x7,

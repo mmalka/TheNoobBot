@@ -441,6 +441,54 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint ComboPoint
+        {
+            get
+            {
+                try
+                {
+                    return GetPowerByPowerType(PowerType.ComboPoint);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > ComboPoint: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxComboPoint
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(PowerType.ComboPoint);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxComboPoint: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint ComboPointPercentage
+        {
+            get
+            {
+                try
+                {
+                    return ComboPoint * 100 / MaxComboPoint;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > ComboPointPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public uint Chi
         {
             get
