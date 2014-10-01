@@ -284,10 +284,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                // title, level, questTag, suggestedGroup, isHeader, isCollapsed, isComplete, isDaily, questID, startEvent, displayQuestID = GetQuestLogTitle(questIndex)
+                // title, level, suggestedGroup, isHeader, isCollapsed, isComplete, isDaily, questID, startEvent, displayQuestID = GetQuestLogTitle(questIndex)
+                // TITLE 1 0 false false 1 1 8325 false false true true false false
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString("questIndex = GetQuestLogIndexByID(" + questId + ");" +
-                                "_, _, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);");
+                                "_, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);");
                 string ret = Lua.GetLocalizedText(randomString);
                 return ret == "1";
             }
