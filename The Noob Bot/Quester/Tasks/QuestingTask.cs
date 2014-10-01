@@ -840,6 +840,15 @@ namespace Quester.Tasks
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500 + Usefuls.Latency);
+                    if (target.SelectGossipOption != 0)
+                    {
+                        Lua.LuaDoString("SelectGossipOption(" + target.SelectGossipOption + ")");
+                        Thread.Sleep(500);
+                    }
+                    else if (target.Type == Npc.NpcType.Vendor)
+                    {
+                        Gossip.SelectGossip(Gossip.GossipOption.Vendor);
+                    }
                     int amount = questObjective.CollectCount - ItemsManager.GetItemCount(questObjective.CollectItemId);
                     if (amount <= 0)
                     {
