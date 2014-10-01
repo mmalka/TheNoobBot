@@ -24,7 +24,7 @@ namespace nManager.Wow.Helpers
 
                         if (partyPlayer <= 0 || Memory.WowMemory.Memory.ReadUInt(partyPlayer + 4) != 2)
                             continue;
-                        return Memory.WowMemory.Memory.ReadUInt64(partyPlayer + (uint) Addresses.Party.PlayerGuid);
+                        return Memory.WowMemory.Memory.ReadUInt128(partyPlayer + (uint) Addresses.Party.PlayerGuid);
                     }
                 }
             }
@@ -52,7 +52,7 @@ namespace nManager.Wow.Helpers
                         uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
                         if (partyPlayer <= 0) continue;
                         UInt128 currentPlayerGUID =
-                            Memory.WowMemory.Memory.ReadUInt64(
+                            Memory.WowMemory.Memory.ReadUInt128(
                                 partyPlayer + (uint) Addresses.Party.PlayerGuid);
                         if (currentPlayerGUID > 0)
                         {

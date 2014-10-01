@@ -24,7 +24,7 @@ namespace nManager
                 SpellManager.SpellListManager.LoadSpellList(Application.StartupPath + "\\Data\\spell.txt");
                 Wow.Memory.WowProcess = new Process(processId);
                 Wow.Memory.WowMemory = new Hook();
-                if (Wow.Helpers.Usefuls.WowVersion == Information.TargetWowBuild)
+                if (Wow.Helpers.Usefuls.WowVersion() == Information.TargetWowBuild)
                 {
                     Wow.ObjectManager.Pulsator.Initialize();
                     //AccountSecurity.Pulse();

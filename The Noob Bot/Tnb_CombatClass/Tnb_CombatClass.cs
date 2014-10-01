@@ -10287,7 +10287,7 @@ public class DruidFeral
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int CP;
+    public uint CP;
     private Timer _engineeringTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
 
@@ -19057,7 +19057,7 @@ public class RogueCombat
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int CP = 0;
+    public uint CP = 0;
     public int LC = 0;
     private Timer _engineeringTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
@@ -19816,7 +19816,7 @@ public class RogueSubtlety
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int CP = 0;
+    public uint CP = 0;
     public int LC = 0;
     private Timer _engineeringTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
@@ -20552,7 +20552,7 @@ public class RogueAssassination
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int CP = 0;
+    public uint CP = 0;
     public int LC = 0;
     private Timer _engineeringTimer = new Timer(0);
     private Timer _onCd = new Timer(0);

@@ -548,20 +548,24 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static uint WowVersion
+        public static uint WowVersion(string textBuild = "")
         {
-            get
+            try
             {
-                try
-                {
-                    return 18950;
-                    return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WowVersion: " + e);
+                // "World of WarCraft: Retail Build (build 18966)"
+                if (textBuild == "")
+                    textBuild = Memory.WowMemory.Memory.ReadASCIIString(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWoWVersionString);
+                if (!textBuild.Contains(' '))
                     return 0;
-                }
+                string[] textBuildStrings = textBuild.Split(' ');
+                string wowBuildString = textBuildStrings[textBuildStrings.Length - 1].Remove(5);
+                uint wowBuild = Others.ToUInt32(wowBuildString);
+                return wowBuild;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WowVersion: " + e);
+                return 0;
             }
         }
 

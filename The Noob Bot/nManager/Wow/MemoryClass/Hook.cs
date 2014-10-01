@@ -90,8 +90,8 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        uint wowBuildVersion = 18950; //Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
-
+                        string textBuild = Memory.ReadASCIIString(Wow.Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWoWVersionString);
+                        uint wowBuildVersion = Helpers.Usefuls.WowVersion(textBuild);
                         if (wowBuildVersion != Information.TargetWowBuild)
                         {
                             if (System.Diagnostics.Process.GetProcessById(Memory.ProcessId).HasExited)
