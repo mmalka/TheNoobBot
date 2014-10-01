@@ -292,7 +292,7 @@ namespace nManager.Wow.Helpers
                     if (!_timerLatency.IsReady)
                         return _lastLatency;
 
-                    _timerLatency = new Timer(30*1000);
+                    _timerLatency = new Timer(30 * 1000);
                     string luaResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString("_,_,_,worldLag=GetNetStats() " + luaResult + "=worldLag");
                     _lastLatency = Others.ToInt32(Lua.GetLocalizedText(luaResult));
@@ -301,6 +301,22 @@ namespace nManager.Wow.Helpers
                 catch (Exception e)
                 {
                     Logging.WriteError("Latency: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public static uint GetWoWTime
+        {
+            get
+            {
+                try
+                {
+                    return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.GetTime);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GetWoWTime: " + e);
                     return 0;
                 }
             }

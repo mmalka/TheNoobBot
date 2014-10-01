@@ -1,4 +1,7 @@
-﻿namespace nManager.Wow.Patchables
+﻿using System.Runtime.InteropServices;
+using nManager.Wow.Class;
+
+namespace nManager.Wow.Patchables
 {
     /// <summary>
     ///   Offset and Pointer for Wow 18414
@@ -16,7 +19,7 @@
 
         public enum ObjectManager
         {
-            objectManager = 0x62C, // toFind // to be used with clientConnection or bypassed if using sCurMgr.
+            objectManager = 0x62C, // to be used with clientConnection or bypassed if using sCurMgr.
             localGuid = 0xF8, // ClntObjMgrGetActivePlayer_0 // E7B3A0 = localGUID complete?
             objectGUID = 0x28,
             objectTYPE = 0xC, // ClntObjMgrGetActivePlayer
@@ -76,6 +79,7 @@
         /// </summary>
         public enum GameInfo
         {
+            GetTime = 0xC1A5E0,
             continentId = 0xB4D46C,
             continentIdOffset = 0xF0, // toFind // ?? mia
             buildWowVersion = 0xB94E74, // toFind // toUpdate mia yet
@@ -211,9 +215,9 @@
         {
             CTM = 0xD2AF98, // GetClickToMoveStruct
             CTM_PUSH = CTM + 0x1C, // toFind
-            CTM_X = CTM + 0x8C, // toFind
-            CTM_Y = CTM_X + 0x4, // toFind
-            CTM_Z = CTM_Y + 0x4, // toFind
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
@@ -303,11 +307,17 @@
         {
             AuraTable1 = 0x10A0,
             AuraTable2 = 0x480,
-            AuraStack = 0x24, // 0x24 or 0xC9 or ???? ( supposed to give the number of stack of the buff, 1 or more (example Shaman Enhancement increase Maelstrom Weapon stacks)
-            AuraSpellStart = 0xC9, // 0x24 or 0xC9 or ???? (supposed to give the time at which it started???)
-            AuraSpellId = 0x30,
             AuraSize = 0x48,
 
+            AuraStructCreatorGuid = 0x20, // read 16 bytes (GUID)
+            AuraStructSpellId = AuraStructCreatorGuid + 16, // read 4 bytes (UINT)
+            AuraStructUnk1 = AuraStructSpellId + 4, // read 1 byte, what is this ?
+            AuraStructCount = AuraStructUnk1 + 1, // read 1 byte
+            AuraStructCasterLevel = AuraStructCount + 1, // read 1 byte
+            AuraStructUnk2 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
+            AuraStructDuration = AuraStructUnk2 + 1,  // read 4 bytes
+            AuraStructSpellEndTime = AuraStructDuration + 4, // read 4 bytes
+            AuraStructUnk3 = AuraStructSpellEndTime + 4, // read 1 byte, what is this ?
         }
 
         /// <summary>
@@ -316,7 +326,7 @@
         public enum PowerIndex
         {
             PowerIndexArrays = 0xD2ABF4, // PowerTypePointer
-            Multiplicator = 0x10, // toCheck
+            Multiplicator = 0x10,
         }
     }
 }
