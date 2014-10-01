@@ -7,36 +7,6 @@ namespace nManager.Wow.Helpers
 {
     internal class BuffManager
     {
-        public static int AuraStack(uint baseAddress, List<UInt32> buffId)
-        {
-            try
-            {
-                int auraCount = Memory.WowMemory.Memory.ReadInt(baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_COUNT_1);
-                uint auraTable = baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_TABLE_1;
-                if (auraCount == -1)
-                {
-                    auraCount = Memory.WowMemory.Memory.ReadInt(baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_COUNT_2);
-                    auraTable = Memory.WowMemory.Memory.ReadUInt(baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_TABLE_2);
-                }
-                for (uint i = 0; i < auraCount && i < 200; i++)
-                {
-                    int spellID = Memory.WowMemory.Memory.ReadInt(auraTable + ((uint) Addresses.UnitBaseGetUnitAura.AURA_SIZE*i) +
-                                                                  (uint) Addresses.UnitBaseGetUnitAura.AURA_SPELL_ID);
-                    if (spellID > 0)
-                    {
-                        if (buffId.Contains((uint) spellID))
-                            return Memory.WowMemory.Memory.ReadByte(auraTable + ((uint) Addresses.UnitBaseGetUnitAura.AURA_SIZE*i) + (uint) Addresses.UnitBaseGetUnitAura.AURA_STACK);
-                    }
-                }
-                return -1;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("AuraStack(uint baseAddress, List<UInt32> buffId)" + e);
-                return -1;
-            }
-        }
-
         public static bool HaveBuff(uint baseAddress, List<UInt32> buffId)
         {
             try
@@ -61,6 +31,65 @@ namespace nManager.Wow.Helpers
             {
                 Logging.WriteError("HaveBuff(uint objBase, UInt32 buffId)" + e);
                 return false;
+            }
+        }
+
+        public static int AuraStack(uint baseAddress, List<UInt32> buffId)
+        {
+            try
+            {
+                if (buffId == null || buffId.Count <= 0)
+                    return 0;
+
+                uint auraTableBase = baseAddress + (uint)Addresses.UnitBaseGetUnitAura.AuraTable1;
+
+                int auraCount = Memory.WowMemory.Memory.ReadInt(auraTableBase + (uint)Addresses.UnitBaseGetUnitAura.AuraTable2);
+
+                if (auraCount == -1)
+                    auraCount = Memory.WowMemory.Memory.ReadInt(auraTableBase);
+                for (uint currentIndex = 0; currentIndex < auraCount; currentIndex++)
+                {
+                    uint currentAuraPtr = GetAuraPtrByIndex(auraTableBase, currentIndex);
+                    
+                    if (currentAuraPtr > 0)
+                    {
+                        int spellId = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraSpellId);
+                        int stack = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraStack);
+                        //Logging.WriteDebug("Aura for spellid(" + spellId + "), stack(" + stack + "): " + SpellManager.GetSpellInfo((uint)spellId).Name);
+                        if (spellId > 0 && buffId.Contains((uint)spellId))
+                            return stack;
+                    }
+                }
+                return -1;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("AuraStack(uint baseAddress, List<UInt32> buffId)" + e);
+                return -1;
+            }
+        }
+
+        static uint GetAuraPtrByIndex(uint auraBase, uint currentIndex)
+        {
+            try
+            {
+                uint result;
+
+                uint currentAura = (uint)Addresses.UnitBaseGetUnitAura.AuraSize * currentIndex;
+                if (Memory.WowMemory.Memory.ReadUInt(auraBase + (uint)Addresses.UnitBaseGetUnitAura.AuraTable2) == -1)
+                {
+                    result = Memory.WowMemory.Memory.ReadUInt(auraBase + 4) + currentAura;
+                }
+                else
+                {
+                    result = auraBase + currentAura;
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("static uint GetAura(uint auraBase, uint currentIndex)" + e);
+                return 0;
             }
         }
     }

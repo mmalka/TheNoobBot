@@ -20,8 +20,8 @@
             localGuid = 0xF8, // ClntObjMgrGetActivePlayer_0 // E7B3A0 = localGUID complete?
             objectGUID = 0x28,
             objectTYPE = 0xC, // ClntObjMgrGetActivePlayer
-            firstObject = 0xD8, // toFind // ClntObjMgrEnumVisibleObjects
-            nextObject = 0x3C, // toFind
+            firstObject = 0xD8, // ClntObjMgrEnumVisibleObjects (?)
+            nextObject = 0x3C,
         }
 
         /// <summary>
@@ -179,7 +179,7 @@
         /// </summary>
         public enum Fishing
         {
-            BobberHasMoved = 0xCC, // toFind // toUpdate
+            BobberHasMoved = 0x104,
         }
 
         /// <summary>
@@ -301,14 +301,13 @@
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AURA_COUNT_1 = 0x1520, // toFind
-            AURA_COUNT_2 = 0x10A0, // toFind
-            AURA_TABLE_1 = 0x10A0, // toFind
-            AURA_TABLE_2 = 0x10A4, // toFind // toCheck
-            AURA_SIZE = 0x40, // toFind // toCheck
-            AURA_SPELL_ID = 0x30, // toFind
-            AURA_STACK = 0x1D, // toFind // toCheck/Search
-            AURA_SPELL_START = 0x24, // toFind
+            AuraTable1 = 0x10A0,
+            AuraTable2 = 0x480,
+            AuraStack = 0x24, // 0x24 or 0xC9 or ???? ( supposed to give the number of stack of the buff, 1 or more (example Shaman Enhancement increase Maelstrom Weapon stacks)
+            AuraSpellStart = 0xC9, // 0x24 or 0xC9 or ???? (supposed to give the time at which it started???)
+            AuraSpellId = 0x30,
+            AuraSize = 0x48,
+
         }
 
         /// <summary>
