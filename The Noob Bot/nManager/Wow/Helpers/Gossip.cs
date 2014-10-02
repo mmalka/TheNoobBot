@@ -110,5 +110,33 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void ExportTaxiInfo()
+        {
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Target <= 0 || !nManager.Wow.ObjectManager.ObjectManager.Target.IsNpcFlightMaster)
+                return;
+            nManager.Helpful.Logging.WriteDebug("ExportTaxiInfo of NPC " + nManager.Wow.ObjectManager.ObjectManager.Target.Name + " (TaxiEntry: " + nManager.Wow.ObjectManager.ObjectManager.Target.Entry + ")");
+            string randomString = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+            nManager.Wow.Helpers.Lua.LuaDoString(randomString + " = NumTaxiNodes()");
+            int nbTaxiNode = nManager.Helpful.Others.ToInt32(nManager.Wow.Helpers.Lua.GetLocalizedText(randomString));
+            if (nbTaxiNode <= 0)
+            {
+                nManager.Helpful.Logging.WriteDebug("No TaxiNodes found, make sure to have the window opened and to know at least one path.");
+                return;
+            }
+            nManager.Helpful.Logging.WriteDebug("Found " + nbTaxiNode + " Taxi Path for this Flight Master.");
+            for (int id = 1; id <= nbTaxiNode; id++)
+            {
+
+                string chkpx = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+                string chkpy = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+                string destName = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+                nManager.Wow.Helpers.Lua.LuaDoString(destName + " = TaxiNodeName(" + id + ");");
+                nManager.Wow.Helpers.Lua.LuaDoString(chkpx + "," + chkpy + " = TaxiNodePosition(" + id + ");");
+                string retpx = nManager.Wow.Helpers.Lua.GetLocalizedText(chkpx);
+                string retpy = nManager.Wow.Helpers.Lua.GetLocalizedText(chkpy);
+                string retdestName = nManager.Wow.Helpers.Lua.GetLocalizedText(destName);
+                nManager.Helpful.Logging.WriteDebug("Slot " + id + ", Destination Name " + retdestName + ", px " + retpx + ", py " + retpy);
+            }
+        }
     }
 }

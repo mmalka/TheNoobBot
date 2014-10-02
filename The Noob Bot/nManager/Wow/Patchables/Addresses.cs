@@ -101,8 +101,8 @@
             playerName = 0xECD750, // ida: GetPlayerName
             RetrieveCorpseWindow = 0xD8B1E0, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
-            SkillValue = 0x200, // 18414
-            SkillMaxValue = 0x400, // 18414
+            SkillValue = 0x200,
+            SkillMaxValue = 0x400,
             // saving
             RuneStartCooldown = 0xE01D1C, // Script_GetRuneCount
         }
@@ -124,7 +124,8 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_FIELD_X = 0xA50, // 18935 // found with a ugly while
+            // ToDo: Finds CanInterrupt, TaxiStatus, CachedTypeFlag, CachedQuestItem1, CachedModelId1
+            UNIT_FIELD_X = 0xA50, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
@@ -134,8 +135,8 @@
             TransportGUID = 0xA40, // CGUnit_C__HasVehicleTransport
             TaxiStatus = 0xC0, // 18414
             DBCacheRow = 0xBC4, // CGUnit_C__GetUnitName
-            CachedSubName = 0x0, // 18950  // beginning of DBCacheRow pointer = CachedSubName
-            CachedName = 0x7C, // 18950 
+            CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
+            CachedName = 0x7C,
             CachedTypeFlag = 0x4C, // 18414  I can check memory if I have a demo-value ?
             CachedQuestItem1 = 0x30, // 18414  I can check memory if I have a demo-value ?
             CachedModelId1 = 0x5C, // 18414  I can check memory if I have a demo-value ?
@@ -151,6 +152,7 @@
         /// </summary>
         public enum GameObject
         {
+            // ToDo: Finds PackedRotationQuaternion, TransformationMatrice, CachedIconName, CachedCastBarCaption, CachedData0
             GAMEOBJECT_FIELD_X = 0x2A0,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
@@ -210,11 +212,12 @@
         /// </summary>
         public enum ClickToMove
         {
+            // Todo: Check CTM_PUSH
             CTM = 0xD2DFA8,  // GetClickToMoveStruct
             CTM_PUSH = CTM + 0x1C, // 18435
-            CTM_X = CTM + 0x8C, // 18950 
-            CTM_Y = CTM_X + 0x4, // 18950 
-            CTM_Z = CTM_Y + 0x4, // 18950 
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
@@ -287,7 +290,7 @@
         /// </summary>
         public enum Quests
         {
-            QuestGiverStatus = 0xF4, // 18950 
+            QuestGiverStatus = 0xF4,
             // TODO Retrieve unknown Quests offsets
             /*ActiveQuests = 0x0,
             SelectedQuestId = 0x0,

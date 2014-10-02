@@ -371,6 +371,11 @@ namespace nManager.Helpful.Forms
                         "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags) + Environment.NewLine +
                         questStatusText +
                         "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
+                    if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Taxi))
+                    {
+                        InformationArea.Text += "If you have the TaxiWindow opened while requesting those informations, TaxiNodes will be dumped to DebugLog" + Environment.NewLine;
+                        Gossip.ExportTaxiInfo();
+                    }
                 }
             }
             catch (Exception ex)
