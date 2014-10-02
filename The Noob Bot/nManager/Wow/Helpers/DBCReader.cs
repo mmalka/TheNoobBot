@@ -14,9 +14,9 @@ namespace nManager.Wow.Helpers
         ///     Initializes a new instance of DBC class using specified memory address
         /// </summary>
         /// <param name="dbcBase">DBC memory address</param>
-        public DBCReader(IntPtr dbcBase)
+        public DBCReader(uint dbcBase)
         {
-            var addr = (uint) (dbcBase.ToInt32() + Memory.WowProcess.WowModule); // Memory.WowMemory.Memory.Rebase(dbcBase);
+            var addr = (dbcBase + Memory.WowProcess.WowModule); // Memory.WowMemory.Memory.Rebase(dbcBase);
             m_dbInfo = (DBCStruct.WoWClientDB) Memory.WowMemory.Memory.ReadObject(addr, typeof (DBCStruct.WoWClientDB));
             m_fileHdr = (DBCStruct.DBCFile) Memory.WowMemory.Memory.ReadObject((uint) m_dbInfo.Data, typeof (DBCStruct.DBCFile));
         }

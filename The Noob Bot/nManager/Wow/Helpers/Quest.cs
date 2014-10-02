@@ -284,8 +284,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                // title, level, suggestedGroup, isHeader, isCollapsed, isComplete, isDaily, questID, startEvent, displayQuestID = GetQuestLogTitle(questIndex)
-                // TITLE 1 0 false false 1 1 8325 false false true true false false
+                // title, level, suggestedGroup, isHeader, isCollapsed, isComplete, frequency, questID, startEvent, displayQuestID, isOnMap, hasLocalPOI, isTask, isStory = GetQuestLogTitle(questIndex)
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString("questIndex = GetQuestLogIndexByID(" + questId + ");" +
                                 "_, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);");

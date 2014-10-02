@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
         private WoWItemClass(string name)
         {
             if (_rItemClassDBC == null)
-                _rItemClassDBC = new DBC<ItemClassDbcRecord>((int) Addresses.DBC.ItemClass);
+                _rItemClassDBC = new DBC<ItemClassDbcRecord>((uint) Addresses.DBC.ItemClass);
             for (int id = _rItemClassDBC.MinIndex; id <= _rItemClassDBC.MaxIndex; id++)
             {
                 _rItemClassRec0 = _rItemClassDBC.GetRow(id);
