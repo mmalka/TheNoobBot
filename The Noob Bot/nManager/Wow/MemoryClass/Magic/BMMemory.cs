@@ -557,75 +557,78 @@ namespace nManager.Wow.MemoryClass.Magic
             return retTemp;
         }
 
-        public T ReadT<T>(uint addressGD) where T : struct
+        public T ReadT<T>(uint dwAddress, bool reverse = false) where T : struct
         {
             object ret = null;
-            if (typeof(T) == typeof(string))
+            if (typeof (T) == typeof (string))
             {
                 string retTemp = "";
-                byte[] buf = Memory.WowMemory.Memory.ReadBytes(addressGD, 1);
-                while (buf[0] != 0)
+                byte[] Buf = new Byte[1 - 1];
+                Buf = ReadBytes(dwAddress, 1);
+                int i = 0;
+                while (Buf[0] != 0 && i <= 200)
                 {
-                    retTemp = retTemp + Convert.ToChar(buf[0]);
-                    addressGD = addressGD + 1;
-                    buf = Memory.WowMemory.Memory.ReadBytes(addressGD, 1);
+                    i++;
+                    retTemp = retTemp + Convert.ToChar(Buf[0]);
+                    dwAddress = dwAddress + 1;
+                    Buf = ReadBytes(dwAddress, 1);
                     //Thread.Sleep(1);
                 }
                 ret = retTemp;
                 return (T) ret;
             }
 
-            if (typeof(T) == typeof(ulong))
+            if (typeof (T) == typeof (ulong))
             {
-                ret = Memory.WowMemory.Memory.ReadUInt64(addressGD);
-                return (T)ret;
+                ret = ReadUInt64(dwAddress, reverse);
+                return (T) ret;
             }
 
-            if (typeof(T) == typeof(UInt128))
+            if (typeof (T) == typeof (UInt128))
             {
-                ret = Memory.WowMemory.Memory.ReadUInt128(addressGD);
-                return (T)ret;
+                ret = ReadUInt128(dwAddress, reverse);
+                return (T) ret;
             }
 
-            switch (System.Type.GetTypeCode(typeof(T)))
+            switch (Type.GetTypeCode(typeof (T)))
             {
                 case TypeCode.Boolean:
-                    ret = (Memory.WowMemory.Memory.ReadShort(addressGD) >= 0);
+                    ret = (ReadShort(dwAddress, reverse) >= 0);
                     break;
                 case TypeCode.Char:
-                    ret = (char)Memory.WowMemory.Memory.ReadShort(addressGD);
+                    ret = (char) ReadShort(dwAddress, reverse);
                     break;
                 case TypeCode.Byte:
-                    ret = Memory.WowMemory.Memory.ReadByte(addressGD);
+                    ret = ReadByte(dwAddress);
                     break;
                 case TypeCode.Int16:
-                    ret = Memory.WowMemory.Memory.ReadShort(addressGD);
+                    ret = ReadShort(dwAddress, reverse);
                     break;
                 case TypeCode.UInt16:
-                    ret = Memory.WowMemory.Memory.ReadUShort(addressGD);
+                    ret = ReadUShort(dwAddress, reverse);
                     break;
                 case TypeCode.Int32:
-                    ret = Memory.WowMemory.Memory.ReadInt(addressGD);
+                    ret = ReadInt(dwAddress, reverse);
                     break;
                 case TypeCode.UInt32:
-                    ret = Memory.WowMemory.Memory.ReadUInt(addressGD);
+                    ret = ReadUInt(dwAddress, reverse);
                     break;
                 case TypeCode.Int64:
-                    ret = Memory.WowMemory.Memory.ReadInt64(addressGD);
+                    ret = ReadInt64(dwAddress, reverse);
                     break;
                 case TypeCode.UInt64:
-                    ret = Memory.WowMemory.Memory.ReadUInt64(addressGD);
+                    ret = ReadUInt64(dwAddress, reverse);
                     break;
                 case TypeCode.Single:
-                    ret = Memory.WowMemory.Memory.ReadFloat(addressGD);
+                    ret = ReadFloat(dwAddress, reverse);
                     break;
                 case TypeCode.Double:
-                    ret = Memory.WowMemory.Memory.ReadDouble(addressGD);
+                    ret = ReadDouble(dwAddress, reverse);
                     break;
             }
             if (ret != null)
             {
-                return (T)ret;
+                return (T) ret;
             }
             return default(T);
         }
