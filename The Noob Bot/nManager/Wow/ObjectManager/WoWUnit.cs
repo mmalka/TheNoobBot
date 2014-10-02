@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Collections.Generic;
 using nManager.Helpful;
@@ -502,7 +503,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return ComboPoint * 100 / MaxComboPoint;
+                    return ComboPoint*100/MaxComboPoint;
                 }
                 catch (Exception e)
                 {
@@ -1573,7 +1574,7 @@ namespace nManager.Wow.ObjectManager
                 return
                     Memory.WowMemory.Memory.ReadUInt(
                         Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow) +
-                        (uint) Addresses.UnitField.CachedQuestItem1 + (0x04 * offset));
+                        (uint) Addresses.UnitField.CachedQuestItem1 + (0x04*offset));
             }
             catch (Exception e)
             {
@@ -1582,10 +1583,25 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint QuestItem1 { get { return QuestItem(0); } }
-        public uint QuestItem2 { get { return QuestItem(1); } }
-        public uint QuestItem3 { get { return QuestItem(2); } }
-        public uint QuestItem4 { get { return QuestItem(3); } }
+        public uint QuestItem1
+        {
+            get { return QuestItem(0); }
+        }
+
+        public uint QuestItem2
+        {
+            get { return QuestItem(1); }
+        }
+
+        public uint QuestItem3
+        {
+            get { return QuestItem(2); }
+        }
+
+        public uint QuestItem4
+        {
+            get { return QuestItem(3); }
+        }
 
         public int ModelId
         {
@@ -1979,9 +1995,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return
-                        (Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID) > 0 ||
-                         Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID) > 0);
+                    return CastingSpellId > 0;
                 }
                 catch (Exception e)
                 {
@@ -1993,14 +2007,57 @@ namespace nManager.Wow.ObjectManager
 
         public int CastingSpellId
         {
+            get { return CurrentSpellIdCast > 0 ? CurrentSpellIdCast : CurrentSpellIdChannel > 0 ? CurrentSpellIdChannel : 0; }
+        }
+
+        public int CurrentSpellIdCast
+        {
             get
             {
-                var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint)Addresses.UnitField.CastingSpellID);
-                if (spellId > 0)
-                    return spellId;
-                spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID);
-                if (spellId > 0)
-                    return spellId;
+                var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID); // To Repair
+                return spellId;
+            }
+        }
+
+        public int CurrentSpellIdChannel
+        {
+            get
+            {
+                var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID); // To Repair
+                return spellId;
+            }
+        }
+
+        public uint CastEndsInMs
+        {
+            get
+            {
+                if (IsCast && CastingEndTime > 0 && CastingEndTime > Usefuls.GetWoWTime)
+                    return CastingEndTime - Usefuls.GetWoWTime;
+                return 0;
+            }
+        }
+
+        public uint CastingStartTime
+        {
+            get
+            {
+                if (CurrentSpellIdCast > 0)
+                    return Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellStartTime);
+                if (CurrentSpellIdChannel > 0)
+                    return Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellStartTime);
+                return 0;
+            }
+        }
+
+        public uint CastingEndTime
+        {
+            get
+            {
+                if (CurrentSpellIdCast > 0)
+                    return Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellEndTime);
+                if (CurrentSpellIdChannel > 0)
+                    return Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellEndTime);
                 return 0;
             }
         }
@@ -2013,10 +2070,10 @@ namespace nManager.Wow.ObjectManager
                 {
                     /*if (IsCast)
                     {*/
-                        uint castTest = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset);
-                        uint castTest2 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset2);
-                        uint castTest3 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset3);
-                        bool canInterrupt = (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint)Addresses.UnitField.CanInterrupt) & 8) == 0 && (castTest > 0 || castTest2 > 0 || castTest3 > 0);
+                    uint castTest = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset);
+                    uint castTest2 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset2);
+                    uint castTest3 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset3);
+                    bool canInterrupt = (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint) Addresses.UnitField.CanInterrupt) & 8) == 0 && (castTest > 0 || castTest2 > 0 || castTest3 > 0);
                     return canInterrupt;
                     /*}
                     return false;*/

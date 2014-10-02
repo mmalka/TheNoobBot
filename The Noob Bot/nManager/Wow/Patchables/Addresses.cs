@@ -130,7 +130,11 @@
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0xF38, // Script_UnitCastingInfo
+            CastingSpellStartTime = 0xF50,
+            CastingSpellEndTime = 0xF54,
             ChannelSpellID = 0xF58, // Script_UnitChannelInfo
+            ChannelSpellStartTime = 0xF5C,
+            ChannelSpellEndTime = 0xF60,
             CanInterrupt = 0xEFC,  // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
             CanInterruptOffset = 0xDE7D08, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
             CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
