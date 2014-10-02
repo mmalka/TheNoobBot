@@ -58,7 +58,7 @@ namespace nManager.Wow.Helpers
                         // ReSharper disable UnusedVariable
                         UInt128 auraCreatorGuid = Memory.WowMemory.Memory.ReadUInt128(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCreatorGuid);
                         uint auraSpellId = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId);
-                        string auraSpellName = SpellManager.GetSpellInfo(Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId)).Name;
+                        //string auraSpellName = SpellManager.GetSpellInfo(Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId)).Name;
                         byte auraFlags = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraStructFlags);
                         byte auraStackCount = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCount);
                         byte auraCasterLevel = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCasterLevel);
@@ -72,7 +72,7 @@ namespace nManager.Wow.Helpers
                         {
                             Logging.WriteDebug("AuraCreatorGuid: " + auraCreatorGuid);
                             Logging.WriteDebug("AuraSpellId: " + auraSpellId);
-                            Logging.WriteDebug("AuraName: " + auraSpellName);
+                            //Logging.WriteDebug("AuraName: " + auraSpellName);
                             Logging.WriteDebug("AuraFlags: " + auraFlags);
                             Logging.WriteDebug("AuraCount: " + auraStackCount);
                             Logging.WriteDebug("AuraCasterLevel: " + auraCasterLevel);

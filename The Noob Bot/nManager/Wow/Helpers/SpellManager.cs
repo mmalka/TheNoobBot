@@ -741,7 +741,7 @@ namespace nManager.Wow.Helpers
                     }
                     else
                     {
-                        Logging.WriteDebug("Cannot found spell: public static SpellInfo SpellInfoCreateCache()");
+                        Logging.WriteDebug("Cannot find spell: public static SpellInfo SpellInfoCreateCache()");
                     }
                 }
             }
