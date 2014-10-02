@@ -557,6 +557,79 @@ namespace nManager.Wow.MemoryClass.Magic
             return retTemp;
         }
 
+        public T ReadT<T>(uint addressGD) where T : struct
+        {
+            object ret = null;
+            if (typeof(T) == typeof(string))
+            {
+                string retTemp = "";
+                byte[] buf = Memory.WowMemory.Memory.ReadBytes(addressGD, 1);
+                while (buf[0] != 0)
+                {
+                    retTemp = retTemp + Convert.ToChar(buf[0]);
+                    addressGD = addressGD + 1;
+                    buf = Memory.WowMemory.Memory.ReadBytes(addressGD, 1);
+                    //Thread.Sleep(1);
+                }
+                ret = retTemp;
+                return (T) ret;
+            }
+
+            if (typeof(T) == typeof(ulong))
+            {
+                ret = Memory.WowMemory.Memory.ReadUInt64(addressGD);
+                return (T)ret;
+            }
+
+            if (typeof(T) == typeof(UInt128))
+            {
+                ret = Memory.WowMemory.Memory.ReadUInt128(addressGD);
+                return (T)ret;
+            }
+
+            switch (System.Type.GetTypeCode(typeof(T)))
+            {
+                case TypeCode.Boolean:
+                    ret = (Memory.WowMemory.Memory.ReadShort(addressGD) >= 0);
+                    break;
+                case TypeCode.Char:
+                    ret = (char)Memory.WowMemory.Memory.ReadShort(addressGD);
+                    break;
+                case TypeCode.Byte:
+                    ret = Memory.WowMemory.Memory.ReadByte(addressGD);
+                    break;
+                case TypeCode.Int16:
+                    ret = Memory.WowMemory.Memory.ReadShort(addressGD);
+                    break;
+                case TypeCode.UInt16:
+                    ret = Memory.WowMemory.Memory.ReadUShort(addressGD);
+                    break;
+                case TypeCode.Int32:
+                    ret = Memory.WowMemory.Memory.ReadInt(addressGD);
+                    break;
+                case TypeCode.UInt32:
+                    ret = Memory.WowMemory.Memory.ReadUInt(addressGD);
+                    break;
+                case TypeCode.Int64:
+                    ret = Memory.WowMemory.Memory.ReadInt64(addressGD);
+                    break;
+                case TypeCode.UInt64:
+                    ret = Memory.WowMemory.Memory.ReadUInt64(addressGD);
+                    break;
+                case TypeCode.Single:
+                    ret = Memory.WowMemory.Memory.ReadFloat(addressGD);
+                    break;
+                case TypeCode.Double:
+                    ret = Memory.WowMemory.Memory.ReadDouble(addressGD);
+                    break;
+            }
+            if (ret != null)
+            {
+                return (T)ret;
+            }
+            return default(T);
+        }
+
         /// <summary>
         /// Reads a value from memory.
         /// </summary>

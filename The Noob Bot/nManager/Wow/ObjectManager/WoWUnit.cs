@@ -246,6 +246,29 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public int IsBoss
+        {
+            get
+            {
+                try
+                {
+                    uint pointerToRow0 = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow); // 0xBC4
+                    uint pointerToUnk0 = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) 0x11C) + (uint) 0x180);
+                    int ret;
+                    if (pointerToRow0 <= 0 || pointerToUnk0 > 0)
+                        ret = 0;
+                    else
+                        ret = (Memory.WowMemory.Memory.ReadInt(pointerToRow0 + 0x5C) >> 2) & 1;
+                    return ret;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsBoss: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public uint Mana
         {
             get

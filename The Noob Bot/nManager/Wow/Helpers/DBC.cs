@@ -14,17 +14,17 @@ namespace nManager.Wow.Helpers
 
         public int MinIndex
         {
-            get { return m_header.minIndex; }
+            get { return m_header.MinIndex; }
         }
 
         public int MaxIndex
         {
-            get { return m_header.maxIndex; }
+            get { return m_header.MaxIndex; }
         }
 
         public int NumRows
         {
-            get { return m_header.numRows; }
+            get { return m_header.NumRows; }
         }
 
         public string String(uint address)
@@ -65,12 +65,12 @@ namespace nManager.Wow.Helpers
                         Memory.WowMemory.Memory.ReadObject(Memory.WowProcess.WowModule + offset,
                             typeof (DBCStruct.WoWClientDB));
 
-                m_rows = new Dictionary<int, T>(m_header.numRows);
-                m_rowAddresses = new Dictionary<int, uint>(m_header.numRows);
+                m_rows = new Dictionary<int, T>(m_header.NumRows);
+                m_rowAddresses = new Dictionary<int, uint>(m_header.NumRows);
 
-                for (int i = 0; i < m_header.numRows; ++i)
+                for (int i = 0; i < m_header.NumRows; ++i)
                 {
-                    uint rowOffset = m_header.FirstRow + (uint) (i*Marshal.SizeOf(typeof (T)));
+                    uint rowOffset = (uint) (m_header.FirstRow + (i*Marshal.SizeOf(typeof (T))));
 
                     int index = Memory.WowMemory.Memory.ReadInt(rowOffset);
                     T row = (T) Memory.WowMemory.Memory.ReadObject(rowOffset, typeof (T));

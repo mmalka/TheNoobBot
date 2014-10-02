@@ -226,6 +226,16 @@ namespace nManager.Wow.ObjectManager
                                 case WoWObjectType.AiGroup:
                                 case WoWObjectType.AreaTrigger:
                                     break;
+                                /*default:
+                                    Logging.Write("GUID: " + objGuid);
+                                    Logging.Write("TYPE: " + objType);
+                                    Logging.Write("GetWoWId: " + objGuid.GetWoWId);
+                                    Logging.Write("GetWoWMapId: " + objGuid.GetWoWMapId);
+                                    Logging.Write("GetWoWRealmId: " + objGuid.GetWoWRealmId);
+                                    Logging.Write("GetWoWServerId: " + objGuid.GetWoWServerId);
+                                    Logging.Write("GetWoWSubType: " + objGuid.GetWoWSubType);
+                                    Logging.Write("GetWoWType: " + objGuid.GetWoWType);
+                                    break;*/
                             }
                             if (obj != null)
                             {

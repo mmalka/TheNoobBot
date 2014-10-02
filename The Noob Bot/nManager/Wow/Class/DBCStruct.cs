@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace nManager.Wow.Class
 {
@@ -7,18 +8,28 @@ namespace nManager.Wow.Class
         [StructLayout(LayoutKind.Sequential)]
         public struct WoWClientDB
         {
-            public uint vTable; // pointer to vtable
-            public int numRows; // number of rows
-            public int maxIndex; // maximal row index
-            public int minIndex; // minimal row index
-            public uint data; // pointer to data block
-            public uint FirstRow; // pointer to first row
-            public uint Rows; // pointer to rows array - not anymore!
-            public uint unk1; // ptr
-            public uint unk2; // 1
-            public uint unk3; // ptr
-            public uint unk4; // 2
+            public IntPtr VTable;         // pointer to vtable
+            public int NumRows;         // number of rows
+            public int MaxIndex;        // maximal row index
+            public int MinIndex;        // minimal row index
+            public IntPtr Data;           // pointer to actual dbc file data
+            public IntPtr FirstRow;       // pointer to first row
+            public IntPtr Rows;           // pointer to rows array - not anymore?
+            public IntPtr Unk1; // ptr
+            public uint Unk2; // 1
+            public IntPtr Unk3; // ptr
+            public uint RowEntrySize; // 2 or 4
         };
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct DBCFile
+        {
+            public uint Magic;
+            public int RecordsCount;
+            public int FieldsCount;
+            public int RecordSize;
+            public int StringTableSize;
+        }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellRec
