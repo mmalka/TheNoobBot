@@ -6,22 +6,6 @@ namespace nManager.Wow.Class
     public class DBCStruct
     {
         [StructLayout(LayoutKind.Sequential)]
-        public struct WoWClientDB
-        {
-            public IntPtr VTable;         // pointer to vtable
-            public int NumRows;         // number of rows
-            public int MaxIndex;        // maximal row index
-            public int MinIndex;        // minimal row index
-            public IntPtr Data;           // pointer to actual dbc file data
-            public IntPtr FirstRow;       // pointer to first row
-            public IntPtr Rows;           // pointer to rows array - not anymore?
-            public IntPtr Unk1; // ptr
-            public uint Unk2; // 1
-            public IntPtr Unk3; // ptr
-            public uint RowEntrySize; // 2 or 4
-        };
-
-        [StructLayout(LayoutKind.Sequential)]
         public struct DBCFile
         {
             public uint Magic;
@@ -32,34 +16,13 @@ namespace nManager.Wow.Class
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct SpellRec
+        public struct SpellCastTimesRec
         {
-            public int SpellId;
-            public uint Name;
-            public uint RankDescription;
-            public int LongDescription;
-            public int ShortDescription;
-            public int SpellRuneCostId;
-            public int SpellMissileID;
-            public int SpellDescriptionVariableID;
-            public float unk_float1;
-            public int SpellScalingId;
-            public int SpellAuraOptionsId;
-            public int SpellAuraRestrictionsId;
-            public int SpellCastingRequirementsId;
-            public int SpellCategoriesId;
-            public int SpellClassOptionsId;
-            public int SpellCooldownsID;
-            public int SpellEquippedItemsId;
-            public int SpellinterruptsId;
-            public int SpellLevelId;
-            public int SpellReagentsId;
-            public int SpellShapeshiftId;
-            public int SpellTargetRestrictionsId;
-            public int SpellTotemsId;
-            public int ResearchProjectId;
-            public int SpellMiscId;
-        }
+            public int Id;
+            public int CastTime;
+            public int SpellCastTimes;
+            public int MinCastTime;
+        };
 
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellMiscRec
@@ -92,15 +55,6 @@ namespace nManager.Wow.Class
         };
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct SpellCastTimesRec
-        {
-            public int Id;
-            public int CastTime;
-            public int SpellCastTimes;
-            public int MinCastTime;
-        };
-
-        [StructLayout(LayoutKind.Sequential)]
         public struct SpellRangeRec
         {
             public int Id;
@@ -111,6 +65,52 @@ namespace nManager.Wow.Class
             public int Flags;
             public int DisplayName_lang;
             public int DisplayNameShort_lang;
+        };
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SpellRec
+        {
+            public int SpellId;
+            public uint Name;
+            public uint RankDescription;
+            public int LongDescription;
+            public int ShortDescription;
+            public int SpellRuneCostId;
+            public int SpellMissileID;
+            public int SpellDescriptionVariableID;
+            public float unk_float1;
+            public int SpellScalingId;
+            public int SpellAuraOptionsId;
+            public int SpellAuraRestrictionsId;
+            public int SpellCastingRequirementsId;
+            public int SpellCategoriesId;
+            public int SpellClassOptionsId;
+            public int SpellCooldownsID;
+            public int SpellEquippedItemsId;
+            public int SpellinterruptsId;
+            public int SpellLevelId;
+            public int SpellReagentsId;
+            public int SpellShapeshiftId;
+            public int SpellTargetRestrictionsId;
+            public int SpellTotemsId;
+            public int ResearchProjectId;
+            public int SpellMiscId;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WoWClientDB
+        {
+            public IntPtr VTable; // pointer to vtable
+            public int NumRows; // number of rows
+            public int MaxIndex; // maximal row index
+            public int MinIndex; // minimal row index
+            public IntPtr Data; // pointer to actual dbc file data
+            public IntPtr FirstRow; // pointer to first row
+            public IntPtr Rows; // pointer to rows array - not anymore?
+            public IntPtr Unk1; // ptr
+            public uint Unk2; // 1
+            public IntPtr Unk3; // ptr
+            public uint RowEntrySize; // 2 or 4
         };
     }
 }
