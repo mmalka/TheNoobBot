@@ -131,7 +131,10 @@
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0xF38, // Script_UnitCastingInfo
             ChannelSpellID = 0xF58, // Script_UnitChannelInfo
-            CanInterrupt = 0xC64,  // 18414 // Script_UnitCastingInfo/Script_UnitChannelInfo
+            CanInterrupt = 0xEFC,  // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
+            CanInterruptOffset = 0xDE7D08, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
+            CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
+            CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
             TransportGUID = 0xA40, // CGUnit_C__HasVehicleTransport
             TaxiStatus = 0xC0, // 18414
             DBCacheRow = 0xBC4, // CGUnit_C__GetUnitName

@@ -31,6 +31,11 @@ namespace nManager.Wow.Helpers
             get { return m_dbInfo.MaxIndex; }
         }
 
+        public string String(uint address)
+        {
+            return Memory.WowMemory.Memory.ReadUTF8String(address);
+        }
+
         public int NumRows
         {
             get { return m_dbInfo.NumRows; }
