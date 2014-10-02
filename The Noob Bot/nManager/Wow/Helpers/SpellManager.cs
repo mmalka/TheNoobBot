@@ -649,7 +649,7 @@ namespace nManager.Wow.Helpers
                     }
                     else
                     {
-                        Logging.WriteDebug("Cannot found spell: public static SpellInfo GetSpellInfo(" + id + ")");
+                        Logging.WriteDebug("Cannot find spell: public static SpellInfo GetSpellInfo(" + id + ")");
                     }
                 }
             }
