@@ -100,8 +100,8 @@ namespace nManager.Wow.Helpers
                     try
                     {
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        Lua.LuaDoString(randomString + " = IsFlyableArea()");
-                        return Lua.GetLocalizedText(randomString) == "1";
+                        Lua.LuaDoString(randomString + " = tostring(IsFlyableArea())");
+                        return Lua.GetLocalizedText(randomString) == "true";
                     }
                     catch (Exception e)
                     {
@@ -121,8 +121,8 @@ namespace nManager.Wow.Helpers
                     try
                     {
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        Lua.LuaDoString(randomString + " = IsOutdoors()");
-                        return Lua.GetLocalizedText(randomString) == "1";
+                        Lua.LuaDoString(randomString + " = tostring(IsOutdoors())");
+                        return Lua.GetLocalizedText(randomString) == "true";
                     }
                     catch (Exception e)
                     {
@@ -269,8 +269,8 @@ namespace nManager.Wow.Helpers
                             return _lastResultPlayerUsingVehicle;
 
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        Lua.LuaDoString(randomString + " = UnitUsingVehicle(\"player\");");
-                        _lastResultPlayerUsingVehicle = Lua.GetLocalizedText(randomString) == "1";
+                        Lua.LuaDoString(randomString + " = tostring(UnitUsingVehicle(\"player\"));");
+                        _lastResultPlayerUsingVehicle = Lua.GetLocalizedText(randomString) == "true";
                         _timePlayerUsingVehicle = new Timer(500);
                         return _lastResultPlayerUsingVehicle;
                     }

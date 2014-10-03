@@ -124,7 +124,7 @@
         /// </summary>
         public enum UnitField
         {
-            // ToDo: Finds CanInterrupt, TaxiStatus, CachedTypeFlag, CachedQuestItem1, CachedModelId1
+            // ToDo: Check CachedTypeFlag
             UNIT_FIELD_X = 0xA50, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
@@ -155,17 +155,16 @@
         /// </summary>
         public enum GameObject
         {
-            // ToDo: Finds TransformationMatrice, CachedIconName, CachedCastBarCaption, CachedData0
             GAMEOBJECT_FIELD_X = 0x2A0,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             PackedRotationQuaternion = 0x148,
-            TransformationMatrice = 0x1C4, // 18414 // CGGameObject_C::GetMatrix (fct name to be confirmed)
+            //TransformationMatrice = 0x1C4, // 18414 // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
-            CachedIconName = 0x08, // 18414
-            CachedCastBarCaption = 0x0C, // 18414
+            CachedIconName = 0x08,
+            CachedCastBarCaption = 0xC,
             CachedName = 0xB4, // CGGameObject_C__GetName_2
-            CachedData0 = 0x14, // 18414 // CGGameObject_C::GetLockRecord
+            CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
             CachedSize = CachedData0 + (0x04 * 32), // just after the 32 data uint32
             CachedQuestItem1 = CachedSize + 0x04, // just after the size float
         }

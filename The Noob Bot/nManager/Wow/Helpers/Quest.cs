@@ -287,9 +287,10 @@ namespace nManager.Wow.Helpers
                 // title, level, suggestedGroup, isHeader, isCollapsed, isComplete, frequency, questID, startEvent, displayQuestID, isOnMap, hasLocalPOI, isTask, isStory = GetQuestLogTitle(questIndex)
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString("questIndex = GetQuestLogIndexByID(" + questId + ");" +
-                                "_, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);");
+                                "_, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);" +
+                                randomString + " = tostring(" + randomString + ")");
                 string ret = Lua.GetLocalizedText(randomString);
-                return ret == "1";
+                return ret == "true";
             }
             catch
             {

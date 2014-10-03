@@ -180,9 +180,9 @@ namespace nManager.Wow.Helpers
                 if (string.IsNullOrEmpty(GetItemSpell(entry)))
                     return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + ",_ = IsUsableItem(" + entry + ")");
+                Lua.LuaDoString(randomString + ",_ = tostring(IsUsableItem(" + entry + "))");
                 string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult == "1")
+                if (sResult == "true")
                     return true;
             }
             catch (Exception exception)
@@ -204,9 +204,9 @@ namespace nManager.Wow.Helpers
                 if (string.IsNullOrEmpty(GetItemSpell(entry)))
                     return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + " = IsHarmfulItem(" + entry + ")");
+                Lua.LuaDoString(randomString + " = tostring(IsHarmfulItem(" + entry + "))");
                 string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult == "1")
+                if (sResult == "true")
                     return true;
             }
             catch (Exception exception)
@@ -228,9 +228,9 @@ namespace nManager.Wow.Helpers
                 if (string.IsNullOrEmpty(GetItemSpell(entry)))
                     return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + " = IsHelpfulItem(" + entry + ")");
+                Lua.LuaDoString(randomString + " = tostring(IsHelpfulItem(" + entry + "))");
                 string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult == "1")
+                if (sResult == "true")
                     return true;
             }
             catch (Exception exception)
