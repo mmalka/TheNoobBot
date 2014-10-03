@@ -2015,7 +2015,7 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID); // To Repair
-                return spellId;
+                    return spellId;
             }
         }
 
@@ -2068,15 +2068,15 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    /*if (IsCast)
-                    {*/
-                    uint castTest = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset);
-                    uint castTest2 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset2);
-                    uint castTest3 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset3);
-                    bool canInterrupt = (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint) Addresses.UnitField.CanInterrupt) & 8) == 0 && (castTest > 0 || castTest2 > 0 || castTest3 > 0);
-                    return canInterrupt;
-                    /*}
-                    return false;*/
+                    if (IsCast)
+                    {
+                        uint castTest = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset);
+                        uint castTest2 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset2);
+                        uint castTest3 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset3);
+                        bool canInterrupt = (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint) Addresses.UnitField.CanInterrupt) & 8) == 0 && (castTest > 0 || castTest2 > 0 || castTest3 > 0);
+                        return canInterrupt;
+                    }
+                    return false;
                 }
                 catch (Exception e)
                 {
