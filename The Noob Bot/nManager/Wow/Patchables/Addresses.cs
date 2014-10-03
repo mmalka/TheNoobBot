@@ -140,13 +140,12 @@
             CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
             TransportGUID = 0xA40, // CGUnit_C__HasVehicleTransport
-            TaxiStatus = 0xC0, // 18414
             DBCacheRow = 0xBC4, // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x7C,
             CachedTypeFlag = 0x24,
-            CachedQuestItem1 = 0x30, // 18414  I can check memory if I have a demo-value ?
-            CachedModelId1 = 0x5C, // 18414  I can check memory if I have a demo-value ?
+            CachedQuestItem1 = 0x3C,
+            CachedModelId1 = 0x6C,
             CachedUnitClassification = 0x2C, // Script_UnitClassification + 0x3E (CGUnit_C::GetCreatureRank)
             CachedIsBoss = 0x5C, // function wow Script_IsBoss() (or function at Script_UnitLevel + 0xB7)
         }

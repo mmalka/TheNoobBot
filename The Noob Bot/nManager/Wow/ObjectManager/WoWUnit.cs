@@ -248,7 +248,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int IsBoss
+        public bool IsBoss
         {
             get
             {
@@ -260,13 +260,21 @@ namespace nManager.Wow.ObjectManager
                         ret = 0;
                     else
                         ret = (Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedIsBoss) >> 2) & 1;
-                    return ret;
+                    return (ret == 1);
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > IsBoss: " + e);
-                    return 0;
+                    return false;
                 }
+            }
+        }
+
+        public bool OnTaxi
+        {
+            get
+            {
+                return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.TaxiFlight);
             }
         }
 
