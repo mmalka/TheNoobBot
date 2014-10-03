@@ -104,6 +104,7 @@ namespace nManager.Wow.Class
             public int NumRows; // number of rows
             public int MaxIndex; // maximal row index
             public int MinIndex; // minimal row index
+            public uint Unk4bytes; // unknow 
             public IntPtr Data; // pointer to actual dbc file data
             public IntPtr FirstRow; // pointer to first row
             public IntPtr Rows; // pointer to rows array - not anymore?
