@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 18967
+    ///   Offset and Pointer for Wow 18983
     /// </summary>
     public static class Addresses
     {
@@ -39,8 +39,8 @@
         /// [[base+offset1]+offset2]
         public enum MovementFlagsOffsets
         {
-            Offset1 = 0x124, // 18950  // near any movement flag
-            Offset2 = 0x40, // 18950 
+            Offset1 = 0x124, // near any movement flag
+            Offset2 = 0x40, 
         }
 
         public enum Party
@@ -97,7 +97,7 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0xDFE5C8, // petGUIDFOUND
+            petGUID = 0xDFD5C8, // petGUIDFOUND
             playerName = 0xECC740, // ida: GetPlayerName
             RetrieveCorpseWindow = 0xD8A1E0, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
@@ -240,13 +240,13 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x3A1C,
-            FrameScript_ExecuteBuffer = 0x23CDC,
-            CGUnit_C__InitializeTrackingState = 0x2E518C, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2D69D8,
-            CGWorldFrame__Intersect = 0x4F8E4B,
-            Spell_C_HandleTerrainClick = 0x245690,
-            CGUnit_C__Interact = 0x901A3D,  
+            ClntObjMgrGetActivePlayerObj = 0x3A06,
+            FrameScript_ExecuteBuffer = 0x23CD1,
+            CGUnit_C__InitializeTrackingState = 0x2E57FE, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2D7098,
+            CGWorldFrame__Intersect = 0x4F8FAB,
+            Spell_C_HandleTerrainClick = 0x245B25,
+            CGUnit_C__Interact = 0x90195D,  
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
@@ -257,7 +257,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xD8A4D8, 
+            X = 0xD8A4D8, // or D8A1D8
             Y = X + 0x4,
             Z = X + 0x8,
         }
