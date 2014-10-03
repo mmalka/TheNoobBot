@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Collections.Generic;
@@ -253,13 +254,12 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint pointerToRow0 = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow); // 0xBC4
                     uint pointerToUnk0 = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) 0x11C) + (uint) 0x180);
                     int ret;
-                    if (pointerToRow0 <= 0 || pointerToUnk0 > 0)
+                    if (GetDbCacheRowPtr <= 0 || pointerToUnk0 > 0)
                         ret = 0;
                     else
-                        ret = (Memory.WowMemory.Memory.ReadInt(pointerToRow0 + 0x5C) >> 2) & 1;
+                        ret = (Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedIsBoss) >> 2) & 1;
                     return ret;
                 }
                 catch (Exception e)
@@ -1502,34 +1502,7 @@ namespace nManager.Wow.ObjectManager
                     {
                         return Usefuls.GetPlayerName(Guid);
                     }
-                    /* CUSTOM
-
-                    while (false) // top
-                    {
-                        var pointer1 = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                        uint x = (uint) Addresses.UnitField.CachedName;
-                    Yolo:
-                        var pointer2 = Memory.WowMemory.Memory.ReadUInt(pointer1 + x);
-                        var test = Memory.WowMemory.Memory.ReadUTF8String(pointer2);
-                        if (test == "Magistrice Erona")
-                            Logging.Write("name = " + test + ", Found with x = " + x + ", y = ");
-                        else
-                        {
-                            x += 4;
-                            if (x > 300)
-                                break;
-                            goto Yolo;
-                        }
-                    }
-
-                    CUSTOM */
-                    return
-                        Memory.WowMemory.Memory.ReadUTF8String(
-                            Memory.WowMemory.Memory.ReadUInt(
-                                Memory.WowMemory.Memory.ReadUInt(BaseAddress +
-                                                                 (uint)
-                                                                     Addresses.UnitField.DBCacheRow) +
-                                (uint) Addresses.UnitField.CachedName));
+                    return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedName));
                 }
                 catch (Exception e)
                 {
@@ -1539,6 +1512,10 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        private uint GetDbCacheRowPtr
+        {
+            get { return Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow); }
+        }
         public string SubName
         {
             get
@@ -1550,12 +1527,7 @@ namespace nManager.Wow.ObjectManager
                         return "";
                     }
                     return
-                        Memory.WowMemory.Memory.ReadUTF8String(
-                            Memory.WowMemory.Memory.ReadUInt(
-                                Memory.WowMemory.Memory.ReadUInt(BaseAddress +
-                                                                 (uint)
-                                                                     Addresses.UnitField.DBCacheRow) +
-                                (uint) Addresses.UnitField.CachedSubName));
+                        Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedSubName));
                 }
                 catch (Exception e)
                 {
@@ -1572,9 +1544,7 @@ namespace nManager.Wow.ObjectManager
                 if (offset > 3)
                     return 0;
                 return
-                    Memory.WowMemory.Memory.ReadUInt(
-                        Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow) +
-                        (uint) Addresses.UnitField.CachedQuestItem1 + (0x04*offset));
+                    Memory.WowMemory.Memory.ReadUInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedQuestItem1 + (0x04*offset));
             }
             catch (Exception e)
             {
@@ -1609,8 +1579,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                    return Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedModelId1);
+                    return Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint)Addresses.UnitField.CachedModelId1);
                 }
                 catch (Exception e)
                 {
@@ -1626,8 +1595,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint dbcacherow = Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow);
-                    int cachedtype = Memory.WowMemory.Memory.ReadInt(dbcacherow + (uint) Addresses.UnitField.CachedTypeFlag);
+                    int cachedtype = Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint)Addresses.UnitField.CachedTypeFlag);
                     return (TypeFlag) cachedtype;
                 }
                 catch (Exception e)

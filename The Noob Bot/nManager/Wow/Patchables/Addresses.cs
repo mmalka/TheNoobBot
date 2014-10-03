@@ -144,14 +144,11 @@
             DBCacheRow = 0xBC4, // CGUnit_C__GetUnitName
             CachedSubName = 0x0, // beginning of DBCacheRow pointer = CachedSubName
             CachedName = 0x7C,
-            CachedTypeFlag = 0x4C, // 18414  I can check memory if I have a demo-value ?
+            CachedTypeFlag = 0x24,
             CachedQuestItem1 = 0x30, // 18414  I can check memory if I have a demo-value ?
             CachedModelId1 = 0x5C, // 18414  I can check memory if I have a demo-value ?
-            // saving
-            UnitClassificationOffset1 = DBCacheRow, // Script_UnitClassification + 0x3E (CGUnit_C::GetCreatureRank)
-            UnitClassificationOffset2 = 0x2C, // Script_UnitClassification + 0x3E (CGUnit_C::GetCreatureRank)
-            IsBossOffset1 = DBCacheRow,
-            IsBossOffset2 = 0x5C, // function wow Script_IsBoss() (or function at Script_UnitLevel + 0xB7)
+            CachedUnitClassification = 0x2C, // Script_UnitClassification + 0x3E (CGUnit_C::GetCreatureRank)
+            CachedIsBoss = 0x5C, // function wow Script_IsBoss() (or function at Script_UnitLevel + 0xB7)
         }
 
         /// <summary>
@@ -159,11 +156,11 @@
         /// </summary>
         public enum GameObject
         {
-            // ToDo: Finds PackedRotationQuaternion, TransformationMatrice, CachedIconName, CachedCastBarCaption, CachedData0
+            // ToDo: Finds TransformationMatrice, CachedIconName, CachedCastBarCaption, CachedData0
             GAMEOBJECT_FIELD_X = 0x2A0,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
-            PackedRotationQuaternion = 0x108, // 18414 // I have no idea about what fct is behind this
+            PackedRotationQuaternion = 0x148,
             TransformationMatrice = 0x1C4, // 18414 // CGGameObject_C::GetMatrix (fct name to be confirmed)
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
             CachedIconName = 0x08, // 18414
