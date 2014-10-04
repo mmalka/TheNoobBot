@@ -158,6 +158,7 @@
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
+    <Compile Include="Wow\Class\Auras.cs" />
     <Compile Include="Wow\Class\Int128.cs" />
     <Compile Include="Wow\Class\Quaternion.cs" />
     <Compile Include="Wow\Class\UInt128.cs" />

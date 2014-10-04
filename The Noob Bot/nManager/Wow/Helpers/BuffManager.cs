@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
@@ -38,11 +37,19 @@ namespace nManager.Wow.Helpers
 
         public static int AuraStack(uint baseAddress, List<UInt32> buffId)
         {
+            foreach (Auras.UnitAura buff in AuraStack(baseAddress).Auras)
+            {
+                if (buffId.Contains(buff.AuraSpellId))
+                    return buff.AuraCount;
+            }
+            return -1;
+        }
+
+        public static Auras.UnitAuras AuraStack(uint baseAddress)
+        {
             try
             {
-                if (buffId == null || buffId.Count <= 0)
-                    return 0;
-
+                var unitAuras = new Auras.UnitAuras(baseAddress);
                 uint auraTableBase = baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AuraTable1;
 
                 int auraCount = Memory.WowMemory.Memory.ReadInt(auraTableBase + (uint) Addresses.UnitBaseGetUnitAura.AuraTable2);
@@ -55,46 +62,37 @@ namespace nManager.Wow.Helpers
 
                     if (currentAuraPtr > 0)
                     {
-                        // ReSharper disable UnusedVariable
                         UInt128 auraCreatorGuid = Memory.WowMemory.Memory.ReadUInt128(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCreatorGuid);
                         uint auraSpellId = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId);
-                        //string auraSpellName = SpellManager.GetSpellInfo(Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellId)).Name;
-                        byte auraFlags = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraStructFlags);
+                        byte auraFlags = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructFlags);
                         byte auraStackCount = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCount);
                         byte auraCasterLevel = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCasterLevel);
                         byte auraUnk2 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2);
                         uint auraDuration = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration);
                         uint auraSpellEndTime = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime);
-                        uint auraTimeLeftInMs = auraSpellEndTime - Usefuls.GetWoWTime;
-                        byte auraUnk3 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk3); // ReSharper restore UnusedVariable
-
-                        /*if (auraSpellId == 324)
+                        byte auraUnk3 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk3);
+                        var currUnitAura = new Auras.UnitAura
                         {
-                            Logging.WriteDebug("AuraCreatorGuid: " + auraCreatorGuid);
-                            Logging.WriteDebug("AuraSpellId: " + auraSpellId);
-                            //Logging.WriteDebug("AuraName: " + auraSpellName);
-                            Logging.WriteDebug("AuraFlags: " + auraFlags);
-                            Logging.WriteDebug("AuraCount: " + auraStackCount);
-                            Logging.WriteDebug("AuraCasterLevel: " + auraCasterLevel);
-                            Logging.WriteDebug("AuraUnk2: " + auraUnk2);
-                            Logging.WriteDebug("AuraDuration: " + auraDuration);
-                            Logging.WriteDebug("AuraSpellEndTime: " + auraSpellEndTime);
-                            Logging.WriteDebug("GetTime: " + Usefuls.GetWoWTime);
-                            Logging.WriteDebug("AuraTimeLeftInMs: " + auraTimeLeftInMs);
-                            Logging.WriteDebug("AuraStructUnk3: " + auraUnk3);
-                            Thread.Sleep(200);
-                        }*/
-                        if (auraSpellId > 0 && buffId.Contains(auraSpellId))
-                            return auraStackCount;
+                            AuraCreatorGUID = auraCreatorGuid,
+                            AuraSpellId = auraSpellId,
+                            AuraFlags = auraFlags,
+                            AuraCount = auraStackCount,
+                            AuraCasterLevel = auraCasterLevel,
+                            AuraUnk2 = auraUnk2,
+                            AuraDuration = auraDuration,
+                            AuraSpellEndTime = auraSpellEndTime,
+                            AuraUnk3 = auraUnk3
+                        };
+                        unitAuras.Auras.Add(currUnitAura);
                     }
                 }
-                return -1;
+                return unitAuras;
             }
             catch (Exception e)
             {
                 Logging.WriteError("AuraStack(uint baseAddress, List<UInt32> buffId)" + e);
-                return -1;
             }
+            return new Auras.UnitAuras(baseAddress);
         }
 
         private static uint GetAuraPtrByIndex(uint auraBase, uint currentIndex)

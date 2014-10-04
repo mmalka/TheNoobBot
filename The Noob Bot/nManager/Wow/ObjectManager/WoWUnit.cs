@@ -272,10 +272,7 @@ namespace nManager.Wow.ObjectManager
 
         public bool OnTaxi
         {
-            get
-            {
-                return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.TaxiFlight);
-            }
+            get { return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.TaxiFlight); }
         }
 
         public uint Mana
@@ -1524,6 +1521,7 @@ namespace nManager.Wow.ObjectManager
         {
             get { return Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.UnitField.DBCacheRow); }
         }
+
         public string SubName
         {
             get
@@ -1587,7 +1585,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint)Addresses.UnitField.CachedModelId1);
+                    return Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedModelId1);
                 }
                 catch (Exception e)
                 {
@@ -1603,7 +1601,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    int cachedtype = Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint)Addresses.UnitField.CachedTypeFlag);
+                    int cachedtype = Memory.WowMemory.Memory.ReadInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedTypeFlag);
                     return (TypeFlag) cachedtype;
                 }
                 catch (Exception e)
@@ -1991,7 +1989,7 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID); // To Repair
-                    return spellId;
+                return spellId;
             }
         }
 
@@ -2249,6 +2247,38 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public Auras.UnitAuras UnitAuras
+        {
+            get { return BuffManager.AuraStack(BaseAddress); }
+        }
+
+        public Auras.UnitAura UnitAura(List<UInt32> idBuff, UInt128 creatorGUID)
+        {
+            foreach (var aura in UnitAuras.Auras)
+            {
+                if (idBuff.Contains(aura.AuraSpellId) && aura.AuraCreatorGUID == creatorGUID)
+                    return aura;
+            }
+            return new Auras.UnitAura();
+        }
+
+        public Auras.UnitAura UnitAura(List<UInt32> idBuff)
+        {
+            foreach (var aura in UnitAuras.Auras)
+            {
+                if (idBuff.Contains(aura.AuraSpellId))
+                    return aura;
+            }
+            return new Auras.UnitAura();
+        }
+
+        public Auras.UnitAura UnitAura(UInt32 idBuff)
+        {
+            var idBuffs = new List<UInt32> {idBuff};
+            return UnitAura(idBuffs);
+        }
+
+
         public int BuffStack(List<UInt32> idBuffs)
         {
             try
@@ -2266,7 +2296,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<uint> idBuffs = new List<UInt32> {idBuff};
+                var idBuffs = new List<UInt32> {idBuff};
                 return BuffManager.AuraStack(BaseAddress, idBuffs);
             }
             catch (Exception e)
