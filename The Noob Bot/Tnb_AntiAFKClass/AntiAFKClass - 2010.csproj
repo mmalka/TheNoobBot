@@ -44,7 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nManager\nManager.csproj">
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
       <Private>False</Private>

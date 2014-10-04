@@ -329,7 +329,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
+    <ProjectReference Include="..\RecastLayer\RecastLayer - 2010.vcxproj">
       <Project>{88ABD3DA-803D-4D83-9894-F669B8CFAEAD}</Project>
       <Name>RecastLayer</Name>
     </ProjectReference>

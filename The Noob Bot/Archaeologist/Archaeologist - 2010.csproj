@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{93FEC02A-C062-46A2-BAA0-0705134B961B}</ProjectGuid>
+    <ProjectGuid>{A95AC91C-AF5E-42DB-97E2-99D2694ACD9D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Grinder</RootNamespace>
-    <AssemblyName>Grinder</AssemblyName>
+    <RootNamespace>Archaeologist</RootNamespace>
+    <AssemblyName>Archaeologist</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,23 +40,15 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchaeologistSettingsFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArchaeologistSettingsFrame.designer.cs">
+      <DependentUpon>ArchaeologistSettingsFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bot\Bot.cs" />
-    <Compile Include="Bot\GrinderSetting.cs" />
-    <Compile Include="Bot\LoadProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Bot\LoadProfile.Designer.cs">
-      <DependentUpon>LoadProfile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Bot\SelectProfileState.cs" />
+    <Compile Include="Bot\ArchaeologistSetting.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Profile\GrinderProfile.cs" />
-    <Compile Include="Profile\ProfileCreator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Profile\ProfileCreator.Designer.cs">
-      <DependentUpon>ProfileCreator.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -65,18 +57,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nManager\nManager.csproj">
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Bot\LoadProfile.resx">
-      <DependentUpon>LoadProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Profile\ProfileCreator.resx">
-      <DependentUpon>ProfileCreator.cs</DependentUpon>
+    <EmbeddedResource Include="ArchaeologistSettingsFrame.resx">
+      <DependentUpon>ArchaeologistSettingsFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,28 +73,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\blackB.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\blueB.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blackB_150.png" />
+    <None Include="Resources\greenB.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\greenB_150.png" />
+    <None Include="Resources\close_buttonG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blackB_70.png" />
+    <None Include="Resources\close_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\greenB_70.png" />
+    <None Include="Resources\reduce_buttonG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blackB_260.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\greenB_260.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blackB_1501.png" />
+    <None Include="Resources\reduce_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

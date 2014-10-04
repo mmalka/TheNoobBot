@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{00462F13-F999-46DD-87A6-79123A3E678C}</ProjectGuid>
+    <ProjectGuid>{3839C551-04FA-4691-AD29-22213D3D41FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Milling</RootNamespace>
-    <AssemblyName>Milling</AssemblyName>
+    <RootNamespace>Damage_Dealer</RootNamespace>
+    <AssemblyName>Damage Dealer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -28,7 +28,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\The Noob Bot\bin\Release\Products\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -40,12 +41,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bot\Bot.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Milling.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nManager\nManager.csproj">
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
       <Private>False</Private>

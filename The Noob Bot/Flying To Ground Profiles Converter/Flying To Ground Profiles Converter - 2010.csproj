@@ -5,13 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{400F0014-160A-4D26-82B3-25A89B525D1C}</ProjectGuid>
+    <ProjectGuid>{86446A5F-B43E-4449-B30C-E626B5A1ABD5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Battlegrounder</RootNamespace>
-    <AssemblyName>Battlegrounder</AssemblyName>
+    <RootNamespace>Flying_To_Ground_Profiles_Converter</RootNamespace>
+    <AssemblyName>Flying To Ground Profiles Converter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,87 +35,62 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bot\BattlegrounderQueueing.cs" />
-    <Compile Include="Bot\BattlegrounderCurrentProfile.cs" />
-    <Compile Include="Bot\Bot.cs" />
-    <Compile Include="Bot\BattlegrounderSetting.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="Profiletype\AfkSomewhere.cs" />
-    <Compile Include="Profiletype\BattlegrounderProfileType.cs" />
-    <Compile Include="Profiletype\CSharpProfile.cs" />
-    <Compile Include="Profile\BattlegrounderProfile.cs" />
-    <Compile Include="Profile\ProfileCreator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Profile\ProfileCreator.Designer.cs">
-      <DependentUpon>ProfileCreator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Conversion\Fisherbot.cs" />
+    <Compile Include="Conversion\Gatherer.cs" />
+    <Compile Include="Conversion\Grinder.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsBattlegrounderForm.cs">
+    <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsBattlegrounderForm.Designer.cs">
-      <DependentUpon>SettingsBattlegrounderForm.cs</DependentUpon>
+    <Compile Include="WelcomeForm.Designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nManager\nManager.csproj">
+    <ProjectReference Include="..\Fisherbot\Fisherbot - 2010.csproj">
+      <Project>{A8132AB2-0398-40BB-964F-D71DD83E55C9}</Project>
+      <Name>Fisherbot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatherer\Gatherer - 2010.csproj">
+      <Project>{E321286C-4B1F-40A2-8880-14C29AF1BF9B}</Project>
+      <Name>Gatherer</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Grinder\Grinder - 2010.csproj">
+      <Project>{93FEC02A-C062-46A2-BAA0-0705134B961B}</Project>
+      <Name>Grinder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Profile\ProfileCreator.resx">
-      <DependentUpon>ProfileCreator.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsBattlegrounderForm.resx">
-      <DependentUpon>SettingsBattlegrounderForm.cs</DependentUpon>
+    <EmbeddedResource Include="WelcomeForm.resx">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\800x43_controlbar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blueB_150.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\greenB_150.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blackB_150.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blueB.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blackB_260.png" />
+    <None Include="Resources\blueB_260.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\greenB_260.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\blackB_70.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\greenB_70.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

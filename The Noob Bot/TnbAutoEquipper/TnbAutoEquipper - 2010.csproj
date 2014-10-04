@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9E62B7F-0820-44C1-A025-D6D13E058CDF}</ProjectGuid>
+    <ProjectGuid>{748C2F11-7470-42D9-9878-B4C77456F482}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TnbBroadcaster</RootNamespace>
-    <AssemblyName>TnbBroadcaster</AssemblyName>
+    <RootNamespace>TnbAutoEquipper</RootNamespace>
+    <AssemblyName>TnbAutoEquipper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -55,8 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TnbBroadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TnbAutoEquipper.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -69,18 +69,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nManager\nManager.csproj">
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)TnbBroadcaster.cs" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)TnbAutoEquipper.cs" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i
-xcopy "$(ProjectDir)TnbBroadcaster.cs" "$(TargetDir)" /y /i</PostBuildEvent>
+xcopy "$(ProjectDir)TnbAutoEquipper.cs" "$(TargetDir)" /y /i</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

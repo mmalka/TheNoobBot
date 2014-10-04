@@ -5,14 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1A9E977D-F935-4AA6-818C-ED44E59DCE1A}</ProjectGuid>
+    <ProjectGuid>{400F0014-160A-4D26-82B3-25A89B525D1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mimesis</RootNamespace>
-    <AssemblyName>Mimesis</AssemblyName>
+    <RootNamespace>Battlegrounder</RootNamespace>
+    <AssemblyName>Battlegrounder</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,57 +35,93 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bot\BattlegrounderQueueing.cs" />
+    <Compile Include="Bot\BattlegrounderCurrentProfile.cs" />
     <Compile Include="Bot\Bot.cs" />
-    <Compile Include="Bot\MimesisClientCom.cs" />
-    <Compile Include="Bot\MimesisSettings.cs" />
-    <Compile Include="Bot\MimesisState.cs" />
+    <Compile Include="Bot\BattlegrounderSetting.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Profiletype\AfkSomewhere.cs" />
+    <Compile Include="Profiletype\BattlegrounderProfileType.cs" />
+    <Compile Include="Profiletype\CSharpProfile.cs" />
+    <Compile Include="Profile\BattlegrounderProfile.cs" />
+    <Compile Include="Profile\ProfileCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\ProfileCreator.Designer.cs">
+      <DependentUpon>ProfileCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsMimesisForm.cs">
+    <Compile Include="SettingsBattlegrounderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsMimesisForm.Designer.cs">
-      <DependentUpon>SettingsMimesisForm.cs</DependentUpon>
+    <Compile Include="SettingsBattlegrounderForm.Designer.cs">
+      <DependentUpon>SettingsBattlegrounderForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nManager\nManager.csproj">
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Profile\ProfileCreator.resx">
+      <DependentUpon>ProfileCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsMimesisForm.resx">
-      <DependentUpon>SettingsMimesisForm.cs</DependentUpon>
+    <EmbeddedResource Include="SettingsBattlegrounderForm.resx">
+      <DependentUpon>SettingsBattlegrounderForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\greenB_200.png" />
+    <None Include="Resources\800x43_controlbar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blueB_200.png" />
+    <None Include="Resources\blueB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_70.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)..\docs\updatebase_directory\Products\" /y /i
 </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
