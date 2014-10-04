@@ -2252,21 +2252,27 @@ namespace nManager.Wow.ObjectManager
             get { return BuffManager.AuraStack(BaseAddress); }
         }
 
-        public Auras.UnitAura UnitAura(List<UInt32> idBuff, UInt128 creatorGUID)
+        public Auras.UnitAura UnitAura(List<UInt32> idBuffs, UInt128 creatorGUID)
         {
             foreach (var aura in UnitAuras.Auras)
             {
-                if (idBuff.Contains(aura.AuraSpellId) && aura.AuraCreatorGUID == creatorGUID)
+                if (idBuffs.Contains(aura.AuraSpellId) && aura.AuraCreatorGUID == creatorGUID)
                     return aura;
             }
             return new Auras.UnitAura();
         }
 
-        public Auras.UnitAura UnitAura(List<UInt32> idBuff)
+        public Auras.UnitAura UnitAura(UInt32 idBuff, UInt128 creatorGUID)
+        {
+            var idBuffs = new List<UInt32> { idBuff };
+            return UnitAura(idBuffs, creatorGUID);
+        }
+
+        public Auras.UnitAura UnitAura(List<UInt32> idBuffs)
         {
             foreach (var aura in UnitAuras.Auras)
             {
-                if (idBuff.Contains(aura.AuraSpellId))
+                if (idBuffs.Contains(aura.AuraSpellId))
                     return aura;
             }
             return new Auras.UnitAura();
