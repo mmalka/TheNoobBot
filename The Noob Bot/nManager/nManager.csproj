@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>nManager</RootNamespace>
+    <AssemblyName>nManager</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="fasmdll_managed, Version=1.0.3829.8764, Culture=neutral, PublicKeyToken=53d73c680b668dc5, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Others\fasmdll_managed.dll</HintPath>
+    </Reference>
+    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Others\SlimDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FiniteStateMachine\Engine.cs" />
+    <Compile Include="FiniteStateMachine\State.cs" />
+    <Compile Include="Helpful\Communication.cs" />
+    <Compile Include="Helpful\Display.cs" />
+    <Compile Include="Helpful\Forms\DeveloperToolsMainFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\DeveloperToolsMainFrame.designer.cs">
+      <DependentUpon>DeveloperToolsMainFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\Error Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\Error Popup.Designer.cs">
+      <DependentUpon>Error Popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\GeneralSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\GeneralSettings.Designer.cs">
+      <DependentUpon>GeneralSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\TranslateTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\TranslateTools.Designer.cs">
+      <DependentUpon>TranslateTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\LoggingUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\LoggingUC.Designer.cs">
+      <DependentUpon>LoggingUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbControlMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbExpendablePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbRibbonManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\TnbSwitchButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\GZip.cs" />
+    <Compile Include="Helpful\IniFile.cs" />
+    <Compile Include="Helpful\Interface\IScriptOnlineManager.cs" />
+    <Compile Include="Helpful\Keyboard.cs" />
+    <Compile Include="Helpful\KeyboardHook.cs" />
+    <Compile Include="Helpful\Logging.cs" />
+    <Compile Include="Helpful\Math.cs" />
+    <Compile Include="Helpful\Mouse.cs" />
+    <Compile Include="Helpful\Direct3DCapture.cs" />
+    <Compile Include="Helpful\PostFile.cs" />
+    <Compile Include="Helpful\Settings.cs" />
+    <Compile Include="Helpful\Timer.cs" />
+    <Compile Include="Helpful\Others.cs" />
+    <Compile Include="Helpful\Win32\Native.cs" />
+    <Compile Include="Helpful\Win32\VK.cs" />
+    <Compile Include="Helpful\XmlSerializer.cs" />
+    <Compile Include="Information.cs" />
+    <Compile Include="nManagerSetting.cs" />
+    <Compile Include="Plugins\IPlugins.cs" />
+    <Compile Include="Plugins\Plugins.cs" />
+    <Compile Include="Products\IProduct.cs" />
+    <Compile Include="Products\Products.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Pulsator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics.cs" />
+    <Compile Include="Translate.cs" />
+    <Compile Include="Wow\Bot\States\ArchaeologyStates.cs" />
+    <Compile Include="Wow\Bot\States\Battlegrounding.cs" />
+    <Compile Include="Wow\Bot\States\FightHostileTarget.cs" />
+    <Compile Include="Wow\Bot\States\Farming.cs" />
+    <Compile Include="Wow\Bot\States\FightHostileTargetDamageDealerOnly.cs" />
+    <Compile Include="Wow\Bot\States\Grinding.cs" />
+    <Compile Include="Wow\Bot\States\HealFriendlyTarget.cs" />
+    <Compile Include="Wow\Bot\States\Idle.cs" />
+    <Compile Include="Wow\Bot\States\IsAttacked.cs" />
+    <Compile Include="Wow\Bot\States\Looting.cs" />
+    <Compile Include="Wow\Bot\States\MillingState.cs" />
+    <Compile Include="Wow\Bot\States\MovementLoop.cs" />
+    <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
+    <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
+    <Compile Include="Wow\Bot\States\Travel.cs" />
+    <Compile Include="Wow\Class\Auras.cs" />
+    <Compile Include="Wow\Class\Int128.cs" />
+    <Compile Include="Wow\Class\Quaternion.cs" />
+    <Compile Include="Wow\Class\UInt128.cs" />
+    <Compile Include="Wow\Class\Vector3.cs" />
+    <Compile Include="Wow\Enums\GuidType.cs" />
+    <Compile Include="Wow\Enums\MovementFlags.cs" />
+    <Compile Include="Wow\Enums\WoWEventsType.cs" />
+    <Compile Include="Wow\Enums\WoWGender.cs" />
+    <Compile Include="Wow\Enums\WoWSpecialization.cs" />
+    <Compile Include="Wow\Enums\WoWStatistic.cs" />
+    <Compile Include="Wow\Enums\UnitFlags.cs" />
+    <Compile Include="Wow\Helpers\DBCReader.cs" />
+    <Compile Include="Wow\Helpers\EventsListener.cs" />
+    <Compile Include="Wow\Helpers\MimesisHelpers.cs" />
+    <Compile Include="Wow\Helpers\QuestersDB.cs" />
+    <Compile Include="Wow\Helpers\WoWItemSubClass.cs" />
+    <Compile Include="Wow\Helpers\WoWItemClass.cs" />
+    <Compile Include="Wow\Helpers\MovementsAction.cs" />
+    <Compile Include="Wow\Bot\States\Pause.cs" />
+    <Compile Include="Wow\Bot\States\ProspectingState.cs" />
+    <Compile Include="Wow\Bot\States\Regeneration.cs" />
+    <Compile Include="Wow\Bot\States\Relogger.cs" />
+    <Compile Include="Wow\Bot\States\Resurrect.cs" />
+    <Compile Include="Wow\Bot\States\SmeltingState.cs" />
+    <Compile Include="Wow\Bot\States\StopBotIf.cs" />
+    <Compile Include="Wow\Bot\States\LevelupCheck.cs" />
+    <Compile Include="Wow\Bot\States\ToTown.cs" />
+    <Compile Include="Wow\Bot\States\Trainers.cs" />
+    <Compile Include="Wow\Bot\Tasks\FarmingTask.cs" />
+    <Compile Include="Wow\Bot\Tasks\FishingTask.cs" />
+    <Compile Include="Wow\Bot\Tasks\LootingTask.cs" />
+    <Compile Include="Wow\Bot\Tasks\MountTask.cs" />
+    <Compile Include="Wow\Class\DBCStruct.cs" />
+    <Compile Include="Wow\Class\Digsite.cs" />
+    <Compile Include="Wow\Class\ItemInfo.cs" />
+    <Compile Include="Wow\Class\Node.cs" />
+    <Compile Include="Wow\Class\Npc.cs" />
+    <Compile Include="Wow\Class\Point.cs" />
+    <Compile Include="Wow\Class\Spell.cs" />
+    <Compile Include="Wow\Enums\PartyEnums.cs" />
+    <Compile Include="Wow\Enums\WoWGameObjectLockType.cs" />
+    <Compile Include="Wow\Enums\WoWGameObjectType.cs" />
+    <Compile Include="Wow\Enums\WoWPowerType.cs" />
+    <Compile Include="Wow\Enums\WoWRace.cs" />
+    <Compile Include="Wow\Helpers\Archaeology.cs" />
+    <Compile Include="Wow\Helpers\Bag.cs" />
+    <Compile Include="Wow\Helpers\Battleground.cs" />
+    <Compile Include="Wow\Helpers\BuffManager.cs" />
+    <Compile Include="Wow\Helpers\CGUnit_C__GetFacing.cs" />
+    <Compile Include="Wow\Helpers\Chat.cs" />
+    <Compile Include="Wow\Helpers\ClickOnTerrain.cs" />
+    <Compile Include="Wow\Helpers\ClickToMove.cs" />
+    <Compile Include="Wow\Helpers\ConfigWowForThisBot.cs" />
+    <Compile Include="Wow\Helpers\CustomProfile.cs" />
+    <Compile Include="Wow\Helpers\CombatClass.cs" />
+    <Compile Include="Wow\Enums\BattleGroundID.cs" />
+    <Compile Include="Wow\Enums\CGWorldFrameHitFlags.cs" />
+    <Compile Include="Wow\Enums\ClickToMoveType.cs" />
+    <Compile Include="Wow\Enums\ContinentId.cs" />
+    <Compile Include="Wow\Enums\InventorySlot.cs" />
+    <Compile Include="Wow\Enums\InventoryType.cs" />
+    <Compile Include="Wow\Enums\Keybindings.cs" />
+    <Compile Include="Wow\Enums\PlayerFactions.cs" />
+    <Compile Include="Wow\Enums\Reaction.cs" />
+    <Compile Include="Wow\Enums\SkillLine.cs" />
+    <Compile Include="Wow\Enums\TrackCreatureFlags.cs" />
+    <Compile Include="Wow\Enums\TrackObjectFlags.cs" />
+    <Compile Include="Wow\Enums\WoWClass.cs" />
+    <Compile Include="Wow\Enums\WoWInventorySlot.cs" />
+    <Compile Include="Wow\Enums\WoWItemClass.cs" />
+    <Compile Include="Wow\Enums\WoWItemQuality.cs" />
+    <Compile Include="Wow\Enums\WoWItemTradeGoodsClass.cs" />
+    <Compile Include="Wow\Enums\WoWObjectType.cs" />
+    <Compile Include="Wow\Helpers\DBC.cs" />
+    <Compile Include="Wow\Helpers\Fishing.cs" />
+    <Compile Include="Wow\Helpers\Heal.cs" />
+    <Compile Include="Wow\Helpers\HealerClass.cs" />
+    <Compile Include="Wow\Helpers\Milling.cs" />
+    <Compile Include="Wow\Helpers\NpcDB.cs" />
+    <Compile Include="Wow\Helpers\Elemental.cs" />
+    <Compile Include="Wow\Helpers\EquippedItems.cs" />
+    <Compile Include="Wow\Helpers\Fight.cs" />
+    <Compile Include="Wow\Helpers\Interact.cs" />
+    <Compile Include="Wow\Helpers\ItemsManager.cs" />
+    <Compile Include="Wow\Helpers\ItemSelection.cs" />
+    <Compile Include="Wow\Helpers\Keybindings.cs" />
+    <Compile Include="Wow\Helpers\Login.cs" />
+    <Compile Include="Wow\Helpers\LongMove.cs" />
+    <Compile Include="Wow\Helpers\Lua.cs" />
+    <Compile Include="Wow\Helpers\Mail.cs" />
+    <Compile Include="Wow\Helpers\MovementManager.cs" />
+    <Compile Include="Wow\Helpers\Party.cs" />
+    <Compile Include="Wow\Helpers\PathFinder.cs" />
+    <Compile Include="Wow\Helpers\PathFinderClass\Hop.cs" />
+    <Compile Include="Wow\Helpers\PathFinderClass\Pather.cs" />
+    <Compile Include="Wow\Helpers\PathFinderClass\Utility.cs" />
+    <Compile Include="Wow\Helpers\ProfileType.cs" />
+    <Compile Include="Wow\Helpers\Prospecting.cs" />
+    <Compile Include="Wow\Helpers\Quest.cs" />
+    <Compile Include="Wow\Helpers\Skill.cs" />
+    <Compile Include="Wow\Helpers\Smelting.cs" />
+    <Compile Include="Wow\Helpers\SpellManager.cs" />
+    <Compile Include="Wow\Helpers\Talent.cs" />
+    <Compile Include="Wow\Helpers\TraceLine.cs" />
+    <Compile Include="Wow\Helpers\Tracker.cs" />
+    <Compile Include="Wow\Helpers\Gossip.cs" />
+    <Compile Include="Wow\Helpers\UnitRelation.cs" />
+    <Compile Include="Wow\Helpers\Usefuls.cs" />
+    <Compile Include="Wow\Helpers\Vendor.cs" />
+    <Compile Include="Wow\Helpers\WoWFactionTemplate.cs" />
+    <Compile Include="Wow\Helpers\WoWLock.cs" />
+    <Compile Include="Wow\Helpers\WoWQuestPOIPoint.cs" />
+    <Compile Include="Wow\Helpers\WoWResearchSite.cs" />
+    <Compile Include="Wow\Memory.cs" />
+    <Compile Include="Wow\MemoryClass\D3D.cs" />
+    <Compile Include="Wow\MemoryClass\Dictionnary.cs" />
+    <Compile Include="Wow\MemoryClass\Hook.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\BMInject.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\BMMain.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\BMMemory.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\BMPattern.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\BMThread.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\SInject.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\SMemory.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\SPattern.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\SProcess.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\SThread.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\SWindow.cs" />
+    <Compile Include="Wow\MemoryClass\Magic\Static Classes\Win32Imports.cs" />
+    <Compile Include="Wow\MemoryClass\Process.cs" />
+    <Compile Include="Wow\MemoryClass\Usefuls.cs" />
+    <Compile Include="Wow\ObjectManager\ObjectManager.cs" />
+    <Compile Include="Wow\ObjectManager\Pulsator.cs" />
+    <Compile Include="Wow\ObjectManager\WoWContainer.cs" />
+    <Compile Include="Wow\ObjectManager\WoWCorpse.cs" />
+    <Compile Include="Wow\ObjectManager\WoWGameObject.cs" />
+    <Compile Include="Wow\ObjectManager\WoWItem.cs" />
+    <Compile Include="Wow\ObjectManager\WoWObject.cs" />
+    <Compile Include="Wow\ObjectManager\WoWPlayer.cs" />
+    <Compile Include="Wow\ObjectManager\WoWUnit.cs" />
+    <Compile Include="Wow\Patchables\Addresses.cs" />
+    <Compile Include="Wow\Patchables\Descriptors.cs" />
+    <Compile Include="Wow\AccountSecurity\HookAccountSecurity.cs" />
+    <Compile Include="Wow\AccountSecurity\AccountSecurity.cs" />
+    <Compile Include="Wow\Helpers\EquipmentAndStats.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Helpful\Forms\DeveloperToolsMainFrame.resx">
+      <DependentUpon>DeveloperToolsMainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\Error Popup.resx">
+      <DependentUpon>Error Popup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\GeneralSettings.resx">
+      <DependentUpon>GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\TranslateTools.resx">
+      <DependentUpon>TranslateTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\UserControls\LoggingUC.resx">
+      <DependentUpon>LoggingUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
+      <Project>{88ABD3DA-803D-4D83-9894-F669B8CFAEAD}</Project>
+      <Name>RecastLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Redo.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\greenB_260.png" />
+    <None Include="Resources\greenB.png" />
+    <None Include="Resources\blueB_260.png" />
+    <None Include="Resources\blackB_260.png" />
+    <None Include="Resources\blueB.png" />
+    <None Include="Resources\blackB.png" />
+    <None Include="Resources\reduce_button.png" />
+    <None Include="Resources\close_button.png" />
+    <None Include="Resources\close_buttonG.png" />
+    <None Include="Resources\reduce_buttonG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelcontrolHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanelExpendablePlusImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanelExpendableMinusImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoImageG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controlbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelcontrolHeaderbottomborder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundGeneral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\800x43_controlbar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundGeneral1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroundCustomSettings.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
