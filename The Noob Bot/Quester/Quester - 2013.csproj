@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{96CA8810-5B34-47A7-8253-EDCA42FA02C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quester</RootNamespace>
+    <AssemblyName>Quester</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\The Noob Bot\bin\Debug\Products\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\The Noob Bot\bin\Release\Products\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bot\Bot.cs" />
+    <Compile Include="Bot\QuesterState.cs" />
+    <Compile Include="Profile\GroupedProfileManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\GroupedProfileManager.Designer.cs">
+      <DependentUpon>GroupedProfileManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\ProfileManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\ProfileManager.Designer.cs">
+      <DependentUpon>ProfileManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\QuesterProfile.cs" />
+    <Compile Include="Bot\QuesterSettings.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Profile\QuesterProfileLoader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\QuesterProfileLoader.designer.cs">
+      <DependentUpon>QuesterProfileLoader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\SimpleProfileManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\SimpleProfileManager.designer.cs">
+      <DependentUpon>SimpleProfileManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\QuestingTask.cs" />
+    <Compile Include="Tasks\Script.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nManager\nManager - 2010.csproj">
+      <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
+      <Name>nManager</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Profile\GroupedProfileManager.resx">
+      <DependentUpon>GroupedProfileManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\ProfileManager.resx">
+      <DependentUpon>ProfileManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\QuesterProfileLoader.resx">
+      <DependentUpon>QuesterProfileLoader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\SimpleProfileManager.resx">
+      <DependentUpon>SimpleProfileManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_buttonG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reduce_buttonG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reduce_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackB_200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenB_200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueB_200.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)..\docs\updatebase_directory\Products\" /y /i
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
