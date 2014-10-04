@@ -108,8 +108,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "Broadcaster";
-    public static string TargetVersion = "3.0";
-    public static string Version = "1.0.0";
+    public static string TargetVersion = "4.0.x";
+    public static string Version = "1.0.1";
 
     public static string Description =
         "A background broadcasting tool that can be used as standalone or while botting. It does broadcast the announces of your choice to the channels of your choice. Trade, Local, Yelling, Saying, Guild, Custom channels...";
