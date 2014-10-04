@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using Timer = nManager.Helpful.Timer;
 
@@ -128,6 +129,7 @@ namespace nManager.Products
                 if (_instanceFromOtherAssembly != null)
                 {
                     _inPause = false;
+                    NeedToTravel = false;
 
                     _instanceFromOtherAssembly.Start();
                     Statistics.Reset();
@@ -238,6 +240,10 @@ namespace nManager.Products
             get { return _inPause; }
             set { _inPause = value; }
         }
+        
+        public static bool NeedToTravel { get; set; }
+
+        public static ContinentId TravelTo { get; set; }
 
         private static bool _oldIsStarted;
         private static bool _oldIsAliveProduc;
