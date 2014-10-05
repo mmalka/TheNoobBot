@@ -714,17 +714,13 @@ namespace Test_Product
                 }
                 sw.Close();
                 */
+                /*
                 var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
-                var spellList = new List<uint>();
-                for (uint i = 1; i <= 178880; i++)
+                for (uint i = 1; i <= 150017; i++)
                 {
-                    spellList.Add(i);
-                }
-                SpellManager.SpellInfoCreateCache(spellList);
-                foreach (KeyValuePair<uint, SpellManager.SpellInfoLua> spellInfo in SpellManager._spellInfos)
-                {
-                    if (!string.IsNullOrEmpty(spellInfo.Value.Name))
-                        sw.Write(spellInfo.Value.ID + ";" + spellInfo.Value.Name + Environment.NewLine);
+                    var spellName = SpellManager.SpellListManager.SpellNameByIdExperimental(i);
+                    if (!string.IsNullOrEmpty(spellName))
+                    sw.Write(i + ";" + spellName + Environment.NewLine);
                 }
                 sw.Close();
                 //Cheat.AntiAfkPulse();
