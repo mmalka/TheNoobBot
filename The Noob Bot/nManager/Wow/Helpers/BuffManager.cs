@@ -102,7 +102,7 @@ namespace nManager.Wow.Helpers
                 uint result;
 
                 uint currentAura = (uint) Addresses.UnitBaseGetUnitAura.AuraSize*currentIndex;
-                if (Memory.WowMemory.Memory.ReadUInt(auraBase + (uint) Addresses.UnitBaseGetUnitAura.AuraTable2) == -1)
+                if (Memory.WowMemory.Memory.ReadInt(auraBase + (uint) Addresses.UnitBaseGetUnitAura.AuraTable2) == -1)
                 {
                     result = Memory.WowMemory.Memory.ReadUInt(auraBase + 4) + currentAura;
                 }

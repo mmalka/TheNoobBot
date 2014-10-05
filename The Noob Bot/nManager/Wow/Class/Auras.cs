@@ -15,7 +15,7 @@ namespace nManager.Wow.Class
             }
             public uint AuraSpellId { get; set; }
             public byte AuraFlags { get; set; }
-            public byte AuraCount { get; set; }
+            public int AuraCount { get; set; }
             public byte AuraCasterLevel { get; set; }
             public byte AuraUnk2 { get; set; }
             public uint AuraDuration { get; set; }
