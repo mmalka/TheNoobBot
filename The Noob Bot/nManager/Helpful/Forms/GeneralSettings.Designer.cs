@@ -55,15 +55,15 @@ namespace nManager.Helpful.Forms
             this.HealerClassLabel = new System.Windows.Forms.Label();
             this.HealerClassSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.CombatClassResetSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.labelX59 = new System.Windows.Forms.Label();
+            this.UseSpiritHealerLabel = new System.Windows.Forms.Label();
             this.UseSpiritHealer = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.ActivateSkillsAutoTrainingLabel = new System.Windows.Forms.Label();
             this.ActivateSkillsAutoTraining = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX4 = new System.Windows.Forms.Label();
+            this.DontPullMonstersLabel = new System.Windows.Forms.Label();
             this.DontPullMonsters = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX3 = new System.Windows.Forms.Label();
+            this.CanPullUnitsAlreadyInFightLabel = new System.Windows.Forms.Label();
             this.CanPullUnitsAlreadyInFight = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX2 = new System.Windows.Forms.Label();
+            this.AutoAssignTalentsLabel = new System.Windows.Forms.Label();
             this.AutoAssignTalents = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.CombatClassLabel = new System.Windows.Forms.Label();
             this.CombatClassSettingsButton = new nManager.Helpful.Forms.UserControls.TnbButton();
@@ -81,17 +81,19 @@ namespace nManager.Helpful.Forms
             this.AvailablePluginsListLabel = new System.Windows.Forms.Label();
             this.AvailablePluginsList = new System.Windows.Forms.ListBox();
             this.MountManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.UseDruidFlightFormLabel = new System.Windows.Forms.Label();
+            this.UseDruidFlightForm = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AquaticMountName = new System.Windows.Forms.TextBox();
-            this.labelX66 = new System.Windows.Forms.Label();
-            this.labelX57 = new System.Windows.Forms.Label();
+            this.AquaticMountNameLabel = new System.Windows.Forms.Label();
+            this.IgnoreFightIfMountedLabel = new System.Windows.Forms.Label();
             this.IgnoreFightIfMounted = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MinimumDistanceToUseMount = new System.Windows.Forms.NumericUpDown();
-            this.labelX8 = new System.Windows.Forms.Label();
+            this.MinimumDistanceToUseMountLabel = new System.Windows.Forms.Label();
             this.FlyingMountName = new System.Windows.Forms.TextBox();
-            this.labelX7 = new System.Windows.Forms.Label();
+            this.FlyingMountNameLabel = new System.Windows.Forms.Label();
             this.GroundMountName = new System.Windows.Forms.TextBox();
-            this.labelX6 = new System.Windows.Forms.Label();
-            this.labelX5 = new System.Windows.Forms.Label();
+            this.GroundMountNameLabel = new System.Windows.Forms.Label();
+            this.UseGroundMountLabel = new System.Windows.Forms.Label();
             this.UseGroundMount = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.LootingFarmingManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.ActivateLootStatisticsLabel = new System.Windows.Forms.Label();
@@ -100,47 +102,47 @@ namespace nManager.Helpful.Forms
             this.DontHarvestTheFollowingObjects = new System.Windows.Forms.TextBox();
             this.AutoConfirmOnBoPItems = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AutoConfirmOnBoPItemsLabel = new System.Windows.Forms.Label();
-            this.labelX69 = new System.Windows.Forms.Label();
+            this.OnlyUseMillingInTownLabel = new System.Windows.Forms.Label();
             this.OnlyUseMillingInTown = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.TimeBetweenEachMillingAttempt = new System.Windows.Forms.NumericUpDown();
-            this.labelX70 = new System.Windows.Forms.Label();
-            this.labelX71 = new System.Windows.Forms.Label();
+            this.TimeBetweenEachMillingAttemptLabel = new System.Windows.Forms.Label();
+            this.ActivateAutoMillingLabel = new System.Windows.Forms.Label();
             this.ActivateAutoMilling = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.HerbsToBeMilled = new System.Windows.Forms.TextBox();
-            this.labelX72 = new System.Windows.Forms.Label();
-            this.labelX68 = new System.Windows.Forms.Label();
+            this.HerbsToBeMilledLabel = new System.Windows.Forms.Label();
+            this.MakeStackOfElementalsItemsLabel = new System.Windows.Forms.Label();
             this.MakeStackOfElementalsItems = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX65 = new System.Windows.Forms.Label();
+            this.OnlyUseProspectingInTownLabel = new System.Windows.Forms.Label();
             this.OnlyUseProspectingInTown = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.TimeBetweenEachProspectingAttempt = new System.Windows.Forms.NumericUpDown();
-            this.labelX64 = new System.Windows.Forms.Label();
-            this.labelX63 = new System.Windows.Forms.Label();
+            this.TimeBetweenEachProspectingAttemptLabel = new System.Windows.Forms.Label();
+            this.ActivateAutoProspectingLabel = new System.Windows.Forms.Label();
             this.ActivateAutoProspecting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MineralsToProspect = new System.Windows.Forms.TextBox();
-            this.labelX62 = new System.Windows.Forms.Label();
+            this.MineralsToProspectLabel = new System.Windows.Forms.Label();
             this.labelX61 = new System.Windows.Forms.Label();
             this.ActivateAutoSmelting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX36 = new System.Windows.Forms.Label();
+            this.DontHarvestTheFollowingObjectsLabel = new System.Windows.Forms.Label();
             this.addBlackListHarvest = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.labelX35 = new System.Windows.Forms.Label();
+            this.HarvestDuringLongDistanceMovementsLabel = new System.Windows.Forms.Label();
             this.HarvestDuringLongDistanceMovements = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.labelX23 = new System.Windows.Forms.Label();
             this.BeastNinjaSkinning = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.GatheringSearchRadius = new System.Windows.Forms.NumericUpDown();
-            this.labelX22 = new System.Windows.Forms.Label();
+            this.GatheringSearchRadiusLabel = new System.Windows.Forms.Label();
             this.DontHarvestIfMoreThanXUnitInAggroRange = new System.Windows.Forms.NumericUpDown();
-            this.labelX21 = new System.Windows.Forms.Label();
-            this.labelX20 = new System.Windows.Forms.Label();
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel = new System.Windows.Forms.Label();
+            this.ActivateHerbsHarvestingLabel = new System.Windows.Forms.Label();
             this.ActivateHerbsHarvesting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX19 = new System.Windows.Forms.Label();
+            this.ActivateVeinsHarvestingLabel = new System.Windows.Forms.Label();
             this.ActivateVeinsHarvesting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX17 = new System.Windows.Forms.Label();
+            this.ActivateBeastSkinningLabel = new System.Windows.Forms.Label();
             this.ActivateBeastSkinning = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.labelX16 = new System.Windows.Forms.Label();
             this.ActivateChestLooting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.DontHarvestIfPlayerNearRadius = new System.Windows.Forms.NumericUpDown();
-            this.labelX12 = new System.Windows.Forms.Label();
-            this.labelX18 = new System.Windows.Forms.Label();
+            this.DontHarvestIfPlayerNearRadiusLabel = new System.Windows.Forms.Label();
+            this.ActivateMonsterLootingLabel = new System.Windows.Forms.Label();
             this.ActivateMonsterLooting = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.NPCsRepairSellBuyPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.SellPurple = new System.Windows.Forms.CheckBox();
@@ -155,17 +157,17 @@ namespace nManager.Helpful.Forms
             this.SellItemsWhenLessThanXSlotLeftLabel = new System.Windows.Forms.Label();
             this.RepairWhenDurabilityIsUnderPercentLabel = new System.Windows.Forms.Label();
             this.ForceToSellTheseItems = new System.Windows.Forms.TextBox();
-            this.labelX53 = new System.Windows.Forms.Label();
+            this.ForceToSellTheseItemsLabel = new System.Windows.Forms.Label();
             this.labelX52 = new System.Windows.Forms.Label();
             this.ActivateAutoSellingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX51 = new System.Windows.Forms.Label();
+            this.ActivateAutoRepairFeatureLabel = new System.Windows.Forms.Label();
             this.ActivateAutoRepairFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.NumberOfFoodsWeGot = new System.Windows.Forms.NumericUpDown();
-            this.labelX50 = new System.Windows.Forms.Label();
+            this.NumberOfFoodsWeGotLabel = new System.Windows.Forms.Label();
             this.NumberOfBeverageWeGot = new System.Windows.Forms.NumericUpDown();
-            this.labelX41 = new System.Windows.Forms.Label();
+            this.NumberOfBeverageWeGotLabel = new System.Windows.Forms.Label();
             this.DontSellTheseItems = new System.Windows.Forms.TextBox();
-            this.labelX46 = new System.Windows.Forms.Label();
+            this.DontSellTheseItemsLabel = new System.Windows.Forms.Label();
             this.MailsManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.MailPurple = new System.Windows.Forms.CheckBox();
             this.MailBlue = new System.Windows.Forms.CheckBox();
@@ -177,27 +179,27 @@ namespace nManager.Helpful.Forms
             this.SendMailWhenLessThanXSlotLeft = new System.Windows.Forms.NumericUpDown();
             this.SendMailWhenLessThanXSlotLeftLabel = new System.Windows.Forms.Label();
             this.MaillingFeatureRecipient = new System.Windows.Forms.TextBox();
-            this.labelX56 = new System.Windows.Forms.Label();
+            this.MaillingFeatureRecipientLabel = new System.Windows.Forms.Label();
             this.MaillingFeatureSubject = new System.Windows.Forms.TextBox();
             this.ForceToMailTheseItems = new System.Windows.Forms.TextBox();
-            this.labelX48 = new System.Windows.Forms.Label();
-            this.labelX54 = new System.Windows.Forms.Label();
-            this.labelX55 = new System.Windows.Forms.Label();
+            this.ForceToMailTheseItemsLabel = new System.Windows.Forms.Label();
+            this.MaillingFeatureSubjectLabel = new System.Windows.Forms.Label();
+            this.ActivateAutoMaillingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivateAutoMaillingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.DontMailTheseItems = new System.Windows.Forms.TextBox();
-            this.labelX58 = new System.Windows.Forms.Label();
+            this.DontMailTheseItemsLabel = new System.Windows.Forms.Label();
             this.RegenerationManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.DoRegenManaIfLow = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.labelX9 = new System.Windows.Forms.Label();
             this.labelX10 = new System.Windows.Forms.Label();
             this.DrinkBeverageWhenManaIsUnderXPercent = new System.Windows.Forms.NumericUpDown();
             this.BeverageName = new System.Windows.Forms.TextBox();
-            this.labelX15 = new System.Windows.Forms.Label();
+            this.BeverageNameLabel = new System.Windows.Forms.Label();
             this.labelX14 = new System.Windows.Forms.Label();
             this.labelX13 = new System.Windows.Forms.Label();
             this.EatFoodWhenHealthIsUnderXPercent = new System.Windows.Forms.NumericUpDown();
             this.FoodName = new System.Windows.Forms.TextBox();
-            this.labelX11 = new System.Windows.Forms.Label();
+            this.FoodNameLabel = new System.Windows.Forms.Label();
             this.SecuritySystemPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.UseHearthstoneLabel = new System.Windows.Forms.Label();
             this.ActiveStopTNBAfterXMinutes = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
@@ -205,40 +207,39 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBIfReceivedAtMostXWhispers = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.ActiveStopTNBAfterXLevelup = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.UseHearthstone = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX39 = new System.Windows.Forms.Label();
-            this.labelX45 = new System.Windows.Forms.Label();
+            this.SecuritySystemLabel = new System.Windows.Forms.Label();
             this.PlayASongIfNewWhispReceived = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX34 = new System.Windows.Forms.Label();
+            this.CloseGameLabel = new System.Windows.Forms.Label();
             this.labelX33 = new System.Windows.Forms.Label();
-            this.labelX43 = new System.Windows.Forms.Label();
+            this.RecordWhispsInLogFilesLabel = new System.Windows.Forms.Label();
             this.labelX32 = new System.Windows.Forms.Label();
             this.labelX31 = new System.Windows.Forms.Label();
             this.RecordWhispsInLogFiles = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX29 = new System.Windows.Forms.Label();
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel = new System.Windows.Forms.Label();
             this.StopTNBIfPlayerHaveBeenTeleported = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX44 = new System.Windows.Forms.Label();
-            this.labelX30 = new System.Windows.Forms.Label();
+            this.PauseTNBIfNearByPlayerLabel = new System.Windows.Forms.Label();
+            this.StopTNBIfHonorPointsLimitReachedLabel = new System.Windows.Forms.Label();
             this.PauseTNBIfNearByPlayer = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.StopTNBIfHonorPointsLimitReached = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.StopTNBAfterXMinutes = new System.Windows.Forms.NumericUpDown();
-            this.labelX28 = new System.Windows.Forms.Label();
+            this.StopTNBAfterXMinutesLabel = new System.Windows.Forms.Label();
             this.StopTNBAfterXStucks = new System.Windows.Forms.NumericUpDown();
-            this.labelX26 = new System.Windows.Forms.Label();
+            this.StopTNBAfterXStucksLabel = new System.Windows.Forms.Label();
             this.StopTNBIfReceivedAtMostXWhispers = new System.Windows.Forms.NumericUpDown();
-            this.labelX25 = new System.Windows.Forms.Label();
+            this.StopTNBIfReceivedAtMostXWhispersLabel = new System.Windows.Forms.Label();
             this.StopTNBAfterXLevelup = new System.Windows.Forms.NumericUpDown();
-            this.labelX24 = new System.Windows.Forms.Label();
-            this.labelX27 = new System.Windows.Forms.Label();
+            this.StopTNBAfterXLevelupLabel = new System.Windows.Forms.Label();
+            this.StopTNBIfBagAreFullLabel = new System.Windows.Forms.Label();
             this.StopTNBIfBagAreFull = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.ReloggerManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.BattleNetSubAccount = new System.Windows.Forms.TextBox();
-            this.labelX67 = new System.Windows.Forms.Label();
-            this.labelX38 = new System.Windows.Forms.Label();
+            this.BattleNetSubAccountLabel = new System.Windows.Forms.Label();
+            this.ActivateReloggerFeatureLabel = new System.Windows.Forms.Label();
             this.ActivateReloggerFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.PasswordOfTheBattleNetAccount = new System.Windows.Forms.TextBox();
-            this.labelX37 = new System.Windows.Forms.Label();
+            this.PasswordOfTheBattleNetAccountLabel = new System.Windows.Forms.Label();
             this.EmailOfTheBattleNetAccount = new System.Windows.Forms.TextBox();
-            this.labelX40 = new System.Windows.Forms.Label();
+            this.EmailOfTheBattleNetAccountLabel = new System.Windows.Forms.Label();
             this.MimesisBroadcasterSettingsPanel = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
             this.BroadcastingPort = new System.Windows.Forms.NumericUpDown();
             this.BroadcastingIPWan = new System.Windows.Forms.Label();
@@ -256,11 +257,11 @@ namespace nManager.Helpful.Forms
             this.AutoCloseChatFrame = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AlwaysOnTopFeatureLabel = new System.Windows.Forms.Label();
             this.ActivateAlwaysOnTopFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
-            this.labelX73 = new System.Windows.Forms.Label();
+            this.AllowTNBToSetYourMaxFpsLabel = new System.Windows.Forms.Label();
             this.AllowTNBToSetYourMaxFps = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MaxDistanceToGoToMailboxesOrNPCs = new System.Windows.Forms.NumericUpDown();
-            this.labelX60 = new System.Windows.Forms.Label();
-            this.labelX42 = new System.Windows.Forms.Label();
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel = new System.Windows.Forms.Label();
+            this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.MainPanel.SuspendLayout();
@@ -386,15 +387,15 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassSettingsButton);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassResetSettingsButton);
-            this.SpellManagementSystemPanelName.Controls.Add(this.labelX59);
+            this.SpellManagementSystemPanelName.Controls.Add(this.UseSpiritHealerLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.UseSpiritHealer);
             this.SpellManagementSystemPanelName.Controls.Add(this.ActivateSkillsAutoTrainingLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.ActivateSkillsAutoTraining);
-            this.SpellManagementSystemPanelName.Controls.Add(this.labelX4);
+            this.SpellManagementSystemPanelName.Controls.Add(this.DontPullMonstersLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.DontPullMonsters);
-            this.SpellManagementSystemPanelName.Controls.Add(this.labelX3);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CanPullUnitsAlreadyInFightLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.CanPullUnitsAlreadyInFight);
-            this.SpellManagementSystemPanelName.Controls.Add(this.labelX2);
+            this.SpellManagementSystemPanelName.Controls.Add(this.AutoAssignTalentsLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.AutoAssignTalents);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassLabel);
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassSettingsButton);
@@ -621,15 +622,15 @@ namespace nManager.Helpful.Forms
             this.CombatClassResetSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CombatClassResetSettingsButton.Click += new System.EventHandler(this.CombatClassResetSettingsButton_Click);
             // 
-            // labelX59
+            // UseSpiritHealerLabel
             // 
-            this.labelX59.BackColor = System.Drawing.Color.Transparent;
-            this.labelX59.ForeColor = System.Drawing.Color.Black;
-            this.labelX59.Location = new System.Drawing.Point(11, 123);
-            this.labelX59.Name = "labelX59";
-            this.labelX59.Size = new System.Drawing.Size(154, 22);
-            this.labelX59.TabIndex = 28;
-            this.labelX59.Text = "Use Spirit Healer";
+            this.UseSpiritHealerLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseSpiritHealerLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseSpiritHealerLabel.Location = new System.Drawing.Point(11, 123);
+            this.UseSpiritHealerLabel.Name = "UseSpiritHealerLabel";
+            this.UseSpiritHealerLabel.Size = new System.Drawing.Size(154, 22);
+            this.UseSpiritHealerLabel.TabIndex = 28;
+            this.UseSpiritHealerLabel.Text = "Use Spirit Healer";
             // 
             // UseSpiritHealer
             // 
@@ -667,15 +668,15 @@ namespace nManager.Helpful.Forms
             this.ActivateSkillsAutoTraining.TabIndex = 50;
             this.ActivateSkillsAutoTraining.Value = false;
             // 
-            // labelX4
+            // DontPullMonstersLabel
             // 
-            this.labelX4.BackColor = System.Drawing.Color.Transparent;
-            this.labelX4.ForeColor = System.Drawing.Color.Black;
-            this.labelX4.Location = new System.Drawing.Point(300, 151);
-            this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(154, 22);
-            this.labelX4.TabIndex = 9;
-            this.labelX4.Text = "Don\'t start fighting";
+            this.DontPullMonstersLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontPullMonstersLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontPullMonstersLabel.Location = new System.Drawing.Point(300, 151);
+            this.DontPullMonstersLabel.Name = "DontPullMonstersLabel";
+            this.DontPullMonstersLabel.Size = new System.Drawing.Size(154, 22);
+            this.DontPullMonstersLabel.TabIndex = 9;
+            this.DontPullMonstersLabel.Text = "Don\'t start fighting";
             // 
             // DontPullMonsters
             // 
@@ -690,15 +691,15 @@ namespace nManager.Helpful.Forms
             this.DontPullMonsters.TabIndex = 51;
             this.DontPullMonsters.Value = false;
             // 
-            // labelX3
+            // CanPullUnitsAlreadyInFightLabel
             // 
-            this.labelX3.BackColor = System.Drawing.Color.Transparent;
-            this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(300, 123);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(154, 22);
-            this.labelX3.TabIndex = 7;
-            this.labelX3.Text = "Can attack units already in fight";
+            this.CanPullUnitsAlreadyInFightLabel.BackColor = System.Drawing.Color.Transparent;
+            this.CanPullUnitsAlreadyInFightLabel.ForeColor = System.Drawing.Color.Black;
+            this.CanPullUnitsAlreadyInFightLabel.Location = new System.Drawing.Point(300, 123);
+            this.CanPullUnitsAlreadyInFightLabel.Name = "CanPullUnitsAlreadyInFightLabel";
+            this.CanPullUnitsAlreadyInFightLabel.Size = new System.Drawing.Size(154, 22);
+            this.CanPullUnitsAlreadyInFightLabel.TabIndex = 7;
+            this.CanPullUnitsAlreadyInFightLabel.Text = "Can attack units already in fight";
             // 
             // CanPullUnitsAlreadyInFight
             // 
@@ -713,15 +714,15 @@ namespace nManager.Helpful.Forms
             this.CanPullUnitsAlreadyInFight.TabIndex = 52;
             this.CanPullUnitsAlreadyInFight.Value = false;
             // 
-            // labelX2
+            // AutoAssignTalentsLabel
             // 
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
-            this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(11, 151);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(154, 22);
-            this.labelX2.TabIndex = 5;
-            this.labelX2.Text = "Assign Talents";
+            this.AutoAssignTalentsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.AutoAssignTalentsLabel.ForeColor = System.Drawing.Color.Black;
+            this.AutoAssignTalentsLabel.Location = new System.Drawing.Point(11, 151);
+            this.AutoAssignTalentsLabel.Name = "AutoAssignTalentsLabel";
+            this.AutoAssignTalentsLabel.Size = new System.Drawing.Size(154, 22);
+            this.AutoAssignTalentsLabel.TabIndex = 5;
+            this.AutoAssignTalentsLabel.Text = "Assign Talents";
             // 
             // AutoAssignTalents
             // 
@@ -958,18 +959,20 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MountManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MountManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.MountManagementPanelName.ContentSize = new System.Drawing.Size(556, 144);
+            this.MountManagementPanelName.ContentSize = new System.Drawing.Size(556, 180);
+            this.MountManagementPanelName.Controls.Add(this.UseDruidFlightFormLabel);
+            this.MountManagementPanelName.Controls.Add(this.UseDruidFlightForm);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountName);
-            this.MountManagementPanelName.Controls.Add(this.labelX66);
-            this.MountManagementPanelName.Controls.Add(this.labelX57);
+            this.MountManagementPanelName.Controls.Add(this.AquaticMountNameLabel);
+            this.MountManagementPanelName.Controls.Add(this.IgnoreFightIfMountedLabel);
             this.MountManagementPanelName.Controls.Add(this.IgnoreFightIfMounted);
             this.MountManagementPanelName.Controls.Add(this.MinimumDistanceToUseMount);
-            this.MountManagementPanelName.Controls.Add(this.labelX8);
+            this.MountManagementPanelName.Controls.Add(this.MinimumDistanceToUseMountLabel);
             this.MountManagementPanelName.Controls.Add(this.FlyingMountName);
-            this.MountManagementPanelName.Controls.Add(this.labelX7);
+            this.MountManagementPanelName.Controls.Add(this.FlyingMountNameLabel);
             this.MountManagementPanelName.Controls.Add(this.GroundMountName);
-            this.MountManagementPanelName.Controls.Add(this.labelX6);
-            this.MountManagementPanelName.Controls.Add(this.labelX5);
+            this.MountManagementPanelName.Controls.Add(this.GroundMountNameLabel);
+            this.MountManagementPanelName.Controls.Add(this.UseGroundMountLabel);
             this.MountManagementPanelName.Controls.Add(this.UseGroundMount);
             this.MountManagementPanelName.Fold = true;
             this.MountManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.FolderImage")));
@@ -990,33 +993,59 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.TitleText = "Ingame Mount Management - (Allow you to use Ground/Fly/Swim mount)";
             this.MountManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.UnfolderImage")));
             // 
+            // UseDruidFlightFormLabel
+            // 
+            this.UseDruidFlightFormLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseDruidFlightFormLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseDruidFlightFormLabel.Location = new System.Drawing.Point(2, 116);
+            this.UseDruidFlightFormLabel.Name = "UseDruidFlightFormLabel";
+            this.UseDruidFlightFormLabel.Size = new System.Drawing.Size(452, 22);
+            this.UseDruidFlightFormLabel.TabIndex = 25;
+            this.UseDruidFlightFormLabel.Text = "[Druid Only] Use Flight Forms. Requiert a Flying Mount in order to takeoff from W" +
+    "ater.";
+            this.UseDruidFlightFormLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // UseDruidFlightForm
+            // 
+            this.UseDruidFlightForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseDruidFlightForm.Location = new System.Drawing.Point(475, 116);
+            this.UseDruidFlightForm.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseDruidFlightForm.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseDruidFlightForm.Name = "UseDruidFlightForm";
+            this.UseDruidFlightForm.OffText = "OFF";
+            this.UseDruidFlightForm.OnText = "ON";
+            this.UseDruidFlightForm.Size = new System.Drawing.Size(60, 20);
+            this.UseDruidFlightForm.TabIndex = 26;
+            this.UseDruidFlightForm.Value = true;
+            // 
             // AquaticMountName
             // 
             this.AquaticMountName.ForeColor = System.Drawing.Color.Black;
-            this.AquaticMountName.Location = new System.Drawing.Point(161, 138);
+            this.AquaticMountName.Location = new System.Drawing.Point(161, 179);
             this.AquaticMountName.Name = "AquaticMountName";
             this.AquaticMountName.Size = new System.Drawing.Size(144, 22);
             this.AquaticMountName.TabIndex = 22;
             // 
-            // labelX66
+            // AquaticMountNameLabel
             // 
-            this.labelX66.BackColor = System.Drawing.Color.Transparent;
-            this.labelX66.ForeColor = System.Drawing.Color.Black;
-            this.labelX66.Location = new System.Drawing.Point(2, 136);
-            this.labelX66.Name = "labelX66";
-            this.labelX66.Size = new System.Drawing.Size(154, 22);
-            this.labelX66.TabIndex = 21;
-            this.labelX66.Text = "Aquatic";
+            this.AquaticMountNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.AquaticMountNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.AquaticMountNameLabel.Location = new System.Drawing.Point(2, 176);
+            this.AquaticMountNameLabel.Name = "AquaticMountNameLabel";
+            this.AquaticMountNameLabel.Size = new System.Drawing.Size(154, 22);
+            this.AquaticMountNameLabel.TabIndex = 21;
+            this.AquaticMountNameLabel.Text = "Aquatic Mount";
             // 
-            // labelX57
+            // IgnoreFightIfMountedLabel
             // 
-            this.labelX57.BackColor = System.Drawing.Color.Transparent;
-            this.labelX57.ForeColor = System.Drawing.Color.Black;
-            this.labelX57.Location = new System.Drawing.Point(316, 85);
-            this.labelX57.Name = "labelX57";
-            this.labelX57.Size = new System.Drawing.Size(154, 22);
-            this.labelX57.TabIndex = 20;
-            this.labelX57.Text = "Ignore Fight if in Gound Mount";
+            this.IgnoreFightIfMountedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.IgnoreFightIfMountedLabel.ForeColor = System.Drawing.Color.Black;
+            this.IgnoreFightIfMountedLabel.Location = new System.Drawing.Point(316, 85);
+            this.IgnoreFightIfMountedLabel.Name = "IgnoreFightIfMountedLabel";
+            this.IgnoreFightIfMountedLabel.Size = new System.Drawing.Size(154, 22);
+            this.IgnoreFightIfMountedLabel.TabIndex = 20;
+            this.IgnoreFightIfMountedLabel.Text = "Ignore Fight if in Gound Mount";
+            this.IgnoreFightIfMountedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // IgnoreFightIfMounted
             // 
@@ -1054,33 +1083,33 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX8
+            // MinimumDistanceToUseMountLabel
             // 
-            this.labelX8.BackColor = System.Drawing.Color.Transparent;
-            this.labelX8.ForeColor = System.Drawing.Color.Black;
-            this.labelX8.Location = new System.Drawing.Point(2, 79);
-            this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(154, 22);
-            this.labelX8.TabIndex = 16;
-            this.labelX8.Text = "Mount Distance";
+            this.MinimumDistanceToUseMountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MinimumDistanceToUseMountLabel.ForeColor = System.Drawing.Color.Black;
+            this.MinimumDistanceToUseMountLabel.Location = new System.Drawing.Point(2, 79);
+            this.MinimumDistanceToUseMountLabel.Name = "MinimumDistanceToUseMountLabel";
+            this.MinimumDistanceToUseMountLabel.Size = new System.Drawing.Size(154, 22);
+            this.MinimumDistanceToUseMountLabel.TabIndex = 16;
+            this.MinimumDistanceToUseMountLabel.Text = "Mount Distance";
             // 
             // FlyingMountName
             // 
             this.FlyingMountName.ForeColor = System.Drawing.Color.Black;
-            this.FlyingMountName.Location = new System.Drawing.Point(161, 111);
+            this.FlyingMountName.Location = new System.Drawing.Point(161, 149);
             this.FlyingMountName.Name = "FlyingMountName";
             this.FlyingMountName.Size = new System.Drawing.Size(144, 22);
             this.FlyingMountName.TabIndex = 15;
             // 
-            // labelX7
+            // FlyingMountNameLabel
             // 
-            this.labelX7.BackColor = System.Drawing.Color.Transparent;
-            this.labelX7.ForeColor = System.Drawing.Color.Black;
-            this.labelX7.Location = new System.Drawing.Point(2, 108);
-            this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(154, 22);
-            this.labelX7.TabIndex = 14;
-            this.labelX7.Text = "Flying";
+            this.FlyingMountNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.FlyingMountNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.FlyingMountNameLabel.Location = new System.Drawing.Point(2, 147);
+            this.FlyingMountNameLabel.Name = "FlyingMountNameLabel";
+            this.FlyingMountNameLabel.Size = new System.Drawing.Size(154, 22);
+            this.FlyingMountNameLabel.TabIndex = 14;
+            this.FlyingMountNameLabel.Text = "Flying Mount";
             // 
             // GroundMountName
             // 
@@ -1090,25 +1119,26 @@ namespace nManager.Helpful.Forms
             this.GroundMountName.Size = new System.Drawing.Size(144, 22);
             this.GroundMountName.TabIndex = 13;
             // 
-            // labelX6
+            // GroundMountNameLabel
             // 
-            this.labelX6.BackColor = System.Drawing.Color.Transparent;
-            this.labelX6.ForeColor = System.Drawing.Color.Black;
-            this.labelX6.Location = new System.Drawing.Point(2, 51);
-            this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(154, 22);
-            this.labelX6.TabIndex = 12;
-            this.labelX6.Text = "Ground";
+            this.GroundMountNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.GroundMountNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.GroundMountNameLabel.Location = new System.Drawing.Point(2, 51);
+            this.GroundMountNameLabel.Name = "GroundMountNameLabel";
+            this.GroundMountNameLabel.Size = new System.Drawing.Size(154, 22);
+            this.GroundMountNameLabel.TabIndex = 12;
+            this.GroundMountNameLabel.Text = "Ground Mount";
             // 
-            // labelX5
+            // UseGroundMountLabel
             // 
-            this.labelX5.BackColor = System.Drawing.Color.Transparent;
-            this.labelX5.ForeColor = System.Drawing.Color.Black;
-            this.labelX5.Location = new System.Drawing.Point(316, 54);
-            this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(154, 22);
-            this.labelX5.TabIndex = 11;
-            this.labelX5.Text = "Use Ground Mount";
+            this.UseGroundMountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseGroundMountLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseGroundMountLabel.Location = new System.Drawing.Point(316, 54);
+            this.UseGroundMountLabel.Name = "UseGroundMountLabel";
+            this.UseGroundMountLabel.Size = new System.Drawing.Size(154, 22);
+            this.UseGroundMountLabel.TabIndex = 11;
+            this.UseGroundMountLabel.Text = "Use Ground Mount";
+            this.UseGroundMountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UseGroundMount
             // 
@@ -1135,47 +1165,47 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjects);
             this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItems);
             this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItemsLabel);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX69);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.OnlyUseMillingInTownLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.OnlyUseMillingInTown);
             this.LootingFarmingManagementPanelName.Controls.Add(this.TimeBetweenEachMillingAttempt);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX70);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX71);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.TimeBetweenEachMillingAttemptLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoMillingLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoMilling);
             this.LootingFarmingManagementPanelName.Controls.Add(this.HerbsToBeMilled);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX72);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX68);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.HerbsToBeMilledLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.MakeStackOfElementalsItemsLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.MakeStackOfElementalsItems);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX65);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.OnlyUseProspectingInTownLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.OnlyUseProspectingInTown);
             this.LootingFarmingManagementPanelName.Controls.Add(this.TimeBetweenEachProspectingAttempt);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX64);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX63);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.TimeBetweenEachProspectingAttemptLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoProspectingLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoProspecting);
             this.LootingFarmingManagementPanelName.Controls.Add(this.MineralsToProspect);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX62);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.MineralsToProspectLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.labelX61);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoSmelting);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX36);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjectsLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.addBlackListHarvest);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX35);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.HarvestDuringLongDistanceMovementsLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.HarvestDuringLongDistanceMovements);
             this.LootingFarmingManagementPanelName.Controls.Add(this.labelX23);
             this.LootingFarmingManagementPanelName.Controls.Add(this.BeastNinjaSkinning);
             this.LootingFarmingManagementPanelName.Controls.Add(this.GatheringSearchRadius);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX22);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.GatheringSearchRadiusLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestIfMoreThanXUnitInAggroRange);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX21);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX20);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestIfMoreThanXUnitInAggroRangeLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateHerbsHarvestingLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateHerbsHarvesting);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX19);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateVeinsHarvestingLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateVeinsHarvesting);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX17);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateBeastSkinningLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateBeastSkinning);
             this.LootingFarmingManagementPanelName.Controls.Add(this.labelX16);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateChestLooting);
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestIfPlayerNearRadius);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX12);
-            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX18);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestIfPlayerNearRadiusLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateMonsterLootingLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateMonsterLooting);
             this.LootingFarmingManagementPanelName.Fold = true;
             this.LootingFarmingManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("LootingFarmingManagementPanelName.FolderImage")));
@@ -1264,15 +1294,15 @@ namespace nManager.Helpful.Forms
             this.AutoConfirmOnBoPItemsLabel.TabIndex = 62;
             this.AutoConfirmOnBoPItemsLabel.Text = "Auto Confirm on BoP Items";
             // 
-            // labelX69
+            // OnlyUseMillingInTownLabel
             // 
-            this.labelX69.BackColor = System.Drawing.Color.Transparent;
-            this.labelX69.ForeColor = System.Drawing.Color.Black;
-            this.labelX69.Location = new System.Drawing.Point(4, 496);
-            this.labelX69.Name = "labelX69";
-            this.labelX69.Size = new System.Drawing.Size(154, 22);
-            this.labelX69.TabIndex = 59;
-            this.labelX69.Text = "Milling only in town";
+            this.OnlyUseMillingInTownLabel.BackColor = System.Drawing.Color.Transparent;
+            this.OnlyUseMillingInTownLabel.ForeColor = System.Drawing.Color.Black;
+            this.OnlyUseMillingInTownLabel.Location = new System.Drawing.Point(4, 496);
+            this.OnlyUseMillingInTownLabel.Name = "OnlyUseMillingInTownLabel";
+            this.OnlyUseMillingInTownLabel.Size = new System.Drawing.Size(154, 22);
+            this.OnlyUseMillingInTownLabel.TabIndex = 59;
+            this.OnlyUseMillingInTownLabel.Text = "Milling only in town";
             // 
             // OnlyUseMillingInTown
             // 
@@ -1310,25 +1340,25 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX70
+            // TimeBetweenEachMillingAttemptLabel
             // 
-            this.labelX70.BackColor = System.Drawing.Color.Transparent;
-            this.labelX70.ForeColor = System.Drawing.Color.Black;
-            this.labelX70.Location = new System.Drawing.Point(4, 468);
-            this.labelX70.Name = "labelX70";
-            this.labelX70.Size = new System.Drawing.Size(154, 22);
-            this.labelX70.TabIndex = 56;
-            this.labelX70.Text = "Milling Every (in minute)";
+            this.TimeBetweenEachMillingAttemptLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TimeBetweenEachMillingAttemptLabel.ForeColor = System.Drawing.Color.Black;
+            this.TimeBetweenEachMillingAttemptLabel.Location = new System.Drawing.Point(4, 468);
+            this.TimeBetweenEachMillingAttemptLabel.Name = "TimeBetweenEachMillingAttemptLabel";
+            this.TimeBetweenEachMillingAttemptLabel.Size = new System.Drawing.Size(154, 22);
+            this.TimeBetweenEachMillingAttemptLabel.TabIndex = 56;
+            this.TimeBetweenEachMillingAttemptLabel.Text = "Milling Every (in minute)";
             // 
-            // labelX71
+            // ActivateAutoMillingLabel
             // 
-            this.labelX71.BackColor = System.Drawing.Color.Transparent;
-            this.labelX71.ForeColor = System.Drawing.Color.Black;
-            this.labelX71.Location = new System.Drawing.Point(4, 440);
-            this.labelX71.Name = "labelX71";
-            this.labelX71.Size = new System.Drawing.Size(154, 22);
-            this.labelX71.TabIndex = 55;
-            this.labelX71.Text = "Milling";
+            this.ActivateAutoMillingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateAutoMillingLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateAutoMillingLabel.Location = new System.Drawing.Point(4, 440);
+            this.ActivateAutoMillingLabel.Name = "ActivateAutoMillingLabel";
+            this.ActivateAutoMillingLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateAutoMillingLabel.TabIndex = 55;
+            this.ActivateAutoMillingLabel.Text = "Milling";
             // 
             // ActivateAutoMilling
             // 
@@ -1353,25 +1383,25 @@ namespace nManager.Helpful.Forms
             this.HerbsToBeMilled.Size = new System.Drawing.Size(227, 83);
             this.HerbsToBeMilled.TabIndex = 53;
             // 
-            // labelX72
+            // HerbsToBeMilledLabel
             // 
-            this.labelX72.BackColor = System.Drawing.Color.Transparent;
-            this.labelX72.ForeColor = System.Drawing.Color.Black;
-            this.labelX72.Location = new System.Drawing.Point(290, 413);
-            this.labelX72.Name = "labelX72";
-            this.labelX72.Size = new System.Drawing.Size(204, 22);
-            this.labelX72.TabIndex = 52;
-            this.labelX72.Text = "Milling list (one item by line)";
+            this.HerbsToBeMilledLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HerbsToBeMilledLabel.ForeColor = System.Drawing.Color.Black;
+            this.HerbsToBeMilledLabel.Location = new System.Drawing.Point(290, 413);
+            this.HerbsToBeMilledLabel.Name = "HerbsToBeMilledLabel";
+            this.HerbsToBeMilledLabel.Size = new System.Drawing.Size(204, 22);
+            this.HerbsToBeMilledLabel.TabIndex = 52;
+            this.HerbsToBeMilledLabel.Text = "Milling list (one item by line)";
             // 
-            // labelX68
+            // MakeStackOfElementalsItemsLabel
             // 
-            this.labelX68.BackColor = System.Drawing.Color.Transparent;
-            this.labelX68.ForeColor = System.Drawing.Color.Black;
-            this.labelX68.Location = new System.Drawing.Point(4, 519);
-            this.labelX68.Name = "labelX68";
-            this.labelX68.Size = new System.Drawing.Size(154, 22);
-            this.labelX68.TabIndex = 51;
-            this.labelX68.Text = "Auto Make Elemental";
+            this.MakeStackOfElementalsItemsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MakeStackOfElementalsItemsLabel.ForeColor = System.Drawing.Color.Black;
+            this.MakeStackOfElementalsItemsLabel.Location = new System.Drawing.Point(4, 519);
+            this.MakeStackOfElementalsItemsLabel.Name = "MakeStackOfElementalsItemsLabel";
+            this.MakeStackOfElementalsItemsLabel.Size = new System.Drawing.Size(154, 22);
+            this.MakeStackOfElementalsItemsLabel.TabIndex = 51;
+            this.MakeStackOfElementalsItemsLabel.Text = "Auto Make Elemental";
             // 
             // MakeStackOfElementalsItems
             // 
@@ -1386,15 +1416,15 @@ namespace nManager.Helpful.Forms
             this.MakeStackOfElementalsItems.TabIndex = 71;
             this.MakeStackOfElementalsItems.Value = true;
             // 
-            // labelX65
+            // OnlyUseProspectingInTownLabel
             // 
-            this.labelX65.BackColor = System.Drawing.Color.Transparent;
-            this.labelX65.ForeColor = System.Drawing.Color.Black;
-            this.labelX65.Location = new System.Drawing.Point(4, 382);
-            this.labelX65.Name = "labelX65";
-            this.labelX65.Size = new System.Drawing.Size(154, 22);
-            this.labelX65.TabIndex = 49;
-            this.labelX65.Text = "Prospecting only in town";
+            this.OnlyUseProspectingInTownLabel.BackColor = System.Drawing.Color.Transparent;
+            this.OnlyUseProspectingInTownLabel.ForeColor = System.Drawing.Color.Black;
+            this.OnlyUseProspectingInTownLabel.Location = new System.Drawing.Point(4, 382);
+            this.OnlyUseProspectingInTownLabel.Name = "OnlyUseProspectingInTownLabel";
+            this.OnlyUseProspectingInTownLabel.Size = new System.Drawing.Size(154, 22);
+            this.OnlyUseProspectingInTownLabel.TabIndex = 49;
+            this.OnlyUseProspectingInTownLabel.Text = "Prospecting only in town";
             // 
             // OnlyUseProspectingInTown
             // 
@@ -1411,7 +1441,7 @@ namespace nManager.Helpful.Forms
             // 
             // TimeBetweenEachProspectingAttempt
             // 
-            this.TimeBetweenEachProspectingAttempt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.TimeBetweenEachProspectingAttempt.BackColor = System.Drawing.SystemColors.Window;
             this.TimeBetweenEachProspectingAttempt.ForeColor = System.Drawing.Color.Black;
             this.TimeBetweenEachProspectingAttempt.Location = new System.Drawing.Point(163, 354);
             this.TimeBetweenEachProspectingAttempt.Maximum = new decimal(new int[] {
@@ -1433,25 +1463,25 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX64
+            // TimeBetweenEachProspectingAttemptLabel
             // 
-            this.labelX64.BackColor = System.Drawing.Color.Transparent;
-            this.labelX64.ForeColor = System.Drawing.Color.Black;
-            this.labelX64.Location = new System.Drawing.Point(4, 354);
-            this.labelX64.Name = "labelX64";
-            this.labelX64.Size = new System.Drawing.Size(154, 22);
-            this.labelX64.TabIndex = 46;
-            this.labelX64.Text = "Prospecting Every (in minute)";
+            this.TimeBetweenEachProspectingAttemptLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TimeBetweenEachProspectingAttemptLabel.ForeColor = System.Drawing.Color.Black;
+            this.TimeBetweenEachProspectingAttemptLabel.Location = new System.Drawing.Point(4, 354);
+            this.TimeBetweenEachProspectingAttemptLabel.Name = "TimeBetweenEachProspectingAttemptLabel";
+            this.TimeBetweenEachProspectingAttemptLabel.Size = new System.Drawing.Size(154, 22);
+            this.TimeBetweenEachProspectingAttemptLabel.TabIndex = 46;
+            this.TimeBetweenEachProspectingAttemptLabel.Text = "Prospecting Every (in minute)";
             // 
-            // labelX63
+            // ActivateAutoProspectingLabel
             // 
-            this.labelX63.BackColor = System.Drawing.Color.Transparent;
-            this.labelX63.ForeColor = System.Drawing.Color.Black;
-            this.labelX63.Location = new System.Drawing.Point(4, 326);
-            this.labelX63.Name = "labelX63";
-            this.labelX63.Size = new System.Drawing.Size(154, 22);
-            this.labelX63.TabIndex = 45;
-            this.labelX63.Text = "Prospecting";
+            this.ActivateAutoProspectingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateAutoProspectingLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateAutoProspectingLabel.Location = new System.Drawing.Point(4, 326);
+            this.ActivateAutoProspectingLabel.Name = "ActivateAutoProspectingLabel";
+            this.ActivateAutoProspectingLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateAutoProspectingLabel.TabIndex = 45;
+            this.ActivateAutoProspectingLabel.Text = "Prospecting";
             // 
             // ActivateAutoProspecting
             // 
@@ -1476,15 +1506,15 @@ namespace nManager.Helpful.Forms
             this.MineralsToProspect.Size = new System.Drawing.Size(227, 83);
             this.MineralsToProspect.TabIndex = 43;
             // 
-            // labelX62
+            // MineralsToProspectLabel
             // 
-            this.labelX62.BackColor = System.Drawing.Color.Transparent;
-            this.labelX62.ForeColor = System.Drawing.Color.Black;
-            this.labelX62.Location = new System.Drawing.Point(290, 298);
-            this.labelX62.Name = "labelX62";
-            this.labelX62.Size = new System.Drawing.Size(204, 22);
-            this.labelX62.TabIndex = 42;
-            this.labelX62.Text = "Prospecting list (one item by line)";
+            this.MineralsToProspectLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MineralsToProspectLabel.ForeColor = System.Drawing.Color.Black;
+            this.MineralsToProspectLabel.Location = new System.Drawing.Point(290, 298);
+            this.MineralsToProspectLabel.Name = "MineralsToProspectLabel";
+            this.MineralsToProspectLabel.Size = new System.Drawing.Size(204, 22);
+            this.MineralsToProspectLabel.TabIndex = 42;
+            this.MineralsToProspectLabel.Text = "Prospecting list (one item by line)";
             // 
             // labelX61
             // 
@@ -1509,15 +1539,15 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSmelting.TabIndex = 74;
             this.ActivateAutoSmelting.Value = false;
             // 
-            // labelX36
+            // DontHarvestTheFollowingObjectsLabel
             // 
-            this.labelX36.BackColor = System.Drawing.Color.Transparent;
-            this.labelX36.ForeColor = System.Drawing.Color.Black;
-            this.labelX36.Location = new System.Drawing.Point(289, 160);
-            this.labelX36.Name = "labelX36";
-            this.labelX36.Size = new System.Drawing.Size(209, 22);
-            this.labelX36.TabIndex = 38;
-            this.labelX36.Text = "Don\'t harvest List (one id per line)";
+            this.DontHarvestTheFollowingObjectsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontHarvestTheFollowingObjectsLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontHarvestTheFollowingObjectsLabel.Location = new System.Drawing.Point(289, 160);
+            this.DontHarvestTheFollowingObjectsLabel.Name = "DontHarvestTheFollowingObjectsLabel";
+            this.DontHarvestTheFollowingObjectsLabel.Size = new System.Drawing.Size(209, 22);
+            this.DontHarvestTheFollowingObjectsLabel.TabIndex = 38;
+            this.DontHarvestTheFollowingObjectsLabel.Text = "Don\'t harvest List (one id per line)";
             // 
             // addBlackListHarvest
             // 
@@ -1533,15 +1563,15 @@ namespace nManager.Helpful.Forms
             this.addBlackListHarvest.TabIndex = 60;
             this.addBlackListHarvest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelX35
+            // HarvestDuringLongDistanceMovementsLabel
             // 
-            this.labelX35.BackColor = System.Drawing.Color.Transparent;
-            this.labelX35.ForeColor = System.Drawing.Color.Black;
-            this.labelX35.Location = new System.Drawing.Point(4, 272);
-            this.labelX35.Name = "labelX35";
-            this.labelX35.Size = new System.Drawing.Size(154, 22);
-            this.labelX35.TabIndex = 34;
-            this.labelX35.Text = "Harvest During Long Move";
+            this.HarvestDuringLongDistanceMovementsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HarvestDuringLongDistanceMovementsLabel.ForeColor = System.Drawing.Color.Black;
+            this.HarvestDuringLongDistanceMovementsLabel.Location = new System.Drawing.Point(4, 272);
+            this.HarvestDuringLongDistanceMovementsLabel.Name = "HarvestDuringLongDistanceMovementsLabel";
+            this.HarvestDuringLongDistanceMovementsLabel.Size = new System.Drawing.Size(154, 22);
+            this.HarvestDuringLongDistanceMovementsLabel.TabIndex = 34;
+            this.HarvestDuringLongDistanceMovementsLabel.Text = "Harvest During Long Move";
             // 
             // HarvestDuringLongDistanceMovements
             // 
@@ -1602,15 +1632,15 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX22
+            // GatheringSearchRadiusLabel
             // 
-            this.labelX22.BackColor = System.Drawing.Color.Transparent;
-            this.labelX22.ForeColor = System.Drawing.Color.Black;
-            this.labelX22.Location = new System.Drawing.Point(4, 244);
-            this.labelX22.Name = "labelX22";
-            this.labelX22.Size = new System.Drawing.Size(154, 22);
-            this.labelX22.TabIndex = 29;
-            this.labelX22.Text = "Search Radius";
+            this.GatheringSearchRadiusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.GatheringSearchRadiusLabel.ForeColor = System.Drawing.Color.Black;
+            this.GatheringSearchRadiusLabel.Location = new System.Drawing.Point(4, 244);
+            this.GatheringSearchRadiusLabel.Name = "GatheringSearchRadiusLabel";
+            this.GatheringSearchRadiusLabel.Size = new System.Drawing.Size(154, 22);
+            this.GatheringSearchRadiusLabel.TabIndex = 29;
+            this.GatheringSearchRadiusLabel.Text = "Search Radius";
             // 
             // DontHarvestIfMoreThanXUnitInAggroRange
             // 
@@ -1630,25 +1660,25 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX21
+            // DontHarvestIfMoreThanXUnitInAggroRangeLabel
             // 
-            this.labelX21.BackColor = System.Drawing.Color.Transparent;
-            this.labelX21.ForeColor = System.Drawing.Color.Black;
-            this.labelX21.Location = new System.Drawing.Point(4, 216);
-            this.labelX21.Name = "labelX21";
-            this.labelX21.Size = new System.Drawing.Size(154, 22);
-            this.labelX21.TabIndex = 27;
-            this.labelX21.Text = "Max Units Near";
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.Location = new System.Drawing.Point(4, 216);
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.Name = "DontHarvestIfMoreThanXUnitInAggroRangeLabel";
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.Size = new System.Drawing.Size(154, 22);
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.TabIndex = 27;
+            this.DontHarvestIfMoreThanXUnitInAggroRangeLabel.Text = "Max Units Near";
             // 
-            // labelX20
+            // ActivateHerbsHarvestingLabel
             // 
-            this.labelX20.BackColor = System.Drawing.Color.Transparent;
-            this.labelX20.ForeColor = System.Drawing.Color.Black;
-            this.labelX20.Location = new System.Drawing.Point(4, 160);
-            this.labelX20.Name = "labelX20";
-            this.labelX20.Size = new System.Drawing.Size(154, 22);
-            this.labelX20.TabIndex = 26;
-            this.labelX20.Text = "Harvest Herbs";
+            this.ActivateHerbsHarvestingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateHerbsHarvestingLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateHerbsHarvestingLabel.Location = new System.Drawing.Point(4, 160);
+            this.ActivateHerbsHarvestingLabel.Name = "ActivateHerbsHarvestingLabel";
+            this.ActivateHerbsHarvestingLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateHerbsHarvestingLabel.TabIndex = 26;
+            this.ActivateHerbsHarvestingLabel.Text = "Harvest Herbs";
             // 
             // ActivateHerbsHarvesting
             // 
@@ -1663,15 +1693,15 @@ namespace nManager.Helpful.Forms
             this.ActivateHerbsHarvesting.TabIndex = 77;
             this.ActivateHerbsHarvesting.Value = false;
             // 
-            // labelX19
+            // ActivateVeinsHarvestingLabel
             // 
-            this.labelX19.BackColor = System.Drawing.Color.Transparent;
-            this.labelX19.ForeColor = System.Drawing.Color.Black;
-            this.labelX19.Location = new System.Drawing.Point(4, 132);
-            this.labelX19.Name = "labelX19";
-            this.labelX19.Size = new System.Drawing.Size(154, 22);
-            this.labelX19.TabIndex = 24;
-            this.labelX19.Text = "Harvest Minerals";
+            this.ActivateVeinsHarvestingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateVeinsHarvestingLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateVeinsHarvestingLabel.Location = new System.Drawing.Point(4, 132);
+            this.ActivateVeinsHarvestingLabel.Name = "ActivateVeinsHarvestingLabel";
+            this.ActivateVeinsHarvestingLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateVeinsHarvestingLabel.TabIndex = 24;
+            this.ActivateVeinsHarvestingLabel.Text = "Harvest Minerals";
             // 
             // ActivateVeinsHarvesting
             // 
@@ -1686,15 +1716,15 @@ namespace nManager.Helpful.Forms
             this.ActivateVeinsHarvesting.TabIndex = 78;
             this.ActivateVeinsHarvesting.Value = false;
             // 
-            // labelX17
+            // ActivateBeastSkinningLabel
             // 
-            this.labelX17.BackColor = System.Drawing.Color.Transparent;
-            this.labelX17.ForeColor = System.Drawing.Color.Black;
-            this.labelX17.Location = new System.Drawing.Point(4, 104);
-            this.labelX17.Name = "labelX17";
-            this.labelX17.Size = new System.Drawing.Size(154, 22);
-            this.labelX17.TabIndex = 22;
-            this.labelX17.Text = "Skin Mobs";
+            this.ActivateBeastSkinningLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateBeastSkinningLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateBeastSkinningLabel.Location = new System.Drawing.Point(4, 104);
+            this.ActivateBeastSkinningLabel.Name = "ActivateBeastSkinningLabel";
+            this.ActivateBeastSkinningLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateBeastSkinningLabel.TabIndex = 22;
+            this.ActivateBeastSkinningLabel.Text = "Skin Mobs";
             // 
             // ActivateBeastSkinning
             // 
@@ -1750,25 +1780,25 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX12
+            // DontHarvestIfPlayerNearRadiusLabel
             // 
-            this.labelX12.BackColor = System.Drawing.Color.Transparent;
-            this.labelX12.ForeColor = System.Drawing.Color.Black;
-            this.labelX12.Location = new System.Drawing.Point(4, 188);
-            this.labelX12.Name = "labelX12";
-            this.labelX12.Size = new System.Drawing.Size(154, 22);
-            this.labelX12.TabIndex = 16;
-            this.labelX12.Text = "Harvest Avoid Players Radius";
+            this.DontHarvestIfPlayerNearRadiusLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontHarvestIfPlayerNearRadiusLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontHarvestIfPlayerNearRadiusLabel.Location = new System.Drawing.Point(4, 188);
+            this.DontHarvestIfPlayerNearRadiusLabel.Name = "DontHarvestIfPlayerNearRadiusLabel";
+            this.DontHarvestIfPlayerNearRadiusLabel.Size = new System.Drawing.Size(154, 22);
+            this.DontHarvestIfPlayerNearRadiusLabel.TabIndex = 16;
+            this.DontHarvestIfPlayerNearRadiusLabel.Text = "Harvest Avoid Players Radius";
             // 
-            // labelX18
+            // ActivateMonsterLootingLabel
             // 
-            this.labelX18.BackColor = System.Drawing.Color.Transparent;
-            this.labelX18.ForeColor = System.Drawing.Color.Black;
-            this.labelX18.Location = new System.Drawing.Point(4, 49);
-            this.labelX18.Name = "labelX18";
-            this.labelX18.Size = new System.Drawing.Size(154, 22);
-            this.labelX18.TabIndex = 11;
-            this.labelX18.Text = "Loot Mobs";
+            this.ActivateMonsterLootingLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateMonsterLootingLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateMonsterLootingLabel.Location = new System.Drawing.Point(4, 49);
+            this.ActivateMonsterLootingLabel.Name = "ActivateMonsterLootingLabel";
+            this.ActivateMonsterLootingLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateMonsterLootingLabel.TabIndex = 11;
+            this.ActivateMonsterLootingLabel.Text = "Loot Mobs";
             // 
             // ActivateMonsterLooting
             // 
@@ -1801,17 +1831,17 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellItemsWhenLessThanXSlotLeftLabel);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.RepairWhenDurabilityIsUnderPercentLabel);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.ForceToSellTheseItems);
-            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX53);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.ForceToSellTheseItemsLabel);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX52);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.ActivateAutoSellingFeature);
-            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX51);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.ActivateAutoRepairFeatureLabel);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.ActivateAutoRepairFeature);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.NumberOfFoodsWeGot);
-            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX50);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.NumberOfFoodsWeGotLabel);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.NumberOfBeverageWeGot);
-            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX41);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.NumberOfBeverageWeGotLabel);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.DontSellTheseItems);
-            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX46);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.DontSellTheseItemsLabel);
             this.NPCsRepairSellBuyPanelName.Fold = true;
             this.NPCsRepairSellBuyPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("NPCsRepairSellBuyPanelName.FolderImage")));
             this.NPCsRepairSellBuyPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
@@ -1970,15 +2000,15 @@ namespace nManager.Helpful.Forms
             this.ForceToSellTheseItems.Size = new System.Drawing.Size(227, 83);
             this.ForceToSellTheseItems.TabIndex = 35;
             // 
-            // labelX53
+            // ForceToSellTheseItemsLabel
             // 
-            this.labelX53.BackColor = System.Drawing.Color.Transparent;
-            this.labelX53.ForeColor = System.Drawing.Color.Black;
-            this.labelX53.Location = new System.Drawing.Point(272, 226);
-            this.labelX53.Name = "labelX53";
-            this.labelX53.Size = new System.Drawing.Size(227, 22);
-            this.labelX53.TabIndex = 34;
-            this.labelX53.Text = "Force Sell List (one item by line)";
+            this.ForceToSellTheseItemsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ForceToSellTheseItemsLabel.ForeColor = System.Drawing.Color.Black;
+            this.ForceToSellTheseItemsLabel.Location = new System.Drawing.Point(272, 226);
+            this.ForceToSellTheseItemsLabel.Name = "ForceToSellTheseItemsLabel";
+            this.ForceToSellTheseItemsLabel.Size = new System.Drawing.Size(227, 22);
+            this.ForceToSellTheseItemsLabel.TabIndex = 34;
+            this.ForceToSellTheseItemsLabel.Text = "Force Sell List (one item by line)";
             // 
             // labelX52
             // 
@@ -2003,15 +2033,15 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSellingFeature.TabIndex = 43;
             this.ActivateAutoSellingFeature.Value = false;
             // 
-            // labelX51
+            // ActivateAutoRepairFeatureLabel
             // 
-            this.labelX51.BackColor = System.Drawing.Color.Transparent;
-            this.labelX51.ForeColor = System.Drawing.Color.Black;
-            this.labelX51.Location = new System.Drawing.Point(3, 109);
-            this.labelX51.Name = "labelX51";
-            this.labelX51.Size = new System.Drawing.Size(154, 22);
-            this.labelX51.TabIndex = 26;
-            this.labelX51.Text = "Repair";
+            this.ActivateAutoRepairFeatureLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateAutoRepairFeatureLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateAutoRepairFeatureLabel.Location = new System.Drawing.Point(3, 109);
+            this.ActivateAutoRepairFeatureLabel.Name = "ActivateAutoRepairFeatureLabel";
+            this.ActivateAutoRepairFeatureLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateAutoRepairFeatureLabel.TabIndex = 26;
+            this.ActivateAutoRepairFeatureLabel.Text = "Repair";
             // 
             // ActivateAutoRepairFeature
             // 
@@ -2034,15 +2064,15 @@ namespace nManager.Helpful.Forms
             this.NumberOfFoodsWeGot.Size = new System.Drawing.Size(63, 22);
             this.NumberOfFoodsWeGot.TabIndex = 24;
             // 
-            // labelX50
+            // NumberOfFoodsWeGotLabel
             // 
-            this.labelX50.BackColor = System.Drawing.Color.Transparent;
-            this.labelX50.ForeColor = System.Drawing.Color.Black;
-            this.labelX50.Location = new System.Drawing.Point(280, 80);
-            this.labelX50.Name = "labelX50";
-            this.labelX50.Size = new System.Drawing.Size(154, 22);
-            this.labelX50.TabIndex = 23;
-            this.labelX50.Text = "Food Amount";
+            this.NumberOfFoodsWeGotLabel.BackColor = System.Drawing.Color.Transparent;
+            this.NumberOfFoodsWeGotLabel.ForeColor = System.Drawing.Color.Black;
+            this.NumberOfFoodsWeGotLabel.Location = new System.Drawing.Point(280, 80);
+            this.NumberOfFoodsWeGotLabel.Name = "NumberOfFoodsWeGotLabel";
+            this.NumberOfFoodsWeGotLabel.Size = new System.Drawing.Size(154, 22);
+            this.NumberOfFoodsWeGotLabel.TabIndex = 23;
+            this.NumberOfFoodsWeGotLabel.Text = "Food Amount";
             // 
             // NumberOfBeverageWeGot
             // 
@@ -2052,15 +2082,15 @@ namespace nManager.Helpful.Forms
             this.NumberOfBeverageWeGot.Size = new System.Drawing.Size(63, 22);
             this.NumberOfBeverageWeGot.TabIndex = 18;
             // 
-            // labelX41
+            // NumberOfBeverageWeGotLabel
             // 
-            this.labelX41.BackColor = System.Drawing.Color.Transparent;
-            this.labelX41.ForeColor = System.Drawing.Color.Black;
-            this.labelX41.Location = new System.Drawing.Point(3, 81);
-            this.labelX41.Name = "labelX41";
-            this.labelX41.Size = new System.Drawing.Size(154, 22);
-            this.labelX41.TabIndex = 16;
-            this.labelX41.Text = "Drink Amount";
+            this.NumberOfBeverageWeGotLabel.BackColor = System.Drawing.Color.Transparent;
+            this.NumberOfBeverageWeGotLabel.ForeColor = System.Drawing.Color.Black;
+            this.NumberOfBeverageWeGotLabel.Location = new System.Drawing.Point(3, 81);
+            this.NumberOfBeverageWeGotLabel.Name = "NumberOfBeverageWeGotLabel";
+            this.NumberOfBeverageWeGotLabel.Size = new System.Drawing.Size(154, 22);
+            this.NumberOfBeverageWeGotLabel.TabIndex = 16;
+            this.NumberOfBeverageWeGotLabel.Text = "Drink Amount";
             // 
             // DontSellTheseItems
             // 
@@ -2072,15 +2102,15 @@ namespace nManager.Helpful.Forms
             this.DontSellTheseItems.Size = new System.Drawing.Size(227, 83);
             this.DontSellTheseItems.TabIndex = 15;
             // 
-            // labelX46
+            // DontSellTheseItemsLabel
             // 
-            this.labelX46.BackColor = System.Drawing.Color.Transparent;
-            this.labelX46.ForeColor = System.Drawing.Color.Black;
-            this.labelX46.Location = new System.Drawing.Point(12, 226);
-            this.labelX46.Name = "labelX46";
-            this.labelX46.Size = new System.Drawing.Size(227, 22);
-            this.labelX46.TabIndex = 14;
-            this.labelX46.Text = "Do not Sell List (one item by line)";
+            this.DontSellTheseItemsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontSellTheseItemsLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontSellTheseItemsLabel.Location = new System.Drawing.Point(12, 226);
+            this.DontSellTheseItemsLabel.Name = "DontSellTheseItemsLabel";
+            this.DontSellTheseItemsLabel.Size = new System.Drawing.Size(227, 22);
+            this.DontSellTheseItemsLabel.TabIndex = 14;
+            this.DontSellTheseItemsLabel.Text = "Do not Sell List (one item by line)";
             // 
             // MailsManagementPanelName
             // 
@@ -2098,15 +2128,15 @@ namespace nManager.Helpful.Forms
             this.MailsManagementPanelName.Controls.Add(this.SendMailWhenLessThanXSlotLeft);
             this.MailsManagementPanelName.Controls.Add(this.SendMailWhenLessThanXSlotLeftLabel);
             this.MailsManagementPanelName.Controls.Add(this.MaillingFeatureRecipient);
-            this.MailsManagementPanelName.Controls.Add(this.labelX56);
+            this.MailsManagementPanelName.Controls.Add(this.MaillingFeatureRecipientLabel);
             this.MailsManagementPanelName.Controls.Add(this.MaillingFeatureSubject);
             this.MailsManagementPanelName.Controls.Add(this.ForceToMailTheseItems);
-            this.MailsManagementPanelName.Controls.Add(this.labelX48);
-            this.MailsManagementPanelName.Controls.Add(this.labelX54);
-            this.MailsManagementPanelName.Controls.Add(this.labelX55);
+            this.MailsManagementPanelName.Controls.Add(this.ForceToMailTheseItemsLabel);
+            this.MailsManagementPanelName.Controls.Add(this.MaillingFeatureSubjectLabel);
+            this.MailsManagementPanelName.Controls.Add(this.ActivateAutoMaillingFeatureLabel);
             this.MailsManagementPanelName.Controls.Add(this.ActivateAutoMaillingFeature);
             this.MailsManagementPanelName.Controls.Add(this.DontMailTheseItems);
-            this.MailsManagementPanelName.Controls.Add(this.labelX58);
+            this.MailsManagementPanelName.Controls.Add(this.DontMailTheseItemsLabel);
             this.MailsManagementPanelName.Fold = true;
             this.MailsManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("MailsManagementPanelName.FolderImage")));
             this.MailsManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
@@ -2235,15 +2265,15 @@ namespace nManager.Helpful.Forms
             this.MaillingFeatureRecipient.Size = new System.Drawing.Size(175, 22);
             this.MaillingFeatureRecipient.TabIndex = 38;
             // 
-            // labelX56
+            // MaillingFeatureRecipientLabel
             // 
-            this.labelX56.BackColor = System.Drawing.Color.Transparent;
-            this.labelX56.ForeColor = System.Drawing.Color.Black;
-            this.labelX56.Location = new System.Drawing.Point(3, 106);
-            this.labelX56.Name = "labelX56";
-            this.labelX56.Size = new System.Drawing.Size(154, 22);
-            this.labelX56.TabIndex = 37;
-            this.labelX56.Text = "Mail Recipient";
+            this.MaillingFeatureRecipientLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MaillingFeatureRecipientLabel.ForeColor = System.Drawing.Color.Black;
+            this.MaillingFeatureRecipientLabel.Location = new System.Drawing.Point(3, 106);
+            this.MaillingFeatureRecipientLabel.Name = "MaillingFeatureRecipientLabel";
+            this.MaillingFeatureRecipientLabel.Size = new System.Drawing.Size(154, 22);
+            this.MaillingFeatureRecipientLabel.TabIndex = 37;
+            this.MaillingFeatureRecipientLabel.Text = "Mail Recipient";
             // 
             // MaillingFeatureSubject
             // 
@@ -2263,35 +2293,35 @@ namespace nManager.Helpful.Forms
             this.ForceToMailTheseItems.Size = new System.Drawing.Size(227, 83);
             this.ForceToMailTheseItems.TabIndex = 35;
             // 
-            // labelX48
+            // ForceToMailTheseItemsLabel
             // 
-            this.labelX48.BackColor = System.Drawing.Color.Transparent;
-            this.labelX48.ForeColor = System.Drawing.Color.Black;
-            this.labelX48.Location = new System.Drawing.Point(272, 223);
-            this.labelX48.Name = "labelX48";
-            this.labelX48.Size = new System.Drawing.Size(227, 22);
-            this.labelX48.TabIndex = 34;
-            this.labelX48.Text = "Force Mail List (one item by line)";
+            this.ForceToMailTheseItemsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ForceToMailTheseItemsLabel.ForeColor = System.Drawing.Color.Black;
+            this.ForceToMailTheseItemsLabel.Location = new System.Drawing.Point(272, 223);
+            this.ForceToMailTheseItemsLabel.Name = "ForceToMailTheseItemsLabel";
+            this.ForceToMailTheseItemsLabel.Size = new System.Drawing.Size(227, 22);
+            this.ForceToMailTheseItemsLabel.TabIndex = 34;
+            this.ForceToMailTheseItemsLabel.Text = "Force Mail List (one item by line)";
             // 
-            // labelX54
+            // MaillingFeatureSubjectLabel
             // 
-            this.labelX54.BackColor = System.Drawing.Color.Transparent;
-            this.labelX54.ForeColor = System.Drawing.Color.Black;
-            this.labelX54.Location = new System.Drawing.Point(3, 134);
-            this.labelX54.Name = "labelX54";
-            this.labelX54.Size = new System.Drawing.Size(154, 22);
-            this.labelX54.TabIndex = 28;
-            this.labelX54.Text = "Subject";
+            this.MaillingFeatureSubjectLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MaillingFeatureSubjectLabel.ForeColor = System.Drawing.Color.Black;
+            this.MaillingFeatureSubjectLabel.Location = new System.Drawing.Point(3, 134);
+            this.MaillingFeatureSubjectLabel.Name = "MaillingFeatureSubjectLabel";
+            this.MaillingFeatureSubjectLabel.Size = new System.Drawing.Size(154, 22);
+            this.MaillingFeatureSubjectLabel.TabIndex = 28;
+            this.MaillingFeatureSubjectLabel.Text = "Subject";
             // 
-            // labelX55
+            // ActivateAutoMaillingFeatureLabel
             // 
-            this.labelX55.BackColor = System.Drawing.Color.Transparent;
-            this.labelX55.ForeColor = System.Drawing.Color.Black;
-            this.labelX55.Location = new System.Drawing.Point(3, 51);
-            this.labelX55.Name = "labelX55";
-            this.labelX55.Size = new System.Drawing.Size(154, 22);
-            this.labelX55.TabIndex = 26;
-            this.labelX55.Text = "Use Mail";
+            this.ActivateAutoMaillingFeatureLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateAutoMaillingFeatureLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateAutoMaillingFeatureLabel.Location = new System.Drawing.Point(3, 51);
+            this.ActivateAutoMaillingFeatureLabel.Name = "ActivateAutoMaillingFeatureLabel";
+            this.ActivateAutoMaillingFeatureLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateAutoMaillingFeatureLabel.TabIndex = 26;
+            this.ActivateAutoMaillingFeatureLabel.Text = "Use Mail";
             // 
             // ActivateAutoMaillingFeature
             // 
@@ -2316,15 +2346,15 @@ namespace nManager.Helpful.Forms
             this.DontMailTheseItems.Size = new System.Drawing.Size(227, 83);
             this.DontMailTheseItems.TabIndex = 15;
             // 
-            // labelX58
+            // DontMailTheseItemsLabel
             // 
-            this.labelX58.BackColor = System.Drawing.Color.Transparent;
-            this.labelX58.ForeColor = System.Drawing.Color.Black;
-            this.labelX58.Location = new System.Drawing.Point(12, 223);
-            this.labelX58.Name = "labelX58";
-            this.labelX58.Size = new System.Drawing.Size(228, 22);
-            this.labelX58.TabIndex = 14;
-            this.labelX58.Text = "Do not Mail List (one item by line)";
+            this.DontMailTheseItemsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontMailTheseItemsLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontMailTheseItemsLabel.Location = new System.Drawing.Point(12, 223);
+            this.DontMailTheseItemsLabel.Name = "DontMailTheseItemsLabel";
+            this.DontMailTheseItemsLabel.Size = new System.Drawing.Size(228, 22);
+            this.DontMailTheseItemsLabel.TabIndex = 14;
+            this.DontMailTheseItemsLabel.Text = "Do not Mail List (one item by line)";
             // 
             // RegenerationManagementPanelName
             // 
@@ -2337,12 +2367,12 @@ namespace nManager.Helpful.Forms
             this.RegenerationManagementPanelName.Controls.Add(this.labelX10);
             this.RegenerationManagementPanelName.Controls.Add(this.DrinkBeverageWhenManaIsUnderXPercent);
             this.RegenerationManagementPanelName.Controls.Add(this.BeverageName);
-            this.RegenerationManagementPanelName.Controls.Add(this.labelX15);
+            this.RegenerationManagementPanelName.Controls.Add(this.BeverageNameLabel);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX14);
             this.RegenerationManagementPanelName.Controls.Add(this.labelX13);
             this.RegenerationManagementPanelName.Controls.Add(this.EatFoodWhenHealthIsUnderXPercent);
             this.RegenerationManagementPanelName.Controls.Add(this.FoodName);
-            this.RegenerationManagementPanelName.Controls.Add(this.labelX11);
+            this.RegenerationManagementPanelName.Controls.Add(this.FoodNameLabel);
             this.RegenerationManagementPanelName.Fold = true;
             this.RegenerationManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("RegenerationManagementPanelName.FolderImage")));
             this.RegenerationManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
@@ -2426,15 +2456,15 @@ namespace nManager.Helpful.Forms
             this.BeverageName.Size = new System.Drawing.Size(144, 22);
             this.BeverageName.TabIndex = 22;
             // 
-            // labelX15
+            // BeverageNameLabel
             // 
-            this.labelX15.BackColor = System.Drawing.Color.Transparent;
-            this.labelX15.ForeColor = System.Drawing.Color.Black;
-            this.labelX15.Location = new System.Drawing.Point(3, 74);
-            this.labelX15.Name = "labelX15";
-            this.labelX15.Size = new System.Drawing.Size(154, 22);
-            this.labelX15.TabIndex = 21;
-            this.labelX15.Text = "Drink";
+            this.BeverageNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.BeverageNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.BeverageNameLabel.Location = new System.Drawing.Point(3, 74);
+            this.BeverageNameLabel.Name = "BeverageNameLabel";
+            this.BeverageNameLabel.Size = new System.Drawing.Size(154, 22);
+            this.BeverageNameLabel.TabIndex = 21;
+            this.BeverageNameLabel.Text = "Drink";
             // 
             // labelX14
             // 
@@ -2487,15 +2517,15 @@ namespace nManager.Helpful.Forms
             this.FoodName.Size = new System.Drawing.Size(144, 22);
             this.FoodName.TabIndex = 13;
             // 
-            // labelX11
+            // FoodNameLabel
             // 
-            this.labelX11.BackColor = System.Drawing.Color.Transparent;
-            this.labelX11.ForeColor = System.Drawing.Color.Black;
-            this.labelX11.Location = new System.Drawing.Point(3, 46);
-            this.labelX11.Name = "labelX11";
-            this.labelX11.Size = new System.Drawing.Size(154, 22);
-            this.labelX11.TabIndex = 12;
-            this.labelX11.Text = "Food";
+            this.FoodNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.FoodNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.FoodNameLabel.Location = new System.Drawing.Point(3, 46);
+            this.FoodNameLabel.Name = "FoodNameLabel";
+            this.FoodNameLabel.Size = new System.Drawing.Size(154, 22);
+            this.FoodNameLabel.TabIndex = 12;
+            this.FoodNameLabel.Text = "Food";
             // 
             // SecuritySystemPanelName
             // 
@@ -2509,30 +2539,29 @@ namespace nManager.Helpful.Forms
             this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBIfReceivedAtMostXWhispers);
             this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXLevelup);
             this.SecuritySystemPanelName.Controls.Add(this.UseHearthstone);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX39);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX45);
+            this.SecuritySystemPanelName.Controls.Add(this.SecuritySystemLabel);
             this.SecuritySystemPanelName.Controls.Add(this.PlayASongIfNewWhispReceived);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX34);
+            this.SecuritySystemPanelName.Controls.Add(this.CloseGameLabel);
             this.SecuritySystemPanelName.Controls.Add(this.labelX33);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX43);
+            this.SecuritySystemPanelName.Controls.Add(this.RecordWhispsInLogFilesLabel);
             this.SecuritySystemPanelName.Controls.Add(this.labelX32);
             this.SecuritySystemPanelName.Controls.Add(this.labelX31);
             this.SecuritySystemPanelName.Controls.Add(this.RecordWhispsInLogFiles);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX29);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfPlayerHaveBeenTeleportedLabel);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfPlayerHaveBeenTeleported);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX44);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX30);
+            this.SecuritySystemPanelName.Controls.Add(this.PauseTNBIfNearByPlayerLabel);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfHonorPointsLimitReachedLabel);
             this.SecuritySystemPanelName.Controls.Add(this.PauseTNBIfNearByPlayer);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfHonorPointsLimitReached);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXMinutes);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX28);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXMinutesLabel);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXStucks);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX26);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXStucksLabel);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfReceivedAtMostXWhispers);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX25);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfReceivedAtMostXWhispersLabel);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXLevelup);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX24);
-            this.SecuritySystemPanelName.Controls.Add(this.labelX27);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXLevelupLabel);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfBagAreFullLabel);
             this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfBagAreFull);
             this.SecuritySystemPanelName.Fold = true;
             this.SecuritySystemPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("SecuritySystemPanelName.FolderImage")));
@@ -2629,26 +2658,16 @@ namespace nManager.Helpful.Forms
             this.UseHearthstone.TabIndex = 53;
             this.UseHearthstone.Value = false;
             // 
-            // labelX39
+            // SecuritySystemLabel
             // 
-            this.labelX39.BackColor = System.Drawing.Color.Transparent;
-            this.labelX39.ForeColor = System.Drawing.Color.Black;
-            this.labelX39.Location = new System.Drawing.Point(3, 356);
-            this.labelX39.Name = "labelX39";
-            this.labelX39.Size = new System.Drawing.Size(154, 22);
-            this.labelX39.TabIndex = 41;
-            this.labelX39.Text = "Song if New Whisper";
-            // 
-            // labelX45
-            // 
-            this.labelX45.BackColor = System.Drawing.Color.Transparent;
-            this.labelX45.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX45.ForeColor = System.Drawing.Color.Black;
-            this.labelX45.Location = new System.Drawing.Point(3, 274);
-            this.labelX45.Name = "labelX45";
-            this.labelX45.Size = new System.Drawing.Size(154, 22);
-            this.labelX45.TabIndex = 35;
-            this.labelX45.Text = "Security:";
+            this.SecuritySystemLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SecuritySystemLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecuritySystemLabel.ForeColor = System.Drawing.Color.Black;
+            this.SecuritySystemLabel.Location = new System.Drawing.Point(3, 274);
+            this.SecuritySystemLabel.Name = "SecuritySystemLabel";
+            this.SecuritySystemLabel.Size = new System.Drawing.Size(154, 22);
+            this.SecuritySystemLabel.TabIndex = 35;
+            this.SecuritySystemLabel.Text = "Security:";
             // 
             // PlayASongIfNewWhispReceived
             // 
@@ -2663,16 +2682,16 @@ namespace nManager.Helpful.Forms
             this.PlayASongIfNewWhispReceived.TabIndex = 54;
             this.PlayASongIfNewWhispReceived.Value = false;
             // 
-            // labelX34
+            // CloseGameLabel
             // 
-            this.labelX34.BackColor = System.Drawing.Color.Transparent;
-            this.labelX34.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX34.ForeColor = System.Drawing.Color.Black;
-            this.labelX34.Location = new System.Drawing.Point(3, 52);
-            this.labelX34.Name = "labelX34";
-            this.labelX34.Size = new System.Drawing.Size(154, 22);
-            this.labelX34.TabIndex = 34;
-            this.labelX34.Text = "Close game:";
+            this.CloseGameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.CloseGameLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseGameLabel.ForeColor = System.Drawing.Color.Black;
+            this.CloseGameLabel.Location = new System.Drawing.Point(3, 52);
+            this.CloseGameLabel.Name = "CloseGameLabel";
+            this.CloseGameLabel.Size = new System.Drawing.Size(154, 22);
+            this.CloseGameLabel.TabIndex = 34;
+            this.CloseGameLabel.Text = "Close game:";
             // 
             // labelX33
             // 
@@ -2684,15 +2703,15 @@ namespace nManager.Helpful.Forms
             this.labelX33.TabIndex = 33;
             this.labelX33.Text = "Min";
             // 
-            // labelX43
+            // RecordWhispsInLogFilesLabel
             // 
-            this.labelX43.BackColor = System.Drawing.Color.Transparent;
-            this.labelX43.ForeColor = System.Drawing.Color.Black;
-            this.labelX43.Location = new System.Drawing.Point(3, 330);
-            this.labelX43.Name = "labelX43";
-            this.labelX43.Size = new System.Drawing.Size(154, 22);
-            this.labelX43.TabIndex = 39;
-            this.labelX43.Text = "Record whisper in Log file";
+            this.RecordWhispsInLogFilesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.RecordWhispsInLogFilesLabel.ForeColor = System.Drawing.Color.Black;
+            this.RecordWhispsInLogFilesLabel.Location = new System.Drawing.Point(3, 330);
+            this.RecordWhispsInLogFilesLabel.Name = "RecordWhispsInLogFilesLabel";
+            this.RecordWhispsInLogFilesLabel.Size = new System.Drawing.Size(154, 22);
+            this.RecordWhispsInLogFilesLabel.TabIndex = 39;
+            this.RecordWhispsInLogFilesLabel.Text = "Record whisper in Log file";
             // 
             // labelX32
             // 
@@ -2727,15 +2746,15 @@ namespace nManager.Helpful.Forms
             this.RecordWhispsInLogFiles.TabIndex = 55;
             this.RecordWhispsInLogFiles.Value = false;
             // 
-            // labelX29
+            // StopTNBIfPlayerHaveBeenTeleportedLabel
             // 
-            this.labelX29.BackColor = System.Drawing.Color.Transparent;
-            this.labelX29.ForeColor = System.Drawing.Color.Black;
-            this.labelX29.Location = new System.Drawing.Point(3, 135);
-            this.labelX29.Name = "labelX29";
-            this.labelX29.Size = new System.Drawing.Size(154, 22);
-            this.labelX29.TabIndex = 30;
-            this.labelX29.Text = "If Player Teleported";
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.Location = new System.Drawing.Point(3, 135);
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.Name = "StopTNBIfPlayerHaveBeenTeleportedLabel";
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.TabIndex = 30;
+            this.StopTNBIfPlayerHaveBeenTeleportedLabel.Text = "If Player Teleported";
             // 
             // StopTNBIfPlayerHaveBeenTeleported
             // 
@@ -2750,25 +2769,25 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfPlayerHaveBeenTeleported.TabIndex = 56;
             this.StopTNBIfPlayerHaveBeenTeleported.Value = false;
             // 
-            // labelX44
+            // PauseTNBIfNearByPlayerLabel
             // 
-            this.labelX44.BackColor = System.Drawing.Color.Transparent;
-            this.labelX44.ForeColor = System.Drawing.Color.Black;
-            this.labelX44.Location = new System.Drawing.Point(3, 302);
-            this.labelX44.Name = "labelX44";
-            this.labelX44.Size = new System.Drawing.Size(154, 22);
-            this.labelX44.TabIndex = 37;
-            this.labelX44.Text = "Pause Bot if Nearby Player";
+            this.PauseTNBIfNearByPlayerLabel.BackColor = System.Drawing.Color.Transparent;
+            this.PauseTNBIfNearByPlayerLabel.ForeColor = System.Drawing.Color.Black;
+            this.PauseTNBIfNearByPlayerLabel.Location = new System.Drawing.Point(3, 302);
+            this.PauseTNBIfNearByPlayerLabel.Name = "PauseTNBIfNearByPlayerLabel";
+            this.PauseTNBIfNearByPlayerLabel.Size = new System.Drawing.Size(154, 22);
+            this.PauseTNBIfNearByPlayerLabel.TabIndex = 37;
+            this.PauseTNBIfNearByPlayerLabel.Text = "Pause Bot if Nearby Player";
             // 
-            // labelX30
+            // StopTNBIfHonorPointsLimitReachedLabel
             // 
-            this.labelX30.BackColor = System.Drawing.Color.Transparent;
-            this.labelX30.ForeColor = System.Drawing.Color.Black;
-            this.labelX30.Location = new System.Drawing.Point(3, 107);
-            this.labelX30.Name = "labelX30";
-            this.labelX30.Size = new System.Drawing.Size(154, 22);
-            this.labelX30.TabIndex = 28;
-            this.labelX30.Text = "If reached 4000 Honor Points";
+            this.StopTNBIfHonorPointsLimitReachedLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBIfHonorPointsLimitReachedLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBIfHonorPointsLimitReachedLabel.Location = new System.Drawing.Point(3, 107);
+            this.StopTNBIfHonorPointsLimitReachedLabel.Name = "StopTNBIfHonorPointsLimitReachedLabel";
+            this.StopTNBIfHonorPointsLimitReachedLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBIfHonorPointsLimitReachedLabel.TabIndex = 28;
+            this.StopTNBIfHonorPointsLimitReachedLabel.Text = "If reached 4000 Honor Points";
             // 
             // PauseTNBIfNearByPlayer
             // 
@@ -2819,15 +2838,15 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX28
+            // StopTNBAfterXMinutesLabel
             // 
-            this.labelX28.BackColor = System.Drawing.Color.Transparent;
-            this.labelX28.ForeColor = System.Drawing.Color.Black;
-            this.labelX28.Location = new System.Drawing.Point(3, 247);
-            this.labelX28.Name = "labelX28";
-            this.labelX28.Size = new System.Drawing.Size(154, 22);
-            this.labelX28.TabIndex = 23;
-            this.labelX28.Text = "After";
+            this.StopTNBAfterXMinutesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBAfterXMinutesLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBAfterXMinutesLabel.Location = new System.Drawing.Point(3, 247);
+            this.StopTNBAfterXMinutesLabel.Name = "StopTNBAfterXMinutesLabel";
+            this.StopTNBAfterXMinutesLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBAfterXMinutesLabel.TabIndex = 23;
+            this.StopTNBAfterXMinutesLabel.Text = "After";
             // 
             // StopTNBAfterXStucks
             // 
@@ -2852,15 +2871,15 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX26
+            // StopTNBAfterXStucksLabel
             // 
-            this.labelX26.BackColor = System.Drawing.Color.Transparent;
-            this.labelX26.ForeColor = System.Drawing.Color.Black;
-            this.labelX26.Location = new System.Drawing.Point(3, 219);
-            this.labelX26.Name = "labelX26";
-            this.labelX26.Size = new System.Drawing.Size(154, 22);
-            this.labelX26.TabIndex = 21;
-            this.labelX26.Text = "After";
+            this.StopTNBAfterXStucksLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBAfterXStucksLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBAfterXStucksLabel.Location = new System.Drawing.Point(3, 219);
+            this.StopTNBAfterXStucksLabel.Name = "StopTNBAfterXStucksLabel";
+            this.StopTNBAfterXStucksLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBAfterXStucksLabel.TabIndex = 21;
+            this.StopTNBAfterXStucksLabel.Text = "After";
             // 
             // StopTNBIfReceivedAtMostXWhispers
             // 
@@ -2880,15 +2899,15 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX25
+            // StopTNBIfReceivedAtMostXWhispersLabel
             // 
-            this.labelX25.BackColor = System.Drawing.Color.Transparent;
-            this.labelX25.ForeColor = System.Drawing.Color.Black;
-            this.labelX25.Location = new System.Drawing.Point(3, 191);
-            this.labelX25.Name = "labelX25";
-            this.labelX25.Size = new System.Drawing.Size(154, 22);
-            this.labelX25.TabIndex = 19;
-            this.labelX25.Text = "If Whisper bigger or equal to";
+            this.StopTNBIfReceivedAtMostXWhispersLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBIfReceivedAtMostXWhispersLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBIfReceivedAtMostXWhispersLabel.Location = new System.Drawing.Point(3, 191);
+            this.StopTNBIfReceivedAtMostXWhispersLabel.Name = "StopTNBIfReceivedAtMostXWhispersLabel";
+            this.StopTNBIfReceivedAtMostXWhispersLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBIfReceivedAtMostXWhispersLabel.TabIndex = 19;
+            this.StopTNBIfReceivedAtMostXWhispersLabel.Text = "If Whisper bigger or equal to";
             // 
             // StopTNBAfterXLevelup
             // 
@@ -2913,25 +2932,25 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX24
+            // StopTNBAfterXLevelupLabel
             // 
-            this.labelX24.BackColor = System.Drawing.Color.Transparent;
-            this.labelX24.ForeColor = System.Drawing.Color.Black;
-            this.labelX24.Location = new System.Drawing.Point(3, 163);
-            this.labelX24.Name = "labelX24";
-            this.labelX24.Size = new System.Drawing.Size(154, 22);
-            this.labelX24.TabIndex = 16;
-            this.labelX24.Text = "After";
+            this.StopTNBAfterXLevelupLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBAfterXLevelupLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBAfterXLevelupLabel.Location = new System.Drawing.Point(3, 163);
+            this.StopTNBAfterXLevelupLabel.Name = "StopTNBAfterXLevelupLabel";
+            this.StopTNBAfterXLevelupLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBAfterXLevelupLabel.TabIndex = 16;
+            this.StopTNBAfterXLevelupLabel.Text = "After";
             // 
-            // labelX27
+            // StopTNBIfBagAreFullLabel
             // 
-            this.labelX27.BackColor = System.Drawing.Color.Transparent;
-            this.labelX27.ForeColor = System.Drawing.Color.Black;
-            this.labelX27.Location = new System.Drawing.Point(3, 80);
-            this.labelX27.Name = "labelX27";
-            this.labelX27.Size = new System.Drawing.Size(154, 22);
-            this.labelX27.TabIndex = 11;
-            this.labelX27.Text = "If full Bag";
+            this.StopTNBIfBagAreFullLabel.BackColor = System.Drawing.Color.Transparent;
+            this.StopTNBIfBagAreFullLabel.ForeColor = System.Drawing.Color.Black;
+            this.StopTNBIfBagAreFullLabel.Location = new System.Drawing.Point(3, 80);
+            this.StopTNBIfBagAreFullLabel.Name = "StopTNBIfBagAreFullLabel";
+            this.StopTNBIfBagAreFullLabel.Size = new System.Drawing.Size(154, 22);
+            this.StopTNBIfBagAreFullLabel.TabIndex = 11;
+            this.StopTNBIfBagAreFullLabel.Text = "If full Bag";
             // 
             // StopTNBIfBagAreFull
             // 
@@ -2953,13 +2972,13 @@ namespace nManager.Helpful.Forms
             this.ReloggerManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.ReloggerManagementPanelName.ContentSize = new System.Drawing.Size(556, 144);
             this.ReloggerManagementPanelName.Controls.Add(this.BattleNetSubAccount);
-            this.ReloggerManagementPanelName.Controls.Add(this.labelX67);
-            this.ReloggerManagementPanelName.Controls.Add(this.labelX38);
+            this.ReloggerManagementPanelName.Controls.Add(this.BattleNetSubAccountLabel);
+            this.ReloggerManagementPanelName.Controls.Add(this.ActivateReloggerFeatureLabel);
             this.ReloggerManagementPanelName.Controls.Add(this.ActivateReloggerFeature);
             this.ReloggerManagementPanelName.Controls.Add(this.PasswordOfTheBattleNetAccount);
-            this.ReloggerManagementPanelName.Controls.Add(this.labelX37);
+            this.ReloggerManagementPanelName.Controls.Add(this.PasswordOfTheBattleNetAccountLabel);
             this.ReloggerManagementPanelName.Controls.Add(this.EmailOfTheBattleNetAccount);
-            this.ReloggerManagementPanelName.Controls.Add(this.labelX40);
+            this.ReloggerManagementPanelName.Controls.Add(this.EmailOfTheBattleNetAccountLabel);
             this.ReloggerManagementPanelName.Fold = true;
             this.ReloggerManagementPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("ReloggerManagementPanelName.FolderImage")));
             this.ReloggerManagementPanelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
@@ -2987,25 +3006,25 @@ namespace nManager.Helpful.Forms
             this.BattleNetSubAccount.Size = new System.Drawing.Size(175, 22);
             this.BattleNetSubAccount.TabIndex = 24;
             // 
-            // labelX67
+            // BattleNetSubAccountLabel
             // 
-            this.labelX67.BackColor = System.Drawing.Color.Transparent;
-            this.labelX67.ForeColor = System.Drawing.Color.Black;
-            this.labelX67.Location = new System.Drawing.Point(3, 140);
-            this.labelX67.Name = "labelX67";
-            this.labelX67.Size = new System.Drawing.Size(154, 22);
-            this.labelX67.TabIndex = 23;
-            this.labelX67.Text = "BattleNet Account";
+            this.BattleNetSubAccountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.BattleNetSubAccountLabel.ForeColor = System.Drawing.Color.Black;
+            this.BattleNetSubAccountLabel.Location = new System.Drawing.Point(3, 140);
+            this.BattleNetSubAccountLabel.Name = "BattleNetSubAccountLabel";
+            this.BattleNetSubAccountLabel.Size = new System.Drawing.Size(154, 22);
+            this.BattleNetSubAccountLabel.TabIndex = 23;
+            this.BattleNetSubAccountLabel.Text = "BattleNet Account";
             // 
-            // labelX38
+            // ActivateReloggerFeatureLabel
             // 
-            this.labelX38.BackColor = System.Drawing.Color.Transparent;
-            this.labelX38.ForeColor = System.Drawing.Color.Black;
-            this.labelX38.Location = new System.Drawing.Point(3, 52);
-            this.labelX38.Name = "labelX38";
-            this.labelX38.Size = new System.Drawing.Size(154, 22);
-            this.labelX38.TabIndex = 13;
-            this.labelX38.Text = "Relogger";
+            this.ActivateReloggerFeatureLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivateReloggerFeatureLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivateReloggerFeatureLabel.Location = new System.Drawing.Point(3, 52);
+            this.ActivateReloggerFeatureLabel.Name = "ActivateReloggerFeatureLabel";
+            this.ActivateReloggerFeatureLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivateReloggerFeatureLabel.TabIndex = 13;
+            this.ActivateReloggerFeatureLabel.Text = "Relogger";
             // 
             // ActivateReloggerFeature
             // 
@@ -3028,15 +3047,15 @@ namespace nManager.Helpful.Forms
             this.PasswordOfTheBattleNetAccount.Size = new System.Drawing.Size(175, 22);
             this.PasswordOfTheBattleNetAccount.TabIndex = 22;
             // 
-            // labelX37
+            // PasswordOfTheBattleNetAccountLabel
             // 
-            this.labelX37.BackColor = System.Drawing.Color.Transparent;
-            this.labelX37.ForeColor = System.Drawing.Color.Black;
-            this.labelX37.Location = new System.Drawing.Point(3, 108);
-            this.labelX37.Name = "labelX37";
-            this.labelX37.Size = new System.Drawing.Size(154, 22);
-            this.labelX37.TabIndex = 21;
-            this.labelX37.Text = "Account Password";
+            this.PasswordOfTheBattleNetAccountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.PasswordOfTheBattleNetAccountLabel.ForeColor = System.Drawing.Color.Black;
+            this.PasswordOfTheBattleNetAccountLabel.Location = new System.Drawing.Point(3, 108);
+            this.PasswordOfTheBattleNetAccountLabel.Name = "PasswordOfTheBattleNetAccountLabel";
+            this.PasswordOfTheBattleNetAccountLabel.Size = new System.Drawing.Size(154, 22);
+            this.PasswordOfTheBattleNetAccountLabel.TabIndex = 21;
+            this.PasswordOfTheBattleNetAccountLabel.Text = "Account Password";
             // 
             // EmailOfTheBattleNetAccount
             // 
@@ -3046,15 +3065,15 @@ namespace nManager.Helpful.Forms
             this.EmailOfTheBattleNetAccount.Size = new System.Drawing.Size(175, 22);
             this.EmailOfTheBattleNetAccount.TabIndex = 13;
             // 
-            // labelX40
+            // EmailOfTheBattleNetAccountLabel
             // 
-            this.labelX40.BackColor = System.Drawing.Color.Transparent;
-            this.labelX40.ForeColor = System.Drawing.Color.Black;
-            this.labelX40.Location = new System.Drawing.Point(3, 80);
-            this.labelX40.Name = "labelX40";
-            this.labelX40.Size = new System.Drawing.Size(154, 22);
-            this.labelX40.TabIndex = 12;
-            this.labelX40.Text = "Account Email";
+            this.EmailOfTheBattleNetAccountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.EmailOfTheBattleNetAccountLabel.ForeColor = System.Drawing.Color.Black;
+            this.EmailOfTheBattleNetAccountLabel.Location = new System.Drawing.Point(3, 80);
+            this.EmailOfTheBattleNetAccountLabel.Name = "EmailOfTheBattleNetAccountLabel";
+            this.EmailOfTheBattleNetAccountLabel.Size = new System.Drawing.Size(154, 22);
+            this.EmailOfTheBattleNetAccountLabel.TabIndex = 12;
+            this.EmailOfTheBattleNetAccountLabel.Text = "Account Email";
             // 
             // MimesisBroadcasterSettingsPanel
             // 
@@ -3090,7 +3109,7 @@ namespace nManager.Helpful.Forms
             this.MimesisBroadcasterSettingsPanel.TitleFont = new System.Drawing.Font("Segoe UI", 7.65F, System.Drawing.FontStyle.Bold);
             this.MimesisBroadcasterSettingsPanel.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MimesisBroadcasterSettingsPanel.TitleText = "Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with t" +
-                "his session)";
+    "his session)";
             this.MimesisBroadcasterSettingsPanel.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MimesisBroadcasterSettingsPanel.UnfolderImage")));
             // 
             // BroadcastingPort
@@ -3230,11 +3249,11 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrame);
             this.AdvancedSettingsPanelName.Controls.Add(this.AlwaysOnTopFeatureLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.ActivateAlwaysOnTopFeature);
-            this.AdvancedSettingsPanelName.Controls.Add(this.labelX73);
+            this.AdvancedSettingsPanelName.Controls.Add(this.AllowTNBToSetYourMaxFpsLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.AllowTNBToSetYourMaxFps);
             this.AdvancedSettingsPanelName.Controls.Add(this.MaxDistanceToGoToMailboxesOrNPCs);
-            this.AdvancedSettingsPanelName.Controls.Add(this.labelX60);
-            this.AdvancedSettingsPanelName.Controls.Add(this.labelX42);
+            this.AdvancedSettingsPanelName.Controls.Add(this.MaxDistanceToGoToMailboxesOrNPCsLabel);
+            this.AdvancedSettingsPanelName.Controls.Add(this.ActivatePathFindingFeatureLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.ActivatePathFindingFeature);
             this.AdvancedSettingsPanelName.Fold = true;
             this.AdvancedSettingsPanelName.FolderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.FolderImage")));
@@ -3304,15 +3323,15 @@ namespace nManager.Helpful.Forms
             this.ActivateAlwaysOnTopFeature.TabIndex = 29;
             this.ActivateAlwaysOnTopFeature.Value = false;
             // 
-            // labelX73
+            // AllowTNBToSetYourMaxFpsLabel
             // 
-            this.labelX73.BackColor = System.Drawing.Color.Transparent;
-            this.labelX73.ForeColor = System.Drawing.Color.Black;
-            this.labelX73.Location = new System.Drawing.Point(290, 48);
-            this.labelX73.Name = "labelX73";
-            this.labelX73.Size = new System.Drawing.Size(154, 22);
-            this.labelX73.TabIndex = 28;
-            this.labelX73.Text = "Uncap MaxFPS (recommended)";
+            this.AllowTNBToSetYourMaxFpsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.AllowTNBToSetYourMaxFpsLabel.ForeColor = System.Drawing.Color.Black;
+            this.AllowTNBToSetYourMaxFpsLabel.Location = new System.Drawing.Point(290, 48);
+            this.AllowTNBToSetYourMaxFpsLabel.Name = "AllowTNBToSetYourMaxFpsLabel";
+            this.AllowTNBToSetYourMaxFpsLabel.Size = new System.Drawing.Size(154, 22);
+            this.AllowTNBToSetYourMaxFpsLabel.TabIndex = 28;
+            this.AllowTNBToSetYourMaxFpsLabel.Text = "Uncap MaxFPS (recommended)";
             // 
             // AllowTNBToSetYourMaxFps
             // 
@@ -3352,25 +3371,25 @@ namespace nManager.Helpful.Forms
             0,
             0});
             // 
-            // labelX60
+            // MaxDistanceToGoToMailboxesOrNPCsLabel
             // 
-            this.labelX60.BackColor = System.Drawing.Color.Transparent;
-            this.labelX60.ForeColor = System.Drawing.Color.Black;
-            this.labelX60.Location = new System.Drawing.Point(3, 76);
-            this.labelX60.Name = "labelX60";
-            this.labelX60.Size = new System.Drawing.Size(154, 22);
-            this.labelX60.TabIndex = 25;
-            this.labelX60.Text = "Npc/Mailbox Search Radius";
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.ForeColor = System.Drawing.Color.Black;
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.Location = new System.Drawing.Point(3, 76);
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.Name = "MaxDistanceToGoToMailboxesOrNPCsLabel";
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.Size = new System.Drawing.Size(154, 22);
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.TabIndex = 25;
+            this.MaxDistanceToGoToMailboxesOrNPCsLabel.Text = "Npc/Mailbox Search Radius";
             // 
-            // labelX42
+            // ActivatePathFindingFeatureLabel
             // 
-            this.labelX42.BackColor = System.Drawing.Color.Transparent;
-            this.labelX42.ForeColor = System.Drawing.Color.Black;
-            this.labelX42.Location = new System.Drawing.Point(3, 49);
-            this.labelX42.Name = "labelX42";
-            this.labelX42.Size = new System.Drawing.Size(154, 22);
-            this.labelX42.TabIndex = 11;
-            this.labelX42.Text = "Use Paths Finder";
+            this.ActivatePathFindingFeatureLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivatePathFindingFeatureLabel.ForeColor = System.Drawing.Color.Black;
+            this.ActivatePathFindingFeatureLabel.Location = new System.Drawing.Point(3, 49);
+            this.ActivatePathFindingFeatureLabel.Name = "ActivatePathFindingFeatureLabel";
+            this.ActivatePathFindingFeatureLabel.Size = new System.Drawing.Size(154, 22);
+            this.ActivatePathFindingFeatureLabel.TabIndex = 11;
+            this.ActivatePathFindingFeatureLabel.Text = "Use Paths Finder";
             // 
             // ActivatePathFindingFeature
             // 
@@ -3464,83 +3483,83 @@ namespace nManager.Helpful.Forms
         private TnbRibbonManager MainPanel;
         private TnbExpendablePanel MountManagementPanelName;
         private TnbExpendablePanel SpellManagementSystemPanelName;
-        private Label labelX8;
+        private Label MinimumDistanceToUseMountLabel;
         private TextBox FlyingMountName;
-        private Label labelX7;
+        private Label FlyingMountNameLabel;
         private TextBox GroundMountName;
-        private Label labelX6;
-        private Label labelX5;
+        private Label GroundMountNameLabel;
+        private Label UseGroundMountLabel;
         private TnbSwitchButton UseGroundMount;
-        private Label labelX4;
+        private Label DontPullMonstersLabel;
         private TnbSwitchButton DontPullMonsters;
-        private Label labelX3;
+        private Label CanPullUnitsAlreadyInFightLabel;
         private TnbSwitchButton CanPullUnitsAlreadyInFight;
-        private Label labelX2;
+        private Label AutoAssignTalentsLabel;
         private TnbSwitchButton AutoAssignTalents;
         private Label CombatClassLabel;
         private TnbComboBox CombatClass;
         private nManager.Helpful.Forms.UserControls.TnbButton CombatClassSettingsButton;
         private TnbExpendablePanel LootingFarmingManagementPanelName;
         private NumericUpDown DontHarvestIfPlayerNearRadius;
-        private Label labelX12;
-        private Label labelX18;
+        private Label DontHarvestIfPlayerNearRadiusLabel;
+        private Label ActivateMonsterLootingLabel;
         private TnbSwitchButton ActivateMonsterLooting;
         private TnbExpendablePanel RegenerationManagementPanelName;
         private Label labelX9;
         private Label labelX10;
         private NumericUpDown DrinkBeverageWhenManaIsUnderXPercent;
         private TextBox BeverageName;
-        private Label labelX15;
+        private Label BeverageNameLabel;
         private Label labelX14;
         private Label labelX13;
         private NumericUpDown EatFoodWhenHealthIsUnderXPercent;
         private TextBox FoodName;
-        private Label labelX11;
+        private Label FoodNameLabel;
         private NumericUpDown MinimumDistanceToUseMount;
         private Label labelX23;
         private TnbSwitchButton BeastNinjaSkinning;
         private NumericUpDown GatheringSearchRadius;
-        private Label labelX22;
+        private Label GatheringSearchRadiusLabel;
         private NumericUpDown DontHarvestIfMoreThanXUnitInAggroRange;
-        private Label labelX21;
-        private Label labelX20;
+        private Label DontHarvestIfMoreThanXUnitInAggroRangeLabel;
+        private Label ActivateHerbsHarvestingLabel;
         private TnbSwitchButton ActivateHerbsHarvesting;
-        private Label labelX19;
+        private Label ActivateVeinsHarvestingLabel;
         private TnbSwitchButton ActivateVeinsHarvesting;
-        private Label labelX17;
+        private Label ActivateBeastSkinningLabel;
         private TnbSwitchButton ActivateBeastSkinning;
         private Label labelX16;
         private TnbSwitchButton ActivateChestLooting;
         private TnbExpendablePanel ReloggerManagementPanelName;
         private TextBox PasswordOfTheBattleNetAccount;
-        private Label labelX37;
+        private Label PasswordOfTheBattleNetAccountLabel;
         private TextBox EmailOfTheBattleNetAccount;
-        private Label labelX40;
-        private Label labelX38;
+        private Label EmailOfTheBattleNetAccountLabel;
+        private Label ActivateReloggerFeatureLabel;
         private TnbSwitchButton ActivateReloggerFeature;
         private TnbExpendablePanel NPCsRepairSellBuyPanelName;
         private NumericUpDown NumberOfBeverageWeGot;
-        private Label labelX41;
+        private Label NumberOfBeverageWeGotLabel;
         private TextBox DontSellTheseItems;
-        private Label labelX46;
+        private Label DontSellTheseItemsLabel;
         private TnbExpendablePanel MailsManagementPanelName;
         private TextBox MaillingFeatureRecipient;
-        private Label labelX56;
+        private Label MaillingFeatureRecipientLabel;
         private TextBox MaillingFeatureSubject;
         private TextBox ForceToMailTheseItems;
-        private Label labelX48;
+        private Label ForceToMailTheseItemsLabel;
         private CheckBox MailPurple;
         private CheckBox MailBlue;
         private CheckBox MailGreen;
         private CheckBox MailWhite;
         private CheckBox MailGray;
-        private Label labelX54;
-        private Label labelX55;
+        private Label MaillingFeatureSubjectLabel;
+        private Label ActivateAutoMaillingFeatureLabel;
         private TnbSwitchButton ActivateAutoMaillingFeature;
         private TextBox DontMailTheseItems;
-        private Label labelX58;
+        private Label DontMailTheseItemsLabel;
         private TextBox ForceToSellTheseItems;
-        private Label labelX53;
+        private Label ForceToSellTheseItemsLabel;
         private CheckBox SellPurple;
         private CheckBox SellBlue;
         private CheckBox SellGreen;
@@ -3548,81 +3567,80 @@ namespace nManager.Helpful.Forms
         private CheckBox SellGray;
         private Label labelX52;
         private TnbSwitchButton ActivateAutoSellingFeature;
-        private Label labelX51;
+        private Label ActivateAutoRepairFeatureLabel;
         private TnbSwitchButton ActivateAutoRepairFeature;
         private NumericUpDown NumberOfFoodsWeGot;
-        private Label labelX50;
+        private Label NumberOfFoodsWeGotLabel;
         private Label ActivateSkillsAutoTrainingLabel;
         private TnbSwitchButton ActivateSkillsAutoTraining;
         private TnbExpendablePanel AdvancedSettingsPanelName;
-        private Label labelX42;
+        private Label ActivatePathFindingFeatureLabel;
         private TnbSwitchButton ActivatePathFindingFeature;
         private TnbExpendablePanel SecuritySystemPanelName;
-        private Label labelX39;
-        private Label labelX45;
+        private Label SecuritySystemLabel;
         private TnbSwitchButton PlayASongIfNewWhispReceived;
-        private Label labelX34;
+        private Label CloseGameLabel;
         private Label labelX33;
-        private Label labelX43;
+        private Label RecordWhispsInLogFilesLabel;
         private Label labelX32;
         private Label labelX31;
         private TnbSwitchButton RecordWhispsInLogFiles;
-        private Label labelX29;
+        private Label StopTNBIfPlayerHaveBeenTeleportedLabel;
         private TnbSwitchButton StopTNBIfPlayerHaveBeenTeleported;
-        private Label labelX44;
-        private Label labelX30;
+        private Label PauseTNBIfNearByPlayerLabel;
+        private Label StopTNBIfHonorPointsLimitReachedLabel;
         private TnbSwitchButton PauseTNBIfNearByPlayer;
         private TnbSwitchButton StopTNBIfHonorPointsLimitReached;
         private NumericUpDown StopTNBAfterXMinutes;
-        private Label labelX28;
+        private Label StopTNBAfterXMinutesLabel;
         private NumericUpDown StopTNBAfterXStucks;
-        private Label labelX26;
+        private Label StopTNBAfterXStucksLabel;
         private NumericUpDown StopTNBIfReceivedAtMostXWhispers;
-        private Label labelX25;
+        private Label StopTNBIfReceivedAtMostXWhispersLabel;
         private NumericUpDown StopTNBAfterXLevelup;
-        private Label labelX24;
-        private Label labelX27;
+        private Label StopTNBAfterXLevelupLabel;
+        private Label StopTNBIfBagAreFullLabel;
         private TnbSwitchButton StopTNBIfBagAreFull;
         private nManager.Helpful.Forms.UserControls.TnbButton saveAndCloseB;
         private nManager.Helpful.Forms.UserControls.TnbButton resetB;
         private nManager.Helpful.Forms.UserControls.TnbButton closeB;
-        private Label labelX57;
+        private Label IgnoreFightIfMountedLabel;
         private TnbSwitchButton IgnoreFightIfMounted;
-        private Label labelX59;
+        private Label UseSpiritHealerLabel;
         private TnbSwitchButton UseSpiritHealer;
         private NumericUpDown MaxDistanceToGoToMailboxesOrNPCs;
-        private Label labelX60;
-        private Label labelX35;
+        private Label MaxDistanceToGoToMailboxesOrNPCsLabel;
+        private Label HarvestDuringLongDistanceMovementsLabel;
         private TnbSwitchButton HarvestDuringLongDistanceMovements;
         private nManager.Helpful.Forms.UserControls.TnbButton addBlackListHarvest;
-        private Label labelX36;
+        private Label DontHarvestTheFollowingObjectsLabel;
         private Label labelX61;
         private TnbSwitchButton ActivateAutoSmelting;
         private TnbSwitchButton DoRegenManaIfLow;
         private TextBox AquaticMountName;
-        private Label labelX66;
+        private Label AquaticMountNameLabel;
         private TextBox BattleNetSubAccount;
-        private Label labelX67;
-        private Label labelX68;
+        private Label BattleNetSubAccountLabel;
+        private Label MakeStackOfElementalsItemsLabel;
         private TnbSwitchButton MakeStackOfElementalsItems;
         private System.Windows.Forms.ToolTip labelsToolTip;
-        private Label labelX69;
+        private Label OnlyUseMillingInTownLabel;
         private TnbSwitchButton OnlyUseMillingInTown;
         private NumericUpDown TimeBetweenEachMillingAttempt;
-        private Label labelX70;
-        private Label labelX71;
+        private Label TimeBetweenEachMillingAttemptLabel;
+        private Label ActivateAutoMillingLabel;
         private TnbSwitchButton ActivateAutoMilling;
         private TextBox HerbsToBeMilled;
-        private Label labelX72;
-        private Label labelX65;
+        private Label HerbsToBeMilledLabel;
+        private Label OnlyUseProspectingInTownLabel;
         private TnbSwitchButton OnlyUseProspectingInTown;
         private NumericUpDown TimeBetweenEachProspectingAttempt;
-        private Label labelX64;
-        private Label labelX63;
+        private Label TimeBetweenEachProspectingAttemptLabel;
+        private Label ActivateAutoProspectingLabel;
         private TnbSwitchButton ActivateAutoProspecting;
         private TextBox MineralsToProspect;
-        private Label labelX62;
-        private Label labelX73;
+        private Label MineralsToProspectLabel;
+        private Label AllowTNBToSetYourMaxFpsLabel;
         private TnbSwitchButton AllowTNBToSetYourMaxFps;
         private Label AutoConfirmOnBoPItemsLabel;
         private TnbSwitchButton AutoConfirmOnBoPItems;
@@ -3691,5 +3709,7 @@ namespace nManager.Helpful.Forms
         private Label AvailablePluginsListLabel;
         private ListBox AvailablePluginsList;
         private TnbButton ActivatedPluginResetSettings;
+        private Label UseDruidFlightFormLabel;
+        private TnbSwitchButton UseDruidFlightForm;
     }
 }
