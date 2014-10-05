@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 13.00
+# Visual Studio 2013
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PD2Trimmer", "PD2Trimmer\PD2Trimmer.csproj", "{7979F1A8-988D-4E00-B53B-5F137FF900E2}"
 EndProject
 Global
