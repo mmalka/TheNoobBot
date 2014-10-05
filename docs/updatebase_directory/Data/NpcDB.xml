@@ -2886,6 +2886,7 @@
       <Y>2308.03</Y>
       <Z>1330.78</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -2909,6 +2910,7 @@
       <Y>-6800.869</Y>
       <Z>16.4935646</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -3133,6 +3135,7 @@
       <Y>-428.925354</Y>
       <Z>397.214264</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -3155,6 +3158,7 @@
       <Y>-2228.62085</Y>
       <Z>63.766758</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -3819,6 +3823,7 @@
       <Y>-3482.45459</Y>
       <Z>51.47429</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -3830,6 +3835,7 @@
       <Y>-2548.46924</Y>
       <Z>21.3727646</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -7696,6 +7702,7 @@
       <Y>4027.75977</Y>
       <Z>1.764024</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -7707,6 +7714,7 @@
       <Y>94.203125</Y>
       <Z>56.5334969</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -7718,6 +7726,7 @@
       <Y>-865.6094</Y>
       <Z>-0.5081261</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -7729,6 +7738,7 @@
       <Y>-4369.90234</Y>
       <Z>14.9825354</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -14548,6 +14558,7 @@
       <Y>-2112.73975</Y>
       <Z>124.308617</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -20553,6 +20564,7 @@
       <Y>-862.101</Y>
       <Z>1.24277</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -21948,6 +21960,7 @@
       <Y>2204.06958</Y>
       <Z>101.86615</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>EngineeringTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -22084,6 +22097,7 @@
       <Y>1.106487</Y>
       <Z>6.097269</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -22095,6 +22109,7 @@
       <Y>1.106487</Y>
       <Z>6.097269</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -22106,6 +22121,7 @@
       <Y>-7.911621</Y>
       <Z>6.096996</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -24227,6 +24243,7 @@
       <Y>-861.154541</Y>
       <Z>501.9142</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -24729,6 +24746,7 @@
       <Y>732.165</Y>
       <Z>641.777161</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -26080,6 +26098,7 @@
       <Y>740.966553</Y>
       <Z>641.6984</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -28744,6 +28763,7 @@
       <Y>-435.33847</Y>
       <Z>397.6091</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -29128,6 +29148,7 @@
       <Y>734.65625</Y>
       <Z>618.5781</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -29241,6 +29262,7 @@
       <Y>-1159.2207</Y>
       <Z>28.2494</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -36331,6 +36353,7 @@
       <Y>-6507.59229</Y>
       <Z>15.7472181</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -36342,6 +36365,7 @@
       <Y>-6507.59229</Y>
       <Z>15.7472181</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -36353,6 +36377,7 @@
       <Y>-6424.113</Y>
       <Z>38.0527534</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -36972,6 +36997,7 @@
       <Y>-5276.28</Y>
       <Z>41.8480339</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -37471,6 +37497,7 @@
       <Y>-6401.46729</Y>
       <Z>28.00421</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -37588,6 +37615,7 @@
       <Y>-6510.887</Y>
       <Z>15.7492714</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -37719,6 +37747,7 @@
       <Y>104.84375</Y>
       <Z>128.592331</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -37837,6 +37866,7 @@
       <Y>2798.03418</Y>
       <Z>111.670174</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -37848,6 +37878,7 @@
       <Y>-4708.35938</Y>
       <Z>14.1563005</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -37859,6 +37890,7 @@
       <Y>-2567.83</Y>
       <Z>95.78751</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -37870,6 +37902,7 @@
       <Y>149.039063</Y>
       <Z>2.60294032</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -37925,6 +37958,7 @@
       <Y>631.0879</Y>
       <Z>84.9958649</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -37936,6 +37970,7 @@
       <Y>-3260.64063</Y>
       <Z>20.1859989</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -38244,6 +38279,7 @@
       <Y>147.989914</Y>
       <Z>-62.41833</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -38255,6 +38291,7 @@
       <Y>276.825073</Y>
       <Z>-62.18114</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -39135,6 +39172,7 @@
       <Y>612.8906</Y>
       <Z>101.837608</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -41607,6 +41645,7 @@
       <Y>546.026062</Y>
       <Z>117.768433</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -42139,6 +42178,7 @@
       <Y>337.881958</Y>
       <Z>506.097015</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -43116,6 +43156,7 @@
       <Y>-4915.55566</Y>
       <Z>2.05643487</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -43340,6 +43381,7 @@
       <Y>-4945.74463</Y>
       <Z>2.05644917</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -44011,6 +44053,7 @@
       <Y>-2940.55078</Y>
       <Z>323.762451</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -44022,6 +44065,7 @@
       <Y>2603.495</Y>
       <Z>89.20101</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44033,6 +44077,7 @@
       <Y>-4369.90234</Y>
       <Z>14.9825373</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -44044,6 +44089,7 @@
       <Y>-3456.81641</Y>
       <Z>64.9544449</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -44066,6 +44112,7 @@
       <Y>-3821.17188</Y>
       <Z>17.291193</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -44250,6 +44297,7 @@
       <Y>1173.14758</Y>
       <Z>167.831955</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -44466,6 +44514,7 @@
       <Y>-12387.0938</Y>
       <Z>11.0831146</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44489,6 +44538,7 @@
       <Y>-6910.67041</Y>
       <Z>93.76874</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44840,6 +44890,7 @@
       <Y>7199.663</Y>
       <Z>33.81849</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44885,6 +44936,7 @@
       <Y>6059.69141</Y>
       <Z>142.199722</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44896,6 +44948,7 @@
       <Y>-7361.629</Y>
       <Z>19.39267</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44907,6 +44960,7 @@
       <Y>-7358.282</Y>
       <Z>19.39267</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44918,6 +44972,7 @@
       <Y>-7361.6377</Y>
       <Z>19.39267</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44929,6 +44984,7 @@
       <Y>-7358.527</Y>
       <Z>19.39267</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -44951,6 +45007,7 @@
       <Y>6030.214</Y>
       <Z>131.597488</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -45165,6 +45222,7 @@
       <Y>2201.80127</Y>
       <Z>101.7743</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -45232,6 +45290,7 @@
       <Y>-11717.1172</Y>
       <Z>-143.9555</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -45243,6 +45302,7 @@
       <Y>-11713.7324</Y>
       <Z>-144.0759</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -45378,6 +45438,7 @@
       <Y>-3199.85767</Y>
       <Z>160.944046</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45401,6 +45462,7 @@
       <Y>-4997.932</Y>
       <Z>10.4722748</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45424,6 +45486,7 @@
       <Y>-5083.9585</Y>
       <Z>272.943024</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45458,6 +45521,7 @@
       <Y>-4655.424</Y>
       <Z>246.584427</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45469,6 +45533,7 @@
       <Y>-4648.42725</Y>
       <Z>246.772812</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45492,6 +45557,7 @@
       <Y>5269.29932</Y>
       <Z>7.547566</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45586,6 +45652,7 @@
       <Y>-4246.02148</Y>
       <Z>170.492126</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45609,6 +45676,7 @@
       <Y>-4541.693</Y>
       <Z>209.231812</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45620,6 +45688,7 @@
       <Y>1571.32642</Y>
       <Z>86.64066</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45654,6 +45723,7 @@
       <Y>-635.6042</Y>
       <Z>160.148666</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45665,6 +45735,7 @@
       <Y>-2341.568</Y>
       <Z>110.914093</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45758,6 +45829,7 @@
       <Y>-2759.073</Y>
       <Z>199.281372</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45769,6 +45841,7 @@
       <Y>5282.388</Y>
       <Z>25.1094742</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45861,6 +45934,7 @@
       <Y>-2950.448</Y>
       <Z>1257.73071</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45872,6 +45946,7 @@
       <Y>-209.402786</Y>
       <Z>951.870361</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45905,6 +45980,7 @@
       <Y>-1951.94275</Y>
       <Z>10.8831987</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -45916,6 +45992,7 @@
       <Y>1650.63025</Y>
       <Z>125.527779</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -46103,6 +46180,7 @@
       <Y>-6190.491</Y>
       <Z>24.1267643</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -46259,6 +46337,7 @@
       <Y>726.92926</Y>
       <Z>618.584656</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -46360,6 +46439,7 @@
       <Y>-486.479156</Y>
       <Z>198.6135</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -46619,6 +46699,7 @@
       <Y>-1503.20837</Y>
       <Z>87.20585</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -46641,6 +46722,7 @@
       <Y>631.1102</Y>
       <Z>95.63106</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -46652,6 +46734,7 @@
       <Y>613.4404</Y>
       <Z>95.18098</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -46663,6 +46746,7 @@
       <Y>618.067139</Y>
       <Z>95.38743</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -46698,6 +46782,7 @@
       <Y>-2351.89941</Y>
       <Z>94.21048</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -46766,6 +46851,7 @@
       <Y>-1556.493</Y>
       <Z>140.9564</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -46777,6 +46863,7 @@
       <Y>1897.67358</Y>
       <Z>49.2122078</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -46953,6 +47040,7 @@
       <Y>722.6424</Y>
       <Z>3.452968</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -46976,6 +47064,7 @@
       <Y>-416.930573</Y>
       <Z>12.9025</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47009,6 +47098,7 @@
       <Y>-2783.27</Y>
       <Z>12.7113</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47020,6 +47110,7 @@
       <Y>-2772.43</Y>
       <Z>13.1099</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47043,6 +47134,7 @@
       <Y>430.871521</Y>
       <Z>77.82835</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47179,6 +47271,7 @@
       <Y>-6410.58838</Y>
       <Z>20.09852</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47190,6 +47283,7 @@
       <Y>-1946.87329</Y>
       <Z>568.2776</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47387,6 +47481,7 @@
       <Y>-6727.009</Y>
       <Z>96.32317</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47455,6 +47550,7 @@
       <Y>-955.542</Y>
       <Z>54.303</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47488,6 +47584,7 @@
       <Y>-2554.34</Y>
       <Z>252.2</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47499,6 +47596,7 @@
       <Y>-4829.39941</Y>
       <Z>27.4266</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47510,6 +47608,7 @@
       <Y>-4837.13037</Y>
       <Z>27.6638</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47521,6 +47620,7 @@
       <Y>-4129.96</Y>
       <Z>51.0277</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47577,6 +47677,7 @@
       <Y>-6602</Y>
       <Z>9.31212</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47600,6 +47701,7 @@
       <Y>1848.32983</Y>
       <Z>88.5673</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47669,6 +47771,7 @@
       <Y>-2302.51</Y>
       <Z>93.2116</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -47810,6 +47913,7 @@
       <Y>-5582.058</Y>
       <Z>28.1368465</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47821,6 +47925,7 @@
       <Y>-5015.95166</Y>
       <Z>121.91394</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47832,6 +47937,7 @@
       <Y>-5583.07373</Y>
       <Z>28.21144</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47843,6 +47949,7 @@
       <Y>-5016.173</Y>
       <Z>121.909912</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47854,6 +47961,7 @@
       <Y>-5583.965</Y>
       <Z>28.4404812</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47865,6 +47973,7 @@
       <Y>-5016.53</Y>
       <Z>122.092407</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47876,6 +47985,7 @@
       <Y>-5583.587</Y>
       <Z>28.3628731</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47887,6 +47997,7 @@
       <Y>-5017.25635</Y>
       <Z>122.152275</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47898,6 +48009,7 @@
       <Y>-5584.55371</Y>
       <Z>28.5281639</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47909,6 +48021,7 @@
       <Y>-5016.822</Y>
       <Z>122.156563</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47920,6 +48033,7 @@
       <Y>-5582.337</Y>
       <Z>28.2704086</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47931,6 +48045,7 @@
       <Y>-5016.88867</Y>
       <Z>122.143753</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47942,6 +48057,7 @@
       <Y>-5353.02734</Y>
       <Z>178.027008</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47953,6 +48069,7 @@
       <Y>-5352.63672</Y>
       <Z>178.0061</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47964,6 +48081,7 @@
       <Y>-5351.57666</Y>
       <Z>177.970078</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47975,6 +48093,7 @@
       <Y>-5351.7583</Y>
       <Z>177.966431</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -47986,6 +48105,7 @@
       <Y>-5352.15</Y>
       <Z>177.9985</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48019,6 +48139,7 @@
       <Y>-1936.28</Y>
       <Z>568.78</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -48041,6 +48162,7 @@
       <Y>-3399.59033</Y>
       <Z>91.6667</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -48052,6 +48174,7 @@
       <Y>607.3266</Y>
       <Z>95.0284958</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48218,6 +48341,7 @@
       <Y>-4216.63037</Y>
       <Z>36.9227</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -48288,6 +48412,7 @@
       <Y>207.227432</Y>
       <Z>33.5232</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48299,6 +48424,7 @@
       <Y>212.930557</Y>
       <Z>33.5274</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48322,6 +48448,7 @@
       <Y>-3041.05029</Y>
       <Z>88.1829</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48333,6 +48460,7 @@
       <Y>-2869.06958</Y>
       <Z>2.00846028</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48652,6 +48780,7 @@
       <Y>1050.51038</Y>
       <Z>21.9858227</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>TolBarad</ContinentId>
   </Npc>
@@ -48663,6 +48792,7 @@
       <Y>1379.63025</Y>
       <Z>22.0371</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>TolBarad</ContinentId>
   </Npc>
@@ -48799,6 +48929,7 @@
       <Y>638.3412</Y>
       <Z>-45.8378639</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>
@@ -48821,6 +48952,7 @@
       <Y>-6499.856</Y>
       <Z>15.2257977</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -48855,6 +48987,7 @@
       <Y>-594.3594</Y>
       <Z>219.880936</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -49046,6 +49179,7 @@
       <Y>196.064789</Y>
       <Z>503.420624</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49117,6 +49251,7 @@
       <Y>99.72396</Y>
       <Z>13.0750332</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49183,6 +49318,7 @@
       <Y>901.4792</Y>
       <Z>480.9679</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49194,6 +49330,7 @@
       <Y>1444.77429</Y>
       <Z>487.659241</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49227,6 +49364,7 @@
       <Y>985.04126</Y>
       <Z>470.926147</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49425,6 +49563,7 @@
       <Y>-538.493042</Y>
       <Z>248.080109</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49458,6 +49597,7 @@
       <Y>-482.789948</Y>
       <Z>268.725067</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -49514,6 +49654,7 @@
       <Y>-226.397568</Y>
       <Z>31.3466187</Z>
     </Position>
+    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
