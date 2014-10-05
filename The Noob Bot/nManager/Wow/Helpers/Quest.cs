@@ -320,7 +320,7 @@ namespace nManager.Wow.Helpers
         public static void QuestPickUp(ref Npc npc, string questName, int questId)
         {
             //Start target finding based on QuestGiver.
-            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f);
+            uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
             if (MovementManager.InMovement)
                 return;
             //End target finding based on QuestGiver.

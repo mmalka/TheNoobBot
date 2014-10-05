@@ -49,7 +49,7 @@ namespace nManager.Wow.Helpers
 
                     Memory.WowMemory.InjectAndExecute(asm);
 
-                    Memory.WowMemory.Memory.FreeMemory(codecaveGUID); // essaye ça
+                    Memory.WowMemory.Memory.FreeMemory(codecaveGUID);
                     if (stopMove)
                         MovementManager.StopMove();
                     Thread.Sleep(Usefuls.Latency);

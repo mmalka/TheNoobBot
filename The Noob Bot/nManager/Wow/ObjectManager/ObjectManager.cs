@@ -748,14 +748,14 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static List<WoWUnit> GetWoWUnitByEntry(List<WoWUnit> listWoWUnit, List<int> entrys)
+        public static List<WoWUnit> GetWoWUnitByEntry(List<WoWUnit> listWoWUnit, List<int> entrys, bool isDead = false)
         {
             try
             {
                 List<WoWUnit> list = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (entrys.Contains(a.Entry) && !a.IsDead && !a.Invisible) list.Add(a);
+                    if (entrys.Contains(a.Entry) && (!isDead && !a.IsDead || isDead) && !a.Invisible) list.Add(a);
                 }
                 return list;
             }
@@ -766,12 +766,12 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static List<WoWUnit> GetWoWUnitByEntry(List<WoWUnit> listWoWUnit, int entry)
+        public static List<WoWUnit> GetWoWUnitByEntry(List<WoWUnit> listWoWUnit, int entry, bool isDead = false)
         {
             try
             {
                 List<int> entrys = new List<int> {entry};
-                return GetWoWUnitByEntry(listWoWUnit, entrys);
+                return GetWoWUnitByEntry(listWoWUnit, entrys, isDead);
             }
             catch (Exception e)
             {
@@ -780,11 +780,11 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys)
+        public static List<WoWUnit> GetWoWUnitByEntry(List<int> entrys, bool isDead = false)
         {
             try
             {
-                return GetWoWUnitByEntry(GetObjectWoWUnit(), entrys);
+                return GetWoWUnitByEntry(GetObjectWoWUnit(), entrys, isDead);
             }
             catch (Exception e)
             {
@@ -793,11 +793,11 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static List<WoWUnit> GetWoWUnitByEntry(int entry)
+        public static List<WoWUnit> GetWoWUnitByEntry(int entry, bool isDead = false)
         {
             try
             {
-                return GetWoWUnitByEntry(GetObjectWoWUnit(), entry);
+                return GetWoWUnitByEntry(GetObjectWoWUnit(), entry, isDead);
             }
             catch (Exception e)
             {

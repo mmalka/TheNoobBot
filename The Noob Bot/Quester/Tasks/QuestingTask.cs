@@ -279,7 +279,7 @@ namespace Quester.Tasks
 
                 if (!wowUnit.IsValid)
                     wowUnit = ObjectManager.GetNearestWoWUnit(
-                        ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                        ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
 
                 if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
                     wowUnit =
@@ -372,7 +372,7 @@ namespace Quester.Tasks
                     if (questObjective.Entry.Count > 0)
                     {
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry), true);
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true);
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -397,7 +397,7 @@ namespace Quester.Tasks
                         if (questObjective.Entry.Count > 0)
                         {
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry), true);
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true);
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -467,7 +467,7 @@ namespace Quester.Tasks
                                 ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
                         Point pos;
                         uint baseAddress;
                         if (node.IsValid)
@@ -528,7 +528,7 @@ namespace Quester.Tasks
                                 ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -554,7 +554,7 @@ namespace Quester.Tasks
                                     ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                             WoWUnit unit =
                                 ObjectManager.GetNearestWoWUnit(
-                                    ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                                    ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -665,7 +665,7 @@ namespace Quester.Tasks
                     {
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryVehicle}),
+                                ObjectManager.GetWoWUnitByEntry(new List<int> { questObjective.EntryVehicle }, questObjective.IsDead),
                                 questObjective.Position);
                         if (!unit.IsValid)
                         {
@@ -733,7 +733,7 @@ namespace Quester.Tasks
                                 ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
+                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -910,7 +910,7 @@ namespace Quester.Tasks
             // APPLY BUFF
             if (questObjective.Objective == Objective.ApplyBuff)
             {
-                List<WoWUnit> allUnits = ObjectManager.GetWoWUnitByEntry(questObjective.Entry);
+                List<WoWUnit> allUnits = ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead);
                 List<WoWUnit> allProperUnits = new List<WoWUnit>();
                 foreach (WoWUnit unit in allUnits)
                 {

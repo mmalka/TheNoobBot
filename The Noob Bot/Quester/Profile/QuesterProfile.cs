@@ -182,6 +182,7 @@ namespace Quester.Profile
 
         // InteractWith
         [DefaultValue(0)] public int GossipOptionsInteractWith = 0;
+        [DefaultValue(false)] public bool IsDead = false;
 
         // UseSpell
         [DefaultValue(0)] public int UseSpellId = 0;

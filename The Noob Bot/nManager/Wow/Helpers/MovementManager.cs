@@ -1467,9 +1467,10 @@ namespace nManager.Wow.Helpers
         private static Npc _trakedTarget = new Npc();
         private static UInt128 _trakedTargetGuid;
 
-        public static uint UpdateTarget(ref Npc Target, out bool asMoved)
+        public static uint UpdateTarget(ref Npc Target, out bool asMoved, bool isDead = false)
         {
-            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
+            List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry, isDead);
+            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, Target.Position);
             asMoved = false;
             if (TargetIsNPC.IsValid)
             {
@@ -1539,7 +1540,7 @@ namespace nManager.Wow.Helpers
             return FindTarget(ref _trakedTarget, SpecialRange, doMount);
         }
 
-        public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true)
+        public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true, bool isDead = false)
         {
             if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
@@ -1551,7 +1552,7 @@ namespace nManager.Wow.Helpers
             // Normal "Go to destination code", launch the movement thread by calling Go() or LongMoveByNewThread(), then return
             if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
             {
-                baseAddress = UpdateTarget(ref Target, out requiresUpdate);
+                baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead);
                 if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly) // Then we are > ~180 of the target
                 {
                     Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(Target.Position));
@@ -1576,7 +1577,7 @@ namespace nManager.Wow.Helpers
                 // Out of range of the position
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
                 {
-                    baseAddress = UpdateTarget(ref Target, out requiresUpdate);
+                    baseAddress = UpdateTarget(ref Target, out requiresUpdate, isDead);
                     if (LongMove.IsLongMove) // we are in longmove
                     {
                         if (baseAddress == 0) // we don't have the target in our radar
@@ -1625,10 +1626,10 @@ namespace nManager.Wow.Helpers
                 {
                     // Ready or not we are near enough of the target
                     StopMove();
-                    return UpdateTarget(ref Target, out requiresUpdate);
+                    return UpdateTarget(ref Target, out requiresUpdate, isDead);
                 }
             }
-            return UpdateTarget(ref Target, out requiresUpdate);
+            return UpdateTarget(ref Target, out requiresUpdate, isDead);
         }
 
         #endregion
