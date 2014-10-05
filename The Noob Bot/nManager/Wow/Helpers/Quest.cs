@@ -290,7 +290,7 @@ namespace nManager.Wow.Helpers
                                 "_, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);" +
                                 randomString + " = tostring(" + randomString + ")");
                 string ret = Lua.GetLocalizedText(randomString);
-                return ret == "true";
+                return ret == "1"; // 1-nil was supposed to have been removed by patch-note...
             }
             catch
             {

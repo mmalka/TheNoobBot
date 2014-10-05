@@ -68,6 +68,7 @@ namespace nManager.Wow.Class
             public UnitAuras(uint baseAddress)
             {
                 UnitBaseAddress = baseAddress;
+                Auras = new List<UnitAura>();
             }
 
             private uint UnitBaseAddress { set; get; }
