@@ -130,7 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="listfile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="CascLib\CascLib.csproj">
