@@ -45,6 +45,7 @@ namespace TheNoobViewer
             this.Deepholm = new System.Windows.Forms.ToolStripMenuItem();
             this.Darkmoon = new System.Windows.Forms.ToolStripMenuItem();
             this.IsleThunder = new System.Windows.Forms.ToolStripMenuItem();
+            this.Draenor = new System.Windows.Forms.ToolStripMenuItem();
             this.ZoomCombo = new System.Windows.Forms.ToolStripComboBox();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWebLink = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,6 +110,7 @@ namespace TheNoobViewer
             this.Outland,
             this.Northrend,
             this.Pandaria,
+            this.Draenor,
             this.TolBarad,
             this.Deepholm,
             this.Darkmoon,
@@ -129,7 +131,7 @@ namespace TheNoobViewer
             // Vashjir
             // 
             this.Vashjir.Name = "Vashjir";
-            this.Vashjir.Size = new System.Drawing.Size(152, 22);
+            this.Vashjir.Size = new System.Drawing.Size(112, 22);
             this.Vashjir.Text = "Vashj\'ir";
             this.Vashjir.Click += new System.EventHandler(this.Vashjir_Click);
             // 
@@ -153,9 +155,9 @@ namespace TheNoobViewer
             this.Northrend.Size = new System.Drawing.Size(164, 22);
             this.Northrend.Text = "Northrend";
             this.Northrend.Click += new System.EventHandler(this.Northrend_Click);
-            //
+            // 
             // Pandaria
-            //
+            // 
             this.Pandaria.Name = "Pandaria";
             this.Pandaria.Size = new System.Drawing.Size(164, 22);
             this.Pandaria.Text = "Pandaria";
@@ -181,14 +183,21 @@ namespace TheNoobViewer
             this.Darkmoon.Size = new System.Drawing.Size(164, 22);
             this.Darkmoon.Text = "Darkmoon Island";
             this.Darkmoon.Click += new System.EventHandler(this.Darkmoon_Click);
-            //
+            // 
             // IsleThunder
-            //
+            // 
             this.IsleThunder.Name = "IsleThunder";
             this.IsleThunder.Size = new System.Drawing.Size(164, 22);
             this.IsleThunder.Text = "Isle of Thunder";
             this.IsleThunder.Click += new System.EventHandler(this.IsleThunder_Click);
-            //
+            // 
+            // Draenor
+            // 
+            this.Draenor.Name = "Draenor";
+            this.Draenor.Size = new System.Drawing.Size(164, 22);
+            this.Draenor.Text = "Dreanor";
+            this.Draenor.Click += new System.EventHandler(this.Draenor_Click);
+            // 
             // ZoomCombo
             // 
             this.ZoomCombo.CausesValidation = false;
@@ -318,6 +327,7 @@ namespace TheNoobViewer
         private System.Windows.Forms.ToolStripMenuItem Darkmoon;
         private System.Windows.Forms.ToolStripMenuItem Pandaria;
         private System.Windows.Forms.ToolStripMenuItem IsleThunder;
+        private System.Windows.Forms.ToolStripMenuItem Draenor;
     }
 }
 

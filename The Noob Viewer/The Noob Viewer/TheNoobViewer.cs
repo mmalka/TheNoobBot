@@ -273,6 +273,7 @@ namespace TheNoobViewer
             Deepholm.Checked = false;
             Darkmoon.Checked = false;
             IsleThunder.Checked = false;
+            Draenor.Checked = false;
             ignorewater = false;
         }
 
@@ -357,6 +358,14 @@ namespace TheNoobViewer
             IsleThunder.Checked = true;
             continent = "MoguIslandDailyArea";
             toolStripStatusContinent.Text = "Current continent: Isle of Thunder";
+        }
+
+        private void Draenor_Click(object sender, EventArgs e)
+        {
+            uncheckAll();
+            Draenor.Checked = true;
+            continent = "Draenor";
+            toolStripStatusContinent.Text = "Current continent: Draenor";
         }
 
         private void menuWebLink_Click(object sender, EventArgs e)
@@ -450,5 +459,6 @@ namespace TheNoobViewer
                     break;
             }
         }
+
     }
 }
