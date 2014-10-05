@@ -76,7 +76,7 @@ namespace nManager
             {
                 Products.Products.DisposeProduct();
                 Wow.ObjectManager.Pulsator.Shutdown();
-                //AccountSecurity.Dispose();
+                Wow.Memory.WowMemory.AllowReHook = false; // Don't try to rehook before shutdown the bot.
                 Wow.Memory.WowMemory.DisposeHooking();
                 Wow.Memory.WowProcess = new Process();
 

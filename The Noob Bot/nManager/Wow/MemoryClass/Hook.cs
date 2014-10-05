@@ -12,32 +12,33 @@ using nManager.Wow.Patchables;
 namespace nManager.Wow.MemoryClass
 {
     /// <summary>
-    /// Hook endscene for injection
+    ///     Hook endscene for injection
     /// </summary>
     public class Hook
     {
         /// <summary>
-        /// Locker Hook
+        ///     Locker Hook
         /// </summary>
         public static readonly object Locker = new object();
 
-        private uint _addresseInjection;
-
         private readonly BlackMagic _memory = new BlackMagic();
+        public bool AllowReHook = false;
         internal uint InjectedCodeDetour;
         internal uint JumpAddress;
+        public int OffsetHookMemoryAccess = 0xB5;
+
+        /// <summary>
+        ///     Thread Hoocked
+        /// </summary>
+        public bool ThreadHooked;
+
+        private uint _addresseInjection;
+
         private uint _retnInjectionAsm;
         private uint _startInject;
 
         /// <summary>
-        /// Thread Hoocked
-        /// </summary>
-        public bool ThreadHooked;
-
-        public int OffsetHookMemoryAccess = 0xB5;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Hook"/> class.
+        ///     Initializes a new instance of the <see cref="Hook" /> class.
         /// </summary>
         public Hook()
         {
@@ -52,10 +53,10 @@ namespace nManager.Wow.MemoryClass
         }
 
         /// <summary>
-        /// BlackMagic - Memory lib.
+        ///     BlackMagic - Memory lib.
         /// </summary>
         /// <value>
-        /// BlackMagic - Memory lib.
+        ///     BlackMagic - Memory lib.
         /// </value>
         public BlackMagic Memory
         {
@@ -90,7 +91,7 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        string textBuild = Memory.ReadASCIIString(Wow.Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWoWVersionString);
+                        string textBuild = Memory.ReadASCIIString(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWoWVersionString);
                         uint wowBuildVersion = Helpers.Usefuls.WowVersion(textBuild);
                         if (wowBuildVersion != Information.TargetWowBuild)
                         {
@@ -128,14 +129,11 @@ namespace nManager.Wow.MemoryClass
                         // Get address of EndScene
                         JumpAddress = GetJumpAdresse();
 
-                        if (Memory.ReadByte(JumpAddress) == 0xE9 && (InjectedCodeDetour == 0 || _addresseInjection == 0))
-                            // check if wow is already hooked and dispose Hook
+                        if (Memory.ReadByte(JumpAddress) == 0xE9)
                         {
                             DisposeHooking();
                         }
-
-                        if (Memory.ReadByte(JumpAddress) != 0xE9 || true)
-                            // check if wow is already hooked // TODO try fix error rehook
+                        else
                         {
                             try
                             {
@@ -276,7 +274,7 @@ namespace nManager.Wow.MemoryClass
                                 // injected code
 
                                 Memory.Asm.Inject(InjectedCodeDetour);
-                                uint sizeAsm = (uint) (Memory.Asm.Assemble().Length);
+                                var sizeAsm = (uint) (Memory.Asm.Assemble().Length);
 
                                 // copy and save original instructions
                                 Memory.Asm.Clear();
@@ -293,15 +291,6 @@ namespace nManager.Wow.MemoryClass
                                 }*/
                                 if (D3D.OriginalBytes == null)
                                 {
-                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
-                                    byte[] wrongdata = new byte[] {0, 0, 0, 0, 0};
-                                    if (D3D.OriginalBytes == wrongdata)
-                                    {
-                                        Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
-                                        Logging.Write("An error is detected, you must switch the DirectX version used by your WoW client !");
-                                        MessageBox.Show("An error is detected, you must switch the DirectX version used by your WoW client !");
-                                        Pulsator.Dispose(true);
-                                    }
                                     byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 10);
                                     // Gather as much data as possible if there is others graphic cards system.
                                     string bytes = "";
@@ -313,34 +302,12 @@ namespace nManager.Wow.MemoryClass
                                             bytes = bytes + ", " + bit;
                                     }
                                     Logging.WriteFileOnly("Hooking Informations: " + bytes);
-                                    if (D3D.OriginalBytes[0] != 0xE9)
-                                    {
-                                        if (D3D.OriginalBytes[0] == 85)
-                                            D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6);
-                                        else if (D3D.OriginalBytes[0] == 106)
-                                            D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7);
-                                    }
-                                    else
-                                    {
-                                        // on the first hooking, we add 0 nop if 5bytes reading, 1nop if 6 bytes, 2nop if 7 bytes,
-                                        // that's why we need to read 9 here to be able to detect the 7bytes hooking.
-                                        // nop = 144, if there is no nop, that mean we are in a normal 5bytes mode.
-                                        byte[] getBytes = Memory.ReadBytes(JumpAddress, 9);
-                                        if (getBytes[5] != 144 && getBytes[6] != 144)
-                                            D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236}; // WinXP/WinVista/Win7
-                                        else if (getBytes[5] == 144 && getBytes[6] != 144)
-                                            D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8}; // Some graphic drivers
-                                        else if (getBytes[5] == 144 && getBytes[6] == 144)
-                                            D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115}; // Win8
-                                            // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
-                                        else
-                                        {
-                                            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
-                                            Logging.Write("An error is detected, please restart your WoW Client before running the bot again !");
-                                            MessageBox.Show("An error is detected, please restart your WoW Client before running the bot again !");
-                                            Pulsator.Dispose(true);
-                                        }
-                                    }
+
+                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5); // WinXP - Win7, with standards graphic drivers.
+                                    if (D3D.OriginalBytes[0] == 0x55)
+                                        D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6); // WinXP - Win7, with specific graphic drivers.
+                                    else if (D3D.OriginalBytes[0] == 0x6A)
+                                        D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
@@ -379,6 +346,7 @@ namespace nManager.Wow.MemoryClass
                             }
                         }
                         ThreadHooked = true;
+                        AllowReHook = true;
                     }
                 }
             }
@@ -391,9 +359,12 @@ namespace nManager.Wow.MemoryClass
         private void CheckEndsceneHook()
         {
             byte jmp = Memory.ReadByte(JumpAddress);
-            if (jmp == 0xE9) 
+            if (jmp == 0xE9)
+                return;
+            if (!AllowReHook)
                 return;
             ThreadHooked = false;
+            AllowReHook = false;
             Logging.WriteError("ThreadHooked: UnHooked; JmpAddress: " + jmp.ToString("X") + ", trying to reHook.");
             Hooking();
         }
@@ -404,8 +375,7 @@ namespace nManager.Wow.MemoryClass
             {
                 if (D3D.IsD3D11(Memory.ProcessId))
                     return D3D.D3D11Adresse();
-                else
-                    return D3D.D3D9Adresse(Memory.ProcessId);
+                return D3D.D3D9Adresse(Memory.ProcessId);
             }
             catch (Exception e)
             {
@@ -415,12 +385,12 @@ namespace nManager.Wow.MemoryClass
         }
 
         /// <summary>
-        /// Get Random ASM line.
+        ///     Get Random ASM line.
         /// </summary>
         /// <returns></returns>
         internal static string ProtectHook()
         {
-            List<string> asm = new List<string>
+            var asm = new List<string>
             {
                 "mov edx, edx",
                 "mov edi, edi",
@@ -452,7 +422,7 @@ namespace nManager.Wow.MemoryClass
         }
 
         /// <summary>
-        /// Disposes the hook.
+        ///     Disposes the hook.
         /// </summary>
         internal void DisposeHooking()
         {
@@ -463,20 +433,63 @@ namespace nManager.Wow.MemoryClass
                 // Get address of EndScene:
                 JumpAddress = GetJumpAdresse();
 
-                if (Memory.ReadByte(JumpAddress) == 0xE9) // check if wow is already hooked and dispose Hook
+                if (Memory.ReadByte(JumpAddress) == 0xE9)
                 {
                     lock (Locker)
                     {
                         // Restore origine endscene:
-                        if (D3D.OriginalBytes != null)
-                            Memory.WriteBytes(JumpAddress, D3D.OriginalBytes);
+                        if (D3D.OriginalBytes == null)
+                        {
+                            D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
+                            byte[] wrongdata = {0, 0, 0, 0, 0};
+                            if (D3D.OriginalBytes == wrongdata)
+                            {
+                                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
+                                Logging.Write("An error is detected, you must switch the DirectX version used by your WoW client !");
+                                MessageBox.Show("An error is detected, you must switch the DirectX version used by your WoW client !");
+                                Pulsator.Dispose(true);
+                                return;
+                            }
+                            // on the first hooking, we add 0 nop if 5bytes reading, 1nop if 6 bytes, 2nop if 7 bytes,
+                            // that's why we need to read 9 here to be able to detect the 7bytes hooking.
+                            // nop = 144, if there is no nop, that mean we are in a normal 5bytes mode.
+                            byte[] getBytes = Memory.ReadBytes(JumpAddress, 9);
+                            if (getBytes[5] != 144 && getBytes[6] != 144)
+                                D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236}; // WinXP/WinVista/Win7
+                            else if (getBytes[5] == 144 && getBytes[6] != 144)
+                                D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8}; // Some graphic drivers
+                            else if (getBytes[5] == 144 && getBytes[6] == 144)
+                                D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115}; // Win8
+                                // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
+                            else
+                            {
+                                string bytes = "";
+                                foreach (uint bit in getBytes)
+                                {
+                                    if (bytes == "")
+                                        bytes = bit.ToString();
+                                    else
+                                        bytes = bytes + ", " + bit;
+                                }
+                                Logging.WriteError("Error Hook_01 : Couldn't dispose previous Hooking correctly, please open a bug report thread on the forum with this log file.");
+                                Logging.WriteError("Error Hook_02 : " + bytes);
+                                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
+                                MessageBox.Show(
+                                    "World of Warcraft is currently in use by another Application than TheNoobBot and we could not automaticallt unhook it, try restarting the WoW Client, if this issue persist, open a bug report with this log file.");
+                                Pulsator.Dispose(true);
+                            }
+                        }
+                        Memory.WriteBytes(JumpAddress, D3D.OriginalBytes);
                     }
                 }
 
                 // free memory:
-                Memory.FreeMemory(InjectedCodeDetour - _startInject);
-                Memory.FreeMemory(_addresseInjection);
-                Memory.FreeMemory(_retnInjectionAsm);
+                if (InjectedCodeDetour != 0 && _startInject != 0)
+                    Memory.FreeMemory(InjectedCodeDetour - _startInject);
+                if (_addresseInjection != 0)
+                    Memory.FreeMemory(_addresseInjection);
+                if (_retnInjectionAsm != 0)
+                    Memory.FreeMemory(_retnInjectionAsm);
             }
             catch (Exception e)
             {
@@ -485,7 +498,7 @@ namespace nManager.Wow.MemoryClass
         }
 
         /// <summary>
-        /// Injects the and execute Asm lines.
+        ///     Injects the and execute Asm lines.
         /// </summary>
         /// <param name="asm">The asm code.</param>
         /// <param name="returnValue">if set to <c>true</c> [return value].</param>
@@ -497,7 +510,7 @@ namespace nManager.Wow.MemoryClass
             {
                 lock (Locker)
                 {
-                    byte[] tempsByte = new byte[0];
+                    var tempsByte = new byte[0];
                     try
                     {
                         // Hook Wow:
@@ -521,7 +534,7 @@ namespace nManager.Wow.MemoryClass
 
 
                             // Allocation Memory
-                            uint startBaseInject = (uint) Others.Random(0, 60);
+                            var startBaseInject = (uint) Others.Random(0, 60);
                             uint injectionAsmCodecave =
                                 Memory.AllocateMemory(Memory.Asm.Assemble().Length + Others.Random(60, 80)) +
                                 startBaseInject;
@@ -552,7 +565,7 @@ namespace nManager.Wow.MemoryClass
                                 }
                                 else
                                 {
-                                    List<byte> retnByte = new List<byte>();
+                                    var retnByte = new List<byte>();
                                     uint dwAddress = Memory.ReadUInt(_retnInjectionAsm);
                                     byte buf = Memory.ReadByte(dwAddress);
                                     while (buf != 0)
@@ -598,7 +611,7 @@ namespace nManager.Wow.MemoryClass
                     pJump = D3D.D3D11Adresse();
                 else
                     pJump = D3D.D3D9Adresse(processId);
-                BlackMagic memory = new BlackMagic(processId);
+                var memory = new BlackMagic(processId);
                 return memory.ReadByte(pJump) == 0xE9;
             }
             catch (Exception e)
@@ -616,7 +629,7 @@ namespace nManager.Wow.MemoryClass
                     return Translate.Get(Translate.Id.Please_connect_to_the_game);
 
                 // init memory
-                BlackMagic memory = new BlackMagic(processId);
+                var memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
@@ -641,7 +654,7 @@ namespace nManager.Wow.MemoryClass
             try
             {
                 // init memory
-                BlackMagic memory = new BlackMagic(processId);
+                var memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
