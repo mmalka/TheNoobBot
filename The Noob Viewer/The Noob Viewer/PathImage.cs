@@ -138,7 +138,7 @@ namespace meshPathVisualizer
             graphics.Dispose();
 
             // and wrap up the result
-            Result = Background.Result;
+            Result = MinimapImage.TrimBitmap(Background.Result);
         }
 
         public void DrawHeatMap(List<KeyValuePair<float, float>> pts)

@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using meshDatabase.Database;
 using Microsoft.Win32;
-using StormLib;
 using MPQ;
 using System.Windows.Forms;
 
@@ -18,6 +17,7 @@ namespace meshDatabase
         public static void Initialize(string path = null)
         {
             gameDir = path;
+            Mpq.Init(path);
         }
 
         public static DBC GetDBC(string name)

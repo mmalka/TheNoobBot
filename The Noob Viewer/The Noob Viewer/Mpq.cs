@@ -1,66 +1,57 @@
 ﻿using System;
 using System.IO;
-using StormLib;
 using meshDatabase;
+using TheNoobViewer;
+using System.Windows.Forms;
+using System.Reflection;
 
 namespace MPQ
 {
     static class Mpq
     {
-        static readonly string[] archiveNames = {
-                    "expansion4.mpq",
-                    "expansion3.mpq",
-                    "expansion2.mpq",
-                    "expansion1.mpq",
-                    "texture.mpq" };
+        static CASCHandler CASC;
+        static CASCFolder Root;
 
-        static readonly MpqArchiveSet archive = new MpqArchiveSet();
-        static readonly string regGameDir = MpqArchiveSet.GetGameDirFromReg();
-
-        static Mpq()
+        public static void Init(string path)
         {
-            string dir;
-            if (MpqManager.gameDir == null)
-                dir = Path.Combine(regGameDir, "Data\\");
-            else
-                dir = Path.Combine(MpqManager.gameDir, "Data\\");
-            archive.SetGameDir(dir);
+            CASC = CASCHandler.OpenLocalStorage(path);
 
-            Console.WriteLine("Game dir is {0}", dir);
-            if (archive.AddArchives(archiveNames) == 0)
-            {
-                System.Windows.Forms.MessageBox.Show("TheNoobViewer cannot open Wow data files\nThey are probably locked by a running game instance\n\nTheNoobViewer will stop.", "Unrecoverable error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                Environment.Exit(1);
-            }
-            foreach (var loc in MpqLocale.Locales)
-            {
-                var strDirLocale = dir + loc + "\\";
-                if (Directory.Exists(strDirLocale))
-                {
-                    var strLocaleMPQ = "locale-" + loc + ".MPQ";
-                    if (File.Exists(strDirLocale + strLocaleMPQ))
-                        archive.AddArchive(loc + "\\" + strLocaleMPQ);
-                }
-            }
+            byte[] filelistbytes = TheNoobViewer.Properties.Resources.listfile;
+            Stream stream = new MemoryStream(filelistbytes);
+
+            CASC.LoadListFile(stream);
+            Root = CASC.CreateStorageTree(LocaleFlags.All);
         }
 
-        public static bool ExtractFile(string from, string to, OpenFile dwSearchScope)
+        public static bool ExtractFile(string from, string to)
         {
-            return archive.ExtractFile(from, to, dwSearchScope);
+            try
+            {
+                CASC.SaveFileTo(from, to, LocaleFlags.All);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static Stream GetFile(string from)
         {
-            Stream strm;
-            bool res = archive.ReadFile(from, out strm);
-            if (res)
-                return strm;
-            return null;
+            try
+            {
+                return CASC.OpenFile(from, LocaleFlags.All);
+            }
+            catch
+            {
+                Console.WriteLine("Problem: " + from);
+                return null;
+            }
         }
 
         public static void Close()
         {
-            archive.Close();
+            //
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using meshPathVisualizer;
 using System.Xml;
 using meshDatabase;
+using TheNoobViewer.Properties;
 
 namespace TheNoobViewer
 {
@@ -116,6 +117,7 @@ namespace TheNoobViewer
             catch (System.IO.IOException)
             {
             }
+            MpqManager.Initialize(Settings.Default.WoWPath);
         }
 
         public System.Drawing.Rectangle GetScreen()

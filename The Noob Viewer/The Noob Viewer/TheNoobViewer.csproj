@@ -71,8 +71,6 @@
     <Compile Include="MpqManager.cs" />
     <Compile Include="Pather.cs" />
     <Compile Include="PathImage.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="StormLib.cs" />
     <Compile Include="TheNoobViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,7 +94,8 @@
     <EmbeddedResource Include="TheNoobViewer.resx">
       <DependentUpon>TheNoobViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="App.config" />
+    <None Include="listfile.list" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,11 +130,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="listfile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CascLib\CascLib.csproj">
+      <Project>{e08e1e48-6585-4137-8405-661c62c10713}</Project>
+      <Name>CascLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)\The Noob Viewer\StormLib.dll" "$(TargetDir)" /y
-copy "$(SolutionDir)\The Noob Viewer\StormLib.pdb" "$(TargetDir)" /y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
