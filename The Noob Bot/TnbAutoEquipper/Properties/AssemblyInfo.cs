@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("TheBroadcaster")]
+[assembly: AssemblyTitle("TnbAutoEquipper for TheNoobBot")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TheNoobCompany")]
-[assembly: AssemblyProduct("TheBroadcaster")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("TnbAutoEquipper for TheNoobBot")]
+[assembly: AssemblyCopyright("Copyright © 2011-2014")]
 [assembly: AssemblyTrademark("TheNoobBot")]
 [assembly: AssemblyCulture("")]
 

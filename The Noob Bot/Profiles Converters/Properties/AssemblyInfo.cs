@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 
-[assembly: AssemblyTitle("Profiles Converters")]
+[assembly: AssemblyTitle("Profiles Converters for TheNoobBot")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TheNoobCompany")]
-[assembly: AssemblyProduct("Profiles Converters")]
+[assembly: AssemblyProduct("Profiles Converters for TheNoobBot")]
 [assembly: AssemblyCopyright("Copyright © 2011-2014")]
 [assembly: AssemblyTrademark("TheNoobBot")]
 [assembly: AssemblyCulture("")]

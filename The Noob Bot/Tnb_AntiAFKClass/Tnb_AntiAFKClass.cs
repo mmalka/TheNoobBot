@@ -62,6 +62,8 @@ public class AntiAfk
     /**
       * Author : VesperCore
       * Utility : Anti_AFK; to be used with a profile with only 1 point.
+      * Purpose : Empty CombatClass template.
+      * Depreciated : The bot wont let you go AFK with or without this file. 
     **/
 
     public AntiAfk()
