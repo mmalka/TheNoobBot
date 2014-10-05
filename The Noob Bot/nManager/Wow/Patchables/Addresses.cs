@@ -10,7 +10,7 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0xECF700; // ClntObjMgrInitializeStd
+            public static uint clientConnection = 0x0; // 0xECF728 ClntObjMgrInitializeStd
             public static uint sCurMgr = 0xCB2B08; // CCommand_ObjUsage
             // It's the direct pointer to objectManager clientConn+objectManager
         }
@@ -98,7 +98,7 @@
         public enum Player
         {
             petGUID = 0xE005C8, // petGUIDFOUND
-            playerName = 0xECF740, // ida: GetPlayerName
+            playerName = 0xECF768, // ida: GetPlayerName
             RetrieveCorpseWindow = 0xD8D1E0, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
             SkillValue = 0x200,
@@ -215,7 +215,7 @@
         public enum ClickToMove
         {
             CTM = 0xD2FFA8,  // GetClickToMoveStruct
-            CTM_PUSH = 0xD2FFC4,
+            CTM_PUSH = 0xD2FFC4, // CGUnit_C__IsAutoTracking
             CTM_X = CTM + 0x8C,
             CTM_Y = CTM_X + 0x4,
             CTM_Z = CTM_Y + 0x4,
@@ -234,13 +234,13 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x39E6,
-            FrameScript_ExecuteBuffer = 0x23F11,
-            CGUnit_C__InitializeTrackingState = 0x2E5B46, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2D741D,
-            CGWorldFrame__Intersect = 0x4F8E70,
-            Spell_C_HandleTerrainClick = 0x245E14,
-            CGUnit_C__Interact = 0x90397D,  
+            ClntObjMgrGetActivePlayerObj = 0x3A0C,
+            FrameScript_ExecuteBuffer = 0x240BB,
+            CGUnit_C__InitializeTrackingState = 0x2E57A5, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2D702C,
+            CGWorldFrame__Intersect = 0x4F8ED3,
+            Spell_C_HandleTerrainClick = 0x245784,
+            CGUnit_C__Interact = 0x90398D,  
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
@@ -271,7 +271,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xECF709 + 0x6, // ClientServices__GetSelectedRealm
+            realmName = 0xECF731 + 0x6, // ClientServices__GetSelectedRealm
         }
 
         /// <summary>
