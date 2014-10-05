@@ -287,7 +287,7 @@ namespace nManager.Wow.Bot.Tasks
                         Thread.Sleep(500);
                         MovementsAction.Ascend(false);
                     }
-                    if (Usefuls.IsOutdoors)
+                    if (Usefuls.IsOutdoors && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                     {
                         if (stopMove)
                             MovementManager.StopMove();

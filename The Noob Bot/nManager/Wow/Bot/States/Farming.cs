@@ -63,8 +63,6 @@ namespace nManager.Wow.Bot.States
                         continue;
                     if (node.GetDistance2D > nManagerSetting.CurrentSetting.GatheringSearchRadius)
                         continue;
-                    if (node.Position.Type.ToLower() == "swimming" && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.FlightFormsIds()))
-                        continue;
                     if (!node.CanOpen) continue;
                     if (PlayerNearest(node)) continue;
                     if (node.UnitNearest) continue;
