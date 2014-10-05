@@ -58,7 +58,7 @@ namespace nManager.Helpful.Forms.UserControls
                     {
                         LoggingTextArea.AppendText(_listLog[0].ToString());
                         LoggingTextArea.Select(LoggingTextArea.Text.Length - _listLog[0].ToString().Length,
-                                           _listLog[0].ToString().Length);
+                            _listLog[0].ToString().Length);
                         LoggingTextArea.SelectionColor = _listLog[0].Color;
                         LoggingTextArea.AppendText(Environment.NewLine);
                         _listLog.RemoveAt(0);
@@ -71,7 +71,7 @@ namespace nManager.Helpful.Forms.UserControls
                 Logging.WriteError("AddLog(): " + e);
             }
         }
-    
+
         private Logging.LogType GetFlag()
         {
             try

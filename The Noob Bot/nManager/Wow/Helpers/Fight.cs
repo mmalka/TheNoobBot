@@ -290,7 +290,7 @@ namespace nManager.Wow.Helpers
                         }
 
                         // Face player to mob
-                        MovementManager.Face(targetNpc, false); 
+                        MovementManager.Face(targetNpc, false);
                         // If we are not facing anymore, it's because of player moves in 99% of the case, so wait for the next player move to apply the facing.
                         Thread.Sleep(10);
                     }

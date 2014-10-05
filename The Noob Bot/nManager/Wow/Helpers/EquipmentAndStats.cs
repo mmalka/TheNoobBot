@@ -337,7 +337,7 @@ namespace nManager.Wow.Helpers
                 Thread.Sleep(10);
             }
             if (CombatClass.IsAliveCombatClass || HealerClass.IsAliveHealerClass)
-                return; 
+                return;
             // This has low chance to be loaded after a CombatClass is started, but in case, 
             // we prioritize CombatClass values. This is in order to get our spec if we don't start any product.
             WoWSpecialization mySpec = ObjectManager.ObjectManager.Me.WowSpecialization(true);

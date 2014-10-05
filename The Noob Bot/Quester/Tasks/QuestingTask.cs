@@ -147,7 +147,7 @@ namespace Quester.Tasks
                 if (questObjective.CurrentCount >= questObjective.CollectCount)
                     return true;
                 if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0 &&
-                        ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
+                    ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     return true;
                 return false;
             }

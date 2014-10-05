@@ -224,22 +224,22 @@ namespace Mimesis.Bot
                 case MimesisHelpers.eventType.pickupQuest:
                 case MimesisHelpers.eventType.turninQuest:
                     List<WoWUnit> listU = ObjectManager.GetWoWUnitByEntry(evt.EventValue1);
-            if (listU.Count > 0)
-            {
-                WoWUnit u = listU[0];
-                Npc quester = new Npc();
+                    if (listU.Count > 0)
+                    {
+                        WoWUnit u = listU[0];
+                        Npc quester = new Npc();
                         quester.Entry = evt.EventValue1;
-                quester.Position = u.Position;
-                quester.Name = u.Name;
+                        quester.Position = u.Position;
+                        quester.Name = u.Name;
 
                         if (evt.eType == MimesisHelpers.eventType.pickupQuest)
                             Quest.QuestPickUp(ref quester, evt.EventString1, evt.EventValue2);
                         else
-                            Quest.QuestTurnIn(ref quester, Quest.GetLogQuestTitle(evt.EventValue2) , evt.EventValue2);
+                            Quest.QuestTurnIn(ref quester, Quest.GetLogQuestTitle(evt.EventValue2), evt.EventValue2);
                     }
                     break;
                 case MimesisHelpers.eventType.mount:
-                    switch ((MountCapacity)evt.EventValue1)
+                    switch ((MountCapacity) evt.EventValue1)
                     {
                         case MountCapacity.Ground:
                             MountTask.MountingGroundMount(true);

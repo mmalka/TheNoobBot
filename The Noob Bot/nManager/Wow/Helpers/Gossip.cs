@@ -8,20 +8,29 @@ namespace nManager.Wow.Helpers
     {
         public sealed class GossipOption
         {
-            public static readonly GossipOption Banker =        new GossipOption("Banker");
-            public static readonly GossipOption BattleMaster =  new GossipOption("BattleMaster");
-            public static readonly GossipOption Binder =        new GossipOption("Binder");
-            public static readonly GossipOption Gossip =        new GossipOption("Gossip");
-            public static readonly GossipOption Healer =        new GossipOption("Healer");
-            public static readonly GossipOption Petition =      new GossipOption("Petition");
-            public static readonly GossipOption Tabard =        new GossipOption("Tabard");
-            public static readonly GossipOption Taxi =          new GossipOption("Taxi");
-            public static readonly GossipOption Trainer =       new GossipOption("Trainer");
-            public static readonly GossipOption Unlearn =       new GossipOption("Unlearn");
-            public static readonly GossipOption Vendor =        new GossipOption("Vendor");
-            private GossipOption(string value) { Value = value; }
+            public static readonly GossipOption Banker = new GossipOption("Banker");
+            public static readonly GossipOption BattleMaster = new GossipOption("BattleMaster");
+            public static readonly GossipOption Binder = new GossipOption("Binder");
+            public static readonly GossipOption Gossip = new GossipOption("Gossip");
+            public static readonly GossipOption Healer = new GossipOption("Healer");
+            public static readonly GossipOption Petition = new GossipOption("Petition");
+            public static readonly GossipOption Tabard = new GossipOption("Tabard");
+            public static readonly GossipOption Taxi = new GossipOption("Taxi");
+            public static readonly GossipOption Trainer = new GossipOption("Trainer");
+            public static readonly GossipOption Unlearn = new GossipOption("Unlearn");
+            public static readonly GossipOption Vendor = new GossipOption("Vendor");
+
+            private GossipOption(string value)
+            {
+                Value = value;
+            }
+
             public string Value { get; private set; }
-            public static implicit operator string(GossipOption go) { return go.Value; }
+
+            public static implicit operator string(GossipOption go)
+            {
+                return go.Value;
+            }
         }
 
         public static void TrainAllAvailableSpells()
@@ -126,7 +135,6 @@ namespace nManager.Wow.Helpers
             nManager.Helpful.Logging.WriteDebug("Found " + nbTaxiNode + " Taxi Path for this Flight Master.");
             for (int id = 1; id <= nbTaxiNode; id++)
             {
-
                 string chkpx = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
                 string chkpy = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
                 string destName = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));

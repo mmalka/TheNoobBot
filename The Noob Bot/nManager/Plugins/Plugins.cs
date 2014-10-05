@@ -183,7 +183,9 @@ namespace nManager.Plugins
                         _instanceFromOtherAssembly.ShowConfiguration();
                         return;
                     }
-                    _worker = onlyCheckVersion ? new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName} : new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
+                    _worker = onlyCheckVersion
+                        ? new Thread(_instanceFromOtherAssembly.CheckFields) {IsBackground = true, Name = _threadName}
+                        : new Thread(_instanceFromOtherAssembly.Initialize) {IsBackground = true, Name = _threadName};
                     _worker.Start();
                 }
             }

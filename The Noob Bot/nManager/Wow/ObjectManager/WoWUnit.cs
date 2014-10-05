@@ -2264,7 +2264,7 @@ namespace nManager.Wow.ObjectManager
 
         public Auras.UnitAura UnitAura(UInt32 idBuff, UInt128 creatorGUID)
         {
-            var idBuffs = new List<UInt32> { idBuff };
+            var idBuffs = new List<UInt32> {idBuff};
             return UnitAura(idBuffs, creatorGUID);
         }
 

@@ -93,7 +93,7 @@ namespace nManager.Wow.Bot.States
                 currentPoint = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
                 MovementManager.PointId = currentPoint;
             }
-            // If the path did not change, let's find a good next point
+                // If the path did not change, let's find a good next point
             else if (PathLoop[MovementManager.PointId].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 2.0f)
             {
                 currentPoint = MovementManager.PointId + 1;
@@ -108,9 +108,9 @@ namespace nManager.Wow.Bot.States
                     Vector3 v0 = new Vector3(PathLoop[point]);
                     Vector3 v1 = new Vector3(PathLoop[pointNext]);
                     float angle = (v1 - v0).Angle2D(v0 - me);
-                    if (System.Math.Abs(angle) <= (System.Math.PI / 3f))
+                    if (System.Math.Abs(angle) <= (System.Math.PI/3f))
                     {
-                        Logging.WriteNavigator("Next Point is " + (point - currentPoint) + " ahead, his angle is " + System.Math.Round(angle * 180 / System.Math.PI, 2) + "°");
+                        Logging.WriteNavigator("Next Point is " + (point - currentPoint) + " ahead, his angle is " + System.Math.Round(angle*180/System.Math.PI, 2) + "°");
                         currentPoint = point;
                         break;
                     }

@@ -45,7 +45,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof(QuestersDB))
+                lock (typeof (QuestersDB))
                 {
                     if (_listNpc == null)
                         _listNpc = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
@@ -63,7 +63,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                AddNpcRange(new List<Npc> { npc });
+                AddNpcRange(new List<Npc> {npc});
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof(QuestersDB))
+                lock (typeof (QuestersDB))
                 {
                     foreach (Npc npc1 in ListNpc)
                     {
@@ -99,7 +99,7 @@ namespace nManager.Wow.Helpers
             {
                 int count = 0;
                 LoadList();
-                lock (typeof(QuestersDB))
+                lock (typeof (QuestersDB))
                 {
                     for (int i = 0; i < npcList.Count; i++)
                     {
@@ -159,7 +159,7 @@ namespace nManager.Wow.Helpers
             {
                 File.Delete(Application.StartupPath + "\\Data\\QuestersDB.xml");
                 ListNpc.Clear();
-                lock (typeof(QuestersDB))
+                lock (typeof (QuestersDB))
                 {
                     foreach (Npc npc in npcList)
                     {
@@ -180,8 +180,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Npc.FactionType faction = (Npc.FactionType)Enum.Parse(typeof(Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
-                return GetNpcNearby(type, faction, (Enums.ContinentId)Usefuls.ContinentId, ObjectManager.ObjectManager.Me.Position, ignoreRadiusSettings);
+                Npc.FactionType faction = (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
+                return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId, ObjectManager.ObjectManager.Me.Position, ignoreRadiusSettings);
             }
             catch (Exception ex)
             {

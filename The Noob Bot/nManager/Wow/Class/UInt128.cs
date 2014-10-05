@@ -421,7 +421,7 @@ namespace nManager.Wow.Class
         /// </remarks>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return ((BigInteger)this).ToString(format, formatProvider);
+            return ((BigInteger) this).ToString(format, formatProvider);
         }
 
         /// <summary>

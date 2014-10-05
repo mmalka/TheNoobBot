@@ -49,9 +49,9 @@ namespace Gatherer.Bot
 
                 Fsm.AddState(new Pause {Priority = 100});
                 Fsm.AddState(new Resurrect {Priority = 12});
-                Fsm.AddState(new IsAttacked { Priority = 11 });
-                Fsm.AddState(new Regeneration { Priority = 10 });
-                Fsm.AddState(new ToTown { Priority = 9 });
+                Fsm.AddState(new IsAttacked {Priority = 11});
+                Fsm.AddState(new Regeneration {Priority = 10});
+                Fsm.AddState(new ToTown {Priority = 9});
                 Fsm.AddState(new Looting {Priority = 8});
                 Fsm.AddState(new SpecializationCheck {Priority = 7});
                 Fsm.AddState(new LevelupCheck {Priority = 6});

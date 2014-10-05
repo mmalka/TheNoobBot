@@ -46,6 +46,7 @@ namespace nManager.Wow.ObjectManager
                     return _objectList.ToList();
             }
         }
+
         public static ConcurrentDictionary<UInt128, WoWObject> ObjectDictionary { get; set; }
         public static WoWPlayer Me { get; private set; }
 
@@ -88,7 +89,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    UInt128 guidPet = Memory.WowMemory.Memory.ReadUInt128(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
+                    UInt128 guidPet = Memory.WowMemory.Memory.ReadUInt128(Memory.WowProcess.WowModule + (uint) Addresses.Player.petGUID);
                     if (guidPet > 0)
                         return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
 
@@ -170,8 +171,9 @@ namespace nManager.Wow.ObjectManager
                 while (Addresses.ObjectManagerClass.clientConnection == 0)
                     Thread.Sleep(10);
 
-                ObjectManagerAddress = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.clientConnection) + (uint)Addresses.ObjectManager.objectManager);
-                UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadUInt128(ObjectManagerAddress + (uint)Addresses.ObjectManager.localGuid);
+                ObjectManagerAddress =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.clientConnection) + (uint) Addresses.ObjectManager.objectManager);
+                UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadUInt128(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
 
                 // Get the first object in the linked list.
                 int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.firstObject);
@@ -180,7 +182,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     try
                     {
-                        UInt128 objGuid = Memory.WowMemory.Memory.ReadUInt128((uint)currentObject + (uint)Addresses.ObjectManager.objectGUID);
+                        UInt128 objGuid = Memory.WowMemory.Memory.ReadUInt128((uint) currentObject + (uint) Addresses.ObjectManager.objectGUID);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
                             WoWObjectType objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);
@@ -226,7 +228,7 @@ namespace nManager.Wow.ObjectManager
                                 case WoWObjectType.AiGroup:
                                 case WoWObjectType.AreaTrigger:
                                     break;
-                                /*default:
+                                    /*default:
                                     Logging.Write("GUID: " + objGuid);
                                     Logging.Write("TYPE: " + objType);
                                     Logging.Write("GetWoWId: " + objGuid.GetWoWId);
@@ -1310,7 +1312,7 @@ namespace nManager.Wow.ObjectManager
                         {
                             if (petAttacked || a.IsTargetingMe)
                                 objectReturn.Add(a);
-                            else if (inGroup && a.Attackable && a.GetDistance < (a.AggroDistance * 0.7f))
+                            else if (inGroup && a.Attackable && a.GetDistance < (a.AggroDistance*0.7f))
                                 objectReturn.Add(a);
                         }
                     }

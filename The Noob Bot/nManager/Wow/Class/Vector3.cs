@@ -50,7 +50,7 @@ namespace nManager.Wow.Class
         [XmlIgnore]
         public float[] Array
         {
-            get { return new float[] { X, Y, Z }; }
+            get { return new float[] {X, Y, Z}; }
             set
             {
                 if (value.Length == 3)
@@ -72,20 +72,43 @@ namespace nManager.Wow.Class
             {
                 switch (index)
                 {
-                    case 0: { return X; }
-                    case 1: { return Y; }
-                    case 2: { return Z; }
-                    default: throw new ArgumentException("Array must contain exactly three values: [x,y,z]", "index");
+                    case 0:
+                    {
+                        return X;
+                    }
+                    case 1:
+                    {
+                        return Y;
+                    }
+                    case 2:
+                    {
+                        return Z;
+                    }
+                    default:
+                        throw new ArgumentException("Array must contain exactly three values: [x,y,z]", "index");
                 }
             }
             set
             {
                 switch (index)
                 {
-                    case 0: { X = value; break; }
-                    case 1: { Y = value; break; }
-                    case 2: { Z = value; break; }
-                    default: throw new ArgumentException("Array must contain exactly three values: [x,y,z]", "index");
+                    case 0:
+                    {
+                        X = value;
+                        break;
+                    }
+                    case 1:
+                    {
+                        Y = value;
+                        break;
+                    }
+                    case 2:
+                    {
+                        Z = value;
+                        break;
+                    }
+                    default:
+                        throw new ArgumentException("Array must contain exactly three values: [x,y,z]", "index");
                 }
             }
         }
@@ -93,15 +116,12 @@ namespace nManager.Wow.Class
         [XmlIgnore]
         public float Magnitude
         {
-            get
-            {
-                return (float) CSharpMath.Sqrt(X * X + Y * Y + Z * Z);
-            }
+            get { return (float) CSharpMath.Sqrt(X*X + Y*Y + Z*Z); }
             set
             {
                 if (value < 0 || this == origin)
                     return;
-                Vector3 v = this * (value / Magnitude);
+                Vector3 v = this*(value/Magnitude);
                 X = v.X;
                 Y = v.Y;
                 Z = v.Z;
@@ -116,14 +136,14 @@ namespace nManager.Wow.Class
 
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
-            if ((object)v1 == null) return ((object)v2 == null);
-            if ((object)v2 == null) return ((object)v1 == null);
+            if ((object) v1 == null) return ((object) v2 == null);
+            if ((object) v2 == null) return ((object) v1 == null);
             return
-               (
+                (
                     (v1.X == v2.X) &&
                     (v1.Y == v2.Y) &&
                     (v1.Z == v2.Z)
-               );
+                    );
         }
 
         public static bool operator !=(Vector3 v1, Vector3 v2)
@@ -154,96 +174,97 @@ namespace nManager.Wow.Class
         public static Vector3 operator *(Vector3 v1, float s2)
         {
             return
-            (
-               new Vector3
-               (
-                    v1.X * s2,
-                    v1.Y * s2,
-                    v1.Z * s2
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        v1.X*s2,
+                        v1.Y*s2,
+                        v1.Z*s2
+                        )
+                    );
         }
+
         public static Vector3 operator *(float s1, Vector3 v2)
         {
-            return v2 * s1;
+            return v2*s1;
         }
 
         public static Vector3 operator /(Vector3 v1, float s2)
         {
             return
-            (
-               new Vector3
-               (
-                    v1.X / s2,
-                    v1.Y / s2,
-                    v1.Z / s2
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        v1.X/s2,
+                        v1.Y/s2,
+                        v1.Z/s2
+                        )
+                    );
         }
 
         public static Vector3 operator +(Vector3 v1, Vector3 v2)
         {
             return
-            (
-               new Vector3
-               (
-                    v1.X + v2.X,
-                    v1.Y + v2.Y,
-                    v1.Z + v2.Z
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        v1.X + v2.X,
+                        v1.Y + v2.Y,
+                        v1.Z + v2.Z
+                        )
+                    );
         }
 
         public static Vector3 operator -(Vector3 v1, Vector3 v2)
         {
             return
-            (
-               new Vector3
-               (
-                    v1.X - v2.X,
-                    v1.Y - v2.Y,
-                    v1.Z - v2.Z
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        v1.X - v2.X,
+                        v1.Y - v2.Y,
+                        v1.Z - v2.Z
+                        )
+                    );
         }
 
         public static Vector3 operator -(Vector3 v1)
         {
             return
-            (
-               new Vector3
-               (
-                    -v1.X,
-                    -v1.Y,
-                    -v1.Z
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        -v1.X,
+                        -v1.Y,
+                        -v1.Z
+                        )
+                    );
         }
 
         public static Vector3 operator +(Vector3 v1)
         {
             return
-            (
-               new Vector3
-               (
-                    +v1.X,
-                    +v1.Y,
-                    +v1.Z
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        +v1.X,
+                        +v1.Y,
+                        +v1.Z
+                        )
+                    );
         }
 
         public static Vector3 Cross(Vector3 v1, Vector3 v2)
         {
             return
-            (
-               new Vector3
-               (
-                    v1.Y * v2.Z - v1.Z * v2.Y,
-                    v1.Z * v2.X - v1.X * v2.Z,
-                    v1.X * v2.Y - v1.Y * v2.X
-               )
-            );
+                (
+                    new Vector3
+                        (
+                        v1.Y*v2.Z - v1.Z*v2.Y,
+                        v1.Z*v2.X - v1.X*v2.Z,
+                        v1.X*v2.Y - v1.Y*v2.X
+                        )
+                    );
         }
 
         public Vector3 Cross(Vector3 other)
@@ -254,11 +275,11 @@ namespace nManager.Wow.Class
         public static float Dot(Vector3 v1, Vector3 v2)
         {
             return
-            (
-                v1.X * v2.X +
-                v1.Y * v2.Y +
-                v1.Z * v2.Z
-            );
+                (
+                    v1.X*v2.X +
+                    v1.Y*v2.Y +
+                    v1.Z*v2.Z
+                    );
         }
 
         public float Dot(Vector3 other)
@@ -285,13 +306,13 @@ namespace nManager.Wow.Class
         {
             return
                 (float) (
-                Math.Sqrt
-                (
-                    (v1.X - v2.X) * (v1.X - v2.X) +
-                    (v1.Y - v2.Y) * (v1.Y - v2.Y) +
-                    (v1.Z - v2.Z) * (v1.Z - v2.Z)
-                )
-            );
+                    Math.Sqrt
+                        (
+                            (v1.X - v2.X)*(v1.X - v2.X) +
+                            (v1.Y - v2.Y)*(v1.Y - v2.Y) +
+                            (v1.Z - v2.Z)*(v1.Z - v2.Z)
+                        )
+                    );
         }
 
         public float DistanceTo(Vector3 other)
@@ -302,13 +323,13 @@ namespace nManager.Wow.Class
         public static float DistanceTo2D(Vector3 v1, Vector3 v2)
         {
             return
-                (float)(
-                Math.Sqrt
-                (
-                    (v1.X - v2.X) * (v1.X - v2.X) +
-                    (v1.Y - v2.Y) * (v1.Y - v2.Y)
-                )
-            );
+                (float) (
+                    Math.Sqrt
+                        (
+                            (v1.X - v2.X)*(v1.X - v2.X) +
+                            (v1.Y - v2.Y)*(v1.Y - v2.Y)
+                        )
+                    );
         }
 
         public float DistanceTo2D(Vector3 other)
@@ -333,9 +354,9 @@ namespace nManager.Wow.Class
         {
             double angle = CSharpMath.Atan2(v2.Y, v2.X) - CSharpMath.Atan2(v1.Y, v1.X);
             if (angle > CSharpMath.PI)
-                angle -= (CSharpMath.PI * 2.0);
+                angle -= (CSharpMath.PI*2.0);
             else if (angle < (0.0 - CSharpMath.PI))
-                angle += (CSharpMath.PI * 2.0);
+                angle += (CSharpMath.PI*2.0);
             return (float) angle;
         }
 
@@ -356,16 +377,16 @@ namespace nManager.Wow.Class
             }
             else
             {
-                float inverse = 1 / v1.Magnitude;
+                float inverse = 1/v1.Magnitude;
                 return
-                (
-                    new Vector3
                     (
-                        v1.X * inverse,
-                        v1.Y * inverse,
-                        v1.Z * inverse
-                    )
-                );
+                        new Vector3
+                            (
+                            v1.X*inverse,
+                            v1.Y*inverse,
+                            v1.Z*inverse
+                            )
+                        );
             }
         }
 
@@ -380,16 +401,16 @@ namespace nManager.Wow.Class
         public static Vector3 Pitch(Vector3 v1, float degree)
         {
             float x = v1.X;
-            float y = (v1.Y * (float) CSharpMath.Cos(degree)) - (v1.Z * (float) CSharpMath.Sin(degree));
-            float z = (v1.Y * (float) CSharpMath.Sin(degree)) + (v1.Z * (float) CSharpMath.Cos(degree));
+            float y = (v1.Y*(float) CSharpMath.Cos(degree)) - (v1.Z*(float) CSharpMath.Sin(degree));
+            float z = (v1.Y*(float) CSharpMath.Sin(degree)) + (v1.Z*(float) CSharpMath.Cos(degree));
             return new Vector3(x, y, z);
         }
 
         public static Vector3 Yaw(Vector3 v1, float degree)
         {
-            float x = (v1.Z * (float) CSharpMath.Sin(degree)) + (v1.X * (float) CSharpMath.Cos(degree));
+            float x = (v1.Z*(float) CSharpMath.Sin(degree)) + (v1.X*(float) CSharpMath.Cos(degree));
             float y = v1.Y;
-            float z = (v1.Z * (float) CSharpMath.Cos(degree)) - (v1.X * (float) CSharpMath.Sin(degree));
+            float z = (v1.Z*(float) CSharpMath.Cos(degree)) - (v1.X*(float) CSharpMath.Sin(degree));
             return new Vector3(x, y, z);
         }
 
@@ -403,8 +424,8 @@ namespace nManager.Wow.Class
 
         public static Vector3 Roll(Vector3 v1, float degree)
         {
-            float x = (v1.X * (float) CSharpMath.Cos(degree)) - (v1.Y * (float) CSharpMath.Sin(degree));
-            float y = (v1.X * (float) CSharpMath.Sin(degree)) + (v1.Y * (float) CSharpMath.Cos(degree));
+            float x = (v1.X*(float) CSharpMath.Cos(degree)) - (v1.Y*(float) CSharpMath.Sin(degree));
+            float y = (v1.X*(float) CSharpMath.Sin(degree)) + (v1.Y*(float) CSharpMath.Cos(degree));
             float z = v1.Z;
             return new Vector3(x, y, z);
         }
@@ -418,9 +439,9 @@ namespace nManager.Wow.Class
         }
 
         public static readonly Vector3 origin = new Vector3(0, 0, 0);
-        public static readonly Vector3 xAxis  = new Vector3(1, 0, 0);
-        public static readonly Vector3 yAxis  = new Vector3(0, 1, 0);
-        public static readonly Vector3 zAxis  = new Vector3(0, 0, 1);
+        public static readonly Vector3 xAxis = new Vector3(1, 0, 0);
+        public static readonly Vector3 yAxis = new Vector3(0, 1, 0);
+        public static readonly Vector3 zAxis = new Vector3(0, 0, 1);
 
         // *****************************************
         // C# stuff
@@ -440,7 +461,7 @@ namespace nManager.Wow.Class
 
         public override int GetHashCode()
         {
-            return ((X.GetHashCode() * -17) + (Y.GetHashCode() * 7) + (Z.GetHashCode() * 3)) % Int32.MaxValue;
+            return ((X.GetHashCode()*-17) + (Y.GetHashCode()*7) + (Z.GetHashCode()*3))%Int32.MaxValue;
         }
 
         public int CompareTo(object obj)
@@ -498,13 +519,13 @@ namespace nManager.Wow.Class
                     return Z.ToString(remainder, formatProvider);
                 default:
                     return
-                       String.Format
-                       (
-                            "({0}, {1}, {2})",
-                            X.ToString(format, formatProvider),
-                            Y.ToString(format, formatProvider),
-                            Z.ToString(format, formatProvider)
-                       );
+                        String.Format
+                            (
+                                "({0}, {1}, {2})",
+                                X.ToString(format, formatProvider),
+                                Y.ToString(format, formatProvider),
+                                Z.ToString(format, formatProvider)
+                            );
             }
         }
     }

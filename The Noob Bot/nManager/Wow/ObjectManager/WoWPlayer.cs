@@ -172,7 +172,7 @@ namespace nManager.Wow.ObjectManager
                                 if (ObjectManager.Pet.InCombat && !ObjectManager.Pet.IsDead)
                                     petAttack = true;
 
-                            if (!isdead && (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat) ))
+                            if (!isdead && (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat)))
                                 return true;
                             return petAttack;
                         }

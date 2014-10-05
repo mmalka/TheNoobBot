@@ -259,7 +259,7 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             try
             {
-                byte[] buf = ReadBytes(hProcess, dwAddress, Marshal.SizeOf(typeof(UInt128)));
+                byte[] buf = ReadBytes(hProcess, dwAddress, Marshal.SizeOf(typeof (UInt128)));
                 if (buf == null)
                     throw new Exception("ReadInt failed.");
 
@@ -712,7 +712,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public static bool WriteInt(IntPtr hProcess, uint dwAddress, int Value)
         {
             byte[] lpBytes = BitConverter.GetBytes(Value);
-            return WriteBytes(hProcess, dwAddress, lpBytes, sizeof(int));
+            return WriteBytes(hProcess, dwAddress, lpBytes, sizeof (int));
         }
 
         /// <summary>
@@ -725,7 +725,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public static bool WriteInt128(IntPtr hProcess, uint dwAddress, UInt128 Value)
         {
             byte[] lpBytes = Value.ToByteArray();
-            int size128 = Marshal.SizeOf(typeof(UInt128));
+            int size128 = Marshal.SizeOf(typeof (UInt128));
             return WriteBytes(hProcess, dwAddress, lpBytes, size128);
         }
 

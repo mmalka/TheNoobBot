@@ -112,7 +112,7 @@ namespace nManager.Wow.Bot.Tasks
                                     continue;
 
                                 while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid &&
-                                        1 != Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) Patchables.Addresses.Fishing.BobberHasMoved))
+                                       1 != Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) Patchables.Addresses.Fishing.BobberHasMoved))
                                 {
                                     /*
                                      * BobberHasMoved FINDER 

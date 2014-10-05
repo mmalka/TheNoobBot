@@ -31,7 +31,7 @@ namespace Test_Product
         {
             int d;
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] { 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006 });
+            List<int> BlackListed = new List<int>(new int[] {32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
             while (true)
             {
                 Thread.Sleep(1000);
@@ -190,7 +190,7 @@ namespace Test_Product
                 {
                     npcRadarQuesters.Add(new Npc
                     {
-                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -202,7 +202,7 @@ namespace Test_Product
                 {
                     npcRadarQuesters.Add(new Npc
                     {
-                        ContinentId = (ContinentId)Usefuls.ContinentId,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,

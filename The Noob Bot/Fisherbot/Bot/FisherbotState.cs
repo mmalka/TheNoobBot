@@ -95,14 +95,14 @@ namespace Fisherbot.Bot
                     FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
                         FisherbotSetting.CurrentSetting.LureName);
                 }
-                // If the timer ended, stop fishing, equip weapon, null the timer
+                    // If the timer ended, stop fishing, equip weapon, null the timer
                 else if (timer.IsReady)
                 {
                     FishingTask.StopLoopFish();
                     ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
                     timer = null;
                 }
-                // We are in timer, we fish, then save the position
+                    // We are in timer, we fish, then save the position
                 else
                 {
                     FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;

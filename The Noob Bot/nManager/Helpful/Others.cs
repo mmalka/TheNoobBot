@@ -1021,6 +1021,7 @@ namespace nManager.Helpful
         private static int _oldEventFireCount = -1; // the first call call it with param (0)
 
         public static EventHandler ItemStockUpdated;
+
         public static void CheckInventoryForLatestLoot(int eventFireCount)
         {
             lock (ItemStock)
@@ -1132,11 +1133,11 @@ namespace nManager.Helpful
             {
                 Logging.Write("Initializing LootStatistics module, may take few seconds.");
                 CheckInventoryForLatestLoot(0); // Generate the initial _stockList.
-                EventsListener.HookEvent(WoWEventsType.CHAT_MSG_LOOT, callBack => CheckInventoryForLatestLoot((int)callBack), true);
+                EventsListener.HookEvent(WoWEventsType.CHAT_MSG_LOOT, callBack => CheckInventoryForLatestLoot((int) callBack), true);
             }
             else
             {
-                EventsListener.UnHookEvent(WoWEventsType.CHAT_MSG_LOOT, callBack => CheckInventoryForLatestLoot((int)callBack), true);
+                EventsListener.UnHookEvent(WoWEventsType.CHAT_MSG_LOOT, callBack => CheckInventoryForLatestLoot((int) callBack), true);
             }
         }
 

@@ -29,7 +29,7 @@ namespace nManager
             }
             set { _currentSetting = value; }
         }
-        
+
         #region BlackListGuid
 
         private static readonly Dictionary<UInt128, int> _blackListGuidByTime = new Dictionary<UInt128, int>();

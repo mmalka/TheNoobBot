@@ -240,7 +240,7 @@ namespace nManager.Products
             get { return _inPause; }
             set { _inPause = value; }
         }
-        
+
         public static bool NeedToTravel { get; set; }
 
         public static ContinentId TravelTo { get; set; }

@@ -8479,7 +8479,7 @@ public class WarlockDestruction
             return;
         }
         if (MySettings.UseImmolate && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
-            && !ObjectManager.Target.HaveBuff(348 )&& !ObjectManager.Target.HaveBuff(146739) || _immolateTimer.IsReady)
+            && !ObjectManager.Target.HaveBuff(348) && !ObjectManager.Target.HaveBuff(146739) || _immolateTimer.IsReady)
         {
             Corruption.Launch();
             _immolateTimer = new Timer(1000*12);

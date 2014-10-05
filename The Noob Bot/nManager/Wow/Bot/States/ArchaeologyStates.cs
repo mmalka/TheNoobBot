@@ -102,7 +102,7 @@ namespace nManager.Wow.Bot.States
                     for (int digSiteIndex = listDigsitesZone.Count - 1; digSiteIndex >= 0; digSiteIndex--)
                     {
                         if (BlackListDigsites.Contains(listDigsitesZone[digSiteIndex].id) ||
-                                listDigsitesZone[digSiteIndex].PriorityDigsites != priority)
+                            listDigsitesZone[digSiteIndex].PriorityDigsites != priority)
                         {
                             listDigsitesZone.RemoveAt(digSiteIndex);
                         }

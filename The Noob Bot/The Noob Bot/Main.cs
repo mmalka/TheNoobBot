@@ -111,7 +111,7 @@ namespace The_Noob_Bot
 
         private void InitializeLogging()
         {
-            LoggingUC LogMainWindow = new LoggingUC { Size = new Size(PanelLog.Size.Width, PanelLog.Size.Height) };
+            LoggingUC LogMainWindow = new LoggingUC {Size = new Size(PanelLog.Size.Width, PanelLog.Size.Height)};
             PanelLog.Controls.Add(LogMainWindow);
         }
 

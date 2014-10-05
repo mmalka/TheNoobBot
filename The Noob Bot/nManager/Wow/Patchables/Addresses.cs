@@ -18,11 +18,11 @@
         public enum ObjectManager
         {
             objectManager = 0x62C, // to be used with clientConnection or bypassed if using sCurMgr.
-            localGuid = 0xF8,  // ClntObjMgrGetActivePlayer_0 // E7B3A0 = localGUID complete?
-            objectGUID = 0x28, 
+            localGuid = 0xF8, // ClntObjMgrGetActivePlayer_0 // E7B3A0 = localGUID complete?
+            objectGUID = 0x28,
             objectTYPE = 0xC, // ClntObjMgrGetActivePlayer
             firstObject = 0xD8, // CCommand_ObjUsage
-            nextObject = 0x3C, 
+            nextObject = 0x3C,
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         {
             DX_DEVICE = 0xC2C7F0, // ClientInitializeGame, first offset
             DX_DEVICE_IDX = 0x2854, // DX9_DEVICE_IDX_FOUND (0x941FB)
-            ENDSCENE_IDX = 0xA8, 
+            ENDSCENE_IDX = 0xA8,
         }
 
         /// <summary> Movement Flags</summary>
@@ -40,7 +40,7 @@
         public enum MovementFlagsOffsets
         {
             Offset1 = 0x124, // near any movement flag
-            Offset2 = 0x40, 
+            Offset2 = 0x40,
         }
 
         public enum Party
@@ -135,7 +135,7 @@
             ChannelSpellID = 0xF58, // Script_UnitChannelInfo
             ChannelSpellStartTime = 0xF5C,
             ChannelSpellEndTime = 0xF60,
-            CanInterrupt = 0xEFC,  // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
+            CanInterrupt = 0xEFC, // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
             CanInterruptOffset = 0xDEAD08, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
             CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
@@ -165,7 +165,7 @@
             CachedCastBarCaption = 0xC,
             CachedName = 0xB4, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
-            CachedSize = CachedData0 + (0x04 * 32), // just after the 32 data uint32
+            CachedSize = CachedData0 + (0x04*32), // just after the 32 data uint32
             CachedQuestItem1 = CachedSize + 0x04, // just after the size float
         }
 
@@ -194,7 +194,7 @@
         {
             SpellBookNumSpells = 0xDEAD4C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xDEAD98 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xDEAD98 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
         }
 
@@ -214,7 +214,7 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0xD2FFA8,  // GetClickToMoveStruct
+            CTM = 0xD2FFA8, // GetClickToMoveStruct
             CTM_PUSH = 0xD2FFC4, // CGUnit_C__IsAutoTracking
             CTM_X = CTM + 0x8C,
             CTM_Y = CTM_X + 0x4,
@@ -240,7 +240,7 @@
             FrameScript__GetLocalizedText = 0x2D702C,
             CGWorldFrame__Intersect = 0x4F8ED3,
             Spell_C_HandleTerrainClick = 0x245784,
-            CGUnit_C__Interact = 0x90398D,  
+            CGUnit_C__Interact = 0x90398D,
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?

@@ -77,14 +77,14 @@ namespace nManager.Wow.Class
         /// <param name="packedData">The packed int64 data.</param>
         public Quaternion(Int64 packedData)
         {
-            const float a = 1 / 2097152.0f;
-            const float b = 1 / 1048576.0f;
+            const float a = 1/2097152.0f;
+            const float b = 1/1048576.0f;
 
-            X = (packedData >> 42) * a;
-            Y = (packedData << 22 >> 43) * b;
-            Z = (packedData << 43 >> 43) * b;
+            X = (packedData >> 42)*a;
+            Y = (packedData << 22 >> 43)*b;
+            Z = (packedData << 43 >> 43)*b;
 
-            double w = X * X + Y * Y + Z * Z;
+            double w = X*X + Y*Y + Z*Z;
             if (Math.Abs(w - 1.0) >= b)
                 W = (float) Math.Sqrt(1.0 - w);
             else

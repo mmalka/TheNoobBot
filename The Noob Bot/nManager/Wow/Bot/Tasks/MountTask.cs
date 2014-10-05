@@ -78,7 +78,8 @@ namespace nManager.Wow.Bot.Tasks
                 _startupCheck = false;
                 SettingsHasChanged = false;
             }
-            if ((ObjectManager.ObjectManager.Me.Level < 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level < 16)) || (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty))
+            if ((ObjectManager.ObjectManager.Me.Level < 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level < 16)) ||
+                (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty))
             {
                 if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16)) && _noMountsInSettings != 1)
                 {
@@ -89,11 +90,13 @@ namespace nManager.Wow.Bot.Tasks
             }
 
             // Wherever we are if we have an aquatic mount and are swimming
-            if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) && Usefuls.IsSwimming && _aquaMount != string.Empty)
+            if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) && Usefuls.IsSwimming &&
+                _aquaMount != string.Empty)
             {
                 // We are in Vashjir and the Abyssal Seahorse is selected
                 if (_aquaMount == _localizedAbysalMountName)
-                {   //  Kelp'thar Forest       || Abyssal Depths         || Shimmering Expanse
+                {
+                    //  Kelp'thar Forest       || Abyssal Depths         || Shimmering Expanse
                     if (Usefuls.AreaId == 4815 || Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144)
                     {
                         return MountCapacity.Swimm;
@@ -107,7 +110,8 @@ namespace nManager.Wow.Bot.Tasks
 
             if (Usefuls.IsOutdoors)
             {
-                if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) && _flyMount != string.Empty && Usefuls.IsFlyableArea)
+                if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) && _flyMount != string.Empty &&
+                    Usefuls.IsFlyableArea)
                 {
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
 

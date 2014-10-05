@@ -78,9 +78,9 @@ namespace Grinder.Bot
                 Fsm.AddState(new Pause {Priority = 100});
                 Fsm.AddState(new SelectProfileState {Priority = 14});
                 Fsm.AddState(new Resurrect {Priority = 13});
-                Fsm.AddState(new IsAttacked { Priority = 12 });
-                Fsm.AddState(new Regeneration { Priority = 11 });
-                Fsm.AddState(new ToTown { Priority = 10 });
+                Fsm.AddState(new IsAttacked {Priority = 12});
+                Fsm.AddState(new Regeneration {Priority = 11});
+                Fsm.AddState(new ToTown {Priority = 10});
                 Fsm.AddState(new Looting {Priority = 9});
                 Fsm.AddState(new SpecializationCheck {Priority = 8});
                 Fsm.AddState(new LevelupCheck {Priority = 7});
