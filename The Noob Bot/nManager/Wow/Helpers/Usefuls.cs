@@ -292,7 +292,7 @@ namespace nManager.Wow.Helpers
                     if (!_timerLatency.IsReady)
                         return _lastLatency;
 
-                    _timerLatency = new Timer(30 * 1000);
+                    _timerLatency = new Timer(30*1000);
                     string luaResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString("_,_,_,worldLag=GetNetStats() " + luaResult + "=worldLag");
                     _lastLatency = Others.ToInt32(Lua.GetLocalizedText(luaResult));
@@ -554,7 +554,7 @@ namespace nManager.Wow.Helpers
             {
                 // "World of WarCraft: Retail Build (build 18966)"
                 if (textBuild == "")
-                    textBuild = Memory.WowMemory.Memory.ReadASCIIString(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWoWVersionString);
+                    textBuild = Memory.WowMemory.Memory.ReadASCIIString(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWoWVersionString);
                 if (!textBuild.Contains(' '))
                     return 0;
                 string[] textBuildStrings = textBuild.Split(' ');
@@ -856,9 +856,9 @@ namespace nManager.Wow.Helpers
                     if (Memory.WowMemory.Memory.ReadUInt128(ncstart) == guid)
                         return Memory.WowMemory.Memory.ReadUTF8String(ncstart + (uint) Addresses.PlayerNameStore.PlayerNameStringOffset);
                     ptr = Memory.WowMemory.Memory.ReadUInt(ptr);
-                    if (ptr == 0) 
+                    if (ptr == 0)
                         break;
-                    if (ptr == next) 
+                    if (ptr == next)
                         break;
                 }
             }
@@ -904,6 +904,13 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(10);
                     return;
                 }
+                // The below Memory Write update LastHardwareAction with the current WoW.GetTime().
+                // However, it wont get you out of AFK Status if you was already AFK upon starting TheNoobBot.
+                // To remove the AFK Status, you need to call CGGameUI__UpdatePlayerAFK right after updating LastHardwareAction.
+                // Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.LastHardwareAction, Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.GetTime);
+
+                // The below code use LUA to get a key that is not binded in World of Warcraft.
+                // It will then press it and let WoW handle the "LastHardwareAction + UpdatePlayerAFK" task at once.
                 if (string.IsNullOrEmpty(_key))
                 {
                     Thread.Sleep(10);

@@ -92,6 +92,17 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
+    public enum UnitAuraFlags : byte
+    {
+        None = 0x0,
+        Passive = 0x1,
+        Cancelable = 0x2,
+        Active = 0x4,
+        PlayerCasted = 0x8,
+        Harmful = 0x10,
+    }
+
+    [Flags]
     public enum UnitQuestGiverStatus
     {
         None = 0x0,

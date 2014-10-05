@@ -2294,7 +2294,7 @@ namespace nManager.Wow.ObjectManager
             catch (Exception e)
             {
                 Logging.WriteError("WoWUnit > BuffStack(List<UInt32> idBuffs): " + e);
-                return 0;
+                return -1;
             }
         }
 
@@ -2308,7 +2308,7 @@ namespace nManager.Wow.ObjectManager
             catch (Exception e)
             {
                 Logging.WriteError("WoWUnit > BuffStack(UInt32 idBuffs): " + e);
-                return 0;
+                return -1;
             }
         }
 

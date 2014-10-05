@@ -234,7 +234,7 @@ namespace nManager.Wow.Class
                 {
                     Logging.WriteError("Spell > BuffStack: " + exception);
                 }
-                return 0;
+                return -1;
             }
         }
 
