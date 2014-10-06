@@ -191,7 +191,8 @@ namespace nManager.Wow.Helpers
                                        "end " +
                                        "end " +
                                        "elseif (AccountLoginUI and AccountLoginUI:IsVisible()) then " +
-                                       "DefaultServerLogin('" + settings.Login + "', '" + settings.Password + "') " +
+                                       "local editbox = AccountLoginPasswordEdit; editbox:SetText('" + settings.Password + "'); " +
+                                       "DefaultServerLogin('" + settings.Login + "', editbox); " +
                                        "AccountLoginUI:Hide() " +
                                        "elseif (RealmList and RealmList:IsVisible()) then " +
                                        "for i = 1, select('#',GetRealmCategories()) do " +
