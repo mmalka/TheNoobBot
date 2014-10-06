@@ -13,20 +13,9 @@ itemName = GetItemInfo(37701)  if GetItemCount(itemName)  >= 10 then RunMacroTex
 itemName = GetItemInfo(37700)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
 itemName = GetItemInfo(89112)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
 itemName = GetItemInfo(72201)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108294)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108295)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108296)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108297)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108298)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108299)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108300)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108301)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108302)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108303)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108304)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108305)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108306)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108307)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108308)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108309)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
-itemName = GetItemInfo(108043)  if GetItemCount(itemName)  >= 1 then RunMacroText("/use " .. itemName) end 
+for i=108294, 108309 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
+itemName = GetItemInfo(108391)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(108043)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+for i=108318, 108365 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
+for i=97619, 97624 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
+for i=109623, 109629 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
