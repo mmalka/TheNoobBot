@@ -127,6 +127,15 @@
         <Z>56.96306</Z>
       </Position>
     </Npc>
+    <Npc>
+      <Name>Bao</Name>
+      <Entry>63258</Entry>
+      <Position>
+        <X>-8907.551</X>
+        <Y>-212.017365</Y>
+        <Z>82.1136246</Z>
+      </Position>
+    </Npc>
   </Questers>
   <Quests>
     <!-- Quest 1 -->
@@ -339,6 +348,36 @@
       </Objectives>
     </Quest>
     <!--Beating Them Back! (Hunter)-->
+
+    <!--Beating Them Back! (Monk)-->
+    <Quest>
+      <Name>Beating Them Back!</Name>
+      <Id>31139</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>5</MaxLevel>
+      <PickUp>197</PickUp>
+      <TurnIn>197</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>-1</Count> <!-- 6 -->
+          <Entry>
+            <int>49871</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8802.342</X>
+              <Y>-100.5617</Y>
+              <Z>82.90696</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!--Beating Them Back! (Monk)-->
 
     <!--Beating Them Back! (Alliance but not Human)-->
     <Quest>
@@ -603,6 +642,39 @@
     </Quest>
     <!--Lions for Lambs (Hunter)-->
 
+    <!--Lions for Lambs (Monk)-->
+    <Quest>
+      <Name>Lions for Lambs</Name>
+      <Id>31140</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>5</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>31139</int>
+      </NeedQuestCompletedId>
+      <PickUp>197</PickUp>
+      <TurnIn>197</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>-1</Count> <!-- 8 -->
+          <Entry>
+            <int>49874</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8802.342</X>
+              <Y>-100.5617</Y>
+              <Z>82.90696</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!--Lions for Lambs (Hunter)-->
+
     <!--Lions for Lambs (Alliance but not Human)-->
     <Quest>
       <Name>Lions for Lambs</Name>
@@ -770,6 +842,25 @@
       </Objectives>
     </Quest>
     <!--Etched Letter (Hunter)-->
+
+    <!--Calligraphed Letter (Monk)-->
+    <Quest>
+      <Name>Calligraphed Letter</Name>
+      <Id>31141</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>31140</int>
+      </NeedQuestCompletedId>
+      <PickUp>197</PickUp>
+      <TurnIn>63258</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+    <!--Calligraphed Letter (Monk)-->
 
     <!-- No Quest 3 for Alliance but not Human -->
 
@@ -1017,6 +1108,40 @@
     </Quest>
     <!-- The Hunter's Path (Hunter)-->
 
+    <!-- Palm of the Tiger (Monk)-->
+    <Quest>
+      <Name>Palm of the Tiger</Name>
+      <Id>31142</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>31141</int>
+      </NeedQuestCompletedId>
+      <PickUp>63258</PickUp>
+      <TurnIn>63258</TurnIn>
+      <Objectives>
+        <QuestObjective> <!-- Cast Jab on Training Dummy to gain one Chi then Tiger Palm -->
+          <Objective>KillMob</Objective>
+          <Entry>
+            <int>44548</int>
+          </Entry>
+          <!--UseSpellId>100787</UseSpellId-->
+          <Count>-1</Count>
+          <Hotspots>
+            <Point>
+              <X>-8967.869</X>
+              <Y>-153.1475</Y>
+              <Z>81.50401</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!-- Palm of the Tiger (Monk)-->
+
     <!-- No quest 4 for Alliance but not Human -->
 
     <!-- Quest 5 -->
@@ -1153,6 +1278,25 @@
       </Objectives>
     </Quest>
     <!-- Join the Battle! (Hunter)-->
+
+    <!-- Join the Battle! (Monk)-->
+    <Quest>
+      <Name>Join the Battle!</Name>
+      <Id>31143</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>3</MinLevel>
+      <MaxLevel>6</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>31142</int>
+      </NeedQuestCompletedId>
+      <PickUp>63258</PickUp>
+      <TurnIn>823</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+    <!-- Join the Battle! (Monk)-->
 
     <!-- Join the Battle! (Alliance but not Human)-->
     <Quest>
@@ -1398,6 +1542,38 @@
       </Objectives>
     </Quest>
 
+    <!-- They Sent Assassins (Monk)-->
+    <Quest>
+      <Name>They Sent Assassins</Name>
+      <Id>31144</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>3</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>31143</int> <!-- "Fear no Evil" quest seams to not exist for Monk!!! -->
+      </NeedQuestCompletedId>
+      <PickUp>823</PickUp>
+      <TurnIn>823</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>-1</Count> <!-- 8 -->
+          <Entry>
+            <int>50039</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-8754.975</X>
+              <Y>-160.024</Y>
+              <Z>83.98845</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
     <!-- They Sent Assassins (Alliance but not Human) -->
 
     <Quest>
@@ -1558,6 +1734,24 @@
       </Objectives>
     </Quest>
 
+    <!-- The Rear is Clear (Monk)-->
+    <Quest>
+      <Name>The Rear is Clear</Name>
+      <Id>31145</Id>
+      <ClassMask>512</ClassMask> <!-- Monk -->
+      <RaceMask>1</RaceMask> <!-- Human -->
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>8</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>31144</int>
+      </NeedQuestCompletedId>
+      <PickUp>823</PickUp>
+      <TurnIn>197</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
     <!-- The Rear is Clear (Alliance but not Human)-->
     <Quest>
       <Name>The Rear is Clear</Name>
@@ -1592,6 +1786,7 @@
         <int>28822</int>
         <int>28823</int>
         <int>29083</int>
+        <int>31145</int>
       </NeedQuestCompletedId>
       <PickUp>197</PickUp>
       <TurnIn>197</TurnIn>
@@ -1668,7 +1863,7 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>6774</NpcEntry>
-          <QuestId>2158</QuestId>
+          <QuestId>37112</QuestId>
           <QuestName>Rest and Relaxation</QuestName>
         </QuestObjective>
         <QuestObjective>
@@ -1693,7 +1888,7 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>295</NpcEntry>
-          <QuestId>2158</QuestId>
+          <QuestId>37112</QuestId>
           <QuestName>Rest and Relaxation</QuestName>
         </QuestObjective>
       </Objectives>
@@ -1971,6 +2166,7 @@
         <int>28822</int>
         <int>28823</int>
         <int>29083</int>
+        <int>31145</int>
       </NeedQuestCompletedId>
       <PickUp>9296</PickUp>
       <TurnIn>9296</TurnIn>
@@ -1994,7 +2190,7 @@
 
     <!--Quest>
       <Name>Rest and Relaxation</Name>
-      <Id>2158</Id>
+      <Id>37112</Id> old id: 2158
       <QuestLevel>5</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>10</MaxLevel>
