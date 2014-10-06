@@ -13,6 +13,7 @@ namespace nManager.Wow.Helpers
     {
         public static List<int> FinishedQuestSet = new List<int>();
         public static List<int> KilledMobsToCount = new List<int>();
+        public static int AbandonnedId = 0;
 
         static Quest()
         {
@@ -319,6 +320,16 @@ namespace nManager.Wow.Helpers
 
         public static void QuestPickUp(ref Npc npc, string questName, int questId)
         {
+            if (AbandonnedId == questId) // should happen only when we do a different quest requirement for optimization
+            {
+                AbandonnedId = 0;
+                return;
+            }
+            else if (AbandonnedId != 0)
+            {
+                AbandonQuest(AbandonnedId);
+            }
+            AbandonnedId = 0;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
             if (MovementManager.InMovement)
@@ -431,7 +442,8 @@ namespace nManager.Wow.Helpers
                     id = Quest.GetQuestID();
                     Quest.FinishedQuestSet.Add(questId);
                     Quest.CloseQuestWindow();
-                    Quest.AbandonQuest(id);
+                    //Quest.AbandonQuest(id);
+                    AbandonnedId = id;
                 }
                 else
                 {
@@ -457,7 +469,8 @@ namespace nManager.Wow.Helpers
                                 }
                                 Quest.FinishedQuestSet.Add(questId);
                                 // If it was auto-accepted, then abandon it. I'll make this better later.
-                                Quest.AbandonQuest(id);
+                                //Quest.AbandonQuest(id);
+                                AbandonnedId = id;
                                 break;
                             }
                             Quest.CloseQuestWindow();
