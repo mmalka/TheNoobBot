@@ -32,16 +32,16 @@ namespace DescriptorsDump
                     return "Descriptors function not found.";
                 }
 
-                uint baseObjectDescriptorsPointer = _memory.FindPattern("8B 4D FC 33 C0 40 C7 81", "xxxxxxxx");
+                /*uint baseObjectDescriptorsPointer = _memory.FindPattern("8B 4D FC 33 C0 40 C7 81", "xxxxxxxx");
                 if (baseObjectDescriptorsPointer <= 0)
                 {
                     _memory.Close();
                     return "Base_CGObjectData not found.";
-                }
+                }*/
 
                 // Get base adresse of all Field.
                 uint s_objectDescriptors, s_unitDescriptors, s_itemDescriptors, s_playerDescriptors, s_containerDescriptors, s_gameobjectDescriptors, s_dynamicObjectDescriptors, s_corpseDescriptors, s_areaTriggerDescriptors, s_sceneObjectDescriptors, s_itemDynamicData, s_unitDynamicData, s_playerDynamicData, s_conversationData, s_conversationDynamicData;
-                s_objectDescriptors = _memory.ReadUInt(baseObjectDescriptorsPointer + 0x8); //s_objectDescriptors = _memory.ReadUInt(dwStartFunc + 0x1 + 0x55);
+                s_objectDescriptors = _memory.ReadUInt(dwStartFunc + 0x53 + 1); //s_objectDescriptors = _memory.ReadUInt(dwStartFunc + 0x1 + 0x55);
                 s_itemDescriptors = _memory.ReadUInt(dwStartFunc + 0x1 + 0x6B);
                 s_containerDescriptors = _memory.ReadUInt(dwStartFunc + 0x1 + 0x81);
                 s_unitDescriptors = _memory.ReadUInt(dwStartFunc + 0x1 + 0x99);
