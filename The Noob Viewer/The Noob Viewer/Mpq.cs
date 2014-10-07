@@ -15,11 +15,6 @@ namespace MPQ
         public static void Init(string path)
         {
             CASC = CASCHandler.OpenLocalStorage(path);
-
-            byte[] filelistbytes = TheNoobViewer.Properties.Resources.listfile;
-            Stream stream = new MemoryStream(filelistbytes);
-
-            CASC.LoadListFile(stream);
             Root = CASC.CreateStorageTree(LocaleFlags.All);
         }
 

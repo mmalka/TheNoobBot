@@ -95,7 +95,6 @@
       <DependentUpon>TheNoobViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="listfile.list" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

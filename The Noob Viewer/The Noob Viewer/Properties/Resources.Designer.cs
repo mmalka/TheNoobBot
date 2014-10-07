@@ -59,15 +59,5 @@ namespace TheNoobViewer.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Byte[].
-        /// </summary>
-        internal static byte[] listfile {
-            get {
-                object obj = ResourceManager.GetObject("listfile", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
