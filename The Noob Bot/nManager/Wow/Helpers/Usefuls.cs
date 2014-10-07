@@ -502,6 +502,9 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.GoldRushBG:
                             retS = "GoldRushBG";
                             break;
+                        case Enums.ContinentId.Draenor:
+                            retS = "Draenor";
+                            break;
                         default:
                             retS = "MapId_" + cId;
                             break;

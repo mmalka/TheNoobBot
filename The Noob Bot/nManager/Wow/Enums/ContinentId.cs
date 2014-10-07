@@ -738,6 +738,9 @@
         ///<summary>JadeForestHordeStartingArea</summary>
         JadeForestHordeStartingArea = 1076,
 
+        ///<summary>Draenor</summary>
+        Draenor = 1116,
+
         None = 9999999,
     }
 }
