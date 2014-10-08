@@ -191,6 +191,7 @@
     <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
     <Compile Include="Wow\Helpers\DBCReader.cs" />
+    <Compile Include="Wow\Helpers\Elevators.cs" />
     <Compile Include="Wow\Helpers\EventsListener.cs" />
     <Compile Include="Wow\Helpers\MimesisHelpers.cs" />
     <Compile Include="Wow\Helpers\QuestersDB.cs" />

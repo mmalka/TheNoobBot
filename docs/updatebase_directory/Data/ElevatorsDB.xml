@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elevators xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <Elevator Id="206608" Name="Elevator" Faction="Horde" Continent="1">
+      <BottomPoint>
+        <X>1704.782</X>
+        <Y>-4265.96</Y>
+        <Z>34.88368</Z>
+      </BottomPoint>
+      <OutsideBottomPoint>
+        <X>1696.46</X>
+        <Y>-4275.312</Y>
+        <Z>35.43055</Z>
+      </OutsideBottomPoint>
+      <TopPoint>
+        <X>1704.782</X>
+        <Y>-4265.96</Y>
+        <Z>101.3377</Z>
+      </TopPoint>
+      <OutsideTopPoint>
+        <X>1710.954</X>
+        <Y>-4272.131</Y>
+        <Z>101.7238</Z>
+      </OutsideTopPoint>
+    </Elevator>
+    <Elevator Id="206609" Name="Elevator" Faction="Horde" Continent="1">
+      <BottomPoint>
+        <X>1902.046</X>
+        <Y>-4373.103</Y>
+        <Z>43.99677</Z>
+      </BottomPoint>
+      <OutsideBottomPoint>
+        <X>1900.212</X>
+        <Y>-4362.356</Y>
+        <Z>43.24344</Z>
+      </OutsideBottomPoint>
+      <TopPoint>
+        <X>1902.046</X>
+        <Y>-4373.103</Y>
+        <Z>105.2947</Z>
+      </TopPoint>
+      <OutsideTopPoint>
+        <X>1900.393</X>
+        <Y>-4364.769</Y>
+        <Z>105.6628</Z>
+      </OutsideTopPoint>
+    </Elevator>
+    <Elevator Id="206610" Name="Elevator" Faction="Horde" Continent="1">
+      <BottomPoint>
+        <X>1755.314</X>
+        <Y>-4396.597</Y>
+        <Z>42.01785</Z>
+      </BottomPoint>
+      <OutsideBottomPoint>
+        <X>1748.91</X>
+        <Y>-4387.619</Y>
+        <Z>42.50715</Z>
+      </OutsideBottomPoint>
+      <TopPoint>
+        <X>1755.314</X>
+        <Y>-4396.597</Y>
+        <Z>109.2562</Z>
+      </TopPoint>
+      <OutsideTopPoint>
+        <X>1760.518</X>
+        <Y>-4404.893</Y>
+        <Z>109.6096</Z>
+      </OutsideTopPoint>
+    </Elevator>
+  </Items>
+</Elevators>
