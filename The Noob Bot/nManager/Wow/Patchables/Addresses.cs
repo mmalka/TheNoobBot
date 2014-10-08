@@ -80,7 +80,7 @@
             GetTime = 0xC1F5E8, // FrameTime::GetCurTimeMs
             continentId = 0xB5246C, // ContinentIdFOUND
             continentIdOffset = 0x120,
-            buildWoWVersionString = 0xC6F2E4, // buildWoWVersionStringFOUND
+            buildWoWVersionString = 0xC6F2E8, // buildWoWVersionStringFOUND
             gameState = 0xD8D1C6, // Script_IsPlayerInWorld
             isLoadingOrConnecting = 0xC921F0, // isLoadingOrConnectingFOUND
             AreaId = 0xBA3A18, // AreaIdFOUND
