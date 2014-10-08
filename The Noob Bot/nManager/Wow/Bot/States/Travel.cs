@@ -123,7 +123,7 @@ namespace nManager.Wow.Bot.States
             List<Transport> listTransport = CanTravelToList(TravelToContinentId, Usefuls.ContinentId);
             var bestTransport = new Transport();
             bool bestTransportIdArrivalIsA = false;
-            float bestTransportIdDistance = 100000;
+            float bestTransportIdDistance = float.MaxValue;
             foreach (Transport t in listTransport)
             {
                 bool path1ResultSuccess = false;
