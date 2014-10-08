@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
@@ -98,13 +99,105 @@ namespace nManager.Wow.Bot.States
             return listTransport;
         }
 
+        private float GetPathDistance(List<Point> points)
+        {
+            if (points.Count == 0)
+                return 100000;
+            Point oldPoint = null;
+            float pathDistance = 0;
+            foreach (Point point in points)
+            {
+                if (oldPoint == null)
+                {
+                    oldPoint = point;
+                    continue;
+                }
+                pathDistance += point.DistanceTo(oldPoint);
+            }
+            return pathDistance;
+        }
+
         public override void Run()
         {
-            Logging.Write("Start travel from " + (ContinentId) Usefuls.ContinentId + " to " + (ContinentId) Products.Products.TravelTo + ".");
-            /*
-             handle it - Will select the best transport for our case, will calculate distance from where we are to Transport, 
-                           then from where we wanna go to transport destination to take the smaller path.
-            */
+            Logging.Write("Start travel from " + (ContinentId) Usefuls.ContinentId + " to " + (ContinentId) TravelToContinentId + ".");
+            List<Transport> listTransport = CanTravelToList(TravelToContinentId, Usefuls.ContinentId);
+            var bestTransport = new Transport();
+            bool bestTransportIdArrivalIsA = false;
+            float bestTransportIdDistance = 100000;
+            foreach (Transport t in listTransport)
+            {
+                bool path1ResultSuccess = false;
+                var path1 = new List<Point>();
+                float path1Distance;
+                bool path2ResultSuccess = false;
+                var path2 = new List<Point>();
+                float path2Distance;
+                if (t.AContinentId == t.BContinentId)
+                {
+                    // we don't change continent, so we must find the closer point and/or accessible one.
+                    path1 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideAPoint, Usefuls.ContinentNameMpq, out path1ResultSuccess);
+                    path2 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideBPoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
+                }
+                else if (t.AContinentId != Usefuls.ContinentId)
+                {
+                    path1 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideAPoint, Usefuls.ContinentNameMpq, out path1ResultSuccess);
+                }
+                else if (t.BContinentId != Usefuls.ContinentId)
+                {
+                    path2 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideBPoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
+                }
+                if (path1ResultSuccess)
+                {
+                    path1Distance = GetPathDistance(path1);
+                    if (bestTransportIdDistance < path1Distance)
+                    {
+                        bestTransport = t;
+                        bestTransportIdArrivalIsA = false;
+                        bestTransportIdDistance = path1Distance;
+                    }
+                }
+                if (path2ResultSuccess)
+                {
+                    path2Distance = GetPathDistance(path2);
+                    if (bestTransportIdDistance < path2Distance)
+                    {
+                        bestTransport = t;
+                        bestTransportIdArrivalIsA = true;
+                        bestTransportIdDistance = path2Distance;
+                    }
+                }
+            }
+            Transport selectedTransport = bestTransport; // Define which transport we will be using.
+            bool selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
+
+            /* step : Go departure quay */
+            List<Point> pathToDepartureQuay = selectedTransportIdArrivalIsA ? PathFinder.FindPath(selectedTransport.OutsideBPoint) : PathFinder.FindPath(selectedTransport.OutsideAPoint);
+            MovementManager.Go(pathToDepartureQuay);
+            //ToDo Movement Loop + auto release if in combat
+            /* step : Enter the transport */
+            while (!ObjectManager.ObjectManager.Me.InTransport)
+            {
+                Point goTo = selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint;
+                goTo.Z = ObjectManager.ObjectManager.Me.Position.Z; // we don't wanna go to the middle point of a zeppelin for example
+                MovementManager.Go(new List<Point> {ObjectManager.ObjectManager.Me.Position, goTo});
+                Thread.Sleep(10);
+            }
+            MovementManager.StopMove(); // The middle point of the transport is probably bad for us, so stop ASAP we are inside.
+            /* step : travel */
+            bool loop = true;
+            while (loop)
+            {
+                if (!ObjectManager.ObjectManager.Me.InTransport)
+                    loop = false;
+                if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
+                    loop = false;
+                if (!selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
+                    loop = false;
+                Thread.Sleep(100);
+            }
+            /* step : Go out of the transport */
+            MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.OutsideAPoint : selectedTransport.OutsideBPoint});
+            /* step : release the product */
             NeedToTravel = false;
             TravelToContinentId = 9999999;
             TravelTo = new Point();

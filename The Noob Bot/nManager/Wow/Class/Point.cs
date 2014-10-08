@@ -11,6 +11,14 @@ namespace nManager.Wow.Class
     [Serializable]
     public class Point : Vector3
     {
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (base.GetHashCode()*397) ^ (Type != null ? Type.GetHashCode() : 0);
+            }
+        }
+
         [DefaultValue("None")]
         public string Type { get; set; }
 
@@ -41,6 +49,18 @@ namespace nManager.Wow.Class
         public override string ToString()
         {
             return string.Format("{0} ; {1} ; {2} ; {3}", X, Y, Z, Type);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Point)
+                return base.Equals(obj as Point);
+            return false;
+        }
+
+        public bool Equals(Point obj)
+        {
+            return (X != obj.X && Y != obj.Y && Z != obj.Z && Type != obj.Type);
         }
     }
 
