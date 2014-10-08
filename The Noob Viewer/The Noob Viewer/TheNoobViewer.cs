@@ -10,6 +10,7 @@ using meshPathVisualizer;
 using System.Xml;
 using meshDatabase;
 using TheNoobViewer.Properties;
+using System.Threading;
 
 namespace TheNoobViewer
 {
@@ -21,6 +22,8 @@ namespace TheNoobViewer
         private string path;
         private string continent;
         private bool ignorewater;
+        private Thread cascLoader;
+        private bool cascLoaded;
 
         enum ProfileType
         {
@@ -50,6 +53,10 @@ namespace TheNoobViewer
             Azeroth.Checked = true;
             continent = "Azeroth";
             toolStripStatusContinent.Text = "Current continent: Azeroth";
+            // Open Sasc storage
+            cascLoaded = false;
+            cascLoader = new Thread(new ThreadStart(OpenSACS));
+            cascLoader.Start();
             // Now load the npcdb
             try
             {
@@ -117,7 +124,11 @@ namespace TheNoobViewer
             catch (System.IO.IOException)
             {
             }
-            MpqManager.Initialize(Settings.Default.WoWPath);
+        }
+
+        public void OpenSACS()
+        {
+            cascLoaded = MpqManager.Initialize(Settings.Default.WoWPath);
         }
 
         public System.Drawing.Rectangle GetScreen()
@@ -190,6 +201,16 @@ namespace TheNoobViewer
                 textBox1.Visible = true;
                 this.Refresh();
 
+                while (cascLoader.IsAlive)
+                    Thread.Sleep(500);
+
+                if (!cascLoaded)
+                {
+                    selectWowPath();
+                    textBox1.Visible = false;
+                    return;
+                }
+                Settings.Default.Save();
                 XmlTextReader reader = new XmlTextReader(fileStream);
                 while (reader.Read())
                 {
@@ -458,6 +479,24 @@ namespace TheNoobViewer
                 default:
                     break;
             }
+        }
+
+        private void selectWowPath()
+        {
+            string Wowpath = Settings.Default.WoWPath;
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Please select your \"World of Warcraft\" installation folder";
+            DialogResult userSelection = fbd.ShowDialog();
+            if (userSelection != System.Windows.Forms.DialogResult.OK)
+                return;
+            Settings.Default.WoWPath = fbd.SelectedPath;
+            cascLoader = new Thread(new ThreadStart(OpenSACS));
+            cascLoader.Start();
+        }
+
+        private void WowPath_Click(object sender, EventArgs e)
+        {
+            selectWowPath();
         }
 
     }

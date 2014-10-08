@@ -14,10 +14,10 @@ namespace meshDatabase
     {
         public static string gameDir = null;
 
-        public static void Initialize(string path = null)
+        public static bool Initialize(string path = null)
         {
             gameDir = path;
-            Mpq.Init(path);
+            return Mpq.Init(path);
         }
 
         public static DBC GetDBC(string name)

@@ -12,10 +12,18 @@ namespace MPQ
         static CASCHandler CASC;
         static CASCFolder Root;
 
-        public static void Init(string path)
+        public static bool Init(string path)
         {
-            CASC = CASCHandler.OpenLocalStorage(path);
-            Root = CASC.CreateStorageTree(LocaleFlags.All);
+            try
+            {
+                CASC = CASCHandler.OpenLocalStorage(path);
+                Root = CASC.CreateStorageTree(LocaleFlags.All);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static bool ExtractFile(string from, string to)

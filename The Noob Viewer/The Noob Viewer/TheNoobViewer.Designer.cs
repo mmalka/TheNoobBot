@@ -41,11 +41,11 @@ namespace TheNoobViewer
             this.Outland = new System.Windows.Forms.ToolStripMenuItem();
             this.Northrend = new System.Windows.Forms.ToolStripMenuItem();
             this.Pandaria = new System.Windows.Forms.ToolStripMenuItem();
+            this.Draenor = new System.Windows.Forms.ToolStripMenuItem();
             this.TolBarad = new System.Windows.Forms.ToolStripMenuItem();
             this.Deepholm = new System.Windows.Forms.ToolStripMenuItem();
             this.Darkmoon = new System.Windows.Forms.ToolStripMenuItem();
             this.IsleThunder = new System.Windows.Forms.ToolStripMenuItem();
-            this.Draenor = new System.Windows.Forms.ToolStripMenuItem();
             this.ZoomCombo = new System.Windows.Forms.ToolStripComboBox();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWebLink = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +55,7 @@ namespace TheNoobViewer
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusContinent = new System.Windows.Forms.ToolStripStatusLabel();
+            this.WowPath = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -77,6 +78,7 @@ namespace TheNoobViewer
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.WowPath,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -86,19 +88,19 @@ namespace TheNoobViewer
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(109, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(170, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -163,6 +165,13 @@ namespace TheNoobViewer
             this.Pandaria.Text = "Pandaria";
             this.Pandaria.Click += new System.EventHandler(this.Pandaria_Click);
             // 
+            // Draenor
+            // 
+            this.Draenor.Name = "Draenor";
+            this.Draenor.Size = new System.Drawing.Size(164, 22);
+            this.Draenor.Text = "Dreanor";
+            this.Draenor.Click += new System.EventHandler(this.Draenor_Click);
+            // 
             // TolBarad
             // 
             this.TolBarad.Name = "TolBarad";
@@ -190,13 +199,6 @@ namespace TheNoobViewer
             this.IsleThunder.Size = new System.Drawing.Size(164, 22);
             this.IsleThunder.Text = "Isle of Thunder";
             this.IsleThunder.Click += new System.EventHandler(this.IsleThunder_Click);
-            // 
-            // Draenor
-            // 
-            this.Draenor.Name = "Draenor";
-            this.Draenor.Size = new System.Drawing.Size(164, 22);
-            this.Draenor.Text = "Dreanor";
-            this.Draenor.Click += new System.EventHandler(this.Draenor_Click);
             // 
             // ZoomCombo
             // 
@@ -274,6 +276,14 @@ namespace TheNoobViewer
             this.toolStripStatusContinent.Size = new System.Drawing.Size(29, 17);
             this.toolStripStatusContinent.Text = "toto";
             // 
+            // WowPath
+            // 
+            this.WowPath.Name = "WowPath";
+            this.WowPath.Size = new System.Drawing.Size(173, 22);
+            this.WowPath.Text = "Select WoW path...";
+            this.WowPath.ToolTipText = "Change or set your \"World of Warcraft\" installation folder.";
+            this.WowPath.Click += new System.EventHandler(this.WowPath_Click);
+            // 
             // TheNoobViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +338,7 @@ namespace TheNoobViewer
         private System.Windows.Forms.ToolStripMenuItem Pandaria;
         private System.Windows.Forms.ToolStripMenuItem IsleThunder;
         private System.Windows.Forms.ToolStripMenuItem Draenor;
+        private System.Windows.Forms.ToolStripMenuItem WowPath;
     }
 }
 
