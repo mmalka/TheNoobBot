@@ -202,7 +202,7 @@ namespace nManager
         public bool CanPullUnitsAlreadyInFight;
         public bool DontPullMonsters;
         public bool UseSpiritHealer;
-        public bool UseGroundMount = true;
+        public bool UseGroundMount = false;
         public string GroundMountName = "";
         public uint MinimumDistanceToUseMount = 15;
         public bool IgnoreFightIfMounted = true;
