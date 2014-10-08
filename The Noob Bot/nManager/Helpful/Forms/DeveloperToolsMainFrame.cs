@@ -231,11 +231,11 @@ namespace nManager.Helpful.Forms
                 string codeHtml =
                     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html xmlns=\"http://www.w3.org/1999/xhtml\"> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> <title>Get all objects information - " +
                     DateTime.Now.ToString("dd/mm/yy HHh mmMin") +
-                    "</title>  <table width=\"100%\" border=\"1\">   <tr>   <b>     <td bgcolor=\"#CCCCCC\">Name</td>     <td>Type</td>     <td bgcolor=\"#CCCCCC\">Entry ID</td>     <td>Position X</td>     <td bgcolor=\"#CCCCCC\">Position Y</td>     <td>Position Z</td>     <td bgcolor=\"#CCCCCC\">Distance</td>     <td>Faction</td>     <td bgcolor=\"#CCCCCC\">GUID</td>     <td>Summoned/Created By</td> <td>Unit Created By</td>    </b>   </tr>  ";
+                    "</title>  <table width=\"100%\" bgcolor=\"#E8E8E8\" border=\"1\">   <tr>   <b>     <td bgcolor=\"#CCCCCC\">Name</td>     <td>Type</td>     <td bgcolor=\"#CCCCCC\">Entry ID</td>     <td>Position X</td>     <td bgcolor=\"#CCCCCC\">Position Y</td>     <td>Position Z</td>     <td bgcolor=\"#CCCCCC\">Distance</td>     <td>Faction</td>     <td bgcolor=\"#CCCCCC\">GUID</td>     <td>Summoned/Created By</td> <td>Unit Created By</td>    </b>   </tr>  ";
                 // Me
                 codeHtml +=
                     "<tr>     <td bgcolor=\"#CCCCCC\">" + ObjectManager.Me.Name +
-                    "</td>     <td>WoWPlayer</td>     <td bgcolor=\"#CCCCCC\">" + ObjectManager.Me.Entry +
+                    "</td>     <td>WoWPlayer (" + ObjectManager.Me.Guid.GetWoWType + ")</td>     <td bgcolor=\"#CCCCCC\">" + ObjectManager.Me.Entry +
                     "</td>     <td>" + ObjectManager.Me.Position.X + "</td>     <td bgcolor=\"#CCCCCC\">" +
                     ObjectManager.Me.Position.Y + "</td>     <td>" + ObjectManager.Me.Position.Z +
                     "</td>     <td bgcolor=\"#CCCCCC\">" + ObjectManager.Me.GetDistance + "</td>     <td>" +
@@ -248,7 +248,7 @@ namespace nManager.Helpful.Forms
                     Application.DoEvents();
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + woWPlayer.Name +
-                        "</td>     <td>WoWPlayer</td>     <td bgcolor=\"#CCCCCC\">" + woWPlayer.Entry + "</td>     <td>" +
+                        "</td>     <td>WoWPlayer (" + woWPlayer.Guid.GetWoWType + ")</td>     <td bgcolor=\"#CCCCCC\">" + woWPlayer.Entry + "</td>     <td>" +
                         woWPlayer.Position.X + "</td>     <td bgcolor=\"#CCCCCC\">" + woWPlayer.Position.Y +
                         "</td>     <td>" + woWPlayer.Position.Z + "</td>     <td bgcolor=\"#CCCCCC\">" +
                         woWPlayer.GetDistance + "</td>     <td>" + woWPlayer.Faction +
@@ -262,7 +262,7 @@ namespace nManager.Helpful.Forms
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/npc=" +
                         wowO.Entry +
-                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWUnit</td>     <td bgcolor=\"#CCCCCC\">" +
+                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWUnit (" + wowO.Guid.GetWoWType + ")</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry + "</td>     <td>" + wowO.Position.X + "</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Position.Y + "</td>     <td>" + wowO.Position.Z + "</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.GetDistance + "</td>     <td>" + wowO.Faction + "</td>     <td bgcolor=\"#CCCCCC\">" +
@@ -276,7 +276,7 @@ namespace nManager.Helpful.Forms
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/object=" +
                         wowO.Entry +
-                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWGameObject</td>     <td bgcolor=\"#CCCCCC\">" +
+                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWGameObject (" + wowO.Guid.GetWoWType + ")</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry + "</td>     <td>" + wowO.Position.X + "</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Position.Y + "</td>     <td>" + wowO.Position.Z + "</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.GetDistance + "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Guid +
@@ -289,7 +289,7 @@ namespace nManager.Helpful.Forms
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/item=" +
                         wowO.Entry +
-                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWItem</td>     <td bgcolor=\"#CCCCCC\">" +
+                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWItem (" + wowO.Guid.GetWoWType + ";" + wowO.Guid.GetWoWSubType + ")</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry +
                         "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Guid + "</td>     <td>" + wowO.Owner +
@@ -301,7 +301,7 @@ namespace nManager.Helpful.Forms
                     Application.DoEvents();
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name +
-                        "</td>     <td>WoWCorpse</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Entry + "</td>     <td>" +
+                        "</td>     <td>WoWCorpse (" + wowO.Guid.GetWoWType + "</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Entry + "</td>     <td>" +
                         wowO.Position.X + "</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Position.Y + "</td>     <td>" +
                         wowO.Position.Z + "</td>     <td bgcolor=\"#CCCCCC\">" + wowO.GetDistance +
                         "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Guid + "</td>     <td>-</td>   </tr>";
@@ -313,7 +313,7 @@ namespace nManager.Helpful.Forms
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/item=" +
                         wowO.Entry +
-                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWContainer</td>     <td bgcolor=\"#CCCCCC\">" +
+                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWContainer (" + wowO.Guid.GetWoWType + ")</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry +
                         "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Guid + "</td>     <td>-</td>   </tr>";
