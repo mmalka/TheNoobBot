@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using Timer = nManager.Helpful.Timer;
@@ -243,7 +244,8 @@ namespace nManager.Products
 
         public static bool NeedToTravel { get; set; }
 
-        public static ContinentId TravelTo { get; set; }
+        public static Point TravelTo { get; set; }
+        public static int TravelToContinentId { get; set; }
 
         private static bool _oldIsStarted;
         private static bool _oldIsAliveProduc;

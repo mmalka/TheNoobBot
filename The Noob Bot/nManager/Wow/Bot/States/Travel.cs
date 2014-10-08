@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 
@@ -8,20 +10,7 @@ namespace nManager.Wow.Bot.States
 {
     public class Travel : State
     {
-        private Dictionary<ContinentId, ContinentId> knownDestination;
-        // demo key, we need a proper class with a real structure from a XML DB
-        // uint Travel.ID (Entry - our)
-        // FactionType Travel.Faction (Horde/Alliance)
-        // ContinentId Travel.FromContinent
-        // ContinentId Travel.ToContinentContinent
-        // uint Travel.TransportEntry (GameObject ID if applicable)
-        // Point Travel.TransportOutsidePositionDeparture (A position outside of the Transport)
-        // Point Travel.TransportOutsidePositionArrival (A position outside of the Transport)
-        // Point Travel.TransportInsidePosition (A position inside of the Transport: go there then wait until map has changed or just stick to a NPC)
-        // Travel.TransportDepartureNPCId (A NPC onBoard to check if the Transport is at the departure quay)
-        // Travel.TransportDepartureNPCPosition (A NPC onBoard to check if the Transport is at the departure quay)
-        // Travel.TransportArrivalNPCId (A NPC onBoard to detect if the Transport has arrived to next quay)
-        // Travel.TransportArrivalNPCPosition (A NPC onBoard to detect if the Transport has arrived to next quay)
+        private Transports _availableTransports;
 
         public override string DisplayName
         {
@@ -30,10 +19,16 @@ namespace nManager.Wow.Bot.States
 
         public override int Priority { get; set; }
 
-        private ContinentId TravelTo
+        private Point TravelTo
         {
             get { return Products.Products.TravelTo; }
             set { Products.Products.TravelTo = value; }
+        }
+
+        private int TravelToContinentId
+        {
+            get { return Products.Products.TravelToContinentId; }
+            set { Products.Products.TravelToContinentId = value; }
         }
 
         private bool NeedToTravel
@@ -44,7 +39,22 @@ namespace nManager.Wow.Bot.States
 
         public override bool NeedToRun
         {
-            get { return Products.Products.IsStarted && NeedToTravel && CanTravelTo(TravelTo); }
+            get
+            {
+                if (_availableTransports == null)
+                    _availableTransports = XmlSerializer.Deserialize<Transports>(Application.StartupPath + @"\Data\TransportsDB.xml");
+                if (_availableTransports == null)
+                    return false;
+                if (!Products.Products.IsStarted || !NeedToTravel)
+                    return false;
+                if (CanTravelTo(TravelToContinentId)) return true;
+                NeedToTravel = false;
+                TravelToContinentId = 9999999;
+                TravelTo = new Point();
+                // cannot reach this continent
+                // notify => force product to either stop, use portals or cancel the action.
+                return false;
+            }
         }
 
         public override List<State> NextStates
@@ -57,27 +67,47 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        public bool CanTravelTo(ContinentId continentId)
+        public bool CanTravelTo(int toContinentId)
         {
-            foreach (var keyValuePair in knownDestination)
+            return CanTravelTo(toContinentId, Usefuls.ContinentId);
+        }
+
+        public bool CanTravelTo(int toContinentId, int fromContinentId)
+        {
+            return CanTravelToList(toContinentId, fromContinentId).Count > 0;
+        }
+
+        public List<Transport> CanTravelToList(int toContinentId)
+        {
+            return CanTravelToList(toContinentId, Usefuls.ContinentId);
+        }
+
+        public List<Transport> CanTravelToList(int toContinentId, int fromContinentId)
+        {
+            var listTransport = new List<Transport>();
+            foreach (Transport transport in _availableTransports.Items)
             {
-                if (keyValuePair.Key != (ContinentId) Usefuls.ContinentId)
+                if (transport.AContinentId != toContinentId && transport.BContinentId != toContinentId)
                     continue;
-                if (keyValuePair.Value == continentId)
-                    return true;
+                if (transport.AContinentId == toContinentId && transport.BContinentId != fromContinentId)
+                    continue;
+                if (transport.BContinentId == toContinentId && transport.AContinentId != fromContinentId)
+                    continue;
+                listTransport.Add(transport);
             }
-            return false;
+            return listTransport;
         }
 
         public override void Run()
         {
-            Logging.Write("Start travel from " + (ContinentId) Usefuls.ContinentId + " to " + Products.Products.TravelTo + ".");
+            Logging.Write("Start travel from " + (ContinentId) Usefuls.ContinentId + " to " + (ContinentId) Products.Products.TravelTo + ".");
             /*
              handle it - Will select the best transport for our case, will calculate distance from where we are to Transport, 
                            then from where we wanna go to transport destination to take the smaller path.
             */
             NeedToTravel = false;
-            TravelTo = ContinentId.None;
+            TravelToContinentId = 9999999;
+            TravelTo = new Point();
         }
     }
 }
