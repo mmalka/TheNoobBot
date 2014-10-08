@@ -67,5 +67,27 @@
         <Z>109.6096</Z>
       </OutsideBPoint>
     </Transport>
+    <Transport Id="164871" Name="Zeppelin (The Thundercaller)" Faction="Horde" AContinentId="1" BContinentId="0">
+      <APoint>
+        <X>1833.509</X>
+        <Y>-4391.543</Y>
+        <Z>152.7679</Z>
+      </APoint>
+      <OutsideAPoint>
+        <X>1845.853</X>
+        <Y>-4396.072</Y>
+        <Z>135.2314</Z>
+      </OutsideAPoint>
+      <BPoint>
+        <X>2062.376</X>
+        <Y>292.998</Y>
+        <Z>114.973</Z>
+      </BPoint>
+      <OutsideBPoint>
+        <X>2065.471</X>
+        <Y>284.9796</Y>
+        <Z>97.03131</Z>
+      </OutsideBPoint>
+    </Transport>
   </Items>
 </Transports>

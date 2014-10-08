@@ -121,6 +121,7 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             Logging.Write("Start travel from " + (ContinentId) Usefuls.ContinentId + " to " + (ContinentId) TravelToContinentId + ".");
+            MovementManager.StopMove();
             List<Transport> listTransport = CanTravelToList(TravelToContinentId, Usefuls.ContinentId);
             var bestTransport = new Transport();
             bool bestTransportIdArrivalIsA = false;
@@ -166,6 +167,11 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+            if (bestTransport.Id == 0)
+            {
+                TravelToContinentId = 9999999;
+                TravelTo = new Point();
+            }
             Transport selectedTransport = bestTransport; // Define which transport we will be using.
             bool selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
 
@@ -202,6 +208,10 @@ namespace nManager.Wow.Bot.States
                     if ((selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(TargetIsGameObject.Position))
                         loop = false;
                     Thread.Sleep(50); // Wait for transport to get into position.
+                }
+                else
+                {
+                    TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int)selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
                 }
             }
             /* step : Enter the transport */
