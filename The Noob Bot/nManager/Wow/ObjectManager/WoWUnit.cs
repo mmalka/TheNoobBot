@@ -43,10 +43,20 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (InTransport)
                     {
-                        WoWUnit t = new WoWUnit(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
-                        if (t.IsValid && t.IsAlive)
+                        WoWObject t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
+                        if (t.Type == WoWObjectType.GameObject)
                         {
-                            return t.Position;
+                            var o = new WoWGameObject(t.GetBaseAddress);
+                            if (o.IsValid)
+                            {
+                                return o.Position;
+                            }
+                        }
+                        else if (t.Type == WoWObjectType.Unit)
+                        {
+                            var u = new WoWUnit(t.GetBaseAddress);
+                            if (u.IsValid && u.IsAlive)
+                                return u.Position;
                         }
                     }
 
