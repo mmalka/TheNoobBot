@@ -665,7 +665,7 @@ namespace Quester.Tasks
                     {
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int> { questObjective.EntryVehicle }, questObjective.IsDead),
+                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryVehicle}, questObjective.IsDead),
                                 questObjective.Position);
                         if (!unit.IsValid)
                         {

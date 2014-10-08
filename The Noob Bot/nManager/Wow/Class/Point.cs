@@ -60,7 +60,16 @@ namespace nManager.Wow.Class
 
         public bool Equals(Point obj)
         {
-            return (X != obj.X && Y != obj.Y && Z != obj.Z && Type != obj.Type);
+            //Logging.Write("Test Equals, X = " + Math.Abs(X) + ", obj.X = " + Math.Abs(obj.X) + ", Math.Abs(X-obj.X) = " + Math.Abs(X - obj.X));
+            if (Math.Abs(X - obj.X) > 0.001)
+                return false;
+            if (Math.Abs(Y - obj.Y) > 0.001)
+                return false;
+            if (Math.Abs(Z - obj.Z) > 0.001)
+                return false;
+            if (Type != obj.Type)
+                return false;
+            return true;
         }
     }
 

@@ -416,7 +416,7 @@ namespace nManager.Wow.Helpers
         public static string ContinentNameMpqByContinentId(int cId)
         {
             string retS;
-            switch ((ContinentId)cId)
+            switch ((ContinentId) cId)
             {
                 case Enums.ContinentId.PVPZone04:
                     retS = "PVPZone04";
@@ -513,7 +513,6 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     return ContinentNameMpqByContinentId(ContinentId);
-
                 }
                 catch (Exception e)
                 {

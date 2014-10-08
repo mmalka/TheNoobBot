@@ -130,7 +130,8 @@ namespace nManager.Products
                 if (_instanceFromOtherAssembly != null)
                 {
                     _inPause = false;
-                    NeedToTravel = false;
+                    TravelToContinentId = TravelToContinentId = 9999999;
+                    TravelTo = new Point();
 
                     _instanceFromOtherAssembly.Start();
                     Statistics.Reset();
@@ -241,8 +242,6 @@ namespace nManager.Products
             get { return _inPause; }
             set { _inPause = value; }
         }
-
-        public static bool NeedToTravel { get; set; }
 
         public static Point TravelTo { get; set; }
         public static int TravelToContinentId { get; set; }

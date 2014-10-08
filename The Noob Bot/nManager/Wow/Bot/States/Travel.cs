@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
@@ -6,6 +7,7 @@ using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 
 namespace nManager.Wow.Bot.States
 {
@@ -34,8 +36,7 @@ namespace nManager.Wow.Bot.States
 
         private bool NeedToTravel
         {
-            get { return Products.Products.NeedToTravel; }
-            set { Products.Products.NeedToTravel = value; }
+            get { return TravelToContinentId != 9999999; }
         }
 
         public override bool NeedToRun
@@ -49,7 +50,6 @@ namespace nManager.Wow.Bot.States
                 if (!Products.Products.IsStarted || !NeedToTravel)
                     return false;
                 if (CanTravelTo(TravelToContinentId)) return true;
-                NeedToTravel = false;
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
                 // cannot reach this continent
@@ -128,10 +128,8 @@ namespace nManager.Wow.Bot.States
             {
                 bool path1ResultSuccess = false;
                 var path1 = new List<Point>();
-                float path1Distance;
                 bool path2ResultSuccess = false;
                 var path2 = new List<Point>();
-                float path2Distance;
                 if (t.AContinentId == t.BContinentId)
                 {
                     // we don't change continent, so we must find the closer point and/or accessible one.
@@ -148,8 +146,8 @@ namespace nManager.Wow.Bot.States
                 }
                 if (path1ResultSuccess)
                 {
-                    path1Distance = GetPathDistance(path1);
-                    if (bestTransportIdDistance < path1Distance)
+                    float path1Distance = GetPathDistance(path1);
+                    if (bestTransportIdDistance > path1Distance)
                     {
                         bestTransport = t;
                         bestTransportIdArrivalIsA = false;
@@ -158,8 +156,8 @@ namespace nManager.Wow.Bot.States
                 }
                 if (path2ResultSuccess)
                 {
-                    path2Distance = GetPathDistance(path2);
-                    if (bestTransportIdDistance < path2Distance)
+                    float path2Distance = GetPathDistance(path2);
+                    if (bestTransportIdDistance > path2Distance)
                     {
                         bestTransport = t;
                         bestTransportIdArrivalIsA = true;
@@ -173,18 +171,62 @@ namespace nManager.Wow.Bot.States
             /* step : Go departure quay */
             List<Point> pathToDepartureQuay = selectedTransportIdArrivalIsA ? PathFinder.FindPath(selectedTransport.OutsideBPoint) : PathFinder.FindPath(selectedTransport.OutsideAPoint);
             MovementManager.Go(pathToDepartureQuay);
-            //ToDo Movement Loop + auto release if in combat
+            bool loop = true;
+            while (loop)
+            {
+                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    return;
+                if (ObjectManager.ObjectManager.Me.Position.Equals(pathToDepartureQuay[pathToDepartureQuay.Count - 1]))
+                    loop = false;
+                if (!MovementManager.InMoveTo && !MovementManager.InMovement)
+                    loop = false;
+                Thread.Sleep(100);
+            }
+            /* step : wait for the transport */
+            //List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry((int) selectedTransport.Id);
+            //WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, ObjectManager.ObjectManager.Me.Position);
+            WoWGameObject TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
+                ObjectManager.ObjectManager.Me.Position);
+            /*if (TargetIsNPC.IsValid)
+            {
+                // portal support ?
+            }*/
+            loop = true;
+            while (loop)
+            {
+                if (TargetIsGameObject.IsValid)
+                {
+                    if ((selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(TargetIsGameObject.Position))
+                        loop = false;
+                    Thread.Sleep(50); // Wait for transport to get into position.
+                }
+            }
             /* step : Enter the transport */
             while (!ObjectManager.ObjectManager.Me.InTransport)
             {
+                //continue;
                 Point goTo = selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint;
                 goTo.Z = ObjectManager.ObjectManager.Me.Position.Z; // we don't wanna go to the middle point of a zeppelin for example
                 MovementManager.Go(new List<Point> {ObjectManager.ObjectManager.Me.Position, goTo});
-                Thread.Sleep(10);
+                loop = true;
+                while (loop)
+                {
+                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        return;
+                    if (ObjectManager.ObjectManager.Me.Position.Equals(goTo))
+                        loop = false;
+                    if (!MovementManager.InMoveTo && !MovementManager.InMovement)
+                        loop = false;
+                    if (ObjectManager.ObjectManager.Me.InTransport)
+                        loop = false;
+                    Thread.Sleep(20);
+                }
+                MovementsAction.Jump();
+                Thread.Sleep(100);
             }
             MovementManager.StopMove(); // The middle point of the transport is probably bad for us, so stop ASAP we are inside.
             /* step : travel */
-            bool loop = true;
+            loop = true;
             while (loop)
             {
                 if (!ObjectManager.ObjectManager.Me.InTransport)
@@ -197,8 +239,20 @@ namespace nManager.Wow.Bot.States
             }
             /* step : Go out of the transport */
             MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.OutsideAPoint : selectedTransport.OutsideBPoint});
+            loop = true;
+            while (loop)
+            {
+                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    return;
+                if (ObjectManager.ObjectManager.Me.Position.Equals(selectedTransportIdArrivalIsA ? selectedTransport.OutsideAPoint : selectedTransport.OutsideBPoint))
+                    loop = false;
+                if (!MovementManager.InMoveTo && !MovementManager.InMovement)
+                    loop = false;
+                if (!ObjectManager.ObjectManager.Me.InTransport)
+                    loop = false;
+                Thread.Sleep(20);
+            }
             /* step : release the product */
-            NeedToTravel = false;
             TravelToContinentId = 9999999;
             TravelTo = new Point();
         }
