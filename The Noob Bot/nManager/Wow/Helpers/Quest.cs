@@ -519,6 +519,14 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("ClearTarget()");
         }
 
+        public static bool IsObjectiveCompleted(int questId, uint ObjectiveInternalIndex)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString("_, _, " + randomString + " = GetQuestObjectiveInfo(" + questId + "," + ObjectiveInternalIndex + "); " +
+                 randomString + " = tostring(" + randomString + ")");
+            return Lua.GetLocalizedText(randomString) == "true";
+        }
+
         [StructLayout(LayoutKind.Sequential)]
         public struct PlayerQuest
         {

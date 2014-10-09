@@ -134,6 +134,10 @@ namespace Quester.Tasks
             if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(CurrentQuest.Id))
                 return true;
 
+            // If we can check the objective in quest log, then rely on it
+            if (questObjective.InternalIndex != 0)
+                return Quest.IsObjectiveCompleted(CurrentQuest.Id, questObjective.InternalIndex);
+
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
 
