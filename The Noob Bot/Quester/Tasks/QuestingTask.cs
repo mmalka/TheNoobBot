@@ -371,6 +371,7 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Entry.Count > 0)
                     {
+                        Thread.Sleep(300); // gives some time to refresh ObjectList
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true);
                         if (node.IsValid)
@@ -396,6 +397,7 @@ namespace Quester.Tasks
                         MovementManager.StopMove();
                         if (questObjective.Entry.Count > 0)
                         {
+                            Thread.Sleep(300); // gives some time to refresh ObjectList
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                             WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true);
                             if (node.IsValid)
