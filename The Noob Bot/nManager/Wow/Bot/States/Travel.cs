@@ -122,7 +122,7 @@ namespace nManager.Wow.Bot.States
             Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + (ContinentId) Usefuls.ContinentId + " to " + TravelTo + " " + (ContinentId) TravelToContinentId + ".");
             MovementManager.StopMove();
             List<Transport> listTransport = CanTravelToList(TravelToContinentId, Usefuls.ContinentId);
-            Logging.Write(listTransport.Count + " can travel to this destination.");
+            Logging.Write(listTransport.Count + " transports can travel to this destination.");
             var bestTransport = new Transport();
             bool bestTransportIdArrivalIsA = false;
             float bestTransportIdDistance = float.MaxValue;
@@ -171,6 +171,7 @@ namespace nManager.Wow.Bot.States
             {
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
+                return;
             }
             Transport selectedTransport = bestTransport; // Define which transport we will be using.
             bool selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
