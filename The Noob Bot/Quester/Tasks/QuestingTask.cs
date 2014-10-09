@@ -88,6 +88,11 @@ namespace Quester.Tasks
                 _currentQuestObjectiveId++;
                 if (_currentQuestObjectiveId <= CurrentQuest.Objectives.Count - 1) // In array
                 {
+                    if (CurrentQuest.Objectives[_currentQuestObjectiveId].InternalIndex != 0 &&
+                        Quest.IsObjectiveCompleted(CurrentQuest.Id,
+                            CurrentQuest.Objectives[_currentQuestObjectiveId].InternalIndex,
+                            CurrentQuest.Objectives[_currentQuestObjectiveId].Count > 0 ? CurrentQuest.Objectives[_currentQuestObjectiveId].Count : CurrentQuest.Objectives[_currentQuestObjectiveId].CollectCount))
+                        continue;
                     if (Script.Run(CurrentQuest.Objectives[_currentQuestObjectiveId].ScriptCondition))
                         // Script condition
                     {
