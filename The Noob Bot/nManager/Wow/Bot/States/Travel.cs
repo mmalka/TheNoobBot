@@ -89,6 +89,8 @@ namespace nManager.Wow.Bot.States
             var listTransport = new List<Transport>();
             foreach (Transport transport in _availableTransports.Items)
             {
+                if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
                 if (transport.AContinentId != toContinentId && transport.BContinentId != toContinentId)
                     continue;
                 if (transport.AContinentId == toContinentId && transport.BContinentId != fromContinentId)
