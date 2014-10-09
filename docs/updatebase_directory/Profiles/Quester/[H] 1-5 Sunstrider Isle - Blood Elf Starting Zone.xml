@@ -338,7 +338,7 @@
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
       <NeedQuestCompletedId>
-        <int>8325</int>
+        <int>8326</int>
       </NeedQuestCompletedId>
       <PickUp>15295</PickUp>
       <TurnIn>15295</TurnIn>
@@ -402,7 +402,7 @@
       <MinLevel>2</MinLevel>
       <MaxLevel>7</MaxLevel>
       <NeedQuestCompletedId>
-        <int>8325</int>
+        <int>8326</int>
       </NeedQuestCompletedId>
       <PickUp>15295</PickUp>
       <TurnIn>15295</TurnIn>
