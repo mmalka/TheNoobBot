@@ -133,7 +133,7 @@ namespace nManager.Wow.Bot.States
             MovementManager.StopMove();
             /* step : Select a transport to go to the destination */
             SelectTransport(ObjectManager.ObjectManager.Me.Position, travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA, out selectedDistanceTransportId, mainFunction);
-            MovementManager.StopMove(); 
+            MovementManager.StopMove();
             if (selectedTransport.Id == 0)
                 return;
 
@@ -200,7 +200,7 @@ namespace nManager.Wow.Bot.States
                 }
             }
             bool hasTravelled;
-            SelectTransport2(listTransport, travelFrom, travelTo, ref bestTransport, ref bestTransportIdArrivalIsA, ref bestTransportIdDistance, out hasTravelled, mainFunction);
+            SelectTransport2(listTransport, travelFrom, travelTo, ref bestTransport, ref bestTransportIdArrivalIsA, ref bestTransportIdDistance, out hasTravelled, infoOnly);
 
             if (hasTravelled)
             {
@@ -236,7 +236,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private void SelectTransport2(List<Transport> listTransport, Point startingPoint, Point destinationPoint, ref Transport bestTransport, ref bool bestTransportIdArrivalIsA, ref float bestTransportIdDistance,
-            out bool hasTravelled, bool mainFunction = true)
+            out bool hasTravelled, bool infoOnly = false)
         {
             Transport secondarySelectedTransport;
             bool secondarySelectedTransportIdArrivalIsA;
@@ -287,7 +287,7 @@ namespace nManager.Wow.Bot.States
                 else if (!path1ResultSuccess && path1BisResultSuccess && (t.AContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
                 {
                     SelectTransport(ObjectManager.ObjectManager.Me.Position, t.OutsideAPoint, t.AContinentId, out secondarySelectedTransport, out secondarySelectedTransportIdArrivalIsA,
-                        out secondarySelectedDistanceTransportId, false);
+                        out secondarySelectedDistanceTransportId, false, true);
                     if (secondarySelectedTransport.Id != 0)
                     {
                         if (secondaryBestTransportIdDistance > secondarySelectedDistanceTransportId)
@@ -312,7 +312,7 @@ namespace nManager.Wow.Bot.States
                 else if (!path2ResultSuccess && path2BisResultSuccess && (t.BContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
                 {
                     SelectTransport(ObjectManager.ObjectManager.Me.Position, t.OutsideBPoint, t.BContinentId, out secondarySelectedTransport, out secondarySelectedTransportIdArrivalIsA,
-                        out secondarySelectedDistanceTransportId, false);
+                        out secondarySelectedDistanceTransportId, false, true);
                     if (secondarySelectedTransport.Id != 0)
                     {
                         if (secondaryBestTransportIdDistance > secondarySelectedDistanceTransportId)
@@ -324,7 +324,7 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
-            if (bestTransport.Id == 0 && secondaryBestTransport.Id != 0)
+            if (!infoOnly && bestTransport.Id == 0 && secondaryBestTransport.Id != 0)
             {
                 // we cannot go to a direct transport to the destination, but we can go to a transport that go to another transport
                 // it should check recursivly
@@ -462,7 +462,7 @@ namespace nManager.Wow.Bot.States
         private void TravelPatiently(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
         {
             bool loop = true;
-            int i =0;
+            int i = 0;
             while (loop)
             {
                 if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
