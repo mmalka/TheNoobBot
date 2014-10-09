@@ -49,6 +49,7 @@ namespace Quester.Tasks
             {
                 foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
+                    if (Quest.GetLogQuestId().Contains(quest.Id) && quest.MinLevel <= ObjectManager.Me.Level)
                     if (Quest.GetLogQuestId().Contains(quest.Id))
                     {
                         CurrentQuest = quest;
