@@ -125,40 +125,67 @@ namespace nManager.Wow.Bot.States
             StartTravel(TravelTo, TravelToContinentId);
         }
 
-        private void StartTravel(Point travelTo, int travelToContinentId)
+        private void StartTravel(Point travelTo, int travelToContinentId, bool mainFunction = true)
         {
             Transport selectedTransport;
             bool selectedTransportIdArrivalIsA;
+            float selectedDistanceTransportId;
+            MovementManager.StopMove();
             /* step : Select a transport to go to the destination */
-            SelectTransport(travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA);
+            SelectTransport(ObjectManager.ObjectManager.Me.Position, travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA, out selectedDistanceTransportId, mainFunction);
+            MovementManager.StopMove(); 
             if (selectedTransport.Id == 0)
                 return;
 
             /* step : Go departure quay */
-            GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA);
+            GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
+            MovementManager.StopMove();
 
             /* step : wait for transport */
-            WaitForTransport(selectedTransport, selectedTransportIdArrivalIsA);
+            WaitForTransport(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
+            MovementManager.StopMove();
 
             /* step : Enter the transport */
-            EnterTransport(selectedTransport, selectedTransportIdArrivalIsA);
+            EnterTransport(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
+            MovementManager.StopMove();
 
             /* step : travel */
             TravelPatiently(selectedTransport, selectedTransportIdArrivalIsA);
+            MovementManager.StopMove();
 
+            bool pathResultSuccess;
+            bool path2ResultSuccess;
+            List<Point> pts = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, selectedTransportIdArrivalIsA ? selectedTransport.OutsideBPoint : selectedTransport.OutsideAPoint, Usefuls.ContinentNameMpq,
+                out pathResultSuccess);
+            List<Point> pts2 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, selectedTransportIdArrivalIsA ? selectedTransport.OutsideAPoint : selectedTransport.OutsideBPoint,
+                Usefuls.ContinentNameMpqByContinentId(selectedTransportIdArrivalIsA ? selectedTransport.AContinentId : selectedTransport.BContinentId), out path2ResultSuccess);
+            if (pathResultSuccess && !path2ResultSuccess)
+                StartTravel(travelTo, travelToContinentId, mainFunction);
+            else if (pathResultSuccess)
+            {
+                if (GetPathDistance(pts) < GetPathDistance(pts2))
+                    StartTravel(travelTo, travelToContinentId, mainFunction);
+            }
             /* step : Go out of the transport */
-            LeaveTransport(selectedTransport, selectedTransportIdArrivalIsA);
+            LeaveTransport(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
+            MovementManager.StopMove();
 
+            if (!mainFunction)
+                return;
             /* step : release the product */
             Logging.Write("Travel accomplished, sent notification to product to take the control back.");
             TravelToContinentId = 9999999;
             TravelTo = new Point();
         }
 
-        private void SelectTransport(Point travelTo, int travelToContinentId, out Transport selectedTransport, out bool selectedTransportIdArrivalIsA)
+        private void SelectTransport(Point travelFrom, Point travelTo, int travelToContinentId, out Transport selectedTransport, out bool selectedTransportIdArrivalIsA, out float selectedDistanceTransportId,
+            bool mainFunction = true, bool infoOnly = false)
         {
             List<Transport> listTransport = ListTransportForContinent(travelToContinentId, Usefuls.ContinentId);
-            Logging.Write(listTransport.Count + " transports can travel to this destination.");
+            if (mainFunction)
+                Logging.Write(listTransport.Count + " transports can travel to this destination.");
+            else
+                Logging.Write(listTransport.Count + " intermediate transports can travel to this destination.");
             var bestTransport = new Transport();
             bool bestTransportIdArrivalIsA = false;
             float bestTransportIdDistance = float.MaxValue;
@@ -172,28 +199,52 @@ namespace nManager.Wow.Bot.States
                     bestTransportIdDistance = GetPathDistance(path);
                 }
             }
+            bool hasTravelled;
+            SelectTransport2(listTransport, travelFrom, travelTo, ref bestTransport, ref bestTransportIdArrivalIsA, ref bestTransportIdDistance, out hasTravelled, mainFunction);
 
-            SelectTransport2(listTransport, ObjectManager.ObjectManager.Me.Position, travelTo, ref bestTransport, ref bestTransportIdArrivalIsA, ref bestTransportIdDistance);
-
+            if (hasTravelled)
+            {
+                SelectTransport(ObjectManager.ObjectManager.Me.Position, travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA, out selectedDistanceTransportId);
+                bestTransport = selectedTransport;
+                bestTransportIdArrivalIsA = selectedTransportIdArrivalIsA;
+                bestTransportIdDistance = selectedDistanceTransportId;
+            }
             if (bestTransport.Id == 0)
             {
-                TravelToContinentId = 9999999;
-                TravelTo = new Point();
-                Logging.Write(Math.Abs(bestTransportIdDistance - float.MaxValue) > 0.1
-                    ? "No transports selected because it will be faster to go there by ourself."
-                    : "No transports selected due to incapacity to reach the quay with PathFinder.");
+                if (mainFunction)
+                {
+                    TravelToContinentId = 9999999;
+                    TravelTo = new Point();
+                    Logging.Write(Math.Abs(bestTransportIdDistance - float.MaxValue) > 0.1
+                        ? "No transports selected because it will be faster to go there by ourself."
+                        : "No transports selected due to incapacity to reach the quay with PathFinder.");
+                }
                 selectedTransport = new Transport();
                 selectedTransportIdArrivalIsA = false;
+                selectedDistanceTransportId = float.MaxValue;
                 return;
             }
             selectedTransport = bestTransport; // Define which transport we will be using.
             selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
-            Logging.Write("Selected transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " +
-                          (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
+            selectedDistanceTransportId = bestTransportIdDistance;
+            if (mainFunction)
+                Logging.Write("Selected transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " +
+                              (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
+            else
+                Logging.Write("Selected intermediate transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " +
+                              (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
         }
 
-        private void SelectTransport2(List<Transport> listTransport, Point startingPoint, Point destinationPoint, ref Transport bestTransport, ref bool bestTransportIdArrivalIsA, ref float bestTransportIdDistance)
+        private void SelectTransport2(List<Transport> listTransport, Point startingPoint, Point destinationPoint, ref Transport bestTransport, ref bool bestTransportIdArrivalIsA, ref float bestTransportIdDistance,
+            out bool hasTravelled, bool mainFunction = true)
         {
+            Transport secondarySelectedTransport;
+            bool secondarySelectedTransportIdArrivalIsA;
+            float secondarySelectedDistanceTransportId;
+            var secondaryBestTransport = new Transport();
+            bool secondaryBestTransportIdArrivalIsA = false;
+            float secondaryBestTransportIdDistance = float.MaxValue;
+            hasTravelled = false;
             foreach (Transport t in listTransport)
             {
                 bool path1ResultSuccess = false;
@@ -222,7 +273,7 @@ namespace nManager.Wow.Bot.States
                     path2 = PathFinder.FindPath(startingPoint, t.OutsideBPoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
                     path2Bis = PathFinder.FindPath(t.OutsideAPoint, destinationPoint, Usefuls.ContinentNameMpqByContinentId(t.AContinentId), out path2BisResultSuccess);
                 }
-                if (path1ResultSuccess && path1BisResultSuccess)
+                if (path1ResultSuccess && path1BisResultSuccess && (t.AContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
                 {
                     float path1Distance = GetPathDistance(path1);
                     float path1BisDistance = GetPathDistance(path1Bis);
@@ -233,7 +284,21 @@ namespace nManager.Wow.Bot.States
                         bestTransportIdDistance = path1Distance;
                     }
                 }
-                if (path2ResultSuccess && path2BisResultSuccess)
+                else if (!path1ResultSuccess && path1BisResultSuccess && (t.AContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
+                {
+                    SelectTransport(ObjectManager.ObjectManager.Me.Position, t.OutsideAPoint, t.AContinentId, out secondarySelectedTransport, out secondarySelectedTransportIdArrivalIsA,
+                        out secondarySelectedDistanceTransportId, false);
+                    if (secondarySelectedTransport.Id != 0)
+                    {
+                        if (secondaryBestTransportIdDistance > secondarySelectedDistanceTransportId)
+                        {
+                            secondaryBestTransport = secondarySelectedTransport;
+                            secondaryBestTransportIdArrivalIsA = true;
+                            secondaryBestTransportIdDistance = secondarySelectedDistanceTransportId;
+                        }
+                    }
+                }
+                if (path2ResultSuccess && path2BisResultSuccess && (t.BContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
                 {
                     float path2Distance = GetPathDistance(path2);
                     float path2BisDistance = GetPathDistance(path2Bis);
@@ -244,14 +309,39 @@ namespace nManager.Wow.Bot.States
                         bestTransportIdDistance = path2Distance;
                     }
                 }
+                else if (!path2ResultSuccess && path2BisResultSuccess && (t.BContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
+                {
+                    SelectTransport(ObjectManager.ObjectManager.Me.Position, t.OutsideBPoint, t.BContinentId, out secondarySelectedTransport, out secondarySelectedTransportIdArrivalIsA,
+                        out secondarySelectedDistanceTransportId, false);
+                    if (secondarySelectedTransport.Id != 0)
+                    {
+                        if (secondaryBestTransportIdDistance > secondarySelectedDistanceTransportId)
+                        {
+                            secondaryBestTransport = secondarySelectedTransport;
+                            secondaryBestTransportIdArrivalIsA = true;
+                            secondaryBestTransportIdDistance = secondarySelectedDistanceTransportId;
+                        }
+                    }
+                }
+            }
+            if (bestTransport.Id == 0 && secondaryBestTransport.Id != 0)
+            {
+                // we cannot go to a direct transport to the destination, but we can go to a transport that go to another transport
+                // it should check recursivly
+                StartTravel((secondaryBestTransportIdArrivalIsA ? secondaryBestTransport.OutsideBPoint : secondaryBestTransport.OutsideAPoint),
+                    (secondaryBestTransportIdArrivalIsA ? secondaryBestTransport.BContinentId : secondaryBestTransport.AContinentId), false);
+                hasTravelled = true;
             }
         }
 
-        private void GoToDepartureQuay(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        private void GoToDepartureQuay(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
         {
             List<Point> pathToDepartureQuay = selectedTransportIdArrivalIsA ? PathFinder.FindPath(selectedTransport.OutsideBPoint) : PathFinder.FindPath(selectedTransport.OutsideAPoint);
             MovementManager.Go(pathToDepartureQuay);
-            Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ").");
+            if (mainFunction)
+                Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ").");
+            else
+                Logging.Write("Going to intermediate departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ").");
             bool loop = true;
             while (loop)
             {
@@ -264,10 +354,13 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(100);
             }
             /* step : wait for the transport */
-            Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
+            if (mainFunction)
+                Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
+            else
+                Logging.Write("Arrived at intermediate departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
         }
 
-        private void WaitForTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        private void WaitForTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
         {
             //List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry((int) selectedTransport.Id);
             //WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, ObjectManager.ObjectManager.Me.Position);
@@ -286,6 +379,8 @@ namespace nManager.Wow.Bot.States
                 {
                     if ((selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(TargetIsGameObject.Position))
                         loop = false;
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransportIdArrivalIsA ? selectedTransport.OutsideBPoint : selectedTransport.OutsideAPoint)) > 10)
+                        GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA, mainFunction); // wrong quay because we felt and it tryed to find a transport while in the air
                     Thread.Sleep(50); // Wait for transport to get into position.
                 }
                 else
@@ -295,16 +390,22 @@ namespace nManager.Wow.Bot.States
             }
         }
 
-        private void EnterTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        private void EnterTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
         {
-            Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
+            if (mainFunction)
+                Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
+            else
+                Logging.Write("Intermediate Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
             while (!ObjectManager.ObjectManager.Me.InTransport)
             {
                 //continue;
                 if (ObjectManager.ObjectManager.Me.Position.Z + 30 < (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z
                     || ObjectManager.ObjectManager.Me.Position.Z - 30 > (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z)
                 {
-                    Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
+                    if (mainFunction)
+                        Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
+                    else
+                        Logging.Write("Failed to enter intermediate transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
                     GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA);
                     EnterTransport(selectedTransport, selectedTransportIdArrivalIsA);
                     return;
@@ -330,12 +431,18 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(20);
             }
             MovementManager.StopMove(); // The middle point of the transport is probably bad for us, so stop ASAP we are inside.
-            Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
+            if (mainFunction)
+                Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
+            else
+                Logging.Write("Successfuly entered intermediate transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
         }
 
-        private void LeaveTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        private void LeaveTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
         {
-            Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
+            if (mainFunction)
+                Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
+            else
+                Logging.Write("Intermediate Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
             MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.OutsideAPoint : selectedTransport.OutsideBPoint});
             bool loop = true;
             while (loop)
@@ -355,10 +462,16 @@ namespace nManager.Wow.Bot.States
         private void TravelPatiently(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
         {
             bool loop = true;
+            int i =0;
             while (loop)
             {
                 if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
-                    loop = false;
+                {
+                    if (i > 5)
+                        loop = false;
+                    i++;
+                    Thread.Sleep(300); // let time to the game to detect out transport
+                }
                 if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
                     loop = false;
                 if (!selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
