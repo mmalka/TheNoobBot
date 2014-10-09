@@ -255,7 +255,7 @@ namespace nManager.Wow.Bot.States
             loop = true;
             while (loop)
             {
-                if (!ObjectManager.ObjectManager.Me.InTransport)
+                if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     loop = false;
                 if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
                     loop = false;
