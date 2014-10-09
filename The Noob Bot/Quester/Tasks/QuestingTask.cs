@@ -89,7 +89,7 @@ namespace Quester.Tasks
                 if (_currentQuestObjectiveId <= CurrentQuest.Objectives.Count - 1) // In array
                 {
                     if (CurrentQuest.Objectives[_currentQuestObjectiveId].InternalIndex != 0 &&
-                        Quest.IsObjectiveCompleted(CurrentQuest.Id,
+                        Quest.IsObjectiveCompleted(CurrentQuest.Objectives[_currentQuestObjectiveId].InternalQuestId != 0 ? CurrentQuest.Objectives[_currentQuestObjectiveId].InternalQuestId : CurrentQuest.Id,
                             CurrentQuest.Objectives[_currentQuestObjectiveId].InternalIndex,
                             CurrentQuest.Objectives[_currentQuestObjectiveId].Count > 0 ? CurrentQuest.Objectives[_currentQuestObjectiveId].Count : CurrentQuest.Objectives[_currentQuestObjectiveId].CollectCount))
                         continue;
@@ -136,12 +136,13 @@ namespace Quester.Tasks
                 return true;
 
             // shortcut since we do objective one by one, for kill it can be completed before we do them all
-            if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(CurrentQuest.Id))
+            if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id))
                 return true;
 
             // If we can check the objective in quest log, then rely on it
             if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CurrentCount > 0))
-                return Quest.IsObjectiveCompleted(CurrentQuest.Id, questObjective.InternalIndex, questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount);
+                return Quest.IsObjectiveCompleted(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id, questObjective.InternalIndex,
+                    questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount);
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
