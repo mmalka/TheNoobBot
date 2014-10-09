@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
@@ -138,11 +137,11 @@ namespace nManager.Wow.Bot.States
                     path1 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideAPoint, Usefuls.ContinentNameMpq, out path1ResultSuccess);
                     path2 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideBPoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
                 }
-                else if (t.AContinentId != Usefuls.ContinentId)
+                else if (t.AContinentId == Usefuls.ContinentId)
                 {
                     path1 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideAPoint, Usefuls.ContinentNameMpq, out path1ResultSuccess);
                 }
-                else if (t.BContinentId != Usefuls.ContinentId)
+                else if (t.BContinentId == Usefuls.ContinentId)
                 {
                     path2 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.OutsideBPoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
                 }
@@ -176,6 +175,7 @@ namespace nManager.Wow.Bot.States
             bool selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
 
             /* step : Go departure quay */
+            DepartureQuay:
             List<Point> pathToDepartureQuay = selectedTransportIdArrivalIsA ? PathFinder.FindPath(selectedTransport.OutsideBPoint) : PathFinder.FindPath(selectedTransport.OutsideAPoint);
             MovementManager.Go(pathToDepartureQuay);
             bool loop = true;
@@ -211,13 +211,16 @@ namespace nManager.Wow.Bot.States
                 }
                 else
                 {
-                    TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int)selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
+                    TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
                 }
             }
             /* step : Enter the transport */
             while (!ObjectManager.ObjectManager.Me.InTransport)
             {
                 //continue;
+                if (ObjectManager.ObjectManager.Me.Position.Z + 30 < (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z
+                    || ObjectManager.ObjectManager.Me.Position.Z - 30 > (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z)
+                    goto DepartureQuay;
                 Point goTo = selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint;
                 goTo.Z = ObjectManager.ObjectManager.Me.Position.Z; // we don't wanna go to the middle point of a zeppelin for example
                 MovementManager.Go(new List<Point> {ObjectManager.ObjectManager.Me.Position, goTo});
