@@ -396,7 +396,7 @@
 
     <Quest>
       <Name>The Shrine of Dath'Remar</Name>
-      <Id>8345</Id>
+      <Id>37442</Id>
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>1</QuestLevel>
       <MinLevel>2</MinLevel>
