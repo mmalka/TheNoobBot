@@ -234,7 +234,7 @@
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <ClassMask>4</ClassMask> <!-- Hunter -->
       <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
+      <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
@@ -251,7 +251,7 @@
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <ClassMask>8</ClassMask> <!-- Rogue -->
       <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
+      <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
@@ -268,7 +268,7 @@
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <ClassMask>16</ClassMask> <!-- Priest -->
       <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
+      <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
@@ -285,7 +285,7 @@
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <ClassMask>128</ClassMask> <!-- Mage -->
       <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
+      <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
@@ -302,7 +302,7 @@
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <ClassMask>256</ClassMask> <!-- Warlock -->
       <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
+      <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
@@ -319,7 +319,7 @@
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <ClassMask>512</ClassMask> <!-- Monk -->
       <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
+      <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
       <NeedQuestCompletedId>
         <int>8325</int>
@@ -332,7 +332,7 @@
 
     <Quest>
       <Name>Solanian's Belongings</Name>
-      <Id>8330</Id>
+      <Id>37443</Id>
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>2</MinLevel>
@@ -345,6 +345,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>3</InternalIndex>
           <Entry>
             <int>180512</int>
           </Entry>
@@ -360,6 +361,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>180510</int>
           </Entry>
@@ -375,6 +377,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
           <Entry>
             <int>180511</int>
           </Entry>
@@ -420,7 +423,7 @@
 
     <Quest>
       <Name>A Fistful of Slivers</Name>
-      <Id>8336</Id>
+      <Id>37440</Id>
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>2</MinLevel>
@@ -452,7 +455,7 @@
 
     <Quest>
       <Name>Thirst Unending</Name>
-      <Id>8346</Id>
+      <Id>37439</Id>
       <RaceMask>512</RaceMask> <!-- Blood Elf only -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>2</MinLevel>
