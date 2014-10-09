@@ -50,7 +50,6 @@ namespace Quester.Tasks
                 foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
                     if (Quest.GetLogQuestId().Contains(quest.Id) && quest.MinLevel <= ObjectManager.Me.Level)
-                    if (Quest.GetLogQuestId().Contains(quest.Id))
                     {
                         CurrentQuest = quest;
                         Logging.Write("resuming \"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
@@ -136,8 +135,8 @@ namespace Quester.Tasks
                 return true;
 
             // If we can check the objective in quest log, then rely on it
-            if (questObjective.InternalIndex != 0)
-                return Quest.IsObjectiveCompleted(CurrentQuest.Id, questObjective.InternalIndex);
+            if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CurrentCount > 0))
+                return Quest.IsObjectiveCompleted(CurrentQuest.Id, questObjective.InternalIndex, questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount);
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);

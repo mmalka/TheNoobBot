@@ -519,13 +519,25 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("ClearTarget()");
         }
 
-        public static bool IsObjectiveCompleted(int questId, uint ObjectiveInternalIndex)
+        public static bool IsObjectiveCompleted(int questId, uint ObjectiveInternalIndex, int count)
         {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString("_, _, " + randomString + " = GetQuestObjectiveInfo(" + questId + "," + ObjectiveInternalIndex + "); " +
-                 randomString + " = tostring(" + randomString + ")");
-            return Lua.GetLocalizedText(randomString) == "true";
+            uint descriptorsArray =
+                Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                     Descriptors.StartDescriptors);
+            uint addressQL = descriptorsArray + ((uint)Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
+            for (int index = 0; index < 50; ++index)
+            {
+                PlayerQuest playerQuest =
+                    (PlayerQuest)
+                        Memory.WowMemory.Memory.ReadObject(
+                            (uint)(addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index)),
+                            typeof(PlayerQuest));
+                if (playerQuest.ID == questId)
+                    return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] == count;
+            }
+            return false;
         }
+
 
         [StructLayout(LayoutKind.Sequential)]
         public struct PlayerQuest
