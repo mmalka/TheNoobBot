@@ -65,13 +65,13 @@ namespace Quester.Bot
                         if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.PickUp +
-                                            "\nThe quest is " + q.Name + ". Cannot continues!");
+                                            "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                             return false;
                         }
                         if (FindQuesterById(q.TurnIn).Entry == 0)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.TurnIn +
-                                            "\nThe quest is " + q.Name + ". Cannot continues!");
+                                            "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                             return false;
                         }
                         foreach (Profile.QuestObjective o in q.Objectives)
@@ -79,19 +79,19 @@ namespace Quester.Bot
                             if (o.NpcEntry != 0 && FindQuesterById(o.NpcEntry).Entry == 0)
                             {
                                 MessageBox.Show("Your profile is missing the definition of NPC entry " + o.NpcEntry +
-                                                "\nThe quest is " + q.Name + ". Cannot continues!");
+                                                "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
                             if (o.InternalIndex != 0 && o.Count <= 0 && o.CollectCount <=0)
                             {
                                 MessageBox.Show("Your profile has an objective with an InternalIndex but without proper Count or CollectCount values" +
-                                                "\nThe quest is " + q.Name + ". Cannot continues!");
+                                                "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
                             if (o.InternalIndex > 4)
                             {
                                 MessageBox.Show("Your profile has an objective with an InternalIndex > 4, which is not possible." +
-                                                "\nThe quest is " + q.Name + ". Cannot continues!");
+                                                "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
 
