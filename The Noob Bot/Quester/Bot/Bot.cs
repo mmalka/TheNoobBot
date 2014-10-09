@@ -16,7 +16,7 @@ namespace Quester.Bot
     {
         private static readonly Engine Fsm = new Engine();
 
-        internal static QuesterProfile Profile = new QuesterProfile();
+        internal static QuesterProfile Profile;
 
         internal static bool Pulse()
         {
@@ -155,6 +155,8 @@ namespace Quester.Bot
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();
+                Profile = null;
+                Tasks.QuestingTask.Cleanup();
             }
             catch (Exception e)
             {

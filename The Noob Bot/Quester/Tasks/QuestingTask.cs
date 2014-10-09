@@ -25,6 +25,17 @@ namespace Quester.Tasks
         public static bool completed = false;
         private static int EntryListRow = 0;
 
+        public static void Cleanup()
+        {
+            QuestStatus = "";
+            CurrentQuest = null;
+            _currentQuestObjectiveId = -1;
+            CurrentQuestObjective = null;
+            waitTimer = null;
+            completed = false;
+            EntryListRow = 0;
+        }
+
         public static void SelectQuest()
         {
             QuestStatus = "Select Quest";
