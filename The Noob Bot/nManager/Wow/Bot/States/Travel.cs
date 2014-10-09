@@ -121,7 +121,42 @@ namespace nManager.Wow.Bot.States
         {
             Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + (ContinentId) Usefuls.ContinentId + " to " + TravelTo + " " + (ContinentId) TravelToContinentId + ".");
             MovementManager.StopMove();
-            List<Transport> listTransport = CanTravelToList(TravelToContinentId, Usefuls.ContinentId);
+            StartTravel(TravelTo, TravelToContinentId);
+        }
+
+        private void StartTravel(Point travelTo, int travelToContinentId)
+        {
+            Transport selectedTransport;
+            bool selectedTransportIdArrivalIsA;
+            /* step : Select a transport to go to the destination */
+            SelectTransport(travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA);
+            if (selectedTransport.Id == 0)
+                return;
+
+            /* step : Go departure quay */
+            GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA);
+
+            /* step : wait for transport */
+            WaitForTransport(selectedTransport, selectedTransportIdArrivalIsA);
+
+            /* step : Enter the transport */
+            EnterTransport(selectedTransport, selectedTransportIdArrivalIsA);
+
+            /* step : travel */
+            TravelPatiently(selectedTransport, selectedTransportIdArrivalIsA);
+
+            /* step : Go out of the transport */
+            LeaveTransport(selectedTransport, selectedTransportIdArrivalIsA);
+
+            /* step : release the product */
+            Logging.Write("Travel accomplished, sent notification to product to take the control back.");
+            TravelToContinentId = 9999999;
+            TravelTo = new Point();
+        }
+
+        private void SelectTransport(Point travelTo, int travelToContinentId, out Transport selectedTransport, out bool selectedTransportIdArrivalIsA)
+        {
+            List<Transport> listTransport = CanTravelToList(travelToContinentId, Usefuls.ContinentId);
             Logging.Write(listTransport.Count + " transports can travel to this destination.");
             var bestTransport = new Transport();
             bool bestTransportIdArrivalIsA = false;
@@ -167,18 +202,24 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+
             if (bestTransport.Id == 0)
             {
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
+                Logging.Write("No transports selected due to incapacity to reach the quay with PathFinder.");
+                selectedTransport = new Transport();
+                selectedTransportIdArrivalIsA = false;
                 return;
             }
-            Transport selectedTransport = bestTransport; // Define which transport we will be using.
-            bool selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
-            Logging.Write("Selected transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " + (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
+            selectedTransport = bestTransport; // Define which transport we will be using.
+            selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
+            Logging.Write("Selected transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " +
+                          (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
+        }
 
-            /* step : Go departure quay */
-            DepartureQuay:
+        private void GoToDepartureQuay(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        {
             List<Point> pathToDepartureQuay = selectedTransportIdArrivalIsA ? PathFinder.FindPath(selectedTransport.OutsideBPoint) : PathFinder.FindPath(selectedTransport.OutsideAPoint);
             MovementManager.Go(pathToDepartureQuay);
             Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ").");
@@ -195,6 +236,10 @@ namespace nManager.Wow.Bot.States
             }
             /* step : wait for the transport */
             Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
+        }
+
+        private void WaitForTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        {
             //List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry((int) selectedTransport.Id);
             //WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, ObjectManager.ObjectManager.Me.Position);
             WoWGameObject TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
@@ -203,7 +248,7 @@ namespace nManager.Wow.Bot.States
             {
                 // portal support ?
             }*/
-            loop = true;
+            bool loop = true;
             while (loop)
             {
                 if (Usefuls.IsFlying)
@@ -219,7 +264,10 @@ namespace nManager.Wow.Bot.States
                     TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
                 }
             }
-            /* step : Enter the transport */
+        }
+
+        private void EnterTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        {
             Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
             while (!ObjectManager.ObjectManager.Me.InTransport)
             {
@@ -228,12 +276,14 @@ namespace nManager.Wow.Bot.States
                     || ObjectManager.ObjectManager.Me.Position.Z - 30 > (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z)
                 {
                     Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
-                    goto DepartureQuay;
+                    GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA);
+                    EnterTransport(selectedTransport, selectedTransportIdArrivalIsA);
+                    return;
                 }
                 Point goTo = selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint;
                 goTo.Z = ObjectManager.ObjectManager.Me.Position.Z; // we don't wanna go to the middle point of a zeppelin for example
                 MovementManager.Go(new List<Point> {ObjectManager.ObjectManager.Me.Position, goTo});
-                loop = true;
+                bool loop = true;
                 while (loop)
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -251,23 +301,14 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(20);
             }
             MovementManager.StopMove(); // The middle point of the transport is probably bad for us, so stop ASAP we are inside.
-            /* step : travel */
             Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
-            loop = true;
-            while (loop)
-            {
-                if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
-                    loop = false;
-                if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
-                    loop = false;
-                if (!selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
-                    loop = false;
-                Thread.Sleep(100);
-            }
-            /* step : Go out of the transport */
+        }
+
+        private void LeaveTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        {
             Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
             MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.OutsideAPoint : selectedTransport.OutsideBPoint});
-            loop = true;
+            bool loop = true;
             while (loop)
             {
                 if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -280,10 +321,21 @@ namespace nManager.Wow.Bot.States
                     loop = false;
                 Thread.Sleep(20);
             }
-            /* step : release the product */
-            Logging.Write("Travel accomplished, sent notification to product to take the control back.");
-            TravelToContinentId = 9999999;
-            TravelTo = new Point();
+        }
+
+        private void TravelPatiently(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        {
+            bool loop = true;
+            while (loop)
+            {
+                if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    loop = false;
+                if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
+                    loop = false;
+                if (!selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
+                    loop = false;
+                Thread.Sleep(100);
+            }
         }
     }
 }
