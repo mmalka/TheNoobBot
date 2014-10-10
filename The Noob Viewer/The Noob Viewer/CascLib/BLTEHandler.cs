@@ -148,7 +148,7 @@ namespace TheNoobViewer
 
         public void Dispose()
         {
-            //reader.Close();
+            reader = null;
         }
     }
 }
