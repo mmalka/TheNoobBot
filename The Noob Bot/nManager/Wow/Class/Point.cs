@@ -71,32 +71,6 @@ namespace nManager.Wow.Class
                 return false;
             return true;
         }
-
-        public static Point operator +(Point a, Point b)
-        {
-            try
-            {
-                return new Point(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("Point > +(Point a, Point b): " + exception);
-            }
-            return new Point();
-        }
-
-        public static Point operator -(Point a, Point b)
-        {
-            try
-            {
-                return new Point(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("Point > -(Point a, Point b): " + exception);
-            }
-            return new Point();
-        }
     }
 
     /*
@@ -344,7 +318,33 @@ namespace nManager.Wow.Class
             }
             return 0;
         }
-    
+
+        public static Point operator -(Point a, Point b)
+        {
+            try
+            {
+                return new Point(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > -(Point a, Point b): " + exception);
+            }
+            return new Point();
+        }
+
+        public static Point operator +(Point a, Point b)
+        {
+            try
+            {
+                return new Point(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > +(Point a, Point b): " + exception);
+            }
+            return new Point();
+        }
+
         public static Point operator *(Point a, Point b)
         {
             try

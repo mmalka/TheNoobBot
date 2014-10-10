@@ -63,7 +63,7 @@ namespace nManager.Wow.ObjectManager
                             if (o.IsValid)
                             {
                                 //return ret + o.Transform(o.WorldMatrix); // not working, how to use it?
-                                return /*o.Position +*/ ret;
+                                return (Point) (/*o.Position + */ret);
                             }
                         }
                         else if (t.Type == WoWObjectType.Unit)
