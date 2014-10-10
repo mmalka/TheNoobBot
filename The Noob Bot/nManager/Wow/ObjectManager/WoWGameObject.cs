@@ -234,6 +234,39 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public Matrix4 WorldMatrix
+        {
+            get
+            {
+                float xx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice);
+                float yx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x4);
+                float zx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x8);
+                float wx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0xC);
+                Matrix4.MatrixX X = new Matrix4.MatrixX(xx, yx, zx, wx);
+                // Matrix4.MatrixX _x = (Matrix4.MatrixX) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof (Matrix4.MatrixX));
+                float xy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x10);
+                float yy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x14);
+                float zy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x18);
+                float wy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x1C);
+                Matrix4.MatrixY Y = new Matrix4.MatrixY(xy, yy, zy, wy);
+                //Matrix4.MatrixZ _y = (Matrix4.MatrixZ)Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x10, typeof(Matrix4.MatrixZ));
+                float xz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x20);
+                float yz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x24);
+                float zz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x28);
+                float wz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x2C);
+                Matrix4.MatrixZ Z = new Matrix4.MatrixZ(xz, yz, zz, wz);
+                //Matrix4.MatrixZ _z = (Matrix4.MatrixZ)Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x20, typeof(Matrix4.MatrixZ));
+                float xw = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x30);
+                float yw = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x34);
+                float zw = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x38);
+                float ww = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x40);
+                Matrix4.MatrixW W = new Matrix4.MatrixW(xw, yw, zw, ww);
+                //Matrix4.MatrixW _z = (Matrix4.MatrixW)Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x30, typeof(Matrix4.MatrixW));
+                return new Matrix4(X, Y, Z, W);
+            }
+        }
+
+
         public float Size
         {
             get

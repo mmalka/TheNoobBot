@@ -180,6 +180,7 @@
     <Compile Include="Wow\Bot\States\Travel.cs" />
     <Compile Include="Wow\Class\Auras.cs" />
     <Compile Include="Wow\Class\Int128.cs" />
+    <Compile Include="Wow\Class\Matrix4.cs" />
     <Compile Include="Wow\Class\Quaternion.cs" />
     <Compile Include="Wow\Class\UInt128.cs" />
     <Compile Include="Wow\Class\Vector3.cs" />
