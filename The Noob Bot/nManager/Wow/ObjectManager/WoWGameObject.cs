@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Media.Media3D;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
+using Quaternion = nManager.Wow.Class.Quaternion;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -234,38 +236,32 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Matrix4 WorldMatrix
+        public Matrix3D WorldMatrix
         {
             get
             {
-                float xx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice);
-                float yx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x4);
-                float zx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x8);
-                float wx = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0xC);
-                Matrix4.MatrixX X = new Matrix4.MatrixX(xx, yx, zx, wx);
-                // Matrix4.MatrixX _x = (Matrix4.MatrixX) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof (Matrix4.MatrixX));
-                float xy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x10);
-                float yy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x14);
-                float zy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x18);
-                float wy = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x1C);
-                Matrix4.MatrixY Y = new Matrix4.MatrixY(xy, yy, zy, wy);
-                //Matrix4.MatrixZ _y = (Matrix4.MatrixZ)Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x10, typeof(Matrix4.MatrixZ));
-                float xz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x20);
-                float yz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x24);
-                float zz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x28);
-                float wz = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x2C);
-                Matrix4.MatrixZ Z = new Matrix4.MatrixZ(xz, yz, zz, wz);
-                //Matrix4.MatrixZ _z = (Matrix4.MatrixZ)Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x20, typeof(Matrix4.MatrixZ));
-                float xw = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x30);
-                float yw = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x34);
-                float zw = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x38);
-                float ww = Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x40);
-                Matrix4.MatrixW W = new Matrix4.MatrixW(xw, yw, zw, ww);
-                //Matrix4.MatrixW _z = (Matrix4.MatrixW)Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint)Addresses.GameObject.TransformationMatrice + 0x30, typeof(Matrix4.MatrixW));
-                return new Matrix4(X, Y, Z, W);
+                Matrix3D matrix3D = (Matrix3D) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof (Matrix3D));
+                return matrix3D;
             }
         }
 
+        public Point Transform(Matrix3D m, bool AndInvert = false)
+        {
+            Point3D v = new Point3D();
+            v.X = Position.X;
+            v.Y = Position.Y;
+            v.Z = Position.Z;
+
+            if (AndInvert)
+                m.Invert();
+
+            float x = (float) (v.X*m.M11 + v.Y*m.M21 + v.Z*m.M31 + m.OffsetX);
+            float y = (float) (v.X*m.M12 + v.Y*m.M22 + v.Z*m.M32 + m.OffsetY);
+            float z = (float) (v.X*m.M13 + v.Y*m.M23 + v.Z*m.M33 + m.OffsetZ);
+
+            Point result = new Point(x, y, z);
+            return result;
+        }
 
         public float Size
         {

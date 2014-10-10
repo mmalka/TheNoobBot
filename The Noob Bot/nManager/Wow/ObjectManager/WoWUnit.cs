@@ -3,6 +3,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Collections.Generic;
+using System.Windows.Media.Media3D;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -61,6 +62,7 @@ namespace nManager.Wow.ObjectManager
                             var o = new WoWGameObject(t.GetBaseAddress);
                             if (o.IsValid)
                             {
+                                //return ret + o.Transform(o.WorldMatrix); // not working, how to use it?
                                 return /*o.Position +*/ ret;
                             }
                         }

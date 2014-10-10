@@ -121,27 +121,6 @@ namespace nManager.Wow.Class
             get { return W.ww; }
         }
 
-        /*public Point Transform(Matrix4 m, bool AndInvert = false)
-        {
-            var v = new Matrix4();
-            v.X = X;
-            v.Y = Y;
-            v.Z = Z;
-
-            if (AndInvert)
-                m.Invert();
-
-            var x = (float) (v.X*m.xx + v.Y*m.xy + v.Z*m.xz + m.OffsetX);
-            var y = (float) (v.X*m.yx + v.Y*m.yy + v.Z*m.yz + m.OffsetY);
-            var z = (float) (v.X*m.zx + v.Y*m.zy + v.Z*m.zz + m.OffsetZ);
-
-            var result = new Point();
-            result.X = x;
-            result.Y = y;
-            result.Z = z;
-            return result;
-        }*/
-
         public class MatrixW
         {
             public float ww;
