@@ -448,7 +448,7 @@ namespace nManager.Wow.Class
             var v = new Vector3();
             v.X = X * matrix.xx + Y * matrix.xy + Z * matrix.xz + matrix.xw;
             v.Y = X * matrix.yx + Y * matrix.yy + Z * matrix.yz + matrix.yw;
-            v.Z = X * matrix.zx + Y * matrix.zy + Z * matrix.zz + matrix.ww;
+            v.Z = X * matrix.zx + Y * matrix.zy + Z * matrix.zz + matrix.zw;
             return v;
         }
 
