@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using CSharpMath = System.Math;
 
 namespace nManager.Wow.Class
@@ -247,6 +248,21 @@ namespace nManager.Wow.Class
                 zz = matrix.zz;
                 wz = matrix.wz;
             }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MatrixColumn
+        {
+            public float m1; // x line
+            public float m2; // y line
+            public float m3; // z line
+            public float m4; // w line
+        };
+
+        public override string ToString()
+        {
+            return string.Format("xx={0}, yx={1}, zx={2}, wx={3}, xy={4}, yy={5}, zy={6}, wy={7}, xz={8}, yz={9}, zz={10}, wz={11}, xw={12}, yw={13}, zw={14}, ww={15}", xx, yx, zx, wx, xy, yy, zy, wy, xz, yz, zz, wz,
+                xw, yw, zw, ww);
         }
     }
 }

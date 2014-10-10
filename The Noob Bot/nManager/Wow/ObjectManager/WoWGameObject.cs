@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Windows.Media.Media3D;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
@@ -236,31 +235,20 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Matrix3D WorldMatrix
+        public Matrix4 WorldMatrix
         {
             get
             {
-                Matrix3D matrix3D = (Matrix3D) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof (Matrix3D));
-                return matrix3D;
+                Matrix4.MatrixColumn _x = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixX X = new Matrix4.MatrixX(_x.m1, _x.m2, _x.m3, _x.m4);
+                Matrix4.MatrixColumn _y = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x10, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixY Y = new Matrix4.MatrixY(_y.m1, _y.m2, _y.m3, _y.m4);
+                Matrix4.MatrixColumn _z = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x20, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixZ Z = new Matrix4.MatrixZ(_z.m1, _z.m2, _z.m3, _z.m4);
+                Matrix4.MatrixColumn _w = (Matrix4.MatrixColumn) Memory.WowMemory.Memory.ReadObject(BaseAddress + (uint) Addresses.GameObject.TransformationMatrice + 0x30, typeof (Matrix4.MatrixColumn));
+                Matrix4.MatrixW W = new Matrix4.MatrixW(_w.m1, _w.m2, _w.m3, _w.m4);
+                return new Matrix4(X, Y, Z, W);
             }
-        }
-
-        public Point Transform(Matrix3D m, bool AndInvert = false)
-        {
-            Point3D v = new Point3D();
-            v.X = Position.X;
-            v.Y = Position.Y;
-            v.Z = Position.Z;
-
-            if (AndInvert)
-                m.Invert();
-
-            float x = (float) (v.X*m.M11 + v.Y*m.M21 + v.Z*m.M31 + m.OffsetX);
-            float y = (float) (v.X*m.M12 + v.Y*m.M22 + v.Z*m.M32 + m.OffsetY);
-            float z = (float) (v.X*m.M13 + v.Y*m.M23 + v.Z*m.M33 + m.OffsetZ);
-
-            Point result = new Point(x, y, z);
-            return result;
         }
 
         public float Size

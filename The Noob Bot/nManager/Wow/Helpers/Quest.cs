@@ -523,15 +523,15 @@ namespace nManager.Wow.Helpers
         {
             uint descriptorsArray =
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                     Descriptors.StartDescriptors);
-            uint addressQL = descriptorsArray + ((uint)Descriptors.PlayerFields.QuestLog * Descriptors.Multiplicator);
+                                                 Descriptors.StartDescriptors);
+            uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
             for (int index = 0; index < 50; ++index)
             {
                 PlayerQuest playerQuest =
                     (PlayerQuest)
                         Memory.WowMemory.Memory.ReadObject(
-                            (uint)(addressQL + (Marshal.SizeOf(typeof(PlayerQuest)) * index)),
-                            typeof(PlayerQuest));
+                            (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
+                            typeof (PlayerQuest));
                 if (playerQuest.ID == questId)
                     return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] == count;
             }

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Collections.Generic;
-using System.Windows.Media.Media3D;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -42,18 +39,17 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-
                     if (BaseAddress == 0)
                         return new Point(0, 0, 0);
 
                     Point ret =
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint)Addresses.UnitField.UNIT_FIELD_X),
+                                                              (uint) Addresses.UnitField.UNIT_FIELD_X),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint)Addresses.UnitField.UNIT_FIELD_Y),
+                                                              (uint) Addresses.UnitField.UNIT_FIELD_Y),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint)Addresses.UnitField.UNIT_FIELD_Z));
+                                                              (uint) Addresses.UnitField.UNIT_FIELD_Z));
                     if (InTransport)
                     {
                         WoWObject t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
@@ -62,8 +58,9 @@ namespace nManager.Wow.ObjectManager
                             var o = new WoWGameObject(t.GetBaseAddress);
                             if (o.IsValid)
                             {
-                                //return ret + o.Transform(o.WorldMatrix); // not working, how to use it?
-                                return (Point) (/*o.Position + */ret);
+                                var posAbsolute = ret.Transform(o.WorldMatrix);
+                                Point pos = new Point(posAbsolute.X, posAbsolute.Y, posAbsolute.Z);
+                                return pos;
                             }
                         }
                         else if (t.Type == WoWObjectType.Unit)

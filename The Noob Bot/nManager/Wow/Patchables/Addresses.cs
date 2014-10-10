@@ -194,7 +194,7 @@
         {
             SpellBookNumSpells = 0xDEDF0C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xDEDF58 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xDEDF58 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
         }
 

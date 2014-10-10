@@ -82,7 +82,7 @@ namespace Quester.Bot
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
-                            if (o.InternalIndex != 0 && o.Count <= 0 && o.CollectCount <=0)
+                            if (o.InternalIndex != 0 && o.Count <= 0 && o.CollectCount <= 0)
                             {
                                 MessageBox.Show("Your profile has an objective with an InternalIndex but without proper Count or CollectCount values" +
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
@@ -94,7 +94,6 @@ namespace Quester.Bot
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
-
                         }
                     }
                     Logging.Write("Loaded " + Profile.Quests.Count + " quests");

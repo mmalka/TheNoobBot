@@ -443,6 +443,15 @@ namespace nManager.Wow.Class
         public static readonly Vector3 yAxis = new Vector3(0, 1, 0);
         public static readonly Vector3 zAxis = new Vector3(0, 0, 1);
 
+        public Vector3 Transform(Matrix4 matrix)
+        {
+            var v = new Vector3();
+            v.X = X * matrix.xx + Y * matrix.xy + Z * matrix.xz + matrix.xw;
+            v.Y = X * matrix.yx + Y * matrix.yy + Z * matrix.yz + matrix.yw;
+            v.Z = X * matrix.zx + Y * matrix.zy + Z * matrix.zz + matrix.ww;
+            return v;
+        }
+
         // *****************************************
         // C# stuff
         // *****************************************
