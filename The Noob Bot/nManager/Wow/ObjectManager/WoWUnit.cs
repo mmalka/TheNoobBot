@@ -41,6 +41,18 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+
+                    if (BaseAddress == 0)
+                        return new Point(0, 0, 0);
+
+                    Point ret =
+                        new Point(
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                              (uint)Addresses.UnitField.UNIT_FIELD_X),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                              (uint)Addresses.UnitField.UNIT_FIELD_Y),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                              (uint)Addresses.UnitField.UNIT_FIELD_Z));
                     if (InTransport)
                     {
                         WoWObject t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
@@ -49,7 +61,7 @@ namespace nManager.Wow.ObjectManager
                             var o = new WoWGameObject(t.GetBaseAddress);
                             if (o.IsValid)
                             {
-                                return o.Position;
+                                return /*o.Position +*/ ret;
                             }
                         }
                         else if (t.Type == WoWObjectType.Unit)
@@ -59,18 +71,6 @@ namespace nManager.Wow.ObjectManager
                                 return u.Position;
                         }
                     }
-
-                    if (BaseAddress == 0)
-                        return new Point(0, 0, 0);
-
-                    Point ret =
-                        new Point(
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint) Addresses.UnitField.UNIT_FIELD_X),
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint) Addresses.UnitField.UNIT_FIELD_Y),
-                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                              (uint) Addresses.UnitField.UNIT_FIELD_Z));
 
                     if (Guid == ObjectManager.Me.Guid)
                     {
