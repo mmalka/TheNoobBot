@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Portals xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Items>
+    <Portal Id="215126" Name="Silvermoon" Faction="Horde" AContinentId="870" BContinentId="0">
+      <APoint> <!-- Shrine of Two Moons -->
+        <X>1717.823</X>
+        <Y>867.4124</Y>
+        <Z>487.3876</Z>
+      </APoint>
+      <BPoint> <!-- Silvermoon -->
+        <X>9998.46</X>
+        <Y>-7106.55</Y>
+        <Z>47.7054</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215127" Name="Orgrimmar" Faction="Horde" AContinentId="870" BContinentId="1">
+      <APoint> <!-- Shrine of Two Moons -->
+        <X>1735.073</X>
+        <Y>873.5676</Y>
+        <Z>487.4114</Z>
+      </APoint>
+      <BPoint> <!-- Orgrimmar -->
+        <X>2025.91</X>
+        <Y>-4705.53</Y>
+        <Z>28.3764</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215112" Name="Dalaran" Faction="Horde" AContinentId="870" BContinentId="571">
+      <APoint> <!-- Shrine of Two Moons -->
+        <X>1745.706</X>
+        <Y>903.9822</Y>
+        <Z>487.2821</Z>
+      </APoint>
+      <BPoint> <!-- Dalaran -->
+        <X>5807.75</X>
+        <Y>588.347</Y>
+        <Z>660.9391</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215113" Name="Shattrath" Faction="Horde" AContinentId="870" BContinentId="530">
+      <APoint> <!-- Shrine of Two Moons -->
+        <X>1709.74</X>
+        <Y>899.3869</Y>
+        <Z>487.0404</Z>
+      </APoint>
+      <BPoint> <!-- Shattrath -->
+        <X>-1902.49</X>
+        <Y>5442.86</Y>
+        <Z>-12.428</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215124" Name="Undercity" Faction="Horde" AContinentId="870" BContinentId="0">
+      <APoint> <!-- Shrine of Two Moons -->
+        <X>1725.625</X>
+        <Y>871.726</Y>
+        <Z>487.3716</Z>
+      </APoint>
+      <BPoint> <!-- Undercity -->
+        <X>1773.42</X>
+        <Y>61.7391</Y>
+        <Z>-46.3215</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215125" Name="Thunder Bluff" Faction="Horde" AContinentId="870" BContinentId="1">
+      <APoint> <!-- Shrine of Two Moons -->
+        <X>1746.128</X>
+        <Y>872.5879</Y>
+        <Z>487.4252</Z>
+      </APoint>
+      <BPoint> <!-- Thunder Bluff -->
+        <X>-967.375</X>
+        <Y>284.82</Y>
+        <Z>110.773</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="191009" Name="Dalaran Portal to Orgrimmar" Faction="Horde" AContinentId="571" BContinentId="1">
+      <APoint> <!-- Dalaran -->
+        <X>5925.874</X>
+        <Y>593.1875</Y>
+        <Z>640.5933</Z>
+      </APoint>
+      <BPoint> <!-- Orgrimmar -->
+        <X>1776.474</X>
+        <Y>-4338.769</Y>
+        <Z>-7.511534</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="235877" Name="Portal to Blasted Lands" Faction="Horde" AContinentId="1" BContinentId="0">
+      <APoint> <!-- Orgrimmar -->
+        <X>1767.899</X>
+        <Y>-4326.429</Y>
+        <Z>-8.405741</Z>
+      </APoint>
+      <BPoint> <!-- Blasted Land -->
+        <X>-11788.7</X>
+        <Y>-3855.65</Y>
+        <Z>60.026</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="235880" Name="Portal to Orgrimmar" Faction="Horde" AContinentId="0" BContinentId="1">
+      <APoint> <!-- Blasted Land -->
+        <X>-11791.94</X>
+        <Y>-3854.641</Y>
+        <Z>59.96929</Z>
+      </APoint>
+      <BPoint> <!-- Orgrimmar -->
+        <X>1776.474</X>
+        <Y>-4338.769</Y>
+        <Z>-7.511534</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="183323" Name="Shattrath Portal to Orgrimmar" Faction="Horde" AContinentId="530" BContinentId="1">
+      <APoint> <!-- Shattrath -->
+        <X>-1899.45</X>
+        <Y>5393.01</Y>
+        <Z>-12.42832</Z>
+      </APoint>
+      <BPoint> <!-- Orgrimmar -->
+        <X>1776.474</X>
+        <Y>-4338.769</Y>
+        <Z>-7.511534</Z>
+      </BPoint>
+    </Portal>
+    <!--<Portal Id="183325" Name="Shattrath Portal to Stormwind" Faction="Alliance" AContinentId="530" BContinentId="0">
+      <APoint> --><!-- Shattrath --><!--
+        <X>-1894.189</X>
+        <Y>5387.939</Y>
+        <Z>-12.42825</Z>
+      </APoint>
+      <BPoint> --><!-- Stormwind --><!--
+        <X>x</X>
+        <Y>x</Y>
+        <Z>x</Z>
+      </BPoint>
+    </Portal>-->
+    <Portal Id="187056" Name="Shattrath Portal to Isle of Quel'Danas" Faction="Neutral" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Shattrath -->
+        <X>-1839.877</X>
+        <Y>5500.596</Y>
+        <Z>-12.42793</Z>
+      </APoint>
+      <BPoint> <!-- Isle of Quel'Danas -->
+        <X>12803.7</X>
+        <Y>-6907.38</Y>
+        <Z>41.1164</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="187428" Name="Orb of Translocation" Faction="Neutral" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Isle of Quel'Danas -->
+        <X>12784.41</X>
+        <Y>-6881.795</Y>
+        <Z>23.440193</Z>
+      </APoint>
+      <BPoint> <!-- Isle of Quel'Danas -->
+        <X>12793.67</X>
+        <Y>-6894.165</Y>
+        <Z>30.8974</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="187431" Name="Orb of Translocation" Faction="Neutral" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Isle of Quel'Danas -->
+        <X>12789.55</X>
+        <Y>-6888.78</Y>
+        <Z>31.55473</Z>
+      </APoint>
+      <BPoint> <!-- Isle of Quel'Danas -->
+        <X>12780.87</X>
+        <Y>-6877.502</Y>
+        <Z>22.78612</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="184502" Name="Orb of Translocation" Faction="Horde" AContinentId="530" BContinentId="0">
+      <APoint> <!-- Silvermoon -->
+        <X>10032.36</X>
+        <Y>-7000.288</Y>
+        <Z>61.30979</Z>
+      </APoint>
+      <BPoint> <!-- Undercity -->
+        <X>1805</X>
+        <Y>327</Y>
+        <Z>70.39785</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="184503" Name="Orb of Translocation" Faction="Horde" AContinentId="0" BContinentId="530">
+      <APoint> <!-- Undercity -->
+        <X>1805.848</X>
+        <Y>348.8648</Y>
+        <Z>70.87273</Z>
+      </APoint>
+      <BPoint> <!-- Silvermoon -->
+        <X>10020.74</X>
+        <Y>-7015.277</Y>
+        <Z>49.71763</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195142" Name="Portal to Hellfire Peninsula" Faction="Horde" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Silvermoon -->
+        <X>9984.026</X>
+        <Y>-7108.431</Y>
+        <Z>47.70494</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-225.542</X>
+        <Y>934.743</Y>
+        <Z>84.3784</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195142" Name="Portal to Hellfire Peninsula" Faction="Horde" AContinentId="0" BContinentId="530">
+      <APoint> <!-- Undercity -->
+        <X>1768.77</X>
+        <Y>55.3698</Y>
+        <Z>-46.3194</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-225.542</X>
+        <Y>934.743</Y>
+        <Z>84.3784</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195142" Name="Portal to Hellfire Peninsula" Faction="Horde" AContinentId="1" BContinentId="530">
+      <APoint> <!-- Thunder Bluff -->
+        <X>-944.0643</X>
+        <Y>274.8594</Y>
+        <Z>111.71</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-225.542</X>
+        <Y>934.743</Y>
+        <Z>84.3784</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195140" Name="Portal to Orgrimmar" Faction="Horde" AContinentId="530" BContinentId="1">
+      <APoint> <!-- Hellfire Peninsula -->
+        <X>-221.974</X>
+        <Y>931.4427</Y>
+        <Z>84.37974</Z>
+      </APoint>
+      <BPoint> <!-- Orgrimmar -->
+        <X>1776.474</X>
+        <Y>-4338.769</Y>
+        <Z>-7.511534</Z>
+      </BPoint>
+    </Portal>
+    <!--<Portal Id="195139" Name="Portal to Stormwind" Faction="Alliance" AContinentId="530" BContinentId="0">
+      <APoint> --><!-- Hellfire Peninsula --><!--
+        <X>-274.9913</X>
+        <Y>931.8889</Y>
+        <Z>84.37974</Z>
+      </APoint>
+      <BPoint> --><!-- Stormwind --><!--
+        <X>x</X>
+        <Y>x</Y>
+        <Z>x</Z>
+      </BPoint>
+    </Portal>-->
+    <Portal Id="206595" Name="Portal to Tol Barad" Faction="Horde" AContinentId="1" BContinentId="732">
+      <APoint> <!-- Orgrimmar -->
+        <X>2031.22</X>
+        <Y>-4330.87</Y>
+        <Z>95.471</Z>
+      </APoint>
+      <BPoint> <!-- Tol Barad -->
+        <X>-603.724</X>
+        <Y>1387.62</Y>
+        <Z>21.5383</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="208226" Name="Portal to Orgrimmar" Faction="Horde" AContinentId="732" BContinentId="1">
+      <APoint> <!-- Tol Barad -->
+        <X>-598.7656</X>
+        <Y>1377.974</Y>
+        <Z>21.91898</Z>
+      </APoint>
+      <BPoint> <!-- Orgrimmar -->
+        <X>2032.8</X>
+        <Y>-4335.14</Y>
+        <Z>95.4723</Z>
+      </BPoint>
+    </Portal>
+  </Items>
+</Portals>
