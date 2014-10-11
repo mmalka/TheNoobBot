@@ -30,7 +30,8 @@ namespace nManager.Wow.Bot.Tasks
                             MovementManager.StopMove();
                             MovementManager.StopMove();
                             Thread.Sleep(100);
-
+                            while (ObjectManager.ObjectManager.Me.IsCast)
+                                Thread.Sleep(100);
                             if (wowUnit.IsValid)
                             {
                                 bool looted = false;
