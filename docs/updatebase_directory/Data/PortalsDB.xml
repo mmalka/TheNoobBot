@@ -25,6 +25,18 @@
         <Z>28.3764</Z>
       </BPoint>
     </Portal>
+    <Portal Id="215119" Name="Stormwind" Faction="Alliance" AContinentId="870" BContinentId="0">
+      <APoint> <!-- Shrine of Seven Stars -->
+        <X>828.2266</X>
+        <Y>176.9051</Y>
+        <Z>519.9392</Z>
+      </APoint>
+      <BPoint> <!-- Stormwind -->
+        <X>-8998.14</X>
+        <Y>861.254</Y>
+        <Z>29.6206</Z>
+      </BPoint>
+    </Portal>
     <Portal Id="215112" Name="Dalaran" Faction="Horde" AContinentId="870" BContinentId="571">
       <APoint> <!-- Shrine of Two Moons -->
         <X>1745.706</X>
@@ -37,11 +49,71 @@
         <Z>660.9391</Z>
       </BPoint>
     </Portal>
+    <Portal Id="215121" Name="Dalaran" Faction="Alliance" AContinentId="870" BContinentId="571">
+      <APoint> <!-- Shrine of Seven Stars -->
+        <X>820.5553</X>
+        <Y>208.2397</Y>
+        <Z>519.9392</Z>
+      </APoint>
+      <BPoint> <!-- Dalaran -->
+        <X>5807.75</X>
+        <Y>588.347</Y>
+        <Z>660.9391</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215117" Name="Exodar" Faction="Alliance" AContinentId="870" BContinentId="530">
+      <APoint> <!-- Shrine of Seven Stars -->
+        <X>839.8267</X>
+        <Y>179.3609</Y>
+        <Z>519.9395</Z>
+      </APoint>
+      <BPoint> <!-- Exodar -->
+        <X>-4031.24</X>
+        <Y>-11569.6</Y>
+        <Z>-138.299</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215116" Name="Darnassus" Faction="Alliance" AContinentId="870" BContinentId="530">
+      <APoint> <!-- Shrine of Seven Stars -->
+        <X>812.344</X>
+        <Y>159.2518</Y>
+        <Z>519.9393</Z>
+      </APoint>
+      <BPoint> <!-- Darnassus -->
+        <X>9656.54</X>
+        <Y>2518.26</Y>
+        <Z>1331.658</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215118" Name="Ironforge" Faction="Alliance" AContinentId="870" BContinentId="0">
+      <APoint> <!-- Shrine of Seven Stars -->
+        <X>817.8778</X>
+        <Y>169.0321</Y>
+        <Z>519.9393</Z>
+      </APoint>
+      <BPoint> <!-- Ironforge -->
+        <X>-4613.71</X>
+        <Y>-915.287</Y>
+        <Z>501.062</Z>
+      </BPoint>
+    </Portal>
     <Portal Id="215113" Name="Shattrath" Faction="Horde" AContinentId="870" BContinentId="530">
       <APoint> <!-- Shrine of Two Moons -->
         <X>1709.74</X>
         <Y>899.3869</Y>
         <Z>487.0404</Z>
+      </APoint>
+      <BPoint> <!-- Shattrath -->
+        <X>-1902.49</X>
+        <Y>5442.86</Y>
+        <Z>-12.428</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="215120" Name="Shattrath" Faction="Alliance" AContinentId="870" BContinentId="530">
+      <APoint> <!-- Shrine of Seven Stars -->
+        <X>792.5026</X>
+        <Y>186.9333</Y>
+        <Z>519.9391</Z>
       </APoint>
       <BPoint> <!-- Shattrath -->
         <X>-1902.49</X>
@@ -121,18 +193,18 @@
         <Z>-7.511534</Z>
       </BPoint>
     </Portal>
-    <!--<Portal Id="183325" Name="Shattrath Portal to Stormwind" Faction="Alliance" AContinentId="530" BContinentId="0">
-      <APoint> --><!-- Shattrath --><!--
+    <Portal Id="183325" Name="Shattrath Portal to Stormwind" Faction="Alliance" AContinentId="530" BContinentId="0">
+      <APoint> <!-- Shattrath -->
         <X>-1894.189</X>
         <Y>5387.939</Y>
         <Z>-12.42825</Z>
       </APoint>
-      <BPoint> --><!-- Stormwind --><!--
-        <X>x</X>
-        <Y>x</Y>
-        <Z>x</Z>
+      <BPoint> <!-- Stormwind -->
+        <X>-8998.14</X>
+        <Y>861.254</Y>
+        <Z>29.6206</Z>
       </BPoint>
-    </Portal>-->
+    </Portal>
     <Portal Id="187056" Name="Shattrath Portal to Isle of Quel'Danas" Faction="Neutral" AContinentId="530" BContinentId="530">
       <APoint> <!-- Shattrath -->
         <X>-1839.877</X>
@@ -193,6 +265,78 @@
         <Z>49.71763</Z>
       </BPoint>
     </Portal>
+    <Portal Id="195141" Name="Portal to Hellfire Peninsula" Faction="Alliance" AContinentId="0" BContinentId="530">
+      <APoint> <!-- Stormwind -->
+        <X>-9003.66</X>
+        <Y>855.3229</Y>
+        <Z>29.62067</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-270.268</X>
+        <Y>934.552</Y>
+        <Z>84.3779</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195141" Name="Portal to Hellfire Peninsula" Faction="Alliance" AContinentId="530" BContinentId="530">
+      <APoint> <!-- Exodar -->
+        <X>-4053.682</X>
+        <Y>-11575.2</Y>
+        <Z>-138.5848</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-270.268</X>
+        <Y>934.552</Y>
+        <Z>84.3779</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195141" Name="Portal to Hellfire Peninsula" Faction="Alliance" AContinentId="1" BContinentId="530">
+      <APoint> <!-- Darnassus -->
+        <X>9661.557</X>
+        <Y>2510.448</Y>
+        <Z>1331.634</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-270.268</X>
+        <Y>934.552</Y>
+        <Z>84.3779</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="195141" Name="Portal to Hellfire Peninsula" Faction="Alliance" AContinentId="0" BContinentId="530">
+      <APoint> <!-- Ironforge -->
+        <X>-4606.441</X>
+        <Y>-928.9965</Y>
+        <Z>501.07</Z>
+      </APoint>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-270.268</X>
+        <Y>934.552</Y>
+        <Z>84.3779</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="207996" Name="Portal to Darnassus" Faction="Alliance" AContinentId="530" BContinentId="1">
+      <APoint> <!-- Exodar -->
+        <X>-4047.53</X>
+        <Y>-11569.33</Y>
+        <Z>-138.4902</Z>
+      </APoint>
+      <BPoint> <!-- Darnassus -->
+        <X>9656.54</X>
+        <Y>2518.26</Y>
+        <Z>1331.658</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="207995" Name="Portal to Exodar" Faction="Alliance" AContinentId="1" BContinentId="530">
+      <APoint> <!-- Darnassus -->
+        <X>9656.384</X>
+        <Y>2506.631</Y>
+        <Z>1331.587</Z>
+      </APoint>
+      <BPoint> <!-- Exodar -->
+        <X>-4031.24</X>
+        <Y>-11569.6</Y>
+        <Z>-138.299</Z>
+      </BPoint>
+    </Portal>
     <Portal Id="195142" Name="Portal to Hellfire Peninsula" Faction="Horde" AContinentId="530" BContinentId="530">
       <APoint> <!-- Silvermoon -->
         <X>9984.026</X>
@@ -241,18 +385,18 @@
         <Z>-7.511534</Z>
       </BPoint>
     </Portal>
-    <!--<Portal Id="195139" Name="Portal to Stormwind" Faction="Alliance" AContinentId="530" BContinentId="0">
-      <APoint> --><!-- Hellfire Peninsula --><!--
+    <Portal Id="195139" Name="Portal to Stormwind" Faction="Alliance" AContinentId="530" BContinentId="0">
+      <APoint> <!-- Hellfire Peninsula -->
         <X>-274.9913</X>
         <Y>931.8889</Y>
         <Z>84.37974</Z>
       </APoint>
-      <BPoint> --><!-- Stormwind --><!--
-        <X>x</X>
-        <Y>x</Y>
-        <Z>x</Z>
+      <BPoint> <!-- Stormwind -->
+        <X>-8998.14</X>
+        <Y>861.254</Y>
+        <Z>29.6206</Z>
       </BPoint>
-    </Portal>-->
+    </Portal>
     <Portal Id="206595" Name="Portal to Tol Barad" Faction="Horde" AContinentId="1" BContinentId="732">
       <APoint> <!-- Orgrimmar -->
         <X>2031.22</X>
