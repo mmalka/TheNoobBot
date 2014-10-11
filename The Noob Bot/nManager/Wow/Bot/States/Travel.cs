@@ -8,13 +8,14 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Math = System.Math;
 
 namespace nManager.Wow.Bot.States
 {
     public class Travel : State
     {
+        private Portals _availablePortals;
         private Transports _availableTransports;
+        private List<Transport> _generatedRoutePath = new List<Transport>();
 
         public override string DisplayName
         {
@@ -46,16 +47,16 @@ namespace nManager.Wow.Bot.States
             {
                 if (_availableTransports == null)
                     _availableTransports = XmlSerializer.Deserialize<Transports>(Application.StartupPath + @"\Data\TransportsDB.xml");
-                if (_availableTransports == null)
+                if (_availablePortals == null)
+                    _availablePortals = XmlSerializer.Deserialize<Portals>(Application.StartupPath + @"\Data\PortalsDB.xml");
+                if (_availableTransports == null || _availablePortals == null)
                     return false;
                 if (!Products.Products.IsStarted || !NeedToTravel)
                     return false;
-                if (TransportAvailableForContinent(TravelToContinentId)) return true;
-                TravelToContinentId = 9999999;
-                TravelTo = new Point();
-                // cannot reach this continent
-                // notify => force product to either stop, use portals or cancel the action.
-                return false;
+
+
+                _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if no founds.
+                return _generatedRoutePath.Count > 0;
             }
         }
 
@@ -69,37 +70,59 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        public bool TransportAvailableForContinent(int toContinentId)
+        private List<Transport> GenerateRoutePath
         {
-            return TransportAvailableForContinent(toContinentId, Usefuls.ContinentId);
-        }
-
-        public bool TransportAvailableForContinent(int toContinentId, int fromContinentId)
-        {
-            return ListTransportForContinent(toContinentId, fromContinentId).Count > 0;
-        }
-
-        public List<Transport> ListTransportForContinent(int toContinentId)
-        {
-            return ListTransportForContinent(toContinentId, Usefuls.ContinentId);
-        }
-
-        public List<Transport> ListTransportForContinent(int toContinentId, int fromContinentId)
-        {
-            var listTransport = new List<Transport>();
-            foreach (Transport transport in _availableTransports.Items)
+            get
             {
-                if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
-                    continue;
-                if (transport.AContinentId != toContinentId && transport.BContinentId != toContinentId)
-                    continue;
-                if (transport.AContinentId == toContinentId && transport.BContinentId != fromContinentId)
-                    continue;
-                if (transport.BContinentId == toContinentId && transport.AContinentId != fromContinentId)
-                    continue;
-                listTransport.Add(transport);
+                Point travelTo = TravelTo;
+                int travelToContinentId = TravelToContinentId;
+                int currentContinentId = Usefuls.ContinentId;
+                Point currentPosition = ObjectManager.ObjectManager.Me.Position;
+
+                KeyValuePair<Transport, float> oneWayTravel = GetBestDirectWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+
+                if (currentContinentId == travelToContinentId)
+                {
+                    bool success;
+                    List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
+                    if (success)
+                    {
+                        if (oneWayTravel.Value > GetPathDistance(way))
+                        {
+                            TravelToContinentId = 9999999;
+                            TravelTo = new Point();
+                            Logging.Write("Travel: Found a faster path without using Transports. Cancelling Travel.");
+                            return new List<Transport>();
+                        }
+                    }
+                }
+
+                KeyValuePair<List<Transport>, float> twoWayTravel = GetBestTwoWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+                if (oneWayTravel.Key.Id != 0 && twoWayTravel.Key.Count != 2)
+                {
+                    Logging.Write("Travel: Found direct way travel and no 2-way to compare with.");
+                    return new List<Transport> {oneWayTravel.Key};
+                }
+                if (oneWayTravel.Key.Id != 0 && twoWayTravel.Key.Count == 2 && oneWayTravel.Value <= twoWayTravel.Value)
+                {
+                    Logging.Write("Travel: Found a direct way travel that is faster than a 2-way travel.");
+                    return new List<Transport> {oneWayTravel.Key};
+                }
+                if (oneWayTravel.Key.Id != 0 && twoWayTravel.Key.Count == 2 && oneWayTravel.Value > twoWayTravel.Value)
+                {
+                    Logging.Write("Travel: Found a 2-way travel that is faster than a direct way travel.");
+                    return twoWayTravel.Key;
+                }
+
+                //KeyValuePair<List<Transport>, float> threeWayTravel = GetBestThreeWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+                //KeyValuePair<List<Transport>, float> threeWayTravel = GetBestFourthWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+                //KeyValuePair<List<Transport>, float> threeWayTravel = GetBestFifthWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
+                // todo: support up to 5 way travel and check the fastest every 2 ways. (1-2, 2-3, 3-4, 4-5)
+                TravelToContinentId = 9999999;
+                TravelTo = new Point();
+                Logging.Write("Travel: Couldn't find a travel path. Checked up to 2 way travel.");
+                return new List<Transport>();
             }
-            return listTransport;
         }
 
         private float GetPathDistance(List<Point> points)
@@ -124,342 +147,192 @@ namespace nManager.Wow.Bot.States
         {
             Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + (ContinentId) Usefuls.ContinentId + " to " + TravelTo + " " + (ContinentId) TravelToContinentId + ".");
             MovementManager.StopMove();
-            StartTravel(TravelTo, TravelToContinentId);
-        }
 
-        private void StartTravel(Point travelTo, int travelToContinentId, bool mainFunction = true)
-        {
-            Transport selectedTransport;
-            bool selectedTransportIdArrivalIsA;
-            float selectedDistanceTransportId;
-            MovementManager.StopMove();
-            /* step : Select a transport to go to the destination */
-            SelectTransport(ObjectManager.ObjectManager.Me.Position, travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA, out selectedDistanceTransportId, mainFunction);
-            MovementManager.StopMove();
-            if (selectedTransport.Id == 0)
-                return;
-
-            /* step : Go departure quay */
-            GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
-            MovementManager.StopMove();
-
-            /* step : wait for transport */
-            WaitForTransport(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
-            MovementManager.StopMove();
-
-            /* step : Enter the transport */
-            EnterTransport(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
-            MovementManager.StopMove();
-
-            /* step : travel */
-            TravelPatiently(selectedTransport, selectedTransportIdArrivalIsA);
-            MovementManager.StopMove();
-
-            bool pathResultSuccess;
-            bool path2ResultSuccess;
-            List<Point> pts = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, selectedTransportIdArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint, Usefuls.ContinentNameMpq,
-                out pathResultSuccess);
-            List<Point> pts2 = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, selectedTransportIdArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint,
-                Usefuls.ContinentNameMpqByContinentId(selectedTransportIdArrivalIsA ? selectedTransport.AContinentId : selectedTransport.BContinentId), out path2ResultSuccess);
-            if (pathResultSuccess && !path2ResultSuccess)
-                StartTravel(travelTo, travelToContinentId, mainFunction);
-            else if (pathResultSuccess)
+            foreach (Transport transport in _generatedRoutePath)
             {
-                if (GetPathDistance(pts) < GetPathDistance(pts2))
-                    StartTravel(travelTo, travelToContinentId, mainFunction);
-            }
-            /* step : Go out of the transport */
-            LeaveTransport(selectedTransport, selectedTransportIdArrivalIsA, mainFunction);
-            MovementManager.StopMove();
-
-            if (!mainFunction)
-                return;
-            /* step : release the product */
-            Logging.Write("Travel accomplished, sent notification to product to take the control back.");
-            TravelToContinentId = 9999999;
-            TravelTo = new Point();
-        }
-
-        private void SelectTransport(Point travelFrom, Point travelTo, int travelToContinentId, out Transport selectedTransport, out bool selectedTransportIdArrivalIsA, out float selectedDistanceTransportId,
-            bool mainFunction = true, bool infoOnly = false)
-        {
-            List<Transport> listTransport = ListTransportForContinent(travelToContinentId, Usefuls.ContinentId);
-            if (mainFunction)
-                Logging.Write(listTransport.Count + " transports can travel to this destination.");
-            else
-                Logging.Write(listTransport.Count + " intermediate transports can travel to this destination.");
-            var bestTransport = new Transport();
-            bool bestTransportIdArrivalIsA = false;
-            float bestTransportIdDistance = float.MaxValue;
-            bool pathResultSuccess;
-            var path = new List<Point>();
-            if (travelToContinentId == Usefuls.ContinentId)
-            {
-                path = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, travelTo, Usefuls.ContinentNameMpq, out pathResultSuccess);
-                if (pathResultSuccess)
-                {
-                    bestTransportIdDistance = GetPathDistance(path);
-                }
-            }
-            bool hasTravelled;
-            SelectTransport2(listTransport, travelFrom, travelTo, ref bestTransport, ref bestTransportIdArrivalIsA, ref bestTransportIdDistance, out hasTravelled, infoOnly);
-
-            if (hasTravelled)
-            {
-                SelectTransport(ObjectManager.ObjectManager.Me.Position, travelTo, travelToContinentId, out selectedTransport, out selectedTransportIdArrivalIsA, out selectedDistanceTransportId);
-                bestTransport = selectedTransport;
-                bestTransportIdArrivalIsA = selectedTransportIdArrivalIsA;
-                bestTransportIdDistance = selectedDistanceTransportId;
-            }
-            if (bestTransport.Id == 0)
-            {
-                if (mainFunction)
-                {
-                    TravelToContinentId = 9999999;
-                    TravelTo = new Point();
-                    Logging.Write(Math.Abs(bestTransportIdDistance - float.MaxValue) > 0.1
-                        ? "No transports selected because it will be faster to go there by ourself."
-                        : "No transports selected due to incapacity to reach the quay with PathFinder.");
-                }
-                selectedTransport = new Transport();
-                selectedTransportIdArrivalIsA = false;
-                selectedDistanceTransportId = float.MaxValue;
-                return;
-            }
-            selectedTransport = bestTransport; // Define which transport we will be using.
-            selectedTransportIdArrivalIsA = bestTransportIdArrivalIsA; // Define if we must use A or B as departure.
-            selectedDistanceTransportId = bestTransportIdDistance;
-            if (mainFunction)
-                Logging.Write("Selected transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " +
-                              (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
-            else
-                Logging.Write("Selected intermediate transport: " + selectedTransport.Name + "(" + selectedTransport.Id + "), departure quay at " +
-                              (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint) + ".");
-        }
-
-        private void SelectTransport2(List<Transport> listTransport, Point startingPoint, Point destinationPoint, ref Transport bestTransport, ref bool bestTransportIdArrivalIsA, ref float bestTransportIdDistance,
-            out bool hasTravelled, bool infoOnly = false)
-        {
-            Transport secondarySelectedTransport;
-            bool secondarySelectedTransportIdArrivalIsA;
-            float secondarySelectedDistanceTransportId;
-            var secondaryBestTransport = new Transport();
-            bool secondaryBestTransportIdArrivalIsA = false;
-            float secondaryBestTransportIdDistance = float.MaxValue;
-            hasTravelled = false;
-            foreach (Transport t in listTransport)
-            {
-                bool path1ResultSuccess = false;
-                var path1 = new List<Point>();
-                bool path1BisResultSuccess = false;
-                var path1Bis = new List<Point>();
-                bool path2ResultSuccess = false;
-                var path2 = new List<Point>();
-                bool path2BisResultSuccess = false;
-                var path2Bis = new List<Point>();
-                if (t.AContinentId == t.BContinentId)
-                {
-                    // we don't change continent, so we must find the closer point and/or accessible one.
-                    path1 = PathFinder.FindPath(startingPoint, t.AOutsidePoint, Usefuls.ContinentNameMpq, out path1ResultSuccess);
-                    path1Bis = PathFinder.FindPath(t.BOutsidePoint, destinationPoint, Usefuls.ContinentNameMpq, out path1BisResultSuccess);
-                    path2 = PathFinder.FindPath(startingPoint, t.BOutsidePoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
-                    path2Bis = PathFinder.FindPath(t.AOutsidePoint, destinationPoint, Usefuls.ContinentNameMpq, out path2BisResultSuccess);
-                }
-                else if (t.AContinentId == Usefuls.ContinentId)
-                {
-                    path1 = PathFinder.FindPath(startingPoint, t.AOutsidePoint, Usefuls.ContinentNameMpq, out path1ResultSuccess);
-                    path1Bis = PathFinder.FindPath(t.BOutsidePoint, destinationPoint, Usefuls.ContinentNameMpqByContinentId(t.BContinentId), out path1BisResultSuccess);
-                }
-                else if (t.BContinentId == Usefuls.ContinentId)
-                {
-                    path2 = PathFinder.FindPath(startingPoint, t.BOutsidePoint, Usefuls.ContinentNameMpq, out path2ResultSuccess);
-                    path2Bis = PathFinder.FindPath(t.AOutsidePoint, destinationPoint, Usefuls.ContinentNameMpqByContinentId(t.AContinentId), out path2BisResultSuccess);
-                }
-                if (path1ResultSuccess && path1BisResultSuccess && (t.AContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
-                {
-                    float path1Distance = GetPathDistance(path1);
-                    float path1BisDistance = GetPathDistance(path1Bis);
-                    if (bestTransportIdDistance > (path1Distance + path1BisDistance))
-                    {
-                        bestTransport = t;
-                        bestTransportIdArrivalIsA = false;
-                        bestTransportIdDistance = path1Distance;
-                    }
-                }
-                else if (!path1ResultSuccess && path1BisResultSuccess && (t.AContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
-                {
-                    SelectTransport(ObjectManager.ObjectManager.Me.Position, t.AOutsidePoint, t.AContinentId, out secondarySelectedTransport, out secondarySelectedTransportIdArrivalIsA,
-                        out secondarySelectedDistanceTransportId, false, true);
-                    if (secondarySelectedTransport.Id != 0)
-                    {
-                        if (secondaryBestTransportIdDistance > secondarySelectedDistanceTransportId)
-                        {
-                            secondaryBestTransport = secondarySelectedTransport;
-                            secondaryBestTransportIdArrivalIsA = true;
-                            secondaryBestTransportIdDistance = secondarySelectedDistanceTransportId;
-                        }
-                    }
-                }
-                if (path2ResultSuccess && path2BisResultSuccess && (t.BContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
-                {
-                    float path2Distance = GetPathDistance(path2);
-                    float path2BisDistance = GetPathDistance(path2Bis);
-                    if (bestTransportIdDistance > (path2Distance + path2BisDistance))
-                    {
-                        bestTransport = t;
-                        bestTransportIdArrivalIsA = true;
-                        bestTransportIdDistance = path2Distance;
-                    }
-                }
-                else if (!path2ResultSuccess && path2BisResultSuccess && (t.BContinentId == Usefuls.ContinentId || t.AContinentId == t.BContinentId))
-                {
-                    SelectTransport(ObjectManager.ObjectManager.Me.Position, t.BOutsidePoint, t.BContinentId, out secondarySelectedTransport, out secondarySelectedTransportIdArrivalIsA,
-                        out secondarySelectedDistanceTransportId, false, true);
-                    if (secondarySelectedTransport.Id != 0)
-                    {
-                        if (secondaryBestTransportIdDistance > secondarySelectedDistanceTransportId)
-                        {
-                            secondaryBestTransport = secondarySelectedTransport;
-                            secondaryBestTransportIdArrivalIsA = true;
-                            secondaryBestTransportIdDistance = secondarySelectedDistanceTransportId;
-                        }
-                    }
-                }
-            }
-            if (!infoOnly && bestTransport.Id == 0 && secondaryBestTransport.Id != 0)
-            {
-                // we cannot go to a direct transport to the destination, but we can go to a transport that go to another transport
-                // it should check recursivly
-                StartTravel((secondaryBestTransportIdArrivalIsA ? secondaryBestTransport.BOutsidePoint : secondaryBestTransport.AOutsidePoint),
-                    (secondaryBestTransportIdArrivalIsA ? secondaryBestTransport.BContinentId : secondaryBestTransport.AContinentId), false);
-                hasTravelled = true;
-            }
-        }
-
-        private void GoToDepartureQuay(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
-        {
-            List<Point> pathToDepartureQuay = selectedTransportIdArrivalIsA ? PathFinder.FindPath(selectedTransport.BOutsidePoint) : PathFinder.FindPath(selectedTransport.AOutsidePoint);
-            MovementManager.Go(pathToDepartureQuay);
-            if (mainFunction)
-                Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ").");
-            else
-                Logging.Write("Going to intermediate departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ").");
-            bool loop = true;
-            while (loop)
-            {
+                GoToDepartureQuayOrPortal(transport);
                 if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
-                if (ObjectManager.ObjectManager.Me.Position.Equals(pathToDepartureQuay[pathToDepartureQuay.Count - 1]))
-                    loop = false;
-                if (!MovementManager.InMoveTo && !MovementManager.InMovement)
-                    loop = false;
-                Thread.Sleep(100);
-            }
-            /* step : wait for the transport */
-            if (mainFunction)
-                Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
-            else
-                Logging.Write("Arrived at intermediate departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
-        }
-
-        private void WaitForTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
-        {
-            //List<WoWUnit> listWoWUnit = ObjectManager.ObjectManager.GetWoWUnitByEntry((int) selectedTransport.Id);
-            //WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(listWoWUnit, ObjectManager.ObjectManager.Me.Position);
-            WoWGameObject TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
-                ObjectManager.ObjectManager.Me.Position);
-            /*if (TargetIsNPC.IsValid)
-            {
-                // portal support ?
-            }*/
-            bool loop = true;
-            while (loop)
-            {
-                if (Usefuls.IsFlying)
-                    MountTask.DismountMount();
-                if (TargetIsGameObject.IsValid)
+                if (!(transport is Portal))
                 {
-                    if ((selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(TargetIsGameObject.Position))
-                        loop = false;
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransportIdArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 10)
-                        GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA, mainFunction); // wrong quay because we felt and it tryed to find a transport while in the air
-                    Thread.Sleep(50); // Wait for transport to get into position.
+                    WaitForTransport(transport);
+                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        return;
                 }
-                else
-                {
-                    TargetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
-                }
-            }
-        }
-
-        private void EnterTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
-        {
-            if (mainFunction)
-                Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
-            else
-                Logging.Write("Intermediate Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
-            while (!ObjectManager.ObjectManager.Me.InTransport)
-            {
-                //continue;
-                if (ObjectManager.ObjectManager.Me.Position.Z + 30 < (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z
-                    || ObjectManager.ObjectManager.Me.Position.Z - 30 > (selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Z)
-                {
-                    if (mainFunction)
-                        Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
-                    else
-                        Logging.Write("Failed to enter intermediate transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
-                    GoToDepartureQuay(selectedTransport, selectedTransportIdArrivalIsA);
-                    EnterTransport(selectedTransport, selectedTransportIdArrivalIsA);
+                EnterTransportOrTakePortal(transport);
+                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
+                if (!(transport is Portal))
+                {
+                    TravelPatiently(transport);
+                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        return;
+                    LeaveTransport(transport);
                 }
-                MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint});
+            }
+        }
+
+        private void GoToDepartureQuayOrPortal(Transport selectedTransport)
+        {
+            if (selectedTransport is Portal)
+            {
+                var portal = selectedTransport as Portal;
+                Logging.Write("Going to portal " + portal.Name + "(" + portal.Id + ") to travel.");
+                List<Point> pathToPortal = PathFinder.FindPath(portal.APoint);
+                MovementManager.Go(pathToPortal);
                 bool loop = true;
                 while (loop)
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
-                    if (ObjectManager.ObjectManager.Me.Position.Equals(selectedTransportIdArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint))
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 4)
+                        loop = false;
+                    Thread.Sleep(100);
+                    MovementManager.StopMove();
+                }
+            }
+            else
+            {
+                List<Point> pathToDepartureQuay = selectedTransport.ArrivalIsA ? PathFinder.FindPath(selectedTransport.BOutsidePoint) : PathFinder.FindPath(selectedTransport.AOutsidePoint);
+                MovementManager.Go(pathToDepartureQuay);
+                Logging.Write("Going to departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + ") to travel.");
+                bool loop = true;
+                while (loop)
+                {
+                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        return;
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 4)
                         loop = false;
                     if (!MovementManager.InMoveTo && !MovementManager.InMovement)
                         loop = false;
-                    if (ObjectManager.ObjectManager.Me.InTransport)
-                        loop = false;
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
+                    MovementManager.StopMove();
                 }
-                MovementManager.StopMove();
-                Thread.Sleep(100);
-                MovementsAction.Jump(); // We sometimes need to jump at the bottom of an elevator to be "inside" of it.
+                Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
             }
-            MovementManager.StopMove();
-            if (mainFunction)
-                Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
-            else
-                Logging.Write("Successfuly entered intermediate transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
         }
 
-        private void LeaveTransport(Transport selectedTransport, bool selectedTransportIdArrivalIsA, bool mainFunction = true)
+        private void WaitForTransport(Transport selectedTransport)
         {
-            if (mainFunction)
-                Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
+            WoWGameObject memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
+                ObjectManager.ObjectManager.Me.Position);
+            bool loop = true;
+            while (loop)
+            {
+                if (Usefuls.IsFlying)
+                    MountTask.DismountMount();
+                if (memoryTransport.IsValid)
+                {
+                    if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(memoryTransport.Position))
+                        loop = false;
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 4)
+                        GoToDepartureQuayOrPortal(selectedTransport); // wrong quay because we felt and it tryed to find a transport while in the air
+                    Thread.Sleep(100); // Wait for transport to get into position.
+                }
+                else
+                {
+                    memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id), ObjectManager.ObjectManager.Me.Position);
+                }
+            }
+        }
+
+        private void EnterTransportOrTakePortal(Transport selectedTransport)
+        {
+            if (selectedTransport is Portal)
+            {
+                var portal = selectedTransport as Portal;
+                WoWGameObject memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
+                bool loop = true;
+                while (loop)
+                {
+                    if (Usefuls.IsFlying)
+                        MountTask.DismountMount();
+                    if (memoryPortal.IsValid)
+                    {
+                        if (memoryPortal.GetDistance > 4)
+                        {
+                            List<Point> path = PathFinder.FindPath(memoryPortal.Position);
+                            MovementManager.Go(path);
+                            while (memoryPortal.GetDistance > 4)
+                            {
+                                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                                {
+                                    return;
+                                }
+                            }
+                            Interact.InteractWith(memoryPortal.GetBaseAddress, true);
+                            Thread.Sleep(3000);
+                            if (memoryPortal.IsValid)
+                            {
+                                Interact.InteractWith(memoryPortal.GetBaseAddress, true);
+                                Thread.Sleep(6000);
+                            }
+                            loop = false;
+                        }
+                    }
+                    else
+                    {
+                        if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+                        {
+                            GoToDepartureQuayOrPortal(selectedTransport);
+                            EnterTransportOrTakePortal(selectedTransport);
+                            return;
+                        }
+                        memoryPortal = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) portal.Id), ObjectManager.ObjectManager.Me.Position);
+                    }
+                }
+            }
             else
-                Logging.Write("Intermediate Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
-            MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint});
+            {
+                Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
+                while (!ObjectManager.ObjectManager.Me.InTransport)
+                {
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 4)
+                    {
+                        GoToDepartureQuayOrPortal(selectedTransport);
+                        EnterTransportOrTakePortal(selectedTransport);
+                        Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
+                    }
+                    MovementManager.Go(new List<Point> {selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint});
+                    bool loop = true;
+                    while (loop)
+                    {
+                        if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                            return;
+                        if (ObjectManager.ObjectManager.Me.InTransport)
+                            loop = false;
+                        if (ObjectManager.ObjectManager.Me.InTransport &&
+                            ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint) < 5)
+                            loop = false;
+                        Thread.Sleep(500);
+                    }
+                    MovementManager.StopMove();
+                    Thread.Sleep(100);
+                    MovementsAction.Jump(); // We sometimes need to jump at the bottom of an elevator to be "inside" of it.
+                }
+                MovementManager.StopMove();
+                Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
+            }
+        }
+
+        private void LeaveTransport(Transport selectedTransport)
+        {
+            Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
+            MovementManager.Go(new List<Point> {selectedTransport.ArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint});
             bool loop = true;
             while (loop)
             {
                 if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
-                if (ObjectManager.ObjectManager.Me.Position.Equals(selectedTransportIdArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint))
-                    loop = false;
-                if (!MovementManager.InMoveTo && !MovementManager.InMovement)
-                    loop = false;
                 if (!ObjectManager.ObjectManager.Me.InTransport)
+                    loop = false;
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint) < 5)
                     loop = false;
                 Thread.Sleep(500);
             }
         }
 
-        private void TravelPatiently(Transport selectedTransport, bool selectedTransportIdArrivalIsA)
+        private void TravelPatiently(Transport selectedTransport)
         {
             bool loop = true;
             int i = 0;
@@ -472,12 +345,247 @@ namespace nManager.Wow.Bot.States
                     i++;
                     Thread.Sleep(300); // Shortly after loading, we are not yet "InTransport".
                 }
-                if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
+                if (selectedTransport.ArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
                     loop = false;
-                if (!selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
+                if (!selectedTransport.ArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
                     loop = false;
                 Thread.Sleep(500);
             }
+        }
+
+        private List<Transport> GetAllTransportsThatGoesToDestination(Point travelTo, int travelToContinentId)
+        {
+            var allTransports = new List<Transport>();
+            List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
+            List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
+            allTransports.AddRange(transports);
+            allTransports.AddRange(portals);
+            return allTransports;
+        }
+
+        private List<Transport> GetTransportsThatGoesToDestination(Point travelTo, int travelToContinentId)
+        {
+            var listTransport = new List<Transport>();
+            foreach (Transport transport in _availableTransports.Items)
+            {
+                if (transport.Faction != Npc.FactionType.Neutral && transport.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
+                if (transport.AContinentId != travelToContinentId && transport.BContinentId != travelToContinentId)
+                    continue;
+                if (transport.AContinentId == travelToContinentId && transport.BContinentId != travelToContinentId)
+                {
+                    bool success;
+                    PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        transport.ArrivalIsA = true;
+                        listTransport.Add(transport);
+                    }
+                }
+                else if (transport.BContinentId == travelToContinentId && transport.AContinentId != travelToContinentId)
+                {
+                    bool success;
+                    PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        listTransport.Add(transport);
+                    }
+                }
+                else if (transport.AContinentId == travelToContinentId && transport.BContinentId == travelToContinentId)
+                {
+                    bool success;
+                    PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        transport.ArrivalIsA = true;
+                        listTransport.Add(transport);
+                    }
+                    PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                    if (success)
+                    {
+                        transport.ArrivalIsA = false;
+                        listTransport.Add(transport);
+                    }
+                }
+            }
+            return listTransport;
+        }
+
+        private List<Portal> GetPortalsThatGoesToDestination(Point travelTo, int travelToContinentId)
+        {
+            var listPortal = new List<Portal>();
+            foreach (Portal portal in _availablePortals.Items)
+            {
+                if (portal.Faction != Npc.FactionType.Neutral && portal.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
+                if (portal.BContinentId != travelToContinentId)
+                    continue;
+                bool success;
+                PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                if (success)
+                {
+                    listPortal.Add(portal);
+                }
+            }
+            return listPortal;
+        }
+
+        private List<Portal> GetPortalsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
+        {
+            var listPortal = new List<Portal>();
+            List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
+            foreach (Portal portal in portals)
+            {
+                if (portal.AContinentId != travelFromContinentId)
+                    continue;
+                bool success;
+                PathFinder.FindPath(portal.APoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                if (success)
+                {
+                    listPortal.Add(portal);
+                }
+            }
+            return listPortal;
+        }
+
+        private List<Transport> GetTransportsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
+        {
+            var listTransport = new List<Transport>();
+            List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
+            foreach (Transport transport in transports)
+            {
+                if (transport.ArrivalIsA)
+                {
+                    if (transport.BContinentId != travelFromContinentId)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(transport.BOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                    if (success)
+                    {
+                        listTransport.Add(transport);
+                    }
+                }
+                else
+                {
+                    if (transport.AContinentId != travelFromContinentId)
+                        continue;
+                    bool success;
+                    PathFinder.FindPath(transport.AOutsidePoint, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                    if (success)
+                    {
+                        listTransport.Add(transport);
+                    }
+                }
+            }
+            return listTransport;
+        }
+
+        private List<Transport> GetAllTransportsThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
+        {
+            var allTransports = new List<Transport>();
+            List<Transport> transports = GetTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
+            List<Portal> portals = GetPortalsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
+            allTransports.AddRange(transports);
+            allTransports.AddRange(portals);
+            return allTransports;
+        }
+
+        private KeyValuePair<Transport, float> GetBestDirectWayTransport(Point travelFrom, Point travelTo, int travelFromContinentId, int travelToContinentId)
+        {
+            var bestTransport = new Transport();
+            float bestTransportDistance = float.MaxValue;
+            List<Transport> allTransports = GetAllTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
+            foreach (Transport transport in allTransports)
+            {
+                float currentTransportDistance;
+                if (transport is Portal)
+                {
+                    var portal = transport as Portal;
+                    List<Point> wayIn = PathFinder.FindPath(travelFrom, portal.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                    List<Point> wayOff = PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                    currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                }
+                else
+                {
+                    if (transport.ArrivalIsA)
+                    {
+                        List<Point> wayIn = PathFinder.FindPath(travelFrom, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                        List<Point> wayOff = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                    }
+                    else
+                    {
+                        List<Point> wayIn = PathFinder.FindPath(travelFrom, transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                        List<Point> wayOff = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                    }
+                }
+
+                if (!(currentTransportDistance < bestTransportDistance)) continue;
+                bestTransport = transport;
+                bestTransportDistance = currentTransportDistance;
+            }
+            return bestTransport.Id != 0 ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance) : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);
+        }
+
+        private KeyValuePair<List<Transport>, float> GetBestTwoWayTransport(Point travelFrom, Point travelTo, int travelFromContinentId, int travelToContinentId)
+        {
+            var bestTransports = new List<Transport>();
+            float bestTransportDistance = float.MaxValue;
+            List<Transport> allTransports = GetAllTransportsThatGoesToDestination(travelTo, travelToContinentId);
+            foreach (Transport transport in allTransports)
+            {
+                float currentTransportDistance;
+                if (transport is Portal)
+                {
+                    var portal = transport as Portal;
+                    if (portal.AContinentId != travelFromContinentId)
+                        continue;
+                    KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, portal.APoint, travelFromContinentId, portal.BContinentId);
+                    List<Point> way = PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                    currentTransportDistance = currentToIntermediate.Value + GetPathDistance(way);
+
+                    if (currentTransportDistance < bestTransportDistance)
+                    {
+                        bestTransports = new List<Transport> {currentToIntermediate.Key, transport};
+                        bestTransportDistance = currentTransportDistance;
+                    }
+                }
+                else
+                {
+                    if (transport.ArrivalIsA)
+                    {
+                        if (transport.BContinentId != travelFromContinentId)
+                            continue;
+                        KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, transport.BOutsidePoint, travelFromContinentId, transport.AContinentId);
+                        List<Point> way = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        currentTransportDistance = currentToIntermediate.Value + GetPathDistance(way);
+
+                        if (currentTransportDistance < bestTransportDistance)
+                        {
+                            bestTransports = new List<Transport> {currentToIntermediate.Key, transport};
+                            bestTransportDistance = currentTransportDistance;
+                        }
+                    }
+                    else
+                    {
+                        if (transport.AContinentId != travelFromContinentId)
+                            continue;
+                        KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, transport.AOutsidePoint, travelFromContinentId, transport.BContinentId);
+                        List<Point> way = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                        currentTransportDistance = currentToIntermediate.Value + GetPathDistance(way);
+
+                        if (currentTransportDistance < bestTransportDistance)
+                        {
+                            bestTransports = new List<Transport> {currentToIntermediate.Key, transport};
+                            bestTransportDistance = currentTransportDistance;
+                        }
+                    }
+                }
+            }
+            if (bestTransports.Count == 2)
+                return new KeyValuePair<List<Transport>, float>(bestTransports, bestTransportDistance);
+            return new KeyValuePair<List<Transport>, float>(new List<Transport>(), float.MaxValue);
         }
     }
 }

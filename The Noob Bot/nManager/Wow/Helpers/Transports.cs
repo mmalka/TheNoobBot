@@ -25,5 +25,6 @@ namespace nManager.Wow.Helpers
         [XmlAttribute(AttributeName = "Faction")] public Npc.FactionType Faction;
         [XmlAttribute(AttributeName = "Id")] public uint Id;
         [XmlAttribute(AttributeName = "Name")] public string Name;
+        [XmlIgnore] public bool ArrivalIsA = false;
     }
 }
