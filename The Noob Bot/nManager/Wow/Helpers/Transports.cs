@@ -15,13 +15,15 @@ namespace nManager.Wow.Helpers
     public class Transport
     {
         [XmlAttribute(AttributeName = "AContinentId")] public int AContinentId;
+        public Point AInsidePoint = new Point();
+        public Point AOutsidePoint = new Point();
         public Point APoint = new Point();
         [XmlAttribute(AttributeName = "BContinentId")] public int BContinentId;
+        public Point BInsidePoint = new Point();
+        public Point BOutsidePoint = new Point();
         public Point BPoint = new Point();
         [XmlAttribute(AttributeName = "Faction")] public Npc.FactionType Faction;
         [XmlAttribute(AttributeName = "Id")] public uint Id;
         [XmlAttribute(AttributeName = "Name")] public string Name;
-        public Point OutsideAPoint = new Point();
-        public Point OutsideBPoint = new Point();
     }
 }
