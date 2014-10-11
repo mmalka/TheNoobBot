@@ -7,9 +7,9 @@ using nManager.Wow.Class;
 namespace nManager.Wow.Helpers
 {
     [Serializable]
-    public class Portals : Transports
+    public class Portals
     {
-        public new List<Portal> Items = new List<Portal>();
+        public List<Portal> Items = new List<Portal>();
     }
 
     [Serializable]
