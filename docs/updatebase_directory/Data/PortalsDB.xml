@@ -421,5 +421,29 @@
         <Z>95.4723</Z>
       </BPoint>
     </Portal>
+    <Portal Id="206594" Name="Portal to Tol Barad" Faction="Alliance" AContinentId="0" BContinentId="732">
+      <APoint> <!-- Stormwind -->
+        <X>-8208.7</X>
+        <Y>450.793</Y>
+        <Z>117.667</Z>
+      </APoint>
+      <BPoint> <!-- Tol Barad -->
+        <X>-369.208</X>
+        <Y>1058.73</Y>
+        <Z>21.7719</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="208227" Name="Portal to Stormwind" Faction="Alliance" AContinentId="732" BContinentId="0">
+      <APoint> <!-- Tol Barad -->
+        <X>-343.9358</X>
+        <Y>1030.188</Y>
+        <Z>22.28196</Z>
+      </APoint>
+      <BPoint> <!-- Stormwind -->
+        <X>-8207.63</X>
+        <Y>447.785</Y>
+        <Z>117.651</Z>
+      </BPoint>
+    </Portal>
   </Items>
 </Portals>
