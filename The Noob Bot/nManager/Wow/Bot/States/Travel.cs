@@ -412,27 +412,25 @@ namespace nManager.Wow.Bot.States
                     EnterTransport(selectedTransport, selectedTransportIdArrivalIsA);
                     return;
                 }
-                Point goTo = selectedTransportIdArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint;
-                goTo.Z = ObjectManager.ObjectManager.Me.Position.Z; // we don't wanna go to the middle point of a zeppelin for example
-                MovementManager.Go(new List<Point> {ObjectManager.ObjectManager.Me.Position, goTo});
+                MovementManager.Go(new List<Point> {selectedTransportIdArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint});
                 bool loop = true;
                 while (loop)
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
-                    if (ObjectManager.ObjectManager.Me.Position.Equals(goTo))
+                    if (ObjectManager.ObjectManager.Me.Position.Equals(selectedTransportIdArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint))
                         loop = false;
                     if (!MovementManager.InMoveTo && !MovementManager.InMovement)
                         loop = false;
                     if (ObjectManager.ObjectManager.Me.InTransport)
                         loop = false;
-                    Thread.Sleep(10);
+                    Thread.Sleep(500);
                 }
                 MovementManager.StopMove();
-                MovementsAction.Jump();
-                Thread.Sleep(20);
+                Thread.Sleep(100);
+                MovementsAction.Jump(); // We sometimes need to jump at the bottom of an elevator to be "inside" of it.
             }
-            MovementManager.StopMove(); // The middle point of the transport is probably bad for us, so stop ASAP we are inside.
+            MovementManager.StopMove();
             if (mainFunction)
                 Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
             else
@@ -457,7 +455,7 @@ namespace nManager.Wow.Bot.States
                     loop = false;
                 if (!ObjectManager.ObjectManager.Me.InTransport)
                     loop = false;
-                Thread.Sleep(20);
+                Thread.Sleep(500);
             }
         }
 
@@ -472,13 +470,13 @@ namespace nManager.Wow.Bot.States
                     if (i > 5)
                         loop = false;
                     i++;
-                    Thread.Sleep(300); // let time to the game to detect out transport
+                    Thread.Sleep(300); // Shortly after loading, we are not yet "InTransport".
                 }
                 if (selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
                     loop = false;
                 if (!selectedTransportIdArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
                     loop = false;
-                Thread.Sleep(100);
+                Thread.Sleep(500);
             }
         }
     }
