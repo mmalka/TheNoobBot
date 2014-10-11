@@ -193,5 +193,197 @@
         <Z>31.55647</Z>
       </BOutsidePoint>
     </Transport>
-  </Items>
+    <Transport Id="186238" Name="Zeppelin, Horde (The Mighty Wind)" Faction="Horde" AContinentId="1" BContinentId="571">
+      <APoint> <!-- Orgrimmar -->
+        <X>1775.066</X>
+        <Y>-4299.745</Y>
+        <Z>151.0326</Z>
+      </APoint>
+      <AInsidePoint>
+        <X>1768.496</X>
+        <Y>-4290.86</Y>
+        <Z>133.1679</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+        <X>1761.582</X>
+        <Y>-4282.285</Y>
+        <Z>133.1059</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Warsong Hold -->
+        <X>2837.908</X>
+        <Y>6187.443</Y>
+        <Z>140.1648</Z>
+      </BPoint>
+      <BInsidePoint>
+        <X>2841.076</X>
+        <Y>6188.348</Y>
+        <Z>122.3181</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+        <X>2836.484</X>
+        <Y>6184.007</Y>
+        <Z>121.914</Z>
+      </BOutsidePoint>
+    </Transport>
+    <Transport Id="190549" Name="The Zephyr" Faction="Horde" AContinentId="1" BContinentId="1">
+      <APoint> <!-- Orgrimmar -->
+        <X>1735.905</X>
+        <Y>-4257.915</Y>
+        <Z>133.1062</Z>
+      </APoint>
+      <AInsidePoint>
+        <X>1729.719</X>
+        <Y>-4251.378</Y>
+        <Z>133.5041</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+        <X>1735.905</X>
+        <Y>-4257.915</Y>
+        <Z>133.1062</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Thunder Bluff -->
+        <X>-1026.856</X>
+        <Y>375.7847</Y>
+        <Z>150.4127</Z>
+      </BPoint>
+      <BInsidePoint>
+        <X>-1029.726</X>
+        <Y>361.7018</Y>
+        <Z>132.6236</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+        <X>-1028.312</X>
+        <Y>354.372</Y>
+        <Z>133.1059</Z>
+      </BOutsidePoint>
+    </Transport>
+    <Transport Id="4170" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
+      <APoint> <!-- Thunder Bluff -->
+        <X>-1286.237</X>
+        <Y>189.7202</Y>
+        <Z>68.83578</Z>
+      </APoint>
+      <AInsidePoint>
+        <X>-1286.002</X>
+        <Y>189.0783</Y>
+        <Z>68.86822</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+        <X>-1280.53</X>
+        <Y>195.9089</Y>
+        <Z>68.55211</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Thunder Bluff -->
+        <X>-1286.237</X>
+        <Y>189.7202</Y>
+        <Z>130.0801</Z>
+      </BPoint>
+      <BInsidePoint>
+        <X>-1286.002 </X>
+        <Y>189.0783</Y>
+        <Z>130.1125</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+        <X>-1285.157</X>
+        <Y>180.0962</Y>
+        <Z>129.9943</Z>
+      </BOutsidePoint>
+    </Transport>
+    <Transport Id="4171" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
+      <APoint> <!-- Thunder Bluff -->
+        <X>-1308.373</X>
+        <Y>185.2901</Y>
+        <Z>68.58609</Z>
+      </APoint>
+      <AInsidePoint>
+        <X>-1310.283</X>
+        <Y>183.8775</Y>
+        <Z>68.62607</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+        <X>-1315.915</X>
+        <Y>182.2547</Y>
+        <Z>68.55236</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Thunder Bluff -->
+        <X>-1308.373</X>
+        <Y>185.2901</Y>
+        <Z>130.0842</Z>
+      </BPoint>
+      <BInsidePoint>
+        <X>-1310.283</X>
+        <Y>183.8775</Y>
+        <Z>130.1242</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+        <X>-1307.566</X>
+        <Y>177.4111</Y>
+        <Z>129.9942</Z>
+      </BOutsidePoint>
+    </Transport>
+    <Transport Id="47296" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
+      <APoint> <!-- Thunder Bluff -->
+        <X>-1028.043</X>
+        <Y>-28.35677</Y>
+        <Z>69.02259</Z>
+      </APoint>
+      <AInsidePoint>
+        <X>-1027.458</X>
+        <Y>-27.8707</Y>
+        <Z>69.06262</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+        <X>-1020.247</X>
+        <Y>-23.26678</Y>
+        <Z>69.25317</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Thunder Bluff -->
+        <X>-1028.043</X>
+        <Y>-28.35677</Y>
+        <Z>140.4988</Z>
+      </BPoint>
+      <BInsidePoint>
+        <X>-1027.458</X>
+        <Y>-27.8707</Y>
+        <Z>140.5388</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+        <X>-1036.728</X>
+        <Y>-23.77681</Y>
+        <Z>140.6944</Z>
+      </BOutsidePoint>
+    </Transport>
+    <Transport Id="47297" Name="Mesa Elevator" Faction="Horde" AContinentId="1" BContinentId="1">
+      <APoint> <!-- Thunder Bluff -->
+        <X>-1037.266</X>
+        <Y>-49.23546</Y>
+        <Z>69.27228</Z>
+      </APoint>
+      <AInsidePoint>
+        <X>-1037.849</X>
+        <Y>-49.04472</Y>
+        <Z>69.31224</Z>
+      </AInsidePoint>
+      <AOutsidePoint>
+        <X>-1034.359</X>
+        <Y>-58.38702</Y>
+        <Z>69.25309</Z>
+      </AOutsidePoint>
+      <BPoint> <!-- Thunder Bluff -->
+        <X>-1037.266</X>
+        <Y>-49.23546</Y>
+        <Z>140.4947</Z>
+      </BPoint>
+      <BInsidePoint>
+        <X>-1037.849</X>
+        <Y>-49.04472</Y>
+        <Z>140.5346</Z>
+      </BInsidePoint>
+      <BOutsidePoint>
+        <X>-1046.347</X>
+        <Y>-43.78959</Y>
+        <Z>140.6945</Z>
+      </BOutsidePoint>
+    </Transport>
+    </Items>
 </Transports>
