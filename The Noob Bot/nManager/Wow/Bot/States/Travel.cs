@@ -96,13 +96,14 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
+                if (oneWayTravel.Key.Id != 0)
+                {
+                    Logging.Write("Travel: Found direct way travel.");
+                    return new List<Transport> { oneWayTravel.Key };
+                }
 
                 KeyValuePair<List<Transport>, float> twoWayTravel = GetBestTwoWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
-                if (oneWayTravel.Key.Id != 0 && twoWayTravel.Key.Count != 2)
-                {
-                    Logging.Write("Travel: Found direct way travel and no 2-way to compare with.");
-                    return new List<Transport> {oneWayTravel.Key};
-                }
+                
                 if (oneWayTravel.Key.Id != 0 && twoWayTravel.Key.Count == 2 && oneWayTravel.Value <= twoWayTravel.Value)
                 {
                     Logging.Write("Travel: Found a direct way travel that is faster than a 2-way travel.");
@@ -170,6 +171,9 @@ namespace nManager.Wow.Bot.States
                     LeaveTransport(transport);
                 }
             }
+            TravelToContinentId = 9999999;
+            TravelTo = new Point();
+            Logging.Write("Travel is terminated, waiting for product to take the control back.");
         }
 
         private void GoToDepartureQuayOrPortal(Transport selectedTransport)
@@ -185,11 +189,11 @@ namespace nManager.Wow.Bot.States
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 4)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 2)
                         loop = false;
                     Thread.Sleep(100);
-                    MovementManager.StopMove();
                 }
+                MovementManager.StopMove();
             }
             else
             {
@@ -201,13 +205,13 @@ namespace nManager.Wow.Bot.States
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 4)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 2)
                         loop = false;
                     if (!MovementManager.InMoveTo && !MovementManager.InMovement)
                         loop = false;
                     Thread.Sleep(100);
-                    MovementManager.StopMove();
                 }
+                MovementManager.StopMove();
                 Logging.Write("Arrived at departure quay of " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting for transport.");
             }
         }
@@ -225,8 +229,11 @@ namespace nManager.Wow.Bot.States
                 {
                     if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(memoryTransport.Position))
                         loop = false;
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 4)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 5)
+                    {
                         GoToDepartureQuayOrPortal(selectedTransport); // wrong quay because we felt and it tryed to find a transport while in the air
+                        return;
+                    }
                     Thread.Sleep(100); // Wait for transport to get into position.
                 }
                 else
@@ -287,29 +294,39 @@ namespace nManager.Wow.Bot.States
                 Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
                 while (!ObjectManager.ObjectManager.Me.InTransport)
                 {
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 4)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 10)
                     {
-                        GoToDepartureQuayOrPortal(selectedTransport);
-                        EnterTransportOrTakePortal(selectedTransport);
-                        Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint)) >
+                            ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)))
+                        {
+                            GoToDepartureQuayOrPortal(selectedTransport);
+                            EnterTransportOrTakePortal(selectedTransport);
+                            Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
+                        }
                     }
-                    MovementManager.Go(new List<Point> {selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint});
+                     MovementManager.MoveTo(selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint);
                     bool loop = true;
                     while (loop)
                     {
                         if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                             return;
                         if (ObjectManager.ObjectManager.Me.InTransport)
+                        {
                             loop = false;
-                        if (ObjectManager.ObjectManager.Me.InTransport &&
-                            ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint) < 5)
+                            Thread.Sleep(1000);
+                        }
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint) <= 2)
+                        {
                             loop = false;
+                            MovementManager.StopMove();
+                            Thread.Sleep(100);
+                            if (!ObjectManager.ObjectManager.Me.InTransport)
+                                MovementsAction.Jump(); // We sometimes need to jump at the bottom of an elevator to be "inside" of it.
+                        }
                         Thread.Sleep(500);
                     }
-                    MovementManager.StopMove();
-                    Thread.Sleep(100);
-                    MovementsAction.Jump(); // We sometimes need to jump at the bottom of an elevator to be "inside" of it.
                 }
+                Thread.Sleep(100);
                 MovementManager.StopMove();
                 Logging.Write("Successfuly entered transport " + selectedTransport.Name + "(" + selectedTransport.Id + "), waiting to arrive at destination.");
             }
@@ -318,7 +335,7 @@ namespace nManager.Wow.Bot.States
         private void LeaveTransport(Transport selectedTransport)
         {
             Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at destination, leaving to the arrival quay.");
-            MovementManager.Go(new List<Point> {selectedTransport.ArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint});
+            MovementManager.MoveTo(selectedTransport.ArrivalIsA ? selectedTransport.AOutsidePoint : selectedTransport.BOutsidePoint);
             bool loop = true;
             while (loop)
             {
@@ -334,8 +351,11 @@ namespace nManager.Wow.Bot.States
 
         private void TravelPatiently(Transport selectedTransport)
         {
+            WoWGameObject memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int)selectedTransport.Id),
+                ObjectManager.ObjectManager.Me.Position);
             bool loop = true;
             int i = 0;
+            int i2 = 0;
             while (loop)
             {
                 if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
@@ -345,10 +365,20 @@ namespace nManager.Wow.Bot.States
                     i++;
                     Thread.Sleep(300); // Shortly after loading, we are not yet "InTransport".
                 }
-                if (selectedTransport.ArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.APoint))
+                if (selectedTransport.ArrivalIsA && memoryTransport.Position.Equals(selectedTransport.APoint))
                     loop = false;
-                if (!selectedTransport.ArrivalIsA && ObjectManager.ObjectManager.Me.Position.Equals(selectedTransport.BPoint))
+                if (!selectedTransport.ArrivalIsA && memoryTransport.Position.Equals(selectedTransport.BPoint))
                     loop = false;
+                if (!memoryTransport.IsValid && i2 < 5)
+                {
+                    memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int)selectedTransport.Id),
+                ObjectManager.ObjectManager.Me.Position);
+                    i2++;
+                }
+                else if (!memoryTransport.IsValid && i2 >= 5)
+                {
+                    loop = false;
+                }
                 Thread.Sleep(500);
             }
         }
