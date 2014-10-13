@@ -110,6 +110,7 @@ namespace nManager.Helpful.Forms.UserControls
                     _toggler.Image = Resources.PanelExpendableMinusImg;
                     Size = tmpSize;
                     MaximumSize = new Size(HeaderSize.Width, 0);
+                    MinimumSize = new Size(HeaderSize.Width, HeaderSize.Height);
                 }
                 if (OnStatusChanged != null)
                     OnStatusChanged(this, EventArgs.Empty);

@@ -195,7 +195,8 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.InteractWith ||
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
-                questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath)
+                questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
+                questObjective.Objective == Objective.UseLuaMacro)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -295,17 +296,13 @@ namespace Quester.Tasks
 
                 WoWUnit wowUnit = new WoWUnit(0);
                 if (questObjective.CollectItemId != 0)
-                    wowUnit = ObjectManager.GetNearestWoWUnit(
-                        ObjectManager.GetWoWUnitByQuestLoot(questObjective.CollectItemId));
+                    wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByQuestLoot(questObjective.CollectItemId), questObjective.IgnoreBlackList);
 
                 if (!wowUnit.IsValid)
-                    wowUnit = ObjectManager.GetNearestWoWUnit(
-                        ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
+                    wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreBlackList);
 
                 if (!wowUnit.IsValid && questObjective.Factions.Count > 0)
-                    wowUnit =
-                        ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.GetWoWUnitByFaction(questObjective.Factions));
+                    wowUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByFaction(questObjective.Factions), true, questObjective.IgnoreBlackList);
 
                 if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
@@ -394,7 +391,7 @@ namespace Quester.Tasks
                     {
                         Thread.Sleep(300); // gives some time to refresh ObjectList
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true);
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -420,7 +417,7 @@ namespace Quester.Tasks
                         {
                             Thread.Sleep(300); // gives some time to refresh ObjectList
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true);
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -437,6 +434,69 @@ namespace Quester.Tasks
                         if (ItemsManager.GetItemCount(questObjective.UseItemId) <= 0 || ItemsManager.IsItemOnCooldown(questObjective.UseItemId) || !ItemsManager.IsItemUsable(questObjective.UseItemId))
                             return;
                         ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
+                        if (questObjective.Count > 0)
+                            questObjective.CurrentCount++;
+                        else if (questObjective.Count == 0) // Then -1 is making the objectif never ending
+                            questObjective.IsObjectiveCompleted = true;
+                        Thread.Sleep(questObjective.WaitMs);
+                        Quest.GetSetIgnoreFight = false;
+                    }
+                }
+            }
+
+
+            // Lua Macro
+            if (questObjective.Objective == Objective.UseLuaMacro)
+            {
+                if (!MovementManager.InMovement ||
+                    ObjectManager.Me.Position.DistanceTo(questObjective.Position) < questObjective.Range)
+                {
+                    if (questObjective.Entry.Count > 0)
+                    {
+                        Thread.Sleep(300); // gives some time to refresh ObjectList
+                        WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
+                        if (node.IsValid)
+                        {
+                            questObjective.Position = new Point(node.Position);
+                        }
+                        else if (unit.IsValid)
+                        {
+                            questObjective.Position = new Point(unit.Position);
+                        }
+                    }
+
+                    if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    {
+                        MountTask.Mount();
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
+                    }
+                    else
+                    {
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
+                        MountTask.DismountMount();
+                        MovementManager.StopMove();
+                        if (questObjective.Entry.Count > 0)
+                        {
+                            Thread.Sleep(300); // gives some time to refresh ObjectList
+                            WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
+                            if (node.IsValid)
+                            {
+                                MovementManager.Face(node);
+                                Interact.InteractWith(node.GetBaseAddress);
+                                nManagerSetting.AddBlackList(node.Guid, 30*1000);
+                            }
+                            else if (unit.IsValid)
+                            {
+                                MovementManager.Face(unit);
+                                Interact.InteractWith(unit.GetBaseAddress);
+                                nManagerSetting.AddBlackList(unit.Guid, 30*1000);
+                            }
+                        }
+                        Thread.Sleep(10);
+                        Lua.RunMacroText(questObjective.LuaMacro);
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
                         else if (questObjective.Count == 0) // Then -1 is making the objectif never ending

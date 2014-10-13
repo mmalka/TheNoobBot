@@ -469,7 +469,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point)
+        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point, bool ignoreBlackList = false)
         {
             try
             {
@@ -477,7 +477,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (point.DistanceTo(a.Position) < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
+                    if (point.DistanceTo(a.Position) < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
@@ -492,7 +492,7 @@ namespace nManager.Wow.ObjectManager
             return new WoWUnit(0);
         }
 
-        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false)
+        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false)
         {
             try
             {
@@ -500,7 +500,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid) && (ignorenotSelectable || !a.NotSelectable))
+                    if (a.GetDistance < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList) && (ignorenotSelectable || !a.NotSelectable))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
@@ -538,7 +538,7 @@ namespace nManager.Wow.ObjectManager
             return new WoWPlayer(0);
         }
 
-        public static WoWGameObject GetNearestWoWGameObject(List<WoWGameObject> listWoWGameObject, Point point)
+        public static WoWGameObject GetNearestWoWGameObject(List<WoWGameObject> listWoWGameObject, Point point, bool ignoreBlackList = false)
         {
             try
             {
@@ -546,7 +546,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWGameObject a in listWoWGameObject)
                 {
-                    if (a.Position.DistanceTo(point) < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
+                    if (a.Position.DistanceTo(point) < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList))
                     {
                         objectReturn = a;
                         tempDistance = a.Position.DistanceTo(point);
@@ -561,7 +561,7 @@ namespace nManager.Wow.ObjectManager
             return new WoWGameObject(0);
         }
 
-        public static WoWGameObject GetNearestWoWGameObject(List<WoWGameObject> listWoWGameObject)
+        public static WoWGameObject GetNearestWoWGameObject(List<WoWGameObject> listWoWGameObject, bool ignoreBlackList = false)
         {
             try
             {
@@ -569,7 +569,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWGameObject a in listWoWGameObject)
                 {
-                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
+                    if (a.GetDistance < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;

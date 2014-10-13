@@ -166,10 +166,14 @@ namespace Quester.Profile
         internal bool IsObjectiveCompleted = false;
         [DefaultValue(false)] public bool CanPullUnitsAlreadyInFight = nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight;
         [DefaultValue(false)] public bool IgnoreQuestCompleted = false;
+        [DefaultValue(false)] public bool IgnoreBlackList = false;
 
         // Use Item
         [DefaultValue(0)] public int UseItemId = 0;
         public Point Position = new Point();
+
+        // UseLuaMAcro
+        [DefaultValue("")] public string LuaMacro;
 
         public bool ShouldSerializePosition()
         {
@@ -231,6 +235,7 @@ namespace Quester.Profile
         PickUpQuest,
         PressKey,
         UseItem,
+        UseLuaMacro,
         TurnInQuest,
         UseFlightPath,
         UseItemAOE,

@@ -81,8 +81,6 @@ namespace nManager.Helpful.Forms
             this.AvailablePluginsListLabel = new System.Windows.Forms.Label();
             this.AvailablePluginsList = new System.Windows.Forms.ListBox();
             this.MountManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
-            this.UseDruidFlightFormLabel = new System.Windows.Forms.Label();
-            this.UseDruidFlightForm = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AquaticMountName = new System.Windows.Forms.TextBox();
             this.AquaticMountNameLabel = new System.Windows.Forms.Label();
             this.IgnoreFightIfMountedLabel = new System.Windows.Forms.Label();
@@ -960,8 +958,6 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.MountManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.MountManagementPanelName.ContentSize = new System.Drawing.Size(556, 180);
-            this.MountManagementPanelName.Controls.Add(this.UseDruidFlightFormLabel);
-            this.MountManagementPanelName.Controls.Add(this.UseDruidFlightForm);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountName);
             this.MountManagementPanelName.Controls.Add(this.AquaticMountNameLabel);
             this.MountManagementPanelName.Controls.Add(this.IgnoreFightIfMountedLabel);
@@ -983,6 +979,7 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.Location = new System.Drawing.Point(0, 72);
             this.MountManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.MountManagementPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.MountManagementPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.MountManagementPanelName.Name = "MountManagementPanelName";
             this.MountManagementPanelName.OrderIndex = 3;
             this.MountManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -993,35 +990,10 @@ namespace nManager.Helpful.Forms
             this.MountManagementPanelName.TitleText = "Ingame Mount Management - (Allow you to use Ground/Fly/Swim mount)";
             this.MountManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("MountManagementPanelName.UnfolderImage")));
             // 
-            // UseDruidFlightFormLabel
-            // 
-            this.UseDruidFlightFormLabel.BackColor = System.Drawing.Color.Transparent;
-            this.UseDruidFlightFormLabel.ForeColor = System.Drawing.Color.Black;
-            this.UseDruidFlightFormLabel.Location = new System.Drawing.Point(2, 116);
-            this.UseDruidFlightFormLabel.Name = "UseDruidFlightFormLabel";
-            this.UseDruidFlightFormLabel.Size = new System.Drawing.Size(452, 22);
-            this.UseDruidFlightFormLabel.TabIndex = 25;
-            this.UseDruidFlightFormLabel.Text = "[Druid Only] Use Flight Forms. Requiert a Flying Mount in order to takeoff from W" +
-    "ater.";
-            this.UseDruidFlightFormLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // UseDruidFlightForm
-            // 
-            this.UseDruidFlightForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.UseDruidFlightForm.Location = new System.Drawing.Point(475, 116);
-            this.UseDruidFlightForm.MaximumSize = new System.Drawing.Size(60, 20);
-            this.UseDruidFlightForm.MinimumSize = new System.Drawing.Size(60, 20);
-            this.UseDruidFlightForm.Name = "UseDruidFlightForm";
-            this.UseDruidFlightForm.OffText = "OFF";
-            this.UseDruidFlightForm.OnText = "ON";
-            this.UseDruidFlightForm.Size = new System.Drawing.Size(60, 20);
-            this.UseDruidFlightForm.TabIndex = 26;
-            this.UseDruidFlightForm.Value = true;
-            // 
             // AquaticMountName
             // 
             this.AquaticMountName.ForeColor = System.Drawing.Color.Black;
-            this.AquaticMountName.Location = new System.Drawing.Point(161, 179);
+            this.AquaticMountName.Location = new System.Drawing.Point(161, 140);
             this.AquaticMountName.Name = "AquaticMountName";
             this.AquaticMountName.Size = new System.Drawing.Size(144, 22);
             this.AquaticMountName.TabIndex = 22;
@@ -1030,7 +1002,7 @@ namespace nManager.Helpful.Forms
             // 
             this.AquaticMountNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.AquaticMountNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.AquaticMountNameLabel.Location = new System.Drawing.Point(2, 176);
+            this.AquaticMountNameLabel.Location = new System.Drawing.Point(2, 137);
             this.AquaticMountNameLabel.Name = "AquaticMountNameLabel";
             this.AquaticMountNameLabel.Size = new System.Drawing.Size(154, 22);
             this.AquaticMountNameLabel.TabIndex = 21;
@@ -1096,7 +1068,7 @@ namespace nManager.Helpful.Forms
             // FlyingMountName
             // 
             this.FlyingMountName.ForeColor = System.Drawing.Color.Black;
-            this.FlyingMountName.Location = new System.Drawing.Point(161, 149);
+            this.FlyingMountName.Location = new System.Drawing.Point(161, 110);
             this.FlyingMountName.Name = "FlyingMountName";
             this.FlyingMountName.Size = new System.Drawing.Size(144, 22);
             this.FlyingMountName.TabIndex = 15;
@@ -1105,7 +1077,7 @@ namespace nManager.Helpful.Forms
             // 
             this.FlyingMountNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.FlyingMountNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.FlyingMountNameLabel.Location = new System.Drawing.Point(2, 147);
+            this.FlyingMountNameLabel.Location = new System.Drawing.Point(2, 108);
             this.FlyingMountNameLabel.Name = "FlyingMountNameLabel";
             this.FlyingMountNameLabel.Size = new System.Drawing.Size(154, 22);
             this.FlyingMountNameLabel.TabIndex = 14;
@@ -3709,7 +3681,5 @@ namespace nManager.Helpful.Forms
         private Label AvailablePluginsListLabel;
         private ListBox AvailablePluginsList;
         private TnbButton ActivatedPluginResetSettings;
-        private Label UseDruidFlightFormLabel;
-        private TnbSwitchButton UseDruidFlightForm;
     }
 }
