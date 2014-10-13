@@ -64,7 +64,7 @@ namespace nManager.Wow.MemoryClass
         /// <typeparam></typeparam>
         /// <param name="processName"></param>
         /// <returns name="processHandle"></returns>
-        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName = "WowT")
+        public static System.Diagnostics.Process[] ListeProcessIdByName(string processName)
         {
             try
             {
@@ -139,7 +139,7 @@ namespace nManager.Wow.MemoryClass
 
                 System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(ProcessId);
                 MainWindowHandle = processById.MainWindowHandle;
-                WowModule = GetModule("WowT.exe");
+                WowModule = GetModule(processById.ProcessName + ".exe");
                 return ProcessHandle;
             }
             catch (Exception e)

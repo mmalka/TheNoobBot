@@ -631,9 +631,9 @@ namespace nManager.Wow.MemoryClass
                 // init memory
                 var memory = new BlackMagic(processId);
                 // 
+                System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(processId);
                 uint baseModule = 0;
-                foreach (ProcessModule v in
-                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wowt.exe" select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase) select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
@@ -656,9 +656,9 @@ namespace nManager.Wow.MemoryClass
                 // init memory
                 var memory = new BlackMagic(processId);
                 // 
+                System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(processId);
                 uint baseModule = 0;
-                foreach (ProcessModule v in
-                    from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wowt.exe" select v)
+                foreach (ProcessModule v in from ProcessModule v in memory.Modules where String.Equals(v.ModuleName, (processById.ProcessName + ".exe"), StringComparison.CurrentCultureIgnoreCase) select v)
                 {
                     baseModule = (uint) v.BaseAddress;
                 }

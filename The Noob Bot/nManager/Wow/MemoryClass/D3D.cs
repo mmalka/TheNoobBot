@@ -65,10 +65,9 @@ namespace nManager.Wow.MemoryClass
 
         public static uint D3D9Adresse(int processId)
         {
-            BlackMagic memory = new Magic.BlackMagic(processId);
-            uint pDevice =
-                memory.ReadUInt((uint) memory.GetModule("WowT.exe").BaseAddress +
-                                (uint) Patchables.Addresses.Hooking.DX_DEVICE);
+            BlackMagic memory = new BlackMagic(processId);
+            System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(processId);
+            uint pDevice = memory.ReadUInt((uint) memory.GetModule(processById.ProcessName + ".exe").BaseAddress + (uint) Patchables.Addresses.Hooking.DX_DEVICE);
             uint pEnd = memory.ReadUInt(pDevice + (uint) Patchables.Addresses.Hooking.DX_DEVICE_IDX);
             if (pEnd == 0)
                 return 0;

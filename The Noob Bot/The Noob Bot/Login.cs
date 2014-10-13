@@ -296,25 +296,28 @@ namespace The_Noob_Bot
                 SessionList.Items.Clear();
                 SessionList.SelectedIndex = -1;
                 var usedProcess = new List<string>();
-
-                for (int i = nManager.Wow.MemoryClass.Process.ListeProcessIdByName().Length - 1; i >= 0; i--)
+                List<string> listWowProcess = new List<string>{"Wow", "WowT", "WowB", "WowTR"};
+                foreach (string s in listWowProcess)
                 {
-                    if (SessionList.SelectedIndex == -1 && !Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id))
+                    for (int i = nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s).Length - 1; i >= 0; i--)
                     {
-                        SessionList.Items.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id + " - " +
-                                              Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id));
-                        SessionList.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        string used = "";
-                        if (Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id))
-                            used = " - " + nManager.Translate.Get(nManager.Translate.Id.In_use) + ".";
-                        usedProcess.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id + " - " +
-                                        Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName()[i].Id) + used);
+                        if (SessionList.SelectedIndex == -1 && !Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id))
+                        {
+                            SessionList.Items.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id + " - " +
+                                                  Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id));
+                            SessionList.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            string used = "";
+                            if (Hook.WowIsUsed(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id))
+                                used = " - " + nManager.Translate.Get(nManager.Translate.Id.In_use) + ".";
+                            usedProcess.Add(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id + " - " +
+                                            Hook.PlayerName(nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s)[i].Id) + used);
+                        }
                     }
                 }
-
+                
                 foreach (string v in usedProcess)
                 {
                     SessionList.Items.Add(v);
