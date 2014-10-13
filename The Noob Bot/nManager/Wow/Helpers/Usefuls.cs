@@ -499,6 +499,9 @@ namespace nManager.Wow.Helpers
                 case Enums.ContinentId.Draenor:
                     retS = "Draenor";
                     break;
+                case Enums.ContinentId.TanaanJungleIntro:
+                    retS = "TanaanJungleIntro";
+                    break;
                 default:
                     retS = "MapId_" + cId;
                     break;

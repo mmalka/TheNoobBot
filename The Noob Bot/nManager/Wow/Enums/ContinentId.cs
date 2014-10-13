@@ -741,6 +741,9 @@
         ///<summary>Draenor</summary>
         Draenor = 1116,
 
+        ///<summary>TanaanJungleIntro</summary>
+        TanaanJungleIntro = 1265,
+
         None = 9999999,
     }
 }
