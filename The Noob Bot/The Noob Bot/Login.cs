@@ -296,7 +296,7 @@ namespace The_Noob_Bot
                 SessionList.Items.Clear();
                 SessionList.SelectedIndex = -1;
                 var usedProcess = new List<string>();
-                List<string> listWowProcess = new List<string>{"Wow", "WowT", "WowB", "WowTR"};
+                List<string> listWowProcess = new List<string> {"Wow", "WowT", "WowB", "WowTR"};
                 foreach (string s in listWowProcess)
                 {
                     for (int i = nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s).Length - 1; i >= 0; i--)
@@ -317,7 +317,7 @@ namespace The_Noob_Bot
                         }
                     }
                 }
-                
+
                 foreach (string v in usedProcess)
                 {
                     SessionList.Items.Add(v);

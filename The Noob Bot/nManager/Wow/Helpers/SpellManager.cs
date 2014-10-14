@@ -592,7 +592,7 @@ namespace nManager.Wow.Helpers
         }
 
         // Localized spell names
-        private static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
+        public static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
 
         public static SpellInfoLua GetSpellInfo(uint id)
         {

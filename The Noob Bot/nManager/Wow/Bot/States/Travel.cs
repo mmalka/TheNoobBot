@@ -99,11 +99,11 @@ namespace nManager.Wow.Bot.States
                 if (oneWayTravel.Key.Id != 0)
                 {
                     Logging.Write("Travel: Found direct way travel.");
-                    return new List<Transport> { oneWayTravel.Key };
+                    return new List<Transport> {oneWayTravel.Key};
                 }
 
                 KeyValuePair<List<Transport>, float> twoWayTravel = GetBestTwoWayTransport(currentPosition, travelTo, currentContinentId, travelToContinentId);
-                
+
                 if (oneWayTravel.Key.Id != 0 && twoWayTravel.Key.Count == 2 && oneWayTravel.Value <= twoWayTravel.Value)
                 {
                     Logging.Write("Travel: Found a direct way travel that is faster than a 2-way travel.");
@@ -304,7 +304,7 @@ namespace nManager.Wow.Bot.States
                             Logging.Write("Failed to enter transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") going back to the quay.");
                         }
                     }
-                     MovementManager.MoveTo(selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint);
+                    MovementManager.MoveTo(selectedTransport.ArrivalIsA ? selectedTransport.BInsidePoint : selectedTransport.AInsidePoint);
                     bool loop = true;
                     while (loop)
                     {
@@ -351,7 +351,7 @@ namespace nManager.Wow.Bot.States
 
         private void TravelPatiently(Transport selectedTransport)
         {
-            WoWGameObject memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int)selectedTransport.Id),
+            WoWGameObject memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
                 ObjectManager.ObjectManager.Me.Position);
             bool loop = true;
             int i = 0;
@@ -371,8 +371,8 @@ namespace nManager.Wow.Bot.States
                     loop = false;
                 if (!memoryTransport.IsValid && i2 < 5)
                 {
-                    memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int)selectedTransport.Id),
-                ObjectManager.ObjectManager.Me.Position);
+                    memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
+                        ObjectManager.ObjectManager.Me.Position);
                     i2++;
                 }
                 else if (!memoryTransport.IsValid && i2 >= 5)

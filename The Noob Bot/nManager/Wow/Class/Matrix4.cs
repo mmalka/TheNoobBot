@@ -164,7 +164,7 @@ namespace nManager.Wow.Class
             ww = yx*zy*xz - zx*yy*xz + zx*xy*yz - xx*zy*yz - yx*xy*zz + xx*yy*zz;
             //Scale(1/Determinant()); //??
         }
-        
+
         public double Determinant()
         {
             double value = wx*zy*yz*xw - zx*wy*yz*xw - wx*yy*zz*xw + yx*wy*zz*xw +

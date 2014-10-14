@@ -157,16 +157,16 @@
         <Z>-7.511534</Z>
       </BPoint>
     </Portal>
-    <Portal Id="235877" Name="Portal to Blasted Lands" Faction="Horde" AContinentId="1" BContinentId="0">
+    <Portal Id="195142" Name="Portal to Hellfire Peninsula" Faction="Horde" AContinentId="1" BContinentId="530">
       <APoint> <!-- Orgrimmar -->
         <X>1767.899</X>
         <Y>-4326.429</Y>
         <Z>-8.405741</Z>
       </APoint>
-      <BPoint> <!-- Blasted Land -->
-        <X>-11788.7</X>
-        <Y>-3855.65</Y>
-        <Z>60.026</Z>
+      <BPoint> <!-- Hellfire Peninsula -->
+        <X>-225.542</X>
+        <Y>934.743</Y>
+        <Z>84.3784</Z>
       </BPoint>
     </Portal>
     <Portal Id="235880" Name="Portal to Orgrimmar" Faction="Horde" AContinentId="0" BContinentId="1">
