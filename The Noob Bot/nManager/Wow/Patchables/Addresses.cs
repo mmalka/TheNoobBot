@@ -271,7 +271,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xED38F1 + 0x6, // ClientServices__GetSelectedRealm
+            realmName = 0xED3AD0 + 0x6, // ClientServices__GetSelectedRealm
         }
 
         /// <summary>
