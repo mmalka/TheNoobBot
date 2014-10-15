@@ -324,11 +324,11 @@ namespace Quester.Tasks
                         {
                             questObjective.CurrentCount++;
                         }
-                        Thread.Sleep(1000 + Usefuls.Latency);
+                        Thread.Sleep(50 + Usefuls.Latency);
                         while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat &&
                                ObjectManager.GetUnitAttackPlayer().Count <= 0)
                         {
-                            Thread.Sleep(100);
+                            Thread.Sleep(Usefuls.Latency);
                         }
                         Fight.StopFight();
                     }
@@ -389,7 +389,6 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Entry.Count > 0)
                     {
-                        Thread.Sleep(300); // gives some time to refresh ObjectList
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
                         if (node.IsValid)
@@ -415,7 +414,6 @@ namespace Quester.Tasks
                         MovementManager.StopMove();
                         if (questObjective.Entry.Count > 0)
                         {
-                            Thread.Sleep(300); // gives some time to refresh ObjectList
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                             WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
                             if (node.IsValid)
@@ -453,7 +451,6 @@ namespace Quester.Tasks
                 {
                     if (questObjective.Entry.Count > 0)
                     {
-                        Thread.Sleep(300); // gives some time to refresh ObjectList
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
                         if (node.IsValid)
@@ -479,7 +476,6 @@ namespace Quester.Tasks
                         MovementManager.StopMove();
                         if (questObjective.Entry.Count > 0)
                         {
-                            Thread.Sleep(300); // gives some time to refresh ObjectList
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                             WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList);
                             if (node.IsValid)
@@ -495,7 +491,7 @@ namespace Quester.Tasks
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
                         }
-                        Thread.Sleep(10);
+                        Thread.Sleep(Usefuls.Latency);
                         Lua.RunMacroText(questObjective.LuaMacro);
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
@@ -540,7 +536,7 @@ namespace Quester.Tasks
             // INTERACT WITH
             if (questObjective.Objective == Objective.InteractWith)
             {
-                Thread.Sleep(500);
+                Thread.Sleep(250 + Usefuls.Latency);
                 if (!MovementManager.InMovement)
                 {
                     if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) < questObjective.Range)
@@ -569,7 +565,7 @@ namespace Quester.Tasks
                         }
 
                         MovementManager.Go(PathFinder.FindPath(pos));
-                        Thread.Sleep(1000);
+                        Thread.Sleep(500 + Usefuls.Latency);
                         while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
                         {
                             if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
@@ -584,7 +580,7 @@ namespace Quester.Tasks
 
                         if (questObjective.GossipOptionsInteractWith != 0)
                         {
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
                         questObjective.IsObjectiveCompleted = true;
@@ -657,7 +653,7 @@ namespace Quester.Tasks
                         for (int i = 0; i < questObjective.Count; i++)
                         {
                             while (!t.IsSpellUsable)
-                                Thread.Sleep(50);
+                                Thread.Sleep(Usefuls.Latency);
                             t.Launch();
                             Thread.Sleep(questObjective.WaitMs);
                         }
@@ -756,17 +752,17 @@ namespace Quester.Tasks
                         }
 
                         MovementManager.Go(PathFinder.FindPath(unit.Position));
-                        Thread.Sleep(1000);
+                        Thread.Sleep(500 + Usefuls.Latency);
                         while (MovementManager.InMovement && unit.IsValid &&
                                ObjectManager.Me.Position.DistanceTo(unit.Position) > 4)
                         {
                             if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
                                 return;
-                            Thread.Sleep(100);
+                            Thread.Sleep(Usefuls.Latency);
                         }
                         MountTask.DismountMount();
                         Interact.InteractWith(unit.GetBaseAddress);
-                        Thread.Sleep(Usefuls.Latency + 500);
+                        Thread.Sleep(250 + Usefuls.Latency);
                     }
                 }
             }
@@ -775,7 +771,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.EjectVehicle)
             {
                 Usefuls.EjectVehicle();
-                Thread.Sleep(Usefuls.Latency + 500);
+                Thread.Sleep(250 + Usefuls.Latency);
             }
 
             // PRESS KEY
@@ -922,11 +918,11 @@ namespace Quester.Tasks
                 if (baseAddress > 0)
                 {
                     Interact.InteractWith(baseAddress);
-                    Thread.Sleep(500 + Usefuls.Latency);
+                    Thread.Sleep(250 + Usefuls.Latency);
                     if (target.SelectGossipOption != 0)
                     {
                         Lua.LuaDoString("SelectGossipOption(" + target.SelectGossipOption + ")");
-                        Thread.Sleep(500);
+                        Thread.Sleep(250 + Usefuls.Latency);
                     }
                     else if (target.Type == Npc.NpcType.Vendor)
                     {
@@ -975,13 +971,13 @@ namespace Quester.Tasks
                         MountTask.DismountMount();
                         Spell runeforging = new Spell("Runeforging");
                         Lua.RunMacroText("/cast " + runeforging.NameInGame);
-                        Thread.Sleep(500);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         Lua.RunMacroText("/script DoTradeSkill(GetTradeSkillSelectionIndex())");
                         Lua.LuaDoString("DoTradeSkill(GetTradeSkillSelectionIndex())"); // bug
-                        Thread.Sleep(500);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         // selectionne le premier dans la liste, donc OK
                         Lua.RunMacroText("/click CharacterMainHandSlot");
-                        Thread.Sleep(500);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         Lua.LuaDoString("ReplaceEnchant()");
                         Thread.Sleep(questObjective.WaitMs);
                         Lua.LuaDoString("CloseTradeSkill()");
@@ -1060,7 +1056,7 @@ namespace Quester.Tasks
                 if (baseAddress > 0)
                 {
                     Interact.InteractWith(baseAddress);
-                    Thread.Sleep(500 + Usefuls.Latency);
+                    Thread.Sleep(250 + Usefuls.Latency);
                     if (!Gossip.IsTaxiWindowOpen())
                     {
                         Gossip.SelectGossip(Gossip.GossipOption.Taxi);
@@ -1086,7 +1082,7 @@ namespace Quester.Tasks
             if (item != 0)
             {
                 ItemsManager.UseItem(ItemsManager.GetItemNameById(item));
-                Thread.Sleep(250);
+                Thread.Sleep(250 + Usefuls.Latency);
                 Quest.AcceptQuest();
                 return;
             }

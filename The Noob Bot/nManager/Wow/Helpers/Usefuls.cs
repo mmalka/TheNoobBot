@@ -296,6 +296,10 @@ namespace nManager.Wow.Helpers
                     string luaResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString("_,_,_,worldLag=GetNetStats() " + luaResult + "=worldLag");
                     _lastLatency = Others.ToInt32(Lua.GetLocalizedText(luaResult));
+                    /*
+                    if (nManager.Settings.CurrentSettings.HackLatency) : Todo: Allow user with really high latency to reduce latency by 50%, 75%.
+                        return _lastLatency/2;
+                    */
                     return _lastLatency;
                 }
                 catch (Exception e)
