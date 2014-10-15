@@ -195,6 +195,10 @@
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
             MountBookNumMounts = 0xDEEF58 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
+            FirstTalentBookPtr = 0xDEF0C4,
+            NextTalentBookPtr = FirstTalentBookPtr - 0x8,
+            TalentBookSpellId = 0x14,
+            TalentBookOverrideSpellId = 0x1C,
         }
 
         /// <summary>

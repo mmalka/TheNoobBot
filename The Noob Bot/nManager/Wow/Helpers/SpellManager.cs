@@ -454,12 +454,8 @@ namespace nManager.Wow.Helpers
                         Application.DoEvents();
                     }
 
-                    UInt32 MountBookNumMounts =
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.SpellBook.MountBookNumMounts);
-                    UInt32 MountBookMountsPtr =
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.SpellBook.MountBookMountsPtr);
+                    UInt32 MountBookNumMounts = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.MountBookNumMounts);
+                    UInt32 MountBookMountsPtr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.MountBookMountsPtr);
 
                     for (UInt32 i = 0; i < MountBookNumMounts; i++)
                     {
@@ -469,6 +465,23 @@ namespace nManager.Wow.Helpers
                             spellBook.Add(MountId);
                         }
                         Application.DoEvents();
+                    }
+
+                    var pTalentSpell = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.FirstTalentBookPtr);
+                    var talentSpellNext = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.NextTalentBookPtr);
+
+                    while (((int) pTalentSpell & 1) == 0 && pTalentSpell != 0)
+                    {
+                        var originalSpellId = Memory.WowMemory.Memory.ReadUInt(pTalentSpell + (uint) Addresses.SpellBook.TalentBookSpellId);
+                        var talentOverrideSpellId = Memory.WowMemory.Memory.ReadUInt(pTalentSpell + (uint) Addresses.SpellBook.TalentBookOverrideSpellId);
+                        var nextSpell = Memory.WowMemory.Memory.ReadUInt((pTalentSpell + 4 + talentSpellNext));
+                        pTalentSpell = nextSpell;
+
+                        if (talentOverrideSpellId == 0)
+                            break;
+
+                        spellBook.Remove(originalSpellId);
+                        spellBook.Add(talentOverrideSpellId);
                     }
                     _spellBookID = spellBook;
                     _usedSbid = false;
