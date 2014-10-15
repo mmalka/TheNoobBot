@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
         private static readonly List<int> AchievementsNotDoneCache = new List<int>();
         private static readonly Object ThisLock = new Object();
         private static readonly Timer AfkTimer = new Timer(500);
-        private static string _key;
+        public static string AfkKeyPress;
 
         public static bool InGame
         {
@@ -920,16 +920,16 @@ namespace nManager.Wow.Helpers
 
                 // The below code use LUA to get a key that is not binded in World of Warcraft.
                 // It will then press it and let WoW handle the "LastHardwareAction + UpdatePlayerAFK" task at once.
-                if (string.IsNullOrEmpty(_key))
+                if (string.IsNullOrEmpty(AfkKeyPress))
                 {
                     Thread.Sleep(10);
-                    _key = Keybindings.GetAFreeKey(true);
+                    AfkKeyPress = Keybindings.GetAFreeKey(true);
                     AfkTimer.Reset();
                 }
                 if (!AfkTimer.IsReady) return;
-                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, _key);
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, AfkKeyPress);
                 Thread.Sleep(10);
-                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, _key);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, AfkKeyPress);
                 AfkTimer.Reset();
             }
         }

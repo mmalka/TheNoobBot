@@ -47,6 +47,7 @@ namespace nManager.Wow.Helpers
                         else
                             Logging.WriteDebug(action + " were not bind, currently trying to bind it with key: " + key + ".");
                         SetKeyByAction(action, key);
+                        _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = key});
                         return key;
                     }
                     Logging.WriteDebug(
@@ -69,6 +70,8 @@ namespace nManager.Wow.Helpers
             {
                 foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
+                    if (key.ToString() == Usefuls.AfkKeyPress)
+                        continue;
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"" + key + "\", true)", false, false);
                     string result = Lua.GetLocalizedText(randomStringResult);
