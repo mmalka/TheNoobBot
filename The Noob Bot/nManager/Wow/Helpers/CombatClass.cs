@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful;
 using nManager.Wow.ObjectManager;
+using System.Numerics;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -22,6 +23,7 @@ namespace nManager.Wow.Helpers
         private static Thread _worker;
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
+        private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
 
         public static bool InRange(WoWUnit unit)
         {

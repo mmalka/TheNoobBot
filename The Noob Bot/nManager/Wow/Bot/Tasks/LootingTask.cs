@@ -29,7 +29,7 @@ namespace nManager.Wow.Bot.Tasks
 
                             MovementManager.StopMove();
                             MovementManager.StopMove();
-                            Thread.Sleep(250 + Usefuls.Latency);
+                            Thread.Sleep(100 + Usefuls.Latency);
                             while (ObjectManager.ObjectManager.Me.IsCast)
                                 Thread.Sleep(200);
                             if (wowUnit.IsValid)
@@ -67,7 +67,7 @@ namespace nManager.Wow.Bot.Tasks
                                         MovementManager.StopMove();
                                         MovementManager.StopMove();
                                         MountTask.DismountMount();
-                                        Thread.Sleep(250);
+                                        Thread.Sleep(50 + Usefuls.Latency);
                                         while (ObjectManager.ObjectManager.Me.GetMove)
                                         {
                                             Thread.Sleep(50);
@@ -83,7 +83,7 @@ namespace nManager.Wow.Bot.Tasks
                                             {
                                                 return;
                                             }
-                                            Thread.Sleep(500 + Usefuls.Latency);
+                                            Thread.Sleep(250 + Usefuls.Latency);
                                             if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                                 ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                 return;

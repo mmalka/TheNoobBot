@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -22,6 +23,7 @@ namespace nManager.Wow.Helpers
         private static Thread _worker;
         private static string _pathToHealerClassFile = "";
         private static string _threadName = "";
+        private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
 
         public static bool InRange(WoWUnit unit)
         {
