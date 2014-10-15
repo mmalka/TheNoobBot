@@ -398,6 +398,14 @@ namespace nManager.Wow.Helpers
             return SpellBookID().Contains(spellId);
         }
 
+        public static bool HasSpell(int spellId)
+        {
+            if (spellId > (int) Addresses.SpellBook.SpellDBCMaxIndex)
+                return false;
+            int value = Memory.WowMemory.Memory.ReadInt(Memory.WowMemory.Memory.ReadUInt((uint) ((Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.KnownAllSpells) + (spellId >> 5)*4)));
+            return ((value & ~(1 << (spellId & 0x1F))) != 0);
+        }
+
         public static bool ExistSpellBookLUA(string spellName)
         {
             try

@@ -191,6 +191,8 @@
         /// </summary>
         public enum SpellBook
         {
+            KnownAllSpells = 0xDEEF04,
+            SpellDBCMaxIndex = 200000,
             SpellBookNumSpells = 0xDEEF0C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
             MountBookNumMounts = 0xDEEF58 + 0x4*0x4, // Script_GetNumCompanions
