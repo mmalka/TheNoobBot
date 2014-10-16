@@ -13620,23 +13620,19 @@ public class PaladinRetribution
     public readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
     public readonly Spell Judgment = new Spell("Judgment");
     public readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
+    public readonly Spell ExecutionSentence = new Spell("Execution Sentence");
 
     #endregion
 
     #region Offensive Cooldown
 
     public readonly Spell AvengingWrath = new Spell("Avenging Wrath");
-    public readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
     public readonly Spell HolyAvenger = new Spell("Holy Avenger");
-    public readonly Spell Inquisition = new Spell("Inquisition");
-    private Timer _burstTime = new Timer(0);
-    private Timer _inquisitionToUseInPriotiy = new Timer(0);
 
     #endregion
 
     #region Defensive Cooldown
 
-    public readonly Spell DevotionAura = new Spell("Devotion Aura");
     public readonly Spell DivineProtection = new Spell("Divine Protection");
     public readonly Spell DivineShield = new Spell("Divine Shield");
     public readonly Spell HandOfProtection = new Spell("Hand of Protection");
@@ -13788,7 +13784,7 @@ public class PaladinRetribution
     private void Seal()
     {
         if (MySettings.UseSealOfTruth && SealOfTruth.KnownSpell &&
-            (ObjectManager.GetNumberAttackPlayer() <= 7 || !MySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
+            (ObjectManager.GetNumberAttackPlayer() <= 5 || !MySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
             {
@@ -13885,8 +13881,6 @@ public class PaladinRetribution
         {
             if (MySettings.UseWordOfGlory && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
                 WordOfGlory.Launch();
-            if (MySettings.UseDevotionAura && DevotionAura.KnownSpell && DevotionAura.IsSpellUsable)
-                DevotionAura.Launch();
             if (MySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch();
@@ -13914,40 +13908,18 @@ public class PaladinRetribution
 
     private void DPSBurst()
     {
-        if (!MySettings.UseGuardianOfAncientKings || !GuardianOfAncientKings.KnownSpell || GuardianOfAncientKings.HaveBuff || !GuardianOfAncientKings.IsSpellUsable)
+        if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell)
         {
-            if ((!GuardianOfAncientKings.KnownSpell || _burstTime.IsReady) && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable &&
-                (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
-            {
-                if (MySettings.UseAvengingWrath)
-                    AvengingWrath.Launch();
-                if (MySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || _inquisitionToUseInPriotiy.IsReady) &&
-                    (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
-                {
-                    Inquisition.Launch();
-                    _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
-                }
-                if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
-                    HolyAvenger.Launch();
-            }
-            else if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && (!GuardianOfAncientKings.KnownSpell || _burstTime.IsReady))
+            if (HolyAvenger.IsSpellUsable)
             {
                 HolyAvenger.Launch();
-                if (MySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || _inquisitionToUseInPriotiy.IsReady) &&
-                    (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
-                {
-                    Inquisition.Launch();
-                    _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
-                }
                 if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
                     AvengingWrath.Launch();
             }
         }
-        else if (MySettings.UseGuardianOfAncientKings && GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && AvengingWrath.IsSpellUsable &&
-                 (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
+        else if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
         {
-            GuardianOfAncientKings.Launch();
-            _burstTime = new Timer(1000*6.5);
+            AvengingWrath.Launch();
         }
         if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
@@ -13963,22 +13935,8 @@ public class PaladinRetribution
 
     private void DPSCycle()
     {
-        if (MySettings.UseHammerOfJustice && HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && HammerOfJustice.IsHostileDistanceGood &&
-            ObjectManager.Target.IsStunnable)
-        {
-            HammerOfJustice.Launch();
-            return;
-        }
-        if (MySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || _inquisitionToUseInPriotiy.IsReady) &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
-        {
-            Inquisition.Launch();
-            _inquisitionToUseInPriotiy = new Timer(1000*(20*3 - 6));
-            return;
-        }
         if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
-             (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell &&
-            (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable &&
+             (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell && TemplarsVerdict.IsSpellUsable &&
             TemplarsVerdict.IsHostileDistanceGood &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
              (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
@@ -13988,8 +13946,7 @@ public class PaladinRetribution
         }
         if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
              (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
-            MySettings.UseDivineStorm && (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
-            DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
+            MySettings.UseDivineStorm && DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
              (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
@@ -14001,9 +13958,9 @@ public class PaladinRetribution
             HammerOfWrath.Launch();
             return;
         }
-        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        if (MySettings.UseExecutionSentence && ExecutionSentence.KnownSpell && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
         {
-            Exorcism.Launch();
+            HammerOfWrath.Launch();
             return;
         }
         if (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
@@ -14027,11 +13984,14 @@ public class PaladinRetribution
             Judgment.Launch();
             return;
         }
+        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        {
+            Exorcism.Launch();
+            return;
+        }
         if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
              (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) &&
-            TemplarsVerdict.KnownSpell &&
-            (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
-            TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsHostileDistanceGood &&
+            TemplarsVerdict.KnownSpell && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsHostileDistanceGood &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             TemplarsVerdict.Launch();
@@ -14039,16 +13999,19 @@ public class PaladinRetribution
         }
         if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
              (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) &&
-            DivineStorm.KnownSpell &&
-            (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
-            DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
+            DivineStorm.KnownSpell && DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
             return;
         }
+        if (MySettings.UseHammerOfJustice && HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && HammerOfJustice.IsHostileDistanceGood &&
+            ObjectManager.Target.IsStunnable)
+        {
+            HammerOfJustice.Launch();
+            return;
+        }
         if (MySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsSpellUsable && SacredShield.IsHostileDistanceGood
-            && (!MySettings.UseInquisition || !Inquisition.KnownSpell || Inquisition.HaveBuff)
             && (!MySettings.UseTemplarsVerdict || !TemplarsVerdict.KnownSpell || !TemplarsVerdict.IsSpellUsable)
             && (!MySettings.UseJudgment || !Judgment.KnownSpell || !Judgment.IsSpellUsable)
             && (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || !CrusaderStrike.IsSpellUsable)
@@ -14103,7 +14066,6 @@ public class PaladinRetribution
         public bool UseBlessingOfMight = true;
         public bool UseCombatPotion = false;
         public bool UseCrusaderStrike = true;
-        public bool UseDevotionAura = true;
         public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
         public bool UseDivineStorm = true;
@@ -14113,13 +14075,12 @@ public class PaladinRetribution
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGuardianElixir = false;
-        public bool UseGuardianOfAncientKings = true;
         public bool UseHammerOfJustice = true;
         public bool UseHammerOfTheRighteous = true;
         public bool UseHammerOfWrath = true;
         public bool UseHandOfProtection = false;
         public bool UseHolyAvenger = true;
-        public bool UseInquisition = true;
+        public bool UseExecutionSentence = true;
         public bool UseJudgment = true;
         public bool UseLayOnHands = true;
         public bool UseLifeblood = true;
@@ -14171,16 +14132,14 @@ public class PaladinRetribution
             AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
             AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
             AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
+            AddControlInWinForm("Use Execution Sentence", "UseExecutionSentence", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Inquisition", "UseInquisition", "Offensive Cooldown");
-            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Offensive Cooldown");
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Reckoning", "UseReckoning", "Defensive Cooldown");
             AddControlInWinForm("Refresh Weakened Blows", "RefreshWeakenedBlows", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
-            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
             AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
