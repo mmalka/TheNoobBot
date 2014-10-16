@@ -80,6 +80,8 @@ namespace The_Noob_Bot
                 SetToolTypeIfNeeded(WebsiteLink);
                 ForumLink.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormForum);
                 SetToolTypeIfNeeded(ForumLink);
+                UseKey.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormUseKey);
+                SetToolTypeIfNeeded(UseKey);
             }
             catch (Exception e)
             {
@@ -333,41 +335,15 @@ namespace The_Noob_Bot
             }
         }
 
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
-        }
-
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Pulsator.Dispose(true);
         }
 
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
         private void Identifier_Enter(object sender, EventArgs e)
         {
             FormFocusLogin.Visible = true;
-            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier))
+            if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier) || Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormKey))
             {
                 Identifier.Text = "";
                 Identifier.ForeColor = Color.FromArgb(118, 118, 118);
@@ -379,7 +355,7 @@ namespace The_Noob_Bot
             FormFocusLogin.Visible = false;
             if (Identifier.Text == "")
             {
-                Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
+                Identifier.Text = nManager.Translate.Get(UseKey.Checked ? nManager.Translate.Id.LoginFormKey : nManager.Translate.Id.LoginFormDefaultIdentifier);
                 Identifier.ForeColor = Color.FromArgb(202, 202, 202);
             }
         }
@@ -521,6 +497,22 @@ namespace The_Noob_Bot
             catch (Exception ex)
             {
                 Logging.WriteError("LangSelection_SelectedIndexChanged(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        private void UseKey_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UseKey.Checked)
+            {
+                Password.Hide();
+                if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier))
+                    Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormKey);
+            }
+            else
+            {
+                Password.Show();
+                if (Identifier.Text == nManager.Translate.Get(nManager.Translate.Id.LoginFormKey))
+                    Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
             }
         }
     }

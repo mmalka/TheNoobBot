@@ -45,7 +45,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                if (login == "" || password == "")
+                if (login == "" || (password == "" && login.Length != 20))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.User_name_or_Password_error) + ".",
                         Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);

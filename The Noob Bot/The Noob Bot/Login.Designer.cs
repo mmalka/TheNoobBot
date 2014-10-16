@@ -53,6 +53,7 @@ namespace The_Noob_Bot
             this.LoginButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
             this.LoginMainFormTimer = new System.Windows.Forms.Timer(this.components);
+            this.UseKey = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormFocusLogin)).BeginInit();
@@ -346,12 +347,32 @@ namespace The_Noob_Bot
             this.LoginMainFormTimer.Interval = 2500;
             this.LoginMainFormTimer.Tick += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // UseKey
+            // 
+            this.UseKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.UseKey.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.UseKey.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.UseKey.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.UseKey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UseKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UseKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.UseKey.Location = new System.Drawing.Point(29, 105);
+            this.UseKey.MaximumSize = new System.Drawing.Size(120, 24);
+            this.UseKey.MinimumSize = new System.Drawing.Size(120, 24);
+            this.UseKey.Name = "UseKey";
+            this.UseKey.Size = new System.Drawing.Size(120, 24);
+            this.UseKey.TabIndex = 27;
+            this.UseKey.Text = "Use Key";
+            this.UseKey.UseVisualStyleBackColor = false;
+            this.UseKey.CheckedChanged += new System.EventHandler(this.UseKey_CheckedChanged);
+            // 
             // Login
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 270);
+            this.Controls.Add(this.UseKey);
             this.Controls.Add(this.MainHeader);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.LoginButton);
@@ -413,6 +434,7 @@ namespace The_Noob_Bot
         private TnbButton RefreshButton;
         private TnbControlMenu MainHeader;
         private System.Windows.Forms.Timer LoginMainFormTimer;
+        private System.Windows.Forms.CheckBox UseKey;
     }
 }
 

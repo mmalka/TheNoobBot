@@ -494,6 +494,8 @@ namespace nManager
             DeleteSelectedQuester,
             LoginFormTitle,
             LoginFormDefaultIdentifier,
+            LoginFormUseKey,
+            LoginFormKey,
             LoginFormRemember,
             LoginFormStart,
             LoginFormRefresh,
