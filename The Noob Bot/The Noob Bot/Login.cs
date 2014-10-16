@@ -140,6 +140,11 @@ namespace The_Noob_Bot
                         if (Identifier.Text != "")
                         {
                             Remember.Checked = true;
+                            if (Password.Text == "Password")
+                            {
+                                UseKey.Checked = true;
+                                Password.Hide();
+                            }
                         }
                     }
                     catch
