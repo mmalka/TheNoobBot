@@ -1,4 +1,6 @@
-﻿namespace The_Noob_Bot
+﻿using nManager.Helpful.Forms.UserControls;
+
+namespace The_Noob_Bot
 {
     partial class Login
     {
@@ -407,9 +409,9 @@
         private System.Windows.Forms.Panel EsterEggTrigger2;
         private System.Windows.Forms.Panel EsterEggTrigger3;
         private System.Windows.Forms.ToolTip toolTip;
-        private nManager.Helpful.Forms.UserControls.TnbButton LoginButton;
-        private nManager.Helpful.Forms.UserControls.TnbButton RefreshButton;
-        private nManager.Helpful.Forms.UserControls.TnbControlMenu MainHeader;
+        private TnbButton LoginButton;
+        private TnbButton RefreshButton;
+        private TnbControlMenu MainHeader;
         private System.Windows.Forms.Timer LoginMainFormTimer;
     }
 }
