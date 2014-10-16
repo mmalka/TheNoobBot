@@ -35,6 +35,7 @@ namespace The_Noob_Bot
 
         internal static string Login = "";
         internal static string Password = "";
+        internal static string HardwareKey = "";
         private const string Secret = "0e8897c8c73772e72d81dd28ebf57ac3";
         private static string TrueResultLoop = "";
 
@@ -45,6 +46,8 @@ namespace The_Noob_Bot
         {
             try
             {
+                if (HardwareKey == "")
+                    HardwareKey = Others.GetRandomString(20);
                 if (login == "" || (password == "" && login.Length != 20))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.User_name_or_Password_error) + ".",
@@ -72,8 +75,8 @@ namespace The_Noob_Bot
                 try
                 {
                     _ip = GetReqWithAuthHeader(Others.GetClientIPScriptLink, Login, Password)[1];
-                    List<string> resultConnectReq = GetReqWithAuthHeader(Others.GetAuthScriptLink + "?create=true", Login, Password);
-                    string goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
+                    List<string> resultConnectReq = GetReqWithAuthHeader(Others.GetAuthScriptLink + "?create=true&HardwareKey=" + HardwareKey, Login, Password);
+                    string goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login + HardwareKey);
                     repC = resultConnectReq[1];
 
                     int randomKey = Others.Random(1, 9999);
@@ -291,7 +294,7 @@ namespace The_Noob_Bot
                         // End Statistique
 
                         string resultReqLoop =
-                            GetReqWithAuthHeader(Others.GetAuthScriptLink + reqStatistique, Login, Password)[0];
+                            GetReqWithAuthHeader(Others.GetAuthScriptLink + reqStatistique + "&HardwareKey=" + HardwareKey, Login, Password)[0];
                         if (TrueResultLoop != resultReqLoop)
                         {
                             if (!lastResult)
