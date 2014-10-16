@@ -13611,7 +13611,7 @@ public class PaladinRetribution
 
     #region Offensive Spell
 
-    public readonly Spell BoundlessConviction = new Spell("Boundless Conviction");
+    public readonly bool BoundlessConviction = ObjectManager.Me.Level >= 85;
     public readonly Spell CrusaderStrike = new Spell("Crusader Strike");
     public readonly Spell DivineStorm = new Spell("Divine Storm");
     public readonly Spell Exorcism = new Spell("Exorcism");
@@ -13939,7 +13939,7 @@ public class PaladinRetribution
              (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell && TemplarsVerdict.IsSpellUsable &&
             TemplarsVerdict.IsHostileDistanceGood &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
-             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))))
         {
             TemplarsVerdict.Launch();
             return;
@@ -13948,7 +13948,7 @@ public class PaladinRetribution
              (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
             MySettings.UseDivineStorm && DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
-             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))))
         {
             DivineStorm.Launch();
             return;
