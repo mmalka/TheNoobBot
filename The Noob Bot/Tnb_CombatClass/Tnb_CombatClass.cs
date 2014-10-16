@@ -12583,7 +12583,6 @@ public class PaladinHoly
     #region Offensive Cooldown
 
     public readonly Spell AvengingWrath = new Spell("Avenging Wrath");
-    public readonly Spell DivineFavor = new Spell("Divine Favor");
     public readonly Spell HolyAvenger = new Spell("HolyAvenger");
 
     #endregion
@@ -12602,8 +12601,6 @@ public class PaladinHoly
     #region Healing Spell
 
     public readonly Spell BeaconOfLight = new Spell("Beacon of Light");
-    public readonly Spell DivineLight = new Spell("Divine Light");
-    public readonly Spell DivinePlea = new Spell("Divine Plea");
     public readonly Spell FlashOfLight = new Spell("Flash of Light");
     public readonly Spell GlyphOfHarshWords = new Spell("Glyph of Harsh Words");
     public readonly Spell HolyLight = new Spell("Holy Light");
@@ -12756,19 +12753,14 @@ public class PaladinHoly
     {
         if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat)
         {
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && MySettings.UseDivineLight)
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
             {
-                DivineLight.Launch(true, true, true);
+                HolyLight.Launch(true, true, true);
                 return;
             }
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch(true, true, true);
-                return;
-            }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
-            {
-                HolyLight.Launch(true, true, true);
                 return;
             }
         }
@@ -12798,30 +12790,20 @@ public class PaladinHoly
         {
             if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrentForResource)
                 ArcaneTorrent.Launch();
-            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable && MySettings.UseHandOfProtection)
-            {
-                DivinePlea.Launch();
-                return;
-            }
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
             if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
                 (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && MySettings.UseWordOfGlory)
                 WordOfGlory.Launch();
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && MySettings.UseDivineLight)
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
             {
-                DivineLight.Launch();
+                HolyLight.Launch();
                 return;
             }
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
-                return;
-            }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
-            {
-                HolyLight.Launch();
                 return;
             }
         }
@@ -12842,32 +12824,27 @@ public class PaladinHoly
                 HolyLight.Launch();
                 return;
             }
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && MySettings.UseDivineLight)
-            {
-                DivineLight.Launch();
-            }
         }
     }
 
     private void DPSBurst()
     {
-        if (DivineFavor.KnownSpell && DivineFavor.IsSpellUsable)
+        if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
         {
-            if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && MySettings.UseAvengingWrath)
-            {
-                AvengingWrath.Launch();
-            }
-            if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && MySettings.UseLifeblood)
-            {
-                Lifeblood.Launch();
-            }
-            if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
+            AvengingWrath.Launch();
+            if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
             {
                 HolyAvenger.Launch();
             }
-            if (MySettings.UseDivineFavor)
-                DivineFavor.Launch();
             return;
+        }
+        if (!MySettings.UseAvengingWrath || !AvengingWrath.KnownSpell || !AvengingWrath.IsSpellUsable)
+        {
+            if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
+            {
+                HolyAvenger.Launch();
+                return;
+            }
         }
         if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && MySettings.UseLifeblood)
         {
@@ -12951,9 +12928,6 @@ public class PaladinHoly
         public bool UseBlessingOfMight = true;
         public bool UseDenounce = true;
         public bool UseDevotionAura = true;
-        public bool UseDivineFavor = true;
-        public bool UseDivineLight = true;
-        public bool UseDivinePlea = true;
         public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
         public bool UseFlashOfLight = true;
@@ -13005,7 +12979,6 @@ public class PaladinHoly
             AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
             AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Divine Favor", "UseDivineFavor", "Offensive Cooldown");
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
@@ -13016,8 +12989,6 @@ public class PaladinHoly
             AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Divine Plea", "UseDivinePlea", "Healing Spell");
-            AddControlInWinForm("Use Divine Light", "UseDivineLight", "Healing Spell");
             AddControlInWinForm("Use Holy Radiance", "UseHolyRadiance", "Healing Spell");
             AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
             AddControlInWinForm("Use Holy Light", "UseHolyLight", "Healing Spell");
@@ -13090,7 +13061,6 @@ public class PaladinProtection
 
     #region Offensive Cooldown
 
-    public readonly Spell AvengingWrath = new Spell("Avenging Wrath");
     public readonly Spell HolyAvenger = new Spell("Holy Avenger");
 
     #endregion
@@ -13098,7 +13068,6 @@ public class PaladinProtection
     #region Defensive Cooldown
 
     public readonly Spell ArdentDefender = new Spell("Ardent Defender");
-    public readonly Spell DevotionAura = new Spell("Devotion Aura");
     public readonly Spell DivineProtection = new Spell("Divine Protection");
     public readonly Spell DivineShield = new Spell("Divine Shield");
     public readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
@@ -13323,10 +13292,6 @@ public class PaladinProtection
         {
             HolyAvenger.Launch();
         }
-        if (AvengingWrath.KnownSpell && MySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable)
-        {
-            AvengingWrath.Launch();
-        }
         if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
@@ -13357,12 +13322,6 @@ public class PaladinProtection
         {
             DivineProtection.Launch();
             _onCd = new Timer(1000*10);
-            return;
-        }
-        if (DevotionAura.KnownSpell && MySettings.UseDevotionAura && DevotionAura.IsSpellUsable)
-        {
-            DevotionAura.Launch();
-            _onCd = new Timer(1000*6);
             return;
         }
         if (GuardianOfAncientKings.KnownSpell && MySettings.UseGuardianOfAncientKings &&
@@ -13479,13 +13438,11 @@ public class PaladinProtection
         public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArdentDefender = true;
         public bool UseAvengersShield = true;
-        public bool UseAvengingWrath = true;
         public bool UseBerserking = true;
         public bool UseBlessingOfKings = true;
         public bool UseBlessingOfMight = true;
         public bool UseConsecration = true;
         public bool UseCrusaderStrike = true;
-        public bool UseDevotionAura = true;
         public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
         public bool UseFlashOfLight = true;
@@ -13545,13 +13502,11 @@ public class PaladinProtection
             AddControlInWinForm("Use Holy Wrath", "UseHolyWrath", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
-            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Defensive Cooldown");
             AddControlInWinForm("Use Ardent Defender", "UseArdentDefender", "Defensive Cooldown");
             AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
-            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
