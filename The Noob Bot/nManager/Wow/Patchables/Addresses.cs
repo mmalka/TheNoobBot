@@ -221,7 +221,7 @@
         {
             CTM = 0xD34168, // GetClickToMoveStruct
             CTM_PUSH = 0xD34184, // CGUnit_C::IsAutoTracking
-            CTM_X = CTM + 0x8C,
+            CTM_X = CTM + 0x84,
             CTM_Y = CTM_X + 0x4,
             CTM_Z = CTM_Y + 0x4,
         }
