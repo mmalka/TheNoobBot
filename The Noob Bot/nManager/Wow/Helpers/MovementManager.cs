@@ -33,6 +33,7 @@ namespace nManager.Wow.Helpers
         private static Point _jumpOverAttempt = new Point();
         private static Point _distmountAttempt = new Point();
         private static uint _cacheTargetAddress;
+        private static Timer _canRemount = new Timer(0);
 
         private static int _currentTargetedPoint;
         // let's remember where we are instead of searching point and doing mess
@@ -593,6 +594,8 @@ namespace nManager.Wow.Helpers
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
                         Usefuls.DisMount();
+                        _canRemount = new Timer(6000);
+                        _canRemount.Reset();
                         IsUnStuck = false;
                         StuckCount++;
                         return;
@@ -1168,6 +1171,13 @@ namespace nManager.Wow.Helpers
                         UnStuck();
                         timer.Reset();
                         //timerWaypoint.Reset();
+                    }
+                    if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && !ObjectManager.ObjectManager.Me.InCombat && MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && _pointTo.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 12)
+                    {
+                        if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                            MountTask.MountingGroundMount(false);
+                        else
+                            MountTask.Mount(false);
                     }
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
