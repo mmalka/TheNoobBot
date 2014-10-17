@@ -262,6 +262,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.HideSDKFilesLabel = new System.Windows.Forms.Label();
+            this.HideSDKFiles = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -3217,6 +3219,8 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.AdvancedSettingsPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(556, 103);
+            this.AdvancedSettingsPanelName.Controls.Add(this.HideSDKFilesLabel);
+            this.AdvancedSettingsPanelName.Controls.Add(this.HideSDKFiles);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrameLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrame);
             this.AdvancedSettingsPanelName.Controls.Add(this.AlwaysOnTopFeatureLabel);
@@ -3236,6 +3240,7 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.Location = new System.Drawing.Point(0, 360);
             this.AdvancedSettingsPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.AdvancedSettingsPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.AdvancedSettingsPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.AdvancedSettingsPanelName.Name = "AdvancedSettingsPanelName";
             this.AdvancedSettingsPanelName.OrderIndex = 11;
             this.AdvancedSettingsPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -3390,6 +3395,31 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
+            // 
+            // HideSDKFilesLabel
+            // 
+            this.HideSDKFilesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HideSDKFilesLabel.ForeColor = System.Drawing.Color.Black;
+            this.HideSDKFilesLabel.Location = new System.Drawing.Point(4, 104);
+            this.HideSDKFilesLabel.Name = "HideSDKFilesLabel";
+            this.HideSDKFilesLabel.Size = new System.Drawing.Size(154, 22);
+            this.HideSDKFilesLabel.TabIndex = 35;
+            this.HideSDKFilesLabel.Text = "Hide SDK Files (.cs)";
+            // 
+            // HideSDKFiles
+            // 
+            this.HideSDKFiles.BackColor = System.Drawing.Color.White;
+            this.HideSDKFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.HideSDKFiles.ForeColor = System.Drawing.Color.Black;
+            this.HideSDKFiles.Location = new System.Drawing.Point(163, 104);
+            this.HideSDKFiles.MaximumSize = new System.Drawing.Size(60, 20);
+            this.HideSDKFiles.MinimumSize = new System.Drawing.Size(60, 20);
+            this.HideSDKFiles.Name = "HideSDKFiles";
+            this.HideSDKFiles.OffText = "OFF";
+            this.HideSDKFiles.OnText = "ON";
+            this.HideSDKFiles.Size = new System.Drawing.Size(60, 20);
+            this.HideSDKFiles.TabIndex = 34;
+            this.HideSDKFiles.Value = true;
             // 
             // GeneralSettings
             // 
@@ -3681,5 +3711,7 @@ namespace nManager.Helpful.Forms
         private Label AvailablePluginsListLabel;
         private ListBox AvailablePluginsList;
         private TnbButton ActivatedPluginResetSettings;
+        private Label HideSDKFilesLabel;
+        private TnbSwitchButton HideSDKFiles;
     }
 }

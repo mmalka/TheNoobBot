@@ -291,5 +291,6 @@ namespace nManager
         public List<string> ActivatedPluginsList = new List<string>();
         public bool ActivatePluginsSystem = true;
         public bool LaunchExpiredPlugins = false;
+        public bool HideSdkFiles = true;
     }
 }

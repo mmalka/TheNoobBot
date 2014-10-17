@@ -551,7 +551,8 @@ namespace nManager
             FtGConverterLine2,
             FtGConverterLine3,
             FtGConverterButton,
-            TrackerPopUp
+            TrackerPopUp,
+            HideSdkFiles
         };
 
         [Serializable]

@@ -25,25 +25,34 @@ namespace nManager.Helpful.Forms
                 {
                     CombatClass.Items.Add(f);
                 }
-                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
+                if (!nManagerSetting.CurrentSetting.HideSdkFiles)
                 {
-                    CombatClass.Items.Add(f);
+                    foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
+                    {
+                        CombatClass.Items.Add(f);
+                    }
                 }
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.dll"))
                 {
                     HealerClass.Items.Add(f);
                 }
-                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
+                if (!nManagerSetting.CurrentSetting.HideSdkFiles)
                 {
-                    HealerClass.Items.Add(f);
+                    foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
+                    {
+                        HealerClass.Items.Add(f);
+                    }
                 }
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.dll"))
                 {
                     AvailablePluginsList.Items.Add(f);
                 }
-                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.cs"))
+                if (!nManagerSetting.CurrentSetting.HideSdkFiles)
                 {
-                    AvailablePluginsList.Items.Add(f);
+                    foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.cs"))
+                    {
+                        AvailablePluginsList.Items.Add(f);
+                    }
                 }
                 LoadSetting(nManagerSetting.CurrentSetting);
                 IPAddress firstInterfaceLanIPv4 = Dns.GetHostAddresses(Dns.GetHostName()).FirstOrDefault(test => test.AddressFamily == AddressFamily.InterNetwork);
@@ -311,6 +320,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(BroadcastingIPLocalLabel);
             BroadcastingPortLabel.Text = Translate.Get(Translate.Id.BroadcastingPort);
             SetToolTypeIfNeeded(BroadcastingPortLabel);
+            HideSDKFilesLabel.Text = Translate.Get(Translate.Id.HideSdkFiles);
+            SetToolTypeIfNeeded(HideSDKFilesLabel);
             ActivateAlwaysOnTopFeature.OffText = offText;
             ActivateAlwaysOnTopFeature.OnText = onText;
             AllowTNBToSetYourMaxFps.OffText = offText;
@@ -413,6 +424,8 @@ namespace nManager.Helpful.Forms
             ActivatePluginsSystem.OnText = onText;
             LaunchExpiredPlugins.OffText = offText;
             LaunchExpiredPlugins.OnText = onText;
+            HideSDKFiles.OffText = offText;
+            HideSDKFiles.OnText = onText;
         }
 
         private void SaveSetting()
@@ -532,6 +545,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.BroadcastingPort = (int) BroadcastingPort.Value;
                 nManagerSetting.CurrentSetting.ActivatePluginsSystem = ActivatePluginsSystem.Value;
                 nManagerSetting.CurrentSetting.LaunchExpiredPlugins = LaunchExpiredPlugins.Value;
+                nManagerSetting.CurrentSetting.HideSdkFiles = HideSDKFiles.Value;
                 nManagerSetting.CurrentSetting.ActivatedPluginsList.Clear();
                 foreach (string s in ActivatedPluginsList.Items)
                 {
@@ -661,6 +675,7 @@ namespace nManager.Helpful.Forms
                 BroadcastingPort.Value = managerSetting.BroadcastingPort;
                 ActivatePluginsSystem.Value = managerSetting.ActivatePluginsSystem;
                 LaunchExpiredPlugins.Value = managerSetting.LaunchExpiredPlugins;
+                HideSDKFiles.Value = managerSetting.HideSdkFiles;
                 ActivatedPluginsList.Items.Clear();
                 foreach (string s in managerSetting.ActivatedPluginsList)
                 {
