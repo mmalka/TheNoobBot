@@ -4486,10 +4486,7 @@ public class MageArcane
 
     public readonly Spell ArcaneBrilliance = new Spell("Arcane Brilliance");
     public readonly Spell BlazingSpeed = new Spell("Blazing Speed");
-    public readonly Spell FrostArmor = new Spell("Frost Armor");
     public readonly Spell IceFloes = new Spell("Ice Floes");
-    public readonly Spell MageArmor = new Spell("Mage Armor");
-    public readonly Spell MoltenArmor = new Spell("Molten Armor");
 
     #endregion
 
@@ -4510,7 +4507,7 @@ public class MageArcane
     public readonly Spell AlterTime = new Spell("Alter Time");
     public readonly Spell ArcanePower = new Spell("Arcane Power");
     public readonly Spell FrozenOrb = new Spell("Frozen Orb");
-    public readonly Spell MageBomb = new Spell("Mage Bomb");
+    public readonly Spell NetherTempest = new Spell("Nether Tempest");
     public readonly Spell MirrorImage = new Spell("Mirror Image");
     public readonly Spell PresenceofMind = new Spell("Presence of Mind");
     public readonly Spell TimeWarp = new Spell("Time Warp");
@@ -4540,10 +4537,8 @@ public class MageArcane
 
     #region Healing Spell
 
-    public readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
     public readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
     public readonly Spell Evocation = new Spell("Evocation");
-    private Timer _conjureManaGemTimer = new Timer(0);
     private Timer _conjureRefreshmentTimer = new Timer(0);
 
     #endregion
@@ -4662,11 +4657,6 @@ public class MageArcane
         if (MySettings.UseColdSnapAtPercentage < HealHP)
         {
             HealHP = MySettings.UseColdSnapAtPercentage;
-        }
-
-        if (MySettings.UseConjureManaGemAtPercentage < HealMP)
-        {
-            HealMP = MySettings.UseConjureManaGemAtPercentage;
         }
 
         if (MySettings.UseEvocationForHPAtPercentage < HealHP)
@@ -4810,21 +4800,6 @@ public class MageArcane
             ArcaneBrilliance.Launch();
         }
 
-        if (MySettings.UseMageArmor && MageArmor.KnownSpell && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
-        {
-            MageArmor.Launch();
-        }
-
-        if (MySettings.UseFrostArmor && !MySettings.UseMageArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
-        {
-            FrostArmor.Launch();
-        }
-
-        if (MySettings.UseMoltenArmor && !MySettings.UseFrostArmor && !MySettings.UseMageArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
-        {
-            MoltenArmor.Launch();
-        }
-
         if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(116257) && Evocation.IsSpellUsable)
         {
             Evocation.Launch();
@@ -4839,13 +4814,6 @@ public class MageArcane
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
-        }
-
-        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCount(36799) == 0 && _conjureManaGemTimer.IsReady &&
-            ConjureManaGem.IsSpellUsable)
-        {
-            ConjureManaGem.Launch();
-            _conjureManaGemTimer = new Timer(1000*60*5);
         }
 
         if (MySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && _conjureRefreshmentTimer.IsReady
@@ -5007,13 +4975,6 @@ public class MageArcane
             return;
         }
 
-        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage && ItemsManager.GetItemCount(36799) > 0)
-        {
-            Logging.WriteFight("Use Mana Gem.");
-            Lua.RunMacroText("/use item:36799");
-            return;
-        }
-
         if (MySettings.UseEvocationForHP && MySettings.UseEvocationGlyph && Evocation.KnownSpell && !MySettings.UseRuneofPowerTalent && !MySettings.UseInvocationTalent
             && ObjectManager.Me.HealthPercent <= MySettings.UseEvocationForHPAtPercentage && Evocation.IsSpellUsable)
         {
@@ -5158,10 +5119,9 @@ public class MageArcane
             }
         }
 
-        if (MySettings.UseTierFive && MageBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Target.HaveBuff(114954) &&
-            !ObjectManager.Target.HaveBuff(44457) && MageBomb.IsSpellUsable)
+        if (MySettings.UseNetherTempest && NetherTempest.KnownSpell && ObjectManager.Target.GetDistance < 41 && !NetherTempest.TargetHaveBuff && NetherTempest.IsSpellUsable)
         {
-            MageBomb.Launch();
+            NetherTempest.Launch();
             return;
         }
 
@@ -5240,8 +5200,6 @@ public class MageArcane
         public int UseColdSnapAtPercentage = 70;
         public bool UseConeofCold = true;
         public int UseConeofColdAtPercentage = 45;
-        public bool UseConjureManaGem = true;
-        public int UseConjureManaGemAtPercentage = 40;
         public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
         public int UseCounterspellAtPercentage = 100;
@@ -5254,7 +5212,6 @@ public class MageArcane
         public int UseEvocationForManaAtPercentage = 60;
         public bool UseEvocationGlyph = false;
         public bool UseFlamestrike = true;
-        public bool UseFrostArmor = false;
         public bool UseFrostNova = true;
         public int UseFrostNovaAtPercentage = 50;
         public bool UseFrostjaw = true;
@@ -5273,9 +5230,7 @@ public class MageArcane
         public bool UseInvocationTalent = false;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
-        public bool UseMageArmor = true;
         public bool UseMirrorImage = true;
-        public bool UseMoltenArmor = false;
         public bool UsePresenceofMind = true;
         public bool UseRingofFrost = true;
         public bool UseRuneofPowerTalent = false;
@@ -5285,7 +5240,7 @@ public class MageArcane
         public int UseStoneformAtPercentage = 80;
         public bool UseTemporalShield = true;
         public int UseTemporalShieldAtPercentage = 95;
-        public bool UseTierFive = true;
+        public bool UseNetherTempest = true;
         public bool UseTimeWarp = true;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
@@ -5307,10 +5262,7 @@ public class MageArcane
             /* Mage Buffs */
             AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
             AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Frost Armor", "UseFrostArmor", "Mage Buffs");
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Mage Armor", "UseMageArmor", "Mage Buffs");
-            AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Barrage", "UseArcaneBarrage", "Offensive Spell");
             AddControlInWinForm("Use Arcane Blast", "UseArcaneBlast", "Offensive Spell");
@@ -5322,7 +5274,7 @@ public class MageArcane
             AddControlInWinForm("Use Arcane Power", "UseArcanePower", "Offensive Cooldown");
             AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
             AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Tier Five Talent", "UseTierFive", "Offensive Cooldown");
+            AddControlInWinForm("Use Nether Tempest", "UseNetherTempest", "Offensive Cooldown");
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
@@ -5341,7 +5293,6 @@ public class MageArcane
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
             AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
             AddControlInWinForm("Use Evocation to regen Health", "UseEvocationForHP", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Evocation to regen Mana", "UseEvocationForMana", "Healing Spell", "AtPercentage");
@@ -5412,10 +5363,7 @@ public class MageFrost
 
     public readonly Spell ArcaneBrilliance = new Spell("Arcane Brilliance");
     public readonly Spell BlazingSpeed = new Spell("Blazing Speed");
-    public readonly Spell FrostArmor = new Spell("Frost Armor");
     public readonly Spell IceFloes = new Spell("Ice Floes");
-    public readonly Spell MageArmor = new Spell("Mage Armor");
-    public readonly Spell MoltenArmor = new Spell("Molten Armor");
 
     #endregion
 
@@ -5424,7 +5372,6 @@ public class MageFrost
     public readonly Spell ArcaneExplosion = new Spell("Arcane Explosion");
     public readonly Spell Blizzard = new Spell("Blizzard");
     public readonly Spell ConeofCold = new Spell("Cone of Cold");
-    public readonly Spell FireBlast = new Spell("Fire Blast");
     public readonly Spell Flamestrike = new Spell("Flamestrike");
     public readonly Spell Frostbolt = new Spell("Frostbolt");
     public readonly Spell FrostfireBolt = new Spell("Frostfire Bolt");
@@ -5440,7 +5387,7 @@ public class MageFrost
     public readonly Spell AlterTime = new Spell("Alter Time");
     public readonly Spell FrozenOrb = new Spell("Frozen Orb");
     public readonly Spell IcyVeins = new Spell("Icy Veins");
-    public readonly Spell MageBomb = new Spell("Mage Bomb");
+    public readonly Spell FrostBomb = new Spell("Frost Bomb");
     public readonly Spell MirrorImage = new Spell("Mirror Image");
     public readonly Spell PresenceofMind = new Spell("Presence of Mind");
     public readonly Spell TimeWarp = new Spell("Time Warp");
@@ -5467,7 +5414,6 @@ public class MageFrost
 
     #region Healing Spell
 
-    public readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
     public readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
     public readonly Spell Evocation = new Spell("Evocation");
     private Timer _conjureManaGemTimer = new Timer(0);
@@ -5589,11 +5535,6 @@ public class MageFrost
         if (MySettings.UseColdSnapAtPercentage < HealHP)
         {
             HealHP = MySettings.UseColdSnapAtPercentage;
-        }
-
-        if (MySettings.UseConjureManaGemAtPercentage < HealMP)
-        {
-            HealMP = MySettings.UseConjureManaGemAtPercentage;
         }
 
         if (MySettings.UseEvocationForHPAtPercentage < HealHP)
@@ -5763,21 +5704,6 @@ public class MageFrost
             ArcaneBrilliance.Launch();
         }
 
-        if (MySettings.UseFrostArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
-        {
-            FrostArmor.Launch();
-        }
-
-        if (MySettings.UseMoltenArmor && !MySettings.UseFrostArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
-        {
-            MoltenArmor.Launch();
-        }
-
-        if (MySettings.UseMageArmor && MageArmor.KnownSpell && !MySettings.UseFrostArmor && !MySettings.UseMoltenArmor && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
-        {
-            MageArmor.Launch();
-        }
-
         if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(116257) && Evocation.IsSpellUsable)
         {
             Evocation.Launch();
@@ -5786,13 +5712,6 @@ public class MageFrost
         if (MySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.Me.GetMove && BlazingSpeed.IsSpellUsable)
         {
             BlazingSpeed.Launch();
-        }
-
-        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCount(36799) == 0 && _conjureManaGemTimer.IsReady &&
-            ConjureManaGem.IsSpellUsable)
-        {
-            ConjureManaGem.Launch();
-            _conjureManaGemTimer = new Timer(1000*60*5);
         }
 
         if (MySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && _conjureRefreshmentTimer.IsReady
@@ -5954,13 +5873,6 @@ public class MageFrost
             return;
         }
 
-        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage && ItemsManager.GetItemCount(36799) > 0)
-        {
-            Logging.WriteFight("Use Mana Gem.");
-            Lua.RunMacroText("/use item:36799");
-            return;
-        }
-
         if (MySettings.UseEvocationForHP && MySettings.UseEvocationGlyph && Evocation.KnownSpell && !MySettings.UseRuneofPowerTalent && !MySettings.UseInvocationTalent
             && ObjectManager.Me.HealthPercent <= MySettings.UseEvocationForHPAtPercentage && Evocation.IsSpellUsable)
         {
@@ -6094,10 +6006,9 @@ public class MageFrost
             }
         }
 
-        if (MySettings.UseTierFive && MageBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Target.HaveBuff(114923) &&
-            !ObjectManager.Target.HaveBuff(44457) && MageBomb.IsSpellUsable)
+        if (MySettings.UseFrostBomb && FrostBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && FrostBomb.IsSpellUsable && !FrostBomb.TargetHaveBuff)
         {
-            MageBomb.Launch();
+            FrostBomb.Launch();
             return;
         }
 
@@ -6180,8 +6091,6 @@ public class MageFrost
         public int UseColdSnapAtPercentage = 70;
         public bool UseConeofCold = true;
         public int UseConeofColdAtPercentage = 45;
-        public bool UseConjureManaGem = true;
-        public int UseConjureManaGemAtPercentage = 40;
         public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
         public int UseCounterspellAtPercentage = 100;
@@ -6195,7 +6104,6 @@ public class MageFrost
         public bool UseEvocationGlyph = false;
         public bool UseFlamestrike = true;
         public bool UseFreeze = true;
-        public bool UseFrostArmor = true;
         public bool UseFrostNova = true;
         public int UseFrostNovaAtPercentage = 50;
         public bool UseFrostbolt = true;
@@ -6219,9 +6127,7 @@ public class MageFrost
         public bool UseInvocationTalent = false;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
-        public bool UseMageArmor = false;
         public bool UseMirrorImage = true;
-        public bool UseMoltenArmor = false;
         public bool UsePresenceofMind = true;
         public bool UseRingofFrost = true;
         public bool UseRuneofPowerTalent = false;
@@ -6231,7 +6137,7 @@ public class MageFrost
         public bool UseSummonWaterElemental = true;
         public bool UseTemporalShield = true;
         public int UseTemporalShieldAtPercentage = 95;
-        public bool UseTierFive = true;
+        public bool UseFrostBomb = true;
         public bool UseTimeWarp = true;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
@@ -6253,10 +6159,7 @@ public class MageFrost
             /* Mage Buffs */
             AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
             AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Frost Armor", "UseFrostArmor", "Mage Buffs");
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Mage Armor", "UseMageArmor", "Mage Buffs");
-            AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
             AddControlInWinForm("Use Blizzard", "UseBlizzard", "Offensive Spell");
@@ -6272,7 +6175,7 @@ public class MageFrost
             AddControlInWinForm("Use Icy Veins", "UseIcyVeins", "Offensive Cooldown");
             AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
             AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Tier Five Ability", "UseTierFive", "Offensive Cooldown");
+            AddControlInWinForm("Use Frost Bomb", "UseFrostBomb", "Offensive Cooldown");
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
@@ -6290,7 +6193,6 @@ public class MageFrost
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
             AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
             AddControlInWinForm("Use Evocation to regen Health", "UseEvocationForHP", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Evocation to regen Mana", "UseEvocationForMana", "Healing Spell", "AtPercentage");
@@ -6356,10 +6258,7 @@ public class MageFire
 
     public readonly Spell ArcaneBrilliance = new Spell("Arcane Brilliance");
     public readonly Spell BlazingSpeed = new Spell("Blazing Speed");
-    public readonly Spell FrostArmor = new Spell("Frost Armor");
     public readonly Spell IceFloes = new Spell("Ice Floes");
-    public readonly Spell MageArmor = new Spell("Mage Armor");
-    public readonly Spell MoltenArmor = new Spell("Molten Armor");
 
     #endregion
 
@@ -6381,8 +6280,7 @@ public class MageFire
 
     public readonly Spell AlterTime = new Spell("Alter Time");
     public readonly Spell Combustion = new Spell("Combustion");
-    public readonly Spell FrostBomb = new Spell("Frost Bomb");
-    public readonly Spell MageBomb = new Spell("Mage Bomb");
+    public readonly Spell LivingBomb = new Spell("Living Bomb");
     public readonly Spell MirrorImage = new Spell("Mirror Image");
     public readonly Spell PresenceofMind = new Spell("Presence of Mind");
     public readonly Spell TimeWarp = new Spell("Time Warp");
@@ -6410,10 +6308,8 @@ public class MageFire
 
     #region Healing Spell
 
-    public readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
     public readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
     public readonly Spell Evocation = new Spell("Evocation");
-    private Timer _conjureManaGemTimer = new Timer(0);
     private Timer _conjureRefreshmentTimer = new Timer(0);
 
     #endregion
@@ -6510,8 +6406,7 @@ public class MageFire
             Pyroblast.Launch();
             return;
         }
-        //Blizzard API calls for Inferno Blast using the Fire Blast function.
-        if (MySettings.UseInfernoBlast && FireBlast.KnownSpell && FireBlast.IsHostileDistanceGood && FireBlast.IsSpellUsable)
+        if (MySettings.UseInfernoBlast && InfernoBlast.KnownSpell && InfernoBlast.IsHostileDistanceGood && InfernoBlast.IsSpellUsable)
         {
             FireBlast.Launch();
             return;
@@ -6566,21 +6461,6 @@ public class MageFire
             && !ObjectManager.Me.HaveBuff(61316))
             ArcaneBrilliance.Launch();
 
-        if (MySettings.UseMoltenArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
-        {
-            MoltenArmor.Launch();
-            return;
-        }
-        if (MySettings.UseFrostArmor && !MySettings.UseMoltenArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
-        {
-            FrostArmor.Launch();
-            return;
-        }
-        if (MySettings.UseMageArmor && MageArmor.KnownSpell && !MySettings.UseMoltenArmor && !MySettings.UseFrostArmor
-            && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
-        {
-            MageArmor.Launch();
-        }
         if (MySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.Me.GetMove && BlazingSpeed.IsSpellUsable)
         {
             BlazingSpeed.Launch();
@@ -6729,13 +6609,6 @@ public class MageFire
             ColdSnap.Launch();
             return;
         }
-        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage
-            && ItemsManager.GetItemCount(36799) > 0)
-        {
-            Logging.WriteFight("Use Mana Gem.");
-            Lua.RunMacroText("/use item:36799");
-            return;
-        }
         if (MySettings.UseEvocationForHP && MySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
             && !MySettings.UseRuneofPowerTalent && !MySettings.UseInvocationTalent
             && ObjectManager.Me.HealthPercent <= MySettings.UseEvocationForHPAtPercentage)
@@ -6748,13 +6621,6 @@ public class MageFire
             && ObjectManager.Me.ManaPercentage <= MySettings.UseEvocationForManaAtPercentage)
         {
             Evocation.Launch();
-            return;
-        }
-        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCount(36799) == 0
-            && _conjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
-        {
-            ConjureManaGem.Launch();
-            _conjureManaGemTimer = new Timer(1000*60*5);
             return;
         }
         if (MySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && _conjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
@@ -6883,11 +6749,9 @@ public class MageFire
             ArcaneExplosion.Launch();
             return;
         }
-
-        if (MySettings.UseTierFive && MageBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && MageBomb.IsSpellUsable
-            && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
+        if (MySettings.UseLivingBomb && LivingBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && LivingBomb.IsSpellUsable && !LivingBomb.TargetHaveBuff)
         {
-            MageBomb.Launch();
+            LivingBomb.Launch();
             return;
         }
         if (MySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable
@@ -6904,8 +6768,7 @@ public class MageFire
                 Pyroblast.Launch();
             return;
         }
-        //Blizzard API calls for Inferno Blast using the Fire Blast function.
-        if (MySettings.UseInfernoBlast && FireBlast.KnownSpell && FireBlast.IsHostileDistanceGood && FireBlast.IsSpellUsable
+        if (MySettings.UseInfernoBlast && InfernoBlast.KnownSpell && InfernoBlast.IsHostileDistanceGood && InfernoBlast.IsSpellUsable
             && ObjectManager.Me.HaveBuff(48107))
         {
             FireBlast.Launch();
@@ -6956,8 +6819,6 @@ public class MageFire
         public bool UseCombustion = true;
         public bool UseConeofCold = true;
         public int UseConeofColdAtPercentage = 45;
-        public bool UseConjureManaGem = true;
-        public int UseConjureManaGemAtPercentage = 40;
         public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
         public int UseCounterspellAtPercentage = 100;
@@ -6972,7 +6833,6 @@ public class MageFire
         public bool UseEvocationGlyph = false;
         public bool UseFireball = true;
         public bool UseFlamestrike = true;
-        public bool UseFrostArmor = false;
         public bool UseFrostNova = true;
         public int UseFrostNovaAtPercentage = 50;
         public bool UseFrostjaw = true;
@@ -6993,9 +6853,7 @@ public class MageFire
         public bool UseInvocationTalent = false;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
-        public bool UseMageArmor = false;
         public bool UseMirrorImage = true;
-        public bool UseMoltenArmor = true;
         public bool UsePresenceofMind = true;
         public bool UsePyroblast = true;
         public bool UseRingofFrost = true;
@@ -7005,7 +6863,7 @@ public class MageFire
         public int UseStoneformAtPercentage = 80;
         public bool UseTemporalShield = true;
         public int UseTemporalShieldAtPercentage = 95;
-        public bool UseTierFive = true;
+        public bool UseLivingBomb = true;
         public bool UseTimeWarp = true;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
@@ -7027,10 +6885,7 @@ public class MageFire
             /* Mage Buffs */
             AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
             AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Frost Armor", "UseFrostArmor", "Mage Buffs");
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Mage Armor", "UseMageArmor", "Mage Buffs");
-            AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
             AddControlInWinForm("Use Dragon's Breath", "UseDragonsBreath", "Offensive Spell");
@@ -7045,7 +6900,7 @@ public class MageFire
             AddControlInWinForm("Use Frozen Orb", "UseFrozenOrb", "Offensive Cooldown");
             AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
             AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Tier Five Talent", "UseTierFive", "Offensive Cooldown");
+            AddControlInWinForm("Use Living Bomb", "UseLivingBomb", "Offensive Cooldown");
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
@@ -7063,7 +6918,6 @@ public class MageFire
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
             AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
             AddControlInWinForm("Use Evocation to regen Health", "UseEvocationForHP", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Evocation to regen Mana", "UseEvocationForMana", "Healing Spell", "AtPercentage");
