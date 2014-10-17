@@ -2151,16 +2151,32 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool CanAttackTargetLUA
+        {
+            get
+            {
+                try
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = tostring(UnitCanAttack(\"player\", \"target\"))");
+                    return Lua.GetLocalizedText(randomStringResult) == "true";
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > CanAttackLUA: " + e);
+                    return false;
+                }
+            }
+        }
+
         public bool Attackable
         {
             get
             {
                 try
                 {
-                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
-                           ((UnitRelation.GetReaction(Faction) == Reaction.Neutral &&
-                             GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0) ||
-                            UnitRelation.GetReaction(Faction) < Reaction.Neutral);
+                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) && 
+                        (UnitRelation.GetReaction(Faction) < Reaction.Neutral || (UnitRelation.GetReaction(Faction) == Reaction.Neutral && (GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0 || Guid == ObjectManager.Me.Target && CanAttackTargetLUA)));
                     /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
                         Donne ça en plus long et plus lent:
                         UnitFlags f = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);

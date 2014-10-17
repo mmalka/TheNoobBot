@@ -50,8 +50,8 @@ namespace nManager.Wow.Bot.States
                 MountTask.DismountMount();
             else if (ObjectManager.ObjectManager.Me.IsMounted)
             {
-                Thread.Sleep(200);
                 Logging.Write("Please dismount as soon as is possible ! This product is passive when you are not yet in combat.");
+                Thread.Sleep(500);
             }
             Logging.Write("Currently attacking " + _unit.Name + " (lvl " + _unit.Level + ")");
             UInt128 unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
