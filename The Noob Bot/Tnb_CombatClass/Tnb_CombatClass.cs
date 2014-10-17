@@ -5111,8 +5111,7 @@ public class MageArcane
                 return;
             }
 
-            if (MySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() > 4 &&
-                ArcaneExplosion.IsSpellUsable)
+            if (MySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() > 4 && ArcaneExplosion.IsSpellUsable)
             {
                 ArcaneExplosion.Launch();
                 return;
@@ -5125,15 +5124,13 @@ public class MageArcane
             return;
         }
 
-        if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ObjectManager.Me.BuffStack(79683) > 1 &&
-            ArcaneMissiles.IsSpellUsable)
+        if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ObjectManager.Me.BuffStack(79683) > 1 && ArcaneMissiles.IsSpellUsable)
         {
             ArcaneMissiles.Launch();
             return;
         }
 
-        if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ObjectManager.Me.BuffStack(114664) > 3 &&
-            ArcaneMissiles.IsSpellUsable)
+        if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ObjectManager.Me.BuffStack(114664) > 3 && ArcaneMissiles.IsSpellUsable)
         {
             ArcaneMissiles.Launch();
             return;

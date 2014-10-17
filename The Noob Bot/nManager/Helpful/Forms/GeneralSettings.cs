@@ -25,9 +25,9 @@ namespace nManager.Helpful.Forms
                 {
                     CombatClass.Items.Add(f);
                 }
-                if (!nManagerSetting.CurrentSetting.HideSdkFiles)
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
                 {
-                    foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
+                    if (!nManagerSetting.CurrentSetting.HideSdkFiles || !CombatClass.Items.Contains(f.Replace(".cs", ".dll")))
                     {
                         CombatClass.Items.Add(f);
                     }
@@ -36,9 +36,9 @@ namespace nManager.Helpful.Forms
                 {
                     HealerClass.Items.Add(f);
                 }
-                if (!nManagerSetting.CurrentSetting.HideSdkFiles)
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
                 {
-                    foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
+                    if (!nManagerSetting.CurrentSetting.HideSdkFiles || !HealerClass.Items.Contains(f.Replace(".cs", ".dll")))
                     {
                         HealerClass.Items.Add(f);
                     }
@@ -47,9 +47,11 @@ namespace nManager.Helpful.Forms
                 {
                     AvailablePluginsList.Items.Add(f);
                 }
-                if (!nManagerSetting.CurrentSetting.HideSdkFiles)
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.cs"))
                 {
-                    foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Plugins\\", "*.cs"))
+                    if (nManagerSetting.CurrentSetting.HideSdkFiles && f == "SDK_PluginTemplate.cs")
+                        continue;
+                    if (!nManagerSetting.CurrentSetting.HideSdkFiles || !AvailablePluginsList.Items.Contains(f.Replace(".cs", ".dll")))
                     {
                         AvailablePluginsList.Items.Add(f);
                     }

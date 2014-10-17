@@ -2175,8 +2175,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) && 
-                        (UnitRelation.GetReaction(Faction) < Reaction.Neutral || (UnitRelation.GetReaction(Faction) == Reaction.Neutral && (GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0 || Guid == ObjectManager.Me.Target && CanAttackTargetLUA)));
+                    return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
+                           (UnitRelation.GetReaction(Faction) < Reaction.Neutral ||
+                            (UnitRelation.GetReaction(Faction) == Reaction.Neutral && (GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0 || Guid == ObjectManager.Me.Target && CanAttackTargetLUA)));
                     /*  GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0
                         Donne ça en plus long et plus lent:
                         UnitFlags f = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
