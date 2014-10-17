@@ -331,7 +331,7 @@ namespace nManager.Wow.Helpers
         {
             if (ObjectManager.ObjectManager.Me.InCombat)
             {
-                int gcdleft = SpellManager.GetGCDLeft();
+                int gcdleft = SpellManager.GetGcdLeft();
                 if (gcdleft >= 0)
                     Thread.Sleep(gcdleft);
             }

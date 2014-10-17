@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 
@@ -26,7 +28,12 @@ namespace nManager.Wow.Class
 
             public uint AuraTimeLeftInMs
             {
-                get { return AuraSpellEndTime - Usefuls.GetWoWTime; }
+                get
+                {
+                    if (AuraSpellEndTime == 0)
+                        return 0;
+                    return AuraSpellEndTime - Usefuls.GetWoWTime;
+                }
             }
 
             public bool Cancellable
@@ -60,6 +67,21 @@ namespace nManager.Wow.Class
                 {
                     Lua.LuaDoString(string.Format("for i = 1,40 do local spellId = select(11, UnitAura('player', i)) if spellId == {0} then CancelUnitBuff('player', i) end end", AuraSpellId));
                 }
+            }
+
+            public override string ToString()
+            {
+                return string.Format(
+                    "AuraCasterLevel: {1}{0}" +
+                    "AuraCount: {2}{0}" +
+                    "AuraCreatorGUID: {3}{0}" +
+                    "AuraDuration: {4}{0}" +
+                    "AuraFlags: {5}{0}" +
+                    "AuraSpellEndTime: {6}{0}" +
+                    "AuraSpellId: {7}{0}" +
+                    "AuraTimeLeftInMs: {8}{0}" +
+                    "AuraUnk2: {9}{0}" +
+                    "AuraUnk3: {10}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlags, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraUnk2, AuraUnk3);
             }
         }
 

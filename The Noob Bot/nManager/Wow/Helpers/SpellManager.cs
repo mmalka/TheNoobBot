@@ -131,7 +131,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int GetGCDLeft()
+        public static int GetGcdLeft()
         {
             try
             {
