@@ -24410,7 +24410,6 @@ public class HunterBeastMastery
 
     #region Hunter Buffs
 
-    public readonly Spell AspectoftheHawk = new Spell("Aspect of the Hawk");
     public readonly Spell Camouflage = new Spell("Camouflage");
     public readonly Spell FeignDeath = new Spell("Feign Death");
     public readonly Spell HuntersMark = new Spell("Hunter's Mark");
@@ -24432,9 +24431,7 @@ public class HunterBeastMastery
     public readonly Spell KillCommand = new Spell("Kill Command");
     public readonly Spell KillShot = new Spell("Kill Shot");
     public readonly Spell MultiShot = new Spell("Multi-Shot");
-    public readonly Spell SerpentSting = new Spell("Serpent Sting");
     public readonly Spell SteadyShot = new Spell("Steady Shot");
-    private Timer _serpentStingTimer = new Timer(0);
 
     #endregion
 
@@ -24450,8 +24447,6 @@ public class HunterBeastMastery
     public readonly Spell GlaiveToss = new Spell("Glaive Toss");
     public readonly Spell LynxRush = new Spell("Lynx Rush");
     public readonly Spell Powershot = new Spell("Powershot");
-    public readonly Spell RapidFire = new Spell("Rapid Fire");
-    public readonly Spell Readiness = new Spell("Readiness");
     public readonly Spell Stampede = new Spell("Stampede");
     private Timer _direBeastTimer = new Timer(0);
 
@@ -24468,7 +24463,6 @@ public class HunterBeastMastery
     public readonly Spell Intimidation = new Spell("Intimidation");
     public readonly Spell ScatterShot = new Spell("Scatter Shot");
     public readonly Spell SilencingShot = new Spell("Silencing Shot");
-    public readonly Spell WyvernSting = new Spell("Wyvern Sting");
 
     #endregion
 
@@ -24498,7 +24492,7 @@ public class HunterBeastMastery
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && SerpentSting.IsHostileDistanceGood)
+                                && ArcaneShot.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -24548,12 +24542,6 @@ public class HunterBeastMastery
             && Misdirection.IsSpellUsable)
         {
             Misdirection.LaunchOnUnitID("pet");
-        }
-
-        if (SerpentSting.KnownSpell && SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood
-            && MySettings.UseSerpentSting)
-        {
-            SerpentSting.Launch();
         }
     }
 
@@ -24617,13 +24605,6 @@ public class HunterBeastMastery
             return;
 
         Pet();
-
-        if (MySettings.UseAspectoftheHawk && AspectoftheHawk.KnownSpell && AspectoftheHawk.IsSpellUsable
-            && !AspectoftheHawk.HaveBuff && !ObjectManager.Me.HaveBuff(109260))
-        {
-            AspectoftheHawk.Launch();
-            return;
-        }
 
         if (MySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
             && !ObjectManager.Me.InCombat)
@@ -24866,11 +24847,6 @@ public class HunterBeastMastery
             ScatterShot.Launch();
             return;
         }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseWyvernSting
-            && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
-        {
-            WyvernSting.Launch();
-        }
     }
 
     private void DPSBurst()
@@ -24969,15 +24945,9 @@ public class HunterBeastMastery
             BestialWrath.Launch();
             return;
         }
-        if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && MySettings.UseRapidFire
-            && ObjectManager.Target.GetDistance < 41 && !BestialWrath.HaveBuff)
-        {
-            RapidFire.Launch();
-            return;
-        }
         if (MySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance < 41
             && _ancientHysteriaTimer.IsReady && ObjectManager.Me.HaveBuff(95809)
-            && ObjectManager.Pet.IsAlive && !RapidFire.HaveBuff && !BestialWrath.HaveBuff)
+            && ObjectManager.Pet.IsAlive && !BestialWrath.HaveBuff)
         {
             Lua.RunMacroText("/cast Ancient Hysteria");
             Logging.WriteFight("Launch Core Hound Pet Ancient Hysteria");
@@ -24991,27 +24961,14 @@ public class HunterBeastMastery
             FocusFire.Launch();
             return;
         }
-        if (Readiness.KnownSpell && Readiness.IsSpellUsable && MySettings.UseReadiness
-            && !RapidFire.IsSpellUsable && !BestialWrath.IsSpellUsable)
-        {
-            Readiness.Launch();
-        }
     }
 
     private void DPSCycle()
     {
-        if (SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood && SerpentSting.KnownSpell
-            && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
-        {
-            SerpentSting.Launch();
-            _serpentStingTimer = new Timer(1000*12);
-            return;
-        }
         if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-            && MySettings.UseCobraShot && _serpentStingTimer.IsReady)
+            && MySettings.UseCobraShot)
         {
             CobraShot.Launch();
-            _serpentStingTimer = new Timer(1000*12);
             return;
         }
         if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
@@ -25099,7 +25056,6 @@ public class HunterBeastMastery
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
         public bool UseBestialWrath = true;
@@ -25144,11 +25100,8 @@ public class HunterBeastMastery
         public bool UsePet4 = false;
         public bool UsePet5 = false;
         public bool UsePowershot = true;
-        public bool UseRapidFire = true;
-        public bool UseReadiness = true;
         public bool UseRevivePet = true;
         public bool UseScatterShot = true;
-        public bool UseSerpentSting = true;
         public bool UseSilencingShot = true;
         public bool UseSpiritBeastPet = false;
         public bool UseStampede = true;
@@ -25159,7 +25112,6 @@ public class HunterBeastMastery
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
         public bool UseWormPet = false;
-        public bool UseWyvernSting = true;
 
         public HunterBeastMasterySettings()
         {
@@ -25174,7 +25126,6 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Hunter Buffs */
-            AddControlInWinForm("Use Aspect of the Hawk", "UseAspectoftheHawk", "Hunter Buffs");
             AddControlInWinForm("Use Camouflage", "UseCamouflage", "Hunter Buffs");
             AddControlInWinForm("Use Feign Death", "UseFeignDeath", "Hunter Buffs");
             AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
@@ -25192,7 +25143,6 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Kill Command", "UseKillCommand", "Offensive Spell");
             AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
             AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
-            AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
             AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
@@ -25204,8 +25154,6 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
             AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
             AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
-            AddControlInWinForm("Use Rapid Fire", "UseRapidFire", "Offensive Cooldown");
-            AddControlInWinForm("Use Readiness", "UseReadiness", "Offensive Cooldown");
             AddControlInWinForm("Use Stampede", "UseStampede", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Binding Shot", "UseBindingShot", "Defensive Cooldown");
@@ -25217,7 +25165,6 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Intimidation", "UseIntimidation", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
             AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
