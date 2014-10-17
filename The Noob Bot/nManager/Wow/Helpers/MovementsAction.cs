@@ -22,7 +22,6 @@ namespace nManager.Wow.Helpers
         {
             if (start && !UseLUAToMove)
                 CloseChatFrameEditBox();
-            Logging.WriteFileOnly("Ascend(" + start + ")");
             if (UseLUAToMove || forceLUA)
             {
                 Lua.LuaDoString(start ? "JumpOrAscendStart();" : "AscendStop();");
@@ -44,7 +43,6 @@ namespace nManager.Wow.Helpers
         {
             if (start && !UseLUAToMove)
                 CloseChatFrameEditBox();
-            Logging.WriteFileOnly("Descend(" + start + ")");
             if (UseLUAToMove || forceLUA)
             {
                 Lua.LuaDoString(start ? "SitStandOrDescendStart();" : "DescendStop();");
@@ -66,7 +64,6 @@ namespace nManager.Wow.Helpers
         {
             if (start && !UseLUAToMove)
                 CloseChatFrameEditBox();
-            Logging.WriteFileOnly("MoveBackward(" + start + ")");
             if (UseLUAToMove)
             {
                 Lua.LuaDoString(start ? "MoveBackwardStart();" : "MoveBackwardStop();");
@@ -88,7 +85,6 @@ namespace nManager.Wow.Helpers
         {
             if (start && !UseLUAToMove)
                 CloseChatFrameEditBox();
-            Logging.WriteFileOnly("MoveForward(" + start + ")");
             if (UseLUAToMove)
             {
                 Lua.LuaDoString(start ? "MoveForwardStart();" : "MoveForwardStop();");
@@ -110,7 +106,6 @@ namespace nManager.Wow.Helpers
         {
             if (start && !UseLUAToMove)
                 CloseChatFrameEditBox();
-            Logging.WriteFileOnly("StrafeLeft(" + start + ")");
             if (UseLUAToMove)
             {
                 Lua.LuaDoString(start ? "StrafeLeftStart();" : "StrafeLeftStop();");
@@ -132,7 +127,6 @@ namespace nManager.Wow.Helpers
         {
             if (start && !UseLUAToMove)
                 CloseChatFrameEditBox();
-            Logging.WriteFileOnly("StrafeRight(" + start + ")");
             if (UseLUAToMove)
             {
                 Lua.LuaDoString(start ? "StrafeRightStart();" : "StrafeRightStop();");
