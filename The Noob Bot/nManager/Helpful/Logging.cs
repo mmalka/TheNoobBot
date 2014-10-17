@@ -174,7 +174,7 @@ namespace nManager.Helpful
 
         public static void WriteFileOnly(string text)
         {
-            Write(text, LogType.IO, Color.Gray);
+            //Write(text, LogType.IO, Color.Gray);
         }
 
         public static void WriteError(string text, bool skipThreadAbortExceptionError = true)
