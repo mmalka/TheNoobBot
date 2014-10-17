@@ -258,7 +258,11 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
                                     MountTask.Mount();
                             }
-                            MovementManager.FindTarget(node, 5.0f);
+                            if (MovementManager.FindTarget(node, 5.0f) == 0)
+                            {
+                                nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 5);
+                                return;
+                            }
                             if (_lastnode != node.Guid)
                             {
                                 _lastnode = node.Guid;

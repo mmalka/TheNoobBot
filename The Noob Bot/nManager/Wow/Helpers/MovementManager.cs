@@ -1560,10 +1560,10 @@ namespace nManager.Wow.Helpers
                     return 0;
                 }
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
+                if (!patherResult)
+                    return 0;
                 if (Target.Guid == 0)
                     Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
-                if (!patherResult)
-                    points.Add(Target.Position);
                 float groundDistance = Math.DistanceListPoint(points);
                 _cacheTargetAddress = baseAddress;
                 _updatePathSpecialTimer = new Timer(2000);
