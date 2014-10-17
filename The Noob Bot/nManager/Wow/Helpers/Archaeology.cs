@@ -171,7 +171,10 @@ namespace nManager.Wow.Helpers
                     }
                 }
                 else
-                    Logging.Write("Digsite zone not found.");
+                {
+                    Logging.Write("No digsites zones found, make sure 'Show Digsites' is activated in your map window.");
+                    Thread.Sleep(500);
+                }
 
                 return resultList;
             }
