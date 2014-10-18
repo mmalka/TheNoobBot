@@ -594,7 +594,7 @@ namespace nManager.Wow.Helpers
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
                         Usefuls.DisMount();
-                        _canRemount = new Timer(6000);
+                        _canRemount = new Timer(8000);
                         _canRemount.Reset();
                         IsUnStuck = false;
                         StuckCount++;
@@ -1112,6 +1112,14 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(100);
                 }
 
+                if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && !ObjectManager.ObjectManager.Me.InCombat && MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                {
+                    if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                        MountTask.MountingGroundMount(false);
+                    else
+                        MountTask.Mount(false);
+                }
+
                 Timer timer = new Timer(1*1000*1);
                 Timer timerWaypoint = new Timer(1*1000*(30/3));
                 double distance = (double) position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
@@ -1171,13 +1179,6 @@ namespace nManager.Wow.Helpers
                         UnStuck();
                         timer.Reset();
                         //timerWaypoint.Reset();
-                    }
-                    if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && !ObjectManager.ObjectManager.Me.InCombat && MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && _pointTo.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
-                    {
-                        if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
-                            MountTask.MountingGroundMount(false);
-                        else
-                            MountTask.Mount(false);
                     }
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
