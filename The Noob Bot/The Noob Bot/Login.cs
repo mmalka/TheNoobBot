@@ -17,9 +17,6 @@ namespace The_Noob_Bot
     {
         private const string UpdateCheck = "573-567-555-554-606-605-593";
         private const string KeyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
 
         public Login()
         {
