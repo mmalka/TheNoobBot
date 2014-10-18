@@ -260,7 +260,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             if (MovementManager.FindTarget(node, 5.0f) == 0)
                             {
-                                nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 5);
+                                nManagerSetting.AddBlackList(node.Guid, 1000*60*5);
                                 return;
                             }
                             if (_lastnode != node.Guid)

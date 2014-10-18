@@ -902,12 +902,12 @@
       <Text>Do you want to save these settings</Text>
     </Translation>
     <Translation>
-      <Id>Requis</Id>
-      <Text>Requis</Text>
+      <Id>Required</Id>
+      <Text>requis</Text>
     </Translation>
     <Translation>
-      <Id>Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly</Id>
-      <Text>Visual C++ 2010 redistributable X86 package is requis for this tnb. It is not installed on your computer, do you want install this now? (If this is not installed on your computer the tnb don't work correctly)</Text>
+      <Id>VisualStudioRedistribuablePackages</Id>
+      <Text>Visual Studio 2013 Reditribuable Package is required for the PathFinder. Do you want to install it now ? (the bot will close in both case)</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>

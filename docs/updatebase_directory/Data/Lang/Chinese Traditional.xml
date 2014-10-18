@@ -902,12 +902,12 @@
       <Text>是否保存此設置</Text>
     </Translation>
     <Translation>
-      <Id>Requis</Id>
+      <Id>Required</Id>
       <Text>需要</Text>
     </Translation>
     <Translation>
-      <Id>Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly</Id>
-      <Text>缺少必要的執行庫 ( Visual C++ 2010 redistributable X86 )。它沒有安裝到您的電腦上，現在安裝嗎？( 如果不安裝 TNB 將不能正常工作 )</Text>
+      <Id>VisualStudioRedistribuablePackages</Id>
+      <Text>Visual Studio 2013 Reditribuable Package is required for the PathFinder. Do you want to install it now ? (the bot will close in both case)</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>

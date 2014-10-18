@@ -902,12 +902,12 @@
       <Text>이 설정을 저장하시겠습니까</Text>
     </Translation>
     <Translation>
-      <Id>Requis</Id>
+      <Id>Required</Id>
       <Text>요청</Text>
     </Translation>
     <Translation>
-      <Id>Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly</Id>
-      <Text>TNB에는 Visual C++ 2010 redistributable X86 package가 필요합니다. 설치되어 있지 않습니다만, 설치하겠습니까? (설치되어 있지 않으면 TNB가 정상 작동하지 않습니다)</Text>
+      <Id>VisualStudioRedistribuablePackages</Id>
+      <Text>Visual Studio 2013 Reditribuable Package is required for the PathFinder. Do you want to install it now ? (the bot will close in both case)</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>

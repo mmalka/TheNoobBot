@@ -111,7 +111,7 @@ namespace The_Noob_Bot
                 }
 
                 LangSelection.DropDownStyle = ComboBoxStyle.DropDownList;
-                Others.GetVisualCpp2010();
+                Others.GetVisualStudioRedistribuable2013();
             }
             catch (Exception ex)
             {

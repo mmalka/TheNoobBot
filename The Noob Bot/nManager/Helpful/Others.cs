@@ -716,42 +716,35 @@ namespace nManager.Helpful
         }
 
         /// <summary>
-        /// Gets if visual C++2010 is installed.
+        /// Gets if Visual Studio 2013 or its redistribuable package is installed.
         /// </summary>
-        public static void GetVisualCpp2010()
+        public static void GetVisualStudioRedistribuable2013()
         {
             try
             {
-                if (File.Exists(Environment.SystemDirectory + "\\mfc100.dll"))
+                if (File.Exists(Environment.SystemDirectory + "\\mfc120.dll"))
                 {
                     return;
                 }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetVisualCpp2010() #1: " + exception);
+                Logging.WriteError("GetVisualStudioRedistribuable2013() #1: " + exception);
             }
 
             try
             {
-                DialogResult resulMb =
-                    MessageBox.Show(
-                        Translate.Get(
-                            Translate.Id
-                                .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
-                        "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis),
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult resulMb = MessageBox.Show(Translate.Get(Translate.Id.VisualStudioRedistribuablePackages), @"Visual Studio 2013 Redistribuable Package " + Translate.Get(Translate.Id.Required),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (resulMb == DialogResult.Yes)
                 {
-                    Process.Start(
-                        "http://www.microsoft.com/downloads/en/details.aspx?FamilyID=a7b7a05e-6de6-4d3a-a423-37bf0912db84");
+                    Process.Start("http://www.microsoft.com/download/details.aspx?id=40784");
                 }
                 Process.GetCurrentProcess().Kill();
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetVisualCpp2010() #2: " + exception);
+                Logging.WriteError("GetVisualStudioRedistribuable2013() #2: " + exception);
             }
         }
 

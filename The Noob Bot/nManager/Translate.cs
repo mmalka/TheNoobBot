@@ -294,9 +294,8 @@ namespace nManager
             Save_and_Close,
             General_Settings,
             Do_you_want_save_this_setting,
-            Requis,
-            Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly
-            ,
+            Required,
+            VisualStudioRedistribuablePackages,
             New_whisper,
             Stop_tnb_if,
             Please_configure_your_Fly_mount_in_General_settings,

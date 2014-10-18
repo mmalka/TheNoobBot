@@ -903,12 +903,12 @@
       <Text>Voulez-vous sauvegarder ces configurations</Text>
     </Translation>
     <Translation>
-      <Id>Requis</Id>
+      <Id>Required</Id>
       <Text>Requis</Text>
     </Translation>
     <Translation>
-      <Id>Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly</Id>
-      <Text>Visual C++ 2010 redistributable X86 pack est requis pour TNB. Voulez-vous l'installer maintenant ? (Le détécteur de chemin ne peut fonctionner sans ça)</Text>
+      <Id>VisualStudioRedistribuablePackages</Id>
+      <Text>Le paquet Visual Studio 2013 Reditribuable est requis pour que le générateur de chemin puisse fonctionner. Voulez-vous l'installer maintenant ? (Le logiciel se fermera dans les deux cas)</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>
