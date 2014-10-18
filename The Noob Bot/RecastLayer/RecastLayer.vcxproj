@@ -84,11 +84,15 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\The Noob Bot\bin\Debug\</OutDir>
     <TargetName>RecastLayer</TargetName>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\The Noob Bot\bin\Release\</OutDir>
     <TargetName>RecastLayer</TargetName>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

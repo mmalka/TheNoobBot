@@ -351,12 +351,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
-      <Project>{88ABD3DA-803D-4D83-9894-F669B8CFAEAD}</Project>
-      <Name>RecastLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Save.png" />
     <None Include="Resources\Redo.png" />
     <None Include="Resources\Exit.png" />
@@ -433,6 +427,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\backgroundCustomSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
+      <Project>{88abd3da-803d-4d83-9894-f669b8cfaead}</Project>
+      <Name>RecastLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
