@@ -1172,7 +1172,7 @@ namespace nManager.Wow.Helpers
                         timer.Reset();
                         //timerWaypoint.Reset();
                     }
-                    if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && !ObjectManager.ObjectManager.Me.InCombat && MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && _pointTo.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 12)
+                    if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && !ObjectManager.ObjectManager.Me.InCombat && MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && _pointTo.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
                         if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                             MountTask.MountingGroundMount(false);
