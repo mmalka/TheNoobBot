@@ -24654,14 +24654,12 @@ public class HunterBeastMastery
             ArcaneShot.Launch();
             return;
         }
-        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-            && MySettings.UseCobraShot)
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood && MySettings.UseCobraShot)
         {
             CobraShot.Launch();
             return;
         }
-        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !MySettings.UseCobraShot))
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood && (ObjectManager.Me.FocusPercentage < 60 || !CobraShot.KnownSpell || !MySettings.UseCobraShot))
         {
             SteadyShot.Launch();
             return;
@@ -25118,10 +25116,10 @@ public class HunterBeastMastery
             CobraShot.Launch();
             return;
         }
-        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !MySettings.UseCobraShot))
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood && (ObjectManager.Me.FocusPercentage < 60 || !CobraShot.KnownSpell || !MySettings.UseCobraShot))
         {
             SteadyShot.Launch();
+            return;
         }
     }
 
