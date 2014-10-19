@@ -275,7 +275,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Loading Warlock Demonology Combat class...");
-                            InternalRange = 30.0f;
+                            InternalRange = 40.0f;
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDemonology);
                             new WarlockDemonology();
                         }
@@ -297,7 +297,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Loading Warlock Affliction Combat class...");
-                            InternalRange = 30.0f;
+                            InternalRange = 40.0f;
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockAffliction);
                             new WarlockAffliction();
                         }
@@ -319,7 +319,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Loading Warlock Destruction Combat class...");
-                            InternalRange = 30.0f;
+                            InternalRange = 40.0f;
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDestruction);
                             new WarlockDestruction();
                         }
@@ -341,7 +341,7 @@ public class Main : ICombatClass
                     {
                         Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Warlock Demonology Combat class...");
-                        InternalRange = 30.0f;
+                        InternalRange = 40.0f;
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDemonology);
                         new WarlockDemonology();
                     }
@@ -938,7 +938,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
-                            InternalRange = 30.0f;
+                            InternalRange = 40.0f;
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
                             new HunterMarksmanship();
                         }
@@ -960,7 +960,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Loading Hunter Survival Combat class...");
-                            InternalRange = 30.0f;
+                            InternalRange = 40.0f;
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterSurvival);
                             new HunterSurvival();
                         }
@@ -982,7 +982,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Loading Hunter BeastMastery Combat class...");
-                            InternalRange = 30.0f;
+                            InternalRange = 40.0f;
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterBeastMastery);
                             new HunterBeastMastery();
                         }
@@ -1004,7 +1004,7 @@ public class Main : ICombatClass
                     {
                         Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
-                        InternalRange = 30.0f;
+                        InternalRange = 40.0f;
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
                         new HunterMarksmanship();
                     }
@@ -4579,13 +4579,13 @@ public class MageArcane
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -4731,7 +4731,7 @@ public class MageArcane
 
         Heal();
 
-        if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance < 41 && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
+        if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
         }
@@ -4816,7 +4816,7 @@ public class MageArcane
             ArcaneBrilliance.Launch();
         }
 
-        if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(116257) && Evocation.IsSpellUsable)
+        if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(116257) && Evocation.IsSpellUsable)
         {
             Evocation.Launch();
         }
@@ -5038,14 +5038,14 @@ public class MageArcane
 
     private void DPSBurst()
     {
-        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && !AlterTime.HaveBuff
+        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !AlterTime.HaveBuff
             && ObjectManager.Target.InCombat && ArcanePower.HaveBuff && ObjectManager.Me.BuffStack(114664) > 3 && AlterTime.IsSpellUsable)
         {
             AlterTime.Launch();
             _alterTimeTimer = new Timer(1000*4);
         }
 
-        if (MySettings.UseAlterTime && MySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (MySettings.UseAlterTime && MySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && AlterTime.HaveBuff && ObjectManager.Target.InCombat && ObjectManager.Me.BuffStack(114664) > 3 && _alterTimeTimer.IsReady && AlterTime.IsSpellUsable)
         {
             if (ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood && ArcaneBarrage.IsSpellUsable)
@@ -5066,44 +5066,44 @@ public class MageArcane
             Logging.WriteFight("Use Second Trinket Slot");
         }
 
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
         }
 
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
 
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
+        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             _engineeringTimer = new Timer(1000*60);
         }
 
-        if (MySettings.UseRuneofPower && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(116014) && Evocation.IsSpellUsable)
+        if (MySettings.UseRuneofPower && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(116014) && Evocation.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
         }
 
-        if (MySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArcanePower.IsSpellUsable)
+        if (MySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && ArcanePower.IsSpellUsable)
         {
             ArcanePower.Launch();
         }
 
-        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
+        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MirrorImage.IsSpellUsable)
         {
             MirrorImage.Launch();
         }
 
-        if (MySettings.UseTimeWarp && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(80354)
+        if (MySettings.UseTimeWarp && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(80354)
             && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723) && !ObjectManager.Me.HaveBuff(95809) && TimeWarp.IsSpellUsable)
         {
             TimeWarp.Launch();
@@ -5114,13 +5114,13 @@ public class MageArcane
     {
         if (SpellManager.GetGcdLeft() > 0)
             return;
-        if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance < 41 && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
+        if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
             return;
         }
 
-        if (MySettings.UseNetherTempest && NetherTempest.KnownSpell && ArcaneChargePassive.KnownSpell && ArcaneChargePassive.BuffStack == 4 && ObjectManager.Target.GetDistance < 41 && NetherTempest.IsSpellUsable)
+        if (MySettings.UseNetherTempest && NetherTempest.KnownSpell && ArcaneChargePassive.KnownSpell && ArcaneChargePassive.BuffStack == 4 && ObjectManager.Target.GetDistance <= 40f && NetherTempest.IsSpellUsable)
         {
             var netherTempestAuraInfo = ObjectManager.Target.UnitAura(NetherTempest.Ids, ObjectManager.Me.Guid);
 
@@ -5488,13 +5488,13 @@ public class MageFrost
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -5624,7 +5624,7 @@ public class MageFrost
             IceLance.Launch();
         }
 
-        if (MySettings.UseFreeze && ObjectManager.Me.Level > 9 && _freezeTimer.IsReady && ObjectManager.Target.GetDistance < 41 &&
+        if (MySettings.UseFreeze && ObjectManager.Me.Level > 9 && _freezeTimer.IsReady && ObjectManager.Target.GetDistance <= 40f &&
             (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
@@ -5747,7 +5747,7 @@ public class MageFrost
             ArcaneBrilliance.Launch();
         }
 
-        if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(116257) && Evocation.IsSpellUsable)
+        if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(116257) && Evocation.IsSpellUsable)
         {
             Evocation.Launch();
         }
@@ -5956,7 +5956,7 @@ public class MageFrost
 
     private void DPSBurst()
     {
-        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && !AlterTime.HaveBuff && ObjectManager.Target.InCombat
+        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !AlterTime.HaveBuff && ObjectManager.Target.InCombat
             && IcyVeins.HaveBuff && ObjectManager.Me.HaveBuff(57761) && ObjectManager.Me.BuffStack(44544) > 1 && AlterTime.IsSpellUsable)
         {
             AlterTime.Launch();
@@ -5974,22 +5974,22 @@ public class MageFrost
             Logging.WriteFight("Use Second Trinket Slot");
         }
 
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
         }
 
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
 
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
+        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -6001,22 +6001,22 @@ public class MageFrost
             FrozenOrb.Launch();
         }
 
-        if (MySettings.UseRuneofPowerTalent && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance < 41 && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
+        if (MySettings.UseRuneofPowerTalent && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
         }
 
-        if (MySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance < 41 && !TimeWarp.HaveBuff && IcyVeins.IsSpellUsable)
+        if (MySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !TimeWarp.HaveBuff && IcyVeins.IsSpellUsable)
         {
             IcyVeins.Launch();
         }
 
-        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
+        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MirrorImage.IsSpellUsable)
         {
             MirrorImage.Launch();
         }
 
-        if (MySettings.UseTimeWarp && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(80354)
+        if (MySettings.UseTimeWarp && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(80354)
             && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723) && !ObjectManager.Me.HaveBuff(95809) && TimeWarp.IsSpellUsable)
         {
             TimeWarp.Launch();
@@ -6047,13 +6047,13 @@ public class MageFrost
             }
         }
 
-        if (MySettings.UseFrostBomb && FrostBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && FrostBomb.IsSpellUsable && !FrostBomb.TargetHaveBuff)
+        if (MySettings.UseFrostBomb && FrostBomb.KnownSpell && ObjectManager.Target.GetDistance <= 40f && FrostBomb.IsSpellUsable && !FrostBomb.TargetHaveBuff)
         {
             FrostBomb.Launch();
             return;
         }
 
-        if (MySettings.UseFreeze && ObjectManager.Me.Level > 9 && _freezeTimer.IsReady && ObjectManager.Target.GetDistance < 41 &&
+        if (MySettings.UseFreeze && ObjectManager.Me.Level > 9 && _freezeTimer.IsReady && ObjectManager.Target.GetDistance <= 40f &&
             (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
@@ -6380,13 +6380,13 @@ public class MageFire
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -6706,7 +6706,7 @@ public class MageFire
 
     private void DPSBurst()
     {
-        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff &&
+        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance <= 40f && AlterTime.IsSpellUsable && !AlterTime.HaveBuff &&
             ObjectManager.Target.InCombat && ObjectManager.Me.HaveBuff(48108))
         {
             AlterTime.Launch();
@@ -6724,30 +6724,30 @@ public class MageFire
             Logging.WriteFight("Use Second Trinket Slot");
         }
 
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
         }
-        else if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        else if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
+        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             _engineeringTimer = new Timer(1000*60);
         }
-        if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable && !ObjectManager.Me.HaveBuff(116257))
+        if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Evocation.IsSpellUsable && !ObjectManager.Me.HaveBuff(116257))
         {
             Evocation.Launch();
             return;
         }
-        if (MySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
+        if (MySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Evocation.IsSpellUsable
             && !ObjectManager.Me.HaveBuff(116014))
         {
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
@@ -6757,11 +6757,11 @@ public class MageFire
         {
             Combustion.Launch();
         }
-        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
+        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MirrorImage.IsSpellUsable)
         {
             MirrorImage.Launch();
         }
-        if (MySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (MySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
             && !ObjectManager.Me.HaveBuff(95809))
         {
@@ -6792,7 +6792,7 @@ public class MageFire
             ArcaneExplosion.Launch();
             return;
         }
-        if (MySettings.UseLivingBomb && LivingBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && LivingBomb.IsSpellUsable && !LivingBomb.TargetHaveBuff)
+        if (MySettings.UseLivingBomb && LivingBomb.KnownSpell && ObjectManager.Target.GetDistance <= 40f && LivingBomb.IsSpellUsable && !LivingBomb.TargetHaveBuff)
         {
             LivingBomb.Launch();
             return;
@@ -7121,13 +7121,13 @@ public class WarlockDemonology
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -7432,7 +7432,7 @@ public class WarlockDemonology
             TwilightWard.Launch();
             return;
         }
-        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance <= 40f && CommandDemon.IsSpellUsable
             && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
             CommandDemon.Launch();
@@ -7453,22 +7453,22 @@ public class WarlockDemonology
             Logging.WriteFight("Use Second Trinket Slot");
         }
 
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
             return;
         }
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
 
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && _engineeringTimer.IsReady)
+        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -7476,7 +7476,7 @@ public class WarlockDemonology
         }
 
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
         {
             DarkSoul.Launch();
         }
@@ -7490,11 +7490,11 @@ public class WarlockDemonology
         {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
         }
-        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
+        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance <= 40f && ArchimondesVengeance.IsSpellUsable)
         {
             ArchimondesVengeance.Launch();
         }
-        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
+        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance <= 40f && GrimoireofService.IsSpellUsable)
         {
             GrimoireofService.Launch();
         }
@@ -7929,7 +7929,7 @@ public class WarlockDestruction
 
     public WarlockDestruction()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 40.0f;
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -7952,13 +7952,13 @@ public class WarlockDestruction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -8248,7 +8248,7 @@ public class WarlockDestruction
             TwilightWard.Launch();
             return;
         }
-        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance <= 40f && CommandDemon.IsSpellUsable
             && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
             CommandDemon.Launch();
@@ -8269,27 +8269,27 @@ public class WarlockDestruction
             Logging.WriteFight("Use Second Trinket Slot");
         }
 
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
             return;
         }
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && _engineeringTimer.IsReady)
+        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             _engineeringTimer = new Timer(1000*60);
         }
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
         {
             DarkSoul.Launch();
         }
@@ -8301,11 +8301,11 @@ public class WarlockDestruction
         {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
         }
-        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
+        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance <= 40f && ArchimondesVengeance.IsSpellUsable)
         {
             ArchimondesVengeance.Launch();
         }
-        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
+        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance <= 40f && GrimoireofService.IsSpellUsable)
         {
             GrimoireofService.Launch();
         }
@@ -8700,13 +8700,13 @@ public class WarlockAffliction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -9006,7 +9006,7 @@ public class WarlockAffliction
             TwilightWard.Launch();
             return;
         }
-        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance <= 40f && CommandDemon.IsSpellUsable
             && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
             CommandDemon.Launch();
@@ -9025,27 +9025,27 @@ public class WarlockAffliction
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
         }
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
             return;
         }
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && _engineeringTimer.IsReady)
+        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             _engineeringTimer = new Timer(1000*60);
         }
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
         {
             DarkSoul.Launch();
         }
@@ -9058,11 +9058,11 @@ public class WarlockAffliction
         {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
         }
-        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
+        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance <= 40f && ArchimondesVengeance.IsSpellUsable)
         {
             ArchimondesVengeance.Launch();
         }
-        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
+        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance <= 40f && GrimoireofService.IsSpellUsable)
         {
             GrimoireofService.Launch();
         }
@@ -9483,12 +9483,12 @@ public class DruidBalance
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
                         {
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 LowCombat();
                         }
                         else
                         {
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 Combat();
                         }
                     }
@@ -9736,7 +9736,7 @@ public class DruidBalance
             return;
         }
         if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && ObjectManager.Target.GetDistance <= 40f && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -9880,25 +9880,25 @@ public class DruidBalance
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -9913,25 +9913,25 @@ public class DruidBalance
             return;
         }
         if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             Incarnation.Launch();
             return;
         }
         if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && MySettings.UseHeartoftheWild
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             HeartoftheWild.Launch();
             return;
         }
         if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && MySettings.UseNaturesVigil
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             NaturesVigil.Launch();
             return;
         }
         if (CelestialAlignment.KnownSpell && MySettings.UseCelestialAlignment &&
-            ObjectManager.Target.GetDistance < 41
+            ObjectManager.Target.GetDistance <= 40f
             && (CelestialAlignment.IsSpellUsable || ObjectManager.Me.HaveBuff(112071)))
         {
             if (!ObjectManager.Me.HaveBuff(112071))
@@ -9977,13 +9977,13 @@ public class DruidBalance
             return;
         }
         if (Starfall.KnownSpell && Starfall.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-            ObjectManager.Target.GetDistance < 41 && MySettings.UseStarfall)
+            ObjectManager.Target.GetDistance <= 40f && MySettings.UseStarfall)
         {
             Starfall.Launch();
             return;
         }
         if (WildMushroom.KnownSpell && WildMushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
-            && ObjectManager.Target.GetDistance < 41 && WildMushroomDetonate.KnownSpell &&
+            && ObjectManager.Target.GetDistance <= 40f && WildMushroomDetonate.KnownSpell &&
             WildMushroom.IsSpellUsable
             && MySettings.UseWildMushroom)
         {
@@ -9997,7 +9997,7 @@ public class DruidBalance
             return;
         }
         if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-            ObjectManager.Target.GetDistance < 41 && MySettings.UseHurricane)
+            ObjectManager.Target.GetDistance <= 40f && MySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
@@ -10511,7 +10511,7 @@ public class DruidFeral
             && ObjectManager.Me.HealthPercent < 70)
         {
             if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && MySettings.UseTyphoon
-                && ObjectManager.Target.GetDistance < 41 && MySettings.UseTyphoon)
+                && ObjectManager.Target.GetDistance <= 40f && MySettings.UseTyphoon)
             {
                 Typhoon.Launch();
                 Thread.Sleep(200);
@@ -10541,7 +10541,7 @@ public class DruidFeral
             return;
         }
         if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && ObjectManager.Target.GetDistance <= 40f && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -11155,7 +11155,7 @@ public class DruidRestoration
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -11326,7 +11326,7 @@ public class DruidRestoration
             return;
         }
         if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && ObjectManager.Target.GetDistance <= 40f && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -11492,25 +11492,25 @@ public class DruidRestoration
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -11525,7 +11525,7 @@ public class DruidRestoration
             return;
         }
         if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             Incarnation.Launch();
         }
@@ -11543,7 +11543,7 @@ public class DruidRestoration
             return;
         }
         if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-            ObjectManager.Target.GetDistance < 41 && MySettings.UseHurricane)
+            ObjectManager.Target.GetDistance <= 40f && MySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
@@ -12094,7 +12094,7 @@ public class DruidGuardian
             && ObjectManager.Me.HealthPercent < 70)
         {
             if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && MySettings.UseTyphoon
-                && ObjectManager.Target.GetDistance < 41 && MySettings.UseTyphoon)
+                && ObjectManager.Target.GetDistance <= 40f && MySettings.UseTyphoon)
             {
                 Typhoon.Launch();
                 Thread.Sleep(200);
@@ -12124,7 +12124,7 @@ public class DruidGuardian
             return;
         }
         if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && ObjectManager.Target.GetDistance <= 40f && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -12542,7 +12542,7 @@ public class PaladinHoly
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -13020,7 +13020,7 @@ public class PaladinProtection
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -13563,7 +13563,7 @@ public class PaladinRetribution
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -14187,13 +14187,13 @@ public class ShamanEnhancement
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -15080,13 +15080,13 @@ public class ShamanRestoration
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -15471,25 +15471,25 @@ public class ShamanRestoration
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -15510,19 +15510,19 @@ public class ShamanRestoration
             return;
         }
         if (Ascendance.KnownSpell && Ascendance.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-            && MySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseAscendance && ObjectManager.Target.GetDistance <= 40f)
         {
             Ascendance.Launch();
             return;
         }
         if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-            && MySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance <= 40f)
         {
             FireElementalTotem.Launch();
             return;
         }
         if (StormlashTotem.KnownSpell && AirTotemReady()
-            && MySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseStormlashTotem && ObjectManager.Target.GetDistance <= 40f)
         {
             if (!StormlashTotem.IsSpellUsable && MySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -15536,13 +15536,13 @@ public class ShamanRestoration
             return;
         }
         if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && MySettings.UseBloodlustHeroism
-            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
+            && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
         if (Heroism.KnownSpell && Heroism.IsSpellUsable && MySettings.UseBloodlustHeroism
-            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
+            && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
@@ -15965,13 +15965,13 @@ public class ShamanElemental
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -16313,25 +16313,25 @@ public class ShamanElemental
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -16352,19 +16352,19 @@ public class ShamanElemental
             return;
         }
         if (Ascendance.KnownSpell && Ascendance.IsSpellUsable
-            && MySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseAscendance && ObjectManager.Target.GetDistance <= 40f)
         {
             Ascendance.Launch();
             return;
         }
         if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-            && MySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance <= 40f)
         {
             FireElementalTotem.Launch();
             return;
         }
         if (StormlashTotem.KnownSpell && AirTotemReady()
-            && MySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseStormlashTotem && ObjectManager.Target.GetDistance <= 40f)
         {
             if (!StormlashTotem.IsSpellUsable && MySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -16378,14 +16378,14 @@ public class ShamanElemental
             return;
         }
         if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && MySettings.UseBloodlustHeroism
-            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
+            && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
 
         if (Heroism.KnownSpell && Heroism.IsSpellUsable && MySettings.UseBloodlustHeroism
-            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
+            && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
@@ -16804,13 +16804,13 @@ public class PriestShadow
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -17147,25 +17147,25 @@ public class PriestShadow
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -17174,7 +17174,7 @@ public class PriestShadow
             return;
         }
         if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance <= 40f)
         {
             PowerInfusion.Launch();
             return;
@@ -17570,7 +17570,7 @@ public class PriestDiscipline
                             }
                             else
                             {
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -17872,25 +17872,25 @@ public class PriestDiscipline
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -17899,13 +17899,13 @@ public class PriestDiscipline
             return;
         }
         if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance <= 40f)
         {
             PowerInfusion.Launch();
             return;
         }
         if (Archangel.IsSpellUsable && Archangel.KnownSpell && ObjectManager.Me.BuffStack(81661) > 4
-            && MySettings.UseArchangel && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseArchangel && ObjectManager.Target.GetDistance <= 40f)
         {
             Archangel.Launch();
             return;
@@ -18276,7 +18276,7 @@ public class PriestHoly
                             }
                             else
                             {
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -18605,25 +18605,25 @@ public class PriestHoly
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -18632,7 +18632,7 @@ public class PriestHoly
             return;
         }
         if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance <= 40f)
         {
             PowerInfusion.Launch();
             return;
@@ -23774,13 +23774,13 @@ public class HunterMarksmanship
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -24132,25 +24132,25 @@ public class HunterMarksmanship
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -24182,7 +24182,7 @@ public class HunterMarksmanship
             return;
         }
         if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance <= 40f)
         {
             BlinkStrike.Launch();
             return;
@@ -24207,7 +24207,7 @@ public class HunterMarksmanship
             return;
         }
         if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && MySettings.UseLynxRush &&
-            ObjectManager.Target.GetDistance < 41)
+            ObjectManager.Target.GetDistance <= 40f)
         {
             LynxRush.Launch();
             return;
@@ -24225,7 +24225,7 @@ public class HunterMarksmanship
             return;
         }
         if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && MySettings.UseRapidFire
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             RapidFire.Launch();
             return;
@@ -24567,7 +24567,7 @@ public class HunterBeastMastery
 
     public HunterBeastMastery()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 40.0f;
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -24591,13 +24591,13 @@ public class HunterBeastMastery
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -24642,32 +24642,35 @@ public class HunterBeastMastery
         DefenseCycle();
         Heal();
 
-        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && GlaiveToss.IsHostileDistanceGood
-            && MySettings.UseGlaiveToss)
+        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss&&  GlaiveToss.IsHostileDistanceGood
+            && GlaiveToss.IsSpellUsable)
         {
             GlaiveToss.Launch();
             return;
         }
-        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-            && MySettings.UseArcaneShot)
+        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood
+            && ArcaneShot.IsSpellUsable)
         {
             ArcaneShot.Launch();
             return;
         }
-        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood && MySettings.UseCobraShot)
+        if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ExplosiveTrap.IsHostileDistanceGood
+            && ExplosiveTrap.IsSpellUsable)
+        {
+            ExplosiveTrap.Launch();
+            return;
+        }
+        if (CobraShot.KnownSpell && MySettings.UseCobraShot && CobraShot.IsHostileDistanceGood
+            && CobraShot.IsSpellUsable)
         {
             CobraShot.Launch();
             return;
         }
-        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood && (ObjectManager.Me.FocusPercentage < 60 || !CobraShot.KnownSpell || !MySettings.UseCobraShot))
+        if (SteadyShot.KnownSpell &&   (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsHostileDistanceGood
+            && SteadyShot.IsSpellUsable)
         {
             SteadyShot.Launch();
             return;
-        }
-        if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood
-            && MySettings.UseExplosiveTrap)
-        {
-            ExplosiveTrap.Launch();
         }
     }
 
@@ -24950,22 +24953,22 @@ public class HunterBeastMastery
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && MySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && MySettings.UseBloodFury)
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && MySettings.UseLifeblood)
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && MySettings.UseEngGlove)
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -24984,7 +24987,7 @@ public class HunterBeastMastery
             return;
         }
         if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance <= 40f)
         {
             BlinkStrike.Launch();
             return;
@@ -25009,7 +25012,7 @@ public class HunterBeastMastery
             return;
         }
         if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && MySettings.UseLynxRush &&
-            ObjectManager.Target.GetDistance < 41)
+            ObjectManager.Target.GetDistance <= 40f)
         {
             LynxRush.Launch();
             return;
@@ -25027,12 +25030,12 @@ public class HunterBeastMastery
             return;
         }
         if (BestialWrath.KnownSpell && BestialWrath.IsSpellUsable && MySettings.UseBestialWrath
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             BestialWrath.Launch();
             return;
         }
-        if (MySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance < 41
+        if (MySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance <= 40f
             && _ancientHysteriaTimer.IsReady && ObjectManager.Me.HaveBuff(95809)
             && ObjectManager.Pet.IsAlive && !BestialWrath.HaveBuff)
         {
@@ -25093,7 +25096,7 @@ public class HunterBeastMastery
             return;
         }
         if (KillCommand.KnownSpell && KillCommand.IsSpellUsable && KillCommand.IsHostileDistanceGood
-            && MySettings.UseKillCommand && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseKillCommand && ObjectManager.Target.GetDistance <= 40f)
         {
             KillCommand.Launch();
             return;
@@ -25417,13 +25420,13 @@ public class HunterSurvival
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
                         }
@@ -25784,25 +25787,25 @@ public class HunterSurvival
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -25822,7 +25825,7 @@ public class HunterSurvival
             return;
         }
         if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance <= 40f)
         {
             BlinkStrike.Launch();
             return;
@@ -25847,7 +25850,7 @@ public class HunterSurvival
             return;
         }
         if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && MySettings.UseLynxRush &&
-            ObjectManager.Target.GetDistance < 41)
+            ObjectManager.Target.GetDistance <= 40f)
         {
             LynxRush.Launch();
             return;
@@ -25865,7 +25868,7 @@ public class HunterSurvival
             return;
         }
         if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && MySettings.UseRapidFire
-            && ObjectManager.Target.GetDistance < 41)
+            && ObjectManager.Target.GetDistance <= 40f)
         {
             RapidFire.Launch();
             return;
@@ -27165,7 +27168,7 @@ public class MonkWindwalker
         {
             InvokeXuentheWhiteTiger.Launch();
         }
-        if (MySettings.UseEnergizingBrew && EnergizingBrew.KnownSpell && ObjectManager.Me.Energy < 41 && ObjectManager.Target.GetDistance < 30 && EnergizingBrew.IsSpellUsable)
+        if (MySettings.UseEnergizingBrew && EnergizingBrew.KnownSpell && ObjectManager.Me.Energy <= 40f && ObjectManager.Target.GetDistance < 30 && EnergizingBrew.IsSpellUsable)
         {
             EnergizingBrew.Launch();
         }
@@ -27527,7 +27530,7 @@ public class MonkMistweaver
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance <= 40f)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -27599,7 +27602,7 @@ public class MonkMistweaver
             return;
         }
         if (ObjectManager.Me.InCombat && SummonJadeSerpentStatue.IsSpellUsable && SummonJadeSerpentStatue.KnownSpell
-            && MySettings.UseSummonJadeSerpentStatue && !SummonJadeSerpentStatue.HaveBuff && ObjectManager.Target.GetDistance < 41)
+            && MySettings.UseSummonJadeSerpentStatue && !SummonJadeSerpentStatue.HaveBuff && ObjectManager.Target.GetDistance <= 40f)
         {
             SummonJadeSerpentStatue.Launch();
             return;
@@ -27830,25 +27833,25 @@ public class MonkMistweaver
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBerserking)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseBloodFury)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
