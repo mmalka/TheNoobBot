@@ -7927,6 +7927,14 @@ public class WarlockDestruction
 
     #endregion
 
+    #region Procs
+
+    public readonly uint Backdraft = 117828; // Reduce cast time of chaos bolt and incinerate
+    public readonly uint DarkSoulInstability = 113858;
+    public readonly uint FourT16Parts = 145091;
+
+    #endregion
+
     public WarlockDestruction()
     {
         Main.InternalRange = 40.0f;
@@ -8329,11 +8337,13 @@ public class WarlockDestruction
             return;
         }
 
+        bool hasImmolateBuff = Immolate.TargetHaveBuff;
+        bool hasCorruptionBuff = Corruption.TargetHaveBuff;
         if (ObjectManager.GetNumberAttackPlayer() > 4)
         {
             // Blizzard API Calls for Immolate using Corruption Function
             if (MySettings.UseFireandBrimstone && MySettings.UseImmolate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable
-                && !ObjectManager.Target.HaveBuff(348) && !ObjectManager.Target.HaveBuff(146739) && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
+                && !hasImmolateBuff && !hasCorruptionBuff && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
             {
                 FireandBrimstone.Launch();
                 Thread.Sleep(200);
@@ -8341,7 +8351,7 @@ public class WarlockDestruction
                 _immolateTimer = new Timer(1000*12);
                 return;
             }
-            if (MySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && HarvestLife.KnownSpell
+            if (MySettings.UseHarvestLife && hasImmolateBuff && HarvestLife.KnownSpell
                 && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
             {
                 HarvestLife.Launch();
@@ -8349,7 +8359,7 @@ public class WarlockDestruction
                     Thread.Sleep(200);
                 return;
             }
-            if (MySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && DrainLife.KnownSpell
+            if (MySettings.UseHarvestLife && hasImmolateBuff && DrainLife.KnownSpell
                 && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
             {
                 DrainLife.Launch();
@@ -8373,34 +8383,60 @@ public class WarlockDestruction
             }
         }
 
-        if (MySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable && ObjectManager.Me.BurningEmbers < 31
-            && ObjectManager.Me.BuffStack(117828) < 1)
-        {
-            Conflagrate.Launch();
-            return;
-        }
-        if (MySettings.UseImmolate && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
-            && !ObjectManager.Target.HaveBuff(348) && !ObjectManager.Target.HaveBuff(146739) || _immolateTimer.IsReady)
-        {
-            Corruption.Launch();
-            _immolateTimer = new Timer(1000*12);
-            return;
-        }
-        if (ObjectManager.Target.HealthPercent < 20 && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
+        // 1) Cast Shadowburn, when your target has less than 20% health and the conditions below for Chaos Bolt are met.
+        if (ObjectManager.Target.HealthPercent <= 20f && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
             && MySettings.UseShadowburn)
         {
             Shadowburn.Launch();
             return;
         }
-        if (MySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable
-            && (!ObjectManager.Me.HaveBuff(117828) || ObjectManager.Me.HaveBuff(113858)))
+        // 2) Apply Immolate and refresh it, if it is about to drop.
+        if (MySettings.UseImmolate && (!hasImmolateBuff || _immolateTimer.IsReady) &&
+            Immolate.KnownSpell && Immolate.IsHostileDistanceGood && Immolate.IsSpellUsable)
+        {
+            Immolate.Launch();
+            _immolateTimer = new Timer(1000 * 12);
+            return;
+        }
+        // 3) Cast Conflagrate if you have two charges. // But I don't know how to know number of charges
+        if (MySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable
+            && ObjectManager.Me.BurningEmbers < 31 && !ObjectManager.Me.HaveBuff(Backdraft))
+        {
+            Conflagrate.Launch();
+            return;
+        }
+        // 4) Cast Chaos Bolt Icon Chaos Bolt if
+        //    * you have more than 3.5 Burning Embers or
+        //    * you have an Intellect/Critical Strike/Mastery/Spell Power proc or
+        //    * Dark Soul: Instability is up or
+        //    * your Tier 16 4-piece bonus is up and you have more than 3 Burning Embers.
+        if (MySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable &&
+              ( ObjectManager.Me.BurningEmbers > 35 ||
+                false ||
+                ObjectManager.Me.HaveBuff(DarkSoulInstability) || ObjectManager.Me.HaveBuff(Backdraft) ||
+                ObjectManager.Me.HaveBuff(FourT16Parts)
+              )
+            )
         {
             ChaosBolt.Launch();
             return;
         }
-        if (MySettings.UseIncinerate && ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
+        // 5) Cast Rain of Fire if it is not ticking.
+        if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && !RainofFire.TargetHaveBuff && RainofFire.IsSpellUsable)
         {
-            ShadowBolt.Launch();
+            SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
+            return;
+        }
+        // 6) Cast Conflagrate if you have one charge.
+        if (MySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable)
+        {
+            Conflagrate.Launch();
+            return;
+        }
+        // 7) Filler: Incinerate
+        if (MySettings.UseIncinerate && Incinerate.KnownSpell && Incinerate.IsSpellUsable && Incinerate.IsHostileDistanceGood)
+        {
+            Incinerate.Launch();
         }
     }
 
