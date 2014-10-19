@@ -7895,7 +7895,7 @@ public class WarlockDestruction
     #region Offensive Cooldown
 
     public readonly Spell ArchimondesVengeance = new Spell("Archimonde's Vengeance");
-    public readonly Spell DarkSoul = new Spell("Dark Soul");
+    public readonly Spell DarkSoul = new Spell("Dark Soul: Instability");
     public readonly Spell GrimoireofService = new Spell("Grimoire of Service");
     public readonly Spell SummonDoomguard = new Spell("Summon Doomguard");
     public readonly Spell SummonInfernal = new Spell("Summon Infernal");
@@ -8003,15 +8003,16 @@ public class WarlockDestruction
             DefenseCycle();
         Heal();
 
-        // Blizzard API Calls for Incinerate using Shadow Bolt Function
-        if (MySettings.UseIncinerate && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
+        if (MySettings.UseIncinerate && Incinerate.KnownSpell && Incinerate.IsHostileDistanceGood && Incinerate.IsSpellUsable)
         {
-            ShadowBolt.Launch();
+            Incinerate.Launch();
             return;
         }
-        if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
+        if (MySettings.UseRainofFire && RainofFire.KnownSpell && _rainOfFireTimer.IsReady
+            && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
         {
-            SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
+            SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
+            _rainOfFireTimer = new Timer(1000 * 6.5);
         }
     }
 
@@ -8339,16 +8340,16 @@ public class WarlockDestruction
         }
 
         bool hasImmolateBuff = Immolate.TargetHaveBuff;
-        bool hasCorruptionBuff = Corruption.TargetHaveBuff;
         if (ObjectManager.GetNumberAttackPlayer() > 4)
         {
             // Blizzard API Calls for Immolate using Corruption Function
-            if (MySettings.UseFireandBrimstone && MySettings.UseImmolate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable
-                && !hasImmolateBuff && !hasCorruptionBuff && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
+            if (MySettings.UseFireandBrimstone && MySettings.UseImmolate && FireandBrimstone.KnownSpell
+                && !hasImmolateBuff && Immolate.KnownSpell && Immolate.IsHostileDistanceGood
+                && FireandBrimstone.IsSpellUsable && Immolate.IsSpellUsable)
             {
                 FireandBrimstone.Launch();
                 Thread.Sleep(200);
-                Corruption.Launch();
+                Immolate.Launch();
                 _immolateTimer = new Timer(1000*12);
                 return;
             }
@@ -8368,13 +8369,12 @@ public class WarlockDestruction
                     Thread.Sleep(200);
                 return;
             }
-            // Blizzard API Calls for Incinerate using Shadow Bolt Function
-            if (MySettings.UseFireandBrimstone && MySettings.UseIncinerate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable
-                && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
+            if (MySettings.UseFireandBrimstone && MySettings.UseIncinerate && FireandBrimstone.KnownSpell
+                && Incinerate.KnownSpell && Incinerate.IsHostileDistanceGood && FireandBrimstone.IsSpellUsable && Incinerate.IsSpellUsable)
             {
                 FireandBrimstone.Launch();
                 Thread.Sleep(200);
-                ShadowBolt.Launch();
+                Incinerate.Launch();
                 return;
             }
             if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
