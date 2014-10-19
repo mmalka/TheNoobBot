@@ -7888,6 +7888,7 @@ public class WarlockDestruction
     public readonly Spell SummonSuccubus = new Spell("Summon Succubus");
     public readonly Spell SummonVoidwalker = new Spell("Summon Voidwalker");
     private Timer _immolateTimer = new Timer(0);
+    private Timer _rainOfFireTimer = new Timer(0);
 
     #endregion
 
@@ -8422,9 +8423,11 @@ public class WarlockDestruction
             return;
         }
         // 5) Cast Rain of Fire if it is not ticking.
-        if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && !RainofFire.TargetHaveBuff && RainofFire.IsSpellUsable)
+        if (MySettings.UseRainofFire && RainofFire.KnownSpell && _rainOfFireTimer.IsReady && RainofFire.IsHostileDistanceGood
+            && !RainofFire.TargetHaveBuff && RainofFire.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
+            _rainOfFireTimer = new Timer(1000 * 6.5);
             return;
         }
         // 6) Cast Conflagrate if you have one charge.
