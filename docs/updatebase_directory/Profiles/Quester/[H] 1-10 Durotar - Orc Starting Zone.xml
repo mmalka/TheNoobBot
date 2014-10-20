@@ -827,8 +827,7 @@
           <Objective>KillMob</Objective>
           <InternalQuestId>25129</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>4905</CollectItemId>
-          <CollectCount>1</CollectCount>
+          <Count>1</Count>
           <Entry>
             <int>3281</int>
           </Entry>
@@ -1225,8 +1224,8 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Exploiting the Situation</Name>
-      <Id>25176</Id>
+      <Name>From Bad to Worse</Name>
+      <Id>25173</Id>
       <RaceMask>33555378</RaceMask>
       <QuestLevel>7</QuestLevel>
       <MinLevel>4</MinLevel>
@@ -1234,74 +1233,20 @@
       <NeedQuestCompletedId>
         <int>6365</int>
       </NeedQuestCompletedId>
-      <PickUp>39423</PickUp>
-      <TurnIn>39423</TurnIn>
+      <PickUp>3139</PickUp>
+      <TurnIn>3139</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>3139</NpcEntry>
-          <QuestId>25173</QuestId>
-          <QuestName>From Bad to Worse</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalQuestId>25173</InternalQuestId>
-          <InternalIndex>1</InternalIndex>
-          <Count>6</Count>
-          <Entry>
-            <int>39267</int>
-          </Entry>     
-          <Hotspots>
-            <Point>
-              <X>-246.6904</X>
-              <Y>-5069.927</Y>
-              <Z>22.5379</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalQuestId>25173</InternalQuestId>
-          <InternalIndex>2</InternalIndex>
-          <Count>6</Count>
-          <Entry>
-            <int>39268</int>
-          </Entry>     
-          <Hotspots>
-            <Point>
-              <X>-246.6904</X>
-              <Y>-5069.927</Y>
-              <Z>22.5379</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalQuestId>25173</InternalQuestId>
-          <InternalIndex>3</InternalIndex>
-          <Count>1</Count>
-          <Entry>
-            <int>39269</int>
-          </Entry>     
-          <Hotspots>
-            <Point>
-              <X>-247.8472</X>
-              <Y>-5120.156</Y>
-              <Z>42.64054</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>-183.9269</X>
-            <Y>-5011.363</Y>
-            <Z>21.2524</Z>
-          </Position>
+          <NpcEntry>39423</NpcEntry>
+          <QuestId>25176</QuestId>
+          <QuestName>Exploiting the Situation</QuestName>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <InternalQuestId>25176</InternalQuestId>
           <InternalIndex>1</InternalIndex>
           <Entry>
             <int>202648</int>
@@ -1317,11 +1262,69 @@
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>3139</NpcEntry>
-          <QuestId>25173</QuestId>
-          <QuestName>From Bad to Worse</QuestName>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>39267</int>
+          </Entry>     
+          <Hotspots>
+            <Point>
+              <X>-155.5726</X>
+              <Y>-5068.337</Y>
+              <Z>20.81479</Z>
+            </Point>
+            <Point>
+              <X>-243.6238</X>
+              <Y>-5039.861</Y>
+              <Z>21.05628</Z>
+            </Point>
+            <Point>
+              <X>-250.4672</X>
+              <Y>-5177.938</Y>
+              <Z>13.22668</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>39268</int>
+          </Entry>     
+          <Hotspots>
+            <Point>
+              <X>-155.5726</X>
+              <Y>-5068.337</Y>
+              <Z>20.81479</Z>
+            </Point>
+            <Point>
+              <X>-243.6238</X>
+              <Y>-5039.861</Y>
+              <Z>21.05628</Z>
+            </Point>
+            <Point>
+              <X>-250.4672</X>
+              <Y>-5177.938</Y>
+              <Z>13.22668</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>39269</int>
+          </Entry>     
+          <Hotspots>
+            <Point>
+              <X>-247.8472</X>
+              <Y>-5120.156</Y>
+              <Z>42.64054</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
@@ -1329,7 +1332,14 @@
           <NpcEntry>39423</NpcEntry>
           <QuestId>25176</QuestId>
           <QuestName>Exploiting the Situation</QuestName>
-        </QuestObjective>      
+        </QuestObjective>  
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>3139</NpcEntry>
+          <QuestId>25173</QuestId>
+          <QuestName>From Bad to Worse</QuestName>
+        </QuestObjective>    
       </Objectives>
     </Quest>
     <Quest>
@@ -1340,7 +1350,7 @@
       <MinLevel>4</MinLevel>
       <MaxLevel>13</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25176</int>
+        <int>25173</int>
       </NeedQuestCompletedId>
       <PickUp>3139</PickUp>
       <TurnIn>3139</TurnIn>
@@ -1402,39 +1412,6 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>The Burning Blade</Name>
-      <Id>25232</Id>
-      <RaceMask>33555378</RaceMask>
-      <QuestLevel>10</QuestLevel>
-      <MinLevel>8</MinLevel>
-      <MaxLevel>16</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>25177</int>
-      </NeedQuestCompletedId>
-      <PickUp>3142</PickUp>
-      <TurnIn>3142</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
-          <CollectItemId>52564</CollectItemId>
-          <CollectCount>8</CollectCount>
-          <Entry>
-            <int>3199</int>
-            <int>3196</int>
-            <int>3195</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>915.8078</X>
-              <Y>-4713.347</Y>
-              <Z>23.5086</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
       <Name>Thonk</Name>
       <Id>25227</Id>
       <RaceMask>33555378</RaceMask>
@@ -1442,7 +1419,7 @@
       <MinLevel>4</MinLevel>
       <MaxLevel>14</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25232</int>
+        <int>25177</int>
       </NeedQuestCompletedId>
       <PickUp>39423</PickUp>
       <TurnIn>39323</TurnIn>
@@ -1519,6 +1496,39 @@
       </Objectives>      
     </Quest>
     <Quest>
+      <Name>The Burning Blade</Name>
+      <Id>25232</Id>
+      <RaceMask>33555378</RaceMask>
+      <QuestLevel>10</QuestLevel>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>16</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>25187</int>
+      </NeedQuestCompletedId>
+      <PickUp>3142</PickUp>
+      <TurnIn>3142</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>52564</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>3199</int>
+            <int>3196</int>
+            <int>3195</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>915.8078</X>
+              <Y>-4713.347</Y>
+              <Z>23.5086</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Watershed Patrol</Name>
       <Id>25188</Id>
       <RaceMask>33555378</RaceMask>
@@ -1526,7 +1536,7 @@
       <MinLevel>1</MinLevel>
       <MaxLevel>15</MaxLevel>
       <NeedQuestCompletedId>
-        <int>25187</int>
+        <int>25232</int>
       </NeedQuestCompletedId>
       <PickUp>39323</PickUp>
       <TurnIn>39323</TurnIn>
@@ -1952,4 +1962,78 @@
       </Objectives>
     </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-247.0618</X>
+        <Y>-5093.647</Y>
+        <Z>23.784</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-269.8921</X>
+        <Y>-5096.46</Y>
+        <Z>25.24392</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-269.6523</X>
+        <Y>-5119.369</Y>
+        <Z>24.57718</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-243.8103</X>
+        <Y>-5116.394</Y>
+        <Z>25.24374</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-254.0578</X>
+        <Y>-5126.531</Y>
+        <Z>29.17251</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-228.9726</X>
+        <Y>-5126.938</Y>
+        <Z>34.06556</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-225.2815</X>
+        <Y>-5105.875</Y>
+        <Z>49.32411</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-632.5554</X>
+        <Y>-4318.19</Y>
+        <Z>51.3526</Z>
+      </Position>
+      <Radius>10</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <Position>
+        <X>-643.7143</X>
+        <Y>-4334.165</Y>
+        <Z>53.69083</Z>
+      </Position>
+      <Radius>20</Radius>
+    </QuesterBlacklistRadius>
+  </Blackspots>   
 </QuesterProfile>
