@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Includes>
+    <Include>
+      <PathFile>[H] 1-10 Durotar - Orc Starting Zone.xml</PathFile>
+      <ScriptCondition></ScriptCondition>
+    </Include>
+    <Include>
+      <PathFile>[H] 10-20 Northern Barrens.xml</PathFile>
+      <ScriptCondition></ScriptCondition>
+    </Include>
+  </Includes>
+  <Blackspots></Blackspots>
+  <AvoidMobs></AvoidMobs>
+  <Quests></Quests>
+  <Questers></Questers>
+</QuesterProfile>
