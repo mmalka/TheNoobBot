@@ -271,6 +271,15 @@
         <Z>1316.599</Z>
       </Position>
     </Npc>
+    <Npc>
+      <Name>Denalan</Name>
+      <Entry>2080</Entry>
+      <Position>
+        <X>10116.93</X>
+        <Y>1654.174</Y>
+        <Z>1324.624</Z>
+      </Position>
+    </Npc>
   </Questers>
   <Quests>
     <Quest>
@@ -1819,6 +1828,89 @@
           <NpcEntry>3517</NpcEntry>
           <QuestId>922</QuestId>
           <QuestName>Rellian Greenspyre</QuestName>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Mossy Tumors?</Name>
+      <Id>923</Id>
+      <RaceMask>8</RaceMask>
+      <QuestLevel>9</QuestLevel>
+      <MinLevel>4</MinLevel>
+      <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>922</int>
+      </NeedQuestCompletedId>
+      <PickUp>3517</PickUp>
+      <TurnIn>3517</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>5170</CollectItemId>
+          <CollectCount>5</CollectCount>
+          <Entry>
+            <int>2027</int>
+            <int>2029</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10393.83</X>
+              <Y>1642.178</Y>
+              <Z>1285.294</Z>
+            </Point>
+            <Point>
+              <X>10623.2</X>
+              <Y>1599.879</Y>
+              <Z>1292.438</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Oakenscowl</Name>
+      <Id>2499</Id>
+      <RaceMask>8</RaceMask>
+      <QuestLevel>9</QuestLevel>
+      <MinLevel>4</MinLevel>
+      <MaxLevel>15</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>923</int>
+      </NeedQuestCompletedId>
+      <PickUp>2080</PickUp>
+      <TurnIn>2080</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>8136</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Entry>
+            <int>2166</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>10440.04</X>
+              <Y>1451.896</Y>
+              <Z>1324.546</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>10116.93</X>
+            <Y>1654.174</Y>
+            <Z>1324.624</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>2080</NpcEntry>
+          <QuestId>2499</QuestId>
+          <QuestName>Oakenscowl</QuestName>
         </QuestObjective>
       </Objectives>
     </Quest>

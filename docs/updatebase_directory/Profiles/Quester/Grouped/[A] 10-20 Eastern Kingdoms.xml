@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Includes>
+    <Include>
+      <PathFile>[A] 10-15 Westfall.xml</PathFile>
+      <ScriptCondition></ScriptCondition>
+    </Include>
+    <Include>
+      <PathFile>[A] 15-20 Redridge Mountains.xml</PathFile>
+      <ScriptCondition></ScriptCondition>
+    </Include>
+  </Includes>
+  <Blackspots></Blackspots>
+  <AvoidMobs></AvoidMobs>
+  <Quests></Quests>
+  <Questers></Questers>
+</QuesterProfile>
