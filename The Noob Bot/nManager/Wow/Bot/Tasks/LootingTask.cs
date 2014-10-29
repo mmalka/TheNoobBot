@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
@@ -207,21 +208,17 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        public static void ConfirmOnBoPItems()
+        public static void LootAndConfirmBoPForAllItems(bool forceBoP)
         {
             try
             {
                 Thread.Sleep(Usefuls.Latency);
+                string forcedBoP = forceBoP ? " ConfirmLootSlot(slot) " : "";
                 Lua.LuaDoString(
                     "for slot = 1, GetNumLootItems() do " +
-                    //"  if GetLootSlotType(slot) != 2 then " +
-                    "    ConfirmLootSlot(slot) " +
-                    //"  end " +
+                    "    LootSlot(slot) " +
+                    forcedBoP +
                     "end");
-                /* TODO : We need to handle properly the event OR We need to check if the current Slot is a BoP item or not.
-                 * Currently, we count how many loots we've got, and check one by one if the loot is an "item" (and not golds, etc).
-                 * Note: AutoConfirmOnBoPItems is false per default.
-                 */
                 Thread.Sleep(Usefuls.Latency);
             }
             catch (Exception ex)
