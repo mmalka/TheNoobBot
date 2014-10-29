@@ -337,16 +337,10 @@ namespace nManager.Wow.Helpers
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
-                /*Interact.InteractWith(baseAddress);
-                Thread.Sleep(Usefuls.Latency + 500);
-                ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
-                if (targetIsGameObject.IsValid)
-                    Thread.Sleep(2600); // to let the Gameobject open*/
                 InteractTarget(ref npc, baseAddress);
                 Logging.Write("PickUp Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();
-                // GetNumGossipActiveQuests() == 1 because of auto accepted quests
-                if (!(Quest.GetNumGossipAvailableQuests() == 1 && Quest.GetNumGossipActiveQuests() == 1) && id == questId)
+                if (Quest.GetNumGossipAvailableQuests() == 0 && id == questId)
                 {
                     Quest.AcceptQuest();
                     Thread.Sleep(Usefuls.Latency + 500);
@@ -357,13 +351,19 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    if (Quest.GetGossipAvailableQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
+                    bool systemWorks = Quest.GetGossipAvailableQuestsWorks();
+                    if (systemWorks) // 2 quest gossip systems = 2 different codes :(
                     {
                         for (int i = 1; i <= Quest.GetNumGossipAvailableQuests(); i++)
                         {
                             Quest.SelectGossipAvailableQuest(i);
                             Thread.Sleep(Usefuls.Latency + 500);
                             id = Quest.GetQuestID();
+                            if (id ==0)
+                            {
+                                systemWorks = false;
+                                break;
+                            }
                             if (id == questId)
                             {
                                 Quest.AcceptQuest();
@@ -381,7 +381,7 @@ namespace nManager.Wow.Helpers
                             Thread.Sleep(Usefuls.Latency + 500);
                         }
                     }
-                    else
+                    if (!systemWorks)
                     {
                         int gossipid = 1;
                         while (Quest.GetAvailableTitle(gossipid) != "")
@@ -424,15 +424,10 @@ namespace nManager.Wow.Helpers
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
-                /*Interact.InteractWith(baseAddress);
-                Thread.Sleep(Usefuls.Latency + 500);
-                ObjectManager.WoWGameObject targetIsGameObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
-                if (targetIsGameObject.IsValid)
-                    Thread.Sleep(2600); // to let the Gameobject open*/
                 InteractTarget(ref npc, baseAddress);
                 Logging.Write("turnIn Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();
-                if (id == questId) // this may fail
+                if (Quest.GetNumGossipActiveQuests() == 0 && id == questId)
                 {
                     equip = Quest.CompleteQuest();
                     Thread.Sleep(Usefuls.Latency + 500);
@@ -442,18 +437,23 @@ namespace nManager.Wow.Helpers
                     id = Quest.GetQuestID();
                     Quest.FinishedQuestSet.Add(questId);
                     Quest.CloseQuestWindow();
-                    //Quest.AbandonQuest(id);
                     AbandonnedId = id;
                 }
                 else
                 {
-                    if (Quest.GetGossipActiveQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
+                    bool systemWorks = Quest.GetGossipActiveQuestsWorks();
+                    if (systemWorks) // 2 quest gossip systems = 2 different codes :(
                     {
                         for (int i = 1; i <= Quest.GetNumGossipActiveQuests(); i++)
                         {
                             Quest.SelectGossipActiveQuest(i);
                             Thread.Sleep(Usefuls.Latency + 500);
                             id = Quest.GetQuestID();
+                            if (id == 0)
+                            {
+                                systemWorks = false;
+                                break;
+                            }
                             if (id == questId)
                             {
                                 equip = Quest.CompleteQuest();
@@ -468,8 +468,6 @@ namespace nManager.Wow.Helpers
                                     break;
                                 }
                                 Quest.FinishedQuestSet.Add(questId);
-                                // If it was auto-accepted, then abandon it. I'll make this better later.
-                                //Quest.AbandonQuest(id);
                                 AbandonnedId = id;
                                 break;
                             }
@@ -479,7 +477,7 @@ namespace nManager.Wow.Helpers
                             Thread.Sleep(Usefuls.Latency + 500);
                         }
                     }
-                    else
+                    if (!systemWorks)
                     {
                         int gossipid = 1;
                         while (Quest.GetActiveTitle(gossipid) != "")
