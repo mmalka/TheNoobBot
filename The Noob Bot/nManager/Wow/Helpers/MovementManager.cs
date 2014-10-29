@@ -572,11 +572,6 @@ namespace nManager.Wow.Helpers
                         Logging.WriteDebug("UnStuck - StuckCount updated, new value: " + StuckCount + ".");
                         return;
                     }
-                    Logging.WriteDebug("UnStuck - We are currently mounted.");
-                    MovementsAction.Ascend(true);
-                    Thread.Sleep(Others.Random(500, 1000));
-                    MovementsAction.Ascend(false);
-                    Logging.WriteDebug("UnStuck - Jump attempt done.");
                 }
                 Statistics.Stucks++;
                 Logging.WriteNavigator("UnStuck - Non-flying UnStuck in progress.");
@@ -584,8 +579,8 @@ namespace nManager.Wow.Helpers
                 // Simply try to jump over or dismount if needed
                 if (_distmountAttempt.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3)
                 {
-                    float dx = 1.5f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
-                    float dy = 1.5f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
+                    float dx = 1.0f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
+                    float dy = 1.0f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
                     Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
                         ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
