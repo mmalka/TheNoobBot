@@ -40,7 +40,7 @@ namespace nManager.Wow.Helpers
                 if (autoInteract != 1)
                 {
                     Logging.WriteDebug("AutoInteract_Activate_Pointer was OFF, now activated.");
-                    Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.WriteUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 }
                 uint autoDismount =
@@ -49,7 +49,7 @@ namespace nManager.Wow.Helpers
                 if (autoDismount != 1)
                 {
                     Logging.WriteDebug("AutoDismount_Activate_Pointer was OFF, now activated.");
-                    Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.WriteUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoDismount_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 }
                 uint autoLoot =
@@ -58,7 +58,7 @@ namespace nManager.Wow.Helpers
                 if (autoLoot != 1)
                 {
                     Logging.WriteDebug("AutoLoot_Activate_Pointer was OFF, now activated.");
-                    Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.WriteUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoLoot_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 }
                 uint autoSelfCast =
@@ -67,7 +67,7 @@ namespace nManager.Wow.Helpers
                 if (autoSelfCast != 1)
                 {
                     Logging.WriteDebug("AutoSelfCast_Activate_Pointer was OFF, now activated.");
-                    Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.WriteUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoSelfCast_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 }
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");

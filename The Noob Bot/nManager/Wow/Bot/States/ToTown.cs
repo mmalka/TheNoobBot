@@ -63,9 +63,9 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (_grandExpeditionYak != null &&
+                /*if (_grandExpeditionYak != null &&
                     (SpellManager.ExistMountLUA(_grandExpeditionYak.NameInGame) || _grandExpeditionYak.KnownSpell))
-                    _magicMountYak = true;
+                    _magicMountYak = true; */
 
                 if (_travelersTundraMammoth != null &&
                     (SpellManager.ExistMountLUA(_travelersTundraMammoth.NameInGame) ||
