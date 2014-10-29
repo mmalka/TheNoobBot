@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 19102
+    ///   Offset and Pointer for Wow 19103
     /// </summary>
     public static class Addresses
     {
@@ -195,7 +195,7 @@
             SpellDBCMaxIndex = 200000,
             SpellBookNumSpells = 0xDF016C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xDF01B8 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xDF01B8 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0xDF0324, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
@@ -240,12 +240,12 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayerObj = 0x39F4,
-            FrameScript_ExecuteBuffer = 0x24069,
-            CGUnit_C__InitializeTrackingState = 0x2E706E, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2D85DA,
-            CGWorldFrame__Intersect = 0x4FA8A9,
-            Spell_C_HandleTerrainClick = 0x246CA2,
-            CGUnit_C__Interact = 0x907047,
+            FrameScript_ExecuteBuffer = 0x240C5,
+            CGUnit_C__InitializeTrackingState = 0x2E71BF, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2D872B,
+            CGWorldFrame__Intersect = 0x4FA927,
+            Spell_C_HandleTerrainClick = 0x246DEF,
+            CGUnit_C__Interact = 0x907079,
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
