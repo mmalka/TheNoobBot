@@ -140,7 +140,7 @@ namespace Quester.Tasks
                 return true;
 
             // If we can check the objective in quest log, then rely on it
-            if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CurrentCount > 0))
+            if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CollectCount > 0))
                 return Quest.IsObjectiveCompleted(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id, questObjective.InternalIndex,
                     questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount);
 
