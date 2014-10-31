@@ -19,3 +19,22 @@ itemName = GetItemInfo(108043)  if GetItemCount(itemName)  >= 10 then RunMacroTe
 for i=108318, 108365 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
 for i=97619, 97624 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
 for i=109623, 109629 do itemName = GetItemInfo(i)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end end 
+itemName = GetItemInfo(110610)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112157)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112156)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112155)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112158)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112178)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112177)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112182)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112179)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112180)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112181)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112183)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112184)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(112185)  if GetItemCount(itemName)  >= 10 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(25649)  if GetItemCount(itemName)  >= 5 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(33567)  if GetItemCount(itemName)  >= 5 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(72162)  if GetItemCount(itemName)  >= 5 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(52977)  if GetItemCount(itemName)  >= 5 then RunMacroText("/use " .. itemName) end 
+itemName = GetItemInfo(2934)  if GetItemCount(itemName)  >= 3 then RunMacroText("/use " .. itemName) end 
