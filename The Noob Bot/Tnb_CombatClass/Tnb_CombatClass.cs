@@ -9548,7 +9548,11 @@ public class DruidBalance
         {
             MoonkinForm.Launch();
         }
-
+        
+        if (AstralCommunion.KnownSpell && AstralCommunion.IsSpellUsable && MySettings.UseAstralCommunion && !ObjectManager.Me.InCombat)
+        {
+            AstralCommunion.Launch(true);
+        }
         if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable
             && MySettings.UseMoonfire)
         {
@@ -9648,17 +9652,6 @@ public class DruidBalance
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (AstralCommunion.KnownSpell && AstralCommunion.IsSpellUsable && MySettings.UseAstralCommunion
-            && !ObjectManager.Me.HaveBuff(48518) && !ObjectManager.Me.HaveBuff(48517)
-            && !ObjectManager.Me.InCombat)
-        {
-            AstralCommunion.Launch();
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(200);
-            }
-            return;
-        }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
