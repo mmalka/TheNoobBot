@@ -1215,7 +1215,7 @@ namespace nManager.Wow.ObjectManager
                             list.Add(a);
                         else if (a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT) && a.GetSkillLevelRequired <= myEngeneeringLevel)
                             list.Add(a);
-                        else if (a.GetSkillLevelRequired <= mySkinningLevel)
+                        else if (!a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT) && !a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT) && !a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT))
                             list.Add(a);
                     }
                 }
