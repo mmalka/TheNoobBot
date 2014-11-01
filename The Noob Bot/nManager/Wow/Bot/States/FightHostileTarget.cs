@@ -53,7 +53,7 @@ namespace nManager.Wow.Bot.States
                 if (Party.IsInGroup())
                 {
                     List<WoWUnit> targets = new List<WoWUnit>();
-                    foreach (ulong playerGuid in Party.GetPartyPlayersGUID())
+                    foreach (UInt128 playerGuid in Party.GetPartyPlayersGUID())
                     {
                         if (playerGuid != ObjectManager.ObjectManager.Me.Guid)
                         {

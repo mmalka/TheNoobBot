@@ -19,7 +19,7 @@ namespace nManager.Wow.Helpers
             QueryGuid = 3,
             ReplyGuid = 31,
             RequestGrouping = 4,
-            ReplyGrouping = 41,
+            ReplyGrouping = 51,
             Disconnect = 9,
         }
 
