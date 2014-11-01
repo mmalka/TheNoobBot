@@ -8342,7 +8342,6 @@ public class WarlockDestruction
         bool hasImmolateBuff = Immolate.TargetHaveBuff;
         if (ObjectManager.GetNumberAttackPlayer() > 4)
         {
-            // Blizzard API Calls for Immolate using Corruption Function
             if (MySettings.UseFireandBrimstone && MySettings.UseImmolate && FireandBrimstone.KnownSpell
                 && !hasImmolateBuff && Immolate.KnownSpell && Immolate.IsHostileDistanceGood
                 && FireandBrimstone.IsSpellUsable && Immolate.IsSpellUsable)
@@ -8406,7 +8405,7 @@ public class WarlockDestruction
             Conflagrate.Launch();
             return;
         }
-        // 4) Cast Chaos Bolt Icon Chaos Bolt if
+        // 4) Cast Chaos Bolt if
         //    * you have more than 3.5 Burning Embers or
         //    * you have an Intellect/Critical Strike/Mastery/Spell Power proc or
         //    * Dark Soul: Instability is up or
