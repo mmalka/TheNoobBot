@@ -50,12 +50,15 @@ namespace nManager.Wow.Bot.Tasks
                     Point n = new Point(node.Position);
                     n.Z = n.Z + 2.5f;
                     Point n2 = new Point(n);
-                    n2.Z = n2.Z + 60;
+                    n2.Z = n2.Z + 80;
                     if (TraceLine.TraceLineGo(n2, n, CGWorldFrameHitFlags.HitTestAllButLiquid))
                     {
-                        Logging.Write("Node stuck");
-                        nManagerSetting.AddBlackList(node.Guid, 1000*60*2);
-                        return;
+                        if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, n, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                        {
+                            Logging.Write("Node stuck");
+                            nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 2);
+                            return;
+                        }
                     }
 
                     MovementManager.StopMove();
@@ -63,20 +66,17 @@ namespace nManager.Wow.Bot.Tasks
 
                     Helpful.Timer timer = new Helpful.Timer((int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position)/3*1000) + 5000);
                     bool toMine = false;
+                    bool landing = false;
 
                     while (node.IsValid && Products.Products.IsStarted &&
                            !ObjectManager.ObjectManager.Me.IsDeadMe &&
                            !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
                            !timer.IsReady)
                     {
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) >= 10.0f)
+                        if (!landing)
                         {
-                            Point temps = new Point(node.Position.X, node.Position.Y, node.Position.Z + 2.5f);
-                            if (temps.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
-                            {
-                                temps = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, temps, 100);
-                            }
-                            zT = TraceLine.TraceLineGo(temps) ? ObjectManager.ObjectManager.Me.Position.Z : temps.Z;
+                            bool noDirectPath = TraceLine.TraceLineGo(n);
+                            zT = noDirectPath ? ObjectManager.ObjectManager.Me.Position.Z : n.Z;
 
                             if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z + 2.5f)
                             {
@@ -96,15 +96,17 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
                             }
+                            if (!noDirectPath)
+                                landing = true;
                         }
 
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 5.0f &&
-                            ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) >= 6 && !toMine)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 4.0f &&
+                            ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) >= 5.0f && !toMine)
                         {
                             toMine = true;
                             zT = node.Position.Z + 1.5f;
                             MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
-                            if (node.GetDistance > 4.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                            if (node.GetDistance > 3.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
                             {
                                 Logging.Write("Node outside view");
                                 nManagerSetting.AddBlackList(node.Guid, 1000*120);
@@ -158,11 +160,11 @@ namespace nManager.Wow.Bot.Tasks
                                 return;
                             }
                             Interact.InteractWith(node.GetBaseAddress);
-                            Thread.Sleep(Usefuls.Latency + 400);
+                            Thread.Sleep(Usefuls.Latency + 500);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
                             {
                                 Interact.InteractWith(node.GetBaseAddress);
-                                Thread.Sleep(Usefuls.Latency + 400);
+                                Thread.Sleep(Usefuls.Latency + 500);
                             }
                             while (ObjectManager.ObjectManager.Me.IsCast)
                             {
@@ -270,11 +272,11 @@ namespace nManager.Wow.Bot.Tasks
                             if (MovementManager.InMovement)
                                 return;
                         }
-                        Thread.Sleep(250 + Usefuls.Latency);
                         while (ObjectManager.ObjectManager.Me.GetMove)
                         {
                             Thread.Sleep(250);
                         }
+                        Thread.Sleep(250 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             if (!node.IsHerb || (node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())))
