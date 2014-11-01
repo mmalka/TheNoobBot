@@ -47,13 +47,13 @@ namespace nManager.Wow.Bot.Tasks
                     else
                         zT = node.Position.Z + 2.5f;
 
-                    Point n = new Point(node.Position);
-                    n.Z = n.Z + 2.5f;
-                    Point n2 = new Point(n);
-                    n2.Z = n2.Z + 80;
-                    if (TraceLine.TraceLineGo(n2, n, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                    Point aboveNode = new Point(node.Position);
+                    aboveNode.Z = aboveNode.Z + 2.5f;
+                    Point farAboveNode = new Point(aboveNode);
+                    farAboveNode.Z = farAboveNode.Z + 80;
+                    if (TraceLine.TraceLineGo(farAboveNode, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                     {
-                        if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, n, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                        if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                         {
                             Logging.Write("Node stuck");
                             nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 2);
@@ -75,10 +75,10 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         if (!landing)
                         {
-                            bool noDirectPath = TraceLine.TraceLineGo(n);
-                            zT = noDirectPath ? ObjectManager.ObjectManager.Me.Position.Z : n.Z;
+                            bool noDirectPath = TraceLine.TraceLineGo(aboveNode);
+                            zT = noDirectPath ? ObjectManager.ObjectManager.Me.Position.Z : aboveNode.Z;
 
-                            if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z + 2.5f)
+                            if (ObjectManager.ObjectManager.Me.Position.Z < aboveNode.Z)
                             {
                                 // elevate in a 45° angle instead of 90°
                                 Point direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
