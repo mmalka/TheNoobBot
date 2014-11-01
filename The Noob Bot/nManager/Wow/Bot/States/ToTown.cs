@@ -31,7 +31,7 @@ namespace nManager.Wow.Bot.States
 
         private readonly Spell _grandExpeditionYak = new Spell(122708);
         private readonly Spell _travelersTundraMammoth = new Spell(61425);
-        private bool _magicMountYak;
+        private bool _magicMountYak = false;
         private bool _magicMountMammoth;
         private bool _useMollE;
         private bool _use74A;
