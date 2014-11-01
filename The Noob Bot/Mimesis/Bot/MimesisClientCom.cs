@@ -93,7 +93,7 @@ namespace Mimesis.Bot
                 return 0;
             }
             if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyGuid)
-                return (UInt128) new UInt128(buffer);
+                return MimesisHelpers.BytesToObject<UInt128>(buffer);
             return 0;
         }
 
