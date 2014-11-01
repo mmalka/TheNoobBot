@@ -27,6 +27,22 @@ namespace nManager.Wow.ObjectManager
         {
         }
 
+        new public bool IsValid
+        {
+            get
+            {
+                try
+                {
+                    return Name != "" && base.IsValid;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWGameObject > IsValid: " + e);
+                    return false;
+                }
+            }
+        }
+
         public UInt128 CreatedBy
         {
             get
