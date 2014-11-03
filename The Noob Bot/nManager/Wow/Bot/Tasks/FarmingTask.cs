@@ -287,6 +287,7 @@ namespace nManager.Wow.Bot.Tasks
                         Interact.InteractWith(node.GetBaseAddress);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
+                            _countThisLoot = false;
                             return;
                         }
                         Thread.Sleep(250 + Usefuls.Latency);
@@ -299,7 +300,7 @@ namespace nManager.Wow.Bot.Tasks
                             _countThisLoot = false;
                             return;
                         }
-                        Thread.Sleep(250 + Usefuls.Latency);
+                        Thread.Sleep(500 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             _countThisLoot = false;
