@@ -49,7 +49,7 @@ namespace nManager.Wow.Helpers
             return currentEventNamePtr > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetCount) : 0;
         }
 
-        private static bool IsAttached(WoWEventsType eventType, string callBack, bool sendsFireCount = false)
+        public static bool IsAttached(WoWEventsType eventType, string callBack, bool sendsFireCount = false)
         {
             try
             {

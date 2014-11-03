@@ -14,11 +14,15 @@ namespace nManager.Wow.Bot.Tasks
     public static class FarmingTask
     {
         private static UInt128 _lastnode;
+        private static bool _wasLooted;
+        private static bool _countThisLoot;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {
             try
             {
+                if (!EventsListener.IsAttached(WoWEventsType.LOOT_READY, "callback => TakeFarmingLoots()"))
+                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots());
                 if (Usefuls.IsFlying)
                     Fly(nodes);
                 else
@@ -39,9 +43,6 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     Logging.Write("Farm " + node.Name + " (" + node.Entry + ") > " + node.Position.X + "; " + node.Position.Y + "; " + node.Position.Z);
                     float zT;
-                    Point pt = node.Position;
-                    pt.Z = pt.Z + 1.5f;
-
                     if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z)
                         zT = node.Position.Z + 5.5f;
                     else
@@ -159,6 +160,8 @@ namespace nManager.Wow.Bot.Tasks
                                 Usefuls.DisMount();
                                 return;
                             }
+                            _wasLooted = false;
+                            _countThisLoot = true;
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 500);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -175,24 +178,19 @@ namespace nManager.Wow.Bot.Tasks
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 Usefuls.DisMount();
+                                _countThisLoot = false;
                                 return;
                             }
                             Thread.Sleep(Usefuls.Latency + 100);
-                            LootingTask.LootAndConfirmBoPForAllItems(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems);
-                            Statistics.Farms++;
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 Usefuls.DisMount();
+                                _countThisLoot = false;
                                 return;
                             }
                             nManagerSetting.AddBlackList(node.Guid, 1000*20);
-                            Logging.Write("Farm successful");
-                            if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
-                                !ObjectManager.ObjectManager.Me.InCombat)
-                                Elemental.AutoMakeElemental();
-
                             return;
                         }
                         else if (!ObjectManager.ObjectManager.Me.GetMove)
@@ -210,7 +208,8 @@ namespace nManager.Wow.Bot.Tasks
                     if (timer.IsReady)
                         nManagerSetting.AddBlackList(node.Guid);
                     MovementManager.StopMove();
-                    Logging.Write("Farm failed");
+                    if (!_wasLooted)
+                        Logging.Write("Farm failed");
                 }
             }
             catch (Exception ex)
@@ -283,6 +282,8 @@ namespace nManager.Wow.Bot.Tasks
                                 MountTask.DismountMount();
                             return;
                         }
+                        _wasLooted = false;
+                        _countThisLoot = true;
                         Interact.InteractWith(node.GetBaseAddress);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
@@ -295,20 +296,19 @@ namespace nManager.Wow.Bot.Tasks
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
+                            _countThisLoot = false;
                             return;
                         }
                         Thread.Sleep(250 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
+                            _countThisLoot = false;
                             return;
                         }
-                        LootingTask.LootAndConfirmBoPForAllItems(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems);
-                        Statistics.Farms++;
-                        nManagerSetting.AddBlackList(node.Guid, 1000*20); //60 * 5); // 20 sec instead of 5 min
-                        Logging.Write("Farm successful");
-                        if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
-                            !ObjectManager.ObjectManager.Me.InCombat)
-                            Elemental.AutoMakeElemental();
+                        if (_wasLooted)
+                            nManagerSetting.AddBlackList(node.Guid, 1000 * 20); // 20 sec
+                        else
+                            Logging.Write("Farm failed");
                         return;
                     }
                     MovementManager.StopMove();
@@ -319,6 +319,20 @@ namespace nManager.Wow.Bot.Tasks
             catch (Exception ex)
             {
                 Logging.WriteError("FarmingTask > Ground(IEnumerable<WoWGameObject> nodes): " + ex);
+            }
+        }
+
+        private static void TakeFarmingLoots()
+        {
+            if (_countThisLoot)
+            {
+                _countThisLoot = false;
+                LootingTask.LootAndConfirmBoPForAllItems(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems);
+                Statistics.Farms++;
+                Logging.Write("Farm successful");
+                _wasLooted = true;
+                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)
+                    Elemental.AutoMakeElemental();
             }
         }
     }
