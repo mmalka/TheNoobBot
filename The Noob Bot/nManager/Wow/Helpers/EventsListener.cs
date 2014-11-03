@@ -49,7 +49,7 @@ namespace nManager.Wow.Helpers
             return currentEventNamePtr > 0 ? Memory.WowMemory.Memory.ReadInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetCount) : 0;
         }
 
-        public static bool IsAttached(WoWEventsType eventType, string callBack, bool sendsFireCount = false)
+        private static bool IsAttached(WoWEventsType eventType, string callBack, bool sendsFireCount = false)
         {
             try
             {
@@ -69,14 +69,15 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static void HookEvent(WoWEventsType eventType, Expression<CallBack> method, bool requestFireCount = false)
+        public static void HookEvent(WoWEventsType eventType, Expression<CallBack> method, bool requestFireCount = false, bool ignoreAlreadyDone = false)
         {
             try
             {
                 Logging.WriteDebug("Init HookEvent for event: " + eventType + " with CallBack: " + method + " and requestFireCount: " + requestFireCount);
                 if (IsAttached(eventType, method.ToString(), requestFireCount))
                 {
-                    Logging.WriteError("The event " + eventType + " with method " + method + " and parameter requestFireCount set to " + requestFireCount +
+                    if (!ignoreAlreadyDone)
+                        Logging.WriteError("The event " + eventType + " with method " + method + " and parameter requestFireCount set to " + requestFireCount +
                                        " is already hooked in the exact same way, duplicates of HookEvent is a bad code manner, make sure to UnHook your event when your Stop() your plugin.");
                     return;
                 }

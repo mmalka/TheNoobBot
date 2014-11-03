@@ -21,8 +21,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (!EventsListener.IsAttached(WoWEventsType.LOOT_READY, "callback => TakeFarmingLoots()"))
-                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots());
+                EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots(), false, true);
                 if (Usefuls.IsFlying)
                     Fly(nodes);
                 else
