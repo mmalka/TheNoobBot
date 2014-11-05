@@ -135,7 +135,7 @@
             ChannelSpellStartTime = 0xF5C,
             ChannelSpellEndTime = 0xF60,
             CanInterrupt = 0xEFC, // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
-            CanInterruptOffset = 0X0, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
+            CanInterruptOffset = 0xDF1268, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
             CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
             CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
             TransportGUID = 0xA40, // CGUnit_C__HasVehicleTransport
@@ -256,7 +256,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xD93B38,
+            X = 0xD93A38,
             Y = X + 0x4,
             Z = X + 0x8,
         }
