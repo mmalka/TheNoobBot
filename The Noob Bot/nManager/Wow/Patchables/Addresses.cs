@@ -30,7 +30,7 @@
         /// </summary>
         public enum Hooking
         {
-            DX_DEVICE = 0xC31970, // ClientInitializeGame, first offset
+            DX_DEVICE = 0xC32AB8, // ClientInitializeGame, first offset
             DX_DEVICE_IDX = 0x2854, // DX9_DEVICE_IDX_FOUND (0x9441C)
             ENDSCENE_IDX = 0xA8,
         }
