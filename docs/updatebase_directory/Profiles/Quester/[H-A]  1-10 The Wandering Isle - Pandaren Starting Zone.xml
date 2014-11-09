@@ -2536,44 +2536,5 @@
         </QuestObjective>
       </Objectives>
     </Quest>
-    <Quest>
-      <Name>New Allies</Name>
-      <Id>29800</Id>
-      <RaceMask>8388608</RaceMask>
-      <QuestLevel>1</QuestLevel>
-      <MinLevel>1</MinLevel>
-      <MaxLevel>15</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>29799</int>
-      </NeedQuestCompletedId>
-      <PickUp>57739</PickUp>
-      <TurnIn>56013</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Entry>
-            <int>57741</int>
-          </Entry>
-          <Position>
-            <X>264.3715</X>
-            <Y>3867.603</Y>
-            <Z>73.56178</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>Wait</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <WaitMs>11000</WaitMs>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>56013</NpcEntry>
-          <QuestId>29800</QuestId>
-          <QuestName>New Allies</QuestName>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
   </Quests>
 </QuesterProfile>

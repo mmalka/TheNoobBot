@@ -661,7 +661,7 @@
             <Y>958.2831</Y>
             <Z>32.54342</Z>
           </Position> 
-          <WaitMs>10000</WaitMs>           
+          <WaitMs>8000</WaitMs>           
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -672,7 +672,7 @@
             <Y>969.3795</Y>
             <Z>32.11203</Z>
           </Position>
-          <WaitMs>10000</WaitMs>              
+          <WaitMs>8000</WaitMs>              
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -683,7 +683,7 @@
             <Y>987.7315</Y>
             <Z>32.38435</Z>
           </Position> 
-          <WaitMs>10000</WaitMs>             
+          <WaitMs>8000</WaitMs>             
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -694,7 +694,7 @@
             <Y>1003.224</Y>
             <Z>32.16319</Z>
           </Position>
-          <WaitMs>10000</WaitMs>              
+          <WaitMs>8000</WaitMs>              
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -705,7 +705,7 @@
             <Y>1050.038</Y>
             <Z>31.54327</Z>
           </Position>
-          <WaitMs>10000</WaitMs>              
+          <WaitMs>8000</WaitMs>              
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -716,7 +716,7 @@
             <Y>1060.365</Y>
             <Z>32.30742</Z>
           </Position>
-          <WaitMs>10000</WaitMs>              
+          <WaitMs>8000</WaitMs>              
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -727,7 +727,7 @@
             <Y>1090.954</Y>
             <Z>32.78183</Z>
           </Position> 
-          <WaitMs>10000</WaitMs>             
+          <WaitMs>8000</WaitMs>              
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -738,7 +738,7 @@
             <Y>1146.876</Y>
             <Z>31.78437</Z>
           </Position> 
-          <WaitMs>10000</WaitMs>             
+          <WaitMs>8000</WaitMs>                
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -749,7 +749,7 @@
             <Y>1191.142</Y>
             <Z>32.51653</Z>
           </Position>
-          <WaitMs>10000</WaitMs>                      
+          <WaitMs>8000</WaitMs>                         
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -760,7 +760,7 @@
             <Y>1204.691</Y>
             <Z>33.65634</Z>
           </Position>
-          <WaitMs>10000</WaitMs>            
+          <WaitMs>8000</WaitMs>            
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -771,7 +771,7 @@
             <Y>1222.583</Y>
             <Z>33.16272</Z>
           </Position>
-          <WaitMs>10000</WaitMs>            
+          <WaitMs>8000</WaitMs>            
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -782,7 +782,7 @@
             <Y>1227.003</Y>
             <Z>33.34126</Z>
           </Position>
-          <WaitMs>10000</WaitMs>            
+          <WaitMs>8000</WaitMs>            
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>
@@ -793,7 +793,7 @@
             <Y>1234.715</Y>
             <Z>32.0074</Z>
           </Position>
-          <WaitMs>10000</WaitMs>            
+          <WaitMs>8000</WaitMs>              
         </QuestObjective>
       </Objectives>      
     </Quest>
@@ -998,7 +998,7 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <UseItemId>58112</UseItemId>
-          <Count>3</Count>
+          <Count>2</Count>
           <Position>
             <X>-11135.41</X>
             <Y>556.8768</Y>

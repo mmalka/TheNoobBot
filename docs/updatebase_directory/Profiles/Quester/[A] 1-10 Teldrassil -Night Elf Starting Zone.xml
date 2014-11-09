@@ -353,7 +353,7 @@
             <int>195074</int>
           </Entry>
           <CollectItemId>46700</CollectItemId>
-          <CollectCount>5</CollectCount>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>10266.51</X>
@@ -1016,7 +1016,8 @@
             <X>10709.76</X>
             <Y>762.1296</Y>
             <Z>1321.166</Z>
-          </Position>            
+          </Position> 
+          <WaitMs>5000</WaitMs>           
         </QuestObjective>
       </Objectives>      
     </Quest>
@@ -1416,7 +1417,7 @@
           <QuestId>2541</QuestId>
           <QuestName>The Sleeping Druid</QuestName>
         </QuestObjective>
-        <!--<QuestObjective>
+        <!--<QuestObjective>  UseItem on Death Units
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>7317</NpcEntry>
@@ -1424,6 +1425,7 @@
           <QuestName>Druid of the Claw</QuestName>
         </QuestObjective>
         <QuestObjective>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <Objective>KillMob</Objective>
           <Count>1</Count>
           <Entry>
@@ -1438,6 +1440,7 @@
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <IsDead>true</IsDead>
           <Objective>UseItem</Objective>
           <UseItemId>8149</UseItemId>
@@ -1513,12 +1516,12 @@
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalQuestId>483</InternalQuestId>
-          <InternalIndex>3</InternalIndex>
+          <InternalIndex>1</InternalIndex>
           <Entry>
             <int>2741</int>
           </Entry>
           <CollectItemId>3407</CollectItemId>
-          <CollectCount>1</CollectCount>
+          <CollectCount>2</CollectCount>
           <Hotspots>
             <Point>
               <X>9837.882</X>
@@ -1531,7 +1534,7 @@
           <Objective>KillMob</Objective>
           <InternalQuestId>13945</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <Count>15</Count>
+          <Count>20</Count>
           <Entry>
             <int>2011</int>
             <int>2009</int>
@@ -1732,6 +1735,13 @@
           <QuestName>Timberling Sprouts</QuestName>
         </QuestObjective>
         <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>6751</NpcEntry>
+          <QuestId>930</QuestId>
+          <QuestName>The Glowing Fruit</QuestName>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>PickUpObject</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalQuestId>919</InternalQuestId>
@@ -1755,14 +1765,8 @@
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>2080</NpcEntry>
-          <QuestId>919</QuestId>
-          <QuestName>Timberling Sprouts</QuestName>
-        </QuestObjective>  
-        <QuestObjective>
           <Objective>KillMob</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalIndex>1</InternalIndex>
           <CollectItemId>5168</CollectItemId>
           <CollectCount>6</CollectCount>
@@ -1790,9 +1794,23 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>2080</NpcEntry>
+          <QuestId>930</QuestId>
+          <QuestName>The Glowing Fruit</QuestName>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>2080</NpcEntry>
+          <QuestId>919</QuestId>
+          <QuestName>Timberling Sprouts</QuestName>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>2080</NpcEntry>
           <QuestId>918</QuestId>
           <QuestName>Timberling Seeds</QuestName>
-        </QuestObjective>
+        </QuestObjective>  
       </Objectives>
     </Quest>
     <Quest>
@@ -1803,32 +1821,11 @@
       <MinLevel>4</MinLevel>
       <MaxLevel>15</MaxLevel>
       <NeedQuestCompletedId>
-        <int>918</int>
+        <int>919</int>
       </NeedQuestCompletedId>
       <PickUp>2080</PickUp>
       <TurnIn>3517</TurnIn>
       <Objectives>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>6751</NpcEntry>
-          <QuestId>930</QuestId>
-          <QuestName>The Glowing Fruit</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>2080</NpcEntry>
-          <QuestId>930</QuestId>
-          <QuestName>The Glowing Fruit</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>3517</NpcEntry>
-          <QuestId>922</QuestId>
-          <QuestName>Rellian Greenspyre</QuestName>
-        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
