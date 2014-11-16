@@ -1108,7 +1108,7 @@ namespace nManager.Wow.Helpers
                 }
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && !Fight.InFight && !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.InTransport &&
-                    MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                    MountTask.GetMountCapacity() > MountCapacity.Feet && _canRemount.IsReady && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount && Products.Products.ProductName.ToLower() != "fisherbot")
                 {
                     if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                         MountTask.MountingGroundMount(false);
