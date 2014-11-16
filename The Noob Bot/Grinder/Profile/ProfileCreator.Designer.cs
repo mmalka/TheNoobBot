@@ -259,11 +259,6 @@ namespace Grinder.Profile
             this.maxLevelPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxLevelPlayer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.maxLevelPlayer.Location = new System.Drawing.Point(248, 166);
-            this.maxLevelPlayer.Maximum = new decimal(new int[] {
-            90,
-            0,
-            0,
-            0});
             this.maxLevelPlayer.Minimum = new decimal(new int[] {
             1,
             0,
@@ -273,7 +268,7 @@ namespace Grinder.Profile
             this.maxLevelPlayer.Size = new System.Drawing.Size(43, 22);
             this.maxLevelPlayer.TabIndex = 30;
             this.maxLevelPlayer.Value = new decimal(new int[] {
-            90,
+            100,
             0,
             0,
             0});
@@ -285,6 +280,11 @@ namespace Grinder.Profile
             this.maxLevelTarget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxLevelTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.maxLevelTarget.Location = new System.Drawing.Point(521, 166);
+            this.maxLevelTarget.Maximum = new decimal(new int[] {
+            103,
+            0,
+            0,
+            0});
             this.maxLevelTarget.Minimum = new decimal(new int[] {
             1,
             0,
@@ -612,6 +612,7 @@ namespace Grinder.Profile
             // 
             // ProfileCreator
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(575, 531);
@@ -634,7 +635,6 @@ namespace Grinder.Profile
             this.Controls.Add(this.addZoneB);
             this.Controls.Add(this.ListOfZonesLabel);
             this.Controls.Add(this.listZoneCb);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.addByNameNpcB);
             this.Controls.Add(this.nameNpcTb);
             this.Controls.Add(this.loadB);
@@ -658,7 +658,6 @@ namespace Grinder.Profile
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "ProfileCreator";
-            
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
