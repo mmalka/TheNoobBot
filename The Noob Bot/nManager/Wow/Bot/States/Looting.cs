@@ -18,6 +18,8 @@ namespace nManager.Wow.Bot.States
 
         public override int Priority { get; set; }
 
+        public static bool IsLooting;
+
         public override bool NeedToRun
         {
             get
@@ -73,7 +75,9 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
+            IsLooting = true;
             LootingTask.Pulse(_units);
+            IsLooting = false;
         }
     }
 }
