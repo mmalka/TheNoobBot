@@ -1194,8 +1194,6 @@ namespace nManager.Wow.ObjectManager
             {
                 List<WoWUnit> list = new List<WoWUnit>();
                 int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
-                if (mySkinningLevel > 0)
-                    mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
                 int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
                 if (myHerbalismLevel > 0)
                     myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
@@ -1209,13 +1207,18 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (a.IsSkinnable && !withoutGuid.Contains(a.Guid))
                     {
-                        if (a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT) && a.GetSkillLevelRequired <= myHerbalismLevel)
-                            list.Add(a);
-                        else if (a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT) && a.GetSkillLevelRequired <= myMiningLevel)
-                            list.Add(a);
-                        else if (a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT) && a.GetSkillLevelRequired <= myEngeneeringLevel)
-                            list.Add(a);
-                        else if (mySkinningLevel > 0 && !a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT) && !a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT) && !a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT))
+                        if (a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT))
+                            if (a.GetSkillLevelRequired <= myHerbalismLevel) list.Add(a);
+                            else continue;
+                        if (a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT))
+                            if (a.GetSkillLevelRequired <= myMiningLevel)
+                                list.Add(a);
+                            else continue;
+                        if (a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT))
+                            if (a.GetSkillLevelRequired <= myEngeneeringLevel)
+                                list.Add(a);
+                            else continue;
+                        if (mySkinningLevel <= 0)
                             list.Add(a);
                     }
                 }

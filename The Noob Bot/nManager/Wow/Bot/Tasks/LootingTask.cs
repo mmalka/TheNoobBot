@@ -156,9 +156,7 @@ namespace nManager.Wow.Bot.Tasks
                                                 else
                                                 {
                                                     int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
-                                                    if (mySkinningLevel > 0)
-                                                        mySkinningLevel += Skill.GetSkillBonus(Enums.SkillLine.Skinning);
-                                                    if (wowUnit.GetSkillLevelRequired > mySkinningLevel)
+                                                    if (mySkinningLevel <= 0)
                                                     {
                                                         nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                         break;
