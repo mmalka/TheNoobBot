@@ -1218,7 +1218,7 @@ namespace nManager.Wow.ObjectManager
                             if (a.GetSkillLevelRequired <= myEngeneeringLevel)
                                 list.Add(a);
                             else continue;
-                        if (mySkinningLevel <= 0)
+                        if (mySkinningLevel > 0)
                             list.Add(a);
                     }
                 }
