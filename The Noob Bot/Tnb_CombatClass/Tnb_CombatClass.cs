@@ -1565,7 +1565,7 @@ public class DeathknightBlood
     public readonly Spell BloodPlague = new Spell("Blood Plague");
     public readonly Spell BloodPresence = new Spell("Blood Presence");
     public readonly Spell FrostFever = new Spell("Frost Fever");
-	public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
+    public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
     public readonly Spell FrostPresence = new Spell("Frost Presence");
     public readonly Spell HornofWinter = new Spell("Horn of Winter");
     public readonly Spell PathofFrost = new Spell("Path of Frost");
@@ -1612,6 +1612,7 @@ public class DeathknightBlood
     #endregion
 
     #region Defensive Cooldown
+
     public readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
     public readonly Spell AntiMagicZone = new Spell("Anti-Magic Zone");
     public readonly Spell ArmyoftheDead = new Spell("Army of the Dead");
@@ -1905,7 +1906,7 @@ public class DeathknightBlood
         if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
         {
             HornofWinter.Launch();
-			return;
+            return;
         }
 
         if (MySettings.UseDeathsAdvance && DeathsAdvance.KnownSpell && !ObjectManager.Me.InCombat && DeathsAdvance.IsSpellUsable
@@ -2011,7 +2012,7 @@ public class DeathknightBlood
             DeathPact.Launch();
             return;
         }
-		
+
         if (MySettings.UseLichborne && Lichborne.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseLichborneAtPercentage
             && ObjectManager.Me.RunicPower > 39 && Lichborne.IsSpellUsable)
         {
@@ -2178,7 +2179,7 @@ public class DeathknightBlood
 
         if (MySettings.UseOutbreak && Outbreak.KnownSpell && Outbreak.IsHostileDistanceGood && (_bloodPlagueTimer.IsReady
                                                                                                 || _frostFeverTimer.IsReady || !BloodPlague.TargetHaveBuff ||
-                                                                                               (!FrostFever.TargetHaveBuff || !NecroticPlague.TargetHaveBuff)) && Outbreak.IsSpellUsable)
+                                                                                                (!FrostFever.TargetHaveBuff || !NecroticPlague.TargetHaveBuff)) && Outbreak.IsSpellUsable)
         {
             Outbreak.Launch();
             _bloodPlagueTimer = new Timer(1000*27);
@@ -2186,13 +2187,12 @@ public class DeathknightBlood
             return;
         }
 
-		// IcyVeins top DPS rotation say DS should be cast before BloodBoil but after refreshing sicknesses.
         if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood && DeathStrike.IsSpellUsable)
         {
             DeathStrike.Launch();
             return;
         }
-		
+
         if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsHostileDistanceGood
             && ((_bloodPlagueTimer.IsReady && BloodPlague.TargetHaveBuff) || (_frostFeverTimer.IsReady && (FrostFever.TargetHaveBuff || NecroticPlague.TargetHaveBuff))) && BloodBoil.IsSpellUsable)
         {
@@ -2204,12 +2204,12 @@ public class DeathknightBlood
             return;
         }
 
-		if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable)
+        if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable)
         {
             DeathCoil.Launch();
             return;
         }
-		
+
         if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && (_bloodPlagueTimer.IsReady || !BloodPlague.TargetHaveBuff)
             && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable)
         {
@@ -2217,7 +2217,7 @@ public class DeathknightBlood
             _bloodPlagueTimer = new Timer(1000*27);
             return;
         }
-		
+
         if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood && (_frostFeverTimer.IsReady || (!FrostFever.TargetHaveBuff || !NecroticPlague.TargetHaveBuff))
             && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && IcyTouch.IsSpellUsable)
         {
@@ -2292,7 +2292,7 @@ public class DeathknightBlood
             return;
         }
 
-               if (MySettings.UseHeartStrike && HeartStrike.KnownSpell && HeartStrike.IsHostileDistanceGood && HeartStrike.IsSpellUsable)
+        if (MySettings.UseHeartStrike && HeartStrike.KnownSpell && HeartStrike.IsHostileDistanceGood && HeartStrike.IsSpellUsable)
         {
             HeartStrike.Launch();
             return;
@@ -3237,7 +3237,7 @@ public class DeathknightUnholy
         if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
         {
             HornofWinter.Launch();
-			return;
+            return;
         }
 
         if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
@@ -3803,7 +3803,7 @@ public class DeathknightFrost
         if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
         {
             HornofWinter.Launch();
-			return;
+            return;
         }
 
         if (MySettings.UseDeathsAdvance && DeathsAdvance.KnownSpell && !ObjectManager.Me.InCombat && ObjectManager.Me.GetMove && DeathsAdvance.IsSpellUsable)
@@ -4223,7 +4223,7 @@ public class DeathknightFrost
         if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
         {
             HornofWinter.Launch();
-			return;
+            return;
         }
 
         if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
@@ -7976,7 +7976,7 @@ public class WarlockDestruction
             && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
-            _rainOfFireTimer = new Timer(1000 * 6.5);
+            _rainOfFireTimer = new Timer(1000*6.5);
         }
     }
 
@@ -8359,7 +8359,7 @@ public class WarlockDestruction
             Immolate.KnownSpell && Immolate.IsHostileDistanceGood && Immolate.IsSpellUsable)
         {
             Immolate.Launch();
-            _immolateTimer = new Timer(1000 * 12);
+            _immolateTimer = new Timer(1000*12);
             return;
         }
         // 3) Cast Conflagrate if you have two charges. // But I don't know how to know number of charges
@@ -8375,11 +8375,11 @@ public class WarlockDestruction
         //    * Dark Soul: Instability is up or
         //    * your Tier 16 4-piece bonus is up and you have more than 3 Burning Embers.
         if (MySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable &&
-              ( ObjectManager.Me.BurningEmbers > 35 ||
-                false ||
-                ObjectManager.Me.HaveBuff(DarkSoulInstability) || ObjectManager.Me.HaveBuff(Backdraft) ||
-                ObjectManager.Me.HaveBuff(FourT16Parts)
-              )
+            (ObjectManager.Me.BurningEmbers > 35 ||
+             false ||
+             ObjectManager.Me.HaveBuff(DarkSoulInstability) || ObjectManager.Me.HaveBuff(Backdraft) ||
+             ObjectManager.Me.HaveBuff(FourT16Parts)
+                )
             )
         {
             ChaosBolt.Launch();
@@ -8390,7 +8390,7 @@ public class WarlockDestruction
             && !RainofFire.TargetHaveBuff && RainofFire.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
-            _rainOfFireTimer = new Timer(1000 * 6.5);
+            _rainOfFireTimer = new Timer(1000*6.5);
             return;
         }
         // 6) Cast Conflagrate if you have one charge.
@@ -9511,7 +9511,7 @@ public class DruidBalance
         {
             MoonkinForm.Launch();
         }
-        
+
         if (AstralCommunion.KnownSpell && AstralCommunion.IsSpellUsable && MySettings.UseAstralCommunion && !ObjectManager.Me.InCombat)
         {
             AstralCommunion.Launch(true);
@@ -24637,7 +24637,7 @@ public class HunterBeastMastery
         DefenseCycle();
         Heal();
 
-        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss&&  GlaiveToss.IsHostileDistanceGood
+        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss && GlaiveToss.IsHostileDistanceGood
             && GlaiveToss.IsSpellUsable)
         {
             GlaiveToss.Launch();
@@ -24661,7 +24661,7 @@ public class HunterBeastMastery
             CobraShot.Launch();
             return;
         }
-        if (SteadyShot.KnownSpell &&   (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsHostileDistanceGood
+        if (SteadyShot.KnownSpell && (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsHostileDistanceGood
             && SteadyShot.IsSpellUsable)
         {
             SteadyShot.Launch();

@@ -332,7 +332,15 @@ namespace nManager.Wow.Bot.States
                 {
                     SkillLine skillLine = (SkillLine) Others.ToInt32(skillInfo[0]);
                     SkillRank skillRank = (SkillRank) Others.ToInt32(skillInfo[1]);
-                    SkillRank nextRank = skillRank + 75;
+                    SkillRank nextRank;
+                    if (skillRank == SkillRank.ZenMaster)
+                    {
+                        nextRank = skillRank + 100;
+                    }
+                    else
+                    {
+                        nextRank = skillRank + 75;
+                    }
                     string oldRank = "";
                     if (skillRank != SkillRank.None)
                         oldRank = " We were only " + skillRank.ToString() + " of " + skillLine.ToString() + ".";
@@ -353,7 +361,15 @@ namespace nManager.Wow.Bot.States
             if (TeacherFoundNoSpam.Contains(teacher))
                 return;
             TeacherFoundNoSpam.Add(teacher);
-            SkillRank nextRank = skillRank + 75;
+            SkillRank nextRank;
+            if (skillRank == SkillRank.ZenMaster)
+            {
+                nextRank = skillRank + 100;
+            }
+            else
+            {
+                nextRank = skillRank + 75;
+            }
             string current = "You don't know this skill yet";
             if (skillRank > SkillRank.None)
                 current = "You are currently " + skillRank + " of " + skillLine.ToString() + ". Level " + value + "/" + (int) skillRank;
@@ -722,7 +738,8 @@ namespace nManager.Wow.Bot.States
                             break;
                     }
                     break;
-                case SkillRank.ZenMaster: // Nothing to learn.
+                case SkillRank.ZenMaster: // Learnable by complex way (need a scroll, etc...)
+                case SkillRank.DraenorMaster: // Nothing to learn.
                     return false;
             }
             if (nManagerSetting.CurrentSetting.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum)

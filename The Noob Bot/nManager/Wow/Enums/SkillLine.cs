@@ -11,6 +11,7 @@
         GrandMaster = 450,
         IllustriousGrandMaster = 525,
         ZenMaster = 600,
+        DraenorMaster = 700,
     }
 
     public enum SkillLine
