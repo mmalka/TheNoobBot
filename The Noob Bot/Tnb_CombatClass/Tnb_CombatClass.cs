@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -1115,13 +1116,29 @@ public class Main : ICombatClass
         }
         Logging.WriteFight("Combat system stopped.");
     }
+
+    internal static void DumpCurrentSettings<T>(object mySettings)
+    {
+        mySettings = mySettings is T ? (T) mySettings : default(T);
+        BindingFlags bindingFlags = BindingFlags.Public |
+                                    BindingFlags.NonPublic |
+                                    BindingFlags.Instance |
+                                    BindingFlags.Static;
+        for (int i = 0; i < mySettings.GetType().GetFields(bindingFlags).Length - 1; i++)
+        {
+            FieldInfo field = mySettings.GetType().GetFields(bindingFlags)[i];
+            Logging.WriteDebug(field.Name + " = " + field.GetValue(mySettings));
+        }
+
+        // Last field is intentionnally ommited because it's a backing field.
+    }
 }
 
 #region Deathknight
 
 public class DeathknightApprentice
 {
-    private static readonly DeathknightApprenticeSettings MySettings = DeathknightApprenticeSettings.GetSettings();
+    private static DeathknightApprenticeSettings MySettings = DeathknightApprenticeSettings.GetSettings();
 
     #region Professions & Racials
 
@@ -1181,6 +1198,8 @@ public class DeathknightApprentice
     public DeathknightApprentice()
     {
         Main.InternalRange = 5.0f;
+        MySettings = DeathknightApprenticeSettings.GetSettings();
+        Main.DumpCurrentSettings<DeathknightApprenticeSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -1531,7 +1550,7 @@ public class DeathknightApprentice
 
 public class DeathknightBlood
 {
-    private static readonly DeathknightBloodSettings MySettings = DeathknightBloodSettings.GetSettings();
+    private static DeathknightBloodSettings MySettings = DeathknightBloodSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -1640,6 +1659,8 @@ public class DeathknightBlood
     public DeathknightBlood()
     {
         Main.InternalRange = 5.0f;
+        MySettings = DeathknightBloodSettings.GetSettings();
+        Main.DumpCurrentSettings<DeathknightBloodSettings>(MySettings);
         UInt128 lastTarget = 0;
         LowHP();
 
@@ -2490,7 +2511,7 @@ public class DeathknightBlood
 
 public class DeathknightUnholy
 {
-    private static readonly DeathknightUnholySettings MySettings = DeathknightUnholySettings.GetSettings();
+    private static DeathknightUnholySettings MySettings = DeathknightUnholySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -2602,6 +2623,8 @@ public class DeathknightUnholy
     public DeathknightUnholy()
     {
         Main.InternalRange = 5.0f;
+        MySettings = DeathknightUnholySettings.GetSettings();
+        Main.DumpCurrentSettings<DeathknightUnholySettings>(MySettings);
         UInt128 lastTarget = 0;
         LowHP();
 
@@ -3429,7 +3452,7 @@ public class DeathknightUnholy
 
 public class DeathknightFrost
 {
-    private static readonly DeathknightFrostSettings MySettings = DeathknightFrostSettings.GetSettings();
+    private static DeathknightFrostSettings MySettings = DeathknightFrostSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -3535,6 +3558,8 @@ public class DeathknightFrost
     public DeathknightFrost()
     {
         Main.InternalRange = 5.0f;
+        MySettings = DeathknightFrostSettings.GetSettings();
+        Main.DumpCurrentSettings<DeathknightFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
         LowHP();
 
@@ -4424,7 +4449,7 @@ public class DeathknightFrost
 
 public class MageArcane
 {
-    private static readonly MageArcaneSettings MySettings = MageArcaneSettings.GetSettings();
+    private static MageArcaneSettings MySettings = MageArcaneSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -4521,6 +4546,8 @@ public class MageArcane
     public MageArcane()
     {
         Main.InternalRange = 30.0f;
+        MySettings = MageArcaneSettings.GetSettings();
+        Main.DumpCurrentSettings<MageArcaneSettings>(MySettings);
         UInt128 lastTarget = 0;
         LowHP();
 
@@ -5334,7 +5361,7 @@ public class MageArcane
 
 public class MageFrost
 {
-    private static readonly MageFrostSettings MySettings = MageFrostSettings.GetSettings();
+    private static MageFrostSettings MySettings = MageFrostSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -5431,6 +5458,8 @@ public class MageFrost
     public MageFrost()
     {
         Main.InternalRange = 30.0f;
+        MySettings = MageFrostSettings.GetSettings();
+        Main.DumpCurrentSettings<MageFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
         LowHP();
 
@@ -6233,7 +6262,7 @@ public class MageFrost
 
 public class MageFire
 {
-    private static readonly MageFireSettings MySettings = MageFireSettings.GetSettings();
+    private static MageFireSettings MySettings = MageFireSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -6322,6 +6351,8 @@ public class MageFire
     public MageFire()
     {
         Main.InternalRange = 30.0f;
+        MySettings = MageFireSettings.GetSettings();
+        Main.DumpCurrentSettings<MageFireSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -6964,7 +6995,7 @@ public class MageFire
 
 public class WarlockDemonology
 {
-    private static readonly WarlockDemonologySettings MySettings = WarlockDemonologySettings.GetSettings();
+    private static WarlockDemonologySettings MySettings = WarlockDemonologySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -7063,6 +7094,8 @@ public class WarlockDemonology
     public WarlockDemonology()
     {
         Main.InternalRange = 30.0f;
+        MySettings = WarlockDemonologySettings.GetSettings();
+        Main.DumpCurrentSettings<WarlockDemonologySettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -7796,7 +7829,7 @@ public class WarlockDemonology
 
 public class WarlockDestruction
 {
-    private static readonly WarlockDestructionSettings MySettings = WarlockDestructionSettings.GetSettings();
+    private static WarlockDestructionSettings MySettings = WarlockDestructionSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -7903,6 +7936,8 @@ public class WarlockDestruction
     public WarlockDestruction()
     {
         Main.InternalRange = 40.0f;
+        MySettings = WarlockDestructionSettings.GetSettings();
+        Main.DumpCurrentSettings<WarlockDestructionSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -8578,7 +8613,7 @@ public class WarlockDestruction
 
 public class WarlockAffliction
 {
-    private static readonly WarlockAfflictionSettings MySettings = WarlockAfflictionSettings.GetSettings();
+    private static WarlockAfflictionSettings MySettings = WarlockAfflictionSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -8680,6 +8715,8 @@ public class WarlockAffliction
     public WarlockAffliction()
     {
         Main.InternalRange = 30.0f;
+        MySettings = WarlockAfflictionSettings.GetSettings();
+        Main.DumpCurrentSettings<WarlockAfflictionSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -9370,7 +9407,7 @@ public class WarlockAffliction
 
 public class DruidBalance
 {
-    private static readonly DruidBalanceSettings MySettings = DruidBalanceSettings.GetSettings();
+    private static DruidBalanceSettings MySettings = DruidBalanceSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -9465,6 +9502,8 @@ public class DruidBalance
     public DruidBalance()
     {
         Main.InternalRange = 30.0f;
+        MySettings = DruidBalanceSettings.GetSettings();
+        Main.DumpCurrentSettings<DruidBalanceSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -10181,7 +10220,7 @@ public class DruidBalance
 
 public class DruidFeral
 {
-    private static readonly DruidFeralSettings MySettings = DruidFeralSettings.GetSettings();
+    private static DruidFeralSettings MySettings = DruidFeralSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -10286,6 +10325,8 @@ public class DruidFeral
     public DruidFeral()
     {
         Main.InternalRange = 5.0f;
+        MySettings = DruidFeralSettings.GetSettings();
+        Main.DumpCurrentSettings<DruidFeralSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -11040,7 +11081,7 @@ public class DruidFeral
 
 public class DruidRestoration
 {
-    private static readonly DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
+    private static DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -11131,6 +11172,8 @@ public class DruidRestoration
     public DruidRestoration()
     {
         Main.InternalRange = 30.0f;
+        MySettings = DruidRestorationSettings.GetSettings();
+        Main.DumpCurrentSettings<DruidRestorationSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -11697,7 +11740,7 @@ public class DruidRestoration
 
 public class DruidGuardian
 {
-    private static readonly DruidGuardianSettings MySettings = DruidGuardianSettings.GetSettings();
+    private static DruidGuardianSettings MySettings = DruidGuardianSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -11789,6 +11832,8 @@ public class DruidGuardian
     public DruidGuardian()
     {
         Main.InternalRange = 5.0f;
+        MySettings = DruidGuardianSettings.GetSettings();
+        Main.DumpCurrentSettings<DruidGuardianSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -12452,7 +12497,7 @@ public class DruidGuardian
 
 public class PaladinHoly
 {
-    private static readonly PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
+    private static PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
 
     #region Professions & Racial
 
@@ -12519,7 +12564,8 @@ public class PaladinHoly
     public PaladinHoly()
     {
         Main.InternalRange = 30f;
-
+        MySettings = PaladinHolySettings.GetSettings();
+        Main.DumpCurrentSettings<PaladinHolySettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -12928,7 +12974,7 @@ public class PaladinHoly
 
 public class PaladinProtection
 {
-    private static readonly PaladinProtectionSettings MySettings = PaladinProtectionSettings.GetSettings();
+    private static PaladinProtectionSettings MySettings = PaladinProtectionSettings.GetSettings();
 
     #region Professions & Racial
 
@@ -12997,7 +13043,8 @@ public class PaladinProtection
     public PaladinProtection()
     {
         Main.InternalRange = 5.0f;
-
+        MySettings = PaladinProtectionSettings.GetSettings();
+        Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -13449,7 +13496,7 @@ public class PaladinProtection
 
 public class PaladinRetribution
 {
-    private static readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
+    private static PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
 
     #region Professions & Racials
 
@@ -13539,7 +13586,8 @@ public class PaladinRetribution
     public PaladinRetribution()
     {
         Main.InternalRange = 5.0f;
-
+        MySettings = PaladinRetributionSettings.GetSettings();
+        Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -14055,7 +14103,7 @@ public class PaladinRetribution
 
 public class ShamanEnhancement
 {
-    private static readonly ShamanEnhancementSettings MySettings = ShamanEnhancementSettings.GetSettings();
+    private static ShamanEnhancementSettings MySettings = ShamanEnhancementSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -14159,6 +14207,8 @@ public class ShamanEnhancement
     public ShamanEnhancement()
     {
         Main.InternalRange = 5.0f;
+        MySettings = ShamanEnhancementSettings.GetSettings();
+        Main.DumpCurrentSettings<ShamanEnhancementSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -14946,7 +14996,7 @@ public class ShamanEnhancement
 
 public class ShamanRestoration
 {
-    private static readonly ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
+    private static ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -15052,6 +15102,8 @@ public class ShamanRestoration
     public ShamanRestoration()
     {
         Main.InternalRange = 30.0f;
+        MySettings = ShamanRestorationSettings.GetSettings();
+        Main.DumpCurrentSettings<ShamanRestorationSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -15832,7 +15884,7 @@ public class ShamanRestoration
 
 public class ShamanElemental
 {
-    private static readonly ShamanElementalSettings MySettings = ShamanElementalSettings.GetSettings();
+    private static ShamanElementalSettings MySettings = ShamanElementalSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -15938,6 +15990,8 @@ public class ShamanElemental
     public ShamanElemental()
     {
         Main.InternalRange = 30.0f;
+        MySettings = ShamanElementalSettings.GetSettings();
+        Main.DumpCurrentSettings<ShamanElementalSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -16680,7 +16734,7 @@ public class ShamanElemental
 
 public class PriestShadow
 {
-    private static readonly PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
+    private static PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -16775,6 +16829,8 @@ public class PriestShadow
     public PriestShadow()
     {
         Main.InternalRange = 30.0f;
+        MySettings = PriestShadowSettings.GetSettings();
+        Main.DumpCurrentSettings<PriestShadowSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -17452,7 +17508,7 @@ public class PriestShadow
 
 public class PriestDiscipline
 {
-    private static readonly PriestDisciplineSettings MySettings = PriestDisciplineSettings.GetSettings();
+    private static PriestDisciplineSettings MySettings = PriestDisciplineSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -17544,6 +17600,8 @@ public class PriestDiscipline
     public PriestDiscipline()
     {
         Main.InternalRange = 30.0f;
+        MySettings = PriestDisciplineSettings.GetSettings();
+        Main.DumpCurrentSettings<PriestDisciplineSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -18156,7 +18214,7 @@ public class PriestDiscipline
 
 public class PriestHoly
 {
-    private static readonly PriestHolySettings MySettings = PriestHolySettings.GetSettings();
+    private static PriestHolySettings MySettings = PriestHolySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -18250,6 +18308,8 @@ public class PriestHoly
     public PriestHoly()
     {
         Main.InternalRange = 30.0f;
+        MySettings = PriestHolySettings.GetSettings();
+        Main.DumpCurrentSettings<PriestHolySettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -18889,7 +18949,7 @@ public class PriestHoly
 
 public class RogueCombat
 {
-    private static readonly RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
+    private static RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -18992,6 +19052,8 @@ public class RogueCombat
     public RogueCombat()
     {
         Main.InternalRange = 5.0f;
+        MySettings = RogueCombatSettings.GetSettings();
+        Main.DumpCurrentSettings<RogueCombatSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -19650,7 +19712,7 @@ public class RogueCombat
 
 public class RogueSubtlety
 {
-    private static readonly RogueSubtletySettings MySettings = RogueSubtletySettings.GetSettings();
+    private static RogueSubtletySettings MySettings = RogueSubtletySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -19751,6 +19813,8 @@ public class RogueSubtlety
     public RogueSubtlety()
     {
         Main.InternalRange = 5.0f;
+        MySettings = RogueSubtletySettings.GetSettings();
+        Main.DumpCurrentSettings<RogueSubtletySettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -20388,7 +20452,7 @@ public class RogueSubtlety
 
 public class RogueAssassination
 {
-    private static readonly RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
+    private static RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -20488,6 +20552,8 @@ public class RogueAssassination
     public RogueAssassination()
     {
         Main.InternalRange = 5.0f;
+        MySettings = RogueAssassinationSettings.GetSettings();
+        Main.DumpCurrentSettings<RogueAssassinationSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -21145,7 +21211,7 @@ public class RogueAssassination
 
 public class WarriorArms
 {
-    private static readonly WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
+    private static WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -21244,6 +21310,8 @@ public class WarriorArms
     public WarriorArms()
     {
         Main.InternalRange = 5.0f;
+        MySettings = WarriorArmsSettings.GetSettings();
+        Main.DumpCurrentSettings<WarriorArmsSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -21979,7 +22047,7 @@ public class WarriorArms
 
 public class WarriorProtection
 {
-    private static readonly WarriorProtectionSettings MySettings = WarriorProtectionSettings.GetSettings();
+    private static WarriorProtectionSettings MySettings = WarriorProtectionSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -22082,6 +22150,8 @@ public class WarriorProtection
     public WarriorProtection()
     {
         Main.InternalRange = 5.0f;
+        MySettings = WarriorProtectionSettings.GetSettings();
+        Main.DumpCurrentSettings<WarriorProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -22847,7 +22917,7 @@ public class WarriorProtection
 
 public class WarriorFury
 {
-    private static readonly WarriorFurySettings MySettings = WarriorFurySettings.GetSettings();
+    private static WarriorFurySettings MySettings = WarriorFurySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -22946,6 +23016,8 @@ public class WarriorFury
     public WarriorFury()
     {
         Main.InternalRange = 5.0f;
+        MySettings = WarriorFurySettings.GetSettings();
+        Main.DumpCurrentSettings<WarriorFurySettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -23643,7 +23715,7 @@ public class WarriorFury
 
 public class HunterMarksmanship
 {
-    private static readonly HunterMarksmanshipSettings MySettings = HunterMarksmanshipSettings.GetSettings();
+    private static HunterMarksmanshipSettings MySettings = HunterMarksmanshipSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -23746,6 +23818,8 @@ public class HunterMarksmanship
     public HunterMarksmanship()
     {
         Main.InternalRange = 30.0f;
+        MySettings = HunterMarksmanshipSettings.GetSettings();
+        Main.DumpCurrentSettings<HunterMarksmanshipSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -24462,7 +24536,7 @@ public class HunterMarksmanship
 
 public class HunterBeastMastery
 {
-    private static readonly HunterBeastMasterySettings MySettings = HunterBeastMasterySettings.GetSettings();
+    private static HunterBeastMasterySettings MySettings = HunterBeastMasterySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -24563,6 +24637,8 @@ public class HunterBeastMastery
     public HunterBeastMastery()
     {
         Main.InternalRange = 40.0f;
+        MySettings = HunterBeastMasterySettings.GetSettings();
+        Main.DumpCurrentSettings<HunterBeastMasterySettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -25291,7 +25367,7 @@ public class HunterBeastMastery
 
 public class HunterSurvival
 {
-    private static readonly HunterSurvivalSettings MySettings = HunterSurvivalSettings.GetSettings();
+    private static HunterSurvivalSettings MySettings = HunterSurvivalSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -25392,6 +25468,8 @@ public class HunterSurvival
     public HunterSurvival()
     {
         Main.InternalRange = 30.0f;
+        MySettings = HunterSurvivalSettings.GetSettings();
+        Main.DumpCurrentSettings<HunterSurvivalSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -26139,7 +26217,7 @@ public class HunterSurvival
 
 public class MonkBrewmaster
 {
-    private static readonly MonkBrewmasterSettings MySettings = MonkBrewmasterSettings.GetSettings();
+    private static MonkBrewmasterSettings MySettings = MonkBrewmasterSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -26236,6 +26314,8 @@ public class MonkBrewmaster
     public MonkBrewmaster()
     {
         Main.InternalRange = 5.0f;
+        MySettings = MonkBrewmasterSettings.GetSettings();
+        Main.DumpCurrentSettings<MonkBrewmasterSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -26792,7 +26872,7 @@ public class MonkBrewmaster
 
 public class MonkWindwalker
 {
-    private static readonly MonkWindwalkerSettings MySettings = MonkWindwalkerSettings.GetSettings();
+    private static MonkWindwalkerSettings MySettings = MonkWindwalkerSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -26883,6 +26963,8 @@ public class MonkWindwalker
     public MonkWindwalker()
     {
         Main.InternalRange = 5.0f;
+        MySettings = MonkWindwalkerSettings.GetSettings();
+        Main.DumpCurrentSettings<MonkWindwalkerSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -27410,7 +27492,7 @@ public class MonkWindwalker
 
 public class MonkMistweaver
 {
-    private static readonly MonkMistweaverSettings MySettings = MonkMistweaverSettings.GetSettings();
+    private static MonkMistweaverSettings MySettings = MonkMistweaverSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -27506,6 +27588,8 @@ public class MonkMistweaver
     public MonkMistweaver()
     {
         Main.InternalRange = 30.0f;
+        MySettings = MonkMistweaverSettings.GetSettings();
+        Main.DumpCurrentSettings<MonkMistweaverSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
