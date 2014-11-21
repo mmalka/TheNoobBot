@@ -550,7 +550,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static List<int> _garrisonMapIdList = new List<int>();
+        private static List<int> _garrisonMapIdList;
 
         public static List<int> GarrisonMapIdList
         {
