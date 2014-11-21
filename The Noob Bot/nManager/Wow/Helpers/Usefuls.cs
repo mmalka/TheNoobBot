@@ -34,6 +34,8 @@ namespace nManager.Wow.Helpers
         private static readonly Timer AfkTimer = new Timer(500);
         public static string AfkKeyPress;
 
+        private static readonly List<uint> GarrisonMaps = new List<uint>() { 1131, 1152, 1153, 1154, 1158, 1159, 1160 };
+
         public static bool InGame
         {
             get
@@ -419,6 +421,8 @@ namespace nManager.Wow.Helpers
 
         public static string ContinentNameMpqByContinentId(int cId)
         {
+            if (GarrisonMaps.Contains((uint)cId))
+                return "Draenor";
             string retS;
             switch ((ContinentId) cId)
             {
