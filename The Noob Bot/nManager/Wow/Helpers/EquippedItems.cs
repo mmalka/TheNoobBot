@@ -19,7 +19,6 @@ namespace nManager.Wow.Helpers
 
                 List<uint> itemId = new List<uint>
                 {
-                    (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_AMMO).Entry,
                     (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_HEAD).Entry,
                     (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_NECK).Entry,
                     (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHOULDER).Entry,
@@ -37,7 +36,7 @@ namespace nManager.Wow.Helpers
                     (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_CLOAK).Entry,
                     (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_WEAPON).Entry,
                     (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHIELD).Entry,
-                    (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_RANGED).Entry
+                    (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_TABARD).Entry
                 };
 
                 if (itemId.Count > 0)
@@ -98,13 +97,27 @@ namespace nManager.Wow.Helpers
 
                 foreach (WoWItem itemsTemp in itemsTemps)
                 {
-                    if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString() && nb == resultNb)
-                        return itemsTemp;
-                    if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString())
-                        nb++;
+                    var item = itemsTemp;
+                    var itemInfo = item.GetItemInfo;
+                    try
+                    {
+                        WoWInventorySlot invSlot = (WoWInventorySlot) Enum.Parse(typeof (WoWInventorySlot), itemInfo.ItemEquipLoc);
+                        if (Enum.IsDefined(typeof (WoWInventorySlot), invSlot) | invSlot.ToString().Contains(","))
+                        {
+                            if (invSlot == inventorySlot && nb == resultNb)
+                                return itemsTemp;
+                            if (invSlot == inventorySlot)
+                                nb++;
+                        }
+                    }
+                    catch (ArgumentException)
+                    {
+                        Logging.WriteError(string.Format("'{0}' is not a member of the WoWInventorySlot enumeration.", itemInfo.ItemEquipLoc));
+                    }
                 }
             }
-            catch (Exception exception)
+            catch
+                (Exception exception)
             {
                 Logging.WriteError("GetEquippedItem(WoWInventorySlot inventorySlot): " + exception);
             }
