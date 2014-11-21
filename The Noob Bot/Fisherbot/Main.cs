@@ -5,6 +5,7 @@ using Fisherbot;
 using Fisherbot.Bot;
 using nManager.Helpful;
 using nManager.Products;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
@@ -23,9 +24,13 @@ public class Main : IProduct
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FishingPoleName))
                 FisherbotSetting.CurrentSetting.FishingPoleName = Fishing.FishingPolesName();
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.WeaponName))
-                FisherbotSetting.CurrentSetting.WeaponName =
-                    ItemsManager.GetItemNameById(
-                        (int) ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2));
+            {
+                FisherbotSetting.CurrentSetting.WeaponName = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_WEAPONMAINHAND).Name;
+                FisherbotSetting.CurrentSetting.ShieldName = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_SHIELD).Name;
+                if (FisherbotSetting.CurrentSetting.WeaponName == FisherbotSetting.CurrentSetting.ShieldName)
+                    FisherbotSetting.CurrentSetting.ShieldName = "";
+
+            }
 
             Others.ProductStatusLog(Products.ProductName, 1);
         }

@@ -412,22 +412,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint GetEquipedItem
-        {
-            get
-            {
-                try
-                {
-                    return ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > GetEquipedItem: " + e);
-                }
-                return 0;
-            }
-        }
-
         public TrackObjectFlags MeObjectTrack
         {
             get

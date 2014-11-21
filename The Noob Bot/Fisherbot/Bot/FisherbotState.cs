@@ -100,6 +100,9 @@ namespace Fisherbot.Bot
                 {
                     FishingTask.StopLoopFish();
                     ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
+                    if (!string.IsNullOrEmpty(FisherbotSetting.CurrentSetting.ShieldName))
+                        ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.ShieldName);
+
                     timer = null;
                 }
                     // We are in timer, we fish, then save the position
@@ -251,6 +254,8 @@ namespace Fisherbot.Bot
             }
             FishingTask.StopLoopFish();
             ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
+            if (!string.IsNullOrEmpty(FisherbotSetting.CurrentSetting.ShieldName))
+                ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.ShieldName);
         }
     }
 }

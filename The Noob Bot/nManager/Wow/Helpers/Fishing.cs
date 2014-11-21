@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
@@ -224,13 +225,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                uint idEquiped =
-                    ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
+                WoWItem idEquiped = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_FISHINGPOLE);
                 if (fishingPoleName != string.Empty)
-                    if (ItemsManager.GetItemNameById((int) idEquiped) == fishingPoleName)
+                    if (idEquiped.Name == fishingPoleName)
                         return true;
 
-                if (ListFishingPoles.Contains(idEquiped))
+                if (ListFishingPoles.Contains((uint) idEquiped.Entry))
                     return true;
             }
             catch (Exception e)

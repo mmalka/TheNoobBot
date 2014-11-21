@@ -62,7 +62,7 @@ namespace nManager.Wow.Helpers
 
         public static WoWItem GetEquippedItem(int invSlot)
         {
-            UInt128 guid = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
+            UInt128 guid = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*4));
             List<WoWItem> items = ObjectManager.ObjectManager.GetObjectWoWItem();
             WoWItem first = items.FirstOrDefault(x => x.Guid == guid);
             WoWItem item = first ?? new WoWItem(0);
@@ -76,7 +76,7 @@ namespace nManager.Wow.Helpers
             bool success = false;
             for (slot = 0; slot < 19; slot++)
             {
-                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*2));
+                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<UInt128>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*4));
                 if (tmpguid != guid) continue;
                 success = true;
                 break;

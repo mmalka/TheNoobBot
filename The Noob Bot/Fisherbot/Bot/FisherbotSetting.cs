@@ -47,6 +47,7 @@ namespace Fisherbot.Bot
         public string LureName = "";
         public string FishingPoleName = "";
         public string WeaponName = "";
+        public string ShieldName = "";
         public bool PrecisionMode = true;
 
         internal Point FisherbotPosition = new Point();
