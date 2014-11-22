@@ -16,12 +16,17 @@ namespace nManager.Wow.Bot.Tasks
         private static UInt128 _lastnode;
         private static bool _wasLooted;
         private static bool _countThisLoot;
+        private static bool _firstRun = true;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {
             try
             {
-                EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots(), false, true);
+                if (_firstRun)
+                {
+                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots(), false, true);
+                    _firstRun = false;
+                }
                 if (Usefuls.IsFlying)
                     Fly(nodes);
                 else
@@ -56,7 +61,7 @@ namespace nManager.Wow.Bot.Tasks
                         if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, aboveNode, CGWorldFrameHitFlags.HitTestAllButLiquid))
                         {
                             Logging.Write("Node stuck");
-                            nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 2);
+                            nManagerSetting.AddBlackList(node.Guid, 1000*60*2);
                             return;
                         }
                     }
@@ -306,7 +311,7 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                         if (_wasLooted)
-                            nManagerSetting.AddBlackList(node.Guid, 1000 * 20); // 20 sec
+                            nManagerSetting.AddBlackList(node.Guid, 1000*20); // 20 sec
                         else
                             Logging.Write("Farm failed");
                         return;
