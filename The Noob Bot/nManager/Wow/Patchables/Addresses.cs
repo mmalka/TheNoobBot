@@ -23,6 +23,7 @@
             objectTYPE = 0xC, // ClntObjMgrGetActivePlayer
             firstObject = 0xD8, // CCommand_ObjUsage
             nextObject = 0x3C,
+            continentId = 0x108,
         }
 
         /// <summary>
@@ -78,7 +79,6 @@
         public enum GameInfo
         {
             GetTime = 0xC258A8, // FrameTime::GetCurTimeMs
-            continentId = 0xB5846C, // ContinentIdFOUND
             buildWoWVersionString = 0xC75828, // buildWoWVersionStringFOUND
             gameState = 0xD936DE, // Script_IsPlayerInWorld
             isLoadingOrConnecting = 0xC98708, // isLoadingOrConnectingFOUND

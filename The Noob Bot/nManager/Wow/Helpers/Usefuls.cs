@@ -533,24 +533,20 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                try
-                {
-                    var continentId = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId);
-                    if (continentId == 1116 || continentId == 0 || continentId == 1 || continentId == 530 || continentId == 870)
-                        return continentId;
-                    if (GarrisonMapIdList.Contains(continentId))
-                        return 1116;
-                    return continentId;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("ContinentId: " + e);
-                    return 0;
-                }
+                if (_continentId == 1116 || _continentId == 0 || _continentId == 1 || _continentId == 530 || _continentId == 870)
+                    return _continentId;
+                return GarrisonMapIdList.Contains(_continentId) ? 1116 : _continentId;
             }
+            set { _continentId = value; }
+        }
+
+        public static int RealContinentId
+        {
+            get { return _continentId; }
         }
 
         private static List<int> _garrisonMapIdList;
+        private static int _continentId;
 
         public static List<int> GarrisonMapIdList
         {
@@ -834,11 +830,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("MovementStatus: " + e);
                 return false;
             }
-        }
-
-        public static uint GetMapId()
-        {
-            return (uint) ContinentId;
         }
 
         public static void DisMount()

@@ -174,7 +174,7 @@ namespace nManager.Wow.ObjectManager
                 ObjectManagerAddress =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.clientConnection) + (uint) Addresses.ObjectManager.objectManager);
                 UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadUInt128(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
-
+                Usefuls.ContinentId = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.continentId);
                 // Get the first object in the linked list.
                 int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.firstObject);
 
