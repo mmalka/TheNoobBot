@@ -169,7 +169,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                return _meshPath + "\\" + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile";
+                return _meshPath + "\\" + GetTileName(x, y);
             }
             catch (Exception exception)
             {
@@ -178,15 +178,49 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        public string GetTileName(int x, int y)
+        public string GetTileName(int x, int y, bool onlyName = false)
         {
             try
             {
-                return Continent + "\\" + Continent + "_" + x + "_" + y + ".tile";
+                string cont = Continent;
+                if (Continent == "Draenor")
+                {
+                    if (x == 23 && y == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
+                    {
+                        if (Usefuls.IsCompletedAchievement(9546, true)) // Horde Garisson level 3
+                        {
+                            cont = "FWHordeGarrisonLevel2";
+                        }
+                        else if (Usefuls.IsCompletedAchievement(9545, true)) // Horde Garisson level 2
+                        {
+                            cont = "FWHordeGarrisonLeve2new";
+                        }
+                        else
+                        {
+                            cont = "FWHordeGarrisonLevel1";
+                        }
+                    }
+                    else if (x == 31 && y == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
+                    {
+                        if (Usefuls.IsCompletedAchievement(9101, true)) // Aliance Garisson level 3
+                        {
+                            cont = "SMVAllianceGarrisonLevel2";
+                        }
+                        else if (Usefuls.IsCompletedAchievement(9100, true)) // Aliance Garisson level 2
+                        {
+                            cont = "SMVAllianceGarrisonLevel2new";
+                        }
+                        else
+                        {
+                            cont = "SMVAllianceGarrisonLevel1";
+                        }
+                    }
+                }
+                return (onlyName ? "" : cont + "\\") + cont + "_" + x + "_" + y + ".tile";
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetTileName(int x, int y): " + exception);
+                Logging.WriteError("GetTileName(int x, int y, bool onlyName): " + exception);
                 return "";
             }
         }
@@ -350,7 +384,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (!File.Exists(path))
                     return false;
                 byte[] data = File.ReadAllBytes(path);
-                Logging.Write(Continent + "_" + x + "_" + y + ".tile loaded.");
+                Logging.Write(GetTileName(x, y, true) + " loaded.");
                 if (!LoadTile(data))
                 {
                     Others.DeleteFile(_meshPath + "\\" + fName);
