@@ -106,7 +106,9 @@ namespace nManager.Wow.Helpers
 
         public static int GetRandomDraenicBait()
         {
-            return DraenicBaitListInInventory.Length == 0 ? 0 : DraenicBaitListInInventory[new Random().Next(0, DraenicBaitListInInventory.Length)];
+            var inv = DraenicBaitListInInventory;
+            var randomized = new Random().Next(0, inv.Length);
+            return inv.Length <= 0 ? 0 : inv[randomized];
         }
 
         public static void UseDraenicBait()
