@@ -79,10 +79,12 @@ namespace Fisherbot.Bot
             if (!FisherbotSetting.CurrentSetting.FishSchool)
             {
                 // If we have a saved position and we don't fish, then go to position
-                if (FisherbotSetting.CurrentSetting.FisherbotPosition.IsValid &&
-                    !FishingTask.IsLaunched)
+                if (FisherbotSetting.CurrentSetting.FisherbotPosition.IsValid && !FishingTask.IsLaunched)
                 {
-                    LongMove.LongMoveGo(FisherbotSetting.CurrentSetting.FisherbotPosition);
+                    if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 5)
+                        LongMove.LongMoveGo(FisherbotSetting.CurrentSetting.FisherbotPosition);
+                    else if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 1)
+                        MovementManager.MoveTo(FisherbotSetting.CurrentSetting.FisherbotPosition);
                     MovementManager.Face(FisherbotSetting.CurrentSetting.FisherbotRotation);
                 }
                 // If we don't fish or the timer is null, then start a new timer, save position and fish
