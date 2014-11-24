@@ -78,6 +78,92 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static int[] DraenicBaitList = {110290, 110291, 110274, 110293, 110294, 110289, 110292};
+
+        public static bool HaveDraenicBaitBuff()
+        {
+            foreach (int baitId in DraenicBaitList)
+            {
+                if (SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(baitId)))
+                    return true;
+            }
+            return false;
+        }
+
+        public static int[] DraenicBaitListInInventory
+        {
+            get
+            {
+                var tmpList = new List<int>();
+                foreach (int i in DraenicBaitList)
+                {
+                    if (ItemsManager.GetItemCount(i) > 0)
+                        tmpList.Add(i);
+                }
+                return tmpList.ToArray();
+            }
+        }
+
+        public static int GetRandomDraenicBait()
+        {
+            return DraenicBaitListInInventory.Length == 0 ? 0 : DraenicBaitListInInventory[new Random().Next(0, DraenicBaitListInInventory.Length)];
+        }
+
+        public static void UseDraenicBait()
+        {
+            if (Usefuls.ContinentId != 1116 || HaveDraenicBaitBuff())
+                return;
+            int baitToUse = 0;
+            if (Usefuls.AreaId == 7004 || Usefuls.AreaId == 7078)
+            {
+                // Frostwall Horde garrison or Lunarfall Alliance garrison
+                baitToUse = GetRandomDraenicBait();
+            }
+            else if (Usefuls.AreaId == 6719)
+            {
+                // Shadowmoon Valley
+                baitToUse = DraenicBaitList[0];
+            }
+            else if (Usefuls.AreaId == 6720)
+            {
+                // Frostfire Ridge
+                baitToUse = DraenicBaitList[1];
+            }
+            else if (Usefuls.AreaId == 6721)
+            {
+                // Gorgrond
+                baitToUse = DraenicBaitList[2];
+            }
+            else if (Usefuls.AreaId == 6722)
+            {
+                // Spires of Arak
+                baitToUse = DraenicBaitList[3];
+            }
+            else if (Usefuls.AreaId == 6662)
+            {
+                // Talador
+                baitToUse = DraenicBaitList[4];
+            }
+            else if (Usefuls.AreaId == 6755)
+            {
+                // Nagrand
+                baitToUse = DraenicBaitList[5];
+            }
+            else if (Usefuls.AreaId == 7332 || Usefuls.AreaId == 7333)
+            {
+                // Stormshield or Warspear.
+                // Used as the Ocean zone.
+                // Users needs to know or they wont be able to fish correctly.
+                baitToUse = DraenicBaitList[6];
+            }
+
+            if (baitToUse == 0 || ItemsManager.GetItemCount(baitToUse) <= 0)
+                return;
+            string baitToUseName = ItemsManager.GetItemNameById(baitToUse);
+            if (ItemsManager.IsItemUsable(baitToUseName))
+                ItemsManager.UseItem(baitToUseName);
+        }
+
         /// <summary>
         /// Use lure.
         /// </summary>
@@ -89,6 +175,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                UseDraenicBait();
                 if (ObjectManager.ObjectManager.Me.IsMainHandTemporaryEnchanted)
                     return; // Already lured up.
 
