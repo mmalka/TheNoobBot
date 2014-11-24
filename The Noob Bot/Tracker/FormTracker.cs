@@ -26,6 +26,7 @@ namespace Tracker
             TrackByObjectTypeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Object_type) + ":";
             TrackByCreatureTypeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Creature_type) + ":";
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Tracker);
+            this.Text = MainHeader.TitleText;
         }
 
         private void ConfigForm()

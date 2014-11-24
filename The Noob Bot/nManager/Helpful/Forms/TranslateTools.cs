@@ -48,6 +48,7 @@ namespace nManager.Helpful.Forms
             LoadButton.Text = nManager.Translate.Get(nManager.Translate.Id.LoadTranslationFile).ToUpper(); // LOAD A TRANSLATION FILE
             QuitButton.Text = nManager.Translate.Get(nManager.Translate.Id.CloseWithoutSaving).ToUpper(); // CLOSE WITHOUT SAVING
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Translate_Tools) + @" - " + Information.MainTitle;
+            this.Text = MainHeader.TitleText;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

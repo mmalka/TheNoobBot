@@ -64,6 +64,7 @@ namespace The_Noob_Bot
                 LangSelection.SelectedIndexChanged += LangSelection_SelectedIndexChanged;
 
                 MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.LoginFormTitle) + @" - " + Information.MainTitle;
+                this.Text = MainHeader.TitleText;
                 Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
                 Remember.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRemember);
                 SetToolTypeIfNeeded(Remember);

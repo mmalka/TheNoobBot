@@ -122,6 +122,7 @@ namespace The_Noob_Bot
                 MainHeader.TitleText = ObjectManager.Me.Name + " - " + Information.MainTitle;
                 if (LoginServer.IsFreeVersion)
                     MainHeader.TitleText += " - Trial";
+                this.Text = MainHeader.TitleText;
 
 
                 // Products:

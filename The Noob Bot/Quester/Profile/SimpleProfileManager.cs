@@ -45,6 +45,7 @@ namespace Quester.Profile
         private void Translate()
         {
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager) + " - " + Information.MainTitle;
+            this.Text = MainHeader.TitleText;
             AddNewQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.AddNewQuest);
             EditSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.EditSelectedQuest);
             DeleteSelectedQuestButton.Text = nManager.Translate.Get(nManager.Translate.Id.DeleteSelectedQuest);

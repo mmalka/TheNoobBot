@@ -54,6 +54,7 @@ namespace Gatherer.Bot
             nameNpcTb.Text = nManager.Translate.Get(nManager.Translate.Id.Name);
             addByNameNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_by_Name_to_Npc_list);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
+            this.Text = MainHeader.TitleText;
         }
 
         private void saveB_Click(object sender, EventArgs ex)

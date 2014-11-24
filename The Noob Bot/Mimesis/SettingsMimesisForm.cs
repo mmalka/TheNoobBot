@@ -25,6 +25,7 @@ namespace Mimesis
             ActivatePartyModeLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ActivatePartyMode);
             SaveAndCloseButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Settings_Mimesis);
+            this.Text = MainHeader.TitleText;
             ActivatePartyMode.OnText = onText;
             ActivatePartyMode.OffText = offText;
         }

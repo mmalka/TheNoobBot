@@ -23,6 +23,7 @@ namespace Profiles_Converters
             MainContent.Text = string.Format("{0}(Pirox Fly gatherer, MMOLazy MyFlyer, Gather Buddy,  WowRobot Gather Fly, HonorBuddy  grind) {1} TheNoobBot profiles.",
                 nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles), nManager.Translate.Get(nManager.Translate.Id.to));
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profiles_Converters);
+            this.Text = MainHeader.TitleText;
         }
 
         private void form_FormClosing(object sender, FormClosingEventArgs e)

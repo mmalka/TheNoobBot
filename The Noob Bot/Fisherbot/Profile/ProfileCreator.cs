@@ -38,6 +38,7 @@ namespace Fisherbot.Profile
             delBlackRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             addBlackB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator) + " - " + Information.MainTitle;
+            this.Text = MainHeader.TitleText;
         }
 
         private void saveB_Click(object sender, EventArgs ex)

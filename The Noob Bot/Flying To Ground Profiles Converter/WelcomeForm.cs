@@ -19,6 +19,7 @@ namespace Flying_To_Ground_Profiles_Converter
         private void Translate()
         {
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.FtGConverterHeaderText) + " - " + Information.MainTitle;
+            this.Text = MainHeader.TitleText;
             FtGConverterLine1.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterLine1);
             FtGConverterLine2.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterLine2);
             FtGConverterLine3.Text = nManager.Translate.Get(nManager.Translate.Id.FtGConverterLine3);

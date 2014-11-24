@@ -21,6 +21,7 @@ namespace Quester.Profile
         private void Translate()
         {
             MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileLoader) + " - " + Information.MainTitle;
+            this.Text = MainHeader.TitleText;
             SimpleProfilesListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfilesList).ToUpper();
             GroupedProfilesListLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfilesList).ToUpper();
             LoadSimpleProfile.Text = nManager.Translate.Get(nManager.Translate.Id.LoadSimpleProfile);
