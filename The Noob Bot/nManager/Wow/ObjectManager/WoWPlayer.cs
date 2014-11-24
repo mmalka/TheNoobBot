@@ -381,6 +381,27 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsMainHandTemporaryEnchanted
+        {
+            get
+            {
+                try
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = tostring(GetWeaponEnchantInfo())");
+                    string sResult = Lua.GetLocalizedText(randomStringResult);
+                    if (sResult == "true")
+                        return true;
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > IsMainHandTemporaryEnchanted: " + e);
+                    return false;
+                }
+            }
+        }
+
         public TrackCreatureFlags MeCreatureTrack
         {
             get

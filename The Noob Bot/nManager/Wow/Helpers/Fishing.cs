@@ -14,8 +14,6 @@ namespace nManager.Wow.Helpers
 {
     public class Fishing
     {
-        private static Timer _timerLure;
-
         private static List<uint> _listFishingPoles;
 
         private static List<uint> ListFishingPoles
@@ -91,9 +89,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_timerLure != null)
-                    if (!_timerLure.IsReady)
-                        return;
+                if (ObjectManager.ObjectManager.Me.IsMainHandTemporaryEnchanted)
+                    return; // Already lured up.
 
                 if (lureName != string.Empty)
                 {
@@ -123,7 +120,6 @@ namespace nManager.Wow.Helpers
                         }
                     }
                 }
-                _timerLure = new Timer(10*1000*60); // 10 min
             }
             catch (Exception e)
             {
