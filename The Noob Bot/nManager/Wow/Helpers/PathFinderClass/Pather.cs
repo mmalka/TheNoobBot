@@ -195,7 +195,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         {
                             cont = "FWHordeGarrisonLeve2new";
                         }
-                        else
+                        else if (ItemsManager.GetItemCount(110560) > 0)
                         {
                             cont = "FWHordeGarrisonLevel1";
                         }
@@ -210,7 +210,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         {
                             cont = "SMVAllianceGarrisonLevel2new";
                         }
-                        else
+                        else if (ItemsManager.GetItemCount(110560) > 0)
                         {
                             cont = "SMVAllianceGarrisonLevel1";
                         }
