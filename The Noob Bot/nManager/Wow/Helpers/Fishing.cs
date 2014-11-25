@@ -173,6 +173,8 @@ namespace nManager.Wow.Helpers
         /// <param></param>
         /// <param name="lureName"> </param>
         /// <returns name=""></returns>
+        public static bool FirstLureCheck = true;
+
         public static void UseLure(string lureName = "")
         {
             try
@@ -183,30 +185,46 @@ namespace nManager.Wow.Helpers
 
                 if (lureName != string.Empty)
                 {
-                    ItemsManager.UseItem(lureName);
-                    Spell useSpell = new Spell(lureName);
-                    useSpell.Launch();
-                    Thread.Sleep(1000);
-                    Thread.Sleep(Usefuls.Latency);
-                    while (ObjectManager.ObjectManager.Me.IsCast)
+                    if (ItemsManager.GetItemCount(ItemsManager.GetItemIdByName(lureName)) > 0)
                     {
-                        Thread.Sleep(200);
+                        ItemsManager.UseItem(lureName);
+                        Thread.Sleep(1000);
+                        Thread.Sleep(Usefuls.Latency);
+                        while (ObjectManager.ObjectManager.Me.IsCast)
+                        {
+                            Thread.Sleep(200);
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        Spell lureSpell = new Spell(lureName);
+                        if (lureSpell.KnownSpell && lureSpell.IsSpellUsable)
+                        {
+                            lureSpell.Launch();
+                            return;
+                        }
+                        if (!lureSpell.KnownSpell)
+                        {
+                            if (FirstLureCheck)
+                            {
+                                Logging.Write("Lure from Product Settings is missing, try to use a lure from the list built-in TheNoobBot.");
+                                FirstLureCheck = false;
+                            }
+                        }
                     }
                 }
-                else
+                foreach (int i in listLure)
                 {
-                    foreach (int i in listLure)
+                    if (ItemsManager.GetItemCount(i) > 0)
                     {
-                        if (ItemsManager.GetItemCount(i) > 0)
+                        ItemsManager.UseItem(ItemsManager.GetItemNameById(i));
+                        Thread.Sleep(1000);
+                        while (ObjectManager.ObjectManager.Me.IsCast)
                         {
-                            ItemsManager.UseItem(ItemsManager.GetItemNameById(i));
-                            Thread.Sleep(1000);
-                            while (ObjectManager.ObjectManager.Me.IsCast)
-                            {
-                                Thread.Sleep(200);
-                            }
-                            break;
+                            Thread.Sleep(200);
                         }
+                        break;
                     }
                 }
             }
@@ -335,9 +353,15 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                return (from t in ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(668)
-                    where t.CreatedBy == ObjectManager.ObjectManager.Me.Guid
-                    select t.GetBaseAddress).FirstOrDefault();
+                foreach (WoWGameObject t in ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(668))
+                {
+                    if (t.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
+                    {
+                        uint u = t.GetBaseAddress;
+                        return u;
+                    }
+                }
+                return 0;
             }
             catch (Exception e)
             {
