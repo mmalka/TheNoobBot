@@ -82,6 +82,7 @@
             buildWoWVersionString = 0xC75828, // buildWoWVersionStringFOUND
             gameState = 0xD936DE, // Script_IsPlayerInWorld
             isLoadingOrConnecting = 0xC98708, // isLoadingOrConnectingFOUND
+            SubAreaId = 0xBA9D20, // AreaId - 8 bytes
             AreaId = 0xBA9D28, // AreaIdFOUND
             MapTextureId = 0xBB8148, // MapTextureIdFOUND
             zoneMap = 0xD936D4, // Script_GetZoneText
@@ -195,7 +196,7 @@
             SpellDBCMaxIndex = 200000,
             SpellBookNumSpells = 0xDF12AC, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xDF12F8 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xDF12F8 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0xDF1464, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,

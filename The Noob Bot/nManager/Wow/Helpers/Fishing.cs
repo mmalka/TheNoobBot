@@ -111,6 +111,8 @@ namespace nManager.Wow.Helpers
             return inv.Length <= 0 ? 0 : inv[randomized];
         }
 
+        private static readonly List<int> DraenorSeasList = new List<int> {7238, 7239, 7255, 7258, 7259, 7300, 7407, 7410, 7414, 7428, 7436, 7445, 7446, 7448};
+
         public static void UseDraenicBait()
         {
             if (Usefuls.ContinentId != 1116 || HaveDraenicBaitBuff())
@@ -120,6 +122,10 @@ namespace nManager.Wow.Helpers
             {
                 // Frostwall Horde garrison or Lunarfall Alliance garrison
                 baitToUse = GetRandomDraenicBait();
+            }
+            else if (DraenorSeasList.Contains(Usefuls.SubAreaId))
+            {
+                baitToUse = DraenicBaitList[6];
             }
             else if (Usefuls.AreaId == 6719)
             {
@@ -150,13 +156,6 @@ namespace nManager.Wow.Helpers
             {
                 // Nagrand
                 baitToUse = DraenicBaitList[5];
-            }
-            else if (Usefuls.AreaId == 7332 || Usefuls.AreaId == 7333)
-            {
-                // Stormshield or Warspear.
-                // Used as the Ocean zone.
-                // Users needs to know or they wont be able to fish correctly.
-                baitToUse = DraenicBaitList[6];
             }
 
             if (baitToUse == 0 || ItemsManager.GetItemCount(baitToUse) <= 0)

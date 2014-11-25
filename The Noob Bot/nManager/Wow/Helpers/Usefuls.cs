@@ -573,13 +573,29 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static int SubAreaId
+        {
+            get
+            {
+                try
+                {
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.SubAreaId);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("SubAreaId: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public static int AreaId
         {
             get
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.AreaId);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.AreaId);
                 }
                 catch (Exception e)
                 {
