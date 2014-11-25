@@ -290,10 +290,18 @@ namespace nManager.Wow.Helpers
 
                 Lua.RunMacroText("/cast " + archaeologySpell.NameInGame);
                 int j = 1;
-                while (j <= 12)
+                while (j <= 15)
                 {
                     Lua.RunMacroText("/click ArchaeologyFrameSummaryButton");
-                    Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + j);
+                    if (j == 13)
+                    {
+                        Lua.RunMacroText("/click ArchaeologyFrameSummarytButton");
+                        Lua.RunMacroText("/click ArchaeologyFrameSummaryPageNextPageButton");
+                    }
+                    if (j > 12)
+                        Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + (j - 12));
+                    else
+                        Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + j);
                     Thread.Sleep(200 + Usefuls.Latency);
                     if (useKeystone)
                     {
