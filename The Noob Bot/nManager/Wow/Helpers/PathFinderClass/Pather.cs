@@ -187,32 +187,32 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     if (x == 23 && y == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                     {
-                        if (Usefuls.IsCompletedAchievement(9546, true)) // Horde Garisson level 3
+                        switch (Usefuls.GetGarrisonLevel())
                         {
-                            cont = "FWHordeGarrisonLevel2";
-                        }
-                        else if (Usefuls.IsCompletedAchievement(9545, true)) // Horde Garisson level 2
-                        {
-                            cont = "FWHordeGarrisonLeve2new";
-                        }
-                        else if (ItemsManager.GetItemCount(110560) > 0)
-                        {
-                            cont = "FWHordeGarrisonLevel1";
+                            case 1:
+                                cont = "FWHordeGarrisonLevel1";
+                                break;
+                            case 2:
+                                cont = "FWHordeGarrisonLeve2new";
+                                break;
+                            case 3:
+                                cont = "FWHordeGarrisonLevel2";
+                                break;
                         }
                     }
                     else if (x == 31 && y == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
                     {
-                        if (Usefuls.IsCompletedAchievement(9101, true)) // Aliance Garisson level 3
+                        switch (Usefuls.GetGarrisonLevel())
                         {
-                            cont = "SMVAllianceGarrisonLevel2";
-                        }
-                        else if (Usefuls.IsCompletedAchievement(9100, true)) // Aliance Garisson level 2
-                        {
-                            cont = "SMVAllianceGarrisonLevel2new";
-                        }
-                        else if (ItemsManager.GetItemCount(110560) > 0)
-                        {
-                            cont = "SMVAllianceGarrisonLevel1";
+                            case 1:
+                                cont = "SMVAllianceGarrisonLevel1";
+                                break;
+                            case 2:
+                                cont = "SMVAllianceGarrisonLevel2new";
+                                break;
+                            case 3:
+                                cont = "SMVAllianceGarrisonLevel2";
+                                break;
                         }
                     }
                 }

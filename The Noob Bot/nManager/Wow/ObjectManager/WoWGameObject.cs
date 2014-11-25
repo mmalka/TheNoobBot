@@ -693,8 +693,8 @@ namespace nManager.Wow.ObjectManager
                         return false; // Quest check
 
                     // Refuse Dark Soil if we are below level 90 or we comleted achievement "Friends on the Farm"
-                    if (Entry == 210565 && (ObjectManager.Me.Level < 90 || Usefuls.IsCompletedAchievement(6552, true)))
-                        return false;
+                    if (Entry == 210565 && (ObjectManager.Me.Level < 90 || Usefuls.IsCompletedAchievement(6552)))
+                        return false; // Cannot check if achievement is by me.
 
                     //if (Entry == 214945) // Onyx Egg. Maybe we should disabled them when exalted with Cloud Serpents
                     //    return false;

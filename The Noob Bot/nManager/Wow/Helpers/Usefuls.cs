@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -921,7 +922,15 @@ namespace nManager.Wow.Helpers
             return "Unknow";
         }
 
-        public static bool IsCompletedAchievement(int achievementId, bool meOnly = false)
+        public static int GetGarrisonLevel()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
+            string ret = Lua.GetLocalizedText(randomString);
+            return Others.ToInt32(ret);
+        }
+
+        public static bool IsCompletedAchievement(int achievementId)
         {
             if (AchievementsDoneCache.Contains(achievementId))
                 return true;
@@ -929,13 +938,8 @@ namespace nManager.Wow.Helpers
                 return false;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             string randomString2 = Others.GetRandomString(Others.Random(4, 10));
-            string randomString3 = Others.GetRandomString(Others.Random(4, 10));
             string query;
-            if (meOnly)
-                query = "_, _, _, " + randomString2 + ", _, _, _, _, _, _, _, _, " + randomString3 + " = GetAchievementInfo(" + achievementId + "); if " + randomString2 + " and " + randomString3 + " then " +
-                        randomString + "=\"1\" else " + randomString + "=\"0\" end;";
-            else
-                query = "_, _, _, " + randomString2 + " = GetAchievementInfo(" + achievementId + "); if " + randomString2 + " then " + randomString + "=\"1\" else " + randomString + "=\"0\" end;";
+            query = "_, _, _, " + randomString2 + " = GetAchievementInfo(" + achievementId + "); if " + randomString2 + " then " + randomString + "=\"1\" else " + randomString + "=\"0\" end;";
             Lua.LuaDoString(query);
             string ret = Lua.GetLocalizedText(randomString);
             if (ret == "1")
