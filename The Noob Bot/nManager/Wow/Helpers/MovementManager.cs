@@ -582,9 +582,9 @@ namespace nManager.Wow.Helpers
                     float dx = 1.0f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
                     float dy = 1.0f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
                     Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
-                        ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
+                        ObjectManager.ObjectManager.Me.Position.Z + 1.0f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
-                        ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
+                        ObjectManager.ObjectManager.Me.Position.Z + 1.0f);
                     if (ObjectManager.ObjectManager.Me.IsMounted && !TraceLine.TraceLineGo(_distmountAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
