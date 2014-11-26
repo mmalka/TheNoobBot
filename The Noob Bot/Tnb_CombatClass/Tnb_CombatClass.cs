@@ -13101,11 +13101,11 @@ public class PaladinProtection
         if (_onCd.IsReady)
             DefenseCycle();
         DPSCycle();
-        DPSBurst();
-        DPSCycle();
         Heal();
         DPSCycle();
         Buffs();
+        DPSBurst();
+        DPSCycle();
     }
 
     private void Patrolling()
@@ -13184,11 +13184,11 @@ public class PaladinProtection
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat)
+        if (ObjectManager.Me.HealthPercent < 85 && !ObjectManager.Me.InCombat && !ObjectManager.Me.GetMove && !ObjectManager.Me.IsCast)
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
-                FlashOfLight.Launch(true, true, true);
+                FlashOfLight.LaunchOnSelf(true, true, true);
                 return;
             }
         }
@@ -13201,13 +13201,13 @@ public class PaladinProtection
         if (LayOnHands.KnownSpell && MySettings.UseLayOnHands && ObjectManager.Me.HealthPercent > 0 &&
             ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
         {
-            LayOnHands.Launch();
+            LayOnHands.LaunchOnSelf();
             return;
         }
         if (HandOfProtection.KnownSpell && MySettings.UseHandOfProtection && ObjectManager.Me.HealthPercent > 0 &&
             ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && HandOfProtection.IsSpellUsable)
         {
-            HandOfProtection.Launch();
+            HandOfProtection.LaunchOnSelf();
             return;
         }
         if (ObjectManager.Me.ManaPercentage < 10)
@@ -13220,23 +13220,23 @@ public class PaladinProtection
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
-            if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable)
+            if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable && ObjectManager.Me.HolyPower >= 3)
                 WordOfGlory.Launch();
             if (FlashOfLight.KnownSpell && MySettings.UseFlashOfLight && FlashOfLight.IsSpellUsable)
             {
-                FlashOfLight.Launch();
+                FlashOfLight.LaunchOnSelf();
                 return;
             }
         }
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
         {
-            if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable)
+            if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable && ObjectManager.Me.HolyPower >= 3)
                 WordOfGlory.Launch();
             if (DivineProtection.KnownSpell && MySettings.UseDivineProtection && DivineProtection.IsSpellUsable)
                 DivineProtection.Launch();
             if (FlashOfLight.KnownSpell && MySettings.UseFlashOfLight && FlashOfLight.IsSpellUsable)
             {
-                FlashOfLight.Launch();
+                FlashOfLight.LaunchOnSelf();
             }
         }
     }
@@ -13646,11 +13646,11 @@ public class PaladinRetribution
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
-        DPSBurst();
-        DPSCycle();
         Heal();
         DPSCycle();
         Buffs();
+        DPSBurst();
+        DPSCycle();
     }
 
     private void Patrolling()
@@ -13762,29 +13762,35 @@ public class PaladinRetribution
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat)
+        if (ObjectManager.Me.HealthPercent < 85 && !ObjectManager.Me.InCombat && !ObjectManager.Me.GetMove && !ObjectManager.Me.IsCast)
         {
-            if (MySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
-                FlashOfLight.Launch(true, true, true);
-                Thread.Sleep(200);
+                FlashOfLight.LaunchOnSelf(true, true, true);
                 return;
             }
         }
-        if (MySettings.UseDivineShield && DivineShield.KnownSpell && DivineShield.IsSpellUsable && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5)
+        if (DivineShield.KnownSpell && MySettings.UseDivineShield && ObjectManager.Me.HealthPercent > 0 &&
+            ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
             DivineShield.Launch();
             return;
         }
-        if (MySettings.UseLayOnHands && LayOnHands.KnownSpell && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && ObjectManager.Me.HealthPercent > 0 &&
-            ObjectManager.Me.HealthPercent <= 20)
+        if (LayOnHands.KnownSpell && MySettings.UseLayOnHands && ObjectManager.Me.HealthPercent > 0 &&
+            ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
         {
-            LayOnHands.Launch();
+            LayOnHands.LaunchOnSelf();
+            return;
+        }
+        if (HandOfProtection.KnownSpell && MySettings.UseHandOfProtection && ObjectManager.Me.HealthPercent > 0 &&
+            ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && HandOfProtection.IsSpellUsable)
+        {
+            HandOfProtection.LaunchOnSelf();
             return;
         }
         if (ObjectManager.Me.ManaPercentage < 10)
         {
-            if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable)
+            if (ArcaneTorrent.KnownSpell && MySettings.UseArcaneTorrentForResource && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Launch();
                 return;
@@ -13792,29 +13798,23 @@ public class PaladinRetribution
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
-            if (MySettings.UseWordOfGlory && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
+            if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable && ObjectManager.Me.HolyPower >= 3)
                 WordOfGlory.Launch();
-            if (MySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && MySettings.UseFlashOfLight && FlashOfLight.IsSpellUsable)
             {
-                FlashOfLight.Launch();
+                FlashOfLight.LaunchOnSelf();
                 return;
             }
         }
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
         {
-            if (MySettings.UseWordOfGlory && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
+            if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable && ObjectManager.Me.HolyPower >= 3)
                 WordOfGlory.Launch();
-            if (MySettings.UseDivineProtection && DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
-            {
+            if (DivineProtection.KnownSpell && MySettings.UseDivineProtection && DivineProtection.IsSpellUsable)
                 DivineProtection.Launch();
-            }
-            else if (MySettings.UseHandOfProtection && HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
+            if (FlashOfLight.KnownSpell && MySettings.UseFlashOfLight && FlashOfLight.IsSpellUsable)
             {
-                HandOfProtection.Launch();
-            }
-            if (MySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
-            {
-                FlashOfLight.Launch();
+                FlashOfLight.LaunchOnSelf();
             }
         }
     }
