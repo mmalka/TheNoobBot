@@ -78,6 +78,8 @@ namespace nManager.Wow.Bot.Tasks
                 _startupCheck = false;
                 SettingsHasChanged = false;
             }
+            if (ObjectManager.ObjectManager.Me.InCombatBlizzard)
+                return MountCapacity.Feet;
             if ((ObjectManager.ObjectManager.Me.Level < 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level < 16)) ||
                 (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty))
             {
