@@ -13348,9 +13348,9 @@ public class PaladinProtection
             return;
         }
         if (Consecration.KnownSpell && MySettings.UseConsecration && Consecration.IsSpellUsable &&
-            !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower < 3)
+            !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower < 3 && ObjectManager.Target.GetDistance < 8)
         {
-            SpellManager.CastSpellByIDAndPosition(Consecration.Id, ObjectManager.Target.Position);
+            Consecration.Launch();
             return;
         }
         if (HolyWrath.KnownSpell && MySettings.UseHolyWrath && HolyWrath.IsSpellUsable &&
