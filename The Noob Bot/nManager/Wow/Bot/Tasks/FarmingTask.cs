@@ -138,7 +138,10 @@ namespace nManager.Wow.Bot.Tasks
                                 Thread.Sleep(50);
                             }
                             if (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                                Usefuls.DisMount();
+                            {
+                                if (!(SpellManager.HasSpell(169606) && Usefuls.ContinentId == 1116)) // Passive Silver Dollar Club given by Stables.
+                                    Usefuls.DisMount();
+                            }
                             else if (node.IsHerb)
                             {
                                 Logging.WriteDebug("Druid IsFlying ? " + Usefuls.IsFlying);
@@ -156,6 +159,7 @@ namespace nManager.Wow.Bot.Tasks
                                     }
                                 }
                             }
+
                             Thread.Sleep(Usefuls.Latency + 200);
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
