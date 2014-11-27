@@ -112,7 +112,7 @@ namespace nManager.Wow.Bot.States
                         WoWResearchSite OneSite = WoWResearchSite.FromName(t.name);
                         WoWQuestPOIPoint Polygon = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
                         Point center = Polygon.Center;
-                        float dist = center.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+                        float dist = center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position);
                         if (dist > distance && ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
                             continue;
                         if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
@@ -307,6 +307,7 @@ namespace nManager.Wow.Bot.States
                         {
                             // here we need to go to center, THEN compute middle point
                             Point destination = qPOI.Center;
+                            destination.Z += 40.0f;
                             destination.Type = "flying";
                             Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
                             MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite

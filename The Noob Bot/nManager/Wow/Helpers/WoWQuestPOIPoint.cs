@@ -75,7 +75,7 @@ namespace nManager.Wow.Helpers
                 float z2 = PathFinder.GetZPosition(x, y, z + 100f);
                 if (z2 - z > 5f)
                     z = z2;
-                _center = new Point(x, y, z + 40.0f);
+                _center = new Point(x, y, z);
                 return _center;
             }
         }
@@ -95,6 +95,7 @@ namespace nManager.Wow.Helpers
 
                 // We don't have it, then compute it
                 _middlePoint = new Point(Center);
+                _middlePoint.Z += 40.0f;
                 float curZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y, _middlePoint.Z, true);
                 float anotherZ = PathFinder.GetZPosition(_middlePoint.X + 8, _middlePoint.Y + 8, _middlePoint.Z, true);
                 if (!IsInside(_middlePoint) || curZ == 0 || (uint) (anotherZ - curZ) >= 11 ||
