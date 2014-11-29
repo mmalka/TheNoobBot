@@ -30,7 +30,9 @@ namespace nManager.Wow.Bot.States
         }
 
         private readonly Spell _grandExpeditionYak = new Spell(122708);
-        private readonly Spell _travelersTundraMammoth = new Spell(61425);
+        private readonly Spell _travelersTundraMammothAlliance = new Spell(61425);
+        private readonly Spell _travelersTundraMammothHorde = new Spell(61447);
+        private Spell _travelersTundraMammoth = new Spell(0);
         private bool _magicMountYak = false;
         private bool _magicMountMammoth;
         private bool _useMollE;
@@ -67,10 +69,22 @@ namespace nManager.Wow.Bot.States
                     (SpellManager.ExistMountLUA(_grandExpeditionYak.NameInGame) || _grandExpeditionYak.KnownSpell))
                     _magicMountYak = true; */
 
-                if (_travelersTundraMammoth != null &&
-                    (SpellManager.ExistMountLUA(_travelersTundraMammoth.NameInGame) ||
-                     _travelersTundraMammoth.KnownSpell))
-                    _magicMountMammoth = true;
+                if (ObjectManager.ObjectManager.Me.PlayerFaction != "Horde")
+                {
+                    if (_travelersTundraMammothAlliance != null && (SpellManager.ExistMountLUA(_travelersTundraMammothAlliance.NameInGame) || _travelersTundraMammothAlliance.KnownSpell))
+                    {
+                        _magicMountMammoth = true;
+                        _travelersTundraMammoth = _travelersTundraMammothAlliance;
+                    }
+                }
+                else
+                {
+                    if (_travelersTundraMammothHorde != null && (SpellManager.ExistMountLUA(_travelersTundraMammothHorde.NameInGame) || _travelersTundraMammothHorde.KnownSpell))
+                    {
+                        _magicMountMammoth = true;
+                        _travelersTundraMammoth = _travelersTundraMammothHorde;
+                    }
+                }
 
                 _useMollE = false;
                 WoWGameObject portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
@@ -408,8 +422,11 @@ namespace nManager.Wow.Bot.States
                         NpcDB.DelNpc(target);
                     else if (baseAddress > 0)
                     {
-                        DoProspectingInTown(target);
-                        DoMillingInTown(target);
+                        if (!_travelersTundraMammoth.HaveBuff)
+                        {
+                            DoProspectingInTown(target);
+                            DoMillingInTown(target);
+                        }
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(500);
                         if (target.SelectGossipOption != 0)

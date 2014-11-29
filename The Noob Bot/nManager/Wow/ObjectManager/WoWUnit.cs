@@ -69,6 +69,14 @@ namespace nManager.Wow.ObjectManager
                             if (u.IsValid && u.IsAlive)
                                 return u.Position;
                         }
+                        else if (t.Type == WoWObjectType.Player)
+                        {
+                            if (t.GetBaseAddress == ObjectManager.Me.GetBaseAddress)
+                                return ObjectManager.Me.Position;
+                            var p = new WoWPlayer(t.GetBaseAddress);
+                            if (p.IsValid && p.IsAlive)
+                                return p.Position;
+                        }
                     }
 
                     if (Guid == ObjectManager.Me.Guid)
