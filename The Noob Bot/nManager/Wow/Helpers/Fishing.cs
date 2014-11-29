@@ -87,6 +87,8 @@ namespace nManager.Wow.Helpers
                 if (SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(baitId)))
                     return true;
             }
+            if (SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(116755)))
+                return true; // Do not cancel Nat Pagle Lukers Lure.
             return false;
         }
 
