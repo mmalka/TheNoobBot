@@ -122,8 +122,8 @@ namespace nManager.Wow.Helpers
                     Lua.LuaDoString(
                         "local nameItem = \"" + name + "\" " +
                         "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
-                        "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
-                        );
+                        "if itemLink == nil then " + randomString + " = 0 else " + 
+                        "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\") end");
                     int itemEntry = Others.ToInt32(Lua.GetLocalizedText(randomString));
                     if (itemEntry > 0)
                         ItemIdCache.Add(name, itemEntry);
