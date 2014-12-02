@@ -63,6 +63,8 @@ namespace nManager.Wow.Bot.States
                 if (!_unit.IsValid)
                     return false;
 
+                if (_unit.IsTapped && !_unit.IsTappedByMe)
+                    return false;
                 if (!nManagerSetting.IsBlackListedZone(_unit.Position) &&
                     _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                     !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
@@ -82,7 +84,7 @@ namespace nManager.Wow.Bot.States
         {
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
             UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
-            if (!_unit.IsDead && unkillableMob != 0)
+            if (!_unit.IsDead && unkillableMob != 0 && _unit.HealthPercent == 100.0f)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
                 nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes
