@@ -49,6 +49,7 @@ namespace Fisherbot.Bot
         public string WeaponName = "";
         public string ShieldName = "";
         public bool PrecisionMode = true;
+        public static bool AutomaticallyUseDraenorSecondaryBait = true;
 
         internal Point FisherbotPosition = new Point();
         internal float FisherbotRotation;

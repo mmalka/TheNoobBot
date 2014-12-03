@@ -176,11 +176,12 @@ namespace nManager.Wow.Helpers
         /// <returns name=""></returns>
         public static bool FirstLureCheck = true;
 
-        public static void UseLure(string lureName = "")
+        public static void UseLure(string lureName = "", bool automaticallyUseDraenorBait = false)
         {
             try
             {
-                UseDraenicBait();
+                if (automaticallyUseDraenorBait)
+                    UseDraenicBait();
                 if (ObjectManager.ObjectManager.Me.IsMainHandTemporaryEnchanted)
                     return; // Already lured up.
 

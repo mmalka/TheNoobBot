@@ -19,6 +19,7 @@ namespace nManager.Wow.Bot.Tasks
         private static bool _precision;
         private static string _lureName = "";
         private static bool _useLure;
+        private static bool _automaticallyUseDraenorSecondaryBait;
 
         private const float distanceBobber = 4.0f;
 
@@ -56,8 +57,9 @@ namespace nManager.Wow.Bot.Tasks
         /// <param name="lureName"> </param>
         /// <param name="precision"> </param>
         /// <param name="useLure"> </param>
+        /// <param name="automaticallyUseDraenorSecondaryBait"></param>
         public static void LoopFish(UInt128 guidNode = default(UInt128), bool useLure = false, string lureName = "",
-            bool precision = false)
+            bool precision = false, bool automaticallyUseDraenorSecondaryBait = true)
         {
             try
             {
@@ -67,6 +69,7 @@ namespace nManager.Wow.Bot.Tasks
                     _precision = precision;
                     _useLure = useLure;
                     _lureName = lureName;
+                    _automaticallyUseDraenorSecondaryBait = automaticallyUseDraenorSecondaryBait;
                     if (_worker2 == null)
                     {
                         _worker2 = new Thread(LoopFishThread) {Name = "Fish"};
@@ -95,7 +98,7 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             Fishing.EquipFishingPoles();
                             if (_useLure)
-                                Fishing.UseLure(_lureName);
+                                Fishing.UseLure(_lureName, _automaticallyUseDraenorSecondaryBait);
 
                             if (fishingSpell == null)
                                 fishingSpell = new Spell("Fishing");
