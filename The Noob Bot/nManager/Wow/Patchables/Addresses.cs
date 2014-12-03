@@ -240,13 +240,13 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x3A23,
-            FrameScript_ExecuteBuffer = 0x242E9,
-            CGUnit_C__InitializeTrackingState = 0x2E74A5, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2D8A8D,
-            CGWorldFrame__Intersect = 0x4FB07F,
-            Spell_C_HandleTerrainClick = 0x247284,
-            CGUnit_C__Interact = 0x907577,
+            ClntObjMgrGetActivePlayerObj = 0x3A17,
+            FrameScript_ExecuteBuffer = 0x2427F,
+            CGUnit_C__InitializeTrackingState = 0x2E74B0, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2D8A6B,
+            CGWorldFrame__Intersect = 0x4FAF76,
+            Spell_C_HandleTerrainClick = 0x247085,
+            CGUnit_C__Interact = 0x9076CF,
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
@@ -267,7 +267,7 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            PlayerNameStorePtr = 0xC8C7C0, // CGUnit_C__GetUnitName + 0x88
+            PlayerNameStorePtr = 0xC8D900, // CGUnit_C__GetUnitName + 0x88
             PlayerNameNextOffset = 0x14,
             PlayerNameStringOffset = 0x11,
         }
@@ -277,7 +277,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xED4D38 + 0x6, // ClientServices__GetSelectedRealm
+            realmName = 0xED5C99 + 0x6, // ClientServices__GetSelectedRealm
         }
 
         /// <summary>
