@@ -591,9 +591,12 @@ namespace nManager.Wow.Bot.States
                             break;
                         case SkillLine.Riding:
                             // Todo: Check additionals Riding spells.
+                            return false;
+                            /*case SkillLine.Riding:
+                            // Todo: Check additionals Riding spells.
                             price = 47500000;
                             minLevel = 70;
-                            break;
+                            break;*/
                     }
                     break;
                 case SkillRank.Artisan: // To Learn Master
@@ -631,9 +634,12 @@ namespace nManager.Wow.Bot.States
                             break;
                         case SkillLine.Riding:
                             // Todo: Check additionals Riding spells.
+                            return false;
+                            /*case SkillLine.Riding:
+                            // Todo: Check additionals Riding spells.
                             price = 47500000;
                             minLevel = 80;
-                            break;
+                            break;*/
                     }
                     break;
                 case SkillRank.Master: // To Learn Grand Master
