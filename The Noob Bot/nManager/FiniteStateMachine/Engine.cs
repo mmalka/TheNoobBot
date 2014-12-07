@@ -156,7 +156,8 @@ namespace nManager.FiniteStateMachine
                     if (_stopWatch.ElapsedMilliseconds < (int) sleepTime)
                     {
                         int wait = (int) sleepTime - (int) _stopWatch.ElapsedMilliseconds;
-                        Thread.Sleep(wait);
+                        if (wait > 0)
+                            Thread.Sleep(wait);
                     }
                     _stopWatch.Reset();
                 }
