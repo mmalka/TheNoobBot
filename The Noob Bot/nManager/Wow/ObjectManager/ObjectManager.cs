@@ -500,7 +500,9 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.GetDistance < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList) && (ignorenotSelectable || !a.NotSelectable) && (!a.IsTapped || (a.IsTapped && a.IsTappedByMe)))
+                    if (a.GetDistance < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList) &&
+                        (ignorenotSelectable || !a.NotSelectable) && (!a.IsTapped || (a.IsTapped && a.IsTappedByMe)) &&
+                        !a.PlayerControlled)
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
