@@ -86,7 +86,7 @@ namespace nManager.Wow.Bot.States
             MountTask.DismountMount();
             Logging.Write("Engage fight against player " + _unit.Name + " (lvl " + _unit.Level + ")");
             UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
-            if (!_unit.IsDead && unkillableMob != 0)
+            if (!_unit.IsDead && unkillableMob != 0 && _unit.HealthPercent == 100.0f)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting its position.");
                 nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes

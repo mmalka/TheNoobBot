@@ -75,7 +75,7 @@ namespace nManager.Wow.Bot.States
             MountTask.DismountMount();
             Logging.Write("Player Attacked by " + _unit.Name + " (lvl " + _unit.Level + ")");
             UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
-            if (!_unit.IsDead && unkillableMob != 0)
+            if (!_unit.IsDead && unkillableMob != 0 && _unit.HealthPercent == 100.0f)
             {
                 Logging.Write("Blacklisting " + _unit.Name);
                 nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes

@@ -313,9 +313,10 @@ namespace Quester.Tasks
                         return;
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
                     UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
-                    if (!wowUnit.IsDead && Unkillable != 0)
+                    if (!wowUnit.IsDead && Unkillable != 0 && wowUnit.HealthPercent == 100.0f)
                     {
                         nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
+                        Logging.Write("Can't reach " + wowUnit.Name + ", blacklisting it.");
                     }
                     else if (wowUnit.IsDead)
                     {
