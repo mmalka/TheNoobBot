@@ -131,6 +131,10 @@ namespace nManager.Wow.Helpers
                         ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                         return 0;
 
+                    // Cancel fight if the mob was tapped by another player
+                    if (targetNpc.IsTapped && !targetNpc.IsTappedByMe)
+                        return 0;
+
                     // Target Pos Verif
                     if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
                     {
