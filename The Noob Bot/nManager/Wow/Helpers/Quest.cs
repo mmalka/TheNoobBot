@@ -536,6 +536,32 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
+        public static void AutoCompleteQuest(List<int> autoComplete)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = GetNumAutoQuestPopUps();");
+            int num = Others.ToInt32(Lua.GetLocalizedText(randomString));
+            for (int i = 1; i <= num; i++)
+            {
+                string questIdRet = Others.GetRandomString(Others.Random(4, 10));
+                string questStatusRet = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(questIdRet + ", " + questStatusRet + " = GetAutoQuestPopUp(" + i + ");");
+                string questStatus = Lua.GetLocalizedText(questStatusRet);
+                if (questStatus == "COMPLETE")
+                {
+                    int questId = Others.ToInt32(Lua.GetLocalizedText(questIdRet));
+                    if (autoComplete.Contains(questId))
+                    {
+                        string questLogEntry = Others.GetRandomString(Others.Random(4, 10));
+                        string luaString = questLogEntry + " = GetQuestLogIndexByID(" + questId + ") ";
+                        luaString += "ShowQuestComplete(" + questLogEntry + ")";
+                        Lua.LuaDoString(luaString);
+                        CompleteQuest();
+                        Thread.Sleep(500);
+                    }
+                }
+            }
+        }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct PlayerQuest

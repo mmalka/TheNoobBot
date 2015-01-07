@@ -106,6 +106,18 @@ namespace Quester.Profile
         [DefaultValue("")] public string ScriptConditionIsFinish = "";
         public List<QuestObjective> Objectives = new List<QuestObjective>();
 
+        // Auto Accept/complete a quest with popup
+        public List<int> AutoComplete = new List<int>();
+        public bool ShouldSerializeAutoComplete()
+        {
+            return AutoComplete != null && AutoComplete.Count > 0;
+        }
+        public List<int> AutoAccept = new List<int>();
+        public bool ShouldSerializeAutoAccept()
+        {
+            return AutoAccept != null && AutoAccept.Count > 0;
+        }
+
         public int CompareTo(object obj)
         {
             if (obj == null)

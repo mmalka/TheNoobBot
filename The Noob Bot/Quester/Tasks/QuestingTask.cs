@@ -1104,6 +1104,10 @@ namespace Quester.Tasks
             if (npc == null)
                 return;
             Quest.QuestTurnIn(ref npc, CurrentQuest.Name, CurrentQuest.Id);
+            if (CurrentQuest.AutoComplete != null && QuestingTask.CurrentQuest.AutoComplete.Count > 0)
+            {
+                EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest(CurrentQuest.AutoComplete), false);
+            }
         }
 
         // end PickUpTurnInQuest

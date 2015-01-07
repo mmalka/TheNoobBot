@@ -507,6 +507,12 @@
       <NeedQuestCompletedId>
         <int>26510</int>
       </NeedQuestCompletedId>
+      <AutoComplete>
+        <int>26512</int>
+      </AutoComplete>
+      <AutoAccept>
+        <int>26514</int>
+      </AutoAccept>
       <PickUp>344</PickUp>
       <TurnIn>344</TurnIn>
       <Objectives>
