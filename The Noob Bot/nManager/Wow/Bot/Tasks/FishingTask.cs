@@ -103,7 +103,7 @@ namespace nManager.Wow.Bot.Tasks
                             if (fishingSpell == null)
                                 fishingSpell = new Spell("Fishing");
                             fishingSpell.Launch(false, false, true);
-                            Others.Wait(2000);
+                            Thread.Sleep(4000);
                             WoWGameObject objBobber =
                                 new WoWGameObject(Fishing.SearchBobber());
 
@@ -133,14 +133,13 @@ namespace nManager.Wow.Bot.Tasks
                                         Thread.Sleep(30);
                                     }
                                 */
-                                    Thread.Sleep(50);
-                                    Application.DoEvents();
+                                    Thread.Sleep(250);
                                 }
                                 if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid)
                                 {
                                     Interact.InteractWith(objBobber.GetBaseAddress);
                                     Statistics.Farms++;
-                                    Others.Wait(1000);
+                                    Thread.Sleep(1000);
                                 }
                             }
                         }
