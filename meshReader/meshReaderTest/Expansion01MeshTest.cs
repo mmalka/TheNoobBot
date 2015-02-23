@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using SlimDX;
 using NUnit.Framework;
 
 namespace meshReaderTest
@@ -9,9 +9,10 @@ namespace meshReaderTest
     {
 
         [TestFixtureSetUp]
-        public void Initialize()
+        public void Initialize(string MeshesPath, string WowPath)
         {
-            Initialize("S:\\meshReader\\Meshes\\Expansion01");
+            string iMeshesPath = MeshesPath + "Expansion01";
+            Initialize(@iMeshesPath);
         }
 
         [Test]

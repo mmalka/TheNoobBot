@@ -2,6 +2,7 @@
 #include "Detour/DetourNavMesh.h"
 #include "Detour/DetourNavMeshQuery.h"
 #include "Detour/DetourNavMeshBuilder.h"
+#include "Detour/DetourStatus.h"
 #include "RecastLayer.h"
 #include "NavMeshQueryCallback.h"
 #include <vcclr.h>
@@ -13,7 +14,6 @@ using namespace RecastLayer;
 
 namespace DetourLayer
 {
-
 	[Flags]
 	public enum struct DetourStatus : System::UInt32
 	{
@@ -49,6 +49,11 @@ namespace DetourLayer
 		End = DT_STRAIGHTPATH_END,
 		OffMeshConnection = DT_STRAIGHTPATH_OFFMESH_CONNECTION
 	};
+
+    public enum struct SupportedVersion : System::UInt32
+    {
+        value = DT_NAVMESH_VERSION
+    };
 
 	public ref class Poly
 	{
@@ -705,6 +710,7 @@ namespace DetourLayer
 			return gcnew Link(&_tile->links[index]);
 		}
 
+        /* Disabled unused function
 		bool Rebuild(array<bool>^ visited, const int visitedMask, const float cellHeight, const int nvp, [Out] array<unsigned char>^% rData)
 		{
 			const float cellSize = 1 / _tile->header->bvQuantFactor;
@@ -904,7 +910,7 @@ error:
 
 			rData = nullptr;
 			return false;
-		}
+		}*/
 
 	};
 
@@ -1126,7 +1132,7 @@ error:
 
 		MeshTile^ GetTile(int x, int y)
 		{
-			auto t = _mesh->getTileAt(x, y);
+			auto t = _mesh->getTileAt(x, y, 0);
 			if (t)
 				return gcnew MeshTile(t, _mesh);
 			return nullptr;
@@ -1152,12 +1158,12 @@ error:
 
 		dtTileRef GetTileReference(int x, int y)
 		{
-			return _mesh->getTileRefAt(x, y);
+			return _mesh->getTileRefAt(x, y, 0);
 		}
 
 		bool HasTileAt(int x, int y)
 		{
-			const dtMeshTile* tile = _mesh->getTileAt(x, y);
+			const dtMeshTile* tile = _mesh->getTileAt(x, y, 0);
 			return tile && tile->header;
 		}
 
@@ -1183,7 +1189,7 @@ error:
 
 		bool BuildRenderGeometry(int tileX, int tileY, [Out] array<float>^% verts, [Out] array<int>^% tris)
 		{
-			const dtMeshTile* tile = _mesh->getTileAt(tileX, tileY);
+			const dtMeshTile* tile = _mesh->getTileAt(tileX, tileY, 0);
 			if (!tile || !tile->header)
 				return false;
 
@@ -1262,7 +1268,7 @@ error:
 			unsigned char* copy = new unsigned char[data->Length];
 			Marshal::Copy(data, 0, (IntPtr)copy, data->Length);
 			dtTileRef tileRef;
-			auto status = _mesh->addTile(copy, data->Length, 0, lastRef, &tileRef);
+			dtStatus status = _mesh->addTile(copy, data->Length, DT_TILE_FREE_DATA, lastRef, &tileRef);
 			if (dtStatusSucceed(status))
 				tile = gcnew MeshTile(_mesh->getTileByRef(tileRef), _mesh);
 			return (DetourStatus)status;
@@ -1270,7 +1276,7 @@ error:
 
 		DetourStatus RemoveTileAt(int x, int y)
 		{
-			auto tileRef = _mesh->getTileRefAt(x, y);
+			auto tileRef = _mesh->getTileRefAt(x, y, 0);
 			if (!tileRef)
 				return DetourStatus::Failure;
 			unsigned char* retData;
@@ -1288,7 +1294,7 @@ error:
 
 		DetourStatus RemoveTileAt(int x, int y, [Out] array<unsigned char>^% data)
 		{
-			auto ret = _mesh->getTileRefAt(x, y);
+			auto ret = _mesh->getTileRefAt(x, y, 0);
 			if (!ret)
 				return DetourStatus::Failure;
 			unsigned char* retData;
@@ -1354,6 +1360,19 @@ error:
 			return ret;
 		}
 
+        DetourStatus closestPointOnPolyBoundary(dtPolyRef polyRef, array<float>^ pos, [Out] array<float>^% closestPoint)
+        {
+            pin_ptr<float> posPointer = &pos[0];
+            float* pt = new float[3];
+
+            dtStatus status = _query->closestPointOnPolyBoundary(polyRef, posPointer, pt);
+            closestPoint = gcnew array<float>(3);
+            for (int i = 0; i < 3; i++)
+                closestPoint[i] = pt[i];
+
+            return (DetourStatus)status;
+        }
+
 		DetourStatus QueryPolygons(array<float>^ center, array<float>^ extents, QueryFilter^ filter, [Out] array<dtPolyRef>^% foundPolys)
 		{
 			pin_ptr<float> centerPointer = &center[0];
@@ -1394,7 +1413,7 @@ exit:
 			return (DetourStatus)_query->findNearestPoly(centerPointer, extentsPointer, filter->GetNativeObject(), &discard, nearestPointer);
 		}
 
-		unsigned int FindNearestPolygon(array<float>^ center, array<float>^ extents, QueryFilter^ filter)
+		dtPolyRef FindNearestPolygon(array<float>^ center, array<float>^ extents, QueryFilter^ filter)
 		{
 			pin_ptr<float> centerPointer = &center[0];
 			pin_ptr<float> extentsPointer = &extents[0];
@@ -1447,13 +1466,13 @@ exit:
 			return (DetourStatus)status;
 		}
 
-		DetourStatus FindPath(unsigned int startRef, unsigned int endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
+		DetourStatus FindPath(dtPolyRef startRef, dtPolyRef endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
 		{
 			pin_ptr<float> startPosPointer = &startPos[0];
 			pin_ptr<float> endPosPointer = &endPos[0];
 			int hops;
-			dtPolyRef* hopBuffer = new dtPolyRef[1024];
-			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 1024);
+			dtPolyRef* hopBuffer = new dtPolyRef[4096];
+			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 4096);
 			if (dtStatusSucceed(status))
 			{
 				polyRefHops = gcnew array<dtPolyRef>(hops);
@@ -1641,19 +1660,6 @@ exit:
 			void set(int value)
 			{
 				_params->tileY = value;	
-			}
-		}
-
-		property int TileSize
-		{
-			int get()
-			{
-				return _params->tileSize;
-			}
-
-			void set(int value)
-			{
-				_params->tileSize = value;	
 			}
 		}
 
@@ -2051,7 +2057,7 @@ exit:
 	public ref class Detour
 	{
 	  public:
-		static bool CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, int tileSize, array<OffMeshConnection^>^ offMeshCons);
+		static bool CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, bool buildBvTree, array<OffMeshConnection^>^ offMeshCons);
 	};
 
 }

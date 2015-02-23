@@ -1,7 +1,9 @@
 ﻿using meshDatabase;
 using meshReader.Game.ADT;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using SlimDX;
+using SlimDX.Direct3D11;
+using SlimDX.DXGI;
+using SlimDX.Windows;
 using System.Linq;
 
 namespace meshDisplay

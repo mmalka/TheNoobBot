@@ -17,7 +17,7 @@ namespace meshBuilderGui
 
         public void MarkCompleted(int x, int y)
         {
-            pictureBox1.Invoke(new Action(() => Mark(x, y, Color.Green)));
+            pictureBox1.Invoke(new Action(() => Mark(x, y, Color.LimeGreen))); //Color.Green)));
         }
 
         public void MarkRunning(int x, int y)
@@ -31,7 +31,17 @@ namespace meshBuilderGui
         }
         public void MarkAlreadyBuilt(int x, int y)
         {
-            pictureBox1.Invoke(new Action(() => Mark(x, y, Color.Blue)));
+            pictureBox1.Invoke(new Action(() => Mark(x, y, Color.DodgerBlue))); //Color.Blue)));
+        }
+
+        public void MarkToBeDone(int x, int y)
+        {
+            pictureBox1.Invoke(new Action(() => Mark(x, y, Color.LightGray))); //Color.PeachPuff))); //Color.LightYellow)));
+        }
+
+        public void MarkDoneByother(int x, int y)
+        {
+            pictureBox1.Invoke(new Action(() => Mark(x, y, Color.HotPink)));
         }
 
         private void Mark(int tx, int ty, Color color)

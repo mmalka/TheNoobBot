@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Microsoft.Xna.Framework;
+using SlimDX;
 
 namespace meshReader.Helper
 {

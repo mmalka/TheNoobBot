@@ -23,15 +23,27 @@ namespace meshReader.Game
             uint calcOffset = 0;
             while ((calcOffset+baseOffset) < stream.Length && (calcOffset < maxLength))
             {
-                var nameBytes = reader.ReadBytes(4);
-                var name = Encoding.ASCII.GetString(new[] { nameBytes[3], nameBytes[2], nameBytes[1], nameBytes[0] });
-                var length = reader.ReadUInt32();
-                calcOffset += 8;
-                Chunks.Add(new Chunk(name, length, calcOffset + baseOffset, Stream));
-                calcOffset += length;
-                // save an extra seek at the end
-                if ((calcOffset+baseOffset) < stream.Length && calcOffset < maxLength)
-                    stream.Seek(length, SeekOrigin.Current);
+                //try
+                //{
+                    var nameBytes = reader.ReadBytes(4);
+                    var name = Encoding.ASCII.GetString(new[] { nameBytes[3], nameBytes[2], nameBytes[1], nameBytes[0] });
+                    uint length = 0;
+                    try
+                    {
+                        length = reader.ReadUInt32();
+                        calcOffset += 8;
+                    }
+                    catch
+                    {
+                        calcOffset += 6;
+                    }
+                    Chunks.Add(new Chunk(name, length, calcOffset + baseOffset, Stream));
+                    calcOffset += length;
+                    // save an extra seek at the end
+                    if ((calcOffset+baseOffset) < stream.Length && calcOffset < maxLength)
+                        stream.Seek(length, SeekOrigin.Current);
+                //}
+                //catch { return; }
             }
         }
 

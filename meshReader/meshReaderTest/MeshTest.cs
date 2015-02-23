@@ -1,6 +1,6 @@
 ﻿using System;
 using meshPather;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using NUnit.Framework;
 
 namespace meshReaderTest
@@ -14,6 +14,37 @@ namespace meshReaderTest
         {
             Pather = new Pather(continent);
             Assert.IsFalse(Pather.IsDungeon);
+        }
+
+        protected double TryHugePath(Vector3 start, Vector3 end, out System.Collections.Generic.List<Hop> path)
+        {
+            TryPath(start, end, out path, true);
+            float diff = (end - path[path.Count - 1].Location).Length();
+            float ndiff = 5f;
+            while (ndiff < diff)
+            {
+                int limit = (int)(path.Count * 0.75f);
+
+                System.Collections.Generic.List<Hop> path2;
+                TryPath(path[limit].Location, end, out path2, true);
+
+                ndiff = (end - path2[path2.Count - 1].Location).Length();
+                if (ndiff < diff)
+                {
+                    for (int j = path.Count - 1; j > limit; j--)
+                    {
+                        path.RemoveAt(j);
+                    }
+                    foreach (Hop p in path2)
+                        path.Add(p);
+                    diff = ndiff;
+                    ndiff = 5f;
+                }
+            }
+            double length = 0;
+            for (int i = 0; i < path.Count - 1; i++)
+                length += (path[i].Location - path[i + 1].Location).Length();
+            return length;
         }
 
         protected double TryPath(Vector3 start, Vector3 end)
@@ -47,7 +78,6 @@ namespace meshReaderTest
             }*/
             Console.WriteLine("Number of hops : " + result.Count);
             Console.WriteLine("Memory: " + (Pather.MemoryPressure / 1024 / 1024) + "MB");
-            Console.WriteLine("--------------------------------------------");
 
             hops = result;
             return length;

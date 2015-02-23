@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using System.Linq;
 
 namespace meshReader.Game.ADT

@@ -44,7 +44,7 @@ namespace meshDatabase.Database
             if (_initialized)
                 return;
 
-            MpqManager.InitializeDBC();
+            //MpqManager.InitializeDBC();
             _taxiNodes = MpqManager.GetDBC("TaxiNodes");
             _taxiPath = MpqManager.GetDBC("TaxiPath");
             _initialized = true;

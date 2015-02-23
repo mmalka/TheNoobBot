@@ -5,12 +5,13 @@ using System.Linq;
 using System.Reflection;
 using DetourLayer;
 using meshDatabase.Database;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using RecastLayer;
+
+using dtPolyRef = System.UInt64;
 
 namespace meshPather
 {
-    
     public class Danger
     {
         public Vector3 Location { get; private set; }
@@ -61,6 +62,7 @@ namespace meshPather
 
     public class Pather
     {
+        private const int Division = 1;
         public delegate bool ConnectionHandlerDelegate(ConnectionData data);
 
         private readonly NavMesh _mesh;
@@ -108,7 +110,18 @@ namespace meshPather
 
         public string GetTilePath(int x, int y)
         {
-            return _meshPath + "\\" + Continent + "_" + x + "_" + y + ".tile";
+            if (Division == 1)
+                return _meshPath + "\\" + Continent + "_" + x + "_" + y + ".tile";
+            else
+            {
+                int baseX = (int) (x / Division);
+                int baseY = (int) (y / Division);
+                float offsetI = (x * (Utility.TileSize / Division)) - (baseX * Utility.TileSize);
+                float offsetJ = (y * (Utility.TileSize / Division)) - (baseY * Utility.TileSize);
+                int i = (int) Math.Round(offsetI / (Utility.TileSize / Division));
+                int j = (int) Math.Round(offsetJ / (Utility.TileSize / Division));
+                return _meshPath + "\\" + Continent + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
+            }
         }
 
         public void GetTileByLocation(Vector3 loc, out float x, out float y)
@@ -122,10 +135,16 @@ namespace meshPather
             y = /*(int)Math.Floor(fy)*/ fy;
         }
 
+        public static void GetWoWTileByLocation(float[] loc, out float x, out float y)
+        {
+            x = (loc[0] - Utility.Origin[0]) / Utility.TileSize;
+            y = (loc[2] - Utility.Origin[2]) / Utility.TileSize;
+        }
+
         public static void GetTileByLocation(float[] loc, out float x, out float y)
         {
-            x = (loc[0] - Utility.Origin[0])/Utility.TileSize;
-            y = (loc[2] - Utility.Origin[2])/Utility.TileSize;
+            x = (loc[0] - Utility.Origin[0]) / (Utility.TileSize / Division);
+            y = (loc[2] - Utility.Origin[2]) / (Utility.TileSize / Division);
         }
 
         public void LoadAllTiles()
@@ -146,15 +165,16 @@ namespace meshPather
         {
             CheckDungeon();
 
-            //int tx, ty;
             float tx, ty;
             GetTileByLocation(loc, out tx, out ty);
             int x = (int)Math.Floor(tx);
             int y = (int)Math.Floor(ty);
-            int thirdx, thirdy;
+            //int thirdx, thirdy;
 
-            LoadTile(x, y);
-            if (tx < x + 0.5f)
+            for (int i = -1; i < 2; i++)
+                for (int j = -1; j < 2; j++)
+                    LoadTile(x + i, y + j);
+            /*if (tx < x + 0.5f)
                 thirdx = x - 1;
             else
                 thirdx = x + 1;
@@ -164,7 +184,7 @@ namespace meshPather
                 thirdy = y + 1;
             LoadTile(thirdx, y);
             LoadTile(x, thirdy);
-            LoadTile(thirdx, thirdy);
+            LoadTile(thirdx, thirdy);*/
         }
 
         public bool LoadTile(byte[] data)
@@ -189,21 +209,57 @@ namespace meshPather
         {
             CheckDungeon();
 
-            if (_mesh.HasTileAt(x, y))
-                return true;
-            var path = GetTilePath(x, y);
-            if (!File.Exists(path))
-            {
-                if (!_missingTile.Contains(path))
+            //if (Divide == 1)
+            //{
+                if (_mesh.HasTileAt(x, y))
+                    return true;
+                var path = GetTilePath(x, y);
+                if (!File.Exists(path))
                 {
-                    _missingTile.Add(path);
-                    Console.WriteLine(path + " manque !");
+                    if (!_missingTile.Contains(path))
+                    {
+                        _missingTile.Add(path);
+                        Console.WriteLine(path + " manque !");
+                    }
+                    return false;
+                }
+                var data = File.ReadAllBytes(path);
+                if (LoadTile(data))
+                {
+                    Console.WriteLine(path + " ok");
+                    return true;
                 }
                 return false;
-            }
-            var data = File.ReadAllBytes(path);
-            Console.WriteLine(path + " ok");
-            return LoadTile(data);
+            //}
+            /*else
+            {
+                bool result = true;
+                bool skip = false;
+                for (int i = 0; i < Divide; i++)
+                {
+                    for (int j = 0; j < Divide; j++)
+                    {
+                        if (_mesh.HasTileAt((x * Divide) + i, (y * Divide) + j))
+                            continue;
+                        var path = GetTilePath(x, y, i, j);
+                        if (!File.Exists(path))
+                        {
+                            if (!_missingTile.Contains(path))
+                            {
+                                _missingTile.Add(path);
+                                Console.WriteLine(path + " manque !");
+                            }
+                            return false;
+                        }
+                        var data = File.ReadAllBytes(path);
+                        result = result && LoadTile(data);
+                        Console.WriteLine(path + " ok");
+                    }
+                    if (skip)
+                        break;
+                }
+                return result;
+            }*/
         }
 
         public bool RemoveTile(int x, int y, out byte[] tileData)
@@ -230,15 +286,15 @@ namespace meshPather
                 LoadAround(endVec);
             }
 
-            var startRef = _query.FindNearestPolygon(start, extents, Filter);
+            dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
             if (startRef == 0)
                 throw new NavMeshException(DetourStatus.Failure, "No polyref found for start");
 
-            var endRef = _query.FindNearestPolygon(end, extents, Filter);
+            dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
             if (endRef == 0)
                 throw new NavMeshException(DetourStatus.Failure, "No polyref found for end");
 
-            uint[] pathCorridor;
+            dtPolyRef[] pathCorridor;
             Console.WriteLine("Findpath...");
             var status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
             if (status.HasFailed() || pathCorridor == null)
@@ -249,7 +305,7 @@ namespace meshPather
 
             float[] finalPath;
             StraightPathFlag[] pathFlags;
-            uint[] pathRefs;
+            dtPolyRef[] pathRefs;
             status = _query.FindStraightPath(start, end, pathCorridor, out finalPath, out pathFlags, out pathRefs);
             if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
                 throw new NavMeshException(status, "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
@@ -259,7 +315,7 @@ namespace meshPather
             {
                 if (pathFlags[i].HasFlag(StraightPathFlag.OffMeshConnection))
                 {
-                    var polyRef = pathRefs[i];
+                    dtPolyRef polyRef = pathRefs[i];
                     MeshTile tile;
                     Poly poly;
                     if (_mesh.GetTileAndPolyByRef(polyRef, out tile, out poly).HasFailed() || (poly == null || tile == null))
@@ -329,7 +385,6 @@ namespace meshPather
         public Pather(string continent)
             : this(continent, DefaultConnectionHandler)
         {
-            _missingTile = new System.Collections.Generic.List<string>();
         }
 
         public Pather(string continent, ConnectionHandlerDelegate connectionHandler)
@@ -337,6 +392,7 @@ namespace meshPather
             ConnectionHandler = connectionHandler;
 
             Continent = continent.Substring(continent.LastIndexOf('\\') + 1);
+            _missingTile = new System.Collections.Generic.List<string>();
 
             if (Directory.Exists(continent))
                 _meshPath = continent;
@@ -364,9 +420,9 @@ namespace meshPather
                 status = _mesh.Initialize(data);
                 AddMemoryPressure(data.Length);
                 IsDungeon = true;
-            }
-            else //                       15bits 9bits
-                status = _mesh.Initialize(32767, 511, Utility.Origin, Utility.TileSize, Utility.TileSize);
+            }    //                       20 = 1048575, 28 = toomuch 
+            else //                       15bits = 32767  9bits
+                status = _mesh.Initialize(150000, 512 * Division * Division, Utility.Origin, Utility.TileSize / Division, Utility.TileSize / Division);
 
             if (status.HasFailed())
                 throw new NavMeshException(status, "Failed to initialize the mesh");
@@ -374,6 +430,10 @@ namespace meshPather
             _query = new NavMeshQuery(new PatherCallback(this));
             _query.Initialize(_mesh, 65536);
             Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
+            Filter.SetAreaCost((int)PolyArea.Water, 4);
+            Filter.SetAreaCost((int)PolyArea.Terrain, 1);
+            Filter.SetAreaCost((int)PolyArea.Road, 1);
+            Filter.SetAreaCost((int)PolyArea.Danger, 20);
         }
 
         private static bool DefaultConnectionHandler(ConnectionData data)
@@ -429,6 +489,8 @@ namespace meshPather
             poly.Disable();
         }
 
+        private static float[] prevPt = new float[3];
+
         private void HandlePathfinderUpdate(float[] curPoint)
         {
             // no dynamic tile loading with dungeon mesh
@@ -436,48 +498,40 @@ namespace meshPather
                 return;
 
             var point = curPoint.ToWoW();
+
+            // This happens often, then it saves time
+            if (prevPt[0] == point[0] && prevPt[1] == point[1] && prevPt[2] == point[2])
+                return;
+
+            prevPt[0] = point[0]; prevPt[1] = point[1]; prevPt[2] = point[2];
+            //Console.WriteLine("Callback : " + point);
             LoadAround(new Vector3(point[0], point[1], point[2]));
             return;
-
-            /*float tx, ty;
-            GetTileByLocation(best, out tx, out ty);
-            var currentX = (int) Math.Floor(tx);
-            var currentY = (int) Math.Floor(ty);
-            var diffX = Math.Abs((currentX + 1) - tx);
-            var diffY = Math.Abs((currentY + 1) - ty);
-
-            Console.WriteLine("DynamicTileLoading: " + tx + " " + ty);
-            HeatMap.Add(new KeyValuePair<float, float>(tx, ty));
-
-            const float threshold = 0.7f;
-
-            int addX = 0;
-            int addY = 0;
-            if (diffX < threshold)
-                addX = 1;
-            else if (diffX > (1 - threshold))
-                addX = -1;
-            if (diffY < threshold)
-                addY = 1;
-            else if (diffY > (1 - threshold))
-                addY = -1;
-
-            if (addX != 0 || addY != 0)
-            {
-                LoadDynamic(currentX + addX, currentY);
-                LoadDynamic(currentX, currentY + addY);
-                LoadDynamic(currentX + addX, currentY + addY);
-            }*/
         }
 
-        private void LoadDynamic(int x, int y)
+        /*private void LoadDynamic(int x, int y)
         {
-            if (!_mesh.HasTileAt(x, y))
+            if (Divide == 1)
             {
-                if (LoadTile(x, y))
-                    Console.WriteLine("Load dynamically: " + x + " " + y);
+                if (!_mesh.HasTileAt(x, y))
+                {
+                    if (LoadTile(x, y))
+                        Console.WriteLine("Load dynamically: " + x + " " + y);
+                }
             }
-        }
+            else
+            {
+                for (int i = 0; i < Divide; i++)
+                {
+                    for (int j = 0; j < Divide; j++)
+                    {
+                        if (!_mesh.HasTileAt(x * Divide + i, y * Divide + j))
+                            if (LoadTile(x, y))
+                                Console.WriteLine("Load dynamically: " + x + " " + y);
+                    }
+                }
+            }
+        }*/
 
         private static void HandleLog(string text)
         {

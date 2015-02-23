@@ -2,7 +2,7 @@
 using System.IO;
 using meshDatabase;
 using meshReader.Helper;
-using Microsoft.Xna.Framework;
+using SlimDX;
 
 namespace meshReader.Game.MDX
 {
@@ -21,6 +21,8 @@ namespace meshReader.Game.MDX
         public Model(string path)
         {
             _stream = MpqManager.GetFile(FixModelPath(path));
+            //if (_stream == null) // required for file list
+            //    return;
             Header = new ModelHeader();
             Header.Read(_stream);
 

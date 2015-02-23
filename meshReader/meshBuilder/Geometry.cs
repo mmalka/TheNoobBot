@@ -4,8 +4,8 @@ using System.IO;
 using meshReader.Game;
 using meshReader.Game.ADT;
 using meshReader.Game.WMO;
-using Microsoft.Xna.Framework;
 using System.Linq;
+using SlimDX;
 using RecastLayer;
 
 namespace meshBuilder
@@ -48,7 +48,7 @@ namespace meshBuilder
             }
         }
 
-        public void CalculateMinMaxHeight(out float min, out float max)
+        public void CalculateMinMaxHeight(out float min, out float max, float[] bbMin, float[] bbMax)
         {
             min = float.MaxValue;
             max = float.MinValue;
@@ -57,16 +57,16 @@ namespace meshBuilder
             {
                 if (Transform)
                 {
-                    if (vert.Y < min)
+                    if (vert.Y < min && vert.X >= bbMin[0] && vert.X <= bbMax[0] && vert.Z >= bbMin[2] && vert.Z <= bbMax[2])
                         min = vert.Y;
-                    if (vert.Y > max)
+                    if (vert.Y > max && vert.X >= bbMin[0] && vert.X <= bbMax[0] && vert.Z >= bbMin[2] && vert.Z <= bbMax[2])
                         max = vert.Y;
                 }
                 else
                 {
-                    if (vert.Z < min)
+                    if (vert.Z < min && vert.X >= bbMin[0] && vert.X <= bbMax[0] && vert.Y >= bbMin[1] && vert.Y <= bbMax[1])
                         min = vert.Z;
-                    if (vert.Z > max)
+                    if (vert.Z > max && vert.X >= bbMin[0] && vert.X <= bbMax[0] && vert.Y >= bbMin[1] && vert.Y <= bbMax[1])
                         max = vert.Z;
                 }
             }

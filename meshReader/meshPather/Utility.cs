@@ -1,5 +1,5 @@
 ﻿using DetourLayer;
-using Microsoft.Xna.Framework;
+using SlimDX;
 
 namespace meshPather
 {
@@ -55,7 +55,7 @@ namespace meshPather
 
         public static float TileSize
         {
-            get { return 533.33333f; }
+            get { return 533f + (1 / (float)3); }
         }
     }
 

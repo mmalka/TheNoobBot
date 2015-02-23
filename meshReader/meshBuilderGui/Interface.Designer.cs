@@ -1,4 +1,6 @@
-﻿namespace meshBuilderGui
+﻿using meshBuilderGui.Properties;
+
+namespace meshBuilderGui
 {
     partial class Interface
     {
@@ -29,6 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Interface));
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,7 +54,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(176, 325);
+            this.button1.Location = new System.Drawing.Point(172, 319);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 20);
             this.button1.TabIndex = 1;
@@ -62,7 +65,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 355);
+            this.label1.Location = new System.Drawing.Point(5, 349);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 3;
@@ -71,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 380);
+            this.label2.Location = new System.Drawing.Point(5, 374);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 4;
@@ -79,7 +82,7 @@
             // 
             // startXBox
             // 
-            this.startXBox.Location = new System.Drawing.Point(74, 352);
+            this.startXBox.Location = new System.Drawing.Point(70, 346);
             this.startXBox.Name = "startXBox";
             this.startXBox.Size = new System.Drawing.Size(62, 20);
             this.startXBox.TabIndex = 5;
@@ -87,7 +90,7 @@
             // 
             // startYBox
             // 
-            this.startYBox.Location = new System.Drawing.Point(74, 377);
+            this.startYBox.Location = new System.Drawing.Point(70, 371);
             this.startYBox.Name = "startYBox";
             this.startYBox.Size = new System.Drawing.Size(62, 20);
             this.startYBox.TabIndex = 6;
@@ -96,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(142, 355);
+            this.label3.Location = new System.Drawing.Point(138, 349);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 7;
@@ -105,7 +108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(142, 380);
+            this.label4.Location = new System.Drawing.Point(138, 374);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 8;
@@ -113,14 +116,14 @@
             // 
             // countXBox
             // 
-            this.countXBox.Location = new System.Drawing.Point(183, 352);
+            this.countXBox.Location = new System.Drawing.Point(179, 346);
             this.countXBox.Name = "countXBox";
             this.countXBox.Size = new System.Drawing.Size(91, 20);
             this.countXBox.TabIndex = 9;
             // 
             // countYBox
             // 
-            this.countYBox.Location = new System.Drawing.Point(183, 377);
+            this.countYBox.Location = new System.Drawing.Point(179, 371);
             this.countYBox.Name = "countYBox";
             this.countYBox.Size = new System.Drawing.Size(91, 20);
             this.countYBox.TabIndex = 10;
@@ -134,7 +137,7 @@
             // statL
             // 
             this.statL.AutoSize = true;
-            this.statL.Location = new System.Drawing.Point(10, 403);
+            this.statL.Location = new System.Drawing.Point(5, 397);
             this.statL.Name = "statL";
             this.statL.Size = new System.Drawing.Size(58, 13);
             this.statL.TabIndex = 11;
@@ -143,7 +146,7 @@
             // timeLeftL
             // 
             this.timeLeftL.AutoSize = true;
-            this.timeLeftL.Location = new System.Drawing.Point(119, 403);
+            this.timeLeftL.Location = new System.Drawing.Point(157, 397);
             this.timeLeftL.Name = "timeLeftL";
             this.timeLeftL.Size = new System.Drawing.Size(51, 13);
             this.timeLeftL.TabIndex = 12;
@@ -156,6 +159,15 @@
             "Kalimdor",
             "Expansion01",
             "Northrend",
+            "HawaiiMainLand",
+            "Draenor",
+            "DeathKnightStart",
+            "Gilneas",
+            "Gilneas2",
+            "TanaanJungleIntro",
+            "Ashran",
+            "LostIsles",
+            "NewRaceStartZone",
             "PVPZone01",
             "PVPZone03",
             "PVPZone04",
@@ -164,13 +176,36 @@
             "IsleofConquest",
             "CataclysmCTF",
             "TolBarad",
-            "Gilneas_BG_2"});
+            "Gilneas_BG_2",
+            "ValleyOfPower",
+            "SunwellPlateau",
+            "Deephome",
+            "DarkmoonFaire",
+            "MoguIslandDailyArea",
+            "EyeoftheStorm2.0",
+            "GoldRushBG",
+            "FWHordeGarrisonLevel1",
+            "FWHordeGarrisonLeve2new",
+            "FWHordeGarrisonLevel2",
+            "SMVAllianceGarrisonLevel1",
+            "SMVAllianceGarrisonLevel2new",
+            "SMVAllianceGarrisonLevel2",
+            "BlackrockFoundryRaid"});
             this.continentNameCB.FormattingEnabled = true;
             this.continentNameCB.Items.AddRange(new object[] {
             "Azeroth",
             "Kalimdor",
             "Expansion01",
             "Northrend",
+            "HawaiiMainLand",
+            "Draenor",
+            "DeathKnightStart",
+            "Gilneas",
+            "Gilneas2",
+            "TanaanJungleIntro",
+            "Ashran",
+            "LostIsles",
+            "NewRaceStartZone",
             "PVPZone01",
             "PVPZone03",
             "PVPZone04",
@@ -179,8 +214,22 @@
             "IsleofConquest",
             "CataclysmCTF",
             "TolBarad",
-            "Gilneas_BG_2"});
-            this.continentNameCB.Location = new System.Drawing.Point(12, 324);
+            "Gilneas_BG_2",
+            "ValleyOfPower",
+            "SunwellPlateau",
+            "Deephome",
+            "DarkmoonFaire",
+            "MoguIslandDailyArea",
+            "EyeoftheStorm2.0",
+            "GoldRushBG",
+            "FWHordeGarrisonLevel1",
+            "FWHordeGarrisonLeve2new",
+            "FWHordeGarrisonLevel2",
+            "SMVAllianceGarrisonLevel1",
+            "SMVAllianceGarrisonLevel2new",
+            "SMVAllianceGarrisonLevel2",
+            "BlackrockFoundryRaid"});
+            this.continentNameCB.Location = new System.Drawing.Point(8, 318);
             this.continentNameCB.Name = "continentNameCB";
             this.continentNameCB.Size = new System.Drawing.Size(158, 21);
             this.continentNameCB.TabIndex = 13;
@@ -188,14 +237,10 @@
             // 
             // wowDirCB
             // 
-            this.wowDirCB.AutoCompleteCustomSource.AddRange(new string[] {
-            "E:\\Meshes\\Wow\\",
-            "C:\\Meshes\\Wow\\"});
+            this.wowDirCB.AutoCompleteCustomSource.AddRange(new string[] { Settings.Default.WoWPath });
             this.wowDirCB.FormattingEnabled = true;
-            this.wowDirCB.Items.AddRange(new object[] {
-            "E:\\Meshes\\Wow\\",
-            "C:\\Meshes\\Wow\\"});
-            this.wowDirCB.Location = new System.Drawing.Point(66, 280);
+            this.wowDirCB.Items.AddRange(new object[] { Settings.Default.WoWPath });
+            this.wowDirCB.Location = new System.Drawing.Point(62, 274);
             this.wowDirCB.Name = "wowDirCB";
             this.wowDirCB.Size = new System.Drawing.Size(208, 21);
             this.wowDirCB.TabIndex = 14;
@@ -203,7 +248,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 283);
+            this.label5.Location = new System.Drawing.Point(5, 277);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 15;
@@ -211,16 +256,16 @@
             // 
             // meshTB
             // 
-            this.meshTB.Location = new System.Drawing.Point(66, 300);
+            this.meshTB.Location = new System.Drawing.Point(62, 294);
             this.meshTB.Name = "meshTB";
             this.meshTB.Size = new System.Drawing.Size(208, 20);
             this.meshTB.TabIndex = 16;
-            this.meshTB.Text = "G:\\Meshes\\";
+            this.meshTB.Text = Settings.Default.MeshesPath;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 302);
+            this.label6.Location = new System.Drawing.Point(5, 296);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 17;
@@ -228,7 +273,7 @@
             // 
             // buildDisplay1
             // 
-            this.buildDisplay1.Location = new System.Drawing.Point(12, 12);
+            this.buildDisplay1.Location = new System.Drawing.Point(7, 6);
             this.buildDisplay1.Name = "buildDisplay1";
             this.buildDisplay1.Size = new System.Drawing.Size(262, 262);
             this.buildDisplay1.TabIndex = 0;
@@ -237,7 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 422);
+            this.ClientSize = new System.Drawing.Size(278, 417);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.meshTB);
             this.Controls.Add(this.label5);
@@ -256,10 +301,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buildDisplay1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Interface";
-            this.ShowIcon = false;
             this.Text = "Mesh Builder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Interface_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

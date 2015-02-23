@@ -11,7 +11,7 @@ namespace meshReaderTest
         [Test(Description = "Test loading one of the games' ADTs")]
         public void TestGameAdt()
         {
-            MpqManager.Initialize("S:\\WoW");
+            //MpqManager.Initialize("S:\\WoW");
             var test = new ADT("World\\maps\\Northrend\\Northrend_43_29.adt");
             test.Read();
 

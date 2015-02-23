@@ -3,10 +3,12 @@
 
     public static class Constant
     {
-        public const float TileSize = 533.0f + (1/(float) 3);
-        public const float MaxXY = 32.0f*TileSize;
-        public const float ChunkSize = TileSize/16.0f;
-        public const float UnitSize = ChunkSize/8.0f;
+        public const int Division = 1;
+        public const float BaseTileSize = 533f + (1 / (float)3);
+        public const float TileSize = BaseTileSize / Division;
+        public const float MaxXY = 32.0f * BaseTileSize;
+        public const float ChunkSize = BaseTileSize / 16.0f;
+        public const float UnitSize = ChunkSize / 8.0f;
     }
 
 }

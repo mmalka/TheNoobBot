@@ -5,7 +5,8 @@ using meshReader.Game.Caching;
 using meshReader.Game.MDX;
 using meshReader.Game.WMO;
 using meshReader.Helper;
-using Microsoft.Xna.Framework;
+using SlimDX;
+using SlimMath;
 
 namespace meshReader.Game.ADT
 {
@@ -46,6 +47,8 @@ namespace meshReader.Game.ADT
             if (wmoReferencesChunk == null)
                 return;
             var stream = wmoReferencesChunk.GetStream();
+            if (stream.Length < wmoReferencesChunk.Offset + wmoReferencesChunk.Length)
+                return;
             var reader = new BinaryReader(stream);
             var refCount = (int)(wmoReferencesChunk.Length / 4);
             for (int i = 0; i < refCount; i++)
@@ -67,7 +70,11 @@ namespace meshReader.Game.ADT
                 var model = Cache.WorldModel.Get(path);
                 if (model == null)
                 {
-                    model = new WorldModelRoot(path);
+                    try
+                    {
+                        model = new WorldModelRoot(path);
+                    }
+                    catch { continue; }
                     Cache.WorldModel.Insert(path, model);
                 }
 
@@ -87,18 +94,24 @@ namespace meshReader.Game.ADT
             foreach (var group in root.Groups)
             {
                 int vertOffset = vertices.Count;
-                vertices.AddRange(group.Vertices.Select(vert => Vector3.Transform(vert, transformation)));
-
-                for (int i = 0; i < group.Triangles.Length; i++)
+                //vertices.AddRange(group.Vertices.Select(vert => Vector3.Transform(vert, transformation)));
+                if (group.Triangles != null)
                 {
-                    // only include collidable tris
-                    if ((group.TriangleFlags[i] & 0x04) != 0 && group.TriangleMaterials[i] != 0xFF)
-                        continue;
+                    bool one = false;
+                    for (int i = 0; i < group.Triangles.Length; i++)
+                    {
+                        // only include collidable tris
+                        if ((group.TriangleFlags[i] & 0x04) != 0 && group.TriangleMaterials[i] != 0xFF)
+                            continue;
 
-                    var tri = group.Triangles[i];
-                    triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
-                                                     (uint) (tri.V1 + vertOffset),
-                                                     (uint) (tri.V2 + vertOffset)));
+                        var tri = group.Triangles[i];
+                        triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
+                                                         (uint)(tri.V1 + vertOffset),
+                                                         (uint)(tri.V2 + vertOffset)));
+                        one = true;
+                    }
+                    if (one)
+                        vertices.AddRange(group.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
                 }
             }
 
@@ -126,7 +139,7 @@ namespace meshReader.Game.ADT
                         continue;
                     var doodadTransformation = Transformation.GetWmoDoodadTransformation(instance, def);
                     int vertOffset = vertices.Count;
-                    vertices.AddRange(model.Vertices.Select(vert => Vector3.Transform(vert, doodadTransformation)));
+                    vertices.AddRange(model.Vertices.Select(vert => Vector3.TransformCoordinate(vert, doodadTransformation)));
                     foreach (var tri in model.Triangles)
                         triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
                                                          (uint) (tri.V1 + vertOffset), (uint) (tri.V2 + vertOffset)));
@@ -166,10 +179,10 @@ namespace meshReader.Game.ADT
 
         private static Vector3 GetLiquidVert(Matrix transformation, Vector3 basePosition, float height, int x, int y)
         {
-            if (MathHelper.Distance(height, 0.0f) > 0.5f)
+            if (System.Math.Abs(height) > 0.5f)
                 basePosition.Z = 0.0f;
 
-            return Vector3.Transform(basePosition + new Vector3(x*Constant.UnitSize, y*Constant.UnitSize, height),
+            return Vector3.TransformCoordinate(basePosition + new Vector3(x * Constant.UnitSize, y * Constant.UnitSize, height),
                                      transformation);
         }
 
@@ -190,21 +203,21 @@ namespace meshReader.Game.ADT
         // TODO: this is so fucking idiotic because data and id share the same stream. also stolen from DoodadHandler - need better synergy
         private void ReadModelPaths()
         {
-            var mwid = Source.ObjectData.GetChunkByName("MWID");
-            var mwmo = Source.ObjectData.GetChunkByName("MWMO");
-            if (mwid == null || mwmo == null)
-                return;
-
-            var paths = (int)(mwid.Length/4);
-            _paths = new List<string>(paths);
-            for (int i = 0; i < paths; i++)
+            var mwid0 = Source.ObjectData.GetChunkByName("MWID");
+            var mwmo0 = Source.ObjectData.GetChunkByName("MWMO");
+            if (!(mwid0 == null || mwmo0 == null))
             {
-                var r = new BinaryReader(mwid.GetStream());
-                r.BaseStream.Seek(i*4, SeekOrigin.Current);
-                uint offset = r.ReadUInt32();
-                var dataStream = mwmo.GetStream();
-                dataStream.Seek(offset + mwmo.Offset, SeekOrigin.Begin);
-                _paths.Add(dataStream.ReadCString());
+                var paths = (int)(mwid0.Length / 4);
+                _paths = new List<string>(paths);
+                for (int i = 0; i < paths; i++)
+                {
+                    var r = new BinaryReader(mwid0.GetStream());
+                    r.BaseStream.Seek(i * 4, SeekOrigin.Current);
+                    uint offset = r.ReadUInt32();
+                    var dataStream = mwmo0.GetStream();
+                    dataStream.Seek(offset + mwmo0.Offset, SeekOrigin.Begin);
+                    _paths.Add(dataStream.ReadCString());
+                }
             }
         }
 
@@ -218,6 +231,7 @@ namespace meshReader.Game.ADT
             public Vector3 LowerExtents;
             public ushort Flags;
             public ushort DoodadSet;
+            public ushort NameSet;
 
             public float Scale { get { return 1.0f; } }
 
@@ -233,10 +247,12 @@ namespace meshReader.Game.ADT
                                   UpperExtents = Vector3Helper.Read(s),
                                   LowerExtents = Vector3Helper.Read(s),
                                   Flags = r.ReadUInt16(),
-                                  DoodadSet = r.ReadUInt16()
+                                  DoodadSet = r.ReadUInt16(),
+                                  NameSet = r.ReadUInt16()
                               };
                 // discard some padding
-                r.ReadUInt32();
+                r.ReadUInt16();
+                //r.ReadUInt32();
                 return ret;
             }
         }

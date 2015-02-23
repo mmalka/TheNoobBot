@@ -19,7 +19,7 @@
             var firstIndex = Source.ObjectData.GetFirstIndex("MCNK");
             if (firstIndex == -1)
                 return;
-            if (firstIndex + chunk.Index > Source.ObjectData.Chunks.Count)
+            if (firstIndex + chunk.Index >= Source.ObjectData.Chunks.Count)
                 return;
             var ourChunk = Source.ObjectData.Chunks[firstIndex + chunk.Index];
             if (ourChunk.Length == 0)

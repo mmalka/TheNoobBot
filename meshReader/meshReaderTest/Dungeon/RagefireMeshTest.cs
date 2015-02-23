@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using SlimDX;
 using NUnit.Framework;
 
 namespace meshReaderTest.Dungeon

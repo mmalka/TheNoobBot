@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using meshReaderTest;
+using TryPatherFindConsole.Properties;
 
 namespace TryPatherFindConsole
 {
@@ -10,18 +11,25 @@ namespace TryPatherFindConsole
     {
         static void Main(string[] args)
         {
-            var t = new AzerothMeshTest();
+            //var t = new PandariaMeshTest();
+            //var t = new AzerothMeshTest();
             //var t = new KalidmorMeshTest();
             //
-            t.Initialize();
-            t.TestNeo();
+            //t.Initialize(Settings.Default.MeshesPath, Settings.Default.WoWPath);
+            //t.TestNeo();
 
-            Console.WriteLine("=================================");
-            Console.WriteLine("=================================");
+            //Console.WriteLine("=================================");
+            //Console.WriteLine("=================================");
 
-            var u = new NorthrendMeshTest();
-            u.Initialize();
-            u.TestNeo();
+            var u = new VisualizerTest();
+            u.Initialize(Settings.Default.MeshesPath, Settings.Default.WoWPath);
+            u.TestPathImageDraenor();
+            u.TestPathImageKalimdor();
+            u.TestPathImageWestern();
+
+            //var u = new NorthrendMeshTest();
+            //u.Initialize(Settings.Default.MeshesPath, Settings.Default.WoWPath);
+            //u.TestNeo();
 
             //var u = new TileCrossingTest();
             //u.CrossingTest();

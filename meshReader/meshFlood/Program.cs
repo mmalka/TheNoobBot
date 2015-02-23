@@ -71,7 +71,7 @@ namespace meshFlood
             }
 
             Console.WriteLine("Initializing DBC backend...");
-            MpqManager.InitializeDBC();
+            //MpqManager.InitializeDBC();
 
             Console.Write("Identifiying map id.. ");
             int mapId = PhaseHelper.GetMapIdByName(continent);

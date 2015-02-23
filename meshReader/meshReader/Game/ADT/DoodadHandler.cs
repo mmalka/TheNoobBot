@@ -3,7 +3,7 @@ using System.IO;
 using meshReader.Game.Caching;
 using meshReader.Game.MDX;
 using meshReader.Helper;
-using Microsoft.Xna.Framework;
+using SlimDX;
 
 namespace meshReader.Game.ADT
 {
@@ -57,7 +57,7 @@ namespace meshReader.Game.ADT
             {
                 int index = reader.ReadInt32();
                 if (index < 0 || index >= _definitions.Count)
-                    continue;
+                    break; //continue;
 
                 var doodad = _definitions[index];
 
@@ -94,7 +94,7 @@ namespace meshReader.Game.ADT
             var transformation = Transformation.GetTransformation(def);
             var vertOffset = (uint)Vertices.Count;
             foreach (var vert in model.Vertices)
-                Vertices.Add(Vector3.Transform(vert, transformation));
+                Vertices.Add(Vector3.TransformCoordinate(vert, transformation));
             foreach (var tri in model.Triangles)
                 Triangles.Add(new Triangle<uint>(TriangleType.Doodad, tri.V0 + vertOffset, tri.V1 + vertOffset, tri.V2 + vertOffset));
         }

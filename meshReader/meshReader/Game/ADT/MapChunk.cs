@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using meshReader.Helper;
-using Microsoft.Xna.Framework;
+using SlimDX;
+using System.Text;
 
 namespace meshReader.Game.ADT
 {
@@ -42,7 +43,7 @@ namespace meshReader.Game.ADT
             {
                 for (int x = 0; x < 8; x++)
                 {
-                    if (HasHole(Header.Holes, x / 2, y / 2))
+                    if (Header.HasHole(x, y))
                         continue;
 
                     var topLeft = (byte)((17*y) + x);
@@ -73,8 +74,7 @@ namespace meshReader.Game.ADT
 
         private void GenerateVertices(Stream s)
         {
-            s.Seek(Header.OffsetMCVT, SeekOrigin.Current);
-
+            s.Seek(Header.MCVTDataOffsetComputed, SeekOrigin.Current);
             int vertIndex = 0;
             Vertices = new Vector3[145];
             var reader = new BinaryReader(s);
@@ -98,20 +98,26 @@ namespace meshReader.Game.ADT
             }
         }
 
-        private static bool HasHole(uint map, int x, int y)
+        /*private static bool HasHole(uint map, int x, int y)
         {
             return ((map & 0x0000FFFF) & ((1 << x) << (y << 2))) > 0;
+        }*/
+
+        [Flags]
+        public enum MapChunkHeaderFlags : uint
+        {
+            HighResHoleMap = 0x10000
         }
 
         public class MapChunkHeader
         {
-            public uint Flags;
+            public MapChunkHeaderFlags Flags;
             public uint IndexX;
             public uint IndexY;
             public uint Layers;
             public uint DoodadRefs;
-            public uint OffsetMCVT;
-            public uint OffsetMCNR;
+            public uint HighResHoleL;
+            public uint HighResHoleH;
             public uint OffsetMCLY;
             public uint OffsetMCRF;
             public uint OffsetMCAL;
@@ -120,7 +126,8 @@ namespace meshReader.Game.ADT
             public uint SizeMCSH;
             public uint AreaId;
             public uint MapObjectRefs;
-            public uint Holes;
+            public ushort LowResHoles;
+            public ushort HolesAlign;
             public uint[] LowQualityTextureMap;
             public uint PredTex;
             public uint NumberEffectDoodad;
@@ -130,17 +137,23 @@ namespace meshReader.Game.ADT
             public uint SizeMCLQ;
             public Vector3 Position;
             public uint OffsetMCCV;
+            public uint OffsetMCLV;
+            public uint unused;
+            // Computed data
+            public byte[] HighResHoles { get { return BitConverter.GetBytes(HighResHoleL + ((ulong)HighResHoleH << 32)); } } // 0x14
+            public uint MCVTDataOffsetComputed;
 
             public void Read(Stream s)
             {
                 var r = new BinaryReader(s);
-                Flags = r.ReadUInt32();
+                var startingOffset = s.Position;
+                Flags = (MapChunkHeaderFlags)r.ReadUInt32();
                 IndexX = r.ReadUInt32();
                 IndexY = r.ReadUInt32();
                 Layers = r.ReadUInt32();
                 DoodadRefs = r.ReadUInt32();
-                OffsetMCVT = r.ReadUInt32();
-                OffsetMCNR = r.ReadUInt32();
+                HighResHoleL = r.ReadUInt32();
+                HighResHoleH = r.ReadUInt32();
                 OffsetMCLY = r.ReadUInt32();
                 OffsetMCRF = r.ReadUInt32();
                 OffsetMCAL = r.ReadUInt32();
@@ -149,7 +162,8 @@ namespace meshReader.Game.ADT
                 SizeMCSH = r.ReadUInt32();
                 AreaId = r.ReadUInt32();
                 MapObjectRefs = r.ReadUInt32();
-                Holes = r.ReadUInt32();
+                LowResHoles = r.ReadUInt16();
+                HolesAlign = r.ReadUInt16();
                 LowQualityTextureMap = new uint[4];
                 for (int i = 0; i < 4; i++)
                     LowQualityTextureMap[i] = r.ReadUInt32();
@@ -159,8 +173,56 @@ namespace meshReader.Game.ADT
                 SoundEmitters = r.ReadUInt32();
                 OffsetMCLQ = r.ReadUInt32();
                 SizeMCLQ = r.ReadUInt32();
-                Position = Vector3Helper.Read(s);
+                Position = Vector3Helper.Read(r.BaseStream);
                 OffsetMCCV = r.ReadUInt32();
+                OffsetMCLV = r.ReadUInt32();
+                unused = r.ReadUInt32();
+
+                //string sigString = "MCVT";
+                //var arr = Encoding.ASCII.GetBytes(sigString);
+                //Array.Reverse(arr);
+                //uint sigInt = BitConverter.ToUInt32(arr, 0);
+
+                long currentPos = s.Position;
+                var sig = r.ReadUInt32();
+                var size = r.ReadUInt32();
+                while (sig != 0x4D435654 && s.CanRead) // 0x4D435654 = MCVT reversed
+                {
+                    Console.WriteLine("I had to read more data");
+                    s.Position = currentPos + size;
+                    currentPos = s.Position;
+                    sig = r.ReadUInt32();
+                    size = r.ReadUInt32();
+                }
+                MCVTDataOffsetComputed = (uint)(s.Position - startingOffset);
+            }
+            public byte[] Holes
+            {
+                get
+                {
+                    if (Flags.HasFlag(MapChunkHeaderFlags.HighResHoleMap))
+                        return HighResHoles;
+                    else
+                        return TransformToHighRes(LowResHoles);
+                }
+            }
+            private static byte[] TransformToHighRes(ushort holes)
+            {
+                var ret = new byte[8];
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        int holeIdxL = (i / 2) * 4 + (j / 2);
+                        if (((holes >> holeIdxL) & 1) == 1)
+                            ret[i] |= (byte)(1 << j);
+                    }
+                }
+                return ret;
+            }
+            public bool HasHole(int col, int row)
+            {
+                return ((Holes[row] >> col) & 1) == 1;
             }
         }
     }

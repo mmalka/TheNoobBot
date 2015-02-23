@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using meshPather;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using NUnit.Framework;
 using RecastLayer;
 
@@ -13,9 +13,10 @@ namespace meshReaderTest
     {
 
         [TestFixtureSetUp]
-        public void Initialize()
+        public void Initialize(string MeshesPath, string WowPath)
         {
-            Initialize("G:\\Meshes\\Northrend");
+            string iMeshesPath = MeshesPath + "Northrend";
+            Initialize(@iMeshesPath);
         }
 
         [Test]

@@ -47,7 +47,14 @@ namespace meshDisplay
 
         public void AddMesh(string continent, int x, int y)
         {
-            Components.Add(new MeshDrawer(this, continent, x, y));
+            if (Constant.Division == 1)
+                Components.Add(new MeshDrawer(this, continent, x, y));
+            else
+            {
+                for (int i = 0; i < Constant.Division; i++)
+                   for (int j = 0; j < Constant.Division; j++)
+                       Components.Add(new MeshDrawer(this, continent, x, y, i, j));
+            }
         }
 
         /// <summary>
@@ -65,31 +72,83 @@ namespace meshDisplay
             Camera = new CameraManager(this);
             Components.Add(Camera);
 
-            MpqManager.Initialize();
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_30_58.adt"));
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_31_58.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\EyeoftheStorm2.0\\EyeoftheStorm2.0_28_27.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\EyeoftheStorm2.0\\EyeoftheStorm2.0_28_28.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_35_20.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_36_20.adt"));
 
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_30_59.adt"));
-            Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_31_59.adt"));
-            
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_30_49.adt"));
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_31_49.adt"));
+            /*Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_28_30.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_28_31.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_28_32.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_28_33.adt"));
+            */
+            Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_30_43.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_30_44.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_30_53.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_31_53.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Kalimdor\\Kalimdor_29_12.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Kalimdor\\Kalimdor_30_12.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Kalimdor\\Kalimdor_29_13.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Kalimdor\\Kalimdor_30_13.adt"));
 
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_32_54.adt"));
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_32_55.adt"));*/
+            /*Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_29_30.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_29_31.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_29_32.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_29_33.adt"));
 
-            //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_34_40.adt"));
-            
-            //AddMesh("Azeroth", 30, 58);
-            //AddMesh("Azeroth", 31, 58);
-            
-            //AddMesh("Azeroth", 30, 59);
-            AddMesh("Azeroth", 31, 59);
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_30_30.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_30_31.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_30_32.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_30_33.adt"));
 
-            //AddMesh("Azeroth", 30, 49);
-            //AddMesh("Azeroth", 31, 49);
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_31_30.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_31_31.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_31_32.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_31_33.adt"));
 
-            //AddMesh("Azeroth", 34, 40);
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_32_30.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_32_31.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_32_32.adt"));
+            Components.Add(new AdtDrawer(this, "World\\maps\\GoldRushBG\\GoldRushBG_32_33.adt"));
+            */
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Firelands1\\Firelands1_32_54.adt"));
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Firelands1\\Firelands1_32_55.adt"));*/
+
+            //Components.Add(new AdtDrawer(this, "World\\maps\\Firelands1\\Firelands1_34_40.adt"));
+
+            AddMesh("Azeroth", 30, 43);
+            AddMesh("Azeroth", 30, 44);
+            //AddMesh("Azeroth", 30, 53);
+            //AddMesh("Azeroth", 31, 53);
+
+            //AddMesh("Kalimdor", 29, 12);
+            //AddMesh("Kalimdor", 30, 12);
+            //AddMesh("Kalimdor", 29, 13);
+            //AddMesh("Kalimdor", 30, 13);
+
+            //AddMesh("Azeroth", 35, 20);
+            //AddMesh("Azeroth", 36, 20);
+            /*
+             AddMesh("GoldRushBG", 28, 30);
+             AddMesh("GoldRushBG", 28, 31);
+             AddMesh("GoldRushBG", 28, 32);
+
+             AddMesh("GoldRushBG", 29, 30);
+             AddMesh("GoldRushBG", 29, 31);
+             AddMesh("GoldRushBG", 29, 32);
+
+             AddMesh("GoldRushBG", 30, 30);
+             AddMesh("GoldRushBG", 30, 31);
+             AddMesh("GoldRushBG", 30, 32);
+
+             AddMesh("GoldRushBG", 31, 30);
+             AddMesh("GoldRushBG", 31, 31);
+             AddMesh("GoldRushBG", 31, 32);
+
+             AddMesh("GoldRushBG", 32, 30);
+             AddMesh("GoldRushBG", 32, 31);
+             AddMesh("GoldRushBG", 32, 32);*/
+             //AddMesh("Azeroth", 34, 40);
 
             //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_36_49.adt"));
             //Components.Add(new AdtDrawer(this, "World\\maps\\Azeroth\\Azeroth_29_49.adt")); Stormwind

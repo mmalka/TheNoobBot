@@ -26,25 +26,25 @@ namespace meshDatabase.Database
             BMax[1] = src.GetFloat(4);
         }
 
-        public void TransformCoordinates(float coordX, float coordY, out float worldX, out float worldY)
+        /*public void TransformCoordinates(float coordX, float coordY, out float worldX, out float worldY)
         {
             worldX = BMin[0] + ((BMax[0] - BMin[0])*(coordX/100));
             worldY = BMin[0] + ((BMax[0] - BMin[0])*(coordY/100));
-        }
+        }*/
 
-        public void GetMinTile(out int x, out int y)
+        /*public void GetMinTile(out int x, out int y)
         {
-            const float tileSize = 533.0f + (1 / 3.0f);
+            const float tileSize = 533.3333f;
             x = (int)Math.Floor(32 - (BMin[0] / tileSize));
             y = (int)Math.Floor(32 - (BMin[1] / tileSize));
         }
 
         public void GetMaxTile(out int x, out int y)
         {
-            const float tileSize = 533.0f + (1 / 3.0f);
+            const float tileSize = 533.3333f;
             x = (int)Math.Floor(32 - (BMax[0] / tileSize));
             y = (int)Math.Floor(32 - (BMax[1] / tileSize));
-        }
+        }*/
 
     }
 

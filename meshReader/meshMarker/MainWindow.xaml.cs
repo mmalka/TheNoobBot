@@ -14,9 +14,9 @@ using meshPather;
 using meshReader;
 using meshReader.Game;
 using meshReader.Game.Miscellaneous;
-using RecastLayer;
 using Point = System.Windows.Point;
 using System.Linq;
+using RecastLayer;
 
 namespace meshMarker
 {
@@ -116,7 +116,7 @@ namespace meshMarker
         {
             _startY = 0;
             InitializeComponent();
-            MpqManager.Initialize("S:\\WoW\\");
+            //MpqManager.Initialize("S:\\WoW\\");
             PopulateContinents();
         }
 
@@ -315,7 +315,7 @@ namespace meshMarker
             {
                 var center = GetPointLocation(ellipse.Margin.Left, ellipse.Margin.Top);
 
-                uint[] foundPolys;
+                ulong[] foundPolys;
                 var status = _pather.Query.QueryPolygons(center, new float[] { 5, 500, 5 }, _pather.Filter, out foundPolys);
                 if (foundPolys == null || status.HasFailed())
                     continue;
@@ -366,7 +366,7 @@ namespace meshMarker
                 center[1] /= poly.Points.Count;
                 center[2] /= poly.Points.Count;
 
-                uint[] foundPolys;
+                ulong[] foundPolys;
                 var status = _pather.Query.QueryPolygons(center, new float[] {5, 500, 5}, _pather.Filter, out foundPolys);
                 if (foundPolys == null || status.HasFailed())
                     continue;

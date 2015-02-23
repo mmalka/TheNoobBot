@@ -24,41 +24,42 @@ namespace meshBuilder
         public float DetailSampleDistance { get; set; }
         public float DetailSampleMaxError { get; set; }
         public int TileWidth { get; set; }
+        public float TileSize { get; set; }
+        public bool BuildBvTree { get; set; }
 
         public static RecastConfig Default
         {
             get
             {
                 var ret = new RecastConfig();
-                const float tileSize = Constant.TileSize; // 80 dans mangos
-                const int tileVoxelSize = 2000; //1800;
-                ret.CellSize = tileSize / tileVoxelSize; // -> 0.2666666666
-                ret.CellHeight = 0.3f; //0.4f
-                ret.MinRegionArea = 1600;// 3600;//64; // 3600; //20;
-                ret.MergeRegionArea = 2500;// 400; // 2500; //40;
-                ret.WalkableSlopeAngle = 45.0f; // 50.0 juste previously
-                ret.DetailSampleDistance = ret.CellSize * 64; // = 17.xx //3f;
-                ret.DetailSampleMaxError = ret.CellHeight * 2; // = 0.6 //1.25f;
-                //Toon Config
-                // working set
-//                ret.WorldWalkableClimb = 1.6f; //1f; *           // less than agent height
-//                ret.WorldWalkableHeight = 2.4f; //1.7f;         // agent height
-//                ret.WorldWalkableRadius = 0.7f; //0.6f; *       // agent radius
-                // test set
-                ret.WorldWalkableClimb = 1.0f;
-                ret.WorldWalkableHeight = 1.7f; // 1.8f and 7 bellow
-                ret.WorldWalkableRadius = 0.6f;
-                // end test
+                const float GRID_SIZE = Constant.TileSize;
+                const float BASE_UNIT_DIM = 0.2962963f;
+                const int VERTEX_PER_TILE = (int)(GRID_SIZE / BASE_UNIT_DIM + 0.5f);
+                const int DT_VERTS_PER_POLYGON = 6;
 
-                ret.WalkableClimb = 4; // (int)Math.Round(ret.WorldWalkableClimb / ret.CellHeight); // 4
-                ret.WalkableHeight = 6; // (int)Math.Round(ret.WorldWalkableHeight / ret.CellHeight); // 6
-                ret.WalkableRadius = 2; // (int)Math.Round(ret.WorldWalkableRadius / ret.CellSize); // 2
-                //end of Toon Config
-                ret.MaxEdgeLength = 200; // ret.WalkableRadius * 8;
-                ret.BorderSize = ret.WalkableRadius + 3; //4
-                ret.TileWidth = tileVoxelSize; // +(ret.BorderSize * 2); //* 2
-                ret.MaxVertsPerPoly = 6;
-                ret.MaxSimplificationError = 2.0f; //1.3f;
+                ret.MaxVertsPerPoly = DT_VERTS_PER_POLYGON;
+                ret.CellSize = BASE_UNIT_DIM;
+                ret.CellHeight = 0.4f;
+                ret.WalkableSlopeAngle = 48.0f;
+                ret.TileSize = GRID_SIZE;
+                ret.MaxEdgeLength = 20; // 15
+                ret.MinRegionArea = 40*40; // = 1600 vs 200;
+                ret.MergeRegionArea = 52*52; // 52*52 = 2704 vs 3500;
+                ret.MaxSimplificationError = 1.2f;
+                ret.DetailSampleDistance = 2.0f;
+                ret.DetailSampleMaxError = 0.5f;
+                ret.TileWidth = VERTEX_PER_TILE;
+
+                ret.WorldWalkableRadius = 0.5f;
+                ret.WorldWalkableHeight = 1.69f;
+                ret.WorldWalkableClimb = 1.0f;
+
+                ret.WalkableRadius = (int)Math.Ceiling(ret.WorldWalkableRadius / ret.CellSize);
+                ret.WalkableHeight = (int)Math.Ceiling(ret.WorldWalkableHeight / ret.CellHeight);
+                ret.WalkableClimb = (int)Math.Floor(ret.WorldWalkableClimb / ret.CellHeight);
+
+                ret.BorderSize = ret.WalkableRadius + 3;
+                ret.BuildBvTree = true;
                 return ret;
             }
         }

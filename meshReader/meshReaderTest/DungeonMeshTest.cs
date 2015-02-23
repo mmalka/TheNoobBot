@@ -1,6 +1,6 @@
 ﻿using System;
 using meshPather;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using NUnit.Framework;
 
 namespace meshReaderTest

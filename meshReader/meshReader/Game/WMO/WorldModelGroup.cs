@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using meshReader.Helper;
-using Microsoft.Xna.Framework;
+using SlimDX;
 
 namespace meshReader.Game.WMO
 {

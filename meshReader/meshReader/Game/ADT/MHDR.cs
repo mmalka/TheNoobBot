@@ -17,6 +17,10 @@ namespace meshReader.Game.ADT
         public uint OffsetMFBO;
         public uint OffsetMH2O;
         public uint OffsetMTFX;
+        public uint unused1;
+        public uint unused2;
+        public uint unused3;
+        public uint unused4;
 
         public void Read(Stream s)
         {
@@ -33,7 +37,10 @@ namespace meshReader.Game.ADT
             OffsetMFBO = r.ReadUInt32();
             OffsetMH2O = r.ReadUInt32();
             OffsetMTFX = r.ReadUInt32();
-
+            unused1 = r.ReadUInt32();
+            unused2 = r.ReadUInt32();
+            unused3 = r.ReadUInt32();
+            unused4 = r.ReadUInt32();
         }
     }
 

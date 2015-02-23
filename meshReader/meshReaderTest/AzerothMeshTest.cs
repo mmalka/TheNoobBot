@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using meshPather;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using NUnit.Framework;
 using RecastLayer;
 
@@ -11,29 +11,31 @@ namespace meshReaderTest
     [TestFixture]
     public class AzerothMeshTest : MeshTest
     {
+        static private string iMeshesPath;
 
         [TestFixtureSetUp]
-        public void Initialize()
+        public void Initialize(string MeshesPath, string WoWPath)
         {
-            Initialize("G:\\Meshes\\Azeroth");
+            iMeshesPath = MeshesPath + "Azeroth";
+            Initialize(@iMeshesPath);
         }
 
         [Test]
-        private void WriteFile(string fName, System.Collections.Generic.List<Hop> path, Vector3 target)
+        private void WriteFile(string fName, System.Collections.Generic.List<Hop> path, Vector3 target, int limit = 0, bool reopen = false)
         {
-            System.IO.StreamWriter file = new System.IO.StreamWriter("a_" + fName);
+            System.IO.StreamWriter file = new System.IO.StreamWriter("a_" + fName, reopen);
             file.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             file.WriteLine("<GrinderProfile xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">");
             file.WriteLine("  <Points>");
-            foreach (var hop in path)
+            for (int i = 0; i < (limit == 0 ? path.Count : limit); i++)
             {
                 file.WriteLine("    <Point>");
-                file.WriteLine("      <X>{0}</X>", hop.Location.X);
-                file.WriteLine("      <Y>{0}</Y>", hop.Location.Y);
-                file.WriteLine("      <Z>{0}</Z>", hop.Location.Z);
+                file.WriteLine("      <X>{0}</X>", path[i].Location.X);
+                file.WriteLine("      <Y>{0}</Y>", path[i].Location.Y);
+                file.WriteLine("      <Z>{0}</Z>", path[i].Location.Z);
                 file.WriteLine("    </Point>");
             }
-            if (!target.Equals(path[path.Count - 1].Location))
+            if (limit ==0 && !target.Equals(path[path.Count - 1].Location))
             {
                 file.WriteLine("    <Point>");
                 file.WriteLine("      <X>{0}</X>", target.X);
@@ -79,66 +81,72 @@ namespace meshReaderTest
             var AzoraDown = new Vector3(-9517.778f, -680.7117f, 63.0045f);
             var AzoraTop = new Vector3(-9551.597f, -721.6193f, 99.12933f);
 
+            Pather = new Pather(@iMeshesPath, MockConnectionHandler);
             // costs settings
-            Pather.Filter.SetAreaCost((int)PolyArea.Water, 2);
+            Pather.Filter.SetAreaCost((int)PolyArea.Water, 4);
             Pather.Filter.SetAreaCost((int)PolyArea.Terrain, 1);
             Pather.Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 4);
+            Pather.Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            //Pather.LoadAllTiles();
             
             Console.WriteLine("Northshire -> Goldshire");
             TryPath(NorthShire, Goldshire, out walkHops, true);
             WriteFile("Northshire-Goldshire.xml", walkHops, Goldshire);
             
             // works
-            
+            /*
             Console.WriteLine("Northshire -> Westfall");
             TryPath(NorthShire, Westfall, out walkHops, true);
             WriteFile("Northshire-Westfall.xml", walkHops, Westfall);
-            
+            */
             // works
-            
+            /*
             Console.WriteLine("Goldshire -> Stormwind Dwarf");
             TryPath(Goldshire, StormwindDwarf, out walkHops, true);
             WriteFile("Goldshire-StormwindDwarf.xml", walkHops, StormwindDwarf);
-            
+            */
             // very small to test height & radius
+            /*
             Console.WriteLine("Goldshire -> Lion Pride upstair");
             TryPath(Goldshire, etage, out walkHops, true);
             WriteFile("Goldshire-LionPride.xml", walkHops, etage);
-
+            */
             // very small to test height & radius
+            /*
             Console.WriteLine("Goldshire -> Stormgriffon");
             TryPath(Goldshire, Stormgriffon, out walkHops, true);
             WriteFile("Goldshire-Stormgriffon.xml", walkHops, Stormgriffon);
-            
+            */
             // another stormwind test
+            /*
             Console.WriteLine("Goldshire -> Harrison Jones STW");
             TryPath(Goldshire, HarrisonJonesSTW, out walkHops, true);
             WriteFile("Goldshire-HarrisonJonesSTW.xml", walkHops, HarrisonJonesSTW);
-
+            */
             // Azora tower pb on tile 33/50 it does not go to the last stair (missing 7.5 in height)
+            /*
             Console.WriteLine("AzoraDown -> Azora tower top");
             TryPath(AzoraDown, AzoraTop, out walkHops, true);
             WriteFile("AzoraDown-AzoraTop.xml", walkHops, AzoraTop);
-            
+            */
             // works
-            
+            /*
             Console.WriteLine("Goldshire -> Lakeshire");
             TryPath(Goldshire, LakeShire, out walkHops, true);
             WriteFile("Goldshire-Lakeshire.xml", walkHops, LakeShire);
-            
+            */
             // works
-            
+            /*
             Console.WriteLine("Northshire -> Lakeshire");
             TryPath(NorthShire, LakeShire, out walkHops, true);
             WriteFile("Northshire-Lakeshire.xml", walkHops, LakeShire);
-            
+            */
             // works
-            
+            /*
             Console.WriteLine("Goldshire -> Sombre Conté");
             TryPath(Goldshire, Dustwood, out walkHops, true);
             WriteFile("Goldshire-Dustwood.xml", walkHops, Dustwood);
-            
+            */
             // ??
             /*
             Console.WriteLine("Sombre Conté -> Booty Bay");
@@ -146,44 +154,52 @@ namespace meshReaderTest
             WriteFile("Dustwood-BootyBay.xml", walkHops, BootyBay);
             */
             // works
-            
+            /*
             Console.WriteLine("Sombre Conté -> Passage 2 strong");
             TryPath(Dustwood, PassPointStrong, out walkHops, true);
             WriteFile("Dustwood-PassPointStrong.xml", walkHops, PassPointStrong);
-            
+            */
             //
-            
+            /*
             Console.WriteLine("Passage 2 strong -> Booty Tunnel");
             TryPath(PassPointStrong, BootyTunnel, out walkHops, true);
             WriteFile("PassPointStrong-BootyTunnel.xml", walkHops, BootyTunnel);
-            
+            */
             // fails because cannot enter the tunnel
+            /*
             // pb tile not 31,59
             Console.WriteLine("Booty Tunnel -> Booty bay");
             TryPath(BootyTunnel, BootyBay, out walkHops, true);
             WriteFile("Booty Tunnel-BootyBay.xml", walkHops, BootyBay);
-            
-            // Does not end
-            
+            */
+            // works
+            /*
             Console.WriteLine("Goldshire -> Booty Tunnel");
             TryPath(Goldshire, BootyTunnel, out walkHops, true);
             WriteFile("Goldshire-BootyTunnel.xml", walkHops, BootyTunnel);
-            
+            */
             // works
-            
+            /*
             Console.WriteLine("Goldshire -> PassPointStrong");
             TryPath(Goldshire, PassPointStrong, out walkHops, true);
             WriteFile("Goldshire-PassPointStrong.xml", walkHops, PassPointStrong);
-            
+            */
             // unsure coords
-            
+
             Console.WriteLine("Ironforge (Fly-Master) -> Loc Modan City (Fly-Master Thorgrum Borrelson)");
             TryPath(IronForgeFly, LocModanCityFly, out walkHops, true);
             WriteFile("Ironforge-Loc Modan City.xml", walkHops, LocModanCityFly);
 
             Console.WriteLine("Goldshire -> Ironforge");
             TryPath(Goldshire, IronForgeFly, out walkHops, true);
-            WriteFile("Goldshire-Ironforge.xml", walkHops, IronForgeFly);
+            if ((IronForgeFly - walkHops[walkHops.Count - 1].Location).Length() > 5f)
+            {
+                int limit = (int)(walkHops.Count * 0.75f);
+                Console.WriteLine("Incomplete result of {0} node, restarting at node {1}", walkHops.Count, limit);
+                WriteFile("Goldshire-Ironforge.xml", walkHops, IronForgeFly); //, limit);
+                TryPath(walkHops[limit].Location, IronForgeFly, out walkHops, true);
+                WriteFile("Goldshire-Ironforge.xml", walkHops, IronForgeFly, 0, true);
+            }
 
             //Pather.Filter.ExcludeFlags = (ushort)(PolyFlag.FlightMaster);
             /*Pather = new Pather("G:\\Meshes\\Azeroth", MockConnectionHandler); // accept alliance fly
@@ -267,7 +283,7 @@ namespace meshReaderTest
             Pather.Filter.ExcludeFlags = (ushort) (PolyFlag.FlightMaster);
             TryPath(new Vector3(-9447.5f, 55.4f, 56.2f), new Vector3(-8957.4f, 517.3f, 96.3f), out roadHops, false);
 
-            Pather = new Pather("G:\\Meshes\\Azeroth", MockConnectionHandler);
+            Pather = new Pather(@iMeshesPath, MockConnectionHandler);
             System.Collections.Generic.List<Hop> flightHops;
             TryPath(new Vector3(-9447.5f, 55.4f, 56.2f), new Vector3(-8957.4f, 517.3f, 96.3f), out flightHops, false);
 

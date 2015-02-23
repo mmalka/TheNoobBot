@@ -1,6 +1,7 @@
 ﻿using meshReader.Game.ADT;
 using meshReader.Game.WMO;
-using Microsoft.Xna.Framework;
+using SlimDX;
+using SlimMath;
 
 namespace meshReader.Game
 {
@@ -21,14 +22,14 @@ namespace meshReader.Game
             if (def.Position.X == 0.0f && def.Position.Y == 0.0f && def.Position.Z == 0.0f)
                 translation = Matrix.Identity;
             else
-                translation = Matrix.CreateTranslation(-(def.Position.Z - Constant.MaxXY),
+                translation = Matrix.Translation(-(def.Position.Z - Constant.MaxXY),
                                                        -(def.Position.X - Constant.MaxXY), def.Position.Y);
 
-            var rotation = Matrix.CreateRotationX(MathHelper.ToRadians(def.Rotation.Z))*
-                           Matrix.CreateRotationY(MathHelper.ToRadians(def.Rotation.X))*Matrix.CreateRotationZ(MathHelper.ToRadians(def.Rotation.Y + 180));
+            var rotation = Matrix.RotationX(MathHelper.DegreesToRadians(def.Rotation.Z)) *
+                           Matrix.RotationY(MathHelper.DegreesToRadians(def.Rotation.X)) * Matrix.RotationZ(MathHelper.DegreesToRadians(def.Rotation.Y + 180));
 
             if (def.Scale < 1.0f || def.Scale > 1.0f)
-                return (Matrix.CreateScale(def.Scale)*rotation)*translation;
+                return (Matrix.Scaling(new Vector3(def.Scale,def.Scale,def.Scale))*rotation)*translation;
             return rotation * translation;
         }
 
@@ -36,11 +37,11 @@ namespace meshReader.Game
         {
             var rootTransformation = GetTransformation(root);
 
-            var translation = Matrix.CreateTranslation(inst.Position);
-            var scale = Matrix.CreateScale(inst.Scale);
-            var rotation = Matrix.CreateRotationY(MathHelper.Pi);
+            var translation = Matrix.Translation(inst.Position);
+            var scale = Matrix.Scaling(new Vector3(inst.Scale, inst.Scale, inst.Scale));
+            var rotation = Matrix.RotationY(MathHelper.Pi);
             var quatRotation =
-                Matrix.CreateFromQuaternion(new Quaternion(-inst.QuatY, inst.QuatZ, -inst.QuatX, inst.QuatW));
+                Matrix.RotationQuaternion(new Quaternion(-inst.QuatY, inst.QuatZ, -inst.QuatX, inst.QuatW));
 
             return scale*rotation*quatRotation*translation*rootTransformation;
         }

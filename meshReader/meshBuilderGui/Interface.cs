@@ -40,8 +40,7 @@ namespace meshBuilderGui
             try
             {
                 MpqManager.Initialize(wowDirCB.Text);
-
-                var wdt = new WDT("World\\maps\\" + continentNameCB.Text + "\\" + continentNameCB.Text + ".wdt");
+                var wdt = new WDT("World\\Maps\\" + continentNameCB.Text + "\\" + continentNameCB.Text + ".wdt");
                 if (!wdt.IsValid)
                     return;
 
@@ -58,6 +57,10 @@ namespace meshBuilderGui
                     int startY = startYBox.Text.Length > 0 ? int.Parse(startYBox.Text) : 0;
                     int countX = countXBox.Text.Length > 0 ? int.Parse(countXBox.Text) : (64 - startX);
                     int countY = countYBox.Text.Length > 0 ? int.Parse(countYBox.Text) : (64 - startY);
+                    if (countX > (64 - startX))
+                        countX = 64 - startX;
+                    if (countY > (64 - startY))
+                        countY = 64 - startY;
 
                     startXBox.Text = startX.ToString();
                     startXBox.ReadOnly = true;
@@ -80,6 +83,7 @@ namespace meshBuilderGui
                 MessageBox.Show(ex.ToString());
             }
 
+            this.buildDisplay1.Clear();
             continentNameCB.Enabled = false;
             wowDirCB.Enabled = false;
             meshTB.ReadOnly = true;
@@ -151,6 +155,12 @@ namespace meshBuilderGui
                 case TileEventType.AlreadyBuilt:
                     buildDisplay1.MarkAlreadyBuilt(e.X, e.Y);
                     break;
+                case TileEventType.ToBuild:
+                    buildDisplay1.MarkToBeDone(e.X, e.Y);
+                    break;
+                case TileEventType.BuiltByOther:
+                    buildDisplay1.MarkDoneByother(e.X, e.Y);
+                    break;
             }
         }
 
@@ -161,7 +171,29 @@ namespace meshBuilderGui
                 button1.Text = ContinentBuilder.PercentProgression() + " %";
                 statL.Text = ContinentBuilder.CurrentTile();
                 timeLeftL.Text = "Time Left: " + ContinentBuilder.GetTimeLeft();
+                if (!_buildThread.IsAlive)
+                {
+                    _buildStarted = false;
+                    continentNameCB.Enabled = true;
+                    wowDirCB.Enabled = false; // let this locked
+                    meshTB.ReadOnly = false;
+                    button1.Enabled = true;
+                    startXBox.ReadOnly = false;
+                    startYBox.ReadOnly = false;
+                    countXBox.ReadOnly = false;
+                    countYBox.ReadOnly = false;
+                    ContinentBuilder.Reset();
+                    button1.Text = "Start Build";
+                }
             }
         }
+
+        private void Interface_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MpqManager.Close();
+            if (_builder != null)
+                _builder.CleanupLastLock();
+        }
+
     }
 }

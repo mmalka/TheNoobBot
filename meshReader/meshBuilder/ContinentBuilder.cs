@@ -2,6 +2,7 @@
 using System.IO;
 using meshDatabase;
 using meshReader.Game;
+using System.Collections.Generic;
 
 namespace meshBuilder
 {
@@ -11,7 +12,9 @@ namespace meshBuilder
         StartedBuild,
         CompletedBuild,
         FailedBuild,
-        AlreadyBuilt, // I added this
+        AlreadyBuilt,
+        BuiltByOther,
+        ToBuild,
     }
 
     public class TileEvent : EventArgs
@@ -40,6 +43,7 @@ namespace meshBuilder
         public int CountX { get; private set; }
         public int CountY { get; private set; }
         private string _meshDir = "";
+        private string current = "";
 
         public event EventHandler<TileEvent> OnTileEvent;
 
@@ -60,19 +64,25 @@ namespace meshBuilder
             TileMap = new WDT("World\\Maps\\" + continent + "\\" + continent + ".wdt");
         }
 
-        private string GetTilePath(int x, int y, int phaseId)
+        private string GetTileNameAndPath(int x, int y, int i=0, int j=0)
         {
-            return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + "_" + phaseId + ".tile";
+            if (Constant.Division != 1)
+                return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + "_" + i + j + ".tile";
+            else
+                return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile";
         }
 
-        private string GetTilePath(int x, int y)
+        private string GetTileLockAndPath(int x, int y)
         {
-            return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile";
+            return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".lock";
         }
-        
-        private void SaveTile(int x, int y, byte[] data)
+
+        private void SaveTile(int x, int y, byte[] data, int i=0, int j=0)
         {
-            File.WriteAllBytes(_meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile", data);
+            if (Constant.Division != 1)
+                File.WriteAllBytes(_meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + "_" + i + j + ".tile", data);
+            else
+                File.WriteAllBytes(_meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile", data);
         }
 
         private void Report(int x, int y, TileEventType type)
@@ -81,17 +91,16 @@ namespace meshBuilder
                 OnTileEvent(this, new TileEvent(Continent, x, y, type));
         }
 
+        static int _totalMeshes = 0;
+        static int _meshesDone = 0;
+
         public static int PercentProgression()
         {
-            try
-            {
-                return _meshBuild * 100 / _nbMeshAtCreate;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            if (_totalMeshes > 0)
+                return (_meshesDone * 100) / _totalMeshes;
+            return 0;
         }
+
         public static string CurrentTile()
         {
             try
@@ -103,48 +112,92 @@ namespace meshBuilder
                 return "-";
             }
         }
+
+        static int _timeOneMesh = 0;
+        static int _oldMeshBuildCount = 0;
+
         public static string GetTimeLeft()
         {
-            try
+            if (_meshBuild > 0)
             {
-                TimeSpan t = TimeSpan.FromSeconds(((((int)Environment.TickCount - _timeStart) * _nbMeshAtCreate / _meshBuild)) / 1000);
-                return t.Days + " Day(s) " + t.Hours + " H " + t.Minutes + " m";
-                
+                if (_oldMeshBuildCount < _meshBuild)
+                {
+                    _timeOneMesh = (Environment.TickCount - _timeStart) / _meshBuild;
+                    _oldMeshBuildCount = _meshBuild;
+                }
+                int timeRemainingMeshes = _timeOneMesh * _nbMeshToCreate;
+                TimeSpan t = TimeSpan.FromSeconds(timeRemainingMeshes / 1000);
+                return (t.Days * 24 + t.Hours) + " H " + t.Minutes + " m";
             }
-            catch (Exception)
+            else
             {
                 return "-";
             }
         }
 
-        static int _nbMeshAtCreate = 0;
+        static int _nbMeshToCreate = 0;
         static int _meshBuild = 0;
         static int _timeStart = 0;
         private static string _currentTile = "";
-        public void Build()
-        {
-            if (!Directory.Exists(_meshDir + Continent))
-                Directory.CreateDirectory(_meshDir + Continent);
+        private static byte[,] _doneTiles = new byte[64, 64];
 
-            // Count nb mesh at create
-            for (int y = StartY; y < (StartY + CountY); y++)
+        public static void Reset()
+        {
+            _doneTiles = new byte[64, 64];
+            _nbMeshToCreate = 0;
+            _meshBuild = 0;
+            _timeStart = 0;
+            _currentTile = "";
+            _timeOneMesh = 0;
+            _oldMeshBuildCount = 0;
+        }
+
+        public void ScanFolderAndReport()
+        {
+            int nbMeshToCreate = 0;
+            int totalMeshes = 0;
+            int meshesDone = 0;
+            for (int y = 0; y < 64; y++)
             {
-                for (int x = StartX; x < (StartX + CountX); x++)
+                for (int x = 0; x < 64; x++)
                 {
-                    if (File.Exists(GetTilePath(x, y)))
+                    // Get if tile is alreay Build
+                    if (File.Exists(GetTileNameAndPath(x, y)))
                     {
-                        Report(x, y, TileEventType.AlreadyBuilt);
+                        if (_doneTiles[x, y] != 1)
+                            Report(x, y, TileEventType.AlreadyBuilt);
+                        totalMeshes++;
+                        meshesDone++;
+                        continue;
+                    }
+                    else if (File.Exists(GetTileLockAndPath(x, y)))
+                    {
+                        if (_doneTiles[x, y] != 1 && current != GetTileLockAndPath(x, y))
+                            Report(x, y, TileEventType.BuiltByOther);
+                        totalMeshes++;
+                        meshesDone++;
                         continue;
                     }
                     else
                     {
-                        // If tile not existe in wow
+                        // If tile does not exist in wow
                         if (!TileMap.HasTile(x, y))
                             continue;
                     }
-                    _nbMeshAtCreate++;
+                    Report(x, y, TileEventType.ToBuild);
+                    nbMeshToCreate++;
+                    totalMeshes++;
                 }
             }
+            _nbMeshToCreate = nbMeshToCreate;
+            _totalMeshes = totalMeshes;
+            _meshesDone = meshesDone;
+        }
+
+        public void Build()
+        {
+            if (!Directory.Exists(_meshDir + Continent))
+                Directory.CreateDirectory(_meshDir + Continent);
 
             _timeStart = (int)Environment.TickCount;
             // Start mesh creation
@@ -152,49 +205,90 @@ namespace meshBuilder
             {
                 for (int x = StartX; x < (StartX+CountX); x++)
                 {
+                    _doneTiles[x, y] = 0;
                     // Get if tile is alreay Build
-                    if (File.Exists(GetTilePath(x, y)))
+                    if (File.Exists(GetTileNameAndPath(x, y)) || File.Exists(GetTileLockAndPath(x, y)))
                     {
-                        Report(x, y, TileEventType.AlreadyBuilt); 
                         continue;
                     }
                     else
                     {
-                        // If tile not existe in wow
+                        // If the tile does not exist in wow
                         if (!TileMap.HasTile(x, y))
                             continue;
                     }
-
-                    Report(x, y, TileEventType.StartedBuild);
-                    _currentTile = Continent + "_" + x + "_" + y;
-                    var builder = new TileBuilder(Continent, x, y);
-                    byte[] data = null;
-
                     try
                     {
-                        data = builder.Build(new MemoryLog());
+                        string tlock = GetTileLockAndPath(x, y);
+                        var sw = File.CreateText(tlock);
+                        current = tlock;
+                        sw.Close();
                     }
                     catch (Exception)
                     {
+                        // In case 2 builder are trying to create the same file
+                        continue;
+                    }
+                    ScanFolderAndReport();
+                    Report(x, y, TileEventType.StartedBuild);
+                    _currentTile = Continent + "_" + x + "_" + y;
+                    Console.WriteLine(_currentTile);
+                    var builder = new TileBuilder(Continent, x, y);
+                    byte[] data = null;
+                    bool failed = false;
+
+                    try
+                    {
+                        builder.PrepareData(new MemoryLog());
+                        for (int i = 0; i < Constant.Division; i++)
+                        {
+                            for (int j = 0; j < Constant.Division; j++)
+                            {
+                                data = null;
+                                data = builder.Build(i, j);
+                                if (data == null)
+                                {
+                                    failed = true;
+                                    break;
+                                }
+                                SaveTile(x, y, data, i, j);
+                            }
+                            if (failed)
+                                break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        File.Delete(GetTileLockAndPath(x, y));
+                        throw;
                     }
 
                     _meshBuild++;
 
-                    if (data == null)
+                    if (failed)
                         Report(x, y, TileEventType.FailedBuild);
                     else
                     {
-                        SaveTile(x, y, data);
+                        _doneTiles[x, y] = 1;
                         Report(x, y, TileEventType.CompletedBuild);
                     }
-
-                   // if (builder.Log is MemoryLog)
-                    //    (builder.Log as MemoryLog).WriteToFile(Continent + "\\" + Continent + "_" + x + "_" + y + ".log");
+                    File.Delete(GetTileLockAndPath(x, y));
                 }
             }
-
+            ScanFolderAndReport();
             _currentTile = "Finish";
+            MpqManager.Close();
+        }
+
+        public void CleanupLastLock()
+        {
+            try
+            {
+                File.Delete(current);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
-
 }

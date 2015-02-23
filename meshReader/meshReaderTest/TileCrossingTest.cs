@@ -2,7 +2,7 @@
 using meshDatabase;
 using meshPather;
 using meshReader;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using NUnit.Framework;
 
 namespace meshReaderTest
@@ -15,20 +15,22 @@ namespace meshReaderTest
         [Ignore("Should be explicitly tested only - takes 4+ minutes since it generates tile navmesh data")]
         public void CrossingTest()
         {
-            MpqManager.Initialize("I:\\WoW");
+            //MpqManager.Initialize("I:\\WoW");
             byte[] dataA, dataB;
 
             // Build tile A
             {
                 var builder = new TileBuilder("Azeroth", 31, 49);
-                dataA = builder.Build(new ConsoleLog());
+                builder.PrepareData(new ConsoleLog());
+                dataA = builder.Build();
                 Assert.IsNotNull(dataA);
             }
 
             // Build tile B
             {
                 var builder = new TileBuilder("Azeroth", 32, 49);
-                dataB = builder.Build(new ConsoleLog());
+                builder.PrepareData(new ConsoleLog());
+                dataB = builder.Build();
                 Assert.IsNotNull(dataB);
             }
 

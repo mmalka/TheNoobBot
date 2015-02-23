@@ -129,7 +129,7 @@ namespace meshBuilder
             pmesh.MarkAll();
 
             byte[] meshData;
-            if (!Detour.CreateNavMeshData(out meshData, pmesh, dmesh, 0, 0, bmin, bmax, Config.WorldWalkableHeight, Config.WorldWalkableRadius, Config.WorldWalkableClimb, Config.CellSize, Config.CellHeight, Config.TileWidth, null))
+            if (!Detour.CreateNavMeshData(out meshData, pmesh, dmesh, 0, 0, bmin, bmax, Config.WorldWalkableHeight, Config.WorldWalkableRadius, Config.WorldWalkableClimb, Config.CellSize, Config.CellHeight, Config.BuildBvTree, null))
             {
                 pmesh.Delete();
                 dmesh.Delete();

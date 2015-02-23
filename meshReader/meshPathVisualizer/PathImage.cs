@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using SlimDX;
 using meshPather;
 
 namespace meshPathVisualizer
@@ -31,7 +32,7 @@ namespace meshPathVisualizer
             {
                 var recastLoc = hop.Location.ToRecast().ToFloatArray();
                 float tX, tY;
-                Pather.GetTileByLocation(recastLoc, out tX, out tY);
+                Pather.GetWoWTileByLocation(recastLoc, out tX, out tY);
 
                 if (tX < minX)
                     minX = (int) tX;
@@ -55,7 +56,7 @@ namespace meshPathVisualizer
                 var hop = Hops[i];
                 var recastLoc = hop.Location.ToRecast().ToFloatArray();
                 float tX, tY;
-                Pather.GetTileByLocation(recastLoc, out tX, out tY);
+                Pather.GetWoWTileByLocation(recastLoc, out tX, out tY);
 
                 tX -= minX;
                 tY -= minY;

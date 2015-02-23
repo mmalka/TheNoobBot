@@ -11,7 +11,7 @@ namespace meshReaderTest
     {
         static WDTTest()
         {
-            MpqManager.Initialize("S:\\WoW");
+            //MpqManager.Initialize("S:\\WoW");
         }
 
         [Test]

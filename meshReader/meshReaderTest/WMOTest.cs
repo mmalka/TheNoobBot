@@ -2,7 +2,7 @@
 using meshReader.Game;
 using meshReader.Game.ADT;
 using meshReader.Game.WMO;
-using Microsoft.Xna.Framework;
+using SlimDX;
 using NUnit.Framework;
 using System.Linq;
 
@@ -15,14 +15,14 @@ namespace meshReaderTest
         [Test(Description = "Test reading a game wmo")]
         public void TestGameWmo()
         {
-            MpqManager.Initialize("S:\\WoW");
+            //MpqManager.Initialize("S:\\WoW");
             var root = new WorldModelRoot("world\\wmo\\Northrend\\Battleground\\ND_BG_Keep01.wmo");
         }
 
         [Test]
         public void TestDungeonWithWater()
         {
-            MpqManager.Initialize("S:\\World of Warcraft");
+            //MpqManager.Initialize("S:\\World of Warcraft");
             var wdt = new WDT("world\\maps\\orgrimmarinstance\\orgrimmarinstance.wdt");
             Assert.IsTrue(wdt.IsValid && wdt.IsGlobalModel);
             var file = wdt.ModelFile;
