@@ -7,7 +7,6 @@ namespace TheNoobViewer
     public class AsyncAction
     {
         private CancellationTokenSource cts;
-        private Task task;
         private Action action;
 
         public bool IsCancellationRequested
@@ -29,8 +28,7 @@ namespace TheNoobViewer
 
         public void Cancel()
         {
-            if (!task.IsCompleted)
-                cts.Cancel();
+            cts.Cancel();
         }
     }
 }

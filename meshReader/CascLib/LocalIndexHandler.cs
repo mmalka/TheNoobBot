@@ -32,10 +32,7 @@ namespace TheNoobViewer
             if (worker != null)
             {
                 worker.ThrowOnCancel();
-                //worker.ReportProgress(0);
             }
-
-            int idxIndex = 0;
 
             foreach (var idx in idxFiles)
             {
@@ -44,7 +41,6 @@ namespace TheNoobViewer
                 if (worker != null)
                 {
                     worker.ThrowOnCancel();
-                    //worker.ReportProgress((int)((float)++idxIndex / (float)idxFiles.Count * 100));
                 }
             }
 
