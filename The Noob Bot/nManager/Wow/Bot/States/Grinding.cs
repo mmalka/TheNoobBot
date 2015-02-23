@@ -66,7 +66,7 @@ namespace nManager.Wow.Bot.States
                 if (_unit.IsTapped && !_unit.IsTappedByMe)
                     return false;
                 if (!nManagerSetting.IsBlackListedZone(_unit.Position) &&
-                    _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
+                    _unit.GetDistance < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                     !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
                     if (_unit.Target == ObjectManager.ObjectManager.Me.Target ||
                         _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 ||
