@@ -41,6 +41,21 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (BaseAddress == 0)
                         return new Point(0, 0, 0);
+                    /*uint i = (uint)(Addresses.UnitField.UNIT_FIELD_X + (-500));
+                    while (true)
+                    {
+                        Logging.Write("New check, i=" + i);
+                        var pt = new Point(
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 4),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 8));
+                        if (pt.X > -12000 && pt.X < 12000 && pt.Y > -12000 && pt.Y < 12000 && pt.Z > -12000 && pt.Z < 12000)
+                            if (!(pt.X.ToString().Contains("E") || pt.Y.ToString().Contains("E") || pt.Z.ToString().Contains("E")))
+                                Logging.Write(pt.ToString());
+                        i += 4;
+                        if (i > 0x1200)
+                            break;
+                    }*/
 
                     Point ret =
                         new Point(

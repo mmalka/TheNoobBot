@@ -125,7 +125,7 @@
         public enum UnitField
         {
             // ToDo: Check CachedTypeFlag
-            UNIT_FIELD_X = 0xA50, // found with a ugly while
+            UNIT_FIELD_X = 0xA90, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
@@ -155,7 +155,7 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0x2A0,
+            GAMEOBJECT_FIELD_X = 0x2A8,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             PackedRotationQuaternion = 0x148,
