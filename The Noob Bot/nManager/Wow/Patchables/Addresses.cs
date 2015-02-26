@@ -40,7 +40,7 @@
         /// [[base+offset1]+offset2]
         public enum MovementFlagsOffsets
         {
-            Offset1 = 0x124, // near any movement flag
+            Offset1 = 0x12C, // near any movement flag
             Offset2 = 0x40,
         }
 
