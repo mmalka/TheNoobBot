@@ -240,13 +240,13 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x3B18,
-            FrameScript_ExecuteBuffer = 0x250C6,
-            CGUnit_C__InitializeTrackingState = 0x2F8484, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2E879E,
-            CGWorldFrame__Intersect = 0x51B5D4,
-            Spell_C_HandleTerrainClick = 0x2554D2,
-            CGUnit_C__Interact = 0x946243,
+            ClntObjMgrGetActivePlayerObj = 0x3B00,
+            FrameScript_ExecuteBuffer = 0x25043,
+            CGUnit_C__InitializeTrackingState = 0x2F8994, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2E8CFD,
+            CGWorldFrame__Intersect = 0x51B365,
+            Spell_C_HandleTerrainClick = 0x255480,
+            CGUnit_C__Interact = 0x94633B,
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
