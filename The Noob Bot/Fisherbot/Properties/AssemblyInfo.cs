@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TheNoobCompany")]
 [assembly: AssemblyProduct("FisherBot for TheNoobBot")]
-[assembly: AssemblyCopyright("Copyright © 2011-2014")]
+[assembly: AssemblyCopyright("Copyright © 2011-2015")]
 [assembly: AssemblyTrademark("TheNoobBot")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Runtime.InteropServices;
 //
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
 // en utilisant '*', comme indiqué ci-dessous :
-// [assembly: AssemblyVersion("4.2.3.*")]
+// [assembly: AssemblyVersion("4.3.4.*")]
 
-[assembly: AssemblyVersion("4.2.3.*")]
+[assembly: AssemblyVersion("4.3.4.*")]
