@@ -294,7 +294,20 @@ namespace nManager.Wow.Bot.States
                             Logging.Write("Not inside, then go to Digsite " + digsitesZone.name);
                             if (_bestPathId == 0)
                                 _bestPathId = _lastPathId;
-                            MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
+                            List<Point> lastpath = _pathFound[_bestPathId];
+                            Point me = ObjectManager.ObjectManager.Me.Position;
+                            int currentIndex = Math.NearestPointOfListPoints(lastpath, me);
+                            int lastIndex = _pathFound[_bestPathId].Count - 1;
+                            List<Point> newPath;
+                            Point target = _pathFound[_bestPathId][currentIndex];
+                            if (!TraceLine.TraceLineGo(new Point(me.X, me.Y, me.Z + 1.0f), new Point(target.X, target.Y, target.Z + 1.0f)))
+                            {
+                                newPath = PathFinder.FindPath(_pathFound[_bestPathId][lastIndex]);
+                                _pathFound[_bestPathId] = newPath;
+                            }
+                            else
+                                newPath = new List<Point>(_pathFound[_bestPathId].GetRange(currentIndex, lastIndex - currentIndex));
+                            MovementManager.Go(newPath);
                         }
                         else if (qPOI.ValidPoint)
                         {
