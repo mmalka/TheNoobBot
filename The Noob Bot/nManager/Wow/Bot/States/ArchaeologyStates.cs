@@ -117,7 +117,13 @@ namespace nManager.Wow.Bot.States
                             continue;
                         if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
                         {
-                            _pathFound.AddRange(new[] {PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, center, Usefuls.ContinentNameMpq, out _currentFindPathStatus)});
+                            List<Point> path = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, center, Usefuls.ContinentNameMpq, out _currentFindPathStatus);
+                            _pathFound.AddRange(new[] { path });
+                            if (!_currentFindPathStatus)
+                            {
+                                if (path.Count > 0 && Polygon.IsInside(path[path.Count - 1]))
+                                    _currentFindPathStatus = true;
+                            }
                             _lastPathId = _pathFound.Count - 1;
                             _bestPathStatus = _currentFindPathStatus;
                             if (_bestPathStatus && !_currentFindPathStatus)
