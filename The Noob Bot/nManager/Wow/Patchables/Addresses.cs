@@ -65,12 +65,12 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xD09D2C,
-            ItemSubClass = 0xD0B87C,
-            FactionTemplate = 0xD0597C,
-            Lock = 0xD0C554,
-            QuestPOIPoint = 0xD0CC3C,
-            ResearchSite = 0xD0CE78,
+            ItemClass = 0xD0DEA4,
+            ItemSubClass = 0xD0F9F4,
+            FactionTemplate = 0xD09AF4,
+            Lock = 0x0D106CC,
+            QuestPOIPoint = 0xD10DB4,
+            ResearchSite = 0xD10FF0,
         }
 
         /// <summary>
