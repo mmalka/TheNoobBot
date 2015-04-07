@@ -10,7 +10,7 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0x0; // F24CF0 ClntObjMgrInitializeStd
+            public static uint clientConnection = 0x0; // F24D00 ClntObjMgrInitializeStd
             public static uint sCurMgr = 0xD3B358; // CCommand_ObjUsage
             // It's the direct pointer to objectManager clientConn+objectManager
         }
@@ -241,12 +241,12 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayerObj = 0x3B0E,
-            FrameScript_ExecuteBuffer = 0x2513D,
-            CGUnit_C__InitializeTrackingState = 0x2F9D1C, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2EA052,
-            CGWorldFrame__Intersect = 0x51E564,
-            Spell_C_HandleTerrainClick = 0x256A23,
-            CGUnit_C__Interact = 0x94929D,
+            FrameScript_ExecuteBuffer = 0x250D1,
+            CGUnit_C__InitializeTrackingState = 0x2F9C96, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2E9FC9,
+            CGWorldFrame__Intersect = 0x51E6C5,
+            Spell_C_HandleTerrainClick = 0x256A04,
+            CGUnit_C__Interact = 0x949215,
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
