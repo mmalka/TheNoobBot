@@ -98,7 +98,7 @@
         public enum Player
         {
             petGUID = 0xE56F48, // petGUIDFOUND
-            playerName = 0xF24D30, // ida: GetPlayerName
+            playerName = 0xF24D40, // ida: GetPlayerName
             RetrieveCorpseWindow = 0xE35B90, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
             SkillValue = 0x200,
@@ -277,7 +277,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xF24ED8 + 0x6, // ClientServices__GetSelectedRealm
+            realmName = 0xF24EE8 + 0x6, // ClientServices__GetSelectedRealm
         }
 
         /// <summary>
