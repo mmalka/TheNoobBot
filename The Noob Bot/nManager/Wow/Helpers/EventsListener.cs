@@ -165,7 +165,7 @@ namespace nManager.Wow.Helpers
                 {
                     case WoWEventsType.CHAT_MSG_LOOT:
                         // when looting multiple items, fire multiples times, we want to make sure to jump to the latest eventFireCount.
-                        Thread.Sleep(500); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
+                        Thread.Sleep(2000); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
                         break;
                 }
                 if (SendsFireCount)
