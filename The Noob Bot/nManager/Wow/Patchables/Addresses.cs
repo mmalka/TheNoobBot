@@ -97,14 +97,14 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0xE56F48, // petGUIDFOUND
+            petGUID = 0xE56F58, // petGUIDFOUND
             playerName = 0xF24D40, // ida: GetPlayerName
             RetrieveCorpseWindow = 0xE35B90, // RetrieveCorpseWindowFOUND
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
             // saving
-            RuneStartCooldown = 0xE5A434, // Script_GetRuneCount
+            RuneStartCooldown = 0xE5A444, // Script_GetRuneCount
         }
 
         /// <summary>
@@ -192,7 +192,7 @@
         /// </summary>
         public enum SpellBook
         {
-            KnownAllSpells = 0xE41454, // SpellBookNumSpells - 4
+            KnownAllSpells = 0xE41454, // SpellBookNumSpells - 4 // KnownAllSpells
             SpellDBCMaxIndex = 200000,
             SpellBookNumSpells = 0xE4145C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
