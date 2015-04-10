@@ -264,17 +264,17 @@ namespace nManager.Wow.Helpers
         /// <param></param>
         /// <param name="fishingPoleName"> </param>
         /// <returns name=""></returns>
+        public static Timer ReCheckFishingPoleTimer = new Timer(1);
+
         public static void EquipFishingPoles(string fishingPoleName = "")
         {
             try
             {
-                if (IsEquipedFishingPoles())
+                if (!ReCheckFishingPoleTimer.IsReady || IsEquipedFishingPoles())
                     return;
-
+                Logging.WriteDebug("Parsing inventory to find a Fishing Pole to equip.");
                 if (fishingPoleName != string.Empty)
                 {
-                    if (ItemsManager.GetItemIdByName(fishingPoleName) == 6256)
-                        return; // Useless to equip the basic Fishing Pole
                     ItemsManager.EquipItemByName(fishingPoleName);
                     Thread.Sleep(500);
                     Thread.Sleep(Usefuls.Latency);
@@ -289,8 +289,6 @@ namespace nManager.Wow.Helpers
                     {
                         if (ItemsManager.GetItemCount(i) > 0)
                         {
-                            if (i == 6256)
-                                return; // Useless to equip the basic Fishing Pole
                             ItemsManager.EquipItemByName(ItemsManager.GetItemNameById(i));
                             Thread.Sleep(500);
                             Thread.Sleep(Usefuls.Latency);
@@ -302,6 +300,8 @@ namespace nManager.Wow.Helpers
                         }
                     }
                 }
+                ReCheckFishingPoleTimer = new Timer(1000 * 60 * 5);
+                Logging.WriteDebug("Inventory parsed, prevent this function from being parsed for the next five minutes.");
             }
             catch (Exception e)
             {

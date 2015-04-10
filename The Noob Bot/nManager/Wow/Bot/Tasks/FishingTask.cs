@@ -70,6 +70,8 @@ namespace nManager.Wow.Bot.Tasks
                     _useLure = useLure;
                     _lureName = lureName;
                     _automaticallyUseDraenorSecondaryBait = automaticallyUseDraenorSecondaryBait;
+                    Fishing.ReCheckFishingPoleTimer.ForceReady(); // In case the user stop/start the fisher bot, 
+                    // we want him to be able to equip his new fishing pole if it's the case.
                     if (_worker2 == null)
                     {
                         _worker2 = new Thread(LoopFishThread) {Name = "Fish"};
