@@ -182,6 +182,8 @@ namespace nManager.Wow.Helpers
             {
                 if (automaticallyUseDraenorBait)
                     UseDraenicBait();
+                if (!IsEquipedFishingPoles())
+                    return;
                 if (ObjectManager.ObjectManager.Me.IsMainHandTemporaryEnchanted)
                     return; // Already lured up.
 
