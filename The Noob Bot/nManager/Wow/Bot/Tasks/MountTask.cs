@@ -80,7 +80,8 @@ namespace nManager.Wow.Bot.Tasks
             }
             if (ObjectManager.ObjectManager.Me.InCombatBlizzard)
                 return MountCapacity.Feet;
-            if ((ObjectManager.ObjectManager.Me.Level < 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level < 16)) ||
+            if (((!_spellGroundMount.KnownSpell && _spellGroundMount.Id == 179245 || _spellGroundMount.Id == 179244) || ObjectManager.ObjectManager.Me.Level < 20 ||
+                 (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level < 16)) ||
                 (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty))
             {
                 if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16)) && _noMountsInSettings != 1)
@@ -144,7 +145,8 @@ namespace nManager.Wow.Bot.Tasks
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"
                 }
-                if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16)) && _groundMount != string.Empty)
+                if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 16) ||
+                     _spellGroundMount.KnownSpell && _spellGroundMount.Id == 179245 || _spellGroundMount.Id == 179244) && _groundMount != string.Empty)
                     return MountCapacity.Ground;
             }
             return MountCapacity.Feet;
