@@ -445,5 +445,29 @@
         <Z>117.651</Z>
       </BPoint>
     </Portal>
+    <Portal Id="230874" Name="Portal of Khadgar from taxi to other side" Faction="Neutral" AContinentId="1116" BContinentId="1116">
+      <APoint> <!-- Taxi side -->
+        <X>3200.052</X>
+        <Y>850.0764</Y>
+        <Z>84.78045</Z>
+      </APoint>
+      <BPoint> <!-- Other side -->
+        <X>3390.911</X>
+        <Y>1025.759</Y>
+        <Z>179.1573</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="230872" Name="Portal of Khadgar from other side to taxi" Faction="Neutral" AContinentId="1116" BContinentId="1116">
+      <APoint> <!-- Other side -->
+        <X>3390.911</X>
+        <Y>1025.759</Y>
+        <Z>179.1573</Z>
+      </APoint>
+      <BPoint> <!-- Taxi side -->
+        <X>3200.052</X>
+        <Y>850.0764</Y>
+        <Z>84.78045</Z>
+      </BPoint>
+    </Portal>
   </Items>
 </Portals>
