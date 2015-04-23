@@ -25398,8 +25398,8 @@ public class HunterSurvival
     public readonly Spell AspectoftheHawk = new Spell("Aspect of the Hawk");
     public readonly Spell Camouflage = new Spell("Camouflage");
     public readonly Spell FeignDeath = new Spell("Feign Death");
-    public readonly Spell HuntersMark = new Spell("Hunter's Mark");
     public readonly Spell Misdirection = new Spell("Misdirection");
+    public readonly Spell SerpentSting = new Spell("Serpent Sting");
 
     #endregion
 
@@ -25418,7 +25418,6 @@ public class HunterSurvival
     public readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
     public readonly Spell KillShot = new Spell("Kill Shot");
     public readonly Spell MultiShot = new Spell("Multi-Shot");
-    public readonly Spell SerpentSting = new Spell("Serpent Sting");
     public readonly Spell SteadyShot = new Spell("Steady Shot");
     private Timer _serpentStingTimer = new Timer(0);
 
@@ -25522,10 +25521,6 @@ public class HunterSurvival
 
     private void Pull()
     {
-        if (HuntersMark.KnownSpell && HuntersMark.IsSpellUsable && MySettings.UseHuntersMark
-            && HuntersMark.IsHostileDistanceGood && !HuntersMark.TargetHaveBuff && LC != 1)
-            HuntersMark.Launch();
-
         if (ObjectManager.Pet.IsAlive)
         {
             Lua.RunMacroText("/petattack");
@@ -25538,10 +25533,11 @@ public class HunterSurvival
             Misdirection.LaunchOnUnitID("pet");
         }
 
-        if (SerpentSting.KnownSpell && SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood
-            && MySettings.UseSerpentSting)
+        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
+            && MySettings.UseArcaneShot)
         {
-            SerpentSting.Launch();
+            ArcaneShot.Launch();
+            return;
         }
     }
 
@@ -25956,18 +25952,18 @@ public class HunterSurvival
     {
         if (SpellManager.GetGcdLeft() > 0)
             return;
-        if (SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood && SerpentSting.KnownSpell
-            && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
+        if (!SerpentSting.TargetHaveBuff && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
+            && MySettings.UseArcaneShot)
         {
-            SerpentSting.Launch();
-            _serpentStingTimer = new Timer(1000*12);
+            ArcaneShot.Launch();
+            _serpentStingTimer = new Timer(1000 * 12);
             return;
         }
-        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-            && MySettings.UseCobraShot && _serpentStingTimer.IsReady)
+        if (_serpentStingTimer.IsReady && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
+            && MySettings.UseArcaneShot)
         {
-            CobraShot.Launch();
-            _serpentStingTimer = new Timer(1000*12);
+            ArcaneShot.Launch();
+            _serpentStingTimer = new Timer(1000 * 12);
             return;
         }
         if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
