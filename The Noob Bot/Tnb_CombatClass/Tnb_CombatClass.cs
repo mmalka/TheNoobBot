@@ -10789,7 +10789,7 @@ public class DruidFeral
         }
 
         if (FaerieFire.KnownSpell && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood
-            && MySettings.UseFaerieFire && (!FaerieFire.TargetHaveBuff || !ObjectManager.Target.HaveBuff(113746)))
+            && MySettings.UseFaerieFire && !FaerieFire.TargetHaveBuff)
         {
             FaerieFire.Launch();
             return;
