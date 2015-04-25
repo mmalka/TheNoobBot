@@ -22,7 +22,7 @@ namespace nManager.Wow.Helpers
                 luaCommand = luaCommand + "" + randomString + " = \"\" ";
                 luaCommand = luaCommand + "ItemLinkT = \"\" ";
                 luaCommand = luaCommand + "for b=0,4 do ";
-                luaCommand = luaCommand + "for s=1,22 do ";
+                luaCommand = luaCommand + "for s=1,GetContainerNumSlots(b) do ";
                 luaCommand = luaCommand + "l=GetContainerItemLink(b,s) ";
                 luaCommand = luaCommand + "if l then ";
                 luaCommand = luaCommand + "ItemLinkT = GetContainerItemLink(b,s) ";
