@@ -70,7 +70,7 @@ namespace nManager.Wow.Helpers
                 {
                     x += 5;
                     y += 5;
-                    z = PathFinder.GetZPosition(x, y);
+                    z = PathFinder.GetZPosition(x, y, true);
                 }
                 float z2 = PathFinder.GetZPosition(x, y, z + 100f);
                 if (z2 - z > 5f)
