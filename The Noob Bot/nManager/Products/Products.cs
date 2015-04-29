@@ -245,6 +245,7 @@ namespace nManager.Products
 
         public static Point TravelTo { get; set; }
         public static int TravelToContinentId { get; set; }
+        public static Func<Point, bool> TargetValidationFct { get; set; }
 
         private static bool _oldIsStarted;
         private static bool _oldIsAliveProduc;

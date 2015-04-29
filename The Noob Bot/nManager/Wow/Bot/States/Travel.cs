@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
@@ -15,7 +16,11 @@ namespace nManager.Wow.Bot.States
     {
         private Portals _availablePortals;
         private Transports _availableTransports;
+        private List<Taxi> _availableTaxis;
+        private List<TaxiLink> _availableTaxiLinks;
+        private List<Taxi> _unknownTaxis = new List<Taxi>();
         private List<Transport> _generatedRoutePath = new List<Transport>();
+        private bool _unknownTaxisChecked = false;
 
         public override string DisplayName
         {
@@ -36,6 +41,12 @@ namespace nManager.Wow.Bot.States
             set { Products.Products.TravelToContinentId = value; }
         }
 
+        public System.Func<Point, bool> TargetValidationFct
+        {
+            get { return Products.Products.TargetValidationFct; }
+            set { Products.Products.TargetValidationFct = value; }
+        }
+
         private bool NeedToTravel
         {
             get { return TravelToContinentId != 9999999; }
@@ -49,12 +60,14 @@ namespace nManager.Wow.Bot.States
                     _availableTransports = XmlSerializer.Deserialize<Transports>(Application.StartupPath + @"\Data\TransportsDB.xml");
                 if (_availablePortals == null)
                     _availablePortals = XmlSerializer.Deserialize<Portals>(Application.StartupPath + @"\Data\PortalsDB.xml");
-                if (_availableTransports == null || _availablePortals == null)
+                if (_availableTaxis == null)
+                    _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+                if (_availableTaxiLinks == null)
+                    _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+                if (_availableTransports == null || _availablePortals == null || _availableTaxis == null || _availableTaxiLinks == null)
                     return false;
                 if (!Products.Products.IsStarted || !NeedToTravel)
                     return false;
-
-
                 _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if no founds.
                 return _generatedRoutePath.Count > 0;
             }
@@ -68,6 +81,14 @@ namespace nManager.Wow.Bot.States
         public override List<State> BeforeStates
         {
             get { return new List<State>(); }
+        }
+
+        private bool IsPointValidAsTarget(Point position)
+        {
+            if (TargetValidationFct != null)
+                return TargetValidationFct(position);
+            else
+                return false;
         }
 
         private List<Transport> GenerateRoutePath
@@ -85,12 +106,13 @@ namespace nManager.Wow.Bot.States
                 {
                     bool success;
                     List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
-                    if (success)
+                    if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last())))
                     {
                         if (oneWayTravel.Value > GetPathDistance(way))
                         {
                             TravelToContinentId = 9999999;
                             TravelTo = new Point();
+                            TargetValidationFct = null;
                             Logging.Write("Travel: Found a faster path without using Transports. Cancelling Travel.");
                             return new List<Transport>();
                         }
@@ -121,6 +143,7 @@ namespace nManager.Wow.Bot.States
                 // todo: support up to 5 way travel and check the fastest every 2 ways. (1-2, 2-3, 3-4, 4-5)
                 TravelToContinentId = 9999999;
                 TravelTo = new Point();
+                TargetValidationFct = null;
                 Logging.Write("Travel: Couldn't find a travel path. Checked up to 2 way travel.");
                 return new List<Transport>();
             }
@@ -154,7 +177,7 @@ namespace nManager.Wow.Bot.States
                 GoToDepartureQuayOrPortal(transport);
                 if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
-                if (!(transport is Portal))
+                if (!(transport is Portal) && !(transport is Taxi))
                 {
                     WaitForTransport(transport);
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -163,7 +186,11 @@ namespace nManager.Wow.Bot.States
                 EnterTransportOrTakePortal(transport);
                 if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
-                if (!(transport is Portal))
+                if (transport is Taxi)
+                {
+                    TravelPatientlybyTaxi();
+                }
+                else if (!(transport is Portal))
                 {
                     TravelPatiently(transport);
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
@@ -173,6 +200,7 @@ namespace nManager.Wow.Bot.States
             }
             TravelToContinentId = 9999999;
             TravelTo = new Point();
+            TargetValidationFct = null;
             Logging.Write("Travel is terminated, waiting for product to take the control back.");
         }
 
@@ -189,7 +217,24 @@ namespace nManager.Wow.Bot.States
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 2)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 2.0f)
+                        loop = false;
+                    Thread.Sleep(100);
+                }
+                MovementManager.StopMove();
+            }
+            else if (selectedTransport is Taxi)
+            {
+                var taxi = selectedTransport as Taxi;
+                Logging.Write("Going to taxi " + taxi.Name + " to travel.");
+                List<Point> pathToTaxi = PathFinder.FindPath(taxi.APoint);
+                MovementManager.Go(pathToTaxi);
+                bool loop = true;
+                while (loop)
+                {
+                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        return;
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(taxi.APoint) < 4.0f)
                         loop = false;
                     Thread.Sleep(100);
                 }
@@ -205,7 +250,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 2)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 2.0f)
                         loop = false;
                     if (!MovementManager.InMoveTo && !MovementManager.InMovement)
                         loop = false;
@@ -289,6 +334,97 @@ namespace nManager.Wow.Bot.States
                     }
                 }
             }
+            else if (selectedTransport is Taxi)
+            {
+                var taxi = selectedTransport as Taxi;
+                WoWUnit memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id), ObjectManager.ObjectManager.Me.Position);
+                bool loop = true;
+                while (loop)
+                {
+                    if (Usefuls.IsFlying)
+                        MountTask.DismountMount();
+                    if (memoryTaxi.IsValid)
+                    {
+                        if (memoryTaxi.GetDistance > 4.0f)
+                        {
+                            List<Point> path = PathFinder.FindPath(memoryTaxi.Position);
+                            MovementManager.Go(path);
+                            while (memoryTaxi.GetDistance > 4.0f)
+                            {
+                                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                                {
+                                    return;
+                                }
+                                Thread.Sleep(150);
+                            }
+                        }
+                        Taxi nextHop = FindNextTaxiHopFor(taxi, true);
+                        if (nextHop == null)
+                        {
+                            Logging.Write("There is a problem with taxi links, some are missing to complete the minimal graph");
+                            return;
+                        }
+                        MountTask.DismountMount();
+                        Interact.InteractWith(memoryTaxi.GetBaseAddress, true);
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Gossip.SelectGossip(Gossip.GossipOption.Taxi);
+                            Thread.Sleep(250 + Usefuls.Latency);
+                        }
+                        // We may just have learn the taxi, then retry
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Interact.InteractWith(memoryTaxi.GetBaseAddress, true);
+                            Thread.Sleep(250 + Usefuls.Latency);
+                        }
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Gossip.SelectGossip(Gossip.GossipOption.Taxi);
+                            Thread.Sleep(250 + Usefuls.Latency);
+                        }
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Logging.Write("There is a problem with taxi master");
+                            return;
+                        }
+                        // It's time to rethink the situation where the player does not know all taxis we need
+                        // Taxi window is open, then we can get all taxis the player knowns
+                        // Current one has just been learn if it was unknown
+                        _unknownTaxis.Remove(taxi);
+                        // Now update list of unknown taxi, they will be ignored in path next time, but used as start point
+                        // and then will be learn
+                        if (!_unknownTaxisChecked) // If we did it once, no need to redo (it takes several seconds)
+                        {
+                            _unknownTaxisChecked = true;
+                            List<Taxi> knownList = Gossip.GetAllTaxisAvailable();
+                            foreach (Taxi oneTaxi in _availableTaxis)
+                            {
+                                Taxi search = knownList.Find(x => x.Xcoord == oneTaxi.Xcoord && x.Ycoord == oneTaxi.Ycoord);
+                                if (search == null || search.Xcoord == "")
+                                {
+                                    if (oneTaxi.Faction == Npc.FactionType.Neutral || oneTaxi.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
+                                        _unknownTaxis.Add(oneTaxi);
+                                }
+                            }
+                        }
+                        CombatClass.DisposeCombatClass();
+                        Gossip.TakeTaxi(nextHop.Xcoord, nextHop.Ycoord);
+                        Logging.Write("Flying to " + nextHop.Name);
+                        loop = false;
+                    }
+                    else
+                    {
+                        if (taxi.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
+                        {
+                            GoToDepartureQuayOrPortal(selectedTransport);
+                            EnterTransportOrTakePortal(selectedTransport);
+                            return;
+                        }
+                        memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int)taxi.Id), ObjectManager.ObjectManager.Me.Position);
+                    }
+                }
+            }
             else
             {
                 Logging.Write("Transport " + selectedTransport.Name + "(" + selectedTransport.Id + ") arrived at the quay, entering transport.");
@@ -349,6 +485,141 @@ namespace nManager.Wow.Bot.States
             }
         }
 
+        // This function is a graph builder (A.I.), will build the graph with minimal number of hops to the target
+        // After minimal(s) path are found, we select the shortest if several exists
+        // Then we return only the next hop after the current
+        private Taxi FindNextTaxiHopFor(Taxi taxi, bool display = false)
+        {
+            // Make a copy of the link list to be able to consume it
+            List<TaxiLink> linksCopy = _availableTaxiLinks.ToList();
+            uint startId = taxi.Id;
+            uint endId = taxi.EndOfPath;
+            bool progress = true;
+
+            // The graph of hops
+            List<List<uint>> graph = new List<List<uint>>();
+            graph.Add(new List<uint> { startId });
+            while (progress && linksCopy.Count > 0)
+            {
+                progress = false;
+                bool pathFound = false;
+                List<List<uint>> newGraph = new List<List<uint>>();
+                foreach (List<uint> listOfCurrentHops in graph)
+                {
+                    uint currentHop = listOfCurrentHops.Last();
+                    // Now find links from this hop
+                    List<TaxiLink> nextLinks = linksCopy.FindAll(x => (x.PointA == currentHop || x.PointB == currentHop));
+                    // Enumerate them
+                    foreach (TaxiLink lnk in nextLinks)
+                    {
+                        // Consume this link from the copied links list
+                        linksCopy.Remove(lnk);
+                        uint target = lnk.PointA == currentHop ? lnk.PointB : lnk.PointA;
+                        // Ignore if it's the wrong faction or taxi does not exist
+                        Taxi targetTaxi = _availableTaxis.Find(x => x.Id == target);
+                        if (targetTaxi == null || targetTaxi.Id == 0)
+                            continue;
+                        if (targetTaxi.Faction != Npc.FactionType.Neutral && targetTaxi.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                            continue;
+                        // We ignore taxi that is marked unknown
+                        if (_unknownTaxis.Contains(targetTaxi))
+                            continue;
+                        // If we found the target, then bingo, we can stop searching deeper
+                        if (target == endId)
+                            pathFound = true;
+                        // We build a new list containing previous list + the new hop
+                        List<uint> newHopsList = new List<uint>();
+                        newHopsList.AddRange(listOfCurrentHops);
+                        newHopsList.Add(target);
+                        // now add the updated list in the graph
+                        newGraph.Add(newHopsList);
+                        progress = true; // we made a change, so there is a progress we can loop another time
+                    }
+                }
+                // We found a path (or several) in the last iteration, time to take shortest
+                if (pathFound)
+                {
+                    float bestDistance = float.MaxValue;
+                    List<uint> bestPathFound = new List<uint>(); // useless to initialize but C# requires it
+                    foreach (List<uint> onePath in newGraph)
+                    {
+                        if (onePath.Last() == endId)
+                        {
+                            Taxi lastTaxi = null;
+                            float distance = 0;
+                            foreach (uint id in onePath)
+                            {
+                                if (lastTaxi == null)
+                                {
+                                    lastTaxi = _availableTaxis.Find(x => x.Id == id);
+                                    continue;
+                                }
+                                Taxi currentTaxi = _availableTaxis.Find(x => x.Id == id);
+                                distance += lastTaxi.Position.DistanceTo(currentTaxi.Position);
+                                lastTaxi = currentTaxi;
+                            }
+                            if (distance < bestDistance)
+                            {
+                                bestDistance = distance;
+                                bestPathFound = onePath;
+                            }
+                        }
+                    }
+                    if (display)
+                        Logging.Write("Taxi travel plan: " + string.Join<uint>(", ", bestPathFound));
+                    if (bestPathFound.Count > 1)
+                        return _availableTaxis.Find(x => x.Id == bestPathFound[1]);
+                    else
+                        return _availableTaxis.Find(x => x.Id == endId);
+                }
+                // We did not find target yet, so update graph and loop again
+                graph = newGraph;
+            }
+            return null;
+        }
+
+
+        // This is for taxi near the target, we can't resolve it, so ensure it's linked to another taxi
+        private bool IsTaxiLinkedFast(Taxi taxi)
+        {
+            List<TaxiLink> lnks = _availableTaxiLinks.FindAll(x => (x.PointA == taxi.Id || x.PointB == taxi.Id));
+            foreach (TaxiLink lnk in lnks)
+            {
+                Taxi otherTaxi;
+                if (lnk.PointA == taxi.Id)
+                    otherTaxi = _availableTaxis.Find(x => x.Id == lnk.PointB);
+                else
+                    otherTaxi = _availableTaxis.Find(x => x.Id == lnk.PointA);
+                if (otherTaxi == null || otherTaxi.Id == 0)
+                    continue;
+                if (otherTaxi.Faction != Npc.FactionType.Neutral && otherTaxi.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
+                return true;
+            }
+            return false;
+        }
+
+        // We resolve the path and check if there is a result
+        private bool IsTaxiLinked(Taxi taxi)
+        {
+            return FindNextTaxiHopFor(taxi) != null;
+        }
+
+        private void TravelPatientlybyTaxi()
+        {
+            bool loop = true;
+            Point refPoint = ObjectManager.ObjectManager.Me.Position;
+            while (loop)
+            {
+                Thread.Sleep(1200);
+                if (refPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 1.0f)
+                    loop = false;
+                else
+                    refPoint = ObjectManager.ObjectManager.Me.Position;
+            }
+            CombatClass.LoadCombatClass();
+        }
+
         private void TravelPatiently(Transport selectedTransport)
         {
             WoWGameObject memoryTransport = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry((int) selectedTransport.Id),
@@ -388,8 +659,11 @@ namespace nManager.Wow.Bot.States
             var allTransports = new List<Transport>();
             List<Transport> transports = GetTransportsThatGoesToDestination(travelTo, travelToContinentId);
             List<Portal> portals = GetPortalsThatGoesToDestination(travelTo, travelToContinentId);
+            Taxi taxi = GetTaxiThatGoesToDestination(travelTo, travelToContinentId);
             allTransports.AddRange(transports);
             allTransports.AddRange(portals);
+            if (taxi != null)
+                allTransports.Add(taxi);
             return allTransports;
         }
 
@@ -439,6 +713,72 @@ namespace nManager.Wow.Bot.States
                 }
             }
             return listTransport;
+        }
+
+        private Taxi GetTaxiThatGoesToDestination(Point travelTo, int travelToContinentId)
+        {
+            // Sort Taxis by distance to destination
+            _availableTaxis.Sort(delegate(Taxi x, Taxi y) { return (travelTo.DistanceTo(x.Position) < travelTo.DistanceTo(y.Position) ? -1 : 1); });
+            uint cnt = 0;
+            foreach (Taxi taxi in _availableTaxis)
+            {
+                if (cnt >= 4) // We only check the 4 nearest taxis
+                    break;
+                if (taxi.Faction != Npc.FactionType.Neutral && taxi.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
+                if (taxi.ContinentId != travelToContinentId)
+                    continue;
+                if (!IsTaxiLinkedFast(taxi))
+                    continue;
+                if (_unknownTaxis.Contains(taxi))
+                    continue;
+                cnt++;
+                bool success;
+                List<Point> path = PathFinder.FindPath(taxi.Position, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
+                if (success || (!success && path.Count >= 1 && IsPointValidAsTarget(path.Last())))
+                {
+                    // Return the closest taxi with a valid path from it to destination
+                    return taxi;
+                }
+            }
+            return null;
+        }
+
+        private Taxi GetTaxisThatDirectlyGoToDestination(Point travelTo, Point travelFrom, int travelToContinentId, int travelFromContinentId)
+        {
+            Taxi bestTaxi = GetTaxiThatGoesToDestination(travelTo, travelToContinentId);
+            if (bestTaxi == null)
+                return null;
+            Point currentPosition = ObjectManager.ObjectManager.Me.Position;
+            // Sort taxis by distance from our position
+            _availableTaxis.Sort(delegate(Taxi x, Taxi y) { return (currentPosition.DistanceTo(x.Position) < currentPosition.DistanceTo(y.Position) ? -1 : 1); });
+            uint cnt = 0;
+            foreach (Taxi taxi in _availableTaxis)
+            {
+                if (cnt >= 4) // We only check the 4 nearest taxis
+                    break;
+                // Prevent going to self
+                if (taxi.Position == bestTaxi.Position)
+                    return null;
+                if (taxi.Faction != Npc.FactionType.Neutral && taxi.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
+                    continue;
+                if (taxi.ContinentId != travelFromContinentId)
+                    continue;
+                taxi.EndOfPath = bestTaxi.Id;
+                if (!IsTaxiLinked(taxi))
+                    continue;
+                cnt++;
+                bool success;
+                PathFinder.FindPath(taxi.Position, travelFrom, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId), out success);
+                if (success)
+                {
+                    // Return the closest taxi with a valid path from our position to it
+                    taxi.APoint = taxi.Position; // transfer values to transport object
+                    taxi.BPoint = bestTaxi.Position;
+                    return taxi;
+                }
+            }
+            return null;
         }
 
         private List<Portal> GetPortalsThatGoesToDestination(Point travelTo, int travelToContinentId)
@@ -515,8 +855,11 @@ namespace nManager.Wow.Bot.States
             var allTransports = new List<Transport>();
             List<Transport> transports = GetTransportsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             List<Portal> portals = GetPortalsThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
+            Taxi taxi = GetTaxisThatDirectlyGoToDestination(travelTo, travelFrom, travelToContinentId, travelFromContinentId);
             allTransports.AddRange(transports);
             allTransports.AddRange(portals);
+            if (taxi != null)
+                allTransports.Add(taxi);
             return allTransports;
         }
 
@@ -528,12 +871,24 @@ namespace nManager.Wow.Bot.States
             foreach (Transport transport in allTransports)
             {
                 float currentTransportDistance;
+                uint currentId = 0;
                 if (transport is Portal)
                 {
                     var portal = transport as Portal;
                     List<Point> wayIn = PathFinder.FindPath(travelFrom, portal.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
                     List<Point> wayOff = PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
                     currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                    currentId = portal.Id;
+                }
+                else if (transport is Taxi)
+                {
+                    var taxi = transport as Taxi;
+                    List<Point> wayIn = PathFinder.FindPath(travelFrom, taxi.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                    List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                    currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                    if (travelFromContinentId == travelToContinentId)
+                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint) / 1.5f);
+                    currentId = taxi.Id;
                 }
                 else
                 {
@@ -553,6 +908,7 @@ namespace nManager.Wow.Bot.States
 
                 if (!(currentTransportDistance < bestTransportDistance)) continue;
                 bestTransport = transport;
+                bestTransport.Id = currentId;
                 bestTransportDistance = currentTransportDistance;
             }
             return bestTransport.Id != 0 ? new KeyValuePair<Transport, float>(bestTransport, bestTransportDistance) : new KeyValuePair<Transport, float>(new Transport(), float.MaxValue);

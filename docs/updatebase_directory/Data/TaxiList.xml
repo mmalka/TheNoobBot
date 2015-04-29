@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTaxi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Taxi Id="81103" Name="Chutelune, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>1864.33</X>
+      <Y>217.8108</Y>
+      <Z>76.66183</Z>
+    </Position>
+    <Xcoord>0.60365426540375</Xcoord>
+    <Ycoord>0.40482801198959</Ycoord>
+  </Taxi>
+  <Taxi Id="76839" Name="Clairière Crépusculaire, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>191.033</X>
+      <Y>-460.2014</Y>
+      <Z>-3.975312</Z>
+    </Position>
+    <Xcoord>0.64503383636475</Xcoord>
+    <Ycoord>0.30289313197136</Ycoord>
+  </Taxi>
+  <Taxi Id="88584" Name="Taudis d’Akeeta, vallée d’Ombrelune" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>675.6945</X>
+      <Y>701.4167</Y>
+      <Z>113.9333</Z>
+    </Position>
+    <Xcoord>0.57426744699478</Xcoord>
+    <Ycoord>0.33224102854729</Ycoord>
+  </Taxi>
+  <Taxi Id="81284" Name="Le Draakorium, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>130.9913</X>
+      <Y>-1551.957</Y>
+      <Z>31.48244</Z>
+    </Position>
+    <Xcoord>0.71189254522324</Xcoord>
+    <Ycoord>0.29882708191872</Ycoord>
+  </Taxi>
+  <Taxi Id="76850" Name="Cime de l’Exilé, vallée d’Ombrelune" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>1526.115</X>
+      <Y>-784.3438</Y>
+      <Z>43.40299</Z>
+    </Position>
+    <Xcoord>0.66513568162918</Xcoord>
+    <Ycoord>0.38408026099205</Ycoord>
+  </Taxi>
+  <Taxi Id="76840" Name="Embaari, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>924.743</X>
+      <Y>-791.691</Y>
+      <Z>-28.83369</Z>
+    </Position>
+    <Xcoord>0.66534733772278</Xcoord>
+    <Ycoord>0.34699097275734</Ycoord>
+  </Taxi>
+  <Taxi Id="76851" Name="Voie de la Lumière, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>606.743</X>
+      <Y>-1708.813</Y>
+      <Z>26.48386</Z>
+    </Position>
+    <Xcoord>0.7213249206543</Xcoord>
+    <Ycoord>0.32774445414543</Ycoord>
+  </Taxi>
+  <Taxi Id="86685" Name="Cour Paisible, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>408.1754</X>
+      <Y>-2449.708</Y>
+      <Z>99.26367</Z>
+    </Position>
+    <Xcoord>0.76640027761459</Xcoord>
+    <Ycoord>0.31581130623817</Ycoord>
+  </Taxi>
+  <Taxi Id="83427" Name="Perchoir de Sombreflux, vallée d’Ombrelune" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>-974.757</X>
+      <Y>-1741.505</Y>
+      <Z>3.123145</Z>
+    </Position>
+    <Xcoord>0.72308397293091</Xcoord>
+    <Ycoord>0.23157325387001</Ycoord>
+  </Taxi>
+  <Taxi Id="81285" Name="Cime de Socrethar, vallée d’Ombrelune" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>-802.9132</X>
+      <Y>-671.8004</Y>
+      <Z>107.4319</Z>
+    </Position>
+    <Xcoord>0.65797352790833</Xcoord>
+    <Ycoord>0.24221310019493</Ycoord>
+  </Taxi>
+  <Taxi Id="84515" Name="Courbe du corbeau, flèches d’Arak" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>128.974</X>
+      <Y>1541.106</Y>
+      <Z>-1.73237</Z>
+    </Position>
+    <Xcoord>0.52285653352737</Xcoord>
+    <Ycoord>0.29882991313934</Ycoord>
+  </Taxi>
+  <Taxi Id="82511" Name="Boulonnnerie de Sifflepince, flèches d’Arak" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>-1577.682</X>
+      <Y>991.6111</Y>
+      <Z>8.090113</Z>
+    </Position>
+    <Xcoord>0.55648499727249</Xcoord>
+    <Ycoord>0.19467307627201</Ycoord>
+  </Taxi>
+  <Taxi Id="84504" Name="Guet de la Serre, flèches d’Arak" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>-338.3681</X>
+      <Y>930.1441</Y>
+      <Z>75.3271</Z>
+    </Position>
+    <Xcoord>0.56053763628006</Xcoord>
+    <Ycoord>0.27052628993988</Ycoord>
+  </Taxi>
+  <Taxi Id="84509" Name="Excavation Apogide, flèches d’Arak" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>389.0365</X>
+      <Y>2439.153</Y>
+      <Z>19.5742</Z>
+    </Position>
+    <Xcoord>0.46809768676758</Xcoord>
+    <Ycoord>0.31462198495865</Ycoord>
+  </Taxi>
+  <Taxi Id="84498" Name="Voile Terokk, flèches d’Arak" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>-399.059</X>
+      <Y>1883.229</Y>
+      <Z>51.45294</Z>
+    </Position>
+    <Xcoord>0.50240105390549</Xcoord>
+    <Ycoord>0.26665115356445</Ycoord>
+  </Taxi>
+  <Taxi Id="83567" Name="Port-Austral, Flèches d’Arak" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>-1113.382</X>
+      <Y>2312.84</Y>
+      <Z>3.074337</Z>
+    </Position>
+    <Xcoord>0.47576552629471</Xcoord>
+    <Ycoord>0.22283178567886</Ycoord>
+  </Taxi>
+  <Taxi Id="81354" Name="Refuge de Terokkar, Talador" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>2159.491</X>
+      <Y>1639.75</Y>
+      <Z>132.0316</Z>
+    </Position>
+    <Xcoord>0.51737880706787</Xcoord>
+    <Ycoord>0.42264270782471</Ycoord>
+  </Taxi>
+  <Taxi Id="81060" Name="Fort Wrynn, Talador" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>3574.936</X>
+      <Y>1668.219</Y>
+      <Z>172.7819</Z>
+    </Position>
+    <Xcoord>0.5152490735054</Xcoord>
+    <Ycoord>0.5091370344162</Ycoord>
+  </Taxi>
+  <Taxi Id="81068" Name="Halte de la Vindicte, Talador" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>1376.639</X>
+      <Y>3322.892</Y>
+      <Z>137.7915</Z>
+    </Position>
+    <Xcoord>0.41469910740852</Xcoord>
+    <Ycoord>0.37505489587784</Ycoord>
+  </Taxi>
+  <Taxi Id="81077" Name="Refuge de l’Exarque, Talador" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>1694.618</X>
+      <Y>2566.69</Y>
+      <Z>133.6586</Z>
+    </Position>
+    <Xcoord>0.46086519956589</Xcoord>
+    <Ycoord>0.39445596933365</Ycoord>
+  </Taxi>
+  <Taxi Id="81064" Name="Shattrath, Talador" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>2733.203</X>
+      <Y>2776.401</Y>
+      <Z>242.926</Z>
+    </Position>
+    <Xcoord>0.44771659374237</Xcoord>
+    <Ycoord>0.45731642842293</Ycoord>
+  </Taxi>
+  <Taxi Id="80932" Name="Zangarra, Talador" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>3422.721</X>
+      <Y>1038.17</Y>
+      <Z>178.0847</Z>
+    </Position>
+    <Xcoord>0.553615629673</Xcoord>
+    <Ycoord>0.49949866533279</Ycoord>
+  </Taxi>
+  <Taxi Id="83924" Name="Arène des Épreuves, Nagrand" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>3041.798</X>
+      <Y>4778.67</Y>
+      <Z>128.4959</Z>
+    </Position>
+    <Xcoord>0.32540211081505</Xcoord>
+    <Ycoord>0.47644427418709</Ycoord>
+  </Taxi>
+  <Taxi Id="82309" Name="Poste Telaari, Nagrand" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>2594.05</X>
+      <Y>5696.885</Y>
+      <Z>100.5355</Z>
+    </Position>
+    <Xcoord>0.2694573700428</Xcoord>
+    <Ycoord>0.44921016693115</Ycoord>
+  </Taxi>
+  <Taxi Id="88653" Name="Surplomb de Nivek, Nagrand" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>2050.911</X>
+      <Y>6506.076</Y>
+      <Z>31.74045</Z>
+    </Position>
+    <Xcoord>0.22026765346527</Xcoord>
+    <Ycoord>0.41623935103416</Ycoord>
+  </Taxi>
+  <Taxi Id="87395" Name="Redoute de Rilzit, Nagrand" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>3763.602</X>
+      <Y>6428.044</Y>
+      <Z>21.66608</Z>
+    </Position>
+    <Xcoord>0.22497713565826</Xcoord>
+    <Ycoord>0.52038663625717</Ycoord>
+  </Taxi>
+  <Taxi Id="81250" Name="Guet d’Yrel, Nagrand" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>3385.144</X>
+      <Y>5752.433</Y>
+      <Z>39.38439</Z>
+    </Position>
+    <Xcoord>0.26610693335533</Xcoord>
+    <Ycoord>0.49738776683807</Ycoord>
+  </Taxi>
+  <Taxi Id="88668" Name="Les rylaks de Joz, Nagrand" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>3678.763</X>
+      <Y>5777.042</Y>
+      <Z>45.59689</Z>
+    </Position>
+    <Xcoord>0.26485031843185</Xcoord>
+    <Ycoord>0.51518905162811</Ycoord>
+  </Taxi>
+  <Taxi Id="82844" Name="Trône des éléments, Nagrand" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>3914.618</X>
+      <Y>5126.026</Y>
+      <Z>62.41102</Z>
+    </Position>
+    <Xcoord>0.30416131019592</Xcoord>
+    <Ycoord>0.52999448776245</Ycoord>
+  </Taxi>
+  <Taxi Id="81074" Name="Haute-Route, Gorgrond" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>6356.173</X>
+      <Y>747.1268</Y>
+      <Z>116.6612</Z>
+    </Position>
+    <Xcoord>0.57153624296188</Xcoord>
+    <Ycoord>0.67843252420425</Ycoord>
+  </Taxi>
+  <Taxi Id="81888" Name="Basseracines, Gorgrond" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>5414.814</X>
+      <Y>1266.514</Y>
+      <Z>101.9422</Z>
+    </Position>
+    <Xcoord>0.53953725099564</Xcoord>
+    <Ycoord>0.62111794948578</Ycoord>
+  </Taxi>
+  <Taxi Id="81884" Name="Reflux du Bois sauvage, Gorgrond" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>6455.878</X>
+      <Y>-180.1597</Y>
+      <Z>120.0972</Z>
+    </Position>
+    <Xcoord>0.62769067287445</Xcoord>
+    <Ycoord>0.68474626541138</Ycoord>
+  </Taxi>
+  <Taxi Id="84993" Name="Atelier de siège de Fer, crête de Givrefeu" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>5722.636</X>
+      <Y>2160.804</Y>
+      <Z>157.5758</Z>
+    </Position>
+    <Xcoord>0.48511433601379</Xcoord>
+    <Ycoord>0.64011096954346</Ycoord>
+  </Taxi>
+  <Taxi Id="76787" Name="Mine de la Masse-Sanglante, crête de Givrefeu" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>7400.537</X>
+      <Y>4360.385</Y>
+      <Z>126.4058</Z>
+    </Position>
+    <Xcoord>0.35129502415657</Xcoord>
+    <Ycoord>0.74228167533875</Ycoord>
+  </Taxi>
+  <Taxi Id="85959" Name="Bouclier-des-Tempêtes, A’shran" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>3686.249</X>
+      <Y>-3835.151</Y>
+      <Z>44.98207</Z>
+    </Position>
+    <Xcoord>0.85119622945786</Xcoord>
+    <Ycoord>0.51574474573135</Ycoord>
+  </Taxi>
+  <Taxi Id="85829" Name="Crête de Mer-Céleste, Gorgrond" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>7595.896</X>
+      <Y>1833.04</Y>
+      <Z>79.07825</Z>
+    </Position>
+    <Xcoord>0.50551491975784</Xcoord>
+    <Ycoord>0.75428152084351</Ycoord>
+  </Taxi>
+  <Taxi Id="84700" Name="Quais de Fer, Gorgrond" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>8487.958</X>
+      <Y>1546.837</Y>
+      <Z>79.16016</Z>
+    </Position>
+    <Xcoord>0.52288031578064</Xcoord>
+    <Ycoord>0.80856001377106</Ycoord>
+  </Taxi>
+  <Taxi Id="86492" Name="Couronne du Briseur, Gorgrond" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>6594.965</X>
+      <Y>1315.908</Y>
+      <Z>64.63459</Z>
+    </Position>
+    <Xcoord>0.53679406642914</Xcoord>
+    <Ycoord>0.69312208890915</Ycoord>
+  </Taxi>
+  <Taxi Id="84714" Name="Séjour de la Flore éternelle, Gorgrond" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>7088.911</X>
+      <Y>404.5799</Y>
+      <Z>112.0006</Z>
+    </Position>
+    <Xcoord>0.59235775470734</Xcoord>
+    <Ycoord>0.72362768650055</Ycoord>
+  </Taxi>
+  <Taxi Id="88757" Name="Surplomb de la Flore éternelle, Gorgrond" Faction="Neutral" ContinentId="1116">
+    <Position>
+      <X>8022.668</X>
+      <Y>-552.4514</Y>
+      <Z>154.6981</Z>
+    </Position>
+    <Xcoord>0.6512097120285</Xcoord>
+    <Ycoord>0.7800127863884</Ycoord>
+  </Taxi>
+  <Taxi Id="84507" Name="Bastion insoumis, Gorgrond" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>4553.458</X>
+      <Y>1272.479</Y>
+      <Z>145.4836</Z>
+    </Position>
+    <Xcoord>0.5393231511116</Xcoord>
+    <Ycoord>0.56863075494766</Ycoord>
+  </Taxi>
+  <Taxi Id="81289" Name="Élodor, vallée d’Ombrelune" Faction="Alliance" ContinentId="1116">
+    <Position>
+      <X>1234.41</X>
+      <Y>-1663.63</Y>
+      <Z>44.69985</Z>
+    </Position>
+    <Xcoord>0.71864092350006</Xcoord>
+    <Ycoord>0.36662602424622</Ycoord>
+  </Taxi>
+</ArrayOfTaxi>

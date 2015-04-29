@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Collections.Generic;
 using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
@@ -117,6 +118,35 @@ namespace nManager.Wow.Helpers
                     break;
                 }
             }
+        }
+
+        public static List<Taxi> GetAllTaxisAvailable()
+        {
+            List<Taxi> ret = new List<Taxi>();
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = NumTaxiNodes()");
+            int nbTaxiNode = Others.ToInt32(Lua.GetLocalizedText(randomString));
+            for (int id = 1; id <= nbTaxiNode; id++)
+            {
+                string chkpx = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+                string chkpy = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+                string chktype = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
+                nManager.Wow.Helpers.Lua.LuaDoString(chkpx + "," + chkpy + " = TaxiNodePosition(" + id + "); " +
+                    chktype + "= TaxiNodeGetType(" + id + ");");
+                string retpx = nManager.Wow.Helpers.Lua.GetLocalizedText(chkpx);
+                string retpy = nManager.Wow.Helpers.Lua.GetLocalizedText(chkpy);
+                string retType = nManager.Wow.Helpers.Lua.GetLocalizedText(chktype);
+                if (retType != "DISTANT" && retType != "NONE")
+                {
+                    Taxi t = new Taxi();
+                    t.Xcoord = retpx;
+                    t.Ycoord = retpy;
+                    ret.Add(t);
+                }
+                else if (retType == "DISTANT") // NONE = Taxi not in use
+                    Logging.WriteDebug("Player is missing taxi X: " + retpx + ", Y: " + retpy);
+            }
+            return ret;
         }
 
         public static void ExportTaxiInfo()

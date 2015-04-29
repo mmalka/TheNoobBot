@@ -16,7 +16,7 @@ namespace nManager.Wow.Bot.States
             Looting,
             GoingNextPoint,
             Survey,
-            Iddle,
+            LocalMove
         }
 
         public override string DisplayName
@@ -40,14 +40,11 @@ namespace nManager.Wow.Bot.States
         private int nbCastSurveyError;
         public bool UseKeystones = true;
 
-        private LocState myState = LocState.Iddle;
+        private LocState myState = LocState.LocalMove;
         private Timer timerLooting;
 
-        private int _bestPathId;
-        private int _lastPathId;
-        private bool _bestPathStatus;
-        private bool _currentFindPathStatus;
-        private readonly List<List<Point>> _pathFound = new List<List<Point>>();
+        private Point _travelLocation = null;
+        private bool _travelDisabled = false;
         // This point is used to remember where the last green survey was, so that we can detect ping-pong between 2 points.
         private Point _lastGreenPosition = new Point();
         private bool _AntiPingPong = false;
@@ -113,27 +110,12 @@ namespace nManager.Wow.Bot.States
                         WoWQuestPOIPoint Polygon = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
                         Point center = Polygon.Center;
                         float dist = center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position);
-                        if (dist > distance && ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
+                        if (dist > distance)
                             continue;
-                        if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
-                        {
-                            List<Point> path = PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, center, Usefuls.ContinentNameMpq, out _currentFindPathStatus);
-                            _pathFound.AddRange(new[] { path });
-                            if (!_currentFindPathStatus)
-                            {
-                                if (path.Count > 0 && Polygon.IsInside(path[path.Count - 1]))
-                                    _currentFindPathStatus = true;
-                            }
-                            _lastPathId = _pathFound.Count - 1;
-                            _bestPathStatus = _currentFindPathStatus;
-                            if (_bestPathStatus && !_currentFindPathStatus)
-                                continue;
-                            if (_bestPathStatus)
-                                _bestPathId = _pathFound.Count - 1;
-                        }
                         distance = dist;
                         tDigsitesZone = t;
                         qPOI = Polygon;
+                        _travelDisabled = false;
                     }
                     if (tDigsitesZone.id != 0)
                     {
@@ -189,7 +171,7 @@ namespace nManager.Wow.Bot.States
                 int nbStuck = 0; // Nb of stuck direct
                 try
                 {
-                    if (myState != LocState.Iddle)
+                    if (myState != LocState.LocalMove)
                         MountTask.DismountMount();
 
                     ObjectManager.WoWGameObject t =
@@ -269,7 +251,7 @@ namespace nManager.Wow.Bot.States
                         nbLootAttempt = 0;
                         BlackListDigsites.Add(digsitesZone.id);
                         Logging.Write("Black List Digsite: " + digsitesZone.name);
-                        myState = LocState.Iddle;
+                        myState = LocState.LocalMove;
                         nbCastSurveyError = 0;
                         return;
                     }
@@ -292,21 +274,21 @@ namespace nManager.Wow.Bot.States
                         if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                         {
                             Logging.Write("Not inside, then go to Digsite " + digsitesZone.name);
-                            if (_bestPathId == 0)
-                                _bestPathId = _lastPathId;
-                            List<Point> lastpath = _pathFound[_bestPathId];
                             Point me = ObjectManager.ObjectManager.Me.Position;
-                            int currentIndex = Math.NearestPointOfListPoints(lastpath, me);
-                            int lastIndex = _pathFound[_bestPathId].Count - 1;
-                            List<Point> newPath;
-                            Point target = _pathFound[_bestPathId][currentIndex];
-                            if (!TraceLine.TraceLineGo(new Point(me.X, me.Y, me.Z + 1.0f), new Point(target.X, target.Y, target.Z + 1.0f)))
+                            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
                             {
-                                newPath = PathFinder.FindPath(_pathFound[_bestPathId][lastIndex]);
-                                _pathFound[_bestPathId] = newPath;
+                                Logging.Write("Calling travel system...");
+                                Products.Products.TravelToContinentId = Usefuls.ContinentId;
+                                Products.Products.TravelTo = qPOI.Center;
+                                // Pass the check for valid destination as a lambda
+                                Products.Products.TargetValidationFct = qPOI.IsInside;
+                                _travelLocation = me;
+                                return;
                             }
-                            else
-                                newPath = new List<Point>(_pathFound[_bestPathId].GetRange(currentIndex, lastIndex - currentIndex));
+                            if (_travelLocation.DistanceTo(me) <= 0.1f)
+                                _travelDisabled = true;
+                            List<Point> newPath;
+                            newPath = PathFinder.FindPath(qPOI.Center);
                             MovementManager.Go(newPath);
                         }
                         else if (qPOI.ValidPoint)
@@ -331,7 +313,7 @@ namespace nManager.Wow.Bot.States
                             Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
                             MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                         }
-                        myState = LocState.Iddle;
+                        myState = LocState.LocalMove;
                         return;
                     }
                     // Find loot with Survey
@@ -346,7 +328,7 @@ namespace nManager.Wow.Bot.States
                         if (!Archaeology.DigsiteZoneIsAvailable(digsitesZone))
                             return;
 
-                        if (myState == LocState.Iddle)
+                        if (myState == LocState.LocalMove)
                             MountTask.DismountMount();
 
                         surveySpell.Launch();
@@ -380,10 +362,9 @@ namespace nManager.Wow.Bot.States
                             }
                             if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                             {
-                                if (_bestPathId == 0)
-                                    _bestPathId = _lastPathId;
                                 Logging.Write("Too many errors, then go to Digsite " + digsitesZone.name);
-                                MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
+                                List<Point> newPath = PathFinder.FindPath(qPOI.Center);
+                                MovementManager.Go(newPath);
                             }
                             else
                             {
@@ -460,7 +441,7 @@ namespace nManager.Wow.Bot.States
                             {
                                 distance = 19f;
                                 distanceMin = 7f;
-                                distanceMax = 29f;
+                                distanceMax = 31f;
                                 decrement = 3f;
                             }
                         }
@@ -526,7 +507,7 @@ namespace nManager.Wow.Bot.States
                                 _lastGreenPosition = new Point(ObjectManager.ObjectManager.Me.Position);
                             if (_AntiPingPong)
                             {
-                                myState = LocState.Iddle;
+                                myState = LocState.LocalMove;
                                 return;
                             }
                             Logging.Write("Distance " + d + " selected");
@@ -630,10 +611,6 @@ namespace nManager.Wow.Bot.States
                             if (Usefuls.IsFlying)
                                 for (int i = 0; i < points.Count; i++)
                                     points[i].Type = "flying";
-                            // Disabled because this does not work fine
-                            //else if (Usefuls.IsSwimming && !IsPointOutOfWater(points[points.Count - 1]))
-                            //    for (int i = 0; i < points.Count; i++)
-                            //        points[i].Type = "swimming";
                             MovementManager.Go(points);
                             float d = Math.DistanceListPoint(points)/3;
                             if (d > 200)

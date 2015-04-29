@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTaxiLink xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81884</PointA> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81284</PointA> <!-- Le Draakorium, vallée d’Ombrelune -->
+    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81074</PointA> <!-- Haute-Route, Gorgrond -->
+    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81888</PointA> <!-- Basseracines, Gorgrond -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81888</PointA> <!-- Basseracines, Gorgrond -->
+    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81888</PointA> <!-- Basseracines, Gorgrond -->
+    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81074</PointA> <!-- Haute-Route, Gorgrond -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81060</PointA> <!-- Fort Wrynn, Talador -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84993</PointA> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointB>76787</PointB> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
+    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84515</PointA> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81064</PointA> <!-- Shattrath, Talador -->
+    <PointB>76787</PointB> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81064</PointA> <!-- Shattrath, Talador -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81060</PointA> <!-- Fort Wrynn, Talador -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
+    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
+    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>87395</PointA> <!-- Redoute de Rilzit, Nagrand -->
+    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>87395</PointA> <!-- Redoute de Rilzit, Nagrand -->
+    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>87395</PointA> <!-- Redoute de Rilzit, Nagrand -->
+    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
+    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
+    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81884</PointA> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81064</PointA> <!-- Shattrath, Talador -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84504</PointA> <!-- Guet de la Serre, flèches d’Arak -->
+    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84504</PointA> <!-- Guet de la Serre, flèches d’Arak -->
+    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84504</PointA> <!-- Guet de la Serre, flèches d’Arak -->
+    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84509</PointA> <!-- Excavation Apogide, flèches d’Arak -->
+    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84509</PointA> <!-- Excavation Apogide, flèches d’Arak -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
+    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
+    <PointB>87395</PointB> <!-- Redoute de Rilzit, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
+    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
+    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84993</PointA> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76787</PointA> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
+    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
+    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81250</PointA> <!-- Guet d’Yrel, Nagrand -->
+    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
+    <PointB>84509</PointB> <!-- Excavation Apogide, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
+    <PointB>83924</PointB> <!-- Arène des Épreuves, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
+    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81077</PointA> <!-- Refuge de l’Exarque, Talador -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81077</PointA> <!-- Refuge de l’Exarque, Talador -->
+    <PointB>84509</PointB> <!-- Excavation Apogide, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81077</PointA> <!-- Refuge de l’Exarque, Talador -->
+    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>80932</PointA> <!-- Zangarra, Talador -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>80932</PointA> <!-- Zangarra, Talador -->
+    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointB>84504</PointB> <!-- Guet de la Serre, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
+    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
+    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
+    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76851</PointA> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+    <PointB>76840</PointB> <!-- Embaari, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76851</PointA> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>76851</PointA> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>86685</PointA> <!-- Cour Paisible, vallée d’Ombrelune -->
+    <PointB>76851</PointB> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>86685</PointA> <!-- Cour Paisible, vallée d’Ombrelune -->
+    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84498</PointA> <!-- Voile Terokk, flèches d’Arak -->
+    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84498</PointA> <!-- Voile Terokk, flèches d’Arak -->
+    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>84498</PointB> <!-- Voile Terokk, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
+    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+    <PointB>76840</PointB> <!-- Embaari, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>83427</PointB> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>84504</PointB> <!-- Guet de la Serre, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
+    <PointB>83567</PointB> <!-- Port-Austral, Flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
+    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
+    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
+    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
+    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
+    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
+    <PointB>80932</PointB> <!-- Zangarra, Talador -->
+  </TaxiLink>
+
+  <TaxiLink>
+    <PointA>86492</PointA> <!-- Couronne du Briseur, Gorgrond -->
+    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>86492</PointA> <!-- Couronne du Briseur, Gorgrond -->
+    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>86492</PointA> <!-- Couronne du Briseur, Gorgrond -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>88757</PointA> <!-- Surplomb de la Flore éternelle, Gorgrond -->
+    <PointB>84714</PointB> <!-- Séjour de la Flore éternelle, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointB>84714</PointB> <!-- Séjour de la Flore éternelle, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointB>76787</PointB> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
+    <PointB>85829</PointB> <!-- Crête de Mer-Céleste, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
+    <PointB>84714</PointB> <!-- Séjour de la Flore éternelle, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
+    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
+    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
+    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
+    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
+    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
+    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
+    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
+    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
+    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
+    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
+    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
+    <PointB>76840</PointB> <!-- Embaari, vallée d’Ombrelune -->
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
+    <PointB>76851</PointB> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+  </TaxiLink>
+</ArrayOfTaxiLink>
