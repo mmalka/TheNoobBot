@@ -48,7 +48,7 @@ namespace Test_Product
                 List<Npc> npcRadarQuesters = new List<Npc>();
                 List<WoWUnit> NpcQuesters = ObjectManager.GetWoWUnitQuester();
                 List<WoWGameObject> ObjectQuesters = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver);
-                List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Chair);
+                List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.SpellFocus);
                 foreach (WoWGameObject o in Mailboxes)
                 {
                     if (BlackListed.Contains(o.Entry))
