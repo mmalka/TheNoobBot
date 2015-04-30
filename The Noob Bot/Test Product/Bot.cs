@@ -1,5 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Reflection;
+using System.Runtime.Serialization;
 using System.Threading;
+using nManager.Products;
 using nManager.Wow.ObjectManager;
 using ObjectManager = nManager.Wow.ObjectManager.ObjectManager;
 // ReSharper disable RedundantUsingDirective
@@ -295,14 +297,87 @@ namespace Test_Product
             return count;
         }
 
+        public static bool IsTaxiOpen()
+        {
+            Lua.LuaDoString("test = tostring(TaxiFrame and TaxiFrame:IsVisible())");
+            return Lua.GetLocalizedText("test") == "true";
+        }
 
+        public static string ExtractAllPathsTaxi()
+        {
+            string result = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(result + "= \"\"; nb = NumTaxiNodes(); for i=1,nb do n = TaxiNodeName(i); x,y = TaxiNodePosition(i); " + result + " = " + result + ".. n .. \"##\" .. x .. \"^\" .. y  .. \"-\" .. GetNumRoutes(i) .. \"|\" end");
+            return Lua.GetLocalizedText(result);
+        }
+
+        public static void ExtractAllOneWayTaxiFromHere()
+        {
+            Logging.WriteDebug("Begin ExtractAllOneWayTaxiFromHere from NPC " + ObjectManager.Me.Target.GetWoWId);
+            //List<TaxiLink> taxis = new List<TaxiLink>();
+            for (int i = 0; i < ExtractAllPathsTaxi().Split('|').Length; i++)
+            {
+                string taxi = ExtractAllPathsTaxi().Split('|')[i];
+                string routes = taxi.Split('-')[1];
+                if (routes == "1" || routes == "0")
+                {
+                    Logging.WriteDebug("Taxi " + taxi.Split('#')[0] + " is linked to here.");
+                    Logging.WriteDebug(taxi);
+                }
+            }
+        }
+
+        private static List<Taxi> _availableTaxis;
+        private static List<TaxiLink> _availableTaxiLinks;
+        private static List<Taxi> _unknownTaxis = new List<Taxi>();
+
+        private static bool TaxiListContainsTaxiId(uint id)
+        {
+            foreach (Taxi taxi in _availableTaxis)
+            {
+                if (taxi.Id == id)
+                    return true;
+            }
+            return false;
+        }
+        
         public static bool Pulse()
         {
             try
             {
                 // Update spell list
-                SpellManager.UpdateSpellBook();
-                RadarThread.Start();
+                //SpellManager.UpdateSpellBook();
+                //RadarThread.Start();
+                if (_availableTaxis == null)
+                    _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+                if (_availableTaxiLinks == null)
+                    _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+                /*while (true)
+                {*/
+                    if (IsTaxiOpen())
+                    {
+                        if (TaxiListContainsTaxiId(ObjectManager.Me.Target.GetWoWId))
+                        {
+                            Logging.WriteDebug("The taxi " + ObjectManager.Target.Name + " is already in our database.");
+                        }
+                        else
+                        {
+                            Taxi localTaxi = new Taxi();
+                            localTaxi.Id = ObjectManager.Me.Target.GetWoWId;
+                            localTaxi.Name = ObjectManager.Target.Name;
+                            localTaxi.Position = ObjectManager.Target.Position;
+                            _unknownTaxis.Add(localTaxi);
+                            //localTaxi.Xcoord;
+                            //localTaxi.Ycoord;
+                        }
+                        ExtractAllOneWayTaxiFromHere();
+                        /*foreach (string taxi in ExtractAllPathsTaxi().Split('|'))
+                        {
+                            Logging.WriteDebug(taxi);
+                        }*/
+                    }
+                    Thread.Sleep(50);
+                    Application.DoEvents();
+                /*}*/
                 /*var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
                 for (uint i = 1; i <= 200000; i += 2500)
                 {

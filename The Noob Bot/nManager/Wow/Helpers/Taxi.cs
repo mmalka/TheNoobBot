@@ -39,5 +39,6 @@ namespace nManager.Wow.Helpers
     {
         public uint PointA;
         public uint PointB;
+        [XmlIgnore] public string PointB_XY; // temporary field if we don't know PointB ID yet.
     }
 }
