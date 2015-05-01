@@ -45,7 +45,7 @@ namespace nManager.Wow.Helpers
                 scriptLua = scriptLua + "local c,l,r,_=0 ";
 
                 scriptLua = scriptLua + "for b=0,4 do ";
-                scriptLua = scriptLua + "for s=1,40 do  ";
+                scriptLua = scriptLua + "for s=1,GetContainerNumSlots(b) do  ";
                 scriptLua = scriptLua + "local l=GetContainerItemLink(b,s) ";
                 scriptLua = scriptLua + "if l then namei,_,r=GetItemInfo(l) ";
                 scriptLua = scriptLua + "if " + syntaxQualityItem + " " + syntaxSellItem + " then ";
@@ -58,7 +58,7 @@ namespace nManager.Wow.Helpers
                 scriptLua = scriptLua + "end ";
 
                 Lua.LuaDoString(scriptLua);
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(30000);
             }
             catch (Exception e)
             {
