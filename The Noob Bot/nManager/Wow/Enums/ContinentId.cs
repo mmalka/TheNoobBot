@@ -741,6 +741,9 @@
         ///<summary>Draenor</summary>
         Draenor = 1116,
 
+        ///<summary>Ashran</summary>
+        Ashran = 1191,
+
         ///<summary>TanaanJungleIntro</summary>
         TanaanJungleIntro = 1265,
 
