@@ -310,7 +310,7 @@ namespace Test_Product
                         localTaxi.Name = taxiInfo.Split('#')[0];
                         localTaxi.ContinentId = Usefuls.ContinentId;
                         localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
-                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('-')[0];
+                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
                         localTaxi.Faction = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
                         _availableTaxis.Add(localTaxi);
                         foreach (TaxiLink taxiLink in _availableTaxiLinks)
@@ -332,7 +332,7 @@ namespace Test_Product
                         localTaxi.Name = taxiInfo.Split('#')[0];
                         localTaxi.ContinentId = Usefuls.ContinentId;
                         localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
-                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('-')[0];
+                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
                         bool taxiExist = false;
                         Taxi taxiFound = new Taxi();
                         foreach (Taxi taxi in _availableTaxis)
@@ -377,7 +377,7 @@ namespace Test_Product
                     XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiLinks.xml", _availableTaxiLinks);
                     string nextHop = ExtractNextTaxiInfo();
                     Logging.Write("Taking taxi from " + ExtractCurrentTaxiInfo().Split('#')[0] + " to " + nextHop.Split('#')[0]);
-                    Gossip.TakeTaxi(nextHop.Split('#')[1].Split('^')[0], nextHop.Split('^')[1].Split('-')[0]);
+                    Gossip.TakeTaxi(nextHop.Split('#')[1].Split('^')[0], nextHop.Split('^')[1].Split('@')[0]);
                     Thread.Sleep(1000);
                 }
                 if (ObjectManager.Me.OnTaxi)
@@ -478,7 +478,7 @@ namespace Test_Product
                 {
                     if (lowerValue == "")
                         lowerValue = listPath;
-                    else if (Others.ToSingle(listPath.Split('^')[1].Split('-')[0].Trim()) < Others.ToSingle(lowerValue.Split('^')[1].Split('-')[0].Trim()))
+                    else if (Others.ToSingle(listPath.Split('^')[1].Split('@')[0].Trim()) < Others.ToSingle(lowerValue.Split('^')[1].Split('@')[0].Trim()))
                     {
                         lowerValue = listPath;
                     }
@@ -497,9 +497,7 @@ namespace Test_Product
             {
                 Application.DoEvents();
                 string taxi = allPaths[i];
-                string routes = taxi.Split('-')[1].Split('~')[0];
-                if (routes.Length > 1)
-                    routes = taxi.Split('-')[2].Split('~')[0]; // Some contains "-" in the name.
+                string routes = taxi.Split('@')[1].Split('~')[0];
                 string type = taxi.Split('~')[1];
 
                 if (routes != "0" || type == "REACHABLE")
@@ -548,9 +546,7 @@ namespace Test_Product
             {
                 Application.DoEvents();
                 string taxi = allPaths[i];
-                string routes = taxi.Split('-')[1].Split('~')[0];
-                if (routes.Length > 1)
-                    routes = taxi.Split('-')[2].Split('~')[0]; // Some contains "-" in the name.
+                string routes = taxi.Split('@')[1].Split('~')[0];
                 if (routes == "1") // always reachable or it would be "0" hop.
                 {
                     Logging.WriteDebug(taxi);
