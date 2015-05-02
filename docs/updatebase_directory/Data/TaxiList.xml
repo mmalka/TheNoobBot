@@ -1674,4 +1674,292 @@
     <Xcoord>0.54146057367325</Xcoord>
     <Ycoord>0.53722470998764</Ycoord>
   </Taxi>
+  <Taxi Faction="Horde" Id="85734" Name="Shattered Landing, Blasted Lands" ContinentId="0">
+    <Position>
+      <X>-11770.8535</X>
+      <Y>-3865.69458</Y>
+      <Z>58.3961639</Z>
+    </Position>
+    <Xcoord>0.56032359600067</Xcoord>
+    <Ycoord>0.16523610055447</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="48318" Name="Flamestar Post, Burning Steppes" ContinentId="0">
+    <Position>
+      <X>-8093.61963</X>
+      <Y>-1025.21008</Y>
+      <Z>132.185028</Z>
+    </Position>
+    <Xcoord>0.46165937185287</Xcoord>
+    <Ycoord>0.29297709465027</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="48321" Name="Chiselgrip, Burning Steppes" ContinentId="0">
+    <Position>
+      <X>-7863.11</X>
+      <Y>-1919.15</Y>
+      <Z>144.7434</Z>
+    </Position>
+    <Xcoord>0.4926920235157</Xcoord>
+    <Ycoord>0.30083578824997</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47927" Name="Iron Summit, Searing Gorge" ContinentId="0">
+    <Position>
+      <X>-7123.2</X>
+      <Y>-1239.05</Y>
+      <Z>290.081177</Z>
+    </Position>
+    <Xcoord>0.46898019313812</Xcoord>
+    <Ycoord>0.32662984728813</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="44408" Name="Bloodwatcher Point, Badlands" ContinentId="0">
+    <Position>
+      <X>-6892.3</X>
+      <Y>-3511.3</Y>
+      <Z>242.085632</Z>
+    </Position>
+    <Xcoord>0.5480552315712</Xcoord>
+    <Ycoord>0.33443576097488</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="44407" Name="Fuselight, Badlands" ContinentId="0">
+    <Position>
+      <X>-6570.81</X>
+      <Y>-3877.64</Y>
+      <Z>390.940918</Z>
+    </Position>
+    <Xcoord>0.5605947971344</Xcoord>
+    <Ycoord>0.34566181898117</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="43220" Name="Sandy Beach, Vashj'ir" ContinentId="0">
+    <Position>
+      <X>-5675.568</X>
+      <Y>3721.83862</Y>
+      <Z>1.89887381</Z>
+    </Position>
+    <Xcoord>0.29687255620956</Xcoord>
+    <Ycoord>0.37704792618752</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47116" Name="Crushblow, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-4834.03</X>
+      <Y>-4849.46</Y>
+      <Z>198.901291</Z>
+    </Position>
+    <Xcoord>0.59440726041794</Xcoord>
+    <Ycoord>0.40618890523911</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47174" Name="Dragonmaw Port, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-4011.67</X>
+      <Y>-6326.58</Y>
+      <Z>39.30957</Z>
+    </Position>
+    <Xcoord>0.64580726623535</Xcoord>
+    <Ycoord>0.43463715910912</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47156" Name="Bloodgulch, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-3640.17</X>
+      <Y>-5291.86</Y>
+      <Z>42.11154</Z>
+    </Position>
+    <Xcoord>0.60965937376022</Xcoord>
+    <Ycoord>0.44765415787697</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47133" Name="The Gullet, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-3491.32</X>
+      <Y>-4382.28</Y>
+      <Z>210.455688</Z>
+    </Position>
+    <Xcoord>0.57810693979263</Xcoord>
+    <Ycoord>0.4526170194149</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47121" Name="Vermillion Redoubt, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-3029.98</X>
+      <Y>-3942.16</Y>
+      <Z>282.165039</Z>
+    </Position>
+    <Xcoord>0.56288087368011</Xcoord>
+    <Ycoord>0.46865418553352</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47061" Name="The Krazzworks, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-2781.63</X>
+      <Y>-6407.93</Y>
+      <Z>231.904892</Z>
+    </Position>
+    <Xcoord>0.64858609437943</Xcoord>
+    <Ycoord>0.47742432355881</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="2851" Name="Hammerfall, Arathi" ContinentId="0">
+    <Position>
+      <X>-915.9883</X>
+      <Y>-3497.24</Y>
+      <Z>70.45253</Z>
+    </Position>
+    <Xcoord>0.54746145009995</Xcoord>
+    <Ycoord>0.54214268922806</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47644" Name="Ruins of Southshore, Hillsbrad" ContinentId="0">
+    <Position>
+      <X>-665.03</X>
+      <Y>-533.721</Y>
+      <Z>28.2150421</Z>
+    </Position>
+    <Xcoord>0.44466990232468</Xcoord>
+    <Ycoord>0.55097788572311</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47655" Name="Southpoint Gate, Hillsbrad" ContinentId="0">
+    <Position>
+      <X>-606.892</X>
+      <Y>433.42</Y>
+      <Z>79.74125</Z>
+    </Position>
+    <Xcoord>0.41092136502266</Xcoord>
+    <Ycoord>0.55294501781464</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47661" Name="Eastpoint Tower, Hillsbrad" ContinentId="0">
+    <Position>
+      <X>-569.177</X>
+      <Y>-1048.59</Y>
+      <Z>59.9819679</Z>
+    </Position>
+    <Xcoord>0.46254166960716</Xcoord>
+    <Ycoord>0.55427467823029</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="46552" Name="The Forsaken Front, Silverpine Forest" ContinentId="0">
+    <Position>
+      <X>-114.764</X>
+      <Y>1313.55</Y>
+      <Z>56.741684</Z>
+    </Position>
+    <Xcoord>0.38047498464584</Xcoord>
+    <Ycoord>0.56999504566193</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="43573" Name="Hiri'watha Research Station, The Hinterlands" ContinentId="0">
+    <Position>
+      <X>-24.0503</X>
+      <Y>-2824.4</Y>
+      <Z>126.230743</Z>
+    </Position>
+    <Xcoord>0.52402013540268</Xcoord>
+    <Ycoord>0.57306337356567</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="2389" Name="Tarren Mill, Hillsbrad" ContinentId="0">
+    <Position>
+      <X>-12.4653</X>
+      <Y>-875.835</Y>
+      <Z>58.89329</Z>
+    </Position>
+    <Xcoord>0.45639595389366</Xcoord>
+    <Ycoord>0.57334351539612</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="2226" Name="The Sepulcher, Silverpine Forest" ContinentId="0">
+    <Position>
+      <X>477.035</X>
+      <Y>1542.86</Y>
+      <Z>130.544189</Z>
+    </Position>
+    <Xcoord>0.3726878464222</Xcoord>
+    <Ycoord>0.59058541059494</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47665" Name="Strahnbrad, Alterac Mountains" ContinentId="0">
+    <Position>
+      <X>622.9028</X>
+      <Y>-981.286438</Y>
+      <Z>168.487625</Z>
+    </Position>
+    <Xcoord>0.4600547850132</Xcoord>
+    <Ycoord>0.59558510780334</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="50463" Name="Forsaken Rear Guard, Silverpine Forest" ContinentId="0">
+    <Position>
+      <X>1054.00354</X>
+      <Y>1520.776</Y>
+      <Z>30.0130787</Z>
+    </Position>
+    <Xcoord>0.37330207228661</Xcoord>
+    <Ycoord>0.6106271147728</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="44825" Name="Forsaken High Command, Silverpine Forest" ContinentId="0">
+    <Position>
+      <X>1422.93042</X>
+      <Y>1017.77069</Y>
+      <Z>52.56585</Z>
+    </Position>
+    <Xcoord>0.39068645238876</Xcoord>
+    <Ycoord>0.62329930067062</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="46004" Name="Andorhal, Western Plaguelands" ContinentId="0">
+    <Position>
+      <X>1511.6</X>
+      <Y>-1583.94</Y>
+      <Z>64.60501</Z>
+    </Position>
+    <Xcoord>0.48114410042763</Xcoord>
+    <Ycoord>0.62645143270493</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="4551" Name="Undercity, Tirisfal" ContinentId="0">
+    <Position>
+      <X>1567.12</X>
+      <Y>266.345</Y>
+      <Z>-43.102562</Z>
+    </Position>
+    <Xcoord>0.41673716902733</Xcoord>
+    <Ycoord>0.62842428684235</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="46011" Name="The Menders' Stead, Western Plaguelands" ContinentId="0">
+    <Position>
+      <X>1869.61</X>
+      <Y>-1754.99</Y>
+      <Z>60.06655</Z>
+    </Position>
+    <Xcoord>0.48700764775276</Xcoord>
+    <Ycoord>0.63869166374207</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="44231" Name="Light's Shield Tower, Eastern Plaguelands" ContinentId="0">
+    <Position>
+      <X>2264.55</X>
+      <Y>-4414.64</Y>
+      <Z>111.698257</Z>
+    </Position>
+    <Xcoord>0.57921940088272</Xcoord>
+    <Ycoord>0.65250343084335</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="47875" Name="Hearthglen, Western Plaguelands" ContinentId="0">
+    <Position>
+      <X>2837.17</X>
+      <Y>-1503.59</Y>
+      <Z>145.937027</Z>
+    </Position>
+    <Xcoord>0.47814270853996</Xcoord>
+    <Ycoord>0.6725617647171</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="44036" Name="Fairbreeze Village, Eversong Woods" ContinentId="530">
+    <Position>
+      <X>8743.85</X>
+      <Y>-6651.69</Y>
+      <Z>70.21613</Z>
+    </Position>
+    <Xcoord>0.57375419139862</Xcoord>
+    <Ycoord>0.79429793357849</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="44244" Name="Falconwing Square, Eversong Woods" ContinentId="530">
+    <Position>
+      <X>9505.31</X>
+      <Y>-6765.01</Y>
+      <Z>16.5139084</Z>
+    </Position>
+    <Xcoord>0.57767671346664</Xcoord>
+    <Ycoord>0.82055312395096</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="2858" Name="Booty Bay, Stranglethorn" ContinentId="0">
+    <Position>
+      <X>-14448.5576</X>
+      <Y>506.129028</Y>
+      <Z>26.2707787</Z>
+    </Position>
+    <Xcoord>0.40834653377533</Xcoord>
+    <Ycoord>0.072420142591</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
