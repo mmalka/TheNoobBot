@@ -463,7 +463,7 @@ namespace Test_Product
         {
             string result = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(result + "= \"\"; nb = NumTaxiNodes(); for i=1,nb do n = TaxiNodeName(i); x,y = TaxiNodePosition(i); " + result + " = " + result +
-                            ".. n .. \"#\" .. x .. \"^\" .. y  .. \"-\" .. GetNumRoutes(i) .. \"~\" .. TaxiNodeGetType(i) .. \"|\" end");
+                            ".. n .. \"#\" .. x .. \"^\" .. y  .. \"@\" .. GetNumRoutes(i) .. \"~\" .. TaxiNodeGetType(i) .. \"|\" end");
             string allPaths = Lua.GetLocalizedText(result);
             List<string> ListPaths = new List<String>();
             for (int i = 0; i < allPaths.Split('|').Length - 1; i++)
