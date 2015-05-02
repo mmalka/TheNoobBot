@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Threading;
 using nManager.Products;
@@ -46,6 +47,7 @@ namespace Test_Product
                 List<WoWUnit> Inkeepers = ObjectManager.GetWoWUnitInkeeper();
                 List<WoWUnit> Trainers = ObjectManager.GetWoWUnitTrainer();
                 List<WoWUnit> FlightMasters = ObjectManager.GetWoWUnitFlightMaster();
+                List<WoWUnit> Auctioneers = ObjectManager.GetWoWUnitAuctioneer();
                 List<WoWUnit> SpiritHealers = ObjectManager.GetWoWUnitSpiritHealer();
                 List<WoWUnit> SpiritGuides = ObjectManager.GetWoWUnitSpiritGuide();
                 List<WoWUnit> NpcMailboxes = ObjectManager.GetWoWUnitMailbox();
@@ -251,6 +253,9 @@ namespace Test_Product
 
         public static void LaunchTaxi()
         {
+            try
+            {
+
             if (_availableTaxis == null)
                 _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
             if (_availableTaxiLinks == null)
@@ -361,9 +366,14 @@ namespace Test_Product
                     string nextHop = ExtractNextTaxiInfo();
                     Logging.Write("Taking taxi from " + ExtractCurrentTaxiInfo().Split('#')[0] + " to " + nextHop.Split('#')[0]);
                     Gossip.TakeTaxi(nextHop.Split('#')[1].Split('^')[0], nextHop.Split('^')[1].Split('-')[0]);
+                    Thread.Sleep(1000);
                 }
                 if (ObjectManager.Me.OnTaxi)
+                {
                     Travel.TravelPatientlybyTaxi(true);
+                    Thread.Sleep(2000);
+                    continue;
+                }
                 WoWUnit taxiUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster());
                 var baseAddress = MovementManager.FindTarget(taxiUnit);
                 if (MovementManager.InMovement)
@@ -374,7 +384,11 @@ namespace Test_Product
                     Thread.Sleep(500);
                 }
                 Thread.Sleep(200);
-                Application.DoEvents();
+            }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteDebug(e.ToString());
             }
         }
         public static int AddQuesters(List<Npc> npcqList, bool neutralIfPossible = false)
@@ -433,20 +447,44 @@ namespace Test_Product
             return Lua.GetLocalizedText("test") == "true";
         }
 
-        public static string ExtractAllPathsTaxi()
+        public static List<string> ExtractAllPathsTaxi()
         {
             string result = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(result + "= \"\"; nb = NumTaxiNodes(); for i=1,nb do n = TaxiNodeName(i); x,y = TaxiNodePosition(i); " + result + " = " + result +
                             ".. n .. \"#\" .. x .. \"^\" .. y  .. \"-\" .. GetNumRoutes(i) .. \"~\" .. TaxiNodeGetType(i) .. \"|\" end");
-            return Lua.GetLocalizedText(result);
+            string allPaths = Lua.GetLocalizedText(result);
+            List<string> ListPaths = new List<String>();
+            for (int i = 0; i < allPaths.Split('|').Length - 1; i++)
+            {
+                ListPaths.Add(allPaths.Split('|')[i]);
+            }
+            var listPathFinal = new List<string>();
+            string lowerValue = "";
+            while (ListPaths.Count > 0)
+            {
+                foreach (var listPath in ListPaths)
+                {
+                    if (lowerValue == "")
+                        lowerValue = listPath;
+                    else if (Others.ToSingle(listPath.Split('^')[1].Split('-')[0].Trim()) < Others.ToSingle(lowerValue.Split('^')[1].Split('-')[0].Trim()))
+                    {
+                        lowerValue = listPath;
+                    }
+                }
+                ListPaths.Remove(lowerValue);
+                listPathFinal.Add(lowerValue);
+                lowerValue = "";
+            }
+            return listPathFinal; // listPathFinal;
         }
 
         public static string ExtractCurrentTaxiInfo()
         {
-            for (int i = 0; i < ExtractAllPathsTaxi().Split('|').Length - 1; i++)
+            var allPaths = ExtractAllPathsTaxi();
+            for (int i = 0; i < allPaths.Count - 1; i++)
             {
                 Application.DoEvents();
-                string taxi = ExtractAllPathsTaxi().Split('|')[i];
+                string taxi = allPaths[i];
                 string routes = taxi.Split('-')[1].Split('~')[0];
                 string type = taxi.Split('~')[1];
 
@@ -465,10 +503,11 @@ namespace Test_Product
         public static string ExtractNextTaxiInfo()
         {
             bool currentFound = false;
-            for (int i = 0; i < ExtractAllPathsTaxi().Split('|').Length - 1; i++)
+            var allPaths = ExtractAllPathsTaxi();
+            for (int i = 0; i < allPaths.Count - 1; i++)
             {
                 Application.DoEvents();
-                string taxi = ExtractAllPathsTaxi().Split('|')[i];
+                string taxi = allPaths[i];
                 string type = taxi.Split('~')[1];
 
                 if (currentFound && type == "REACHABLE")
@@ -477,7 +516,7 @@ namespace Test_Product
                 if (type == "REACHABLE" && FirstReachable == "")
                     FirstReachable = taxi;
                 if (FirstReachable == "")
-                    FirstReachable = ExtractAllPathsTaxi().Split('|')[0];
+                    FirstReachable = allPaths[0];
                 if (type == "CURRENT")
                 {
                     currentFound = true;
@@ -490,11 +529,11 @@ namespace Test_Product
         {
             Logging.WriteDebug("Begin ExtractDirectPathTaxiInfoList from NPC " + ObjectManager.Me.Target.GetWoWId);
             List<String> taxis = new List<String>();
-            string allPaths = ExtractAllPathsTaxi();
-            for (int i = 0; i < allPaths.Split('|').Length - 1; i++)
+            var allPaths = ExtractAllPathsTaxi();
+            for (int i = 0; i < allPaths.Count - 1; i++)
             {
                 Application.DoEvents();
-                string taxi = allPaths.Split('|')[i];
+                string taxi = allPaths[i];
                 string routes = taxi.Split('-')[1].Split('~')[0];
                 if (routes == "1") // always reachable or it would be "0" hop.
                 {
@@ -545,7 +584,7 @@ namespace Test_Product
             try
             {
                 // Update spell list
-                SpellManager.UpdateSpellBook();
+                //SpellManager.UpdateSpellBook();
                 RadarThread.Start();
                 TaxiThread.Start();
                 while (TaxiThread.IsAlive)

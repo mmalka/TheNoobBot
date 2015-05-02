@@ -1873,6 +1873,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsNpcAuctioneer
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Auctioneer);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsNpcAuctioneer: " + e);
+                    return false;
+                }
+            }
+        }
+
         public bool IsNpcVendorFood
         {
             get
