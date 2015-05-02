@@ -192,6 +192,18 @@ namespace Test_Product
                         Type = Npc.NpcType.Mailbox
                     });
                 }
+                foreach (WoWUnit n in Auctioneers)
+                {
+                    npcRadar.Add(new Npc
+                    {
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        Entry = n.Entry,
+                        Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
+                        Name = n.Name,
+                        Position = n.Position,
+                        Type = Npc.NpcType.Auctioneer
+                    });
+                }
                 foreach (WoWUnit n in NpcQuesters)
                 {
                     npcRadarQuesters.Add(new Npc
@@ -487,7 +499,7 @@ namespace Test_Product
                 string taxi = allPaths[i];
                 string routes = taxi.Split('-')[1].Split('~')[0];
                 if (routes.Length > 1)
-                    routes = taxi.Split('-')[2].Split('~')[0];
+                    routes = taxi.Split('-')[2].Split('~')[0]; // Some contains "-" in the name.
                 string type = taxi.Split('~')[1];
 
                 if (routes != "0" || type == "REACHABLE")
@@ -537,6 +549,8 @@ namespace Test_Product
                 Application.DoEvents();
                 string taxi = allPaths[i];
                 string routes = taxi.Split('-')[1].Split('~')[0];
+                if (routes.Length > 1)
+                    routes = taxi.Split('-')[2].Split('~')[0]; // Some contains "-" in the name.
                 if (routes == "1") // always reachable or it would be "0" hop.
                 {
                     Logging.WriteDebug(taxi);
