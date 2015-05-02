@@ -165,7 +165,7 @@
             CachedCastBarCaption = 0xC,
             CachedName = 0xB4, // CGGameObject_C__GetName_2
             CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
-            CachedSize = CachedData0 + (0x04*32), // just after the 32 data uint32
+            CachedSize = CachedData0 + (0x04*33), // just after the 32 data uint32 + 1 unknown value
             CachedQuestItem1 = CachedSize + 0x04, // just after the size float
         }
 
