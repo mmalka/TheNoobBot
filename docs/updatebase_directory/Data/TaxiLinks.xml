@@ -1,549 +1,548 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTaxiLink xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+    <PointA>81103</PointA>
+    <PointB>82309</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+    <PointA>81103</PointA>
+    <PointB>81060</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+    <PointA>81103</PointA>
+    <PointB>81074</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+    <PointA>81103</PointA>
+    <PointB>76839</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointA>81103</PointA>
+    <PointB>81884</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81884</PointA> <!-- Reflux du Bois sauvage, Gorgrond -->
-    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+    <PointA>81884</PointA>
+    <PointB>81074</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81284</PointA> <!-- Le Draakorium, vallée d’Ombrelune -->
-    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+    <PointA>81284</PointA>
+    <PointB>76839</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81074</PointA> <!-- Haute-Route, Gorgrond -->
-    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+    <PointA>81074</PointA>
+    <PointB>81888</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81888</PointA> <!-- Basseracines, Gorgrond -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>81888</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81888</PointA> <!-- Basseracines, Gorgrond -->
-    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointA>81888</PointA>
+    <PointB>81884</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81888</PointA> <!-- Basseracines, Gorgrond -->
-    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+    <PointA>81888</PointA>
+    <PointB>81060</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81074</PointA> <!-- Haute-Route, Gorgrond -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>81074</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81060</PointA> <!-- Fort Wrynn, Talador -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>81060</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84993</PointA> <!-- Atelier de siège de Fer, crête de Givrefeu -->
-    <PointB>76787</PointB> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+    <PointA>84993</PointA>
+    <PointB>76787</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
-    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+    <PointA>83924</PointA>
+    <PointB>82309</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointA>81103</PointA>
+    <PointB>84515</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84515</PointA> <!-- Courbe du corbeau, flèches d’Arak -->
-    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+    <PointA>84515</PointA>
+    <PointB>82511</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81064</PointA> <!-- Shattrath, Talador -->
-    <PointB>76787</PointB> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+    <PointA>81064</PointA>
+    <PointB>76787</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81064</PointA> <!-- Shattrath, Talador -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>81064</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>81103</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81060</PointA> <!-- Fort Wrynn, Talador -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>81060</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>82309</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>83924</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
-    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+    <PointA>82309</PointA>
+    <PointB>88653</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
-    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+    <PointA>83924</PointA>
+    <PointB>88653</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>87395</PointA> <!-- Redoute de Rilzit, Nagrand -->
-    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+    <PointA>87395</PointA>
+    <PointB>88653</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>87395</PointA> <!-- Redoute de Rilzit, Nagrand -->
-    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+    <PointA>87395</PointA>
+    <PointB>82309</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>87395</PointA> <!-- Redoute de Rilzit, Nagrand -->
-    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+    <PointA>87395</PointA>
+    <PointB>81250</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
-    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+    <PointA>83924</PointA>
+    <PointB>81250</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
-    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+    <PointA>82309</PointA>
+    <PointB>81250</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81103</PointA> <!-- Chutelune, vallée d’Ombrelune -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>81103</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81884</PointA> <!-- Reflux du Bois sauvage, Gorgrond -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>81884</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81064</PointA> <!-- Shattrath, Talador -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>81064</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>88584</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
-    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+    <PointA>88584</PointA>
+    <PointB>81060</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
-    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+    <PointA>88584</PointA>
+    <PointB>82511</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
-    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointA>88584</PointA>
+    <PointB>84515</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>88584</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88584</PointA> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>88584</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84504</PointA> <!-- Guet de la Serre, flèches d’Arak -->
-    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointA>84504</PointA>
+    <PointB>88584</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84504</PointA> <!-- Guet de la Serre, flèches d’Arak -->
-    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+    <PointA>84504</PointA>
+    <PointB>82511</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84504</PointA> <!-- Guet de la Serre, flèches d’Arak -->
-    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointA>84504</PointA>
+    <PointB>84515</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84509</PointA> <!-- Excavation Apogide, flèches d’Arak -->
-    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointA>84509</PointA>
+    <PointB>84515</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84509</PointA> <!-- Excavation Apogide, flèches d’Arak -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>84509</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
-    <PointB>81250</PointB> <!-- Guet d’Yrel, Nagrand -->
+    <PointA>88668</PointA>
+    <PointB>81250</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
-    <PointB>87395</PointB> <!-- Redoute de Rilzit, Nagrand -->
+    <PointA>88668</PointA>
+    <PointB>87395</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
-    <PointB>88653</PointB> <!-- Surplomb de Nivek, Nagrand -->
+    <PointA>88668</PointA>
+    <PointB>88653</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88668</PointA> <!-- Les rylaks de Joz, Nagrand -->
-    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+    <PointA>88668</PointA>
+    <PointB>82844</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84993</PointA> <!-- Atelier de siège de Fer, crête de Givrefeu -->
-    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+    <PointA>84993</PointA>
+    <PointB>82844</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76787</PointA> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
-    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+    <PointA>76787</PointA>
+    <PointB>82844</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83924</PointA> <!-- Arène des Épreuves, Nagrand -->
-    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+    <PointA>83924</PointA>
+    <PointB>82844</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>82309</PointA> <!-- Poste Telaari, Nagrand -->
-    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+    <PointA>82309</PointA>
+    <PointB>82844</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81250</PointA> <!-- Guet d’Yrel, Nagrand -->
-    <PointB>82844</PointB> <!-- Trône des éléments, Nagrand -->
+    <PointA>81250</PointA>
+    <PointB>82844</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>81068</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>81068</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
-    <PointB>84509</PointB> <!-- Excavation Apogide, flèches d’Arak -->
+    <PointA>81068</PointA>
+    <PointB>84509</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
-    <PointB>83924</PointB> <!-- Arène des Épreuves, Nagrand -->
+    <PointA>81068</PointA>
+    <PointB>83924</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81068</PointA> <!-- Halte de la Vindicte, Talador -->
-    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+    <PointA>81068</PointA>
+    <PointB>81077</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81077</PointA> <!-- Refuge de l’Exarque, Talador -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>81077</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81077</PointA> <!-- Refuge de l’Exarque, Talador -->
-    <PointB>84509</PointB> <!-- Excavation Apogide, flèches d’Arak -->
+    <PointA>81077</PointA>
+    <PointB>84509</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81077</PointA> <!-- Refuge de l’Exarque, Talador -->
-    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointA>81077</PointA>
+    <PointB>88584</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>80932</PointA> <!-- Zangarra, Talador -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>80932</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>80932</PointA> <!-- Zangarra, Talador -->
-    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+    <PointA>80932</PointA>
+    <PointB>81060</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>76850</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
-    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointA>76850</PointA>
+    <PointB>88584</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
-    <PointB>84504</PointB> <!-- Guet de la Serre, flèches d’Arak -->
+    <PointA>76850</PointA>
+    <PointB>84504</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76850</PointA> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
-    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+    <PointA>76850</PointA>
+    <PointB>81077</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
-    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointA>76840</PointA>
+    <PointB>76850</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>76840</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
-    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+    <PointA>76840</PointA>
+    <PointB>81284</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76840</PointA> <!-- Embaari, vallée d’Ombrelune -->
-    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+    <PointA>76840</PointA>
+    <PointB>76839</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76851</PointA> <!-- Voie de la Lumière, vallée d’Ombrelune -->
-    <PointB>76840</PointB> <!-- Embaari, vallée d’Ombrelune -->
+    <PointA>76851</PointA>
+    <PointB>76840</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76851</PointA> <!-- Voie de la Lumière, vallée d’Ombrelune -->
-    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+    <PointA>76851</PointA>
+    <PointB>81284</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>76851</PointA> <!-- Voie de la Lumière, vallée d’Ombrelune -->
-    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+    <PointA>76851</PointA>
+    <PointB>76839</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>86685</PointA> <!-- Cour Paisible, vallée d’Ombrelune -->
-    <PointB>76851</PointB> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+    <PointA>86685</PointA>
+    <PointB>76851</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>86685</PointA> <!-- Cour Paisible, vallée d’Ombrelune -->
-    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+    <PointA>86685</PointA>
+    <PointB>81284</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84498</PointA> <!-- Voile Terokk, flèches d’Arak -->
-    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointA>84498</PointA>
+    <PointB>84515</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84498</PointA> <!-- Voile Terokk, flèches d’Arak -->
-    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+    <PointA>84498</PointA>
+    <PointB>82511</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>82511</PointB> <!-- Boulonnnerie de Sifflepince, flèches d’Arak -->
+    <PointA>83567</PointA>
+    <PointB>82511</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>84498</PointB> <!-- Voile Terokk, flèches d’Arak -->
+    <PointA>83567</PointA>
+    <PointB>84498</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>83567</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+    <PointA>83567</PointA>
+    <PointB>81060</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>83567</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>82309</PointB> <!-- Poste Telaari, Nagrand -->
+    <PointA>83567</PointA>
+    <PointB>82309</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83567</PointA> <!-- Port-Austral, Flèches d’Arak -->
-    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointA>83567</PointA>
+    <PointB>88584</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
-    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+    <PointA>83427</PointA>
+    <PointB>81284</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>83427</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
-    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointA>83427</PointA>
+    <PointB>76850</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
-    <PointB>76840</PointB> <!-- Embaari, vallée d’Ombrelune -->
+    <PointA>83427</PointA>
+    <PointB>76840</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>83427</PointA> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>83427</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>83427</PointB> <!-- Perchoir de Sombreflux, vallée d’Ombrelune -->
+    <PointA>81285</PointA>
+    <PointB>83427</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>81284</PointB> <!-- Le Draakorium, vallée d’Ombrelune -->
+    <PointA>81285</PointA>
+    <PointB>81284</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>81285</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointA>81285</PointA>
+    <PointB>76850</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>76839</PointB> <!-- Clairière Crépusculaire, vallée d’Ombrelune -->
+    <PointA>81285</PointA>
+    <PointB>76839</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>81285</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointA>81285</PointA>
+    <PointB>88584</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+    <PointA>81285</PointA>
+    <PointB>81077</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>84504</PointB> <!-- Guet de la Serre, flèches d’Arak -->
+    <PointA>81285</PointA>
+    <PointB>84504</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81285</PointA> <!-- Cime de Socrethar, vallée d’Ombrelune -->
-    <PointB>83567</PointB> <!-- Port-Austral, Flèches d’Arak -->
+    <PointA>81285</PointA>
+    <PointB>83567</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
-    <PointB>81064</PointB> <!-- Shattrath, Talador -->
+    <PointA>81354</PointA>
+    <PointB>81064</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
-    <PointB>81077</PointB> <!-- Refuge de l’Exarque, Talador -->
+    <PointA>81354</PointA>
+    <PointB>81077</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
-    <PointB>84515</PointB> <!-- Courbe du corbeau, flèches d’Arak -->
+    <PointA>81354</PointA>
+    <PointB>84515</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
-    <PointB>88584</PointB> <!-- Taudis d’Akeeta, vallée d’Ombrelune -->
+    <PointA>81354</PointA>
+    <PointB>88584</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
-    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointA>81354</PointA>
+    <PointB>76850</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81354</PointA> <!-- Refuge de Terokkar, Talador -->
-    <PointB>80932</PointB> <!-- Zangarra, Talador -->
+    <PointA>81354</PointA>
+    <PointB>80932</PointB>
   </TaxiLink>
-
   <TaxiLink>
-    <PointA>86492</PointA> <!-- Couronne du Briseur, Gorgrond -->
-    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+    <PointA>86492</PointA>
+    <PointB>81074</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>86492</PointA> <!-- Couronne du Briseur, Gorgrond -->
-    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+    <PointA>86492</PointA>
+    <PointB>81888</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>86492</PointA> <!-- Couronne du Briseur, Gorgrond -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>86492</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
-    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointA>84714</PointA>
+    <PointB>81884</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
-    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+    <PointA>84714</PointA>
+    <PointB>81074</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
-    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+    <PointA>84714</PointA>
+    <PointB>86492</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84714</PointA> <!-- Séjour de la Flore éternelle, Gorgrond -->
-    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+    <PointA>84714</PointA>
+    <PointB>81888</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>88757</PointA> <!-- Surplomb de la Flore éternelle, Gorgrond -->
-    <PointB>84714</PointB> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointA>88757</PointA>
+    <PointB>84714</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
-    <PointB>84714</PointB> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointA>85829</PointA>
+    <PointB>84714</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
-    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointA>85829</PointA>
+    <PointB>81884</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
-    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+    <PointA>85829</PointA>
+    <PointB>81074</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
-    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+    <PointA>85829</PointA>
+    <PointB>86492</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>85829</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>85829</PointA> <!-- Crête de Mer-Céleste, Gorgrond -->
-    <PointB>76787</PointB> <!-- Mine de la Masse-Sanglante, crête de Givrefeu -->
+    <PointA>85829</PointA>
+    <PointB>76787</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
-    <PointB>85829</PointB> <!-- Crête de Mer-Céleste, Gorgrond -->
+    <PointA>84700</PointA>
+    <PointB>85829</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
-    <PointB>84714</PointB> <!-- Séjour de la Flore éternelle, Gorgrond -->
+    <PointA>84700</PointA>
+    <PointB>84714</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
-    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointA>84700</PointA>
+    <PointB>81884</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
-    <PointB>81074</PointB> <!-- Haute-Route, Gorgrond -->
+    <PointA>84700</PointA>
+    <PointB>81074</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
-    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+    <PointA>84700</PointA>
+    <PointB>86492</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84700</PointA> <!-- Quais de Fer, Gorgrond -->
-    <PointB>86492</PointB> <!-- Couronne du Briseur, Gorgrond -->
+    <PointA>84700</PointA>
+    <PointB>86492</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
-    <PointB>81884</PointB> <!-- Reflux du Bois sauvage, Gorgrond -->
+    <PointA>84507</PointA>
+    <PointB>81884</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
-    <PointB>81888</PointB> <!-- Basseracines, Gorgrond -->
+    <PointA>84507</PointA>
+    <PointB>81888</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
-    <PointB>84993</PointB> <!-- Atelier de siège de Fer, crête de Givrefeu -->
+    <PointA>84507</PointA>
+    <PointB>84993</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>84507</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>84507</PointA> <!-- Bastion insoumis, Gorgrond -->
-    <PointB>81060</PointB> <!-- Fort Wrynn, Talador -->
+    <PointA>84507</PointA>
+    <PointB>81060</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
-    <PointB>85959</PointB> <!-- Bouclier-des-Tempêtes, A’shran -->
+    <PointA>81289</PointA>
+    <PointB>85959</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
-    <PointB>76850</PointB> <!-- Cime de l’Exilé, vallée d’Ombrelune -->
+    <PointA>81289</PointA>
+    <PointB>76850</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
-    <PointB>81103</PointB> <!-- Chutelune, vallée d’Ombrelune -->
+    <PointA>81289</PointA>
+    <PointB>81103</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
-    <PointB>76840</PointB> <!-- Embaari, vallée d’Ombrelune -->
+    <PointA>81289</PointA>
+    <PointB>76840</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>81289</PointA> <!-- Élodor, vallée d’Ombrelune -->
-    <PointB>76851</PointB> <!-- Voie de la Lumière, vallée d’Ombrelune -->
+    <PointA>81289</PointA>
+    <PointB>76851</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>84495</PointA>
@@ -4629,5 +4628,870 @@
   <TaxiLink>
     <PointA>43053</PointA>
     <PointB>43052</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2859</PointA>
+    <PointB>43043</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2859</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.527397215366360.13083678483963</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2859</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2859</PointA>
+    <PointB>523</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2859</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2859</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43043</PointA>
+    <PointB>2859</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43043</PointA>
+    <PointB>43042</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43042</PointA>
+    <PointB>43043</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43042</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>2859</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>43042</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>85731</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>43697</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>523</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43045</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85731</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85731</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>85731</PointA>
+    <PointB>43087</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>42426</PointA>
+    <PointB>523</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43697</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43697</PointA>
+    <PointB>523</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43697</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>2859</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>42426</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>43697</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>42406</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>931</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>523</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>2859</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>85731</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.545338213443760.18811458349228</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>42983</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>931</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2409</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43087</PointA>
+    <PointB>85731</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43087</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.545338213443760.18811458349228</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43087</PointA>
+    <PointB>43088</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43088</PointA>
+    <PointB>43087</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43088</PointA>
+    <PointB>931</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>42406</PointA>
+    <PointB>523</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>42406</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43086</PointA>
+    <PointB>43087</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43086</PointA>
+    <PointB>43072</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43086</PointA>
+    <PointB>2299</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43072</PointA>
+    <PointB>43086</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43072</PointA>
+    <PointB>43371</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43000</PointA>
+    <PointB>42983</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43000</PointA>
+    <PointB>931</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43371</PointA>
+    <PointB>43072</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43371</PointA>
+    <PointB>931</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>42983</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>42983</PointA>
+    <PointB>43000</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>42983</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>523</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>2409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>43088</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>43000</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>43371</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>931</PointA>
+    <PointB>2299</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>352</PointA>
+    <PointB>2859</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>352</PointA>
+    <PointB>43045</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>352</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.545338213443760.18811458349228</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>352</PointA>
+    <PointB>2299</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>352</PointA>
+    <PointB>2941</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>352</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2299</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.545338213443760.18811458349228</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2299</PointA>
+    <PointB>44410</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2299</PointA>
+    <PointB>2941</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>48318</PointA>
+    <PointB>48321</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>48318</PointA>
+    <PointB>47927</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>48321</PointA>
+    <PointB>2299</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>48321</PointA>
+    <PointB>48318</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43295</PointA>
+    <PointB>43290</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47927</PointA>
+    <PointB>48318</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47927</PointA>
+    <PointB>2941</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44410</PointA>
+    <PointB>2299</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44410</PointA>
+    <PointB>44409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44409</PointA>
+    <PointB>44410</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44409</PointA>
+    <PointB>44407</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44409</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44407</PointA>
+    <PointB>44410</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44407</PointA>
+    <PointB>44409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44407</PointA>
+    <PointB>41332</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44407</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2941</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2941</PointA>
+    <PointB>2299</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2941</PointA>
+    <PointB>47927</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2941</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2941</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43702</PointA>
+    <PointB>43701</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43702</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43702</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41332</PointA>
+    <PointB>44407</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41332</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43701</PointA>
+    <PointB>43702</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43701</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>44409</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>2941</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>43702</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>41332</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>47119</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>41321</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>1571</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1572</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43290</PointA>
+    <PointB>43295</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43290</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47119</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47119</PointA>
+    <PointB>47147</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47119</PointA>
+    <PointB>47155</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>352</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>2941</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>43702</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>43701</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>43290</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>1571</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>8018</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>12596</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1573</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47147</PointA>
+    <PointB>47119</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47147</PointA>
+    <PointB>47118</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47147</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47147</PointA>
+    <PointB>47155</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47118</PointA>
+    <PointB>47147</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47118</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41321</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41321</PointA>
+    <PointB>41322</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1571</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1571</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1571</PointA>
+    <PointB>41323</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>1571</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41322</PointA>
+    <PointB>41321</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41322</PointA>
+    <PointB>41323</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41322</PointA>
+    <PointB>41325</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41323</PointA>
+    <PointB>1571</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41323</PointA>
+    <PointB>41322</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41323</PointA>
+    <PointB>41325</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47121</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47121</PointA>
+    <PointB>41322</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47121</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47121</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47155</PointA>
+    <PointB>47119</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47155</PointA>
+    <PointB>47147</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47155</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41325</PointA>
+    <PointB>41322</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41325</PointA>
+    <PointB>41323</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>41325</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>1572</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>1571</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>47121</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>41325</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>8018</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>2835</PointA>
+    <PointB>43570</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>8018</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>8018</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>8018</PointA>
+    <PointB>43570</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>8018</PointA>
+    <PointB>12596</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>8018</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43570</PointA>
+    <PointB>2835</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43570</PointA>
+    <PointB>8018</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43570</PointA>
+    <PointB>37888</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>43570</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12596</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12596</PointA>
+    <PointB>8018</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12596</PointA>
+    <PointB>46011</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12596</PointA>
+    <PointB>37888</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12596</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>46011</PointA>
+    <PointB>12596</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>46011</PointA>
+    <PointB>37888</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>46011</PointA>
+    <PointB>47875</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44232</PointA>
+    <PointB>37888</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44232</PointA>
+    <PointB>44231</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44232</PointA>
+    <PointB>44233</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44232</PointA>
+    <PointB>28621</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>37888</PointA>
+    <PointB>43570</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>37888</PointA>
+    <PointB>12596</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>37888</PointA>
+    <PointB>46011</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>37888</PointA>
+    <PointB>44232</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>37888</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44231</PointA>
+    <PointB>44232</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44231</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>44407</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>1573</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>8018</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>43570</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>12596</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>37888</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>44231</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>44230</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12617</PointA>
+    <PointB>24851</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44230</PointA>
+    <PointB>44231</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44230</PointA>
+    <PointB>12617</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44230</PointA>
+    <PointB>44233</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44230</PointA>
+    <PointB>28621</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47875</PointA>
+    <PointB>46011</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>47875</PointA>
+    <PointB>44233</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44233</PointA>
+    <PointB>44232</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44233</PointA>
+    <PointB>44231</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44233</PointA>
+    <PointB>44230</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44233</PointA>
+    <PointB>47875</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>44233</PointA>
+    <PointB>28621</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>28621</PointA>
+    <PointB>44232</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>28621</PointA>
+    <PointB>44230</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>28621</PointA>
+    <PointB>44233</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>24851</PointA>
+    <PointB>12617</PointB>
   </TaxiLink>
 </ArrayOfTaxiLink>
