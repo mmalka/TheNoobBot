@@ -486,6 +486,8 @@ namespace Test_Product
                 Application.DoEvents();
                 string taxi = allPaths[i];
                 string routes = taxi.Split('-')[1].Split('~')[0];
+                if (routes.Length > 1)
+                    routes = taxi.Split('-')[2].Split('~')[0];
                 string type = taxi.Split('~')[1];
 
                 if (routes != "0" || type == "REACHABLE")

@@ -500,13 +500,18 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.GetDistance < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList) &&
-                        (ignorenotSelectable || !a.NotSelectable) && (!a.IsTapped || (a.IsTapped && a.IsTappedByMe)) &&
-                        !a.PlayerControlled)
-                    {
-                        objectReturn = a;
-                        tempDistance = a.GetDistance;
-                    }
+                    if (a.GetDistance > tempDistance)
+                        continue;
+                    if (nManagerSetting.IsBlackListed(a.Guid) && !ignoreBlackList)
+                        continue;
+                    if (!ignorenotSelectable && a.NotSelectable)
+                        continue;
+                    if (a.IsTapped && (!a.IsTapped || !a.IsTappedByMe))
+                        continue;
+                    if (a.PlayerControlled) 
+                        continue;
+                    objectReturn = a;
+                    tempDistance = a.GetDistance;
                 }
                 return objectReturn;
             }
@@ -1516,7 +1521,8 @@ namespace nManager.Wow.ObjectManager
                 List<WoWUnit> list = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.IsNpcFlightMaster) list.Add(a);
+                    if (a.IsNpcFlightMaster)
+                        list.Add(a);
                 }
                 return list;
             }
@@ -1805,6 +1811,37 @@ namespace nManager.Wow.ObjectManager
         public static bool IsSomeoneHoldingWGFlag(bool hostileHolder = true)
         {
             return GetWoWUnitWGFlagHolder(hostileHolder) != null;
+        }
+        
+        public static List<WoWUnit> GetWoWUnitAuctioneer(List<WoWUnit> listWoWUnit)
+        {
+            try
+            {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcAuctioneer) list.Add(a);
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitAuctioneer(List<WoWUnit> listWoWUnit): " + e);
+            }
+            return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetWoWUnitAuctioneer()
+        {
+            try
+            {
+                return GetWoWUnitAuctioneer(GetObjectWoWUnit());
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWUnitAuctioneer(): " + e);
+            }
+            return new List<WoWUnit>();
         }
     }
 }
