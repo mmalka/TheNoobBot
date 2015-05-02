@@ -36,6 +36,10 @@
         DungeonDifficulty = 31,
         DestructiveBuilding = 32,
         GuildBank = 34,
-        TrapDoor = 35
+        TrapDoor = 35,
+        FiefBuilding = 38,
+        FiefMonumentBase = 44,
+        FiefCommand = 45,
+        FiefMonument = 46
     }
 }
