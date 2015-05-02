@@ -873,4 +873,436 @@
     <Xcoord>0.48110207915306</Xcoord>
     <Ycoord>0.54088968038559</Ycoord>
   </Taxi>
+  <Taxi Faction="Horde" Id="16587" Name="Thrallmar, Hellfire Peninsula" ContinentId="530">
+    <Position>
+      <X>233.136536</X>
+      <Y>2632.30469</Y>
+      <Z>88.21741</Z>
+    </Position>
+    <Xcoord>0.65512591600418</Xcoord>
+    <Ycoord>0.49678075313568</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="22455" Name="Mok'Nathal Village, Blade's Edge Mountains" ContinentId="530">
+    <Position>
+      <X>2023.77649</X>
+      <Y>4702.70557</Y>
+      <Z>150.58461</Z>
+    </Position>
+    <Xcoord>0.48624193668365</Xcoord>
+    <Ycoord>0.64350366592407</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18953" Name="Thunderlord Stronghold, Blade's Edge Mountains" ContinentId="530">
+    <Position>
+      <X>2451.06128</X>
+      <Y>6022.05762</Y>
+      <Z>154.75621</Z>
+    </Position>
+    <Xcoord>0.37898996472359</Xcoord>
+    <Ycoord>0.67753624916077</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="20515" Name="Cosmowrench, Netherstorm" ContinentId="530">
+    <Position>
+      <X>2973.19922</X>
+      <Y>1848.45374</Y>
+      <Z>141.0017</Z>
+    </Position>
+    <Xcoord>0.71914565563202</Xcoord>
+    <Ycoord>0.72061532735825</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="22216" Name="Evergrove, Blade's Edge Mountains" ContinentId="530">
+    <Position>
+      <X>2975.634</X>
+      <Y>5499.793</Y>
+      <Z>143.584991</Z>
+    </Position>
+    <Xcoord>0.42136383056641</Xcoord>
+    <Ycoord>0.72070169448853</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18938" Name="Area 52, Netherstorm" ContinentId="530">
+    <Position>
+      <X>3078.104</X>
+      <Y>3602.15625</Y>
+      <Z>144.06694</Z>
+    </Position>
+    <Xcoord>0.57666009664536</Xcoord>
+    <Ycoord>0.72936517000198</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="19317" Name="Shadowmoon Village, Shadowmoon Valley" ContinentId="530">
+    <Position>
+      <X>-3018.249</X>
+      <Y>2556.32178</Y>
+      <Z>79.07978</Z>
+    </Position>
+    <Xcoord>0.66136056184769</Xcoord>
+    <Ycoord>0.2321417927742</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18807" Name="Stonebreaker Hold, Terokkar Forest" ContinentId="530">
+    <Position>
+      <X>-2563.18628</X>
+      <Y>4426.765</Y>
+      <Z>39.3550758</Z>
+    </Position>
+    <Xcoord>0.50918477773666</Xcoord>
+    <Ycoord>0.26892176270485</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18940" Name="Shattrath, Terokkar Forest" ContinentId="530">
+    <Position>
+      <X>-1831.94751</X>
+      <Y>5298.29932</Y>
+      <Z>-12.4277716</Z>
+    </Position>
+    <Xcoord>0.43760496377945</Xcoord>
+    <Ycoord>0.32842460274696</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="19558" Name="Spinebreaker Ridge, Hellfire Peninsula" ContinentId="530">
+    <Position>
+      <X>-1314.92517</X>
+      <Y>2355.389</Y>
+      <Z>88.95533</Z>
+    </Position>
+    <Xcoord>0.67753970623016</Xcoord>
+    <Ycoord>0.37083619832993</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18808" Name="Garadar, Nagrand" ContinentId="530">
+    <Position>
+      <X>-1256.62927</X>
+      <Y>7136.16943</Y>
+      <Z>57.2653236</Z>
+    </Position>
+    <Xcoord>0.28830274939537</Xcoord>
+    <Ycoord>0.37537980079651</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18942" Name="Falcon Watch, Hellfire Peninsula" ContinentId="530">
+    <Position>
+      <X>-584.3674</X>
+      <Y>4104.07373</Y>
+      <Z>91.5047455</Z>
+    </Position>
+    <Xcoord>0.53550094366074</Xcoord>
+    <Ycoord>0.4302844107151</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18930" Name="Hellfire Peninsula, The Dark Portal" ContinentId="530">
+    <Position>
+      <X>-176.419876</X>
+      <Y>1028.53052</Y>
+      <Z>54.17291</Z>
+    </Position>
+    <Xcoord>0.7861156463623</Xcoord>
+    <Ycoord>0.46364384889603</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="20762" Name="Swamprat Post, Zangarmarsh" ContinentId="530">
+    <Position>
+      <X>87.98063</X>
+      <Y>5213.78857</Y>
+      <Z>23.24488</Z>
+    </Position>
+    <Xcoord>0.44469553232193</Xcoord>
+    <Ycoord>0.48562917113304</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="18791" Name="Zabra'jin, Zangarmarsh" ContinentId="530">
+    <Position>
+      <X>223.468216</X>
+      <Y>7812.548</Y>
+      <Z>22.6027412</Z>
+    </Position>
+    <Xcoord>0.23265671730042</Xcoord>
+    <Ycoord>0.49604320526123</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="25288" Name="Warsong Hold, Borean Tundra" ContinentId="571">
+    <Position>
+      <X>2922.39233</X>
+      <Y>6244.3877</Y>
+      <Z>208.7518</Z>
+    </Position>
+    <Xcoord>0.14810514450073</Xcoord>
+    <Ycoord>0.43018814921379</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26845" Name="Venomspite, Dragonblight" ContinentId="571">
+    <Position>
+      <X>3248.7666</X>
+      <Y>-662.2969</Y>
+      <Z>166.7899</Z>
+    </Position>
+    <Xcoord>0.59491431713104</Xcoord>
+    <Ycoord>0.45105132460594</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26852" Name="Conquest Hold, Grizzly Hills" ContinentId="571">
+    <Position>
+      <X>3261.517</X>
+      <Y>-2265.45483</Y>
+      <Z>114.129013</Z>
+    </Position>
+    <Xcoord>0.6981885433197</Xcoord>
+    <Ycoord>0.45208197832108</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26847" Name="Taunka'le Village, Borean Tundra" ContinentId="571">
+    <Position>
+      <X>3446.11475</X>
+      <Y>4088.40674</Y>
+      <Z>16.7769871</Z>
+    </Position>
+    <Xcoord>0.28736209869385</Xcoord>
+    <Ycoord>0.46440643072128</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="27046" Name="Transitus Shield, Coldarra" ContinentId="571">
+    <Position>
+      <X>3573.9</X>
+      <Y>6661.07471</Y>
+      <Z>195.181</Z>
+    </Position>
+    <Xcoord>0.12102178484201</Xcoord>
+    <Ycoord>0.47254881262779</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="24795" Name="Amber Ledge, Borean Tundra" ContinentId="571">
+    <Position>
+      <X>3571.11572</X>
+      <Y>5957.59375</Y>
+      <Z>135.755554</Z>
+    </Position>
+    <Xcoord>0.16553710401058</Xcoord>
+    <Ycoord>0.47335055470467</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26851" Name="Wyrmrest Temple, Dragonblight" ContinentId="571">
+    <Position>
+      <X>3647.261</X>
+      <Y>244.050949</Y>
+      <Z>52.2276764</Z>
+    </Position>
+    <Xcoord>0.53582227230072</Xcoord>
+    <Ycoord>0.4775772690773</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26566" Name="Agmar's Hammer, Dragonblight" ContinentId="571">
+    <Position>
+      <X>3863.63</X>
+      <Y>1523.11</Y>
+      <Z>90.10969</Z>
+    </Position>
+    <Xcoord>0.45317015051842</Xcoord>
+    <Ycoord>0.49132743477821</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26853" Name="Camp Oneqwah, Grizzly Hills" ContinentId="571">
+    <Position>
+      <X>3874.18481</X>
+      <Y>-4520.87256</Y>
+      <Z>217.220169</Z>
+    </Position>
+    <Xcoord>0.84414929151535</Xcoord>
+    <Ycoord>0.49200439453125</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26848" Name="Bor'gorok Outpost, Borean Tundra" ContinentId="571">
+    <Position>
+      <X>4473.24</X>
+      <Y>5708.787</Y>
+      <Z>81.2644958</Z>
+    </Position>
+    <Xcoord>0.18242709338665</Xcoord>
+    <Ycoord>0.53069895505905</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26850" Name="Kor'kron Vanguard, Dragonblight" ContinentId="571">
+    <Position>
+      <X>4941.58545</X>
+      <Y>1167.94763</Y>
+      <Z>239.319321</Z>
+    </Position>
+    <Xcoord>0.47643148899078</Xcoord>
+    <Ycoord>0.56120973825455</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28618" Name="Light's Breach, Zul'Drak" ContinentId="571">
+    <Position>
+      <X>5192.26465</X>
+      <Y>-2207.03613</Y>
+      <Z>239.3987</Z>
+    </Position>
+    <Xcoord>0.69452631473541</Xcoord>
+    <Ycoord>0.57695007324219</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28615" Name="Ebon Watch, Zul'Drak" ContinentId="571">
+    <Position>
+      <X>5218.96631</X>
+      <Y>-1299.122</Y>
+      <Z>242.266785</Z>
+    </Position>
+    <Xcoord>0.63604861497879</Xcoord>
+    <Ycoord>0.57881158590317</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28574" Name="River's Heart, Sholazar Basin" ContinentId="571">
+    <Position>
+      <X>5505.6</X>
+      <Y>4745.333</Y>
+      <Z>-194.434479</Z>
+    </Position>
+    <Xcoord>0.24477137625217</Xcoord>
+    <Ycoord>0.59738981723785</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28623" Name="The Argent Stand, Zul'Drak" ContinentId="571">
+    <Position>
+      <X>5523.68</X>
+      <Y>-2674.97217</Y>
+      <Z>303.955658</Z>
+    </Position>
+    <Xcoord>0.72464919090271</Xcoord>
+    <Ycoord>0.59838551282883</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="30269" Name="Sunreaver's Command, Crystalsong Forest" ContinentId="571">
+    <Position>
+      <X>5587.264</X>
+      <Y>-694.6895</Y>
+      <Z>206.6277</Z>
+    </Position>
+    <Xcoord>0.59666496515274</Xcoord>
+    <Ycoord>0.60283786058426</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28624" Name="Zim'Torga, Zul'Drak" ContinentId="571">
+    <Position>
+      <X>5780.83545</X>
+      <Y>-3598.161</Y>
+      <Z>387.1551</Z>
+    </Position>
+    <Xcoord>0.78431993722916</Xcoord>
+    <Ycoord>0.61492305994034</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28674" Name="Dalaran" ContinentId="571">
+    <Position>
+      <X>5813.37354</X>
+      <Y>453.402985</Y>
+      <Z>658.7559</Z>
+    </Position>
+    <Xcoord>0.52278792858124</Xcoord>
+    <Ycoord>0.61728245019913</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="30433" Name="The Argent Vanguard, Icecrown" ContinentId="571">
+    <Position>
+      <X>6162.616</X>
+      <Y>-62.0920677</Y>
+      <Z>388.1818</Z>
+    </Position>
+    <Xcoord>0.55579835176468</Xcoord>
+    <Ycoord>0.63995152711868</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="29721" Name="K3, The Storm Peaks" ContinentId="571">
+    <Position>
+      <X>6188.96826</X>
+      <Y>-1056.52869</Y>
+      <Z>409.822754</Z>
+    </Position>
+    <Xcoord>0.61992561817169</Xcoord>
+    <Ycoord>0.64139080047607</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="30569" Name="Gundrak, Zul'Drak" ContinentId="571">
+    <Position>
+      <X>6893.54</X>
+      <Y>-4118.87061</Y>
+      <Z>467.353821</Z>
+    </Position>
+    <Xcoord>0.8181614279747</Xcoord>
+    <Ycoord>0.68735617399216</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="31078" Name="Death's Rise, Icecrown" ContinentId="571">
+    <Position>
+      <X>7429.5957</X>
+      <Y>4231.63525</Y>
+      <Z>314.283752</Z>
+    </Position>
+    <Xcoord>0.2786548435688</Xcoord>
+    <Ycoord>0.72160351276398</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="29762" Name="Camp Tunka'lo, The Storm Peaks" ContinentId="571">
+    <Position>
+      <X>7798.37939</X>
+      <Y>-2810.29028</Y>
+      <Z>1217.84412</Z>
+    </Position>
+    <Xcoord>0.73356336355209</Xcoord>
+    <Ycoord>0.74530255794525</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="29757" Name="Grom'arsh Crash-Site, The Storm Peaks" ContinentId="571">
+    <Position>
+      <X>7855.9834</X>
+      <Y>-732.3883</Y>
+      <Z>1177.472</Z>
+    </Position>
+    <Xcoord>0.5993674993515</Xcoord>
+    <Ycoord>0.74940514564514</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="29950" Name="Bouldercrag's Refuge, The Storm Peaks" ContinentId="571">
+    <Position>
+      <X>8475.489</X>
+      <Y>-337.946136</Y>
+      <Z>905.928</Z>
+    </Position>
+    <Xcoord>0.57355946302414</Xcoord>
+    <Ycoord>0.78918015956879</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="33849" Name="Argent Tournament Grounds, Icecrown" ContinentId="571">
+    <Position>
+      <X>8481.617</X>
+      <Y>891.613953</Y>
+      <Z>547.295349</Z>
+    </Position>
+    <Xcoord>0.49419903755188</Xcoord>
+    <Ycoord>0.78939545154572</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="24155" Name="New Agamand, Howling Fjord" ContinentId="571">
+    <Position>
+      <X>400.4705</X>
+      <Y>-4542.25</Y>
+      <Z>245.00589</Z>
+    </Position>
+    <Xcoord>0.84571558237076</Xcoord>
+    <Ycoord>0.2673037648201</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28197" Name="Kamagua, Howling Fjord" ContinentId="571">
+    <Position>
+      <X>787.755</X>
+      <Y>-2889.06177</Y>
+      <Z>6.41033554</Z>
+    </Position>
+    <Xcoord>0.73858308792114</Xcoord>
+    <Ycoord>0.29214212298393</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="27344" Name="Vengeance Landing, Howling Fjord" ContinentId="571">
+    <Position>
+      <X>1919.02625</X>
+      <Y>-6176.71533</Y>
+      <Z>24.4826317</Z>
+    </Position>
+    <Xcoord>0.95123136043549</Xcoord>
+    <Ycoord>0.36542093753815</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="26844" Name="Apothecary Camp, Howling Fjord" ContinentId="571">
+    <Position>
+      <X>2106.05151</X>
+      <Y>-2968.809</Y>
+      <Z>148.58548</Z>
+    </Position>
+    <Xcoord>0.74394488334656</Xcoord>
+    <Ycoord>0.37767428159714</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="24032" Name="Camp Winterhoof, Howling Fjord" ContinentId="571">
+    <Position>
+      <X>2649.27075</X>
+      <Y>-4394.50146</Y>
+      <Z>283.3044</Z>
+    </Position>
+    <Xcoord>0.83591216802597</Xcoord>
+    <Ycoord>0.41289860010147</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28196" Name="Moa'ki, Dragonblight" ContinentId="571">
+    <Position>
+      <X>2793.18921</X>
+      <Y>906.360168</Y>
+      <Z>22.3630085</Z>
+    </Position>
+    <Xcoord>0.4930505156517</Xcoord>
+    <Ycoord>0.42192229628563</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="28195" Name="Unu'pe, Borean Tundra" ContinentId="571">
+    <Position>
+      <X>2917.21436</X>
+      <Y>4043.44458</Y>
+      <Z>1.7846998</Z>
+    </Position>
+    <Xcoord>0.29017072916031</Xcoord>
+    <Ycoord>0.43011704087257</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
