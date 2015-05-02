@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using System.Threading;
 using nManager.Products;
+using nManager.Wow.Bot.States;
 using nManager.Wow.ObjectManager;
 using ObjectManager = nManager.Wow.ObjectManager.ObjectManager;
 // ReSharper disable RedundantUsingDirective
@@ -27,7 +28,8 @@ namespace Test_Product
         /*private const string CurrentProfileName = "afk.xml";
         private static bool _xmlProfile = true;
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
-        private static readonly Thread RadarThread = new Thread(LaunchRadar) {Name = "RadarThread"};
+        private static readonly Thread RadarThread = new Thread(LaunchRadar) { Name = "RadarThread" };
+        private static readonly Thread TaxiThread = new Thread(LaunchTaxi) { Name = "RadarThread" };
 
         public static void LaunchRadar()
         {
@@ -247,6 +249,134 @@ namespace Test_Product
             }
         }
 
+        public static void LaunchTaxi()
+        {
+            if (_availableTaxis == null)
+                _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+            if (_availableTaxiLinks == null)
+                _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+            uint firstTaxiId = 0;
+            while (true)
+            {
+                _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+                _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+                if (IsTaxiOpen())
+                {
+                    if (firstTaxiId != 0 && firstTaxiId == ObjectManager.Me.Target.GetWoWId)
+                    {
+                        Logging.Write("The continent have been parsed !");
+                        break;
+                    }
+                    if (firstTaxiId == 0)
+                        firstTaxiId = ObjectManager.Me.Target.GetWoWId;
+                    if (TaxiListContainsTaxiId(ObjectManager.Me.Target.GetWoWId))
+                    {
+                        Logging.WriteDebug("The taxi from NPC " + ObjectManager.Target.Name + " is already in our database.");
+                        var myTaxi = GetTaxiFromTaxiId(ObjectManager.Me.Target.GetWoWId);
+                        if (myTaxi.Faction != Npc.FactionType.Neutral && ObjectManager.Me.PlayerFaction != myTaxi.Faction.ToString())
+                        {
+                            for (int i = 0; i < _availableTaxis.Count; i++)
+                            {
+                                if (myTaxi.Id == _availableTaxis[i].Id)
+                                {
+                                    _availableTaxis[i].Faction = Npc.FactionType.Neutral;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Taxi localTaxi = new Taxi();
+                        localTaxi.Id = ObjectManager.Me.Target.GetWoWId;
+                        localTaxi.Position = ObjectManager.Target.Position;
+                        string taxiInfo = ExtractCurrentTaxiInfo();
+                        localTaxi.Name = taxiInfo.Split('#')[0];
+                        localTaxi.ContinentId = Usefuls.ContinentId;
+                        localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
+                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('-')[0];
+                        localTaxi.Faction = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
+                        _availableTaxis.Add(localTaxi);
+                        foreach (TaxiLink taxiLink in _availableTaxiLinks)
+                        {
+                            Application.DoEvents();
+                            if (taxiLink.PointB == 0 && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
+                            {
+                                taxiLink.PointB = localTaxi.Id;
+                                taxiLink.PointB_XY = "";
+                            }
+                        }
+                    }
+
+                    foreach (string ctaxi in ExtractDirectPathTaxiInfoList())
+                    {
+                        Application.DoEvents();
+                        string taxiInfo = ctaxi;
+                        Taxi localTaxi = new Taxi();
+                        localTaxi.Name = taxiInfo.Split('#')[0];
+                        localTaxi.ContinentId = Usefuls.ContinentId;
+                        localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
+                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('-')[0];
+                        bool taxiExist = false;
+                        Taxi taxiFound = new Taxi();
+                        foreach (Taxi taxi in _availableTaxis)
+                        {
+                            Application.DoEvents();
+                            if (taxi.Xcoord == localTaxi.Xcoord && taxi.Ycoord == localTaxi.Ycoord)
+                            {
+                                // this taxi exist in the list so we have its ID
+                                taxiExist = true;
+                                taxiFound = taxi;
+                            }
+                        }
+                        bool found = false;
+                        foreach (TaxiLink taxiLink in _availableTaxiLinks)
+                        {
+                            Application.DoEvents();
+                            if (taxiExist && taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB == localTaxi.Id)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (taxiExist && taxiLink.PointB == ObjectManager.Me.Target.GetWoWId && taxiLink.PointA == localTaxi.Id)
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            _availableTaxiLinks.Add(taxiExist
+                                ? new TaxiLink { PointA = ObjectManager.Me.Target.GetWoWId, PointB = taxiFound.Id }
+                                : new TaxiLink { PointA = ObjectManager.Me.Target.GetWoWId, PointB_XY = localTaxi.Xcoord + localTaxi.Ycoord });
+                        }
+                    }
+
+                    XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiList.xml", _availableTaxis);
+                    XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiLinks.xml", _availableTaxiLinks);
+                    string nextHop = ExtractNextTaxiInfo();
+                    Logging.Write("Taking taxi from " + ExtractCurrentTaxiInfo().Split('#')[0] + " to " + nextHop.Split('#')[0]);
+                    Gossip.TakeTaxi(nextHop.Split('#')[1].Split('^')[0], nextHop.Split('^')[1].Split('-')[0]);
+                }
+                if (ObjectManager.Me.OnTaxi)
+                    Travel.TravelPatientlybyTaxi(true);
+                WoWUnit taxiUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster());
+                var baseAddress = MovementManager.FindTarget(taxiUnit);
+                if (MovementManager.InMovement)
+                    continue;
+                if (baseAddress > 0)
+                {
+                    Interact.InteractWith(baseAddress);
+                    Thread.Sleep(500);
+                }
+                Thread.Sleep(200);
+                Application.DoEvents();
+            }
+        }
         public static int AddQuesters(List<Npc> npcqList, bool neutralIfPossible = false)
         {
             int count = 0;
@@ -306,78 +436,123 @@ namespace Test_Product
         public static string ExtractAllPathsTaxi()
         {
             string result = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(result + "= \"\"; nb = NumTaxiNodes(); for i=1,nb do n = TaxiNodeName(i); x,y = TaxiNodePosition(i); " + result + " = " + result + ".. n .. \"##\" .. x .. \"^\" .. y  .. \"-\" .. GetNumRoutes(i) .. \"|\" end");
+            Lua.LuaDoString(result + "= \"\"; nb = NumTaxiNodes(); for i=1,nb do n = TaxiNodeName(i); x,y = TaxiNodePosition(i); " + result + " = " + result +
+                            ".. n .. \"#\" .. x .. \"^\" .. y  .. \"-\" .. GetNumRoutes(i) .. \"~\" .. TaxiNodeGetType(i) .. \"|\" end");
             return Lua.GetLocalizedText(result);
         }
 
-        public static void ExtractAllOneWayTaxiFromHere()
+        public static string ExtractCurrentTaxiInfo()
         {
-            Logging.WriteDebug("Begin ExtractAllOneWayTaxiFromHere from NPC " + ObjectManager.Me.Target.GetWoWId);
-            //List<TaxiLink> taxis = new List<TaxiLink>();
-            for (int i = 0; i < ExtractAllPathsTaxi().Split('|').Length; i++)
+            for (int i = 0; i < ExtractAllPathsTaxi().Split('|').Length - 1; i++)
             {
+                Application.DoEvents();
                 string taxi = ExtractAllPathsTaxi().Split('|')[i];
-                string routes = taxi.Split('-')[1];
-                if (routes == "1" || routes == "0")
+                string routes = taxi.Split('-')[1].Split('~')[0];
+                string type = taxi.Split('~')[1];
+
+                if (routes != "0" || type == "REACHABLE")
+                    continue;
+                if (type == "CURRENT")
                 {
-                    Logging.WriteDebug("Taxi " + taxi.Split('#')[0] + " is linked to here.");
+                    Logging.WriteDebug("Current taxi is : ");
                     Logging.WriteDebug(taxi);
+                    return taxi;
                 }
             }
+            return "";
+        }
+        public static string FirstReachable = "";
+        public static string ExtractNextTaxiInfo()
+        {
+            bool currentFound = false;
+            for (int i = 0; i < ExtractAllPathsTaxi().Split('|').Length - 1; i++)
+            {
+                Application.DoEvents();
+                string taxi = ExtractAllPathsTaxi().Split('|')[i];
+                string type = taxi.Split('~')[1];
+
+                if (currentFound && type == "REACHABLE")
+                    return taxi;
+
+                if (type == "REACHABLE" && FirstReachable == "")
+                    FirstReachable = taxi;
+                if (FirstReachable == "")
+                    FirstReachable = ExtractAllPathsTaxi().Split('|')[0];
+                if (type == "CURRENT")
+                {
+                    currentFound = true;
+                }
+            }
+            return FirstReachable; // loop to the first taxi if current is the last
+        }
+
+        public static List<String> ExtractDirectPathTaxiInfoList()
+        {
+            Logging.WriteDebug("Begin ExtractDirectPathTaxiInfoList from NPC " + ObjectManager.Me.Target.GetWoWId);
+            List<String> taxis = new List<String>();
+            string allPaths = ExtractAllPathsTaxi();
+            for (int i = 0; i < allPaths.Split('|').Length - 1; i++)
+            {
+                Application.DoEvents();
+                string taxi = allPaths.Split('|')[i];
+                string routes = taxi.Split('-')[1].Split('~')[0];
+                if (routes == "1") // always reachable or it would be "0" hop.
+                {
+                    Logging.WriteDebug(taxi);
+                    taxis.Add(taxi);
+                }
+            }
+            return taxis;
         }
 
         private static List<Taxi> _availableTaxis;
         private static List<TaxiLink> _availableTaxiLinks;
-        private static List<Taxi> _unknownTaxis = new List<Taxi>();
 
         private static bool TaxiListContainsTaxiId(uint id)
         {
             foreach (Taxi taxi in _availableTaxis)
             {
+                Application.DoEvents();
                 if (taxi.Id == id)
                     return true;
             }
             return false;
         }
-        
+
+        private static Taxi GetTaxiFromTaxiId(uint id)
+        {
+            foreach (Taxi taxi in _availableTaxis)
+            {
+                Application.DoEvents();
+                if (taxi.Id == id)
+                    return taxi;
+            }
+            return new Taxi();
+        }
+
+        private bool CheckForFrame(string FrameName)
+        {
+            string MyString = Others.GetRandomString(5);
+            string LuaString = "if (" + FrameName + " and " + FrameName + ":IsVisible()) " +
+                               MyString + " = \"true\" " +
+                               "end";
+            string res = Lua.LuaDoString(LuaString, MyString);
+            return (res == "true");
+        }
+
         public static bool Pulse()
         {
             try
             {
                 // Update spell list
-                //SpellManager.UpdateSpellBook();
-                //RadarThread.Start();
-                if (_availableTaxis == null)
-                    _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
-                if (_availableTaxiLinks == null)
-                    _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
-                /*while (true)
-                {*/
-                    if (IsTaxiOpen())
-                    {
-                        if (TaxiListContainsTaxiId(ObjectManager.Me.Target.GetWoWId))
-                        {
-                            Logging.WriteDebug("The taxi " + ObjectManager.Target.Name + " is already in our database.");
-                        }
-                        else
-                        {
-                            Taxi localTaxi = new Taxi();
-                            localTaxi.Id = ObjectManager.Me.Target.GetWoWId;
-                            localTaxi.Name = ObjectManager.Target.Name;
-                            localTaxi.Position = ObjectManager.Target.Position;
-                            _unknownTaxis.Add(localTaxi);
-                            //localTaxi.Xcoord;
-                            //localTaxi.Ycoord;
-                        }
-                        ExtractAllOneWayTaxiFromHere();
-                        /*foreach (string taxi in ExtractAllPathsTaxi().Split('|'))
-                        {
-                            Logging.WriteDebug(taxi);
-                        }*/
-                    }
-                    Thread.Sleep(50);
+                SpellManager.UpdateSpellBook();
+                RadarThread.Start();
+                TaxiThread.Start();
+                while (TaxiThread.IsAlive)
+                {
                     Application.DoEvents();
-                /*}*/
+                    Thread.Sleep(1);
+                }
                 /*var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
                 for (uint i = 1; i <= 200000; i += 2500)
                 {

@@ -605,7 +605,7 @@ namespace nManager.Wow.Bot.States
             return FindNextTaxiHopFor(taxi) != null;
         }
 
-        private void TravelPatientlybyTaxi()
+        public static void TravelPatientlybyTaxi(bool ignoreCombatClass = false)
         {
             bool loop = true;
             Point refPoint = ObjectManager.ObjectManager.Me.Position;
@@ -617,7 +617,8 @@ namespace nManager.Wow.Bot.States
                 else
                     refPoint = ObjectManager.ObjectManager.Me.Position;
             }
-            CombatClass.LoadCombatClass();
+            if (!ignoreCombatClass)
+                CombatClass.LoadCombatClass();
         }
 
         private void TravelPatiently(Transport selectedTransport)

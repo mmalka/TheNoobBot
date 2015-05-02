@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 using nManager.Wow.Class;
 
@@ -14,11 +15,11 @@ namespace nManager.Wow.Helpers
     [Serializable]
     public class Transport
     {
-        [XmlAttribute(AttributeName = "AContinentId")] public int AContinentId;
+        [XmlAttribute(AttributeName = "AContinentId"), DefaultValue(0)] public int AContinentId;
         public Point AInsidePoint = new Point();
         public Point AOutsidePoint = new Point();
         public Point APoint = new Point();
-        [XmlAttribute(AttributeName = "BContinentId")] public int BContinentId;
+        [XmlAttribute(AttributeName = "BContinentId"), DefaultValue(0)] public int BContinentId;
         public Point BInsidePoint = new Point();
         public Point BOutsidePoint = new Point();
         public Point BPoint = new Point();
