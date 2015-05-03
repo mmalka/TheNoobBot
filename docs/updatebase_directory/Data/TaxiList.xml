@@ -738,7 +738,7 @@
     <Xcoord>0.52154231071472</Xcoord>
     <Ycoord>0.39924612641335</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="10583" Name="Marshal's Stand, Un'Goro Crater" ContinentId="1">
+  <Taxi Faction="Neutral" Id="10583" Name="Marshal's Stand, Un'Goro Crater" ContinentId="1">
     <Position>
       <X>-7549.462</X>
       <Y>-1537.8385</Y>
@@ -765,7 +765,7 @@
     <Xcoord>0.50511544942856</Xcoord>
     <Ycoord>0.65089726448059</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="40358" Name="Mudsprocket, Dustwallow Marsh" ContinentId="1">
+  <Taxi Faction="Neutral" Id="40358" Name="Mudsprocket, Dustwallow Marsh" ContinentId="1">
     <Position>
       <X>-4568.401</X>
       <Y>-3223.18677</Y>
@@ -1431,7 +1431,7 @@
     <Xcoord>0.51727241277695</Xcoord>
     <Ycoord>0.77085822820663</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="48273" Name="Schnottz's Landing, Uldum" ContinentId="1">
+  <Taxi Faction="Neutral" Id="48273" Name="Schnottz's Landing, Uldum" ContinentId="1">
     <Position>
       <X>-10710.2119</X>
       <Y>1060.97913</Y>
@@ -1449,7 +1449,7 @@
     <Xcoord>0.5520595908165</Xcoord>
     <Ycoord>0.097868129611015</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="48275" Name="Ramkahen, Uldum" ContinentId="1">
+  <Taxi Faction="Neutral" Id="48275" Name="Ramkahen, Uldum" ContinentId="1">
     <Position>
       <X>-9416.65</X>
       <Y>-1039</Y>
@@ -1458,7 +1458,7 @@
     <Xcoord>0.49354848265648</Xcoord>
     <Ycoord>0.10086197406054</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="41214" Name="Bootlegger Outpost, Tanaris" ContinentId="1">
+  <Taxi Faction="Neutral" Id="41214" Name="Bootlegger Outpost, Tanaris" ContinentId="1">
     <Position>
       <X>-8684.64</X>
       <Y>-4093.03</Y>
@@ -1467,7 +1467,7 @@
     <Xcoord>0.61865651607513</Xcoord>
     <Ycoord>0.13093303143978</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="48274" Name="Oasis of Vir'sar, Uldum" ContinentId="1">
+  <Taxi Faction="Neutral" Id="48274" Name="Oasis of Vir'sar, Uldum" ContinentId="1">
     <Position>
       <X>-8374.98</X>
       <Y>793.747</Y>
@@ -1485,7 +1485,7 @@
     <Xcoord>0.6073824763298</Xcoord>
     <Ycoord>0.19621899724007</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="39175" Name="Mossy Pile, Un'Goro Crater" ContinentId="1">
+  <Taxi Faction="Neutral" Id="39175" Name="Mossy Pile, Un'Goro Crater" ContinentId="1">
     <Position>
       <X>-6960.243</X>
       <Y>-1098.88367</Y>
@@ -2348,6 +2348,96 @@
     </Position>
     <Xcoord>0.6114861369133</Xcoord>
     <Ycoord>0.65281563997269</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="40827" Name="Gunstan's Dig, Tanaris" ContinentId="1">
+    <Position>
+      <X>-9499.326</X>
+      <Y>-2950.92188</Y>
+      <Z>12.8509588</Z>
+    </Position>
+    <Xcoord>0.57206207513809</Xcoord>
+    <Ycoord>0.097629010677338</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="7823" Name="Gadgetzan, Tanaris" ContinentId="1">
+    <Position>
+      <X>-7188.60254</X>
+      <Y>-3766.39233</Y>
+      <Z>9.166046</Z>
+    </Position>
+    <Xcoord>0.60551518201828</Xcoord>
+    <Ycoord>0.19244165718555</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="15177" Name="Cenarion Hold, Silithus" ContinentId="1">
+    <Position>
+      <X>-6758.546</X>
+      <Y>775.5939</Y>
+      <Z>89.02157</Z>
+    </Position>
+    <Xcoord>0.41897985339165</Xcoord>
+    <Ycoord>0.20986729860306</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="40768" Name="Fizzle &amp; Pozzik's Speedbarge, Thousand Needles" ContinentId="1">
+    <Position>
+      <X>-6077.061</X>
+      <Y>-3915.80737</Y>
+      <Z>21.5921345</Z>
+    </Position>
+    <Xcoord>0.61148065328598</Xcoord>
+    <Ycoord>0.2380702495575</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="40367" Name="Shadebough, Feralas" ContinentId="1">
+    <Position>
+      <X>-4997.78467</X>
+      <Y>68.73264</Y>
+      <Z>99.918</Z>
+    </Position>
+    <Xcoord>0.44766053557396</Xcoord>
+    <Ycoord>0.28237962722778</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="41580" Name="Tower of Estulan, Feralas" ContinentId="1">
+    <Position>
+      <X>-4866.311</X>
+      <Y>1474.77258</Y>
+      <Z>84.8466644</Z>
+    </Position>
+    <Xcoord>0.38996878266335</Xcoord>
+    <Ycoord>0.28785374760628</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="41383" Name="Feathermoon, Feralas" ContinentId="1">
+    <Position>
+      <X>-4467.674</X>
+      <Y>2191.12842</Y>
+      <Z>17.89641</Z>
+    </Position>
+    <Xcoord>0.36077898740768</Xcoord>
+    <Ycoord>0.30414789915085</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="39211" Name="Fort Triumph, Southern Barrens" ContinentId="1">
+    <Position>
+      <X>-3146.38379</X>
+      <Y>-2290.83325</Y>
+      <Z>92.8863144</Z>
+    </Position>
+    <Xcoord>0.54462897777557</Xcoord>
+    <Ycoord>0.35824772715569</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="40966" Name="Dreamer's Rest, Feralas" ContinentId="1">
+    <Position>
+      <X>-3141.53125</X>
+      <Y>1951.87854</Y>
+      <Z>41.7239723</Z>
+    </Position>
+    <Xcoord>0.37051478028297</Xcoord>
+    <Ycoord>0.35880771279335</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="39212" Name="Northwatch Hold, Southern Barrens" ContinentId="1">
+    <Position>
+      <X>-2124.97583</X>
+      <Y>-3564.36646</Y>
+      <Z>100.894066</Z>
+    </Position>
+    <Xcoord>0.59703326225281</Xcoord>
+    <Ycoord>0.40040221810341</Ycoord>
   </Taxi>
   <Taxi Faction="Horde" Id="63497" Name="Serpent's Spine, Vale of Eternal Blossoms" ContinentId="870">
     <Position>
