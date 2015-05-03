@@ -3510,30 +3510,6 @@
     <PointB>60230</PointB>
   </TaxiLink>
   <TaxiLink>
-    <PointA>86731</PointA>
-    <PointB>88653</PointB>
-  </TaxiLink>
-  <TaxiLink>
-    <PointA>86731</PointA>
-    <PointB>83924</PointB>
-  </TaxiLink>
-  <TaxiLink>
-    <PointA>86731</PointA>
-    <PointB>82340</PointB>
-  </TaxiLink>
-  <TaxiLink>
-    <PointA>86731</PointA>
-    <PointB>87395</PointB>
-  </TaxiLink>
-  <TaxiLink>
-    <PointA>86731</PointA>
-    <PointB>82844</PointB>
-  </TaxiLink>
-  <TaxiLink>
-    <PointA>86731</PointA>
-    <PointB>79407</PointB>
-  </TaxiLink>
-  <TaxiLink>
     <PointA>84495</PointA>
     <PointB>85829</PointB>
   </TaxiLink>
