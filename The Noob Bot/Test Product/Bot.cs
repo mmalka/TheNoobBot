@@ -591,14 +591,60 @@ namespace Test_Product
             return (res == "true");
         }
 
+        private static bool TaxiLinksNeedsMoreCleanUp()
+        {
+            foreach (TaxiLink availableTaxiLink in _availableTaxiLinks)
+            {
+                bool found = false;
+                foreach (TaxiLink taxiLink in _availableTaxiLinks)
+                {
+                    if (availableTaxiLink.PointA == taxiLink.PointA && availableTaxiLink.PointB == taxiLink.PointB)
+                    {
+                        if (found)
+                        {
+                            Logging.Write("PointA = " + taxiLink.PointA + " PointB = " + taxiLink.PointB);
+                            Logging.Write("Simple Duplicated removed.");
+                            _availableTaxiLinks.Remove(taxiLink);
+                            return true;
+                        }
+                        found = true;
+                    }
+                    if (availableTaxiLink.PointA == taxiLink.PointB && availableTaxiLink.PointB == taxiLink.PointA)
+                    {
+                        if (found)
+                        {
+                            Logging.Write("PointA = " + taxiLink.PointA + " PointB = " + taxiLink.PointB);
+                            Logging.Write("Inverted Duplicated removed.");
+                            _availableTaxiLinks.Remove(taxiLink);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static void DoTaxiLinksCleaning()
+        {
+            _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+            while (TaxiLinksNeedsMoreCleanUp())
+            {
+                Thread.Sleep(1);
+                Application.DoEvents();
+            }
+            XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiLinks.xml", _availableTaxiLinks);
+        }
+
         public static bool Pulse()
         {
             try
             {
                 // Update spell list
                 //SpellManager.UpdateSpellBook();
+                DoTaxiLinksCleaning();
                 RadarThread.Start();
                 TaxiThread.Start();
+
                 while (TaxiThread.IsAlive)
                 {
                     Application.DoEvents();
