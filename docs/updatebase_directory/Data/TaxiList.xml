@@ -2700,4 +2700,13 @@
     <Xcoord>0.62292414903641</Xcoord>
     <Ycoord>0.41834133863449</Ycoord>
   </Taxi>
+  <Taxi Faction="Horde" Id="86731" Name="Joz's Rylaks, Nagrand" ContinentId="1116">
+    <Position>
+      <X>3670.07617</X>
+      <Y>5789.388</Y>
+      <Z>45.575882</Z>
+    </Position>
+    <Xcoord>0.26485031843185</Xcoord>
+    <Ycoord>0.51518905162811</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
