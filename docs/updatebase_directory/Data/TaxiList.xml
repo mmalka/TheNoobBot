@@ -2349,4 +2349,355 @@
     <Xcoord>0.6114861369133</Xcoord>
     <Ycoord>0.65281563997269</Ycoord>
   </Taxi>
+  <Taxi Faction="Horde" Id="63497" Name="Serpent's Spine, Vale of Eternal Blossoms" ContinentId="870">
+    <Position>
+      <X>610.048645</X>
+      <Y>2120.94971</Y>
+      <Z>368.0559</Z>
+    </Position>
+    <Xcoord>0.39059618115425</Xcoord>
+    <Ycoord>0.42401322722435</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59727" Name="Jade Temple Grounds, Jade Forest" ContinentId="870">
+    <Position>
+      <X>777.805542</X>
+      <Y>-2358.60938</Y>
+      <Z>120.882858</Z>
+    </Position>
+    <Xcoord>0.76765555143356</Xcoord>
+    <Ycoord>0.43762588500977</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61759" Name="Tavern in the Mists, The Veiled Stair" ContinentId="870">
+    <Position>
+      <X>783.7535</X>
+      <Y>-205.15625</Y>
+      <Z>402.201355</Z>
+    </Position>
+    <Xcoord>0.58641690015793</Xcoord>
+    <Ycoord>0.43860569596291</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="63500" Name="The Sunset Brewgarden, Dread Wastes" ContinentId="870">
+    <Position>
+      <X>979.842041</X>
+      <Y>3452.45483</Y>
+      <Z>256.677917</Z>
+    </Position>
+    <Xcoord>0.27902287244797</Xcoord>
+    <Ycoord>0.45523685216904</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="60952" Name="Grookin Hill, Jade Forest" ContinentId="870">
+    <Position>
+      <X>1422.45837</X>
+      <Y>-490.473969</Y>
+      <Z>356.433441</Z>
+    </Position>
+    <Xcoord>0.61030131578445</Xcoord>
+    <Ycoord>0.4918911755085</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="62903" Name="Gao-Ran Battlefront, Townlong Steppes" ContinentId="870">
+    <Position>
+      <X>1439.13025</X>
+      <Y>2806.47217</Y>
+      <Z>302.1776</Z>
+    </Position>
+    <Xcoord>0.33346030116081</Xcoord>
+    <Ycoord>0.49375376105309</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59186" Name="Dawn's Blossom, Jade Forest" ContinentId="870">
+    <Position>
+      <X>1499.96875</X>
+      <Y>-1833.45313</Y>
+      <Z>246.200119</Z>
+    </Position>
+    <Xcoord>0.72335433959961</Xcoord>
+    <Ycoord>0.49905061721802</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="62898" Name="Rensai's Watchpost, Townlong Steppes" ContinentId="870">
+    <Position>
+      <X>1531.23267</X>
+      <Y>3960.74658</Y>
+      <Z>227.661224</Z>
+    </Position>
+    <Xcoord>0.23598217964172</Xcoord>
+    <Ycoord>0.50140684843063</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61122" Name="Shrine of Two Moons, Vale of Eternal Blossoms" ContinentId="870">
+    <Position>
+      <X>1580.09375</X>
+      <Y>888.8403</Y>
+      <Z>473.600067</Z>
+    </Position>
+    <Xcoord>0.49409964680672</Xcoord>
+    <Ycoord>0.50547933578491</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59732" Name="The Arboretum, Jade Forest" ContinentId="870">
+    <Position>
+      <X>1602.97913</X>
+      <Y>-2529.22925</Y>
+      <Z>152.341782</Z>
+    </Position>
+    <Xcoord>0.78206098079681</Xcoord>
+    <Ycoord>0.50720316171646</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61474" Name="Binan Village, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>1688.92188</X>
+      <Y>299.473969</Y>
+      <Z>478.062866</Z>
+    </Position>
+    <Xcoord>0.54373037815094</Xcoord>
+    <Ycoord>0.51472502946854</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="62909" Name="Shado-Pan Garrison, Townlong Steppes" ContinentId="870">
+    <Position>
+      <X>1802.033</X>
+      <Y>4202.739</Y>
+      <Z>157.921814</Z>
+    </Position>
+    <Xcoord>0.21575596928596</Xcoord>
+    <Ycoord>0.52424484491348</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61473" Name="Shado-Pan Fallback, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>1882.21008</X>
+      <Y>2091.63379</Y>
+      <Z>500.859619</Z>
+    </Position>
+    <Xcoord>0.39366129040718</Xcoord>
+    <Ycoord>0.53074252605438</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="65863" Name="Serpent's Spine, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>2125.42188</X>
+      <Y>2588.341</Y>
+      <Z>542.2503</Z>
+    </Position>
+    <Xcoord>0.35192316770554</Xcoord>
+    <Ycoord>0.55113941431046</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61745" Name="Eastwind Rest, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>2250.33154</X>
+      <Y>932.2847</Y>
+      <Z>481.1463</Z>
+    </Position>
+    <Xcoord>0.49095451831818</Xcoord>
+    <Ycoord>0.56185585260391</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="62901" Name="Longying Outpost, Townlong Steppes" ContinentId="870">
+    <Position>
+      <X>2363.514</X>
+      <Y>2996.53052</Y>
+      <Z>420.798859</Z>
+    </Position>
+    <Xcoord>0.31749159097672</Xcoord>
+    <Ycoord>0.5713278055191</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59735" Name="Emperor's Omen, Jade Forest" ContinentId="870">
+    <Position>
+      <X>2404.77783</X>
+      <Y>-2096.95142</Y>
+      <Z>227.315842</Z>
+    </Position>
+    <Xcoord>0.74583160877228</Xcoord>
+    <Ycoord>0.574482858181</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59736" Name="Tian Monastery, Jade Forest" ContinentId="870">
+    <Position>
+      <X>2510.256</X>
+      <Y>-1590.86975</Y>
+      <Z>400.8688</Z>
+    </Position>
+    <Xcoord>0.70306843519211</Xcoord>
+    <Ycoord>0.58332490921021</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59733" Name="Sri-La Village, Jade Forest" ContinentId="870">
+    <Position>
+      <X>2547.66333</X>
+      <Y>-2415.56958</Y>
+      <Z>24.151268</Z>
+    </Position>
+    <Xcoord>0.77264720201492</Xcoord>
+    <Ycoord>0.58709716796875</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="60416" Name="Kota Basecamp, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>2712.90552</X>
+      <Y>2160.24487</Y>
+      <Z>589.0699</Z>
+    </Position>
+    <Xcoord>0.38737723231316</Xcoord>
+    <Ycoord>0.60102838277817</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="66227" Name="Honeydew Village, Jade Forest" ContinentId="870">
+    <Position>
+      <X>2924.92114</X>
+      <Y>-510.590271</Y>
+      <Z>268.85553</Z>
+    </Position>
+    <Xcoord>0.61210763454437</Xcoord>
+    <Ycoord>0.6187487244606</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61504" Name="One Keg, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>3127.98364</X>
+      <Y>1226.88367</Y>
+      <Z>654.2615</Z>
+    </Position>
+    <Xcoord>0.46634036302567</Xcoord>
+    <Ycoord>0.63534474372864</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61512" Name="Winter's Blossom, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>3151.83081</X>
+      <Y>2678.12939</Y>
+      <Z>579.725769</Z>
+    </Position>
+    <Xcoord>0.34411704540253</Xcoord>
+    <Ycoord>0.63764297962189</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61118" Name="Temple of the White Tiger, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>3504.4375</X>
+      <Y>689.920166</Y>
+      <Z>608.184937</Z>
+    </Position>
+    <Xcoord>0.51121115684509</Xcoord>
+    <Ycoord>0.66725867986679</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="61511" Name="Zouchin Village, Kun-Lai Summit" ContinentId="870">
+    <Position>
+      <X>4361.846</X>
+      <Y>933.1441</Y>
+      <Z>110.316956</Z>
+    </Position>
+    <Xcoord>0.49090832471848</Xcoord>
+    <Ycoord>0.73948538303375</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="60441" Name="Marista, Krasarang Wilds" ContinentId="870">
+    <Position>
+      <X>-2504.31079</X>
+      <Y>488.1354</Y>
+      <Z>2.00523543</Z>
+    </Position>
+    <Xcoord>0.52795296907425</Xcoord>
+    <Ycoord>0.16203413903713</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="65189" Name="Cradle of Chi-Ji, Krasarang Wilds" ContinentId="870">
+    <Position>
+      <X>-2084.20483</X>
+      <Y>1488.00171</Y>
+      <Z>0.444819033</Z>
+    </Position>
+    <Xcoord>0.4445316195488</Xcoord>
+    <Ycoord>0.19750252366066</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59047" Name="Dawnchaser Retreat, Krasarang Wilds" ContinentId="870">
+    <Position>
+      <X>-1682.50867</X>
+      <Y>1588.44275</Y>
+      <Z>16.250061</Z>
+    </Position>
+    <Xcoord>0.43555837869644</Xcoord>
+    <Ycoord>0.23085434734821</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="63498" Name="Soggy's Gamble, Dread Wastes" ContinentId="870">
+    <Position>
+      <X>-1087.882</X>
+      <Y>3136.99048</Y>
+      <Z>0.9497019</Z>
+    </Position>
+    <Xcoord>0.30556762218475</Xcoord>
+    <Ycoord>0.28126388788223</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="59046" Name="Thunder Cleft, Krasarang Wilds" ContinentId="870">
+    <Position>
+      <X>-881.59375</X>
+      <Y>173.1302</Y>
+      <Z>14.0063553</Z>
+    </Position>
+    <Xcoord>0.55487698316574</Xcoord>
+    <Ycoord>0.29874908924103</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="65511" Name="The Briny Muck, Dread Wastes" ContinentId="870">
+    <Position>
+      <X>-572.864563</X>
+      <Y>3863.34375</Y>
+      <Z>0.692588</Z>
+    </Position>
+    <Xcoord>0.24471998214722</Xcoord>
+    <Ycoord>0.32463797926903</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="58843" Name="Stoneplow, Valley of the Four Winds" ContinentId="870">
+    <Position>
+      <X>-439.5139</X>
+      <Y>1882.28125</Y>
+      <Z>130.5161</Z>
+    </Position>
+    <Xcoord>0.41063737869263</Xcoord>
+    <Ycoord>0.33589470386505</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="71939" Name="Huojin Landing, Timeless Isle" ContinentId="870">
+    <Position>
+      <X>-402.723969</X>
+      <Y>-4609.26758</Y>
+      <Z>4.334844</Z>
+    </Position>
+    <Xcoord>0.9568247795105</Xcoord>
+    <Ycoord>0.33855113387108</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="60232" Name="Zhu's Watch, Krasarang Wilds" ContinentId="870">
+    <Position>
+      <X>-372.267365</X>
+      <Y>-649.5174</Y>
+      <Z>117.937508</Z>
+    </Position>
+    <Xcoord>0.62377774715424</Xcoord>
+    <Ycoord>0.34101209044456</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="60231" Name="Halfhill, Valley of the Four Winds" ContinentId="870">
+    <Position>
+      <X>-221.923615</X>
+      <Y>461.652771</Y>
+      <Z>185.442032</Z>
+    </Position>
+    <Xcoord>0.53022545576096</Xcoord>
+    <Ycoord>0.35399207472801</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="63501" Name="Klaxxi'vess, Dread Wastes" ContinentId="870">
+    <Position>
+      <X>171.991318</X>
+      <Y>3151.49146</Y>
+      <Z>215.582153</Z>
+    </Position>
+    <Xcoord>0.30421712994576</Xcoord>
+    <Ycoord>0.38712269067764</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="62658" Name="Grassy Cline, Valley of the Four Winds" ContinentId="870">
+    <Position>
+      <X>465.307281</X>
+      <Y>-100.701393</Y>
+      <Z>179.3071</Z>
+    </Position>
+    <Xcoord>0.57773852348328</Xcoord>
+    <Ycoord>0.41133031249046</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="64310" Name="Serpent's Overlook, Jade Forest" ContinentId="870">
+    <Position>
+      <X>464.503479</X>
+      <Y>-1557.81946</Y>
+      <Z>154.886368</Z>
+    </Position>
+    <Xcoord>0.7003498673439</Xcoord>
+    <Ycoord>0.41177731752396</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="60230" Name="Pang's Stead, Valley of the Four Winds" ContinentId="870">
+    <Position>
+      <X>544.8073</X>
+      <Y>-637.262146</Y>
+      <Z>257.860474</Z>
+    </Position>
+    <Xcoord>0.62292414903641</Xcoord>
+    <Ycoord>0.41834133863449</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
