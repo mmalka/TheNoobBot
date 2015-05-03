@@ -9,7 +9,7 @@
       <Z>58.3437157</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -21,7 +21,7 @@
       <Z>58.3437157</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -45,7 +45,7 @@
       <Z>58.3440971</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -57,18 +57,6 @@
       <Z>58.3440971</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>78</Entry>
-    <Name>Janos Hammerknuckle</Name>
-    <Position>
-      <X>-8909.458</X>
-      <Y>-104.163193</Y>
-      <Z>81.8487854</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -82,6 +70,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>78</Entry>
+    <Name>Janos Hammerknuckle</Name>
+    <Position>
+      <X>-8909.458</X>
+      <Y>-104.163193</Y>
+      <Z>81.8487854</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -117,7 +117,7 @@
       <Z>324.361877</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -129,7 +129,7 @@
       <Z>324.361877</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -213,7 +213,7 @@
       <Z>30.0596218</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -225,7 +225,7 @@
       <Z>30.0596218</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -249,7 +249,7 @@
       <Z>27.705864</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -261,7 +261,7 @@
       <Z>27.705864</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -393,7 +393,7 @@
       <Z>60.5277061</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -405,7 +405,7 @@
       <Z>60.5277061</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -513,7 +513,7 @@
       <Z>63.93318</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -525,7 +525,7 @@
       <Z>63.93318</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -561,7 +561,7 @@
       <Z>392.7626</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -573,7 +573,7 @@
       <Z>392.7626</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -609,7 +609,7 @@
       <Z>38.653038</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -621,7 +621,7 @@
       <Z>38.653038</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -668,7 +668,7 @@
       <Z>407.759277</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -680,7 +680,7 @@
       <Z>407.759277</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -704,7 +704,7 @@
       <Z>63.9343262</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -716,7 +716,7 @@
       <Z>63.9343262</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -776,7 +776,7 @@
       <Z>21.7867889</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -788,7 +788,7 @@
       <Z>21.7867889</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -848,7 +848,7 @@
       <Z>21.97611</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -860,7 +860,7 @@
       <Z>21.97611</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -896,7 +896,7 @@
       <Z>395.5431</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -908,7 +908,7 @@
       <Z>395.5431</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1004,7 +1004,7 @@
       <Z>47.2048531</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1016,7 +1016,7 @@
       <Z>47.2048531</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1112,7 +1112,7 @@
       <Z>397.3265</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1124,18 +1124,6 @@
       <Z>397.3265</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>1240</Entry>
-    <Name>Boran Ironclink</Name>
-    <Position>
-      <X>-5576.21</X>
-      <Y>-422.031</Y>
-      <Z>397.3265</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -1149,6 +1137,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1240</Entry>
+    <Name>Boran Ironclink</Name>
+    <Position>
+      <X>-5576.21</X>
+      <Y>-422.031</Y>
+      <Z>397.3265</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1208,7 +1208,7 @@
       <Z>38.6530266</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1220,7 +1220,7 @@
       <Z>38.6530266</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1340,7 +1340,7 @@
       <Z>96.85644</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1352,7 +1352,7 @@
       <Z>96.85644</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1388,7 +1388,7 @@
       <Z>97.22358</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1400,7 +1400,7 @@
       <Z>97.22358</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1424,7 +1424,7 @@
       <Z>97.22351</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1436,7 +1436,7 @@
       <Z>97.22351</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1652,7 +1652,7 @@
       <Z>109.495285</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1664,18 +1664,6 @@
       <Z>109.495285</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>1310</Entry>
-    <Name>Evan Larson</Name>
-    <Position>
-      <X>-8965.183</X>
-      <Y>807.9796</Y>
-      <Z>109.446648</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -1689,6 +1677,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1310</Entry>
+    <Name>Evan Larson</Name>
+    <Position>
+      <X>-8965.183</X>
+      <Y>807.9796</Y>
+      <Z>109.446648</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1712,7 +1712,7 @@
       <Z>97.4245148</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1724,7 +1724,7 @@
       <Z>97.4245148</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1772,7 +1772,7 @@
       <Z>97.42297</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1784,7 +1784,7 @@
       <Z>97.42297</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1856,7 +1856,7 @@
       <Z>98.61315</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1868,7 +1868,7 @@
       <Z>98.61315</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -1892,7 +1892,7 @@
       <Z>167.998413</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -1904,7 +1904,7 @@
       <Z>167.998413</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -2012,7 +2012,7 @@
       <Z>104.431419</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2024,7 +2024,7 @@
       <Z>104.431419</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2060,7 +2060,7 @@
       <Z>103.8089</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2072,7 +2072,7 @@
       <Z>103.8089</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2108,7 +2108,7 @@
       <Z>103.182518</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2120,7 +2120,7 @@
       <Z>103.182518</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2156,7 +2156,7 @@
       <Z>101.719528</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2168,7 +2168,7 @@
       <Z>101.719528</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2228,7 +2228,7 @@
       <Z>4.477532</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2240,7 +2240,7 @@
       <Z>4.477532</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2288,7 +2288,7 @@
       <Z>272.770966</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2300,7 +2300,7 @@
       <Z>272.770966</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2360,7 +2360,7 @@
       <Z>1.3026104</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2372,7 +2372,7 @@
       <Z>1.3026104</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2588,7 +2588,7 @@
       <Z>341.792358</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2600,7 +2600,7 @@
       <Z>341.792358</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2624,7 +2624,7 @@
       <Z>21.453619</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2636,7 +2636,7 @@
       <Z>21.453619</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2684,7 +2684,7 @@
       <Z>38.6534157</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2696,7 +2696,7 @@
       <Z>38.6534157</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2727,24 +2727,24 @@
     <Entry>1668</Entry>
     <Name>William MacGregor</Name>
     <Position>
-      <X>-10653.3135</X>
-      <Y>996.5868</Y>
-      <Z>32.8746872</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>1668</Entry>
-    <Name>William MacGregor</Name>
-    <Position>
       <X>-10509.6787</X>
       <Y>1044.4115</Y>
       <Z>60.51817</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1668</Entry>
+    <Name>William MacGregor</Name>
+    <Position>
+      <X>-10653.3135</X>
+      <Y>996.5868</Y>
+      <Z>32.8746872</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2903,6 +2903,28 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>1685</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>9916.15</X>
+      <Y>2308.03</Y>
+      <Z>1330.78</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1685</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4816.33936</X>
+      <Y>-1250.14233</Y>
+      <Z>501.9047</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>1686</Entry>
     <Name>Irene Sureshot</Name>
     <Position>
@@ -2959,7 +2981,7 @@
       <Z>397.3265</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -2971,7 +2993,7 @@
       <Z>397.3265</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3031,7 +3053,7 @@
       <Z>383.20462</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3043,7 +3065,7 @@
       <Z>383.20462</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3194,7 +3216,7 @@
       <Z>94.31359</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3206,7 +3228,7 @@
       <Z>94.31359</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3326,7 +3348,7 @@
       <Z>33.7250023</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3338,18 +3360,6 @@
       <Z>33.7250023</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>2136</Entry>
-    <Name>Oliver Dwor</Name>
-    <Position>
-      <X>2287.16846</X>
-      <Y>210.9253</Y>
-      <Z>33.7249</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -3366,12 +3376,12 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>2137</Entry>
-    <Name>Eliza Callen</Name>
+    <Entry>2136</Entry>
+    <Name>Oliver Dwor</Name>
     <Position>
-      <X>2302.86</X>
-      <Y>288.523</Y>
-      <Z>33.35707</Z>
+      <X>2287.16846</X>
+      <Y>210.9253</Y>
+      <Z>33.7249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -3387,6 +3397,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2137</Entry>
+    <Name>Eliza Callen</Name>
+    <Position>
+      <X>2302.86</X>
+      <Y>288.523</Y>
+      <Z>33.35707</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3708,7 +3730,7 @@
       <Z>8.606251</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3720,7 +3742,7 @@
       <Z>8.606251</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3777,7 +3799,7 @@
       <Z>121.956291</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -3789,7 +3811,7 @@
       <Z>121.956291</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4020,7 +4042,7 @@
       <Y>414.604156</Y>
       <Z>6.6830287</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4031,17 +4053,6 @@
       <Y>414.604156</Y>
       <Z>6.6830287</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>2840</Entry>
-    <Name>Kizz Bluntstrike</Name>
-    <Position>
-      <X>-14368.625</X>
-      <Y>416.774323</Y>
-      <Z>6.62706757</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -4054,6 +4065,17 @@
       <Z>6.62706757</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2840</Entry>
+    <Name>Kizz Bluntstrike</Name>
+    <Position>
+      <X>-14368.625</X>
+      <Y>416.774323</Y>
+      <Z>6.62706757</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4075,7 +4097,7 @@
       <Y>468.375</Y>
       <Z>15.0245428</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4086,17 +4108,6 @@
       <Y>468.375</Y>
       <Z>15.0245428</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>2844</Entry>
-    <Name>Hurklor</Name>
-    <Position>
-      <X>-14361.875</X>
-      <Y>372.227448</Y>
-      <Z>24.15905</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -4109,6 +4120,17 @@
       <Z>24.15905</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2844</Entry>
+    <Name>Hurklor</Name>
+    <Position>
+      <X>-14361.875</X>
+      <Y>372.227448</Y>
+      <Z>24.15905</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4185,7 +4207,7 @@
       <Y>424.602</Y>
       <Z>25.3732014</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4196,7 +4218,7 @@
       <Y>424.602</Y>
       <Z>25.3732014</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -4232,7 +4254,7 @@
       <Z>128.727509</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4244,7 +4266,7 @@
       <Z>128.727509</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4518,7 +4540,7 @@
       <Z>162.890549</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4530,7 +4552,7 @@
       <Z>162.890549</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4590,7 +4612,7 @@
       <Z>164.280457</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4602,7 +4624,7 @@
       <Z>164.280457</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4722,7 +4744,7 @@
       <Z>-32.27552</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4734,7 +4756,7 @@
       <Z>-32.27552</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4866,7 +4888,7 @@
       <Z>-9.424749</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4878,7 +4900,7 @@
       <Z>-9.424749</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4914,7 +4936,7 @@
       <Z>-9.424723</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -4926,18 +4948,6 @@
       <Z>-9.424723</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3080</Entry>
-    <Name>Harant Ironbrace</Name>
-    <Position>
-      <X>-2284.46753</X>
-      <Y>-310.260162</Y>
-      <Z>-9.424794</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -4951,6 +4961,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3080</Entry>
+    <Name>Harant Ironbrace</Name>
+    <Position>
+      <X>-2284.46753</X>
+      <Y>-310.260162</Y>
+      <Z>-9.424794</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5010,7 +5032,7 @@
       <Z>88.95047</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -5022,7 +5044,7 @@
       <Z>88.95047</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -5094,7 +5116,7 @@
       <Z>145.866364</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5106,18 +5128,6 @@
       <Z>145.866364</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3095</Entry>
-    <Name>Fela</Name>
-    <Position>
-      <X>-1161.713</X>
-      <Y>70.42909</Y>
-      <Z>145.866364</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -5131,6 +5141,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3095</Entry>
+    <Name>Fela</Name>
+    <Position>
+      <X>-1161.713</X>
+      <Y>70.42909</Y>
+      <Z>145.866364</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5249,7 +5271,7 @@
       <Z>38.38472</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5261,7 +5283,7 @@
       <Z>38.38472</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5297,7 +5319,7 @@
       <Z>394.314819</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -5309,7 +5331,7 @@
       <Z>394.314819</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -5321,7 +5343,7 @@
       <Z>16.0334682</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5333,7 +5355,7 @@
       <Z>16.0334682</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5381,7 +5403,7 @@
       <Z>12.4701138</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5393,7 +5415,7 @@
       <Z>12.4701138</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5871,7 +5893,7 @@
       <Z>6.13321352</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -5883,7 +5905,7 @@
       <Z>6.13321352</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6087,7 +6109,7 @@
       <Z>35.348217</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6099,7 +6121,7 @@
       <Z>35.348217</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6291,7 +6313,7 @@
       <Z>27.7377377</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6303,7 +6325,7 @@
       <Z>27.7377377</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6339,7 +6361,7 @@
       <Z>97.8574142</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6351,7 +6373,7 @@
       <Z>97.8574142</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6519,7 +6541,7 @@
       <Z>95.78764</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6531,7 +6553,7 @@
       <Z>95.78764</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6566,7 +6588,7 @@
       <Y>-3652.264</Y>
       <Z>20.0653954</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6577,17 +6599,6 @@
       <Y>-3652.264</Y>
       <Z>20.0653954</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3492</Entry>
-    <Name>Vexspindle</Name>
-    <Position>
-      <X>-985.3276</X>
-      <Y>-3675.98535</Y>
-      <Z>9.54645</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -6603,12 +6614,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>3493</Entry>
-    <Name>Grazlix</Name>
+    <Entry>3492</Entry>
+    <Name>Vexspindle</Name>
     <Position>
-      <X>-982.712769</X>
-      <Y>-3680.53223</Y>
-      <Z>9.554882</Z>
+      <X>-985.3276</X>
+      <Y>-3675.98535</Y>
+      <Z>9.54645</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -6622,6 +6633,17 @@
       <Z>9.554882</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3493</Entry>
+    <Name>Grazlix</Name>
+    <Position>
+      <X>-982.712769</X>
+      <Y>-3680.53223</Y>
+      <Z>9.554882</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -6712,7 +6734,7 @@
       <Z>34.5460777</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6724,7 +6746,7 @@
       <Z>34.5460777</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6745,9 +6767,9 @@
     <Position>
       <X>1168.14</X>
       <Y>2063.05</Y>
-      <Z>5.39643</Z>
+      <Z>5.41362524</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6756,9 +6778,9 @@
     <Position>
       <X>1168.14</X>
       <Y>2063.05</Y>
-      <Z>5.41362524</Z>
+      <Z>5.39643</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6779,6 +6801,17 @@
       <X>-429.726135</X>
       <Y>-1497.84692</Y>
       <Z>88.18329</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3537</Entry>
+    <Name>Zixil</Name>
+    <Position>
+      <X>-672.5478</X>
+      <Y>-553.1944</Y>
+      <Z>26.8121758</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
@@ -6795,13 +6828,14 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>3537</Entry>
-    <Name>Zixil</Name>
+    <Entry>3539</Entry>
+    <Name>Ott</Name>
     <Position>
-      <X>-672.5478</X>
-      <Y>-553.1944</Y>
-      <Z>26.8121758</Z>
+      <X>-59.941</X>
+      <Y>-954.156</Y>
+      <Z>54.2891464</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -6815,18 +6849,6 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3539</Entry>
-    <Name>Ott</Name>
-    <Position>
-      <X>-59.941</X>
-      <Y>-954.156</Y>
-      <Z>54.2891464</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6922,7 +6944,7 @@
       <Z>132.293259</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -6934,7 +6956,7 @@
       <Z>132.293259</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -7101,7 +7123,7 @@
       <Z>1322.681</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7113,7 +7135,7 @@
       <Z>1322.681</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7149,7 +7171,7 @@
       <Z>1322.678</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7161,18 +7183,6 @@
       <Z>1322.678</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3592</Entry>
-    <Name>Andiss</Name>
-    <Position>
-      <X>10429.9619</X>
-      <Y>765.7778</Y>
-      <Z>1322.6665</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -7186,6 +7196,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3592</Entry>
+    <Name>Andiss</Name>
+    <Position>
+      <X>10429.9619</X>
+      <Y>765.7778</Y>
+      <Z>1322.6665</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7269,7 +7291,7 @@
       <Z>1308.77063</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7281,18 +7303,6 @@
       <Z>1308.77063</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3610</Entry>
-    <Name>Jeena Featherbow</Name>
-    <Position>
-      <X>9833.746</X>
-      <Y>969.0191</Y>
-      <Z>1308.6886</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -7306,6 +7316,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3610</Entry>
+    <Name>Jeena Featherbow</Name>
+    <Position>
+      <X>9833.746</X>
+      <Y>969.0191</Y>
+      <Z>1308.6886</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7782,7 +7804,7 @@
       <Z>27.4715233</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7794,7 +7816,7 @@
       <Z>27.4715233</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7986,7 +8008,7 @@
       <Z>1331.93677</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -7998,7 +8020,7 @@
       <Z>1331.93677</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8034,7 +8056,7 @@
       <Z>1331.9668</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8046,18 +8068,6 @@
       <Z>1331.9668</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4180</Entry>
-    <Name>Ealyshia Dewwhisper</Name>
-    <Position>
-      <X>9729.6</X>
-      <Y>2296.99</Y>
-      <Z>1343.30652</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -8071,6 +8081,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4180</Entry>
+    <Name>Ealyshia Dewwhisper</Name>
+    <Position>
+      <X>9729.6</X>
+      <Y>2296.99</Y>
+      <Z>1343.30652</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8116,7 +8138,7 @@
       <Z>5.079123</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8128,7 +8150,7 @@
       <Z>5.079123</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8164,7 +8186,7 @@
       <Z>1330.78516</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8176,7 +8198,7 @@
       <Z>1330.78516</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8392,7 +8414,7 @@
       <Z>1332.99646</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8404,18 +8426,6 @@
       <Z>1332.99646</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4233</Entry>
-    <Name>Mythidan</Name>
-    <Position>
-      <X>9809.8</X>
-      <Y>2248.4</Y>
-      <Z>1332.997</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -8429,6 +8439,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4233</Entry>
+    <Name>Mythidan</Name>
+    <Position>
+      <X>9809.8</X>
+      <Y>2248.4</Y>
+      <Z>1332.997</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8464,7 +8486,7 @@
       <Z>1339.61877</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8476,7 +8498,7 @@
       <Z>1339.61877</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -8692,7 +8714,7 @@
       <Z>-43.1022339</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -8704,18 +8726,6 @@
       <Z>-43.1022339</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4557</Entry>
-    <Name>Louis Warren</Name>
-    <Position>
-      <X>1616.24158</X>
-      <Y>286.537384</Y>
-      <Z>-43.102356</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -8732,12 +8742,12 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4558</Entry>
-    <Name>Lauren Newcomb</Name>
+    <Entry>4557</Entry>
+    <Name>Louis Warren</Name>
     <Position>
-      <X>1634.8739</X>
-      <Y>260.827576</Y>
-      <Z>-43.103054</Z>
+      <X>1616.24158</X>
+      <Y>286.537384</Y>
+      <Z>-43.102356</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -8756,12 +8766,12 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4559</Entry>
-    <Name>Timothy Weldon</Name>
+    <Entry>4558</Entry>
+    <Name>Lauren Newcomb</Name>
     <Position>
-      <X>1623.77</X>
-      <Y>272.448242</Y>
-      <Z>-43.1025162</Z>
+      <X>1634.8739</X>
+      <Y>260.827576</Y>
+      <Z>-43.103054</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -8777,6 +8787,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4559</Entry>
+    <Name>Timothy Weldon</Name>
+    <Position>
+      <X>1623.77</X>
+      <Y>272.448242</Y>
+      <Z>-43.1025162</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -8836,7 +8858,7 @@
       <Z>-62.1502342</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -8848,18 +8870,6 @@
       <Z>-62.1502342</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4570</Entry>
-    <Name>Sydney Upton</Name>
-    <Position>
-      <X>1702.30737</X>
-      <Y>206.812286</Y>
-      <Z>-62.1571465</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -8873,6 +8883,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4570</Entry>
+    <Name>Sydney Upton</Name>
+    <Position>
+      <X>1702.30737</X>
+      <Y>206.812286</Y>
+      <Z>-62.1571465</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -8968,7 +8990,7 @@
       <Z>-62.17356</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -8980,7 +9002,7 @@
       <Z>-62.17356</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9112,7 +9134,7 @@
       <Z>-62.1426659</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9124,7 +9146,7 @@
       <Z>-62.1426659</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9160,7 +9182,7 @@
       <Z>-62.1528549</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9172,18 +9194,6 @@
       <Z>-62.1528549</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4601</Entry>
-    <Name>Francis Eliot</Name>
-    <Position>
-      <X>1669.39</X>
-      <Y>307.177</Y>
-      <Z>-62.1471939</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -9200,12 +9210,12 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4602</Entry>
-    <Name>Benijah Fenner</Name>
+    <Entry>4601</Entry>
+    <Name>Francis Eliot</Name>
     <Position>
-      <X>1667.85</X>
-      <Y>308.892</Y>
-      <Z>-62.1505623</Z>
+      <X>1669.39</X>
+      <Y>307.177</Y>
+      <Z>-62.1471939</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -9221,6 +9231,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4602</Entry>
+    <Name>Benijah Fenner</Name>
+    <Position>
+      <X>1667.85</X>
+      <Y>308.892</Y>
+      <Z>-62.1505623</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9256,7 +9278,7 @@
       <Z>-62.1519966</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9268,7 +9290,7 @@
       <Z>-62.1519966</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9484,7 +9506,7 @@
       <Z>34.27456</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9496,7 +9518,7 @@
       <Z>34.27456</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9544,18 +9566,6 @@
       <Z>16.79273</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>4888</Entry>
-    <Name>Marie Holdston</Name>
-    <Position>
-      <X>-3785.934</X>
-      <Y>-4366.85059</Y>
-      <Z>16.79273</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -9572,12 +9582,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4889</Entry>
-    <Name>Torq Ironblast</Name>
+    <Entry>4888</Entry>
+    <Name>Marie Holdston</Name>
     <Position>
-      <X>-3712.462</X>
-      <Y>-4519.097</Y>
-      <Z>11.8978329</Z>
+      <X>-3785.934</X>
+      <Y>-4366.85059</Y>
+      <Z>16.79273</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -9596,12 +9606,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>4890</Entry>
-    <Name>Piter Verance</Name>
+    <Entry>4889</Entry>
+    <Name>Torq Ironblast</Name>
     <Position>
-      <X>-3708.592</X>
-      <Y>-4513.14746</Y>
-      <Z>11.8978148</Z>
+      <X>-3712.462</X>
+      <Y>-4519.097</Y>
+      <Z>11.8978329</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -9617,6 +9627,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4890</Entry>
+    <Name>Piter Verance</Name>
+    <Position>
+      <X>-3708.592</X>
+      <Y>-4513.14746</Y>
+      <Z>11.8978148</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9673,10 +9695,10 @@
     <Position>
       <X>-3617.12842</X>
       <Y>-4487.07275</Y>
-      <Z>7.08102846</Z>
+      <Z>6.794238</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>CookingTrainer</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9685,10 +9707,10 @@
     <Position>
       <X>-3617.12842</X>
       <Y>-4487.07275</Y>
-      <Z>6.794238</Z>
+      <Z>7.08102846</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>CookingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -9856,7 +9878,7 @@
       <Z>501.997253</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9868,7 +9890,7 @@
       <Z>501.997253</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -9971,9 +9993,33 @@
     <Entry>5109</Entry>
     <Name>Myra Tyrngaarde</Name>
     <Position>
+      <X>-4978.27734</X>
+      <Y>-962.0799</Y>
+      <Z>501.659454</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5109</Entry>
+    <Name>Myra Tyrngaarde</Name>
+    <Position>
       <X>-4900.598</X>
       <Y>-931.284241</Y>
       <Z>501.546936</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5109</Entry>
+    <Name>Myra Tyrngaarde</Name>
+    <Position>
+      <X>-4903.692</X>
+      <Y>-898.882751</Y>
+      <Z>501.6593</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -10096,7 +10142,7 @@
       <Z>511.962158</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10108,7 +10154,7 @@
       <Z>511.962158</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10133,6 +10179,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5124</Entry>
+    <Name>Sognar Cliffbeard</Name>
+    <Position>
+      <X>-4926.75049</X>
+      <Y>-1235.2821</Y>
+      <Z>501.656525</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10252,7 +10310,7 @@
       <Z>502.1979</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10264,7 +10322,7 @@
       <Z>502.1979</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10336,7 +10394,7 @@
       <Z>508.864716</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10348,7 +10406,7 @@
       <Z>508.864716</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10384,7 +10442,7 @@
       <Z>511.957733</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10396,18 +10454,6 @@
       <Z>511.957733</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>5156</Entry>
-    <Name>Maeva Snowbraid</Name>
-    <Position>
-      <X>-4600.87354</X>
-      <Y>-1019.376</Y>
-      <Z>505.2894</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -10421,6 +10467,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5156</Entry>
+    <Name>Maeva Snowbraid</Name>
+    <Position>
+      <X>-4600.87354</X>
+      <Y>-1019.376</Y>
+      <Z>505.2894</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10540,7 +10598,7 @@
       <Z>503.591339</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10552,7 +10610,7 @@
       <Z>503.591339</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10669,10 +10727,10 @@
     <Position>
       <X>-3612.48267</X>
       <Y>-4456.33838</Y>
-      <Z>13.9518785</Z>
+      <Z>13.6650877</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>JewelcraftingTrainer</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -10681,10 +10739,10 @@
     <Position>
       <X>-3612.48267</X>
       <Y>-4456.33838</Y>
-      <Z>13.6650877</Z>
+      <Z>13.9518785</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>JewelcraftingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -10707,7 +10765,7 @@
       <Y>-3751.71</Y>
       <Z>9.093815</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -10718,7 +10776,7 @@
       <Y>-3751.71</Y>
       <Z>9.093815</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -10826,7 +10884,7 @@
       <Z>95.27388</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10838,7 +10896,7 @@
       <Z>95.27388</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10886,7 +10944,7 @@
       <Z>95.39401</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10898,7 +10956,7 @@
       <Z>95.39401</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10946,7 +11004,7 @@
       <Z>95.19575</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -10958,7 +11016,7 @@
       <Z>95.19575</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11101,7 +11159,7 @@
       <Z>-62.1588669</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11113,7 +11171,7 @@
       <Z>-62.1588669</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11185,7 +11243,7 @@
       <Z>-12.1059666</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -11197,7 +11255,7 @@
       <Z>-12.1059666</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -11221,7 +11279,7 @@
       <Z>-62.1406631</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11233,7 +11291,7 @@
       <Z>-62.1406631</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11269,7 +11327,7 @@
       <Z>-62.173893</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11281,7 +11339,7 @@
       <Z>-62.173893</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11437,7 +11495,7 @@
       <Z>308.990479</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -11449,7 +11507,7 @@
       <Z>308.990479</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -12196,7 +12254,7 @@
       <Z>502.2356</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -12208,7 +12266,31 @@
       <Z>502.2356</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>7978</Entry>
+    <Name>Bimble Longberry</Name>
+    <Position>
+      <X>-4618.908</X>
+      <Y>-994.186646</Y>
+      <Z>501.665955</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>7978</Entry>
+    <Name>Bimble Longberry</Name>
+    <Position>
+      <X>-4699.32031</X>
+      <Y>-905.16156</Y>
+      <Z>501.911255</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -12241,7 +12323,7 @@
       <Y>-3725.36</Y>
       <Z>8.498729</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -12252,17 +12334,6 @@
       <Y>-3725.36</Y>
       <Z>8.498729</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>8131</Entry>
-    <Name>Blizrik Buckshot</Name>
-    <Position>
-      <X>-7141.491</X>
-      <Y>-3719.69458</Y>
-      <Z>8.498704</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -12275,6 +12346,17 @@
       <Z>8.498704</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>8131</Entry>
+    <Name>Blizrik Buckshot</Name>
+    <Position>
+      <X>-7141.491</X>
+      <Y>-3719.69458</Y>
+      <Z>8.498704</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -12430,7 +12512,7 @@
       <Z>123.228195</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -12442,7 +12524,7 @@
       <Z>123.228195</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -12657,7 +12739,7 @@
       <Z>164.280533</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -12669,7 +12751,7 @@
       <Z>164.280533</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -12886,6 +12968,17 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>8738</Entry>
+    <Name>Vazario Linkgrease</Name>
+    <Position>
+      <X>-836.957336</X>
+      <Y>-3729.88452</Y>
+      <Z>19.8879833</Z>
+    </Position>
+    <Type>EngineeringTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>8878</Entry>
     <Name>Muuran</Name>
     <Position>
@@ -12978,7 +13071,7 @@
       <Z>48.3929024</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -12990,18 +13083,6 @@
       <Z>48.3929024</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>9549</Entry>
-    <Name>Borand</Name>
-    <Position>
-      <X>992.1812</X>
-      <Y>1030.96033</Y>
-      <Z>105.585739</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -13018,12 +13099,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>9552</Entry>
-    <Name>Zanara</Name>
+    <Entry>9549</Entry>
+    <Name>Borand</Name>
     <Position>
-      <X>-3090.929</X>
-      <Y>-2830.842</Y>
-      <Z>35.1291</Z>
+      <X>992.1812</X>
+      <Y>1030.96033</Y>
+      <Z>105.585739</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -13039,6 +13120,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>9552</Entry>
+    <Name>Zanara</Name>
+    <Position>
+      <X>-3090.929</X>
+      <Y>-2830.842</Y>
+      <Z>35.1291</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -13537,7 +13630,7 @@
       <Z>9.410311</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -13549,18 +13642,6 @@
       <Z>9.410311</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>10369</Entry>
-    <Name>Trayexir</Name>
-    <Position>
-      <X>-769.1502</X>
-      <Y>-4948.52637</Y>
-      <Z>22.84955</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -13577,12 +13658,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>10380</Entry>
-    <Name>Sanuye Runetotem</Name>
+    <Entry>10369</Entry>
+    <Name>Trayexir</Name>
     <Position>
-      <X>-2117.36646</X>
-      <Y>-1720.10413</Y>
-      <Z>98.25068</Z>
+      <X>-769.1502</X>
+      <Y>-4948.52637</Y>
+      <Z>22.84955</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -13598,6 +13679,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10380</Entry>
+    <Name>Sanuye Runetotem</Name>
+    <Position>
+      <X>-2117.36646</X>
+      <Y>-1720.10413</Y>
+      <Z>98.25068</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -13632,7 +13725,7 @@
       <Y>-1424.24</Y>
       <Z>65.428894</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -13643,7 +13736,7 @@
       <Y>-1424.24</Y>
       <Z>65.428894</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -13938,7 +14031,7 @@
       <Y>-4691.69</Y>
       <Z>721.37085</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -13949,7 +14042,7 @@
       <Y>-4691.69</Y>
       <Z>721.37085</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14137,7 +14230,7 @@
       <Y>-2687.78247</Y>
       <Z>515.05896</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14148,17 +14241,6 @@
       <Y>-2687.78247</Y>
       <Z>515.05896</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>12024</Entry>
-    <Name>Meliri</Name>
-    <Position>
-      <X>7840.32373</X>
-      <Y>-2562.67627</Y>
-      <Z>489.285919</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -14171,6 +14253,17 @@
       <Z>489.285919</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>12024</Entry>
+    <Name>Meliri</Name>
+    <Position>
+      <X>7840.32373</X>
+      <Y>-2562.67627</Y>
+      <Z>489.285919</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14346,7 +14439,7 @@
       <Z>34.538002</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14358,7 +14451,7 @@
       <Z>34.538002</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14406,7 +14499,7 @@
       <Z>103.921959</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14418,18 +14511,6 @@
       <Z>103.921959</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>12785</Entry>
-    <Name>Sergeant Major Clate</Name>
-    <Position>
-      <X>-8774.203</X>
-      <Y>410.3507</Y>
-      <Z>103.920868</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -14443,6 +14524,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>12785</Entry>
+    <Name>Sergeant Major Clate</Name>
+    <Position>
+      <X>-8774.203</X>
+      <Y>410.3507</Y>
+      <Z>103.920868</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14549,7 +14642,7 @@
       <Z>62.5899239</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14561,7 +14654,7 @@
       <Z>62.5899239</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14678,7 +14771,7 @@
       <Z>110.135078</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14690,7 +14783,7 @@
       <Z>110.135078</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14808,7 +14901,7 @@
       <Z>6.46271753</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>FishingTrainer</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14820,7 +14913,7 @@
       <Z>6.46271753</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>FishingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14844,7 +14937,7 @@
       <Z>126.263695</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14856,7 +14949,7 @@
       <Z>126.263695</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -14947,7 +15040,7 @@
       <Z>73.61405</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -14959,18 +15052,6 @@
       <Z>73.61405</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>15127</Entry>
-    <Name>Samuel Hawke</Name>
-    <Position>
-      <X>-1218.48438</X>
-      <Y>-2521.559</Y>
-      <Z>21.94368</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -14984,6 +15065,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15127</Entry>
+    <Name>Samuel Hawke</Name>
+    <Position>
+      <X>-1218.48438</X>
+      <Y>-2521.559</Y>
+      <Z>21.94368</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -15028,7 +15121,7 @@
       <Y>753.0439</Y>
       <Z>42.4725</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -15039,7 +15132,7 @@
       <Y>753.0439</Y>
       <Z>42.4725</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -15074,7 +15167,7 @@
       <Z>36.9270668</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15086,18 +15179,6 @@
       <Z>36.9270668</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>15291</Entry>
-    <Name>Jainthess Thelryn</Name>
-    <Position>
-      <X>10418.66</X>
-      <Y>-6319.76172</Y>
-      <Z>35.5735474</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -15111,6 +15192,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15291</Entry>
+    <Name>Jainthess Thelryn</Name>
+    <Position>
+      <X>10418.66</X>
+      <Y>-6319.76172</Y>
+      <Z>35.5735474</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15182,7 +15275,7 @@
       <Z>89.403244</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>BlacksmithingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15206,7 +15299,7 @@
       <Z>89.403244</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>BlacksmithingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15418,7 +15511,7 @@
       <Z>28.3793678</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15430,7 +15523,7 @@
       <Z>28.3793678</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15525,7 +15618,7 @@
       <Z>18.7524681</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15537,7 +15630,7 @@
       <Z>18.7524681</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15621,7 +15714,7 @@
       <Z>87.07629</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15633,7 +15726,7 @@
       <Z>87.07629</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15693,7 +15786,7 @@
       <Z>151.282349</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15705,7 +15798,7 @@
       <Z>151.282349</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15753,7 +15846,7 @@
       <Z>55.9478531</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>TailoringTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15763,18 +15856,6 @@
       <X>8680.356</X>
       <Y>-6327.514</Y>
       <Z>55.9478531</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>TailoringTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>16367</Entry>
-    <Name>Botanist Tyniarrel</Name>
-    <Position>
-      <X>8678.92</X>
-      <Y>-6329.09229</Y>
-      <Z>55.9454956</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -15790,6 +15871,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>HerbalismTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16367</Entry>
+    <Name>Botanist Tyniarrel</Name>
+    <Position>
+      <X>8678.92</X>
+      <Y>-6329.09229</Y>
+      <Z>55.9454956</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15859,7 +15952,7 @@
       <Z>93.5806046</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15871,7 +15964,7 @@
       <Z>93.5806046</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15907,7 +16000,7 @@
       <Z>113.365425</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>BlacksmithingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15931,7 +16024,7 @@
       <Z>113.365425</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>BlacksmithingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15967,7 +16060,7 @@
       <Z>131.340637</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>AlchemyTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -15979,7 +16072,7 @@
       <Z>131.340637</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>AlchemyTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16063,7 +16156,7 @@
       <Z>13.6374159</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16075,7 +16168,7 @@
       <Z>13.6374159</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16111,7 +16204,7 @@
       <Z>16.51869</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16123,7 +16216,7 @@
       <Z>16.51869</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16171,7 +16264,7 @@
       <Z>16.1321983</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16183,18 +16276,6 @@
       <Z>16.1321983</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>16631</Entry>
-    <Name>Andra</Name>
-    <Position>
-      <X>9774.213</X>
-      <Y>-7192.694</Y>
-      <Z>16.4676533</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -16211,14 +16292,14 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
-    <Entry>16632</Entry>
-    <Name>Oss</Name>
+    <Entry>16631</Entry>
+    <Name>Andra</Name>
     <Position>
-      <X>-4043.184</X>
-      <Y>-11556.417</Y>
-      <Z>-138.3889</Z>
+      <X>9774.213</X>
+      <Y>-7192.694</Y>
+      <Z>16.4676533</Z>
     </Position>
-    <Faction>Alliance</Faction>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -16232,6 +16313,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16632</Entry>
+    <Name>Oss</Name>
+    <Position>
+      <X>-4043.184</X>
+      <Y>-11556.417</Y>
+      <Z>-138.3889</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16279,7 +16372,7 @@
       <Z>14.3389645</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16291,7 +16384,7 @@
       <Z>14.3389645</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16399,7 +16492,7 @@
       <Z>15.25102</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16411,7 +16504,7 @@
       <Z>15.25102</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16447,7 +16540,7 @@
       <Z>18.6105556</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16459,7 +16552,7 @@
       <Z>18.6105556</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16495,7 +16588,7 @@
       <Z>15.2702312</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16507,7 +16600,7 @@
       <Z>15.2702312</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16567,7 +16660,7 @@
       <Z>14.3128557</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16579,7 +16672,7 @@
       <Z>14.3128557</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16603,7 +16696,7 @@
       <Z>16.139164</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16615,7 +16708,7 @@
       <Z>16.139164</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16640,6 +16733,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16707</Entry>
+    <Name>Auctioneer Eoch</Name>
+    <Position>
+      <X>-4023.29346</X>
+      <Y>-11739.6494</Y>
+      <Z>-151.881042</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Auctioneer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16711,7 +16816,7 @@
       <Z>-126.278793</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16723,7 +16828,7 @@
       <Z>-126.278793</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16939,7 +17044,7 @@
       <Z>-99.6135254</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16951,7 +17056,7 @@
       <Z>-99.6135254</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16975,7 +17080,7 @@
       <Z>-93.89898</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -16987,7 +17092,7 @@
       <Z>-93.89898</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17059,7 +17164,7 @@
       <Z>-132.328476</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17071,7 +17176,7 @@
       <Z>-132.328476</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17215,18 +17320,6 @@
       <Z>91.01123</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>16823</Entry>
-    <Name>Humphry</Name>
-    <Position>
-      <X>-715.836365</X>
-      <Y>2596.89526</Y>
-      <Z>91.01123</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -17240,6 +17333,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>BlacksmithingTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16823</Entry>
+    <Name>Humphry</Name>
+    <Position>
+      <X>-715.836365</X>
+      <Y>2596.89526</Y>
+      <Z>91.01123</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17311,7 +17416,7 @@
       <Z>74.76309</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17323,7 +17428,7 @@
       <Z>74.76309</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17371,7 +17476,7 @@
       <Z>2.27388835</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>FishingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17383,7 +17488,7 @@
       <Z>2.27388835</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>FishingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17426,6 +17531,30 @@
     <Entry>17222</Entry>
     <Name>Artificer Daelo</Name>
     <Position>
+      <X>-4209.02148</X>
+      <Y>-12512.6631</Y>
+      <Z>45.0842</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>EngineeringTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>17222</Entry>
+    <Name>Artificer Daelo</Name>
+    <Position>
+      <X>-4209.02148</X>
+      <Y>-12512.6631</Y>
+      <Z>45.0842</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>17222</Entry>
+    <Name>Artificer Daelo</Name>
+    <Position>
       <X>-4157.57</X>
       <Y>-12470.19</Y>
       <Z>44.9376831</Z>
@@ -17443,7 +17572,7 @@
       <Z>11.0925379</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17455,7 +17584,7 @@
       <Z>11.0925379</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17815,7 +17944,7 @@
       <Z>54.50123</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17827,7 +17956,7 @@
       <Z>54.50123</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17968,7 +18097,7 @@
       <Z>36.24187</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -17980,18 +18109,6 @@
       <Z>36.24187</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>18011</Entry>
-    <Name>Zurai</Name>
-    <Position>
-      <X>99.98427</X>
-      <Y>5188.041</Y>
-      <Z>21.0780773</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -18005,6 +18122,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18011</Entry>
+    <Name>Zurai</Name>
+    <Position>
+      <X>99.98427</X>
+      <Y>5188.041</Y>
+      <Z>21.0780773</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18209,6 +18338,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>18349</Entry>
+    <Name>Auctioneer Iressa</Name>
+    <Position>
+      <X>-4025.4895</X>
+      <Y>-11735.998</Y>
+      <Z>-151.8925</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Auctioneer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>18382</Entry>
     <Name>Mycah</Name>
     <Position>
@@ -18404,7 +18545,7 @@
       <Z>145.0926</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>EnchantingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18414,18 +18555,6 @@
       <X>242.253448</X>
       <Y>2836.553</Y>
       <Z>145.0926</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>EnchantingTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>18754</Entry>
-    <Name>Barim Spilthoof</Name>
-    <Position>
-      <X>148.588333</X>
-      <Y>2636.02222</Y>
-      <Z>85.9346848</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -18441,6 +18570,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>LeatherworkingTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18754</Entry>
+    <Name>Barim Spilthoof</Name>
+    <Position>
+      <X>148.588333</X>
+      <Y>2636.02222</Y>
+      <Z>85.9346848</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18605,7 +18746,7 @@
       <Y>5551.557</Y>
       <Z>22.4310017</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>FishingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18616,7 +18757,7 @@
       <Y>5551.557</Y>
       <Z>22.4310017</Z>
     </Position>
-    <Type>FishingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18819,7 +18960,7 @@
       <Y>5527.98633</Y>
       <Z>29.4080372</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>CookingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18830,18 +18971,6 @@
       <Y>5527.98633</Y>
       <Z>29.4080372</Z>
     </Position>
-    <Type>CookingTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>18997</Entry>
-    <Name>Fallesh Sunfallow</Name>
-    <Position>
-      <X>-587.4686</X>
-      <Y>4171.81836</Y>
-      <Z>65.99731</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -18855,6 +18984,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18997</Entry>
+    <Name>Fallesh Sunfallow</Name>
+    <Position>
+      <X>-587.4686</X>
+      <Y>4171.81836</Y>
+      <Z>65.99731</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18878,7 +19019,7 @@
       <Z>101.466026</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -18890,7 +19031,7 @@
       <Z>101.466026</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19081,7 +19222,7 @@
       <Y>5689.34375</Y>
       <Z>132.694489</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19092,7 +19233,7 @@
       <Y>5689.34375</Y>
       <Z>132.694489</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19193,7 +19334,7 @@
       <Z>3.57430339</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19205,7 +19346,7 @@
       <Z>3.57430339</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19425,7 +19566,7 @@
       <Y>5558.264</Y>
       <Z>50.2749367</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19436,7 +19577,7 @@
       <Y>5558.264</Y>
       <Z>50.2749367</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19491,7 +19632,7 @@
       <Y>5588.18066</Y>
       <Z>50.22835</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19502,7 +19643,7 @@
       <Y>5588.18066</Y>
       <Z>50.22835</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19605,7 +19746,7 @@
       <Z>114.069763</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19617,7 +19758,7 @@
       <Z>114.069763</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19698,7 +19839,7 @@
       <Z>61.7795143</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19710,7 +19851,7 @@
       <Z>61.7795143</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19734,7 +19875,7 @@
       <Z>61.7295341</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19746,7 +19887,7 @@
       <Z>61.7295341</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19902,7 +20043,7 @@
       <Z>101.870071</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -19914,7 +20055,7 @@
       <Z>101.870071</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20015,7 +20156,7 @@
       <Y>974.388245</Y>
       <Z>54.2723923</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20026,7 +20167,7 @@
       <Y>974.388245</Y>
       <Z>54.2723923</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20205,7 +20346,7 @@
       <Y>1177.51025</Y>
       <Z>49.5823441</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20216,7 +20357,7 @@
       <Y>1177.51025</Y>
       <Z>49.5823441</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20238,7 +20379,7 @@
       <Y>1171.88428</Y>
       <Z>49.58196</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20249,7 +20390,7 @@
       <Y>1171.88428</Y>
       <Z>49.58196</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20271,7 +20412,7 @@
       <Y>745.6439</Y>
       <Z>-10.1050425</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20282,7 +20423,7 @@
       <Y>745.6439</Y>
       <Z>-10.1050425</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20639,7 +20780,7 @@
       <Y>5298.756</Y>
       <Z>-37.32356</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20650,7 +20791,7 @@
       <Y>5298.756</Y>
       <Z>-37.32356</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20928,7 +21069,7 @@
       <Z>-9.954773</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20940,7 +21081,7 @@
       <Z>-9.954773</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20975,7 +21116,7 @@
       <Y>3050.566</Y>
       <Z>336.840973</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -20986,7 +21127,7 @@
       <Y>3050.566</Y>
       <Z>336.840973</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21030,7 +21171,7 @@
       <Y>2266.04028</Y>
       <Z>93.6360855</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21041,7 +21182,7 @@
       <Y>2266.04028</Y>
       <Z>93.6360855</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21110,7 +21251,7 @@
       <Y>5826.54932</Y>
       <Z>149.970917</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21121,7 +21262,7 @@
       <Y>5826.54932</Y>
       <Z>149.970917</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21381,7 +21522,7 @@
       <Z>157.563309</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21393,7 +21534,7 @@
       <Z>157.563309</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21453,7 +21594,7 @@
       <Z>263.932739</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21465,7 +21606,7 @@
       <Z>263.932739</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21511,7 +21652,7 @@
       <Y>1249.249</Y>
       <Z>74.65291</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21522,7 +21663,7 @@
       <Y>1249.249</Y>
       <Z>74.65291</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21852,7 +21993,7 @@
       <Y>5410.80762</Y>
       <Z>-3.33017826</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21863,7 +22004,7 @@
       <Y>5410.80762</Y>
       <Z>-3.33017826</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21929,7 +22070,7 @@
       <Y>8609.072</Y>
       <Z>22.1627083</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -21940,7 +22081,7 @@
       <Y>8609.072</Y>
       <Z>22.1627083</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -22043,7 +22184,7 @@
       <Y>3611.29956</Y>
       <Z>275.9874</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -22054,7 +22195,7 @@
       <Y>3611.29956</Y>
       <Z>275.9874</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -22098,7 +22239,7 @@
       <Y>-3210.939</Y>
       <Z>34.924984</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -22109,7 +22250,7 @@
       <Y>-3210.939</Y>
       <Z>34.924984</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -22191,7 +22332,7 @@
       <Z>10.5698986</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22203,7 +22344,7 @@
       <Z>10.5698986</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22298,7 +22439,7 @@
       <Z>290.964233</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22310,7 +22451,7 @@
       <Z>290.964233</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22334,7 +22475,7 @@
       <Z>273.287018</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22346,7 +22487,7 @@
       <Z>273.287018</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22478,7 +22619,7 @@
       <Z>148.66806</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22490,7 +22631,7 @@
       <Z>148.66806</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22610,7 +22751,7 @@
       <Z>24.1647911</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22622,7 +22763,7 @@
       <Z>24.1647911</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22772,23 +22913,23 @@
     <Entry>24935</Entry>
     <Name>Vend-O-Tron D-Luxe</Name>
     <Position>
-      <X>1800.24146</X>
-      <Y>-4400.834</Y>
-      <Z>129.756042</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24935</Entry>
-    <Name>Vend-O-Tron D-Luxe</Name>
-    <Position>
       <X>-12517.9424</X>
       <Y>152.377609</Y>
       <Z>31.566246</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24935</Entry>
+    <Name>Vend-O-Tron D-Luxe</Name>
+    <Position>
+      <X>1800.24146</X>
+      <Y>-4400.834</Y>
+      <Z>129.756042</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>24974</Entry>
@@ -22800,6 +22941,29 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>24975</Entry>
+    <Name>Mar'nah</Name>
+    <Position>
+      <X>12848.4727</X>
+      <Y>-7015.135</Y>
+      <Z>18.5958176</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25010</Entry>
+    <Name>Engineer Brightbuckle</Name>
+    <Position>
+      <X>8158.643</X>
+      <Y>994.768</Y>
+      <Z>6.07250166</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>25010</Entry>
@@ -22817,6 +22981,18 @@
     <Entry>25010</Entry>
     <Name>Engineer Brightbuckle</Name>
     <Position>
+      <X>8158.643</X>
+      <Y>994.768</Y>
+      <Z>6.07250166</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25010</Entry>
+    <Name>Engineer Brightbuckle</Name>
+    <Position>
       <X>7885.766</X>
       <Y>1261.28259</Y>
       <Z>5.789233</Z>
@@ -22824,6 +23000,18 @@
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25012</Entry>
+    <Name>Galley Chief Gathers</Name>
+    <Position>
+      <X>8150.71729</X>
+      <Y>989.9002</Y>
+      <Z>6.03692961</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>25012</Entry>
@@ -22869,6 +23057,124 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25039</Entry>
+    <Name>Kaalif</Name>
+    <Position>
+      <X>12846.1611</X>
+      <Y>-7005.78027</Y>
+      <Z>18.5956764</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25043</Entry>
+    <Name>Sereth Duskbringer</Name>
+    <Position>
+      <X>12806.4307</X>
+      <Y>-7032.139</Y>
+      <Z>20.2539482</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25051</Entry>
+    <Name>Merchant Frostwalker</Name>
+    <Position>
+      <X>8539.937</X>
+      <Y>1354.14539</Y>
+      <Z>6.79526424</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25051</Entry>
+    <Name>Merchant Frostwalker</Name>
+    <Position>
+      <X>8539.937</X>
+      <Y>1354.14539</Y>
+      <Z>6.79526424</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25051</Entry>
+    <Name>Merchant Frostwalker</Name>
+    <Position>
+      <X>8532.66</X>
+      <Y>1314.2926</Y>
+      <Z>6.14995766</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25051</Entry>
+    <Name>Merchant Frostwalker</Name>
+    <Position>
+      <X>8532.66</X>
+      <Y>1314.2926</Y>
+      <Z>6.14995766</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25052</Entry>
+    <Name>Galley Chief Halumvorea</Name>
+    <Position>
+      <X>13.1055555</X>
+      <Y>7.561389</Y>
+      <Z>6.0626564</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25052</Entry>
+    <Name>Galley Chief Halumvorea</Name>
+    <Position>
+      <X>8155.70557</X>
+      <Y>1261.12854</Y>
+      <Z>5.684251</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25052</Entry>
+    <Name>Galley Chief Halumvorea</Name>
+    <Position>
+      <X>8555.358</X>
+      <Y>1344.37683</Y>
+      <Z>6.35153627</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25052</Entry>
+    <Name>Galley Chief Halumvorea</Name>
+    <Position>
+      <X>8547.235</X>
+      <Y>1310.12317</Y>
+      <Z>6.309818</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>25082</Entry>
@@ -22946,7 +23252,7 @@
       <Y>6671.71875</Y>
       <Z>195.108841</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22957,7 +23263,7 @@
       <Y>6671.71875</Y>
       <Z>195.108841</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -22982,6 +23288,17 @@
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25950</Entry>
+    <Name>Shaani</Name>
+    <Position>
+      <X>12846.9043</X>
+      <Y>-7016.49</Y>
+      <Z>18.5956764</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>25976</Entry>
@@ -23321,7 +23638,7 @@
       <Z>17.1941071</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -23333,7 +23650,7 @@
       <Z>17.1941071</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -23428,7 +23745,7 @@
       <Y>540.130859</Y>
       <Z>118.9998</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -23439,7 +23756,7 @@
       <Y>540.130859</Y>
       <Z>118.9998</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -23919,7 +24236,7 @@
       <Z>104.831024</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>InscriptionTrainer</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -23931,7 +24248,7 @@
       <Z>104.831024</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>InscriptionTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -24255,7 +24572,7 @@
       <Z>86.69914</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -24267,7 +24584,7 @@
       <Z>86.69914</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -24603,7 +24920,7 @@
       <Z>81.54093</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -24615,7 +24932,7 @@
       <Z>81.54093</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25011,7 +25328,7 @@
       <Y>850.985352</Y>
       <Z>7.54255438</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25022,7 +25339,7 @@
       <Y>850.985352</Y>
       <Z>7.54255438</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25168,7 +25485,7 @@
       <Y>5506.6084</Y>
       <Z>-12.4278059</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -25179,7 +25496,7 @@
       <Y>5506.6084</Y>
       <Z>-12.4278059</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -25336,7 +25653,7 @@
       <Y>5738.87744</Y>
       <Z>-76.2174759</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25347,7 +25664,7 @@
       <Y>5738.87744</Y>
       <Z>-76.2174759</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25426,7 +25743,7 @@
       <Y>-5635.67725</Y>
       <Z>420.640137</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -25437,7 +25754,7 @@
       <Y>-5635.67725</Y>
       <Z>420.640137</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -25627,7 +25944,7 @@
       <Y>714.890747</Y>
       <Z>643.093262</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>JewelcraftingTrainer</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25638,7 +25955,7 @@
       <Y>714.890747</Y>
       <Z>643.093262</Z>
     </Position>
-    <Type>JewelcraftingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25739,7 +26056,7 @@
       <Y>671.0974</Y>
       <Z>643.497131</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25750,7 +26067,7 @@
       <Y>671.0974</Y>
       <Z>643.497131</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25783,7 +26100,7 @@
       <Y>729.381958</Y>
       <Z>642.2182</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25794,7 +26111,7 @@
       <Y>729.381958</Y>
       <Z>642.2182</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25948,7 +26265,7 @@
       <Y>-2655.896</Y>
       <Z>303.954041</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -25959,7 +26276,7 @@
       <Y>-2655.896</Y>
       <Z>303.954041</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26146,7 +26463,7 @@
       <Y>-3572.94727</Y>
       <Z>387.239441</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26157,7 +26474,7 @@
       <Y>-3572.94727</Y>
       <Z>387.239441</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26289,7 +26606,7 @@
       <Y>660.7535</Y>
       <Z>643.4961</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26300,17 +26617,6 @@
       <Y>660.7535</Y>
       <Z>643.4961</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>28991</Entry>
-    <Name>Valaden Silverblade</Name>
-    <Position>
-      <X>5715.784</X>
-      <Y>597.486267</Y>
-      <Z>648.5907</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -26323,6 +26629,17 @@
       <Z>648.5907</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28991</Entry>
+    <Name>Valaden Silverblade</Name>
+    <Position>
+      <X>5715.784</X>
+      <Y>597.486267</Y>
+      <Z>648.5907</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26377,7 +26694,7 @@
       <Y>691.4948</Y>
       <Z>647.0989</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26388,17 +26705,6 @@
       <Y>691.4948</Y>
       <Z>647.0989</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>28997</Entry>
-    <Name>Griselda Hunderland</Name>
-    <Position>
-      <X>5919.15234</X>
-      <Y>667.366</Y>
-      <Z>643.579</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -26411,6 +26717,17 @@
       <Z>643.579</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28997</Entry>
+    <Name>Griselda Hunderland</Name>
+    <Position>
+      <X>5919.15234</X>
+      <Y>667.366</Y>
+      <Z>643.579</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26577,7 +26894,7 @@
       <Z>10.8840122</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26589,7 +26906,7 @@
       <Z>10.8840122</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26647,7 +26964,7 @@
       <Z>20.9086075</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -26659,7 +26976,7 @@
       <Z>20.9086075</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -26682,7 +26999,7 @@
       <Y>553.8919</Y>
       <Z>651.641</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26693,7 +27010,7 @@
       <Y>553.8919</Y>
       <Z>651.641</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26759,7 +27076,7 @@
       <Y>595.451</Y>
       <Z>648.5813</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26770,7 +27087,7 @@
       <Y>595.451</Y>
       <Z>648.5813</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26803,7 +27120,7 @@
       <Y>608.5258</Y>
       <Z>648.572266</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -26814,7 +27131,7 @@
       <Y>608.5258</Y>
       <Z>648.572266</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27376,7 +27693,7 @@
       <Z>1175.98682</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27388,7 +27705,7 @@
       <Z>1175.98682</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27467,7 +27784,7 @@
       <Y>-390.166046</Y>
       <Z>903.1188</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27478,7 +27795,7 @@
       <Y>-390.166046</Y>
       <Z>903.1188</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27574,7 +27891,7 @@
       <Z>822.0972</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27586,7 +27903,7 @@
       <Z>822.0972</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27632,7 +27949,7 @@
       <Y>4156.803</Y>
       <Z>314.109772</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27643,7 +27960,7 @@
       <Y>4156.803</Y>
       <Z>314.109772</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27700,7 +28017,7 @@
       <Z>219.9718</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -27712,7 +28029,7 @@
       <Z>219.9718</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -28309,22 +28626,22 @@
     <Entry>31805</Entry>
     <Name>Nagojut</Name>
     <Position>
-      <X>2607.648</X>
-      <Y>944.7038</Y>
-      <Z>18.8740215</Z>
+      <X>-4.255615</X>
+      <Y>-4.817383</Y>
+      <Z>13.7184076</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>31805</Entry>
     <Name>Nagojut</Name>
     <Position>
-      <X>-4.255615</X>
-      <Y>-4.817383</Y>
-      <Z>13.7184076</Z>
+      <X>2607.648</X>
+      <Y>944.7038</Y>
+      <Z>18.8740215</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -28867,7 +29184,7 @@
       <Z>10.4565411</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -28879,7 +29196,7 @@
       <Z>10.4565411</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -29091,7 +29408,7 @@
       <Y>933.362854</Y>
       <Z>547.2942</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -29102,7 +29419,7 @@
       <Y>933.362854</Y>
       <Z>547.2942</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -29157,7 +29474,7 @@
       <Y>5634.9834</Y>
       <Z>50.2285767</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>AlchemyTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29167,17 +29484,6 @@
       <X>-2091.97876</X>
       <Y>5634.9834</Y>
       <Z>50.2285767</Z>
-    </Position>
-    <Type>AlchemyTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>33631</Entry>
-    <Name>Barien</Name>
-    <Position>
-      <X>-2039.85852</X>
-      <Y>5567.61</Y>
-      <Z>53.38387</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
@@ -29194,12 +29500,12 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
-    <Entry>33633</Entry>
-    <Name>Enchantress Andiala</Name>
+    <Entry>33631</Entry>
+    <Name>Barien</Name>
     <Position>
-      <X>-2124.31519</X>
-      <Y>5409.541</Y>
-      <Z>54.8396072</Z>
+      <X>-2039.85852</X>
+      <Y>5567.61</Y>
+      <Z>53.38387</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
@@ -29213,6 +29519,17 @@
       <Z>54.8396072</Z>
     </Position>
     <Type>EnchantingTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>33633</Entry>
+    <Name>Enchantress Andiala</Name>
+    <Position>
+      <X>-2124.31519</X>
+      <Y>5409.541</Y>
+      <Z>54.8396072</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29245,7 +29562,7 @@
       <Y>5595.658</Y>
       <Z>53.3841972</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>LeatherworkingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29255,17 +29572,6 @@
       <X>-2023.91455</X>
       <Y>5595.658</Y>
       <Z>53.3841972</Z>
-    </Position>
-    <Type>LeatherworkingTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>33636</Entry>
-    <Name>Miralisse</Name>
-    <Position>
-      <X>-2027.03088</X>
-      <Y>5597.048</Y>
-      <Z>53.3844528</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
@@ -29279,6 +29585,17 @@
       <Z>53.3844528</Z>
     </Position>
     <Type>TailoringTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>33636</Entry>
+    <Name>Miralisse</Name>
+    <Position>
+      <X>-2027.03088</X>
+      <Y>5597.048</Y>
+      <Z>53.3844528</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29311,7 +29628,7 @@
       <Y>5405.09863</Y>
       <Z>53.80781</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>InscriptionTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29322,7 +29639,7 @@
       <Y>5405.09863</Y>
       <Z>53.80781</Z>
     </Position>
-    <Type>InscriptionTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29355,7 +29672,7 @@
       <Y>5367.21631</Y>
       <Z>54.8524475</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>MiningTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29366,7 +29683,7 @@
       <Y>5367.21631</Y>
       <Z>54.8524475</Z>
     </Position>
-    <Type>MiningTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29421,7 +29738,7 @@
       <Y>5629.45557</Y>
       <Z>128.023651</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>AlchemyTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29430,17 +29747,6 @@
     <Position>
       <X>-1736.86182</X>
       <Y>5629.45557</Y>
-      <Z>128.023651</Z>
-    </Position>
-    <Type>AlchemyTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>33675</Entry>
-    <Name>Onodo</Name>
-    <Position>
-      <X>-1747.514</X>
-      <Y>5644.707</Y>
       <Z>128.023651</Z>
     </Position>
     <Type>Vendor</Type>
@@ -29455,6 +29761,17 @@
       <Z>128.023651</Z>
     </Position>
     <Type>BlacksmithingTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>33675</Entry>
+    <Name>Onodo</Name>
+    <Position>
+      <X>-1747.514</X>
+      <Y>5644.707</Y>
+      <Z>128.023651</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29487,7 +29804,7 @@
       <Y>5641.99463</Y>
       <Z>129.068237</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>EngineeringTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29498,7 +29815,7 @@
       <Y>5641.99463</Y>
       <Z>129.068237</Z>
     </Position>
-    <Type>EngineeringTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29575,7 +29892,7 @@
       <Y>5645.147</Y>
       <Z>128.023651</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>LeatherworkingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29586,7 +29903,7 @@
       <Y>5645.147</Y>
       <Z>128.023651</Z>
     </Position>
-    <Type>LeatherworkingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29619,7 +29936,7 @@
       <Y>5649.4126</Y>
       <Z>129.057724</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>SkinningTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29629,17 +29946,6 @@
       <X>-1708.97449</X>
       <Y>5649.4126</Y>
       <Z>129.057724</Z>
-    </Position>
-    <Type>SkinningTrainer</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>33684</Entry>
-    <Name>Weaver Aoa</Name>
-    <Position>
-      <X>-1708.88757</X>
-      <Y>5642.995</Y>
-      <Z>129.072922</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
@@ -29653,6 +29959,17 @@
       <Z>129.072922</Z>
     </Position>
     <Type>TailoringTrainer</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>33684</Entry>
+    <Name>Weaver Aoa</Name>
+    <Position>
+      <X>-1708.88757</X>
+      <Y>5642.995</Y>
+      <Z>129.072922</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -29823,7 +30140,7 @@
       <Y>670.2131</Y>
       <Z>643.497131</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -29834,7 +30151,7 @@
       <Y>670.2131</Y>
       <Z>643.497131</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -30058,7 +30375,7 @@
       <Y>689.6007</Y>
       <Z>647.0989</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -30069,7 +30386,7 @@
       <Y>689.6007</Y>
       <Z>647.0989</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -30102,7 +30419,7 @@
       <Y>662.9583</Y>
       <Z>643.497131</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -30113,17 +30430,6 @@
       <Y>662.9583</Y>
       <Z>643.497131</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>35500</Entry>
-    <Name>Matilda Brightlink</Name>
-    <Position>
-      <X>5664.53467</X>
-      <Y>619.177063</Y>
-      <Z>648.1058</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -30136,6 +30442,17 @@
       <Z>648.1058</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35500</Entry>
+    <Name>Matilda Brightlink</Name>
+    <Position>
+      <X>5664.53467</X>
+      <Y>619.177063</Y>
+      <Z>648.1058</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -30380,7 +30697,7 @@
       <Y>-1074.26563</Y>
       <Z>-270.254639</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30391,7 +30708,7 @@
       <Y>-1074.26563</Y>
       <Z>-270.254639</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30414,6 +30731,30 @@
       <Z>24.4512882</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>38873</Entry>
+    <Name>Goucho</Name>
+    <Position>
+      <X>-1899.41492</X>
+      <Y>-2806.11279</Y>
+      <Z>90.51151</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>38873</Entry>
+    <Name>Goucho</Name>
+    <Position>
+      <X>-1899.41492</X>
+      <Y>-2806.11279</Y>
+      <Z>90.51151</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -30474,7 +30815,7 @@
       <Z>20.85488</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30486,7 +30827,7 @@
       <Z>20.85488</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30544,7 +30885,7 @@
       <Y>3464.31421</Y>
       <Z>-101.539444</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -30555,7 +30896,7 @@
       <Y>3464.31421</Y>
       <Z>-101.539444</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -30694,7 +31035,7 @@
       <Z>6.166415</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30706,7 +31047,7 @@
       <Z>6.166415</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30822,7 +31163,7 @@
       <Z>48.42589</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30834,7 +31175,7 @@
       <Z>48.42589</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30929,7 +31270,7 @@
       <Z>92.90105</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30941,7 +31282,7 @@
       <Z>92.90105</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -30999,7 +31340,7 @@
       <Y>-2470.6</Y>
       <Z>2.89221549</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31010,7 +31351,7 @@
       <Y>-2470.6</Y>
       <Z>2.89221549</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31021,7 +31362,7 @@
       <Y>3809.10254</Y>
       <Z>-83.56189</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31032,7 +31373,7 @@
       <Y>3809.10254</Y>
       <Z>-83.56189</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31103,7 +31444,7 @@
       <Z>12.7785454</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31115,7 +31456,7 @@
       <Z>12.7785454</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31258,7 +31599,7 @@
       <Z>92.8799438</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31270,7 +31611,7 @@
       <Z>92.8799438</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31330,7 +31671,7 @@
       <Z>3.66032624</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31342,7 +31683,7 @@
       <Z>3.66032624</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31377,7 +31718,7 @@
       <Z>389.892883</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31389,7 +31730,7 @@
       <Z>389.892883</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -31746,7 +32087,7 @@
       <Y>-1716.01</Y>
       <Z>1339.965</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31757,7 +32098,7 @@
       <Y>-1716.01</Y>
       <Z>1339.965</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31825,7 +32166,7 @@
       <Y>-3600.99</Y>
       <Z>1570.59937</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -31836,7 +32177,7 @@
       <Y>-3600.99</Y>
       <Z>1570.59937</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32069,7 +32410,7 @@
       <Y>-2740.14</Y>
       <Z>1437.6405</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32080,7 +32421,7 @@
       <Y>-2740.14</Y>
       <Z>1437.6405</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32157,7 +32498,7 @@
       <Y>-3986.6</Y>
       <Z>971.4449</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32168,7 +32509,7 @@
       <Y>-3986.6</Y>
       <Z>971.4449</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32191,7 +32532,7 @@
       <Z>96.40165</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32203,7 +32544,7 @@
       <Z>96.40165</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32430,7 +32771,7 @@
       <Y>-6175.29</Y>
       <Z>138.103775</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32441,17 +32782,6 @@
       <Y>-6175.29</Y>
       <Z>138.103775</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>43708</Entry>
-    <Name>Beezle Spinspark</Name>
-    <Position>
-      <X>2941.93</X>
-      <Y>-4997.47</Y>
-      <Z>166.070709</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -32467,12 +32797,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>43709</Entry>
-    <Name>Feezle Spinspark</Name>
+    <Entry>43708</Entry>
+    <Name>Beezle Spinspark</Name>
     <Position>
-      <X>4478.51</X>
-      <Y>-5711.56</Y>
-      <Z>145.5509</Z>
+      <X>2941.93</X>
+      <Y>-4997.47</Y>
+      <Z>166.070709</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -32486,6 +32816,17 @@
       <Z>145.5509</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43709</Entry>
+    <Name>Feezle Spinspark</Name>
+    <Position>
+      <X>4478.51</X>
+      <Y>-5711.56</Y>
+      <Z>145.5509</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32565,7 +32906,7 @@
       <Z>122.334358</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -32577,7 +32918,7 @@
       <Z>122.334358</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -32730,7 +33071,7 @@
       <Y>1597.01</Y>
       <Z>59.8651733</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32741,17 +33082,6 @@
       <Y>1597.01</Y>
       <Z>59.8651733</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>43882</Entry>
-    <Name>Stronghoof Gentlebend</Name>
-    <Position>
-      <X>-935.023</X>
-      <Y>1596.48</Y>
-      <Z>60.5915451</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -32764,6 +33094,17 @@
       <Z>60.5915451</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43882</Entry>
+    <Name>Stronghoof Gentlebend</Name>
+    <Position>
+      <X>-935.023</X>
+      <Y>1596.48</Y>
+      <Z>60.5915451</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32822,7 +33163,7 @@
       <Z>54.7071381</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -32834,7 +33175,7 @@
       <Z>54.7071381</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -32942,7 +33283,7 @@
       <Z>91.66683</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -32954,7 +33295,7 @@
       <Z>91.66683</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -33181,7 +33522,7 @@
       <Z>1324.833</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -33193,7 +33534,7 @@
       <Z>1324.833</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -33229,7 +33570,7 @@
       <Z>60.0654335</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33241,7 +33582,7 @@
       <Z>60.0654335</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33265,7 +33606,7 @@
       <Z>35.2404022</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33277,7 +33618,7 @@
       <Z>35.2404022</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33337,7 +33678,7 @@
       <Z>7.5456357</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33349,7 +33690,7 @@
       <Z>7.5456357</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33505,7 +33846,7 @@
       <Z>3.802772</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33517,7 +33858,7 @@
       <Z>3.802772</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33757,7 +34098,7 @@
       <Z>92.34894</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -33769,7 +34110,7 @@
       <Z>92.34894</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -33829,7 +34170,7 @@
       <Z>92.30509</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -33841,7 +34182,7 @@
       <Z>92.30509</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -34009,7 +34350,7 @@
       <Z>6.41601229</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -34021,7 +34362,7 @@
       <Z>6.41601229</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -34189,7 +34530,7 @@
       <Z>88.2177048</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -34201,7 +34542,7 @@
       <Z>88.2177048</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -34353,7 +34694,7 @@
       <Z>88.6066055</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -34365,7 +34706,7 @@
       <Z>88.6066055</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -34401,7 +34742,7 @@
       <Z>84.84633</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -34413,7 +34754,7 @@
       <Z>84.84633</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -34884,7 +35225,7 @@
       <Y>-1509.98</Y>
       <Z>146.269638</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -34895,7 +35236,7 @@
       <Y>-1509.98</Y>
       <Z>146.269638</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -34931,7 +35272,7 @@
       <Z>-45.967926</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>
   <Npc>
@@ -34943,18 +35284,6 @@
       <Z>-45.967926</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Maelstrom</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>45294</Entry>
-    <Name>Dugsley Deepdelver</Name>
-    <Position>
-      <X>1052.99</X>
-      <Y>636.936</Y>
-      <Z>-45.8651161</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>
@@ -34968,6 +35297,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Maelstrom</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45294</Entry>
+    <Name>Dugsley Deepdelver</Name>
+    <Position>
+      <X>1052.99</X>
+      <Y>636.936</Y>
+      <Z>-45.8651161</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>
   <Npc>
@@ -35024,7 +35365,7 @@
       <Y>-265.873</Y>
       <Z>203.27652</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>
   <Npc>
@@ -35035,7 +35376,7 @@
       <Y>-265.873</Y>
       <Z>203.27652</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Maelstrom</ContinentId>
   </Npc>
   <Npc>
@@ -35086,22 +35427,22 @@
     <Entry>45451</Entry>
     <Name>Argus Highbeacon</Name>
     <Position>
-      <X>1849.43</X>
-      <Y>-3738.08</Y>
-      <Z>195.679871</Z>
+      <X>3160.69</X>
+      <Y>-4322.88</Y>
+      <Z>131.821381</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>45451</Entry>
     <Name>Argus Highbeacon</Name>
     <Position>
-      <X>3160.69</X>
-      <Y>-4322.88</Y>
-      <Z>131.821381</Z>
+      <X>1849.43</X>
+      <Y>-3738.08</Y>
+      <Z>195.679871</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35161,7 +35502,7 @@
       <Z>27.57666</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35173,7 +35514,7 @@
       <Z>27.57666</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35529,7 +35870,7 @@
       <Z>21.5142422</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -35541,7 +35882,7 @@
       <Z>21.5142422</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -35637,7 +35978,7 @@
       <Z>19.1014</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35649,7 +35990,7 @@
       <Z>19.1014</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35968,7 +36309,7 @@
       <Y>-4339.04</Y>
       <Z>133.451</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35979,7 +36320,7 @@
       <Y>-4339.04</Y>
       <Z>133.451</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36239,7 +36580,7 @@
       <Y>-4194.02</Y>
       <Z>22.2859</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36250,7 +36591,7 @@
       <Y>-4194.02</Y>
       <Z>22.2859</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36707,7 +37048,7 @@
       <Y>-1268.31</Y>
       <Z>270.484863</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36718,7 +37059,7 @@
       <Y>-1268.31</Y>
       <Z>270.484863</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36795,7 +37136,7 @@
       <Y>-3898.76</Y>
       <Z>379.144226</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36806,7 +37147,7 @@
       <Y>-3898.76</Y>
       <Z>379.144226</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36862,7 +37203,7 @@
       <Z>279.287018</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36874,7 +37215,7 @@
       <Z>279.287018</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -37016,7 +37357,7 @@
       <Z>496.99234</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37028,7 +37369,7 @@
       <Z>496.99234</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37100,7 +37441,7 @@
       <Z>568.3511</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37112,7 +37453,7 @@
       <Z>568.3511</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37252,7 +37593,7 @@
       <Y>-817.925</Y>
       <Z>414.802</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37263,7 +37604,7 @@
       <Y>-817.925</Y>
       <Z>414.802</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37329,7 +37670,7 @@
       <Y>-1319.84</Y>
       <Z>246.266312</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37340,7 +37681,7 @@
       <Y>-1319.84</Y>
       <Z>246.266312</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37506,7 +37847,7 @@
       <Y>1044.231</Y>
       <Z>24.1395874</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37517,7 +37858,7 @@
       <Y>1044.231</Y>
       <Z>24.1395874</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37657,7 +37998,7 @@
       <Y>759.2292</Y>
       <Z>151.458618</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37668,7 +38009,7 @@
       <Y>759.2292</Y>
       <Z>151.458618</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -37972,7 +38313,7 @@
       <Z>121.232147</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -37984,7 +38325,7 @@
       <Z>121.232147</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38092,7 +38433,7 @@
       <Z>126.785889</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38104,7 +38445,7 @@
       <Z>126.785889</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38152,7 +38493,7 @@
       <Z>9.417848</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38164,7 +38505,7 @@
       <Z>9.417848</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38482,7 +38823,7 @@
       <Y>-5381.104</Y>
       <Z>35.76855</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38493,18 +38834,6 @@
       <Y>-5381.104</Y>
       <Z>35.76855</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>49775</Entry>
-    <Name>Provisioner Graka</Name>
-    <Position>
-      <X>-3491.57983</X>
-      <Y>-4368.7207</Y>
-      <Z>210.4924</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -38518,6 +38847,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>49775</Entry>
+    <Name>Provisioner Graka</Name>
+    <Position>
+      <X>-3491.57983</X>
+      <Y>-4368.7207</Y>
+      <Z>210.4924</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38565,7 +38906,7 @@
       <Z>241.510925</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38577,7 +38918,7 @@
       <Z>241.510925</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -38589,7 +38930,7 @@
       <Z>87.28399</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>CookingTrainer</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -38601,7 +38942,7 @@
       <Z>87.28399</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>CookingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -38937,7 +39278,7 @@
       <Y>-2740.14063</Y>
       <Z>1437.63989</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -38948,7 +39289,7 @@
       <Y>-2740.14063</Y>
       <Z>1437.63989</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -38970,7 +39311,7 @@
       <Y>-4429.5</Y>
       <Z>623.8745</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -38981,7 +39322,7 @@
       <Y>-4429.5</Y>
       <Z>623.8745</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -39181,7 +39522,7 @@
       <Z>9.417848</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39193,7 +39534,7 @@
       <Z>9.417848</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -39410,6 +39751,17 @@
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>50831</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>111.944557</X>
+      <Y>-591.3558</Y>
+      <Z>-19.82972</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>50983</Entry>
@@ -39916,7 +40268,7 @@
       <Z>1330.78625</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -39928,7 +40280,7 @@
       <Z>1330.78625</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -40187,7 +40539,7 @@
       <Z>13.9518785</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>ArchaeologyTrainer</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -40199,7 +40551,7 @@
       <Z>13.9518785</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>ArchaeologyTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -40259,7 +40611,7 @@
       <Z>104.599319</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40271,7 +40623,7 @@
       <Z>104.599319</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40349,7 +40701,7 @@
       <Y>423.762146</Y>
       <Z>4.161496</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>CookingTrainer</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40360,7 +40712,7 @@
       <Y>423.762146</Y>
       <Z>4.161496</Z>
     </Position>
-    <Type>CookingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40472,7 +40824,7 @@
       <Z>104.598793</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>BlacksmithingTrainer</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40496,7 +40848,7 @@
       <Z>104.598793</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>BlacksmithingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -40530,7 +40882,7 @@
       <Z>325.0175</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40542,7 +40894,7 @@
       <Z>325.0175</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40578,7 +40930,7 @@
       <Z>-0.3311922</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40590,17 +40942,6 @@
       <Z>-0.3311922</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>56705</Entry>
-    <Name>Singegruff</Name>
-    <Position>
-      <X>1528.80212</X>
-      <Y>-1806.38538</Y>
-      <Z>246.200089</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -40613,6 +40954,17 @@
       <Z>246.200089</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>56705</Entry>
+    <Name>Singegruff</Name>
+    <Position>
+      <X>1528.80212</X>
+      <Y>-1806.38538</Y>
+      <Z>246.200089</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40634,7 +40986,7 @@
       <Y>-1798.566</Y>
       <Z>246.1956</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>AlchemyTrainer</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40645,7 +40997,7 @@
       <Y>-1798.566</Y>
       <Z>246.1956</Z>
     </Position>
-    <Type>AlchemyTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40896,7 +41248,7 @@
       <Z>31.36738</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40908,7 +41260,7 @@
       <Z>31.36738</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -40999,7 +41351,7 @@
       <Z>16.98942</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41011,7 +41363,7 @@
       <Z>16.98942</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41089,7 +41441,7 @@
       <Y>787.3802</Y>
       <Z>527.4498</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41100,7 +41452,7 @@
       <Y>787.3802</Y>
       <Z>527.4498</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41364,7 +41716,7 @@
       <Y>-265.75174</Y>
       <Z>5.14631367</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41375,7 +41727,7 @@
       <Y>-265.75174</Y>
       <Z>5.14631367</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41397,7 +41749,7 @@
       <Y>-652.0018</Y>
       <Z>257.08432</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41408,7 +41760,7 @@
       <Y>-652.0018</Y>
       <Z>257.08432</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41441,7 +41793,7 @@
       <Y>873.6384</Y>
       <Z>108.438896</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41452,7 +41804,7 @@
       <Y>873.6384</Y>
       <Z>108.438896</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41730,7 +42082,7 @@
       <Y>-2404.87842</Y>
       <Z>83.56526</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -41741,7 +42093,7 @@
       <Y>-2404.87842</Y>
       <Z>83.56526</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42199,7 +42551,7 @@
       <Y>-259.847229</Y>
       <Z>0.1111361</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42210,7 +42562,7 @@
       <Y>-259.847229</Y>
       <Z>0.1111361</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42448,7 +42800,7 @@
       <Z>470.926</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>BlacksmithingTrainer</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42460,7 +42812,7 @@
       <Z>470.926</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>BlacksmithingTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42652,18 +43004,6 @@
       <Z>503.4204</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>64085</Entry>
-    <Name>Cullen Hammerbrow</Name>
-    <Position>
-      <X>812.324646</X>
-      <Y>189.6198</Y>
-      <Z>503.4204</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -42680,12 +43020,12 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
-    <Entry>64090</Entry>
-    <Name>Missy Pickwicker</Name>
+    <Entry>64085</Entry>
+    <Name>Cullen Hammerbrow</Name>
     <Position>
-      <X>803.2205</X>
-      <Y>186.31424</Y>
-      <Z>503.421021</Z>
+      <X>812.324646</X>
+      <Y>189.6198</Y>
+      <Z>503.4204</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
@@ -42701,6 +43041,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>64090</Entry>
+    <Name>Missy Pickwicker</Name>
+    <Position>
+      <X>803.2205</X>
+      <Y>186.31424</Y>
+      <Z>503.421021</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42820,7 +43172,7 @@
       <Z>470.949249</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -42832,7 +43184,7 @@
       <Z>470.949249</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43218,7 +43570,7 @@
       <Y>4902.924</Y>
       <Z>198.53772</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43229,17 +43581,6 @@
       <Y>4902.924</Y>
       <Z>198.53772</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>64607</Entry>
-    <Name>Commander Lo Ping</Name>
-    <Position>
-      <X>2084.06079</X>
-      <Y>4899.761</Y>
-      <Z>198.538727</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
@@ -43252,6 +43593,17 @@
       <Z>198.538727</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>64607</Entry>
+    <Name>Commander Lo Ping</Name>
+    <Position>
+      <X>2084.06079</X>
+      <Y>4899.761</Y>
+      <Z>198.538727</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43318,7 +43670,7 @@
       <Y>363.704865</Y>
       <Z>548.0995</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>ArchaeologyTrainer</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43329,7 +43681,7 @@
       <Y>363.704865</Y>
       <Z>548.0995</Z>
     </Position>
-    <Type>ArchaeologyTrainer</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43385,7 +43737,7 @@
       <Y>-1929.67017</Y>
       <Z>207.27533</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43396,7 +43748,7 @@
       <Y>-1929.67017</Y>
       <Z>207.27533</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43574,7 +43926,7 @@
       <Z>53.106823</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43586,7 +43938,7 @@
       <Z>53.106823</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43851,7 +44203,7 @@
       <Y>1682.92712</Y>
       <Z>932.66925</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43862,7 +44214,7 @@
       <Y>1682.92712</Y>
       <Z>932.66925</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43884,7 +44236,7 @@
       <Y>1708.88892</Y>
       <Z>925.2761</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -43895,7 +44247,7 @@
       <Y>1708.88892</Y>
       <Z>925.2761</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44035,7 +44387,7 @@
       <Y>1907.86316</Y>
       <Z>136.266388</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44046,7 +44398,7 @@
       <Y>1907.86316</Y>
       <Z>136.266388</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44171,7 +44523,7 @@
       <Y>3418.67017</Y>
       <Z>256.6992</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44182,7 +44534,7 @@
       <Y>3418.67017</Y>
       <Z>256.6992</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44271,7 +44623,7 @@
       <Y>505.046875</Y>
       <Z>2.635106</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44282,7 +44634,7 @@
       <Y>505.046875</Y>
       <Z>2.635106</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44329,7 +44681,7 @@
       <Z>151.3474</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44341,7 +44693,7 @@
       <Z>151.3474</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44377,7 +44729,7 @@
       <Z>28.5144062</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44389,7 +44741,7 @@
       <Z>28.5144062</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44412,7 +44764,7 @@
       <Y>579.493042</Y>
       <Z>613.759949</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -44423,17 +44775,6 @@
       <Y>579.493042</Y>
       <Z>613.759949</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>69321</Entry>
-    <Name>Herwin Steampop</Name>
-    <Position>
-      <X>5757.80566</X>
-      <Y>578.3906</Y>
-      <Z>613.760559</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -44446,6 +44787,17 @@
       <Z>613.760559</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>69321</Entry>
+    <Name>Herwin Steampop</Name>
+    <Position>
+      <X>5757.80566</X>
+      <Y>578.3906</Y>
+      <Z>613.760559</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -44500,7 +44852,7 @@
       <Y>584.6598</Y>
       <Z>614.9689</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -44511,7 +44863,7 @@
       <Y>584.6598</Y>
       <Z>614.9689</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -44545,7 +44897,7 @@
       <Z>103.920807</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -44557,18 +44909,6 @@
       <Z>103.920807</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>69975</Entry>
-    <Name>Captain Dirgehammer</Name>
-    <Position>
-      <X>-8781.12</X>
-      <Y>420.380219</Y>
-      <Z>105.232727</Z>
-    </Position>
-    <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -44582,6 +44922,18 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Repair</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>69975</Entry>
+    <Name>Captain Dirgehammer</Name>
+    <Position>
+      <X>-8781.12</X>
+      <Y>420.380219</Y>
+      <Z>105.232727</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -44967,7 +45319,7 @@
       <Z>272.413544</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -44979,7 +45331,7 @@
       <Z>272.413544</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45084,7 +45436,7 @@
       <Z>5.312688</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45096,7 +45448,7 @@
       <Z>5.312688</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45221,7 +45573,7 @@
       <Y>-5008.741</Y>
       <Z>2.05605173</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45232,7 +45584,7 @@
       <Y>-5008.741</Y>
       <Z>2.05605173</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45279,7 +45631,7 @@
       <Z>66.56943</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45291,7 +45643,7 @@
       <Z>66.56943</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45404,7 +45756,7 @@
       <Z>489.480438</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45416,7 +45768,7 @@
       <Z>489.480438</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45524,7 +45876,7 @@
       <Z>521.991455</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45536,7 +45888,7 @@
       <Z>521.991455</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45596,7 +45948,7 @@
       <Z>543.1158</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45608,7 +45960,7 @@
       <Z>543.1158</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
@@ -45691,7 +46043,7 @@
       <Y>-790.243042</Y>
       <Z>38.1297722</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45702,7 +46054,7 @@
       <Y>-790.243042</Y>
       <Z>38.1297722</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45738,7 +46090,7 @@
       <Z>55.4456673</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -45750,7 +46102,7 @@
       <Z>55.4456673</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -45774,7 +46126,7 @@
       <Z>139.304214</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45786,7 +46138,7 @@
       <Z>139.304214</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45893,7 +46245,7 @@
       <Z>72.74649</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45905,7 +46257,7 @@
       <Z>72.74649</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45953,7 +46305,7 @@
       <Z>134.067566</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -45965,7 +46317,7 @@
       <Z>134.067566</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46095,7 +46447,7 @@
       <Z>110.991585</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46107,7 +46459,7 @@
       <Z>110.991585</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46164,7 +46516,7 @@
       <Y>4849.03564</Y>
       <Z>128.3317</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46175,7 +46527,7 @@
       <Y>4849.03564</Y>
       <Z>128.3317</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46258,7 +46610,7 @@
       <Z>132.726151</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46270,7 +46622,7 @@
       <Z>132.726151</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46377,7 +46729,7 @@
       <Z>161.606659</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46389,7 +46741,7 @@
       <Z>161.606659</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46493,7 +46845,7 @@
       <Y>2537.375</Y>
       <Z>133.659378</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46504,17 +46856,6 @@
       <Y>2537.375</Y>
       <Z>133.659378</Z>
     </Position>
-    <Type>Repair</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>81096</Entry>
-    <Name>Ornuu</Name>
-    <Position>
-      <X>1720.908</X>
-      <Y>2527.83252</Y>
-      <Z>133.658783</Z>
-    </Position>
     <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -46527,6 +46868,17 @@
       <Z>133.658783</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>81096</Entry>
+    <Name>Ornuu</Name>
+    <Position>
+      <X>1720.908</X>
+      <Y>2527.83252</Y>
+      <Z>133.658783</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46562,7 +46914,7 @@
       <Z>76.639946</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46574,7 +46926,7 @@
       <Z>76.639946</Z>
     </Position>
     <Faction>Alliance</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46828,7 +47180,7 @@
       <Z>26.12989</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -46840,18 +47192,6 @@
       <Z>26.12989</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>82622</Entry>
-    <Name>Killga</Name>
-    <Position>
-      <X>-351.149323</X>
-      <Y>2183.823</Y>
-      <Z>28.6443558</Z>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -46865,6 +47205,18 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>82622</Entry>
+    <Name>Killga</Name>
+    <Position>
+      <X>-351.149323</X>
+      <Y>2183.823</Y>
+      <Z>28.6443558</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47040,7 +47392,7 @@
       <Y>1286.526</Y>
       <Z>64.83836</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47051,7 +47403,7 @@
       <Y>1286.526</Y>
       <Z>64.83836</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47200,7 +47552,7 @@
       <Y>1792.368</Y>
       <Z>81.1739</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47211,7 +47563,7 @@
       <Y>1792.368</Y>
       <Z>81.1739</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47627,7 +47979,7 @@
       <Z>18.2149143</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47639,7 +47991,7 @@
       <Z>18.2149143</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47745,7 +48097,7 @@
       <Y>2799.9873</Y>
       <Z>246.0801</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47756,7 +48108,7 @@
       <Y>2799.9873</Y>
       <Z>246.0801</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47923,7 +48275,7 @@
       <Z>132.579865</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -47935,7 +48287,7 @@
       <Z>132.579865</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -48098,7 +48450,7 @@
       <Y>1850.80042</Y>
       <Z>41.6203766</Z>
     </Position>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -48109,7 +48461,7 @@
       <Y>1850.80042</Y>
       <Z>41.6203766</Z>
     </Position>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -48329,7 +48681,7 @@
       <Z>12.714695</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -48341,7 +48693,7 @@
       <Z>12.714695</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -48398,7 +48750,7 @@
       <Z>19.1955338</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Vendor</Type>
+    <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -48410,7 +48762,7 @@
       <Z>19.1955338</Z>
     </Position>
     <Faction>Horde</Faction>
-    <Type>Repair</Type>
+    <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
@@ -49002,7 +49354,6 @@
       <Y>1173.14758</Y>
       <Z>167.831955</Z>
     </Position>
-    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -51919,7 +52270,6 @@
       <Y>-1946.87329</Y>
       <Z>568.2776</Z>
     </Position>
-    <Faction>Alliance</Faction>
     <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -52699,7 +53049,6 @@
       <Y>-1936.28</Y>
       <Z>568.78</Z>
     </Position>
-    <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
