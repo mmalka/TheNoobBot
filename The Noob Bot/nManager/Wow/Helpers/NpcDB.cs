@@ -140,7 +140,12 @@ namespace nManager.Wow.Helpers
                     }
                     if (count != 0)
                     {
-                        _listNpc.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
+                        _listNpc.Sort(delegate(Npc x, Npc y)
+                        {
+                            if (x.Entry == y.Entry)
+                                return (x.Type < y.Type ? -1 : 1);
+                            return (x.Entry < y.Entry ? -1 : 1);
+                        });
                         XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                     }
                     return count;
