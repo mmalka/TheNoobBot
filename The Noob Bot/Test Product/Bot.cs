@@ -596,8 +596,12 @@ namespace Test_Product
             foreach (TaxiLink availableTaxiLink in _availableTaxiLinks)
             {
                 bool found = false;
+                if (availableTaxiLink.PointB == 0)
+                    continue;
                 foreach (TaxiLink taxiLink in _availableTaxiLinks)
                 {
+                    if (taxiLink.PointB == 0)
+                        continue;
                     if (availableTaxiLink.PointA == taxiLink.PointA && availableTaxiLink.PointB == taxiLink.PointB)
                     {
                         if (found)
