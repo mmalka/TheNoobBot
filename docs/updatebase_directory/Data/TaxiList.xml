@@ -900,7 +900,7 @@
     <Xcoord>0.37898996472359</Xcoord>
     <Ycoord>0.67753624916077</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="20515" Name="Cosmowrench, Netherstorm" ContinentId="530">
+  <Taxi Faction="Neutral" Id="20515" Name="Cosmowrench, Netherstorm" ContinentId="530">
     <Position>
       <X>2973.19922</X>
       <Y>1848.45374</Y>
@@ -909,7 +909,7 @@
     <Xcoord>0.71914565563202</Xcoord>
     <Ycoord>0.72061532735825</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="22216" Name="Evergrove, Blade's Edge Mountains" ContinentId="530">
+  <Taxi Faction="Neutral" Id="22216" Name="Evergrove, Blade's Edge Mountains" ContinentId="530">
     <Position>
       <X>2975.634</X>
       <Y>5499.793</Y>
@@ -918,7 +918,7 @@
     <Xcoord>0.42136383056641</Xcoord>
     <Ycoord>0.72070169448853</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="18938" Name="Area 52, Netherstorm" ContinentId="530">
+  <Taxi Faction="Neutral" Id="18938" Name="Area 52, Netherstorm" ContinentId="530">
     <Position>
       <X>3078.104</X>
       <Y>3602.15625</Y>
@@ -945,7 +945,7 @@
     <Xcoord>0.50918477773666</Xcoord>
     <Ycoord>0.26892176270485</Ycoord>
   </Taxi>
-  <Taxi Faction="Horde" Id="18940" Name="Shattrath, Terokkar Forest" ContinentId="530">
+  <Taxi Faction="Neutral" Id="18940" Name="Shattrath, Terokkar Forest" ContinentId="530">
     <Position>
       <X>-1831.94751</X>
       <Y>5298.29932</Y>
@@ -3167,5 +3167,113 @@
     </Position>
     <Xcoord>0.37705102562904</Xcoord>
     <Ycoord>0.78501808643341</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18939" Name="Wildhammer Stronghold, Shadowmoon Valley" ContinentId="530">
+    <Position>
+      <X>-3980.96655</X>
+      <Y>2156.28979</Y>
+      <Z>104.92942</Z>
+    </Position>
+    <Xcoord>0.69401895999908</Xcoord>
+    <Ycoord>0.15362101793289</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="19581" Name="Altar of Sha'tar, Shadowmoon Valley" ContinentId="530">
+    <Position>
+      <X>-3062.62622</X>
+      <Y>741.9329</Y>
+      <Z>-10.1421213</Z>
+    </Position>
+    <Xcoord>0.80872094631195</Xcoord>
+    <Ycoord>0.2283129543066</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18809" Name="Allerian Stronghold, Terokkar Forest" ContinentId="530">
+    <Position>
+      <X>-2995.39917</X>
+      <Y>3873.27075</Y>
+      <Z>9.542254</Z>
+    </Position>
+    <Xcoord>0.55410611629486</Xcoord>
+    <Ycoord>0.23469926416874</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18789" Name="Telaar, Nagrand" ContinentId="530">
+    <Position>
+      <X>-2723.10059</X>
+      <Y>7302.836</Y>
+      <Z>88.6348648</Z>
+    </Position>
+    <Xcoord>0.27428874373436</Xcoord>
+    <Ycoord>0.25574570894241</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="16822" Name="Honor Hold, Hellfire Peninsula" ContinentId="530">
+    <Position>
+      <X>-665.8919</X>
+      <Y>2716.25757</Y>
+      <Z>94.78494</Z>
+    </Position>
+    <Xcoord>0.64830273389816</Xcoord>
+    <Ycoord>0.42327466607094</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18931" Name="Hellfire Peninsula, The Dark Portal" ContinentId="530">
+    <Position>
+      <X>-323.809784</X>
+      <Y>1027.61133</Y>
+      <Z>54.1565</Z>
+    </Position>
+    <Xcoord>0.78662341833115</Xcoord>
+    <Ycoord>0.45147919654846</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18785" Name="Temple of Telhamat, Hellfire Peninsula" ContinentId="530">
+    <Position>
+      <X>199.060989</X>
+      <Y>4238.418</Y>
+      <Z>121.726845</Z>
+    </Position>
+    <Xcoord>0.52404338121414</Xcoord>
+    <Ycoord>0.49438959360123</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18788" Name="Telredor, Zangarmarsh" ContinentId="530">
+    <Position>
+      <X>210.492355</X>
+      <Y>6065.088</Y>
+      <Z>148.3181</Z>
+    </Position>
+    <Xcoord>0.37549930810928</Xcoord>
+    <Ycoord>0.49557864665985</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="20234" Name="Shatter Point, Hellfire Peninsula" ContinentId="530">
+    <Position>
+      <X>279.39682</X>
+      <Y>1489.7594</Y>
+      <Z>-15.5225859</Z>
+    </Position>
+    <Xcoord>0.74860113859177</Xcoord>
+    <Ycoord>0.50066828727722</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="22485" Name="Orebor Harborage, Zangarmarsh" ContinentId="530">
+    <Position>
+      <X>963.428162</X>
+      <Y>7399.578</Y>
+      <Z>29.2494221</Z>
+    </Position>
+    <Xcoord>0.26663729548454</Xcoord>
+    <Ycoord>0.55694133043289</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="21107" Name="Toshley's Station, Blade's Edge Mountains" ContinentId="530">
+    <Position>
+      <X>1860.72742</X>
+      <Y>5528.27441</Y>
+      <Z>276.6548</Z>
+    </Position>
+    <Xcoord>0.41885790228844</Xcoord>
+    <Ycoord>0.6295313835144</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="18937" Name="Sylvanaar, Blade's Edge Mountains" ContinentId="530">
+    <Position>
+      <X>2187.882</X>
+      <Y>6794.00049</Y>
+      <Z>183.330017</Z>
+    </Position>
+    <Xcoord>0.31593218445778</Xcoord>
+    <Ycoord>0.65612471103668</Ycoord>
   </Taxi>
 </ArrayOfTaxi>
