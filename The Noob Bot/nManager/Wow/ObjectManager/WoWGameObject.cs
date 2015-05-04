@@ -324,7 +324,7 @@ namespace nManager.Wow.ObjectManager
             get { return QuestItem(3); }
         }
 
-        private uint Data(uint offset)
+        public uint Data(uint offset)
         {
             try
             {

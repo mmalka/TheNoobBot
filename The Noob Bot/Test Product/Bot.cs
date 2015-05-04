@@ -30,16 +30,21 @@ namespace Test_Product
         private static bool _xmlProfile = true;
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
         private static readonly Thread RadarThread = new Thread(LaunchRadar) { Name = "RadarThread" };
-        private static readonly Thread TaxiThread = new Thread(LaunchTaxi) { Name = "RadarThread" };
+        private static readonly Thread TaxiThread = new Thread(LaunchTaxi) { Name = "TaxiThread" };
 
         public static void LaunchRadar()
         {
             int d;
+            var myConn = new MySqlConnection("server=192.168.10.222; user id=root; password=aabbcc; database=offydump;");
+            myConn.Open();
             // Various mount repair, portable mailbox, repair robots, Guild Page...
             List<int> BlackListed = new List<int>(new int[] {32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
             while (true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(650 * 2); // Every 2 ObjectManager refresh
+                // Prevent corruptions while the game loads after a zone change
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                    continue;
                 List<Npc> npcRadar = new List<Npc>();
                 List<WoWGameObject> Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
                 List<WoWUnit> Vendors = ObjectManager.GetWoWUnitVendor();
@@ -55,9 +60,80 @@ namespace Test_Product
                 List<WoWUnit> NpcQuesters = ObjectManager.GetWoWUnitQuester();
                 List<WoWGameObject> ObjectQuesters = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver);
                 List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.SpellFocus);
+
+                List<WoWGameObject> AllGos = ObjectManager.GetObjectWoWGameObject();
+
+                foreach (WoWGameObject go in AllGos)
+                {
+                    if (go.Entry != 0 && go.Name != "" && go.CreatedBy == 0)
+                    {
+                        string query = "SELECT entry FROM gameobject WHERE entry = " + go.Entry + " AND " +
+                            "map = " + Usefuls.RealContinentId + " AND " +
+                            "SQRT((x-" + go.Position.X + ")*(x-" + go.Position.X + ") + " +
+                             "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ")) < 0.5;";
+                        var cmd = new MySqlCommand(query, myConn);
+                        MySqlDataReader result = cmd.ExecuteReader();
+                        if (!result.HasRows && go.GOType != WoWGameObjectType.MoTransport)
+                        {
+                            result.Close();
+                            Quaternion rotations = go.Rotations;
+                            Matrix4 matrice = go.WorldMatrix;
+                            query = "INSERT INTO gameobject (entry,map,x,y,z,o,r0,r1,r2,r3,m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44) VALUES (" + go.Entry + "," + Usefuls.RealContinentId + "," + go.Position.X + "," + go.Position.Y + "," + go.Position.Z + "," + go.Orientation + "," + rotations.X + "," + rotations.Y + "," + rotations.Z + "," + rotations.W + "," +
+                                matrice.xx + "," + matrice.xy + "," + matrice.xz + "," + matrice.xw + "," + matrice.yx + "," + matrice.yy + "," + matrice.yz + "," + matrice.yw + "," + matrice.zx + "," + matrice.zy + "," + matrice.zz + "," + matrice.zw + "," + matrice.wx + "," + matrice.wy + "," + matrice.wz + "," + matrice.ww +");";
+                            cmd = new MySqlCommand(query, myConn);
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                            result.Close();
+                        //bool newAdded = false;
+                        query = "SELECT entry,questitem1 FROM gameobject_template WHERE entry = " + go.Entry + ";";
+                        cmd = new MySqlCommand(query, myConn);
+                        result = cmd.ExecuteReader();
+                        if (!result.HasRows)
+                        {
+                            result.Close();
+                            query = "INSERT IGNORE INTO gameobject_template (entry,type,name,iconname,castbarcaption,model,faction,flags,size";
+                            for (uint i = 0; i < 32; i++)
+                                query += ",data" + i;
+                            query += ",questitem1,questitem2,questitem3,questitem4) VALUES (" + go.Entry + "," + (uint)go.GOType + ",'" + go.Name.Replace("'", "\\'") + "','" + go.IconName + "','" + go.CastBarCaption + "'," + go.DisplayId + "," + go.Faction + "," + (uint)go.GOFlags + "," + go.Size;
+                            for (uint i = 0; i < 32; i++)
+                                query += "," + go.Data(i);
+                            query += "," + go.QuestItem1 + "," + go.QuestItem2 + "," + go.QuestItem3 + "," + go.QuestItem4;
+                            query += ");";
+                            cmd = new MySqlCommand(query, myConn);
+                            cmd.ExecuteNonQuery();
+                            //newAdded = true;
+                        }
+                        else
+                        {
+                            /*result.Read();
+                            int questitem = result.GetInt32(1);*/
+                            result.Close();
+                            /*if (questitem > 1000000 || questitem < 0) // 1065353216
+                            {
+                                query = "UPDATE gameobject_template set size = " + go.Size + ", questitem1 = " + go.QuestItem1 + ", questitem2 = " + go.QuestItem2 + ", questitem3 = " + go.QuestItem3 + ", questitem4 = " + go.QuestItem4 + " WHERE entry =" + go.Entry + ";";
+                                cmd = new MySqlCommand(query, myConn);
+                                cmd.ExecuteNonQuery();
+                            }*/
+                        }
+                        /*if (!newAdded && go.IconName != "")
+                        {
+                            query = "UPDATE gameobject_template set iconname='" + go.IconName + "' WHERE entry =" + go.Entry + ";";
+                            cmd = new MySqlCommand(query, myConn);
+                            cmd.ExecuteNonQuery();
+                        }
+                        if (!newAdded && go.CastBarCaption != "")
+                        {
+                            query = "UPDATE gameobject_template set castbarcaption='" + go.CastBarCaption + "' WHERE entry =" + go.Entry + ";";
+                            cmd = new MySqlCommand(query, myConn);
+                            cmd.ExecuteNonQuery();
+                        }*/
+                    }
+                }
+
                 foreach (WoWGameObject o in Mailboxes)
                 {
-                    if (BlackListed.Contains(o.Entry))
+                    if (o.CreatedBy != 0)
                         continue;
                     npcRadar.Add(new Npc
                     {
@@ -394,6 +470,11 @@ namespace Test_Product
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500);
+                    if (!Gossip.IsTaxiWindowOpen())
+                    {
+                        Gossip.SelectGossip(Gossip.GossipOption.Taxi);
+                        Thread.Sleep(250 + Usefuls.Latency);
+                    }
                 }
                 Thread.Sleep(200);
             }
@@ -447,7 +528,12 @@ namespace Test_Product
             }
             if (count != 0)
             {
-                qesterList.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
+                qesterList.Sort(delegate(Npc x, Npc y)
+                {
+                    if (x.Entry == y.Entry)
+                        return (x.Type < y.Type ? -1 : 1);
+                    return (x.Entry < y.Entry ? -1 : 1);
+                });
                 XmlSerializer.Serialize(Application.StartupPath + "\\Data\\QuestersDB.xml", qesterList);
             }
             return count;
@@ -639,6 +725,51 @@ namespace Test_Product
             XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiLinks.xml", _availableTaxiLinks);
         }
 
+        private static void MergeFiles()
+        {
+            List<Npc> qesterListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- QuestersDB.xml");
+            List<Npc> qesterListOther = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
+            List<Npc> qesterListResult = new List<Npc>();
+            foreach (Npc quester in qesterListOriginal)
+            {
+                if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 60) == null)
+                    qesterListResult.Add(quester);
+            }
+            foreach (Npc quester in qesterListOther)
+            {
+                if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 60) == null)
+                    qesterListResult.Add(quester);
+            }
+            qesterListResult.Sort(delegate(Npc x, Npc y)
+                {
+                    if (x.Entry == y.Entry)
+                        return (x.Type < y.Type ? -1 : 1);
+                    return (x.Entry < y.Entry ? -1 : 1);
+                });
+            XmlSerializer.Serialize(Application.StartupPath + "\\Data\\QuestersDBnew.xml", qesterListResult);
+
+            List<Npc> npcListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- NpcDB.xml");
+            List<Npc> npcListOther = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\NpcDB.xml");
+            List<Npc> npcListResult = new List<Npc>();
+            foreach (Npc npc in npcListOriginal)
+            {
+                if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 30) == null)
+                    npcListResult.Add(npc);
+            }
+            foreach (Npc npc in npcListOther)
+            {
+                if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 30) == null)
+                    npcListResult.Add(npc);
+            }
+            npcListResult.Sort(delegate(Npc x, Npc y)
+            {
+                if (x.Entry == y.Entry)
+                    return (x.Type < y.Type ? -1 : 1);
+                return (x.Entry < y.Entry ? -1 : 1);
+            });
+            XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDBnew.xml", npcListResult);
+        }
+
         public static bool Pulse()
         {
             try
@@ -646,13 +777,14 @@ namespace Test_Product
                 // Update spell list
                 //SpellManager.UpdateSpellBook();
                 DoTaxiLinksCleaning();
+                //MergeFiles();
                 RadarThread.Start();
                 TaxiThread.Start();
 
                 while (TaxiThread.IsAlive)
                 {
                     Application.DoEvents();
-                    Thread.Sleep(1);
+                    Thread.Sleep(100);
                 }
                 /*var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
                 for (uint i = 1; i <= 200000; i += 2500)
