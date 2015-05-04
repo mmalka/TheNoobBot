@@ -3253,9 +3253,9 @@
     <Entry>2155</Entry>
     <Name>Sentinel Shayla Nightbreeze</Name>
     <Position>
-      <X>10077.3379</X>
-      <Y>1803.94446</Y>
-      <Z>1327.36719</Z>
+      <X>10109.6836</X>
+      <Y>1750.51465</Y>
+      <Z>1334.67664</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -3265,9 +3265,9 @@
     <Entry>2155</Entry>
     <Name>Sentinel Shayla Nightbreeze</Name>
     <Position>
-      <X>10109.6836</X>
-      <Y>1750.51465</Y>
-      <Z>1334.67664</Z>
+      <X>10077.3379</X>
+      <Y>1803.94446</Y>
+      <Z>1327.36719</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -4928,6 +4928,30 @@
     <Entry>3209</Entry>
     <Name>Brave Windfeather</Name>
     <Position>
+      <X>-2932.33032</X>
+      <Y>-259.37915</Y>
+      <Z>58.9194031</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3209</Entry>
+    <Name>Brave Windfeather</Name>
+    <Position>
+      <X>-2947.32324</X>
+      <Y>-345.720917</Y>
+      <Z>56.8651466</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3209</Entry>
+    <Name>Brave Windfeather</Name>
+    <Position>
       <X>-2998.01563</X>
       <Y>-422.803223</Y>
       <Z>46.86487</Z>
@@ -4955,6 +4979,18 @@
       <X>-789.8542</X>
       <Y>-494.505219</Y>
       <Z>-32.2755547</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>3287</Entry>
+    <Name>Hana'zua</Name>
+    <Position>
+      <X>-397.760956</X>
+      <Y>-4108.98633</Y>
+      <Z>50.2044678</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -6091,9 +6127,9 @@
     <Entry>3901</Entry>
     <Name>Illiyana</Name>
     <Position>
-      <X>2991.78516</X>
-      <Y>-3263.40942</Y>
-      <Z>161.488342</Z>
+      <X>3001.164</X>
+      <Y>-3322.58423</Y>
+      <Z>152.173157</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -6103,9 +6139,9 @@
     <Entry>3901</Entry>
     <Name>Illiyana</Name>
     <Position>
-      <X>3001.164</X>
-      <Y>-3322.58423</Y>
-      <Z>152.173157</Z>
+      <X>2991.78516</X>
+      <Y>-3263.40942</Y>
+      <Z>161.488342</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -6708,12 +6744,48 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>4563</Entry>
+    <Name>Kaal Soulreaper</Name>
+    <Position>
+      <X>1775.98</X>
+      <Y>46.1265</Y>
+      <Z>-61.4896</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>4566</Entry>
     <Name>Kaelystia Hatebringer</Name>
     <Position>
       <X>1788.19</X>
       <Y>57.5156</Y>
       <Z>-61.4896927</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4567</Entry>
+    <Name>Pierce Shackleton</Name>
+    <Position>
+      <X>1791.48</X>
+      <Y>53.4081</Y>
+      <Z>-61.4925041</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>4568</Entry>
+    <Name>Anastasia Hartwell</Name>
+    <Position>
+      <X>1813.74</X>
+      <Y>56.4138</Y>
+      <Z>-47.38685</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -8028,6 +8100,18 @@
     <Entry>5639</Entry>
     <Name>Craven Drok</Name>
     <Position>
+      <X>1840.68823</X>
+      <Y>-4407.98926</Y>
+      <Z>4.729097</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5639</Entry>
+    <Name>Craven Drok</Name>
+    <Position>
       <X>1785.02673</X>
       <Y>-4373.386</Y>
       <Z>-16.0317764</Z>
@@ -8167,6 +8251,18 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5753</Entry>
+    <Name>Martha Strain</Name>
+    <Position>
+      <X>1775</X>
+      <Y>50.9962</Y>
+      <Z>-61.4895477</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>5769</Entry>
@@ -8566,9 +8662,9 @@
     <Entry>6175</Entry>
     <Name>John Turner</Name>
     <Position>
-      <X>-4983.74072</X>
-      <Y>-969.769653</Y>
-      <Z>501.659454</Z>
+      <X>-4914.38867</X>
+      <Y>-907.5252</Y>
+      <Z>501.659363</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -8578,9 +8674,9 @@
     <Entry>6175</Entry>
     <Name>John Turner</Name>
     <Position>
-      <X>-4914.38867</X>
-      <Y>-907.5252</Y>
-      <Z>501.659363</Z>
+      <X>-4983.74072</X>
+      <Y>-969.769653</Y>
+      <Z>501.659454</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -8865,6 +8961,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6566</Entry>
+    <Name>Estelle Gendry</Name>
+    <Position>
+      <X>1389.63367</X>
+      <Y>123.821182</Y>
+      <Z>-62.4511375</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>6568</Entry>
@@ -10162,6 +10269,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>9076</Entry>
+    <Name>Ghede</Name>
+    <Position>
+      <X>-1002.88068</X>
+      <Y>-291.7811</Y>
+      <Z>159.315277</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>9087</Entry>
     <Name>Bashana Runetotem</Name>
     <Position>
@@ -10789,6 +10908,18 @@
     <Entry>10879</Entry>
     <Name>Harbinger Balthazad</Name>
     <Position>
+      <X>1623.87</X>
+      <Y>302.475555</Y>
+      <Z>-62.1772461</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10879</Entry>
+    <Name>Harbinger Balthazad</Name>
+    <Position>
       <X>1661.87146</X>
       <Y>252.075943</Y>
       <Z>-62.17813</Z>
@@ -10796,6 +10927,54 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10880</Entry>
+    <Name>Warcaller Gorlach</Name>
+    <Position>
+      <X>1568.697</X>
+      <Y>-4333.923</Y>
+      <Z>22.4633</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10880</Entry>
+    <Name>Warcaller Gorlach</Name>
+    <Position>
+      <X>1683.057</X>
+      <Y>-4411.756</Y>
+      <Z>27.723175</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10880</Entry>
+    <Name>Warcaller Gorlach</Name>
+    <Position>
+      <X>1591.241</X>
+      <Y>-4411.038</Y>
+      <Z>15.011014</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10880</Entry>
+    <Name>Warcaller Gorlach</Name>
+    <Position>
+      <X>1765.48914</X>
+      <Y>-4524.927</Y>
+      <Z>25.8058376</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>10880</Entry>
@@ -10810,12 +10989,48 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>10880</Entry>
+    <Name>Warcaller Gorlach</Name>
+    <Position>
+      <X>1611.84827</X>
+      <Y>-4289.255</Y>
+      <Z>20.562336</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10881</Entry>
+    <Name>Bluff Runner Windstrider</Name>
+    <Position>
+      <X>-1280.13538</X>
+      <Y>-20.4549961</Y>
+      <Z>142.170761</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>10881</Entry>
     <Name>Bluff Runner Windstrider</Name>
     <Position>
       <X>-1289.14026</X>
       <Y>109.606056</Y>
       <Z>131.102325</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10881</Entry>
+    <Name>Bluff Runner Windstrider</Name>
+    <Position>
+      <X>-1258.51855</X>
+      <Y>54.309433</Y>
+      <Z>126.980415</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -11621,7 +11836,67 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-333.8926</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-417.438171</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>-31.1677113</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-166.801468</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>103.496796</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12379,9 +12654,9 @@
     <Entry>12864</Entry>
     <Name>Warsong Outrider</Name>
     <Position>
-      <X>2674.28784</X>
-      <Y>-3091.05322</Y>
-      <Z>160.072571</Z>
+      <X>2535.545</X>
+      <Y>-2832.99951</Y>
+      <Z>158.659973</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12391,9 +12666,33 @@
     <Entry>12864</Entry>
     <Name>Warsong Outrider</Name>
     <Position>
-      <X>2535.545</X>
-      <Y>-2832.99951</Y>
-      <Z>158.659973</Z>
+      <X>2886.49072</X>
+      <Y>-3633.425</Y>
+      <Z>94.79169</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>12864</Entry>
+    <Name>Warsong Outrider</Name>
+    <Position>
+      <X>2744.85913</X>
+      <Y>-3308.68823</Y>
+      <Z>130.9799</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>12864</Entry>
+    <Name>Warsong Outrider</Name>
+    <Position>
+      <X>2674.28784</X>
+      <Y>-3091.05322</Y>
+      <Z>160.072571</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12753,9 +13052,33 @@
     <Entry>14375</Entry>
     <Name>Scout Stronghand</Name>
     <Position>
+      <X>1592.521</X>
+      <Y>-4319.152</Y>
+      <Z>21.02661</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>14375</Entry>
+    <Name>Scout Stronghand</Name>
+    <Position>
       <X>1700.55676</X>
       <Y>-4312.92627</Y>
       <Z>30.7021351</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>14375</Entry>
+    <Name>Scout Stronghand</Name>
+    <Position>
+      <X>1516.981</X>
+      <Y>-4353.02051</Y>
+      <Z>20.5880775</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13407,6 +13730,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>15281</Entry>
+    <Name>Lanthan Perilon</Name>
+    <Position>
+      <X>10302.25</X>
+      <Y>-6229.30273</Y>
+      <Z>26.6232166</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>15282</Entry>
     <Name>Aurel Goldleaf</Name>
     <Position>
@@ -13484,6 +13819,18 @@
       <X>10419.6553</X>
       <Y>-6318.61768</Y>
       <Z>35.5738831</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>15301</Entry>
+    <Name>Outrunner Alarion</Name>
+    <Position>
+      <X>9984.044</X>
+      <Y>-6478.019</Y>
+      <Z>0.9975904</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -14205,6 +14552,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>16275</Entry>
+    <Name>Noellene</Name>
+    <Position>
+      <X>9516.046</X>
+      <Y>-6870.96436</Y>
+      <Z>18.7508774</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>16276</Entry>
     <Name>Ponaris</Name>
     <Position>
@@ -14462,6 +14821,162 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>16646</Entry>
+    <Name>Alamma</Name>
+    <Position>
+      <X>9775.048</X>
+      <Y>-7286.24854</Y>
+      <Z>14.6707153</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16647</Entry>
+    <Name>Talionia</Name>
+    <Position>
+      <X>9773.275</X>
+      <Y>-7301.98</Y>
+      <Z>14.6691942</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16648</Entry>
+    <Name>Zanien</Name>
+    <Position>
+      <X>9788.513</X>
+      <Y>-7285.69873</Y>
+      <Z>14.6708746</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16651</Entry>
+    <Name>Zaedana</Name>
+    <Position>
+      <X>10001.5322</X>
+      <Y>-7093.24072</Y>
+      <Z>47.706974</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16652</Entry>
+    <Name>Quithas</Name>
+    <Position>
+      <X>10010.4668</X>
+      <Y>-7108.825</Y>
+      <Z>47.706974</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16653</Entry>
+    <Name>Inethven</Name>
+    <Position>
+      <X>9994.692</X>
+      <Y>-7117.5625</Y>
+      <Z>47.7059479</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16655</Entry>
+    <Name>Harene Plainwalker</Name>
+    <Position>
+      <X>9703.988</X>
+      <Y>-7265.894</Y>
+      <Z>16.10391</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16658</Entry>
+    <Name>Aldrae</Name>
+    <Position>
+      <X>9938.599</X>
+      <Y>-7043.92627</Y>
+      <Z>47.7152443</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16661</Entry>
+    <Name>Gez'li</Name>
+    <Position>
+      <X>9703.725</X>
+      <Y>-7269.514</Y>
+      <Z>16.1817741</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16667</Entry>
+    <Name>Danwe</Name>
+    <Position>
+      <X>9822.146</X>
+      <Y>-7333.874</Y>
+      <Z>26.2815247</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16669</Entry>
+    <Name>Bemarrin</Name>
+    <Position>
+      <X>9841.874</X>
+      <Y>-7362.385</Y>
+      <Z>18.5930977</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16681</Entry>
+    <Name>Champion Bachi</Name>
+    <Position>
+      <X>9850.974</X>
+      <Y>-7517.683</Y>
+      <Z>19.736124</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16684</Entry>
+    <Name>Zelanis</Name>
+    <Position>
+      <X>9732.889</X>
+      <Y>-7366.402</Y>
+      <Z>24.3339233</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>16768</Entry>
     <Name>Nurguni</Name>
     <Position>
@@ -14578,6 +15093,18 @@
       <Z>102.274437</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>16802</Entry>
+    <Name>Lor'themar Theron</Name>
+    <Position>
+      <X>9990.497</X>
+      <Y>-7052.52148</Y>
+      <Z>45.3647461</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -15255,9 +15782,9 @@
     <Entry>17222</Entry>
     <Name>Artificer Daelo</Name>
     <Position>
-      <X>-4209.02148</X>
-      <Y>-12512.6631</Y>
-      <Z>45.0842</Z>
+      <X>-4157.57</X>
+      <Y>-12470.19</Y>
+      <Z>44.9367065</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -15267,9 +15794,9 @@
     <Entry>17222</Entry>
     <Name>Artificer Daelo</Name>
     <Position>
-      <X>-4157.57</X>
-      <Y>-12470.19</Y>
-      <Z>44.9367065</Z>
+      <X>-4209.02148</X>
+      <Y>-12512.6631</Y>
+      <Z>45.0842</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -15669,6 +16196,30 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>17717</Entry>
+    <Name>Knight-Lord Bloodvalor</Name>
+    <Position>
+      <X>9869.697</X>
+      <Y>-7482.099</Y>
+      <Z>14.89747</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>17718</Entry>
+    <Name>Magister Astalor Bloodsworn</Name>
+    <Position>
+      <X>9861.31</X>
+      <Y>-7516.008</Y>
+      <Z>-8.061213</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>17804</Entry>
     <Name>Squire Rowe</Name>
     <Position>
@@ -15750,6 +16301,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>17849</Entry>
+    <Name>Slain Outrunner</Name>
+    <Position>
+      <X>9870.997</X>
+      <Y>-6557.191</Y>
+      <Z>10.29913</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>17856</Entry>
     <Name>Gzhun'tt</Name>
     <Position>
@@ -15808,9 +16371,9 @@
     <Entry>17901</Entry>
     <Name>Keleth</Name>
     <Position>
-      <X>-230.332687</X>
-      <Y>5544.19</Y>
-      <Z>24.2795429</Z>
+      <X>-226.534378</X>
+      <Y>5448.12061</Y>
+      <Z>21.7431583</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -15819,9 +16382,9 @@
     <Entry>17901</Entry>
     <Name>Keleth</Name>
     <Position>
-      <X>-226.534378</X>
-      <Y>5448.12061</Y>
-      <Z>21.7431583</Z>
+      <X>-230.332687</X>
+      <Y>5544.19</Y>
+      <Z>24.2795429</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -16766,9 +17329,9 @@
     <Entry>18416</Entry>
     <Name>Huntress Kima</Name>
     <Position>
-      <X>-2619.64014</X>
-      <Y>7311.14453</Y>
-      <Z>24.0888481</Z>
+      <X>-2516.62036</X>
+      <Y>7307.707</Y>
+      <Z>4.560057</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -16778,9 +17341,9 @@
     <Entry>18416</Entry>
     <Name>Huntress Kima</Name>
     <Position>
-      <X>-2516.62036</X>
-      <Y>7307.707</Y>
-      <Z>4.560057</Z>
+      <X>-2619.64014</X>
+      <Y>7311.14453</Y>
+      <Z>24.0888481</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -17860,9 +18423,20 @@
     <Entry>19684</Entry>
     <Name>Haggard War Veteran</Name>
     <Position>
-      <X>-1608.69385</X>
-      <Y>5344.68555</Y>
-      <Z>17.0838432</Z>
+      <X>-1854.43311</X>
+      <Y>5126.54639</Y>
+      <Z>-38.86083</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19684</Entry>
+    <Name>Haggard War Veteran</Name>
+    <Position>
+      <X>-1601.203</X>
+      <Y>5162.662</Y>
+      <Z>-30.4957733</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -17882,9 +18456,20 @@
     <Entry>19684</Entry>
     <Name>Haggard War Veteran</Name>
     <Position>
-      <X>-1601.203</X>
-      <Y>5162.662</Y>
-      <Z>-30.4957733</Z>
+      <X>-1608.69385</X>
+      <Y>5344.68555</Y>
+      <Z>17.0838432</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19684</Entry>
+    <Name>Haggard War Veteran</Name>
+    <Position>
+      <X>-1955.30188</X>
+      <Y>5184.22266</Y>
+      <Z>16.9774113</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -17915,9 +18500,9 @@
     <Entry>19705</Entry>
     <Name>Master Daellis Dawnstrike</Name>
     <Position>
-      <X>2972.00244</X>
-      <Y>2402.41064</Y>
-      <Z>152.316238</Z>
+      <X>2998.01245</X>
+      <Y>2330.246</Y>
+      <Z>159.271378</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -17927,9 +18512,9 @@
     <Entry>19705</Entry>
     <Name>Master Daellis Dawnstrike</Name>
     <Position>
-      <X>2998.01245</X>
-      <Y>2330.246</Y>
-      <Z>159.271378</Z>
+      <X>2972.00244</X>
+      <Y>2402.41064</Y>
+      <Z>152.316238</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -17953,6 +18538,17 @@
       <X>-1867.6123</X>
       <Y>5324.74658</Y>
       <Z>-12.4281387</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>19715</Entry>
+    <Name>Ezekiel</Name>
+    <Position>
+      <X>-1892.83655</X>
+      <Y>5532.45068</Y>
+      <Z>-12.4281378</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -18508,6 +19104,18 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
+    <Entry>20724</Entry>
+    <Name>Herald Amorlin</Name>
+    <Position>
+      <X>9631.353</X>
+      <Y>-7119.37158</Y>
+      <Z>14.3260956</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>20735</Entry>
     <Name>Archmage Lan'dalock</Name>
     <Position>
@@ -18722,177 +19330,9 @@
     <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
-      <X>-3179.16162</X>
-      <Y>1520.91943</Y>
-      <Z>60.7345467</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3623.31885</X>
-      <Y>1729.33765</Y>
-      <Z>40.5373421</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3713.42871</X>
-      <Y>1870.6123</Y>
-      <Z>84.7283859</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3518.51074</X>
-      <Y>1698.21655</Y>
-      <Z>61.2681923</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3416.41626</X>
-      <Y>1654.24121</Y>
-      <Z>109.759552</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3525.5022</X>
-      <Y>1912.45142</Y>
-      <Z>78.26764</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3769.68262</X>
-      <Y>1610.79419</Y>
-      <Z>42.7629051</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3508.709</X>
-      <Y>1824.76721</Y>
-      <Z>90.86812</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3872.494</X>
-      <Y>1345.33752</Y>
-      <Z>44.5447464</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3595.792</X>
-      <Y>1653.43774</Y>
-      <Z>40.8225822</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3215.7478</X>
-      <Y>1614.328</Y>
-      <Z>70.1827</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3171.59888</X>
-      <Y>1320.76416</Y>
-      <Z>20.6739712</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3657.746</X>
-      <Y>1842.76086</Y>
-      <Z>60.86353</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3279.8313</X>
-      <Y>1683.30933</Y>
-      <Z>74.74806</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3682.04224</X>
-      <Y>1613.273</Y>
-      <Z>42.1513519</Z>
+      <X>-3832.34619</X>
+      <Y>1559.1897</Y>
+      <Z>42.1027565</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -18914,9 +19354,21 @@
     <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
-      <X>-3349.20923</X>
-      <Y>1752.99084</Y>
-      <Z>101.8521</Z>
+      <X>-3832.38281</X>
+      <Y>1281.477</Y>
+      <Z>53.73852</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3279.8313</X>
+      <Y>1683.30933</Y>
+      <Z>74.74806</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -18938,33 +19390,33 @@
     <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
-      <X>-3746.12329</X>
-      <Y>1279.5387</Y>
-      <Z>109.0947</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3832.34619</X>
-      <Y>1559.1897</Y>
-      <Z>42.1027565</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
       <X>-3235.2207</X>
       <Y>1495.627</Y>
       <Z>53.4539528</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3518.51074</X>
+      <Y>1698.21655</Y>
+      <Z>61.2681923</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3508.709</X>
+      <Y>1824.76721</Y>
+      <Z>90.86812</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -18986,9 +19438,81 @@
     <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
-      <X>-3832.38281</X>
-      <Y>1281.477</Y>
-      <Z>53.73852</Z>
+      <X>-3713.42871</X>
+      <Y>1870.6123</Y>
+      <Z>84.7283859</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3349.20923</X>
+      <Y>1752.99084</Y>
+      <Z>101.8521</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3872.494</X>
+      <Y>1345.33752</Y>
+      <Z>44.5447464</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3682.04224</X>
+      <Y>1613.273</Y>
+      <Z>42.1513519</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3595.792</X>
+      <Y>1653.43774</Y>
+      <Z>40.8225822</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3769.68262</X>
+      <Y>1610.79419</Y>
+      <Z>42.7629051</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3179.16162</X>
+      <Y>1520.91943</Y>
+      <Z>60.7345467</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19001,6 +19525,90 @@
       <X>-3335.87817</X>
       <Y>1646.00842</Y>
       <Z>90.32566</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3416.41626</X>
+      <Y>1654.24121</Y>
+      <Z>109.759552</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3623.31885</X>
+      <Y>1729.33765</Y>
+      <Z>40.5373421</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3657.746</X>
+      <Y>1842.76086</Y>
+      <Z>60.86353</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3525.5022</X>
+      <Y>1912.45142</Y>
+      <Z>78.26764</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3746.12329</X>
+      <Y>1279.5387</Y>
+      <Z>109.0947</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3171.59888</X>
+      <Y>1320.76416</Y>
+      <Z>20.6739712</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21050</Entry>
+    <Name>Enraged Earth Spirit</Name>
+    <Position>
+      <X>-3215.7478</X>
+      <Y>1614.328</Y>
+      <Z>70.1827</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19034,9 +19642,153 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3379.698</X>
-      <Y>1735.35962</Y>
-      <Z>100.807724</Z>
+      <X>-3661.93628</X>
+      <Y>1781.1084</Y>
+      <Z>39.6189</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3774.39966</X>
+      <Y>1543.47827</Y>
+      <Z>45.3107948</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3845.56641</X>
+      <Y>1367.45959</Y>
+      <Z>40.7067375</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3885.26563</X>
+      <Y>1301.57434</Y>
+      <Z>39.89381</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3270.50513</X>
+      <Y>1375.7417</Y>
+      <Z>50.3252869</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3565.04</X>
+      <Y>1683.558</Y>
+      <Z>38.9655647</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3439.07764</X>
+      <Y>1781.3938</Y>
+      <Z>100.810318</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3545.971</X>
+      <Y>1618.77332</Y>
+      <Z>46.8014641</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3824.46582</X>
+      <Y>1577.05713</Y>
+      <Z>39.5108147</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3364.4873</X>
+      <Y>1626.33374</Y>
+      <Z>68.00736</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3711.98657</X>
+      <Y>1521.403</Y>
+      <Z>48.7531967</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3735.87549</X>
+      <Y>1618.21448</Y>
+      <Z>40.580307</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21061</Entry>
+    <Name>Enraged Fire Spirit</Name>
+    <Position>
+      <X>-3623.05127</X>
+      <Y>1513.1864</Y>
+      <Z>85.81835</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19070,9 +19822,9 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3824.46582</X>
-      <Y>1577.05713</Y>
-      <Z>39.5108147</Z>
+      <X>-3462.336</X>
+      <Y>1727.7323</Y>
+      <Z>81.62903</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19082,33 +19834,9 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3661.93628</X>
-      <Y>1781.1084</Y>
-      <Z>39.6189</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3364.4873</X>
-      <Y>1626.33374</Y>
-      <Z>68.00736</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3270.50513</X>
-      <Y>1375.7417</Y>
-      <Z>50.3252869</Z>
+      <X>-3379.698</X>
+      <Y>1735.35962</Y>
+      <Z>100.807724</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19130,18 +19858,6 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3845.56641</X>
-      <Y>1367.45959</Y>
-      <Z>40.7067375</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
       <X>-3755.88086</X>
       <Y>1478.73962</Y>
       <Z>46.75065</Z>
@@ -19154,117 +19870,9 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3545.971</X>
-      <Y>1618.77332</Y>
-      <Z>46.8014641</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3623.05127</X>
-      <Y>1513.1864</Y>
-      <Z>85.81835</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3462.336</X>
-      <Y>1727.7323</Y>
-      <Z>81.62903</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
       <X>-3819.47852</X>
       <Y>1478.64746</Y>
       <Z>43.4216576</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3735.87549</X>
-      <Y>1618.21448</Y>
-      <Z>40.580307</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3885.26563</X>
-      <Y>1301.57434</Y>
-      <Z>39.89381</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3439.07764</X>
-      <Y>1781.3938</Y>
-      <Z>100.810318</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3565.04</X>
-      <Y>1683.558</Y>
-      <Z>38.9655647</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3774.39966</X>
-      <Y>1543.47827</Y>
-      <Z>45.3107948</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3711.98657</X>
-      <Y>1521.403</Y>
-      <Z>48.7531967</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19366,9 +19974,21 @@
     <Entry>21108</Entry>
     <Name>Spawn of Uvuros</Name>
     <Position>
-      <X>-3288.42529</X>
-      <Y>1665.10828</Y>
-      <Z>77.57287</Z>
+      <X>-3590.632</X>
+      <Y>1574.40771</Y>
+      <Z>48.2520027</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21108</Entry>
+    <Name>Spawn of Uvuros</Name>
+    <Position>
+      <X>-3276.88452</X>
+      <Y>1359.06812</Y>
+      <Z>51.8353424</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -19390,21 +20010,9 @@
     <Entry>21108</Entry>
     <Name>Spawn of Uvuros</Name>
     <Position>
-      <X>-3590.632</X>
-      <Y>1574.40771</Y>
-      <Z>48.2520027</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21108</Entry>
-    <Name>Spawn of Uvuros</Name>
-    <Position>
-      <X>-3276.88452</X>
-      <Y>1359.06812</Y>
-      <Z>51.8353424</Z>
+      <X>-3288.42529</X>
+      <Y>1665.10828</Y>
+      <Z>77.57287</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20137,9 +20745,9 @@
     <Entry>22024</Entry>
     <Name>Parshah</Name>
     <Position>
-      <X>-3345.9248</X>
-      <Y>2279.45679</Y>
-      <Z>61.32053</Z>
+      <X>-3441.10352</X>
+      <Y>2290.096</Y>
+      <Z>63.7723541</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -20148,9 +20756,9 @@
     <Entry>22024</Entry>
     <Name>Parshah</Name>
     <Position>
-      <X>-3441.10352</X>
-      <Y>2290.096</Y>
-      <Z>63.7723541</Z>
+      <X>-3345.9248</X>
+      <Y>2279.45679</Y>
+      <Z>61.32053</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -20228,9 +20836,9 @@
     <Entry>22127</Entry>
     <Name>Wildlord Antelarion</Name>
     <Position>
-      <X>2985.91284</X>
-      <Y>5516.942</Y>
-      <Z>146.186081</Z>
+      <X>2991.75317</X>
+      <Y>5445.21729</Y>
+      <Z>144.886368</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -20239,9 +20847,9 @@
     <Entry>22127</Entry>
     <Name>Wildlord Antelarion</Name>
     <Position>
-      <X>2991.75317</X>
-      <Y>5445.21729</Y>
-      <Z>144.886368</Z>
+      <X>2985.91284</X>
+      <Y>5516.942</Y>
+      <Z>146.186081</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -23227,6 +23835,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>25223</Entry>
+    <Name>Lord Solanar Bloodwrath</Name>
+    <Position>
+      <X>9840.599</X>
+      <Y>-7515.858</Y>
+      <Z>-8.0605135</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>25233</Entry>
     <Name>Lunk-tusk</Name>
     <Position>
@@ -23623,6 +24243,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>25462</Entry>
+    <Name>The Lich King</Name>
+    <Position>
+      <X>2345.299</X>
+      <Y>-5671.67871</Y>
+      <Z>426.0314</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>25477</Entry>
@@ -26474,6 +27105,17 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>28357</Entry>
+    <Name>Instructor Razuvious</Name>
+    <Position>
+      <X>2494.41333</X>
+      <Y>-5577.4043</Y>
+      <Z>420.484833</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>28375</Entry>
     <Name>Glrglrglr</Name>
     <Position>
@@ -26510,9 +27152,9 @@
     <Entry>28401</Entry>
     <Name>Har'koa</Name>
     <Position>
-      <X>5324.316</X>
-      <Y>-3782.08423</Y>
-      <Z>371.339966</Z>
+      <X>5746.506</X>
+      <Y>-3608.8335</Y>
+      <Z>387.107452</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -26521,12 +27163,34 @@
     <Entry>28401</Entry>
     <Name>Har'koa</Name>
     <Position>
-      <X>5746.506</X>
-      <Y>-3608.8335</Y>
-      <Z>387.107452</Z>
+      <X>5324.316</X>
+      <Y>-3782.08423</Y>
+      <Z>371.339966</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28444</Entry>
+    <Name>Highlord Darion Mograine</Name>
+    <Position>
+      <X>2460.50317</X>
+      <Y>-5593.46973</Y>
+      <Z>367.392639</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28445</Entry>
+    <Name>Baron Rivendare</Name>
+    <Position>
+      <X>2462.515</X>
+      <Y>-5596.273</Y>
+      <Z>367.397827</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>28464</Entry>
@@ -26538,6 +27202,39 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28471</Entry>
+    <Name>Lady Alistra</Name>
+    <Position>
+      <X>2506.22241</X>
+      <Y>-5663.199</Y>
+      <Z>377.036438</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28472</Entry>
+    <Name>Lord Thorval</Name>
+    <Position>
+      <X>2527.73438</X>
+      <Y>-5549.20752</Y>
+      <Z>377.035828</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28474</Entry>
+    <Name>Amal'thazad</Name>
+    <Position>
+      <X>2413.91553</X>
+      <Y>-5524.46729</Y>
+      <Z>377.0421</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>28479</Entry>
@@ -26605,6 +27302,17 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>28510</Entry>
+    <Name>Scourge Commander Thalanor</Name>
+    <Position>
+      <X>2337.03076</X>
+      <Y>-5656.627</Y>
+      <Z>382.240356</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <Entry>28518</Entry>
@@ -27303,6 +28011,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>29795</Entry>
+    <Name>Koltira Deathweaver</Name>
+    <Position>
+      <X>1.90822321E-19</X>
+      <Y>NaN</Y>
+      <Z>NaN</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>29796</Entry>
     <Name>Gretta the Arbiter</Name>
     <Position>
@@ -27445,9 +28165,9 @@
     <Entry>30052</Entry>
     <Name>Creteus</Name>
     <Position>
-      <X>7390.106</X>
-      <Y>-925.7339</Y>
-      <Z>907.1345</Z>
+      <X>7346.206</X>
+      <Y>-1063.57935</Y>
+      <Z>908.735168</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -27456,9 +28176,9 @@
     <Entry>30052</Entry>
     <Name>Creteus</Name>
     <Position>
-      <X>7346.206</X>
-      <Y>-1063.57935</Y>
-      <Z>908.735168</Z>
+      <X>7390.106</X>
+      <Y>-925.7339</Y>
+      <Z>907.1345</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -27515,6 +28235,17 @@
       <X>7199.22168</X>
       <Y>-2653.9917</Y>
       <Z>813.4427</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>30137</Entry>
+    <Name>Shifty Vickers</Name>
+    <Position>
+      <X>5841.43555</X>
+      <Y>683.3625</Y>
+      <Z>609.885864</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -27803,6 +28534,30 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>30824</Entry>
+    <Name>Sky-Reaver Korm Blackscar</Name>
+    <Position>
+      <X>1.90822321E-19</X>
+      <Y>NaN</Y>
+      <Z>NaN</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>30825</Entry>
+    <Name>Chief Engineer Copperclaw</Name>
+    <Position>
+      <X>1.90822321E-19</X>
+      <Y>NaN</Y>
+      <Z>NaN</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>30825</Entry>
     <Name>Chief Engineer Copperclaw</Name>
     <Position>
@@ -27911,9 +28666,9 @@
     <Entry>31053</Entry>
     <Name>Primalist Mulfort</Name>
     <Position>
-      <X>5034.703</X>
-      <Y>3666.70313</Y>
-      <Z>363.1916</Z>
+      <X>5371.444</X>
+      <Y>3026.51587</Y>
+      <Z>409.206024</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -27923,9 +28678,9 @@
     <Entry>31053</Entry>
     <Name>Primalist Mulfort</Name>
     <Position>
-      <X>5371.444</X>
-      <Y>3026.51587</Y>
-      <Z>409.206024</Z>
+      <X>5034.703</X>
+      <Y>3666.70313</Y>
+      <Z>363.1916</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -27999,6 +28754,17 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>31085</Entry>
+    <Name>Sky-Reaver Klum</Name>
+    <Position>
+      <X>5841.866</X>
+      <Y>476.7396</Y>
+      <Z>657.621</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>31091</Entry>
     <Name>Commander Dardosh</Name>
     <Position>
@@ -28050,9 +28816,9 @@
     <Entry>31102</Entry>
     <Name>Vieron Blazefeather</Name>
     <Position>
-      <X>5031.67627</X>
-      <Y>3655.8208</Y>
-      <Z>362.151276</Z>
+      <X>5299.619</X>
+      <Y>2740.0647</Y>
+      <Z>409.313873</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -28062,9 +28828,9 @@
     <Entry>31102</Entry>
     <Name>Vieron Blazefeather</Name>
     <Position>
-      <X>5299.619</X>
-      <Y>2740.0647</Y>
-      <Z>409.313873</Z>
+      <X>5031.67627</X>
+      <Y>3655.8208</Y>
+      <Z>362.151276</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -28235,6 +29001,17 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>31261</Entry>
+    <Name>Brother Keltan</Name>
+    <Position>
+      <X>1.90822321E-19</X>
+      <Y>NaN</Y>
+      <Z>NaN</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>31333</Entry>
     <Name>Alexstrasza the Life-Binder</Name>
     <Position>
@@ -28347,6 +29124,18 @@
       <Y>2027.06665</Y>
       <Z>519.5221</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>32301</Entry>
+    <Name>Warbringer Davos Rioht</Name>
+    <Position>
+      <X>1.90822321E-19</X>
+      <Y>NaN</Y>
+      <Z>NaN</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
@@ -30128,6 +30917,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>34668</Entry>
+    <Name>Sassy Hardwrench</Name>
+    <Position>
+      <X>-8423.816</X>
+      <Y>1366.066</Y>
+      <Z>104.675034</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34673</Entry>
+    <Name>Bamm Megabomb</Name>
+    <Position>
+      <X>-8429.455</X>
+      <Y>1311.64063</Y>
+      <Z>103.500153</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>34674</Entry>
     <Name>Brak Blusterpipe</Name>
     <Position>
@@ -30138,6 +30951,78 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34689</Entry>
+    <Name>Fizz Lighter</Name>
+    <Position>
+      <X>-8394.614</X>
+      <Y>1325.67017</Y>
+      <Z>103.001694</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34692</Entry>
+    <Name>Sister Goldskimmer</Name>
+    <Position>
+      <X>-8425.401</X>
+      <Y>1347.61462</Y>
+      <Z>105.146484</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34693</Entry>
+    <Name>Slinky Sharpshiv</Name>
+    <Position>
+      <X>-8425.914</X>
+      <Y>1328.51221</Y>
+      <Z>101.925514</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34695</Entry>
+    <Name>Maxx Avalanche</Name>
+    <Position>
+      <X>-8415.516</X>
+      <Y>1321.44446</Y>
+      <Z>103.844505</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34696</Entry>
+    <Name>Evol Fingers</Name>
+    <Position>
+      <X>-8399.56</X>
+      <Y>1346.43921</Y>
+      <Z>103.094719</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34697</Entry>
+    <Name>Warrior-Matic NX-01</Name>
+    <Position>
+      <X>-8431.764</X>
+      <Y>1313.50171</Y>
+      <Z>103.025734</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
   </Npc>
   <Npc>
     <Entry>34698</Entry>
@@ -30200,6 +31085,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>34872</Entry>
+    <Name>Foreman Dampwick</Name>
+    <Position>
+      <X>-8402.308</X>
+      <Y>1314.974</Y>
+      <Z>102.331116</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>34874</Entry>
+    <Name>Megs Dreadshredder</Name>
+    <Position>
+      <X>-8419.259</X>
+      <Y>1341.816</Y>
+      <Z>102.999596</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>34880</Entry>
     <Name>Narasi Snowdawn</Name>
     <Position>
@@ -30245,6 +31154,30 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35053</Entry>
+    <Name>Candy Cane</Name>
+    <Position>
+      <X>-8425.201</X>
+      <Y>1367.75525</Y>
+      <Z>104.677856</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>35054</Entry>
+    <Name>Chip Endale</Name>
+    <Position>
+      <X>-8422.143</X>
+      <Y>1367.70837</Y>
+      <Z>104.674995</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>LostIsles</ContinentId>
   </Npc>
   <Npc>
     <Entry>35068</Entry>
@@ -30953,6 +31886,18 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
+    <Entry>36694</Entry>
+    <Name>Adana Thunderhorn</Name>
+    <Position>
+      <X>-3172.49316</X>
+      <Y>-312.866333</Y>
+      <Z>46.7072258</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>36728</Entry>
     <Name>Kroum</Name>
     <Position>
@@ -31433,17 +32378,6 @@
     <Entry>37776</Entry>
     <Name>Apprentice Nelphi</Name>
     <Position>
-      <X>5728.623</X>
-      <Y>665.9586</Y>
-      <Z>645.8741</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>37776</Entry>
-    <Name>Apprentice Nelphi</Name>
-    <Position>
       <X>5649.33838</X>
       <Y>675.7365</Y>
       <Z>651.9928</Z>
@@ -31452,12 +32386,12 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>37780</Entry>
-    <Name>Dark Ranger Vorel</Name>
+    <Entry>37776</Entry>
+    <Name>Apprentice Nelphi</Name>
     <Position>
-      <X>5939.5625</X>
-      <Y>618.319458</Y>
-      <Z>650.5786</Z>
+      <X>5728.623</X>
+      <Y>665.9586</Y>
+      <Z>645.8741</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -31469,6 +32403,17 @@
       <X>5861.74658</X>
       <Y>607.536438</Y>
       <Z>651.1</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>37780</Entry>
+    <Name>Dark Ranger Vorel</Name>
+    <Position>
+      <X>5939.5625</X>
+      <Y>618.319458</Y>
+      <Z>650.5786</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -32124,6 +33069,18 @@
       <Y>-3113.19458</Y>
       <Z>8.79535</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>38966</Entry>
+    <Name>Vol'jin</Name>
+    <Position>
+      <X>-1318.08508</X>
+      <Y>-5603.771</Y>
+      <Z>23.8027344</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
@@ -35489,6 +36446,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>43009</Entry>
+    <Name>Alsudar the Bastion</Name>
+    <Position>
+      <X>9850.12</X>
+      <Y>-7383.95</Y>
+      <Z>18.61124</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>43010</Entry>
     <Name>Delios Silverblade</Name>
     <Position>
@@ -35513,12 +36482,36 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>43062</Entry>
+    <Name>Bort</Name>
+    <Position>
+      <X>1836.69421</X>
+      <Y>-4399.78271</Y>
+      <Z>103.67952</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>43063</Entry>
     <Name>Cromula</Name>
     <Position>
       <X>2092.82837</X>
       <Y>-1164.26514</Y>
       <Z>101.79171</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>43063</Entry>
+    <Name>Cromula</Name>
+    <Position>
+      <X>2092.35986</X>
+      <Y>-1226.136</Y>
+      <Z>101.793068</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -38372,6 +39365,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>47240</Entry>
+    <Name>Commander Marcus Johnson</Name>
+    <Position>
+      <X>-347.762</X>
+      <Y>1063.86</Y>
+      <Z>22.0329247</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>47246</Entry>
     <Name>Ureda</Name>
     <Position>
@@ -39044,6 +40049,42 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>48250</Entry>
+    <Name>Lieutenant Farnsworth</Name>
+    <Position>
+      <X>-353.014</X>
+      <Y>1038.44</Y>
+      <Z>22.008894</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48254</Entry>
+    <Name>Sergeant Gray</Name>
+    <Position>
+      <X>-369.441</X>
+      <Y>1072.35</Y>
+      <Z>22.0402374</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48255</Entry>
+    <Name>Camp Coordinator Brack</Name>
+    <Position>
+      <X>-328.106</X>
+      <Y>1057.76</Y>
+      <Z>22.0314255</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>48292</Entry>
     <Name>Acride</Name>
     <Position>
@@ -39158,6 +40199,54 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48358</Entry>
+    <Name>Commander Larmash</Name>
+    <Position>
+      <X>-609.971</X>
+      <Y>1428.8</Y>
+      <Z>22.04987</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48360</Entry>
+    <Name>3rd Officer Kronkar</Name>
+    <Position>
+      <X>-619.2344</X>
+      <Y>1397.75354</Y>
+      <Z>22.0498257</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48361</Entry>
+    <Name>Private Sarlosk</Name>
+    <Position>
+      <X>-584.285</X>
+      <Y>1387.62</Y>
+      <Z>22.8160973</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>48363</Entry>
+    <Name>Captain Prug</Name>
+    <Position>
+      <X>-594.509</X>
+      <Y>1403.89</Y>
+      <Z>21.3991966</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
   </Npc>
   <Npc>
     <Entry>48364</Entry>
@@ -39514,6 +40603,18 @@
       <Z>4.33167028</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>49044</Entry>
+    <Name>Agatha</Name>
+    <Position>
+      <X>1700.19971</X>
+      <Y>1703.36108</Y>
+      <Z>137.197586</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
@@ -39950,6 +41051,30 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>51287</Entry>
+    <Name>Colonel Karzag</Name>
+    <Position>
+      <X>-613.545166</X>
+      <Y>1416.63721</Y>
+      <Z>22.022419</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>51288</Entry>
+    <Name>Major Marsden</Name>
+    <Position>
+      <X>-369.598969</X>
+      <Y>1042.37671</Y>
+      <Z>22.0496578</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>51375</Entry>
     <Name>Cenarion Scout Jalia</Name>
     <Position>
@@ -40030,6 +41155,30 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>52015</Entry>
+    <Name>Captain Jake Sones</Name>
+    <Position>
+      <X>-362.5521</X>
+      <Y>1034.158</Y>
+      <Z>22.0496254</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>52016</Entry>
+    <Name>Petty Officer Chulok</Name>
+    <Position>
+      <X>-621.9375</X>
+      <Y>1405.68225</Y>
+      <Z>22.13299</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TolBarad</ContinentId>
   </Npc>
   <Npc>
     <Entry>52192</Entry>
@@ -40320,18 +41469,6 @@
     <Entry>54334</Entry>
     <Name>Darkmoon Faire Mystic Mage</Name>
     <Position>
-      <X>-4956.22559</X>
-      <Y>-931.050354</Y>
-      <Z>503.257324</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>54334</Entry>
-    <Name>Darkmoon Faire Mystic Mage</Name>
-    <Position>
       <X>-3905.79517</X>
       <Y>-11608.79</Y>
       <Z>-138.0628</Z>
@@ -40339,18 +41476,6 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>54334</Entry>
-    <Name>Darkmoon Faire Mystic Mage</Name>
-    <Position>
-      <X>9957.188</X>
-      <Y>2593.79614</Y>
-      <Z>1316.90173</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>54334</Entry>
@@ -40368,6 +41493,30 @@
     <Entry>54334</Entry>
     <Name>Darkmoon Faire Mystic Mage</Name>
     <Position>
+      <X>-1727.92188</X>
+      <Y>5455.788</Y>
+      <Z>-12.4274387</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>54334</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>-4956.22559</X>
+      <Y>-931.050354</Y>
+      <Z>503.257324</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>54334</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
       <X>-8840.929</X>
       <Y>641.2292</Y>
       <Z>96.47598</Z>
@@ -40375,6 +41524,18 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>54334</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>9957.188</X>
+      <Y>2593.79614</Y>
+      <Z>1316.90173</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>54614</Entry>
@@ -40434,6 +41595,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>54786</Entry>
+    <Name>Master Shang Xi</Name>
+    <Position>
+      <X>960.0434</X>
+      <Y>3606.04956</Y>
+      <Z>196.330811</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>NewRaceStartZone</ContinentId>
   </Npc>
   <Npc>
     <Entry>54854</Entry>
@@ -40711,6 +41883,42 @@
     <Entry>55382</Entry>
     <Name>Darkmoon Faire Mystic Mage</Name>
     <Position>
+      <X>-1215.99475</X>
+      <Y>58.109375</Y>
+      <Z>129.909027</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55382</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>9493.107</X>
+      <Y>-7301.049</Y>
+      <Z>14.3945608</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55382</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>1765.77783</X>
+      <Y>-4345.20654</Y>
+      <Z>101.776314</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55382</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
       <X>5787.83838</X>
       <Y>635.0799</Y>
       <Z>647.826843</Z>
@@ -40718,6 +41926,30 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55382</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>1574.91492</X>
+      <Y>279.670135</Y>
+      <Z>-43.1023445</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55382</Entry>
+    <Name>Darkmoon Faire Mystic Mage</Name>
+    <Position>
+      <X>-1728.77783</X>
+      <Y>5458.59131</Y>
+      <Z>-12.4276028</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
     <Entry>55413</Entry>
@@ -45444,6 +46676,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>72940</Entry>
+    <Name>Frostwolf Champion</Name>
+    <Position>
+      <X>5604.76953</X>
+      <Y>3772.92065</Y>
+      <Z>112.830925</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>73082</Entry>
     <Name>Master Li</Name>
     <Position>
@@ -45453,6 +46697,18 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73097</Entry>
+    <Name>Frostwolf Champion</Name>
+    <Position>
+      <X>5608.598</X>
+      <Y>3773.62231</Y>
+      <Z>112.902863</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
     <Entry>73303</Entry>
@@ -45517,6 +46773,18 @@
       <Y>1793.07117</Y>
       <Z>79.32509</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>74223</Entry>
+    <Name>Kal'gor the Honorable</Name>
+    <Position>
+      <X>6968.479</X>
+      <Y>4669.311</Y>
+      <Z>186.7756</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -45839,12 +47107,12 @@
     <Entry>77789</Entry>
     <Name>Blingtron 5000</Name>
     <Position>
-      <X>5903.063</X>
-      <Y>726.837952</Y>
-      <Z>639.9885</Z>
+      <X>1672.04993</X>
+      <Y>932.7566</Y>
+      <Z>471.508484</Z>
     </Position>
     <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
+    <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
     <Entry>77789</Entry>
@@ -45856,6 +47124,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>77789</Entry>
+    <Name>Blingtron 5000</Name>
+    <Position>
+      <X>5903.063</X>
+      <Y>726.837952</Y>
+      <Z>639.9885</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>77857</Entry>
@@ -46152,6 +47431,17 @@
       <X>3260.16333</X>
       <Y>1546.62671</Y>
       <Z>162.95369</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>79252</Entry>
+    <Name>Cordana Felsong</Name>
+    <Position>
+      <X>5643.34033</X>
+      <Y>4537.85938</Y>
+      <Z>118.903175</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -46615,6 +47905,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>80260</Entry>
+    <Name>Magister Serena</Name>
+    <Position>
+      <X>3308.27832</X>
+      <Y>957.3073</Y>
+      <Z>19.0520649</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>80390</Entry>
     <Name>Magister Krelas</Name>
     <Position>
@@ -46702,6 +48004,18 @@
       <Y>333.9757</Y>
       <Z>90.4101</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>81166</Entry>
+    <Name>Refugee Lo'nash</Name>
+    <Position>
+      <X>5575.291</X>
+      <Y>4568.27539</Y>
+      <Z>136.376648</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -46862,6 +48176,18 @@
       <Y>4449.8916</Y>
       <Z>144.67244</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>81765</Entry>
+    <Name>Vivianne</Name>
+    <Position>
+      <X>5418.894</X>
+      <Y>-4086.573</Y>
+      <Z>8.051491</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -47085,6 +48411,18 @@
       <Z>4.28842163</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>82713</Entry>
+    <Name>Mixxy Weldblast</Name>
+    <Position>
+      <X>-267.87674</X>
+      <Y>1285.9375</Y>
+      <Z>20.25592</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -47326,9 +48664,31 @@
     <Entry>83858</Entry>
     <Name>Khadgar's Servant</Name>
     <Position>
+      <X>5627.333</X>
+      <Y>4517.771</Y>
+      <Z>119.269</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>83858</Entry>
+    <Name>Khadgar's Servant</Name>
+    <Position>
       <X>5687.209</X>
       <Y>4516.105</Y>
       <Z>125.037964</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>83858</Entry>
+    <Name>Khadgar's Servant</Name>
+    <Position>
+      <X>5591.561</X>
+      <Y>4566.125</Y>
+      <Z>135.475952</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -47494,6 +48854,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>84967</Entry>
+    <Name>"Appraiser" Sazsel Stickyfingers</Name>
+    <Position>
+      <X>5626.771</X>
+      <Y>4457.8125</Y>
+      <Z>130.194611</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>85106</Entry>
     <Name>Gem Grinder Orolak</Name>
     <Position>
@@ -47588,6 +48959,17 @@
     <ContinentId>Ashran</ContinentId>
   </Npc>
   <Npc>
+    <Entry>85751</Entry>
+    <Name>Gaoda Hidecleaver</Name>
+    <Position>
+      <X>5819.77539</X>
+      <Y>6240.59229</Y>
+      <Z>85.54635</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>85840</Entry>
     <Name>Torgg Flexington</Name>
     <Position>
@@ -47630,6 +49012,17 @@
       <X>2030.21533</X>
       <Y>180.7743</Y>
       <Z>84.42401</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>85984</Entry>
+    <Name>Nat Pagle</Name>
+    <Position>
+      <X>5478.296</X>
+      <Y>4619.501</Y>
+      <Z>134.478851</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -47706,6 +49099,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>86419</Entry>
+    <Name>Outcast Talon Guard</Name>
+    <Position>
+      <X>-337.7473</X>
+      <Y>910.2004</Y>
+      <Z>75.4024048</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>86522</Entry>
     <Name>Akhan</Name>
     <Position>
@@ -47723,6 +49128,17 @@
       <X>3048.00879</X>
       <Y>4903.172</Y>
       <Z>130.900467</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86803</Entry>
+    <Name>Fayla Fairfeather</Name>
+    <Position>
+      <X>5519.82861</X>
+      <Y>4516.245</Y>
+      <Z>132.808868</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -47775,6 +49191,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>86933</Entry>
+    <Name>Warspear Magus</Name>
+    <Position>
+      <X>-964.0251</X>
+      <Y>-1730.30774</Y>
+      <Z>0.295023561</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>86946</Entry>
     <Name>Prêtre de la serre paria</Name>
     <Position>
@@ -47783,6 +49211,18 @@
       <Z>44.84418</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Outcast Talonpriest</Name>
+    <Position>
+      <X>6028.77148</X>
+      <Y>4304.64941</Y>
+      <Z>129.239334</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -47909,12 +49349,12 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>88000</Entry>
-    <Name>Finkle Einhorn</Name>
+    <Entry>87998</Entry>
+    <Name>Sunwalker Dezco</Name>
     <Position>
-      <X>1881.70618</X>
-      <Y>186.66214</Y>
-      <Z>78.4432144</Z>
+      <X>5691.07861</X>
+      <Y>4463.486</Y>
+      <Z>131.259918</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -47931,12 +49371,34 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88000</Entry>
+    <Name>Finkle Einhorn</Name>
+    <Position>
+      <X>1881.70618</X>
+      <Y>186.66214</Y>
+      <Z>78.4432144</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88007</Entry>
     <Name>Gamon</Name>
     <Position>
       <X>1881.70618</X>
       <Y>186.66214</Y>
       <Z>78.44325</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88009</Entry>
+    <Name>Millhouse Manastorm</Name>
+    <Position>
+      <X>5690.51367</X>
+      <Y>4479.435</Y>
+      <Z>140.246078</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -47986,6 +49448,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88027</Entry>
+    <Name>Impsy</Name>
+    <Position>
+      <X>5700.90625</X>
+      <Y>4469.94336</Y>
+      <Z>131.236877</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88112</Entry>
     <Name>Morthis Whisperwing</Name>
     <Position>
@@ -48022,6 +49495,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88161</Entry>
+    <Name>Challenger Sunforge</Name>
+    <Position>
+      <X>5225.393</X>
+      <Y>-4111.983</Y>
+      <Z>7.11657667</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88195</Entry>
     <Name>Hulda Shadowblade</Name>
     <Position>
@@ -48034,6 +49519,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88228</Entry>
+    <Name>Sergeant Grimjaw</Name>
+    <Position>
+      <X>5590.561</X>
+      <Y>4579.132</Y>
+      <Z>136.588165</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88276</Entry>
     <Name>Archmage Modera</Name>
     <Position>
@@ -48041,6 +49538,18 @@
       <Y>-649.598938</Y>
       <Z>109.0033</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88570</Entry>
+    <Name>Fate-Twister Tiklal</Name>
+    <Position>
+      <X>5209.30029</X>
+      <Y>-4103.158</Y>
+      <Z>8.468696</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -48079,6 +49588,17 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88892</Entry>
+    <Name>Nixxie</Name>
+    <Position>
+      <X>5747.283</X>
+      <Y>4501.65039</Y>
+      <Z>132.5391</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
     <Entry>88892</Entry>
@@ -48562,9 +50082,9 @@
     <Entry>174848</Entry>
     <Name>Testing Equipment</Name>
     <Position>
-      <X>1407.61938</X>
-      <Y>414.136169</Y>
-      <Z>-83.78498</Z>
+      <X>-4695.55566</X>
+      <Y>-1311.48547</Y>
+      <Z>503.960571</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -48574,9 +50094,9 @@
     <Entry>174848</Entry>
     <Name>Testing Equipment</Name>
     <Position>
-      <X>-4695.55566</X>
-      <Y>-1311.48547</Y>
-      <Z>503.960571</Z>
+      <X>1407.61938</X>
+      <Y>414.136169</Y>
+      <Z>-83.78498</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51009,6 +52529,17 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>207325</Entry>
+    <Name>Warchief's Command Board</Name>
+    <Position>
+      <X>9665.519</X>
+      <Y>-7153.061</Y>
+      <Z>14.2512274</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>207359</Entry>
     <Name>Pure Twilight Egg</Name>
     <Position>
@@ -51117,6 +52648,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>210051</Entry>
+    <Name>To Be A Pandaren</Name>
+    <Position>
+      <X>1471.48608</X>
+      <Y>3471.409</Y>
+      <Z>182.519409</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>NewRaceStartZone</ContinentId>
   </Npc>
   <Npc>
     <Entry>210542</Entry>
@@ -51304,6 +52846,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>214213</Entry>
+    <Name>Clutter</Name>
+    <Position>
+      <X>5987.07666</X>
+      <Y>6218.24463</Y>
+      <Z>49.9580841</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
     <Entry>214213</Entry>
@@ -51637,6 +53190,17 @@
   </Npc>
   <Npc>
     <Entry>230865</Entry>
+    <Name>List of Ingredients</Name>
+    <Position>
+      <X>5986.249</X>
+      <Y>6212.424</Y>
+      <Z>53.1719551</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>230865</Entry>
     <Name>Liste d’ingrédients</Name>
     <Position>
       <X>1845.14233</X>
@@ -51661,9 +53225,9 @@
     <Entry>231184</Entry>
     <Name>Offering Bowl</Name>
     <Position>
-      <X>-201.052078</X>
-      <Y>1021.23438</Y>
-      <Z>74.03299</Z>
+      <X>-481.4375</X>
+      <Y>1845.76917</Y>
+      <Z>41.92456</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -51672,9 +53236,9 @@
     <Entry>231184</Entry>
     <Name>Offering Bowl</Name>
     <Position>
-      <X>-481.4375</X>
-      <Y>1845.76917</Y>
-      <Z>41.92456</Z>
+      <X>-201.052078</X>
+      <Y>1021.23438</Y>
+      <Z>74.03299</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -51719,6 +53283,17 @@
       <X>102.810768</X>
       <Y>-1580.22742</Y>
       <Z>29.8496971</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>232416</Entry>
+    <Name>Command Board</Name>
+    <Position>
+      <X>5618.51</X>
+      <Y>4541.134</Y>
+      <Z>118.968941</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
