@@ -786,6 +786,7 @@ namespace Test_Product
                     Application.DoEvents();
                     Thread.Sleep(100);
                 }
+                DoTaxiLinksCleaning();
                 /*var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
                 for (uint i = 1; i <= 200000; i += 2500)
                 {
