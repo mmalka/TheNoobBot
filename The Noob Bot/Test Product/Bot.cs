@@ -391,7 +391,6 @@ namespace Test_Product
                         _availableTaxis.Add(localTaxi);
                         foreach (TaxiLink taxiLink in _availableTaxiLinks)
                         {
-                            Application.DoEvents();
                             if (taxiLink.PointB == 0 && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
                             {
                                 taxiLink.PointB = localTaxi.Id;
@@ -402,7 +401,6 @@ namespace Test_Product
 
                     foreach (string ctaxi in ExtractDirectPathTaxiInfoList())
                     {
-                        Application.DoEvents();
                         string taxiInfo = ctaxi;
                         Taxi localTaxi = new Taxi();
                         localTaxi.Name = taxiInfo.Split('#')[0];
@@ -413,7 +411,6 @@ namespace Test_Product
                         Taxi taxiFound = new Taxi();
                         foreach (Taxi taxi in _availableTaxis)
                         {
-                            Application.DoEvents();
                             if (taxi.Xcoord == localTaxi.Xcoord && taxi.Ycoord == localTaxi.Ycoord)
                             {
                                 // this taxi exist in the list so we have its ID
@@ -424,18 +421,17 @@ namespace Test_Product
                         bool found = false;
                         foreach (TaxiLink taxiLink in _availableTaxiLinks)
                         {
-                            Application.DoEvents();
-                            if (taxiExist && taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB == localTaxi.Id)
+                            if (taxiExist && taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB == taxiFound.Id)
+                            {
+                                found = true;
+                                break;
+                            }
+                            if (taxiExist && taxiLink.PointB == ObjectManager.Me.Target.GetWoWId && taxiLink.PointA == taxiFound.Id)
                             {
                                 found = true;
                                 break;
                             }
                             if (taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (taxiExist && taxiLink.PointB == ObjectManager.Me.Target.GetWoWId && taxiLink.PointA == localTaxi.Id)
                             {
                                 found = true;
                                 break;
