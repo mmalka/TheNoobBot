@@ -527,7 +527,10 @@ namespace Test_Product
                 qesterList.Sort(delegate(Npc x, Npc y)
                 {
                     if (x.Entry == y.Entry)
-                        return (x.Type < y.Type ? -1 : 1);
+                        if (x.Position.X == y.Position.X)
+                            return (x.Type < y.Type ? -1 : 1);
+                        else
+                            return (x.Position.X < y.Position.X ? -1 : 1);
                     return (x.Entry < y.Entry ? -1 : 1);
                 });
                 XmlSerializer.Serialize(Application.StartupPath + "\\Data\\QuestersDB.xml", qesterList);
@@ -737,11 +740,14 @@ namespace Test_Product
                     qesterListResult.Add(quester);
             }
             qesterListResult.Sort(delegate(Npc x, Npc y)
-                {
-                    if (x.Entry == y.Entry)
+            {
+                if (x.Entry == y.Entry)
+                    if (x.Position.X == y.Position.X)
                         return (x.Type < y.Type ? -1 : 1);
-                    return (x.Entry < y.Entry ? -1 : 1);
-                });
+                    else
+                        return (x.Position.X < y.Position.X ? -1 : 1);
+                return (x.Entry < y.Entry ? -1 : 1);
+            });
             XmlSerializer.Serialize(Application.StartupPath + "\\Data\\QuestersDBnew.xml", qesterListResult);
 
             List<Npc> npcListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- NpcDB.xml");
@@ -760,7 +766,10 @@ namespace Test_Product
             npcListResult.Sort(delegate(Npc x, Npc y)
             {
                 if (x.Entry == y.Entry)
-                    return (x.Type < y.Type ? -1 : 1);
+                    if (x.Position.X == y.Position.X)
+                        return (x.Type < y.Type ? -1 : 1);
+                    else
+                        return (x.Position.X < y.Position.X ? -1 : 1);
                 return (x.Entry < y.Entry ? -1 : 1);
             });
             XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDBnew.xml", npcListResult);

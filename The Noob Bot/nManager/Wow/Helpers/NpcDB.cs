@@ -83,7 +83,15 @@ namespace nManager.Wow.Helpers
                         ListNpc.Remove(npc1);
                         break;
                     }
-                    _listNpc.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
+                    _listNpc.Sort(delegate(Npc x, Npc y)
+                    {
+                        if (x.Entry == y.Entry)
+                            if (x.Position.X == y.Position.X)
+                                return (x.Type < y.Type ? -1 : 1);
+                            else
+                                return (x.Position.X < y.Position.X ? -1 : 1);
+                        return (x.Entry < y.Entry ? -1 : 1);
+                    });
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                 }
             }
@@ -143,7 +151,10 @@ namespace nManager.Wow.Helpers
                         _listNpc.Sort(delegate(Npc x, Npc y)
                         {
                             if (x.Entry == y.Entry)
-                                return (x.Type < y.Type ? -1 : 1);
+                                if (x.Position.X == y.Position.X)
+                                    return (x.Type < y.Type ? -1 : 1);
+                                else
+                                    return (x.Position.X < y.Position.X ? -1 : 1);
                             return (x.Entry < y.Entry ? -1 : 1);
                         });
                         XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
@@ -171,7 +182,15 @@ namespace nManager.Wow.Helpers
                         ListNpc.Add(npc);
                     }
                     Logging.Write("List builded with " + ListNpc.Count() + "NPC inside.");
-                    _listNpc.Sort(delegate(Npc x, Npc y) { return (x.Entry < y.Entry ? -1 : 1); });
+                    _listNpc.Sort(delegate(Npc x, Npc y)
+                    {
+                        if (x.Entry == y.Entry)
+                            if (x.Position.X == y.Position.X)
+                                return (x.Type < y.Type ? -1 : 1);
+                            else
+                                return (x.Position.X < y.Position.X ? -1 : 1);
+                        return (x.Entry < y.Entry ? -1 : 1);
+                    });
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", ListNpc);
                 }
             }
