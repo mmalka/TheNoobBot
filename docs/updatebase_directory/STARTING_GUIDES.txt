@@ -9,9 +9,6 @@ If TheNoobBot completely freeze when you load TheNoobBot, read this thread: http
 
 For any other issues, you may want to read this thread: http://thenoobbot.com/community/viewtopic.php?f=43&t=4051
 
-Currently, the Monk class is not officially supported, but we included the current candidate to the Official status in the bot.
-You must manually switch from "TheNoobBot.dll" to "Non official - Monk 5.0.5.cs" in General Settings => Class / Custom Spell sequence Settings > Custom Class parameter.
-
 If you need to attach a log to share with the community, to help resolving an issue you are getting, you must follow this tutorial: http://thenoobbot.com/community/viewtopic.php?f=43&t=4316
 Please do not copy/paste the log tabs of TheNoobBot, use the files instead.
 
