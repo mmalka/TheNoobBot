@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using nManager.Helpful;
 using CSharpMath = System.Math;
 
 namespace nManager.Wow.Class
@@ -144,36 +145,37 @@ namespace nManager.Wow.Class
                 xw, yw, zw, ww);
         }
 
-        public void Invert()
+        public Matrix4 Invert()
         {
-            xx = zy*wz*yw - wy*zz*yw + wy*yz*zw - yy*wz*zw - zy*yz*ww + yy*zz*ww;
-            yx = wx*zz*yw - zx*wz*yw - wx*yz*zw + yx*wz*zw + zx*yz*ww - yx*zz*ww;
-            zx = zx*wy*yw - wx*zy*yw + wx*yy*zw - yx*wy*zw - zx*yy*ww + yx*zy*ww;
-            wx = wx*zy*yz - zx*wy*yz - wx*yy*zz + yx*wy*zz + zx*yy*wz - yx*zy*wz;
-            xy = wy*zz*xw - zy*wz*xw - wy*xz*zw + xy*wz*zw + zy*xz*ww - xy*zz*ww;
-            yy = zx*wz*xw - wx*zz*xw + wx*xz*zw - xx*wz*zw - zx*xz*ww + xx*zz*ww;
-            zy = wx*zy*xw - zx*wy*xw - wx*xy*zw + xx*wy*zw + zx*xy*ww - xx*zy*ww;
-            wy = zx*wy*xz - wx*zy*xz + wx*xy*zz - xx*wy*zz - zx*xy*wz + xx*zy*wz;
-            xz = yy*wz*xw - wy*yz*xw + wy*xz*yw - xy*wz*yw - yy*xz*ww + xy*yz*ww;
-            yz = wx*yz*xw - yx*wz*xw - wx*xz*yw + xx*wz*yw + yx*xz*ww - xx*yz*ww;
-            zz = yx*wy*xw - wx*yy*xw + wx*xy*yw - xx*wy*yw - yx*xy*ww + xx*yy*ww;
-            wz = wx*yy*xz - yx*wy*xz - wx*xy*yz + xx*wy*yz + yx*xy*wz - xx*yy*wz;
-            xw = zy*yz*xw - yy*zz*xw - zy*xz*yw + xy*zz*yw + yy*xz*zw - xy*yz*zw;
-            yw = yx*zz*xw - zx*yz*xw + zx*xz*yw - xx*zz*yw - yx*xz*zw + xx*yz*zw;
-            zw = zx*yy*xw - yx*zy*xw - zx*xy*yw + xx*zy*yw + yx*xy*zw - xx*yy*zw;
-            ww = yx*zy*xz - zx*yy*xz + zx*xy*yz - xx*zy*yz - yx*xy*zz + xx*yy*zz;
-            //Scale(1/Determinant()); //??
-        }
+            var m = this;
+            var s0 = xx*yy - yx*xy;
+            var s1 = xx*yz - yx*xz;
+            var s2 = xx*yw - yx*xw;
+            var s3 = xy*yz - yy*xz;
+            var s4 = xy*yw - yy*xw;
+            var s5 = xz*yw - yz*xw;
 
-        public double Determinant()
-        {
-            double value = wx*zy*yz*xw - zx*wy*yz*xw - wx*yy*zz*xw + yx*wy*zz*xw +
-                           zx*yy*wz*xw - yx*zy*wz*xw - wx*zy*xz*yw + zx*wy*xz*yw +
-                           wx*xy*zz*yw - xx*wy*zz*yw - zx*xy*wz*yw + xx*zy*wz*yw +
-                           wx*yy*xz*zw - yx*wy*xz*zw - wx*xy*yz*zw + xx*wy*yz*zw +
-                           yx*xy*wz*zw - xx*yy*wz*zw - zx*yy*xz*ww + yx*zy*xz*ww +
-                           zx*xy*yz*ww - xx*zy*yz*ww - yx*xy*zz*ww + xx*yy*zz*ww;
-            return value;
+            var c5 = zz*ww - wz*zw;
+            var c4 = zy*ww - wy*zw;
+            var c3 = zy*wz - wy*zz;
+            var c2 = zx*ww - wx*zw;
+            var c1 = zx*wz - wx*zz;
+            var c0 = zx*wy - wx*zy;
+
+            var invdet = 1/(s0*c5 - s1*c4 + s2*c3 + s3*c2 - s4*c1 + s5*c0);
+            m.xx = (yy*c5 - yz*c4 + yw*c3)*invdet;
+            m.xy = (-xy*c5 + xz*c4 - xw*c3)*invdet;
+            m.xz = (wy*s5 - wz*s4 + ww*s3)*invdet;
+            m.xw = (-zy*s5 + zz*s4 - zw*s3)*invdet;
+            m.yx = (-yx*c5 + yz*c2 - yw*c1)*invdet;
+            m.yy = (xx*c5 - xz*c2 + xw*c1)*invdet;
+            m.yz = (-wx*s5 + wz*s2 - ww*s1)*invdet;
+            m.yw = (zx*s5 - zz*s2 + zw*s1)*invdet;
+            m.zx = (yx*c4 - yy*c2 + yw*c0)*invdet;
+            m.zy = (-xx*c4 + xy*c2 - xw*c0)*invdet;
+            m.zz = (wx*s4 - wy*s2 + ww*s0)*invdet;
+            m.zw = (-zx*s4 + zy*s2 - zw*s0)*invdet;
+            return m;
         }
 
         [StructLayout(LayoutKind.Sequential)]
