@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Xml.Serialization;
+using nManager.Helpful;
+using nManager.Wow.ObjectManager;
 using CSharpMath = System.Math;
 using System.ComponentModel;
+using MsQuaternion = System.Windows.Media.Media3D.Quaternion;
 
 namespace nManager.Wow.Class
 {
@@ -306,7 +309,7 @@ namespace nManager.Wow.Class
         {
             return
                 (float) (
-                    Math.Sqrt
+                    CSharpMath.Sqrt
                         (
                             (v1.X - v2.X)*(v1.X - v2.X) +
                             (v1.Y - v2.Y)*(v1.Y - v2.Y) +
@@ -324,7 +327,7 @@ namespace nManager.Wow.Class
         {
             return
                 (float) (
-                    Math.Sqrt
+                    CSharpMath.Sqrt
                         (
                             (v1.X - v2.X)*(v1.X - v2.X) +
                             (v1.Y - v2.Y)*(v1.Y - v2.Y)
@@ -339,7 +342,7 @@ namespace nManager.Wow.Class
 
         public static float DistanceZ(Vector3 v1, Vector3 v2)
         {
-            return Math.Abs(v1.Z - v2.Z);
+            return CSharpMath.Abs(v1.Z - v2.Z);
         }
 
         public float DistanceZ(Vector3 other)
@@ -450,6 +453,29 @@ namespace nManager.Wow.Class
             v.Y = X*matrix.yx + Y*matrix.yy + Z*matrix.yz + matrix.yw;
             v.Z = X*matrix.zx + Y*matrix.zy + Z*matrix.zz + matrix.zw;
             return v;
+        }
+
+        public Vector3 GameObjectLocalScale(WoWGameObject o)
+        {
+            float size = o.Size;
+            if (size == 0f)
+                size = 1f;
+            Vector3 scale = new Vector3(size, size, size);
+            return scale;
+        }
+
+
+        public Vector3 TransformInvert(WoWGameObject o)
+        {
+            Vector3 t = o.Position;
+            var r = new MsQuaternion(o.Rotations.X, o.Rotations.Y, o.Rotations.Z, o.Rotations.W);
+            r.Invert();
+            Vector3 s = GameObjectLocalScale(o);
+            Vector3 sInv = new Vector3(1/s.X, 1/s.Y, 1/s.Z);
+
+            /*Vector3 q = Vector3.Scale(sInv, (r*(p - t)));
+            float err = (q - transform.InverseTransformPoint(p)).magnitude;*/
+            return new Vector3();
         }
 
         // *****************************************
