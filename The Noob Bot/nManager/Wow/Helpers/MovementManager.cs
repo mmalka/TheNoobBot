@@ -1147,11 +1147,34 @@ namespace nManager.Wow.Helpers
                     {
                         Thread.Sleep(100);
                     }
-                    if (ClickToMove.GetClickToMovePosition().DistanceTo(position) > 1 ||
-                        ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
-                        ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0,
-                            (int) ClickToMoveType.Move, 0.5f);
-
+                    Point altPoint = new Point();
+                    if (ObjectManager.ObjectManager.Me.InTransport)
+                    {
+                        WoWObject t = new WoWObject(ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid).GetBaseAddress);
+                        if (t.Type == WoWObjectType.GameObject)
+                        {
+                            var o = new WoWGameObject(t.GetBaseAddress);
+                            if (o.IsValid)
+                            {
+                                Vector3 altVector3 = position.TransformInvert(o);
+                                altPoint = new Point(altVector3.X, altVector3.Y, altVector3.Z);
+                            }
+                        }
+                    }
+                    if (altPoint.IsValid)
+                    {
+                        if (ClickToMove.GetClickToMovePosition().DistanceTo(altPoint) > 1 ||
+                            ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
+                            ClickToMove.CGPlayer_C__ClickToMove(altPoint.X, altPoint.Y, altPoint.Z, 0,
+                                (int) ClickToMoveType.Move, 0.5f);
+                    }
+                    else
+                    {
+                        if (ClickToMove.GetClickToMovePosition().DistanceTo(position) > 1 ||
+                            ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
+                            ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0,
+                                (int) ClickToMoveType.Move, 0.5f);
+                    }
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
 

@@ -108,7 +108,7 @@ namespace nManager.Wow.Bot.States
                     List<Point> way = PathFinder.FindPath(currentPosition, travelTo, Usefuls.ContinentNameMpq, out success);
                     if (success || (!success && way.Count >= 1 && IsPointValidAsTarget(way.Last())))
                     {
-                        if (oneWayTravel.Value > GetPathDistance(way))
+                        if (oneWayTravel.Value > Math.DistanceListPoint(way))
                         {
                             TravelToContinentId = 9999999;
                             TravelTo = new Point();
@@ -147,24 +147,6 @@ namespace nManager.Wow.Bot.States
                 Logging.Write("Travel: Couldn't find a travel path. Checked up to 2 way travel.");
                 return new List<Transport>();
             }
-        }
-
-        private float GetPathDistance(List<Point> points)
-        {
-            if (points.Count == 0)
-                return float.MaxValue;
-            Point oldPoint = null;
-            float pathDistance = 0;
-            foreach (Point point in points)
-            {
-                if (oldPoint == null)
-                {
-                    oldPoint = point;
-                    continue;
-                }
-                pathDistance += point.DistanceTo(oldPoint);
-            }
-            return pathDistance;
         }
 
         public override void Run()
@@ -421,7 +403,7 @@ namespace nManager.Wow.Bot.States
                             EnterTransportOrTakePortal(selectedTransport);
                             return;
                         }
-                        memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int)taxi.Id), ObjectManager.ObjectManager.Me.Position);
+                        memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id), ObjectManager.ObjectManager.Me.Position);
                     }
                 }
             }
@@ -498,7 +480,7 @@ namespace nManager.Wow.Bot.States
 
             // The graph of hops
             List<List<uint>> graph = new List<List<uint>>();
-            graph.Add(new List<uint> { startId });
+            graph.Add(new List<uint> {startId});
             while (progress && linksCopy.Count > 0)
             {
                 progress = false;
@@ -878,7 +860,7 @@ namespace nManager.Wow.Bot.States
                     var portal = transport as Portal;
                     List<Point> wayIn = PathFinder.FindPath(travelFrom, portal.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
                     List<Point> wayOff = PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                    currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                    currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
                     currentId = portal.Id;
                 }
                 else if (transport is Taxi)
@@ -886,9 +868,9 @@ namespace nManager.Wow.Bot.States
                     var taxi = transport as Taxi;
                     List<Point> wayIn = PathFinder.FindPath(travelFrom, taxi.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
                     List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                    currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                    currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
                     if (travelFromContinentId == travelToContinentId)
-                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint) / 1.5f);
+                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/1.5f);
                     currentId = taxi.Id;
                 }
                 else
@@ -897,13 +879,15 @@ namespace nManager.Wow.Bot.States
                     {
                         List<Point> wayIn = PathFinder.FindPath(travelFrom, transport.BOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
                         List<Point> wayOff = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                        currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                        currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
+                        currentId = transport.Id;
                     }
                     else
                     {
                         List<Point> wayIn = PathFinder.FindPath(travelFrom, transport.AOutsidePoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
                         List<Point> wayOff = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                        currentTransportDistance = GetPathDistance(wayIn) + GetPathDistance(wayOff);
+                        currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
+                        currentId = transport.Id;
                     }
                 }
 
@@ -930,13 +914,24 @@ namespace nManager.Wow.Bot.States
                         continue;
                     KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, portal.APoint, travelFromContinentId, portal.BContinentId);
                     List<Point> way = PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                    currentTransportDistance = currentToIntermediate.Value + GetPathDistance(way);
+                    currentTransportDistance = currentToIntermediate.Value + Math.DistanceListPoint(way);
 
                     if (currentTransportDistance < bestTransportDistance)
                     {
                         bestTransports = new List<Transport> {currentToIntermediate.Key, transport};
                         bestTransportDistance = currentTransportDistance;
                     }
+                }
+                else if (transport is Taxi)
+                {
+                    // TODO: Support Taxi in 2way traveller.
+                    /*var taxi = transport as Taxi;
+                    List<Point> wayIn = PathFinder.FindPath(travelFrom, taxi.APoint, Usefuls.ContinentNameMpqByContinentId(travelFromContinentId));
+                    List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
+                    currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
+                    if (travelFromContinentId == travelToContinentId)
+                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint) / 1.5f);
+                    currentId = taxi.Id;*/
                 }
                 else
                 {
@@ -946,7 +941,7 @@ namespace nManager.Wow.Bot.States
                             continue;
                         KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, transport.BOutsidePoint, travelFromContinentId, transport.AContinentId);
                         List<Point> way = PathFinder.FindPath(transport.AOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                        currentTransportDistance = currentToIntermediate.Value + GetPathDistance(way);
+                        currentTransportDistance = currentToIntermediate.Value + Math.DistanceListPoint(way);
 
                         if (currentTransportDistance < bestTransportDistance)
                         {
@@ -960,7 +955,7 @@ namespace nManager.Wow.Bot.States
                             continue;
                         KeyValuePair<Transport, float> currentToIntermediate = GetBestDirectWayTransport(travelFrom, transport.AOutsidePoint, travelFromContinentId, transport.BContinentId);
                         List<Point> way = PathFinder.FindPath(transport.BOutsidePoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
-                        currentTransportDistance = currentToIntermediate.Value + GetPathDistance(way);
+                        currentTransportDistance = currentToIntermediate.Value + Math.DistanceListPoint(way);
 
                         if (currentTransportDistance < bestTransportDistance)
                         {
