@@ -464,19 +464,18 @@ namespace nManager.Wow.Class
             return scale;
         }
 
-
-        public Vector3 TransformInvert(WoWGameObject o)
+        public Vector3 TransformInvert(WoWGameObject o, Vector3 worldCoordinate)
         {
-            Vector3 t = o.Position;
-            var r = new MsQuaternion(o.Rotations.X, o.Rotations.Y, o.Rotations.Z, o.Rotations.W);
-            r.Invert();
-            Vector3 s = GameObjectLocalScale(o);
-            Vector3 sInv = new Vector3(1/s.X, 1/s.Y, 1/s.Z);
-
-            /*Vector3 q = Vector3.Scale(sInv, (r*(p - t)));
-            float err = (q - transform.InverseTransformPoint(p)).magnitude;*/
-            return new Vector3();
+            Matrix4 transformation = o.WorldMatrix.Invert();
+            return worldCoordinate.Transform(transformation);
         }
+
+        public Vector3 TransformInvert(Matrix4 m, Vector3 worldCoordinate)
+        {
+            Matrix4 transformation = m.Invert();
+            return worldCoordinate.Transform(transformation);
+        }
+
 
         // *****************************************
         // C# stuff
