@@ -464,18 +464,15 @@ namespace nManager.Wow.Class
             return scale;
         }
 
-        public Vector3 TransformInvert(WoWGameObject o, Vector3 worldCoordinate)
+        public Vector3 TransformInvert(WoWGameObject o)
         {
-            Matrix4 transformation = o.WorldMatrix.Invert();
-            return worldCoordinate.Transform(transformation);
+            return TransformInvert(o.WorldMatrix);
         }
 
-        public Vector3 TransformInvert(Matrix4 m, Vector3 worldCoordinate)
+        public Vector3 TransformInvert(Matrix4 m)
         {
-            Matrix4 transformation = m.Invert();
-            return worldCoordinate.Transform(transformation);
+            return Transform(m.Invert());
         }
-
 
         // *****************************************
         // C# stuff
