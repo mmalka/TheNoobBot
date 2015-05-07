@@ -65,69 +65,77 @@ namespace Test_Product
 
                 foreach (WoWGameObject go in AllGos)
                 {
-                    if (go.Entry != 0 && go.Name != "" && go.CreatedBy == 0)
+                    string query = "";
+                    try
                     {
-                        string query = "SELECT entry FROM gameobject WHERE entry = " + go.Entry + " AND " +
-                            "map = " + Usefuls.RealContinentId + " AND " +
-                            "SQRT((x-" + go.Position.X + ")*(x-" + go.Position.X + ") + " +
-                             "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ")) < 0.5;";
-                        var cmd = new MySqlCommand(query, myConn);
-                        MySqlDataReader result = cmd.ExecuteReader();
-                        if (!result.HasRows && go.GOType != WoWGameObjectType.MoTransport)
+                        if (go.Entry != 0 && go.Name != "" && go.CreatedBy == 0)
                         {
-                            result.Close();
-                            Quaternion rotations = go.Rotations;
-                            Matrix4 matrice = go.WorldMatrix;
-                            query = "INSERT INTO gameobject (entry,map,x,y,z,o,r0,r1,r2,r3,m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44) VALUES (" + go.Entry + "," + Usefuls.RealContinentId + "," + go.Position.X + "," + go.Position.Y + "," + go.Position.Z + "," + go.Orientation + "," + rotations.X + "," + rotations.Y + "," + rotations.Z + "," + rotations.W + "," +
-                                matrice.xx + "," + matrice.xy + "," + matrice.xz + "," + matrice.xw + "," + matrice.yx + "," + matrice.yy + "," + matrice.yz + "," + matrice.yw + "," + matrice.zx + "," + matrice.zy + "," + matrice.zz + "," + matrice.zw + "," + matrice.wx + "," + matrice.wy + "," + matrice.wz + "," + matrice.ww +");";
-                            cmd = new MySqlCommand(query, myConn);
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
-                            result.Close();
-                        //bool newAdded = false;
-                        query = "SELECT entry,questitem1 FROM gameobject_template WHERE entry = " + go.Entry + ";";
-                        cmd = new MySqlCommand(query, myConn);
-                        result = cmd.ExecuteReader();
-                        if (!result.HasRows)
-                        {
-                            result.Close();
-                            query = "INSERT IGNORE INTO gameobject_template (entry,type,name,iconname,castbarcaption,model,faction,flags,size";
-                            for (uint i = 0; i < 32; i++)
-                                query += ",data" + i;
-                            query += ",questitem1,questitem2,questitem3,questitem4) VALUES (" + go.Entry + "," + (uint)go.GOType + ",'" + go.Name.Replace("'", "\\'") + "','" + go.IconName + "','" + go.CastBarCaption + "'," + go.DisplayId + "," + go.Faction + "," + (uint)go.GOFlags + "," + go.Size;
-                            for (uint i = 0; i < 32; i++)
-                                query += "," + go.Data(i);
-                            query += "," + go.QuestItem1 + "," + go.QuestItem2 + "," + go.QuestItem3 + "," + go.QuestItem4;
-                            query += ");";
-                            cmd = new MySqlCommand(query, myConn);
-                            cmd.ExecuteNonQuery();
-                            //newAdded = true;
-                        }
-                        else
-                        {
-                            /*result.Read();
-                            int questitem = result.GetInt32(1);*/
-                            result.Close();
-                            /*if (questitem > 1000000 || questitem < 0) // 1065353216
+                            query = "SELECT entry FROM gameobject WHERE entry = " + go.Entry + " AND " +
+                                "map = " + Usefuls.RealContinentId + " AND " +
+                                "SQRT((x-" + go.Position.X + ")*(x-" + go.Position.X + ") + " +
+                                 "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ")) < 0.5;";
+                            var cmd = new MySqlCommand(query, myConn);
+                            MySqlDataReader result = cmd.ExecuteReader();
+                            if (!result.HasRows && go.GOType != WoWGameObjectType.MoTransport)
                             {
-                                query = "UPDATE gameobject_template set size = " + go.Size + ", questitem1 = " + go.QuestItem1 + ", questitem2 = " + go.QuestItem2 + ", questitem3 = " + go.QuestItem3 + ", questitem4 = " + go.QuestItem4 + " WHERE entry =" + go.Entry + ";";
+                                result.Close();
+                                Quaternion rotations = go.Rotations;
+                                Matrix4 matrice = go.WorldMatrix;
+                                query = "INSERT INTO gameobject (entry,map,x,y,z,o,r0,r1,r2,r3,m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44) VALUES (" + go.Entry + "," + Usefuls.RealContinentId + "," + go.Position.X + "," + go.Position.Y + "," + go.Position.Z + "," + go.Orientation + "," + rotations.X + "," + rotations.Y + "," + rotations.Z + "," + rotations.W + "," +
+                                    matrice.xx + "," + matrice.xy + "," + matrice.xz + "," + matrice.xw + "," + matrice.yx + "," + matrice.yy + "," + matrice.yz + "," + matrice.yw + "," + matrice.zx + "," + matrice.zy + "," + matrice.zz + "," + matrice.zw + "," + matrice.wx + "," + matrice.wy + "," + matrice.wz + "," + matrice.ww + ");";
+                                cmd = new MySqlCommand(query, myConn);
+                                cmd.ExecuteNonQuery();
+                            }
+                            else
+                                result.Close();
+                            //bool newAdded = false;
+                            query = "SELECT entry,questitem1 FROM gameobject_template WHERE entry = " + go.Entry + ";";
+                            cmd = new MySqlCommand(query, myConn);
+                            result = cmd.ExecuteReader();
+                            if (!result.HasRows)
+                            {
+                                result.Close();
+                                query = "INSERT IGNORE INTO gameobject_template (entry,type,name,iconname,castbarcaption,model,faction,flags,size";
+                                for (uint i = 0; i < 32; i++)
+                                    query += ",data" + i;
+                                query += ",questitem1,questitem2,questitem3,questitem4) VALUES (" + go.Entry + "," + (uint)go.GOType + ",'" + go.Name.Replace("'", "\\'") + "','" + go.IconName.Replace("'", "\\'") + "','" + go.CastBarCaption.Replace("'", "\\'") + "'," + go.DisplayId + "," + go.Faction + "," + (uint)go.GOFlags + "," + go.Size;
+                                for (uint i = 0; i < 32; i++)
+                                    query += "," + go.Data(i);
+                                query += "," + go.QuestItem1 + "," + go.QuestItem2 + "," + go.QuestItem3 + "," + go.QuestItem4;
+                                query += ");";
+                                cmd = new MySqlCommand(query, myConn);
+                                cmd.ExecuteNonQuery();
+                                //newAdded = true;
+                            }
+                            else
+                            {
+                                result.Read();
+                                int questitem = result.GetInt32(1);
+                                result.Close();
+                                if (questitem > 1000000 || questitem < 0) // 1065353216
+                                {
+                                    query = "UPDATE gameobject_template set size = " + go.Size + ", questitem1 = " + go.QuestItem1 + ", questitem2 = " + go.QuestItem2 + ", questitem3 = " + go.QuestItem3 + ", questitem4 = " + go.QuestItem4 + " WHERE entry =" + go.Entry + ";";
+                                    cmd = new MySqlCommand(query, myConn);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            /*if (!newAdded && go.IconName != "")
+                            {
+                                query = "UPDATE gameobject_template set iconname='" + go.IconName + "' WHERE entry =" + go.Entry + ";";
+                                cmd = new MySqlCommand(query, myConn);
+                                cmd.ExecuteNonQuery();
+                            }
+                            if (!newAdded && go.CastBarCaption != "")
+                            {
+                                query = "UPDATE gameobject_template set castbarcaption='" + go.CastBarCaption + "' WHERE entry =" + go.Entry + ";";
                                 cmd = new MySqlCommand(query, myConn);
                                 cmd.ExecuteNonQuery();
                             }*/
                         }
-                        /*if (!newAdded && go.IconName != "")
-                        {
-                            query = "UPDATE gameobject_template set iconname='" + go.IconName + "' WHERE entry =" + go.Entry + ";";
-                            cmd = new MySqlCommand(query, myConn);
-                            cmd.ExecuteNonQuery();
-                        }
-                        if (!newAdded && go.CastBarCaption != "")
-                        {
-                            query = "UPDATE gameobject_template set castbarcaption='" + go.CastBarCaption + "' WHERE entry =" + go.Entry + ";";
-                            cmd = new MySqlCommand(query, myConn);
-                            cmd.ExecuteNonQuery();
-                        }*/
+                    }
+                    catch (Exception exception)
+                    {
+                        Logging.Write("This query has a problem ? " + query);
                     }
                 }
 
