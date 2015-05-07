@@ -705,7 +705,7 @@ namespace nManager.Wow.Bot.States
             uint cnt = 0;
             foreach (Taxi taxi in _availableTaxis)
             {
-                if (cnt >= 4) // We only check the 4 nearest taxis
+                if (cnt >= 3) // We only check the 3 nearest taxis
                     break;
                 if (taxi.Faction != Npc.FactionType.Neutral && taxi.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
                     continue;
@@ -738,7 +738,7 @@ namespace nManager.Wow.Bot.States
             uint cnt = 0;
             foreach (Taxi taxi in _availableTaxis)
             {
-                if (cnt >= 4) // We only check the 4 nearest taxis
+                if (cnt >= 3) // We only check the 3 nearest taxis
                     break;
                 // Prevent going to self
                 if (taxi.Position == bestTaxi.Position)
