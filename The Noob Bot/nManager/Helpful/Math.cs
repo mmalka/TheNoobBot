@@ -225,7 +225,7 @@ namespace nManager.Helpful
                 {
                     int j = i + 1;
                     if (j <= listPoints.Count - 1)
-                        size = size + Point.Distance(listPoints[i], listPoints[j]);
+                        size = size + listPoints[i].DistanceTo(listPoints[j]);
                 }
 
                 return size;

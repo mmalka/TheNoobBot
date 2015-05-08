@@ -38,12 +38,28 @@ namespace nManager.Wow.Class
             Type = type;
         }
 
+        public Point(float[] array)
+        {
+            X = array[0];
+            Y = array[1];
+            Z = array[2];
+            Type = "None";
+        }
+
         public Point(Point other)
         {
             X = other.X;
             Y = other.Y;
             Z = other.Z;
             Type = other.Type;
+        }
+
+        public Point(Vector3 v)
+        {
+            X = v.X;
+            Y = v.Y;
+            Z = v.Z;
+            Type = "None";
         }
 
         public override string ToString()

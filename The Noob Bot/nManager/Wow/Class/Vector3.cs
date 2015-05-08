@@ -305,22 +305,9 @@ namespace nManager.Wow.Class
             return v1.Magnitude;
         }
 
-        public static float Distance(Vector3 v1, Vector3 v2)
-        {
-            return
-                (float) (
-                    CSharpMath.Sqrt
-                        (
-                            (v1.X - v2.X)*(v1.X - v2.X) +
-                            (v1.Y - v2.Y)*(v1.Y - v2.Y) +
-                            (v1.Z - v2.Z)*(v1.Z - v2.Z)
-                        )
-                    );
-        }
-
         public float DistanceTo(Vector3 other)
         {
-            return Distance(this, other);
+            return (this - other).Magnitude;
         }
 
         public static float DistanceTo2D(Vector3 v1, Vector3 v2)

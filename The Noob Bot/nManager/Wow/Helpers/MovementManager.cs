@@ -1157,7 +1157,7 @@ namespace nManager.Wow.Helpers
                             if (o.IsValid)
                             {
                                 Vector3 altVector3 = position.TransformInvert(o);
-                                altPoint = new Point(altVector3.X, altVector3.Y, altVector3.Z);
+                                altPoint = new Point(altVector3);
                             }
                         }
                     }
