@@ -73,10 +73,11 @@ namespace Test_Product
                             query = "SELECT entry FROM gameobject WHERE entry = " + go.Entry + " AND " +
                                 "map = " + Usefuls.RealContinentId + " AND " +
                                 "SQRT((x-" + go.Position.X + ")*(x-" + go.Position.X + ") + " +
-                                 "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ")) < 0.5;";
+                                     "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ") + " +
+                                     "(z-" + go.Position.Z + ")*(z-" + go.Position.Z + ")) < 0.5;";
                             var cmd = new MySqlCommand(query, myConn);
                             MySqlDataReader result = cmd.ExecuteReader();
-                            if (!result.HasRows && go.GOType != WoWGameObjectType.MoTransport)
+                            if (!result.HasRows && go.GOType != WoWGameObjectType.MoTransport && go.GOType != WoWGameObjectType.Transport)
                             {
                                 result.Close();
                                 Quaternion rotations = go.Rotations;
