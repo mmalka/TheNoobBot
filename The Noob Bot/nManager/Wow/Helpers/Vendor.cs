@@ -39,26 +39,28 @@ namespace nManager.Wow.Helpers
                     syntaxNoSellItem = syntaxNoSellItem.Replace("if  and", "if ");
                     syntaxNoSellItem = syntaxNoSellItem + " then ";
                 }
+                for (int i = 0; i <= 4; i++)
+                {
+                    string resultString = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(resultString + " = GetContainerNumSlots(" + i + ")");
+                    var result = Others.ToUInt32(Lua.GetLocalizedText(resultString));
+                    for (int j = 0; j < result + 1; j++)
+                    {
+                        string scriptLua = "";
 
-                string scriptLua = "";
-
-                scriptLua = scriptLua + "local c,l,r,_=0 ";
-
-                scriptLua = scriptLua + "for b=0,4 do ";
-                scriptLua = scriptLua + "for s=1,GetContainerNumSlots(b) do  ";
-                scriptLua = scriptLua + "local l=GetContainerItemLink(b,s) ";
-                scriptLua = scriptLua + "if l then namei,_,r=GetItemInfo(l) ";
-                scriptLua = scriptLua + "if " + syntaxQualityItem + " " + syntaxSellItem + " then ";
-                scriptLua = scriptLua + syntaxNoSellItem;
-                scriptLua = scriptLua + " UseContainerItem(b,s)c=c+1 ";
-                scriptLua = scriptLua + syntaxNoSellItemEnd;
-                scriptLua = scriptLua + " end ";
-                scriptLua = scriptLua + "end ";
-                scriptLua = scriptLua + "end ";
-                scriptLua = scriptLua + "end ";
-
-                Lua.LuaDoString(scriptLua);
-                System.Threading.Thread.Sleep(30000);
+                        scriptLua = scriptLua + "local l,r,_=0 ";
+                        scriptLua = scriptLua + "local l=GetContainerItemLink(" + i + ", " + j + ") ";
+                        scriptLua = scriptLua + "if l then namei,_,r=GetItemInfo(l) ";
+                        scriptLua = scriptLua + "if " + syntaxQualityItem + " " + syntaxSellItem + " then ";
+                        scriptLua = scriptLua + syntaxNoSellItem;
+                        scriptLua = scriptLua + " UseContainerItem(" + i + ", " + j + ") ";
+                        scriptLua = scriptLua + syntaxNoSellItemEnd;
+                        scriptLua = scriptLua + " end ";
+                        scriptLua = scriptLua + "end ";
+                        Lua.LuaDoString(scriptLua);
+                        System.Threading.Thread.Sleep(150);
+                    }
+                }
             }
             catch (Exception e)
             {
