@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Noob Bot", "The Noob Bot\The Noob Bot.csproj", "{18E3D1BE-0EFC-4E04-9BDD-20BF8A60B53D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -77,6 +77,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TnbAutoEquipper", "TnbAutoEquipper\TnbAutoEquipper.csproj", "{748C2F11-7470-42D9-9878-B4C77456F482}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TnbBroadcaster", "TnbBroadcaster\TnbBroadcaster.csproj", "{B9E62B7F-0820-44C1-A025-D6D13E058CDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonFarmer", "Dungeon Farmer\DungeonFarmer.csproj", "{78B913A3-17CE-4302-BD3A-74315F0D954D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -427,6 +429,22 @@ Global
 		{B9E62B7F-0820-44C1-A025-D6D13E058CDF}.Release|Win32.ActiveCfg = Release|x86
 		{B9E62B7F-0820-44C1-A025-D6D13E058CDF}.Release|x86.ActiveCfg = Release|x86
 		{B9E62B7F-0820-44C1-A025-D6D13E058CDF}.Release|x86.Build.0 = Release|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|Win32.ActiveCfg = Debug|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|Win32.Build.0 = Debug|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|x86.ActiveCfg = Debug|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Debug|x86.Build.0 = Debug|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|Win32.ActiveCfg = Release|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|Win32.Build.0 = Release|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|x86.ActiveCfg = Release|x86
+		{78B913A3-17CE-4302-BD3A-74315F0D954D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
