@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -580,7 +581,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.SubAreaId);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.SubAreaId);
                 }
                 catch (Exception e)
                 {
@@ -596,7 +597,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.AreaId);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.AreaId);
                 }
                 catch (Exception e)
                 {
@@ -928,6 +929,12 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
             string ret = Lua.GetLocalizedText(randomString);
             return Others.ToInt32(ret);
+        }
+
+        public static void ResetAllInstances()
+        {
+            Lua.LuaDoString("ResetInstances()");
+            // Can only reset an instance up to 10 times per hours.
         }
 
         public static bool IsCompletedAchievement(int achievementId, bool meOnly = false)
