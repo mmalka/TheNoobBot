@@ -71,6 +71,7 @@
             Lock = 0x0D106CC,
             QuestPOIPoint = 0xD10DB4,
             ResearchSite = 0xD10FF0,
+            Map = 0xD13690,
         }
 
         /// <summary>

@@ -296,6 +296,7 @@
     <Compile Include="Wow\Helpers\Vendor.cs" />
     <Compile Include="Wow\Helpers\WoWFactionTemplate.cs" />
     <Compile Include="Wow\Helpers\WoWLock.cs" />
+    <Compile Include="Wow\Helpers\WoWMap.cs" />
     <Compile Include="Wow\Helpers\WoWQuestPOIPoint.cs" />
     <Compile Include="Wow\Helpers\WoWResearchSite.cs" />
     <Compile Include="Wow\Memory.cs" />
