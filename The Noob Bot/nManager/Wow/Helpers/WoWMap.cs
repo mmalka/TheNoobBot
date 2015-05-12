@@ -87,48 +87,49 @@ namespace nManager.Wow.Helpers
             get { return _rMapDBCRecord0; }
         }
 
-        /*private int MinIndex
+        // data
+        public enum InstanceType : uint
         {
-            get
-            {
-                init();
-                return _rMapDBC.MinIndex;
-            }
+            None = 0,
+            Party = 1,
+            Raid = 2,
+            PvP = 3,
+            Arena = 4,
+            Scenario = 5,
         }
 
-        private int MaxIndex
+        public enum MapType : uint
         {
-            get
-            {
-                init();
-                return _rMapDBC.MaxIndex;
-            }
-        }*/
+            ADTType = 1,
+            WDTOnlyType = 2,
+            TransportType = 3,
+            WMOType = 4,
+        }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MapDbcRecord
         {
             public uint Id;
             public uint MPQDirectoryNameOffset;
-            public uint InstanceType;
+            public InstanceType InstanceType;
             public uint Flags;
-            public uint MapType;
-            public uint unk5;
+            public uint unk4;
+            public MapType MapType;
             public uint MapNameOffset;
             public uint AreaTableId;
             public uint MapDescriptionHordeOffset;
             public uint MapDescriptionAllianceOffset;
             public uint LoadingScreenId;
             public float MinimapIconScale;
-            public uint CorpseMapId;
-            public float CorpseX;
-            public float CorpseY;
-            public uint TimeOfDayOverride;
+            public int GhostEntranceMapId;
+            public float GhostEntranceX;
+            public float GhostEntranceY;
+            public int TimeOfDayOverride;
             public uint ExpansionId;
             public uint RaidOffset;
             public uint MaxPlayers;
-            public uint ParentMapId;
-            public uint CosmeticParentMapID;
+            public int ParentMapId;
+            public int CosmeticParentMapID;
             public uint TimeOffset;
         }
     }
