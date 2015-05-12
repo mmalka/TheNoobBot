@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
-using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
-using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 
 namespace DungeonFarmer.Bot
@@ -13,20 +10,10 @@ namespace DungeonFarmer.Bot
     {
         private static readonly Engine Fsm = new Engine();
 
-        internal static Spell SurveySpell;
-
         internal static bool Pulse()
         {
             try
             {
-                SurveySpell = new Spell("Survey");
-                if (!SurveySpell.KnownSpell)
-                {
-                    MessageBox.Show(Translate.Get(Translate.Id.Survey_spell_not_found__stopping_tnb));
-                    Logging.Write("Survey spell not found, stopping bot.");
-                    return false;
-                }
-
                 // Load CC:
                 CombatClass.LoadCombatClass();
 
@@ -46,18 +33,11 @@ namespace DungeonFarmer.Bot
                 Fsm.AddState(new MillingState {Priority = 4});
                 Fsm.AddState(new ProspectingState {Priority = 3});
                 Fsm.AddState(new Farming {Priority = 2});
-                Fsm.AddState(new ArchaeologyStates
-                {
-                    Priority = 1,
-                    SolvingEveryXMin = DungeonFarmerSetting.CurrentSetting.SolvingEveryXMin,
-                    MaxTryByDigsite = DungeonFarmerSetting.CurrentSetting.MaxTryByDigsite,
-                    UseKeystones = DungeonFarmerSetting.CurrentSetting.UseKeystones
-                });
+                Fsm.AddState(new DungeonFarming {Priority = 1,});
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(5, "FSM DungeonFarmer");
-                Archaeology.Initialize();
                 return true;
             }
             catch (Exception e)

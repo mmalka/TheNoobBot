@@ -39,9 +39,5 @@ namespace DungeonFarmer.Bot
             }
             return false;
         }
-
-        public int SolvingEveryXMin = 20;
-        public int MaxTryByDigsite = 50;
-        public bool UseKeystones = true;
     }
 }

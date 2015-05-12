@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 using DungeonFarmer.Bot;
+using DungeonFarmer.Properties;
 using nManager;
 using nManager.Helpful;
-using DungeonFarmer.Properties;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using Point = System.Drawing.Point;
@@ -27,9 +26,6 @@ namespace DungeonFarmer
             {
                 InitializeComponent();
                 Translate();
-                SolvingEveryXMin.Value = DungeonFarmerSetting.CurrentSetting.SolvingEveryXMin;
-                MaxTryByDigsite.Value = DungeonFarmerSetting.CurrentSetting.MaxTryByDigsite;
-                UseKeystones.Checked = DungeonFarmerSetting.CurrentSetting.UseKeystones;
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
                 DigSitesTable.Columns.Add("Id", "Id");
@@ -111,7 +107,7 @@ namespace DungeonFarmer
 
         private void SaveAndCloseButton_MouseLeave(object sender, EventArgs e)
         {
-            SaveAndCloseButton.Image = DungeonFarmer.Properties.Resources.blueB;
+            SaveAndCloseButton.Image = Resources.blueB;
         }
 
         private void ReduceButton_MouseEnter(object sender, EventArgs e)
@@ -141,9 +137,6 @@ namespace DungeonFarmer
                 if (DigSitesTable.CurrentRow != null)
                     DigSitesTable.CurrentRow.DataGridView.EndEdit();
                 SaveAndCloseButton.Enabled = false;
-                DungeonFarmerSetting.CurrentSetting.SolvingEveryXMin = (int) SolvingEveryXMin.Value;
-                DungeonFarmerSetting.CurrentSetting.MaxTryByDigsite = (int) MaxTryByDigsite.Value;
-                DungeonFarmerSetting.CurrentSetting.UseKeystones = UseKeystones.Checked;
                 DungeonFarmerSetting.CurrentSetting.Save();
                 var digsite = new List<Digsite>();
                 for (int i = 0; i < DigSitesTable.Rows.Count - 1; i++)

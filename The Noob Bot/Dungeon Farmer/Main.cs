@@ -6,10 +6,17 @@ using nManager;
 using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.ObjectManager;
 
 public class Main : IProduct
 {
     #region IProduct Members
+
+    private bool _isStarted;
+    private string _looting;
+    private string _mindistground;
+    private string _usefly;
+    private string _useground;
 
     public void Initialize()
     {
@@ -77,7 +84,7 @@ public class Main : IProduct
     {
         try
         {
-            DungeonFarmerSettingsFrame f = new DungeonFarmerSettingsFrame();
+            var f = new DungeonFarmerSettingsFrame();
             f.ShowDialog();
             Others.ProductStatusLog(Products.ProductName, 7);
         }
@@ -87,19 +94,19 @@ public class Main : IProduct
         }
     }
 
-    private string _looting;
-    private string _useground;
-    private string _mindistground;
-    private string _usefly;
+    public bool IsStarted
+    {
+        get { return _isStarted; }
+    }
 
     private void GetProductTipOff()
     {
         try
         {
-            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level < 90 &&
+            if (ObjectManager.Me.Level < 90 &&
                 nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOffArchaeologist);
-            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 90 &&
+            else if (ObjectManager.Me.Level == 90 &&
                      !nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOnArchaeologist);
             if (MountTask.GetMountCapacity() >= MountCapacity.Ground)
@@ -129,13 +136,6 @@ public class Main : IProduct
             Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
         }
     }
-
-    public bool IsStarted
-    {
-        get { return _isStarted; }
-    }
-
-    private bool _isStarted;
 
     #endregion
 }

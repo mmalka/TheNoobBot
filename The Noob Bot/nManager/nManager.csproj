@@ -167,6 +167,7 @@
     <Compile Include="Translate.cs" />
     <Compile Include="Wow\Bot\States\ArchaeologyStates.cs" />
     <Compile Include="Wow\Bot\States\Battlegrounding.cs" />
+    <Compile Include="Wow\Bot\States\DungeonFarming.cs" />
     <Compile Include="Wow\Bot\States\FightHostileTarget.cs" />
     <Compile Include="Wow\Bot\States\Farming.cs" />
     <Compile Include="Wow\Bot\States\FightHostileTargetDamageDealerOnly.cs" />
