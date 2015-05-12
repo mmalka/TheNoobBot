@@ -287,7 +287,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                CheckDungeon();
+                if (CheckDungeon())
+                    return;
 
                 float tx, ty;
                 GetTileByLocation(loc, out tx, out ty);
@@ -318,7 +319,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                CheckDungeon();
+                if (CheckDungeon())
+                    return false;
 
                 MeshTile tile;
                 DetourStatus ret = _mesh.AddTile(data, out tile);
@@ -343,16 +345,18 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        private void CheckDungeon()
+        private bool CheckDungeon()
         {
             try
             {
                 if (IsDungeon)
                     Logging.WriteError("Dungeon mesh doesn't support tiles");
+                return IsDungeon;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("CheckDungeon(): " + exception);
+                return false;
             }
         }
 
@@ -360,7 +364,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                CheckDungeon();
+                if (CheckDungeon())
+                    return false;
 
                 // To check every 1 minute minimum and unload tiles loaded more than 15 minutes ago
                 if (_loadTileCheck.IsReady)
@@ -609,7 +614,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                return _meshPath + "\\" + Continent + ".dmesh";
+                return "Dungeons\\" + Continent + ".dmesh";
             }
             catch (Exception exception)
             {
@@ -646,10 +651,13 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 DetourStatus status;
 
                 // check if this is a dungeon and initialize our mesh accordingly
-                string dungeonPath = GetDungeonPath();
-                if (File.Exists(dungeonPath))
+                WoWMap map = WoWMap.FromMPQName(continent);
+                if (map.Record.MapType == WoWMap.MapType.WDTOnlyType)
                 {
-                    byte[] data = File.ReadAllBytes(dungeonPath);
+                    string dungeonPath = GetDungeonPath();
+                    if (!File.Exists(_meshPath + "\\" + dungeonPath))
+                        downloadTile(dungeonPath);
+                    byte[] data = File.ReadAllBytes(_meshPath + "\\" + dungeonPath);
                     status = _mesh.Initialize(data);
                     AddMemoryPressure(data.Length);
                     IsDungeon = true;
