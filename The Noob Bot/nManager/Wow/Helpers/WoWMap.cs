@@ -22,7 +22,7 @@ namespace nManager.Wow.Helpers
                 _rMapDBCRecord0 = _rMapDBC.GetRow(id);
                 if (_rMapDBCRecord0.Id == id)
                 {
-                    string temp = (mpq ? MapName : MapMPQName);
+                    string temp = (mpq ? MapMPQName : MapName);
                     if (temp == name)
                     {
                         return;
@@ -49,6 +49,15 @@ namespace nManager.Wow.Helpers
                 return _rMapDBC.String(_rMapDBC.GetRowOffset((int)_rMapDBCRecord0.Id) +
                                         _rMapDBCRecord0.MPQDirectoryNameOffset +
                                         (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MPQDirectoryNameOffset"));
+            }
+        }
+
+        public bool IsTestMap
+        {
+            get
+            {
+                return (_rMapDBCRecord0.Flags & (uint)MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
+                    (_rMapDBCRecord0.Flags & (uint)MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
             }
         }
 
@@ -104,6 +113,13 @@ namespace nManager.Wow.Helpers
             WDTOnlyType = 2,
             TransportType = 3,
             WMOType = 4,
+        }
+
+        private enum MapFlags : uint
+        {
+            MAP_FLAG_TEST_MAP = 0x002,
+            MAP_FLAG_NOT_EXISTING = 0x080, // This returns 2 maps not in CASC (CraigTest (597) and Deephomeceiling (660))
+            MAP_FLAG_DYNAMIC_DIFFICULTY = 0x100,
         }
 
         [StructLayout(LayoutKind.Sequential)]
