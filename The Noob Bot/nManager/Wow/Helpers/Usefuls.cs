@@ -409,7 +409,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return ((ContinentId) ContinentId).ToString();
+                    return ContinentNameByContinentId(ContinentId);
                 }
                 catch (Exception e)
                 {
@@ -419,100 +419,26 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static string ContinentNameByContinentId(int cId)
+        {
+            switch (cId)
+            {
+                case 530: // Expansion01 => Outland
+                    return "Outland";
+                case 646: // Deephome => Maelstrom
+                    return "Maelstrom";
+                case 870: // HawaiiMainLand => Pandaria
+                    return "Pandaria";
+                default:
+                    WoWMap map = WoWMap.FromId(cId);
+                    return map.MapMPQName;
+            }
+        }
+
         public static string ContinentNameMpqByContinentId(int cId)
         {
-            string retS;
-            switch ((ContinentId) cId)
-            {
-                case Enums.ContinentId.PVPZone04:
-                    retS = "PVPZone04";
-                    break;
-                case Enums.ContinentId.PVPZone01:
-                    retS = "PVPZone01";
-                    break;
-                case Enums.ContinentId.Azeroth:
-                    retS = "Azeroth";
-                    break;
-                case Enums.ContinentId.NetherstormBG:
-                    retS = "NetherstormBG";
-                    break;
-                case Enums.ContinentId.Kalimdor:
-                    retS = "Kalimdor";
-                    break;
-                case Enums.ContinentId.Northrend:
-                    retS = "Northrend";
-                    break;
-                case Enums.ContinentId.Outland:
-                    retS = "Expansion01";
-                    break;
-                case Enums.ContinentId.Pandaria:
-                    retS = "HawaiiMainLand";
-                    break;
-                case Enums.ContinentId.NorthrendBG:
-                    retS = "NorthrendBG";
-                    break;
-                case Enums.ContinentId.IsleofConquest:
-                    retS = "IsleofConquest";
-                    break;
-                case Enums.ContinentId.CataclysmCTF:
-                    retS = "CataclysmCTF";
-                    break;
-                case Enums.ContinentId.Gilneas_BG_2:
-                    retS = "Gilneas_BG_2";
-                    break;
-                case Enums.ContinentId.PVPZone03:
-                    retS = "PVPZone03";
-                    break;
-                case Enums.ContinentId.ValleyOfPower:
-                    retS = "ValleyOfPower";
-                    break;
-                case Enums.ContinentId.DeathKnightStart:
-                    retS = "DeathKnightStart";
-                    break;
-                case Enums.ContinentId.SunwellPlateau:
-                    retS = "SunwellPlateau";
-                    break;
-                case Enums.ContinentId.DarkmoonFaire:
-                    retS = "DarkmoonFaire";
-                    break;
-                case Enums.ContinentId.TolBarad:
-                    retS = "TolBarad";
-                    break;
-                case Enums.ContinentId.Maelstrom:
-                    retS = "Deephome";
-                    break;
-                case Enums.ContinentId.LostIsles:
-                    retS = "LostIsles";
-                    break;
-                case Enums.ContinentId.Gilneas:
-                    retS = "Gilneas";
-                    break;
-                case Enums.ContinentId.Gilneas2:
-                    retS = "Gilneas2";
-                    break;
-                case Enums.ContinentId.NewRaceStartZone:
-                    retS = "NewRaceStartZone";
-                    break;
-                case Enums.ContinentId.MoguIslandDailyArea:
-                    retS = "MoguIslandDailyArea";
-                    break;
-                case Enums.ContinentId.EyeoftheStorm2dot0:
-                    retS = "EyeoftheStorm2.0";
-                    break;
-                case Enums.ContinentId.GoldRushBG:
-                    retS = "GoldRushBG";
-                    break;
-                case Enums.ContinentId.Draenor:
-                    retS = "Draenor";
-                    break;
-                case Enums.ContinentId.TanaanJungleIntro:
-                    retS = "TanaanJungleIntro";
-                    break;
-                default:
-                    retS = "MapId_" + cId;
-                    break;
-            }
-            return retS;
+            WoWMap map = WoWMap.FromId(cId);
+            return map.MapMPQName;
         }
 
         public static string ContinentNameMpq
