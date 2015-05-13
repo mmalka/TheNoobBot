@@ -473,6 +473,20 @@ namespace nManager.Wow.Helpers
             get { return _continentId; }
         }
 
+        public static List<WoWMap.MapDbcRecord> GetInstancesList()
+        {
+             List<WoWMap.MapDbcRecord> result = WoWMap.WoWMaps(WoWMap.InstanceType.Party, WoWMap.MapType.ADTType);
+             result.AddRange(WoWMap.WoWMaps(WoWMap.InstanceType.Party, WoWMap.MapType.WDTOnlyType));
+             return result;
+        }
+
+        public static List<WoWMap.MapDbcRecord> GetRaidsList()
+        {
+            List<WoWMap.MapDbcRecord> result = WoWMap.WoWMaps(WoWMap.InstanceType.Raid, WoWMap.MapType.ADTType);
+            result.AddRange(WoWMap.WoWMaps(WoWMap.InstanceType.Raid, WoWMap.MapType.WDTOnlyType));
+            return result;
+        }
+
         private static List<int> _garrisonMapIdList;
         private static int _continentId;
 

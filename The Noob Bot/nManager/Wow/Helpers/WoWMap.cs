@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using nManager.Wow.Patchables;
+using System.Collections.Generic;
 
 namespace nManager.Wow.Helpers
 {
@@ -8,7 +9,7 @@ namespace nManager.Wow.Helpers
         private MapDbcRecord _rMapDBCRecord0;
         private static DBC<MapDbcRecord> _rMapDBC;
 
-        private void init()
+        private static void init()
         {
             if (_rMapDBC == null)
                 _rMapDBC = new DBC<MapDbcRecord>((int)Addresses.DBC.Map);
@@ -36,9 +37,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                return _rMapDBC.String(_rMapDBC.GetRowOffset((int)_rMapDBCRecord0.Id) +
-                                        _rMapDBCRecord0.MapNameOffset +
-                                        (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MapNameOffset"));
+                return _rMapDBCRecord0.MapName();
             }
         }
 
@@ -46,9 +45,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                return _rMapDBC.String(_rMapDBC.GetRowOffset((int)_rMapDBCRecord0.Id) +
-                                        _rMapDBCRecord0.MPQDirectoryNameOffset +
-                                        (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MPQDirectoryNameOffset"));
+                return _rMapDBCRecord0.MapMPQName();
             }
         }
 
@@ -56,8 +53,15 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                return (_rMapDBCRecord0.Flags & (uint)MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
-                    (_rMapDBCRecord0.Flags & (uint)MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
+                return _rMapDBCRecord0.IsTestMap();
+            }
+        }
+
+        public bool IsGarrisonMap
+        {
+            get
+            {
+                return _rMapDBCRecord0.IsGarrisonMap();
             }
         }
 
@@ -75,7 +79,12 @@ namespace nManager.Wow.Helpers
             _rMapDBCRecord0 = new MapDbcRecord();
         }
 
-        // Factory function
+        public MapDbcRecord Record
+        {
+            get { return _rMapDBCRecord0; }
+        }
+
+        // Factory functions
         public static WoWMap FromId(int id)
         {
             return new WoWMap(id);
@@ -91,9 +100,17 @@ namespace nManager.Wow.Helpers
             return new WoWMap(name, true);
         }
 
-        public MapDbcRecord Record
+        public static List<MapDbcRecord> WoWMaps(InstanceType iType, MapType mType)
         {
-            get { return _rMapDBCRecord0; }
+            init();
+            List<MapDbcRecord> result = new List<MapDbcRecord>();
+            for (int id = _rMapDBC.MinIndex; id <= _rMapDBC.MaxIndex; id++)
+            {
+                MapDbcRecord one = _rMapDBC.GetRow(id);
+                if (one.InstanceType == iType && one.MapType == mType && !one.IsTestMap() && !one.IsGarrisonMap())
+                    result.Add(one);
+            }
+            return result;
         }
 
         // data
@@ -102,7 +119,7 @@ namespace nManager.Wow.Helpers
             None = 0,
             Party = 1,
             Raid = 2,
-            PvP = 3,
+            Battleground = 3,
             Arena = 4,
             Scenario = 5,
         }
@@ -120,21 +137,23 @@ namespace nManager.Wow.Helpers
             MAP_FLAG_TEST_MAP = 0x002,
             MAP_FLAG_NOT_EXISTING = 0x080, // This returns 2 maps not in CASC (CraigTest (597) and Deephomeceiling (660))
             MAP_FLAG_DYNAMIC_DIFFICULTY = 0x100,
+            // 0x20000 = Phased world map with adt
+            MAP_FLAG_GARRISON = 0x4000000,
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MapDbcRecord
         {
             public uint Id;
-            public uint MPQDirectoryNameOffset;
+            private uint MPQDirectoryNameOffset;
             public InstanceType InstanceType;
             public uint Flags;
             public uint unk4;
             public MapType MapType;
-            public uint MapNameOffset;
+            private uint MapNameOffset;
             public uint AreaTableId;
-            public uint MapDescriptionHordeOffset;
-            public uint MapDescriptionAllianceOffset;
+            private uint MapDescriptionHordeOffset;
+            private uint MapDescriptionAllianceOffset;
             public uint LoadingScreenId;
             public float MinimapIconScale;
             public int GhostEntranceMapId;
@@ -147,6 +166,28 @@ namespace nManager.Wow.Helpers
             public int ParentMapId;
             public int CosmeticParentMapID;
             public uint TimeOffset;
+
+            public string MapMPQName()
+            {
+                return _rMapDBC.String(_rMapDBC.GetRowOffset((int)Id) + MPQDirectoryNameOffset +
+                    (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MPQDirectoryNameOffset"));
+            }
+
+            public string MapName()
+            {
+                return _rMapDBC.String(_rMapDBC.GetRowOffset((int)Id) + MapNameOffset +
+                    (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MapNameOffset"));
+            }
+
+            public bool IsTestMap()
+            {
+                return (Flags & (uint)MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
+                    (Flags & (uint)MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
+            }
+            public bool IsGarrisonMap()
+            {
+                return (Flags & (uint)MapFlags.MAP_FLAG_GARRISON) != 0;
+            }
         }
     }
 }
