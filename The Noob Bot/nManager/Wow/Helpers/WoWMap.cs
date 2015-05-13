@@ -8,6 +8,8 @@ namespace nManager.Wow.Helpers
     {
         private MapDbcRecord _rMapDBCRecord0;
         private static DBC<MapDbcRecord> _rMapDBC;
+        // Small list of unused map which have nor flags, nor type able to filter them
+        private static List<uint> _blacklistedMaps = new List<uint>(new uint[] { 930, 995, 1187 });
 
         private static void init()
         {
@@ -107,7 +109,7 @@ namespace nManager.Wow.Helpers
             for (int id = _rMapDBC.MinIndex; id <= _rMapDBC.MaxIndex; id++)
             {
                 MapDbcRecord one = _rMapDBC.GetRow(id);
-                if (one.InstanceType == iType && one.MapType == mType && !one.IsTestMap() && !one.IsGarrisonMap())
+                if (!one.IsBlacklistedMap() && one.InstanceType == iType && one.MapType == mType && !one.IsTestMap() && !one.IsGarrisonMap())
                     result.Add(one);
             }
             return result;
@@ -187,6 +189,11 @@ namespace nManager.Wow.Helpers
             public bool IsGarrisonMap()
             {
                 return (Flags & (uint)MapFlags.MAP_FLAG_GARRISON) != 0;
+            }
+
+            public bool IsBlacklistedMap()
+            {
+                return _blacklistedMaps.Contains(Id);
             }
         }
     }
