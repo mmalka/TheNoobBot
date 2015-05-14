@@ -202,6 +202,33 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+
+        public bool IsHostile
+        {
+            get
+            {
+                WoWUnit localUnit = this;
+                if (localUnit.IsDead || !localUnit.IsValid)
+                    return false;
+                if (localUnit is WoWPlayer)
+                {
+                    var p = localUnit as WoWPlayer;
+                    if (p.IsValid)
+                    {
+                        if (p.PlayerFaction != ObjectManager.Me.PlayerFaction)
+                            return true;
+                        string randomString = Others.GetRandomString(Others.Random(5, 10));
+                        string result = Lua.LuaDoString(randomString + " = tostring(UnitIsEnemy(\"player\", \"target\"))", randomString);
+                        if (result == "true")
+                            return true;
+                        return false;
+                    }
+                    return false;
+                }
+                return localUnit.Reaction <= Reaction.Neutral;
+            }
+        }
+
         public float GetCombatReach
         {
             get
@@ -2498,7 +2525,6 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-
 
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
         {

@@ -108,8 +108,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
-    public static string TargetVersion = "4.2.x";
-    public static string Version = "1.3.0";
+    public static string TargetVersion = "4.5.x";
+    public static string Version = "1.3.1";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
@@ -159,29 +159,10 @@ public static class MyPluginClass
             InterruptPve();
         }
     }
-
-    public static bool IsTargetEnnemyPlayer()
-    {
-        if (ObjectManager.Target.Type == WoWObjectType.Player)
-        {
-            var p = new WoWPlayer(ObjectManager.Target.GetBaseAddress);
-            if (p.IsValid)
-            {
-                if (p.PlayerFaction != ObjectManager.Me.PlayerFaction)
-                    return true;
-                string randomString = Others.GetRandomString(Others.Random(5, 10));
-                string result = Lua.LuaDoString(randomString + " = tostring(UnitIsEnemy(\"player\", \"target\"))", randomString);
-                if (result == "true")
-                    return true;
-                return false;
-            }
-        }
-        return false;
-    }
-
+    
     public static void InterruptPVP()
     {
-        if (!IsTargetEnnemyPlayer())
+        if (!ObjectManager.Target.IsHostile)
             return;
         if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
         {
@@ -219,6 +200,8 @@ public static class MyPluginClass
 
     public static void InterruptPve()
     {
+        if (!ObjectManager.Target.IsHostile)
+            return;
         if (!ObjectManager.Target.InCombat)
             return; // We don't wanna pull creatures.
         if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
