@@ -40,6 +40,7 @@ public class Main : IProduct
     {
         try
         {
+            nManager.Wow.Helpers.ConfigWowForThisBot.StartStopClickToMove();
             Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
@@ -61,6 +62,7 @@ public class Main : IProduct
     {
         try
         {
+            nManager.Wow.Helpers.ConfigWowForThisBot.StartStopClickToMove(false);
             Bot.Dispose();
             _isStarted = false;
             Others.ProductStatusLog(Products.ProductName, 6);

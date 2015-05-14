@@ -25,6 +25,25 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void StartStopClickToMove(bool startStop = true)
+        {
+            uint autoInteract =
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) +
+                                                 (uint) Addresses.ActivateSettings.Activate_Offset);
+            if (startStop && autoInteract != 1)
+            {
+                Logging.WriteDebug("AutoInteract_Activate_Pointer was OFF, now activated.");
+                Memory.WowMemory.Memory.WriteUInt(
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 1);
+            }
+            else if (!startStop && autoInteract == 1)
+            {
+                Logging.WriteDebug("AutoInteract_Activate_Pointer was ON, now de-activated.");
+                Memory.WowMemory.Memory.WriteUInt(
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 0);
+            }
+        }
+
         private static void ConfigWowThread()
         {
             try
@@ -34,15 +53,8 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(10);
                 }
                 Thread.Sleep(50);
-                uint autoInteract =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) +
-                                                     (uint) Addresses.ActivateSettings.Activate_Offset);
-                if (autoInteract != 1)
-                {
-                    Logging.WriteDebug("AutoInteract_Activate_Pointer was OFF, now activated.");
-                    Memory.WowMemory.Memory.WriteUInt(
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) + (uint) Addresses.ActivateSettings.Activate_Offset, 1);
-                }
+
+                StartStopClickToMove();
                 uint autoDismount =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoDismount_Activate_Pointer) +
                                                      (uint) Addresses.ActivateSettings.Activate_Offset);
