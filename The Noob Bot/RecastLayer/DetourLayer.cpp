@@ -21,11 +21,11 @@ namespace DetourLayer
 		params.polyCount = pm->GetNativeObject()->npolys;
 		params.nvp = pm->GetNativeObject()->nvp;
 		// PolyMeshDetail data
-		params.detailMeshes = dm->GetNativeObject()->meshes;
-		params.detailVerts = dm->GetNativeObject()->verts;
-		params.detailVertsCount = dm->GetNativeObject()->nverts;
-		params.detailTris = dm->GetNativeObject()->tris;
-		params.detailTriCount = dm->GetNativeObject()->ntris;
+		params.detailMeshes = 0; //dm->GetNativeObject()->meshes;
+		params.detailVerts = 0; //dm->GetNativeObject()->verts;
+		params.detailVertsCount = 0; //dm->GetNativeObject()->nverts;
+		params.detailTris = 0; //dm->GetNativeObject()->tris;
+		params.detailTriCount = 0; //dm->GetNativeObject()->ntris;
 		// Copy bounding box
 		params.bmin[0] = bmin[0];
 		params.bmin[1] = bmin[1];

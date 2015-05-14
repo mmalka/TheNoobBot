@@ -50,10 +50,10 @@ namespace DetourLayer
 		OffMeshConnection = DT_STRAIGHTPATH_OFFMESH_CONNECTION
 	};
 
-	public enum struct SupportedVersion : System::UInt32
-	{
-		value = DT_NAVMESH_VERSION
-	};
+    public enum struct SupportedVersion : System::UInt32
+    {
+        value = DT_NAVMESH_VERSION
+    };
 
 	public ref class Poly
 	{
@@ -710,7 +710,7 @@ namespace DetourLayer
 			return gcnew Link(&_tile->links[index]);
 		}
 
-		/* Disabled unused function
+        /* Disabled unused function
 		bool Rebuild(array<bool>^ visited, const int visitedMask, const float cellHeight, const int nvp, [Out] array<unsigned char>^% rData)
 		{
 			const float cellSize = 1 / _tile->header->bvQuantFactor;
