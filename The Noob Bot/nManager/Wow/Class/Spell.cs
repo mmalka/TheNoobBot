@@ -385,6 +385,11 @@ namespace nManager.Wow.Class
             }
         }
 
+        public void Cast()
+        {
+            Launch();
+        }
+
         /// <summary>
         /// Cast Spell on specified target (blizz UnitID format: http://wowprogramming.com/docs/api_types#unitID).
         /// </summary>
@@ -398,6 +403,11 @@ namespace nManager.Wow.Class
             {
                 Logging.WriteError("Spell > Launch(uintId): " + exception);
             }
+        }
+
+        public void CastOnUnitID(string unitId)
+        {
+            LaunchOnUnitID(unitId);
         }
 
         /// <summary>
@@ -422,6 +432,11 @@ namespace nManager.Wow.Class
             {
                 Logging.WriteError("Spell > LaunchOnSelf():" + exception);
             }
+        }
+
+        public void CastOnSelf()
+        {
+            LaunchOnSelf();
         }
 
         /// <summary>
@@ -450,6 +465,12 @@ namespace nManager.Wow.Class
                 Logging.WriteError("Spell > LaunchOnSelf(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
             }
         }
+
+        public void CastOnSelf(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false)
+        {
+            LaunchOnSelf(StopMove, waitIsCast, ignoreIfCast);
+        }
+
 
         /// <summary>
         /// Cast Spell.
@@ -489,6 +510,11 @@ namespace nManager.Wow.Class
                 Logging.WriteError(
                     "Spell > Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
             }
+        }
+
+        public void Cast(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false, string unitId = null)
+        {
+            Launch(StopMove, waitIsCast, ignoreIfCast, unitId);
         }
 
         internal void Update()
