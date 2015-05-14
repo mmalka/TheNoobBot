@@ -215,6 +215,8 @@ namespace nManager.Wow.ObjectManager
                     var p = localUnit as WoWPlayer;
                     if (p.IsValid)
                     {
+                        if (p.Guid == ObjectManager.Me.Guid)
+                            return false;
                         if (p.PlayerFaction != ObjectManager.Me.PlayerFaction)
                             return true;
                         string randomString = Others.GetRandomString(Others.Random(5, 10));
