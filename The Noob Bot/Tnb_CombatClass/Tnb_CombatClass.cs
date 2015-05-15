@@ -13534,6 +13534,7 @@ public class PaladinRetribution
     public readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
     public readonly Spell FinalVerdict = new Spell("Final Verdict");
     public readonly Spell ExecutionSentence = new Spell("Execution Sentence");
+    public readonly uint DivineCrusaderBuff = 144595;
 
     #endregion
 
@@ -13851,19 +13852,18 @@ public class PaladinRetribution
     {
         Thread.Sleep(SpellManager.GetGcdSleepRequired());
 
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && DivineStorm.HaveBuff && DivineStorm.IsSpellUsable &&
-            ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5)
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) && DivineStorm.IsSpellUsable)
         {
             DivineStorm.Launch();
             return;
         }
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.GetNumberAttackPlayer() >= 2 &&
-            DivineStorm.IsSpellUsable && ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5)
+            DivineStorm.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5))
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(90174))
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(90174)))
         {
             FinalVerdict.Launch();
             return;
@@ -13927,19 +13927,19 @@ public class PaladinRetribution
             Exorcism.Launch();
             return;
         }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && DivineStorm.HaveBuff && DivineStorm.IsSpellUsable &&
-            ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3)
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) && DivineStorm.IsSpellUsable &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
             return;
         }
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.GetNumberAttackPlayer() >= 2 &&
-            DivineStorm.IsSpellUsable && ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3)
+            DivineStorm.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && ObjectManager.Me.HolyPower >= 3 || ObjectManager.Me.HaveBuff(90174))
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower >= 3 || ObjectManager.Me.HaveBuff(90174)))
         {
             FinalVerdict.Launch();
             return;
