@@ -293,8 +293,8 @@ namespace nManager.Wow.Helpers
                             goto figthStart;
                         }
 
-                        // Face player to mob
-                        MovementManager.Face(targetNpc, false);
+                        if (nManagerSetting.CurrentSetting.ActivateAutoFacingDamageDealer)
+                            MovementManager.Face(targetNpc, false);
                         // If we are not facing anymore, it's because of player moves in 99% of the case, so wait for the next player move to apply the facing.
                         Thread.Sleep(10);
                     }

@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows.Forms;
-using nManager;
+using Damage_Dealer;
 using Damage_Dealer.Bot;
 using nManager.Helpful;
 using nManager.Products;
+using nManager.Wow.Helpers;
 
 public class Main : IProduct
 {
@@ -15,6 +15,7 @@ public class Main : IProduct
     {
         try
         {
+            DamageDealerSettings.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
@@ -40,7 +41,8 @@ public class Main : IProduct
     {
         try
         {
-            nManager.Wow.Helpers.ConfigWowForThisBot.StartStopClickToMove(false);
+            if (!DamageDealerSettings.CurrentSetting.ActivateMovements)
+                ConfigWowForThisBot.StartStopClickToMove(false);
             Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
@@ -62,7 +64,7 @@ public class Main : IProduct
     {
         try
         {
-            nManager.Wow.Helpers.ConfigWowForThisBot.StartStopClickToMove();
+            ConfigWowForThisBot.StartStopClickToMove();
             Bot.Dispose();
             _isStarted = false;
             Others.ProductStatusLog(Products.ProductName, 6);
@@ -77,12 +79,13 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            var f = new DamageDealerSettingsForm();
+            f.ShowDialog();
             Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {
-            Logging.WriteError("Damage Dealer > Main > Settings(): " + e);
+            Logging.WriteError("Mimesis > Main > Settings(): " + e);
         }
     }
 

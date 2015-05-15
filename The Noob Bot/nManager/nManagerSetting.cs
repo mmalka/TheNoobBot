@@ -189,6 +189,10 @@ namespace nManager
             return false;
         }
 
+        // Special DamageDealer:
+        public bool ActivateAutoFacingDamageDealer = false;
+
+        // Global Settings:
         public string LastProductLoaded;
         public string CombatClass = "Tnb_CombatClass.dll";
         public string HealerClass = "Tnb_HealerClass.dll";
