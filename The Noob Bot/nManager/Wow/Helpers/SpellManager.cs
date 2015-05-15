@@ -106,21 +106,27 @@ namespace nManager.Wow.Helpers
 
         public static int GetGcdSleepRequired()
         {
-            int gcdLeft = GetGcdLeft();
-            int latency = Usefuls.Latency;
-            int wait;
-            if (latency < gcdLeft)
-                wait = (int) (gcdLeft - latency/1.75) + 10;
-            else
-                wait = gcdLeft + 10;
-            if (gcdLeft > 0)
+            try
             {
-                return wait;
+                string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
+                string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
+                string luaResult = Others.GetRandomString(Others.Random(4, 10));
+
+                string luaCode = luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(61304); ";
+                luaCode += luaResult + " = tostring(" + luaVarStart + "..'|'.." + luaVarDuration + ")";
+                Lua.LuaDoString(luaCode, false, false);
+                string result = Lua.GetLocalizedText(luaResult);
+                var cooldown = result.Split('|');
+                if (cooldown.Length < 2 || cooldown[0] == "0")
+                    return 1;
+                int timeToWait = (int) ((int) ((Others.ToSingle(cooldown[0]) + Others.ToSingle(cooldown[1]))*1000) - Usefuls.GetWoWTime + 20); // add 20ms becauses of the poor precision of Sleep().
+                return timeToWait;
             }
-            return 1;
-            // Code to use to debug it : 
-            // Logging.Write("GCD: Before: " + gcdLeft + ", Pause: " + wait + ", After: " + SpellManager.GetGcdLeft());
-            // But you will need to Thread.Sleep(wait) before writting it instead of returning data.
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetGcdSleepRequired(): " + exception);
+                return 1;
+            }
         }
 
         public static int GetGcdLeft()
