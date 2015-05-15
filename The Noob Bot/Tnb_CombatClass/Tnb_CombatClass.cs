@@ -1388,8 +1388,8 @@ public class DeathknightApprentice
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && (!FrostFever.TargetHaveBuff || _frostFeverTimer.IsReady) && IcyTouch.IsHostileDistanceGood &&
             IcyTouch.IsSpellUsable)
         {
@@ -2171,8 +2171,8 @@ public class DeathknightBlood
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
             && _bloodPlagueTimer.IsReady && BloodPlague.TargetHaveBuff && _frostFeverTimer.IsReady && (FrostFever.TargetHaveBuff || NecroticPlague.TargetHaveBuff) && Outbreak.IsSpellUsable &&
             PlagueLeech.IsSpellUsable)
@@ -3143,8 +3143,8 @@ public class DeathknightUnholy
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (DeathCoil.KnownSpell && Lichborne.HaveBuff && ObjectManager.Me.HealthPercent < 85 && DeathCoil.IsSpellUsable)
         {
             Lua.RunMacroText("/target Player");
@@ -4048,8 +4048,8 @@ public class DeathknightFrost
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (DeathCoil.KnownSpell && Lichborne.HaveBuff && ObjectManager.Me.HealthPercent < 85 && DeathCoil.IsSpellUsable)
         {
             Lua.RunMacroText("/target Player");
@@ -5103,8 +5103,8 @@ public class MageArcane
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
@@ -6766,8 +6766,8 @@ public class MageFire
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (MySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable)
         {
             IceFloes.Launch();
@@ -7499,8 +7499,8 @@ public class WarlockDemonology
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.DemonicFury > 899 || (_doomTimer.IsReady || !ObjectManager.Target.HaveBuff(603)))
         {
             if (ObjectManager.Me.DemonicFury > 199)
@@ -8322,8 +8322,8 @@ public class WarlockDestruction
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (MySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
             && !CurseoftheElements.TargetHaveBuff)
         {
@@ -9109,8 +9109,8 @@ public class WarlockAffliction
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (MySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
             && !CurseoftheElements.TargetHaveBuff)
         {
@@ -9976,8 +9976,8 @@ public class DruidBalance
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.HaveBuff(48518))
             _starfireUse = true;
 
@@ -10780,8 +10780,8 @@ public class DruidFeral
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (!ObjectManager.Me.HaveBuff(768) && MySettings.UseCatForm)
         {
             CatForm.Launch();
@@ -11571,8 +11571,8 @@ public class DruidRestoration
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable
             && MySettings.UseMoonfire && (!Moonfire.TargetHaveBuff || _moonfireTimer.IsReady))
         {
@@ -12281,8 +12281,8 @@ public class DruidGuardian
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (!ObjectManager.Me.HaveBuff(5487) && MySettings.UseBearForm)
         {
             BearForm.Launch();
@@ -12818,8 +12818,8 @@ public class PaladinHoly
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (HolyShock.KnownSpell && HolyShock.IsHostileDistanceGood && HolyShock.IsSpellUsable && MySettings.UseHolyShock)
         {
             HolyShock.Launch();
@@ -13302,8 +13302,8 @@ public class PaladinProtection
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ShieldOfTheRighteous.KnownSpell && MySettings.UseShieldOfTheRighteous && ShieldOfTheRighteous.IsSpellUsable &&
             ShieldOfTheRighteous.IsHostileDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
@@ -13532,6 +13532,7 @@ public class PaladinRetribution
     public readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
     public readonly Spell Judgment = new Spell("Judgment");
     public readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
+    public readonly Spell FinalVerdict = new Spell("Final Verdict");
     public readonly Spell ExecutionSentence = new Spell("Execution Sentence");
 
     #endregion
@@ -13848,8 +13849,25 @@ public class PaladinRetribution
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && DivineStorm.HaveBuff && DivineStorm.IsSpellUsable &&
+            ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5)
+        {
+            DivineStorm.Launch();
             return;
+        }
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            DivineStorm.IsSpellUsable && ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5)
+        {
+            DivineStorm.Launch();
+            return;
+        }
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(90174))
+        {
+            FinalVerdict.Launch();
+            return;
+        }
         if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
              (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell && TemplarsVerdict.IsSpellUsable &&
             TemplarsVerdict.IsHostileDistanceGood &&
@@ -13868,6 +13886,11 @@ public class PaladinRetribution
             DivineStorm.Launch();
             return;
         }
+        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood && ObjectManager.Me.HaveBuff(166831) && ObjectManager.Me.HolyPower <= 3)
+        {
+            Exorcism.Launch();
+            return;
+        }
         if (MySettings.UseHammerOfWrath && HammerOfWrath.KnownSpell && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
         {
             HammerOfWrath.Launch();
@@ -13881,7 +13904,7 @@ public class PaladinRetribution
         if (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
             (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell ||
              (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell &&
-              (ObjectManager.GetNumberAttackPlayer() <= 3 && (ObjectManager.Target.HaveBuff(115798) || !MySettings.RefreshWeakenedBlows)))))
+              (ObjectManager.GetNumberAttackPlayer() <= 3))))
         {
             CrusaderStrike.Launch();
             return;
@@ -13889,7 +13912,7 @@ public class PaladinRetribution
         if (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
             (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell ||
              (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell &&
-              (ObjectManager.GetNumberAttackPlayer() >= 4 || (!ObjectManager.Target.HaveBuff(115798) && MySettings.RefreshWeakenedBlows)))))
+              (ObjectManager.GetNumberAttackPlayer() >= 4))))
         {
             HammerOfTheRighteous.Launch();
             return;
@@ -13902,6 +13925,23 @@ public class PaladinRetribution
         if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
+            return;
+        }
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && DivineStorm.HaveBuff && DivineStorm.IsSpellUsable &&
+            ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3)
+        {
+            DivineStorm.Launch();
+            return;
+        }
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            DivineStorm.IsSpellUsable && ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3)
+        {
+            DivineStorm.Launch();
+            return;
+        }
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && ObjectManager.Me.HolyPower >= 3 || ObjectManager.Me.HaveBuff(90174))
+        {
+            FinalVerdict.Launch();
             return;
         }
         if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
@@ -14672,8 +14712,8 @@ public class ShamanEnhancement
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (EarthElementalTotem.KnownSpell && EarthElementalTotem.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() > 3 && MySettings.UseEarthElementalTotem)
         {
@@ -15604,8 +15644,8 @@ public class ShamanRestoration
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
             && MySettings.UsePrimalStrike && ObjectManager.Me.Level < 11)
         {
@@ -16449,8 +16489,8 @@ public class ShamanElemental
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.ManaPercentage < 80 && Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable
             && MySettings.UseThunderstorm)
         {
@@ -17239,8 +17279,8 @@ public class PriestShadow
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
             && MySettings.UseArcaneTorrentForResource)
         {
@@ -17978,8 +18018,8 @@ public class PriestDiscipline
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
             && MySettings.UseArcaneTorrentForResource)
         {
@@ -18701,8 +18741,8 @@ public class PriestHoly
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
             && MySettings.UseArcaneTorrentForResource)
         {
@@ -19480,8 +19520,8 @@ public class RogueCombat
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
             && MySettings.UseGarrote && ObjectManager.Me.HaveBuff(115192))
         {
@@ -20236,8 +20276,8 @@ public class RogueSubtlety
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.Me.HaveBuff(115192) || ObjectManager.Me.HaveBuff(51713))
         {
             if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
@@ -20975,8 +21015,8 @@ public class RogueAssassination
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && MySettings.UseMutilate
             && Mutilate.IsHostileDistanceGood && MySettings.UseShadowFocus && !ObjectManager.Target.InCombat
             && (Stealth.HaveBuff || ObjectManager.Me.HaveBuff(115192)))
@@ -21764,8 +21804,8 @@ public class WarriorArms
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood
             && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
@@ -22622,8 +22662,8 @@ public class WarriorProtection
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood
             && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
@@ -23441,8 +23481,8 @@ public class WarriorFury
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
             HeroicThrow.Launch();
@@ -24307,8 +24347,8 @@ public class HunterMarksmanship
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood && SerpentSting.KnownSpell
             && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
         {
@@ -25126,8 +25166,8 @@ public class HunterBeastMastery
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
             && MySettings.UseCobraShot)
         {
@@ -25950,20 +25990,20 @@ public class HunterSurvival
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (!SerpentSting.TargetHaveBuff && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
             && MySettings.UseArcaneShot)
         {
             ArcaneShot.Launch();
-            _serpentStingTimer = new Timer(1000 * 12);
+            _serpentStingTimer = new Timer(1000*12);
             return;
         }
         if (_serpentStingTimer.IsReady && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
             && MySettings.UseArcaneShot)
         {
             ArcaneShot.Launch();
-            _serpentStingTimer = new Timer(1000 * 12);
+            _serpentStingTimer = new Timer(1000*12);
             return;
         }
         if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
@@ -26627,8 +26667,8 @@ public class MonkBrewmaster
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.GetNumberAttackPlayer() > 2)
         {
             if (MySettings.UseSpinningCraneKick && SpinningCraneKick.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 5 && !ObjectManager.Me.IsCast
@@ -27263,8 +27303,8 @@ public class MonkWindwalker
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.GetNumberAttackPlayer() > 3)
         {
             if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && !ObjectManager.Me.HaveBuff(125359) && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable)
@@ -27973,8 +28013,8 @@ public class MonkMistweaver
 
     private void DPSCycle()
     {
-        if (SpellManager.GetGcdLeft() > 0)
-            return;
+        Thread.Sleep(SpellManager.GetGcdSleepRequired());
+
         if (ObjectManager.GetNumberAttackPlayer() > 2 && SpinningCraneKick.IsSpellUsable && SpinningCraneKick.KnownSpell
             && SpinningCraneKick.IsHostileDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
         {
