@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -63,34 +64,21 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
-        public static bool IsSpellUsableAndReadyInMsLUA(Spell spell, int time)
+        public static bool IsSpellUsableLUA(Spell spell)
         {
             try
             {
+                if (GetSpellCooldown(spell.Id) > 0)
+                    return false;
+                // We only need LUA to check for ressources now.
+
                 string luaVarUsable = Others.GetRandomString(Others.Random(4, 10));
                 string luaVarNoMana = Others.GetRandomString(Others.Random(4, 10));
-                string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
-                string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
-                string luaVarTime = Others.GetRandomString(Others.Random(4, 10));
-
                 string luaResultUsable = Others.GetRandomString(Others.Random(4, 10));
-                float timeSec = (time < 0 ? 0 : time/1000f);
 
                 string luaCode = luaVarUsable + "," + luaVarNoMana + "=IsUsableSpell(\"" + spell.NameInGame + "\"); ";
                 luaCode += "if " + luaVarUsable + " and not " + luaVarNoMana + " then ";
-                luaCode += luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(" + spell.Id + ") ";
-                luaCode += luaVarTime + "=GetTime() ";
-                luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
                 luaCode += luaResultUsable + "=\"1\" ";
-                luaCode += "else ";
-                luaCode += "if " + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + " <= " + timeSec + " then ";
-                luaCode += luaResultUsable + "=\"1\" ";
-                luaCode += "else ";
-                luaCode += luaResultUsable + "=\"0\" ";
-                luaCode += "end ";
-                luaCode += "end ";
-                luaCode += "else ";
-                luaCode += luaResultUsable + "=\"0\" ";
                 luaCode += "end ";
 
                 Lua.LuaDoString(luaCode, false, false);
@@ -104,55 +92,77 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int GetGcdSleepRequired()
+        public static int GetSpellCooldown(uint spellId)
         {
-            try
-            {
-                string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
-                string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
-                string luaResult = Others.GetRandomString(Others.Random(4, 10));
+            var m = Memory.WowMemory.Memory;
 
-                string luaCode = luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(61304); ";
-                luaCode += luaResult + " = tostring(" + luaVarStart + "..'|'.." + luaVarDuration + ")";
-                Lua.LuaDoString(luaCode, false, false);
-                string result = Lua.GetLocalizedText(luaResult);
-                var cooldown = result.Split('|');
-                if (cooldown.Length < 2 || cooldown[0] == "0")
-                    return 1;
-                int timeToWait = (int) ((int) ((Others.ToSingle(cooldown[0]) + Others.ToSingle(cooldown[1]))*1000) - Usefuls.GetWoWTime + 20); // add 20ms becauses of the poor precision of Sleep().
-                return timeToWait;
-            }
-            catch (Exception exception)
+            var currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
+            currentListObject = m.ReadUInt(currentListObject + 0x4);
+            int timeLeft = 0;
+            while ((currentListObject != 0) && ((currentListObject & 1) == 0))
             {
-                Logging.WriteError("GetGcdSleepRequired(): " + exception);
-                return 1;
+                // parse all the spells on cooldowns, ignore if the spellId do not match
+                // ignore if timeLeft is empty, because a spell can have 2 entry in this memory list
+                // one for itself, and one because he put another spell on cooldown
+                var currentSpellId = m.ReadUInt(currentListObject + 0x8);
+                if (spellId != currentSpellId)
+                {
+                    currentListObject = m.ReadUInt(currentListObject + 0x4);
+                    continue;
+                }
+                var enabled = m.ReadByte(currentListObject + 0x24) == 0;
+                if (!enabled)
+                {
+                    currentListObject = m.ReadUInt(currentListObject + 0x4);
+                    continue;
+                }
+                var cooldownStartTime = m.ReadUInt(currentListObject + 0x10);
+                var cooldownDuration = m.ReadUInt(currentListObject + 0x14);
+                var buffStartTime = m.ReadUInt(currentListObject + 0x1C);
+                var buffDuration = m.ReadUInt(currentListObject + 0x20);
+                var currentTime = Usefuls.GetWoWTime;
+                int bufftimeLeft = 0;
+                if (cooldownDuration > 0)
+                {
+                    timeLeft = (int) ((cooldownStartTime + cooldownDuration) - currentTime);
+                    if (timeLeft > 0)
+                        return timeLeft;
+                }
+                if (buffDuration > 0)
+                    bufftimeLeft = (int) ((buffStartTime + buffDuration) - currentTime);
+                if (cooldownDuration <= 0 && buffDuration > 0)
+                    timeLeft = bufftimeLeft;
+                if (timeLeft > 0)
+                    return timeLeft;
+
+                currentListObject = m.ReadUInt(currentListObject + 0x4);
             }
+            return 0;
         }
 
-        public static int GetGcdLeft()
+        public static int GetGlobalCooldownLeft
         {
-            try
+            get
             {
-                string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
-                string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
-                string luaVarTime = Others.GetRandomString(Others.Random(4, 10));
-                string luaResult = Others.GetRandomString(Others.Random(4, 10));
+                var m = Memory.WowMemory.Memory;
+                var currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
+                currentListObject = m.ReadUInt(currentListObject + 0x4);
+                while ((currentListObject != 0) && ((currentListObject & 1) == 0))
+                {
+                    // parse all the spells on cooldowns, return the first info we have on a not terminated GCD.
+                    var globalCooldownStartTime = m.ReadUInt(currentListObject + 0x28);
+                    var globalCooldownDuration = m.ReadUInt(currentListObject + 0x30);
+                    var currentTime = Usefuls.GetWoWTime;
 
-                string luaCode = luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(61304) ";
-                luaCode += luaVarTime + "=GetTime() ";
-                luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
-                luaCode += luaResult + " = 0 ";
-                luaCode += "else ";
-                luaCode += luaResult + " = (" + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + ")*1000 ";
-                luaCode += "end";
+                    int gcdleft = 0;
+                    if (globalCooldownDuration > 0)
+                        gcdleft = (int) ((globalCooldownStartTime + globalCooldownDuration) - currentTime);
+                    if (gcdleft > 0)
+                        return gcdleft + 10; // add 10ms for Sleep precision
 
-                Lua.LuaDoString(luaCode, false, false);
-                return (int) (Others.ToSingle(Lua.GetLocalizedText(luaResult)));
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetGCDLeft(): " + exception);
-                return 0;
+                    currentListObject = m.ReadUInt(currentListObject + 0x4);
+                }
+                return 1; // If you sleep for 0, you freeze the thread.
             }
         }
 
@@ -241,88 +251,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("ExistSpellLUA(string spellName): " + exception);
                 return false;
             }
-        }
-
-        public static bool SpellUsableLUA(string spellName)
-        {
-            try
-            {
-                lock (typeof (SpellManager))
-                {
-                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(" usable, nomana = IsUsableSpell(\"" + spellName +
-                                    "\");  if (not usable) then   if (not nomana) then    " + randomStringResult +
-                                    " = \"false\"   else     " + randomStringResult +
-                                    " = \"false\"   end  else     start, duration, enabled = GetSpellCooldown(\"" +
-                                    spellName + "\"); 	if start == 0 and duration == 0  then 	" + randomStringResult +
-                                    " = \"true\" 	else 	" + randomStringResult + " = \"falseD\" 	end  end  ");
-                    string sResult = Lua.GetLocalizedText(randomStringResult);
-                    return (sResult == "true");
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellUsableLUA(string spellName): " + exception);
-            }
-            return false;
-        }
-
-        public static bool QuickSpellUsableLUA(string spellName)
-        {
-            try
-            {
-                bool DecountLatency = true;
-                uint ReducedMs = 130;
-                bool DebugForTweaking = true;
-                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-                lock (typeof (SpellManager))
-                {
-                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    string randomStringTest = Others.GetRandomString(Others.Random(4, 10));
-                    string randomStringUsable = Others.GetRandomString(Others.Random(4, 10));
-                    string randomStringEnabled = Others.GetRandomString(Others.Random(4, 10));
-                    string randomStringStartTime = Others.GetRandomString(Others.Random(4, 10));
-                    string randomStringNoRessource = Others.GetRandomString(Others.Random(4, 10));
-                    string randomStringDurationTime = Others.GetRandomString(Others.Random(4, 10));
-                    string Ms = ReducedMs > 0 ? ReducedMs/1000f + "-" : "";
-                    Lua.LuaDoString(
-                        randomStringUsable + ", " + randomStringNoRessource + " = IsUsableSpell(\"" + spellName + "\"); " +
-                        " if (not " + randomStringUsable + ") " +
-                        "   then " +
-                        "     if (not " + randomStringNoRessource + ") " +
-                        "       then " +
-                        "         " + randomStringResult + " = \"false\" " +
-                        "       else " +
-                        "         " + randomStringResult + " = \"false\"" +
-                        "     end" +
-                        "   else " +
-                        "     " + randomStringStartTime + ", " + randomStringDurationTime + ", " + randomStringEnabled + " = GetSpellCooldown(\"" + spellName + "\"); " +
-                        "     if " + randomStringStartTime + " == 0 and " + randomStringDurationTime + " == 0 " +
-                        "       then " +
-                        "         " + randomStringResult + " = \"true\" " +
-                        "       else " +
-                        "         " + randomStringTest + " = " + randomStringStartTime + "+" + randomStringDurationTime + "-GetTime()-" + Ms + "" +
-                        (DecountLatency ? Usefuls.Latency > 0 ? Usefuls.Latency/1000f : 0 : 0) + " " +
-                        "         if ( " + randomStringTest + " <= 0) " +
-                        "           then " +
-                        "             " + randomStringResult + " = \"Accelerated\" " +
-                        "           else " +
-                        "             " + randomStringResult + " = \"false\"; " +
-                        "         end " +
-                        "     end " +
-                        " end");
-                    string sResult = Lua.GetLocalizedText(randomStringResult);
-                    if (DebugForTweaking && sResult == "Accelerated")
-                        Logging.WriteFight("IsSpellUsable: The spell " + spellName + " have been forced Usable with " + Lua.GetLocalizedText(randomStringTest) +
-                                           " seconds in advance. If this is not the next spell launched, optimize your settings.");
-                    return sResult == "true" || sResult == "Accelerated";
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellUsableLUA(string spellName): " + exception);
-            }
-            return false;
         }
 
         public static bool HaveBuffLua(string spellNameInGame)

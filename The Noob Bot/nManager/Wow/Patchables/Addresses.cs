@@ -104,6 +104,8 @@
             // Some offsets to refine descriptor
             SkillValue = 0x200,
             SkillMaxValue = 0x400,
+            LocalPlayerSpellsOnCooldown = 0xD28E30,
+
             // saving
             RuneStartCooldown = 0xE5A444, // Script_GetRuneCount
         }

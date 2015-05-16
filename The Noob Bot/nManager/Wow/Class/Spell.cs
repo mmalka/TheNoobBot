@@ -156,25 +156,12 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return SpellManager.SpellUsableLUA(NameInGame);
+                    return SpellManager.IsSpellUsableLUA(this);
                 }
                 catch (Exception exception)
                 {
                     Logging.WriteError("Spell > IsSpellUsable: " + exception);
                 }
-                return false;
-            }
-        }
-
-        public bool IsSpellUsableAndReadyInMs(int time)
-        {
-            try
-            {
-                return SpellManager.IsSpellUsableAndReadyInMsLUA(this, time);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("Spell > IsSpellUsableAndReadyInMs(int time): " + exception);
                 return false;
             }
         }

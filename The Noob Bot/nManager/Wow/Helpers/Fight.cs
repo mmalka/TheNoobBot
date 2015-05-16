@@ -330,17 +330,5 @@ namespace nManager.Wow.Helpers
                 InFight = false;
             }
         }
-
-        public static void WaitGCDLoop()
-        {
-            if (ObjectManager.ObjectManager.Me.InCombat)
-            {
-                int gcdleft = SpellManager.GetGcdLeft();
-                if (gcdleft >= 0)
-                    Thread.Sleep(gcdleft);
-            }
-            else
-                Thread.Sleep(1000);
-        }
     }
 }
