@@ -25415,7 +25415,6 @@ public class HunterSurvival
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int LC = 0;
     private Timer _engineeringTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
 
@@ -25442,6 +25441,7 @@ public class HunterSurvival
     public readonly Spell FeignDeath = new Spell("Feign Death");
     public readonly Spell Misdirection = new Spell("Misdirection");
     public readonly Spell SerpentSting = new Spell("Serpent Sting");
+    public readonly Spell TrapLauncher = new Spell("Trap Launcher");
 
     #endregion
 
@@ -25475,8 +25475,6 @@ public class HunterSurvival
     public readonly Spell GlaiveToss = new Spell("Glaive Toss");
     public readonly Spell LynxRush = new Spell("Lynx Rush");
     public readonly Spell Powershot = new Spell("Powershot");
-    public readonly Spell RapidFire = new Spell("Rapid Fire");
-    public readonly Spell Readiness = new Spell("Readiness");
     public readonly Spell Stampede = new Spell("Stampede");
     private Timer _direBeastTimer = new Timer(0);
 
@@ -25530,16 +25528,14 @@ public class HunterSurvival
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && MySettings.UseLowCombat)
+                            if (MySettings.UseLowCombat &&
+                                ((ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)))
                             {
-                                LC = 1;
                                 if (ObjectManager.Target.GetDistance <= 40f)
                                     LowCombat();
                             }
                             else
                             {
-                                LC = 0;
                                 if (ObjectManager.Target.GetDistance <= 40f)
                                     Combat();
                             }
@@ -25561,6 +25557,14 @@ public class HunterSurvival
         }
     }
 
+    private void UseTrap(Spell trap)
+    {
+        if (TrapLauncher.HaveBuff)
+            SpellManager.CastSpellByIDAndPosition(trap.Id, ObjectManager.Target.Position);
+        else
+            trap.Launch();
+    }
+
     private void Pull()
     {
         if (ObjectManager.Pet.IsAlive)
@@ -25575,8 +25579,8 @@ public class HunterSurvival
             Misdirection.LaunchOnUnitID("pet");
         }
 
-        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-            && MySettings.UseArcaneShot)
+        if (ArcaneShot.KnownSpell && ArcaneShot.IsHostileDistanceGood && MySettings.UseArcaneShot &&
+            ArcaneShot.IsSpellUsable)
         {
             ArcaneShot.Launch();
             return;
@@ -25591,34 +25595,47 @@ public class HunterSurvival
         DefenseCycle();
         Heal();
 
-        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && GlaiveToss.IsHostileDistanceGood
-            && MySettings.UseGlaiveToss)
+        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss && GlaiveToss.IsHostileDistanceGood &&
+            GlaiveToss.IsSpellUsable)
         {
             GlaiveToss.Launch();
             return;
         }
-        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-            && MySettings.UseArcaneShot)
+        if (Barrage.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && MySettings.UseBarrage && Barrage.IsHostileDistanceGood && Barrage.IsSpellUsable)
         {
-            ArcaneShot.Launch();
+            Barrage.Launch();
             return;
         }
-        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-            && MySettings.UseCobraShot)
+        if (!SerpentSting.TargetHaveBuff || _serpentStingTimer.IsReady)
+        {
+            if (MultiShot.KnownSpell && MySettings.UseMultiShot && MultiShot.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() >= 3 && MultiShot.IsSpellUsable)
+            {
+                _serpentStingTimer = new Timer(1000 * 12);
+                MultiShot.Launch();
+                return;
+            }
+            else if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
+            {
+                _serpentStingTimer = new Timer(1000 * 12);
+                ArcaneShot.Launch();
+                return;
+            }
+        }
+        if (CobraShot.KnownSpell && MySettings.UseCobraShot && CobraShot.IsHostileDistanceGood && CobraShot.IsSpellUsable)
         {
             CobraShot.Launch();
             return;
         }
-        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !MySettings.UseCobraShot))
+        if (SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && ObjectManager.Me.FocusPercentage < 60
+             && (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsSpellUsable)
         {
             SteadyShot.Launch();
             return;
         }
-        if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood
-            && MySettings.UseExplosiveTrap)
+        if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ExplosiveTrap.IsHostileDistanceGood
+             && ExplosiveTrap.IsSpellUsable)
         {
-            ExplosiveTrap.Launch();
+            UseTrap(ExplosiveTrap);
         }
     }
 
@@ -25762,32 +25779,32 @@ public class HunterSurvival
             Thread.Sleep(5000);
             return;
         }
-        if (ObjectManager.Me.HealthPercent < 50 && MySettings.UseDeterrance
-            && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
+        if (Deterrance.KnownSpell && MySettings.UseDeterrance && ObjectManager.Me.HealthPercent < 50
+            && Deterrance.IsSpellUsable)
         {
             Deterrance.Launch();
             Thread.Sleep(200);
             return;
         }
-        if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
-            && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        if (MySettings.UseFreezingTrap && FreezingTrap.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 1
+            && ObjectManager.Target.GetDistance > 10 && FreezingTrap.IsSpellUsable)
         {
-            FreezingTrap.Launch();
+            UseTrap(FreezingTrap);
             return;
         }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceTrap
-            && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
+        if (IceTrap.KnownSpell && MySettings.UseIceTrap && Disengage.KnownSpell && MySettings.UseDisengage
+            && ObjectManager.Me.HealthPercent < 80 && ObjectManager.Target.GetDistance < 10
+            && IceTrap.IsSpellUsable && Disengage.IsSpellUsable)
         {
-            IceTrap.Launch();
+            UseTrap(IceTrap);
             Thread.Sleep(1000);
             MovementsAction.Jump();
             Disengage.Launch();
             return;
         }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseConcussiveShot
-            && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
+        if (Disengage.KnownSpell && MySettings.UseDisengage && ConcussiveShot.KnownSpell
+            && MySettings.UseConcussiveShot && ConcussiveShot.IsHostileDistanceGood
+            && ObjectManager.Me.HealthPercent < 80 && ConcussiveShot.IsSpellUsable && Disengage.IsSpellUsable)
         {
             ConcussiveShot.Launch();
             Thread.Sleep(1000);
@@ -25795,9 +25812,9 @@ public class HunterSurvival
             Disengage.Launch();
             return;
         }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseBindingShot
-            && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
+        if (BindingShot.KnownSpell && MySettings.UseBindingShot && Disengage.KnownSpell && MySettings.UseDisengage
+            && ObjectManager.Me.HealthPercent < 80 && BindingShot.IsHostileDistanceGood
+            && Disengage.IsSpellUsable && BindingShot.IsSpellUsable)
         {
             BindingShot.Launch();
             Thread.Sleep(1000);
@@ -25805,16 +25822,16 @@ public class HunterSurvival
             Disengage.Launch();
             return;
         }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-            WarStomp.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.KnownSpell &&
+            WarStomp.IsSpellUsable
             && MySettings.UseWarStomp)
         {
             WarStomp.Launch();
             _onCd = new Timer(1000*2);
             return;
         }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-            Stoneform.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.KnownSpell &&
+            Stoneform.IsSpellUsable
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
@@ -25827,29 +25844,26 @@ public class HunterSurvival
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell &&
-            GiftoftheNaaru.IsSpellUsable
-            && MySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell
+            && MySettings.UseGiftoftheNaaru && GiftoftheNaaru.IsSpellUsable)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
-            && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
+        if (Exhilaration.KnownSpell && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70
+            && Exhilaration.IsSpellUsable)
         {
             Exhilaration.Launch();
             return;
         }
-        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
-            && FeedPet.KnownSpell && FeedPet.IsSpellUsable && MySettings.UseFeedPet
-            && !ObjectManager.Me.InCombat)
+        if (FeedPet.KnownSpell && MySettings.UseFeedPet && !ObjectManager.Me.InCombat
+            && ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50 && FeedPet.IsSpellUsable)
         {
             FeedPet.Launch();
             return;
         }
-        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
-            && MendPet.KnownSpell && MendPet.IsSpellUsable && MySettings.UseMendPet
-            && _mendPetTimer.IsReady)
+        if (MySettings.UseMendPet && _mendPetTimer.IsReady && MendPet.KnownSpell && ObjectManager.Pet.Health > 0
+            && ObjectManager.Pet.HealthPercent < 80 && MendPet.IsSpellUsable)
         {
             MendPet.Launch();
             _mendPetTimer = new Timer(1000*10);
@@ -25898,20 +25912,20 @@ public class HunterSurvival
             Logging.WriteFight("Use Second Trinket Slot");
             return;
         }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseBerserking)
+        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
+            && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
             return;
         }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseBloodFury)
+        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
+            && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
+        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
+            && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
             return;
@@ -25924,69 +25938,59 @@ public class HunterSurvival
             _engineeringTimer = new Timer(1000*60);
             return;
         }
-        if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
-            && MySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
+        if (AMurderofCrows.KnownSpell && MySettings.UseAMurderofCrows && AMurderofCrows.IsHostileDistanceGood
+            && AMurderofCrows.IsSpellUsable && !AMurderofCrows.TargetHaveBuff)
         {
             AMurderofCrows.Launch();
             return;
         }
-        if (Barrage.KnownSpell && Barrage.IsSpellUsable && MySettings.UseBarrage && Barrage.IsHostileDistanceGood)
+        if (Barrage.KnownSpell && MySettings.UseBarrage && Barrage.IsHostileDistanceGood && Barrage.IsSpellUsable)
         {
             Barrage.Launch();
             return;
         }
-        if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance <= 40f)
+        if (BlinkStrike.KnownSpell && MySettings.UseBlinkStrike && ObjectManager.Pet.IsAlive
+            && ObjectManager.Target.GetDistance <= 40f && BlinkStrike.IsSpellUsable)
         {
             BlinkStrike.Launch();
             return;
         }
-        if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && MySettings.UseDireBeast
-            && DireBeast.IsHostileDistanceGood && _direBeastTimer.IsReady)
+        if (DireBeast.KnownSpell && MySettings.UseDireBeast && _direBeastTimer.IsReady
+            && DireBeast.IsHostileDistanceGood && DireBeast.IsSpellUsable)
         {
             DireBeast.Launch();
             _direBeastTimer = new Timer(1000*15);
             return;
         }
-        if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
-            && MySettings.UseFervor)
+        if (Fervor.KnownSpell && MySettings.UseFervor && ObjectManager.Me.Focus < 50
+            && Fervor.IsSpellUsable)
         {
             Fervor.Launch();
             return;
         }
-        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && MySettings.UseGlaiveToss &&
-            GlaiveToss.IsHostileDistanceGood)
+        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss && GlaiveToss.IsHostileDistanceGood
+            && GlaiveToss.IsSpellUsable)
         {
             GlaiveToss.Launch();
             return;
         }
-        if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && MySettings.UseLynxRush &&
-            ObjectManager.Target.GetDistance <= 40f)
+        if (LynxRush.KnownSpell && MySettings.UseLynxRush && ObjectManager.Target.GetDistance <= 40f
+            && LynxRush.IsSpellUsable)
         {
             LynxRush.Launch();
             return;
         }
-        if (Powershot.KnownSpell && Powershot.IsSpellUsable && MySettings.UsePowershot &&
-            Powershot.IsHostileDistanceGood)
+        if (Powershot.KnownSpell && MySettings.UsePowershot && Powershot.IsHostileDistanceGood
+            && Powershot.IsSpellUsable)
         {
             Powershot.Launch();
             return;
         }
-        if (Stampede.KnownSpell && Stampede.IsSpellUsable && MySettings.UseStampede &&
-            Stampede.IsHostileDistanceGood)
+        if (Stampede.KnownSpell && MySettings.UseStampede && Stampede.IsHostileDistanceGood
+            && Stampede.IsSpellUsable)
         {
             Stampede.Launch();
             return;
-        }
-        if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && MySettings.UseRapidFire
-            && ObjectManager.Target.GetDistance <= 40f)
-        {
-            RapidFire.Launch();
-            return;
-        }
-        if (Readiness.KnownSpell && Readiness.IsSpellUsable && MySettings.UseReadiness)
-        {
-            Readiness.Launch();
         }
     }
 
@@ -25994,22 +25998,22 @@ public class HunterSurvival
     {
         Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
 
-        if (!SerpentSting.TargetHaveBuff && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-            && MySettings.UseArcaneShot)
+        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && !SerpentSting.TargetHaveBuff
+            && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
         {
             ArcaneShot.Launch();
             _serpentStingTimer = new Timer(1000*12);
             return;
         }
-        if (_serpentStingTimer.IsReady && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-            && MySettings.UseArcaneShot)
+        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && _serpentStingTimer.IsReady
+            && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
         {
             ArcaneShot.Launch();
             _serpentStingTimer = new Timer(1000*12);
             return;
         }
-        if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
-            && MySettings.UseKillShot)
+        if (KillShot.KnownSpell && MySettings.UseKillShot && KillShot.IsHostileDistanceGood
+            && KillShot.IsSpellUsable)
         {
             KillShot.Launch();
             return;
@@ -26017,69 +26021,71 @@ public class HunterSurvival
         if (ObjectManager.GetNumberAttackPlayer() > 4 && MySettings.UseMultiShot && MySettings.UseExplosiveTrap
             && MySettings.UseExplosiveShot)
         {
-            if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
+            if (MultiShot.KnownSpell && MultiShot.IsHostileDistanceGood && MultiShot.IsSpellUsable)
             {
                 MultiShot.Launch();
                 return;
             }
-            if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
+            if (ExplosiveTrap.KnownSpell && ObjectManager.Target.GetDistance < 10 && ExplosiveTrap.IsSpellUsable)
             {
-                ExplosiveTrap.Launch();
+                UseTrap(ExplosiveTrap);
                 return;
             }
-            if (ExplosiveShot.KnownSpell && ExplosiveShot.IsSpellUsable && ExplosiveShot.IsHostileDistanceGood)
+            if (ExplosiveShot.KnownSpell && ExplosiveShot.IsHostileDistanceGood && ExplosiveShot.IsSpellUsable)
             {
                 ExplosiveShot.Launch();
                 return;
             }
             return;
         }
-        if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-            && MySettings.UseExplosiveTrap && ObjectManager.GetNumberAttackPlayer() < 4 &&
-            ObjectManager.GetNumberAttackPlayer() > 1)
+        if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ObjectManager.Target.GetDistance < 10
+            && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1
+            && ExplosiveTrap.IsSpellUsable)
         {
-            ExplosiveTrap.Launch();
+            UseTrap(ExplosiveTrap);
             return;
         }
-        if (BlackArrow.KnownSpell && BlackArrow.IsSpellUsable && BlackArrow.IsHostileDistanceGood
-            && MySettings.UseBlackArrow)
+        if (BlackArrow.KnownSpell && MySettings.UseBlackArrow && BlackArrow.IsHostileDistanceGood
+            && BlackArrow.IsSpellUsable)
         {
             BlackArrow.Launch();
             return;
         }
-        if (ExplosiveShot.KnownSpell && ExplosiveShot.IsSpellUsable && ExplosiveShot.IsHostileDistanceGood
-            && MySettings.UseExplosiveShot)
+        if (ExplosiveShot.KnownSpell && MySettings.UseExplosiveShot && ExplosiveShot.IsHostileDistanceGood
+            && ExplosiveShot.IsSpellUsable)
         {
             ExplosiveShot.Launch();
             return;
         }
-        if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood
-            && MySettings.UseMultiShot && ObjectManager.Me.FocusPercentage > 79
-            && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1)
+        if (MultiShot.KnownSpell && MySettings.UseMultiShot  && MultiShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage > 79
+            && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1
+            && MultiShot.IsSpellUsable)
         {
             MultiShot.Launch();
             return;
         }
-        if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
-            && MySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 79)
+        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot  && ArcaneShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage > 79 && ArcaneShot.IsSpellUsable)
         {
             ArcaneShot.Launch();
             return;
         }
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-            && MySettings.UseArcaneTorrentForResource)
+        if (ArcaneTorrent.KnownSpell && MySettings.UseArcaneTorrentForResource
+            && ArcaneTorrent.IsSpellUsable)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-            && MySettings.UseCobraShot && ObjectManager.Me.FocusPercentage < 80)
+        if (CobraShot.KnownSpell && MySettings.UseCobraShot && CobraShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage < 80 && CobraShot.IsSpellUsable)
         {
             CobraShot.Launch();
             return;
         }
-        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !MySettings.UseCobraShot))
+        if (SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !MySettings.UseCobraShot)
+            && SteadyShot.IsSpellUsable)
         {
             SteadyShot.Launch();
         }
@@ -26146,8 +26152,6 @@ public class HunterSurvival
         public bool UsePet4 = false;
         public bool UsePet5 = false;
         public bool UsePowershot = true;
-        public bool UseRapidFire = true;
-        public bool UseReadiness = true;
         public bool UseRevivePet = true;
         public bool UseScatterShot = true;
         public bool UseSerpentSting = true;
