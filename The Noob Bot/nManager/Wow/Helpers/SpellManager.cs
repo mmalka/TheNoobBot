@@ -110,12 +110,6 @@ namespace nManager.Wow.Helpers
                     currentListObject = m.ReadUInt(currentListObject + 0x4);
                     continue;
                 }
-                var enabled = m.ReadByte(currentListObject + 0x24) == 0;
-                if (!enabled)
-                {
-                    currentListObject = m.ReadUInt(currentListObject + 0x4);
-                    continue;
-                }
                 var cooldownStartTime = m.ReadUInt(currentListObject + 0x10);
                 var cooldownDuration = m.ReadUInt(currentListObject + 0x14);
                 var buffStartTime = m.ReadUInt(currentListObject + 0x1C);
