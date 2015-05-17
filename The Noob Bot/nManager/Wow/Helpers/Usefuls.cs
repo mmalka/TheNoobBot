@@ -302,7 +302,7 @@ namespace nManager.Wow.Helpers
                     if (nManager.Settings.CurrentSettings.HackLatency) : Todo: Allow user with really high latency to reduce latency by 50%, 75%.
                         return _lastLatency/2;
                     */
-                    return _lastLatency;
+                    return _lastLatency == 0 ? 1 : _lastLatency; // Never return 0 so Thread.Sleep wont freeze thread.
                 }
                 catch (Exception e)
                 {
@@ -475,9 +475,9 @@ namespace nManager.Wow.Helpers
 
         public static List<WoWMap.MapDbcRecord> GetInstancesList()
         {
-             List<WoWMap.MapDbcRecord> result = WoWMap.WoWMaps(WoWMap.InstanceType.Party, WoWMap.MapType.ADTType);
-             result.AddRange(WoWMap.WoWMaps(WoWMap.InstanceType.Party, WoWMap.MapType.WDTOnlyType));
-             return result;
+            List<WoWMap.MapDbcRecord> result = WoWMap.WoWMaps(WoWMap.InstanceType.Party, WoWMap.MapType.ADTType);
+            result.AddRange(WoWMap.WoWMaps(WoWMap.InstanceType.Party, WoWMap.MapType.WDTOnlyType));
+            return result;
         }
 
         public static List<WoWMap.MapDbcRecord> GetRaidsList()

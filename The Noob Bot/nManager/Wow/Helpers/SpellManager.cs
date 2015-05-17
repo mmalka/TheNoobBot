@@ -92,44 +92,36 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int GetSpellCooldown(uint spellId)
+        public static int GetSpellCooldown(List<uint> spellIds)
         {
-            var m = Memory.WowMemory.Memory;
-
-            var currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
-            currentListObject = m.ReadUInt(currentListObject + 0x4);
-            int timeLeft = 0;
-            while ((currentListObject != 0) && ((currentListObject & 1) == 0))
+            for (int i = 0; i < spellIds.Count; i++)
             {
-                // parse all the spells on cooldowns, ignore if the spellId do not match
-                // ignore if timeLeft is empty, because a spell can have 2 entry in this memory list
-                // one for itself, and one because he put another spell on cooldown
-                var currentSpellId = m.ReadUInt(currentListObject + 0x8);
-                if (spellId != currentSpellId)
-                {
-                    currentListObject = m.ReadUInt(currentListObject + 0x4);
-                    continue;
-                }
-                var cooldownStartTime = m.ReadUInt(currentListObject + 0x10);
-                var cooldownDuration = m.ReadUInt(currentListObject + 0x14);
-                var buffStartTime = m.ReadUInt(currentListObject + 0x1C);
-                var buffDuration = m.ReadUInt(currentListObject + 0x20);
-                var currentTime = Usefuls.GetWoWTime;
-                int bufftimeLeft = 0;
-                if (cooldownDuration > 0)
-                {
-                    timeLeft = (int) ((cooldownStartTime + cooldownDuration) - currentTime);
-                    if (timeLeft > 0)
-                        return timeLeft;
-                }
-                if (buffDuration > 0)
-                    bufftimeLeft = (int) ((buffStartTime + buffDuration) - currentTime);
-                if (cooldownDuration <= 0 && buffDuration > 0)
-                    timeLeft = bufftimeLeft;
+                uint spellId = spellIds[i];
+                var timeLeft = GetSpellCooldown(spellId);
                 if (timeLeft > 0)
                     return timeLeft;
+            }
+            return 0;
+        }
 
-                currentListObject = m.ReadUInt(currentListObject + 0x4);
+        public static int GetSpellCooldown(uint spellId)
+        {
+            List<SpellCooldown> spellsOnCooldownList = GetAllSpellsOnCooldown;
+            foreach (SpellCooldown spellCooldown in spellsOnCooldownList)
+            {
+                if (spellCooldown.SpellId != spellId)
+                    continue;
+                var currentWoWTime = Usefuls.GetWoWTime;
+                int timeLeftMs;
+                if (spellCooldown.CooldownDuration > 0 && spellCooldown.CooldownDuration > spellCooldown.EffectDuration)
+                {
+                    timeLeftMs = (int) (spellCooldown.StartTimeCooldown - currentWoWTime + spellCooldown.CooldownDuration);
+                    return timeLeftMs < 0 ? 0 : timeLeftMs;
+                }
+                if (spellCooldown.EffectDuration <= 0)
+                    continue;
+                timeLeftMs = (int) (spellCooldown.StartTimeEffect - currentWoWTime + spellCooldown.EffectDuration);
+                return timeLeftMs < 0 ? 0 : timeLeftMs;
             }
             return 0;
         }
@@ -138,25 +130,70 @@ namespace nManager.Wow.Helpers
         {
             get
             {
+                List<SpellCooldown> spellsOnCooldownList = GetAllSpellsOnCooldown;
+                foreach (SpellCooldown spellCooldown in spellsOnCooldownList)
+                {
+                    var currentWoWTime = Usefuls.GetWoWTime;
+                    if (spellCooldown.DurationGCD > 0)
+                    {
+                        var timeLeftMs = (int) (spellCooldown.StartTimeGCD - currentWoWTime + spellCooldown.DurationGCD);
+                        return timeLeftMs < 0 ? 1 : timeLeftMs;
+                    }
+                }
+                return 1; // 0 would cause sleeps to freezes thread.
+            }
+        }
+
+        public class SpellCooldown
+        {
+            public uint SpellId;
+            public uint StartTimeCooldown;
+            public uint CooldownDuration;
+            public uint SpellDelay;
+            public uint StartTimeEffect;
+            public uint EffectDuration;
+            public bool Enabled;
+            public uint StartTimeGCD;
+            public uint DurationGCD;
+            public uint UnknownGetTime;
+            public uint EventId;
+
+            public override string ToString()
+            {
+                return string.Format("CooldownInfo for spell " + SpellListManager.SpellNameById(SpellId) + " (" + SpellId + ")." + Environment.NewLine +
+                                     "Duration1: " + CooldownDuration + ", Duration2: " + EffectDuration + ", Duration3: " + DurationGCD);
+            }
+        }
+
+        public static List<SpellCooldown> GetAllSpellsOnCooldown
+        {
+            get
+            {
                 var m = Memory.WowMemory.Memory;
+
                 var currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
-                currentListObject = m.ReadUInt(currentListObject + 0x4);
+                var spellCooldowns = new List<SpellCooldown>();
                 while ((currentListObject != 0) && ((currentListObject & 1) == 0))
                 {
-                    // parse all the spells on cooldowns, return the first info we have on a not terminated GCD.
-                    var globalCooldownStartTime = m.ReadUInt(currentListObject + 0x28);
-                    var globalCooldownDuration = m.ReadUInt(currentListObject + 0x30);
-                    var currentTime = Usefuls.GetWoWTime;
-
-                    int gcdleft = 0;
-                    if (globalCooldownDuration > 0)
-                        gcdleft = (int) ((globalCooldownStartTime + globalCooldownDuration) - currentTime);
-                    if (gcdleft > 0)
-                        return gcdleft + 10; // add 10ms for Sleep precision
-
+                    var spellCooldown = new SpellCooldown
+                    {
+                        SpellId = m.ReadUInt(currentListObject + 0x8),
+                        StartTimeCooldown = m.ReadUInt(currentListObject + 0x10),
+                        CooldownDuration = m.ReadUInt(currentListObject + 0x14),
+                        SpellDelay = m.ReadUInt(currentListObject + 0x18),
+                        StartTimeEffect = m.ReadUInt(currentListObject + 0x1C),
+                        EffectDuration = m.ReadUInt(currentListObject + 0x20),
+                        Enabled = m.ReadByte(currentListObject + 0x24) == 1,
+                        StartTimeGCD = m.ReadUInt(currentListObject + 0x28),
+                        // What is 0x2C; Somtimes returns "133"; Sometimes returns 0;
+                        DurationGCD = m.ReadUInt(currentListObject + 0x30),
+                        UnknownGetTime = m.ReadUInt(currentListObject + 0x34),
+                        EventId = m.ReadUInt(currentListObject + 0x38),
+                    };
+                    spellCooldowns.Add(spellCooldown);
                     currentListObject = m.ReadUInt(currentListObject + 0x4);
                 }
-                return 1; // If you sleep for 0, you freeze the thread.
+                return spellCooldowns;
             }
         }
 
