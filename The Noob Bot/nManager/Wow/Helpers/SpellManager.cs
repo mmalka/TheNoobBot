@@ -144,6 +144,25 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct SpellCooldownEntry
+        {
+            private uint Previous;
+            private uint Next;
+            private uint SpellId;
+            private uint ItemId;
+            private uint StartTime;
+            private uint SpellOrItemCooldownDuration;
+            private uint SpellCategoryId;
+            private uint CategoryCooldownStartTime;
+            private uint CategoryCooldownDuration;
+            private byte HasCooldown;
+            public byte pad1, pad2, pad3;
+            private uint GCDStartTime;
+            private uint StartRecoveryCategoryId;
+            private uint GCDDuration;
+        }
+
         public class SpellCooldown
         {
             public uint SpellId;
