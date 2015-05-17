@@ -28,6 +28,7 @@ namespace nManager.Wow.Class
         public string NameInGame = "";
         public PowerType PowerType;
         public string Rank = "";
+        public uint CategoryId; // Allow someone to manually reference CategoryId when initialize Spell().
 
         #endregion Fields
 
@@ -84,6 +85,7 @@ namespace nManager.Wow.Class
                 MaxRangeFriend = 5.0f;
                 MinRangeFriend = 0f;
                 NameInGame = "";
+                CategoryId = 0;
             }
         }
 

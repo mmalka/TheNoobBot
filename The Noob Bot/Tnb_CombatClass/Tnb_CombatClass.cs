@@ -13040,12 +13040,19 @@ public class PaladinProtection
 
     #endregion
 
+    public void HardcodeCategoryIds()
+    {
+        CrusaderStrike.CategoryId = 1264;
+        HammerOfTheRighteous.CategoryId = 1264;
+    }
+
     public PaladinProtection()
     {
         Main.InternalRange = 5.0f;
         MySettings = PaladinProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
+        HardcodeCategoryIds();
 
         while (Main.InternalLoop)
         {
@@ -13585,12 +13592,19 @@ public class PaladinRetribution
 
     #endregion
 
+    public void HardcodeCategoryIds()
+    {
+        CrusaderStrike.CategoryId = 1264;
+        HammerOfTheRighteous.CategoryId = 1264;
+    }
+
     public PaladinRetribution()
     {
         Main.InternalRange = 5.0f;
         MySettings = PaladinRetributionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
         UInt128 lastTarget = 0;
+        HardcodeCategoryIds();
 
         while (Main.InternalLoop)
         {

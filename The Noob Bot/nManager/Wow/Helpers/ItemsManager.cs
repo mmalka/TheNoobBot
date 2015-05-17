@@ -83,6 +83,12 @@ namespace nManager.Wow.Helpers
 
         public static Dictionary<int, string> ItemNameCache = new Dictionary<int, string>();
 
+        public static string GetItemNameById(uint entry)
+        {
+            return GetItemNameById((int) entry);
+            // Entry should be uint, but there must be some code calling it with int, so this is just an alias.
+        }
+
         public static string GetItemNameById(int entry)
         {
             try
@@ -122,7 +128,7 @@ namespace nManager.Wow.Helpers
                     Lua.LuaDoString(
                         "local nameItem = \"" + name + "\" " +
                         "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
-                        "if itemLink == nil then " + randomString + " = 0 else " + 
+                        "if itemLink == nil then " + randomString + " = 0 else " +
                         "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\") end");
                     int itemEntry = Others.ToInt32(Lua.GetLocalizedText(randomString));
                     if (itemEntry > 0)
