@@ -68,7 +68,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (GetSpellCooldown(spell.Id) > 0)
+                if (GetSpellCooldown(spell.Ids) > Usefuls.Latency) // greed some miliseconds that will be compensated by the below lua check
                     return false;
                 // We only need LUA to check for ressources now.
 
@@ -172,6 +172,7 @@ namespace nManager.Wow.Helpers
                 var m = Memory.WowMemory.Memory;
 
                 var currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
+
                 var spellCooldowns = new List<SpellCooldown>();
                 while ((currentListObject != 0) && ((currentListObject & 1) == 0))
                 {
