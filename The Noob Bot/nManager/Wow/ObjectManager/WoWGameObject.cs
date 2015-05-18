@@ -635,16 +635,14 @@ namespace nManager.Wow.ObjectManager
                                 if ((WoWGameObjectLockType)Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_SAW_TREE)
                                 {
                                     uint RankRequired = Row.Record.Skill[j];
-                                    Spell level1 = new Spell("Apprentice Logging");
-                                    Spell level2 = new Spell("Journeyman Logging");
-                                    Spell level3 = new Spell("Expert Logging");
-                                    if (RankRequired == 1)
-                                        return level3.KnownSpell || level2.KnownSpell || level1.KnownSpell;
-                                    else if (RankRequired == 2)
-                                        return level3.KnownSpell || level2.KnownSpell;
-                                    else if (RankRequired == 3)
-                                        return level3.KnownSpell;
-                                    return false;
+                                    Spell loggingSpell = new Spell("Logging");
+                                    if (!loggingSpell.KnownSpell)
+                                        return false;
+                                    if (RankRequired == 3)
+                                        return loggingSpell.Id == 167947;
+                                    if (RankRequired == 2)
+                                        return loggingSpell.Id == 167946 || loggingSpell.Id == 167947;
+                                    return true;
                                 }
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType) Row.Record.LockType[j]);
                                 if (skill == SkillLine.None) // Lock Type unsupported by now

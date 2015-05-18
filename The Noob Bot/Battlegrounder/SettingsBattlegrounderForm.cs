@@ -9,6 +9,7 @@ using Battlegrounder.Profiletype;
 using nManager;
 using nManager.Helpful;
 using nManager.Helpful.Forms.UserControls;
+using nManager.Wow.Helpers;
 using Battleground = nManager.Wow.Helpers.Battleground;
 
 namespace Battlegrounder
