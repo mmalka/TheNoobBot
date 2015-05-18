@@ -23,27 +23,6 @@ namespace nManager.Wow.Helpers
         public static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
         private static readonly Dictionary<string, List<uint>> CacheSpellIdByName = new Dictionary<string, List<uint>>();
 
-        public static int GetGlobalCooldownLeft
-        {
-            get
-            {
-                List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
-                foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
-                {
-                    int currentWoWTime = Usefuls.GetWoWTime;
-                    if (spellCooldown.GCDDuration > 0)
-                    {
-                        int timeLeftMs = spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration;
-                        // Hack GCD when GetTime is late. We have the entry in memory meaning we are still under GCD, pause a minimum of 25 miliseconds and let the bot spam.
-                        if (timeLeftMs < 0)
-                            timeLeftMs = 0;
-                        return timeLeftMs <= 0 ? 25 : timeLeftMs + 25;
-                    }
-                }
-                return 1; // 0 would cause sleeps to freezes thread.
-            }
-        }
-
         public static List<SpellCooldownEntry> GetAllSpellsOnCooldown
         {
             get
@@ -71,6 +50,23 @@ namespace nManager.Wow.Helpers
                     currentListObject = m.ReadUInt(currentListObject + 0x4);
                 }
                 return spellCooldowns;
+            }
+        }
+        
+        public static bool IsOnGlobalCooldown
+        {
+            get
+            {
+                List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
+                foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
+                {
+                    if (spellCooldown.GCDDuration <= 0) continue;
+                    int currentWoWTime = Usefuls.GetWoWTime;
+                    int elaspedTime = currentWoWTime - spellCooldown.GCDStartTime;
+                    if (spellCooldown.GCDDuration >= elaspedTime)
+                        return true;
+                }
+                return false;
             }
         }
 
@@ -118,9 +114,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) != (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > 0))
-                    Logging.Write("Function1 returned : " + IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId));
-
                 if (IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId))
                     return false;
                 // We only need LUA to check for ressources now.

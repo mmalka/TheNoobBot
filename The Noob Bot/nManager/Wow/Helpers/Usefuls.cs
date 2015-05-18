@@ -312,6 +312,14 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void SleepGlobalCooldown()
+        {
+            while (SpellManager.IsOnGlobalCooldown)
+            {
+                Thread.Sleep(25);
+            }
+        }
+
         public static int GetWoWTime
         {
             get
@@ -501,7 +509,7 @@ namespace nManager.Wow.Helpers
                         _garrisonMapIdList = new List<int>();
                         foreach (string i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\garrisonMapIdList.txt"))
                         {
-                            if (!string.IsNullOrWhiteSpace(i))
+                            if (!String.IsNullOrWhiteSpace(i))
                                 _garrisonMapIdList.Add(Others.ToInt32(i));
                         }
                     }
@@ -576,7 +584,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game)));
+                MessageBox.Show(String.Format("{0}.", Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game)));
                 string path = Others.DialogBoxOpenFile("", "Profile files (Wow.exe)|Wow.exe");
                 RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft") ??
                                   Registry.LocalMachine.CreateSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
@@ -671,7 +679,7 @@ namespace nManager.Wow.Helpers
                             bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
                             " .. \",\" .. " + bag4Type);
             string result = Lua.GetLocalizedText(randomString);
-            if (!string.IsNullOrEmpty(result) && result.Contains(";"))
+            if (!String.IsNullOrEmpty(result) && result.Contains(";"))
             {
                 string[][] bags = result.Split(';').Select(s => s.Split(',')).ToArray();
                 foreach (var t in bags)
@@ -919,7 +927,7 @@ namespace nManager.Wow.Helpers
 
                 // The below code use LUA to get a key that is not binded in World of Warcraft.
                 // It will then press it and let WoW handle the "LastHardwareAction + UpdatePlayerAFK" task at once.
-                if (string.IsNullOrEmpty(AfkKeyPress))
+                if (String.IsNullOrEmpty(AfkKeyPress))
                 {
                     Thread.Sleep(10);
                     AfkKeyPress = Keybindings.GetAFreeKey(true);

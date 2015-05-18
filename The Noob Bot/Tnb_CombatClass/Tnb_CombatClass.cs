@@ -1387,7 +1387,7 @@ public class DeathknightApprentice
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && (!FrostFever.TargetHaveBuff || _frostFeverTimer.IsReady) && IcyTouch.IsHostileDistanceGood &&
             IcyTouch.IsSpellUsable)
@@ -2170,7 +2170,7 @@ public class DeathknightBlood
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
             && _bloodPlagueTimer.IsReady && BloodPlague.TargetHaveBuff && _frostFeverTimer.IsReady && (FrostFever.TargetHaveBuff || NecroticPlague.TargetHaveBuff) && Outbreak.IsSpellUsable &&
@@ -3142,7 +3142,7 @@ public class DeathknightUnholy
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (DeathCoil.KnownSpell && Lichborne.HaveBuff && ObjectManager.Me.HealthPercent < 85 && DeathCoil.IsSpellUsable)
         {
@@ -4047,7 +4047,7 @@ public class DeathknightFrost
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (DeathCoil.KnownSpell && Lichborne.HaveBuff && ObjectManager.Me.HealthPercent < 85 && DeathCoil.IsSpellUsable)
         {
@@ -5102,7 +5102,7 @@ public class MageArcane
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
         {
@@ -6764,7 +6764,7 @@ public class MageFire
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable)
         {
@@ -7497,7 +7497,7 @@ public class WarlockDemonology
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.DemonicFury > 899 || (_doomTimer.IsReady || !ObjectManager.Target.HaveBuff(603)))
         {
@@ -8320,7 +8320,7 @@ public class WarlockDestruction
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
             && !CurseoftheElements.TargetHaveBuff)
@@ -9107,7 +9107,7 @@ public class WarlockAffliction
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
             && !CurseoftheElements.TargetHaveBuff)
@@ -9974,7 +9974,7 @@ public class DruidBalance
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.HaveBuff(48518))
             _starfireUse = true;
@@ -10778,7 +10778,7 @@ public class DruidFeral
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (!ObjectManager.Me.HaveBuff(768) && MySettings.UseCatForm)
         {
@@ -11569,7 +11569,7 @@ public class DruidRestoration
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable
             && MySettings.UseMoonfire && (!Moonfire.TargetHaveBuff || _moonfireTimer.IsReady))
@@ -12279,7 +12279,7 @@ public class DruidGuardian
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (!ObjectManager.Me.HaveBuff(5487) && MySettings.UseBearForm)
         {
@@ -12815,7 +12815,7 @@ public class PaladinHoly
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (HolyShock.KnownSpell && HolyShock.IsHostileDistanceGood && HolyShock.IsSpellUsable && MySettings.UseHolyShock)
         {
@@ -13299,7 +13299,7 @@ public class PaladinProtection
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ShieldOfTheRighteous.KnownSpell && MySettings.UseShieldOfTheRighteous && ShieldOfTheRighteous.IsSpellUsable &&
             ShieldOfTheRighteous.IsHostileDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
@@ -13853,7 +13853,7 @@ public class PaladinRetribution
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
             DivineStorm.IsSpellUsable &&
@@ -14699,7 +14699,7 @@ public class ShamanEnhancement
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (EarthElementalTotem.KnownSpell && EarthElementalTotem.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() > 3 && MySettings.UseEarthElementalTotem)
@@ -15631,7 +15631,7 @@ public class ShamanRestoration
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
             && MySettings.UsePrimalStrike && ObjectManager.Me.Level < 11)
@@ -16476,7 +16476,7 @@ public class ShamanElemental
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.ManaPercentage < 80 && Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable
             && MySettings.UseThunderstorm)
@@ -17266,7 +17266,7 @@ public class PriestShadow
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
             && MySettings.UseArcaneTorrentForResource)
@@ -18005,7 +18005,7 @@ public class PriestDiscipline
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
             && MySettings.UseArcaneTorrentForResource)
@@ -18728,7 +18728,7 @@ public class PriestHoly
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
             && MySettings.UseArcaneTorrentForResource)
@@ -19507,7 +19507,7 @@ public class RogueCombat
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
             && MySettings.UseGarrote && ObjectManager.Me.HaveBuff(115192))
@@ -20263,7 +20263,7 @@ public class RogueSubtlety
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.Me.HaveBuff(115192) || ObjectManager.Me.HaveBuff(51713))
         {
@@ -21002,7 +21002,7 @@ public class RogueAssassination
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && MySettings.UseMutilate
             && Mutilate.IsHostileDistanceGood && MySettings.UseShadowFocus && !ObjectManager.Target.InCombat
@@ -21791,7 +21791,7 @@ public class WarriorArms
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood
             && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
@@ -22649,7 +22649,7 @@ public class WarriorProtection
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood
             && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
@@ -23468,7 +23468,7 @@ public class WarriorFury
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
@@ -24334,7 +24334,7 @@ public class HunterMarksmanship
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood && SerpentSting.KnownSpell
             && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
@@ -25150,7 +25150,7 @@ public class HunterBeastMastery
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
             && MySettings.UseCobraShot)
@@ -25975,7 +25975,7 @@ public class HunterSurvival
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && !SerpentSting.TargetHaveBuff
             && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
@@ -26652,7 +26652,7 @@ public class MonkBrewmaster
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.GetNumberAttackPlayer() > 2)
         {
@@ -27288,7 +27288,7 @@ public class MonkWindwalker
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.GetNumberAttackPlayer() > 3)
         {
@@ -27998,7 +27998,7 @@ public class MonkMistweaver
 
     private void DPSCycle()
     {
-        Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
+        Usefuls.SleepGlobalCooldown();
 
         if (ObjectManager.GetNumberAttackPlayer() > 2 && SpinningCraneKick.IsSpellUsable && SpinningCraneKick.KnownSpell
             && SpinningCraneKick.IsHostileDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
