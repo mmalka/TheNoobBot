@@ -13523,6 +13523,7 @@ public class PaladinRetribution
     public readonly bool BoundlessConviction = ObjectManager.Me.Level >= 85;
     public readonly Spell CrusaderStrike = new Spell("Crusader Strike");
     public readonly uint DivineCrusaderBuff = 144595;
+    public readonly uint DivinePurposeBuff = 90174;
     public readonly Spell DivineStorm = new Spell("Divine Storm");
     public readonly Spell ExecutionSentence = new Spell("Execution Sentence");
     public readonly Spell Exorcism = new Spell("Exorcism");
@@ -13858,14 +13859,14 @@ public class PaladinRetribution
 
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
             DivineStorm.IsSpellUsable &&
-            ((ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
+            ((ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
              (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetNumberAttackPlayer() >= 2)) &&
             DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
             return;
         }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(90174)) &&
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000)) &&
             FinalVerdict.IsHostileDistanceGood)
         {
             FinalVerdict.Cast();
@@ -13877,13 +13878,13 @@ public class PaladinRetribution
             return;
         }
         if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() <= 2) &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && TemplarsVerdict.IsHostileDistanceGood)
+            (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && TemplarsVerdict.IsHostileDistanceGood)
         {
             TemplarsVerdict.Cast();
             return;
         }
         if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
+            (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
             return;

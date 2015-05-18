@@ -2432,6 +2432,19 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint AuraTimeLeft(UInt32 idBuff)
+        {
+            var aura = UnitAura(idBuff);
+            if (aura.IsActive)
+                return aura.AuraTimeLeftInMs;
+            return 0;
+        }
+
+        public bool AuraIsActiveAndExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs)
+        {
+            return (AuraTimeLeft(idBuff) > 0 && AuraTimeLeft(idBuff) < expireInLessThanMs);
+        }
+
         public Reaction Reaction
         {
             get
