@@ -112,7 +112,7 @@ namespace nManager.Wow.Bot.States
 
             #region Battleground resurrection
 
-            if (Battleground.IsInBattleground())
+            if (Usefuls.IsInBattleground)
             {
                 _battlegroundResurrect = new Timer(1000*35);
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)

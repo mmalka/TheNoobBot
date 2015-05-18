@@ -49,7 +49,7 @@ namespace Battlegrounder.Bot
                     !Products.IsStarted)
                     return false;
 
-                if (!Battleground.IsInBattleground() || Battleground.IsFinishBattleground())
+                if (!Usefuls.IsInBattleground || Battleground.IsFinishBattleground())
                     return true;
 
                 return false;
@@ -59,7 +59,7 @@ namespace Battlegrounder.Bot
         public override void Run()
         {
             int statPvp = Battleground.QueueingStatus();
-            if (!Battleground.IsInBattleground())
+            if (!Usefuls.IsInBattleground)
             {
                 if (_deserter == null)
                     _deserter = new Spell(26013);

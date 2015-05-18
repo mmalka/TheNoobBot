@@ -250,7 +250,7 @@ namespace Battlegrounder
         {
             try
             {
-                if (Battleground.IsInBattleground())
+                if (Usefuls.IsInBattleground)
                 {
                     var f = new ProfileCreator();
                     f.ShowDialog();

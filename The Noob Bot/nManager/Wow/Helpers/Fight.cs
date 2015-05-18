@@ -52,7 +52,7 @@ namespace nManager.Wow.Helpers
                 // If pos start is very different
                 if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                     return 0;
-                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
+                if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                 {
                     List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
                     if (tLUnit.Count > 0)
@@ -248,7 +248,7 @@ namespace nManager.Wow.Helpers
                     // If pos start is far, we will Loop to it anyway.
                     if (targetNpc.Position.DistanceTo(positionStartTarget) > CombatClass.GetRange + 5f)
                         return 0;
-                    if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
+                    if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                     {
                         List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
                         if (tLUnit.Count > 0)

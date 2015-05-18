@@ -314,7 +314,7 @@ namespace Battlegrounder.Profile
         public void CurrentBattlegroundInfo()
         {
             var bg = new Battleground();
-            if (Battleground.IsInBattleground())
+            if (Usefuls.IsInBattleground)
             {
                 if (!string.IsNullOrEmpty(bg.NonLocalizedName))
                     CurrentBattleground.Text = string.Format("Profile for the Battleground: {0}", bg.NonLocalizedName);
@@ -327,7 +327,7 @@ namespace Battlegrounder.Profile
 
         private bool CanRecord(bool justCheckIsInBg = false)
         {
-            if (!Battleground.IsInBattleground())
+            if (!Usefuls.IsInBattleground)
             {
                 MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
                 return false;

@@ -94,7 +94,7 @@ namespace Battlegrounder.Bot
                     StopChecking = false;
                 }
 
-                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
+                if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                 {
                     if (_currentBattlegroundId == null &&
                         (_currentProfile.BattlegrounderZones == null || _currentProfile.BattlegrounderZones.Count <= 0) &&

@@ -41,14 +41,14 @@ namespace nManager.Wow.Bot.States
 
                 if (Products.Products.ProductName == "Battlegrounder")
                 {
-                    if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
+                    if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground() &&
                         Battleground.BattlegroundIsStarted())
                     {
                         _battleground = 0;
                         if (PathLoop != null && PathLoop.Count > 0 && !IsProfileCSharp)
                             return true;
                     }
-                    if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
+                    if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground() &&
                         !Battleground.BattlegroundIsStarted() && _battleground == 0)
                     {
                         MovementsAction.MoveForward(true);
@@ -56,7 +56,7 @@ namespace nManager.Wow.Bot.States
                         MovementsAction.MoveForward(false);
                         _battleground++;
                     }
-                    else if (!Battleground.IsInBattleground() && _outOfBattlegroundAntiAfk.IsReady)
+                    else if (!Usefuls.IsInBattleground && _outOfBattlegroundAntiAfk.IsReady)
                     {
                         _battleground = 0;
                         _outOfBattlegroundAntiAfk.Reset();

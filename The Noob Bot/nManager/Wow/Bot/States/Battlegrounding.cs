@@ -36,7 +36,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Battleground.IsInBattleground())
+                if (!Usefuls.IsInBattleground)
                     return false;
                 if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
