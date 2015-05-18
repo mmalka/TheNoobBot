@@ -191,7 +191,7 @@ namespace nManager.Wow.Bot.States
             if (selectedTransport is Portal)
             {
                 var portal = selectedTransport as Portal;
-                Logging.Write("Going to portal " + portal.Name + "(" + portal.Id + ") to travel.");
+                Logging.Write("Going to portal " + portal.Name + " (" + portal.Id + ") to travel.");
                 List<Point> pathToPortal = PathFinder.FindPath(portal.APoint);
                 MovementManager.Go(pathToPortal);
                 bool loop = true;

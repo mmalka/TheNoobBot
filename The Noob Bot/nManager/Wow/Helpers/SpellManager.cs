@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.MemoryClass.Magic;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -23,6 +22,54 @@ namespace nManager.Wow.Helpers
         private static List<Spell> _spellBookSpell = new List<Spell>();
         public static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
         private static readonly Dictionary<string, List<uint>> CacheSpellIdByName = new Dictionary<string, List<uint>>();
+
+        public static int GetGlobalCooldownLeft
+        {
+            get
+            {
+                List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
+                foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
+                {
+                    uint currentWoWTime = Usefuls.GetWoWTime;
+                    if (spellCooldown.GCDDuration > 0)
+                    {
+                        var timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration);
+                        return timeLeftMs < 0 ? 1 : timeLeftMs;
+                    }
+                }
+                return 1; // 0 would cause sleeps to freezes thread.
+            }
+        }
+
+        public static List<SpellCooldownEntry> GetAllSpellsOnCooldown
+        {
+            get
+            {
+                BlackMagic m = Memory.WowMemory.Memory;
+
+                uint currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
+
+                var spellCooldowns = new List<SpellCooldownEntry>();
+                while ((currentListObject != 0) && ((currentListObject & 1) == 0))
+                {
+                    var spellCooldown = (SpellCooldownEntry) m.ReadObject(currentListObject, typeof (SpellCooldownEntry));
+
+                    /*Logging.Write("-----------------------------------------------");
+                    Logging.Write("SpellCooldownEntry: SpellId = " + spellCooldown.SpellId + ", ItemId = " + spellCooldown.ItemId);
+                    Logging.Write("SpellCooldownEntry: SpellName = " + SpellListManager.SpellNameById(spellCooldown.SpellId) + ", ItemId = " + ItemsManager.GetItemNameById((int) spellCooldown.ItemId));
+                    Logging.Write("StartTime: " + spellCooldown.StartTime + ", GetTime: " + Usefuls.GetWoWTime + ", " + (int) (Usefuls.GetWoWTime - spellCooldown.StartTime) + " miliseconds ago.");
+                    Logging.Write("Cooldown Duration: " + spellCooldown.SpellOrItemCooldownDuration + "ms, CategoryCooldownDuration: " + spellCooldown.CategoryCooldownDuration + "ms.");
+                    Logging.Write("GlobalCooldown Duration: " + spellCooldown.GCDDuration);
+                    Logging.Write("SpellHasCooldown: " + (spellCooldown.HasCooldown == 1));
+                    Logging.Write("SpellCategoryId: " + spellCooldown.SpellCategoryId);
+                    Logging.Write("StartRecoveryCategoryId: " + spellCooldown.StartRecoveryCategoryId);*/
+
+                    spellCooldowns.Add(spellCooldown);
+                    currentListObject = m.ReadUInt(currentListObject + 0x4);
+                }
+                return spellCooldowns;
+            }
+        }
 
         public static List<uint> MountDruidId()
         {
@@ -68,7 +115,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (GetSpellCooldown(spell.Ids, spell.CategoryId) > Usefuls.Latency) // greed some miliseconds that will be compensated by the below lua check
+                if (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > Usefuls.Latency) // greed some miliseconds that will be compensated by the below lua check
                     return false;
                 // We only need LUA to check for ressources now.
 
@@ -92,19 +139,19 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int GetSpellCooldown(List<uint> spellIds, uint categoryId = 0)
+        public static int GetSpellCooldown(List<uint> spellIds, uint categoryId = 0, uint startRecoveryCategoryId = 0)
         {
             for (int i = 0; i < spellIds.Count; i++)
             {
                 uint spellId = spellIds[i];
-                var timeLeft = GetSpellCooldown(spellId, categoryId);
+                int timeLeft = GetSpellCooldown(spellId, categoryId, startRecoveryCategoryId);
                 if (timeLeft > 0)
                     return timeLeft;
             }
             return 0;
         }
 
-        public static int GetSpellCooldown(uint spellId, uint categoryId = 0)
+        public static int GetSpellCooldown(uint spellId, uint categoryId = 0, uint startRecoveryCategoryId = 0)
         {
             List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
             foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
@@ -112,12 +159,11 @@ namespace nManager.Wow.Helpers
                 if (spellCooldown.GCDDuration > 0)
                     continue; // We don't want to check the GCD entry. 
 
-                if (spellCooldown.SpellId != spellId && spellCooldown.SpellCategoryId != categoryId)
+                if (spellCooldown.SpellId != spellId && (spellCooldown.SpellCategoryId != categoryId || categoryId == 0))
                     continue;
                 // This function doesn't need further editing, we are already checking for CategoryId too here,
                 // All we have to fix, is the call to this functions, using CategoryId
-
-                var currentWoWTime = Usefuls.GetWoWTime;
+                uint currentWoWTime = Usefuls.GetWoWTime;
                 int timeLeftMs;
                 if (spellCooldown.SpellOrItemCooldownDuration > 0 && spellCooldown.SpellId == spellId)
                 {
@@ -131,73 +177,6 @@ namespace nManager.Wow.Helpers
                 return timeLeftMs < 0 ? 0 : timeLeftMs;
             }
             return 0;
-        }
-
-        public static int GetGlobalCooldownLeft
-        {
-            get
-            {
-                List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
-                foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
-                {
-                    var currentWoWTime = Usefuls.GetWoWTime;
-                    if (spellCooldown.GCDDuration > 0)
-                    {
-                        var timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration);
-                        return timeLeftMs < 0 ? 1 : timeLeftMs;
-                    }
-                }
-                return 1; // 0 would cause sleeps to freezes thread.
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct SpellCooldownEntry
-        {
-            public uint Previous;
-            public uint Next;
-            public uint SpellId;
-            public uint ItemId;
-            public uint StartTime;
-            public uint SpellOrItemCooldownDuration;
-            public uint SpellCategoryId;
-            public uint CategoryCooldownStartTime;
-            public uint CategoryCooldownDuration;
-            public byte HasCooldown;
-            public byte pad1, pad2, pad3;
-            public uint GCDStartTime;
-            public uint StartRecoveryCategoryId;
-            public uint GCDDuration;
-        }
-
-        public static List<SpellCooldownEntry> GetAllSpellsOnCooldown
-        {
-            get
-            {
-                var m = Memory.WowMemory.Memory;
-
-                var currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 8);
-
-                var spellCooldowns = new List<SpellCooldownEntry>();
-                while ((currentListObject != 0) && ((currentListObject & 1) == 0))
-                {
-                    var spellCooldown = (SpellCooldownEntry) m.ReadObject(currentListObject, typeof (SpellCooldownEntry));
-
-                    /*Logging.Write("-----------------------------------------------");
-                    Logging.Write("SpellCooldownEntry: SpellId = " + spellCooldown.SpellId + ", ItemId = " + spellCooldown.ItemId);
-                    Logging.Write("SpellCooldownEntry: SpellName = " + SpellListManager.SpellNameById(spellCooldown.SpellId) + ", ItemId = " + ItemsManager.GetItemNameById((int) spellCooldown.ItemId));
-                    Logging.Write("StartTime: " + spellCooldown.StartTime + ", GetTime: " + Usefuls.GetWoWTime + ", " + (int) (Usefuls.GetWoWTime - spellCooldown.StartTime) + " miliseconds ago.");
-                    Logging.Write("Cooldown Duration: " + spellCooldown.SpellOrItemCooldownDuration + "ms, CategoryCooldownDuration: " + spellCooldown.CategoryCooldownDuration + "ms.");
-                    Logging.Write("GlobalCooldown Duration: " + spellCooldown.GCDDuration);
-                    Logging.Write("SpellHasCooldown: " + (spellCooldown.HasCooldown == 1));
-                    Logging.Write("SpellCategoryId: " + spellCooldown.SpellCategoryId);
-                    Logging.Write("StartRecoveryCategoryId: " + spellCooldown.StartRecoveryCategoryId);*/
-
-                    spellCooldowns.Add(spellCooldown);
-                    currentListObject = m.ReadUInt(currentListObject + 0x4);
-                }
-                return spellCooldowns;
-            }
         }
 
         public static string GetClientNameBySpellName(List<string> spellList)
@@ -705,7 +684,6 @@ namespace nManager.Wow.Helpers
                                     Logging.WriteDebug("Return as bad format: public static SpellInfo SpellInfoCreateCache()");
                                 }
                             }
-                            return;
                         }
                     }
                     else
@@ -775,6 +753,25 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("GetAquaticMountName(): " + exception);
             }
             return "";
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SpellCooldownEntry
+        {
+            public uint Previous;
+            public uint Next;
+            public uint SpellId;
+            public uint ItemId;
+            public uint StartTime;
+            public uint SpellOrItemCooldownDuration;
+            public uint SpellCategoryId;
+            public uint CategoryCooldownStartTime;
+            public uint CategoryCooldownDuration;
+            public byte HasCooldown;
+            public byte pad1, pad2, pad3;
+            public uint GCDStartTime;
+            public uint StartRecoveryCategoryId;
+            public uint GCDDuration;
         }
 
         [StructLayout(LayoutKind.Explicit, Size = 0x10)]
