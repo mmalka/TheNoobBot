@@ -13624,14 +13624,24 @@ public class PaladinRetribution
 
     private void Pull()
     {
-        if (MySettings.UseExorcism && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        if (MySettings.UseHammerOfWrath && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
         {
-            Exorcism.Cast();
+            HammerOfWrath.Cast();
+            return;
+        }
+        if (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood)
+        {
+            CrusaderStrike.Cast();
             return;
         }
         if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Cast();
+            return;
+        }
+        if (MySettings.UseExorcism && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        {
+            Exorcism.Cast();
             return;
         }
         if (MySettings.UseReckoning && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
@@ -13820,16 +13830,13 @@ public class PaladinRetribution
 
     private void DPSBurst()
     {
-        if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell)
+        if (MySettings.UseHolyAvenger && HolyAvenger.IsSpellUsable)
         {
-            if (HolyAvenger.IsSpellUsable)
-            {
-                HolyAvenger.Cast();
-                if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
-                    AvengingWrath.Cast();
-            }
+            HolyAvenger.Cast();
+            if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+                AvengingWrath.Cast();
         }
-        else if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+        else if (MySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable)
         {
             AvengingWrath.Cast();
         }
@@ -13849,31 +13856,34 @@ public class PaladinRetribution
     {
         Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
 
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) &&
-            DivineStorm.IsSpellUsable)
-        {
-            DivineStorm.Cast();
-            return;
-        }
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
-            DivineStorm.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5) && ObjectManager.GetNumberAttackPlayer() >= 2)
+            DivineStorm.IsSpellUsable &&
+            ((ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
+             (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetNumberAttackPlayer() >= 2)) &&
+            DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
             return;
         }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(90174)))
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(90174)) &&
+            FinalVerdict.IsHostileDistanceGood)
         {
             FinalVerdict.Cast();
             return;
         }
+        if (MySettings.UseExecutionSentence && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
+        {
+            ExecutionSentence.Cast();
+            return;
+        }
         if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() <= 2) &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))) && TemplarsVerdict.IsHostileDistanceGood)
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && TemplarsVerdict.IsHostileDistanceGood)
         {
             TemplarsVerdict.Cast();
             return;
         }
         if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))) && DivineStorm.IsHostileDistanceGood)
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
             return;
@@ -13883,24 +13893,20 @@ public class PaladinRetribution
             Exorcism.Cast();
             return;
         }
-        if (MySettings.UseExecutionSentence && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
-        {
-            ExecutionSentence.Cast();
-            return;
-        }
         if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
         {
             HammerOfWrath.Cast();
             return;
         }
+        Logging.Write(ObjectManager.GetNumberAttackPlayer().ToString());
         if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
-            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && (ObjectManager.GetNumberAttackPlayer() <= 6))))
+            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetNumberAttackPlayer() <= 6))
         {
             CrusaderStrike.Cast();
             return;
         }
         if (MySettings.UseHammerOfTheRighteous && ObjectManager.Me.HolyPower < 5 && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
-            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && (ObjectManager.GetNumberAttackPlayer() >= 7))))
+            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || ObjectManager.GetNumberAttackPlayer() >= 7))
         {
             HammerOfTheRighteous.Cast();
             return;
@@ -13910,24 +13916,19 @@ public class PaladinRetribution
             Judgment.Cast();
             return;
         }
+
         if (MySettings.UseExorcism && ObjectManager.Me.HolyPower < 5 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Cast();
             return;
         }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) &&
-            DivineStorm.IsSpellUsable && ObjectManager.Me.HaveBuff(90174))
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
             return;
         }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell &&
-            ObjectManager.Me.HaveBuff(90174) && DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() >= 2)
-        {
-            DivineStorm.Cast();
-            return;
-        }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && ObjectManager.Me.HaveBuff(90174) && FinalVerdict.IsSpellUsable)
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable && FinalVerdict.IsHostileDistanceGood)
         {
             FinalVerdict.Cast();
             return;
@@ -13938,7 +13939,7 @@ public class PaladinRetribution
             TemplarsVerdict.Cast();
             return;
         }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
+        if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
             DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();

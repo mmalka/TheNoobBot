@@ -130,6 +130,7 @@ namespace nManager.Wow.Helpers
 
                 Lua.LuaDoString(luaCode, false, false);
                 string ret = Lua.GetLocalizedText(luaResultUsable);
+
                 return (ret == "1");
             }
             catch (Exception exception)
@@ -168,12 +169,12 @@ namespace nManager.Wow.Helpers
                 if (spellCooldown.SpellOrItemCooldownDuration > 0 && spellCooldown.SpellId == spellId)
                 {
                     // Force the SpellOrItemCooldownDuration to use SpellId as a reference instead of CategoryId.
-                    timeLeftMs = (int) (currentWoWTime - spellCooldown.StartTime + spellCooldown.SpellOrItemCooldownDuration);
+                    timeLeftMs = (int) (spellCooldown.StartTime - currentWoWTime + spellCooldown.SpellOrItemCooldownDuration);
                     return timeLeftMs < 0 ? 0 : timeLeftMs;
                 }
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
-                timeLeftMs = (int) (currentWoWTime - spellCooldown.CategoryCooldownStartTime + spellCooldown.CategoryCooldownDuration);
+                timeLeftMs = (int) (spellCooldown.CategoryCooldownStartTime - currentWoWTime + spellCooldown.CategoryCooldownDuration);
                 return timeLeftMs < 0 ? 0 : timeLeftMs;
             }
             return 0;
