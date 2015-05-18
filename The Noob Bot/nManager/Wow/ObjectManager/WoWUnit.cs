@@ -1496,6 +1496,31 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public enum PartyRole
+        {
+            Tank,
+            DPS,
+            Heal,
+            None
+        }
+
+        public PartyRole GetUnitRole
+        {
+            get
+            {
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomStringResult + " = UnitGroupRolesAssigned(\"" + Name + "\")");
+                var ret = Lua.GetLocalizedText(randomStringResult);
+                if (ret == "TANK")
+                    return PartyRole.Tank;
+                if (ret == "DAMAGER")
+                    return PartyRole.DPS;
+                if (ret == "HEALER")
+                    return PartyRole.Heal;
+                return PartyRole.None;
+            }
+        }
+
         public PartyEnums.PartyType GetCurrentPartyType
         {
             get
