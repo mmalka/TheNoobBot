@@ -495,6 +495,70 @@ namespace nManager.Wow.Helpers
             return result;
         }
 
+        public static List<WoWMap.MapDbcRecord> GetBattlegroundsList()
+        {
+            List<WoWMap.MapDbcRecord> result = WoWMap.WoWMaps(WoWMap.InstanceType.Battleground, WoWMap.MapType.ADTType);
+            result.AddRange(WoWMap.WoWMaps(WoWMap.InstanceType.Battleground, WoWMap.MapType.WDTOnlyType));
+            return result;
+        }
+
+        public static List<uint> CachedRaidList;
+
+        public static bool IsInRaid
+        {
+            get
+            {
+                if (CachedRaidList == null)
+                {
+                    CachedRaidList = new List<uint>();
+                    var raidList = GetRaidsList();
+                    for (int i = 0; i < raidList.Count; i++)
+                    {
+                        CachedRaidList.Add(raidList[i].Id);
+                    }
+                }
+                return CachedRaidList.Contains((uint) ContinentId);
+            }
+        }
+
+        public static List<uint> CachedInstanceList;
+
+        public static bool IsInDungeon
+        {
+            get
+            {
+                if (CachedInstanceList == null)
+                {
+                    CachedInstanceList = new List<uint>();
+                    var instanceList = GetInstancesList();
+                    for (int i = 0; i < instanceList.Count; i++)
+                    {
+                        CachedInstanceList.Add(instanceList[i].Id);
+                    }
+                }
+                return CachedInstanceList.Contains((uint) ContinentId);
+            }
+        }
+
+        public static List<uint> CachedBattlegroundList;
+
+        public static bool IsInBattleground
+        {
+            get
+            {
+                if (CachedBattlegroundList == null)
+                {
+                    CachedBattlegroundList = new List<uint>();
+                    var battlegroundList = GetBattlegroundsList();
+                    for (int i = 0; i < battlegroundList.Count; i++)
+                    {
+                        CachedBattlegroundList.Add(battlegroundList[i].Id);
+                    }
+                }
+                return CachedBattlegroundList.Contains((uint) ContinentId);
+            }
+        }
+
         private static List<int> _garrisonMapIdList;
         private static int _continentId;
 
