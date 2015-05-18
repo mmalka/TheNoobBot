@@ -67,6 +67,7 @@
         {
             ItemClass = 0xD0DEA4,
             ItemSubClass = 0xD0F9F4,
+            SpellCategories = 0xD11504,
             FactionTemplate = 0xD09AF4,
             Lock = 0x0D106CC,
             QuestPOIPoint = 0xD10DB4,

@@ -28,7 +28,8 @@ namespace nManager.Wow.Class
         public string NameInGame = "";
         public PowerType PowerType;
         public string Rank = "";
-        public uint CategoryId; // Allow someone to manually reference CategoryId when initialize Spell().
+        public uint CategoryId;
+        public uint StartRecoveryCategoryId;
 
         #endregion Fields
 
@@ -72,6 +73,8 @@ namespace nManager.Wow.Class
                         KnownSpell = SpellManager.KnownSpell(Id);
                         Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                         Ids.Add(Id);
+                        CategoryId = WoWSpellCategories.GetSpellCategoryBySpellId(Id);
+                        StartRecoveryCategoryId = WoWSpellCategories.GetSpellStartRecoverCategoryBySpellId(Id);
                         return;
                     }
                 }
@@ -135,6 +138,8 @@ namespace nManager.Wow.Class
                 KnownSpell = tSpell.KnownSpell;
                 Ids.AddRange(tSpell.Ids);
                 Ids.Add(Id);
+                CategoryId = tSpell.CategoryId;
+                StartRecoveryCategoryId = tSpell.StartRecoveryCategoryId;
             }
             catch (Exception exception)
             {
