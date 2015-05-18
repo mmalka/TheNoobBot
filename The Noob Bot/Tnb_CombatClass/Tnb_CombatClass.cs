@@ -13040,19 +13040,12 @@ public class PaladinProtection
 
     #endregion
 
-    public void HardcodeCategoryIds()
-    {
-        CrusaderStrike.CategoryId = 1264;
-        HammerOfTheRighteous.CategoryId = 1264;
-    }
-
     public PaladinProtection()
     {
         Main.InternalRange = 5.0f;
         MySettings = PaladinProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
-        HardcodeCategoryIds();
 
         while (Main.InternalLoop)
         {
@@ -13592,19 +13585,12 @@ public class PaladinRetribution
 
     #endregion
 
-    public void HardcodeCategoryIds()
-    {
-        CrusaderStrike.CategoryId = 1264;
-        HammerOfTheRighteous.CategoryId = 1264;
-    }
-
     public PaladinRetribution()
     {
         Main.InternalRange = 5.0f;
         MySettings = PaladinRetributionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
         UInt128 lastTarget = 0;
-        HardcodeCategoryIds();
 
         while (Main.InternalLoop)
         {
@@ -13641,17 +13627,17 @@ public class PaladinRetribution
 
     private void Pull()
     {
-        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        if (MySettings.UseExorcism && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
             return;
         }
-        if (MySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+        if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Launch();
             return;
         }
-        if (MySettings.UseReckoning && Reckoning.KnownSpell && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
+        if (MySettings.UseReckoning && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
         {
             Reckoning.Launch();
         }
@@ -13866,14 +13852,14 @@ public class PaladinRetribution
     {
         Thread.Sleep(SpellManager.GetGlobalCooldownLeft);
 
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) &&
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) &&
             DivineStorm.IsSpellUsable)
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.GetNumberAttackPlayer() >= 2 &&
-            DivineStorm.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5))
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
+            DivineStorm.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5) && ObjectManager.GetNumberAttackPlayer() >= 2)
         {
             DivineStorm.Launch();
             return;
@@ -13883,114 +13869,103 @@ public class PaladinRetribution
             FinalVerdict.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
-             (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell && TemplarsVerdict.IsSpellUsable &&
-            TemplarsVerdict.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
-             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))))
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() <= 2) &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))) && TemplarsVerdict.IsHostileDistanceGood)
         {
             TemplarsVerdict.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
-             (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
-            MySettings.UseDivineStorm && DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
-             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))))
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction || HolyAvenger.HaveBuff))) && DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood && ObjectManager.Me.HaveBuff(166831) && ObjectManager.Me.HolyPower <= 3)
+        if (MySettings.UseExorcism && ObjectManager.Me.HaveBuff(166831) && ObjectManager.Me.HolyPower <= 3 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
             return;
         }
-        if (MySettings.UseHammerOfWrath && HammerOfWrath.KnownSpell && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
-        {
-            HammerOfWrath.Launch();
-            return;
-        }
-        if (MySettings.UseExecutionSentence && ExecutionSentence.KnownSpell && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
+        if (MySettings.UseExecutionSentence && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
         {
             ExecutionSentence.Launch();
             return;
         }
-        if (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
-            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell ||
-             (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell &&
-              (ObjectManager.GetNumberAttackPlayer() <= 3))))
+        if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
+        {
+            HammerOfWrath.Launch();
+            return;
+        }
+        if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
+            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && (ObjectManager.GetNumberAttackPlayer() <= 6))))
         {
             CrusaderStrike.Launch();
             return;
         }
-        if (MySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
-            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell ||
-             (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell &&
-              (ObjectManager.GetNumberAttackPlayer() >= 4))))
+        if (MySettings.UseHammerOfTheRighteous && ObjectManager.Me.HolyPower < 5 && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
+            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || (MySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && (ObjectManager.GetNumberAttackPlayer() >= 7))))
         {
             HammerOfTheRighteous.Launch();
             return;
         }
-        if (MySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+        if (MySettings.UseJudgment && ObjectManager.Me.HolyPower < 5 && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Launch();
             return;
         }
-        if (MySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        if (MySettings.UseExorcism && ObjectManager.Me.HolyPower < 5 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
             return;
         }
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.Me.HaveBuff(DivineCrusaderBuff) &&
-            DivineStorm.IsSpellUsable &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+            DivineStorm.IsSpellUsable && ObjectManager.Me.HaveBuff(90174))
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell && ObjectManager.GetNumberAttackPlayer() >= 2 &&
-            DivineStorm.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.KnownSpell &&
+            ObjectManager.Me.HaveBuff(90174) && DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() >= 2)
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower >= 3 || ObjectManager.Me.HaveBuff(90174)))
+        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && ObjectManager.Me.HaveBuff(90174) && FinalVerdict.IsSpellUsable)
         {
             FinalVerdict.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
-             (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) &&
-            TemplarsVerdict.KnownSpell && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() <= 2) &&
+            TemplarsVerdict.IsHostileDistanceGood)
         {
             TemplarsVerdict.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
-             (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) &&
-            DivineStorm.KnownSpell && DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
-            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
+            DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Launch();
             return;
         }
-        if (MySettings.UseHammerOfJustice && HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && HammerOfJustice.IsHostileDistanceGood &&
-            ObjectManager.Target.IsStunnable)
+        if (MySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable && ObjectManager.Target.IsStunnable && HammerOfJustice.IsHostileDistanceGood)
         {
             HammerOfJustice.Launch();
             return;
         }
-        if (MySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsSpellUsable && SacredShield.IsHostileDistanceGood
-            && (!MySettings.UseTemplarsVerdict || !TemplarsVerdict.KnownSpell || !TemplarsVerdict.IsSpellUsable)
-            && (!MySettings.UseJudgment || !Judgment.KnownSpell || !Judgment.IsSpellUsable)
-            && (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || !CrusaderStrike.IsSpellUsable)
-            && (!MySettings.UseHammerOfWrath || !HammerOfWrath.KnownSpell || !HammerOfWrath.IsSpellUsable)
-            && (!MySettings.UseExorcism || !Exorcism.KnownSpell || !Exorcism.IsSpellUsable))
+        if ((MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable) || (MySettings.UseDivineStorm && DivineStorm.IsSpellUsable) ||
+            (MySettings.UseJudgment && Judgment.IsSpellUsable) || (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable) || (MySettings.UseHammerOfWrath && HammerOfWrath.IsSpellUsable) ||
+            (MySettings.UseExorcism && Exorcism.IsSpellUsable))
+            return;
+        // We have a hole in our rotation, so a GCD is available here, use a free talent level 45.
+
+        if (MySettings.UseSacredShield && SacredShield.IsSpellUsable)
         {
-            // Since we have a GCD available and spell to cast, we can use the Sacred Shield. (Loss of DPS if not placed here.)
             SacredShield.Launch();
+            return;
+        }
+        if (MySettings.UseFlashOfLight && ObjectManager.Me.BuffStack(114250) == 3 && ObjectManager.Me.HealthPercent < 95 && FlashOfLight.IsSpellUsable)
+        {
+            FlashOfLight.Launch();
         }
     }
 
@@ -25624,13 +25599,13 @@ public class HunterSurvival
         {
             if (MultiShot.KnownSpell && MySettings.UseMultiShot && MultiShot.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() >= 3 && MultiShot.IsSpellUsable)
             {
-                _serpentStingTimer = new Timer(1000 * 12);
+                _serpentStingTimer = new Timer(1000*12);
                 MultiShot.Launch();
                 return;
             }
             else if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
             {
-                _serpentStingTimer = new Timer(1000 * 12);
+                _serpentStingTimer = new Timer(1000*12);
                 ArcaneShot.Launch();
                 return;
             }
@@ -25641,13 +25616,13 @@ public class HunterSurvival
             return;
         }
         if (SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && ObjectManager.Me.FocusPercentage < 60
-             && (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsSpellUsable)
+            && (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsSpellUsable)
         {
             SteadyShot.Launch();
             return;
         }
         if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ExplosiveTrap.IsHostileDistanceGood
-             && ExplosiveTrap.IsSpellUsable)
+            && ExplosiveTrap.IsSpellUsable)
         {
             UseTrap(ExplosiveTrap);
         }
@@ -26071,7 +26046,7 @@ public class HunterSurvival
             ExplosiveShot.Launch();
             return;
         }
-        if (MultiShot.KnownSpell && MySettings.UseMultiShot  && MultiShot.IsHostileDistanceGood
+        if (MultiShot.KnownSpell && MySettings.UseMultiShot && MultiShot.IsHostileDistanceGood
             && ObjectManager.Me.FocusPercentage > 79
             && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1
             && MultiShot.IsSpellUsable)
@@ -26079,7 +26054,7 @@ public class HunterSurvival
             MultiShot.Launch();
             return;
         }
-        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot  && ArcaneShot.IsHostileDistanceGood
+        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood
             && ObjectManager.Me.FocusPercentage > 79 && ArcaneShot.IsSpellUsable)
         {
             ArcaneShot.Launch();
