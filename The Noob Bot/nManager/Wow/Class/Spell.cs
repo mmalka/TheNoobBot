@@ -163,7 +163,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return SpellManager.IsSpellUsableLUA(this);
+                    return KnownSpell && SpellManager.IsSpellUsableLUA(this);
                 }
                 catch (Exception exception)
                 {
