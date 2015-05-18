@@ -33,8 +33,8 @@ namespace nManager.Wow.Helpers
                     uint currentWoWTime = Usefuls.GetWoWTime;
                     if (spellCooldown.GCDDuration > 0)
                     {
-                        var timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration);
-                        return timeLeftMs < 0 ? 1 : timeLeftMs;
+                        int timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration) + 25;
+                        return timeLeftMs < 0 ? 25 : timeLeftMs;
                     }
                 }
                 return 1; // 0 would cause sleeps to freezes thread.
@@ -115,7 +115,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > Usefuls.Latency) // greed some miliseconds that will be compensated by the below lua check
+                if (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > Usefuls.Latency/3) // Greed a third of our latency before launching the spell.
                     return false;
                 // We only need LUA to check for ressources now.
 
