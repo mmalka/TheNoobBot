@@ -33,11 +33,14 @@ namespace nManager.Wow.Helpers
                     uint currentWoWTime = Usefuls.GetWoWTime;
                     if (spellCooldown.GCDDuration > 0)
                     {
-                        int timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration) + 25;
-                        return timeLeftMs < 0 ? 25 : timeLeftMs;
+                        int timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration) + 50;
+                        return timeLeftMs < 0 ? 50 : timeLeftMs;
+                        // A GCD was recently active as their were footsteps in the memory, we want it to wait a minimum of 50ms.
+                        // The bot will less spam an incomming spell.
                     }
                 }
                 return 1; // 0 would cause sleeps to freezes thread.
+                // A GCD was not recently active, so just don't lose time and cast the next.
             }
         }
 
@@ -115,7 +118,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > Usefuls.Latency/3) // Greed a third of our latency before launching the spell.
+                if (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > 0)
                     return false;
                 // We only need LUA to check for ressources now.
 
@@ -170,14 +173,19 @@ namespace nManager.Wow.Helpers
                 {
                     // Force the SpellOrItemCooldownDuration to use SpellId as a reference instead of CategoryId.
                     timeLeftMs = (int) (spellCooldown.StartTime - currentWoWTime + spellCooldown.SpellOrItemCooldownDuration);
+                    // The spell is maybe going to be ready in a few miliseconds, we want to be sure we slow down it with Latency so the bot wont try to cast it before it's really available.
+                    timeLeftMs = timeLeftMs + Usefuls.Latency;
                     return timeLeftMs < 0 ? 0 : timeLeftMs;
                 }
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
                 timeLeftMs = (int) (spellCooldown.CategoryCooldownStartTime - currentWoWTime + spellCooldown.CategoryCooldownDuration);
+                // The spell is maybe going to be ready in a few miliseconds, we want to be sure we slow down it with Latency so the bot wont try to cast it before it's really available.
+                timeLeftMs = timeLeftMs + Usefuls.Latency;
                 return timeLeftMs < 0 ? 0 : timeLeftMs;
             }
             return 0;
+            // Cooldown is totally up and wasn't recently in memory, we don't need to slow down it because it's 100% ready.
         }
 
         public static string GetClientNameBySpellName(List<string> spellList)
