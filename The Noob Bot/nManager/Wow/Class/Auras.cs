@@ -22,11 +22,11 @@ namespace nManager.Wow.Class
             public int AuraCount { get; set; }
             public byte AuraCasterLevel { get; set; }
             public byte AuraUnk2 { get; set; }
-            public uint AuraDuration { get; set; }
-            public uint AuraSpellEndTime { get; set; }
+            public int AuraDuration { get; set; }
+            public int AuraSpellEndTime { get; set; }
             public byte AuraUnk3 { get; set; }
 
-            public uint AuraTimeLeftInMs
+            public int AuraTimeLeftInMs
             {
                 get
                 {

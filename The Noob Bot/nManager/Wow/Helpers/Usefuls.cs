@@ -312,13 +312,13 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static uint GetWoWTime
+        public static int GetWoWTime
         {
             get
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.GetTime);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.GetTime);
                 }
                 catch (Exception e)
                 {

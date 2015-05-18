@@ -771,16 +771,16 @@ namespace nManager.Wow.Helpers
             public uint Next;
             public uint SpellId;
             public uint ItemId;
-            public uint StartTime;
-            public uint SpellOrItemCooldownDuration;
+            public int StartTime;
+            public int SpellOrItemCooldownDuration;
             public uint SpellCategoryId;
-            public uint CategoryCooldownStartTime;
-            public uint CategoryCooldownDuration;
+            public int CategoryCooldownStartTime;
+            public int CategoryCooldownDuration;
             public byte HasCooldown;
             public byte pad1, pad2, pad3;
-            public uint GCDStartTime;
+            public int GCDStartTime;
             public uint StartRecoveryCategoryId;
-            public uint GCDDuration;
+            public int GCDDuration;
         }
 
         [StructLayout(LayoutKind.Explicit, Size = 0x10)]

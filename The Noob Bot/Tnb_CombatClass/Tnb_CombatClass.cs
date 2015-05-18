@@ -13655,12 +13655,10 @@ public class PaladinRetribution
     {
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
-        DPSCycle();
-        Heal();
-        DPSCycle();
         Buffs();
         DPSBurst();
         DPSCycle();
+        Heal();
     }
 
     private void Patrolling()
@@ -13899,7 +13897,6 @@ public class PaladinRetribution
             HammerOfWrath.Cast();
             return;
         }
-        Logging.Write(ObjectManager.GetNumberAttackPlayer().ToString());
         if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
             (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetNumberAttackPlayer() <= 6))
         {

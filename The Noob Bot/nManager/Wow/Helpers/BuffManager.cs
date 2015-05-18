@@ -68,8 +68,8 @@ namespace nManager.Wow.Helpers
                         byte auraStackCount = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCount);
                         byte auraCasterLevel = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructCasterLevel);
                         byte auraUnk2 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2);
-                        uint auraDuration = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration);
-                        uint auraSpellEndTime = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime);
+                        int auraDuration = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration);
+                        int auraSpellEndTime = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime);
                         byte auraUnk3 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk3);
                         var currUnitAura = new Auras.UnitAura
                         {

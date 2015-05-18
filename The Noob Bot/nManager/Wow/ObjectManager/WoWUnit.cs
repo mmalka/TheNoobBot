@@ -2079,7 +2079,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint CastEndsInMs
+        public int CastEndsInMs
         {
             get
             {
@@ -2101,14 +2101,14 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint CastingEndTime
+        public int CastingEndTime
         {
             get
             {
                 if (CurrentSpellIdCast > 0)
-                    return Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellEndTime);
+                    return Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellEndTime);
                 if (CurrentSpellIdChannel > 0)
-                    return Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellEndTime);
+                    return Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellEndTime);
                 return 0;
             }
         }
@@ -2432,7 +2432,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint AuraTimeLeft(UInt32 idBuff)
+        public int AuraTimeLeft(UInt32 idBuff)
         {
             var aura = UnitAura(idBuff);
             if (aura.IsActive)
