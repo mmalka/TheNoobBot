@@ -30,17 +30,17 @@ namespace nManager.Wow.Helpers
                 List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
                 foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
                 {
-                    uint currentWoWTime = Usefuls.GetWoWTime;
+                    int currentWoWTime = Usefuls.GetWoWTime;
                     if (spellCooldown.GCDDuration > 0)
                     {
-                        int timeLeftMs = (int) (spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration) + 50;
-                        return timeLeftMs < 0 ? 50 : timeLeftMs;
-                        // A GCD was recently active as their were footsteps in the memory, we want it to wait a minimum of 50ms.
-                        // The bot will less spam an incomming spell.
+                        int timeLeftMs = spellCooldown.GCDStartTime - currentWoWTime + spellCooldown.GCDDuration;
+                        // Hack GCD when GetTime is late. We have the entry in memory meaning we are still under GCD, pause a minimum of 25 miliseconds and let the bot spam.
+                        if (timeLeftMs < 0)
+                            timeLeftMs = 0;
+                        return timeLeftMs <= 0 ? 25 : timeLeftMs + 25;
                     }
                 }
                 return 1; // 0 would cause sleeps to freezes thread.
-                // A GCD was not recently active, so just don't lose time and cast the next.
             }
         }
 
@@ -118,7 +118,10 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > 0)
+                if (IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) != (GetSpellCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId) > 0))
+                    Logging.Write("Function1 returned : " + IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId));
+
+                if (IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId))
                     return false;
                 // We only need LUA to check for ressources now.
 
@@ -143,49 +146,41 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int GetSpellCooldown(List<uint> spellIds, uint categoryId = 0, uint startRecoveryCategoryId = 0)
+        public static bool IsSpellOnCooldown(List<uint> spellIds, uint categoryId = 0, uint startRecoveryCategoryId = 0)
         {
             for (int i = 0; i < spellIds.Count; i++)
             {
                 uint spellId = spellIds[i];
-                int timeLeft = GetSpellCooldown(spellId, categoryId, startRecoveryCategoryId);
-                if (timeLeft > 0)
-                    return timeLeft;
+                bool onCooldown = IsSpellOnCooldown(spellId, categoryId, startRecoveryCategoryId);
+                if (onCooldown)
+                    return true;
             }
-            return 0;
+            return false;
         }
 
-        public static int GetSpellCooldown(uint spellId, uint categoryId = 0, uint startRecoveryCategoryId = 0)
+        public static bool IsSpellOnCooldown(uint spellId, uint categoryId = 0, uint startRecoveryCategoryId = 0)
         {
             List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
             foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
             {
                 if (spellCooldown.GCDDuration > 0)
-                    continue; // We don't want to check the GCD entry. 
-
+                    continue;
                 if (spellCooldown.SpellId != spellId && (spellCooldown.SpellCategoryId != categoryId || categoryId == 0))
                     continue;
-                // This function doesn't need further editing, we are already checking for CategoryId too here,
-                // All we have to fix, is the call to this functions, using CategoryId
-                uint currentWoWTime = Usefuls.GetWoWTime;
-                int timeLeftMs;
+
+                int currentWoWTime = Usefuls.GetWoWTime;
+                int elaspedTime = currentWoWTime - spellCooldown.StartTime;
                 if (spellCooldown.SpellOrItemCooldownDuration > 0 && spellCooldown.SpellId == spellId)
                 {
-                    // Force the SpellOrItemCooldownDuration to use SpellId as a reference instead of CategoryId.
-                    timeLeftMs = (int) (spellCooldown.StartTime - currentWoWTime + spellCooldown.SpellOrItemCooldownDuration);
-                    // The spell is maybe going to be ready in a few miliseconds, we want to be sure we slow down it with Latency so the bot wont try to cast it before it's really available.
-                    timeLeftMs = timeLeftMs + Usefuls.Latency;
-                    return timeLeftMs < 0 ? 0 : timeLeftMs;
+                    if (spellCooldown.SpellOrItemCooldownDuration >= elaspedTime)
+                        return true;
                 }
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
-                timeLeftMs = (int) (spellCooldown.CategoryCooldownStartTime - currentWoWTime + spellCooldown.CategoryCooldownDuration);
-                // The spell is maybe going to be ready in a few miliseconds, we want to be sure we slow down it with Latency so the bot wont try to cast it before it's really available.
-                timeLeftMs = timeLeftMs + Usefuls.Latency;
-                return timeLeftMs < 0 ? 0 : timeLeftMs;
+                if (spellCooldown.CategoryCooldownDuration >= elaspedTime)
+                    return true;
             }
-            return 0;
-            // Cooldown is totally up and wasn't recently in memory, we don't need to slow down it because it's 100% ready.
+            return false;
         }
 
         public static string GetClientNameBySpellName(List<string> spellList)
