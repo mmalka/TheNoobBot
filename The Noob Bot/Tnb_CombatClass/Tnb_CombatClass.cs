@@ -1270,7 +1270,7 @@ public class DeathknightApprentice
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (MySettings.UseBloodPresence && BloodPresence.KnownSpell && !BloodPresence.HaveBuff && (ObjectManager.GetNumberAttackPlayer() >= 3
+        if (MySettings.UseBloodPresence && BloodPresence.KnownSpell && !BloodPresence.HaveBuff && (ObjectManager.GetUnitInSpellRange() >= 3
                                                                                                    || ObjectManager.Me.HealthPercent <= MySettings.UseBloodPresenceAtPercentage) &&
             BloodPresence.IsSpellUsable)
         {
@@ -1405,7 +1405,7 @@ public class DeathknightApprentice
             return;
         }
 
-        if (MySettings.UsePestilence && Pestilence.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 1 &&
+        if (MySettings.UsePestilence && Pestilence.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 1 &&
             _pestilenceTimer.IsReady
             && Pestilence.IsHostileDistanceGood && Pestilence.IsSpellUsable)
         {
@@ -1414,7 +1414,7 @@ public class DeathknightApprentice
             return;
         }
 
-        if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 2
+        if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetUnitInSpellRange(BloodBoil.MaxRangeHostile) > 2
             && ObjectManager.Target.GetDistance < 11 && BloodBoil.IsSpellUsable)
         {
             BloodBoil.Cast();
@@ -2006,7 +2006,7 @@ public class DeathknightBlood
         }
 
         if (MySettings.UseRemorselessWinter && RemorselessWinter.KnownSpell &&
-            (ObjectManager.Me.HealthPercent <= MySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetNumberAttackPlayer() > 1)
+            (ObjectManager.Me.HealthPercent <= MySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetUnitInSpellRange(RemorselessWinter.MaxRangeHostile) > 1)
             && ObjectManager.Target.GetDistance < 8 && RemorselessWinter.IsSpellUsable)
         {
             RemorselessWinter.Cast();
@@ -2246,10 +2246,10 @@ public class DeathknightBlood
             return;
         }
 
-        if (ObjectManager.GetNumberAttackPlayer() > 1 || ObjectManager.Me.HaveBuff(81141))
+        if (ObjectManager.GetUnitInSpellRange() > 1 || ObjectManager.Me.HaveBuff(81141))
         {
             if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsHostileDistanceGood
-                && (ObjectManager.GetNumberAttackPlayer() > 3 || ObjectManager.Me.HaveBuff(81141)) && BloodBoil.IsSpellUsable)
+                && (ObjectManager.GetUnitInSpellRange() > 3 || ObjectManager.Me.HaveBuff(81141)) && BloodBoil.IsSpellUsable)
             {
                 BloodBoil.Cast();
                 if (RoilingBlood.KnownSpell && BloodPlague.TargetHaveBuff)
@@ -2261,7 +2261,7 @@ public class DeathknightBlood
             }
 
             if (MySettings.UsePestilence && (!RoilingBlood.KnownSpell || !MySettings.UseBloodBoil) && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood
-                && (FrostFever.TargetHaveBuff || NecroticPlague.TargetHaveBuff) && BloodPlague.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable)
+                && (FrostFever.TargetHaveBuff || NecroticPlague.TargetHaveBuff) && BloodPlague.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 2 && Pestilence.IsSpellUsable)
             {
                 Pestilence.Cast();
                 //PestilenceTimer = new Timer(1000*30);
@@ -2269,20 +2269,20 @@ public class DeathknightBlood
             }
 
             if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsHostileDistanceGood
-                && ObjectManager.GetNumberAttackPlayer() > 2 && DeathandDecay.IsSpellUsable)
+                && ObjectManager.GetUnitInSpellRange(DeathandDecay.MaxRangeHostile) > 2 && DeathandDecay.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
                 return;
             }
 
             if (MySettings.UseHeartStrike && HeartStrike.KnownSpell && HeartStrike.IsHostileDistanceGood
-                && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1 && HeartStrike.IsSpellUsable)
+                && ObjectManager.GetUnitInSpellRange() < 4 && ObjectManager.GetNumberAttackPlayer() > 1 && HeartStrike.IsSpellUsable)
             {
                 HeartStrike.Cast();
                 return;
             }
 
-            if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 3 && ArmyoftheDead.IsSpellUsable)
+            if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetUnitInSpellRange(ArmyoftheDead.MaxRangeHostile) > 3 && ArmyoftheDead.IsSpellUsable)
             {
                 ArmyoftheDead.Cast();
                 Thread.Sleep(4000);
@@ -2963,7 +2963,7 @@ public class DeathknightUnholy
         }
 
         if (MySettings.UseRemorselessWinter && RemorselessWinter.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && (ObjectManager.Me.HealthPercent <= MySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetNumberAttackPlayer() > 1) && RemorselessWinter.IsSpellUsable)
+            && (ObjectManager.Me.HealthPercent <= MySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetUnitInSpellRange(RemorselessWinter.MaxRangeHostile) > 1) && RemorselessWinter.IsSpellUsable)
         {
             RemorselessWinter.Cast();
             _onCd = new Timer(1000*8);
@@ -3185,7 +3185,7 @@ public class DeathknightUnholy
         }
 
         if (MySettings.UsePestilence && (!RoilingBlood.KnownSpell || !MySettings.UseBloodBoil) && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood
-            && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable)
+            && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 2 && Pestilence.IsSpellUsable)
         {
             Pestilence.Cast();
             //PestilenceTimer = new Timer(1000*30);
@@ -3204,23 +3204,22 @@ public class DeathknightUnholy
             }
         }
 
-        if (ObjectManager.GetNumberAttackPlayer() > 2)
+        if (ObjectManager.GetUnitInSpellRange(DeathandDecay.MaxRangeHostile) > 2 || ObjectManager.GetUnitInSpellRange(ArmyoftheDead.MaxRangeHostile) > 3)
         {
-            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                DeathandDecay.IsSpellUsable)
+            if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
             {
                 SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
                 return;
             }
 
-            if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 3 && ArmyoftheDead.IsSpellUsable)
+            if (MySettings.UseArmyoftheDead && ArmyoftheDead.IsSpellUsable)
             {
                 ArmyoftheDead.Cast();
                 Thread.Sleep(4000);
                 return;
             }
 
-            if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && ObjectManager.Target.GetDistance < 9 && ObjectManager.GetNumberAttackPlayer() > 2 && BloodBoil.IsSpellUsable)
+            if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && ObjectManager.Target.GetDistance < 9 && ObjectManager.GetUnitInSpellRange() > 2 && BloodBoil.IsSpellUsable)
             {
                 BloodBoil.Cast();
                 return;
@@ -3899,7 +3898,7 @@ public class DeathknightFrost
         }
 
         if (MySettings.UseRemorselessWinter && RemorselessWinter.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && (ObjectManager.Me.HealthPercent <= MySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetNumberAttackPlayer() > 1) && RemorselessWinter.IsSpellUsable)
+            && (ObjectManager.Me.HealthPercent <= MySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetUnitInSpellRange() > 1) && RemorselessWinter.IsSpellUsable)
         {
             RemorselessWinter.Cast();
             _onCd = new Timer(1000*8);
@@ -4125,24 +4124,24 @@ public class DeathknightFrost
             return;
         }
 
-        if (ObjectManager.GetNumberAttackPlayer() > 2)
+        if (ObjectManager.GetUnitInSpellRange() > 2)
         {
             if (MySettings.UsePestilence && (!RoilingBlood.KnownSpell || !MySettings.UseBloodBoil) && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood
-                && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable)
+                && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 2 && Pestilence.IsSpellUsable)
             {
                 Pestilence.Cast();
                 //_pestilenceTimer = new Timer(1000*30);
                 return;
             }
 
-            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() > 2 &&
+            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsHostileDistanceGood && ObjectManager.GetUnitInSpellRange(DeathandDecay.MaxRangeHostile) > 2 &&
                 DeathandDecay.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
                 return;
             }
 
-            if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 3 && ArmyoftheDead.IsSpellUsable)
+            if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetUnitInSpellRange(ArmyoftheDead.MaxRangeHostile) > 3 && ArmyoftheDead.IsSpellUsable)
             {
                 ArmyoftheDead.Cast();
                 Thread.Sleep(4000);
@@ -4867,7 +4866,7 @@ public class MageArcane
             return;
         }
 
-        if (MySettings.UseRingofFrost && RingofFrost.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && ObjectManager.Target.GetDistance < 10 && RingofFrost.IsSpellUsable)
+        if (MySettings.UseRingofFrost && RingofFrost.KnownSpell && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2 && ObjectManager.Target.GetDistance < 10 && RingofFrost.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
             _onCd = new Timer(1000*10);
@@ -5138,18 +5137,15 @@ public class MageArcane
             return;
         }
 
-        if (ObjectManager.GetNumberAttackPlayer() > 4)
+        if (MySettings.UseConeOfCold && ConeofCold.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ConeofCold.MaxRangeHostile) > 4)
         {
-            if (MySettings.UseConeOfCold && ConeofCold.KnownSpell && ConeofCold.IsSpellUsable)
-            {
-                ConeofCold.Cast();
-                return;
-            }
-            if (MySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
-            {
-                ArcaneExplosion.Cast();
-                return;
-            }
+            ConeofCold.Cast();
+            return;
+        }
+        if (MySettings.UseArcaneExplosion && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ArcaneExplosion.MaxRangeHostile) > 4)
+        {
+            ArcaneExplosion.Cast();
+            return;
         }
 
         if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneChargePassive.BuffStack == 4 && ArcaneMissiles.BuffStack > 2 && ArcaneMissiles.IsSpellUsable)
@@ -5794,7 +5790,7 @@ public class MageFrost
             return;
         }
 
-        if (MySettings.UseRingofFrost && RingofFrost.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && ObjectManager.Target.GetDistance < 10 && RingofFrost.IsSpellUsable)
+        if (MySettings.UseRingofFrost && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
         {
             SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
             _onCd = new Timer(1000*10);
@@ -6022,20 +6018,17 @@ public class MageFrost
             return;
         }
 
-        if (ObjectManager.GetNumberAttackPlayer() > 4)
+        if (MySettings.UseFlamestrike && _flamestrikeTimer.IsReady && Flamestrike.IsSpellUsable && ObjectManager.GetUnitInSpellRange(Flamestrike.MaxRangeHostile) > 4)
         {
-            if (MySettings.UseFlamestrike && Flamestrike.KnownSpell && Flamestrike.IsHostileDistanceGood && _flamestrikeTimer.IsReady && Flamestrike.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIDAndPosition(2120, ObjectManager.Target.Position);
-                _flamestrikeTimer = new Timer(1000*8);
-                return;
-            }
+            SpellManager.CastSpellByIDAndPosition(2120, ObjectManager.Target.Position);
+            _flamestrikeTimer = new Timer(1000*8);
+            return;
+        }
 
-            if (MySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
-            {
-                ArcaneExplosion.Cast();
-                return;
-            }
+        if (MySettings.UseArcaneExplosion && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ArcaneExplosion.MaxRangeHostile) > 4)
+        {
+            ArcaneExplosion.Cast();
+            return;
         }
 
         if (MySettings.UseFrostBomb && FrostBomb.KnownSpell && ObjectManager.Target.GetDistance <= 40f && FrostBomb.IsSpellUsable && !FrostBomb.TargetHaveBuff)
@@ -6536,15 +6529,13 @@ public class MageFire
             return;
         }
 
-        if (MySettings.UseRingofFrost && RingofFrost.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && RingofFrost.IsSpellUsable
-            && ObjectManager.Target.GetDistance < 10)
+        if (MySettings.UseRingofFrost && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
         {
             SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
             _onCd = new Timer(1000*10);
             return;
         }
-        if (MySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
-            && ObjectManager.Me.HealthPercent <= MySettings.UseFrostNovaAtPercentage)
+        if (MySettings.UseFrostNova && ObjectManager.Me.HealthPercent <= MySettings.UseFrostNovaAtPercentage && ObjectManager.GetUnitInSpellRange(FrostNova.MaxRangeHostile) > 0)
         {
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
@@ -6773,14 +6764,14 @@ public class MageFire
         }
 
         if (MySettings.UseFlamestrike && Flamestrike.KnownSpell && Flamestrike.IsHostileDistanceGood && Flamestrike.IsSpellUsable
-            && ObjectManager.GetNumberAttackPlayer() > 4 && _flamestrikeTimer.IsReady)
+            && ObjectManager.GetUnitInSpellRange(Flamestrike.MaxRangeHostile) > 4 && _flamestrikeTimer.IsReady)
         {
             SpellManager.CastSpellByIDAndPosition(2120, ObjectManager.Target.Position);
             _flamestrikeTimer = new Timer(1000*8);
             return;
         }
         if (MySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
-            && ObjectManager.GetNumberAttackPlayer() > 4)
+            && ObjectManager.GetUnitInSpellRange(ArcaneExplosion.MaxRangeHostile) > 4)
         {
             ArcaneExplosion.Cast();
             return;
@@ -7537,16 +7528,14 @@ public class WarlockDemonology
             LifeTap.Cast();
             return;
         }
-        if (MySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && HarvestLife.KnownSpell && HarvestLife.IsSpellUsable
-            && HarvestLife.IsHostileDistanceGood)
+        if (MySettings.UseHarvestLife && ObjectManager.GetUnitInSpellRange(HarvestLife.MaxRangeHostile) > 4 && HarvestLife.KnownSpell && HarvestLife.IsSpellUsable)
         {
             HarvestLife.Cast();
             while (ObjectManager.Me.IsCast)
                 Thread.Sleep(200);
             return;
         }
-        if (MySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && DrainLife.KnownSpell && DrainLife.IsSpellUsable
-            && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
+        if (MySettings.UseHarvestLife && ObjectManager.GetUnitInSpellRange(HarvestLife.MaxRangeHostile) > 4 && DrainLife.KnownSpell && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
         {
             DrainLife.Cast();
             while (ObjectManager.Me.IsCast)
@@ -13705,7 +13694,7 @@ public class PaladinRetribution
     private void Seal()
     {
         if (MySettings.UseSealOfTruth && SealOfTruth.KnownSpell &&
-            (ObjectManager.GetNumberAttackPlayer() <= 5 || !MySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
+            (ObjectManager.GetUnitInSpellRange(8) <= 5 || !MySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
             {
@@ -13858,7 +13847,7 @@ public class PaladinRetribution
         if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
             DivineStorm.IsSpellUsable &&
             ((ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
-             (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetNumberAttackPlayer() >= 2)) &&
+             (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile*2) >= 2)) &&
             DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
@@ -13875,13 +13864,13 @@ public class PaladinRetribution
             ExecutionSentence.Cast();
             return;
         }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() <= 2) &&
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
             (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && TemplarsVerdict.IsHostileDistanceGood)
         {
             TemplarsVerdict.Cast();
             return;
         }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
             (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
@@ -13898,13 +13887,13 @@ public class PaladinRetribution
             return;
         }
         if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
-            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetNumberAttackPlayer() <= 6))
+            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) <= 6))
         {
             CrusaderStrike.Cast();
             return;
         }
         if (MySettings.UseHammerOfTheRighteous && ObjectManager.Me.HolyPower < 5 && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
-            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || ObjectManager.GetNumberAttackPlayer() >= 7))
+            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) >= 7))
         {
             HammerOfTheRighteous.Cast();
             return;
@@ -13920,7 +13909,8 @@ public class PaladinRetribution
             Exorcism.Cast();
             return;
         }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() >= 2 &&
+        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.IsSpellUsable &&
+            ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) >= 2 &&
             DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();
@@ -13931,13 +13921,13 @@ public class PaladinRetribution
             FinalVerdict.Cast();
             return;
         }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() <= 2) &&
+        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
             TemplarsVerdict.IsHostileDistanceGood)
         {
             TemplarsVerdict.Cast();
             return;
         }
-        if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2) &&
+        if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
             DivineStorm.IsHostileDistanceGood)
         {
             DivineStorm.Cast();

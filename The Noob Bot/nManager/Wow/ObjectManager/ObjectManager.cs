@@ -508,7 +508,7 @@ namespace nManager.Wow.ObjectManager
                         continue;
                     if (a.IsTapped && (!a.IsTapped || !a.IsTappedByMe))
                         continue;
-                    if (a.PlayerControlled) 
+                    if (a.PlayerControlled)
                         continue;
                     objectReturn = a;
                     tempDistance = a.GetDistance;
@@ -1277,6 +1277,28 @@ namespace nManager.Wow.ObjectManager
             return 0;
         }
 
+        public static uint GetUnitInSpellRange(float spellRange = 5)
+        {
+            if (spellRange < 5)
+                spellRange = 5;
+            uint unitInSpellRange = 0;
+            foreach (WoWUnit u in GetObjectWoWUnit())
+            {
+                if (!u.IsValid)
+                    continue;
+                if (!u.Attackable)
+                    continue;
+                if (u.NotSelectable)
+                    continue;
+                if (!u.IsHostile)
+                    continue;
+                if (u.GetDistance > spellRange)
+                    continue;
+                unitInSpellRange++;
+            }
+            return unitInSpellRange;
+        }
+
         public static WoWUnit GetUnitInAggroRange()
         {
             foreach (WoWUnit u in GetObjectWoWUnit())
@@ -1812,7 +1834,7 @@ namespace nManager.Wow.ObjectManager
         {
             return GetWoWUnitWGFlagHolder(hostileHolder) != null;
         }
-        
+
         public static List<WoWUnit> GetWoWUnitAuctioneer(List<WoWUnit> listWoWUnit)
         {
             try
