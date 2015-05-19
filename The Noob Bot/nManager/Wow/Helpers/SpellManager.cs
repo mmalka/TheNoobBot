@@ -52,7 +52,7 @@ namespace nManager.Wow.Helpers
                 return spellCooldowns;
             }
         }
-        
+
         public static bool IsOnGlobalCooldown
         {
             get
@@ -440,6 +440,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                Memory.WowMemory.GameFrameLock();
                 Logging.Write("Initialize Character's SpellBook update.");
                 uint nbSpells =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookNumSpells);
@@ -502,6 +503,10 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("UpdateSpellBook(): " + exception);
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
