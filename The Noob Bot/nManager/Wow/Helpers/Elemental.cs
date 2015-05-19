@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 
@@ -15,6 +16,14 @@ namespace nManager.Wow.Helpers
                     string codeLua =
                         Others.ReadFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt")
                             .Replace(Environment.NewLine, " ");
+                    Lua.LuaDoString(codeLua);
+                    Thread.Sleep(Usefuls.Latency);
+                    Lua.LuaDoString(codeLua);
+                    Thread.Sleep(Usefuls.Latency);
+                    Lua.LuaDoString(codeLua);
+                    Thread.Sleep(Usefuls.Latency);
+                    Lua.LuaDoString(codeLua);
+                    Thread.Sleep(Usefuls.Latency);
                     Lua.LuaDoString(codeLua);
                 }
             }
