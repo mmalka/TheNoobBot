@@ -8,7 +8,6 @@ namespace Damage_Dealer.Bot
     [Serializable]
     public class DamageDealerSettings : Settings
     {
-        public bool ActivateMovements = false;
         public static DamageDealerSettings CurrentSetting { get; set; }
 
         public bool ActivateAutoFacing
@@ -17,6 +16,16 @@ namespace Damage_Dealer.Bot
             set
             {
                 nManagerSetting.CurrentSetting.ActivateAutoFacingDamageDealer = value;
+                nManagerSetting.CurrentSetting.Save();
+            }
+        }
+
+        public bool ActivateMovements
+        {
+            get { return nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer; }
+            set
+            {
+                nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer = value;
                 nManagerSetting.CurrentSetting.Save();
             }
         }

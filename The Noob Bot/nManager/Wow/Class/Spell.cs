@@ -477,6 +477,13 @@ namespace nManager.Wow.Class
         {
             try
             {
+                if (StopMove)
+                {
+                    if (!nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer && Products.Products.ProductName == "Damage Dealer")
+                        StopMove = false;
+                    if (!nManagerSetting.CurrentSetting.ActivateMovementsHealerBot && Products.Products.ProductName == "Heal Bot")
+                        StopMove = false;
+                }
                 int t = 10;
                 while (ObjectManager.ObjectManager.Me.IsCast && !ignoreIfCast)
                 {

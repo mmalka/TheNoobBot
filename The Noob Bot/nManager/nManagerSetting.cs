@@ -191,6 +191,10 @@ namespace nManager
 
         // Special DamageDealer:
         public bool ActivateAutoFacingDamageDealer = false;
+        public bool ActivateMovementsDamageDealer = false;
+        // Special HealerBot:
+        public bool ActivateAutoFacingHealerBot = false;
+        public bool ActivateMovementsHealerBot = false;
 
         // Global Settings:
         public string LastProductLoaded;

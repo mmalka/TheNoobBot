@@ -85,7 +85,7 @@ public class Main : IProduct
         }
         catch (Exception e)
         {
-            Logging.WriteError("Mimesis > Main > Settings(): " + e);
+            Logging.WriteError("Damage Dealer > Main > Settings(): " + e);
         }
     }
 
