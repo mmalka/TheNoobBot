@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -13843,115 +13844,129 @@ public class PaladinRetribution
     private void DPSCycle()
     {
         Usefuls.SleepGlobalCooldown();
+        try
+        {
+            Memory.WowMemory.Lock();
 
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
-            DivineStorm.IsSpellUsable &&
-            ((ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
-             (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile*2) >= 2)) &&
-            DivineStorm.IsHostileDistanceGood)
-        {
-            DivineStorm.Cast();
-            return;
-        }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable && (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000)) &&
-            FinalVerdict.IsHostileDistanceGood)
-        {
-            FinalVerdict.Cast();
-            return;
-        }
-        if (MySettings.UseExecutionSentence && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
-        {
-            ExecutionSentence.Cast();
-            return;
-        }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
-            (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && TemplarsVerdict.IsHostileDistanceGood)
-        {
-            TemplarsVerdict.Cast();
-            return;
-        }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
-            (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
-        {
-            DivineStorm.Cast();
-            return;
-        }
-        if (MySettings.UseExorcism && ObjectManager.Me.HaveBuff(166831) && ObjectManager.Me.HolyPower <= 3 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
-        {
-            Exorcism.Cast();
-            return;
-        }
-        if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
-        {
-            HammerOfWrath.Cast();
-            return;
-        }
-        if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
-            (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) <= 6))
-        {
-            CrusaderStrike.Cast();
-            return;
-        }
-        if (MySettings.UseHammerOfTheRighteous && ObjectManager.Me.HolyPower < 5 && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
-            (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) >= 7))
-        {
-            HammerOfTheRighteous.Cast();
-            return;
-        }
-        if (MySettings.UseJudgment && ObjectManager.Me.HolyPower < 5 && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
-        {
-            Judgment.Cast();
-            return;
-        }
+            if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
+                DivineStorm.IsSpellUsable &&
+                ((ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
+                 (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile*2) >= 2)) &&
+                DivineStorm.IsHostileDistanceGood)
+            {
+                DivineStorm.Cast();
+                return;
+            }
+            if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable &&
+                (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000)) &&
+                FinalVerdict.IsHostileDistanceGood)
+            {
+                FinalVerdict.Cast();
+                return;
+            }
+            if (MySettings.UseExecutionSentence && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
+            {
+                ExecutionSentence.Cast();
+                return;
+            }
+            if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) ||
+                (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
+                (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) &&
+                TemplarsVerdict.IsHostileDistanceGood)
+            {
+                TemplarsVerdict.Cast();
+                return;
+            }
+            if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
+                (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
+            {
+                DivineStorm.Cast();
+                return;
+            }
+            if (MySettings.UseExorcism && ObjectManager.Me.HaveBuff(166831) && ObjectManager.Me.HolyPower <= 3 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+            {
+                Exorcism.Cast();
+                return;
+            }
+            if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
+            {
+                HammerOfWrath.Cast();
+                return;
+            }
+            if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
+                (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) <= 6))
+            {
+                CrusaderStrike.Cast();
+                return;
+            }
+            if (MySettings.UseHammerOfTheRighteous && ObjectManager.Me.HolyPower < 5 && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
+                (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) >= 7))
+            {
+                HammerOfTheRighteous.Cast();
+                return;
+            }
+            if (MySettings.UseJudgment && ObjectManager.Me.HolyPower < 5 && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+            {
+                Judgment.Cast();
+                return;
+            }
 
-        if (MySettings.UseExorcism && ObjectManager.Me.HolyPower < 5 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
-        {
-            Exorcism.Cast();
-            return;
-        }
-        if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.IsSpellUsable &&
-            ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) >= 2 &&
-            DivineStorm.IsHostileDistanceGood)
-        {
-            DivineStorm.Cast();
-            return;
-        }
-        if (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable && FinalVerdict.IsHostileDistanceGood)
-        {
-            FinalVerdict.Cast();
-            return;
-        }
-        if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
-            TemplarsVerdict.IsHostileDistanceGood)
-        {
-            TemplarsVerdict.Cast();
-            return;
-        }
-        if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
-            DivineStorm.IsHostileDistanceGood)
-        {
-            DivineStorm.Cast();
-            return;
-        }
-        if (MySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable && ObjectManager.Target.IsStunnable && HammerOfJustice.IsHostileDistanceGood)
-        {
-            HammerOfJustice.Cast();
-            return;
-        }
-        if ((MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable) || (MySettings.UseDivineStorm && DivineStorm.IsSpellUsable) ||
-            (MySettings.UseJudgment && Judgment.IsSpellUsable) || (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable) || (MySettings.UseHammerOfWrath && HammerOfWrath.IsSpellUsable) ||
-            (MySettings.UseExorcism && Exorcism.IsSpellUsable))
-            return;
-        // We have a hole in our rotation, so a GCD is available here, use a free talent level 45.
+            if (MySettings.UseExorcism && ObjectManager.Me.HolyPower < 5 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+            {
+                Exorcism.Cast();
+                return;
+            }
+            if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.IsSpellUsable &&
+                ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) >= 2 &&
+                DivineStorm.IsHostileDistanceGood)
+            {
+                DivineStorm.Cast();
+                return;
+            }
+            if (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable && FinalVerdict.IsHostileDistanceGood)
+            {
+                FinalVerdict.Cast();
+                return;
+            }
+            if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) ||
+                (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
+                TemplarsVerdict.IsHostileDistanceGood)
+            {
+                TemplarsVerdict.Cast();
+                return;
+            }
+            if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
+                DivineStorm.IsHostileDistanceGood)
+            {
+                DivineStorm.Cast();
+                return;
+            }
+            if (MySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable && ObjectManager.Target.IsStunnable && HammerOfJustice.IsHostileDistanceGood)
+            {
+                HammerOfJustice.Cast();
+                return;
+            }
+            if ((MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable) || (MySettings.UseDivineStorm && DivineStorm.IsSpellUsable) ||
+                (MySettings.UseJudgment && Judgment.IsSpellUsable) || (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable) || (MySettings.UseHammerOfWrath && HammerOfWrath.IsSpellUsable) ||
+                (MySettings.UseExorcism && Exorcism.IsSpellUsable))
+            {
+                return;
+            }
+            // We have a hole in our rotation, so a GCD is available here, use a free talent level 45.
 
-        if (MySettings.UseSacredShield && SacredShield.IsSpellUsable)
-        {
-            SacredShield.Cast();
-            return;
+            if (MySettings.UseSacredShield && SacredShield.IsSpellUsable)
+            {
+                SacredShield.Cast();
+                return;
+            }
+            if (MySettings.UseFlashOfLight && ObjectManager.Me.BuffStack(114250) == 3 && ObjectManager.Me.HealthPercent < 95 && FlashOfLight.IsSpellUsable)
+            {
+                FlashOfLight.Cast();
+            }
         }
-        if (MySettings.UseFlashOfLight && ObjectManager.Me.BuffStack(114250) == 3 && ObjectManager.Me.HealthPercent < 95 && FlashOfLight.IsSpellUsable)
+        finally
         {
-            FlashOfLight.Cast();
+            Memory.WowMemory.Unlock();
         }
     }
 

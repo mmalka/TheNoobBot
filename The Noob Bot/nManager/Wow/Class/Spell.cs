@@ -377,6 +377,10 @@ namespace nManager.Wow.Class
             {
                 Logging.WriteError("Spell > Launch(): " + exception);
             }
+            finally
+            {
+                Memory.WowMemory.Unlock();
+            }
         }
 
         public void Cast()
@@ -396,6 +400,10 @@ namespace nManager.Wow.Class
             catch (Exception exception)
             {
                 Logging.WriteError("Spell > Launch(uintId): " + exception);
+            }
+            finally
+            {
+                Memory.WowMemory.Unlock();
             }
         }
 
@@ -425,6 +433,10 @@ namespace nManager.Wow.Class
             catch (Exception exception)
             {
                 Logging.WriteError("Spell > LaunchOnSelf():" + exception);
+            }
+            finally
+            {
+                Memory.WowMemory.Unlock();
             }
         }
 
@@ -458,6 +470,10 @@ namespace nManager.Wow.Class
             {
                 Logging.WriteError("Spell > LaunchOnSelf(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
             }
+            finally
+            {
+                Memory.WowMemory.Unlock();
+            }
         }
 
         public void CastOnSelf(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false)
@@ -477,6 +493,7 @@ namespace nManager.Wow.Class
         {
             try
             {
+                Memory.WowMemory.Unlock();
                 if (StopMove)
                 {
                     if (!nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer && Products.Products.ProductName == "Damage Dealer")
@@ -510,6 +527,10 @@ namespace nManager.Wow.Class
             {
                 Logging.WriteError(
                     "Spell > Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
+            }
+            finally
+            {
+                Memory.WowMemory.Unlock();
             }
         }
 

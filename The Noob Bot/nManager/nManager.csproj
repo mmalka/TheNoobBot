@@ -330,8 +330,6 @@
     <Compile Include="Wow\ObjectManager\WoWUnit.cs" />
     <Compile Include="Wow\Patchables\Addresses.cs" />
     <Compile Include="Wow\Patchables\Descriptors.cs" />
-    <Compile Include="Wow\AccountSecurity\HookAccountSecurity.cs" />
-    <Compile Include="Wow\AccountSecurity\AccountSecurity.cs" />
     <Compile Include="Wow\Helpers\EquipmentAndStats.cs" />
   </ItemGroup>
   <ItemGroup>

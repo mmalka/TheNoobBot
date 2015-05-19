@@ -173,8 +173,10 @@ namespace nManager.Wow.Helpers
                 };
 
                 // Inject the shit
-                string sResult = Encoding.UTF8.GetString(Memory.WowMemory.InjectAndExecute(asm, true));
-
+                uint retPtr = Memory.WowMemory.InjectAndExecute(asm);
+                string sResult = "";
+                if (retPtr > 0)
+                    sResult = Memory.WowMemory.Memory.ReadUTF8String(retPtr);
                 // Free memory allocated for command
                 Memory.WowMemory.Memory.FreeMemory(luaGetLocalizedTextSpace);
 

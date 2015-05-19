@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -25,17 +24,20 @@ namespace nManager.Wow.MemoryClass
         public bool AllowReHook = false;
         internal uint InjectedCodeDetour;
         internal uint JumpAddress;
-        public int OffsetHookMemoryAccess = 0xB5;
 
         /// <summary>
-        ///     Thread Hoocked
+        ///     Thread Hooked
         /// </summary>
         public bool ThreadHooked;
 
-        private uint _addresseInjection;
-
-        private uint _retnInjectionAsm;
-        private uint _startInject;
+        private uint _mExecuteRequested;
+        private uint _mInjectionCode;
+        private uint _mLockRequested;
+        private uint _mLocked;
+        private object _mLocker;
+        private uint _mResult;
+        private uint _mTrampoline;
+        private byte[] _mZeroBytesInjectionCodes;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Hook" /> class.
@@ -52,9 +54,6 @@ namespace nManager.Wow.MemoryClass
             }
         }
 
-        /// <summary>
-        ///     BlackMagic - Memory lib.
-        /// </summary>
         /// <value>
         ///     BlackMagic - Memory lib.
         /// </value>
@@ -72,6 +71,110 @@ namespace nManager.Wow.MemoryClass
                     return new BlackMagic();
                 }
             }
+        }
+
+        private void CreateTrampoline()
+        {
+            _mTrampoline = Memory.AllocateMemory(0x1000);
+
+            Console.WriteLine("m_trampoline : " + _mTrampoline.ToString("X"));
+
+            var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+            fasm.SetMemorySize(0x1000);
+            fasm.SetPassLimit(100);
+
+            fasm.AddLine("pushad");
+            fasm.AddLine("pushfd");
+
+            fasm.AddLine("@execution:");
+
+            fasm.AddLine("mov eax, [{0}]", _mExecuteRequested);
+            fasm.AddLine("test eax, eax");
+            fasm.AddLine("je @lockcheck");
+
+            fasm.AddLine("call {0}", _mInjectionCode);
+            fasm.AddLine("mov [" + _mResult + "], eax");
+            fasm.AddLine("xor eax, eax");
+            fasm.AddLine("mov [" + _mExecuteRequested + "], eax");
+
+            fasm.AddLine("@lockcheck:");
+
+            fasm.AddLine("mov eax, [{0}]", _mLockRequested);
+            fasm.AddLine("test eax, eax");
+            fasm.AddLine("je @exit");
+
+            fasm.AddLine("mov eax, 1");
+            fasm.AddLine("mov [" + _mLocked + "], eax");
+            fasm.AddLine("jmp @execution");
+
+            fasm.AddLine("@exit:");
+            fasm.AddLine("xor eax, eax");
+            fasm.AddLine("mov [" + _mLocked + "], eax");
+            fasm.AddLine("popfd");
+            fasm.AddLine("popad");
+
+            fasm.AddLine("jmp " + (GetJumpAdresse() + D3D.OriginalBytes.Length));
+
+            Memory.WriteBytes(_mTrampoline, D3D.OriginalBytes);
+            fasm.Inject(_mTrampoline + (uint) D3D.OriginalBytes.Length);
+        }
+
+        public uint InjectAndExecute(string[] asm)
+        {
+            lock (_mLocker)
+            {
+                var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+                fasm.SetMemorySize(0x1000);
+                fasm.SetPassLimit(100);
+
+                foreach (string s in asm)
+                {
+                    fasm.AddLine(s);
+                }
+
+                fasm.Inject(_mInjectionCode);
+
+                Memory.WriteUInt(_mExecuteRequested, 1);
+
+                while (Memory.ReadUInt(_mExecuteRequested) == 1)
+                {
+                    //Thread.Sleep(0);
+                }
+
+                Memory.WriteBytes(_mInjectionCode, _mZeroBytesInjectionCodes);
+
+                uint returnValue = Memory.ReadUInt(_mResult);
+
+                return returnValue;
+            }
+        }
+
+        public void Apply()
+        {
+            var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+            fasm.SetMemorySize(0x1000);
+            fasm.SetPassLimit(100);
+
+            fasm.AddLine("jmp " + _mTrampoline);
+
+            fasm.Inject(GetJumpAdresse());
+        }
+
+        public void Remove(uint address, byte[] originalBytes)
+        {
+            Memory.WriteBytes(address, originalBytes);
+        }
+
+        public void Lock()
+        {
+            Memory.WriteUInt(_mLocked, 0);
+            Memory.WriteUInt(_mLockRequested, 1);
+
+            while (Memory.ReadUInt(_mLocked) != 0)
+                Thread.Sleep(0);
         }
 
         private void Hooking()
@@ -137,158 +240,6 @@ namespace nManager.Wow.MemoryClass
                         {
                             try
                             {
-                                _startInject = (uint) Others.Random(0, 60);
-
-
-                                ThreadHooked = false;
-                                // allocate memory to store injected code:
-                                InjectedCodeDetour = Memory.AllocateMemory(4000 + Others.Random(1, 2000)) +
-                                                     _startInject;
-                                // allocate memory the new injection code pointer:
-                                _addresseInjection = Memory.AllocateMemory(0x4);
-                                Memory.AllocateMemory(0x4);
-                                Memory.WriteInt(_addresseInjection, 0);
-                                // allocate memory the pointer return value:
-                                _retnInjectionAsm = Memory.AllocateMemory(0x4);
-                                Memory.WriteInt(_retnInjectionAsm, 0);
-
-                                // Generate the STUB to be injected
-                                Memory.Asm = new ManagedFasm(Memory.ProcessHandle);
-                                Memory.Asm.Clear(); // $Asm
-
-                                // save regs
-                                int nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("pushfd");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("pushad");
-
-                                // Test if you need launch injected code:
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov eax, [" + _addresseInjection + "]");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("test eax, eax");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("je @out");
-
-                                // Launch Fonction:
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("call eax");
-
-                                // Copie pointer return value:
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov [" + _retnInjectionAsm + "], eax");
-
-                                // Enter value 0 of addresse func inject
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov eax, " + _addresseInjection);
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov edx, 0");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov [eax], edx");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov eax, " + _addresseInjection);
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov ebx, 0");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("mov [eax], ebx");
-
-                                // Close func
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("@out:");
-
-                                // load reg
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("popad");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine("popfd");
-                                nR = Others.Random(1, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-
-                                // injected code
-
-                                Memory.Asm.Inject(InjectedCodeDetour);
-                                var sizeAsm = (uint) (Memory.Asm.Assemble().Length);
-
-                                // copy and save original instructions
-                                Memory.Asm.Clear();
-
-
-                                /*foreach (var opcode in D3D.OriginalOpcode)
-                                {
-                                    Memory.Asm.AddLine(opcode);
-                                    nR = Others.Random(0, 5);
-                                    for (int i = nR; i >= 1; i--)
-                                    {
-                                        Memory.Asm.AddLine(ProtectHook());
-                                    }
-                                }*/
                                 if (D3D.OriginalBytes == null)
                                 {
                                     byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 10);
@@ -309,34 +260,21 @@ namespace nManager.Wow.MemoryClass
                                     else if (D3D.OriginalBytes[0] == 0x6A)
                                         D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
                                 }
-                                int sizeJumpBack = D3D.OriginalBytes.Length;
-                                Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
+                                _mLocker = new object();
+                                _mLockRequested = Memory.AllocateMemory(0x4);
+                                _mLocked = Memory.AllocateMemory(0x4);
+                                _mResult = Memory.AllocateMemory(0x4);
+                                _mExecuteRequested = Memory.AllocateMemory(0x4);
 
-                                //int sizeJumpBack = Memory.Asm.Assemble().Length;
-                                //Memory.Asm.Inject(InjectedCodeDetour + sizeAsm);
-
-                                // create jump back stub
-                                Memory.Asm.Clear();
-                                Memory.Asm.AddLine("jmp " + (JumpAddress + sizeJumpBack));
-                                nR = Others.Random(0, 10);
-                                for (int i = nR; i >= 1; i--)
+                                _mZeroBytesInjectionCodes = new byte[0x1000];
+                                for (int i = 0; i < 0x1000; i++)
                                 {
-                                    Memory.Asm.AddLine(ProtectHook());
+                                    _mZeroBytesInjectionCodes[i] = 0;
                                 }
 
-                                Memory.Asm.Inject((InjectedCodeDetour + sizeAsm + (uint) sizeJumpBack));
-
-                                // create hook jump
-                                Memory.Asm.Clear(); // $jmpto
-                                Memory.Asm.AddLine("jmp " + (InjectedCodeDetour));
-                                if (sizeJumpBack >= 6)
-                                    Memory.Asm.AddLine("nop");
-                                if (sizeJumpBack == 7)
-                                    Memory.Asm.AddLine("nop");
-                                Memory.Asm.Inject(JumpAddress);
-
-                                // add nop if needed
-                                Memory.Asm.Clear();
+                                _mInjectionCode = Memory.AllocateMemory(_mZeroBytesInjectionCodes.Length);
+                                CreateTrampoline();
+                                Apply();
                             }
                             catch (Exception e)
                             {
@@ -384,41 +322,9 @@ namespace nManager.Wow.MemoryClass
             return 0;
         }
 
-        /// <summary>
-        ///     Get Random ASM line.
-        /// </summary>
-        /// <returns></returns>
-        internal static string ProtectHook()
+        public void Unlock()
         {
-            var asm = new List<string>
-            {
-                "mov edx, edx",
-                "mov edi, edi",
-                "xchg ebp, ebp",
-                "mov esp, esp",
-                "xchg esp, esp",
-                "xchg edx, edx",
-                "mov edi, edi"
-            };
-
-
-            // asm.Add("nop");
-
-            // asm.Add( "mov eax, eax");
-
-            //   asm.Add("xchg eax, eax");
-
-            try
-            {
-                int n = Others.Random(0, asm.Count - 1);
-                return asm[n];
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("ProtectHook(): " + e);
-
-                return "mov eax, eax";
-            }
+            Memory.WriteUInt(_mLockRequested, 0);
         }
 
         /// <summary>
@@ -479,127 +385,14 @@ namespace nManager.Wow.MemoryClass
                                 Pulsator.Dispose(true);
                             }
                         }
-                        Memory.WriteBytes(JumpAddress, D3D.OriginalBytes);
+                        Remove(GetJumpAdresse(), D3D.OriginalBytes);
                     }
                 }
-
-                // free memory:
-                if (InjectedCodeDetour != 0 && _startInject != 0)
-                    Memory.FreeMemory(InjectedCodeDetour - _startInject);
-                if (_addresseInjection != 0)
-                    Memory.FreeMemory(_addresseInjection);
-                if (_retnInjectionAsm != 0)
-                    Memory.FreeMemory(_retnInjectionAsm);
             }
             catch (Exception e)
             {
                 Logging.WriteError("DisposeHooking(): " + e);
             }
-        }
-
-        /// <summary>
-        ///     Injects the and execute Asm lines.
-        /// </summary>
-        /// <param name="asm">The asm code.</param>
-        /// <param name="returnValue">if set to <c>true</c> [return value].</param>
-        /// <param name="returnLength">Length of the return.</param>
-        /// <returns></returns>
-        public byte[] InjectAndExecute(IEnumerable<string> asm, bool returnValue = false, int returnLength = 0)
-        {
-            try
-            {
-                lock (Locker)
-                {
-                    var tempsByte = new byte[0];
-                    try
-                    {
-                        // Hook Wow:
-                        CheckEndsceneHook();
-                        if (!Memory.IsProcessOpen || !ThreadHooked)
-                            Hooking();
-
-                        if (Memory.IsProcessOpen && ThreadHooked)
-                        {
-                            // Write the asm stuff
-                            Memory.Asm.Clear();
-                            foreach (string tempLineAsm in asm)
-                            {
-                                int nR = Others.Random(0, 3);
-                                for (int i = nR; i >= 1; i--)
-                                {
-                                    Memory.Asm.AddLine(ProtectHook());
-                                }
-                                Memory.Asm.AddLine(tempLineAsm);
-                            }
-
-
-                            // Allocation Memory
-                            var startBaseInject = (uint) Others.Random(0, 60);
-                            uint injectionAsmCodecave =
-                                Memory.AllocateMemory(Memory.Asm.Assemble().Length + Others.Random(60, 80)) +
-                                startBaseInject;
-                            if (injectionAsmCodecave <= startBaseInject)
-                            {
-                                return tempsByte;
-                            }
-
-                            // Inject
-                            Memory.Asm.Inject(injectionAsmCodecave);
-
-                            if (true) // !Helpers.Usefuls.IsLoadingOrConnecting || 
-                            {
-                                Memory.WriteUInt(_addresseInjection, injectionAsmCodecave);
-                                //Process.InjectionCount.Add(Others.Times);
-                                while (Memory.ReadInt(_addresseInjection) > 0)
-                                {
-                                    Thread.Sleep(1);
-                                } // Wait to launch code
-
-                                if (!returnValue)
-                                {
-                                    tempsByte = new byte[0];
-                                }
-                                else if (returnLength > 0)
-                                {
-                                    tempsByte = Memory.ReadBytes(Memory.ReadUInt(_retnInjectionAsm), returnLength);
-                                }
-                                else
-                                {
-                                    var retnByte = new List<byte>();
-                                    uint dwAddress = Memory.ReadUInt(_retnInjectionAsm);
-                                    byte buf = Memory.ReadByte(dwAddress);
-                                    while (buf != 0)
-                                    {
-                                        retnByte.Add(buf);
-                                        dwAddress = dwAddress + 1;
-                                        buf = Memory.ReadByte(dwAddress);
-                                    }
-                                    tempsByte = retnByte.ToArray();
-                                }
-                            }
-                            Memory.WriteInt(_retnInjectionAsm, 0);
-
-
-                            // Free memory allocated 
-                            Memory.FreeMemory(injectionAsmCodecave - startBaseInject);
-                        }
-                        // return
-                        return tempsByte;
-                    }
-                    catch
-                    {
-                        Logging.WriteError("Error injection");
-                        Memory.WriteInt(_retnInjectionAsm, 0);
-                        return new byte[0];
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError(
-                    "InjectAndExecute(IEnumerable<string> asm, bool returnValue = false, int returnLength = 0): " + e);
-            }
-            return new byte[0];
         }
 
         public static bool WowIsUsed(int processId)
@@ -639,7 +432,7 @@ namespace nManager.Wow.MemoryClass
                 }
 
                 string pName = memory.ReadUTF8String(baseModule + (uint) Addresses.Player.playerName);
-                if (!string.IsNullOrEmpty(pName))
+                if (!String.IsNullOrEmpty(pName))
                     return pName;
             }
             catch (Exception e)
@@ -648,6 +441,7 @@ namespace nManager.Wow.MemoryClass
             }
             return "No Name";
         }
+
 
         public static bool IsInGame(int processId)
         {
