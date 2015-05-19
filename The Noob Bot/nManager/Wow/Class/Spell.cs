@@ -379,7 +379,7 @@ namespace nManager.Wow.Class
             }
             finally
             {
-                Memory.WowMemory.Unlock();
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
@@ -403,7 +403,7 @@ namespace nManager.Wow.Class
             }
             finally
             {
-                Memory.WowMemory.Unlock();
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
@@ -436,7 +436,7 @@ namespace nManager.Wow.Class
             }
             finally
             {
-                Memory.WowMemory.Unlock();
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
@@ -472,7 +472,7 @@ namespace nManager.Wow.Class
             }
             finally
             {
-                Memory.WowMemory.Unlock();
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
@@ -493,7 +493,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                Memory.WowMemory.Unlock();
+                Memory.WowMemory.GameFrameUnLock();
                 if (StopMove)
                 {
                     if (!nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer && Products.Products.ProductName == "Damage Dealer")
@@ -530,7 +530,7 @@ namespace nManager.Wow.Class
             }
             finally
             {
-                Memory.WowMemory.Unlock();
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 

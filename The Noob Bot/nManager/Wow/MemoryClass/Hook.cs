@@ -168,7 +168,7 @@ namespace nManager.Wow.MemoryClass
             Memory.WriteBytes(address, originalBytes);
         }
 
-        public void Lock()
+        public void GameFrameLock()
         {
             Memory.WriteUInt(_mLocked, 0);
             Memory.WriteUInt(_mLockRequested, 1);
@@ -322,7 +322,12 @@ namespace nManager.Wow.MemoryClass
             return 0;
         }
 
-        public void Unlock()
+        public bool IsGameFrameLocked
+        {
+            get { return Memory.ReadUInt(_mLocked) == 1; }
+        }
+
+        public void GameFrameUnLock()
         {
             Memory.WriteUInt(_mLockRequested, 0);
         }

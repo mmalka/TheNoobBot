@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful.Win32;
+using nManager.Wow;
 using nManager.Wow.Helpers;
 
 namespace nManager.Helpful
@@ -188,6 +189,7 @@ namespace nManager.Helpful
         {
             try
             {
+                Memory.WowMemory.GameFrameUnLock();
                 Native.SendMessage(mainWindowHandle, Native.DownKeyVk, (int) key, 0);
             }
             catch (Exception exception)
@@ -206,6 +208,7 @@ namespace nManager.Helpful
         {
             try
             {
+                Memory.WowMemory.GameFrameUnLock();
                 Native.SendMessage(mainWindowHandle, Native.UpKeyVk, (int) key, 0);
             }
             catch (Exception exception)
@@ -224,6 +227,7 @@ namespace nManager.Helpful
         {
             try
             {
+                Memory.WowMemory.GameFrameUnLock();
                 Native.SendMessage(mainWindowHandle, Native.DownKeyVk, (int) key, 0);
                 Thread.Sleep(100);
                 Native.SendMessage(mainWindowHandle, Native.UpKeyVk, (int) key, 0);
@@ -290,6 +294,7 @@ namespace nManager.Helpful
 
                 Thread.Sleep(10);
 
+                Memory.WowMemory.GameFrameUnLock();
                 Native.SendMessage(mainWindowHandle, 0x100, 0xa2, 0);
                 Native.SendMessage(mainWindowHandle, 0x100, (int) Keys.V, 0);
                 Thread.Sleep(10);

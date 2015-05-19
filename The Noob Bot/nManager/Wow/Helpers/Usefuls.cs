@@ -977,6 +977,8 @@ namespace nManager.Wow.Helpers
 
         public static void UpdateLastHardwareAction()
         {
+            if (Memory.WowMemory.IsGameFrameLocked)
+                return;
             lock (ThisLock)
             {
                 if (!InGame || IsLoadingOrConnecting)

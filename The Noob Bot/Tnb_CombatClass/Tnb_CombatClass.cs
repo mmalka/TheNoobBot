@@ -13846,7 +13846,7 @@ public class PaladinRetribution
         Usefuls.SleepGlobalCooldown();
         try
         {
-            Memory.WowMemory.Lock();
+            Memory.WowMemory.GameFrameLock();
 
             if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
                 DivineStorm.IsSpellUsable &&
@@ -13966,7 +13966,7 @@ public class PaladinRetribution
         }
         finally
         {
-            Memory.WowMemory.Unlock();
+            Memory.WowMemory.GameFrameUnLock();
         }
     }
 
