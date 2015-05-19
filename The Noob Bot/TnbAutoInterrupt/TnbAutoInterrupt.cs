@@ -108,7 +108,7 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
-    public static string TargetVersion = "4.5.x";
+    public static string TargetVersion = "4.6.x";
     public static string Version = "1.3.1";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
