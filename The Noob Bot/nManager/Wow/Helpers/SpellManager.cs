@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -23,6 +22,7 @@ namespace nManager.Wow.Helpers
         private static List<Spell> _spellBookSpell = new List<Spell>();
         public static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
         private static readonly Dictionary<string, List<uint>> CacheSpellIdByName = new Dictionary<string, List<uint>>();
+        public static object SpellManagerLocker = new object();
 
         public static List<SpellCooldownEntry> GetAllSpellsOnCooldown
         {
@@ -366,23 +366,91 @@ namespace nManager.Wow.Helpers
 
         public static List<UInt32> SpellBookID()
         {
-            try
+            lock (SpellManagerLocker)
             {
-                while (_usedSbid)
+                try
                 {
-                    Thread.Sleep(10);
-                }
-                if (_spellBookID.Count <= 0)
-                {
-                    _usedSbid = true;
-                    var spellBook = new List<uint>();
+                    while (_usedSbid)
+                    {
+                        Thread.Sleep(10);
+                    }
+                    if (_spellBookID.Count <= 0)
+                    {
+                        _usedSbid = true;
+                        var spellBook = new List<uint>();
 
-                    UInt32 nbSpells =
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.SpellBook.SpellBookNumSpells);
-                    UInt32 spellBookInfoPtr =
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.SpellBook.SpellBookSpellsPtr);
+                        UInt32 nbSpells =
+                            Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                             (uint) Addresses.SpellBook.SpellBookNumSpells);
+                        UInt32 spellBookInfoPtr =
+                            Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                             (uint) Addresses.SpellBook.SpellBookSpellsPtr);
+
+                        for (UInt32 i = 0; i < nbSpells; i++)
+                        {
+                            uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
+                            var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
+                            if ((si.TabId <= 1 || si.TabId > 4) && si.State == SpellInfo.SpellState.Known)
+                            {
+                                spellBook.Add(si.ID);
+                            }
+                            Application.DoEvents();
+                        }
+
+                        UInt32 MountBookNumMounts = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.MountBookNumMounts);
+                        UInt32 MountBookMountsPtr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.MountBookMountsPtr);
+
+                        for (UInt32 i = 0; i < MountBookNumMounts; i++)
+                        {
+                            uint MountId = Memory.WowMemory.Memory.ReadUInt(MountBookMountsPtr + i*4);
+                            if (MountId > 0)
+                            {
+                                spellBook.Add(MountId);
+                            }
+                            Application.DoEvents();
+                        }
+
+                        uint pTalentSpell = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.FirstTalentBookPtr);
+                        uint talentSpellNext = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.NextTalentBookPtr);
+
+                        while (((int) pTalentSpell & 1) == 0 && pTalentSpell != 0)
+                        {
+                            uint originalSpellId = Memory.WowMemory.Memory.ReadUInt(pTalentSpell + (uint) Addresses.SpellBook.TalentBookSpellId);
+                            uint talentOverrideSpellId = Memory.WowMemory.Memory.ReadUInt(pTalentSpell + (uint) Addresses.SpellBook.TalentBookOverrideSpellId);
+                            uint nextSpell = Memory.WowMemory.Memory.ReadUInt((pTalentSpell + 4 + talentSpellNext));
+                            pTalentSpell = nextSpell;
+
+                            if (talentOverrideSpellId == 0)
+                                break;
+
+                            spellBook.Remove(originalSpellId);
+                            spellBook.Add(talentOverrideSpellId);
+                        }
+                        _spellBookID = spellBook;
+                        _usedSbid = false;
+                        SpellBookLoaded = true;
+                    }
+                    return _spellBookID;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("SpellBookID(): " + exception);
+                }
+                return new List<uint>();
+            }
+        }
+
+        public static void UpdateSpellBookThread()
+        {
+            lock (SpellManagerLocker)
+            {
+                try
+                {
+                    Logging.Write("Initialize Character's SpellBook update.");
+                    uint nbSpells =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookNumSpells);
+                    uint spellBookInfoPtr =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookSpellsPtr);
 
                     for (UInt32 i = 0; i < nbSpells; i++)
                     {
@@ -390,125 +458,63 @@ namespace nManager.Wow.Helpers
                         var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                         if ((si.TabId <= 1 || si.TabId > 4) && si.State == SpellInfo.SpellState.Known)
                         {
-                            spellBook.Add(si.ID);
+                            if (!_spellBookID.Contains(si.ID))
+                                _spellBookID.Add(si.ID);
+                            Spell Spell = SpellInfoLUA(si.ID);
+                            if (!_spellBookSpell.Contains(Spell))
+                                _spellBookSpell.Add(Spell);
                         }
                         Application.DoEvents();
                     }
 
-                    UInt32 MountBookNumMounts = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.MountBookNumMounts);
-                    UInt32 MountBookMountsPtr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.MountBookMountsPtr);
+                    UInt32 MountBookNumMounts =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.SpellBook.MountBookNumMounts);
+                    UInt32 MountBookMountsPtr =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.SpellBook.MountBookMountsPtr);
 
                     for (UInt32 i = 0; i < MountBookNumMounts; i++)
                     {
                         uint MountId = Memory.WowMemory.Memory.ReadUInt(MountBookMountsPtr + i*4);
                         if (MountId > 0)
                         {
-                            spellBook.Add(MountId);
+                            if (!_spellBookID.Contains(MountId))
+                                _spellBookID.Add(MountId);
+                            Spell MountSpell = SpellInfoLUA(MountId);
+                            if (!_spellBookSpell.Contains(MountSpell))
+                                _spellBookSpell.Add(MountSpell);
                         }
                         Application.DoEvents();
                     }
 
-                    uint pTalentSpell = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.FirstTalentBookPtr);
-                    uint talentSpellNext = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.NextTalentBookPtr);
-
-                    while (((int) pTalentSpell & 1) == 0 && pTalentSpell != 0)
+                    Logging.Write("Character's SpellBook is currently being fully updated. May take few seconds...");
+                    Memory.WowMemory.GameFrameLock();
+                    foreach (Spell o in _spellBookSpell)
                     {
-                        uint originalSpellId = Memory.WowMemory.Memory.ReadUInt(pTalentSpell + (uint) Addresses.SpellBook.TalentBookSpellId);
-                        uint talentOverrideSpellId = Memory.WowMemory.Memory.ReadUInt(pTalentSpell + (uint) Addresses.SpellBook.TalentBookOverrideSpellId);
-                        uint nextSpell = Memory.WowMemory.Memory.ReadUInt((pTalentSpell + 4 + talentSpellNext));
-                        pTalentSpell = nextSpell;
-
-                        if (talentOverrideSpellId == 0)
-                            break;
-
-                        spellBook.Remove(originalSpellId);
-                        spellBook.Add(talentOverrideSpellId);
+                        o.Update();
                     }
-                    _spellBookID = spellBook;
-                    _usedSbid = false;
-                    SpellBookLoaded = true;
-                }
-                return _spellBookID;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellBookID(): " + exception);
-            }
-            return new List<uint>();
-        }
+                    Memory.WowMemory.GameFrameUnLock();
 
-        public static void UpdateSpellBookThread()
-        {
-            try
-            {
-                Logging.Write("Initialize Character's SpellBook update.");
-                uint nbSpells =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookNumSpells);
-                uint spellBookInfoPtr =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookSpellsPtr);
-
-                for (UInt32 i = 0; i < nbSpells; i++)
-                {
-                    uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                    var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if ((si.TabId <= 1 || si.TabId > 4) && si.State == SpellInfo.SpellState.Known)
+                    if (CombatClass.IsAliveCombatClass)
                     {
-                        if (!_spellBookID.Contains(si.ID))
-                            _spellBookID.Add(si.ID);
-                        Spell Spell = SpellInfoLUA(si.ID);
-                        if (!_spellBookSpell.Contains(Spell))
-                            _spellBookSpell.Add(Spell);
+                        CombatClass.ResetCombatClass();
                     }
-                    Application.DoEvents();
-                }
-
-                UInt32 MountBookNumMounts =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.SpellBook.MountBookNumMounts);
-                UInt32 MountBookMountsPtr =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.SpellBook.MountBookMountsPtr);
-
-                for (UInt32 i = 0; i < MountBookNumMounts; i++)
-                {
-                    uint MountId = Memory.WowMemory.Memory.ReadUInt(MountBookMountsPtr + i*4);
-                    if (MountId > 0)
+                    if (HealerClass.IsAliveHealerClass)
                     {
-                        if (!_spellBookID.Contains(MountId))
-                            _spellBookID.Add(MountId);
-                        Spell MountSpell = SpellInfoLUA(MountId);
-                        if (!_spellBookSpell.Contains(MountSpell))
-                            _spellBookSpell.Add(MountSpell);
+                        HealerClass.ResetHealerClass();
                     }
-                    Application.DoEvents();
+                    Plugins.Plugins.ReLoadPlugins();
+                    Logging.Write("Character's SpellBook fully updated. Found " + _spellBookID.Count + " spells, mounts and professions.");
                 }
-
-                Logging.Write("Character's SpellBook is currently being fully updated. May take few seconds...");
-                Memory.WowMemory.GameFrameLock();
-                foreach (Spell o in _spellBookSpell)
+                catch (Exception exception)
                 {
-                    o.Update();
+                    Logging.WriteError("UpdateSpellBook(): " + exception);
                 }
-                Memory.WowMemory.GameFrameUnLock();
-
-                if (CombatClass.IsAliveCombatClass)
+                finally
                 {
-                    CombatClass.ResetCombatClass();
+                    Memory.WowMemory.GameFrameUnLock();
                 }
-                if (HealerClass.IsAliveHealerClass)
-                {
-                    HealerClass.ResetHealerClass();
-                }
-                Plugins.Plugins.ReLoadPlugins();
-                Logging.Write("Character's SpellBook fully updated. Found " + _spellBookID.Count + " spells, mounts and professions.");
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("UpdateSpellBook(): " + exception);
-            }
-            finally
-            {
-                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
@@ -522,7 +528,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock ("SpellBook")
+                lock (SpellManagerLocker)
                 {
                     if (_spellBookSpell.Count <= 0)
                     {
@@ -562,7 +568,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock ("GetSpellInfo" + id)
+                lock (SpellManagerLocker)
                 {
                     if (_spellInfos.ContainsKey(id))
                         return _spellInfos[id];
@@ -622,9 +628,9 @@ namespace nManager.Wow.Helpers
         // Create a localized cache for spell names
         public static void SpellInfoCreateCache(List<uint> listId)
         {
-            try
+            lock (SpellManagerLocker)
             {
-                lock ("SpellInfoCreateCache")
+                try
                 {
                     string listIdString = "{ ";
                     foreach (uint id in listId)
@@ -702,10 +708,10 @@ namespace nManager.Wow.Helpers
                         Logging.WriteDebug("Cannot find spell: public static SpellInfo SpellInfoCreateCache()");
                     }
                 }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellInfo GetSpellInfo(uint id): " + exception);
+                catch (Exception exception)
+                {
+                    Logging.WriteError("SpellInfo GetSpellInfo(uint id): " + exception);
+                }
             }
         }
 
@@ -882,7 +888,7 @@ namespace nManager.Wow.Helpers
             // Get the spell id using the provided English spell name
             public static List<uint> SpellIdByName(string spellName)
             {
-                lock ("SpellIdByName")
+                lock (SpellManagerLocker)
                 {
                     var listIdSpellFound = new List<UInt32>();
                     try
@@ -913,7 +919,7 @@ namespace nManager.Wow.Helpers
 
             public static void SpellIdByNameCreateCache()
             {
-                lock ("SpellIdByName")
+                lock (SpellManagerLocker)
                 {
                     try
                     {
