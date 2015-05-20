@@ -1295,13 +1295,13 @@ public class DeathknightApprentice
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
             {
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             }
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -1953,13 +1953,13 @@ public class DeathknightBlood
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
             {
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             }
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -2047,7 +2047,7 @@ public class DeathknightBlood
             Conversion.Cast();
             while (ObjectManager.Me.IsCast && (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100))
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -2062,7 +2062,7 @@ public class DeathknightBlood
         if (MySettings.UseVampiricBlood && VampiricBlood.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseVampiricBloodAtPercentage && VampiricBlood.IsSpellUsable)
         {
             VampiricBlood.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
     }
 
@@ -2178,7 +2178,7 @@ public class DeathknightBlood
             PlagueLeech.IsSpellUsable)
         {
             PlagueLeech.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable)
             {
                 Outbreak.Cast();
@@ -2286,7 +2286,7 @@ public class DeathknightBlood
             if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetUnitInSpellRange(ArmyoftheDead.MaxRangeHostile) > 3 && ArmyoftheDead.IsSpellUsable)
             {
                 ArmyoftheDead.Cast();
-                Thread.Sleep(4000);
+                Others.SafeSleep(4000);
                 return;
             }
         }
@@ -2917,13 +2917,13 @@ public class DeathknightUnholy
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
             {
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             }
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -3016,7 +3016,7 @@ public class DeathknightUnholy
             Conversion.Cast();
             while (ObjectManager.Me.IsCast && (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100))
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -3156,7 +3156,7 @@ public class DeathknightUnholy
             && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable)
         {
             PlagueLeech.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable)
             {
                 Outbreak.Cast();
@@ -3216,7 +3216,7 @@ public class DeathknightUnholy
             if (MySettings.UseArmyoftheDead && ArmyoftheDead.IsSpellUsable)
             {
                 ArmyoftheDead.Cast();
-                Thread.Sleep(4000);
+                Others.SafeSleep(4000);
                 return;
             }
 
@@ -3852,13 +3852,13 @@ public class DeathknightFrost
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
             {
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             }
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -3946,7 +3946,7 @@ public class DeathknightFrost
             Conversion.Cast();
             while (ObjectManager.Me.IsCast && (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100))
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -4061,7 +4061,7 @@ public class DeathknightFrost
             PlagueLeech.IsSpellUsable)
         {
             PlagueLeech.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable)
             {
                 Outbreak.Cast();
@@ -4145,7 +4145,7 @@ public class DeathknightFrost
             if (MySettings.UseArmyoftheDead && ArmyoftheDead.KnownSpell && ObjectManager.GetUnitInSpellRange(ArmyoftheDead.MaxRangeHostile) > 3 && ArmyoftheDead.IsSpellUsable)
             {
                 ArmyoftheDead.Cast();
-                Thread.Sleep(4000);
+                Others.SafeSleep(4000);
                 return;
             }
         }
@@ -4790,7 +4790,7 @@ public class MageArcane
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
                 ColdSnap.Cast();
-                Thread.Sleep(400);
+                Others.SafeSleep(400);
             }
 
             if (IceBlock.IsSpellUsable)
@@ -4846,12 +4846,12 @@ public class MageArcane
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -4879,7 +4879,7 @@ public class MageArcane
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
                 ColdSnap.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (FrostNova.IsSpellUsable)
@@ -4953,7 +4953,7 @@ public class MageArcane
         if (MySettings.UseInvisibility && Invisibility.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 3 && Invisibility.IsSpellUsable)
         {
             Invisibility.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
         }
     }
 
@@ -5176,7 +5176,7 @@ public class MageArcane
         if (MySettings.UsePresenceofMind && PresenceofMind.KnownSpell && ArcaneBlast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
         {
             PresenceofMind.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
 
             if (MySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable)
             {
@@ -5618,7 +5618,7 @@ public class MageFrost
         {
             SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
             _freezeTimer = new Timer(1000*25);
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
 
             if (MySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable)
             {
@@ -5714,7 +5714,7 @@ public class MageFrost
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
                 ColdSnap.Cast();
-                Thread.Sleep(400);
+                Others.SafeSleep(400);
             }
 
             if (IceBlock.IsSpellUsable)
@@ -5770,12 +5770,12 @@ public class MageFrost
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -5803,7 +5803,7 @@ public class MageFrost
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
                 ColdSnap.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (FrostNova.IsSpellUsable)
@@ -5877,7 +5877,7 @@ public class MageFrost
         if (MySettings.UseInvisibility && Invisibility.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 3 && Invisibility.IsSpellUsable)
         {
             Invisibility.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
         }
     }
 
@@ -6043,7 +6043,7 @@ public class MageFrost
         {
             SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
             _freezeTimer = new Timer(1000*25);
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             return;
         }
 
@@ -6062,7 +6062,7 @@ public class MageFrost
         if (MySettings.UsePresenceofMind && PresenceofMind.KnownSpell && Frostbolt.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
         {
             PresenceofMind.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
 
             if (MySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsHostileDistanceGood && Frostbolt.IsSpellUsable)
             {
@@ -6474,7 +6474,7 @@ public class MageFire
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
                 ColdSnap.Cast();
-                Thread.Sleep(400);
+                Others.SafeSleep(400);
             }
 
             if (IceBlock.IsSpellUsable)
@@ -6509,12 +6509,12 @@ public class MageFire
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -6541,7 +6541,7 @@ public class MageFire
             if (MySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
                 ColdSnap.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (FrostNova.IsSpellUsable)
@@ -6608,7 +6608,7 @@ public class MageFire
             && ObjectManager.GetNumberAttackPlayer() > 3)
         {
             Invisibility.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
         }
     }
 
@@ -6791,7 +6791,7 @@ public class MageFire
         if (MySettings.UsePresenceofMind && PresenceofMind.KnownSpell && Pyroblast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
         {
             PresenceofMind.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             if (MySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable)
                 Pyroblast.Cast();
             return;
@@ -7141,13 +7141,13 @@ public class WarlockDemonology
             if (MySettings.UseMetamorphosis && Metamorphosis.KnownSpell && !Metamorphosis.HaveBuff && Metamorphosis.IsSpellUsable)
             {
                 Metamorphosis.Cast();
-                Thread.Sleep(400);
+                Others.SafeSleep(400);
                 Corruption.Cast();
                 _doomTimer = new Timer(1000*60);
             }
             if (Metamorphosis.HaveBuff)
             {
-                Thread.Sleep(2500);
+                Others.SafeSleep(2500);
                 Metamorphosis.Cast();
             }
         }
@@ -7176,9 +7176,9 @@ public class WarlockDemonology
         if (MySettings.UseHellfire && Hellfire.KnownSpell && Hellfire.IsHostileDistanceGood && Hellfire.IsSpellUsable)
         {
             Hellfire.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
     }
 
@@ -7227,7 +7227,7 @@ public class WarlockDemonology
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
@@ -7245,7 +7245,7 @@ public class WarlockDemonology
             {
                 if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
                     break;
-                Thread.Sleep(100);
+                Others.SafeSleep(100);
             }
         }
 
@@ -7279,7 +7279,7 @@ public class WarlockDemonology
             Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Cast();
         }
-        Thread.Sleep(200);
+        Others.SafeSleep(200);
         if (MySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
             && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
@@ -7295,12 +7295,12 @@ public class WarlockDemonology
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -7399,7 +7399,7 @@ public class WarlockDemonology
         {
             DrainLife.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
     }
 
@@ -7533,14 +7533,14 @@ public class WarlockDemonology
         {
             HarvestLife.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseHarvestLife && ObjectManager.GetUnitInSpellRange(HarvestLife.MaxRangeHostile) > 4 && DrainLife.KnownSpell && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
         {
             DrainLife.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseCommandDemon && MySettings.UseSummonFelguard && CommandDemon.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && CommandDemon.IsSpellUsable
@@ -7553,9 +7553,9 @@ public class WarlockDemonology
             && Hellfire.KnownSpell && ObjectManager.Target.GetDistance < 20 && Hellfire.IsSpellUsable)
         {
             Hellfire.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
@@ -7589,7 +7589,7 @@ public class WarlockDemonology
             if (MySettings.UseMetamorphosis && Metamorphosis.KnownSpell && !Metamorphosis.HaveBuff && Metamorphosis.IsSpellUsable)
             {
                 Metamorphosis.Cast();
-                Thread.Sleep(700);
+                Others.SafeSleep(700);
             }
 
             if (ObjectManager.GetNumberAttackPlayer() > 2)
@@ -7598,21 +7598,21 @@ public class WarlockDemonology
                     && ObjectManager.Target.GetDistance < 20)
                 {
                     Hellfire.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                     return;
                 }
                 if (MySettings.UseCarrionSwarm && CarrionSwarm.KnownSpell && Metamorphosis.HaveBuff && CarrionSwarm.IsSpellUsable
                     && ObjectManager.Target.GetDistance < 20)
                 {
                     CarrionSwarm.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                     return;
                 }
                 if (MySettings.UseVoidRay && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable
                     && Metamorphosis.HaveBuff)
                 {
                     FelFlame.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 }
                 return;
             }
@@ -7621,17 +7621,17 @@ public class WarlockDemonology
             {
                 Corruption.Cast();
                 _doomTimer = new Timer(1000*60);
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             if (MySettings.UseTouchofChaos && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
                 && Metamorphosis.HaveBuff)
             {
                 ShadowBolt.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
         }
 
-        Thread.Sleep(700);
+        Others.SafeSleep(700);
         if (Metamorphosis.HaveBuff)
         {
             Metamorphosis.Cast();
@@ -8049,7 +8049,7 @@ public class WarlockDestruction
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
@@ -8066,7 +8066,7 @@ public class WarlockDestruction
             {
                 if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
                     break;
-                Thread.Sleep(100);
+                Others.SafeSleep(100);
             }
         }
 
@@ -8100,7 +8100,7 @@ public class WarlockDestruction
             Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Cast();
         }
-        Thread.Sleep(200);
+        Others.SafeSleep(200);
         if (MySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable &&
             (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
@@ -8116,12 +8116,12 @@ public class WarlockDestruction
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -8225,7 +8225,7 @@ public class WarlockDestruction
         {
             DrainLife.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
     }
 
@@ -8334,7 +8334,7 @@ public class WarlockDestruction
                 && FireandBrimstone.IsSpellUsable && Immolate.IsSpellUsable)
             {
                 FireandBrimstone.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 Immolate.Cast();
                 _immolateTimer = new Timer(1000*12);
                 return;
@@ -8344,7 +8344,7 @@ public class WarlockDestruction
             {
                 HarvestLife.Cast();
                 while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 return;
             }
             if (MySettings.UseHarvestLife && hasImmolateBuff && DrainLife.KnownSpell
@@ -8352,14 +8352,14 @@ public class WarlockDestruction
             {
                 DrainLife.Cast();
                 while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 return;
             }
             if (MySettings.UseFireandBrimstone && MySettings.UseIncinerate && FireandBrimstone.KnownSpell
                 && Incinerate.KnownSpell && Incinerate.IsHostileDistanceGood && FireandBrimstone.IsSpellUsable && Incinerate.IsSpellUsable)
             {
                 FireandBrimstone.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 Incinerate.Cast();
                 return;
             }
@@ -8761,7 +8761,7 @@ public class WarlockAffliction
                 if (!Soulburn.HaveBuff)
                 {
                     Soulburn.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 }
 
                 SoulSwap.Cast();
@@ -8790,16 +8790,16 @@ public class WarlockAffliction
         if (MySettings.UseMaleficGrasp && MaleficGrasp.KnownSpell && MaleficGrasp.IsHostileDistanceGood && MaleficGrasp.IsSpellUsable)
         {
             MaleficGrasp.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
     }
 
@@ -8848,7 +8848,7 @@ public class WarlockAffliction
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
@@ -8866,7 +8866,7 @@ public class WarlockAffliction
             {
                 if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
                     break;
-                Thread.Sleep(100);
+                Others.SafeSleep(100);
             }
         }
 
@@ -8895,7 +8895,7 @@ public class WarlockAffliction
             SummonSuccubus.Cast();
         }
 
-        Thread.Sleep(200);
+        Others.SafeSleep(200);
         if (MySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
             && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
             GrimoireofSacrifice.Cast();
@@ -8909,12 +8909,12 @@ public class WarlockAffliction
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -9013,7 +9013,7 @@ public class WarlockAffliction
         {
             DrainLife.Cast();
             while (ObjectManager.Me.IsCast)
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
         }
     }
 
@@ -9131,7 +9131,7 @@ public class WarlockAffliction
             {
                 DrainSoul.Cast();
                 while (ObjectManager.Me.IsCast && !_agonyTimer.IsReady && !_corruptionTimer.IsReady && !_unstableAfflictionTimer.IsReady)
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
             }
 
             if (_agonyTimer.IsReady || _corruptionTimer.IsReady || _unstableAfflictionTimer.IsReady)
@@ -9140,7 +9140,7 @@ public class WarlockAffliction
                     && SoulSwap.IsHostileDistanceGood)
                 {
                     Soulburn.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                     SoulSwap.Cast();
                     _agonyTimer = new Timer(1000*21);
                     _corruptionTimer = new Timer(1000*15);
@@ -9155,7 +9155,7 @@ public class WarlockAffliction
                 && !Corruption.TargetHaveBuff && Soulburn.IsSpellUsable && SeedofCorruption.IsSpellUsable && SeedofCorruption.IsHostileDistanceGood)
             {
                 Soulburn.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 SeedofCorruption.Cast();
                 return;
             }
@@ -9163,21 +9163,21 @@ public class WarlockAffliction
             {
                 HarvestLife.Cast();
                 while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 return;
             }
             if (MySettings.UseHarvestLife && DrainLife.KnownSpell && DrainLife.IsSpellUsable && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
             {
                 DrainLife.Cast();
                 while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 return;
             }
             if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
                 while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 return;
             }
         }
@@ -9677,12 +9677,12 @@ public class DruidBalance
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -9726,7 +9726,7 @@ public class DruidBalance
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -9739,7 +9739,7 @@ public class DruidBalance
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -9752,7 +9752,7 @@ public class DruidBalance
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -9798,7 +9798,7 @@ public class DruidBalance
             && MySettings.UseNaturesSwiftness && MySettings.UseHealingTouch)
         {
             NaturesSwiftness.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             HealingTouch.Cast();
             return;
         }
@@ -9849,11 +9849,7 @@ public class DruidBalance
         if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
             && MySettings.UseTranquility)
         {
-            Tranquility.Cast();
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(100);
-            }
+            Tranquility.Cast(false, true);
             return;
         }
 
@@ -9873,7 +9869,7 @@ public class DruidBalance
                 && MySettings.UseEntanglingRoots)
             {
                 EntanglingRoots.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             SolarBeam.Cast();
@@ -10012,7 +10008,7 @@ public class DruidBalance
             for (int i = 0; i < 3; i++)
             {
                 SpellManager.CastSpellByIDAndPosition(88747, ObjectManager.Target.Position);
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             WildMushroomDetonate.Cast();
@@ -10373,7 +10369,7 @@ public class DruidFeral
             if (DisplacerBeast.IsSpellUsable && DisplacerBeast.KnownSpell && DisplacerBeast.IsHostileDistanceGood && MySettings.UseDisplacerBeast)
             {
                 DisplacerBeast.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (Pounce.IsSpellUsable && Pounce.KnownSpell && Pounce.IsHostileDistanceGood && MySettings.UsePounce)
@@ -10478,12 +10474,12 @@ public class DruidFeral
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -10538,7 +10534,7 @@ public class DruidFeral
                 && ObjectManager.Target.GetDistance <= 40f && MySettings.UseTyphoon)
             {
                 Typhoon.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             MassEntanglement.Cast();
@@ -10553,7 +10549,7 @@ public class DruidFeral
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge && ObjectManager.Target.GetDistance > Main.InternalRange)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -10598,7 +10594,7 @@ public class DruidFeral
             && MySettings.UseNaturesSwiftness && MySettings.UseHealingTouch)
         {
             NaturesSwiftness.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             HealingTouch.Cast();
             return;
         }
@@ -10620,7 +10616,7 @@ public class DruidFeral
             while (ObjectManager.Me.HealthPercent < 95 && HealingTouch.IsSpellUsable)
             {
                 HealingTouch.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
             return;
         }
@@ -10658,11 +10654,7 @@ public class DruidFeral
         if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
             && MySettings.UseTranquility)
         {
-            Tranquility.Cast();
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(100);
-            }
+            Tranquility.Cast(false, true);
             return;
         }
         if (ObjectManager.Me.ManaPercentage < 10 && MySettings.UseInnervate)
@@ -11269,12 +11261,12 @@ public class DruidRestoration
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -11320,7 +11312,7 @@ public class DruidRestoration
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -11333,7 +11325,7 @@ public class DruidRestoration
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -11346,7 +11338,7 @@ public class DruidRestoration
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -11392,7 +11384,7 @@ public class DruidRestoration
             && MySettings.UseNaturesSwiftness && MySettings.UseHealingTouch)
         {
             NaturesSwiftness.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             HealingTouch.Cast();
             return;
         }
@@ -11471,7 +11463,7 @@ public class DruidRestoration
             for (int i = 0; i < 3; i++)
             {
                 SpellManager.CastSpellByIDAndPosition(88747, ObjectManager.Target.Position);
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             WildMushroomBloom.Cast();
@@ -11480,11 +11472,7 @@ public class DruidRestoration
         if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
             && MySettings.UseTranquility)
         {
-            Tranquility.Cast();
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(100);
-            }
+            Tranquility.Cast(false, true);
             return;
         }
 
@@ -11976,12 +11964,12 @@ public class DruidGuardian
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -11997,7 +11985,7 @@ public class DruidGuardian
             && MySettings.UseNaturesSwiftness && MySettings.UseHealingTouch)
         {
             NaturesSwiftness.Cast();
-            Thread.Sleep(400);
+            Others.SafeSleep(400);
             HealingTouch.Cast();
             return;
         }
@@ -12026,7 +12014,7 @@ public class DruidGuardian
             while (ObjectManager.Me.HealthPercent < 95 && HealingTouch.IsSpellUsable)
             {
                 HealingTouch.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
             return;
         }
@@ -12058,11 +12046,7 @@ public class DruidGuardian
         if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
             && MySettings.UseTranquility)
         {
-            Tranquility.Cast();
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(100);
-            }
+            Tranquility.Cast(false, true);
             return;
         }
         if (ObjectManager.Me.ManaPercentage < 10 && MySettings.UseInnervate)
@@ -12125,7 +12109,7 @@ public class DruidGuardian
                 && ObjectManager.Target.GetDistance <= 40f && MySettings.UseTyphoon)
             {
                 Typhoon.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             MassEntanglement.Cast();
@@ -12140,7 +12124,7 @@ public class DruidGuardian
             if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && MySettings.UseWildCharge && ObjectManager.Target.GetDistance > Main.InternalRange)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
                 WildCharge.Cast();
             }
             return;
@@ -12838,12 +12822,12 @@ public class PaladinHoly
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -13076,7 +13060,7 @@ public class PaladinProtection
         if (Judgment.KnownSpell && MySettings.UseJudgment && Judgment.IsHostileDistanceGood && Judgment.IsSpellUsable)
         {
             Judgment.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         DPSBurst();
     }
@@ -13356,12 +13340,12 @@ public class PaladinProtection
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -13980,12 +13964,12 @@ public class PaladinRetribution
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -14441,12 +14425,12 @@ public class ShamanEnhancement
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -14520,7 +14504,7 @@ public class ShamanEnhancement
             HealingSurge.Cast();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -14671,7 +14655,7 @@ public class ShamanEnhancement
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
             {
                 CalloftheElements.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (StormlashTotem.IsSpellUsable)
@@ -14747,7 +14731,7 @@ public class ShamanEnhancement
                 && MySettings.UseUnleashElements)
             {
                 UnleashElements.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             FlameShock.Cast();
             _flameShockTimer = new Timer(1000*27);
@@ -14792,7 +14776,7 @@ public class ShamanEnhancement
                 && MySettings.UseAncestralSwiftness)
             {
                 AncestralSwiftness.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             ChainLightning.Cast();
             return;
@@ -14804,7 +14788,7 @@ public class ShamanEnhancement
                 && MySettings.UseAncestralSwiftness)
             {
                 AncestralSwiftness.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             LightningBolt.Cast();
             return;
@@ -15346,12 +15330,12 @@ public class ShamanRestoration
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -15439,7 +15423,7 @@ public class ShamanRestoration
             HealingSurge.Cast();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -15609,7 +15593,7 @@ public class ShamanRestoration
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
             {
                 CalloftheElements.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (StormlashTotem.IsSpellUsable)
@@ -15693,7 +15677,7 @@ public class ShamanRestoration
                 && MySettings.UseAncestralSwiftness)
             {
                 AncestralSwiftness.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             ChainLightning.Cast();
             return;
@@ -15705,7 +15689,7 @@ public class ShamanRestoration
                 && MySettings.UseAncestralSwiftness)
             {
                 AncestralSwiftness.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             LightningBolt.Cast();
         }
@@ -16214,12 +16198,12 @@ public class ShamanElemental
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -16292,7 +16276,7 @@ public class ShamanElemental
             SpellManager.CastSpellByIDAndPosition(73920, ObjectManager.Me.Position);
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -16302,7 +16286,7 @@ public class ShamanElemental
             HealingSurge.Cast();
             while (ObjectManager.Me.IsCast)
             {
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             return;
         }
@@ -16453,7 +16437,7 @@ public class ShamanElemental
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
             {
                 CalloftheElements.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (StormlashTotem.IsSpellUsable)
@@ -16550,7 +16534,7 @@ public class ShamanElemental
                 && MySettings.UseAncestralSwiftness)
             {
                 AncestralSwiftness.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             ChainLightning.Cast();
             return;
@@ -16562,7 +16546,7 @@ public class ShamanElemental
                 && MySettings.UseAncestralSwiftness)
             {
                 AncestralSwiftness.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
             LightningBolt.Cast();
         }
@@ -17030,12 +17014,12 @@ public class PriestShadow
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -17059,7 +17043,7 @@ public class PriestShadow
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
                 Renew.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
             Dispersion.Cast();
             _onCd = new Timer(1000*6);
@@ -17098,7 +17082,7 @@ public class PriestShadow
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
                 Renew.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
             SpectralGuise.Cast();
             _onCd = new Timer(1000*3);
@@ -17754,12 +17738,12 @@ public class PriestDiscipline
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -17799,7 +17783,7 @@ public class PriestDiscipline
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
                 Renew.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
             SpectralGuise.Cast();
             _onCd = new Timer(1000*3);
@@ -18480,12 +18464,12 @@ public class PriestHoly
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -18532,7 +18516,7 @@ public class PriestHoly
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
                 Renew.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
             SpectralGuise.Cast();
             _onCd = new Timer(1000*3);
@@ -19143,7 +19127,7 @@ public class RogueCombat
             && MySettings.UseRedirect && ObjectManager.Me.ComboPoint > 0)
         {
             Redirect.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
 
         if (((Stealth.KnownSpell && Stealth.IsSpellUsable && !Stealth.HaveBuff && MySettings.UseStealth)
@@ -19152,14 +19136,14 @@ public class RogueCombat
             if (!Stealth.HaveBuff)
             {
                 Stealth.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (ShadowStep.IsSpellUsable && ShadowStep.IsHostileDistanceGood && ShadowStep.KnownSpell
                 && MySettings.UseShadowStep)
             {
                 ShadowStep.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
@@ -19187,7 +19171,7 @@ public class RogueCombat
         {
             MovementManager.StopMove();
             Throw.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
     }
 
@@ -19322,12 +19306,12 @@ public class RogueCombat
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -19386,7 +19370,7 @@ public class RogueCombat
             && MySettings.UseVanish)
         {
             Vanish.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
@@ -19902,7 +19886,7 @@ public class RogueSubtlety
             && MySettings.UseRedirect && ObjectManager.Me.ComboPoint > 0)
         {
             Redirect.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
 
         if (((Stealth.KnownSpell && Stealth.IsSpellUsable && !Stealth.HaveBuff && MySettings.UseStealth)
@@ -19911,21 +19895,21 @@ public class RogueSubtlety
             if (!Stealth.HaveBuff)
             {
                 Stealth.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (Premeditation.IsSpellUsable && Premeditation.IsHostileDistanceGood && Premeditation.KnownSpell
                 && MySettings.UsePremeditation && ObjectManager.Me.ComboPoint == 0)
             {
                 Premeditation.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (ShadowStep.IsSpellUsable && ShadowStep.IsHostileDistanceGood && ShadowStep.KnownSpell
                 && MySettings.UseShadowStep)
             {
                 ShadowStep.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
@@ -19953,7 +19937,7 @@ public class RogueSubtlety
         {
             MovementManager.StopMove();
             Throw.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
     }
 
@@ -20084,12 +20068,12 @@ public class RogueSubtlety
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -20148,7 +20132,7 @@ public class RogueSubtlety
             && MySettings.UseVanish)
         {
             Vanish.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
@@ -20641,7 +20625,7 @@ public class RogueAssassination
             && MySettings.UseRedirect && ObjectManager.Me.ComboPoint > 0)
         {
             Redirect.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
 
         if (((Stealth.KnownSpell && Stealth.IsSpellUsable && !Stealth.HaveBuff && MySettings.UseStealth)
@@ -20650,14 +20634,14 @@ public class RogueAssassination
             if (!Stealth.HaveBuff)
             {
                 Stealth.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (ShadowStep.IsSpellUsable && ShadowStep.IsHostileDistanceGood && ShadowStep.KnownSpell
                 && MySettings.UseShadowStep)
             {
                 ShadowStep.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
@@ -20685,7 +20669,7 @@ public class RogueAssassination
         {
             MovementManager.StopMove();
             Throw.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
     }
 
@@ -20825,12 +20809,12 @@ public class RogueAssassination
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -20889,7 +20873,7 @@ public class RogueAssassination
             && MySettings.UseVanish)
         {
             Vanish.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             return;
         }
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
@@ -21399,7 +21383,7 @@ public class WarriorArms
             && MySettings.UseHeroicLeap)
         {
             SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
 
         if (Taunt.IsHostileDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
@@ -21450,7 +21434,7 @@ public class WarriorArms
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
                 DeadlyCalm.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             HeroicStrike.Cast();
@@ -21547,12 +21531,12 @@ public class WarriorArms
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -21843,7 +21827,7 @@ public class WarriorArms
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
                 DeadlyCalm.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             Cleave.Cast();
@@ -21856,7 +21840,7 @@ public class WarriorArms
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
                 DeadlyCalm.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             HeroicStrike.Cast();
@@ -22239,7 +22223,7 @@ public class WarriorProtection
             && MySettings.UseHeroicLeap)
         {
             SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
 
         if (Taunt.IsHostileDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
@@ -22285,7 +22269,7 @@ public class WarriorProtection
                 if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
                 {
                     DeadlyCalm.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 }
                 HeroicStrike.Cast();
                 return;
@@ -22395,12 +22379,12 @@ public class WarriorProtection
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -22695,7 +22679,7 @@ public class WarriorProtection
                 if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
                 {
                     DeadlyCalm.Cast();
-                    Thread.Sleep(200);
+                    Others.SafeSleep(200);
                 }
                 Cleave.Cast();
                 return;
@@ -22713,7 +22697,7 @@ public class WarriorProtection
                     if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
                     {
                         DeadlyCalm.Cast();
-                        Thread.Sleep(200);
+                        Others.SafeSleep(200);
                     }
                     HeroicStrike.Cast();
                     return;
@@ -23105,7 +23089,7 @@ public class WarriorFury
             && MySettings.UseHeroicLeap)
         {
             SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
         }
 
         if (Taunt.IsHostileDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
@@ -23156,7 +23140,7 @@ public class WarriorFury
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
                 DeadlyCalm.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             HeroicStrike.Cast();
@@ -23248,12 +23232,12 @@ public class WarriorFury
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -23505,7 +23489,7 @@ public class WarriorFury
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
                 DeadlyCalm.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             Cleave.Cast();
@@ -23518,7 +23502,7 @@ public class WarriorFury
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
                 DeadlyCalm.Cast();
-                Thread.Sleep(200);
+                Others.SafeSleep(200);
             }
 
             HeroicStrike.Cast();
@@ -24007,7 +23991,7 @@ public class HunterMarksmanship
             if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
             {
                 Dismiss.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
         }
     }
@@ -24020,25 +24004,25 @@ public class HunterMarksmanship
         {
             DismissPet();
             CallPet1.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
             DismissPet();
             CallPet2.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
             DismissPet();
             CallPet3.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
             DismissPet();
             CallPet4.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else
         {
@@ -24046,7 +24030,7 @@ public class HunterMarksmanship
             {
                 DismissPet();
                 CallPet5.Cast();
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
             }
         }
 
@@ -24055,7 +24039,7 @@ public class HunterMarksmanship
             && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
         {
             RevivePet.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             return;
         }
         if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
@@ -24063,7 +24047,7 @@ public class HunterMarksmanship
             && !ObjectManager.Me.InCombat)
         {
             RevivePet.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
     }
 
@@ -24075,12 +24059,12 @@ public class HunterMarksmanship
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -24093,17 +24077,17 @@ public class HunterMarksmanship
             && FeignDeath.KnownSpell && FeignDeath.IsSpellUsable)
         {
             FeignDeath.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
                 return;
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             return;
         }
         if (ObjectManager.Me.HealthPercent < 50 && MySettings.UseDeterrance
             && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
         {
             Deterrance.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
@@ -24117,7 +24101,7 @@ public class HunterMarksmanship
             && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
         {
             IceTrap.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -24127,7 +24111,7 @@ public class HunterMarksmanship
             && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
         {
             ConcussiveShot.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -24137,7 +24121,7 @@ public class HunterMarksmanship
             && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
         {
             BindingShot.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -24819,7 +24803,7 @@ public class HunterBeastMastery
             if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
             {
                 Dismiss.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
         }
     }
@@ -24832,25 +24816,25 @@ public class HunterBeastMastery
         {
             DismissPet();
             CallPet1.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
             DismissPet();
             CallPet2.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
             DismissPet();
             CallPet3.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
             DismissPet();
             CallPet4.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else
         {
@@ -24858,7 +24842,7 @@ public class HunterBeastMastery
             {
                 DismissPet();
                 CallPet5.Cast();
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
             }
         }
 
@@ -24867,7 +24851,7 @@ public class HunterBeastMastery
             && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
         {
             RevivePet.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             return;
         }
         if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
@@ -24875,7 +24859,7 @@ public class HunterBeastMastery
             && !ObjectManager.Me.InCombat)
         {
             RevivePet.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
     }
 
@@ -24887,12 +24871,12 @@ public class HunterBeastMastery
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -24905,17 +24889,17 @@ public class HunterBeastMastery
             && FeignDeath.KnownSpell && FeignDeath.IsSpellUsable)
         {
             FeignDeath.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 return;
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             return;
         }
         if (ObjectManager.Me.HealthPercent < 50 && MySettings.UseDeterrance
             && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
         {
             Deterrance.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
@@ -24929,7 +24913,7 @@ public class HunterBeastMastery
             && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
         {
             IceTrap.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -24939,7 +24923,7 @@ public class HunterBeastMastery
             && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
         {
             ConcussiveShot.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -24949,7 +24933,7 @@ public class HunterBeastMastery
             && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
         {
             BindingShot.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -24987,7 +24971,7 @@ public class HunterBeastMastery
         {
             Logging.WriteFight("Cast Spirit Mend.");
             Lua.RunMacroText("/target Player");
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             Lua.RunMacroText("/cast Spirit Mend");
             _spiritMendTimer = new Timer(1000*40);
             return;
@@ -25674,7 +25658,7 @@ public class HunterSurvival
             if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
             {
                 Dismiss.Cast();
-                Thread.Sleep(1500);
+                Others.SafeSleep(1500);
             }
         }
     }
@@ -25687,25 +25671,25 @@ public class HunterSurvival
         {
             DismissPet();
             CallPet1.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
         {
             DismissPet();
             CallPet2.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
         {
             DismissPet();
             CallPet3.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
         {
             DismissPet();
             CallPet4.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
         else
         {
@@ -25713,7 +25697,7 @@ public class HunterSurvival
             {
                 DismissPet();
                 CallPet5.Cast();
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
             }
         }
 
@@ -25722,7 +25706,7 @@ public class HunterSurvival
             && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
         {
             RevivePet.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             return;
         }
         if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
@@ -25730,7 +25714,7 @@ public class HunterSurvival
             && !ObjectManager.Me.InCombat)
         {
             RevivePet.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
         }
     }
 
@@ -25742,12 +25726,12 @@ public class HunterSurvival
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -25760,17 +25744,17 @@ public class HunterSurvival
             && FeignDeath.KnownSpell && FeignDeath.IsSpellUsable)
         {
             FeignDeath.Cast();
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
                 return;
-            Thread.Sleep(5000);
+            Others.SafeSleep(5000);
             return;
         }
         if (Deterrance.KnownSpell && MySettings.UseDeterrance && ObjectManager.Me.HealthPercent < 50
             && Deterrance.IsSpellUsable)
         {
             Deterrance.Cast();
-            Thread.Sleep(200);
+            Others.SafeSleep(200);
             return;
         }
         if (MySettings.UseFreezingTrap && FreezingTrap.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 1
@@ -25784,7 +25768,7 @@ public class HunterSurvival
             && IceTrap.IsSpellUsable && Disengage.IsSpellUsable)
         {
             UseTrap(IceTrap);
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -25794,7 +25778,7 @@ public class HunterSurvival
             && ObjectManager.Me.HealthPercent < 80 && ConcussiveShot.IsSpellUsable && Disengage.IsSpellUsable)
         {
             ConcussiveShot.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -25804,7 +25788,7 @@ public class HunterSurvival
             && Disengage.IsSpellUsable && BindingShot.IsSpellUsable)
         {
             BindingShot.Cast();
-            Thread.Sleep(1000);
+            Others.SafeSleep(1000);
             MovementsAction.Jump();
             Disengage.Cast();
             return;
@@ -26446,12 +26430,12 @@ public class MonkBrewmaster
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -27090,12 +27074,12 @@ public class MonkWindwalker
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
@@ -27729,12 +27713,12 @@ public class MonkMistweaver
             var maxTimeTimer = new Timer(1000*2);
             MovementsAction.MoveBackward(true);
             while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Thread.Sleep(300);
+                Others.SafeSleep(300);
             MovementsAction.MoveBackward(false);
             if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
             {
                 MovementsAction.MoveForward(true);
-                Thread.Sleep(1000);
+                Others.SafeSleep(1000);
                 MovementsAction.MoveForward(false);
                 MovementManager.Face(ObjectManager.Target.Position);
             }

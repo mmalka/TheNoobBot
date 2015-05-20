@@ -281,6 +281,12 @@ namespace nManager.Helpful
             Lua.LuaDoString(toExec);
         }
 
+        public static void SafeSleep(int sleepMs)
+        {
+            Memory.WowMemory.GameFrameUnLock();
+            Thread.Sleep(sleepMs);
+        }
+
         public static string GetRandomString(int maxSize)
         {
             try
