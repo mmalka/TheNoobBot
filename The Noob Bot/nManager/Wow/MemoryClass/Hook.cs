@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -123,46 +124,48 @@ namespace nManager.Wow.MemoryClass
 
         public uint InjectAndExecute(string[] asm)
         {
-            try
+            lock (_mLocker)
             {
-                lock (_mLocker)
+                if (!ThreadHooked)
+                    return 0;
+                var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+                fasm.SetMemorySize(0x1000);
+                fasm.SetPassLimit(100);
+
+                foreach (string s in asm)
                 {
-                    if (!ThreadHooked)
-                        return 0;
-                    var fasm = new ManagedFasm(Memory.ProcessHandle);
-
-                    fasm.SetMemorySize(0x1000);
-                    fasm.SetPassLimit(100);
-
-                    foreach (string s in asm)
-                    {
-                        fasm.AddLine(s);
-                    }
-
-                    fasm.Inject(_mInjectionCode);
-
-                    Memory.WriteUInt(_mExecuteRequested, 1);
-                    Timer injectTimer = new Timer(2000);
-                    injectTimer.Reset();
-                    while (Memory.ReadUInt(_mExecuteRequested) == 1 && !injectTimer.IsReady)
-                    {
-                        //Thread.Sleep(0);
-                    }
-                    if (injectTimer.IsReady)
-                    {
-                        Logging.WriteError("Injection have been aborted, execution too long: " + asm);
-                        return 0;
-                    }
-                    Memory.WriteBytes(_mInjectionCode, _mZeroBytesInjectionCodes);
-
-                    uint returnValue = Memory.ReadUInt(_mResult);
-                    return returnValue;
+                    fasm.AddLine(s);
                 }
-            }
-            catch (Exception e)
-            {
-                Logging.Write(e.ToString());
-                return 0;
+
+                fasm.Inject(_mInjectionCode);
+
+                Memory.WriteUInt(_mExecuteRequested, 1);
+                Timer injectTimer = new Timer(2000);
+                injectTimer.Reset();
+                while (Memory.ReadUInt(_mExecuteRequested) == 1 && !injectTimer.IsReady)
+                {
+                    Thread.Sleep(0);
+                }
+
+                if (injectTimer.IsReady)
+                {
+                    string myStack = "";
+                    for (int i = 10; i >= 1; i--)
+                    {
+                        var stackFrame = new StackFrame(i);
+                        if (stackFrame.GetMethod() != null)
+                            myStack = myStack + stackFrame.GetMethod().Name + " => ";
+                    }
+                    myStack = myStack.Substring(0, myStack.Length - 4);
+
+                    Logging.WriteError("Injection have been aborted, execution too long from " + myStack);
+                    return 0;
+                }
+                Memory.WriteBytes(_mInjectionCode, _mZeroBytesInjectionCodes);
+
+                uint returnValue = Memory.ReadUInt(_mResult);
+                return returnValue;
             }
         }
 
@@ -209,7 +212,7 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        string textBuild = Memory.ReadASCIIString(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWoWVersionString);
+                        string textBuild = Memory.ReadUTF8String(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWoWVersionString);
                         uint wowBuildVersion = Helpers.Usefuls.WowVersion(textBuild);
                         if (wowBuildVersion != Information.TargetWowBuild)
                         {

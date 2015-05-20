@@ -200,7 +200,7 @@
             SpellDBCMaxIndex = 200000,
             SpellBookNumSpells = 0xE4145C, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xE414A8 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xE414A8 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0xE41614, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
@@ -251,6 +251,7 @@
             CGWorldFrame__Intersect = 0x51E6C5,
             Spell_C_HandleTerrainClick = 0x256A04,
             CGUnit_C__Interact = 0x949215,
+            strlen = 0x663FC0, // ida strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?

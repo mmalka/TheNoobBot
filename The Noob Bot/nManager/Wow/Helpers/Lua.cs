@@ -146,6 +146,8 @@ namespace nManager.Wow.Helpers
 
                 // Console.WriteLine("GetLocalizedText(" + Commandline + ")");
 
+                uint pString = Memory.WowMemory.Memory.AllocateMemory(4);
+
                 string[] asm = new[]
                 {
                     /*"call " +
@@ -154,31 +156,35 @@ namespace nManager.Wow.Helpers
                     "test eax, eax",
                     "je @out",*/
                     "call " +
-                    (Memory.WowProcess.WowModule +
-                     (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                     "test eax, eax",
                     "je @out",
-                    "call " +
-                    (Memory.WowProcess.WowModule +
-                     (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                     "mov ecx, eax",
                     "push -1",
                     "mov edx, " + luaGetLocalizedTextSpace + "",
                     "push edx",
                     "call " +
-                    (Memory.WowProcess.WowModule +
-                     (uint) Addresses.FunctionWow.FrameScript__GetLocalizedText),
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.FrameScript__GetLocalizedText),
+                    "mov [" + pString + "], eax",
+                    "test eax, eax",
+                    "je @out",
+                    "push eax",
+                    "call " +
+                    (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.strlen),
+                    "add esp, 4",
                     "@out:",
                     "retn"
                 };
 
                 // Inject the shit
-                uint retPtr = Memory.WowMemory.InjectAndExecute(asm);
+                uint stringLength = Memory.WowMemory.InjectAndExecute(asm);
+                uint retPtr = Memory.WowMemory.Memory.ReadUInt(pString);
                 string sResult = "";
                 if (retPtr > 0)
-                    sResult = Memory.WowMemory.Memory.ReadUTF8String(retPtr);
+                    sResult = Memory.WowMemory.Memory.ReadUTF8String(retPtr, (int) stringLength);
                 // Free memory allocated for command
                 Memory.WowMemory.Memory.FreeMemory(luaGetLocalizedTextSpace);
+                Memory.WowMemory.Memory.FreeMemory(pString);
 
                 // Remove the LUA variable
                 //LuaDoString(commandline + " = nil");

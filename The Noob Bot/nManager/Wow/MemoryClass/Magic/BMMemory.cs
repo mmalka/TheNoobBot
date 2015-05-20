@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -512,7 +513,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public string ReadASCIIString(uint dwAddress, int nLength)
         {
-            return SMemory.ReadASCIIString(this.m_hProcess, dwAddress, nLength);
+            return ReadString(dwAddress, Encoding.ASCII, nLength);
         }
 
         /// <summary>
@@ -523,60 +524,36 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public string ReadASCIIString(uint dwAddress)
         {
-            string retTemp = "";
-            byte[] Buf = new Byte[1 - 1];
-            Buf = ReadBytes(dwAddress, 1);
-            int i = 0;
-            while (Buf[0] != 0 && i <= 4096)
-            {
-                i++;
-                retTemp = retTemp + Convert.ToChar(Buf[0]);
-                dwAddress = dwAddress + 1;
-                Buf = ReadBytes(dwAddress, 1);
-                //Thread.Sleep(1);
-            }
-            return retTemp;
+            return ReadString(dwAddress, Encoding.ASCII);
+        }
+
+        private string ReadString(uint address, Encoding encoding = null, int maxLength = 512)
+        {
+            if (encoding == null)
+                encoding = Encoding.UTF8;
+
+            byte[] buffer = ReadBytes(address, maxLength);
+            string ret = encoding.GetString(buffer);
+
+            if (ret.IndexOf('\0') != -1)
+                ret = ret.Remove(ret.IndexOf('\0'));
+
+            return ret;
         }
 
         public String ReadUTF8String(uint dwAddress)
         {
-            string retTemp = "";
-            byte[] Buf = new Byte[1 - 1];
-            byte[] listByte = new byte[4097];
-            Buf = ReadBytes(dwAddress, 4096);
-            int i = 0;
-            while (Buf[0] != 0 && i <= 4096)
-            {
-                listByte[i] = Buf[0];
-                i++;
-                dwAddress = dwAddress + 1;
-                Buf = ReadBytes(dwAddress, 1);
-                //Thread.Sleep(1);
-            }
-            retTemp = Others.ToUtf8(listByte);
-            return retTemp;
+            return ReadString(dwAddress);
+        }
+
+        public String ReadUTF8String(uint dwAddress, int maxLenght)
+        {
+            return ReadString(dwAddress, Encoding.UTF8, maxLenght);
         }
 
         public T ReadT<T>(uint dwAddress, bool reverse = false) where T : struct
         {
             object ret = null;
-            if (typeof (T) == typeof (string))
-            {
-                string retTemp = "";
-                byte[] Buf = new Byte[1 - 1];
-                Buf = ReadBytes(dwAddress, 1);
-                int i = 0;
-                while (Buf[0] != 0 && i <= 4096)
-                {
-                    i++;
-                    retTemp = retTemp + Convert.ToChar(Buf[0]);
-                    dwAddress = dwAddress + 1;
-                    Buf = ReadBytes(dwAddress, 1);
-                    //Thread.Sleep(1);
-                }
-                ret = retTemp;
-                return (T) ret;
-            }
 
             if (typeof (T) == typeof (ulong))
             {
