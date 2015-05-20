@@ -36,7 +36,6 @@ namespace nManager.Wow.MemoryClass
         private uint _mInjectionCode;
         private uint _mLockRequested;
         private uint _mLocked;
-        private object _mLocker;
         private uint _mResult;
         private uint _mTrampoline;
         private byte[] _mZeroBytesInjectionCodes;
@@ -124,7 +123,7 @@ namespace nManager.Wow.MemoryClass
 
         public uint InjectAndExecute(string[] asm)
         {
-            lock (_mLocker)
+            lock (Locker)
             {
                 if (!ThreadHooked)
                     return 0;
@@ -188,11 +187,14 @@ namespace nManager.Wow.MemoryClass
 
         public void GameFrameLock()
         {
-            Memory.WriteUInt(_mLocked, 0);
-            Memory.WriteUInt(_mLockRequested, 1);
+            lock (Locker)
+            {
+                Memory.WriteUInt(_mLocked, 0);
+                Memory.WriteUInt(_mLockRequested, 1);
 
-            while (Memory.ReadUInt(_mLocked) != 0)
-                Thread.Sleep(0);
+                while (Memory.ReadUInt(_mLocked) != 0)
+                    Thread.Sleep(0);
+            }
         }
 
         private void Hooking()
@@ -276,7 +278,6 @@ namespace nManager.Wow.MemoryClass
                                 else if (D3D.OriginalBytes[0] == 0x6A)
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
                             }
-                            _mLocker = new object();
                             _mLockRequested = Memory.AllocateMemory(0x4);
                             _mLocked = Memory.AllocateMemory(0x4);
                             _mResult = Memory.AllocateMemory(0x4);
@@ -339,12 +340,21 @@ namespace nManager.Wow.MemoryClass
 
         public bool IsGameFrameLocked
         {
-            get { return Memory.ReadUInt(_mLocked) == 1; }
+            get
+            {
+                lock (Locker)
+                {
+                    return Memory.ReadUInt(_mLocked) == 1;
+                }
+            }
         }
 
         public void GameFrameUnLock()
         {
-            Memory.WriteUInt(_mLockRequested, 0);
+            lock (Locker)
+            {
+                Memory.WriteUInt(_mLockRequested, 0);
+            }
         }
 
         /// <summary>
