@@ -28,7 +28,7 @@ namespace nManager.Wow.Helpers
                 {
                     uint ptrCurrentEventName = Memory.WowMemory.Memory.ReadUInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetName);
                     if (ptrCurrentEventName <= 0) continue;
-                    string currentEventName = Memory.WowMemory.Memory.ReadASCIIString(ptrCurrentEventName);
+                    string currentEventName = Memory.WowMemory.Memory.ReadUTF8String((ptrCurrentEventName));
                     if (currentEventName == "") continue;
                     if (eventsList.Contains(Environment.NewLine + currentEventName + " = ")) continue;
                     object previousLine = eventsList;

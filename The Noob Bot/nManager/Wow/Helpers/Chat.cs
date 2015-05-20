@@ -249,7 +249,7 @@ namespace nManager.Wow.Helpers
                     return new Message();
 
                 string stream =
-                    Memory.WowMemory.Memory.ReadASCIIString(
+                    Memory.WowMemory.Memory.ReadUTF8String(
                         (uint)
                             (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
                              (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(CurrentMsg)));
