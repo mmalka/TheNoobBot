@@ -484,10 +484,12 @@ namespace nManager.Wow.Helpers
                 }
 
                 Logging.Write("Character's SpellBook is currently being fully updated. May take few seconds...");
+                Memory.WowMemory.GameFrameLock();
                 foreach (Spell o in _spellBookSpell)
                 {
                     o.Update();
                 }
+                Memory.WowMemory.GameFrameUnLock();
 
                 if (CombatClass.IsAliveCombatClass)
                 {
@@ -503,6 +505,10 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("UpdateSpellBook(): " + exception);
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 
