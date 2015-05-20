@@ -977,10 +977,10 @@ namespace nManager.Wow.Helpers
 
         public static void UpdateLastHardwareAction()
         {
-            if (Memory.WowMemory.IsGameFrameLocked)
-                return;
             lock (ThisLock)
             {
+                if (Memory.WowMemory.IsGameFrameLocked)
+                    return;
                 if (!InGame || IsLoadingOrConnecting)
                 {
                     Thread.Sleep(10);

@@ -7,6 +7,7 @@ using Fasm;
 using nManager.Helpful;
 using nManager.Wow.MemoryClass.Magic;
 using nManager.Wow.Patchables;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.MemoryClass
 {
@@ -114,7 +115,7 @@ namespace nManager.Wow.MemoryClass
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
 
-            fasm.AddLine("jmp " + (GetJumpAdresse() + D3D.OriginalBytes.Length));
+            fasm.AddLine("jmp " + (JumpAddress + D3D.OriginalBytes.Length));
 
             Memory.WriteBytes(_mTrampoline, D3D.OriginalBytes);
             fasm.Inject(_mTrampoline + (uint) D3D.OriginalBytes.Length);
@@ -122,32 +123,46 @@ namespace nManager.Wow.MemoryClass
 
         public uint InjectAndExecute(string[] asm)
         {
-            lock (_mLocker)
+            try
             {
-                var fasm = new ManagedFasm(Memory.ProcessHandle);
-
-                fasm.SetMemorySize(0x1000);
-                fasm.SetPassLimit(100);
-
-                foreach (string s in asm)
+                lock (_mLocker)
                 {
-                    fasm.AddLine(s);
+                    if (!ThreadHooked)
+                        return 0;
+                    var fasm = new ManagedFasm(Memory.ProcessHandle);
+
+                    fasm.SetMemorySize(0x1000);
+                    fasm.SetPassLimit(100);
+
+                    foreach (string s in asm)
+                    {
+                        fasm.AddLine(s);
+                    }
+
+                    fasm.Inject(_mInjectionCode);
+
+                    Memory.WriteUInt(_mExecuteRequested, 1);
+                    Timer injectTimer = new Timer(2000);
+                    injectTimer.Reset();
+                    while (Memory.ReadUInt(_mExecuteRequested) == 1 && !injectTimer.IsReady)
+                    {
+                        //Thread.Sleep(0);
+                    }
+                    if (injectTimer.IsReady)
+                    {
+                        Logging.WriteError("Injection have been aborted, execution too long: " + asm);
+                        return 0;
+                    }
+                    Memory.WriteBytes(_mInjectionCode, _mZeroBytesInjectionCodes);
+
+                    uint returnValue = Memory.ReadUInt(_mResult);
+                    return returnValue;
                 }
-
-                fasm.Inject(_mInjectionCode);
-
-                Memory.WriteUInt(_mExecuteRequested, 1);
-
-                while (Memory.ReadUInt(_mExecuteRequested) == 1)
-                {
-                    //Thread.Sleep(0);
-                }
-
-                Memory.WriteBytes(_mInjectionCode, _mZeroBytesInjectionCodes);
-
-                uint returnValue = Memory.ReadUInt(_mResult);
-
-                return returnValue;
+            }
+            catch (Exception e)
+            {
+                Logging.Write(e.ToString());
+                return 0;
             }
         }
 
@@ -160,7 +175,7 @@ namespace nManager.Wow.MemoryClass
 
             fasm.AddLine("jmp " + _mTrampoline);
 
-            fasm.Inject(GetJumpAdresse());
+            fasm.Inject(JumpAddress);
         }
 
         public void Remove(uint address, byte[] originalBytes)
@@ -236,56 +251,53 @@ namespace nManager.Wow.MemoryClass
                         {
                             DisposeHooking();
                         }
-                        else
+                        try
                         {
-                            try
+                            if (D3D.OriginalBytes == null)
                             {
-                                if (D3D.OriginalBytes == null)
+                                byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 10);
+                                // Gather as much data as possible if there is others graphic cards system.
+                                string bytes = "";
+                                foreach (uint bit in extractAllBytes)
                                 {
-                                    byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 10);
-                                    // Gather as much data as possible if there is others graphic cards system.
-                                    string bytes = "";
-                                    foreach (uint bit in extractAllBytes)
-                                    {
-                                        if (bytes == "")
-                                            bytes = bit.ToString();
-                                        else
-                                            bytes = bytes + ", " + bit;
-                                    }
-                                    Logging.WriteFileOnly("Hooking Informations: " + bytes);
-
-                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5); // WinXP - Win7, with standards graphic drivers.
-                                    if (D3D.OriginalBytes[0] == 0x55)
-                                        D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6); // WinXP - Win7, with specific graphic drivers.
-                                    else if (D3D.OriginalBytes[0] == 0x6A)
-                                        D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
+                                    if (bytes == "")
+                                        bytes = bit.ToString();
+                                    else
+                                        bytes = bytes + ", " + bit;
                                 }
-                                _mLocker = new object();
-                                _mLockRequested = Memory.AllocateMemory(0x4);
-                                _mLocked = Memory.AllocateMemory(0x4);
-                                _mResult = Memory.AllocateMemory(0x4);
-                                _mExecuteRequested = Memory.AllocateMemory(0x4);
+                                Logging.WriteFileOnly("Hooking Informations: " + bytes);
 
-                                _mZeroBytesInjectionCodes = new byte[0x1000];
-                                for (int i = 0; i < 0x1000; i++)
-                                {
-                                    _mZeroBytesInjectionCodes[i] = 0;
-                                }
-
-                                _mInjectionCode = Memory.AllocateMemory(_mZeroBytesInjectionCodes.Length);
-                                CreateTrampoline();
-                                Apply();
+                                D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5); // WinXP - Win7, with standards graphic drivers.
+                                if (D3D.OriginalBytes[0] == 0x55)
+                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6); // WinXP - Win7, with specific graphic drivers.
+                                else if (D3D.OriginalBytes[0] == 0x6A)
+                                    D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
                             }
-                            catch (Exception e)
+                            _mLocker = new object();
+                            _mLockRequested = Memory.AllocateMemory(0x4);
+                            _mLocked = Memory.AllocateMemory(0x4);
+                            _mResult = Memory.AllocateMemory(0x4);
+                            _mExecuteRequested = Memory.AllocateMemory(0x4);
+
+                            _mZeroBytesInjectionCodes = new byte[0x1000];
+                            for (int i = 0; i < 0x1000; i++)
                             {
-                                Logging.WriteError("Hooking()#1: " + e);
-                                ThreadHooked = false;
-                                return;
+                                _mZeroBytesInjectionCodes[i] = 0;
                             }
+
+                            _mInjectionCode = Memory.AllocateMemory(_mZeroBytesInjectionCodes.Length);
+                            CreateTrampoline();
+                            Apply();
                         }
-                        ThreadHooked = true;
-                        AllowReHook = true;
+                        catch (Exception e)
+                        {
+                            Logging.WriteError("Hooking()#1: " + e);
+                            ThreadHooked = false;
+                            return;
+                        }
                     }
+                    ThreadHooked = true;
+                    AllowReHook = true;
                 }
             }
             catch (Exception e)
@@ -390,7 +402,7 @@ namespace nManager.Wow.MemoryClass
                                 Pulsator.Dispose(true);
                             }
                         }
-                        Remove(GetJumpAdresse(), D3D.OriginalBytes);
+                        Remove(JumpAddress, D3D.OriginalBytes);
                     }
                 }
             }

@@ -527,7 +527,7 @@ namespace nManager.Wow.MemoryClass.Magic
             byte[] Buf = new Byte[1 - 1];
             Buf = ReadBytes(dwAddress, 1);
             int i = 0;
-            while (Buf[0] != 0 && i <= 200)
+            while (Buf[0] != 0 && i <= 4096)
             {
                 i++;
                 retTemp = retTemp + Convert.ToChar(Buf[0]);
@@ -542,10 +542,10 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             string retTemp = "";
             byte[] Buf = new Byte[1 - 1];
-            byte[] listByte = new byte[201];
-            Buf = ReadBytes(dwAddress, 200);
+            byte[] listByte = new byte[4097];
+            Buf = ReadBytes(dwAddress, 4096);
             int i = 0;
-            while (Buf[0] != 0 && i <= 200)
+            while (Buf[0] != 0 && i <= 4096)
             {
                 listByte[i] = Buf[0];
                 i++;
@@ -566,7 +566,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 byte[] Buf = new Byte[1 - 1];
                 Buf = ReadBytes(dwAddress, 1);
                 int i = 0;
-                while (Buf[0] != 0 && i <= 200)
+                while (Buf[0] != 0 && i <= 4096)
                 {
                     i++;
                     retTemp = retTemp + Convert.ToChar(Buf[0]);

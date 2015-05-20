@@ -13694,6 +13694,7 @@ public class PaladinRetribution
 
     private void Seal()
     {
+        Usefuls.SleepGlobalCooldown();
         if (MySettings.UseSealOfTruth && SealOfTruth.KnownSpell &&
             (ObjectManager.GetUnitInSpellRange(8) <= 5 || !MySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
         {
@@ -13740,6 +13741,7 @@ public class PaladinRetribution
     {
         if (ObjectManager.Me.IsMounted)
             return;
+        Usefuls.SleepGlobalCooldown();
 
         if (MySettings.UseBlessingOfKings && BlessingOfKings.KnownSpell)
         {
@@ -13846,7 +13848,7 @@ public class PaladinRetribution
         Usefuls.SleepGlobalCooldown();
         try
         {
-            Memory.WowMemory.GameFrameLock();
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
                 DivineStorm.IsSpellUsable &&

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -440,7 +441,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Memory.WowMemory.GameFrameLock();
                 Logging.Write("Initialize Character's SpellBook update.");
                 uint nbSpells =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookNumSpells);
@@ -504,10 +504,6 @@ namespace nManager.Wow.Helpers
             {
                 Logging.WriteError("UpdateSpellBook(): " + exception);
             }
-            finally
-            {
-                Memory.WowMemory.GameFrameUnLock();
-            }
         }
 
         public static void UpdateSpellBook()
@@ -529,10 +525,13 @@ namespace nManager.Wow.Helpers
                         SpellListManager.SpellIdByNameCreateCache();
                         var spellBook = new List<Spell>();
                         Logging.Write("May take few seconds...");
+
+                        Memory.WowMemory.GameFrameLock();
                         foreach (uint id in SpellBookID())
                         {
                             spellBook.Add(new Spell(id));
                         }
+                        Memory.WowMemory.GameFrameUnLock();
                         Logging.Write("Character's SpellBook fully loaded. Found " + _spellBookID.Count + " spells, mounts and professions.");
                         Logging.Status = "Character SpellBook loaded.";
                         _spellBookSpell = spellBook;
@@ -543,6 +542,10 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("SpellBook(): " + exception);
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
             }
             return new List<Spell>();
         }
