@@ -6,6 +6,8 @@ namespace nManager.Wow.Bot.States
 {
     public class LevelupCheck : State
     {
+        private static uint _lastLevel;
+
         public override string DisplayName
         {
             get { return "LevelupCheck"; }
@@ -23,8 +25,6 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        private static uint _lastLevel;
-
         public static uint GetLastLevel
         {
             get { return _lastLevel; }
@@ -40,6 +40,9 @@ namespace nManager.Wow.Bot.States
                     !ObjectManager.ObjectManager.Me.IsValid ||
                     ObjectManager.ObjectManager.Me.InCombat ||
                     !Products.Products.IsStarted)
+                    return false;
+
+                if (ObjectManager.ObjectManager.Me.Level == 0)
                     return false;
 
                 // Collect our initial Level at product start.
