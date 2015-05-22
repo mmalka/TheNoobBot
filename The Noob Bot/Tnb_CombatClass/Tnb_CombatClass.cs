@@ -1146,7 +1146,7 @@ public class DeathknightApprentice
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -1370,11 +1370,6 @@ public class DeathknightApprentice
             RaiseDead.Cast();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
-
         if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
         {
             Berserking.Cast();
@@ -1494,7 +1489,7 @@ public class DeathknightApprentice
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseIcyTouch = true;
-        public bool UseLifeblood = true;
+
         public bool UseMindFreeze = true;
         public int UseMindFreezeAtPercentage = 100;
         public bool UsePestilence = true;
@@ -1514,7 +1509,7 @@ public class DeathknightApprentice
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Deathknight Presence & Buffs */
@@ -1581,7 +1576,7 @@ public class DeathknightBlood
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -2143,10 +2138,6 @@ public class DeathknightBlood
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
         if (MySettings.UseBloodTapForDPS && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
         {
             BloodTap.Cast();
@@ -2414,7 +2405,7 @@ public class DeathknightBlood
         public bool UseIcyTouch = true;
         public bool UseLichborne = true;
         public int UseLichborneAtPercentage = 45;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindFreeze = true;
         public int UseMindFreezeAtPercentage = 100;
@@ -2550,7 +2541,7 @@ public class DeathknightUnholy
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -3120,11 +3111,6 @@ public class DeathknightUnholy
             BloodFury.Cast();
             return;
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (MySettings.UseBloodTap && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
         {
             BloodTap.Cast();
@@ -3363,7 +3349,7 @@ public class DeathknightUnholy
         public bool UseIcyTouch = true;
         public bool UseLichborne = true;
         public int UseLichborneAtPercentage = 45;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindFreeze = true;
         public int UseMindFreezeAtPercentage = 100;
@@ -3399,7 +3385,7 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Deathknight Presence & Buffs */
@@ -3497,7 +3483,7 @@ public class DeathknightFrost
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -4043,11 +4029,6 @@ public class DeathknightFrost
             BloodFury.Cast();
             return;
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -4362,7 +4343,7 @@ public class DeathknightFrost
         public bool UseIcyTouch = true;
         public bool UseLichborne = true;
         public int UseLichborneAtPercentage = 45;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindFreeze = true;
         public int UseMindFreezeAtPercentage = 100;
@@ -4398,7 +4379,7 @@ public class DeathknightFrost
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Deathknight Presence & Buffs */
@@ -4504,7 +4485,7 @@ public class MageArcane
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -5098,11 +5079,6 @@ public class MageArcane
             BloodFury.Cast();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
-
         if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -5296,7 +5272,7 @@ public class MageArcane
         public int UseIncantersWardAtPercentage = 95;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMirrorImage = true;
         public bool UseNetherTempest = true;
@@ -5325,7 +5301,7 @@ public class MageArcane
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Mage Buffs */
@@ -5423,7 +5399,7 @@ public class MageFrost
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -6013,11 +5989,6 @@ public class MageFrost
             BloodFury.Cast();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
-
         if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -6203,7 +6174,7 @@ public class MageFrost
         public int UseIncantersWardAtPercentage = 95;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMirrorImage = true;
         public bool UsePresenceofMind = true;
@@ -6230,7 +6201,7 @@ public class MageFrost
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Mage Buffs */
@@ -6325,7 +6296,7 @@ public class MageFire
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -6768,10 +6739,6 @@ public class MageFire
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
         if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -6938,7 +6905,7 @@ public class MageFire
         public bool UseInfernoBlast = true;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
-        public bool UseLifeblood = true;
+
         public bool UseLivingBomb = true;
         public bool UseLowCombat = true;
         public bool UseMirrorImage = true;
@@ -6966,7 +6933,7 @@ public class MageFire
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Mage Buffs */
@@ -7064,7 +7031,7 @@ public class WarlockDemonology
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -7509,11 +7476,6 @@ public class WarlockDemonology
             BloodFury.Cast();
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
-
         if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -7760,7 +7722,7 @@ public class WarlockDemonology
         public bool UseImmolationAura = true;
         public bool UseLifeTap = true;
         public int UseLifeTapAtPercentage = 75;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMetamorphosis = true;
         public bool UseMortalCoil = true;
@@ -7804,7 +7766,7 @@ public class WarlockDemonology
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Warlock Buffs */
@@ -7904,7 +7866,7 @@ public class WarlockDestruction
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -8342,10 +8304,6 @@ public class WarlockDestruction
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
         if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -8559,7 +8517,7 @@ public class WarlockDestruction
         public bool UseIncinerate = true;
         public bool UseLifeTap = true;
         public int UseLifeTapAtPercentage = 75;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMortalCoil = true;
         public int UseMortalCoilAtPercentage = 85;
@@ -8598,7 +8556,7 @@ public class WarlockDestruction
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Warlock Buffs */
@@ -8696,7 +8654,7 @@ public class WarlockAffliction
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -9136,10 +9094,6 @@ public class WarlockAffliction
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-        }
         if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -9350,7 +9304,7 @@ public class WarlockAffliction
         public int UseHowlofTerrorAtPercentage = 20;
         public bool UseLifeTap = true;
         public int UseLifeTapAtPercentage = 75;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMaleficGrasp = true;
         public bool UseMortalCoil = true;
@@ -9394,7 +9348,7 @@ public class WarlockAffliction
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Warlock Buffs */
@@ -9497,7 +9451,7 @@ public class DruidBalance
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -9993,12 +9947,6 @@ public class DruidBalance
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -10180,7 +10128,7 @@ public class DruidBalance
         public bool UseHurricane = true;
         public bool UseIncarnation = true;
         public bool UseInnervate = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMarkoftheWild = true;
         public bool UseMassEntanglement = true;
@@ -10221,7 +10169,7 @@ public class DruidBalance
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
@@ -10315,7 +10263,7 @@ public class DruidFeral
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -10798,12 +10746,6 @@ public class DruidFeral
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -11034,7 +10976,7 @@ public class DruidFeral
         public bool UseHeartoftheWild = true;
         public bool UseIncarnation = true;
         public bool UseInnervate = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMaim = true;
         public bool UseMangle = true;
@@ -11080,7 +11022,7 @@ public class DruidFeral
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
@@ -11179,7 +11121,7 @@ public class DruidRestoration
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -11617,12 +11559,6 @@ public class DruidRestoration
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -11712,7 +11648,7 @@ public class DruidRestoration
         public bool UseIncarnation = true;
         public bool UseInnervate = true;
         public bool UseIronbark = true;
-        public bool UseLifeblood = true;
+
         public bool UseLifebloom = true;
         public bool UseLowCombat = true;
         public bool UseMarkoftheWild = true;
@@ -11752,7 +11688,7 @@ public class DruidRestoration
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
@@ -11842,7 +11778,7 @@ public class DruidGuardian
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -12309,11 +12245,6 @@ public class DruidGuardian
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30 && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -12465,7 +12396,7 @@ public class DruidGuardian
         public bool UseIncarnation = true;
         public bool UseInnervate = true;
         public bool UseLacerate = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMangle = true;
         public bool UseMarkoftheWild = true;
@@ -12504,7 +12435,7 @@ public class DruidGuardian
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
@@ -12591,7 +12522,7 @@ public class PaladinHoly
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
@@ -12884,11 +12815,6 @@ public class PaladinHoly
                 return;
             }
         }
-        if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
@@ -12990,7 +12916,7 @@ public class PaladinHoly
         public bool UseHolyRadiance = true;
         public bool UseHolyShock = true;
         public bool UseLayOnHands = true;
-        public bool UseLifeblood = true;
+
         public bool UseSacredShield = true;
         public bool UseSealOfInsight = true;
         public bool UseSealOfTheRighteousness = true;
@@ -13010,7 +12936,7 @@ public class PaladinHoly
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
@@ -13075,7 +13001,7 @@ public class PaladinProtection
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
@@ -13517,7 +13443,7 @@ public class PaladinProtection
         public bool UseHolyWrath = true;
         public bool UseJudgment = true;
         public bool UseLayOnHands = true;
-        public bool UseLifeblood = true;
+
         public bool UseSacredShield = true;
         public bool UseSealOfInsight = false;
         public bool UseSealOfTheRighteousness = true;
@@ -13538,7 +13464,7 @@ public class PaladinProtection
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
@@ -13605,7 +13531,7 @@ public class PaladinRetribution
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -14147,7 +14073,7 @@ public class PaladinRetribution
         public bool UseHolyAvenger = true;
         public bool UseJudgment = true;
         public bool UseLayOnHands = true;
-        public bool UseLifeblood = true;
+
         public bool UseReckoning = true;
         public bool UseSacredShield = true;
         public bool UseSealOfCommand = true;
@@ -14174,7 +14100,7 @@ public class PaladinRetribution
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
@@ -14272,7 +14198,7 @@ public class ShamanEnhancement
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -14741,12 +14667,6 @@ public class ShamanEnhancement
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -15036,7 +14956,7 @@ public class ShamanEnhancement
         public bool UseHealingSurge = true;
         public bool UseHealingTideTotem = true;
         public bool UseLavaLash = true;
-        public bool UseLifeblood = true;
+
         public bool UseLightningBolt = true;
         public bool UseLightningShield = true;
         public bool UseLowCombat = true;
@@ -15071,7 +14991,7 @@ public class ShamanEnhancement
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Shaman Buffs */
@@ -15173,7 +15093,7 @@ public class ShamanRestoration
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -15687,12 +15607,6 @@ public class ShamanRestoration
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -15929,7 +15843,7 @@ public class ShamanRestoration
         public bool UseHealingTideTotem = true;
         public bool UseHealingWave = false;
         public bool UseLavaBurst = true;
-        public bool UseLifeblood = true;
+
         public bool UseLightningBolt = true;
         public bool UseLightningShield = true;
         public bool UseLowCombat = true;
@@ -15965,7 +15879,7 @@ public class ShamanRestoration
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Shaman Buffs */
@@ -16069,7 +15983,7 @@ public class ShamanElemental
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -16263,16 +16177,14 @@ public class ShamanElemental
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
+        Heal();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
-        Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
 
     private void Buff()
@@ -16539,12 +16451,6 @@ public class ShamanElemental
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -16791,7 +16697,7 @@ public class ShamanElemental
         public bool UseHealingSurge = true;
         public bool UseHealingTideTotem = true;
         public bool UseLavaBurst = true;
-        public bool UseLifeblood = true;
+
         public bool UseLightningBolt = true;
         public bool UseLightningShield = true;
         public bool UseLowCombat = true;
@@ -16810,7 +16716,7 @@ public class ShamanElemental
         public bool UseTrinketTwo = true;
         public bool UseUnleashElements = true;
         public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
+        public int UseWarStompAtPercentage = 70;
         public bool UseWaterShield = true;
         public bool UseWaterWalking = true;
         public bool UseWindShear = true;
@@ -16824,7 +16730,7 @@ public class ShamanElemental
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Shaman Buffs */
@@ -16927,7 +16833,7 @@ public class PriestShadow
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -17383,12 +17289,6 @@ public class PriestShadow
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -17564,7 +17464,7 @@ public class PriestShadow
         public bool UseInnerFire = true;
         public bool UseInnerWill = false;
         public bool UseLevitate = false;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindBlast = true;
         public bool UseMindFlay = true;
@@ -17708,7 +17608,7 @@ public class PriestDiscipline
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -18118,12 +18018,6 @@ public class PriestDiscipline
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -18286,7 +18180,7 @@ public class PriestDiscipline
         public int UseInnerFocusAtPercentage = 90;
         public bool UseInnerWill = false;
         public bool UseLevitate = false;
-        public bool UseLifeblood = true;
+
         public bool UseMindSear = true;
         public bool UsePainSuppression = true;
         public int UsePainSuppressionAtPercentage = 70;
@@ -18422,7 +18316,7 @@ public class PriestHoly
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -18861,12 +18755,6 @@ public class PriestHoly
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -19026,7 +18914,7 @@ public class PriestHoly
         public bool UseInnerFire = true;
         public bool UseInnerWill = false;
         public bool UseLevitate = false;
-        public bool UseLifeblood = true;
+
         public bool UseLightWell = true;
         public int UseLightWellAtPercentage = 95;
         public bool UseMindSear = true;
@@ -19167,7 +19055,7 @@ public class RogueCombat
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -19641,12 +19529,6 @@ public class RogueCombat
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -19802,7 +19684,7 @@ public class RogueCombat
         public bool UseKidneyShot = true;
         public bool UseKillingSpree = true;
         public bool UseLeechingPoison = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindnumbingPoison = true;
         public bool UseParalyticPoison = false;
@@ -19839,7 +19721,7 @@ public class RogueCombat
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Rogue Buffs */
@@ -19938,7 +19820,7 @@ public class RogueSubtlety
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -20412,12 +20294,6 @@ public class RogueSubtlety
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -20553,7 +20429,7 @@ public class RogueSubtlety
         public bool UseKick = true;
         public bool UseKidneyShot = true;
         public bool UseLeechingPoison = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindnumbingPoison = true;
         public bool UseParalyticPoison = false;
@@ -20590,7 +20466,7 @@ public class RogueSubtlety
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Rogue Buffs */
@@ -20686,7 +20562,7 @@ public class RogueAssassination
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -21159,12 +21035,6 @@ public class RogueAssassination
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -21314,7 +21184,7 @@ public class RogueAssassination
         public bool UseKick = true;
         public bool UseKidneyShot = true;
         public bool UseLeechingPoison = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMindnumbingPoison = true;
         public bool UseMutilate = true;
@@ -21352,7 +21222,7 @@ public class RogueAssassination
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Rogue Buffs */
@@ -21452,7 +21322,7 @@ public class WarriorArms
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -21901,12 +21771,6 @@ public class WarriorArms
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -22160,7 +22024,7 @@ public class WarriorArms
         public bool UseHeroicStrike = true;
         public bool UseHeroicThrow = true;
         public bool UseIntimidatingShout = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMassSpellReflection = true;
         public bool UseMortalStrike = true;
@@ -22196,7 +22060,7 @@ public class WarriorArms
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Warrior Buffs */
@@ -22296,7 +22160,7 @@ public class WarriorProtection
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -22787,12 +22651,6 @@ public class WarriorProtection
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
             && MySettings.UseEngGlove)
         {
@@ -23033,7 +22891,7 @@ public class WarriorProtection
         public bool UseHeroicThrow = true;
         public bool UseIntimidatingShout = true;
         public bool UseLastStand = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMassSpellReflection = true;
         public bool UsePiercingHowl = false;
@@ -23071,7 +22929,7 @@ public class WarriorProtection
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Warrior Buffs */
@@ -23174,7 +23032,7 @@ public class WarriorFury
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -23616,11 +23474,6 @@ public class WarriorFury
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30 && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -23841,7 +23694,7 @@ public class WarriorFury
         public bool UseHeroicStrike = true;
         public bool UseHeroicThrow = true;
         public bool UseIntimidatingShout = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseMassSpellReflection = true;
         public bool UsePiercingHowl = false;
@@ -23876,7 +23729,7 @@ public class WarriorFury
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Warrior Buffs */
@@ -23980,7 +23833,7 @@ public class HunterMarksmanship
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -24458,12 +24311,6 @@ public class HunterMarksmanship
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -24671,7 +24518,7 @@ public class HunterMarksmanship
         public bool UseHuntersMark = true;
         public bool UseIceTrap = true;
         public bool UseKillShot = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseLynxRush = true;
         public bool UseMendPet = true;
@@ -24708,7 +24555,7 @@ public class HunterMarksmanship
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Hunter Buffs */
@@ -24813,7 +24660,7 @@ public class HunterBeastMastery
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -25285,11 +25132,6 @@ public class HunterBeastMastery
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -25508,7 +25350,7 @@ public class HunterBeastMastery
         public bool UseIntimidation = true;
         public bool UseKillCommand = true;
         public bool UseKillShot = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseLynxRush = true;
         public bool UseMendPet = true;
@@ -25542,7 +25384,7 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Hunter Buffs */
@@ -25643,7 +25485,7 @@ public class HunterSurvival
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -26138,12 +25980,6 @@ public class HunterSurvival
             BloodFury.Cast();
             return;
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -26361,7 +26197,7 @@ public class HunterSurvival
         public bool UseHuntersMark = true;
         public bool UseIceTrap = true;
         public bool UseKillShot = true;
-        public bool UseLifeblood = true;
+
         public bool UseLowCombat = true;
         public bool UseLynxRush = true;
         public bool UseMendPet = true;
@@ -26395,7 +26231,7 @@ public class HunterSurvival
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Hunter Buffs */
@@ -26505,7 +26341,7 @@ public class MonkBrewmaster
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -26857,11 +26693,6 @@ public class MonkBrewmaster
             return;
         }
 
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (MySettings.UseEngGlove && Engineering.KnownSpell && _engineeringTimer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -27037,7 +26868,7 @@ public class MonkBrewmaster
         public bool UseLegSweep = true;
         public int UseLegSweepAtPercentage = 90;
         public bool UseLegacyoftheEmperor = true;
-        public bool UseLifeblood = true;
+
         public bool UseProvoke = true;
         public bool UsePurifyingBrew = true;
         public int UsePurifyingBrewAtPercentage = 90;
@@ -27071,7 +26902,7 @@ public class MonkBrewmaster
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Monk Buffs */
@@ -27166,7 +26997,7 @@ public class MonkWindwalker
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -27491,11 +27322,6 @@ public class MonkWindwalker
             BloodFury.Cast();
             return;
         }
-        if (MySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (MySettings.UseEngGlove && Engineering.KnownSpell && _engineeringTimer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -27667,7 +27493,7 @@ public class MonkWindwalker
         public int UseLegSweepAtPercentage = 90;
         public bool UseLegacyoftheEmperor = true;
         public bool UseLegacyoftheWhiteTiger = true;
-        public bool UseLifeblood = true;
+
         public bool UseProvoke = true;
         public bool UseRisingSunKick = true;
         public bool UseRoll = true;
@@ -27701,7 +27527,7 @@ public class MonkWindwalker
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Monk Buffs */
@@ -27793,7 +27619,7 @@ public class MonkMistweaver
     public readonly Spell BloodFury = new Spell("Blood Fury");
     public readonly Spell Engineering = new Spell("Engineering");
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Lifeblood = new Spell("Lifeblood");
+
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -28203,12 +28029,6 @@ public class MonkMistweaver
             BloodFury.Cast();
             return;
         }
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseLifeblood)
-        {
-            Lifeblood.Cast();
-            return;
-        }
         if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
             && MySettings.UseEngGlove)
         {
@@ -28348,7 +28168,7 @@ public class MonkMistweaver
         public bool UseLegSweep = true;
         public bool UseLegacyoftheEmperor = true;
         public bool UseLifeCocoon = true;
-        public bool UseLifeblood = true;
+
         public bool UseManaTea = true;
         public bool UsePathofBlossoms = true;
         public bool UseProvoke = true;
@@ -28384,7 +28204,7 @@ public class MonkMistweaver
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Monk Buffs */
