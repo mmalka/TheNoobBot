@@ -117,6 +117,9 @@ namespace nManager.Wow.Helpers
             {
                 if (IsSpellOnCooldown(spell.Id, spell.CategoryId, spell.StartRecoveryCategoryId))
                     return false;
+
+                if (IsSpellOnCooldown(spell.Ids, spell.CategoryId, spell.StartRecoveryCategoryId))
+                    return false; // Some spell like Ascendance that has multiples Ids would fails the "Id" check.
                 // We only need LUA to check for ressources now.
 
                 string luaVarUsable = Others.GetRandomString(Others.Random(4, 10));
