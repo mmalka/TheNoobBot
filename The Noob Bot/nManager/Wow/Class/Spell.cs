@@ -282,7 +282,7 @@ namespace nManager.Wow.Class
 
                 if (woWUnit.Count > 0)
                 {
-                    WoWUnit nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                    WoWUnit nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit, false, false, true);
                     if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
                     {
                         if ((nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||

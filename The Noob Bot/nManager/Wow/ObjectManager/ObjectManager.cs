@@ -492,7 +492,7 @@ namespace nManager.Wow.ObjectManager
             return new WoWUnit(0);
         }
 
-        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false)
+        public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayedControlled = false)
         {
             try
             {
@@ -508,7 +508,7 @@ namespace nManager.Wow.ObjectManager
                         continue;
                     if (a.IsTapped && (!a.IsTapped || !a.IsTappedByMe))
                         continue;
-                    if (a.PlayerControlled)
+                    if (a.PlayerControlled && !allowPlayedControlled)
                         continue;
                     objectReturn = a;
                     tempDistance = a.GetDistance;
