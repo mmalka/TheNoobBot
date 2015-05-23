@@ -481,5 +481,10 @@ namespace nManager.Wow.ObjectManager
             }
             return default(T);
         }
+
+        public void StopCast()
+        {
+            Lua.RunMacroText("/stopcasting");
+        }
     }
 }
