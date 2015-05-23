@@ -550,6 +550,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.LaunchExpiredPlugins = LaunchExpiredPlugins.Value;
                 nManagerSetting.CurrentSetting.HideSdkFiles = HideSDKFiles.Value;
                 nManagerSetting.CurrentSetting.ActivatedPluginsList.Clear();
+                nManagerSetting.CurrentSetting.UseFrameLock = UseFrameLock.Value;
                 foreach (string s in ActivatedPluginsList.Items)
                 {
                     nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
@@ -680,6 +681,7 @@ namespace nManager.Helpful.Forms
                 LaunchExpiredPlugins.Value = managerSetting.LaunchExpiredPlugins;
                 HideSDKFiles.Value = managerSetting.HideSdkFiles;
                 ActivatedPluginsList.Items.Clear();
+                UseFrameLock.Value = managerSetting.UseFrameLock;
                 foreach (string s in managerSetting.ActivatedPluginsList)
                 {
                     if (AvailablePluginsList.Items.Contains(s))
