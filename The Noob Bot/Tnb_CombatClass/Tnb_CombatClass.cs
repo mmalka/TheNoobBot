@@ -22755,6 +22755,10 @@ public class WarriorFury
     public readonly Spell BerserkerStance = new Spell("Berserker Stance");
     public readonly Spell CommandingShout = new Spell("Commanding Shout");
     public readonly Spell DefensiveStance = new Spell("Defensive Stance");
+    public readonly Spell SuddenDeathTalent = new Spell("Sudden Death");
+    public readonly Spell UnquenchableThirstTalent = new Spell("Unquenchable Thirst");
+    public readonly uint EnrageBuffId = 13046;
+    public readonly uint BloodsurgeBuffId = 46915;
 
     #endregion
 
@@ -22774,6 +22778,7 @@ public class WarriorFury
     public readonly Spell HeroicThrow = new Spell("Heroic Throw");
     public readonly Spell ImpendingVictory = new Spell("Impending Victory");
     public readonly Spell RagingBlow = new Spell("Raging Blow");
+    public readonly Spell Ravager = new Spell("Ravager");
     public readonly Spell Shockwave = new Spell("Shockwave");
     public readonly Spell StormBolt = new Spell("Storm Bolt");
     public readonly Spell Taunt = new Spell("Taunt");
@@ -22872,17 +22877,38 @@ public class WarriorFury
 
     private void Pull()
     {
-        if (HeroicLeap.IsHostileDistanceGood && HeroicLeap.KnownSpell && HeroicLeap.IsSpellUsable
-            && MySettings.UseHeroicLeap)
+        if (MySettings.UseCharge && Charge.IsSpellUsable && Charge.IsHostileDistanceGood)
+        {
+            Charge.Cast();
+            Thread.Sleep(100);
+            Usefuls.SleepGlobalCooldown();
+        }
+        if (MySettings.UseRavager && Ravager.IsSpellUsable && Ravager.IsHostileDistanceGood)
+        {
+            Ravager.Cast();
+            Thread.Sleep(100);
+            Usefuls.SleepGlobalCooldown();
+        }
+        if (MySettings.UseRecklessness && Recklessness.IsSpellUsable && ObjectManager.Target.GetDistance < 10f)
+        {
+            Recklessness.Cast();
+            Thread.Sleep(100);
+            Usefuls.SleepGlobalCooldown();
+        }
+        if (MySettings.UseBloodthirst && Bloodthirst.IsSpellUsable && ObjectManager.Target.GetDistance < 10f)
+        {
+            Bloodthirst.Cast();
+            return;
+        }
+        if (MySettings.UseHeroicLeap && HeroicLeap.IsSpellUsable && HeroicLeap.IsHostileDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
             Others.SafeSleep(200);
         }
-
-        if (Taunt.IsHostileDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
-            && MySettings.UseTaunt && ObjectManager.Target.GetDistance > 20)
+        if (MySettings.UseTaunt && Taunt.IsSpellUsable && Taunt.IsHostileDistanceGood && ObjectManager.Target.GetDistance > 20)
         {
             Taunt.Cast();
+            return;
         }
     }
 
@@ -23232,6 +23258,56 @@ public class WarriorFury
         }
     }
 
+    private void ExecuteCycle()
+    {
+        if (MySettings.UseExecute && (SuddenDeathTalent.HaveBuff || ObjectManager.Me.Rage > 85) && Execute.IsSpellUsable && Execute.IsHostileDistanceGood)
+        {
+            Execute.Cast();
+            return;
+        }
+        if (MySettings.UseBloodthirst && !ObjectManager.Me.HaveBuff(EnrageBuffId) && (UnquenchableThirstTalent.KnownSpell || ObjectManager.Me.Rage < 80) && Bloodthirst.IsSpellUsable &&
+            Bloodthirst.IsHostileDistanceGood)
+        {
+            Bloodthirst.Cast();
+            return;
+        }
+        if (MySettings.UseRavager && Ravager.IsSpellUsable && Ravager.IsHostileDistanceGood)
+        {
+            Ravager.Cast();
+            return;
+        }
+        if (MySettings.UseDragonRoar && DragonRoar.IsSpellUsable && DragonRoar.IsHostileDistanceGood)
+        {
+            DragonRoar.Cast();
+            return;
+        }
+        if (MySettings.UseStormBolt && StormBolt.IsSpellUsable && StormBolt.IsHostileDistanceGood)
+        {
+            StormBolt.Cast();
+            return;
+        }
+        if (MySettings.UseExecute && ObjectManager.Me.HaveBuff(EnrageBuffId) && Execute.IsSpellUsable && Execute.IsHostileDistanceGood)
+        {
+            Execute.Cast();
+            return;
+        }
+        if (MySettings.UseWildStrike && ObjectManager.Me.HaveBuff(BloodsurgeBuffId) && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood)
+        {
+            WildStrike.Cast();
+            return;
+        }
+        if (MySettings.UseRagingBlow && RagingBlow.IsSpellUsable && RagingBlow.IsHostileDistanceGood)
+        {
+            RagingBlow.Cast();
+            return;
+        }
+        if (MySettings.UseBloodthirst && UnquenchableThirstTalent.KnownSpell && Bloodthirst.IsSpellUsable && Bloodthirst.IsHostileDistanceGood)
+        {
+            Bloodthirst.Cast();
+            return;
+        }
+    }
+
     private void DPSCycle()
     {
         Usefuls.SleepGlobalCooldown();
@@ -23239,105 +23315,76 @@ public class WarriorFury
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
+            if (MySettings.UseBerserkerRage && BerserkerRage.IsSpellUsable && !ObjectManager.Me.HaveBuff(EnrageBuffId) && ObjectManager.Target.GetDistance <= 25)
             {
-                HeroicThrow.Cast();
+                BerserkerRage.Cast();
                 return;
             }
-
-            if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsHostileDistanceGood && MySettings.UseCharge && ObjectManager.Target.GetDistance > Main.InternalRange)
+            if (MySettings.UseCharge && Charge.IsSpellUsable && Charge.IsHostileDistanceGood)
             {
                 Charge.Cast();
                 return;
             }
-
-            if (VictoryRush.KnownSpell && VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood && MySettings.UseVictoryRush && ObjectManager.Me.HealthPercent < 90)
+            if (ObjectManager.Target.HealthPercent <= 20)
             {
-                VictoryRush.Cast();
+                ExecuteCycle();
                 return;
             }
-            if (Whirlwind.KnownSpell && Whirlwind.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3 && MySettings.UseWhirlwind)
-            {
-                Whirlwind.Cast();
-                return;
-            }
-            if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsHostileDistanceGood && MySettings.UseCleave && ObjectManager.GetNumberAttackPlayer() > 1 &&
-                ObjectManager.GetNumberAttackPlayer() < 4)
-            {
-                if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
-                {
-                    DeadlyCalm.Cast();
-                    Others.SafeSleep(200);
-                }
-
-                Cleave.Cast();
-                return;
-            }
-            if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood && MySettings.UseHeroicStrike &&
-                ObjectManager.GetNumberAttackPlayer() < 3 &&
-                ObjectManager.Me.RagePercentage > 80)
-            {
-                if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && MySettings.UseDeadlyCalm)
-                {
-                    DeadlyCalm.Cast();
-                    Others.SafeSleep(200);
-                }
-
-                HeroicStrike.Cast();
-                return;
-            }
-            if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                && MySettings.UseShockwave)
-            {
-                Shockwave.Cast();
-                return;
-            }
-            if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                && MySettings.UseDragonRoar)
-            {
-                DragonRoar.Cast();
-                return;
-            }
-            if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                && MySettings.UseBladestorm)
-            {
-                Bladestorm.Cast();
-                return;
-            }
-            if (Bloodthirst.KnownSpell && Bloodthirst.IsSpellUsable && Bloodthirst.IsHostileDistanceGood
-                && MySettings.UseBloodthirst)
-            {
-                Bloodthirst.Cast();
-                return;
-            }
-            if (ColossusSmash.KnownSpell && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood
-                && MySettings.UseColossusSmash)
-            {
-                ColossusSmash.Cast();
-                return;
-            }
-            if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsHostileDistanceGood
-                && MySettings.UseExecute && ObjectManager.GetNumberAttackPlayer() < 4)
-            {
-                Execute.Cast();
-                return;
-            }
-            if (RagingBlow.KnownSpell && RagingBlow.IsSpellUsable && RagingBlow.IsHostileDistanceGood
-                && MySettings.UseRagingBlow)
-            {
-                RagingBlow.Cast();
-                return;
-            }
-            if (WildStrike.KnownSpell && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood
-                && MySettings.UseWildStrike && ObjectManager.Me.HaveBuff(46915))
+            if (MySettings.UseWildStrike && (ObjectManager.Me.HaveBuff(BloodsurgeBuffId) || ObjectManager.Me.Rage > 85) && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood)
             {
                 WildStrike.Cast();
                 return;
             }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && MySettings.UseArcaneTorrentForResource)
+            if (MySettings.UseExecute && SuddenDeathTalent.KnownSpell && SuddenDeathTalent.HaveBuff && Execute.IsSpellUsable && Execute.IsHostileDistanceGood)
             {
-                ArcaneTorrent.Cast();
+                Execute.Cast();
+                return;
+            }
+            if (MySettings.UseRagingBlow && RagingBlow.BuffStack == 2 && RagingBlow.IsSpellUsable && RagingBlow.IsHostileDistanceGood)
+            {
+                RagingBlow.Cast();
+                return;
+            }
+            if (MySettings.UseBloodthirst && !ObjectManager.Me.HaveBuff(EnrageBuffId) && (UnquenchableThirstTalent.KnownSpell || ObjectManager.Me.Rage < 80) && Bloodthirst.IsSpellUsable &&
+                Bloodthirst.IsHostileDistanceGood)
+            {
+                Bloodthirst.Cast();
+                return;
+            }
+            if (MySettings.UseRavager && Ravager.IsSpellUsable && Ravager.IsHostileDistanceGood)
+            {
+                Ravager.Cast();
+                return;
+            }
+            if (MySettings.UseDragonRoar && DragonRoar.IsSpellUsable && DragonRoar.IsHostileDistanceGood)
+            {
+                DragonRoar.Cast();
+                return;
+            }
+            if (MySettings.UseStormBolt && StormBolt.IsSpellUsable && StormBolt.IsHostileDistanceGood)
+            {
+                StormBolt.Cast();
+                return;
+            }
+            if (MySettings.UseWildStrike && ObjectManager.Me.HaveBuff(BloodsurgeBuffId) && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood)
+            {
+                WildStrike.Cast();
+                return;
+            }
+            if (MySettings.UseRagingBlow && RagingBlow.IsSpellUsable && RagingBlow.IsHostileDistanceGood)
+            {
+                RagingBlow.Cast();
+                return;
+            }
+            if (MySettings.UseWildStrike && ObjectManager.Me.HaveBuff(EnrageBuffId) && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood)
+            {
+                WildStrike.Cast();
+                return;
+            }
+            if (MySettings.UseBloodthirst && UnquenchableThirstTalent.KnownSpell && Bloodthirst.IsSpellUsable && Bloodthirst.IsHostileDistanceGood)
+            {
+                Bloodthirst.Cast();
+                return;
             }
         }
         finally
@@ -23387,7 +23434,7 @@ public class WarriorFury
         public bool UseDisarm = true;
         public bool UseDisruptingShout = true;
         public bool UseDragonRoar = true;
-
+        public bool UseRavager = true;
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
@@ -23449,6 +23496,7 @@ public class WarriorFury
             AddControlInWinForm("Use Charge", "UseCharge", "Offensive Spell");
             AddControlInWinForm("Use Cleave", "UseCleave", "Offensive Spell");
             AddControlInWinForm("Use Colossus Smash", "UseColossusSmash", "Offensive Spell");
+            AddControlInWinForm("Use Ravager", "UseRavager", "Offensive Spell");
             AddControlInWinForm("Use Dragon Roar", "UseDragonRoar", "Offensive Spell");
             AddControlInWinForm("Use Exectue", "UseExecute", "Offensive Spell");
             AddControlInWinForm("Use Heroic Leap", "UseHeroicLeap", "Offensive Spell");
