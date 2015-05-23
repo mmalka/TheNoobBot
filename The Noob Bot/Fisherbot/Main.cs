@@ -29,7 +29,6 @@ public class Main : IProduct
                 FisherbotSetting.CurrentSetting.ShieldName = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_SHIELD).Name;
                 if (FisherbotSetting.CurrentSetting.WeaponName == FisherbotSetting.CurrentSetting.ShieldName)
                     FisherbotSetting.CurrentSetting.ShieldName = "";
-
             }
 
             Others.ProductStatusLog(Products.ProductName, 1);

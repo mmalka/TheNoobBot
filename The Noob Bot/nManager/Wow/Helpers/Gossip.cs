@@ -132,7 +132,7 @@ namespace nManager.Wow.Helpers
                 string chkpy = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
                 string chktype = nManager.Helpful.Others.GetRandomString(nManager.Helpful.Others.Random(4, 10));
                 nManager.Wow.Helpers.Lua.LuaDoString(chkpx + "," + chkpy + " = TaxiNodePosition(" + id + "); " +
-                    chktype + "= TaxiNodeGetType(" + id + ");");
+                                                     chktype + "= TaxiNodeGetType(" + id + ");");
                 string retpx = nManager.Wow.Helpers.Lua.GetLocalizedText(chkpx);
                 string retpy = nManager.Wow.Helpers.Lua.GetLocalizedText(chkpy);
                 string retType = nManager.Wow.Helpers.Lua.GetLocalizedText(chktype);

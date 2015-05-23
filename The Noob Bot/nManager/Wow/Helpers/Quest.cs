@@ -359,7 +359,7 @@ namespace nManager.Wow.Helpers
                             Quest.SelectGossipAvailableQuest(i);
                             Thread.Sleep(Usefuls.Latency + 500);
                             id = Quest.GetQuestID();
-                            if (id ==0)
+                            if (id == 0)
                             {
                                 systemWorks = false;
                                 break;

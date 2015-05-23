@@ -78,7 +78,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (!ignoreAlreadyDone)
                         Logging.WriteError("The event " + eventType + " with method " + method + " and parameter requestFireCount set to " + requestFireCount +
-                                       " is already hooked in the exact same way, duplicates of HookEvent is a bad code manner, make sure to UnHook your event when your Stop() your plugin.");
+                                           " is already hooked in the exact same way, duplicates of HookEvent is a bad code manner, make sure to UnHook your event when your Stop() your plugin.");
                     return;
                 }
                 lock (_ourLock)

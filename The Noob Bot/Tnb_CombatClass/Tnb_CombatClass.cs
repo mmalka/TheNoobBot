@@ -5055,7 +5055,8 @@ public class MageArcane
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseArcanePower && MySettings.UseEvocationForMana && (ArcanePower.HaveBuff || _burnPhaseStarted || (ArcanePower.IsSpellUsable && ObjectManager.Me.ManaPercentage > 90)) && Evocation.IsSpellUsable && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
+            if (MySettings.UseArcanePower && MySettings.UseEvocationForMana && (ArcanePower.HaveBuff || _burnPhaseStarted || (ArcanePower.IsSpellUsable && ObjectManager.Me.ManaPercentage > 90)) &&
+                Evocation.IsSpellUsable && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
             {
                 if (_burnPhaseStarted && !ArcanePower.HaveBuff && ArcanePower.IsSpellUsable)
                     ArcanePower.Cast();

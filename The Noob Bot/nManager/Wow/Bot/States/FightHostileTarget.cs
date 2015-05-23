@@ -91,7 +91,7 @@ namespace nManager.Wow.Bot.States
             if (!_unit.IsDead && unkillableMob != 0 && _unit.HealthPercent == 100.0f)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
-                nManagerSetting.AddBlackList(unkillableMob, 2 * 60 * 1000); // 2 minutes
+                nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes
             }
             else if (_unit.IsDead)
             {

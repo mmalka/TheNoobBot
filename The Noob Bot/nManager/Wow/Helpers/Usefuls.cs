@@ -625,7 +625,7 @@ namespace nManager.Wow.Helpers
             {
                 // "World of WarCraft: Retail Build (build 18966)"
                 if (textBuild == "")
-                    textBuild = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWoWVersionString);
+                    textBuild = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWoWVersionString);
                 if (!textBuild.Contains(' '))
                     return 0;
                 string[] textBuildStrings = textBuild.Split(' ');

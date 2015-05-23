@@ -27,7 +27,7 @@ namespace nManager.Wow.ObjectManager
         {
         }
 
-        new public bool IsValid
+        public new bool IsValid
         {
             get
             {
@@ -632,7 +632,7 @@ namespace nManager.Wow.ObjectManager
                                 break;
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
-                                if ((WoWGameObjectLockType)Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_SAW_TREE)
+                                if ((WoWGameObjectLockType) Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_SAW_TREE)
                                 {
                                     uint RankRequired = Row.Record.Skill[j];
                                     Spell loggingSpell = new Spell("Logging");
