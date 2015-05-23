@@ -23255,7 +23255,7 @@ public class WarriorFury
 
     private void ExecuteCycle()
     {
-        if (MySettings.UseExecute && (SuddenDeathTalent.HaveBuff || ObjectManager.Me.Rage > 85) && Execute.IsSpellUsable && Execute.IsHostileDistanceGood)
+        if (MySettings.UseExecute && (SuddenDeathTalent.HaveBuff || ObjectManager.Me.Rage > 70) && Execute.IsSpellUsable && Execute.IsHostileDistanceGood)
         {
             Execute.Cast();
             return;
@@ -23325,7 +23325,7 @@ public class WarriorFury
                 ExecuteCycle();
                 return;
             }
-            if (MySettings.UseWildStrike && (ObjectManager.Me.HaveBuff(BloodsurgeBuffId) || ObjectManager.Me.Rage > 85) && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood)
+            if (MySettings.UseWildStrike && (ObjectManager.Me.HaveBuff(BloodsurgeBuffId) || ObjectManager.Me.Rage > 70) && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood)
             {
                 WildStrike.Cast();
                 return;

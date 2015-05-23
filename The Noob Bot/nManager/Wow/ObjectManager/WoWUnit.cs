@@ -386,13 +386,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint Rage
+        public float Rage
         {
             get
             {
                 try
                 {
-                    return GetPowerByPowerType(PowerType.Rage);
+                    return GetPowerByPowerType(PowerType.Rage)/10f;
                 }
                 catch (Exception e)
                 {
@@ -402,13 +402,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint MaxRage
+        public float MaxRage
         {
             get
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(PowerType.Rage);
+                    return GetMaxPowerByPowerType(PowerType.Rage)/10f;
                 }
                 catch (Exception e)
                 {
@@ -424,7 +424,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return Rage*100/MaxRage;
+                    return (uint) (Rage*100/MaxRage);
                 }
                 catch (Exception e)
                 {
