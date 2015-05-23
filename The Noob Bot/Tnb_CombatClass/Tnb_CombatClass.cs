@@ -1564,7 +1564,7 @@ public class DeathknightBlood
     public int DefenseHP = 100;
     public int HealHP = 100;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -1574,7 +1574,7 @@ public class DeathknightBlood
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -2142,14 +2142,6 @@ public class DeathknightBlood
         {
             BloodTap.Cast();
         }
-
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
-
         if (MySettings.UseRaiseDeadForDPS && !DeathPact.KnownSpell && RaiseDead.KnownSpell && ObjectManager.Target.GetDistance < 30 && RaiseDead.IsSpellUsable)
         {
             RaiseDead.Cast();
@@ -2394,7 +2386,7 @@ public class DeathknightBlood
         public bool UseDeathandDecay = true;
         public bool UseDeathsAdvance = true;
         public bool UseEmpowerRuneWeapon = true;
-        public bool UseEngGlove = true;
+
         public bool UseFrostPresence = true;
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
@@ -2529,7 +2521,7 @@ public class DeathknightUnholy
     public int DefenseHP = 100;
     public int HealHP = 100;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -2539,7 +2531,7 @@ public class DeathknightUnholy
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -3116,13 +3108,6 @@ public class DeathknightUnholy
             BloodTap.Cast();
             return;
         }
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (MySettings.UseUnholyFrenzy && UnholyFrenzy.KnownSpell && ObjectManager.Target.GetDistance < 30 && UnholyFrenzy.IsSpellUsable)
         {
             UnholyFrenzy.Cast();
@@ -3338,7 +3323,7 @@ public class DeathknightUnholy
         public bool UseDeathandDecay = true;
         public bool UseDeathsAdvance = true;
         public bool UseEmpowerRuneWeapon = true;
-        public bool UseEngGlove = true;
+
         public bool UseFesteringStrike = true;
         public bool UseFrostPresence = true;
         public bool UseGiftoftheNaaru = true;
@@ -3436,7 +3421,7 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -3471,7 +3456,7 @@ public class DeathknightFrost
     public int DefenseHP = 100;
     public int HealHP = 100;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -3481,7 +3466,7 @@ public class DeathknightFrost
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -4029,13 +4014,6 @@ public class DeathknightFrost
             BloodFury.Cast();
             return;
         }
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (MySettings.UseBloodTap && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
         {
             BloodTap.Cast();
@@ -4331,7 +4309,7 @@ public class DeathknightFrost
         public bool UseDeathsAdvance = true;
         public bool UseDuelWield = false;
         public bool UseEmpowerRuneWeapon = true;
-        public bool UseEngGlove = true;
+
         public bool UseFrostPresence = true;
         public bool UseFrostStrike = true;
         public bool UseGiftoftheNaaru = true;
@@ -4430,7 +4408,7 @@ public class DeathknightFrost
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Duel Wield", "UseDuelWield", "Game Settings");
             AddControlInWinForm("Use Two Hander", "UseTwoHander", "Game Settings");
@@ -4472,7 +4450,7 @@ public class MageArcane
     public int HealHP = 100;
     public int HealMP = 100;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -4483,7 +4461,7 @@ public class MageArcane
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -4503,12 +4481,12 @@ public class MageArcane
 
     #region Offensive Spell
 
+    public readonly Spell ArcaneOrb = new Spell("Arcane Orb");
     public readonly Spell ArcaneBarrage = new Spell("Arcane Barrage");
     public readonly Spell ArcaneBlast = new Spell("Arcane Blast");
     public readonly Spell ArcaneExplosion = new Spell("Arcane Explosion");
     public readonly Spell ArcaneMissiles = new Spell("Arcane Missiles");
     public readonly Spell Scorch = new Spell("Scorch");
-    private Timer _flamestrikeTimer = new Timer(0);
 
     #endregion
 
@@ -4530,7 +4508,6 @@ public class MageArcane
 
     public readonly Spell Blink = new Spell("Blink");
     public readonly Spell ColdSnap = new Spell("Cold Snap");
-    public readonly Spell ConeofCold = new Spell("Cone of Cold");
     public readonly Spell Counterspell = new Spell("Counterspell");
     public readonly Spell DeepFreeze = new Spell("Deep Freeze");
     public readonly Spell FrostNova = new Spell("Frost Nova");
@@ -4552,6 +4529,7 @@ public class MageArcane
     public readonly Spell Evocation = new Spell("Evocation");
     public readonly Spell GlobalCooldown = new Spell("Global Cooldown");
     private Timer _conjureRefreshmentTimer = new Timer(0);
+    private bool _burnPhaseStarted = false;
 
     #endregion
 
@@ -4706,15 +4684,19 @@ public class MageArcane
 
     private void Pull()
     {
-        if (MySettings.UseArcaneBarrage && ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood && ArcaneBarrage.IsSpellUsable)
+        if (MySettings.UseRuneofPower && !RuneOfPower.HaveBuff && !MirrorImage.KnownSpell && RuneOfPower.IsSpellUsable && ObjectManager.Target.GetDistance <= 40f)
         {
-            ArcaneBarrage.Cast();
+            SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
             return;
         }
-
+        if (MySettings.UseIceFloes && IceFloes.IsSpellUsable && ObjectManager.Me.GetMove)
+        {
+            IceFloes.Cast();
+        }
         if (MySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable)
         {
             ArcaneBlast.Cast();
+            return;
         }
     }
 
@@ -4902,7 +4884,6 @@ public class MageArcane
             }
             return;
         }
-
         if (MySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent <= MySettings.UseIceWardAtPercentage &&
             IceWard.IsSpellUsable)
         {
@@ -4910,21 +4891,12 @@ public class MageArcane
             _onCd = new Timer(1000*5);
             return;
         }
-
-        if (MySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent <= MySettings.UseConeofColdAtPercentage &&
-            ConeofCold.IsSpellUsable)
-        {
-            ConeofCold.Cast();
-            return;
-        }
-
-        if (MySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff) &&
+        if (MySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && (FrostNova.TargetHaveBuff || IceWard.TargetHaveBuff) &&
             Blink.IsSpellUsable)
         {
             Blink.Cast();
             return;
         }
-
         if (MySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && ObjectManager.Me.HealthPercent <= MySettings.UseDeepFreezeAtPercentage &&
             DeepFreeze.IsSpellUsable)
         {
@@ -4932,14 +4904,12 @@ public class MageArcane
             _onCd = new Timer(1000*5);
             return;
         }
-
         if (MySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseIceBarrierAtPercentage &&
             IceBarrier.IsSpellUsable)
         {
             IceBarrier.Cast();
             return;
         }
-
         if (MySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseTemporalShieldAtPercentage
             && ObjectManager.Me.InCombat && TemporalShield.IsSpellUsable)
         {
@@ -4947,7 +4917,6 @@ public class MageArcane
             _onCd = new Timer(1000*4);
             return;
         }
-
         if (MySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage &&
             WarStomp.IsSpellUsable)
         {
@@ -4955,14 +4924,12 @@ public class MageArcane
             _onCd = new Timer(1000*2);
             return;
         }
-
         if (MySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
         {
             Stoneform.Cast();
             _onCd = new Timer(1000*8);
             return;
         }
-
         if (MySettings.UseInvisibility && Invisibility.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 3 && Invisibility.IsSpellUsable)
         {
             Invisibility.Cast();
@@ -5041,65 +5008,38 @@ public class MageArcane
 
     private void DPSBurst()
     {
-        if (MySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !AlterTime.HaveBuff
-            && ObjectManager.Target.InCombat && ArcanePower.HaveBuff && ObjectManager.Me.BuffStack(114664) > 3 && AlterTime.IsSpellUsable)
+        if (MySettings.UseArcanePower && ArcanePower.IsSpellUsable && (!MySettings.UseEvocationForMana || Evocation.IsSpellUsable) && ObjectManager.Target.GetDistance <= 40f)
         {
-            AlterTime.Cast();
-            _alterTimeTimer = new Timer(1000*4);
+            ArcanePower.Cast();
+            _burnPhaseStarted = true;
         }
-
-        if (MySettings.UseAlterTime && MySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && AlterTime.HaveBuff && ObjectManager.Target.InCombat && ObjectManager.Me.BuffStack(114664) > 3 && _alterTimeTimer.IsReady && AlterTime.IsSpellUsable)
+        if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && ArcanePower.HaveBuff)
         {
-            if (ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood && ArcaneBarrage.IsSpellUsable)
-            {
-                ArcaneBarrage.Cast();
-            }
+            MirrorImage.Cast();
         }
-
         if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
         }
-
         if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
         {
             Berserking.Cast();
         }
-
         if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
         {
             BloodFury.Cast();
         }
-
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
-
         if (MySettings.UseRuneofPower && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(116014) && Evocation.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
         }
 
-        if (MySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && ArcanePower.IsSpellUsable)
-        {
-            ArcanePower.Cast();
-        }
-
-        if (MySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MirrorImage.IsSpellUsable)
-        {
-            MirrorImage.Cast();
-        }
 
         if (MySettings.UseTimeWarp && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !ObjectManager.Me.HaveBuff(80354)
             && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723) && !ObjectManager.Me.HaveBuff(95809) && TimeWarp.IsSpellUsable)
@@ -5115,88 +5055,84 @@ public class MageArcane
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseRuneofPower && RuneOfPower.KnownSpell && ObjectManager.Target.GetDistance <= 40f && !RuneOfPower.HaveBuff && RuneOfPower.IsSpellUsable)
+            if (MySettings.UseArcanePower && MySettings.UseEvocationForMana && (ArcanePower.HaveBuff || _burnPhaseStarted || (ArcanePower.IsSpellUsable && ObjectManager.Me.ManaPercentage > 90)) && Evocation.IsSpellUsable && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
             {
-                SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
-                return;
-            }
-
-            if (MySettings.UseNetherTempest && NetherTempest.KnownSpell && ArcaneChargePassive.KnownSpell && ArcaneChargePassive.BuffStack == 4 && ObjectManager.Target.GetDistance <= 40f &&
-                NetherTempest.IsSpellUsable)
-            {
-                Auras.UnitAura netherTempestAuraInfo = ObjectManager.Target.UnitAura(NetherTempest.Ids, ObjectManager.Me.Guid);
-
-                if (!netherTempestAuraInfo.IsActive)
+                if (_burnPhaseStarted && !ArcanePower.HaveBuff && ArcanePower.IsSpellUsable)
+                    ArcanePower.Cast();
+                if (ObjectManager.Me.ManaPercentage <= 50)
                 {
-                    NetherTempest.Cast();
+                    _burnPhaseStarted = false;
+                    Evocation.Launch(true, false, true);
+                    Thread.Sleep(500);
+                    while (ObjectManager.Me.ManaPercentage < 99 && ObjectManager.Me.IsCast)
+                    {
+                        Thread.Sleep(20);
+                    }
+                    if (ObjectManager.Me.IsCast)
+                        ObjectManager.Me.StopCast();
                     return;
                 }
-                if (netherTempestAuraInfo.IsActive && netherTempestAuraInfo.AuraTimeLeftInMs < 3599)
+                if (MySettings.UsePresenceofMind && PresenceofMind.KnownSpell && ArcaneBlast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
                 {
-                    NetherTempest.Cast();
+                    PresenceofMind.Cast();
+                    Others.SafeSleep(300);
+                    ArcaneBlast.Cast();
                     return;
                 }
-            }
-
-            if (MySettings.UseSupernova && Supernova.KnownSpell && Supernova.IsHostileDistanceGood && Supernova.IsSpellUsable)
-            {
-                Supernova.Cast();
+                ArcaneBlast.Cast();
                 return;
             }
-
-            if (MySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable)
+            if (MySettings.UseIceFloes && IceFloes.IsSpellUsable && ObjectManager.Me.GetMove)
             {
                 IceFloes.Cast();
                 return;
             }
-
-            if (MySettings.UseConeOfCold && ConeofCold.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ConeofCold.MaxRangeHostile) > 4)
+            if (MySettings.UseRuneofPower && !RuneOfPower.HaveBuff && !MirrorImage.KnownSpell && RuneOfPower.IsSpellUsable && ObjectManager.Target.GetDistance <= 40f)
             {
-                ConeofCold.Cast();
+                SpellManager.CastSpellByIDAndPosition(RuneOfPower.Id, ObjectManager.Me.Position);
                 return;
             }
-            if (MySettings.UseArcaneExplosion && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ArcaneExplosion.MaxRangeHostile) > 4)
+            if (MySettings.UseNetherTempest && ArcaneChargePassive.BuffStack == 4 && (!NetherTempest.TargetHaveBuff || ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(NetherTempest.Id, 3599)) &&
+                NetherTempest.IsSpellUsable && NetherTempest.IsHostileDistanceGood)
             {
-                ArcaneExplosion.Cast();
+                NetherTempest.Cast();
                 return;
             }
-
-            if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneChargePassive.BuffStack == 4 && ArcaneMissiles.BuffStack > 2 && ArcaneMissiles.IsSpellUsable)
+            if (MySettings.UseSupernova && Supernova.IsSpellUsable && Supernova.IsHostileDistanceGood)
+            {
+                Supernova.Cast(); // todo Handle Spell.AvailableCharge (return 1 if not applicate and not on cooldown, or charge count)
+                return;
+            }
+            if (MySettings.UseArcaneOrb && ArcaneChargePassive.BuffStack <= 1 && ArcaneOrb.IsSpellUsable && ArcaneOrb.IsHostileDistanceGood)
+            {
+                ArcaneOrb.Cast();
+                return;
+            }
+            if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.BuffStack >= 3 && ArcaneMissiles.IsSpellUsable)
             {
                 ArcaneMissiles.Cast();
                 return;
             }
-
-            if (MySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneChargePassive.BuffStack < 4 && ObjectManager.Me.ManaPercentage >= 93 && ArcaneBlast.IsSpellUsable)
+            if (MySettings.UseArcaneBlast && ObjectManager.Me.ManaPercentage >= 93 && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
             {
                 ArcaneBlast.Cast();
                 return;
             }
-
-            if (MySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneChargePassive.BuffStack == 4 && ArcaneMissiles.IsSpellUsable)
+            if (MySettings.UseArcaneExplosion && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(10f) >= 5 && ArcaneExplosion.IsHostileDistanceGood)
+            {
+                ArcaneExplosion.Cast();
+                return;
+            }
+            if (MySettings.UseArcaneMissiles && ArcaneMissiles.IsSpellUsable && ArcaneChargePassive.BuffStack >= 4 && ArcaneMissiles.BuffStack >= 1 && ArcaneMissiles.IsHostileDistanceGood)
             {
                 ArcaneMissiles.Cast();
                 return;
             }
-
-            if (MySettings.UseArcaneBarrage && ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood && ArcaneChargePassive.BuffStack == 4 && ArcaneBarrage.IsSpellUsable)
+            if (MySettings.UseArcaneBarrage && ArcaneBarrage.IsSpellUsable && ArcaneChargePassive.BuffStack == 4 && ArcaneBarrage.IsHostileDistanceGood)
             {
                 ArcaneBarrage.Cast();
                 return;
             }
-
-            if (MySettings.UsePresenceofMind && PresenceofMind.KnownSpell && ArcaneBlast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
-            {
-                PresenceofMind.Cast();
-                Others.SafeSleep(400);
-
-                if (MySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable)
-                {
-                    ArcaneBlast.Cast();
-                }
-                return;
-            }
-
             if (MySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable)
             {
                 ArcaneBlast.Cast();
@@ -5250,7 +5186,7 @@ public class MageArcane
         public int UseCounterspellAtPercentage = 100;
         public bool UseDeepFreeze = true;
         public int UseDeepFreezeAtPercentage = 50;
-        public bool UseEngGlove = true;
+
         public bool UseEvocationForHP = true;
         public int UseEvocationForHPAtPercentage = 40;
         public bool UseEvocationForMana = true;
@@ -5272,7 +5208,6 @@ public class MageArcane
         public int UseIncantersWardAtPercentage = 95;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
-
         public bool UseLowCombat = true;
         public bool UseMirrorImage = true;
         public bool UseNetherTempest = true;
@@ -5290,6 +5225,7 @@ public class MageArcane
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
         public bool UseWarStomp = true;
+        public bool UseArcaneOrb = true;
         public int UseWarStompAtPercentage = 80;
 
         public MageArcaneSettings()
@@ -5310,6 +5246,7 @@ public class MageArcane
             AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
             AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Game Settings");
             /* Offensive Spell */
+            AddControlInWinForm("Use Arcane Orb", "UseArcaneOrb", "Offensive Spell");
             AddControlInWinForm("Use Arcane Barrage", "UseArcaneBarrage", "Offensive Spell");
             AddControlInWinForm("Use Arcane Blast", "UseArcaneBlast", "Offensive Spell");
             AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
@@ -5347,7 +5284,7 @@ public class MageArcane
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
             AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
@@ -5385,7 +5322,7 @@ public class MageFrost
     public int HealHP = 100;
     public int HealMP = 100;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _freezeTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
 
@@ -5397,7 +5334,7 @@ public class MageFrost
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -5988,14 +5925,6 @@ public class MageFrost
         {
             BloodFury.Cast();
         }
-
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
-
         if (MySettings.UseFrozenOrb && FrozenOrb.KnownSpell && FrozenOrb.IsHostileDistanceGood && FrozenOrb.IsSpellUsable)
         {
             FrozenOrb.Cast();
@@ -6144,7 +6073,7 @@ public class MageFrost
         public int UseCounterspellAtPercentage = 100;
         public bool UseDeepFreeze = true;
         public int UseDeepFreezeAtPercentage = 50;
-        public bool UseEngGlove = true;
+
         public bool UseEvocationForHP = true;
         public int UseEvocationForHPAtPercentage = 40;
         public bool UseEvocationForMana = true;
@@ -6248,7 +6177,7 @@ public class MageFrost
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
             AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
@@ -6283,7 +6212,7 @@ public class MageFire
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -6294,7 +6223,7 @@ public class MageFire
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -6739,12 +6668,6 @@ public class MageFire
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseEngGlove && _engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
         if (MySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Evocation.IsSpellUsable && !ObjectManager.Me.HaveBuff(116257))
         {
             Evocation.Cast();
@@ -6879,7 +6802,7 @@ public class MageFire
         public bool UseDeepFreeze = true;
         public int UseDeepFreezeAtPercentage = 50;
         public bool UseDragonsBreath = true;
-        public bool UseEngGlove = true;
+
         public bool UseEvocationForHP = true;
         public int UseEvocationForHPAtPercentage = 40;
         public bool UseEvocationForMana = true;
@@ -6979,7 +6902,7 @@ public class MageFire
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
             AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
@@ -7018,7 +6941,7 @@ public class WarlockDemonology
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -7029,7 +6952,7 @@ public class WarlockDemonology
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -7475,14 +7398,6 @@ public class WarlockDemonology
         {
             BloodFury.Cast();
         }
-
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
-
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
             && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
         {
@@ -7707,7 +7622,7 @@ public class WarlockDemonology
         public bool UseDoom = true;
         public bool UseDrainLife = true;
         public int UseDrainLifeAtPercentage = 70;
-        public bool UseEngGlove = true;
+
         public bool UseFelFlame = true;
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
@@ -7821,7 +7736,7 @@ public class WarlockDemonology
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -7853,7 +7768,7 @@ public class WarlockDestruction
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -7864,7 +7779,7 @@ public class WarlockDestruction
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -8304,12 +8219,6 @@ public class WarlockDestruction
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
             && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
         {
@@ -8501,7 +8410,7 @@ public class WarlockDestruction
         public int UseDrainLifeAtPercentage = 70;
         public bool UseEmberTap = true;
         public int UseEmberTapAtPercentage = 60;
-        public bool UseEngGlove = true;
+
         public bool UseFelFlame = true;
         public bool UseFireandBrimstone = true;
         public bool UseFlamesofXoroth = true;
@@ -8609,7 +8518,7 @@ public class WarlockDestruction
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -8641,7 +8550,7 @@ public class WarlockAffliction
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -8652,7 +8561,7 @@ public class WarlockAffliction
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -9094,12 +9003,6 @@ public class WarlockAffliction
         {
             BloodFury.Cast();
         }
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && _engineeringTimer.IsReady)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-        }
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
             && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
         {
@@ -9291,7 +9194,7 @@ public class WarlockAffliction
         public bool UseDrainLife = true;
         public int UseDrainLifeAtPercentage = 70;
         public bool UseDrainSoul = true;
-        public bool UseEngGlove = true;
+
         public bool UseFelFlame = true;
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
@@ -9304,7 +9207,6 @@ public class WarlockAffliction
         public int UseHowlofTerrorAtPercentage = 20;
         public bool UseLifeTap = true;
         public int UseLifeTapAtPercentage = 75;
-
         public bool UseLowCombat = true;
         public bool UseMaleficGrasp = true;
         public bool UseMortalCoil = true;
@@ -9403,7 +9305,7 @@ public class WarlockAffliction
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -9438,7 +9340,7 @@ public class DruidBalance
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -9449,7 +9351,7 @@ public class DruidBalance
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -9947,14 +9849,6 @@ public class DruidBalance
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
             && MySettings.UseForceofNature)
         {
@@ -10117,7 +10011,7 @@ public class DruidBalance
         public bool UseCenarionWard = true;
         public bool UseDash = true;
         public bool UseDisorientingRoar = true;
-        public bool UseEngGlove = true;
+
         public bool UseEntanglingRoots = true;
         public bool UseFaerieFire = true;
         public bool UseForceofNature = true;
@@ -10218,7 +10112,7 @@ public class DruidBalance
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -10250,7 +10144,7 @@ public class DruidFeral
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public uint CP;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -10261,7 +10155,7 @@ public class DruidFeral
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -10746,14 +10640,6 @@ public class DruidFeral
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
             && MySettings.UseForceofNature)
         {
@@ -10965,7 +10851,7 @@ public class DruidFeral
         public bool UseDash = true;
         public bool UseDisorientingRoar = true;
         public bool UseDisplacerBeast = false;
-        public bool UseEngGlove = true;
+
         public bool UseFaerieFire = true;
         public bool UseFerociousBite = true;
         public bool UseForceofNature = true;
@@ -11077,7 +10963,7 @@ public class DruidFeral
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -11108,7 +10994,7 @@ public class DruidRestoration
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -11119,7 +11005,7 @@ public class DruidRestoration
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -11559,14 +11445,6 @@ public class DruidRestoration
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
             && MySettings.UseForceofNature)
         {
@@ -11637,7 +11515,7 @@ public class DruidRestoration
         public bool UseCenarionWard = true;
         public bool UseDash = true;
         public bool UseDisorientingRoar = true;
-        public bool UseEngGlove = true;
+
         public bool UseEntanglingRoots = true;
         public bool UseFaerieFire = true;
         public bool UseForceofNature = true;
@@ -11734,7 +11612,7 @@ public class DruidRestoration
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -11765,7 +11643,7 @@ public class DruidGuardian
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -11776,7 +11654,7 @@ public class DruidGuardian
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -12245,13 +12123,6 @@ public class DruidGuardian
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30 && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (Enrage.IsSpellUsable && Enrage.KnownSpell && Enrage.IsHostileDistanceGood
             && MySettings.UseEnrage && ObjectManager.Me.RagePercentage < 70)
         {
@@ -12383,7 +12254,7 @@ public class DruidGuardian
         public bool UseCenarionWard = true;
         public bool UseDash = true;
         public bool UseDisorientingRoar = true;
-        public bool UseEngGlove = true;
+
         public bool UseEnrage = true;
         public bool UseFaerieFire = true;
         public bool UseForceofNature = true;
@@ -12486,7 +12357,7 @@ public class DruidGuardian
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -14185,7 +14056,7 @@ public class ShamanEnhancement
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -14196,7 +14067,7 @@ public class ShamanEnhancement
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -14669,14 +14540,6 @@ public class ShamanEnhancement
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
             && MySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
@@ -14905,7 +14768,7 @@ public class ShamanEnhancement
         public bool UseEarthbindTotem = false;
         public bool UseElementalBlast = true;
         public bool UseElementalMastery = true;
-        public bool UseEngGlove = true;
+
         public bool UseFeralSpirit = true;
         public bool UseFireElementalTotem = true;
         public bool UseFireNova = true;
@@ -15014,7 +14877,7 @@ public class ShamanEnhancement
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -15046,7 +14909,7 @@ public class ShamanRestoration
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -15057,7 +14920,7 @@ public class ShamanRestoration
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -15573,14 +15436,6 @@ public class ShamanRestoration
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
             && MySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
@@ -15792,7 +15647,7 @@ public class ShamanRestoration
         public bool UseEarthlivingWeapon = true;
         public bool UseElementalBlast = true;
         public bool UseElementalMastery = true;
-        public bool UseEngGlove = true;
+
         public bool UseFireElementalTotem = true;
         public bool UseFlameShock = true;
         public bool UseFlametongueWeapon = true;
@@ -15904,7 +15759,7 @@ public class ShamanRestoration
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -15936,7 +15791,7 @@ public class ShamanElemental
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -15947,7 +15802,7 @@ public class ShamanElemental
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -16408,14 +16263,6 @@ public class ShamanElemental
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
             && MySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
@@ -16608,7 +16455,7 @@ public class ShamanElemental
         public bool UseEarthquake = true;
         public bool UseElementalBlast = true;
         public bool UseElementalMastery = true;
-        public bool UseEngGlove = true;
+
         public bool UseFireElementalTotem = true;
         public bool UseFlameShock = true;
         public bool UseFlametongueWeapon = true;
@@ -16710,7 +16557,7 @@ public class ShamanElemental
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -16746,7 +16593,7 @@ public class PriestShadow
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -16757,7 +16604,7 @@ public class PriestShadow
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -17215,14 +17062,6 @@ public class PriestShadow
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
             && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance <= 40f)
         {
@@ -17377,7 +17216,7 @@ public class PriestShadow
         public bool UseDispersionMana = true;
         public int UseDispersionManaAtPercentage = 60;
         public bool UseDivineStar = true;
-        public bool UseEngGlove = true;
+
         public bool UseFlashHealInCombat = true;
         public int UseFlashHealInCombatAtPercentage = 60;
         public bool UseFlashHealNonCombat = true;
@@ -17490,7 +17329,7 @@ public class PriestShadow
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -17521,7 +17360,7 @@ public class PriestDiscipline
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -17532,7 +17371,7 @@ public class PriestDiscipline
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -17944,14 +17783,6 @@ public class PriestDiscipline
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
             && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance <= 40f)
         {
@@ -18086,7 +17917,7 @@ public class PriestDiscipline
         public bool UseDesperatePrayer = true;
         public int UseDesperatePrayerAtPercentage = 65;
         public bool UseDivineStar = true;
-        public bool UseEngGlove = true;
+
         public bool UseFlashHealInCombat = true;
         public int UseFlashHealInCombatAtPercentage = 60;
         public bool UseFlashHealNonCombat = true;
@@ -18198,7 +18029,7 @@ public class PriestDiscipline
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -18229,7 +18060,7 @@ public class PriestHoly
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -18240,7 +18071,7 @@ public class PriestHoly
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -18681,14 +18512,6 @@ public class PriestHoly
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
             && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance <= 40f)
         {
@@ -18818,7 +18641,7 @@ public class PriestHoly
         public bool UseDivineHymn = true;
         public int UseDivineHymnAtPercentage = 30;
         public bool UseDivineStar = true;
-        public bool UseEngGlove = true;
+
         public bool UseFlashHealInCombat = true;
         public int UseFlashHealInCombatAtPercentage = 60;
         public bool UseFlashHealNonCombat = true;
@@ -18930,7 +18753,7 @@ public class PriestHoly
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Glyph of Lightspring", "UseGlyphofLightspring", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
@@ -18968,7 +18791,7 @@ public class RogueCombat
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public uint CP = 0;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -18979,7 +18802,7 @@ public class RogueCombat
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -19455,14 +19278,6 @@ public class RogueCombat
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (AdrenalineRush.KnownSpell && AdrenalineRush.IsSpellUsable
             && MySettings.UseAdrenalineRush && ObjectManager.Target.GetDistance < 30)
         {
@@ -19598,7 +19413,7 @@ public class RogueCombat
         public bool UseDeadlyPoison = true;
         public bool UseDeadlyThrow = true;
         public bool UseDismantle = true;
-        public bool UseEngGlove = true;
+
         public bool UseEvasion = true;
         public bool UseEviscerate = true;
         public bool UseExposeArmor = false;
@@ -19700,7 +19515,7 @@ public class RogueCombat
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -19733,7 +19548,7 @@ public class RogueSubtlety
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public uint CP = 0;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -19744,7 +19559,7 @@ public class RogueSubtlety
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -20220,14 +20035,6 @@ public class RogueSubtlety
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (ShadowDance.KnownSpell && ShadowDance.IsSpellUsable
             && MySettings.UseShadowDance && ObjectManager.Target.GetDistance < 10)
         {
@@ -20343,7 +20150,7 @@ public class RogueSubtlety
         public bool UseDeadlyPoison = true;
         public bool UseDeadlyThrow = true;
         public bool UseDismantle = true;
-        public bool UseEngGlove = true;
+
         public bool UseEvasion = true;
         public bool UseEviscerate = true;
         public bool UseExposeArmor = false;
@@ -20442,7 +20249,7 @@ public class RogueSubtlety
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -20475,7 +20282,7 @@ public class RogueAssassination
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public uint CP = 0;
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -20486,7 +20293,7 @@ public class RogueAssassination
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -20961,14 +20768,6 @@ public class RogueAssassination
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (Vendetta.KnownSpell && Vendetta.IsSpellUsable
             && MySettings.UseVendetta && Vendetta.IsHostileDistanceGood)
         {
@@ -21099,7 +20898,7 @@ public class RogueAssassination
         public bool UseDeadlyThrow = true;
         public bool UseDismantle = true;
         public bool UseDispatch = true;
-        public bool UseEngGlove = true;
+
         public bool UseEnvenom = true;
         public bool UseEvasion = true;
         public bool UseExposeArmor = false;
@@ -21198,7 +20997,7 @@ public class RogueAssassination
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Shadow Focus Talent?", "UseShadowFocus", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
@@ -21235,7 +21034,7 @@ public class WarriorArms
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -21246,7 +21045,7 @@ public class WarriorArms
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -21697,14 +21496,6 @@ public class WarriorArms
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
             && MySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
         {
@@ -21940,7 +21731,7 @@ public class WarriorArms
         public bool UseDisarm = true;
         public bool UseDisruptingShout = true;
         public bool UseDragonRoar = true;
-        public bool UseEngGlove = true;
+
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
@@ -22041,7 +21832,7 @@ public class WarriorArms
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -22073,7 +21864,7 @@ public class WarriorProtection
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -22084,7 +21875,7 @@ public class WarriorProtection
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -22577,14 +22368,6 @@ public class WarriorProtection
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
             && MySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
         {
@@ -22806,7 +22589,7 @@ public class WarriorProtection
         public bool UseDisarm = true;
         public bool UseDisruptingShout = true;
         public bool UseDragonRoar = true;
-        public bool UseEngGlove = true;
+
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
@@ -22913,7 +22696,7 @@ public class WarriorProtection
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -22945,7 +22728,7 @@ public class WarriorFury
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -22956,7 +22739,7 @@ public class WarriorFury
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -23400,13 +23183,6 @@ public class WarriorFury
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30 && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50 && MySettings.UseBerserkerRage &&
             ObjectManager.Target.GetDistance < 30)
         {
@@ -23610,7 +23386,7 @@ public class WarriorFury
         public bool UseDisarm = true;
         public bool UseDisruptingShout = true;
         public bool UseDragonRoar = true;
-        public bool UseEngGlove = true;
+
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
@@ -23710,7 +23486,7 @@ public class WarriorFury
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -23746,7 +23522,7 @@ public class HunterMarksmanship
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int LC = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -23757,7 +23533,7 @@ public class HunterMarksmanship
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -24237,14 +24013,6 @@ public class HunterMarksmanship
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
             && MySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
         {
@@ -24431,7 +24199,7 @@ public class HunterMarksmanship
         public bool UseDeterrance = true;
         public bool UseDireBeast = true;
         public bool UseDisengage = true;
-        public bool UseEngGlove = true;
+
         public bool UseExhilaration = true;
         public bool UseExplosiveTrap = true;
         public bool UseFeedPet = true;
@@ -24536,7 +24304,7 @@ public class HunterMarksmanship
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
@@ -24571,7 +24339,7 @@ public class HunterBeastMastery
     public int LC = 0;
     private Timer _ancientHysteriaTimer = new Timer(0);
     private Timer _burrowAttackTimer = new Timer(0);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _froststormBreathTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
     private Timer _spiritMendTimer = new Timer(0);
@@ -24584,7 +24352,7 @@ public class HunterBeastMastery
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -25058,13 +24826,6 @@ public class HunterBeastMastery
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
             && MySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
         {
@@ -25260,7 +25021,7 @@ public class HunterBeastMastery
         public bool UseDeterrance = true;
         public bool UseDireBeast = true;
         public bool UseDisengage = true;
-        public bool UseEngGlove = true;
+
         public bool UseExhilaration = true;
         public bool UseExplosiveTrap = true;
         public bool UseFeedPet = true;
@@ -25362,7 +25123,7 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Core Hound Pet", "UseCoreHoundPet", "Game Settings");
             AddControlInWinForm("Use Worm Pet", "UseWormPet", "Game Settings");
@@ -25398,7 +25159,7 @@ public class HunterSurvival
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _onCd = new Timer(0);
 
     #endregion
@@ -25409,7 +25170,7 @@ public class HunterSurvival
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -25906,14 +25667,6 @@ public class HunterSurvival
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (AMurderofCrows.KnownSpell && MySettings.UseAMurderofCrows && AMurderofCrows.IsHostileDistanceGood
             && AMurderofCrows.IsSpellUsable && !AMurderofCrows.TargetHaveBuff)
         {
@@ -26109,7 +25862,7 @@ public class HunterSurvival
         public bool UseDeterrance = true;
         public bool UseDireBeast = true;
         public bool UseDisengage = true;
-        public bool UseEngGlove = true;
+
         public bool UseExhilaration = true;
         public bool UseExplosiveShot = true;
         public bool UseExplosiveTrap = true;
@@ -26212,7 +25965,7 @@ public class HunterSurvival
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
@@ -26249,7 +26002,7 @@ public class MonkBrewmaster
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int ElusiveBrewStack = 0;
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _grappleWeaponTimer = new Timer(0);
     private Timer _healingSphereTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
@@ -26265,7 +26018,7 @@ public class MonkBrewmaster
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -26618,15 +26371,6 @@ public class MonkBrewmaster
             BloodFury.Cast();
             return;
         }
-
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && _engineeringTimer.IsReady && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
-
         if (MySettings.UseChiBrew && ChiBrew.KnownSpell && ObjectManager.Me.Chi == 0 && ChiBrew.IsSpellUsable)
         {
             ChiBrew.Cast();
@@ -26775,7 +26519,7 @@ public class MonkBrewmaster
         public bool UseDizzyingHaze = true;
         public bool UseElusiveBrew = true;
         public int UseElusiveBrewAtPercentage = 70;
-        public bool UseEngGlove = true;
+
         public bool UseExpelHarm = true;
         public int UseExpelHarmAtPercentage = 90;
         public bool UseFortifyingBrew = true;
@@ -26875,7 +26619,7 @@ public class MonkBrewmaster
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -26906,7 +26650,7 @@ public class MonkWindwalker
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _grappleWeaponTimer = new Timer(0);
     private Timer _healingSphereTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
@@ -26921,7 +26665,7 @@ public class MonkWindwalker
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -27248,13 +26992,6 @@ public class MonkWindwalker
             BloodFury.Cast();
             return;
         }
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && _engineeringTimer.IsReady && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (MySettings.UseChiBrew && ChiBrew.KnownSpell && ObjectManager.Me.Chi == 0 && ChiBrew.IsSpellUsable)
         {
             ChiBrew.Cast();
@@ -27401,7 +27138,7 @@ public class MonkWindwalker
         public int UseDiffuseMagicAtPercentage = 90;
         public bool UseDisable = false;
         public bool UseEnergizingBrew = true;
-        public bool UseEngGlove = true;
+
         public bool UseExpelHarm = true;
         public int UseExpelHarmAtPercentage = 90;
         public bool UseFistsofFury = true;
@@ -27498,7 +27235,7 @@ public class MonkWindwalker
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
@@ -27529,7 +27266,7 @@ public class MonkMistweaver
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private Timer _engineeringTimer = new Timer(0);
+
     private Timer _grappleWeaponTimer = new Timer(0);
     private Timer _healingSphereTimer = new Timer(0);
     private Timer _onCd = new Timer(0);
@@ -27543,7 +27280,7 @@ public class MonkMistweaver
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Engineering = new Spell("Engineering");
+
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
 
     public readonly Spell Stoneform = new Spell("Stoneform");
@@ -27955,14 +27692,6 @@ public class MonkMistweaver
             BloodFury.Cast();
             return;
         }
-        if (_engineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseEngGlove)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            _engineeringTimer = new Timer(1000*60);
-            return;
-        }
         if (ChiBrew.IsSpellUsable && ChiBrew.KnownSpell
             && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
         {
@@ -28082,7 +27811,7 @@ public class MonkMistweaver
         public bool UseDampenHarm = true;
         public bool UseDiffuseMagic = true;
         public bool UseDisable = false;
-        public bool UseEngGlove = true;
+
         public bool UseEnvelopingMist = true;
         public bool UseExpelHarm = true;
         public bool UseFortifyingBrew = true;
@@ -28180,7 +27909,7 @@ public class MonkMistweaver
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
