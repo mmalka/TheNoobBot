@@ -517,6 +517,41 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public List<Point> FindPath(Point startVec, Point endVec, out bool resultSuccess)
         {
+            List<Point> path = FindPathSimple(startVec, endVec, out resultSuccess);
+            if (path.Count < 2)
+            {
+                resultSuccess = false;
+                return new List<Point>();
+            }
+            if ((endVec - startVec).Magnitude < 3000) // 5000 is about the distance from Ironforge to Lockmodan Flying
+                return path; // The path finder is able to find this kind of path easiely in one run, so if < 3000, then no need to search more, we won't find better
+            float diff = (endVec - path[path.Count - 1]).Magnitude;
+            float ndiff = 5f;
+            while (ndiff < diff)
+            {
+                int limit = (int)(path.Count * 0.75f);
+
+                List<Point> path2;
+                path2 = FindPathSimple(path[limit], endVec, out resultSuccess);
+
+                ndiff = (endVec - path2[path2.Count - 1]).Magnitude;
+                if (ndiff < diff)
+                {
+                    for (int j = path.Count - 1; j > limit; j--)
+                    {
+                        path.RemoveAt(j);
+                    }
+                    foreach (Point p in path2)
+                        path.Add(p);
+                    diff = ndiff;
+                    ndiff = 5f;
+                }
+            }
+            return path;
+        }
+
+        public List<Point> FindPathSimple(Point startVec, Point endVec, out bool resultSuccess)
+        {
             try
             {
                 resultSuccess = true;
