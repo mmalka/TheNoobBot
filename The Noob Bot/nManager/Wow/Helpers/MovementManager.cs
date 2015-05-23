@@ -554,24 +554,25 @@ namespace nManager.Wow.Helpers
                 MovementsAction.Ascend(false);
                 MovementsAction.Descend(false);
                 Logging.WriteDebug("Jump / Down released.");
-                if (ObjectManager.ObjectManager.Me.IsMounted)
+                if (_jumpOverAttempt.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3 && ObjectManager.ObjectManager.Me.IsMounted)
                 {
                     Logging.WriteDebug("UnStuck - We are currently mounted.");
                     MovementsAction.Ascend(true);
                     Thread.Sleep(Others.Random(500, 1000));
                     MovementsAction.Ascend(false);
                     Logging.WriteDebug("UnStuck - Jump attempt done.");
-
+                    _jumpOverAttempt = ObjectManager.ObjectManager.Me.Position;
                     // if fly mode:
                     if (Usefuls.IsFlying)
                     {
                         Logging.WriteDebug("UnStuck - We are currently Flying.");
                         UnStuckFly();
-                        IsUnStuck = false;
+                        //IsUnStuck = false;
                         StuckCount++;
                         Logging.WriteDebug("UnStuck - StuckCount updated, new value: " + StuckCount + ".");
-                        return;
                     }
+                    IsUnStuck = false;
+                    return;
                 }
                 Statistics.Stucks++;
                 Logging.WriteNavigator("UnStuck - Non-flying UnStuck in progress.");
@@ -618,7 +619,7 @@ namespace nManager.Wow.Helpers
                         return;
                     }
                 }
-
+                StopMove();
                 Point lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
                 Logging.WriteDebug("UnStuck - lastPost = " + lastPost);
                 for (int i = 0; i < 8; i++)
