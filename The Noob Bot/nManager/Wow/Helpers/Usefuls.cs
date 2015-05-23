@@ -314,9 +314,14 @@ namespace nManager.Wow.Helpers
 
         public static void SleepGlobalCooldown()
         {
+            int i = 1;
             while (SpellManager.IsOnGlobalCooldown)
             {
-                Thread.Sleep(25);
+                if (i < 100)
+                    Thread.Sleep(300/i);
+                else
+                    Thread.Sleep(5);
+                i++;
             }
         }
 
