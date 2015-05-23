@@ -14229,10 +14229,9 @@ public class ShamanEnhancement
     public readonly Spell LavaLash = new Spell("Lava Lash");
     public readonly Spell LightningBolt = new Spell("Lightning Bolt");
     public readonly Spell MagmaTotem = new Spell("Magma Totem");
-    public readonly Spell PrimalStrike = new Spell("Primal Strike");
     public readonly Spell SearingTotem = new Spell("Searing Totem");
+    public readonly Timer FireTotemTimer = new Timer(40000);
     public readonly Spell Stormstrike = new Spell("Stormstrike");
-    private Timer _flameShockTimer = new Timer(0);
 
     #endregion
 
@@ -14363,11 +14362,9 @@ public class ShamanEnhancement
             EarthShock.Cast();
             return;
         }
-        // Blizzard API Calls for Stormstrike using Primal Strike Function
-        if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
-            && MySettings.UseStormstrike)
+        if (Stormstrike.KnownSpell && Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood && MySettings.UseStormstrike)
         {
-            PrimalStrike.Cast();
+            Stormstrike.Cast();
             return;
         }
         if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
@@ -14746,111 +14743,74 @@ public class ShamanEnhancement
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (EarthElementalTotem.KnownSpell && EarthElementalTotem.IsSpellUsable
-                && ObjectManager.GetNumberAttackPlayer() > 3 && MySettings.UseEarthElementalTotem)
-            {
-                EarthElementalTotem.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 5 && MagmaTotem.KnownSpell
-                && MagmaTotem.IsSpellUsable && MySettings.UseMagmaTotem
-                && !FireElementalTotem.CreatedBySpell)
+            if (MySettings.UseMagmaTotem && MagmaTotem.IsSpellUsable && ObjectManager.GetUnitInSpellRange(8f) > 1 && FireTotemReady() && !MagmaTotem.CreatedBySpellInRange(8))
             {
                 MagmaTotem.Cast();
+                FireTotemTimer.Reset();
                 return;
             }
-            if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && MySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
+            if (MySettings.UseSearingTotem && SearingTotem.IsSpellUsable && ObjectManager.GetUnitInSpellRange(8f) <= 1 && !SearingTotem.CreatedBySpellInRange(25) && FireTotemReady())
             {
                 SearingTotem.Cast();
+                FireTotemTimer.Reset();
                 return;
             }
-            if (ObjectManager.GetNumberAttackPlayer() > 2 && ChainLightning.KnownSpell
-                && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                && MySettings.UseChainLightning && ObjectManager.Me.BuffStack(53817) == 5)
+            if (MySettings.UseChainLightning && ObjectManager.GetUnitInSpellRange(30f) > 1 && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood && ObjectManager.Me.BuffStack(53817) == 5)
             {
                 ChainLightning.Cast();
                 return;
             }
-            if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
-                && MySettings.UseLightningBolt && ObjectManager.Me.BuffStack(53817) == 5)
+            else if (MySettings.UseLightningBolt && LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable && ObjectManager.Me.BuffStack(53817) == 5)
             {
                 LightningBolt.Cast();
                 return;
             }
-            if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
-                && MySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || _flameShockTimer.IsReady))
+            if (MySettings.UseStormstrike && Ascendance.HaveBuff && Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood)
             {
-                if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashElements.IsHostileDistanceGood
-                    && MySettings.UseUnleashElements)
-                {
-                    UnleashElements.Cast();
-                    Others.SafeSleep(200);
-                }
-                FlameShock.Cast();
-                _flameShockTimer = new Timer(1000*27);
+                Stormstrike.Cast();
                 return;
             }
-            if (FireNova.KnownSpell && FireNova.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                && MySettings.UseFireNova)
-            {
-                FireNova.Cast();
-                return;
-            }
-            // Blizzard API Calls for Stormstrike using Primal Strike Function
-            if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
-                && MySettings.UseStormstrike)
-            {
-                PrimalStrike.Cast();
-                return;
-            }
-            if (LavaLash.KnownSpell && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood
-                && MySettings.UseLavaLash)
+            if (MySettings.UseLavaLash && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood)
             {
                 LavaLash.Cast();
                 return;
             }
-            if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashElements.IsHostileDistanceGood
-                && MySettings.UseUnleashElements)
+            if (MySettings.UseUnleashElements && UnleashElements.IsSpellUsable)
             {
                 UnleashElements.Cast();
                 return;
             }
-            if (EarthShock.IsSpellUsable && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood
-                && FlameShock.TargetHaveBuff && MySettings.UseEarthShock)
+            if (MySettings.UseFlameShock && (!FlameShock.HaveBuff || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(FlameShock.Id, 9000)) && (ObjectManager.Me.HaveBuff(73683) || !UnleashElements.KnownSpell) && FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood)
             {
-                EarthShock.Cast();
+                FlameShock.Cast();
                 return;
             }
-            if (ObjectManager.GetNumberAttackPlayer() > 2 && ChainLightning.KnownSpell
-                && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                && MySettings.UseChainLightning && ObjectManager.Me.BuffStack(53817) > 0)
+            if (MySettings.UseFrostShock && FrostShock.IsSpellUsable && FrostShock.IsHostileDistanceGood)
             {
-                if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
-                    && MySettings.UseAncestralSwiftness)
-                {
-                    AncestralSwiftness.Cast();
-                    Others.SafeSleep(200);
-                }
+                FrostShock.Cast();
+                return;
+            }
+            if (MySettings.UseChainLightning && ObjectManager.GetUnitInSpellRange(30f) > 1 && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood && ObjectManager.Me.BuffStack(53817) >= 1)
+            {
                 ChainLightning.Cast();
                 return;
             }
-            if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
-                && MySettings.UseLightningBolt && ObjectManager.Me.BuffStack(53817) > 0)
+            else if (MySettings.UseLightningBolt && LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable && ObjectManager.Me.BuffStack(53817) >= 1)
             {
-                if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
-                    && MySettings.UseAncestralSwiftness)
-                {
-                    AncestralSwiftness.Cast();
-                    Others.SafeSleep(200);
-                }
                 LightningBolt.Cast();
                 return;
             }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && MySettings.UseArcaneTorrentForResource)
+            if (MySettings.UseMagmaTotem && MagmaTotem.IsSpellUsable && (FireTotemTimer.IsReady || !MagmaTotem.CreatedBySpellInRange(8)) && ObjectManager.GetUnitInSpellRange(8f) > 1 && FireTotemReady())
             {
-                ArcaneTorrent.Cast();
+                MagmaTotem.Cast();
+                FireTotemTimer.Reset();
+                return;
+            }
+            if (MySettings.UseSearingTotem && SearingTotem.IsSpellUsable && ObjectManager.GetUnitInSpellRange(8f) <= 1 && (FireTotemTimer.IsReady || !SearingTotem.CreatedBySpellInRange(25)) && FireTotemReady())
+            {
+                SearingTotem.Cast();
+                FireTotemTimer.Reset();
+                return;
             }
         }
         finally
