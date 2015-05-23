@@ -159,7 +159,7 @@ public static class MyPluginClass
             InterruptPve();
         }
     }
-    
+
     public static void InterruptPVP()
     {
         if (!ObjectManager.Target.IsHostile)

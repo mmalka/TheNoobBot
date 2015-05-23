@@ -14493,6 +14493,11 @@ public class ShamanEnhancement
 
     private void DefenseCycle()
     {
+        if (MySettings.UseHealingRain && HealingRain.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIDAndPosition(HealingRain.Id, ObjectManager.Me.Position);
+            return;
+        }
         if (ObjectManager.Me.HealthPercent < 50 && CapacitorTotem.KnownSpell && CapacitorTotem.IsSpellUsable
             && AirTotemReady() && MySettings.UseCapacitorTotem)
         {
@@ -14780,7 +14785,8 @@ public class ShamanEnhancement
                 UnleashElements.Cast();
                 return;
             }
-            if (MySettings.UseFlameShock && (!FlameShock.HaveBuff || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(FlameShock.Id, 9000)) && (ObjectManager.Me.HaveBuff(73683) || !UnleashElements.KnownSpell) && FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood)
+            if (MySettings.UseFlameShock && (!FlameShock.HaveBuff || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(FlameShock.Id, 9000)) && (ObjectManager.Me.HaveBuff(73683) || !UnleashElements.KnownSpell) &&
+                FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood)
             {
                 FlameShock.Cast();
                 return;
