@@ -138,7 +138,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<float>(Descriptors.ObjectFields.Scale);
+                    float scale = GetDescriptor<float>(Descriptors.ObjectFields.Scale);
+                    return (scale > 0 ? scale : 1.0f);
                 }
                 catch (Exception e)
                 {

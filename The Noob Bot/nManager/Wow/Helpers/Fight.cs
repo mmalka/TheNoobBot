@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && CombatClass.InRange(targetNpc))
+                if (ObjectManager.ObjectManager.Me.IsMounted && CombatClass.InAggroRange(targetNpc))
                     MountTask.DismountMount();
 
                 InFight = true;
@@ -62,7 +62,7 @@ namespace nManager.Wow.Helpers
                             return 0;
                     }
                 }
-                if (TraceLine.TraceLineGo(targetNpc.Position)) // If obstacle
+                if (TraceLine.TraceLineGo(targetNpc.Position) || (ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InRange(targetNpc))) // If obstacle or not in range
                 {
                     bool resultSucces;
                     List<Point> points = PathFinder.FindPath(targetNpc.Position, out resultSucces);
@@ -74,7 +74,7 @@ namespace nManager.Wow.Helpers
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
                            targetNpc.Health > 0 && targetNpc.IsValid &&
                            MovementManager.InMovement && InFight && Usefuls.InGame &&
-                           (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InRange(targetNpc))
+                           (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InAggroRange(targetNpc))
                         )
                     {
                         // Mob already in fight
@@ -117,11 +117,13 @@ namespace nManager.Wow.Helpers
 
                 InFight = true;
                 Thread.Sleep(500);
-                if (CombatClass.InRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove &&
+                if (CombatClass.InAggroRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove &&
                     !ObjectManager.ObjectManager.Me.IsCast)
                 {
                     MovementManager.StopMoveTo();
                 }
+                if (ObjectManager.ObjectManager.Me.IsMounted)
+                    MountTask.DismountMount();
                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
                        targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                 {
@@ -150,7 +152,9 @@ namespace nManager.Wow.Helpers
                     }
 
                     // Move to target if out of range
-                    if (!CombatClass.InRange(targetNpc) && !ObjectManager.ObjectManager.Me.IsCast)
+                    if (!ObjectManager.ObjectManager.Me.IsCast &&
+                        ((!ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InAggroRange(targetNpc)) ||
+                        ((ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InRange(targetNpc)))))
                     {
                         int rJump = Others.Random(1, 30);
                         if (rJump == 5)
@@ -169,6 +173,8 @@ namespace nManager.Wow.Helpers
                     {
                         MovementManager.StopMoveTo();
                     }
+                    if (ObjectManager.ObjectManager.Me.IsMounted)
+                        MountTask.DismountMount();
 
                     // Face player to mob
                     MovementManager.Face(targetNpc);
@@ -180,9 +186,6 @@ namespace nManager.Wow.Helpers
                         InFight = false;
                         return targetNpc.Guid;
                     }
-
-                    if (ObjectManager.ObjectManager.Me.IsMounted)
-                        MountTask.DismountMount();
 
                     Thread.Sleep(75 + Usefuls.Latency);
 

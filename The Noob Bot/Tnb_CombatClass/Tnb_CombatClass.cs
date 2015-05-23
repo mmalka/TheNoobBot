@@ -24,9 +24,15 @@ using Timer = nManager.Helpful.Timer;
 public class Main : ICombatClass
 {
     internal static float InternalRange = 5.0f;
+    internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
 
     #region ICombatClass Members
+
+    public float AggroRange
+    {
+        get { return InternalAggroRange; }
+    }
 
     public float Range
     {
@@ -25252,6 +25258,7 @@ public class HunterSurvival
     public HunterSurvival()
     {
         Main.InternalRange = 30.0f;
+        Main.InternalAggroRange = 30.0f;
         MySettings = HunterSurvivalSettings.GetSettings();
         Main.DumpCurrentSettings<HunterSurvivalSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -25495,17 +25502,10 @@ public class HunterSurvival
     {
         if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            if (Disengage.KnownSpell && MySettings.UseDisengage && Disengage.IsSpellUsable)
             {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
+                Logging.WriteFight("Too Close. Using disengage");
+                Disengage.Cast();
                 MovementManager.Face(ObjectManager.Target.Position);
             }
         }
@@ -26092,7 +26092,8 @@ public class MonkBrewmaster
 
     public MonkBrewmaster()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = 3.2f;
+        Main.InternalAggroRange = 25.0f;
         MySettings = MonkBrewmasterSettings.GetSettings();
         Main.DumpCurrentSettings<MonkBrewmasterSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -26191,21 +26192,13 @@ public class MonkBrewmaster
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 1.0f && ObjectManager.Target.GetDistance < ObjectManager.Target.GetBoundingRadius && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
+            Logging.WriteFight("Too Close. Moving forward");
+            MovementsAction.MoveForward(true);
+            Others.SafeSleep(1250);
+            MovementsAction.MoveForward(false);
+            MovementManager.Face(ObjectManager.Target.Position);
         }
     }
 
@@ -26493,8 +26486,7 @@ public class MonkBrewmaster
     [Serializable]
     public class MonkBrewmasterSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
+        public bool DoAvoidMelee = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;

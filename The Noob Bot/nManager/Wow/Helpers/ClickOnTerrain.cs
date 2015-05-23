@@ -33,7 +33,7 @@ namespace nManager.Wow.Helpers
 
             s.Launch();
 
-            Thread.Sleep(Usefuls.Latency + 50);
+            Thread.Sleep(250 + Usefuls.Latency);
 
             Pulse(point);
         }
@@ -50,7 +50,7 @@ namespace nManager.Wow.Helpers
             ItemsManager.UseItem(ItemsManager.GetItemNameById(Entry));
 
 
-            Thread.Sleep(Usefuls.Latency + 50);
+            Thread.Sleep(250 + Usefuls.Latency);
 
             Pulse(point);
         }

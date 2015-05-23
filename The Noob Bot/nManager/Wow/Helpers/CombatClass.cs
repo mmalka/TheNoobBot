@@ -32,9 +32,9 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InRange(unit);
                 float distance = unit.GetDistance;
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
-                return distance - combatReach <= GetRange - 0.5;
+                float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("InRange check: Distance " + distance + ", BoundingRadius " + boundingRadius + ", Range " + GetRange);
+                return distance - boundingRadius <= GetRange - 0.1;
             }
             catch (Exception exception)
             {
@@ -43,6 +43,24 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool InAggroRange(WoWUnit unit)
+        {
+            try
+            {
+                if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
+                    return HealerClass.InRange(unit);
+                float distance = unit.GetDistance;
+                float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("InRange check: Distance " + distance + ", BoundingRadius " + boundingRadius + ", Range " + GetRange);
+                return distance - boundingRadius <= GetAggroRange - 0.1;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("CombatClass > InRange: " + exception);
+                return false;
+            }
+        }
+        private static float _cache = 0;
         public static bool InCustomRange(WoWUnit unit, float minRange, float maxRange)
         {
             try
@@ -50,9 +68,13 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InCustomRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", minRange " + minRange + ", maxRange " + maxRange);
-                return distance - combatReach <= maxRange - 0.5 && distance >= minRange + 0.5;
+                if (distance != _cache)
+                {
+                    //Logging.WriteDebug("Distance " + distance + ", BoundingRadius " + boundingRadius + ", Scale " + unit.Scale + ", Diff " + (distance - boundingRadius));
+                    _cache = distance;
+                }
+                float boundingRadius = unit.GetBoundingRadius;
+                return distance - boundingRadius <= maxRange - 0.05 && distance >= minRange + 0.05;
             }
             catch (Exception exception)
             {
@@ -68,9 +90,9 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InMinRange(unit);
                 float distance = unit.GetDistance;
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InMinRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
-                return distance - combatReach <= GetRange - 0.5 && distance - combatReach >= -1.5;
+                float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("InMinRange check: Distance " + distance + ", BoundingRadius " + unit.GetBoundingRadius + ", Scale " + unit.Scale + ", Range " + GetRange);
+                return distance - boundingRadius <= GetRange - 0.05 && distance - boundingRadius >= -0.05; // distance - combatReach >= -1.5;
             }
             catch (Exception exception)
             {
@@ -86,17 +108,34 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     if (_instanceFromOtherAssembly != null)
-                        return _instanceFromOtherAssembly.Range < 5.0f ? 5.0f : _instanceFromOtherAssembly.Range;
-                    return 5.0f;
+                        return _instanceFromOtherAssembly.Range < 1.5f ? 1.5f : _instanceFromOtherAssembly.Range;
+                    return 1.5f;
                 }
                 catch (Exception exception)
                 {
                     Logging.WriteError("CombatClass > GetRange: " + exception);
-                    return 5.0f;
+                    return 1.5f;
                 }
             }
         }
 
+        public static float GetAggroRange
+        {
+            get
+            {
+                try
+                {
+                    if (_instanceFromOtherAssembly != null)
+                        return _instanceFromOtherAssembly.AggroRange < 5.0f ? 5.0f : _instanceFromOtherAssembly.AggroRange;
+                    return 5.0f;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("CombatClass > GetAggroRange: " + exception);
+                    return 5.0f;
+                }
+            }
+        }
         public static bool IsAliveCombatClass
         {
             get
@@ -309,6 +348,7 @@ namespace nManager.Wow.Helpers
         #region Properties
 
         float Range { get; }
+        float AggroRange { get; }
 
         #endregion Properties
 
