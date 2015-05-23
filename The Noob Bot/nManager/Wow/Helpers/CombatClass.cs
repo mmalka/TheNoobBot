@@ -60,7 +60,7 @@ namespace nManager.Wow.Helpers
                 return false;
             }
         }
-        private static float _cache = 0;
+
         public static bool InCustomRange(WoWUnit unit, float minRange, float maxRange)
         {
             try
@@ -68,12 +68,8 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                if (distance != _cache)
-                {
-                    //Logging.WriteDebug("Distance " + distance + ", BoundingRadius " + boundingRadius + ", Scale " + unit.Scale + ", Diff " + (distance - boundingRadius));
-                    _cache = distance;
-                }
                 float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("Distance " + distance + ", BoundingRadius " + boundingRadius + ", Scale " + unit.Scale + ", Diff " + (distance - boundingRadius));
                 return distance - boundingRadius <= maxRange - 0.05 && distance >= minRange + 0.05;
             }
             catch (Exception exception)
