@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -40,7 +41,13 @@ namespace nManager.Wow.Helpers
             foreach (Auras.UnitAura buff in AuraStack(baseAddress).Auras)
             {
                 if (buffId.Contains(buff.AuraSpellId))
+                {
+                    if (buff.IsActive)
+                        return buff.AuraCount;
+                    if (buff.Flags.HasFlag(UnitAuraFlags.Passive) && !buff.Flags.HasFlag(UnitAuraFlags.Cancelable))
+                        return -1;           
                     return buff.AuraCount;
+                }
             }
             return -1;
         }
