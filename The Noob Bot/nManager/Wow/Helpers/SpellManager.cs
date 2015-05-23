@@ -602,7 +602,7 @@ namespace nManager.Wow.Helpers
                     string randomString = Others.GetRandomString(Others.Random(5, 10));
                     string result = Lua.LuaDoString(
                         randomString + " = \"\"; " +
-                        "local name, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(" + id + "); " +
+                        "local name, rank, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(" + id + "); " +
                         randomString +
                         " = tostring(name) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(castTime) .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellId);"
                         , randomString);
@@ -672,7 +672,7 @@ namespace nManager.Wow.Helpers
                     string command = randomString + " = \"\"; " +
                                      "local spellBookList = " + listIdString + " " +
                                      "for arrayId = 1, table.getn(spellBookList) do " +
-                                     "local name, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(spellBookList[arrayId]); " +
+                                     "local name, rank, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(spellBookList[arrayId]); " +
                                      randomString + " = " + randomString +
                                      " .. tostring(name) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(castTime) .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellId);" +
                                      randomString + " = " + randomString + " .. \"||\"" +
