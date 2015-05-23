@@ -23216,11 +23216,6 @@ public class WarriorFury
             BerserkerRage.Cast();
             return;
         }
-        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80 && MySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
-        {
-            BattleShout.Cast();
-            return;
-        }
         if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80 && MySettings.UseCommandingShout && !MySettings.UseBattleShout &&
             ObjectManager.Target.GetDistance < 30)
         {
