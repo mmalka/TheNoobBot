@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -181,6 +182,7 @@ namespace nManager.Products
                     Fight.StopFight();
                     CombatClass.DisposeCombatClass();
                     LongMove.StopLongMove();
+                    Memory.WowMemory.GameFrameUnLock();
                     return true;
                 }
             }

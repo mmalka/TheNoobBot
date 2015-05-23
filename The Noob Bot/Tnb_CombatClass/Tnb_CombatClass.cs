@@ -16575,7 +16575,7 @@ public class ShamanElemental
 
     private bool FireTotemReady()
     {
-        return !FireElementalTotem.CreatedBySpell && !MagmaTotem.CreatedBySpell;
+        return !FireElementalTotem.CreatedBySpell;
     }
 
     private bool EarthTotemReady()
