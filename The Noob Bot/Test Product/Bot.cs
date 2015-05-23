@@ -463,7 +463,7 @@ namespace Test_Product
                 }
                 if (ObjectManager.Me.OnTaxi)
                 {
-                    Travel.TravelPatientlybyTaxi(true);
+                    Travel.TravelPatientlybyTaxiOrPortal(true);
                     Thread.Sleep(2000);
                     continue;
                 }

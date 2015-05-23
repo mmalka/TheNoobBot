@@ -170,7 +170,7 @@ namespace nManager.Wow.Bot.States
                     return;
                 if (transport is Taxi)
                 {
-                    TravelPatientlybyTaxi();
+                    TravelPatientlybyTaxiOrPortal();
                 }
                 else if (!(transport is Portal))
                 {
@@ -283,30 +283,26 @@ namespace nManager.Wow.Bot.States
                         MountTask.DismountMount();
                     if (memoryPortal.IsValid)
                     {
-                        if (memoryPortal.GetDistance > 4)
+                        if (memoryPortal.GetDistance > 4.0f)
                         {
                             List<Point> path = PathFinder.FindPath(memoryPortal.Position);
                             MovementManager.Go(path);
-                            while (memoryPortal.GetDistance > 4)
+                            while (memoryPortal.GetDistance > 4.0f)
                             {
                                 if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
-                                {
                                     return;
-                                }
+                                Thread.Sleep(150);
                             }
-                            Interact.InteractWith(memoryPortal.GetBaseAddress, true);
-                            Thread.Sleep(3000);
-                            if (memoryPortal.IsValid)
-                            {
-                                Interact.InteractWith(memoryPortal.GetBaseAddress, true);
-                                Thread.Sleep(6000);
-                            }
-                            loop = false;
                         }
+                        MountTask.DismountMount();
+                        Thread.Sleep(150);
+                        Interact.InteractWith(memoryPortal.GetBaseAddress);
+                        TravelPatientlybyTaxiOrPortal();
+                        loop = false;
                     }
                     else
                     {
-                        if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+                        if (portal.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.0f)
                         {
                             GoToDepartureQuayOrPortal(selectedTransport);
                             EnterTransportOrTakePortal(selectedTransport);
@@ -587,7 +583,7 @@ namespace nManager.Wow.Bot.States
             return FindNextTaxiHopFor(taxi) != null;
         }
 
-        public static void TravelPatientlybyTaxi(bool ignoreCombatClass = false)
+        public static void TravelPatientlybyTaxiOrPortal(bool ignoreCombatClass = false)
         {
             bool loop = true;
             Point refPoint = ObjectManager.ObjectManager.Me.Position;
