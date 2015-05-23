@@ -155,8 +155,32 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
+        private static readonly List<uint> KnownGetCooldownIssues = new List<uint>() {51505,};
+
+        public static double TimeLeftOnSpellCooldownLUA(uint spellId)
+        {
+            string luaVarStart = Others.GetRandomString(Others.Random(4, 10));
+            string luaVarDuration = Others.GetRandomString(Others.Random(4, 10));
+            string luaVarTime = Others.GetRandomString(Others.Random(4, 10));
+            string luaResult = Others.GetRandomString(Others.Random(4, 10));
+
+            string luaCode = luaVarStart + "," + luaVarDuration + ",_=GetSpellCooldown(" + spellId + ") ";
+            luaCode += luaVarTime + "=GetTime() ";
+            luaCode += "if " + luaVarStart + " == 0 or " + luaVarDuration + " == 0 then ";
+            luaCode += luaResult + " = 0 ";
+            luaCode += "else ";
+            luaCode += luaResult + " = (" + luaVarStart + " + " + luaVarDuration + " - " + luaVarTime + ")*1000 ";
+            luaCode += "end";
+
+            Lua.LuaDoString(luaCode, false, false);
+            return Convert.ToDouble(Lua.GetLocalizedText(luaResult));
+        }
+
+
         public static bool IsSpellOnCooldown(uint spellId, uint categoryId = 0, uint startRecoveryCategoryId = 0)
         {
+            if (KnownGetCooldownIssues.Contains(spellId))
+                return TimeLeftOnSpellCooldownLUA(spellId) > 0;
             List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
             foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
             {
