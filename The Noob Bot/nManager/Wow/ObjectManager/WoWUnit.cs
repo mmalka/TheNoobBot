@@ -2566,6 +2566,18 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsUnitBrawlerAndTappedByMe
+        {
+            get
+            {
+                if (!IsTappedByMe)
+                    return false;
+                if (Usefuls.ContinentId != 1043 && Usefuls.ContinentId != 369)
+                    return false;
+                return true;
+            }
+        }
+
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
         {
             try
