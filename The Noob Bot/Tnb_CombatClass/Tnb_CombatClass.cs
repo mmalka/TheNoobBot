@@ -7135,23 +7135,14 @@ public class WarlockDemonology
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
-        if (_onCd.IsReady &&
-            (ObjectManager.Me.HealthPercent <= MySettings.UseUnendingResolveAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseHowlofTerrorAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseDarkBargainAtPercentage ||
-             ObjectManager.Me.HealthPercent <= MySettings.UseSacrificialPactAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseShadowfuryAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage))
-            DefenseCycle();
-        if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseDarkRegenerationAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseMortalCoilAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseDrainLifeAtPercentage)
-            Heal();
         Decast();
-        DPSBurst();
-        DPSCycle();
+        if (_onCd.IsReady)
+            DefenseCycle();
+        Heal();
     }
 
     private void Buff()
@@ -7951,24 +7942,14 @@ public class WarlockDestruction
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
-        if (_onCd.IsReady &&
-            (ObjectManager.Me.HealthPercent <= MySettings.UseUnendingResolveAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseHowlofTerrorAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseDarkBargainAtPercentage ||
-             ObjectManager.Me.HealthPercent <= MySettings.UseSacrificialPactAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseShadowfuryAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage))
-            DefenseCycle();
-        if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseDarkRegenerationAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseMortalCoilAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseDrainLifeAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
-            Heal();
         Decast();
-        DPSBurst();
-        DPSCycle();
+        if (_onCd.IsReady)
+            DefenseCycle();
+        Heal();
     }
 
     private void Buff()
@@ -8749,23 +8730,14 @@ public class WarlockAffliction
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
-        if (_onCd.IsReady &&
-            (ObjectManager.Me.HealthPercent <= MySettings.UseUnendingResolveAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseHowlofTerrorAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseDarkBargainAtPercentage ||
-             ObjectManager.Me.HealthPercent <= MySettings.UseSacrificialPactAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseShadowfuryAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage
-             || ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage))
-            DefenseCycle();
-        if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseDarkRegenerationAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage
-            || ObjectManager.Me.HealthPercent <= MySettings.UseMortalCoilAtPercentage || ObjectManager.Me.HealthPercent <= MySettings.UseDrainLifeAtPercentage)
-            Heal();
         Decast();
-        DPSBurst();
-        DPSCycle();
+        if (_onCd.IsReady)
+            DefenseCycle();
+        Heal();
     }
 
     private void Buff()
@@ -12500,14 +12472,12 @@ public class PaladinHoly
 
     private void Combat()
     {
+        Buffs();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
-        DPSBurst();
-        DPSCycle();
         Heal();
-        DPSCycle();
-        Buffs();
     }
 
     private void Patrolling()
@@ -13556,10 +13526,10 @@ public class PaladinRetribution
 
     private void Combat()
     {
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
         Buffs();
         DPSBurst();
+        if (MySettings.DoAvoidMelee)
+            AvoidMelee();
         DPSCycle();
         Heal();
     }
@@ -14261,17 +14231,16 @@ public class ShamanEnhancement
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
+
 
     private void Buff()
     {
@@ -14921,9 +14890,7 @@ public class ShamanRestoration
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -15118,17 +15085,16 @@ public class ShamanRestoration
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
+
 
     private void Buff()
     {
@@ -15996,10 +15962,11 @@ public class ShamanElemental
             AvoidMelee();
         DPSCycle();
         Decast();
-        Heal();
         if (_onCd.IsReady)
             DefenseCycle();
+        Heal();
     }
+
 
     private void Buff()
     {
@@ -19042,16 +19009,14 @@ public class RogueCombat
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
 
     private void Buff()
@@ -20533,16 +20498,14 @@ public class RogueAssassination
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
 
     private void Buff()
@@ -21273,16 +21236,14 @@ public class WarriorArms
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
 
     private void Buff()
@@ -22135,17 +22096,16 @@ public class WarriorProtection
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
+
 
     private void Buff()
     {
@@ -22990,17 +22950,16 @@ public class WarriorFury
     private void Combat()
     {
         Buff();
+        DPSBurst();
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
+        Decast();
         if (_onCd.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
     }
+
 
     private void Buff()
     {
