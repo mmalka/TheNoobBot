@@ -2457,17 +2457,17 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int AuraTimeLeft(UInt32 idBuff)
+        public int AuraTimeLeft(UInt32 idBuff, bool fromMe = false)
         {
             var aura = UnitAura(idBuff);
-            if (aura.IsActive)
+            if (aura.IsActive && (!fromMe || aura.AuraCreatorGUID == ObjectManager.Me.Guid))
                 return aura.AuraTimeLeftInMs;
             return 0;
         }
 
-        public bool AuraIsActiveAndExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs)
+        public bool AuraIsActiveAndExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs, bool fromMe = false)
         {
-            return (AuraTimeLeft(idBuff) > 0 && AuraTimeLeft(idBuff) < expireInLessThanMs);
+            return (AuraTimeLeft(idBuff, fromMe) > 0 && AuraTimeLeft(idBuff, fromMe) < expireInLessThanMs);
         }
 
         public Reaction Reaction
