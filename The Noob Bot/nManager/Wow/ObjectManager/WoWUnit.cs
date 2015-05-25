@@ -2403,7 +2403,6 @@ namespace nManager.Wow.ObjectManager
             return UnitAura(idBuffs);
         }
 
-
         public int BuffStack(List<UInt32> idBuffs)
         {
             try
