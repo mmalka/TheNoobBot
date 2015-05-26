@@ -537,7 +537,11 @@ namespace Quester.Tasks
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
+                    {
+                        if (questObjective.WaitMs > 0)
+                            Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
+                    }
                 }
             }
 
