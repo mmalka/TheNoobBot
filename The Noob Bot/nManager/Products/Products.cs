@@ -124,6 +124,12 @@ namespace nManager.Products
             get { return (_instanceFromOtherAssembly != null); }
         }
 
+        public static void ToggleCinematic(bool started = true)
+        {
+            _inPause = started;
+        }
+
+
         public static bool ProductStart()
         {
             try
@@ -135,6 +141,8 @@ namespace nManager.Products
                     TravelTo = new Point();
 
                     _instanceFromOtherAssembly.Start();
+                    EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
+                    EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
                     Statistics.Reset();
 
                     // Fsm
@@ -176,6 +184,8 @@ namespace nManager.Products
                 Fsm.StopEngine();
                 if (_instanceFromOtherAssembly != null)
                 {
+                    EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
+                    EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
                     _instanceFromOtherAssembly.Stop();
                     Thread.Sleep(500);
                     MovementManager.StopMove();
