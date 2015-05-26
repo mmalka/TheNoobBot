@@ -14,7 +14,7 @@ namespace nManager.Wow.Class
 
             public bool IsValid
             {
-                get { return (AuraCount != -1); }
+                get { return (AuraCount != -1 && AuraCreatorGUID > 0); }
             }
 
             public uint AuraSpellId { get; set; }

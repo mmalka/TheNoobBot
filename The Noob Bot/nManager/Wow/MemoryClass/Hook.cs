@@ -189,6 +189,8 @@ namespace nManager.Wow.MemoryClass
         {
             lock (Locker)
             {
+                if (!nManagerSetting.CurrentSetting.UseFrameLock)
+                    return;
                 Memory.WriteUInt(_mLocked, 0);
                 Memory.WriteUInt(_mLockRequested, 1);
 

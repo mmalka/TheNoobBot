@@ -5,10 +5,12 @@ using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Math = System.Math;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using Keybindings = nManager.Wow.Enums.Keybindings;
 
 namespace Quester.Profile
 {
@@ -233,6 +235,9 @@ namespace Quester.Profile
         [DefaultValue(0)] public int NpcEntry = 0;
         [DefaultValue("")] public string QuestName = "";
         [DefaultValue(0)] public int QuestId = 0;
+
+        // TravelTo
+        [DefaultValue(0)] public int ContinentId = 0;
     }
 
     [Serializable]
@@ -259,6 +264,7 @@ namespace Quester.Profile
         UseSpellAOE,
         UseVehicle,
         Wait,
+        TravelTo,
     }
 
     [Serializable]

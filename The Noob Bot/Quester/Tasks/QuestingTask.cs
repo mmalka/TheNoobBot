@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using nManager.Products;
+using nManager.Wow.Bot.States;
 using Quester.Bot;
 using Quester.Profile;
 using nManager;
@@ -146,6 +149,25 @@ namespace Quester.Tasks
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
+
+            if (questObjective.Objective == Objective.TravelTo)
+            {
+                if (questObjective.ContinentId != Usefuls.ContinentId)
+                    return false;
+                List<WoWUnit> p = ObjectManager.GetObjectWoWUnit();
+                foreach (WoWUnit unit in p)
+                {
+                    foreach (int i in questObjective.Entry)
+                    {
+                        if (unit.Entry == i)
+                        {
+                            return true;
+                            // We use field Entry as a "IsArrivedCheck".
+                        }
+                    }
+                }
+                return false;
+            }
 
             // COLLECT ITEM || BUY ITEM
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
@@ -515,7 +537,11 @@ namespace Quester.Tasks
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
+                    {
+                        if (questObjective.WaitMs > 0)
+                            Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
+                    }
                 }
             }
 
@@ -1073,6 +1099,17 @@ namespace Quester.Tasks
                 }
                 // target not found
             }
+
+            if (questObjective.Objective == Objective.TravelTo)
+            {
+                Products.TravelTo = questObjective.Position;
+                Products.TravelToContinentId = questObjective.ContinentId;
+                if (ObjectManager.Me.Position.DistanceTo(questObjective.Position) > 100)
+                {
+                    return;
+                }
+                questObjective.IsObjectiveCompleted = true;
+            }
         }
 
         public static void PickUpQuest()
@@ -1107,6 +1144,7 @@ namespace Quester.Tasks
             if (CurrentQuest.AutoComplete != null && QuestingTask.CurrentQuest.AutoComplete.Count > 0)
             {
                 EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest(CurrentQuest.AutoComplete), false);
+                Quest.AutoCompleteQuest(CurrentQuest.AutoComplete); // make sure to recall it as long as the quest is not yet completed in case it failed the first time.
             }
         }
 

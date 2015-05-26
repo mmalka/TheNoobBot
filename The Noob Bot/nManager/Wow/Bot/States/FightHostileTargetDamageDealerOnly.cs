@@ -79,7 +79,7 @@ namespace nManager.Wow.Bot.States
             // Get unit:
             var localUnit = ObjectManager.ObjectManager.Target;
 
-            if (localUnit.IsValid && localUnit.IsAlive && localUnit.Health > 0 && localUnit.Attackable && localUnit.IsHostile)
+            if (localUnit.IsValid && localUnit.IsAlive && localUnit.Health > 0 && ((localUnit.Attackable && localUnit.IsHostile) || localUnit.IsUnitBrawlerAndTappedByMe))
                 return localUnit;
 
             // If in party, then search for the target if one member is in combat

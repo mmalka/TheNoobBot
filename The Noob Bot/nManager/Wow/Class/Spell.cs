@@ -365,6 +365,29 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
+        /// Gets if the target have this buff from me.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [target have buff]; otherwise, <c>false</c>.
+        /// </value>
+        public bool TargetHaveBuffFromMe
+        {
+            get
+            {
+                try
+                {
+                    Auras.UnitAura targetAura = ObjectManager.ObjectManager.Target.UnitAura(Ids, ObjectManager.ObjectManager.Me.Guid);
+                    return targetAura.IsValid;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("Spell > TargetHaveBuffFromMe: " + exception);
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
         /// Cast Spell.
         /// </summary>
         public void Launch()

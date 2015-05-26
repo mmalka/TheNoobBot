@@ -113,7 +113,33 @@ namespace nManager.Wow.Helpers
             return inv.Length <= 0 ? 0 : inv[randomized];
         }
 
-        private static readonly List<int> DraenorSeasList = new List<int> {7233, 7246, 7251, 7257, 7233, 7238, 7239, 7255, 7258, 7259, 7262, 7300, 7407, 7408, 7410, 7414, 7428, 7436, 7445, 7446, 7448, 6968, 7055, 7173};
+        private static readonly List<int> DraenorSeasList = new List<int>
+        {
+            7233,
+            7246,
+            7251,
+            7257,
+            7233,
+            7238,
+            7239,
+            7255,
+            7258,
+            7259,
+            7262,
+            7300,
+            7407,
+            7408,
+            7410,
+            7414,
+            7428,
+            7436,
+            7445,
+            7446,
+            7448,
+            6968,
+            7055,
+            7173
+        };
 
         public static void UseDraenicBait()
         {
@@ -300,7 +326,7 @@ namespace nManager.Wow.Helpers
                         }
                     }
                 }
-                ReCheckFishingPoleTimer = new Timer(1000 * 60 * 5);
+                ReCheckFishingPoleTimer = new Timer(1000*60*5);
                 Logging.WriteDebug("Inventory parsed, prevent this function from being parsed for the next five minutes.");
             }
             catch (Exception e)

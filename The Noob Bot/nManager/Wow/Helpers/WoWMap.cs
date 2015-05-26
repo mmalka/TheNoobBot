@@ -9,12 +9,12 @@ namespace nManager.Wow.Helpers
         private MapDbcRecord _rMapDBCRecord0;
         private static DBC<MapDbcRecord> _rMapDBC;
         // Small list of unused map which have nor flags, nor type able to filter them
-        private static List<uint> _blacklistedMaps = new List<uint>(new uint[] { 930, 995, 1187 });
+        private static List<uint> _blacklistedMaps = new List<uint>(new uint[] {930, 995, 1187});
 
         private static void init()
         {
             if (_rMapDBC == null)
-                _rMapDBC = new DBC<MapDbcRecord>((int)Addresses.DBC.Map);
+                _rMapDBC = new DBC<MapDbcRecord>((int) Addresses.DBC.Map);
         }
 
         private WoWMap(string name, bool mpq = false)
@@ -37,34 +37,22 @@ namespace nManager.Wow.Helpers
 
         public string MapName
         {
-            get
-            {
-                return _rMapDBCRecord0.MapName();
-            }
+            get { return _rMapDBCRecord0.MapName(); }
         }
 
         public string MapMPQName
         {
-            get
-            {
-                return _rMapDBCRecord0.MapMPQName();
-            }
+            get { return _rMapDBCRecord0.MapMPQName(); }
         }
 
         public bool IsTestMap
         {
-            get
-            {
-                return _rMapDBCRecord0.IsTestMap();
-            }
+            get { return _rMapDBCRecord0.IsTestMap(); }
         }
 
         public bool IsGarrisonMap
         {
-            get
-            {
-                return _rMapDBCRecord0.IsGarrisonMap();
-            }
+            get { return _rMapDBCRecord0.IsGarrisonMap(); }
         }
 
         private WoWMap(int reqId)
@@ -171,24 +159,25 @@ namespace nManager.Wow.Helpers
 
             public string MapMPQName()
             {
-                return _rMapDBC.String(_rMapDBC.GetRowOffset((int)Id) + MPQDirectoryNameOffset +
-                    (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MPQDirectoryNameOffset"));
+                return _rMapDBC.String(_rMapDBC.GetRowOffset((int) Id) + MPQDirectoryNameOffset +
+                                       (uint) Marshal.OffsetOf(typeof (MapDbcRecord), "MPQDirectoryNameOffset"));
             }
 
             public string MapName()
             {
-                return _rMapDBC.String(_rMapDBC.GetRowOffset((int)Id) + MapNameOffset +
-                    (uint)Marshal.OffsetOf(typeof(MapDbcRecord), "MapNameOffset"));
+                return _rMapDBC.String(_rMapDBC.GetRowOffset((int) Id) + MapNameOffset +
+                                       (uint) Marshal.OffsetOf(typeof (MapDbcRecord), "MapNameOffset"));
             }
 
             public bool IsTestMap()
             {
-                return (Flags & (uint)MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
-                    (Flags & (uint)MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
+                return (Flags & (uint) MapFlags.MAP_FLAG_TEST_MAP) != 0 ||
+                       (Flags & (uint) MapFlags.MAP_FLAG_NOT_EXISTING) != 0;
             }
+
             public bool IsGarrisonMap()
             {
-                return (Flags & (uint)MapFlags.MAP_FLAG_GARRISON) != 0;
+                return (Flags & (uint) MapFlags.MAP_FLAG_GARRISON) != 0;
             }
 
             public bool IsBlacklistedMap()

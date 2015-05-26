@@ -251,6 +251,8 @@ namespace nManager.Helpful.Forms
             this.BroadcastingIPLocalLabel = new System.Windows.Forms.Label();
             this.BroadcastingPortLabel = new System.Windows.Forms.Label();
             this.AdvancedSettingsPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.HideSDKFilesLabel = new System.Windows.Forms.Label();
+            this.HideSDKFiles = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AutoCloseChatFrameLabel = new System.Windows.Forms.Label();
             this.AutoCloseChatFrame = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AlwaysOnTopFeatureLabel = new System.Windows.Forms.Label();
@@ -262,8 +264,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.HideSDKFilesLabel = new System.Windows.Forms.Label();
-            this.HideSDKFiles = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.UseFrameLockLabel = new System.Windows.Forms.Label();
+            this.UseFrameLock = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -1190,6 +1192,7 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 108);
             this.LootingFarmingManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.LootingFarmingManagementPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.LootingFarmingManagementPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.LootingFarmingManagementPanelName.Name = "LootingFarmingManagementPanelName";
             this.LootingFarmingManagementPanelName.OrderIndex = 4;
             this.LootingFarmingManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -1825,6 +1828,7 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.Location = new System.Drawing.Point(0, 144);
             this.NPCsRepairSellBuyPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.NPCsRepairSellBuyPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.NPCsRepairSellBuyPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.NPCsRepairSellBuyPanelName.Name = "NPCsRepairSellBuyPanelName";
             this.NPCsRepairSellBuyPanelName.OrderIndex = 5;
             this.NPCsRepairSellBuyPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -1838,9 +1842,9 @@ namespace nManager.Helpful.Forms
             // SellPurple
             // 
             this.SellPurple.ForeColor = System.Drawing.Color.Black;
-            this.SellPurple.Location = new System.Drawing.Point(162, 194);
+            this.SellPurple.Location = new System.Drawing.Point(192, 194);
             this.SellPurple.Name = "SellPurple";
-            this.SellPurple.Size = new System.Drawing.Size(96, 23);
+            this.SellPurple.Size = new System.Drawing.Size(169, 23);
             this.SellPurple.TabIndex = 33;
             this.SellPurple.Text = "Sell Purple items";
             // 
@@ -1849,25 +1853,25 @@ namespace nManager.Helpful.Forms
             this.SellBlue.ForeColor = System.Drawing.Color.Black;
             this.SellBlue.Location = new System.Drawing.Point(11, 194);
             this.SellBlue.Name = "SellBlue";
-            this.SellBlue.Size = new System.Drawing.Size(96, 23);
+            this.SellBlue.Size = new System.Drawing.Size(175, 23);
             this.SellBlue.TabIndex = 32;
             this.SellBlue.Text = "Sell Blue items";
             // 
             // SellGreen
             // 
             this.SellGreen.ForeColor = System.Drawing.Color.Black;
-            this.SellGreen.Location = new System.Drawing.Point(302, 165);
+            this.SellGreen.Location = new System.Drawing.Point(394, 165);
             this.SellGreen.Name = "SellGreen";
-            this.SellGreen.Size = new System.Drawing.Size(96, 23);
+            this.SellGreen.Size = new System.Drawing.Size(135, 23);
             this.SellGreen.TabIndex = 31;
             this.SellGreen.Text = "Sell Green items";
             // 
             // SellWhite
             // 
             this.SellWhite.ForeColor = System.Drawing.Color.Black;
-            this.SellWhite.Location = new System.Drawing.Point(162, 164);
+            this.SellWhite.Location = new System.Drawing.Point(192, 165);
             this.SellWhite.Name = "SellWhite";
-            this.SellWhite.Size = new System.Drawing.Size(96, 23);
+            this.SellWhite.Size = new System.Drawing.Size(188, 23);
             this.SellWhite.TabIndex = 30;
             this.SellWhite.Text = "Sell White items";
             // 
@@ -1876,7 +1880,7 @@ namespace nManager.Helpful.Forms
             this.SellGray.ForeColor = System.Drawing.Color.Black;
             this.SellGray.Location = new System.Drawing.Point(11, 165);
             this.SellGray.Name = "SellGray";
-            this.SellGray.Size = new System.Drawing.Size(96, 23);
+            this.SellGray.Size = new System.Drawing.Size(175, 23);
             this.SellGray.TabIndex = 29;
             this.SellGray.Text = "Sell Gray items";
             // 
@@ -2120,6 +2124,7 @@ namespace nManager.Helpful.Forms
             this.MailsManagementPanelName.Location = new System.Drawing.Point(0, 180);
             this.MailsManagementPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.MailsManagementPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.MailsManagementPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.MailsManagementPanelName.Name = "MailsManagementPanelName";
             this.MailsManagementPanelName.OrderIndex = 6;
             this.MailsManagementPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -2133,36 +2138,36 @@ namespace nManager.Helpful.Forms
             // MailPurple
             // 
             this.MailPurple.ForeColor = System.Drawing.Color.Black;
-            this.MailPurple.Location = new System.Drawing.Point(162, 191);
+            this.MailPurple.Location = new System.Drawing.Point(194, 190);
             this.MailPurple.Name = "MailPurple";
-            this.MailPurple.Size = new System.Drawing.Size(96, 23);
+            this.MailPurple.Size = new System.Drawing.Size(166, 23);
             this.MailPurple.TabIndex = 33;
             this.MailPurple.Text = "Mail Purple items";
             // 
             // MailBlue
             // 
             this.MailBlue.ForeColor = System.Drawing.Color.Black;
-            this.MailBlue.Location = new System.Drawing.Point(11, 191);
+            this.MailBlue.Location = new System.Drawing.Point(11, 194);
             this.MailBlue.Name = "MailBlue";
-            this.MailBlue.Size = new System.Drawing.Size(96, 23);
+            this.MailBlue.Size = new System.Drawing.Size(175, 23);
             this.MailBlue.TabIndex = 32;
             this.MailBlue.Text = "Mail Blue items";
             // 
             // MailGreen
             // 
             this.MailGreen.ForeColor = System.Drawing.Color.Black;
-            this.MailGreen.Location = new System.Drawing.Point(302, 162);
+            this.MailGreen.Location = new System.Drawing.Point(380, 162);
             this.MailGreen.Name = "MailGreen";
-            this.MailGreen.Size = new System.Drawing.Size(96, 23);
+            this.MailGreen.Size = new System.Drawing.Size(166, 23);
             this.MailGreen.TabIndex = 31;
             this.MailGreen.Text = "Mail Green items";
             // 
             // MailWhite
             // 
             this.MailWhite.ForeColor = System.Drawing.Color.Black;
-            this.MailWhite.Location = new System.Drawing.Point(162, 161);
+            this.MailWhite.Location = new System.Drawing.Point(194, 163);
             this.MailWhite.Name = "MailWhite";
-            this.MailWhite.Size = new System.Drawing.Size(96, 23);
+            this.MailWhite.Size = new System.Drawing.Size(166, 23);
             this.MailWhite.TabIndex = 30;
             this.MailWhite.Text = "Mail White items";
             // 
@@ -2171,7 +2176,7 @@ namespace nManager.Helpful.Forms
             this.MailGray.ForeColor = System.Drawing.Color.Black;
             this.MailGray.Location = new System.Drawing.Point(11, 162);
             this.MailGray.Name = "MailGray";
-            this.MailGray.Size = new System.Drawing.Size(96, 23);
+            this.MailGray.Size = new System.Drawing.Size(175, 23);
             this.MailGray.TabIndex = 29;
             this.MailGray.Text = "Mail Gray items";
             // 
@@ -3219,6 +3224,8 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.AdvancedSettingsPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(556, 103);
+            this.AdvancedSettingsPanelName.Controls.Add(this.UseFrameLockLabel);
+            this.AdvancedSettingsPanelName.Controls.Add(this.UseFrameLock);
             this.AdvancedSettingsPanelName.Controls.Add(this.HideSDKFilesLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.HideSDKFiles);
             this.AdvancedSettingsPanelName.Controls.Add(this.AutoCloseChatFrameLabel);
@@ -3250,6 +3257,31 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.AdvancedSettingsPanelName.TitleText = "Advanced Settings";
             this.AdvancedSettingsPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.UnfolderImage")));
+            // 
+            // HideSDKFilesLabel
+            // 
+            this.HideSDKFilesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HideSDKFilesLabel.ForeColor = System.Drawing.Color.Black;
+            this.HideSDKFilesLabel.Location = new System.Drawing.Point(4, 104);
+            this.HideSDKFilesLabel.Name = "HideSDKFilesLabel";
+            this.HideSDKFilesLabel.Size = new System.Drawing.Size(154, 22);
+            this.HideSDKFilesLabel.TabIndex = 35;
+            this.HideSDKFilesLabel.Text = "Hide SDK Files (.cs)";
+            // 
+            // HideSDKFiles
+            // 
+            this.HideSDKFiles.BackColor = System.Drawing.Color.White;
+            this.HideSDKFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.HideSDKFiles.ForeColor = System.Drawing.Color.Black;
+            this.HideSDKFiles.Location = new System.Drawing.Point(163, 104);
+            this.HideSDKFiles.MaximumSize = new System.Drawing.Size(60, 20);
+            this.HideSDKFiles.MinimumSize = new System.Drawing.Size(60, 20);
+            this.HideSDKFiles.Name = "HideSDKFiles";
+            this.HideSDKFiles.OffText = "OFF";
+            this.HideSDKFiles.OnText = "ON";
+            this.HideSDKFiles.Size = new System.Drawing.Size(60, 20);
+            this.HideSDKFiles.TabIndex = 34;
+            this.HideSDKFiles.Value = true;
             // 
             // AutoCloseChatFrameLabel
             // 
@@ -3396,30 +3428,32 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
             // 
-            // HideSDKFilesLabel
+            // UseFrameLockLabel
             // 
-            this.HideSDKFilesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.HideSDKFilesLabel.ForeColor = System.Drawing.Color.Black;
-            this.HideSDKFilesLabel.Location = new System.Drawing.Point(4, 104);
-            this.HideSDKFilesLabel.Name = "HideSDKFilesLabel";
-            this.HideSDKFilesLabel.Size = new System.Drawing.Size(154, 22);
-            this.HideSDKFilesLabel.TabIndex = 35;
-            this.HideSDKFilesLabel.Text = "Hide SDK Files (.cs)";
+            this.UseFrameLockLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseFrameLockLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseFrameLockLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.UseFrameLockLabel.Location = new System.Drawing.Point(4, 133);
+            this.UseFrameLockLabel.Name = "UseFrameLockLabel";
+            this.UseFrameLockLabel.Size = new System.Drawing.Size(430, 22);
+            this.UseFrameLockLabel.TabIndex = 37;
+            this.UseFrameLockLabel.Text = "Allow Game FrameLocking to increase TheNoobBot performance";
+            this.UseFrameLockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // HideSDKFiles
+            // UseFrameLock
             // 
-            this.HideSDKFiles.BackColor = System.Drawing.Color.White;
-            this.HideSDKFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.HideSDKFiles.ForeColor = System.Drawing.Color.Black;
-            this.HideSDKFiles.Location = new System.Drawing.Point(163, 104);
-            this.HideSDKFiles.MaximumSize = new System.Drawing.Size(60, 20);
-            this.HideSDKFiles.MinimumSize = new System.Drawing.Size(60, 20);
-            this.HideSDKFiles.Name = "HideSDKFiles";
-            this.HideSDKFiles.OffText = "OFF";
-            this.HideSDKFiles.OnText = "ON";
-            this.HideSDKFiles.Size = new System.Drawing.Size(60, 20);
-            this.HideSDKFiles.TabIndex = 34;
-            this.HideSDKFiles.Value = true;
+            this.UseFrameLock.BackColor = System.Drawing.Color.White;
+            this.UseFrameLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseFrameLock.ForeColor = System.Drawing.Color.Black;
+            this.UseFrameLock.Location = new System.Drawing.Point(448, 133);
+            this.UseFrameLock.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseFrameLock.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseFrameLock.Name = "UseFrameLock";
+            this.UseFrameLock.OffText = "OFF";
+            this.UseFrameLock.OnText = "ON";
+            this.UseFrameLock.Size = new System.Drawing.Size(60, 20);
+            this.UseFrameLock.TabIndex = 36;
+            this.UseFrameLock.Value = true;
             // 
             // GeneralSettings
             // 
@@ -3713,5 +3747,7 @@ namespace nManager.Helpful.Forms
         private TnbButton ActivatedPluginResetSettings;
         private Label HideSDKFilesLabel;
         private TnbSwitchButton HideSDKFiles;
+        private Label UseFrameLockLabel;
+        private TnbSwitchButton UseFrameLock;
     }
 }

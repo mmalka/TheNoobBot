@@ -45,7 +45,7 @@ namespace nManager.Wow.Helpers
                     if (buff.IsActive)
                         return buff.AuraCount;
                     if (buff.Flags.HasFlag(UnitAuraFlags.Passive) && !buff.Flags.HasFlag(UnitAuraFlags.Cancelable))
-                        return -1;           
+                        return -1;
                     return buff.AuraCount;
                 }
             }
