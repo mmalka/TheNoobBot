@@ -1140,6 +1140,7 @@ namespace Quester.Tasks
             if (CurrentQuest.AutoComplete != null && QuestingTask.CurrentQuest.AutoComplete.Count > 0)
             {
                 EventsListener.UnHookEvent(nManager.Wow.Enums.WoWEventsType.QUEST_AUTOCOMPLETE, callback => Quest.AutoCompleteQuest(CurrentQuest.AutoComplete), false);
+                Quest.AutoCompleteQuest(CurrentQuest.AutoComplete); // make sure to recall it as long as the quest is not yet completed in case it failed the first time.
             }
         }
 
