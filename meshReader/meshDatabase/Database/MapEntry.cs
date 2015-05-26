@@ -27,11 +27,10 @@
         {
             Id = rec[0];
             InternalName = rec.GetString(1);
-            Name = rec.GetString(5);
+            Name = rec.GetString(6);
             Type = (MapType) rec[2];
-            PhaseParent = rec[18];
+            PhaseParent = rec[19];
         }
        
     }
-
 }
