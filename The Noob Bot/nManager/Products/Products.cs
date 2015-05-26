@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow;
+using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -14,10 +15,60 @@ namespace nManager.Products
 {
     public class Products
     {
+        public delegate void IsAliveProductChangeEventHandler(IsAliveProductChangeEventArgs e);
+
+        public delegate void IsStartedChangeEventHandler(IsStartedChangeEventArgs e);
+
         private static IProduct _instanceFromOtherAssembly;
         private static Assembly _assembly;
         private static object _obj;
         private static readonly Engine Fsm = new Engine(false);
+        private static bool _isDisposed;
+        private static string _productName = "";
+        private static bool _inPause;
+        private static bool _oldIsStarted;
+        private static bool _oldIsAliveProduc;
+        private static Thread _threadEventChangeProduct;
+
+        public static bool IsAliveProduct
+        {
+            get { return (_instanceFromOtherAssembly != null); }
+        }
+
+        public static bool IsStarted
+        {
+            get
+            {
+                try
+                {
+                    if (_instanceFromOtherAssembly != null)
+                    {
+                        return _instanceFromOtherAssembly.IsStarted;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("Products > IsStarted: " + e);
+                }
+                return false;
+            }
+        }
+
+        public static string ProductName
+        {
+            get { return _productName; }
+            private set { _productName = value; }
+        }
+
+        public static bool InPause
+        {
+            get { return _inPause; }
+            set { _inPause = value; }
+        }
+
+        public static Point TravelTo { get; set; }
+        public static int TravelToContinentId { get; set; }
+        public static Func<Point, bool> TargetValidationFct { get; set; }
 
         public static void LoadProducts(string nameDll)
         {
@@ -61,7 +112,7 @@ namespace nManager.Products
             {
                 Assembly assembly2 = Assembly.LoadFrom(Others.GetCurrentDirectory + "\\Products\\" + nameDll + ".dll");
                 object obj2 = assembly2.CreateInstance("Main", true);
-                IProduct instanceFromOtherAssembly2 = obj2 as IProduct;
+                var instanceFromOtherAssembly2 = obj2 as IProduct;
                 return instanceFromOtherAssembly2;
             }
             catch (Exception e)
@@ -79,10 +130,10 @@ namespace nManager.Products
             {
                 lock (typeof (Products))
                 {
-                    Thread thread = new Thread(ThreadDisposeProduct) {Name = "Thread Dispose Product."};
+                    var thread = new Thread(ThreadDisposeProduct) {Name = "Thread Dispose Product."};
                     _isDisposed = false;
                     thread.Start();
-                    Timer t = new Timer(2*1000);
+                    var t = new Timer(2*1000);
                     while (!_isDisposed && !t.IsReady)
                     {
                         Thread.Sleep(10);
@@ -94,8 +145,6 @@ namespace nManager.Products
                 Logging.WriteError("DisposeProduct(): " + e);
             }
         }
-
-        private static bool _isDisposed;
 
         private static void ThreadDisposeProduct()
         {
@@ -118,17 +167,10 @@ namespace nManager.Products
             _isDisposed = true;
         }
 
-
-        public static bool IsAliveProduct
-        {
-            get { return (_instanceFromOtherAssembly != null); }
-        }
-
         public static void ToggleCinematic(bool started = true)
         {
             _inPause = started;
         }
-
 
         public static bool ProductStart()
         {
@@ -141,15 +183,18 @@ namespace nManager.Products
                     TravelTo = new Point();
 
                     _instanceFromOtherAssembly.Start();
+                    if (!_instanceFromOtherAssembly.IsStarted)
+                        return false;
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
+
                     Statistics.Reset();
 
                     // Fsm
                     Fsm.States.Clear();
-                    Fsm.AddState(new Wow.Bot.States.Relogger {Priority = 10});
-                    Fsm.AddState(new Wow.Bot.States.StopBotIf {Priority = 5});
-                    Fsm.AddState(new Wow.Bot.States.Idle {Priority = 1});
+                    Fsm.AddState(new Relogger {Priority = 10});
+                    Fsm.AddState(new StopBotIf {Priority = 5});
+                    Fsm.AddState(new Idle {Priority = 1});
                     Fsm.States.Sort();
                     Fsm.StartEngine(1);
 
@@ -220,49 +265,6 @@ namespace nManager.Products
             return false;
         }
 
-        public static bool IsStarted
-        {
-            get
-            {
-                try
-                {
-                    if (_instanceFromOtherAssembly != null)
-                    {
-                        return _instanceFromOtherAssembly.IsStarted;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("Products > IsStarted: " + e);
-                }
-                return false;
-            }
-        }
-
-        private static string _productName = "";
-
-        public static string ProductName
-        {
-            get { return _productName; }
-            private set { _productName = value; }
-        }
-
-        private static bool _inPause;
-
-        public static bool InPause
-        {
-            get { return _inPause; }
-            set { _inPause = value; }
-        }
-
-        public static Point TravelTo { get; set; }
-        public static int TravelToContinentId { get; set; }
-        public static Func<Point, bool> TargetValidationFct { get; set; }
-
-        private static bool _oldIsStarted;
-        private static bool _oldIsAliveProduc;
-        private static Thread _threadEventChangeProduct;
-
         private static void ThreadEventChangeProduct()
         {
             try
@@ -274,14 +276,14 @@ namespace nManager.Products
                         if (_oldIsStarted != IsStarted && OnChangedIsStarted != null)
                         {
                             _oldIsStarted = IsStarted;
-                            IsStartedChangeEventArgs e = new IsStartedChangeEventArgs {IsStarted = IsStarted};
+                            var e = new IsStartedChangeEventArgs {IsStarted = IsStarted};
                             OnChangedIsStarted(e);
                         }
 
                         if (_oldIsAliveProduc != IsAliveProduct && OnChangedIsAliveProduct != null)
                         {
                             _oldIsAliveProduc = IsAliveProduct;
-                            IsAliveProductChangeEventArgs e = new IsAliveProductChangeEventArgs {IsAliveProduct = IsAliveProduct};
+                            var e = new IsAliveProductChangeEventArgs {IsAliveProduct = IsAliveProduct};
                             OnChangedIsAliveProduct(e);
                         }
                     }
@@ -299,22 +301,18 @@ namespace nManager.Products
             }
         }
 
-        public delegate void IsStartedChangeEventHandler(IsStartedChangeEventArgs e);
-
         public static event IsStartedChangeEventHandler OnChangedIsStarted;
-
-        public class IsStartedChangeEventArgs : EventArgs
-        {
-            public bool IsStarted { get; set; }
-        }
-
-        public delegate void IsAliveProductChangeEventHandler(IsAliveProductChangeEventArgs e);
 
         public static event IsAliveProductChangeEventHandler OnChangedIsAliveProduct;
 
         public class IsAliveProductChangeEventArgs : EventArgs
         {
             public bool IsAliveProduct { get; set; }
+        }
+
+        public class IsStartedChangeEventArgs : EventArgs
+        {
+            public bool IsStarted { get; set; }
         }
     }
 }
