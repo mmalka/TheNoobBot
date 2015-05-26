@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using nManager.Products;
+using nManager.Wow.Bot.States;
 using Quester.Bot;
 using Quester.Profile;
 using nManager;
@@ -146,6 +149,25 @@ namespace Quester.Tasks
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
+
+            if (questObjective.Objective == Objective.TravelTo)
+            {
+                if (questObjective.ContinentId != Usefuls.ContinentId)
+                    return false;
+                List<WoWUnit> p = ObjectManager.GetObjectWoWUnit();
+                foreach (WoWUnit unit in p)
+                {
+                    foreach (int i in questObjective.Entry)
+                    {
+                        if (unit.Entry == i)
+                        {
+                            return true;
+                            // We use field Entry as a "IsArrivedCheck".
+                        }
+                    }
+                }
+                return false;
+            }
 
             // COLLECT ITEM || BUY ITEM
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
@@ -1072,6 +1094,17 @@ namespace Quester.Tasks
                     questObjective.IsObjectiveCompleted = true;
                 }
                 // target not found
+            }
+
+            if (questObjective.Objective == Objective.TravelTo)
+            {
+                Products.TravelTo = questObjective.Position;
+                Products.TravelToContinentId = questObjective.ContinentId;
+                if (ObjectManager.Me.Position.DistanceTo(questObjective.Position) > 100)
+                {
+                    return;
+                }
+                questObjective.IsObjectiveCompleted = true;
             }
         }
 
