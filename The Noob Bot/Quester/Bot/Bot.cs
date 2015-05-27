@@ -142,7 +142,7 @@ namespace Quester.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(5, "FSM Quester");
+                Fsm.StartEngine(10, "FSM Quester");
 
                 return true;
             }
