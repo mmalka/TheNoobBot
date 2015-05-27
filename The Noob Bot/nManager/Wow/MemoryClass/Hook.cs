@@ -194,9 +194,6 @@ namespace nManager.Wow.MemoryClass
                     return;
                 Memory.WriteUInt(_mLocked, 0);
                 Memory.WriteUInt(_mLockRequested, 1);
-
-                while (Memory.ReadUInt(_mLocked) != 0)
-                    Thread.Sleep(0);
             }
         }
 
@@ -345,10 +342,7 @@ namespace nManager.Wow.MemoryClass
         {
             get
             {
-                lock (Locker)
-                {
-                    return Memory.ReadUInt(_mLocked) == 1;
-                }
+                return Memory.ReadUInt(_mLocked) == 1;
             }
         }
 
