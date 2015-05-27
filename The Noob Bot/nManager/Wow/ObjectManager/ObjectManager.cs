@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using nManager.Helpful;
@@ -9,6 +10,7 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
 using System.Collections.Concurrent;
+using SlimDX.Direct3D9;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -1264,11 +1266,11 @@ namespace nManager.Wow.ObjectManager
             return 0;
         }
 
-        public static int GetNumberAttackPlayer(int belowThisRange = 0)
+        public static int GetNumberAttackPlayer()
         {
             try
             {
-                return belowThisRange > 0 ? GetUnitAttackPlayer().Count(unit => unit.GetDistance <= belowThisRange) : GetUnitAttackPlayer().Count;
+                return GetHostileUnitTargetingPlayer().Count;
             }
             catch (Exception e)
             {
@@ -1356,6 +1358,50 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)#2: " + e);
             }
             return new List<WoWUnit>();
+        }
+
+        public static List<WoWUnit> GetUnitTargetingPlayer()
+        {
+            var outputList = new List<WoWUnit>();
+            List<WoWPlayer> playersList = GetObjectWoWPlayer();
+            List<WoWUnit> unitsList = GetObjectWoWUnit();
+
+            for (int i = 0; i < playersList.Count; i++)
+            {
+                WoWPlayer player = playersList[i];
+                if (player.IsValid && player.IsAlive && player.Target == Me.Guid)
+                    outputList.Add(player);
+            }
+            for (int i = 0; i < unitsList.Count; i++)
+            {
+                WoWUnit unit = unitsList[i];
+                if (unit.IsValid && unit.IsAlive && unit.Target == Me.Guid)
+                    outputList.Add(unit);
+            }
+            return outputList;
+        }
+
+        public static List<WoWUnit> GetHostileUnitTargetingPlayer()
+        {
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                var outputList = new List<WoWUnit>();
+                List<WoWUnit> unitsList = GetUnitTargetingPlayer();
+
+                foreach (WoWUnit unit in unitsList)
+                {
+                    if (unit.IsHostile)
+                        outputList.Add(unit);
+                }
+                Memory.WowMemory.GameFrameUnLock();
+
+                return outputList;
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
         }
 
         public static List<WoWUnit> GetUnitAttackPlayer()
