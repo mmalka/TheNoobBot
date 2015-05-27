@@ -160,13 +160,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public double HealthPercent
+        public float HealthPercent
         {
             get
             {
                 try
                 {
-                    int p = (int) ((Health*100)/(double) MaxHealth);
+                    float p = (Health*100/(float) MaxHealth);
                     if (p < 0 || p > 100)
                     {
                         return 0;
