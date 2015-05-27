@@ -1270,7 +1270,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetHostileUnitTargetingPlayer().Count;
+                return GetHostileUnitAttackingPlayer().Count;
             }
             catch (Exception e)
             {
@@ -1392,6 +1392,29 @@ namespace nManager.Wow.ObjectManager
                 foreach (WoWUnit unit in unitsList)
                 {
                     if (unit.IsHostile)
+                        outputList.Add(unit);
+                }
+                Memory.WowMemory.GameFrameUnLock();
+
+                return outputList;
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
+        }
+
+        public static List<WoWUnit> GetHostileUnitAttackingPlayer()
+        {
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                var outputList = new List<WoWUnit>();
+                List<WoWUnit> unitsList = GetUnitTargetingPlayer();
+
+                foreach (WoWUnit unit in unitsList)
+                {
+                    if (unit.IsHostile && unit.InCombat)
                         outputList.Add(unit);
                 }
                 Memory.WowMemory.GameFrameUnLock();
