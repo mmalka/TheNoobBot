@@ -2577,6 +2577,49 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsTrivial
+        {
+            get
+            {
+                if (IsBoss)
+                    return false;
+                uint unitLevel = Level;
+                uint playerLevel = ObjectManager.Me.Level;
+
+                int levelAboveUnit = (int) (playerLevel - unitLevel);
+
+                if (levelAboveUnit <= -3)
+                    return false;
+
+                if (levelAboveUnit < 0)
+                {
+                    if (ObjectManager.Me.MaxHealth/2 >= MaxHealth)
+                        return true;
+                    return false;
+                }
+
+                if (levelAboveUnit < 5)
+                {
+                    if (ObjectManager.Me.MaxHealth*1.5 >= MaxHealth)
+                        return true;
+                    return false;
+                }
+
+                if (levelAboveUnit < 10)
+                {
+                    if (ObjectManager.Me.MaxHealth*4 >= MaxHealth)
+                        return true;
+                    return false;
+                }
+
+                uint trivialHp = (uint) (playerLevel/unitLevel*8*ObjectManager.Me.MaxHealth);
+
+                if (trivialHp >= MaxHealth)
+                    return true;
+                return false;
+            }
+        }
+
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
         {
             try
