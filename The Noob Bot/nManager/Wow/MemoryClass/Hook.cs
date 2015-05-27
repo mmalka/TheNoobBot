@@ -21,6 +21,7 @@ namespace nManager.Wow.MemoryClass
         ///     Locker Hook
         /// </summary>
         public static readonly object Locker = new object();
+        public static readonly object LockerUnlock = new object();
 
         private readonly BlackMagic _memory = new BlackMagic();
         public bool AllowReHook = false;
@@ -353,7 +354,7 @@ namespace nManager.Wow.MemoryClass
 
         public void GameFrameUnLock()
         {
-            lock (Locker)
+            lock (LockerUnlock) // Allow to UnLock from a thread that is not locking.
             {
                 Memory.WriteUInt(_mLockRequested, 0);
             }
