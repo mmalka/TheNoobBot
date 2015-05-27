@@ -32,8 +32,8 @@ namespace nManager.Wow.Helpers
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && CombatClass.InRange(targetNpc))
-                    MountTask.DismountMount();
+                if (ObjectManager.ObjectManager.Me.IsMounted && (CombatClass.InRange(targetNpc) || targetNpc.GetDistance < 10))
+                    MountTask.DismountMount(); // Most melee can pull at distance, dismount as fast as we can.
 
                 InFight = true;
 
@@ -112,22 +112,30 @@ namespace nManager.Wow.Helpers
                     MovementManager.StopMove();
                     MovementManager.StopMove();
                 }
+
                 if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
                     Interact.InteractWith(targetNpc.GetBaseAddress);
 
                 InFight = true;
                 Thread.Sleep(500);
-                if (CombatClass.InRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove &&
-                    !ObjectManager.ObjectManager.Me.IsCast)
+                if (CombatClass.InRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
                 {
+                    if (ObjectManager.ObjectManager.Me.IsMounted)
+                        MountTask.DismountMount();
                     MovementManager.StopMoveTo();
                 }
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
-                       targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
+
+                // The following is for very low health target that could be instantly die when switched in melee and send the bot to a full state check that could takes mini 100ms of nothing.
+                if (targetNpc.IsDead || !targetNpc.IsValid)
+                    targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer()).GetBaseAddress);
+
+                // Make sure to always face the target in case we don't even enter the loop below.
+                MovementManager.Face(targetNpc);
+
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
-                    if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe &&
-                        !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0) &&
+                    if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe && !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0) &&
                         ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                         return 0;
 
