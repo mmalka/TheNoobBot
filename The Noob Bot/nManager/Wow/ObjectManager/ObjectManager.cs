@@ -1427,29 +1427,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static List<WoWUnit> GetUnitAttackPlayer()
-        {
-            try
-            {
-                List<WoWPlayer> tp = new List<WoWPlayer>();
-
-                tp.AddRange(Me.PlayerFaction.ToLower() == "horde" ? GetWoWUnitAlliance() : GetWoWUnitHorde());
-
-                List<WoWUnit> tu = new List<WoWUnit>();
-                foreach (WoWPlayer t in tp)
-                    tu.Add(new WoWUnit(t.GetBaseAddress));
-
-                tu.AddRange(GetObjectWoWUnit());
-
-                return GetUnitAttackPlayer(tu);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetUnitAttackPlayer(): " + e);
-                return new List<WoWUnit>();
-            }
-        }
-
         public static List<WoWUnit> GetWoWUnitRepair(List<WoWUnit> listWoWUnit)
         {
             try

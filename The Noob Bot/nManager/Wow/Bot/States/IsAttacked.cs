@@ -41,7 +41,7 @@ namespace nManager.Wow.Bot.States
 
                 if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                     _unit =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer());
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer());
 
                 if (_unit != null)
                     if (_unit.IsValid)

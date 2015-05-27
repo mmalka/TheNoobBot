@@ -24,7 +24,7 @@ namespace nManager.Wow.Helpers
                     targetNpc =
                         new WoWUnit(
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.ObjectManager.GetUnitAttackPlayer()).GetBaseAddress);
+                                ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace nManager.Wow.Helpers
                     return 0;
                 if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                 {
-                    List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
+                    List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer();
                     if (tLUnit.Count > 0)
                     {
                         if (ObjectManager.ObjectManager.GetNearestWoWUnit(tLUnit).GetDistance < targetNpc.GetDistance &&
@@ -120,7 +120,7 @@ namespace nManager.Wow.Helpers
                 // If target died after only 0.2sec of fight, let's find a new target.
                 if (targetNpc.IsDead || !targetNpc.IsValid)
                 {
-                    targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer()).GetBaseAddress);
+                    targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
                     if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
                         Interact.InteractWith(targetNpc.GetBaseAddress);
                 }
@@ -229,7 +229,7 @@ namespace nManager.Wow.Helpers
                         targetNpc =
                             new WoWUnit(
                                 ObjectManager.ObjectManager.GetNearestWoWUnit(
-                                    ObjectManager.ObjectManager.GetUnitAttackPlayer()).GetBaseAddress);
+                                    ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
                     }
                     else
                     {
@@ -253,7 +253,7 @@ namespace nManager.Wow.Helpers
                         return 0;
                     if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                     {
-                        List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
+                        List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer();
                         if (tLUnit.Count > 0)
                         {
                             if (ObjectManager.ObjectManager.GetNearestWoWUnit(tLUnit).GetDistance <

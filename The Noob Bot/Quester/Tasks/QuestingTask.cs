@@ -349,7 +349,7 @@ namespace Quester.Tasks
                         }
                         Thread.Sleep(50 + Usefuls.Latency);
                         while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat &&
-                               ObjectManager.GetUnitAttackPlayer().Count <= 0)
+                               ObjectManager.GetNumberAttackPlayer() <= 0)
                         {
                             Thread.Sleep(Usefuls.Latency);
                         }
