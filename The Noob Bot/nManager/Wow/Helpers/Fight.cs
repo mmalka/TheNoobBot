@@ -71,18 +71,13 @@ namespace nManager.Wow.Helpers
                     MovementManager.Go(points);
                     timer = Others.Times + (int) (Math.DistanceListPoint(points)/3*1000) + 15000;
 
-                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
-                           targetNpc.Health > 0 && targetNpc.IsValid &&
-                           MovementManager.InMovement && InFight && Usefuls.InGame &&
-                           (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InRange(targetNpc))
+                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable && targetNpc.Health > 0 && targetNpc.IsValid && MovementManager.InMovement &&
+                           InFight && Usefuls.InGame && (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InRange(targetNpc))
                         )
                     {
                         // Mob already in fight
-                        if (targetNpc.Type != Enums.WoWObjectType.Player &&
-                            !(targetNpc.IsTargetingMe || targetNpc.Target == 0 ||
-                              ((WoWUnit) ObjectManager.ObjectManager.GetObjectByGuid(targetNpc.Target)).
-                                  SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
-                              targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid))
+                        if (targetNpc.Type != Enums.WoWObjectType.Player && !(targetNpc.IsTargetingMe || targetNpc.Target == 0 || ((WoWUnit) ObjectManager.ObjectManager.GetObjectByGuid(targetNpc.Target)).
+                            SummonedBy == ObjectManager.ObjectManager.Me.Guid || targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid))
                             return targetNpc.Guid;
 
                         // Timer
@@ -90,26 +85,22 @@ namespace nManager.Wow.Helpers
                             return targetNpc.Guid;
 
                         // Target Pos Verif
-                        if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
+                        if (!targetNpc.Position.IsValid)
                             return targetNpc.Guid;
 
                         // If pos start is very different
                         if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                             return 0;
 
-                        // Return if player attacked and this target not attack player
-                        if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0 && !targetNpc.IsTargetingMe &&
-                            !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0))
+                        // Return if player/pet is attacked by another unit
+                        if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0 && !targetNpc.IsTargetingMe && !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0))
                             return 0;
                         Thread.Sleep(50);
                     }
                 }
-                timer = Others.Times +
-                        (int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
-                        5000;
+                timer = Others.Times + (int) (ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) + 5000;
                 if (MovementManager.InMovement)
                 {
-                    MovementManager.StopMove();
                     MovementManager.StopMove();
                 }
 
@@ -117,7 +108,8 @@ namespace nManager.Wow.Helpers
                     Interact.InteractWith(targetNpc.GetBaseAddress);
 
                 InFight = true;
-                Thread.Sleep(500);
+                Thread.Sleep(200);
+
                 if (CombatClass.InRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
                 {
                     if (ObjectManager.ObjectManager.Me.IsMounted)
@@ -125,9 +117,13 @@ namespace nManager.Wow.Helpers
                     MovementManager.StopMoveTo();
                 }
 
-                // The following is for very low health target that could be instantly die when switched in melee and send the bot to a full state check that could takes mini 100ms of nothing.
+                // If target died after only 0.2sec of fight, let's find a new target.
                 if (targetNpc.IsDead || !targetNpc.IsValid)
+                {
                     targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer()).GetBaseAddress);
+                    if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
+                        Interact.InteractWith(targetNpc.GetBaseAddress);
+                }
 
                 // Make sure to always face the target in case we don't even enter the loop below.
                 MovementManager.Face(targetNpc);
@@ -144,15 +140,14 @@ namespace nManager.Wow.Helpers
                         return 0;
 
                     // Target Pos Verif
-                    if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
+                    if (!targetNpc.Position.IsValid)
                     {
                         InFight = false;
                         return targetNpc.Guid;
                     }
 
                     // Target mob if not target
-                    if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
-                        !ObjectManager.ObjectManager.Me.IsCast)
+                    if (ObjectManager.ObjectManager.Me.Target != targetNpc.Guid && !targetNpc.IsDead && !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         Interact.InteractWith(targetNpc.GetBaseAddress);
                     }
@@ -160,10 +155,10 @@ namespace nManager.Wow.Helpers
                     // Move to target if out of range
                     if (!CombatClass.InRange(targetNpc) && !ObjectManager.ObjectManager.Me.IsCast)
                     {
-                        int rJump = Others.Random(1, 30);
+                        int rJump = Others.Random(1, 20);
+                        MovementManager.MoveTo(targetNpc);
                         if (rJump == 5)
                             MovementsAction.Jump();
-                        MovementManager.MoveTo(targetNpc);
                     }
                     // Create path if the mob is out of sight or out of range
                     if ((!CombatClass.InRange(targetNpc) && !ObjectManager.ObjectManager.Me.IsCast) ||
