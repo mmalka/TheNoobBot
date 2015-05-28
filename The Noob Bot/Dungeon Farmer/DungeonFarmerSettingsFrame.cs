@@ -7,18 +7,12 @@ using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
-using Point = System.Drawing.Point;
 
 namespace DungeonFarmer
 {
     public partial class DungeonFarmerSettingsFrame : Form
     {
-        private string _activeDigsiteColumn = "Active";
-        private string _digsiteNameColumn = "Digsite's Name";
-        private bool _flagClick;
-        private int _positionInitialeX;
-        private int _positionInitialeY;
-        private string _priorityDigsiteColumn = "Priority";
+        private readonly List<Instance> _instanceList;
 
         public DungeonFarmerSettingsFrame()
         {
@@ -28,27 +22,52 @@ namespace DungeonFarmer
                 Translate();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
-                DigSitesTable.Columns.Add("Id", "Id");
-                DigSitesTable.Columns[0].ReadOnly = true;
-                DigSitesTable.Columns[0].Width = 33;
-                DigSitesTable.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                DigSitesTable.Columns.Add("DigSiteName", _digsiteNameColumn);
-                DigSitesTable.Columns[1].ReadOnly = true;
-                DigSitesTable.Columns[1].Width = 559;
-                DigSitesTable.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                DigSitesTable.Columns.Add("DigSitePriority", _priorityDigsiteColumn);
-                DigSitesTable.Columns[2].Width = 40;
-                DigSitesTable.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                InstanceListTable.Columns.Add("Id", "Id");
+                InstanceListTable.Columns[0].ReadOnly = true;
+                InstanceListTable.Columns[0].Width = 33;
+                InstanceListTable.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                InstanceListTable.Columns.Add("InstanceName", "Instance Name");
+                InstanceListTable.Columns[1].ReadOnly = true;
+                InstanceListTable.Columns[1].Width = 250;
+                InstanceListTable.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                InstanceListTable.Columns.Add("Continent", "Continent");
+                InstanceListTable.Columns[2].ReadOnly = true;
+                InstanceListTable.Columns[2].Width = 100;
+                InstanceListTable.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                InstanceListTable.Columns.Add("InstancePriority", "Priority");
+                InstanceListTable.Columns[3].Width = 40;
+                InstanceListTable.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 var columnActive = new DataGridViewCheckBoxColumn();
-                DigSitesTable.Columns.Add(columnActive);
-                DigSitesTable.Columns[3].Name = "DigSitePriority";
-                DigSitesTable.Columns[3].HeaderText = _activeDigsiteColumn;
-                DigSitesTable.Columns[3].Width = 40;
-                DigSitesTable.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                InstanceListTable.Columns.Add(columnActive);
+                InstanceListTable.Columns[4].Name = "InstanceActive";
+                InstanceListTable.Columns[4].HeaderText = @"Active";
+                InstanceListTable.Columns[4].Width = 40;
+                InstanceListTable.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                var columnKillBosses = new DataGridViewCheckBoxColumn();
+                InstanceListTable.Columns.Add(columnKillBosses);
+                InstanceListTable.Columns[5].Name = "KillBosses";
+                InstanceListTable.Columns[5].HeaderText = @"Kill Bosses";
+                InstanceListTable.Columns[5].Width = 80;
+                InstanceListTable.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                var columnReset = new DataGridViewCheckBoxColumn();
+                InstanceListTable.Columns.Add(columnReset);
+                InstanceListTable.Columns[6].Name = "Reset";
+                InstanceListTable.Columns[6].HeaderText = @"Reset";
+                InstanceListTable.Columns[6].Width = 40;
+                InstanceListTable.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                InstanceListTable.Columns.Add("LastUnitId", @"Last Unit Id");
+                InstanceListTable.Columns[7].Width = 100;
+                InstanceListTable.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                foreach (Digsite digsite in Archaeology.GetAllDigsitesZone())
+                if (_instanceList == null)
+                    _instanceList = XmlSerializer.Deserialize<List<Instance>>(Application.StartupPath + "\\Data\\DfInstanceList.xml");
+                foreach (Instance instance in _instanceList)
                 {
-                    DigSitesTable.Rows.Add(new object[] {digsite.id, digsite.name, digsite.PriorityDigsites, digsite.Active});
+                    InstanceListTable.Rows.Add(new object[]
+                    {
+                        instance.InstanceId, instance.InstanceName, Usefuls.ContinentNameByContinentId(instance.EntranceContinentId), instance.InstancePriority, instance.Active, instance.KillBosses, instance.Reset,
+                        instance.LastUnitId
+                    });
                 }
             }
             catch (Exception e)
@@ -59,45 +78,13 @@ namespace DungeonFarmer
 
         private void Translate()
         {
-            UseKeystones.Text = nManager.Translate.Get(nManager.Translate.Id.UseKeystones);
-            _digsiteNameColumn = nManager.Translate.Get(nManager.Translate.Id.DigsiteName);
-            _priorityDigsiteColumn = nManager.Translate.Get(nManager.Translate.Id.Priority);
-            _activeDigsiteColumn = nManager.Translate.Get(nManager.Translate.Id.Active);
-            SolvingEveryXMinLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SolvingEveryXMinutes);
-            MaxTryByDigsiteLabel.Text = nManager.Translate.Get(nManager.Translate.Id.MaxTryByDigsite);
             CancelAndCloseButton.Text = nManager.Translate.Get(nManager.Translate.Id.CancelAndClose);
             SaveAndCloseButton.Text = nManager.Translate.Get(nManager.Translate.Id.SaveAndClose);
-        }
-
-        private void MainFormMouseDown(object sender, MouseEventArgs e)
-        {
-            _flagClick = true;
-            _positionInitialeX = e.X;
-            _positionInitialeY = e.Y;
-        }
-
-        private void MainFormMouseUp(object sender, MouseEventArgs e)
-        {
-            _flagClick = false;
-        }
-
-
-        private void MainFormMouseMove(object sender, MouseEventArgs e)
-        {
-            if (_flagClick)
-            {
-                Location = new Point(Left + (e.X - _positionInitialeX), Top + (e.Y - _positionInitialeY));
-            }
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void ReduceButton_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
         }
 
         private void SaveAndCloseButton_MouseEnter(object sender, EventArgs e)
@@ -110,42 +97,40 @@ namespace DungeonFarmer
             SaveAndCloseButton.Image = Resources.blueB;
         }
 
-        private void ReduceButton_MouseEnter(object sender, EventArgs e)
+        private int GetInstanceIndexById(int instanceId)
         {
-            ReduceButton.Image = Resources.reduce_buttonG;
-        }
-
-        private void ReduceButton_MouseLeave(object sender, EventArgs e)
-        {
-            ReduceButton.Image = Resources.reduce_button;
-        }
-
-        private void CloseButton_MouseEnter(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_buttonG;
-        }
-
-        private void CloseButton_MouseLeave(object sender, EventArgs e)
-        {
-            CloseButton.Image = Resources.close_button;
+            for (int i = 0; i < _instanceList.Count; i++)
+            {
+                if (instanceId == _instanceList[i].InstanceId)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
 
         private void SaveAndCloseButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (DigSitesTable.CurrentRow != null)
-                    DigSitesTable.CurrentRow.DataGridView.EndEdit();
+                if (InstanceListTable.CurrentRow != null)
+                    InstanceListTable.CurrentRow.DataGridView.EndEdit();
                 SaveAndCloseButton.Enabled = false;
                 DungeonFarmerSetting.CurrentSetting.Save();
-                var digsite = new List<Digsite>();
-                for (int i = 0; i < DigSitesTable.Rows.Count - 1; i++)
+                List<Instance> instanceList = _instanceList;
+                for (int i = 0; i < InstanceListTable.Rows.Count - 1; i++)
                 {
-                    DataGridViewRow row = DigSitesTable.Rows[i];
-                    digsite.Add(new Digsite {id = (int) row.Cells[0].Value, name = (string) row.Cells[1].Value, PriorityDigsites = Convert.ToSingle(row.Cells[2].Value), Active = (bool) row.Cells[3].Value});
+                    DataGridViewRow row = InstanceListTable.Rows[i];
+                    int instanceIndex = GetInstanceIndexById((int) row.Cells[0].Value);
+                    if (instanceIndex < 0)
+                        continue;
+                    instanceList[instanceIndex].InstancePriority = Convert.ToSingle(row.Cells[3].Value);
+                    instanceList[instanceIndex].Active = (bool) row.Cells[4].Value;
+                    instanceList[instanceIndex].KillBosses = (bool) row.Cells[5].Value;
+                    instanceList[instanceIndex].Reset = (bool) row.Cells[6].Value;
+                    instanceList[instanceIndex].LastUnitId = (uint) row.Cells[7].Value;
                 }
-                if (XmlSerializer.Serialize(Application.StartupPath + "\\Data\\DungeonFarmerDigsites.xml", digsite))
-                    Archaeology.ForceReloadDigsites = true;
+                XmlSerializer.Serialize(Application.StartupPath + "\\Data\\DfInstanceList.xml", instanceList);
             }
             catch (Exception ex)
             {
@@ -167,8 +152,8 @@ namespace DungeonFarmer
 
         private void DigSitesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DigSitesTable.Rows.Count < e.RowIndex && DigSitesTable.Rows[e.RowIndex].Cells.Count < e.ColumnIndex)
-                DigSitesTable.Rows[e.RowIndex].Cells[e.ColumnIndex].DataGridView.BeginEdit(true);
+            if (InstanceListTable.Rows.Count < e.RowIndex && InstanceListTable.Rows[e.RowIndex].Cells.Count < e.ColumnIndex)
+                InstanceListTable.Rows[e.RowIndex].Cells[e.ColumnIndex].DataGridView.BeginEdit(true);
         }
     }
 }

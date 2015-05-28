@@ -117,11 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="SaveAndCloseButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="CancelAndCloseButton.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="InstanceListTable.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="DungeonFarmerFormTitle.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="TopLeftLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="DungeonFarmerFormTitle.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAj8AAAArCAYAAACXdOmTAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTFH80I3AAAA6UlEQVR4Xu3W
+        QQ3AMBDAsCHq6wiU7VhuKo3GD0uBkGet9c7MBwBwu/M9z4m9NwDA9c73mB8AIMP8AAAp5gcASDE/AECK
+        +QEAUswPAJBifgCAFPMDAKSYHwAgxfwAACnmBwBIMT8AQIr5AQBSzA8AkGJ+AIAU8wMApJgfACDF/AAA
+        KeYHAEgxPwBAivkBAFLMDwCQYn4AgBTzAwCkmB8AIMX8AAAp5gcASDE/AECK+QEAUswPAJBifgCAFPMD
+        AKSYHwAgxfwAACnmBwBIMT8AQIr5AQBSzA8AkGJ+AIAU8wMApJgfACBlZr4f/wZqm/v/nh8AAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="DungeonFarmerFormTitle.LogoImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAhCAYAAADOHBvaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjExR/NC
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjExR/NC
         NwAABH5JREFUWEelV2dTFEEQXRPmhDlbGDCVYs6yRxSQLErGfAQBUURFchIwlNkqLbOWmPPva+f1snuz
         s3N7Kh9eUcz09Nvp6X7dZwQCAfpfpKbvpZKatZSYfEC774cRER+u2ER9n8fSwcw92n0/jIi48PQG6n4f
         xTfX7fthRMTl9aup4+0ESj64T7vvB4c4KWX/P4fsROMKans5ifLL4qi4ch0VVa6nvLLNlJgU+c2HiU2q
@@ -144,17 +167,9 @@
         MIUCmDSsXwfhazkyAvQHQEqAdFVxBaoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="ControlMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAyAAAAArCAYAAACAX+w2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjExR/NC
-        NwAAAQZJREFUeF7t10ERwCAQALGKOgMoRSqd1gP7yiMi8szMAQAAuG3vff6ArLUAAACu+u4hIAAAQEJA
-        AACAjIAAAAAZAQEAADICAgAAZAQEAADICAgAAJAREAAAICMgAABARkAAAICMgAAAABkBAQAAMgICAABk
-        BAQAAMgICAAAkBEQAAAgIyAAAEBGQAAAgIyAAAAAGQEBAAAyAgIAAGQEBAAAyAgIAACQERAAACAjIAAA
-        QEZAAACAjIAAAAAZAQEAADICAgAAZAQEAADICAgAAJAREAAAICMgAABARkAAAICMgAAAABkBAQAAMgIC
-        AABkBAQAAMgICAAAkBEQAAAgIyAAAEBmZs4LSRW9Gyrkr1oAAAAASUVORK5CYII=
-</value>
-  </data>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAyAAAAJYCAYAAACadoJwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
