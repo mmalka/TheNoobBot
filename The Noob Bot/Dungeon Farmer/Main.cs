@@ -12,7 +12,6 @@ public class Main : IProduct
 {
     #region IProduct Members
 
-    private bool _isStarted;
     private string _looting;
     private string _mindistground;
     private string _usefly;
@@ -52,7 +51,7 @@ public class Main : IProduct
             Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
-                _isStarted = true;
+                IsStarted = true;
                 Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
@@ -71,7 +70,7 @@ public class Main : IProduct
         try
         {
             Bot.Dispose();
-            _isStarted = false;
+            IsStarted = false;
             Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
@@ -94,15 +93,14 @@ public class Main : IProduct
         }
     }
 
-    public bool IsStarted
-    {
-        get { return _isStarted; }
-    }
+    public bool IsStarted { get; private set; }
 
     private void GetProductTipOff()
     {
         try
         {
+            return; // Disable ProductTipOff for now.
+
             if (ObjectManager.Me.Level < 90 &&
                 nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOffArchaeologist);
@@ -133,7 +131,7 @@ public class Main : IProduct
         }
         catch (Exception e)
         {
-            Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
+            Logging.WriteError("DungeonFarmer > Main > GetProductTipOff(): " + e);
         }
     }
 

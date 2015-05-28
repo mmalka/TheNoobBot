@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfInstance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Instance Id="1" Name="Firelands - Cataclysm Raid T13 - Reset Trash" Level="85" Active="true">
+    <EntranceContinentId>1</EntranceContinentId>
+    <EntranceLocation>
+      <X>3982.125</X>
+      <Y>-2928.012</Y>
+      <Z>1002.547</Z>
+    </EntranceLocation>
+    <InstanceContinentId>720</InstanceContinentId>
+    <DepartureLocation>
+      <X>-560.4431</X>
+      <Y>321.7329</Y>
+      <Z>115.4831</Z>
+    </DepartureLocation>
+    <InstancePriority>1.5</InstancePriority>
+    <KillBosses>false</KillBosses>
+    <LastUnitId>53616</LastUnitId>
+    <Reset>true</Reset>
+    <Type>Raid</Type>
+  </Instance>
+</ArrayOfInstance>
