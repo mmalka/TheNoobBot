@@ -1320,7 +1320,7 @@ namespace nManager.Wow.ObjectManager
                 if (BlackListMobAttack.Contains(player.Guid))
                     continue;
 
-                if (player.IsValid && player.IsAlive && (player.Target == Me.Guid || player.Target == Pet.Guid))
+                if (player.IsValid && player.IsAlive && (player.Target == Me.Guid || Pet.IsValid && player.Target == Pet.Guid))
                     outputList.Add(player);
             }
             for (int i = 0; i < unitsList.Count; i++)
@@ -1328,7 +1328,7 @@ namespace nManager.Wow.ObjectManager
                 WoWUnit unit = unitsList[i];
                 if (BlackListMobAttack.Contains(unit.Guid))
                     continue;
-                if (unit.IsValid && unit.IsAlive && (unit.Target == Me.Guid || unit.Target == Pet.Guid))
+                if (unit.IsValid && unit.IsAlive && (unit.Target == Me.Guid || Pet.IsValid && unit.Target == Pet.Guid))
                     outputList.Add(unit);
             }
             return outputList;
