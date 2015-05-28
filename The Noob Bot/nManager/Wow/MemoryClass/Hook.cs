@@ -21,6 +21,7 @@ namespace nManager.Wow.MemoryClass
         ///     Locker Hook
         /// </summary>
         public static readonly object Locker = new object();
+
         public static readonly object LockerUnlock = new object();
 
         private readonly BlackMagic _memory = new BlackMagic();
@@ -340,10 +341,7 @@ namespace nManager.Wow.MemoryClass
 
         public bool IsGameFrameLocked
         {
-            get
-            {
-                return Memory.ReadUInt(_mLocked) == 1;
-            }
+            get { return Memory.ReadUInt(_mLocked) == 1; }
         }
 
         public void GameFrameUnLock()
