@@ -40,9 +40,10 @@ namespace nManager.Wow.Bot.States
                 _unit = null;
 
                 if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                    _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer());
+                    _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer());
 
                 if (_unit != null && _unit.IsValid)
+
                     return true;
 
                 if (!nManagerSetting.CurrentSetting.DontPullMonsters)
@@ -84,9 +85,10 @@ namespace nManager.Wow.Bot.States
                 if (Products.Products.ProductName == "Quester" && (!_unit.IsTapped || (_unit.IsTapped && _unit.IsTappedByMe)))
                     Quest.KilledMobsToCount.Add(_unit.Entry); // we may update a quest requiring killing this unit
 
-                Thread.Sleep(Usefuls.Latency + 800);
-                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat &&
-                       ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
+                if (ObjectManager.ObjectManager.GetNumberAttackPlayer() <= 0)
+                    Thread.Sleep(Usefuls.Latency + 500);
+
+                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetNumberAttackPlayer() <= 0)
                 {
                     Thread.Sleep(150);
                 }

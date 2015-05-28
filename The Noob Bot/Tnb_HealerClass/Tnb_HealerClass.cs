@@ -2534,7 +2534,7 @@ public class PriestDiscipline
             WoWUnit unit = null;
             if (ObjectManager.GetNumberAttackPlayer() > 0)
                 unit =
-                    ObjectManager.GetNearestWoWUnit(ObjectManager.GetUnitAttackPlayer());
+                    ObjectManager.GetNearestWoWUnit(ObjectManager.GetHostileUnitAttackingPlayer());
 
             if (unit != null)
                 if (unit.IsValid)
@@ -3155,7 +3155,7 @@ public class PriestHoly
             WoWUnit unit = null;
             if (ObjectManager.GetNumberAttackPlayer() > 0)
                 unit =
-                    ObjectManager.GetNearestWoWUnit(ObjectManager.GetUnitAttackPlayer());
+                    ObjectManager.GetNearestWoWUnit(ObjectManager.GetHostileUnitAttackingPlayer());
 
             if (unit != null)
                 if (unit.IsValid)

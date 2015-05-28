@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using nManager.Helpful;
@@ -9,6 +10,7 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
 using System.Collections.Concurrent;
+using SlimDX.Direct3D9;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -1251,24 +1253,11 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static int GetNumberAttackPlayer(List<WoWUnit> listWoWUnit)
+        public static int GetNumberAttackPlayer()
         {
             try
             {
-                return GetUnitAttackPlayer(listWoWUnit).Count;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetNumberAttackPlayer(List<WoWUnit> listWoWUnit): " + e);
-            }
-            return 0;
-        }
-
-        public static int GetNumberAttackPlayer(int belowThisRange = 0)
-        {
-            try
-            {
-                return belowThisRange > 0 ? GetUnitAttackPlayer().Count(unit => unit.GetDistance <= belowThisRange) : GetUnitAttackPlayer().Count;
+                return GetHostileUnitAttackingPlayer().Count;
             }
             catch (Exception e)
             {
@@ -1319,65 +1308,75 @@ namespace nManager.Wow.ObjectManager
             return null;
         }
 
-        public static List<WoWUnit> GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)
+        public static List<WoWUnit> GetUnitTargetingPlayer()
         {
-            try
+            var outputList = new List<WoWUnit>();
+            List<WoWPlayer> playersList = GetObjectWoWPlayer();
+            List<WoWUnit> unitsList = GetObjectWoWUnit();
+
+            for (int i = 0; i < playersList.Count; i++)
             {
-                List<WoWUnit> objectReturn = new List<WoWUnit>();
-                bool inGroup = Party.IsInGroup();
-                foreach (WoWUnit a in listWoWUnit)
-                {
-                    if ((!BlackListMobAttack.Contains(a.Guid)) || (a.GetMove && !TraceLine.TraceLineGo(a.Position)))
-                    {
-                        bool petAttacked = false;
-                        try
-                        {
-                            if (Pet.IsValid)
-                                if (a.InCombat && !a.IsDead && a.Target == Pet.Guid && !Pet.IsDead)
-                                    petAttacked = true;
-                        }
-                        catch (Exception e)
-                        {
-                            Logging.WriteError("GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)#1: " + e);
-                        }
-                        if (!a.IsDead && a.InCombat)
-                        {
-                            if (petAttacked || a.IsTargetingMe)
-                                objectReturn.Add(a);
-                            else if (inGroup && a.Attackable && a.GetDistance < (a.AggroDistance*0.7f))
-                                objectReturn.Add(a);
-                        }
-                    }
-                }
-                return objectReturn;
+                WoWPlayer player = playersList[i];
+                if (BlackListMobAttack.Contains(player.Guid))
+                    continue;
+
+                if (player.IsValid && player.IsAlive && (player.Target == Me.Guid || Pet.IsValid && player.Target == Pet.Guid))
+                    outputList.Add(player);
             }
-            catch (Exception e)
+            for (int i = 0; i < unitsList.Count; i++)
             {
-                Logging.WriteError("GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)#2: " + e);
+                WoWUnit unit = unitsList[i];
+                if (BlackListMobAttack.Contains(unit.Guid))
+                    continue;
+                if (unit.IsValid && unit.IsAlive && (unit.Target == Me.Guid || Pet.IsValid && unit.Target == Pet.Guid))
+                    outputList.Add(unit);
             }
-            return new List<WoWUnit>();
+            return outputList;
         }
 
-        public static List<WoWUnit> GetUnitAttackPlayer()
+        public static List<WoWUnit> GetHostileUnitTargetingPlayer()
         {
             try
             {
-                List<WoWPlayer> tp = new List<WoWPlayer>();
+                Memory.WowMemory.GameFrameLock();
+                var outputList = new List<WoWUnit>();
+                List<WoWUnit> unitsList = GetUnitTargetingPlayer();
 
-                tp.AddRange(Me.PlayerFaction.ToLower() == "horde" ? GetWoWUnitAlliance() : GetWoWUnitHorde());
+                foreach (WoWUnit unit in unitsList)
+                {
+                    if (unit.IsHostile)
+                        outputList.Add(unit);
+                }
+                Memory.WowMemory.GameFrameUnLock();
 
-                List<WoWUnit> tu = new List<WoWUnit>();
-                foreach (WoWPlayer t in tp)
-                    tu.Add(new WoWUnit(t.GetBaseAddress));
-
-                tu.AddRange(GetObjectWoWUnit());
-
-                return GetUnitAttackPlayer(tu);
+                return outputList;
             }
-            catch (Exception e)
+            finally
             {
-                Logging.WriteError("GetUnitAttackPlayer(): " + e);
-                return new List<WoWUnit>();
+                Memory.WowMemory.GameFrameUnLock();
+            }
+        }
+
+        public static List<WoWUnit> GetHostileUnitAttackingPlayer()
+        {
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                var outputList = new List<WoWUnit>();
+                List<WoWUnit> unitsList = GetUnitTargetingPlayer();
+
+                foreach (WoWUnit unit in unitsList)
+                {
+                    if (unit.IsHostile && unit.InCombat)
+                        outputList.Add(unit);
+                }
+                Memory.WowMemory.GameFrameUnLock();
+
+                return outputList;
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
             }
         }
 

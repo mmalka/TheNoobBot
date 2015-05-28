@@ -160,13 +160,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public double HealthPercent
+        public float HealthPercent
         {
             get
             {
                 try
                 {
-                    int p = (int) ((Health*100)/(double) MaxHealth);
+                    float p = (Health*100/(float) MaxHealth);
                     if (p < 0 || p > 100)
                     {
                         return 0;
@@ -2589,6 +2589,49 @@ namespace nManager.Wow.ObjectManager
                 if (Usefuls.ContinentId != 1043 && Usefuls.ContinentId != 369)
                     return false;
                 return true;
+            }
+        }
+
+        public bool IsTrivial
+        {
+            get
+            {
+                if (IsBoss)
+                    return false;
+                uint unitLevel = Level;
+                uint playerLevel = ObjectManager.Me.Level;
+
+                int levelAboveUnit = (int) (playerLevel - unitLevel);
+
+                if (levelAboveUnit <= -3)
+                    return false;
+
+                if (levelAboveUnit < 0)
+                {
+                    if (ObjectManager.Me.MaxHealth/2 >= MaxHealth)
+                        return true;
+                    return false;
+                }
+
+                if (levelAboveUnit < 5)
+                {
+                    if (ObjectManager.Me.MaxHealth*1.5 >= MaxHealth)
+                        return true;
+                    return false;
+                }
+
+                if (levelAboveUnit < 10)
+                {
+                    if (ObjectManager.Me.MaxHealth*4 >= MaxHealth)
+                        return true;
+                    return false;
+                }
+
+                uint trivialHp = (uint) (playerLevel/unitLevel*8*ObjectManager.Me.MaxHealth);
+
+                if (trivialHp >= MaxHealth)
+                    return true;
+                return false;
             }
         }
 

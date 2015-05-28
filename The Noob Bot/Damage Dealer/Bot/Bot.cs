@@ -27,7 +27,7 @@ namespace Damage_Dealer.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(5, "FSM Damage Dealer");
+                Fsm.StartEngine(10, "FSM Damage Dealer");
 
                 return true;
             }

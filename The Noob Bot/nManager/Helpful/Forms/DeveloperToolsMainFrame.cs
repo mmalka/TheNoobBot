@@ -367,6 +367,7 @@ namespace nManager.Helpful.Forms
                         "Faction: " + (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) + Environment.NewLine +
                         "ContinentId: " + (ContinentId) (Usefuls.ContinentId) + Environment.NewLine +
                         "IsDead : " + ObjectManager.Target.IsDead + Environment.NewLine +
+                        "IsTrivial : " + ObjectManager.Target.IsTrivial + Environment.NewLine +
                         "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                         "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
                         "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags) + Environment.NewLine +

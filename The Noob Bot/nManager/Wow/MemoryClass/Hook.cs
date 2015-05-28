@@ -22,6 +22,8 @@ namespace nManager.Wow.MemoryClass
         /// </summary>
         public static readonly object Locker = new object();
 
+        public static readonly object LockerUnlock = new object();
+
         private readonly BlackMagic _memory = new BlackMagic();
         public bool AllowReHook = false;
         internal uint InjectedCodeDetour;
@@ -193,9 +195,6 @@ namespace nManager.Wow.MemoryClass
                     return;
                 Memory.WriteUInt(_mLocked, 0);
                 Memory.WriteUInt(_mLockRequested, 1);
-
-                while (Memory.ReadUInt(_mLocked) != 0)
-                    Thread.Sleep(0);
             }
         }
 
@@ -342,18 +341,12 @@ namespace nManager.Wow.MemoryClass
 
         public bool IsGameFrameLocked
         {
-            get
-            {
-                lock (Locker)
-                {
-                    return Memory.ReadUInt(_mLocked) == 1;
-                }
-            }
+            get { return Memory.ReadUInt(_mLocked) == 1; }
         }
 
         public void GameFrameUnLock()
         {
-            lock (Locker)
+            lock (LockerUnlock) // Allow to UnLock from a thread that is not locking.
             {
                 Memory.WriteUInt(_mLockRequested, 0);
             }

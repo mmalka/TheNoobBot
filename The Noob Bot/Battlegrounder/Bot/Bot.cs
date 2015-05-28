@@ -42,7 +42,7 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(5, "FSM Battlegrounder");
+                Fsm.StartEngine(10, "FSM Battlegrounder");
 
                 return true;
             }

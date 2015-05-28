@@ -64,7 +64,7 @@ namespace Gatherer.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(5, "FSM Gatherer");
+                Fsm.StartEngine(10, "FSM Gatherer");
 
                 return true;
             }
