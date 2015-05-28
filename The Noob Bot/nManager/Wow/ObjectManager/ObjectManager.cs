@@ -1253,19 +1253,6 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWUnit>();
         }
 
-        public static int GetNumberAttackPlayer(List<WoWUnit> listWoWUnit)
-        {
-            try
-            {
-                return GetUnitAttackPlayer(listWoWUnit).Count;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetNumberAttackPlayer(List<WoWUnit> listWoWUnit): " + e);
-            }
-            return 0;
-        }
-
         public static int GetNumberAttackPlayer()
         {
             try
@@ -1321,45 +1308,6 @@ namespace nManager.Wow.ObjectManager
             return null;
         }
 
-        public static List<WoWUnit> GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)
-        {
-            try
-            {
-                List<WoWUnit> objectReturn = new List<WoWUnit>();
-                bool inGroup = Party.IsInGroup();
-                foreach (WoWUnit a in listWoWUnit)
-                {
-                    if ((!BlackListMobAttack.Contains(a.Guid)) || (a.GetMove && !TraceLine.TraceLineGo(a.Position)))
-                    {
-                        bool petAttacked = false;
-                        try
-                        {
-                            if (Pet.IsValid)
-                                if (a.InCombat && !a.IsDead && a.Target == Pet.Guid && !Pet.IsDead)
-                                    petAttacked = true;
-                        }
-                        catch (Exception e)
-                        {
-                            Logging.WriteError("GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)#1: " + e);
-                        }
-                        if (!a.IsDead && a.InCombat)
-                        {
-                            if (petAttacked || a.IsTargetingMe)
-                                objectReturn.Add(a);
-                            else if (inGroup && a.Attackable && a.GetDistance < (a.AggroDistance*0.7f))
-                                objectReturn.Add(a);
-                        }
-                    }
-                }
-                return objectReturn;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)#2: " + e);
-            }
-            return new List<WoWUnit>();
-        }
-
         public static List<WoWUnit> GetUnitTargetingPlayer()
         {
             var outputList = new List<WoWUnit>();
@@ -1369,13 +1317,18 @@ namespace nManager.Wow.ObjectManager
             for (int i = 0; i < playersList.Count; i++)
             {
                 WoWPlayer player = playersList[i];
-                if (player.IsValid && player.IsAlive && player.Target == Me.Guid)
+                if (BlackListMobAttack.Contains(player.Guid))
+                    continue;
+
+                if (player.IsValid && player.IsAlive && (player.Target == Me.Guid || player.Target == Pet.Guid))
                     outputList.Add(player);
             }
             for (int i = 0; i < unitsList.Count; i++)
             {
                 WoWUnit unit = unitsList[i];
-                if (unit.IsValid && unit.IsAlive && unit.Target == Me.Guid)
+                if (BlackListMobAttack.Contains(unit.Guid))
+                    continue;
+                if (unit.IsValid && unit.IsAlive && (unit.Target == Me.Guid || unit.Target == Pet.Guid))
                     outputList.Add(unit);
             }
             return outputList;
