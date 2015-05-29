@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Linq;
 using nManager.FiniteStateMachine;
@@ -71,9 +72,10 @@ namespace nManager.Wow.Bot.States
 
         public WoWUnit AcquireTarger()
         {
-            if (nManagerSetting.CurrentSetting.DontPullMonsters && !ObjectManager.ObjectManager.Target.InCombat)
-                return new WoWUnit(0);
+
             if (ObjectManager.ObjectManager.Me.Target == 0)
+                return new WoWUnit(0);
+            if (nManagerSetting.CurrentSetting.DontPullMonsters && !ObjectManager.ObjectManager.Target.InCombat)
                 return new WoWUnit(0);
 
             // Get unit:
@@ -82,7 +84,7 @@ namespace nManager.Wow.Bot.States
             if (localUnit.IsValid && localUnit.IsAlive && localUnit.Health > 0 && ((localUnit.Attackable && localUnit.IsHostile) || localUnit.IsUnitBrawlerAndTappedByMe))
                 return localUnit;
 
-            // If in party, then search for the target if one member is in combat
+            /*// If in party, then search for the target if one member is in combat
             if (Party.IsInGroup())
             {
                 List<WoWUnit> targets = new List<WoWUnit>();
@@ -109,7 +111,7 @@ namespace nManager.Wow.Bot.States
                     localUnit = targets.GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
                     return localUnit;
                 }
-            }
+            }*/
             return new WoWUnit(0);
         }
     }
