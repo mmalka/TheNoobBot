@@ -1011,7 +1011,7 @@ public class Main : ICombatClass
                     {
                         Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
-                        InternalRange = 40.0f;
+                        InternalRange = 35.0f;
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
                         new HunterMarksmanship();
                     }
@@ -1203,7 +1203,7 @@ public class DeathknightApprentice
 
     public DeathknightApprentice()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightApprenticeSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightApprenticeSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1667,7 +1667,7 @@ public class DeathknightBlood
 
     public DeathknightBlood()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightBloodSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightBloodSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -2627,7 +2627,7 @@ public class DeathknightUnholy
 
     public DeathknightUnholy()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightUnholySettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightUnholySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -3557,7 +3557,7 @@ public class DeathknightFrost
 
     public DeathknightFrost()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightFrostSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -10220,7 +10220,7 @@ public class DruidFeral
 
     public DruidFeral()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach; ;
         MySettings = DruidFeralSettings.GetSettings();
         Main.DumpCurrentSettings<DruidFeralSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -11707,7 +11707,7 @@ public class DruidGuardian
 
     public DruidGuardian()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = DruidGuardianSettings.GetSettings();
         Main.DumpCurrentSettings<DruidGuardianSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -12910,7 +12910,7 @@ public class PaladinProtection
 
     public PaladinProtection()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = PaladinProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -13464,7 +13464,7 @@ public class PaladinRetribution
 
     public PaladinRetribution()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = PaladinRetributionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -14128,7 +14128,7 @@ public class ShamanEnhancement
 
     public ShamanEnhancement()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = ShamanEnhancementSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanEnhancementSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -18859,7 +18859,7 @@ public class RogueCombat
 
     public RogueCombat()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = RogueCombatSettings.GetSettings();
         Main.DumpCurrentSettings<RogueCombatSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -19612,7 +19612,7 @@ public class RogueSubtlety
 
     public RogueSubtlety()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = RogueSubtletySettings.GetSettings();
         Main.DumpCurrentSettings<RogueSubtletySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -20345,7 +20345,7 @@ public class RogueAssassination
 
     public RogueAssassination()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = RogueAssassinationSettings.GetSettings();
         Main.DumpCurrentSettings<RogueAssassinationSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -21100,7 +21100,7 @@ public class WarriorArms
 
     public WarriorArms()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = WarriorArmsSettings.GetSettings();
         Main.DumpCurrentSettings<WarriorArmsSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -21952,7 +21952,7 @@ public class WarriorProtection
 
     public WarriorProtection()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = WarriorProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<WarriorProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -22794,7 +22794,7 @@ public class WarriorFury
 
     public WarriorFury()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = WarriorFurySettings.GetSettings();
         Main.DumpCurrentSettings<WarriorFurySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -24436,7 +24436,7 @@ public class HunterBeastMastery
 
     public HunterBeastMastery()
     {
-        Main.InternalRange = 40.0f;
+        Main.InternalRange = 30.0f;
         MySettings = HunterBeastMasterySettings.GetSettings();
         Main.DumpCurrentSettings<HunterBeastMasterySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -26091,7 +26091,7 @@ public class MonkBrewmaster
 
     public MonkBrewmaster()
     {
-        Main.InternalRange = 3.2f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         Main.InternalAggroRange = 25.0f;
         MySettings = MonkBrewmasterSettings.GetSettings();
         Main.DumpCurrentSettings<MonkBrewmasterSettings>(MySettings);
@@ -26114,7 +26114,7 @@ public class MonkBrewmaster
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 30)
+                            if (ObjectManager.Target.GetDistance < Main.InternalAggroRange)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -26726,7 +26726,7 @@ public class MonkWindwalker
 
     public MonkWindwalker()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = MonkWindwalkerSettings.GetSettings();
         Main.DumpCurrentSettings<MonkWindwalkerSettings>(MySettings);
         UInt128 lastTarget = 0;

@@ -32,7 +32,8 @@ namespace nManager.Wow.Helpers
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && CombatClass.InAggroRange(targetNpc))
+                if (ObjectManager.ObjectManager.Me.IsMounted &&
+                    (CombatClass.InAggroRange(targetNpc) || CombatClass.InRange(targetNpc)))
                     MountTask.DismountMount();
 
                 InFight = true;
@@ -62,7 +63,7 @@ namespace nManager.Wow.Helpers
                             return 0;
                     }
                 }
-                if (TraceLine.TraceLineGo(targetNpc.Position) || (ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InRange(targetNpc))) // If obstacle or not in range
+                if ((ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InRange(targetNpc)) || TraceLine.TraceLineGo(targetNpc.Position)) // If obstacle or not in range
                 {
                     bool resultSucces;
                     List<Point> points = PathFinder.FindPath(targetNpc.Position, out resultSucces);
@@ -286,7 +287,7 @@ namespace nManager.Wow.Helpers
                            InFight && targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                     {
                         // Target Pos Verif
-                        if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
+                        if (!targetNpc.Position.IsValid)
                             return targetNpc.Guid;
 
                         // Target mob if not target
