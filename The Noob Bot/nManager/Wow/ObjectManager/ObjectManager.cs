@@ -294,7 +294,15 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 lock (Locker)
-                    return _unitList.ToList();
+                {
+                    List<WoWUnit> list = new List<WoWUnit>();
+                    for (int i = 0; i < _unitList.Count; i++)
+                    {
+                        WoWUnit unit = _unitList[i];
+                        list.Add(unit);
+                    }
+                    return list;
+                }
             }
             catch (Exception e)
             {
@@ -1338,10 +1346,10 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                Memory.WowMemory.GameFrameLock();
                 var outputList = new List<WoWUnit>();
                 List<WoWUnit> unitsList = GetUnitTargetingPlayer();
 
+                Memory.WowMemory.GameFrameLock();
                 foreach (WoWUnit unit in unitsList)
                 {
                     if (unit.IsHostile)
@@ -1361,10 +1369,10 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                Memory.WowMemory.GameFrameLock();
                 var outputList = new List<WoWUnit>();
                 List<WoWUnit> unitsList = GetUnitTargetingPlayer();
 
+                Memory.WowMemory.GameFrameLock();
                 foreach (WoWUnit unit in unitsList)
                 {
                     if (unit.IsHostile && unit.InCombat)
