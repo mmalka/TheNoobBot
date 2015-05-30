@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using System.Linq;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -14,6 +12,8 @@ namespace nManager.Wow.Bot.States
 {
     public class FightHostileTargetDamageDealerOnly : State
     {
+        private WoWUnit _unit;
+
         public override string DisplayName
         {
             get { return "FightHostileTargetDamageDealerOnly"; }
@@ -30,8 +30,6 @@ namespace nManager.Wow.Bot.States
         {
             get { return new List<State>(); }
         }
-
-        private WoWUnit _unit;
 
         public override bool NeedToRun
         {
@@ -72,14 +70,13 @@ namespace nManager.Wow.Bot.States
 
         public WoWUnit AcquireTarger()
         {
-
             if (ObjectManager.ObjectManager.Me.Target == 0)
                 return new WoWUnit(0);
             if (nManagerSetting.CurrentSetting.DontPullMonsters && !ObjectManager.ObjectManager.Target.InCombat)
                 return new WoWUnit(0);
 
             // Get unit:
-            var localUnit = ObjectManager.ObjectManager.Target;
+            WoWUnit localUnit = ObjectManager.ObjectManager.Target;
 
             if (localUnit.IsValid && localUnit.IsAlive && localUnit.Health > 0 && ((localUnit.Attackable && localUnit.IsHostile) || localUnit.IsUnitBrawlerAndTappedByMe))
                 return localUnit;
