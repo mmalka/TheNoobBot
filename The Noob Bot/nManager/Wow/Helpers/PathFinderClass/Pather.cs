@@ -389,7 +389,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (!File.Exists(path))
                     return false;
                 byte[] data = File.ReadAllBytes(path);
-                Logging.Write(GetTileName(x, y, true) + " loaded.");
+                Logging.WriteNavigator(GetTileName(x, y, true) + " loaded.");
                 if (!LoadTile(data))
                 {
                     Others.DeleteFile(_meshPath + "\\" + fName);
@@ -466,7 +466,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (entry.Value < Others.TimesSec - (15*60)) // 15 * 60 = 15 mins
                 {
                     RemoveTile(entry.Key.Item1, entry.Key.Item2);
-                    Logging.Write("Unloading old tile (" + entry.Key.Item1 + ", " + entry.Key.Item2 + ")");
+                    Logging.WriteNavigator("Unloading old tile (" + entry.Key.Item1 + ", " + entry.Key.Item2 + ")");
                     toRemove.Add(entry.Key);
                 }
             }
