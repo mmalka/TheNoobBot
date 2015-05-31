@@ -19,4 +19,23 @@
     <Reset>true</Reset>
     <Type>Raid</Type>
   </Instance>
+  <Instance Id="2" Name="Ragefire - Reset Full Instance" Level="15" Active="true">
+    <EntranceContinentId>1</EntranceContinentId>
+    <EntranceLocation>
+      <X>1818.863</X>
+      <Y>-4427.808</Y>
+      <Z>-20.5538</Z>
+    </EntranceLocation>
+    <InstanceContinentId>389</InstanceContinentId>
+    <DepartureLocation>
+      <X>3.555485</X>
+      <Y>-4.896605</Y>
+      <Z>-14.43957</Z>
+    </DepartureLocation>
+    <InstancePriority>1.5</InstancePriority>
+    <KillBosses>true</KillBosses>
+    <LastUnitId>61528</LastUnitId>
+    <Reset>true</Reset>
+    <Type>Dungeon</Type>
+  </Instance>
 </ArrayOfInstance>
