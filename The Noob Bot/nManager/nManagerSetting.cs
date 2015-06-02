@@ -300,6 +300,6 @@ namespace nManager
         public bool ActivatePluginsSystem = true;
         public bool LaunchExpiredPlugins = false;
         public bool HideSdkFiles = true;
-        public bool UseFrameLock = true;
+        public bool UseFrameLock = false;
     }
 }
