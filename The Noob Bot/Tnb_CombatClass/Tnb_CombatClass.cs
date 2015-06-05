@@ -4541,7 +4541,7 @@ public class MageArcane
 
     public MageArcane()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = MageArcaneSettings.GetSettings();
         Main.DumpCurrentSettings<MageArcaneSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -4566,13 +4566,13 @@ public class MageArcane
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -5414,7 +5414,7 @@ public class MageFrost
 
     public MageFrost()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = MageFrostSettings.GetSettings();
         Main.DumpCurrentSettings<MageFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -5438,13 +5438,13 @@ public class MageFrost
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -6300,7 +6300,7 @@ public class MageFire
 
     public MageFire()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = MageFireSettings.GetSettings();
         Main.DumpCurrentSettings<MageFireSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -6325,13 +6325,13 @@ public class MageFire
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -7039,7 +7039,7 @@ public class WarlockDemonology
 
     public WarlockDemonology()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = WarlockDemonologySettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDemonologySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -7064,13 +7064,13 @@ public class WarlockDemonology
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -7865,7 +7865,7 @@ public class WarlockDestruction
 
     public WarlockDestruction()
     {
-        Main.InternalRange = 40.0f;
+        Main.InternalRange = 39f;
         MySettings = WarlockDestructionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDestructionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -7890,13 +7890,13 @@ public class WarlockDestruction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -8632,7 +8632,7 @@ public class WarlockAffliction
 
     public WarlockAffliction()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = WarlockAfflictionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockAfflictionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -8657,13 +8657,13 @@ public class WarlockAffliction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -9407,7 +9407,7 @@ public class DruidBalance
 
     public DruidBalance()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = DruidBalanceSettings.GetSettings();
         Main.DumpCurrentSettings<DruidBalanceSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -9430,12 +9430,12 @@ public class DruidBalance
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
                         {
-                            if (ObjectManager.Target.GetDistance <= 40f)
+                            if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                 LowCombat();
                         }
                         else
                         {
-                            if (ObjectManager.Target.GetDistance <= 40f)
+                            if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                 Combat();
                         }
                     }
@@ -15860,7 +15860,7 @@ public class ShamanElemental
 
     public ShamanElemental()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = ShamanElementalSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanElementalSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -15885,13 +15885,13 @@ public class ShamanElemental
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -16654,7 +16654,7 @@ public class PriestShadow
 
     public PriestShadow()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = PriestShadowSettings.GetSettings();
         Main.DumpCurrentSettings<PriestShadowSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -16681,13 +16681,13 @@ public class PriestShadow
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -23623,7 +23623,7 @@ public class HunterMarksmanship
 
     public HunterMarksmanship()
     {
-        Main.InternalRange = 30.0f;
+        Main.InternalRange = 39f;
         MySettings = HunterMarksmanshipSettings.GetSettings();
         Main.DumpCurrentSettings<HunterMarksmanshipSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -23649,13 +23649,13 @@ public class HunterMarksmanship
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -24436,7 +24436,7 @@ public class HunterBeastMastery
 
     public HunterBeastMastery()
     {
-        Main.InternalRange = 35.0f;
+        Main.InternalRange = 39f;
         MySettings = HunterBeastMasterySettings.GetSettings();
         Main.DumpCurrentSettings<HunterBeastMasterySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -24462,13 +24462,13 @@ public class HunterBeastMastery
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= Main.InternalRange)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= Main.InternalRange)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -25250,8 +25250,8 @@ public class HunterSurvival
 
     public HunterSurvival()
     {
-        Main.InternalRange = 30.0f;
-        Main.InternalAggroRange = 30.0f;
+        Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = HunterSurvivalSettings.GetSettings();
         Main.DumpCurrentSettings<HunterSurvivalSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -25276,12 +25276,12 @@ public class HunterSurvival
                             if (MySettings.UseLowCombat &&
                                 ((ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)))
                             {
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
