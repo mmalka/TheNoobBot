@@ -567,7 +567,6 @@ namespace nManager.Wow.Helpers
                     {
                         Logging.WriteDebug("UnStuck - We are currently Flying.");
                         UnStuckFly();
-                        //IsUnStuck = false;
                         StuckCount++;
                         Logging.WriteDebug("UnStuck - StuckCount updated, new value: " + StuckCount + ".");
                     }
