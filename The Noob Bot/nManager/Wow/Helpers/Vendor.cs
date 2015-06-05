@@ -46,6 +46,8 @@ namespace nManager.Wow.Helpers
                     var result = Others.ToUInt32(Lua.GetLocalizedText(resultString));
                     for (int j = 0; j < result + 1; j++)
                     {
+                        if (!Others.IsFrameVisible("MerchantFrame"))
+                            return;
                         string scriptLua = "";
 
                         scriptLua = scriptLua + "local l,r,_=0 ";
