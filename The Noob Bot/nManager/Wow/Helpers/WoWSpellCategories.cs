@@ -8,7 +8,6 @@ namespace nManager.Wow.Helpers
     public class WoWSpellCategories
     {
         [CompilerGenerated] private static SpellCategoriesDbcRecord spellCategoriesDbcRecord_0;
-        [CompilerGenerated] private uint uint_0;
 
         private static DBC<SpellCategoriesDbcRecord> spellCategoriesDBC;
 
