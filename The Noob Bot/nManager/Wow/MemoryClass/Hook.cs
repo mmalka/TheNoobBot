@@ -26,7 +26,6 @@ namespace nManager.Wow.MemoryClass
 
         private readonly BlackMagic _memory = new BlackMagic();
         public bool AllowReHook = false;
-        internal uint InjectedCodeDetour;
         internal uint JumpAddress;
 
         /// <summary>
