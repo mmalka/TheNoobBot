@@ -24430,7 +24430,7 @@ public class HunterBeastMastery
 
     public HunterBeastMastery()
     {
-        Main.InternalRange = 40.0f;
+        Main.InternalRange = 35.0f;
         MySettings = HunterBeastMasterySettings.GetSettings();
         Main.DumpCurrentSettings<HunterBeastMasterySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -24456,13 +24456,13 @@ public class HunterBeastMastery
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (ObjectManager.Target.GetDistance <= Main.InternalRange)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (ObjectManager.Target.GetDistance <= Main.InternalRange)
                                     Combat();
                             }
                         }
@@ -24910,12 +24910,6 @@ public class HunterBeastMastery
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                && MySettings.UseCobraShot)
-            {
-                CobraShot.Cast();
-                return;
-            }
             if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
                 && MySettings.UseKillShot)
             {
