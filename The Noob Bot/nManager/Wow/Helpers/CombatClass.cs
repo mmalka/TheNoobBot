@@ -32,9 +32,9 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InRange(unit);
                 float distance = unit.GetDistance;
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
-                return distance - combatReach <= GetRange - 0.5;
+                float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("InRange check: Distance " + distance + ", BoundingRadius " + boundingRadius + ", Range " + GetRange);
+                return distance - boundingRadius <= GetRange - 0.1;
             }
             catch (Exception exception)
             {
@@ -50,9 +50,9 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InCustomRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", minRange " + minRange + ", maxRange " + maxRange);
-                return distance - combatReach <= maxRange - 0.5 && distance >= minRange + 0.5;
+                float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("Distance " + distance + ", BoundingRadius " + boundingRadius + ", Scale " + unit.Scale + ", Diff " + (distance - boundingRadius));
+                return distance - boundingRadius <= maxRange - 0.05 && distance >= minRange + 0.05;
             }
             catch (Exception exception)
             {
@@ -68,9 +68,9 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InMinRange(unit);
                 float distance = unit.GetDistance;
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InMinRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
-                return distance - combatReach <= GetRange - 0.5 && distance - combatReach >= -1.5;
+                float boundingRadius = unit.GetBoundingRadius;
+                //Logging.WriteDebug("InMinRange check: Distance " + distance + ", BoundingRadius " + unit.GetBoundingRadius + ", Scale " + unit.Scale + ", Range " + GetRange);
+                return distance - boundingRadius <= GetRange - 0.05 && distance - boundingRadius >= -0.05; // distance - combatReach >= -1.5;
             }
             catch (Exception exception)
             {
@@ -86,13 +86,13 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     if (_instanceFromOtherAssembly != null)
-                        return _instanceFromOtherAssembly.Range < 5.0f ? 5.0f : _instanceFromOtherAssembly.Range;
-                    return 5.0f;
+                        return _instanceFromOtherAssembly.Range < 1.5f ? 1.5f : _instanceFromOtherAssembly.Range;
+                    return 1.5f;
                 }
                 catch (Exception exception)
                 {
                     Logging.WriteError("CombatClass > GetRange: " + exception);
-                    return 5.0f;
+                    return 1.5f;
                 }
             }
         }

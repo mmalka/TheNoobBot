@@ -202,6 +202,21 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public float GetBoundingRadius
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<float>(Descriptors.UnitFields.BoundingRadius);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > BoundingRadius: " + e);
+                    return 0;
+                }
+            }
+        }
 
         public bool IsHostile
         {
