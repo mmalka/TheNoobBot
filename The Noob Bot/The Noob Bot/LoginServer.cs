@@ -451,7 +451,7 @@ namespace The_Noob_Bot
             try
             {
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
-                if (Information.Version == "DevVersionRestrict")
+                if (Others.EncrypterMD5(Information.Version) == "5006678f64f53edfaa26f2587c559d1e")
 // ReSharper restore ConditionIsAlwaysTrueOrFalse
                     return;
 #pragma warning disable 162
