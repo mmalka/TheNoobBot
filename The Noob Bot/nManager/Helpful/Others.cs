@@ -1104,6 +1104,13 @@ namespace nManager.Helpful
 
         #region FailOver System
 
+        public static bool IsFrameVisible(string frameName)
+        {
+            string result = GetRandomString(Random(4, 10));
+            Lua.LuaDoString(result + " = tostring(" + frameName + " and "+ frameName + ":IsVisible())");
+            return Lua.GetLocalizedText(result) == "true";
+        }
+
         private static string _cachedAuthServerAddress;
         private static readonly Timer CachedAuthServerTimer = new Timer(300); // Re-try to connect to the prioritized AuthServers every 5 minutes.
         private static readonly string[] FailOversAddress = new[] {"http://tech.thenoobbot.com/" /*, "http://auth2.thenoobbot.com/"*/};
