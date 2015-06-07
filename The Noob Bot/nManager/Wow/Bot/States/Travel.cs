@@ -589,8 +589,11 @@ namespace nManager.Wow.Bot.States
             Point refPoint = ObjectManager.ObjectManager.Me.Position;
             while (loop)
             {
-                Thread.Sleep(1200);
-                if (refPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 1.0f)
+                Thread.Sleep(1000);
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                    continue;
+                if (!ObjectManager.ObjectManager.Me.OnTaxi &&
+                    refPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 1.0f)
                     loop = false;
                 else
                     refPoint = ObjectManager.ObjectManager.Me.Position;
