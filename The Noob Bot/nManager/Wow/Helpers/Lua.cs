@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.MemoryClass;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -44,15 +46,18 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                while (!notInGameMode && !Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                {
+                    Memory.WowMemory.GameFrameUnLock();
+                    Thread.Sleep(200);
+                }
                 if (doAntiAfk) // Avoid loop while retrieving the AFK key to press.
                     Usefuls.UpdateLastHardwareAction();
                 if (command.Replace(" ", "").Length <= 0)
                     return;
 
                 // Allocate memory
-                uint doStringArgCodecave =
-                    Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 +
-                                                           Others.Random(1, 25));
+                uint doStringArgCodecave = Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 + Others.Random(1, 25));
                 if (doStringArgCodecave <= 0)
                     return;
                 // Write value:
@@ -131,6 +136,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                while (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                {
+                    Memory.WowMemory.GameFrameUnLock();
+                    Thread.Sleep(200);
+                }
                 // Command to send using LUA
                 string command = commandline;
                 if (command.Replace(" ", "").Length <= 0)

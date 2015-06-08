@@ -44,6 +44,10 @@ namespace nManager.Wow.Bot.States
                 {
                     _gameOffline = false;
                     ConfigWowForThisBot.ConfigWow();
+                    if (Products.Products.ProductName == "Damage Dealer" && !nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer)
+                        ConfigWowForThisBot.StartStopClickToMove(false);
+                    if (Products.Products.ProductName == "Heal Bot" && !nManagerSetting.CurrentSetting.ActivateMovementsHealerBot)
+                        ConfigWowForThisBot.StartStopClickToMove(false);
                     SpellManager.UpdateSpellBook();
                     Logging.Write("Game is back online, unpausing, reloading SpellBook.");
                     _inPause = false;

@@ -78,6 +78,10 @@ namespace nManager.Wow.Bot.States
                         Logging.Write("Ending player relogging with success.");
                         _relogger = false;
                         ConfigWowForThisBot.ConfigWow();
+                        if (Products.Products.ProductName == "Damage Dealer" && !nManagerSetting.CurrentSetting.ActivateMovementsDamageDealer)
+                            ConfigWowForThisBot.StartStopClickToMove(false);
+                        if (Products.Products.ProductName == "Heal Bot" && nManagerSetting.CurrentSetting.ActivateMovementsHealerBot)
+                            ConfigWowForThisBot.StartStopClickToMove(false);
                         SpellManager.UpdateSpellBook();
                         //Products.Products.ProductRestart();
                         break;
