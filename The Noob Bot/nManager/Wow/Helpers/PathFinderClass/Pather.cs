@@ -530,7 +530,6 @@ namespace nManager.Wow.Helpers.PathFinderClass
             while (ndiff < diff)
             {
                 int limit = (int)(path.Count * 0.75f);
-
                 List<Point> path2;
                 path2 = FindPathSimple(path[limit], endVec, out resultSuccess);
 

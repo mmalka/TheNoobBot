@@ -1107,7 +1107,7 @@ namespace nManager.Helpful
         public static bool IsFrameVisible(string frameName)
         {
             string result = GetRandomString(Random(4, 10));
-            Lua.LuaDoString(result + " = tostring(" + frameName + " and "+ frameName + ":IsVisible())");
+            Lua.LuaDoString(result + " = tostring(" + frameName + " and " + frameName + ":IsVisible())");
             return Lua.GetLocalizedText(result) == "true";
         }
 

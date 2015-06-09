@@ -593,6 +593,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         public bool IsHerb { get; set; }
+        public Spell LoggingSpell;
 
         public bool CanOpen
         {
@@ -635,13 +636,14 @@ namespace nManager.Wow.ObjectManager
                                 if ((WoWGameObjectLockType) Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_SAW_TREE)
                                 {
                                     uint RankRequired = Row.Record.Skill[j];
-                                    Spell loggingSpell = new Spell("Logging");
-                                    if (!loggingSpell.KnownSpell)
+                                    if (LoggingSpell == null)
+                                        LoggingSpell = new Spell("Logging");
+                                    if (!LoggingSpell.KnownSpell)
                                         return false;
                                     if (RankRequired == 3)
-                                        return loggingSpell.Id == 167947;
+                                        return LoggingSpell.Id == 167947;
                                     if (RankRequired == 2)
-                                        return loggingSpell.Id == 167946 || loggingSpell.Id == 167947;
+                                        return LoggingSpell.Id == 167946 || LoggingSpell.Id == 167947;
                                     return true;
                                 }
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType) Row.Record.LockType[j]);
