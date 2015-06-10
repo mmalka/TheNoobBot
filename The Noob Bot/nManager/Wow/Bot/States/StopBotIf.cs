@@ -29,13 +29,19 @@ namespace nManager.Wow.Bot.States
                 if (!Products.Products.IsStarted)
                     return false;
 
+                if (Products.Products.InManualPause)
+                {
+                    _lastPos = null;
+                    return false;
+                }
+
                 if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
                 {
-                    if (!_inPause && !Products.Products.InPause)
+                    if (!_inPause && !Products.Products.InAutoPause)
                     {
                         Logging.Write("Game got disconnect or in loading, pausing TheNoobbot, please relog manually or make sure the relogger feature is activated.");
                         _inPause = true;
-                        Products.Products.InPause = true;
+                        Products.Products.InAutoPause = true;
                         _gameOffline = true;
                     }
                     return false;
@@ -51,7 +57,7 @@ namespace nManager.Wow.Bot.States
                     SpellManager.UpdateSpellBook();
                     Logging.Write("Game is back online, unpausing, reloading SpellBook.");
                     _inPause = false;
-                    Products.Products.InPause = false;
+                    Products.Products.InAutoPause = false;
                 }
 
                 return true;
@@ -159,13 +165,13 @@ namespace nManager.Wow.Bot.States
             if (nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer && Usefuls.InGame &&
                 !Usefuls.IsLoadingOrConnecting)
             {
-                if (!_inPause && !Products.Products.InPause)
+                if (!_inPause && !Products.Products.InAutoPause)
                 {
                     if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count >= 1 && Usefuls.InGame &&
                         !Usefuls.IsLoadingOrConnecting)
                     {
                         _inPause = true;
-                        Products.Products.InPause = true;
+                        Products.Products.InAutoPause = true;
                         Logging.Write("Player Nerby, pause bot");
                     }
                 }
@@ -176,7 +182,7 @@ namespace nManager.Wow.Bot.States
                         !Usefuls.IsLoadingOrConnecting)
                     {
                         _inPause = false;
-                        Products.Products.InPause = false;
+                        Products.Products.InAutoPause = false;
                         Logging.Write("No Player Nerby, unpause bot");
                     }
                 }

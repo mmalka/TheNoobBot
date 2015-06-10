@@ -25,7 +25,8 @@ namespace nManager.Products
         private static readonly Engine Fsm = new Engine(false);
         private static bool _isDisposed;
         private static string _productName = "";
-        private static bool _inPause;
+        private static bool _inAutoPause;
+        private static bool _inManualPause;
         private static bool _oldIsStarted;
         private static bool _oldIsAliveProduc;
         private static Thread _threadEventChangeProduct;
@@ -60,10 +61,16 @@ namespace nManager.Products
             private set { _productName = value; }
         }
 
-        public static bool InPause
+        public static bool InAutoPause
         {
-            get { return _inPause; }
-            set { _inPause = value; }
+            get { return _inAutoPause; }
+            set { _inAutoPause = value; }
+        }
+
+        public static bool InManualPause
+        {
+            get { return _inManualPause; }
+            set { _inManualPause = value; }
         }
 
         public static Point TravelTo { get; set; }
@@ -169,7 +176,7 @@ namespace nManager.Products
 
         public static void ToggleCinematic(bool started = true)
         {
-            _inPause = started;
+            _inAutoPause = started;
         }
 
         public static bool ProductStart()
@@ -178,8 +185,9 @@ namespace nManager.Products
             {
                 if (_instanceFromOtherAssembly != null)
                 {
-                    _inPause = false;
-                    TravelToContinentId = TravelToContinentId = 9999999;
+                    _inAutoPause = false;
+                    _inManualPause = false;
+                    TravelToContinentId = 9999999;
                     TravelTo = new Point();
 
                     _instanceFromOtherAssembly.Start();

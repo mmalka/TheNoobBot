@@ -71,6 +71,10 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
+                // It's in pause if we did TP to a random dig site
+                if (Products.Products.InManualPause)
+                    Products.Products.InManualPause = false;
+
                 if (!BlackListDigsites.Contains(digsitesZone.id) &&
                     Archaeology.DigsiteZoneIsAvailable(digsitesZone))
                     return true;
@@ -273,6 +277,22 @@ namespace nManager.Wow.Bot.States
                     {
                         if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                         {
+                            int LodestoneID = 117389;
+                            if (!_travelDisabled && ItemsManager.GetItemCount(LodestoneID) > 0 &&
+                                (Enums.ContinentId)Usefuls.RealContinentId == Enums.ContinentId.Draenor &&
+                                qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 2000f)
+                            {
+                                ObjectManager.WoWItem item = ObjectManager.ObjectManager.GetWoWItemById(LodestoneID);
+                                if (item != null && item.IsValid && !ItemsManager.IsItemOnCooldown(LodestoneID) && ItemsManager.IsItemUsable(LodestoneID))
+                                {
+                                    Logging.Write("Using a Draenor Archaeologist's Lodestone");
+                                    Products.Products.InManualPause = true; // Prevent triggering "Player teleported"
+                                    ItemsManager.UseItem(LodestoneID);
+                                    Thread.Sleep(3000 + Usefuls.Latency);
+                                    digsitesZone = new Digsite(); // Reset the choice made
+                                    return;
+                                }
+                            }
                             Logging.Write("Not inside, then go to Digsite " + digsitesZone.name);
                             Point me = ObjectManager.ObjectManager.Me.Position;
                             if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
@@ -432,16 +452,16 @@ namespace nManager.Wow.Bot.States
                             if (_AntiPingPong)
                             {
                                 Logging.Write("Ping-pong detected, shortening the distance");
-                                distance = 10f;
+                                distance = 11f;
                                 distanceMin = 6f;
-                                distanceMax = 15f;
+                                distanceMax = 16f;
                                 decrement = 4f;
                             }
                             else
                             {
                                 distance = 19f;
                                 distanceMin = 7f;
-                                distanceMax = 31f;
+                                distanceMax = 36f;
                                 decrement = 3f;
                             }
                         }
