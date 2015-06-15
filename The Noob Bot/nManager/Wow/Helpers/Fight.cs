@@ -123,13 +123,16 @@ namespace nManager.Wow.Helpers
                 // If target died after only 0.2sec of fight, let's find a new target.
                 if (targetNpc.IsDead || !targetNpc.IsValid)
                 {
-                    targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
-                    if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
+                    WoWUnit newTargetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
+                    if (newTargetNpc.IsValid && !ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != newTargetNpc.Guid)
+                    {
+                        targetNpc = newTargetNpc;
                         Interact.InteractWith(targetNpc.GetBaseAddress);
+                        // Face the new target
+                        MovementManager.Face(targetNpc);
+                    }
                 }
 
-                // Make sure to always face the target in case we don't even enter the loop below.
-                MovementManager.Face(targetNpc);
                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
                        targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                 {
