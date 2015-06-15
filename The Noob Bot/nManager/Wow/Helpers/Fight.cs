@@ -112,16 +112,13 @@ namespace nManager.Wow.Helpers
 
                 InFight = true;
                 Thread.Sleep(200);
-                if (CombatClass.InAggroRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove &&
-                    !ObjectManager.ObjectManager.Me.IsCast)
+                if (CombatClass.InAggroRange(targetNpc))
                 {
-                    if (ObjectManager.ObjectManager.Me.IsMounted)
+                    if (ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
+                        MovementManager.StopMoveTo();
+                    if (!ObjectManager.ObjectManager.Me.GetMove && ObjectManager.ObjectManager.Me.IsMounted)
                         MountTask.DismountMount();
-                    MovementManager.StopMoveTo();
                 }
-
-                if (ObjectManager.ObjectManager.Me.IsMounted)
-                    MountTask.DismountMount();
 
                 // If target died after only 0.2sec of fight, let's find a new target.
                 if (targetNpc.IsDead || !targetNpc.IsValid)
