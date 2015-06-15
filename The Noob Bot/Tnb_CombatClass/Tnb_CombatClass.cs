@@ -2627,6 +2627,7 @@ public class DeathknightUnholy
 
     public DeathknightUnholy()
     {
+        Main.InternalAggroRange = 29f;
         Main.InternalRange = ObjectManager.Me.GetBoundingRadius + ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightUnholySettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightUnholySettings>(MySettings);
@@ -2653,13 +2654,13 @@ public class DeathknightUnholy
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 30)
+                                if (ObjectManager.Target.GetDistance < Main.InternalAggroRange)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 30)
+                                if (ObjectManager.Target.GetDistance < Main.InternalAggroRange)
                                     Combat();
                             }
                         }
