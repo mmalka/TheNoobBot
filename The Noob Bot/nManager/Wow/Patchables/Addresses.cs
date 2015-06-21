@@ -65,14 +65,14 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xD0DEA4,
-            ItemSubClass = 0xD0F9F4,
-            SpellCategories = 0xD11504,
-            FactionTemplate = 0xD09AF4,
-            Lock = 0x0D106CC,
-            QuestPOIPoint = 0xD10DB4,
-            ResearchSite = 0xD10FF0,
-            Map = 0xD13690,
+            ItemClass = 0xD0DEA4, // not found
+            ItemSubClass = 0xD65724,
+            SpellCategories = 0xD69C9C,
+            FactionTemplate = 0xD60A5C,
+            Lock = 0xD66834,
+            QuestPOIPoint = 0xD68574,
+            ResearchSite = 0xD10FF0, // not found
+            Map = 0xD706B8,
         }
 
         /// <summary>
