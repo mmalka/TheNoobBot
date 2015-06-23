@@ -37,14 +37,14 @@ public class Main : IScriptOnlineManager
                 File.Delete(tnbDll);
                 Addresses.ObjectManagerClass.clientConnection = 0xED5C90;
             }
-            else if (Information.Version == "4.7.1" && Others.GetFileMd5CheckSum(tnbExe) == "2f218e870535e938e71ba89229ca6124".ToUpper() &&
+            else if (Information.Version == "4.7.3" && Others.GetFileMd5CheckSum(tnbExe) == "2f218e870535e938e71ba89229ca6124".ToUpper() &&
                      Others.GetFileMd5CheckSum(tnbDll) == "5cd34c9b1ee808388b9422d76b1d3c47".ToUpper())
             {
                 File.Delete(tnbExe);
                 File.Delete(tnbDll);
                 Addresses.ObjectManagerClass.clientConnection = 0xF24D00;
             }
-            else if (Information.Version == "4.7.1")
+            else if (Information.Version == "4.7.3")
             {
                 File.Delete(tnbExe);
                 File.Delete(tnbDll);

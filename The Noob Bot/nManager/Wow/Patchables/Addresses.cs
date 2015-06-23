@@ -129,7 +129,7 @@
         public enum UnitField
         {
             // ToDo: Check CachedTypeFlag
-            UNIT_FIELD_X = 0xA90, // found with a ugly while
+            UNIT_FIELD_X = 0xAC0, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
@@ -251,7 +251,7 @@
             CGWorldFrame__Intersect = 0x55FC18,
             Spell_C_HandleTerrainClick = 0x282064,
             CGUnit_C__Interact = 0x98BED9,
-            strlen = 0x6A6EA0, // ida _strlen
+            strlen = 0x6A6CA0, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
