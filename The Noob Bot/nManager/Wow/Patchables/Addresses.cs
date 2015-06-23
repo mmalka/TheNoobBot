@@ -91,7 +91,7 @@
             subZoneMap = 0xEA1D5C, // Script_GetSubZoneText
             // saving
             TextBoxActivated = 0xBBE9AC, // 18414
-            LastHardwareAction = 0xCB2250, // Script_ToggleRun
+            LastHardwareAction = 0xD0E0B0, // Script_ToggleRun
         }
 
         /// <summary>
@@ -244,14 +244,14 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x3D1D,
-            FrameScript_ExecuteBuffer = 0x2745C,
-            CGUnit_C__InitializeTrackingState = 0x326A50, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x3183DF,
-            CGWorldFrame__Intersect = 0x55FE75,
-            Spell_C_HandleTerrainClick = 0x281D68,
-            CGUnit_C__Interact = 0x98BEB9,
-            strlen = 0x6A6EA0, // ida strlen
+            ClntObjMgrGetActivePlayerObj = 0x3CFB,
+            FrameScript_ExecuteBuffer = 0x27374,
+            CGUnit_C__InitializeTrackingState = 0x326CC9, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x318656,
+            CGWorldFrame__Intersect = 0x55FC18,
+            Spell_C_HandleTerrainClick = 0x282064,
+            CGUnit_C__Interact = 0x98BED9,
+            strlen = 0x6A6EA0, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
