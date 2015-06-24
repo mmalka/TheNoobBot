@@ -4,7 +4,7 @@ static main(){
     auto curAddr, xref, count, sPath, hFile;
  
 	// WowClientDB_Common__LoadInternal1
-	curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 53 56 57 FF 75 0C 8B 7D 08 8B D9" );
+	curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 56 57 FF 75 ? 8B F9 FF 75 ? E8 ? ? ? ? 8B F0 59 59 85 F6 74 ?" );
 	
     if ( curAddr == BADADDR ){
         Message("Can't find WowClientDB_Common__LoadInternal1, aborting...\n");

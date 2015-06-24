@@ -56,7 +56,6 @@ namespace nManager.Wow.ObjectManager
                         if (i > 0x1200)
                             break;
                     }*/
-
                     Point ret =
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
