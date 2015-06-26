@@ -65,13 +65,13 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xD64168, // DB2!
+            ItemClass = 0xD64168, // DB2! Script_GetItemInfo+1C6
             ItemSubClass = 0xD65724,
             SpellCategories = 0xD69C9C,
             FactionTemplate = 0xD60A5C,
             Lock = 0xD66834,
             QuestPOIPoint = 0xD68574,
-            ResearchSite = 0xD69A60, // DB2!
+            ResearchSite = 0xD69A60, // DB2! CGWorldMap__SetMap+36D
             Map = 0xD706B8,
         }
 
@@ -245,13 +245,13 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayerObj = 0x3CFB,
-            FrameScript_ExecuteBuffer = 0x27374,
-            CGUnit_C__InitializeTrackingState = 0x326CC9, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x318656,
-            CGWorldFrame__Intersect = 0x55FC18,
-            Spell_C_HandleTerrainClick = 0x282064,
-            CGUnit_C__Interact = 0x98BED9,
-            strlen = 0x6A6CA0, // ida _strlen
+            FrameScript_ExecuteBuffer = 0x274E7,
+            CGUnit_C__InitializeTrackingState = 0x326F18, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x3188A5,
+            CGWorldFrame__Intersect = 0x55FDEC,
+            Spell_C_HandleTerrainClick = 0x282141,
+            CGUnit_C__Interact = 0x98BF37,
+            strlen = 0x6A6E70, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
