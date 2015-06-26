@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using nManager.Wow.Class;
@@ -100,4 +100,4 @@ namespace nManager.Wow.Helpers
             return Memory.WowMemory.Memory.ReadInt((uint) (arrayPtr + (4*index)));
         }
     }
-}
+}*/

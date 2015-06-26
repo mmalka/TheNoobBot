@@ -5,7 +5,7 @@ namespace nManager.Wow.Class
 {
     public class DBCStruct
     {
-        [StructLayout(LayoutKind.Sequential)]
+        /*[StructLayout(LayoutKind.Sequential)]
         public struct DBCFile
         {
             public uint Magic;
@@ -13,7 +13,7 @@ namespace nManager.Wow.Class
             public int FieldsCount;
             public int RecordSize;
             public int StringTableSize;
-        }
+        }*/
 
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellCastTimesRec
