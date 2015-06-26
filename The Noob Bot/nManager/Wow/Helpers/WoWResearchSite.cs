@@ -5,19 +5,24 @@ namespace nManager.Wow.Helpers
 {
     public class WoWResearchSite
     {
-        private ResearchSiteDbcRecord _rSiteDBCRecord0;
+        private ResearchSiteDb2Record _rSiteDB2Record0;
 
-        private static DBC<ResearchSiteDbcRecord> _rSiteDBC;
+        private static DB2<ResearchSiteDb2Record> _rSiteDB2;
+
+        private static void init()
+        {
+            if (_rSiteDB2 == null)
+                _rSiteDB2 = new DB2<ResearchSiteDb2Record>((int)Addresses.DBC.ResearchSite);
+        }
 
         private WoWResearchSite(string name, bool SecondOne = false)
         {
             bool second = false;
-            if (_rSiteDBC == null)
-                _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-            for (int id = _rSiteDBC.MinIndex; id <= _rSiteDBC.MaxIndex; id++)
+            init();
+            for (int id = _rSiteDB2.MinIndex; id <= _rSiteDB2.MaxIndex; id++)
             {
-                _rSiteDBCRecord0 = _rSiteDBC.GetRow(id);
-                if (_rSiteDBCRecord0.Id == id)
+                _rSiteDB2Record0 = _rSiteDB2.GetRow(id);
+                if (_rSiteDB2Record0.Id == id)
                 {
                     string temp = Name;
                     if (temp == name)
@@ -29,22 +34,21 @@ namespace nManager.Wow.Helpers
                     }
                 }
             }
-            _rSiteDBCRecord0 = new ResearchSiteDbcRecord();
+            _rSiteDB2Record0 = new ResearchSiteDb2Record();
         }
 
         private WoWResearchSite(int reqId)
         {
-            if (_rSiteDBC == null)
-                _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-            for (int id = _rSiteDBC.MinIndex; id <= _rSiteDBC.MaxIndex; id++)
+            init();
+            for (int id = _rSiteDB2.MinIndex; id <= _rSiteDB2.MaxIndex; id++)
             {
-                _rSiteDBCRecord0 = _rSiteDBC.GetRow(id);
-                if (_rSiteDBCRecord0.Id == id && id == reqId)
+                _rSiteDB2Record0 = _rSiteDB2.GetRow(id);
+                if (_rSiteDB2Record0.Id == id && id == reqId)
                 {
                     return;
                 }
             }
-            _rSiteDBCRecord0 = new ResearchSiteDbcRecord();
+            _rSiteDB2Record0 = new ResearchSiteDb2Record();
         }
 
         // Factory function
@@ -58,18 +62,18 @@ namespace nManager.Wow.Helpers
             return new WoWResearchSite(id);
         }
 
-        public ResearchSiteDbcRecord Record
+        public ResearchSiteDb2Record Record
         {
-            get { return _rSiteDBCRecord0; }
+            get { return _rSiteDB2Record0; }
         }
 
         public string Name
         {
             get
             {
-                return _rSiteDBC.String(_rSiteDBC.GetRowOffset((int) _rSiteDBCRecord0.Id) +
-                                        _rSiteDBCRecord0.NameOffset +
-                                        (uint) Marshal.OffsetOf(typeof (ResearchSiteDbcRecord), "NameOffset"));
+                return _rSiteDB2.String(_rSiteDB2.GetRowOffset((int) _rSiteDB2Record0.Id) +
+                                        _rSiteDB2Record0.NameOffset +
+                                        (uint) Marshal.OffsetOf(typeof (ResearchSiteDb2Record), "NameOffset"));
             }
         }
 
@@ -78,9 +82,8 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                if (_rSiteDBC == null)
-                    _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-                return _rSiteDBC.MinIndex;
+                init();
+                return _rSiteDB2.MinIndex;
             }
         }
 
@@ -88,14 +91,13 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                if (_rSiteDBC == null)
-                    _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-                return _rSiteDBC.MaxIndex;
+                init();
+                return _rSiteDB2.MaxIndex;
             }
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct ResearchSiteDbcRecord
+        public struct ResearchSiteDb2Record
         {
             public uint Id;
             public uint Map;
