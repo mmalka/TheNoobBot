@@ -28,10 +28,10 @@ namespace nManager.Wow.Class
         {
             public IntPtr VTable; // pointer to vtable
             public int NumRows; // number of rows
-            public int Unk3;
-            public int MinIndex; // minimal row index
+            public int StartArrayIndex;
+            public int NowRows2;
             public int MaxIndex; // maximal row index
-            public int Unk6;
+            public int MinIndex; // minimal row index
             public uint Unk7;
             public IntPtr Data; // pointer to actual db2 file data
             public IntPtr FirstRow; // pointer to first row
