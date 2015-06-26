@@ -5,17 +5,17 @@ namespace nManager.Wow.Helpers
 {
     public class WoWItemClass
     {
-        private ItemClassDbcRecord _rItemClassRec0;
+        private ItemClassDB2Record _rItemClassRec0;
 
-        private static DBC<ItemClassDbcRecord> _rItemClassDBC;
+        private static DB2<ItemClassDB2Record> _rItemClassDB2;
 
         private WoWItemClass(string name)
         {
-            if (_rItemClassDBC == null)
-                _rItemClassDBC = new DBC<ItemClassDbcRecord>((uint) Addresses.DBC.ItemClass);
-            for (int id = _rItemClassDBC.MinIndex; id <= _rItemClassDBC.MaxIndex; id++)
+            if (_rItemClassDB2 == null)
+                _rItemClassDB2 = new DB2<ItemClassDB2Record>((uint) Addresses.DBC.ItemClass);
+            for (int id = _rItemClassDB2.MinIndex; id <= _rItemClassDB2.MaxIndex; id++)
             {
-                _rItemClassRec0 = _rItemClassDBC.GetRow(id);
+                _rItemClassRec0 = _rItemClassDB2.GetRow(id);
                 if (_rItemClassRec0.ClassId == id)
                 {
                     if (Name == name)
@@ -24,7 +24,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
             }
-            _rItemClassRec0 = new ItemClassDbcRecord();
+            _rItemClassRec0 = new ItemClassDB2Record();
         }
 
         // Factory function
@@ -33,7 +33,7 @@ namespace nManager.Wow.Helpers
             return new WoWItemClass(name);
         }
 
-        public ItemClassDbcRecord Record
+        public ItemClassDB2Record Record
         {
             get { return _rItemClassRec0; }
         }
@@ -42,14 +42,14 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                return _rItemClassDBC.String(_rItemClassDBC.GetRowOffset((int) _rItemClassRec0.ClassId) +
+                return _rItemClassDB2.String(_rItemClassDB2.GetRowOffset((int) _rItemClassRec0.ClassId) +
                                              _rItemClassRec0.ClassNameOffset +
-                                             (uint) Marshal.OffsetOf(typeof (ItemClassDbcRecord), "ClassNameOffset"));
+                                             (uint) Marshal.OffsetOf(typeof (ItemClassDB2Record), "ClassNameOffset"));
             }
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct ItemClassDbcRecord
+        public struct ItemClassDB2Record
         {
             public uint ClassId;
             public uint unk2;

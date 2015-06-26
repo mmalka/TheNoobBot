@@ -182,6 +182,7 @@
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
     <Compile Include="Wow\Bot\States\Travel.cs" />
     <Compile Include="Wow\Class\Auras.cs" />
+    <Compile Include="Wow\Class\DB2Struct.cs" />
     <Compile Include="Wow\Class\Instance.cs" />
     <Compile Include="Wow\Class\Int128.cs" />
     <Compile Include="Wow\Class\Matrix4.cs" />
@@ -196,7 +197,10 @@
     <Compile Include="Wow\Enums\WoWSpecialization.cs" />
     <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
-    <Compile Include="Wow\Helpers\DBCReader.cs" />
+    <Compile Include="Wow\Helpers\DB2.cs" />
+    <Compile Include="Wow\Helpers\DBCReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Wow\Helpers\Portals.cs" />
     <Compile Include="Wow\Helpers\Taxi.cs" />
     <Compile Include="Wow\Helpers\Transports.cs" />
