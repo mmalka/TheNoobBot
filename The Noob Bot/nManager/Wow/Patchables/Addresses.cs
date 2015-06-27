@@ -323,7 +323,8 @@
             AuraStructCreatorGuid = 0x20, // read 16 bytes (GUID)
             AuraStructSpellId = AuraStructCreatorGuid + 16, // read 4 bytes (UINT)
             AuraStructFlags = AuraStructSpellId + 4, // read 1 byte, what is this ?
-            AuraStructCount = AuraStructFlags + 1, // read 1 byte
+            AuraStructUnk1 = AuraStructFlags + 1,
+            AuraStructCount = AuraStructUnk1 + 4, // read 1 byte
             AuraStructCasterLevel = AuraStructCount + 1, // read 1 byte
             AuraStructUnk2 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
             AuraStructDuration = AuraStructUnk2 + 1, // read 4 bytes

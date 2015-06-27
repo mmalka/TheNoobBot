@@ -21,6 +21,7 @@ namespace nManager.Wow.Class
             public byte AuraFlags { get; set; }
             public int AuraCount { get; set; }
             public byte AuraCasterLevel { get; set; }
+            public uint AuraUnk1 { get; set; }
             public byte AuraUnk2 { get; set; }
             public int AuraDuration { get; set; }
             public int AuraSpellEndTime { get; set; }
@@ -80,8 +81,9 @@ namespace nManager.Wow.Class
                     "AuraSpellEndTime: {6}{0}" +
                     "AuraSpellId: {7}{0}" +
                     "AuraTimeLeftInMs: {8}{0}" +
-                    "AuraUnk2: {9}{0}" +
-                    "AuraUnk3: {10}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlags, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraUnk2, AuraUnk3);
+                    "AuraUnk1: {9}{0}" +
+                    "AuraUnk2: {10}{0}" +
+                    "AuraUnk3: {11}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlags, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraUnk1, AuraUnk2, AuraUnk3);
             }
         }
 

@@ -78,6 +78,7 @@ namespace nManager.Wow.Helpers
                         int auraDuration = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration);
                         int auraSpellEndTime = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime);
                         byte auraUnk3 = Memory.WowMemory.Memory.ReadByte(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk3);
+                        uint auraUnk1 = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraStructUnk1);
                         var currUnitAura = new Auras.UnitAura
                         {
                             AuraCreatorGUID = auraCreatorGuid,
@@ -85,11 +86,13 @@ namespace nManager.Wow.Helpers
                             AuraFlags = auraFlags,
                             AuraCount = auraStackCount,
                             AuraCasterLevel = auraCasterLevel,
+                            AuraUnk1 = auraUnk1,
                             AuraUnk2 = auraUnk2,
                             AuraDuration = auraDuration,
                             AuraSpellEndTime = auraSpellEndTime,
                             AuraUnk3 = auraUnk3
                         };
+                        //Console.WriteLine(currUnitAura);
                         unitAuras.Auras.Add(currUnitAura);
                     }
                 }
