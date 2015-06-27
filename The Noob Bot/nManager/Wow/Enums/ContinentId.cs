@@ -747,6 +747,9 @@
         ///<summary>TanaanJungleIntro</summary>
         TanaanJungleIntro = 1265,
 
+        ///<summary>TanaanJungle</summary>
+        TanaanJungle = 1464,
+
         None = 9999999,
     }
 }
