@@ -100,6 +100,9 @@ namespace nManager.Wow.Enums
         Active = 0x4,
         PlayerCasted = 0x8,
         Harmful = 0x10,
+        Duration = 0x0020,
+        BasePoints = 0x0040,
+        Negative = 0x0080,
     }
 
     [Flags]

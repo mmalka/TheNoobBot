@@ -18,14 +18,14 @@ namespace nManager.Wow.Class
             }
 
             public uint AuraSpellId { get; set; }
-            public byte AuraFlags { get; set; }
             public int AuraCount { get; set; }
             public byte AuraCasterLevel { get; set; }
-            public uint AuraUnk1 { get; set; }
-            public byte AuraUnk2 { get; set; }
+            public byte AuraFlag { get; set; }
+            public uint AuraMask { get; set; }
+            public byte AuraUnk1 { get; set; }
             public int AuraDuration { get; set; }
             public int AuraSpellEndTime { get; set; }
-            public byte AuraUnk3 { get; set; }
+            public uint AuraUnk2 { get; set; }
 
             public int AuraTimeLeftInMs
             {
@@ -44,7 +44,7 @@ namespace nManager.Wow.Class
 
             public UnitAuraFlags Flags
             {
-                get { return (UnitAuraFlags) AuraFlags; }
+                get { return (UnitAuraFlags) AuraFlag; }
             }
 
             public bool IsActive
@@ -81,9 +81,9 @@ namespace nManager.Wow.Class
                     "AuraSpellEndTime: {6}{0}" +
                     "AuraSpellId: {7}{0}" +
                     "AuraTimeLeftInMs: {8}{0}" +
-                    "AuraUnk1: {9}{0}" +
-                    "AuraUnk2: {10}{0}" +
-                    "AuraUnk3: {11}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlags, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraUnk1, AuraUnk2, AuraUnk3);
+                    "AuraMask: {9}{0}" +
+                    "AuraUnk1: {10}{0}" +
+                    "AuraUnk2: {11}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlag, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraMask.ToString("X8"), AuraUnk1, AuraUnk2);
             }
         }
 
