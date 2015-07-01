@@ -95,7 +95,6 @@ namespace nManager.Wow.Helpers
                         };
                         /*Console.WriteLine("Pointer = " + currentAuraPtr + " , affect: " + auraAffectedGuid);
                             Console.WriteLine(currUnitAura);*/
-                        Thread.Sleep(2000);
                         unitAuras.Auras.Add(currUnitAura);
                     }
                 }
