@@ -93,7 +93,15 @@ namespace nManager.Wow.Helpers
 
         public static bool IsInBattleground()
         {
-            return GetCurrentBattleground() != BattlegroundId.None;
+            return GetCurrentBattlegroundNameLocalized() != string.Empty;
+        }
+
+        public static string GetCurrentBattlegroundNameLocalized()
+        {
+            WoWMap map = WoWMap.FromId(Usefuls.ContinentId);
+            if (map.Record.InstanceType == WoWMap.InstanceType.Battleground)
+                return map.MapName;
+            return string.Empty;
         }
 
         public static BattlegroundId GetCurrentBattleground()
