@@ -181,7 +181,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 Npc.FactionType faction = (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
-                return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId, ObjectManager.ObjectManager.Me.Position, ignoreRadiusSettings);
+                return GetNpcNearby(type, faction, Usefuls.ContinentId, ObjectManager.ObjectManager.Me.Position, ignoreRadiusSettings);
             }
             catch (Exception ex)
             {
@@ -190,14 +190,14 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition, bool ignoreRadiusSettings = false)
+        public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, int continentId, Point currentPosition, bool ignoreRadiusSettings = false)
         {
             try
             {
                 Npc npcTemp = new Npc();
                 foreach (Npc npc in ListNpc)
                 {
-                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type || npc.ContinentId != continentId.ToString())
+                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type || npc.ContinentIdInt != continentId)
                         continue;
                     if (!(npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition)) && npcTemp.Position.X != 0)
                         continue;
