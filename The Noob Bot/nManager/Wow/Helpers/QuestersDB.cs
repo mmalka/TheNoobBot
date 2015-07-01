@@ -197,7 +197,7 @@ namespace nManager.Wow.Helpers
                 Npc npcTemp = new Npc();
                 foreach (Npc npc in ListNpc)
                 {
-                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type || npc.ContinentId != continentId)
+                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type || npc.ContinentId != continentId.ToString())
                         continue;
                     if (!(npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition)) && npcTemp.Position.X != 0)
                         continue;

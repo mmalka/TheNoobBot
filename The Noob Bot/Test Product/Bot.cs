@@ -134,7 +134,7 @@ namespace Test_Product
                             }*/
                         }
                     }
-                    catch (Exception exception)
+                    catch (Exception)
                     {
                         Logging.Write("This query has a problem ? " + query);
                     }
@@ -146,7 +146,7 @@ namespace Test_Product
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
@@ -156,11 +156,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Vendors)
                 {
-                    if (BlackListed.Contains(n.Entry))
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -170,11 +170,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Repairers)
                 {
-                    if (BlackListed.Contains(n.Entry))
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -186,7 +186,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -233,7 +233,7 @@ namespace Test_Product
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -245,7 +245,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -257,7 +257,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -267,9 +267,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in NpcMailboxes)
                 {
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
+                        continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -281,7 +283,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -291,9 +293,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in NpcQuesters)
                 {
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
+                        continue;
                     npcRadarQuesters.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -303,9 +307,11 @@ namespace Test_Product
                 }
                 foreach (WoWGameObject o in ObjectQuesters)
                 {
+                    if (o.CreatedBy != 0)
+                        continue;
                     npcRadarQuesters.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
@@ -315,6 +321,8 @@ namespace Test_Product
                 }
                 foreach (WoWGameObject o in Forges)
                 {
+                    if (o.CreatedBy != 0)
+                        continue;
                     Npc.NpcType newtype;
                     switch (o.Data0)
                     {
@@ -329,7 +337,7 @@ namespace Test_Product
                     }
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,

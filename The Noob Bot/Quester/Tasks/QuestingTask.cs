@@ -881,7 +881,7 @@ namespace Quester.Tasks
                         Entry = localEntry,
                         Position = questObjective.Position,
                         Name = questObjective.Name,
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                         SelectGossipOption = questObjective.GossipOptionsInteractWith
                     };
@@ -935,7 +935,7 @@ namespace Quester.Tasks
                     Entry = localEntry,
                     Position = questObjective.Position,
                     Name = questObjective.Name,
-                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                    ContinentIdInt = Usefuls.ContinentId,
                     Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                     SelectGossipOption = questObjective.GossipOptionsInteractWith
                 };

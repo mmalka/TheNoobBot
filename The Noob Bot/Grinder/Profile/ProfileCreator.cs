@@ -381,8 +381,7 @@ namespace Grinder.Profile
 
                 var npc = new Npc
                 {
-                    ContinentId =
-                        (ContinentId) (Usefuls.ContinentId),
+                    ContinentIdInt = Usefuls.ContinentId,
                     Entry = ObjectManager.Target.Entry,
                     Faction =
                         (Npc.FactionType)
@@ -449,8 +448,8 @@ namespace Grinder.Profile
                     return;
                 }
 
-                npc.ContinentId =
-                    (ContinentId) (Usefuls.ContinentId);
+                npc.ContinentIdInt =
+                    Usefuls.ContinentId;
                 npc.Faction =
                     (Npc.FactionType)
                         Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);

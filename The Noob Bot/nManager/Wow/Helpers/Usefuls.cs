@@ -432,6 +432,22 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static int ContinentIdByContinentName(string name)
+        {
+            switch (name)
+            {
+                case "Outland":
+                    return 530;
+                case "Maelstrom":
+                    return 646;
+                case "Pandaria":
+                    return 870;
+                default:
+                    WoWMap map = WoWMap.FromMPQName(name);
+                    return (int) map.Record.Id;
+            }
+        }
+
         public static string ContinentNameByContinentId(int cId)
         {
             switch (cId)
