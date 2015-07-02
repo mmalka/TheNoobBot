@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 20157
+    ///   Offset and Pointer for Wow 20201
     /// </summary>
     public static class Addresses
     {
@@ -244,14 +244,14 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x3CFB,
-            FrameScript_ExecuteBuffer = 0x274E7,
-            CGUnit_C__InitializeTrackingState = 0x326F18, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x3188A5,
-            CGWorldFrame__Intersect = 0x55FDEC,
-            Spell_C_HandleTerrainClick = 0x282141,
-            CGUnit_C__Interact = 0x98BF37,
-            strlen = 0x6A6E70, // ida _strlen
+            ClntObjMgrGetActivePlayerObj = 0x3D0D,
+            FrameScript_ExecuteBuffer = 0x272CB,
+            CGUnit_C__InitializeTrackingState = 0x326B31, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x3184C0,
+            CGWorldFrame__Intersect = 0x5600D2,
+            Spell_C_HandleTerrainClick = 0x281BDB,
+            CGUnit_C__Interact = 0x98C217,
+            strlen = 0x6A72A0, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
@@ -322,13 +322,14 @@
 
             AuraStructCreatorGuid = 0x20, // read 16 bytes (GUID)
             AuraStructSpellId = AuraStructCreatorGuid + 16, // read 4 bytes (UINT)
-            AuraStructFlags = AuraStructSpellId + 4, // read 1 byte, what is this ?
-            AuraStructCount = AuraStructFlags + 1, // read 1 byte
+            AuraStructFlag = AuraStructSpellId + 4, // read 1 byte
+            AuraStructMask = AuraStructFlag + 1, // read 4 bytes
+            AuraStructCount = AuraStructMask + 4, // read 1 byte
             AuraStructCasterLevel = AuraStructCount + 1, // read 1 byte
-            AuraStructUnk2 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
-            AuraStructDuration = AuraStructUnk2 + 1, // read 4 bytes
+            AuraStructUnk1 = AuraStructCasterLevel + 1, // read 1 byte, what is this ?
+            AuraStructDuration = AuraStructUnk1 + 1, // read 4 bytes
             AuraStructSpellEndTime = AuraStructDuration + 4, // read 4 bytes
-            AuraStructUnk3 = AuraStructSpellEndTime + 4, // read 1 byte, what is this ?
+            AuraStructUnk2 = AuraStructSpellEndTime + 4, // read 4 byte
         }
 
         /// <summary>
