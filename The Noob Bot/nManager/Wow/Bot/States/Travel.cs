@@ -869,7 +869,7 @@ namespace nManager.Wow.Bot.States
                     List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
                     currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
                     if (travelFromContinentId == travelToContinentId)
-                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/1.5f);
+                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/2.5f);
                     currentId = taxi.Id;
                 }
                 else
