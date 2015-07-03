@@ -24,7 +24,7 @@ namespace nManager.Wow.Helpers
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
         private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
-        private const float BASE_MELEERANGE_OFFSET = 1.33f;
+        private const float BASE_MELEERANGE_OFFSET = 1.30f;
         private const float MIN_ATTACK_DISTANCE = 5.0f;
 
         private static bool isMeleeClass
@@ -32,10 +32,10 @@ namespace nManager.Wow.Helpers
             get { return GetRange <= 5.0f; }
         }
 
-        private static float CombatReach(WoWUnit unit)
+        private static float CombatDistance(WoWUnit unit, bool MeleeSpell = true)
         {
-            float reach = unit.GetCombatReach + ObjectManager.ObjectManager.Me.GetCombatReach + BASE_MELEERANGE_OFFSET;
-            if (isMeleeClass && reach < MIN_ATTACK_DISTANCE)
+            float reach = unit.GetCombatReach + ObjectManager.ObjectManager.Me.GetCombatReach;
+            if (isMeleeClass && MeleeSpell && reach < MIN_ATTACK_DISTANCE)
                 reach = MIN_ATTACK_DISTANCE;
             return reach;
         }
@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
         {
             if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                 return HealerClass.InRange(unit);
-            return unit.GetDistance < CombatReach(unit) + (isMeleeClass ? 0 : GetRange);
+            return unit.GetDistance < CombatDistance(unit) + (isMeleeClass ? BASE_MELEERANGE_OFFSET : GetRange);
         }
 
         public static bool InAggroRange(WoWUnit unit)
@@ -63,7 +63,12 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                return distance <= CombatReach(unit) + maxRange && distance >= minRange;
+                float reach;
+                if (maxRange <= 5.0f) // Melee spell
+                    reach = CombatDistance(unit, true) + BASE_MELEERANGE_OFFSET;
+                else
+                    reach = CombatDistance(unit, false);
+                return distance <= reach + maxRange && distance >= reach + minRange;
             }
             catch (Exception exception)
             {
@@ -74,7 +79,7 @@ namespace nManager.Wow.Helpers
 
         public static bool AboveMinRange(WoWUnit unit)
         {
-            return false; // Can't find any meaning to this
+            return false; // Can't find any meaning to this without a spell
             /*try
             {
                 float combatReach = unit.GetCombatReach;
