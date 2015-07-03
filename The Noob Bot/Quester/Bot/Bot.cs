@@ -183,7 +183,7 @@ namespace Quester.Bot
                 if (npc.Entry == entry)
                     return npc;
             }
-            return NpcDB.GetNpcByEntry(entry);
+            return QuestersDB.GetNpcByEntry(entry);
         }
     }
 }
