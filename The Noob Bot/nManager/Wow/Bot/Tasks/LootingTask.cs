@@ -47,12 +47,12 @@ namespace nManager.Wow.Bot.Tasks
                                 if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
                                 {
                                     points = PathFinder.FindPath(wowUnit.Position);
+                                    if (points.Count <= 0)
+                                    {
+                                        points.Add(ObjectManager.ObjectManager.Me.Position);
+                                        points.Add(wowUnit.Position);
+                                    }
                                     MovementManager.Go(points);
-                                }
-                                if (points.Count <= 0)
-                                {
-                                    points.Add(ObjectManager.ObjectManager.Me.Position);
-                                    points.Add(wowUnit.Position);
                                 }
                                 Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 5000);
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
