@@ -4567,13 +4567,13 @@ public class MageArcane
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -5439,13 +5439,13 @@ public class MageFrost
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -6326,13 +6326,13 @@ public class MageFire
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -7065,13 +7065,13 @@ public class WarlockDemonology
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -7891,13 +7891,13 @@ public class WarlockDestruction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -8658,13 +8658,13 @@ public class WarlockAffliction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -9431,12 +9431,12 @@ public class DruidBalance
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
                         {
-                            if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                 LowCombat();
                         }
                         else
                         {
-                            if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                 Combat();
                         }
                     }
@@ -15886,13 +15886,13 @@ public class ShamanElemental
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -16682,13 +16682,13 @@ public class PriestShadow
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -23650,13 +23650,13 @@ public class HunterMarksmanship
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -24463,13 +24463,13 @@ public class HunterBeastMastery
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -25277,12 +25277,12 @@ public class HunterSurvival
                             if (MySettings.UseLowCombat &&
                                 ((ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)))
                             {
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }

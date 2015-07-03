@@ -48,7 +48,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 if (!IsAliveHealerClass)
-                    return CombatClass.InCustomRange(unit, minRange, maxRange);
+                    return CombatClass.InSpellRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
                 float combatReach = unit.GetCombatReach;
                 //Logging.WriteDebug("InCustomRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", minRange " + minRange + ", maxRange " + maxRange);
@@ -66,7 +66,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 if (!IsAliveHealerClass)
-                    return CombatClass.InMinRange(unit);
+                    return CombatClass.AboveMinRange(unit);
                 float distance = unit.GetDistance;
                 float combatReach = unit.GetCombatReach;
                 //Logging.WriteDebug("InMinRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);

@@ -183,7 +183,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return CombatClass.InCustomRange(ObjectManager.ObjectManager.Target, MinRangeHostile, MaxRangeHostile);
+                    return CombatClass.InSpellRange(ObjectManager.ObjectManager.Target, MinRangeHostile, MaxRangeHostile);
                 }
                 catch (Exception exception)
                 {
@@ -203,7 +203,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return CombatClass.InCustomRange(ObjectManager.ObjectManager.Target, MinRangeFriend, MaxRangeFriend);
+                    return CombatClass.InSpellRange(ObjectManager.ObjectManager.Target, MinRangeFriend, MaxRangeFriend);
                 }
                 catch (Exception exception)
                 {
