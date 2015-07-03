@@ -29,7 +29,7 @@ namespace nManager.Wow.Class
             public IntPtr VTable; // pointer to vtable
             public int NumRows; // number of rows
             public int StartArrayIndex;
-            public int NowRows2;
+            public int NumRows2;
             public int MaxIndex; // maximal row index
             public int MinIndex; // minimal row index
             public uint Unk7;
