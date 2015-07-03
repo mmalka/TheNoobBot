@@ -81,18 +81,9 @@ namespace nManager.Wow.Helpers
 
         public static bool AboveMinRange(WoWUnit unit)
         {
-            return false; // Can't find any meaning to this without a spell
-            /*try
-            {
-                float combatReach = unit.GetCombatReach;
-                //Logging.WriteDebug("InMinRange check: Distance " + distance + ", GetCombatReach " + unit.GetCombatReach + ", Scale " + unit.Scale + ", Range " + GetRange);
-                return distance - combatReach <= GetRange - 0.05 && distance - combatReach >= -0.05; // distance - combatReach >= -1.5;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("CombatClass > InMinRange: " + exception);
-                return false;
-            }*/
+            // Can't find any meaning to this without a spell
+            // so let's assume 2f is too close even for a melee
+            return unit.GetDistance < 2.0f;
         }
 
         public static float GetRange
