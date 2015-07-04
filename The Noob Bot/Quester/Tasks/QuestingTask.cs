@@ -126,6 +126,8 @@ namespace Quester.Tasks
             foreach (QuestObjective obj in CurrentQuest.Objectives)
             {
                 QuestObjective objective = obj;
+                if (objective.InternalQuestId > 0 && objective.InternalQuestId != objective.QuestId && objective.IsObjectiveCompleted)
+                    return true; // Hack when dealing with multiple-quest and restarting the bot.
                 if (objective.IgnoreQuestCompleted && !QuestObjectiveIsFinish(ref objective))
                     return false;
             }
@@ -279,27 +281,32 @@ namespace Quester.Tasks
             // Create Path:
             if (questObjective.PathHotspots == null)
             {
+                questObjective.PathHotspots = new List<Point>();
                 if (questObjective.Hotspots.Count > 0)
                 {
-                    questObjective.PathHotspots = new List<Point>();
                     for (int i = 0; i <= questObjective.Hotspots.Count - 1; i++)
                     {
                         int iLast = i - 1;
                         if (iLast < 0)
                             iLast = questObjective.Hotspots.Count - 1;
-                        Logging.Write( /*Translate.Get(...)*/ "Create_points_HotSpot " + iLast + " to_HotSpot " + i);
-                        List<Point> points = PathFinder.FindPath(questObjective.Hotspots[iLast],
-                            questObjective.Hotspots[i]);
+                        if (iLast != i)
+                            Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot nr" + iLast + 1 + " to Hotspot nr " + i + 1);
+                        else
+                            Logging.Write("Create path to Hotspot nr " + i);
+                        List<Point> points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
                         questObjective.PathHotspots.AddRange(points);
                     }
                 }
+                else if (questObjective.Position.IsValid)
+                {
+                    List<Point> points = PathFinder.FindPath(questObjective.Position);
+                    questObjective.PathHotspots.AddRange(points);
+                }
                 else
                 {
-                    questObjective.PathHotspots = new List<Point>
-                    {
-                        ObjectManager.Me.Position,
-                        ObjectManager.Me.Position
-                    };
+                    questObjective.PathHotspots.Add(ObjectManager.Me.Position);
+                    questObjective.PathHotspots.Add(ObjectManager.Me.Position);
+                    Logging.Write("There is no specific position defined for the next QuestObjective, wont move. (this is not necessarily an issue)");
                 }
             }
 
