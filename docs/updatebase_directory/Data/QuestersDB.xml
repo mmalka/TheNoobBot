@@ -53195,6 +53195,17 @@
     <ContinentId>TanaanJungleIntro</ContinentId>
   </Npc>
   <Npc>
+    <Entry>78572</Entry>
+    <Name>Taag</Name>
+    <Position>
+      <X>3990.77612</X>
+      <Y>-2553.92358</Y>
+      <Z>66.00705</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungleIntro</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>78659</Entry>
     <Name>Shadow Hunter Bwu'ja</Name>
     <Position>
@@ -55226,6 +55237,17 @@
   <Npc>
     <Entry>81761</Entry>
     <Name>Ashka</Name>
+    <Position>
+      <X>3991.50879</X>
+      <Y>-2552.361</Y>
+      <Z>65.91954</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungleIntro</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>81763</Entry>
+    <Name>Rephuura</Name>
     <Position>
       <X>3991.50879</X>
       <Y>-2552.361</Y>
