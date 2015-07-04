@@ -61,6 +61,8 @@ namespace Quester.Tasks
                 }
                 foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
+                    if (quest.AutoAccepted)
+                        continue;
                     if (ObjectManager.Me.Level >= quest.MinLevel && (ObjectManager.Me.Level <= quest.MaxLevel || QuesterSettings.CurrentSettings.IgnoreQuestsMaxLevel) &&
                         (QuesterSettings.CurrentSettings.IgnoreQuestsLevel || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
@@ -220,7 +222,7 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
-                questObjective.Objective == Objective.UseLuaMacro)
+                questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -277,6 +279,18 @@ namespace Quester.Tasks
 
             QuestStatus = questObjective.Objective.ToString();
             CheckMandatoryFieldsByObjective(questObjective);
+            if (questObjective.OnlyInVehicule && !ObjectManager.Me.InTransport)
+            {
+                questObjective.IsObjectiveCompleted = true;
+                // we cannot do it now, do it later
+                return;
+            }
+            if (questObjective.OnlyOutVehicule && ObjectManager.Me.InTransport)
+            {
+                questObjective.IsObjectiveCompleted = true;
+                // we cannot do it now, do it later
+                return;
+            }
 
             // Create Path:
             if (questObjective.PathHotspots == null)
@@ -831,6 +845,16 @@ namespace Quester.Tasks
                         Quest.GetSetIgnoreFight = false;
                     }
                 }
+            }
+
+            // Click On terrain
+            if (questObjective.Objective == Objective.ClickOnTerrain)
+            {
+                ClickOnTerrain.ClickOnly(questObjective.Position);
+                if (questObjective.WaitMs > 0)
+                    Thread.Sleep(questObjective.WaitMs);
+                questObjective.IsObjectiveCompleted = true;
+                Quest.GetSetIgnoreFight = false;
             }
 
             // USE SPELL AOE

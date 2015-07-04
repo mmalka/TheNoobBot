@@ -62,7 +62,7 @@ namespace Quester.Bot
                     // Now check the integrity by checking we have all NPC required
                     foreach (Profile.Quest q in Profile.Quests)
                     {
-                        if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0)
+                        if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0 && !q.AutoAccepted)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.PickUp +
                                             "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");

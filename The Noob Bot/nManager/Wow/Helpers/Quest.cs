@@ -519,6 +519,9 @@ namespace nManager.Wow.Helpers
 
         public static bool IsObjectiveCompleted(int questId, uint ObjectiveInternalIndex, int count)
         {
+            if (!GetLogQuestId().Contains(questId))
+                return true; // Avoid doing objectives for already completed quests.
+
             uint descriptorsArray =
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                  Descriptors.StartDescriptors);

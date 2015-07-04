@@ -88,6 +88,7 @@ namespace Quester.Profile
         public int MinLevel = 0;
         public int MaxLevel = 0;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed
+        public bool AutoAccepted = false;
 
         public bool ShouldSerializeNeedQuestCompletedId()
         {
@@ -214,7 +215,10 @@ namespace Quester.Profile
         [DefaultValue(0)] public int EquipItemId = 0;
 
         // UseVehicule
-        [DefaultValue(0)] public int EntryVehicle = 0;
+        [DefaultValue(0)]
+        public int EntryVehicle = 0;
+        [DefaultValue(false)] public bool OnlyInVehicule = false;
+        [DefaultValue(false)] public bool OnlyOutVehicule = false;
 
         // PressKey
         [DefaultValue(Keybindings.NONE)] public Keybindings Keys = Keybindings.NONE;
@@ -265,6 +269,7 @@ namespace Quester.Profile
         UseVehicle,
         Wait,
         TravelTo,
+        ClickOnTerrain
     }
 
     [Serializable]
