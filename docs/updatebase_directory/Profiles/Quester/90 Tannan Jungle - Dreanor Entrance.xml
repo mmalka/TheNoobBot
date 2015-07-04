@@ -2,34 +2,6 @@
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questers>
     <Npc>
-      <Entry>78423</Entry>
-      <Name>Archmage Khadgar</Name>
-      <Position>
-        <X>-11812.26</X>
-        <Y>-3205.597</Y>
-        <Z>-29.56117</Z>
-      </Position>
-      <ContinentId>Azeroth</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>78558</Entry>
-      <Name>Archmage Khadgar</Name>
-      <Position>
-        <X>4066.427</X>
-        <Y>-2372.571</Y>
-        <Z>94.60021</Z>
-      </Position>
-      <ContinentId>TanaanJungleIntro</ContinentId>
-    </Npc>
-    <Npc>
-      <Entry>78559</Entry>
-      <Name>Archmage Khadgar</Name>
-      <Position>
-        <X>3936.718</X>
-        <Y>-2505.224</Y>
-        <Z>69.73077</Z>
-      </Position>
-      <ContinentId>TanaanJungleIntro</ContinentId>
     </Npc>
     <!--
   <Npc>
