@@ -121,7 +121,7 @@ namespace nManager.Wow.Helpers
                         for (int i2 = 0; i2 < ListNpc.Count; i2++)
                         {
                             Npc npc1 = ListNpc[i2];
-                            if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 30)
+                            if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 75)
                             {
                                 found = true;
                                 if (npc1.Faction != npc.Faction && npc1.Faction != Npc.FactionType.Neutral)
