@@ -53333,18 +53333,7 @@
   </Npc>
   <Npc>
     <Entry>78996</Entry>
-    <Name>Long-voyant Drek’Thar</Name>
-    <Position>
-      <X>3535.67627</X>
-      <Y>-2141.02612</Y>
-      <Z>17.2320557</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>TanaanJungleIntro</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>78996</Entry>
-    <Name>Long-voyant Drek’Thar</Name>
+    <Name>Farseer Drek'Thar</Name>
     <Position>
       <X>4216.026</X>
       <Y>-2816.63013</Y>
@@ -53832,18 +53821,7 @@
   </Npc>
   <Npc>
     <Entry>79537</Entry>
-    <Name>Exarque Maladaar</Name>
-    <Position>
-      <X>3528.38013</X>
-      <Y>-2113.63721</Y>
-      <Z>17.2314377</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>TanaanJungleIntro</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>79537</Entry>
-    <Name>Exarque Maladaar</Name>
+    <Name>Exarch Maladaar</Name>
     <Position>
       <X>4217.415</X>
       <Y>-2817.856</Y>
