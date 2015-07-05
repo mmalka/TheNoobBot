@@ -614,6 +614,11 @@ namespace Quester.Tasks
                         }
                         else
                         {
+                            if (questObjective.InternalQuestId > 0)
+                            {
+                                if (!Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+                                    questObjective.IsObjectiveCompleted = true;
+                            }
                             return;
                         }
 
