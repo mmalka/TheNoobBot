@@ -148,6 +148,9 @@ namespace Quester.Tasks
             if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id))
                 return true;
 
+            if (questObjective.Objective != Objective.PickUpQuest && questObjective.InternalQuestId > 0 && !Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+                return true; // We don't have this nested quest anymore. The first check is "just in case", but a PickUpQuest objective shouldn't contains InternalQuestId anyway.
+
             // If we can check the objective in quest log, then rely on it
             if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CollectCount > 0))
                 return Quest.IsObjectiveCompleted(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id, questObjective.InternalIndex,
