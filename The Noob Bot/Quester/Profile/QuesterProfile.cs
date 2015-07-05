@@ -242,6 +242,9 @@ namespace Quester.Profile
 
         // TravelTo
         [DefaultValue(0)] public int ContinentId = 0;
+
+        // MessageBox
+        [DefaultValue("")] public string Message = "";
     }
 
     [Serializable]
@@ -269,7 +272,8 @@ namespace Quester.Profile
         UseVehicle,
         Wait,
         TravelTo,
-        ClickOnTerrain
+        ClickOnTerrain,
+        MessageBox
     }
 
     [Serializable]

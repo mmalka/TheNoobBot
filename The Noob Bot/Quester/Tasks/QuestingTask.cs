@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Products;
 using nManager.Wow.Bot.States;
 using Quester.Bot;
@@ -222,7 +223,7 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
-                questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain)
+                questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -864,6 +865,14 @@ namespace Quester.Tasks
                 ClickOnTerrain.ClickOnly(questObjective.Position);
                 if (questObjective.WaitMs > 0)
                     Thread.Sleep(questObjective.WaitMs);
+                questObjective.IsObjectiveCompleted = true;
+                Quest.GetSetIgnoreFight = false;
+            }
+
+            // MessageBox
+            if (questObjective.Objective == Objective.MessageBox)
+            {
+                MessageBox.Show(questObjective.Message);
                 questObjective.IsObjectiveCompleted = true;
                 Quest.GetSetIgnoreFight = false;
             }
