@@ -836,7 +836,7 @@ namespace Quester.Tasks
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                if (Quest.GetQuestCompleted(questObjective.QuestId))
+                if (Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId))
                 {
                     questObjective.IsObjectiveCompleted = true;
                     return;
@@ -853,7 +853,7 @@ namespace Quester.Tasks
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                if (Quest.GetQuestCompleted(questObjective.QuestId))
+                if (Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId))
                 {
                     questObjective.IsObjectiveCompleted = true;
                     return;
