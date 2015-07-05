@@ -304,11 +304,19 @@ namespace Quester.Tasks
                         int iLast = i - 1;
                         if (iLast < 0)
                             iLast = questObjective.Hotspots.Count - 1;
+                        List<Point> points = new List<Point>();
                         if (iLast != i)
+                        {
                             Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot #" + (iLast + 1) + " to Hotspot #" + (i + 1));
+                            points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
+                        }
                         else
+                        {
                             Logging.Write("Create path to Hotspot #" + (i+1));
-                        List<Point> points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
+                            var tmpPoint = new Point(questObjective.Hotspots[i]);
+                            tmpPoint.X++;
+                            points = PathFinder.FindPath(tmpPoint, questObjective.Hotspots[i]);
+                        }
                         questObjective.PathHotspots.AddRange(points);
                     }
                 }
