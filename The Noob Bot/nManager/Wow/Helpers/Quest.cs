@@ -534,7 +534,7 @@ namespace nManager.Wow.Helpers
                             (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
                             typeof (PlayerQuest));
                 if (playerQuest.ID == questId)
-                    return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] == count;
+                    return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] >= count;
             }
             return false;
         }
