@@ -304,9 +304,9 @@ namespace Quester.Tasks
                         if (iLast < 0)
                             iLast = questObjective.Hotspots.Count - 1;
                         if (iLast != i)
-                            Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot nr" + iLast + 1 + " to Hotspot nr " + i + 1);
+                            Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot #" + (iLast + 1) + " to Hotspot #" + (i + 1));
                         else
-                            Logging.Write("Create path to Hotspot nr " + i);
+                            Logging.Write("Create path to Hotspot #" + (i+1));
                         List<Point> points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
                         questObjective.PathHotspots.AddRange(points);
                     }
@@ -406,6 +406,11 @@ namespace Quester.Tasks
                     FarmingTask.Pulse(new List<WoWGameObject> {node});
                     if (Statistics.Farms > tNumber)
                         questObjective.CurrentCount++;
+                    else if (node.GetDistance < 5)
+                    {
+                        Thread.Sleep(300);
+                        nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 3);
+                    }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
