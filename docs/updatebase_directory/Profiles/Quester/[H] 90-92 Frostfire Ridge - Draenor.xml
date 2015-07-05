@@ -284,7 +284,6 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <InternalQuestId>34824</InternalQuestId>
           <Count>1</Count>
           <Entry>
@@ -410,6 +409,10 @@
       <TurnIn>78466</TurnIn>
       <Objectives>
         <QuestObjective>
+          <Objective>MessageBox</Objective>
+          <Message>You must do this quest manually, don't worry, it's fast, just loot the blueprint, learn it, place your barrack, then activate it, then the bot can finish the quest for you.</Message>
+        </QuestObjective>
+        <!--<QuestObjective>
           <Objective>PickUpObject</Objective>
           <CollectItemId>111956</CollectItemId>
           <CollectCount>1</CollectCount>
@@ -446,10 +449,6 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
-          <Objective>MessageBox</Objective>
-          <Message>Please place your barracks and complete the quest.</Message>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>InteractWith</Objective>
           <Count>1</Count>
           <Entry>
@@ -460,7 +459,7 @@
              <Y>4478.865</Y>
              <Z>130.1043</Z>
           </Position>
-        </QuestObjective>
+        </QuestObjective>-->
       </Objectives>
     </Quest>
     <Quest>
@@ -846,6 +845,7 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <IsDead>true</IsDead>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <Position>
              <X>6472.198</X>
              <Y>6207.476</Y>
@@ -880,6 +880,7 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <IsDead>true</IsDead>
+          <IgnoreBlackList>true</IgnoreBlackList>
           <Position>
              <X>6472.198</X>
              <Y>6207.476</Y>
