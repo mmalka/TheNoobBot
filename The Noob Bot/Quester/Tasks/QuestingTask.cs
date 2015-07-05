@@ -189,7 +189,7 @@ namespace Quester.Tasks
                 return false;
             }
 
-            // PICK UP
+            // PICK UP OBJECT
             if (questObjective.Objective == Objective.PickUpObject)
             {
                 if (questObjective.CurrentCount >= questObjective.CollectCount)
@@ -198,6 +198,12 @@ namespace Quester.Tasks
                     ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     return true;
                 return false;
+            }
+
+            // PICK UP NPC
+            if (questObjective.Objective == Objective.PickUpNPC)
+            {
+                return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsObjectiveCompleted;
             }
 
             // USE ITEM
@@ -412,7 +418,7 @@ namespace Quester.Tasks
                 if (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
-                    FarmingTask.Pulse(new List<WoWGameObject> {node});
+                    FarmingTask.Pulse(new List<WoWGameObject> { node });
                     if (Statistics.Farms > tNumber)
                         questObjective.CurrentCount++;
                     else if (node.GetDistance < 5)
@@ -420,6 +426,69 @@ namespace Quester.Tasks
                         Thread.Sleep(300);
                         nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 3);
                     }
+                }
+                else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
+                {
+                    // Mounting Mount
+                    MountTask.Mount();
+                    // Need GoTo Zone:
+                    if (
+                        questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
+                    {
+                        MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
+                    }
+                    else
+                    {
+                        // Start Move
+                        MovementManager.GoLoop(questObjective.PathHotspots);
+                    }
+                }
+            }
+            // PICK UP NPC
+            if (questObjective.Objective == Objective.PickUpNPC)
+            {
+                WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
+                Point pos;
+                uint baseAddress;
+                if (!nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid) && unit.IsValid)
+                {
+                    if (unit.IsValid)
+                    {
+                        pos = new Point(unit.Position);
+                        baseAddress = unit.GetBaseAddress;
+                    }
+                    else
+                    {
+                        if (questObjective.InternalQuestId > 0)
+                        {
+                            if (!Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+                                questObjective.IsObjectiveCompleted = true;
+                        }
+                        return;
+                    }
+                    MovementManager.Go(PathFinder.FindPath(pos));
+                    Thread.Sleep(500 + Usefuls.Latency);
+                    while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
+                    {
+                        if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
+                            return;
+                        Thread.Sleep(100);
+                    }
+                    if (questObjective.IgnoreFight)
+                        Quest.GetSetIgnoreFight = true;
+                    MountTask.DismountMount();
+                    MovementManager.StopMove();
+                    Interact.InteractWith(baseAddress);
+
+                    if (questObjective.GossipOptionsInteractWith != 0)
+                    {
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
+                    }
+                    Thread.Sleep(questObjective.WaitMs);
+                    questObjective.CurrentCount++;
+                    nManagerSetting.AddBlackList(unit.Guid, 1000 * 60 * 3);
+                    Quest.GetSetIgnoreFight = false;
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
@@ -598,6 +667,7 @@ namespace Quester.Tasks
             // INTERACT WITH
             if (questObjective.Objective == Objective.InteractWith)
             {
+                CheckMandatoryFieldsByType(questObjective, true, true);
                 Thread.Sleep(250 + Usefuls.Latency);
                 if (!MovementManager.InMovement)
                 {

@@ -273,7 +273,8 @@ namespace Quester.Profile
         Wait,
         TravelTo,
         ClickOnTerrain,
-        MessageBox
+        MessageBox,
+        PickUpNPC
     }
 
     [Serializable]
