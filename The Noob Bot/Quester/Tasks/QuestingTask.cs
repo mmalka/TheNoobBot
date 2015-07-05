@@ -635,6 +635,7 @@ namespace Quester.Tasks
                         {
                             Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
+                            Thread.Sleep(questObjective.WaitMs);
                         }
                         questObjective.IsObjectiveCompleted = true;
                         Quest.GetSetIgnoreFight = false;
