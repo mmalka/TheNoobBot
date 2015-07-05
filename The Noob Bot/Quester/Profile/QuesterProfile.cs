@@ -151,6 +151,7 @@ namespace Quester.Profile
         public Objective Objective = Objective.None;
         [DefaultValue(0)] public uint InternalIndex = 0;
         [DefaultValue(0)] public int InternalQuestId = 0;
+        [DefaultValue(false)] public bool IsBonusObjective;
         [DefaultValue(0)] public int Count = 0;
         internal int CurrentCount = 0;
         internal List<Point> PathHotspots = null;

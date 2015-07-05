@@ -149,7 +149,17 @@ namespace Quester.Tasks
                 return true;
 
             if (questObjective.Objective != Objective.PickUpQuest && questObjective.InternalQuestId > 0 && !Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+            {
+                if (questObjective.IsBonusObjective)
+                {
+                    if (!Quest.GetQuestCompleted(questObjective.InternalQuestId))
+                    {
+                        return false; // Force the bot to go on zone to check about the current status of the objective as the quest has not been completed.
+                    }
+                }
+                else
                 return true; // We don't have this nested quest anymore. The first check is "just in case", but a PickUpQuest objective shouldn't contains InternalQuestId anyway.
+            }
 
             // If we can check the objective in quest log, then rely on it
             if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CollectCount > 0))
