@@ -80,7 +80,10 @@ namespace nManager.Wow.Helpers
 
         public static void AcceptQuest()
         {
-            Lua.LuaDoString("AcceptQuest() ");
+            Lua.LuaDoString("AcceptQuest()");
+            if (Others.IsFrameVisible("QuestFrameCompleteQuestButton"))
+                Lua.RunMacroText("/click QuestFrameCompleteQuestButton");
+            // hack for SelfComplete quests
         }
 
         public static int GetQuestID()
