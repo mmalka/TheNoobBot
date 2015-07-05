@@ -505,15 +505,22 @@ namespace Quester.Tasks
                     MountTask.DismountMount();
                     MovementManager.StopMove();
                     Interact.InteractWith(baseAddress);
+                    Thread.Sleep(Usefuls.Latency);
+                    while (ObjectManager.Me.IsCast)
+                    {
+                        Thread.Sleep(Usefuls.Latency);
+                    }
 
                     if (questObjective.GossipOptionsInteractWith != 0)
                     {
                         Thread.Sleep(250 + Usefuls.Latency);
                         Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                     }
+                    if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+                        return;
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.CurrentCount++;
-                    nManagerSetting.AddBlackList(unit.Guid, 1000 * 60 * 3);
+                    nManagerSetting.AddBlackList(unit.Guid, 60000);
                     Quest.GetSetIgnoreFight = false;
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
@@ -740,12 +747,19 @@ namespace Quester.Tasks
                         MountTask.DismountMount();
                         MovementManager.StopMove();
                         Interact.InteractWith(baseAddress);
+                        Thread.Sleep(Usefuls.Latency);
+                        while (ObjectManager.Me.IsCast)
+                        {
+                            Thread.Sleep(Usefuls.Latency);
+                        }
 
                         if (questObjective.GossipOptionsInteractWith != 0)
                         {
                             Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
+                        if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+                            return;
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
                         Quest.GetSetIgnoreFight = false;
