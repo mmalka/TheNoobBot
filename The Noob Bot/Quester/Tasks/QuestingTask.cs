@@ -130,7 +130,8 @@ namespace Quester.Tasks
             {
                 QuestObjective objective = obj;
                 if (objective.InternalQuestId > 0 && objective.InternalQuestId != objective.QuestId && objective.IsObjectiveCompleted)
-                    return true; // Hack when dealing with multiple-quest and restarting the bot.
+                    continue; // Hack when dealing with multiple-quest and restarting the bot.
+                
                 if (objective.IgnoreQuestCompleted && !QuestObjectiveIsFinish(ref objective))
                     return false;
             }
@@ -218,6 +219,18 @@ namespace Quester.Tasks
                 if (ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     return true;
                 return false;
+            }
+
+            // PICK UP QUEST
+            if (questObjective.Objective == Objective.PickUpQuest)
+            {
+                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId);
+            }
+
+            // TURN IN QUEST
+            if (questObjective.Objective == Objective.TurnInQuest)
+            {
+                return Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId);
             }
 
             /* MOVE TO || WAIT || INTERACT WITH ||
@@ -836,11 +849,6 @@ namespace Quester.Tasks
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                if (Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId))
-                {
-                    questObjective.IsObjectiveCompleted = true;
-                    return;
-                }
                 if (!MovementManager.InMovement)
                 {
                     Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
@@ -853,11 +861,6 @@ namespace Quester.Tasks
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                if (Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId))
-                {
-                    questObjective.IsObjectiveCompleted = true;
-                    return;
-                }
                 if (!MovementManager.InMovement)
                 {
                     Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
