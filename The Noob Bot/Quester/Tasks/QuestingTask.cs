@@ -152,12 +152,11 @@ namespace Quester.Tasks
             {
                 if (questObjective.IsBonusObjective)
                 {
-                    if (!Quest.GetQuestCompleted(questObjective.InternalQuestId))
+                    if (!Quest.GetQuestCompleted(questObjective.InternalQuestId) && !Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId))
                     {
                         return false; // Force the bot to go on zone to check about the current status of the objective as the quest has not been completed.
                     }
                 }
-                else
                 return true; // We don't have this nested quest anymore. The first check is "just in case", but a PickUpQuest objective shouldn't contains InternalQuestId anyway.
             }
 
