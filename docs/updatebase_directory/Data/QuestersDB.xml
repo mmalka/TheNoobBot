@@ -49465,21 +49465,9 @@
     <Entry>74507</Entry>
     <Name>Défenseur de Wor’gol</Name>
     <Position>
-      <X>5768.03369</X>
-      <Y>6291.10449</Y>
-      <Z>94.9636154</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74507</Entry>
-    <Name>Défenseur de Wor’gol</Name>
-    <Position>
-      <X>5896.89941</X>
-      <Y>6340.54932</Y>
-      <Z>53.6794319</Z>
+      <X>5902.66</X>
+      <Y>6338.816</Y>
+      <Z>54.325</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
