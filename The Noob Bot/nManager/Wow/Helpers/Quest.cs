@@ -241,13 +241,10 @@ namespace nManager.Wow.Helpers
                 uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
 
                 List<int> list = new List<int>();
-                for (int index = 0; index < 50; ++index)
+                for (int index = 0; index < 25; ++index)
                 {
-                    PlayerQuest playerQuest =
-                        (PlayerQuest)
-                            Memory.WowMemory.Memory.ReadObject(
-                                (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
-                                typeof (PlayerQuest));
+                    uint pointer = (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index));
+                    PlayerQuest playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject(pointer, typeof (PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
                         list.Add(playerQuest.ID);
@@ -526,7 +523,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                  Descriptors.StartDescriptors);
             uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
-            for (int index = 0; index < 50; ++index)
+            for (int index = 0; index < 25; ++index)
             {
                 PlayerQuest playerQuest =
                     (PlayerQuest)
@@ -571,7 +568,7 @@ namespace nManager.Wow.Helpers
         {
             public int ID;
             public StateFlag State;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public short[] ObjectiveRequiredCounts;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 23)] public short[] ObjectiveRequiredCounts;
             public int Time;
 
             public enum StateFlag : uint
