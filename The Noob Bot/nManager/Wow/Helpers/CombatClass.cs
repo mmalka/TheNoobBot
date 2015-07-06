@@ -70,7 +70,7 @@ namespace nManager.Wow.Helpers
                     reach = CombatDistance(unit, true);
                 else
                     reach = CombatDistance(unit, false);
-                return distance <= reach + maxRange && distance >= reach + minRange;
+                return distance <= reach + maxRange && (minRange == 0f || distance >= reach + minRange);
             }
             catch (Exception exception)
             {
