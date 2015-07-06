@@ -1931,11 +1931,11 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <InternalIndex>1</InternalIndex>
+          <InternalIndex>2</InternalIndex>
           <InternalQuestId>32791</InternalQuestId>
           <Count>1</Count>
           <Entry>
-            <int>70909</int>
+            <int>70878</int>
           </Entry>
           <Position>
              <X>7224.098</X>
@@ -2316,6 +2316,192 @@
           <NpcEntry>72274</NpcEntry>
           <QuestId>32989</QuestId>
           <QuestName>Securing the South</QuestName>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>They Who Held Fast</Name>
+      <Id>32990</Id>
+      <QuestLevel>91</QuestLevel>
+      <MinLevel>90</MinLevel>
+      <MaxLevel>100</MaxLevel>
+      <RaceMask>33555378</RaceMask>
+      <NeedQuestCompletedId>
+        <int>32989</int>
+      </NeedQuestCompletedId>
+      <PickUp>72274</PickUp>
+      <TurnIn>72274</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>4</InternalIndex>
+          <InternalQuestId>32990</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
+          <Entry>
+            <int>72449</int>
+          </Entry>
+          <Position>
+            <X>6122.181</X>
+            <Y>4976.077</Y>
+            <Z>136.5732</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpQuest</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>74358</NpcEntry>
+          <QuestId>33013</QuestId>
+          <QuestName>Of Fire and Thunder</QuestName>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>32990</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
+          <Entry>
+            <int>72383</int>
+          </Entry>
+          <Position>
+              <X>6117.802</X>
+              <Y>4960.088</Y>
+              <Z>137.2586</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>3</InternalIndex>
+          <InternalQuestId>32990</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
+          <Entry>
+            <int>72381</int>
+          </Entry>
+          <Position>
+              <X>6123.001</X>
+              <Y>5064.688</Y>
+              <Z>134.0659</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>32990</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
+          <Entry>
+            <int>72380</int>
+          </Entry>
+          <Position>
+              <X>6136.196</X>
+              <Y>5110.458</Y>
+              <Z>131.71</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Into the Boneslag</Name>
+      <Id>32991</Id>
+      <QuestLevel>91</QuestLevel>
+      <MinLevel>90</MinLevel>
+      <MaxLevel>100</MaxLevel>
+      <RaceMask>33555378</RaceMask>
+      <NeedQuestCompletedId>
+        <int>32990</int>
+      </NeedQuestCompletedId>
+      <AutoComplete>
+        <int>33013</int>
+      </AutoComplete>
+      <PickUp>72274</PickUp>
+      <TurnIn>72274</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>32991</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IsDead>true</IsDead>
+          <Count>1</Count>
+          <Entry>
+            <int>72400</int>
+          </Entry>
+          <Position>
+              <X>6275.522</X>
+              <Y>5034.088</Y>
+              <Z>48.90404</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>32991</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <IsDead>true</IsDead>
+          <Count>1</Count>
+          <Entry>
+            <int>72399</int>
+          </Entry>
+          <Position>
+              <X>6451.089</X>
+              <Y>4992.683</Y>
+              <Z>58.82104</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <InternalQuestId>33013</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
+          <Entry>
+            <int>221379</int>
+          </Entry>
+          <Position>
+              <X>6465.366</X>
+              <Y>4867.069</Y>
+              <Z>48.65531</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>3</InternalIndex>
+          <InternalQuestId>32991</InternalQuestId>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+          <Count>1</Count>
+          <Entry>
+            <int>72494</int>
+          </Entry>
+          <Position>
+              <X>6521.037</X>
+              <Y>4797.245</Y>
+              <Z>67.18397</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>2</InternalIndex>
+          <InternalQuestId>33013</InternalQuestId>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Count>1</Count>
+          <Entry>
+            <int>221378</int>
+          </Entry>
+          <Position>
+              <X>6504.655</X>
+              <Y>4772.43</Y>
+              <Z>68.21293</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+              <X>6416.872</X>
+              <Y>4597.837</Y>
+              <Z>85.40118</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
