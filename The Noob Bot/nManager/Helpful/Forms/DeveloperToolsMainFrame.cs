@@ -138,7 +138,7 @@ namespace nManager.Helpful.Forms
                     SearchObjectButton.Enabled = true;
                     return;
                 }
-                npc.ContinentId = (ContinentId) (Usefuls.ContinentId);
+                npc.ContinentIdInt = Usefuls.ContinentId;
                 npc.Faction = (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
                 if (Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
@@ -156,7 +156,7 @@ namespace nManager.Helpful.Forms
                     (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) +
                     "</Faction>" + Environment.NewLine +
                     "    <Type>None</Type>" + Environment.NewLine +
-                    "    <ContinentId>" + (ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
+                    "    <ContinentId>" + npc.ContinentId + "</ContinentId>" +
                     Environment.NewLine +
                     "  </Npc>";
             }
@@ -365,7 +365,7 @@ namespace nManager.Helpful.Forms
                         "Entry: " + ObjectManager.Target.Entry + Environment.NewLine +
                         "Position: " + ObjectManager.Target.Position + Environment.NewLine +
                         "Faction: " + (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) + Environment.NewLine +
-                        "ContinentId: " + (ContinentId) (Usefuls.ContinentId) + " (" + Usefuls.ContinentId + ")" + Environment.NewLine +
+                        "ContinentId: " + Usefuls.ContinentNameByContinentId(Usefuls.ContinentId) + " (" + Usefuls.ContinentId + ")" + Environment.NewLine +
                         "IsDead : " + ObjectManager.Target.IsDead + Environment.NewLine +
                         "IsTrivial : " + ObjectManager.Target.IsTrivial + Environment.NewLine +
                         "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
@@ -415,7 +415,7 @@ namespace nManager.Helpful.Forms
                 if (ObjectManager.Me.IsValid)
                 {
                     InformationArea.Text =
-                        "Internal Map name: " + Usefuls.ContinentNameMpq + " (" + Usefuls.ContinentId + ")" + Environment.NewLine +
+                        "Internal Map name: " + Usefuls.ContinentNameMpqByContinentId(Usefuls.RealContinentId) + " (" + Usefuls.RealContinentId + ")" + Environment.NewLine +
                         "" + ObjectManager.Me.Position + Environment.NewLine +
                         "" + Environment.NewLine +
                         "" + Environment.NewLine +
@@ -512,7 +512,7 @@ namespace nManager.Helpful.Forms
                     (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) +
                     "</Faction>" + Environment.NewLine +
                     "    <Type>None</Type>" + Environment.NewLine +
-                    "    <ContinentId>" + (ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
+                    "    <ContinentId>" + Usefuls.ContinentNameByContinentId(Usefuls.ContinentId) + "</ContinentId>" +
                     Environment.NewLine +
                     "  </Npc>" +
                     Environment.NewLine + Environment.NewLine +

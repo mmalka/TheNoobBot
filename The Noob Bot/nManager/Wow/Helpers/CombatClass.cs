@@ -24,35 +24,53 @@ namespace nManager.Wow.Helpers
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
         private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
+        private const float BASE_MELEERANGE_OFFSET = 1.30f;
+        private const float MIN_ATTACK_DISTANCE = 5.0f;
+
+        private static bool isMeleeClass
+        {
+            get { return GetRange <= 5.0f; }
+        }
+
+        private static float CombatDistance(WoWUnit unit, bool MeleeSpell = true)
+        {
+            float reach = unit.GetCombatReach + ObjectManager.ObjectManager.Me.GetCombatReach;
+            if (MeleeSpell)
+                reach += BASE_MELEERANGE_OFFSET;
+            if (MeleeSpell && reach < MIN_ATTACK_DISTANCE)
+                reach = MIN_ATTACK_DISTANCE;
+            return reach;
+        }
 
         public static bool InRange(WoWUnit unit)
         {
-            try
-            {
-                if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
-                    return HealerClass.InRange(unit);
-                float distance = unit.GetDistance;
-                float boundingRadius = unit.GetBoundingRadius;
-                //Logging.WriteDebug("InRange check: Distance " + distance + ", BoundingRadius " + boundingRadius + ", Range " + GetRange);
-                return distance - boundingRadius <= GetRange - 0.1;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("CombatClass > InRange: " + exception);
-                return false;
-            }
+            if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
+                return HealerClass.InRange(unit);
+            return unit.GetDistance < CombatDistance(unit) + (isMeleeClass ? 0 : GetRange);
         }
 
-        public static bool InCustomRange(WoWUnit unit, float minRange, float maxRange)
+        public static bool InAggroRange(WoWUnit unit)
+        {
+            if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
+                return HealerClass.InRange(unit);
+            float unitCombatReach = unit.GetCombatReach;
+            float reach = unitCombatReach + GetAggroRange;
+            return unit.GetDistance < reach;
+        }
+
+        public static bool InSpellRange(WoWUnit unit, float minRange, float maxRange)
         {
             try
             {
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                float boundingRadius = unit.GetBoundingRadius;
-                //Logging.WriteDebug("Distance " + distance + ", BoundingRadius " + boundingRadius + ", Scale " + unit.Scale + ", Diff " + (distance - boundingRadius));
-                return distance - boundingRadius <= maxRange - 0.05 && distance >= minRange + 0.05;
+                float reach;
+                if (maxRange <= 5.0f) // Melee spell
+                    reach = CombatDistance(unit, true);
+                else
+                    reach = CombatDistance(unit, false);
+                return distance <= reach + maxRange && distance >= reach + minRange;
             }
             catch (Exception exception)
             {
@@ -61,22 +79,11 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static bool InMinRange(WoWUnit unit)
+        public static bool AboveMinRange(WoWUnit unit)
         {
-            try
-            {
-                if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
-                    return HealerClass.InMinRange(unit);
-                float distance = unit.GetDistance;
-                float boundingRadius = unit.GetBoundingRadius;
-                //Logging.WriteDebug("InMinRange check: Distance " + distance + ", BoundingRadius " + unit.GetBoundingRadius + ", Scale " + unit.Scale + ", Range " + GetRange);
-                return distance - boundingRadius <= GetRange - 0.05 && distance - boundingRadius >= -0.05; // distance - combatReach >= -1.5;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("CombatClass > InMinRange: " + exception);
-                return false;
-            }
+            // Can't find any meaning to this without a spell
+            // so let's assume 2f is too close even for a melee
+            return unit.GetDistance < 2.0f;
         }
 
         public static float GetRange
@@ -97,6 +104,23 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static float GetAggroRange
+        {
+            get
+            {
+                try
+                {
+                    if (_instanceFromOtherAssembly != null)
+                        return _instanceFromOtherAssembly.AggroRange < 5.0f ? 5.0f : _instanceFromOtherAssembly.AggroRange;
+                    return 1.5f;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("CombatClass > GetAggroRange: " + exception);
+                    return 1.5f;
+                }
+            }
+        }
         public static bool IsAliveCombatClass
         {
             get
@@ -309,6 +333,7 @@ namespace nManager.Wow.Helpers
         #region Properties
 
         float Range { get; }
+        float AggroRange { get; }
 
         #endregion Properties
 

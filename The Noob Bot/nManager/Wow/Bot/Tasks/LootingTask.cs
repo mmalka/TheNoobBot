@@ -47,12 +47,12 @@ namespace nManager.Wow.Bot.Tasks
                                 if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
                                 {
                                     points = PathFinder.FindPath(wowUnit.Position);
+                                    if (points.Count <= 0)
+                                    {
+                                        points.Add(ObjectManager.ObjectManager.Me.Position);
+                                        points.Add(wowUnit.Position);
+                                    }
                                     MovementManager.Go(points);
-                                }
-                                if (points.Count <= 0)
-                                {
-                                    points.Add(ObjectManager.ObjectManager.Me.Position);
-                                    points.Add(wowUnit.Position);
                                 }
                                 Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 5000);
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
@@ -102,7 +102,7 @@ namespace nManager.Wow.Bot.Tasks
                                             {
                                                 WoWUnit unit = wowUnit;
                                                 // we blacklist all unit around for a short time to be sure we loot then
-                                                foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
+                                                foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo2D(unit.Position) <= 25f))
                                                 {
                                                     nManagerSetting.AddBlackList(u.Guid, 2600);
                                                 }

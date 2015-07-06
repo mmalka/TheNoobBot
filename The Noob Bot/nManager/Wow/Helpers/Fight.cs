@@ -32,8 +32,9 @@ namespace nManager.Wow.Helpers
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && (CombatClass.InRange(targetNpc) || targetNpc.GetDistance < 10))
-                    MountTask.DismountMount(); // Most melee can pull at distance, dismount as fast as we can.
+                if (ObjectManager.ObjectManager.Me.IsMounted &&
+                    (CombatClass.InAggroRange(targetNpc) || CombatClass.InRange(targetNpc)))
+                    MountTask.DismountMount();
 
                 InFight = true;
 
@@ -62,7 +63,7 @@ namespace nManager.Wow.Helpers
                             return 0;
                     }
                 }
-                if (TraceLine.TraceLineGo(targetNpc.Position)) // If obstacle
+                if ((ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InRange(targetNpc)) || TraceLine.TraceLineGo(targetNpc.Position)) // If obstacle or not in range
                 {
                     bool resultSucces;
                     List<Point> points = PathFinder.FindPath(targetNpc.Position, out resultSucces);
@@ -71,8 +72,10 @@ namespace nManager.Wow.Helpers
                     MovementManager.Go(points);
                     timer = Others.Times + (int) (Math.DistanceListPoint(points)/3*1000) + 15000;
 
-                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable && targetNpc.Health > 0 && targetNpc.IsValid && MovementManager.InMovement &&
-                           InFight && Usefuls.InGame && (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InRange(targetNpc))
+                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
+                           targetNpc.Health > 0 && targetNpc.IsValid &&
+                           MovementManager.InMovement && InFight && Usefuls.InGame &&
+                           (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InAggroRange(targetNpc))
                         )
                     {
                         // Mob already in fight
@@ -109,26 +112,29 @@ namespace nManager.Wow.Helpers
 
                 InFight = true;
                 Thread.Sleep(200);
-
-                if (CombatClass.InRange(targetNpc) && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
+                if (CombatClass.InAggroRange(targetNpc))
                 {
-                    if (ObjectManager.ObjectManager.Me.IsMounted)
+                    if (ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
+                        MovementManager.StopMoveTo();
+                    if (!ObjectManager.ObjectManager.Me.GetMove && ObjectManager.ObjectManager.Me.IsMounted)
                         MountTask.DismountMount();
-                    MovementManager.StopMoveTo();
                 }
 
                 // If target died after only 0.2sec of fight, let's find a new target.
                 if (targetNpc.IsDead || !targetNpc.IsValid)
                 {
-                    targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
-                    if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
+                    WoWUnit newTargetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
+                    if (newTargetNpc.IsValid && !ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != newTargetNpc.Guid)
+                    {
+                        targetNpc = newTargetNpc;
                         Interact.InteractWith(targetNpc.GetBaseAddress);
+                        // Face the new target
+                        MovementManager.Face(targetNpc);
+                    }
                 }
 
-                // Make sure to always face the target in case we don't even enter the loop below.
-                MovementManager.Face(targetNpc);
-
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight && !ObjectManager.ObjectManager.Me.InTransport)
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
+                       targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
                     if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe && !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0) &&
@@ -153,7 +159,9 @@ namespace nManager.Wow.Helpers
                     }
 
                     // Move to target if out of range
-                    if (!CombatClass.InRange(targetNpc) && !ObjectManager.ObjectManager.Me.IsCast)
+                    if (!ObjectManager.ObjectManager.Me.IsCast &&
+                        ((!ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InAggroRange(targetNpc)) ||
+                         ((ObjectManager.ObjectManager.Me.InCombat && !CombatClass.InRange(targetNpc)))))
                     {
                         int rJump = Others.Random(1, 20);
                         MovementManager.MoveTo(targetNpc);
@@ -172,6 +180,8 @@ namespace nManager.Wow.Helpers
                     {
                         MovementManager.StopMoveTo();
                     }
+                    if (ObjectManager.ObjectManager.Me.IsMounted)
+                        MountTask.DismountMount();
 
                     // Face player to mob
                     MovementManager.Face(targetNpc);
@@ -183,9 +193,6 @@ namespace nManager.Wow.Helpers
                         InFight = false;
                         return targetNpc.Guid;
                     }
-
-                    if (ObjectManager.ObjectManager.Me.IsMounted)
-                        MountTask.DismountMount();
 
                     Thread.Sleep(75 + Usefuls.Latency);
 

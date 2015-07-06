@@ -169,7 +169,7 @@ namespace nManager.Wow.Bot.States
                             Entry = portableMailbox.Entry,
                             Position = portableMailbox.Position,
                             Name = portableMailbox.Name,
-                            ContinentId = (ContinentId) Usefuls.ContinentId,
+                            ContinentIdInt = Usefuls.ContinentId,
                             Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                 ? Npc.FactionType.Horde
                                 : Npc.FactionType.Alliance,
@@ -209,7 +209,7 @@ namespace nManager.Wow.Bot.States
                                     Entry = drixBlackwrench.Entry,
                                     Position = drixBlackwrench.Position,
                                     Name = drixBlackwrench.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    ContinentIdInt = Usefuls.ContinentId,
                                     Faction = Npc.FactionType.Horde,
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Repair
@@ -229,7 +229,7 @@ namespace nManager.Wow.Bot.States
                                     Entry = gnimo.Entry,
                                     Position = gnimo.Position,
                                     Name = gnimo.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    ContinentIdInt = Usefuls.ContinentId,
                                     Faction = Npc.FactionType.Alliance,
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Repair
@@ -259,7 +259,7 @@ namespace nManager.Wow.Bot.States
                                 Entry = cousinSlowhands.Entry,
                                 Position = cousinSlowhands.Position,
                                 Name = cousinSlowhands.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                ContinentIdInt = Usefuls.ContinentId,
                                 Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                     ? Npc.FactionType.Horde
                                     : Npc.FactionType.Alliance,
@@ -322,7 +322,7 @@ namespace nManager.Wow.Bot.States
                                     Entry = mojodishu.Entry,
                                     Position = mojodishu.Position,
                                     Name = mojodishu.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    ContinentIdInt = Usefuls.ContinentId,
                                     Faction = Npc.FactionType.Horde,
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Vendor
@@ -342,7 +342,7 @@ namespace nManager.Wow.Bot.States
                                     Entry = hakmuddArgus.Entry,
                                     Position = hakmuddArgus.Position,
                                     Name = hakmuddArgus.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    ContinentIdInt = Usefuls.ContinentId,
                                     Faction = Npc.FactionType.Alliance,
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Vendor
@@ -372,7 +372,7 @@ namespace nManager.Wow.Bot.States
                                 Entry = cousinSlowhands.Entry,
                                 Position = cousinSlowhands.Position,
                                 Name = cousinSlowhands.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                ContinentIdInt = Usefuls.ContinentId,
                                 Faction = Npc.FactionType.Neutral,
                                 SelectGossipOption = 0,
                                 Type = Npc.NpcType.Vendor
@@ -624,7 +624,7 @@ namespace nManager.Wow.Bot.States
                 Entry = unitRobot.Entry,
                 Position = unitRobot.Position,
                 Name = unitRobot.Name,
-                ContinentId = (ContinentId) Usefuls.ContinentId,
+                ContinentIdInt = Usefuls.ContinentId,
                 Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                     ? Npc.FactionType.Horde
                     : Npc.FactionType.Alliance,

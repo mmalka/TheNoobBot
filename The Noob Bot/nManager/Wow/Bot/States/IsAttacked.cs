@@ -40,12 +40,11 @@ namespace nManager.Wow.Bot.States
                 _unit = null;
 
                 if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                    _unit =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer());
+                    _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer());
 
-                if (_unit != null)
-                    if (_unit.IsValid)
-                        return true;
+                if (_unit != null && _unit.IsValid)
+
+                    return true;
 
                 if (!nManagerSetting.CurrentSetting.DontPullMonsters)
                 {
@@ -91,7 +90,7 @@ namespace nManager.Wow.Bot.States
 
                 while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetNumberAttackPlayer() <= 0)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(150);
                 }
                 Fight.StopFight();
             }

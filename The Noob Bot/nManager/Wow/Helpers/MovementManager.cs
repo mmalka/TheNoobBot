@@ -1680,7 +1680,7 @@ namespace nManager.Wow.Helpers
             MeleeControlTimer.Reset(); // No reasons to spam the check, and less than 5 seconds of inactivity is not 'dramatical'.
             if (_currFightMeleeControl > 0 && resetCount)
                 _currFightMeleeControl = 0;
-            if (!CombatClass.InMinRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe)
+            if (!CombatClass.AboveMinRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe)
             {
                 Logging.WriteFight("Under the minimal distance from the target, move closer.");
                 _currFightMeleeControl++;
@@ -1702,7 +1702,7 @@ namespace nManager.Wow.Helpers
         {
             MeleeControlMovementTimer.Reset();
             MovementsAction.MoveBackward(true);
-            while (!CombatClass.InMinRange(unit) && CombatClass.InRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
+            while (!CombatClass.AboveMinRange(unit) && CombatClass.InRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
                 Thread.Sleep(50);
             MovementsAction.MoveBackward(false);
         }
@@ -1711,7 +1711,7 @@ namespace nManager.Wow.Helpers
         {
             MeleeControlMovementTimer.Reset();
             MovementsAction.MoveForward(true);
-            while (!CombatClass.InRange(unit) && CombatClass.InMinRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
+            while (!CombatClass.InRange(unit) && CombatClass.AboveMinRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
                 Thread.Sleep(50);
             MovementsAction.MoveForward(false);
         }

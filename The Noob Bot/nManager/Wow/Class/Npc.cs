@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using nManager.Wow.Helpers;
 
 namespace nManager.Wow.Class
 {
@@ -61,14 +62,20 @@ namespace nManager.Wow.Class
 
         private NpcType _type = NpcType.None;
 
-        public Enums.ContinentId ContinentId
+        public string ContinentId
+        {
+            get { return Usefuls.ContinentNameByContinentId(ContinentIdInt); }
+            set { ContinentIdInt = Usefuls.ContinentIdByContinentName(value); }
+        }
+
+        [XmlIgnore]
+        public int ContinentIdInt
         {
             get { return _continentId; }
             set { _continentId = value; }
         }
 
-        private Enums.ContinentId _continentId;
-
+        private int _continentId;
 
         [Serializable]
         public enum FactionType

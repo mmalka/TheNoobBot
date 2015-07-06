@@ -38,9 +38,18 @@ namespace Test_Product
             var myConn = new MySqlConnection("server=192.168.10.222; user id=root; password=aabbcc; database=offydump;");
             myConn.Open();
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] {32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
+            List<int> BlackListed = new List<int>(new int[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006 });
+            //Spell WildCharge = new Spell("Wild Charge");
             while (true)
             {
+                /*WoWUnit target = ObjectManager.Target;
+                if (target.IsValid)
+                {
+                    Logging.Write("Distance to target (" + target.Name + ") : " + target.GetDistance);
+                    Logging.Write("Target CombatReach : " + target.GetCombatReach);
+                    Logging.Write("Target BoundingRadius : " + target.GetBoundingRadius);
+                    Logging.Write("In Range ? " + CombatClass.InSpellRange(target, WildCharge.MinRangeHostile, WildCharge.MaxRangeHostile));
+                }*/
                 Thread.Sleep(650 * 2); // Every 2 ObjectManager refresh
                 // Prevent corruptions while the game loads after a zone change
                 if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
@@ -134,7 +143,7 @@ namespace Test_Product
                             }*/
                         }
                     }
-                    catch (Exception exception)
+                    catch (Exception)
                     {
                         Logging.Write("This query has a problem ? " + query);
                     }
@@ -146,7 +155,7 @@ namespace Test_Product
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
@@ -156,11 +165,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Vendors)
                 {
-                    if (BlackListed.Contains(n.Entry))
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -170,11 +179,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in Repairers)
                 {
-                    if (BlackListed.Contains(n.Entry))
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -186,7 +195,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -233,7 +242,7 @@ namespace Test_Product
                         continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -245,7 +254,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -257,7 +266,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -267,9 +276,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in NpcMailboxes)
                 {
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
+                        continue;
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -281,7 +292,7 @@ namespace Test_Product
                 {
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -291,9 +302,11 @@ namespace Test_Product
                 }
                 foreach (WoWUnit n in NpcQuesters)
                 {
+                    if (BlackListed.Contains(n.Entry) || n.CreatedBy != 0)
+                        continue;
                     npcRadarQuesters.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = n.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(n.Faction),
                         Name = n.Name,
@@ -303,9 +316,11 @@ namespace Test_Product
                 }
                 foreach (WoWGameObject o in ObjectQuesters)
                 {
+                    if (o.CreatedBy != 0)
+                        continue;
                     npcRadarQuesters.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
@@ -315,6 +330,8 @@ namespace Test_Product
                 }
                 foreach (WoWGameObject o in Forges)
                 {
+                    if (o.CreatedBy != 0)
+                        continue;
                     Npc.NpcType newtype;
                     switch (o.Data0)
                     {
@@ -329,7 +346,7 @@ namespace Test_Product
                     }
                     npcRadar.Add(new Npc
                     {
-                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        ContinentIdInt = Usefuls.ContinentId,
                         Entry = o.Entry,
                         Faction = UnitRelation.GetObjectRacialFaction(o.Faction),
                         Name = o.Name,
@@ -506,7 +523,7 @@ namespace Test_Product
                 for (int i2 = 0; i2 < qesterList.Count; i2++)
                 {
                     Npc npc1 = qesterList[i2];
-                    if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 60)
+                    if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 75)
                     {
                         found = true;
                         if (npc1.Faction != npc.Faction && npc1.Faction != Npc.FactionType.Neutral)
@@ -740,12 +757,12 @@ namespace Test_Product
             List<Npc> qesterListResult = new List<Npc>();
             foreach (Npc quester in qesterListOriginal)
             {
-                if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 60) == null)
+                if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 75) == null)
                     qesterListResult.Add(quester);
             }
             foreach (Npc quester in qesterListOther)
             {
-                if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 60) == null)
+                if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 75) == null)
                     qesterListResult.Add(quester);
             }
             qesterListResult.Sort(delegate(Npc x, Npc y)
@@ -764,12 +781,12 @@ namespace Test_Product
             List<Npc> npcListResult = new List<Npc>();
             foreach (Npc npc in npcListOriginal)
             {
-                if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 30) == null)
+                if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 75) == null)
                     npcListResult.Add(npc);
             }
             foreach (Npc npc in npcListOther)
             {
-                if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 30) == null)
+                if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 75) == null)
                     npcListResult.Add(npc);
             }
             npcListResult.Sort(delegate(Npc x, Npc y)

@@ -1370,18 +1370,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>840</Entry>
-    <Name>Gardien Backus</Name>
-    <Position>
-      <X>-10414.3311</X>
-      <Y>-1136.75134</Y>
-      <Z>24.1574173</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>859</Entry>
     <Name>Guard Berton</Name>
     <Position>
@@ -2847,18 +2835,6 @@
     <Entry>1721</Entry>
     <Name>Nikova Raskol</Name>
     <Position>
-      <X>-8715.74</X>
-      <Y>453.473022</Y>
-      <Z>97.2401657</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>1721</Entry>
-    <Name>Nikova Raskol</Name>
-    <Position>
       <X>-8638.788</X>
       <Y>450.0242</Y>
       <Z>102.467682</Z>
@@ -3489,18 +3465,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>2155</Entry>
-    <Name>Sentinel Shayla Nightbreeze</Name>
-    <Position>
-      <X>10109.6836</X>
-      <Y>1750.51465</Y>
-      <Z>1334.67664</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>2198</Entry>
     <Name>Crieur Goodman</Name>
     <Position>
@@ -3519,6 +3483,18 @@
       <X>-8853.125</X>
       <Y>735.6029</Y>
       <Z>100.381943</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2198</Entry>
+    <Name>Crieur Goodman</Name>
+    <Position>
+      <X>-8746.5625</X>
+      <Y>714.405457</Y>
+      <Z>98.23173</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -5983,18 +5959,6 @@
     <Entry>3518</Entry>
     <Name>Thomas Miller</Name>
     <Position>
-      <X>-8829.299</X>
-      <Y>619.886169</Y>
-      <Z>94.13731</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3518</Entry>
-    <Name>Thomas Miller</Name>
-    <Position>
       <X>-8765.225</X>
       <Y>652.033142</Y>
       <Z>103.589363</Z>
@@ -6499,18 +6463,6 @@
       <X>2991.78516</X>
       <Y>-3263.40942</Y>
       <Z>161.488342</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>3901</Entry>
-    <Name>Illiyana</Name>
-    <Position>
-      <X>3001.164</X>
-      <Y>-3322.58423</Y>
-      <Z>152.173157</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -8478,18 +8430,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>5639</Entry>
-    <Name>Craven Drok</Name>
-    <Position>
-      <X>1840.68823</X>
-      <Y>-4407.98926</Y>
-      <Z>4.729097</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>5640</Entry>
     <Name>Keldran</Name>
     <Position>
@@ -9058,18 +8998,6 @@
       <X>-5008.6</X>
       <Y>-1026.61646</Y>
       <Z>501.655426</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>6175</Entry>
-    <Name>John Turner</Name>
-    <Position>
-      <X>-4983.74072</X>
-      <Y>-969.769653</Y>
-      <Z>501.659454</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -11324,6 +11252,42 @@
     <Entry>10877</Entry>
     <Name>Messager Tombemartel</Name>
     <Position>
+      <X>-4871.94727</X>
+      <Y>-1085.81873</Y>
+      <Z>502.2125</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10877</Entry>
+    <Name>Messager Tombemartel</Name>
+    <Position>
+      <X>-4819.941</X>
+      <Y>-1166.30908</Y>
+      <Z>502.204</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10877</Entry>
+    <Name>Messager Tombemartel</Name>
+    <Position>
+      <X>-4732.887</X>
+      <Y>-1097.41589</Y>
+      <Z>502.480377</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>10877</Entry>
+    <Name>Messager Tombemartel</Name>
+    <Position>
       <X>-4731.5957</X>
       <Y>-905.5664</Y>
       <Z>501.6594</Z>
@@ -11338,18 +11302,6 @@
     <Position>
       <X>9670.162</X>
       <Y>2447.94751</Y>
-      <Z>1335.67578</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>10878</Entry>
-    <Name>Héraut Traquelune</Name>
-    <Position>
-      <X>9710.68</X>
-      <Y>2494.552</Y>
       <Z>1335.67578</Z>
     </Position>
     <Faction>Alliance</Faction>
@@ -11442,18 +11394,6 @@
   </Npc>
   <Npc>
     <Entry>10879</Entry>
-    <Name>Messager Balthazad</Name>
-    <Position>
-      <X>1545.54565</X>
-      <Y>286.166656</Y>
-      <Z>-62.18018</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>10879</Entry>
     <Name>Harbinger Balthazad</Name>
     <Position>
       <X>1601.639</X>
@@ -11471,18 +11411,6 @@
       <X>1623.87</X>
       <Y>302.475555</Y>
       <Z>-62.1772461</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>10879</Entry>
-    <Name>Harbinger Balthazad</Name>
-    <Position>
-      <X>1661.87146</X>
-      <Y>252.075943</Y>
-      <Z>-62.17813</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -11507,18 +11435,6 @@
       <X>1591.241</X>
       <Y>-4411.038</Y>
       <Z>15.011014</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>10880</Entry>
-    <Name>Warcaller Gorlach</Name>
-    <Position>
-      <X>1611.84827</X>
-      <Y>-4289.255</Y>
-      <Z>20.562336</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -11585,18 +11501,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>10880</Entry>
-    <Name>Warcaller Gorlach</Name>
-    <Position>
-      <X>1861.84875</X>
-      <Y>-4417.923</Y>
-      <Z>6.9322834</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>10881</Entry>
     <Name>Bluff Runner Windstrider</Name>
     <Position>
@@ -11615,18 +11519,6 @@
       <X>-1280.13538</X>
       <Y>-20.4549961</Y>
       <Z>142.170761</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>10881</Entry>
-    <Name>Bluff Runner Windstrider</Name>
-    <Position>
-      <X>-1258.51855</X>
-      <Y>54.309433</Y>
-      <Z>126.980415</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12455,19 +12347,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-31.1677113</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12491,7 +12371,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
+      <Z>-417.438171</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12515,7 +12395,19 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
+      <Z>-31.1677113</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13294,18 +13186,6 @@
   </Npc>
   <Npc>
     <Entry>12864</Entry>
-    <Name>Voltigeur chanteguerre</Name>
-    <Position>
-      <X>2546.64087</X>
-      <Y>-2896.6377</Y>
-      <Z>160.55304</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>12864</Entry>
     <Name>Warsong Outrider</Name>
     <Position>
       <X>2674.28784</X>
@@ -13335,18 +13215,6 @@
       <X>2855.22388</X>
       <Y>-3502.66</Y>
       <Z>106.722092</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>12864</Entry>
-    <Name>Warsong Outrider</Name>
-    <Position>
-      <X>2885.16724</X>
-      <Y>-3561.67456</Y>
-      <Z>99.56939</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13733,18 +13601,6 @@
       <X>1700.55676</X>
       <Y>-4312.92627</Y>
       <Z>30.7021351</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>14375</Entry>
-    <Name>Eclaireur Fortemain</Name>
-    <Position>
-      <X>1719.51868</X>
-      <Y>-4373.5625</Y>
-      <Z>32.03577</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -16481,18 +16337,6 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
-    <Entry>17222</Entry>
-    <Name>Artificer Daelo</Name>
-    <Position>
-      <X>-4157.57</X>
-      <Y>-12470.19</Y>
-      <Z>44.9367065</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>17223</Entry>
     <Name>Ambassador Rualeth</Name>
     <Position>
@@ -17526,17 +17370,6 @@
     <Entry>18099</Entry>
     <Name>Gordawg</Name>
     <Position>
-      <X>-793.112244</X>
-      <Y>6860.57373</Y>
-      <Z>32.21745</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>18099</Entry>
-    <Name>Gordawg</Name>
-    <Position>
       <X>-739.0777</X>
       <Y>6942.6377</Y>
       <Z>32.1026878</Z>
@@ -18483,6 +18316,30 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>18927</Entry>
+    <Name>Roturier humain</Name>
+    <Position>
+      <X>5664.366</X>
+      <Y>668.0469</Y>
+      <Z>651.9685</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>18927</Entry>
+    <Name>Roturier humain</Name>
+    <Position>
+      <X>5740.70947</X>
+      <Y>686.1215</Y>
+      <Z>643.8136</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>18930</Entry>
     <Name>Vlagga Freyfeather</Name>
     <Position>
@@ -19294,17 +19151,6 @@
       <X>-1867.6123</X>
       <Y>5324.74658</Y>
       <Z>-12.4281387</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>19715</Entry>
-    <Name>Ezekiel</Name>
-    <Position>
-      <X>-1825.77234</X>
-      <Y>5525.574</Y>
-      <Z>-12.4281416</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -20248,33 +20094,9 @@
     <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
-      <X>-3872.494</X>
-      <Y>1345.33752</Y>
-      <Z>44.5447464</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
       <X>-3832.38281</X>
       <Y>1281.477</Y>
       <Z>53.73852</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3832.34619</X>
-      <Y>1559.1897</Y>
-      <Z>42.1027565</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20287,18 +20109,6 @@
       <X>-3823.19629</X>
       <Y>1650.41162</Y>
       <Z>79.4271545</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Esprit de la terre enragé</Name>
-    <Position>
-      <X>-3822.73828</X>
-      <Y>1723.22412</Y>
-      <Z>93.38915</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20342,18 +20152,6 @@
   </Npc>
   <Npc>
     <Entry>21050</Entry>
-    <Name>Esprit de la terre enragé</Name>
-    <Position>
-      <X>-3719.4314</X>
-      <Y>1722.41162</Y>
-      <Z>42.9168739</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
       <X>-3713.42871</X>
@@ -20383,30 +20181,6 @@
       <X>-3679.91675</X>
       <Y>1770.09912</Y>
       <Z>46.81293</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3657.746</X>
-      <Y>1842.76086</Y>
-      <Z>60.86353</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3623.31885</X>
-      <Y>1729.33765</Y>
-      <Z>40.5373421</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20486,18 +20260,6 @@
   </Npc>
   <Npc>
     <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3416.41626</X>
-      <Y>1654.24121</Y>
-      <Z>109.759552</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
     <Name>Esprit de la terre enragé</Name>
     <Position>
       <X>-3403.38232</X>
@@ -20527,18 +20289,6 @@
       <X>-3335.87817</X>
       <Y>1646.00842</Y>
       <Z>90.32566</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
-      <X>-3279.8313</X>
-      <Y>1683.30933</Y>
-      <Z>74.74806</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20584,45 +20334,9 @@
     <Entry>21050</Entry>
     <Name>Enraged Earth Spirit</Name>
     <Position>
-      <X>-3179.16162</X>
-      <Y>1520.91943</Y>
-      <Z>60.7345467</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Enraged Earth Spirit</Name>
-    <Position>
       <X>-3171.59888</X>
       <Y>1320.76416</Y>
       <Z>20.6739712</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Esprit de la terre enragé</Name>
-    <Position>
-      <X>-3148.042</X>
-      <Y>1382.51086</Y>
-      <Z>12.5516491</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21050</Entry>
-    <Name>Esprit de la terre enragé</Name>
-    <Position>
-      <X>-3112.74146</X>
-      <Y>1295.54688</Y>
-      <Z>9.765088</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20683,18 +20397,6 @@
       <X>-2954.54224</X>
       <Y>1336.09534</Y>
       <Z>6.28387833</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21059</Entry>
-    <Name>Esprit de l'eau enragé</Name>
-    <Position>
-      <X>-2954.23315</X>
-      <Y>1263.52637</Y>
-      <Z>6.05562353</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20788,18 +20490,6 @@
     <Entry>21060</Entry>
     <Name>Esprit de l'air enragé</Name>
     <Position>
-      <X>-4583.674</X>
-      <Y>941.868</Y>
-      <Z>-15.50025</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
       <X>-4582.971</X>
       <Y>1183.42224</Y>
       <Z>3.065267</Z>
@@ -20836,18 +20526,6 @@
     <Entry>21060</Entry>
     <Name>Esprit de l'air enragé</Name>
     <Position>
-      <X>-4483.297</X>
-      <Y>911.415833</Y>
-      <Z>6.057759</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
       <X>-4416.415</X>
       <Y>855.8688</Y>
       <Z>7.58804464</Z>
@@ -20863,30 +20541,6 @@
       <X>-4388.167</X>
       <Y>325.476776</Y>
       <Z>48.61696</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Enraged Air Spirit</Name>
-    <Position>
-      <X>-4377.841</X>
-      <Y>900.680054</Y>
-      <Z>24.3949413</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4357.78</X>
-      <Y>827.135742</Y>
-      <Z>13.1300249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20910,7 +20564,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>27.8561249</Z>
+      <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20934,19 +20588,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>-32.453</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4243.21338</X>
-      <Y>323.120758</Y>
-      <Z>-123.336624</Z>
+      <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20971,18 +20613,6 @@
       <X>-4217.41455</X>
       <Y>821.171265</Y>
       <Z>24.1444</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4201.97656</X>
-      <Y>748.5229</Y>
-      <Z>14.9815645</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21031,18 +20661,6 @@
       <X>-4054.101</X>
       <Y>624.9124</Y>
       <Z>12.7110043</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4010.32544</X>
-      <Y>681.5317</Y>
-      <Z>13.1025457</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21148,18 +20766,6 @@
     <Entry>21060</Entry>
     <Name>Esprit de l'air enragé</Name>
     <Position>
-      <X>-2795.98755</X>
-      <Y>561.8736</Y>
-      <Z>-12.6085253</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
       <X>-2794.10864</X>
       <Y>680.90094</Y>
       <Z>-13.6533575</Z>
@@ -21184,18 +20790,6 @@
     <Entry>21060</Entry>
     <Name>Esprit de l'air enragé</Name>
     <Position>
-      <X>-2767.48364</X>
-      <Y>467.565216</Y>
-      <Z>-37.5603523</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
       <X>-2755.133</X>
       <Y>955.8311</Y>
       <Z>-2.76600218</Z>
@@ -21208,45 +20802,9 @@
     <Entry>21060</Entry>
     <Name>Esprit de l'air enragé</Name>
     <Position>
-      <X>-2754.668</X>
-      <Y>891.3682</Y>
-      <Z>-2.78555965</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-2744.619</X>
-      <Y>718.9978</Y>
-      <Z>-14.08557</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
       <X>-2743.09741</X>
       <Y>623.6242</Y>
       <Z>-46.5678024</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-2728.833</X>
-      <Y>804.046143</Y>
-      <Z>-3.95536852</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21340,30 +20898,6 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3819.47852</X>
-      <Y>1478.64746</Y>
-      <Z>43.4216576</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3774.39966</X>
-      <Y>1543.47827</Y>
-      <Z>45.3107948</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
       <X>-3755.88086</X>
       <Y>1478.73962</Y>
       <Z>46.75065</Z>
@@ -21379,30 +20913,6 @@
       <X>-3744.18262</X>
       <Y>1685.44763</Y>
       <Z>39.62061</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3735.87549</X>
-      <Y>1618.21448</Y>
-      <Z>40.580307</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3711.98657</X>
-      <Y>1521.403</Y>
-      <Z>48.7531967</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21434,35 +20944,11 @@
   </Npc>
   <Npc>
     <Entry>21061</Entry>
-    <Name>Esprit du feu enragé</Name>
-    <Position>
-      <X>-3652.13525</X>
-      <Y>1555.244</Y>
-      <Z>50.2530022</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
       <X>-3623.05127</X>
       <Y>1513.1864</Y>
       <Z>85.81835</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Esprit du feu enragé</Name>
-    <Position>
-      <X>-3608.022</X>
-      <Y>1737.00244</Y>
-      <Z>39.44316</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21484,33 +20970,9 @@
     <Entry>21061</Entry>
     <Name>Enraged Fire Spirit</Name>
     <Position>
-      <X>-3545.971</X>
-      <Y>1618.77332</Y>
-      <Z>46.8014641</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
       <X>-3462.336</X>
       <Y>1727.7323</Y>
       <Z>81.62903</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3439.07764</X>
-      <Y>1781.3938</Y>
-      <Z>100.810318</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21547,18 +21009,6 @@
       <X>-3379.698</X>
       <Y>1735.35962</Y>
       <Z>100.807724</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21061</Entry>
-    <Name>Enraged Fire Spirit</Name>
-    <Position>
-      <X>-3364.4873</X>
-      <Y>1626.33374</Y>
-      <Z>68.00736</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -21816,33 +21266,9 @@
     <Entry>21108</Entry>
     <Name>Rejeton d'Uvuros</Name>
     <Position>
-      <X>5541.946</X>
-      <Y>3587.22168</Y>
-      <Z>129.85405</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21108</Entry>
-    <Name>Rejeton d'Uvuros</Name>
-    <Position>
       <X>5595.40869</X>
       <Y>3634.49341</Y>
       <Z>127.821632</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21108</Entry>
-    <Name>Rejeton d'Uvuros</Name>
-    <Position>
-      <X>5603.48242</X>
-      <Y>3575.37622</Y>
-      <Z>112.448349</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -22252,17 +21678,6 @@
     <Entry>21657</Entry>
     <Name>Neltharaku</Name>
     <Position>
-      <X>-4180.13232</X>
-      <Y>436.275238</Y>
-      <Z>161.224716</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21657</Entry>
-    <Name>Neltharaku</Name>
-    <Position>
       <X>-4025.3313</X>
       <Y>678.7522</Y>
       <Z>108.842842</Z>
@@ -22277,17 +21692,6 @@
       <X>-3974.51221</X>
       <Y>802.4478</Y>
       <Z>112.811447</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21657</Entry>
-    <Name>Neltharaku</Name>
-    <Position>
-      <X>-3947.00439</X>
-      <Y>858.618347</Y>
-      <Z>113.69693</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -22763,17 +22167,6 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
-    <Entry>22127</Entry>
-    <Name>Wildlord Antelarion</Name>
-    <Position>
-      <X>2991.75317</X>
-      <Y>5445.21729</Y>
-      <Z>144.886368</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>22133</Entry>
     <Name>Faradrella</Name>
     <Position>
@@ -22940,17 +22333,6 @@
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
-    <Entry>22293</Entry>
-    <Name>Inactive Fel Reaver</Name>
-    <Position>
-      <X>4521.53</X>
-      <Y>3435.6062</Y>
-      <Z>166.721786</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>22312</Entry>
     <Name>Spiritcaller Dohgar</Name>
     <Position>
@@ -23057,17 +22439,6 @@
       <X>-1672.34448</X>
       <Y>5542.348</Y>
       <Z>5.02976751</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>22429</Entry>
-    <Name>Vekax</Name>
-    <Position>
-      <X>-1631.29041</X>
-      <Y>5487.17432</Y>
-      <Z>-14.8398714</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Outland</ContinentId>
@@ -25407,18 +24778,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>24768</Entry>
-    <Name>Deathstalker Hayward</Name>
-    <Position>
-      <X>394.1891</X>
-      <Y>-4558.68359</Y>
-      <Z>244.63678</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>24776</Entry>
     <Name>Yuriv's Tombstone</Name>
     <Position>
@@ -25552,17 +24911,6 @@
       <X>111.826981</X>
       <Y>-3540.15967</Y>
       <Z>22.5725155</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>24910</Entry>
-    <Name>Capitaine Ellis</Name>
-    <Position>
-      <X>121.009987</X>
-      <Y>-3792.771</Y>
-      <Z>21.0241547</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -26808,18 +26156,6 @@
       <X>3766.80957</X>
       <Y>2908.83</Y>
       <Z>90.49831</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>26181</Entry>
-    <Name>Emissaire Sabot-brillant</Name>
-    <Position>
-      <X>3769.21948</X>
-      <Y>2843.276</Y>
-      <Z>90.87144</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -28146,18 +27482,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>27320</Entry>
-    <Name>Nécrogarde Meuledur</Name>
-    <Position>
-      <X>3260.67188</X>
-      <Y>-729.743042</Y>
-      <Z>168.301025</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>27337</Entry>
     <Name>Spy Mistress Repine</Name>
     <Position>
@@ -28986,18 +28310,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>28120</Entry>
-    <Name>Lafoo</Name>
-    <Position>
-      <X>5548.69727</X>
-      <Y>4695.722</Y>
-      <Z>-139.628357</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>28122</Entry>
     <Name>Moudel</Name>
     <Position>
@@ -29016,18 +28328,6 @@
       <X>5806.73438</X>
       <Y>3818.53638</Y>
       <Z>-48.74282</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>28122</Entry>
-    <Name>Moudel</Name>
-    <Position>
-      <X>5810.26855</X>
-      <Y>3749.49121</Y>
-      <Z>-29.5539818</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -30171,66 +29471,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>29795</Entry>
-    <Name>Koltira Deathweaver</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>29795</Entry>
-    <Name>Koltira Deathweaver</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>29795</Entry>
-    <Name>Koltira Deathweaver</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>29795</Entry>
-    <Name>Koltira Deathweaver</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>29795</Entry>
-    <Name>Koltira Deathweaver</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>29796</Entry>
     <Name>Gretta the Arbiter</Name>
     <Position>
@@ -30404,17 +29644,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>30052</Entry>
-    <Name>Creteus</Name>
-    <Position>
-      <X>7390.106</X>
-      <Y>-925.7339</Y>
-      <Z>907.1345</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>30074</Entry>
     <Name>The Leaper</Name>
     <Position>
@@ -30477,17 +29706,6 @@
       <X>5790.80859</X>
       <Y>645.7031</Y>
       <Z>609.8859</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30137</Entry>
-    <Name>Shifty Vickers</Name>
-    <Position>
-      <X>5841.43555</X>
-      <Y>683.3625</Y>
-      <Z>609.885864</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Northrend</ContinentId>
@@ -30775,126 +29993,6 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30824</Entry>
-    <Name>Sky-Reaver Korm Blackscar</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30824</Entry>
-    <Name>Sky-Reaver Korm Blackscar</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30824</Entry>
-    <Name>Sky-Reaver Korm Blackscar</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30824</Entry>
-    <Name>Sky-Reaver Korm Blackscar</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30824</Entry>
-    <Name>Sky-Reaver Korm Blackscar</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30825</Entry>
-    <Name>Chief Engineer Copperclaw</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30825</Entry>
-    <Name>Chief Engineer Copperclaw</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30825</Entry>
-    <Name>Chief Engineer Copperclaw</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30825</Entry>
-    <Name>Chief Engineer Copperclaw</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>30825</Entry>
-    <Name>Chief Engineer Copperclaw</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <Entry>30944</Entry>
@@ -31328,61 +30426,6 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>31261</Entry>
-    <Name>Brother Keltan</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>31261</Entry>
-    <Name>Brother Keltan</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>31261</Entry>
-    <Name>Brother Keltan</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>31261</Entry>
-    <Name>Brother Keltan</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>31261</Entry>
-    <Name>Brother Keltan</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>31333</Entry>
     <Name>Alexstrasza the Life-Binder</Name>
     <Position>
@@ -31499,84 +30542,12 @@
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
-    <Entry>32301</Entry>
-    <Name>Warbringer Davos Rioht</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>32301</Entry>
-    <Name>Warbringer Davos Rioht</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>32301</Entry>
-    <Name>Warbringer Davos Rioht</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>32301</Entry>
-    <Name>Warbringer Davos Rioht</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>32301</Entry>
-    <Name>Warbringer Davos Rioht</Name>
-    <Position>
-      <X>1.90822321E-19</X>
-      <Y>NaN</Y>
-      <Z>NaN</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>32302</Entry>
     <Name>Knight-Captain Drosche</Name>
     <Position>
       <X>0.0116172889</X>
       <Y>0</Y>
       <Z>0.0116172992</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>32302</Entry>
-    <Name>Chevalier-capitaine Drosche</Name>
-    <Position>
-      <X>54.20508</X>
-      <Y>-6.82251</Y>
-      <Z>40.08661</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -36370,18 +35341,6 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>40123</Entry>
-    <Name>Twilight Overseer</Name>
-    <Position>
-      <X>5609.48535</X>
-      <Y>-2808.82422</Y>
-      <Z>1516.06287</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>40129</Entry>
     <Name>Lost Apprentice</Name>
     <Position>
@@ -38959,36 +37918,12 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>43062</Entry>
-    <Name>Bort</Name>
-    <Position>
-      <X>1863.698</X>
-      <Y>-4454.62256</Y>
-      <Z>108.137596</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>43063</Entry>
     <Name>Cromula</Name>
     <Position>
       <X>2092.35986</X>
       <Y>-1226.136</Y>
       <Z>101.793068</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>43063</Entry>
-    <Name>Cromula</Name>
-    <Position>
-      <X>2092.82837</X>
-      <Y>-1164.26514</Y>
-      <Z>101.79171</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -41211,17 +40146,6 @@
       <X>-10292.6279</X>
       <Y>-1066.53308</Y>
       <Z>48.0993919</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>46136</Entry>
-    <Name>Vizier Tanotep</Name>
-    <Position>
-      <X>-10233.2588</X>
-      <Y>-1050.966</Y>
-      <Z>48.0941467</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
@@ -44071,18 +42995,6 @@
     <Entry>54334</Entry>
     <Name>Mage mystique de la foire de Sombrelune</Name>
     <Position>
-      <X>-8796.02</X>
-      <Y>683.278564</Y>
-      <Z>101.442314</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Azeroth</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>54334</Entry>
-    <Name>Mage mystique de la foire de Sombrelune</Name>
-    <Position>
       <X>-8758.18</X>
       <Y>901.786438</Y>
       <Z>91.1654358</Z>
@@ -44601,28 +43513,6 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
-    <Entry>55413</Entry>
-    <Name>An Windfur</Name>
-    <Position>
-      <X>1541.3905</X>
-      <Y>-1792.57666</Y>
-      <Z>246.200424</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>55413</Entry>
-    <Name>An Windfur</Name>
-    <Position>
-      <X>1566.5979</X>
-      <Y>-1890.963</Y>
-      <Z>264.109558</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>55438</Entry>
     <Name>Outcast Sprite</Name>
     <Position>
@@ -44648,31 +43538,9 @@
     <Entry>55476</Entry>
     <Name>Seigneur Afrasastrasz</Name>
     <Position>
-      <X>-2235.30225</X>
-      <Y>-2397.9668</Y>
-      <Z>85.814</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>DeathwingBack</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>55476</Entry>
-    <Name>Seigneur Afrasastrasz</Name>
-    <Position>
       <X>-2170.22583</X>
       <Y>-2396.84</Y>
       <Z>79.87501</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>DeathwingBack</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>55476</Entry>
-    <Name>Seigneur Afrasastrasz</Name>
-    <Position>
-      <X>-2101.21265</X>
-      <Y>-2401.857</Y>
-      <Z>73.75193</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>DeathwingBack</ContinentId>
@@ -44692,31 +43560,9 @@
     <Entry>55476</Entry>
     <Name>Seigneur Afrasastrasz</Name>
     <Position>
-      <X>-1967.43152</X>
-      <Y>-2404.03955</Y>
-      <Z>68.55483</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>DeathwingBack</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>55476</Entry>
-    <Name>Seigneur Afrasastrasz</Name>
-    <Position>
       <X>-1905.24292</X>
       <Y>-2404.8147</Y>
       <Z>52.1913834</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>DeathwingBack</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>55476</Entry>
-    <Name>Seigneur Afrasastrasz</Name>
-    <Position>
-      <X>-1839.61523</X>
-      <Y>-2398.41968</Y>
-      <Z>52.23994</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>DeathwingBack</ContinentId>
@@ -44743,6 +43589,28 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Pandaria</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55564</Entry>
+    <Name>Récupérateur A’zak</Name>
+    <Position>
+      <X>435.06424</X>
+      <Y>774.3768</Y>
+      <Z>827.3053</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azjol_Uppercity</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>55564</Entry>
+    <Name>Récupérateur A’zak</Name>
+    <Position>
+      <X>550.8626</X>
+      <Y>334.682</Y>
+      <Z>240.179062</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azjol_Uppercity</ContinentId>
   </Npc>
   <Npc>
     <Entry>55646</Entry>
@@ -48230,6 +47098,18 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>64337</Entry>
+    <Name>Nomi</Name>
+    <Position>
+      <X>3942.81738</X>
+      <Y>-540.854553</Y>
+      <Z>36.8776245</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>HellfireRaid62</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>64361</Entry>
     <Name>Chen Stormstout</Name>
     <Position>
@@ -49546,18 +48426,6 @@
     <Entry>72274</Entry>
     <Name>Lokra</Name>
     <Position>
-      <X>5231.21631</X>
-      <Y>3682.13013</Y>
-      <Z>128.227249</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
       <X>5253.397</X>
       <Y>3613.273</Y>
       <Z>121.527946</Z>
@@ -49570,57 +48438,9 @@
     <Entry>72274</Entry>
     <Name>Lokra</Name>
     <Position>
-      <X>5280.54</X>
-      <Y>3742.00342</Y>
-      <Z>123.694458</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5295.1416</X>
-      <Y>3658.72681</Y>
-      <Z>126.499359</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5299.216</X>
-      <Y>3567.70166</Y>
-      <Z>122.978149</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
       <X>5305.988</X>
       <Y>3809.42676</Y>
       <Z>119.551071</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5342.41162</X>
-      <Y>3760.839</Y>
-      <Z>119.092384</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49654,33 +48474,9 @@
     <Entry>72274</Entry>
     <Name>Lokra</Name>
     <Position>
-      <X>5413.011</X>
-      <Y>3714.21045</Y>
-      <Z>122.433311</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
       <X>5475.547</X>
       <Y>3712.617</Y>
       <Z>121.297066</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5535.23633</X>
-      <Y>3722.81128</Y>
-      <Z>113.215355</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49705,42 +48501,6 @@
       <X>5593.4375</X>
       <Y>3684.79834</Y>
       <Z>118.117088</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5598.104</X>
-      <Y>3616.79175</Y>
-      <Z>124.33194</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5602.14453</X>
-      <Y>3748.27417</Y>
-      <Z>113.172859</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5606.85742</X>
-      <Y>3525.168</Y>
-      <Z>110.28627</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49777,30 +48537,6 @@
       <X>5663.383</X>
       <Y>3832.90649</Y>
       <Z>126.437271</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5710.28125</X>
-      <Y>3796.414</Y>
-      <Z>117.419907</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5728.418</X>
-      <Y>3572.14453</Y>
-      <Z>135.734482</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49858,42 +48594,6 @@
     <Entry>72274</Entry>
     <Name>Lokra</Name>
     <Position>
-      <X>5817.24561</X>
-      <Y>3559.39575</Y>
-      <Z>124.10228</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5828.3877</X>
-      <Y>3644.8147</Y>
-      <Z>120.89798</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5844.46</X>
-      <Y>3756.15161</Y>
-      <Z>116.955666</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
       <X>5858.449</X>
       <Y>3815.35327</Y>
       <Z>122.302208</Z>
@@ -49918,33 +48618,9 @@
     <Entry>72274</Entry>
     <Name>Lokra</Name>
     <Position>
-      <X>5874.566</X>
-      <Y>3874.52417</Y>
-      <Z>125.36544</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
       <X>5892.24365</X>
       <Y>3932.60352</Y>
       <Z>129.143661</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>5915.05225</X>
-      <Y>3990.37378</Y>
-      <Z>131.100327</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49993,18 +48669,6 @@
       <X>6024.348</X>
       <Y>4342.76563</Y>
       <Z>132.233643</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72274</Entry>
-    <Name>Lokra</Name>
-    <Position>
-      <X>6035.67871</X>
-      <Y>4275.764</Y>
-      <Z>123.851624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50073,45 +48737,9 @@
     <Entry>72373</Entry>
     <Name>Karg Fureur-Sanglante</Name>
     <Position>
-      <X>5277.084</X>
-      <Y>3668.52539</Y>
-      <Z>126.02742</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
       <X>5281.675</X>
       <Y>3739.798</Y>
       <Z>121.690811</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5304.026</X>
-      <Y>3807.77734</Y>
-      <Z>119.551384</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5323.57275</X>
-      <Y>3569.26025</Y>
-      <Z>122.06855</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50133,45 +48761,9 @@
     <Entry>72373</Entry>
     <Name>Karg Fureur-Sanglante</Name>
     <Position>
-      <X>5344.04639</X>
-      <Y>3753.09717</Y>
-      <Z>119.093231</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5397.655</X>
-      <Y>3715.71069</Y>
-      <Z>121.042953</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
       <X>5461.899</X>
       <Y>3715.542</Y>
       <Z>122.022736</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5533.47754</X>
-      <Y>3727.089</Y>
-      <Z>113.258232</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50217,42 +48809,6 @@
     <Entry>72373</Entry>
     <Name>Karg Fureur-Sanglante</Name>
     <Position>
-      <X>5595.73633</X>
-      <Y>3718.29614</Y>
-      <Z>113.268555</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5600.921</X>
-      <Y>3599.00073</Y>
-      <Z>118.311752</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5612.038</X>
-      <Y>3501.53833</Y>
-      <Z>112.66967</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
       <X>5621.289</X>
       <Y>3775.811</Y>
       <Z>112.988014</Z>
@@ -50280,18 +48836,6 @@
       <X>5694.62</X>
       <Y>3804.99146</Y>
       <Z>121.20507</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5713.31445</X>
-      <Y>3560.39844</Y>
-      <Z>135.387924</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50337,33 +48881,9 @@
     <Entry>72373</Entry>
     <Name>Karg Fureur-Sanglante</Name>
     <Position>
-      <X>5815.94238</X>
-      <Y>3561.07471</Y>
-      <Z>124.191719</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
       <X>5827.04346</X>
       <Y>3640.69971</Y>
       <Z>120.89817</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5829.771</X>
-      <Y>3796.81934</Y>
-      <Z>122.122269</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50397,33 +48917,9 @@
     <Entry>72373</Entry>
     <Name>Karg Fureur-Sanglante</Name>
     <Position>
-      <X>5881.56348</X>
-      <Y>3904.30737</Y>
-      <Z>127.281372</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
       <X>5904.208</X>
       <Y>3961.00684</Y>
       <Z>131.445511</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>5930.253</X>
-      <Y>4017.79443</Y>
-      <Z>127.650772</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50472,18 +48968,6 @@
       <X>6029.112</X>
       <Y>4343.97754</Y>
       <Z>131.57756</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72373</Entry>
-    <Name>Karg Fureur-Sanglante</Name>
-    <Position>
-      <X>6038.695</X>
-      <Y>4276.017</Y>
-      <Z>123.271</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50678,18 +49162,6 @@
     <Entry>72940</Entry>
     <Name>Championne loup-de-givre</Name>
     <Position>
-      <X>5741.331</X>
-      <Y>3585.22339</Y>
-      <Z>128.228134</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72940</Entry>
-    <Name>Championne loup-de-givre</Name>
-    <Position>
       <X>5804.21631</X>
       <Y>3589.06348</Y>
       <Z>120.897026</Z>
@@ -50728,18 +49200,6 @@
       <X>5682.55371</X>
       <Y>3549.87646</Y>
       <Z>128.20108</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>73097</Entry>
-    <Name>Champion loup-de-givre</Name>
-    <Position>
-      <X>5733.78662</X>
-      <Y>3580.97461</Y>
-      <Z>131.668808</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50861,6 +49321,17 @@
   </Npc>
   <Npc>
     <Entry>74125</Entry>
+    <Name>Aren Ombrebrume</Name>
+    <Position>
+      <X>6541.49072</X>
+      <Y>632.027832</Y>
+      <Z>241.717712</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>74125</Entry>
     <Name>Aren Mistshade</Name>
     <Position>
       <X>7565.915</X>
@@ -50889,18 +49360,6 @@
       <X>7206.569</X>
       <Y>5380.01953</Y>
       <Z>62.62014</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74202</Entry>
-    <Name>Ligra l’Inflexible</Name>
-    <Position>
-      <X>7238.97754</X>
-      <Y>5323.969</Y>
-      <Z>62.60928</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51242,6 +49701,41 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>75028</Entry>
+    <Name>Exarque Maladaar</Name>
+    <Position>
+      <X>2495.125</X>
+      <Y>2864.6416</Y>
+      <Z>242.72789</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>75127</Entry>
+    <Name>Redresseur de torts Maraad</Name>
+    <Position>
+      <X>6337.186</X>
+      <Y>745.673645</Y>
+      <Z>116.677963</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>75146</Entry>
+    <Name>Rangari D’kaan</Name>
+    <Position>
+      <X>6325.343</X>
+      <Y>706.8889</Y>
+      <Z>114.123772</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>75177</Entry>
     <Name>Durotan</Name>
     <Position>
@@ -51325,45 +49819,9 @@
     <Entry>75188</Entry>
     <Name>Durotan</Name>
     <Position>
-      <X>6595.612</X>
-      <Y>5791.476</Y>
-      <Z>301.871674</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6636.427</X>
-      <Y>5906.422</Y>
-      <Z>254.068237</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
       <X>6651.70947</X>
       <Y>5750.81152</Y>
       <Z>318.86</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6672.746</X>
-      <Y>5813.509</Y>
-      <Z>318.53833</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51388,30 +49846,6 @@
       <X>6745.51465</X>
       <Y>5832.75049</Y>
       <Z>325.214478</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6769.225</X>
-      <Y>5895.054</Y>
-      <Z>336.063354</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6770.454</X>
-      <Y>5925.27832</Y>
-      <Z>259.286</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51448,30 +49882,6 @@
       <X>6832.52148</X>
       <Y>5909.94043</Y>
       <Z>345.638733</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6873.7334</X>
-      <Y>5750.21631</Y>
-      <Z>375.744324</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>75188</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6889.53271</X>
-      <Y>5876.571</Y>
-      <Z>352.8457</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51519,6 +49929,17 @@
       <X>1484.9375</X>
       <Y>-793.5851</Y>
       <Z>38.50587</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>75913</Entry>
+    <Name>Forge-cristal Barum</Name>
+    <Position>
+      <X>2233.38379</X>
+      <Y>1259.2865</Y>
+      <Z>108.71347</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -51595,18 +50016,6 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>76240</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6514.357</X>
-      <Y>6255.98633</Y>
-      <Z>225.319061</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>76411</Entry>
     <Name>Long-voyant Drek’Thar</Name>
     <Position>
@@ -51658,18 +50067,6 @@
     <Entry>76557</Entry>
     <Name>Durotan</Name>
     <Position>
-      <X>5913.372</X>
-      <Y>6237.29</Y>
-      <Z>52.09208</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76557</Entry>
-    <Name>Durotan</Name>
-    <Position>
       <X>5953.324</X>
       <Y>6116.17139</Y>
       <Z>81.39301</Z>
@@ -51682,33 +50079,9 @@
     <Entry>76557</Entry>
     <Name>Durotan</Name>
     <Position>
-      <X>6008.86</X>
-      <Y>6074.36035</Y>
-      <Z>101.074226</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76557</Entry>
-    <Name>Durotan</Name>
-    <Position>
       <X>6079.48145</X>
       <Y>6055.90625</Y>
       <Z>118.543465</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76557</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6146.80957</X>
-      <Y>6038.919</Y>
-      <Z>142.226471</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51733,18 +50106,6 @@
       <X>6293.6333</X>
       <Y>6033.27344</Y>
       <Z>164.072189</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>76557</Entry>
-    <Name>Durotan</Name>
-    <Position>
-      <X>6354.1</X>
-      <Y>6073.20068</Y>
-      <Z>174.245483</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -51857,6 +50218,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>76804</Entry>
+    <Name>Dame Liadrin</Name>
+    <Position>
+      <X>2496.93921</X>
+      <Y>2851.58936</Y>
+      <Z>242.72789</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>76826</Entry>
     <Name>Caleb</Name>
     <Position>
@@ -51963,6 +50335,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>77031</Entry>
+    <Name>Ahm</Name>
+    <Position>
+      <X>3397.07813</X>
+      <Y>2440.462</Y>
+      <Z>113.36985</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>77184</Entry>
     <Name>Archimage Khadgar</Name>
     <Position>
@@ -52033,6 +50416,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>77359</Entry>
+    <Name>Auria Ferrêve</Name>
+    <Position>
+      <X>1815.70227</X>
+      <Y>221.6853</Y>
+      <Z>72.12807</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>77363</Entry>
     <Name>Mary Kearie</Name>
     <Position>
@@ -52089,6 +50484,17 @@
       <Z>72.9462051</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>77580</Entry>
+    <Name>Dame Liadrin</Name>
+    <Position>
+      <X>1469.57471</X>
+      <Y>3108.47485</Y>
+      <Z>93.5532</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -52151,78 +50557,24 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>77789</Entry>
-    <Name>Blingtron 5000</Name>
-    <Position>
-      <X>801.8469</X>
-      <Y>186.295837</Y>
-      <Z>519.6746</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>77789</Entry>
-    <Name>Bling-o-tron 5000</Name>
-    <Position>
-      <X>840.1243</X>
-      <Y>266.8683</Y>
-      <Z>503.507446</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>77789</Entry>
-    <Name>Bling-o-tron 5000</Name>
-    <Position>
-      <X>1586.78308</X>
-      <Y>103.204529</Y>
-      <Z>65.83574</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>77789</Entry>
-    <Name>Blingtron 5000</Name>
-    <Position>
-      <X>1672.04993</X>
-      <Y>932.7566</Y>
-      <Z>471.508484</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Pandaria</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>77789</Entry>
-    <Name>Bling-o-tron 5000</Name>
-    <Position>
-      <X>3695.15723</X>
-      <Y>-3954.53271</Y>
-      <Z>26.8108349</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>77789</Entry>
-    <Name>Blingtron 5000</Name>
-    <Position>
-      <X>5903.063</X>
-      <Y>726.837952</Y>
-      <Z>639.9885</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Northrend</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>77791</Entry>
     <Name>Peter Kearie</Name>
     <Position>
       <X>1825.12878</X>
       <Y>228.564667</Y>
       <Z>72.94635</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>77792</Entry>
+    <Name>Yulia Samras</Name>
+    <Position>
+      <X>1819.579</X>
+      <Y>226.274078</Y>
+      <Z>72.94553</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -52340,6 +50692,17 @@
       <Z>249.568161</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>78251</Entry>
+    <Name>Thisalee Corbeau</Name>
+    <Position>
+      <X>6533.8125</X>
+      <Y>637.8507</Y>
+      <Z>241.750183</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -52525,18 +50888,6 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>78466</Entry>
-    <Name>Gazleu</Name>
-    <Position>
-      <X>5628.99658</X>
-      <Y>4525.7666</Y>
-      <Z>118.976349</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>78482</Entry>
     <Name>Vindicator Nobundo</Name>
     <Position>
@@ -52590,6 +50941,17 @@
       <X>2196.82813</X>
       <Y>2858.67017</Y>
       <Z>134.039215</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>78538</Entry>
+    <Name>Redresseur de torts Doruu</Name>
+    <Position>
+      <X>2423.04346</X>
+      <Y>2755.47656</Y>
+      <Z>115.028191</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -52876,17 +51238,6 @@
       <X>4005.06519</X>
       <Y>-2345.96021</Y>
       <Z>73.23708</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>TanaanJungleIntro</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>78556</Entry>
-    <Name>Ariok</Name>
-    <Position>
-      <X>4066.559</X>
-      <Y>-2375.83862</Y>
-      <Z>94.892746</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungleIntro</ContinentId>
@@ -53267,17 +51618,6 @@
     <ContinentId>TanaanJungleIntro</ContinentId>
   </Npc>
   <Npc>
-    <Entry>81762</Entry>
-    <Name>Taag</Name>
-    <Position>
-      <X>3990.77612</X>
-      <Y>-2553.92358</Y>
-      <Z>66.00705</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>TanaanJungleIntro</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>78659</Entry>
     <Name>Shadow Hunter Bwu'ja</Name>
     <Position>
@@ -53550,6 +51890,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>79263</Entry>
+    <Name>Lieutenant Balfor</Name>
+    <Position>
+      <X>2418.40625</X>
+      <Y>4406.19971</Y>
+      <Z>208.740631</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>79282</Entry>
     <Name>Rangari Eleena</Name>
     <Position>
@@ -53633,17 +51985,6 @@
       <X>4069.50342</X>
       <Y>-2376.68237</Y>
       <Z>94.6044159</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>TanaanJungleIntro</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>79315</Entry>
-    <Name>Olin Peau-de-Sienne</Name>
-    <Position>
-      <X>4123.522</X>
-      <Y>-2348.158</Y>
-      <Z>73.2378</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungleIntro</ContinentId>
@@ -53773,17 +52114,6 @@
     <Entry>79316</Entry>
     <Name>Qiana Lunombre</Name>
     <Position>
-      <X>4064.01123</X>
-      <Y>-2376.93066</Y>
-      <Z>94.6049347</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>TanaanJungleIntro</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>79316</Entry>
-    <Name>Qiana Lunombre</Name>
-    <Position>
       <X>4229.369</X>
       <Y>-2815.82983</Y>
       <Z>16.9449444</Z>
@@ -53866,6 +52196,17 @@
       <Z>70.0892</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>79434</Entry>
+    <Name>Lieuse d’âme Tuulani</Name>
+    <Position>
+      <X>1484.13721</X>
+      <Y>3071.38452</Y>
+      <Z>109.766983</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -54218,18 +52559,6 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>79774</Entry>
-    <Name>Sergeant Grimjaw</Name>
-    <Position>
-      <X>5591.71973</X>
-      <Y>4578.257</Y>
-      <Z>136.4454</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>79815</Entry>
     <Name>Grun'lek</Name>
     <Position>
@@ -54286,6 +52615,17 @@
       <Z>120.084785</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>79853</Entry>
+    <Name>Robot-bonheur 8000</Name>
+    <Position>
+      <X>2423.80566</X>
+      <Y>2083.69458</Y>
+      <Z>118.300232</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -54368,6 +52708,18 @@
       <Z>134.44986</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>79901</Entry>
+    <Name>Torben Zoupépaf</Name>
+    <Position>
+      <X>2428.71021</X>
+      <Y>2085.198</Y>
+      <Z>118.2756</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -54471,6 +52823,30 @@
       <Z>134.44986</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>79978</Entry>
+    <Name>Aeda Brillaube</Name>
+    <Position>
+      <X>2319.82471</X>
+      <Y>2369.61816</Y>
+      <Z>126.560822</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>79979</Entry>
+    <Name>Défenseur Illona</Name>
+    <Position>
+      <X>2397.32983</X>
+      <Y>2409.49146</Y>
+      <Z>126.561073</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -54628,45 +53004,9 @@
     <Entry>80193</Entry>
     <Name>Magus du Kirin Tor</Name>
     <Position>
-      <X>3293.39453</X>
-      <Y>750.047058</Y>
-      <Z>0.138285369</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>80193</Entry>
-    <Name>Magus du Kirin Tor</Name>
-    <Position>
       <X>3307.24072</X>
       <Y>983.1681</Y>
       <Z>23.9463673</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>80193</Entry>
-    <Name>Magus du Kirin Tor</Name>
-    <Position>
-      <X>3328.91748</X>
-      <Y>801.528137</Y>
-      <Z>-0.628168643</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>80193</Entry>
-    <Name>Magus du Kirin Tor</Name>
-    <Position>
-      <X>3334.74658</X>
-      <Y>928.0569</Y>
-      <Z>6.50993872</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -54748,18 +53088,6 @@
       <X>3161.406</X>
       <Y>874.5923</Y>
       <Z>72.91601</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>80260</Entry>
-    <Name>Magistrice Serena</Name>
-    <Position>
-      <X>3226.79028</X>
-      <Y>882.3338</Y>
-      <Z>58.0838242</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -54880,6 +53208,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>80617</Entry>
+    <Name>Magus du Kirin Tor</Name>
+    <Position>
+      <X>1676.1123</X>
+      <Y>1723.5741</Y>
+      <Z>291.860474</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>80624</Entry>
     <Name>Redresseur de torts Mo’mor</Name>
     <Position>
@@ -54910,6 +53250,17 @@
       <X>-477.708344</X>
       <Y>1839.82983</Y>
       <Z>42.4853134</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>80707</Entry>
+    <Name>Rangari fatiguée</Name>
+    <Position>
+      <X>-259.517365</X>
+      <Y>-1290.68225</Y>
+      <Z>-17.5832386</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -55003,6 +53354,18 @@
       <X>103.112846</X>
       <Y>-1326.731</Y>
       <Z>-4.199917</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>80978</Entry>
+    <Name>Yrel</Name>
+    <Position>
+      <X>6338.42725</X>
+      <Y>743.8698</Y>
+      <Z>116.885574</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -55142,6 +53505,18 @@
       <X>6341.046</X>
       <Y>5192.53662</Y>
       <Z>130.949982</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>81213</Entry>
+    <Name>Caporal Thukmar</Name>
+    <Position>
+      <X>6986.33057</X>
+      <Y>1594.83679</Y>
+      <Z>-36.68663</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -55291,6 +53666,17 @@
       <X>3991.50879</X>
       <Y>-2552.361</Y>
       <Z>65.91954</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungleIntro</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>81762</Entry>
+    <Name>Taag</Name>
+    <Position>
+      <X>3990.77612</X>
+      <Y>-2553.92358</Y>
+      <Z>66.00705</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungleIntro</ContinentId>
@@ -55593,18 +53979,6 @@
     <Entry>82274</Entry>
     <Name>Trancheur</Name>
     <Position>
-      <X>4965.077</X>
-      <Y>1674.97913</Y>
-      <Z>113.142052</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>82274</Entry>
-    <Name>Trancheur</Name>
-    <Position>
       <X>5011.565</X>
       <Y>1491.76917</Y>
       <Z>106.2687</Z>
@@ -55629,45 +54003,9 @@
     <Entry>82274</Entry>
     <Name>Trancheur</Name>
     <Position>
-      <X>5055.889</X>
-      <Y>1539.0625</Y>
-      <Z>94.12128</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>82274</Entry>
-    <Name>Trancheur</Name>
-    <Position>
-      <X>5064.412</X>
-      <Y>1657.9696</Y>
-      <Z>105.697594</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>82274</Entry>
-    <Name>Trancheur</Name>
-    <Position>
       <X>5078.0625</X>
       <Y>1596.4657</Y>
       <Z>94.6338043</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>82274</Entry>
-    <Name>Trancheur</Name>
-    <Position>
-      <X>5137.34326</X>
-      <Y>1616.34045</Y>
-      <Z>77.61433</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -55686,14 +54024,24 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
-    <Entry>82274</Entry>
-    <Name>Trancheur</Name>
+    <Entry>82292</Entry>
+    <Name>Monseigneur Edward</Name>
     <Position>
-      <X>5259.04834</X>
-      <Y>1646.67285</Y>
-      <Z>84.87482</Z>
+      <X>-790.2917</X>
+      <Y>2396.677</Y>
+      <Z>37.8352928</Z>
     </Position>
-    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>82293</Entry>
+    <Name>Dame Claudia</Name>
+    <Position>
+      <X>-792.7222</X>
+      <Y>2399.1875</Y>
+      <Z>37.8352928</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -55741,6 +54089,29 @@
       <Z>166.733643</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>82375</Entry>
+    <Name>Amiral Taylor</Name>
+    <Position>
+      <X>-916.9323</X>
+      <Y>2449.837</Y>
+      <Z>31.1837082</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>82403</Entry>
+    <Name>Jasper Lagangrène</Name>
+    <Position>
+      <X>-908.96875</X>
+      <Y>2447.57471</Y>
+      <Z>31.1720753</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -55873,6 +54244,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>82688</Entry>
+    <Name>Olgra</Name>
+    <Position>
+      <X>3503.72046</X>
+      <Y>5099.70752</Y>
+      <Z>58.41806</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>82713</Entry>
     <Name>Mixxy Weldblast</Name>
     <Position>
@@ -55904,6 +54287,18 @@
       <Z>107.7674</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>82759</Entry>
+    <Name>Filbert Bricolance</Name>
+    <Position>
+      <X>-333.454865</X>
+      <Y>1274.45483</Y>
+      <Z>17.6284828</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -56013,6 +54408,18 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Ashran</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>83051</Entry>
+    <Name>Jeanine Amrell</Name>
+    <Position>
+      <X>3519.573</X>
+      <Y>6476.01025</Y>
+      <Z>43.9716759</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
     <Entry>83463</Entry>
@@ -56144,17 +54551,6 @@
     <Entry>83858</Entry>
     <Name>Serviteur de Khadgar</Name>
     <Position>
-      <X>1879.94934</X>
-      <Y>235.650528</Y>
-      <Z>77.0145645</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>83858</Entry>
-    <Name>Serviteur de Khadgar</Name>
-    <Position>
       <X>1912.15833</X>
       <Y>287.301056</Y>
       <Z>89.00893</Z>
@@ -56169,17 +54565,6 @@
       <X>5591.561</X>
       <Y>4566.125</Y>
       <Z>135.475952</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>83858</Entry>
-    <Name>Khadgar's Servant</Name>
-    <Position>
-      <X>5627.333</X>
-      <Y>4517.771</Y>
-      <Z>119.269</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -56261,6 +54646,17 @@
       <Z>131.0744</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>84185</Entry>
+    <Name>Thisalee Corbeau</Name>
+    <Position>
+      <X>7242.63965</X>
+      <Y>1718.36975</Y>
+      <Z>98.11962</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -56370,6 +54766,28 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>84720</Entry>
+    <Name>Kroggol le Mur</Name>
+    <Position>
+      <X>4199.8916</X>
+      <Y>6079.10938</Y>
+      <Z>76.61193</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>84739</Entry>
+    <Name>Arcaniste Delath</Name>
+    <Position>
+      <X>6165.29</X>
+      <Y>4180.65039</Y>
+      <Z>108.095932</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>84776</Entry>
     <Name>Aerun</Name>
     <Position>
@@ -56467,17 +54885,6 @@
       <X>5575.35059</X>
       <Y>4387.741</Y>
       <Z>136.450089</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>84967</Entry>
-    <Name>"Appraiser" Sazsel Stickyfingers</Name>
-    <Position>
-      <X>5626.771</X>
-      <Y>4457.8125</Y>
-      <Z>130.194611</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -56801,31 +55208,20 @@
     <Entry>86419</Entry>
     <Name>Paria garde-serre</Name>
     <Position>
+      <X>-599.029541</X>
+      <Y>505.351074</Y>
+      <Z>46.33474</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86419</Entry>
+    <Name>Paria garde-serre</Name>
+    <Position>
       <X>-541.7921</X>
       <Y>634.032</Y>
       <Z>58.442337</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
-      <X>-536.2425</X>
-      <Y>600.1113</Y>
-      <Z>57.1938934</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
-      <X>-523.558838</X>
-      <Y>583.4583</Y>
-      <Z>57.362648</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -56845,55 +55241,9 @@
     <Entry>86419</Entry>
     <Name>Paria garde-serre</Name>
     <Position>
-      <X>-472.723145</X>
-      <Y>547.038269</Y>
-      <Z>59.52356</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
-      <X>-468.788757</X>
-      <Y>639.452454</Y>
-      <Z>57.2856026</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
       <X>-459.4547</X>
       <Y>633.8433</Y>
       <Z>58.4053955</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
-      <X>-456.733521</X>
-      <Y>632.3315</Y>
-      <Z>58.4898224</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
-      <X>-447.33728</X>
-      <Y>613.995667</Y>
-      <Z>58.67197</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -56912,17 +55262,6 @@
   </Npc>
   <Npc>
     <Entry>86419</Entry>
-    <Name>Paria garde-serre</Name>
-    <Position>
-      <X>-400.991547</X>
-      <Y>669.1065</Y>
-      <Z>58.0515938</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86419</Entry>
     <Name>Outcast Talon Guard</Name>
     <Position>
       <X>-337.7473</X>
@@ -56930,6 +55269,17 @@
       <Z>75.4024048</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86419</Entry>
+    <Name>Paria garde-serre</Name>
+    <Position>
+      <X>-207.786316</X>
+      <Y>619.089233</Y>
+      <Z>80.7417145</Z>
+    </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -56963,6 +55313,94 @@
       <X>2752.481</X>
       <Y>1808.93054</Y>
       <Z>112.510353</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-512.3163</X>
+      <Y>-650.660645</Y>
+      <Z>14.8136559</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-463.519958</X>
+      <Y>-763.3561</Y>
+      <Z>28.4184647</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-374.6951</X>
+      <Y>2711.129</Y>
+      <Z>1.85029721</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-348.390137</X>
+      <Y>2836.44336</Y>
+      <Z>-34.61694</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-305.5879</X>
+      <Y>2596.36646</Y>
+      <Z>4.213688</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-295.764465</X>
+      <Y>2782.705</Y>
+      <Z>3.69664478</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-220.818573</X>
+      <Y>2797.893</Y>
+      <Z>-0.51208055</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>-216.496048</X>
+      <Y>2644.29321</Y>
+      <Z>1.87838018</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -57007,18 +55445,6 @@
     <Entry>86682</Entry>
     <Name>Centurion gorien retraité</Name>
     <Position>
-      <X>2858.56177</X>
-      <Y>5842.096</Y>
-      <Z>70.47713</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86682</Entry>
-    <Name>Centurion gorien retraité</Name>
-    <Position>
       <X>2926.38013</X>
       <Y>5846.7085</Y>
       <Z>68.77283</Z>
@@ -57031,6 +55457,17 @@
     <Entry>86682</Entry>
     <Name>Centurion gorien retraité</Name>
     <Position>
+      <X>3366.8</X>
+      <Y>47.56618</Y>
+      <Z>161.910583</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
       <X>3386.73242</X>
       <Y>5754.02</Y>
       <Z>39.38496</Z>
@@ -57038,6 +55475,193 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3465.69678</X>
+      <Y>10.2696161</Y>
+      <Z>167.168762</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3511.135</X>
+      <Y>146.23317</Y>
+      <Z>149.289078</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3565.003</X>
+      <Y>202.978485</Y>
+      <Z>139.730789</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3667.73877</X>
+      <Y>-927.2604</Y>
+      <Z>-5.110051</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3800.41821</X>
+      <Y>-948.2057</Y>
+      <Z>30.4333057</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3835.05029</X>
+      <Y>-1347.78857</Y>
+      <Z>96.43861</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3904.73975</X>
+      <Y>1033.71985</Y>
+      <Z>160.809464</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>3982.60278</X>
+      <Y>1161.58362</Y>
+      <Z>164.815613</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4319.02246</X>
+      <Y>-685.708252</Y>
+      <Z>40.58615</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4378.38135</X>
+      <Y>-1080.4978</Y>
+      <Z>24.3401031</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4382.211</X>
+      <Y>-1235.32593</Y>
+      <Z>38.13439</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4400.882</X>
+      <Y>-662.747253</Y>
+      <Z>28.2677174</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4457.92773</X>
+      <Y>-1124.21631</Y>
+      <Z>23.4846764</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4537.62646</X>
+      <Y>-948.6073</Y>
+      <Z>64.5456543</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>4642.05469</X>
+      <Y>-889.847046</Y>
+      <Z>95.8598862</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>5054.724</X>
+      <Y>-1324.17114</Y>
+      <Z>291.3858</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86682</Entry>
+    <Name>Centurion gorien retraité</Name>
+    <Position>
+      <X>5146.183</X>
+      <Y>-1467.05652</Y>
+      <Z>293.547516</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86682</Entry>
@@ -57071,6 +55695,1530 @@
       <Z>119.270851</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>1687.49219</X>
+      <Y>244.729813</Y>
+      <Z>63.4515038</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>1734.93872</X>
+      <Y>179.8822</Y>
+      <Z>73.1830444</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>1868.99121</X>
+      <Y>220.655762</Y>
+      <Z>76.7540054</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>1880.75879</X>
+      <Y>340.376221</Y>
+      <Z>81.78563</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>1953.28052</X>
+      <Y>434.222443</Y>
+      <Z>66.9413757</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>2030.02759</X>
+      <Y>438.571869</Y>
+      <Z>41.72414</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>2153.90454</X>
+      <Y>403.318634</Y>
+      <Z>16.7607</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>2173.056</X>
+      <Y>267.58252</Y>
+      <Z>1.09650266</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>2187.459</X>
+      <Y>190.6872</Y>
+      <Z>10.8458042</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>2972.299</X>
+      <Y>-1147.49683</Y>
+      <Z>67.90431</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3011.44824</X>
+      <Y>-607.624451</Y>
+      <Z>7.023481</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3046.82642</X>
+      <Y>-1174.60864</Y>
+      <Z>66.29537</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3125.49487</X>
+      <Y>-573.669556</Y>
+      <Z>8.866948</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3179.47168</X>
+      <Y>-1198.12122</Y>
+      <Z>38.13119</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3202.56421</X>
+      <Y>-593.7263</Y>
+      <Z>20.8843727</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3252.26074</X>
+      <Y>-1170.1709</Y>
+      <Z>48.23842</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3284.06274</X>
+      <Y>-518.5195</Y>
+      <Z>15.8414536</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3344.67261</X>
+      <Y>-575.4962</Y>
+      <Z>18.9444714</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3354.59839</X>
+      <Y>10.2178631</Y>
+      <Z>169.366058</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3368.66</X>
+      <Y>-1158.322</Y>
+      <Z>61.7733269</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3378.5896</X>
+      <Y>-368.6519</Y>
+      <Z>15.9163284</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3386.6875</X>
+      <Y>-446.2666</Y>
+      <Z>16.42298</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3388.56519</X>
+      <Y>188.240372</Y>
+      <Z>142.712555</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3445.14</X>
+      <Y>-333.7023</Y>
+      <Z>16.0852833</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3460.79565</X>
+      <Y>105.272156</Y>
+      <Z>158.992</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3473.20874</X>
+      <Y>-647.509033</Y>
+      <Z>15.8841391</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3487.39453</X>
+      <Y>-1125.40454</Y>
+      <Z>28.4124126</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3510.27246</X>
+      <Y>233.959976</Y>
+      <Z>140.469986</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3536.15161</X>
+      <Y>104.95134</Y>
+      <Z>153.667664</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3552.06</X>
+      <Y>-1072.899</Y>
+      <Z>16.3621063</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3585.08374</X>
+      <Y>-698.427368</Y>
+      <Z>28.4941425</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3591.64185</X>
+      <Y>-131.944366</Y>
+      <Z>23.7491188</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3604.51123</X>
+      <Y>185.776459</Y>
+      <Z>129.65361</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3613.04639</X>
+      <Y>-805.087769</Y>
+      <Z>25.5383549</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3618.98218</X>
+      <Y>-1149.57739</Y>
+      <Z>36.6410942</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3628.6814</X>
+      <Y>727.913635</Y>
+      <Z>271.979126</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3630.75537</X>
+      <Y>-958.9809</Y>
+      <Z>-1.2033515</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3669.968</X>
+      <Y>-29.4200974</Y>
+      <Z>59.36384</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3687.79346</X>
+      <Y>87.72283</Y>
+      <Z>69.66924</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3697.92529</X>
+      <Y>870.457947</Y>
+      <Z>253.563217</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3729.157</X>
+      <Y>-1212.76184</Y>
+      <Z>47.4969</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3732.28516</X>
+      <Y>151.509323</Y>
+      <Z>56.460186</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3736.57056</X>
+      <Y>-1023.80139</Y>
+      <Z>-0.722438455</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3744.33</X>
+      <Y>-936.240051</Y>
+      <Z>3.54871917</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3788.57813</X>
+      <Y>-1111.7937</Y>
+      <Z>28.1351643</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3793.935</X>
+      <Y>955.697144</Y>
+      <Z>208.091949</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3826.114</X>
+      <Y>-1355.04382</Y>
+      <Z>95.23169</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3858.782</X>
+      <Y>-1076.2052</Y>
+      <Z>23.2592659</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3862.415</X>
+      <Y>-1253.92322</Y>
+      <Z>84.6480255</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3885.92554</X>
+      <Y>1043.84216</Y>
+      <Z>162.479355</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3911.70752</X>
+      <Y>928.5425</Y>
+      <Z>154.936523</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3933.10376</X>
+      <Y>1126.04468</Y>
+      <Z>164.122009</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3938.50684</X>
+      <Y>-1313.11951</Y>
+      <Z>85.38936</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3972.00073</X>
+      <Y>-1050.07129</Y>
+      <Z>24.4376545</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>3981.49854</X>
+      <Y>1031.59949</Y>
+      <Z>162.91539</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4016.14087</X>
+      <Y>1152.2251</Y>
+      <Z>163.5563</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4030.951</X>
+      <Y>-1178.57739</Y>
+      <Z>27.31213</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4053.73242</X>
+      <Y>-1267.58044</Y>
+      <Z>49.7772751</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4094.11157</X>
+      <Y>-1055.39075</Y>
+      <Z>26.8257561</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4099.90527</X>
+      <Y>-1343.5752</Y>
+      <Z>47.4608955</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4118.877</X>
+      <Y>-1143.26807</Y>
+      <Z>33.8453026</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4171.029</X>
+      <Y>-1044.33093</Y>
+      <Z>17.3535042</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4229.795</X>
+      <Y>-1336.8656</Y>
+      <Z>24.7782688</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4232.94775</X>
+      <Y>-1141.127</Y>
+      <Z>17.0798111</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4302.48047</X>
+      <Y>-1001.13275</Y>
+      <Z>21.8601875</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4309.38867</X>
+      <Y>-1234.35742</Y>
+      <Z>31.8181725</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4311.73975</X>
+      <Y>-741.0952</Y>
+      <Z>39.164032</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4352.4126</X>
+      <Y>-1343.73108</Y>
+      <Z>47.4176941</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4354.595</X>
+      <Y>-1096.66077</Y>
+      <Z>20.8087482</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4366.964</X>
+      <Y>857.342163</Y>
+      <Z>175.354462</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4367.5625</X>
+      <Y>-864.1321</Y>
+      <Z>35.7253838</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4385.376</X>
+      <Y>-690.1638</Y>
+      <Z>30.4579353</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4396.662</X>
+      <Y>-577.632</Y>
+      <Z>27.5224667</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4403.76172</X>
+      <Y>-931.608643</Y>
+      <Z>35.5080376</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4410.868</X>
+      <Y>-398.594025</Y>
+      <Z>27.9305115</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4450.68164</X>
+      <Y>-642.561646</Y>
+      <Z>31.5132465</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4460.72168</X>
+      <Y>-1349.656</Y>
+      <Z>42.44944</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4464.01563</X>
+      <Y>-1161.1178</Y>
+      <Z>29.10851</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4467.59326</X>
+      <Y>-289.490875</Y>
+      <Z>21.6473618</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4478.504</X>
+      <Y>754.441162</Y>
+      <Z>181.257263</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4481.895</X>
+      <Y>586.7897</Y>
+      <Z>211.0346</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4484.19873</X>
+      <Y>-782.873962</Y>
+      <Z>41.4226265</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4491.95459</X>
+      <Y>-485.70575</Y>
+      <Z>12.1134148</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4514.812</X>
+      <Y>-599.462158</Y>
+      <Z>46.43912</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4522.088</X>
+      <Y>-950.6083</Y>
+      <Z>55.8910065</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4527.44531</X>
+      <Y>-869.8922</Y>
+      <Z>71.6889648</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4528.696</X>
+      <Y>-1058.65173</Y>
+      <Z>25.3436565</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4536.77</X>
+      <Y>-1370.0199</Y>
+      <Z>42.57983</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4540.697</X>
+      <Y>408.1413</Y>
+      <Z>227.739578</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4560.792</X>
+      <Y>-388.363342</Y>
+      <Z>10.7356129</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4561.548</X>
+      <Y>623.1753</Y>
+      <Z>190.995377</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4568.33936</X>
+      <Y>332.2632</Y>
+      <Z>221.246674</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4583.264</X>
+      <Y>-506.1847</Y>
+      <Z>21.4193764</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4588.512</X>
+      <Y>543.2453</Y>
+      <Z>225.750534</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4602.67773</X>
+      <Y>-299.3656</Y>
+      <Z>9.937893</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4604.70752</X>
+      <Y>-794.414856</Y>
+      <Z>71.8959045</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4613.714</X>
+      <Y>-645.153931</Y>
+      <Z>41.38791</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4641.92529</X>
+      <Y>-896.945557</Y>
+      <Z>95.81011</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4664.558</X>
+      <Y>-1386.11755</Y>
+      <Z>46.2325249</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4666.8125</X>
+      <Y>453.5271</Y>
+      <Z>232.883148</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4671.6626</X>
+      <Y>-529.874268</Y>
+      <Z>38.9438553</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4675.12646</X>
+      <Y>567.042358</Y>
+      <Z>201.6163</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4688.9707</X>
+      <Y>-369.9582</Y>
+      <Z>11.7250032</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4698.06</X>
+      <Y>-228.842148</Y>
+      <Z>11.4209452</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4703.629</X>
+      <Y>213.436508</Y>
+      <Z>263.25708</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4749.95</X>
+      <Y>346.681122</Y>
+      <Z>245.672348</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4790.09863</X>
+      <Y>-1387.33435</Y>
+      <Z>94.81168</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4794.9873</X>
+      <Y>-1156.966</Y>
+      <Z>186.100021</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4814.815</X>
+      <Y>-400.6854</Y>
+      <Z>5.36039829</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4834.51953</X>
+      <Y>244.385956</Y>
+      <Z>257.9664</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4841.37744</X>
+      <Y>-1295.56323</Y>
+      <Z>143.163223</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4897.144</X>
+      <Y>-1212.83179</Y>
+      <Z>244.897324</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>4991.501</X>
+      <Y>-1194.44568</Y>
+      <Z>294.61676</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>5035.362</X>
+      <Y>-1303.99475</Y>
+      <Z>293.844116</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>5104.542</X>
+      <Y>-1407.67017</Y>
+      <Z>283.8232</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>5192.957</X>
+      <Y>-1466.31726</Y>
+      <Z>290.9874</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>6358.53857</X>
+      <Y>749.063538</Y>
+      <Z>116.661369</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>6542.09766</X>
+      <Y>810.7753</Y>
+      <Z>174.422363</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>6542.96533</X>
+      <Y>637.477661</Y>
+      <Z>242.371826</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>6567.73975</X>
+      <Y>755.4605</Y>
+      <Z>224.388809</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7346.00928</X>
+      <Y>1690.93054</Y>
+      <Z>74.60548</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7369.202</X>
+      <Y>1784.42126</Y>
+      <Z>79.50436</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7373.31934</X>
+      <Y>1978.44019</Y>
+      <Z>66.80285</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7420.55371</X>
+      <Y>1658.17236</Y>
+      <Z>79.56894</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7442.783</X>
+      <Y>1843.603</Y>
+      <Z>69.3993149</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7530.62061</X>
+      <Y>1687.20251</Y>
+      <Z>79.2166</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86760</Entry>
+    <Name>Prêtre de la serre Ishaal</Name>
+    <Position>
+      <X>7572.01</X>
+      <Y>1753.80945</Y>
+      <Z>79.7273</Z>
+    </Position>
+    <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
@@ -57148,18 +57296,6 @@
     <Entry>86927</Entry>
     <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
     <Position>
-      <X>-435.755554</X>
-      <Y>2653.51855</Y>
-      <Z>0.3639487</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86927</Entry>
-    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
-    <Position>
       <X>-336.1044</X>
       <Y>2648.85449</Y>
       <Z>-0.7048352</Z>
@@ -57175,30 +57311,6 @@
       <X>-331.9566</X>
       <Y>2811.94531</Y>
       <Z>20.0473137</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86927</Entry>
-    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
-    <Position>
-      <X>-302.787567</X>
-      <Y>2754.12866</Y>
-      <Z>3.20794439</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86927</Entry>
-    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
-    <Position>
-      <X>-275.693054</X>
-      <Y>2673.731</Y>
-      <Z>1.4173274</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -57256,6 +57368,30 @@
     <Entry>86927</Entry>
     <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
     <Position>
+      <X>3766.43872</X>
+      <Y>-1061.4845</Y>
+      <Z>6.36133242</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>3784.46118</X>
+      <Y>-909.959</Y>
+      <Z>33.4559</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
       <X>3797.223</X>
       <Y>5117.2627</Y>
       <Z>66.06969</Z>
@@ -57280,13 +57416,13 @@
     <Entry>86927</Entry>
     <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
     <Position>
-      <X>3850.99951</X>
-      <Y>5169.068</Y>
-      <Z>62.9697075</Z>
+      <X>3845.531</X>
+      <Y>-1312.1217</Y>
+      <Z>91.37068</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86927</Entry>
@@ -57299,6 +57435,162 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>3922.3</X>
+      <Y>1112.63477</Y>
+      <Z>164.150177</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>3924.30054</X>
+      <Y>-1319.43909</Y>
+      <Z>86.45295</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4077.96924</X>
+      <Y>1183.82</Y>
+      <Z>160.9287</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4122.81445</X>
+      <Y>-888.414</Y>
+      <Z>14.6770554</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4317.024</X>
+      <Y>-1099.77441</Y>
+      <Z>19.7611122</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4417.34326</X>
+      <Y>-1194.04517</Y>
+      <Z>29.46902</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4490.21631</X>
+      <Y>751.9799</Y>
+      <Z>181.257523</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4508.20166</X>
+      <Y>-1057.26013</Y>
+      <Z>24.3991241</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4544.498</X>
+      <Y>429.8507</Y>
+      <Z>229.731857</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4547.48</X>
+      <Y>534.6082</Y>
+      <Z>229.399185</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4553.89453</X>
+      <Y>645.902954</Y>
+      <Z>176.710526</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4626.326</X>
+      <Y>552.1923</Y>
+      <Z>209.46199</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86927</Entry>
+    <Name>Chevalier de la mort de Bouclier-des-Tempêtes</Name>
+    <Position>
+      <X>4730.74365</X>
+      <Y>-298.20163</Y>
+      <Z>5.09633064</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86927</Entry>
@@ -57398,6 +57690,18 @@
   </Npc>
   <Npc>
     <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>3368.21533</X>
+      <Y>-468.782257</Y>
+      <Z>15.88425</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
     <Name>Warspear Magus</Name>
     <Position>
       <X>3389.77856</X>
@@ -57419,6 +57723,102 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>4376.475</X>
+      <Y>-726.5064</Y>
+      <Z>31.9839478</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>4391.123</X>
+      <Y>-590.7548</Y>
+      <Z>28.8741417</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>4392.493</X>
+      <Y>-803.41626</Y>
+      <Z>34.47717</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>4554.86328</X>
+      <Y>452.2066</Y>
+      <Z>229.7091</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>4566.803</X>
+      <Y>336.484955</Y>
+      <Z>220.9337</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>4983.375</X>
+      <Y>-1206.34375</Y>
+      <Z>292.187744</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>5003.489</X>
+      <Y>-1352.949</Y>
+      <Z>293.067749</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86933</Entry>
+    <Name>Magus de Fer-de-Lance</Name>
+    <Position>
+      <X>5097.6333</X>
+      <Y>-1262.8739</Y>
+      <Z>286.0552</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86933</Entry>
@@ -57493,6 +57893,42 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>86934</Entry>
+    <Name>Défenseur sha’tari</Name>
+    <Position>
+      <X>3822.18872</X>
+      <Y>-1356.52576</Y>
+      <Z>95.38775</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86934</Entry>
+    <Name>Défenseur sha’tari</Name>
+    <Position>
+      <X>4280.66553</X>
+      <Y>-1243.02844</Y>
+      <Z>30.22279</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86934</Entry>
+    <Name>Défenseur sha’tari</Name>
+    <Position>
+      <X>4392.82764</X>
+      <Y>-1298.96814</Y>
+      <Z>39.3933029</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>86945</Entry>
     <Name>Démoniste ligesol</Name>
     <Position>
@@ -57511,18 +57947,6 @@
       <X>5698.293</X>
       <Y>3075.309</Y>
       <Z>149.940964</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86945</Entry>
-    <Name>Démoniste ligesol</Name>
-    <Position>
-      <X>5709.969</X>
-      <Y>3017.39624</Y>
-      <Z>163.384811</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -57604,33 +58028,9 @@
     <Entry>86946</Entry>
     <Name>Prêtre de la serre paria</Name>
     <Position>
-      <X>3247.03027</X>
-      <Y>879.8102</Y>
-      <Z>55.9026337</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86946</Entry>
-    <Name>Prêtre de la serre paria</Name>
-    <Position>
       <X>3278.84644</X>
       <Y>988.1558</Y>
       <Z>41.8069229</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86946</Entry>
-    <Name>Prêtre de la serre paria</Name>
-    <Position>
-      <X>3338.22729</X>
-      <Y>970.809448</Y>
-      <Z>11.7862787</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -57652,13 +58052,13 @@
     <Entry>86946</Entry>
     <Name>Prêtre de la serre paria</Name>
     <Position>
-      <X>3353.85864</X>
-      <Y>906.7175</Y>
-      <Z>0.6647394</Z>
+      <X>3365.03052</X>
+      <Y>-531.326538</Y>
+      <Z>18.5671616</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86946</Entry>
@@ -57683,6 +58083,186 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>3824.535</X>
+      <Y>-1352.96</Y>
+      <Z>95.55619</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>3878.52563</X>
+      <Y>-1282.92688</Y>
+      <Z>91.07015</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>3917.71313</X>
+      <Y>1041.02832</Y>
+      <Z>159.171738</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4314.37158</X>
+      <Y>-989.1079</Y>
+      <Z>21.8621521</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4358.04</X>
+      <Y>-1184.55457</Y>
+      <Z>27.4054489</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4366.787</X>
+      <Y>-926.1816</Y>
+      <Z>35.1193237</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4475.66357</X>
+      <Y>627.364868</Y>
+      <Z>195.992355</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4557.83838</X>
+      <Y>346.16394</Y>
+      <Z>220.979538</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4573.44336</X>
+      <Y>454.713348</Y>
+      <Z>228.816055</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4581.893</X>
+      <Y>-1373.51733</Y>
+      <Z>42.5527</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4632.072</X>
+      <Y>576.7147</Y>
+      <Z>201.81044</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4720.651</X>
+      <Y>-1381.4657</Y>
+      <Z>63.8103676</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4787.08643</X>
+      <Y>421.696625</Y>
+      <Z>218.779053</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4818.94</X>
+      <Y>304.321</Y>
+      <Z>212.306244</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86946</Entry>
+    <Name>Prêtre de la serre paria</Name>
+    <Position>
+      <X>4833.61963</X>
+      <Y>-1364.54285</Y>
+      <Z>114.2757</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86946</Entry>
@@ -57727,18 +58307,6 @@
       <X>7996.80469</X>
       <Y>802.9241</Y>
       <Z>79.4949646</Z>
-    </Position>
-    <Faction>Alliance</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>86946</Entry>
-    <Name>Prêtre de la serre paria</Name>
-    <Position>
-      <X>8013.943</X>
-      <Y>839.9993</Y>
-      <Z>31.0480347</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -57795,6 +58363,18 @@
     <Entry>86964</Entry>
     <Name>Lieur-de-terre crin-de-sang</Name>
     <Position>
+      <X>3365.911</X>
+      <Y>-470.171326</Y>
+      <Z>15.884201</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
       <X>3388.15723</X>
       <Y>5778.698</Y>
       <Z>37.6429253</Z>
@@ -57807,21 +58387,225 @@
     <Entry>86964</Entry>
     <Name>Lieur-de-terre crin-de-sang</Name>
     <Position>
-      <X>8011.0293</X>
-      <Y>828.975647</Y>
-      <Z>31.0518856</Z>
+      <X>3503.844</X>
+      <Y>-613.983948</Y>
+      <Z>18.5915585</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>86964</Entry>
     <Name>Lieur-de-terre crin-de-sang</Name>
     <Position>
-      <X>8020.28271</X>
-      <Y>896.0873</Y>
-      <Z>30.9829559</Z>
+      <X>3581.00439</X>
+      <Y>-721.828857</Y>
+      <Z>32.8652229</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>3639.529</X>
+      <Y>-774.876831</Y>
+      <Z>25.31228</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>3825.04224</X>
+      <Y>-1361.83618</Y>
+      <Z>94.92367</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>3941.94434</X>
+      <Y>-1309.03479</Y>
+      <Z>84.63445</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4401.246</X>
+      <Y>-630.4322</Y>
+      <Z>30.2112865</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4470.83252</X>
+      <Y>782.285156</Y>
+      <Z>181.1133</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4512.79346</X>
+      <Y>450.375061</Y>
+      <Z>229.809982</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4529.438</X>
+      <Y>663.1169</Y>
+      <Z>175.2717</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4699.50049</X>
+      <Y>440.7956</Y>
+      <Z>228.308487</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4726.783</X>
+      <Y>221.404327</Y>
+      <Z>267.218384</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4780.293</X>
+      <Y>304.4358</Y>
+      <Z>257.9664</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>4807.294</X>
+      <Y>173.34787</Y>
+      <Z>258.343536</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>5014.947</X>
+      <Y>-1380.77344</Y>
+      <Z>292.732635</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>5044.73828</X>
+      <Y>-1257.4071</Y>
+      <Z>295.6493</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>5094.635</X>
+      <Y>-1158.74268</Y>
+      <Z>303.0078</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>5142.995</X>
+      <Y>-1524.25891</Y>
+      <Z>301.084229</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>5178.139</X>
+      <Y>-1453.39111</Y>
+      <Z>288.2931</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>86964</Entry>
+    <Name>Lieur-de-terre crin-de-sang</Name>
+    <Position>
+      <X>8011.0293</X>
+      <Y>828.975647</Y>
+      <Z>31.0518856</Z>
     </Position>
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
@@ -57911,6 +58695,17 @@
       <X>1856.872</X>
       <Y>315.436035</Y>
       <Z>83.32609</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>87210</Entry>
+    <Name>Marchand Joseph</Name>
+    <Position>
+      <X>1856.872</X>
+      <Y>315.436035</Y>
+      <Z>83.32607</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -58049,6 +58844,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>87992</Entry>
+    <Name>Olaf</Name>
+    <Position>
+      <X>1881.70618</X>
+      <Y>186.66214</Y>
+      <Z>78.4432755</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>87994</Entry>
     <Name>Moroes</Name>
     <Position>
@@ -58126,6 +58932,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88001</Entry>
+    <Name>Maximillian de Comté-du-Nord</Name>
+    <Position>
+      <X>1881.70618</X>
+      <Y>186.66214</Y>
+      <Z>78.4432755</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88002</Entry>
     <Name>Généralissime Darion Mograine</Name>
     <Position>
@@ -58165,6 +58982,17 @@
       <X>1881.70618</X>
       <Y>186.66214</Y>
       <Z>78.44326</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88006</Entry>
+    <Name>Lonika Mortelame</Name>
+    <Position>
+      <X>1881.70618</X>
+      <Y>186.66214</Y>
+      <Z>78.4432144</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -58408,6 +59236,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88530</Entry>
+    <Name>Choluna</Name>
+    <Position>
+      <X>7245.158</X>
+      <Y>1719.05554</Y>
+      <Z>98.09848</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88570</Entry>
     <Name>Fate-Twister Tiklal</Name>
     <Position>
@@ -58470,17 +59309,6 @@
     <Entry>88892</Entry>
     <Name>Nixxie</Name>
     <Position>
-      <X>1774.10413</X>
-      <Y>180.616318</Y>
-      <Z>71.7719955</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>88892</Entry>
-    <Name>Nixxie</Name>
-    <Position>
       <X>5747.283</X>
       <Y>4501.65039</Y>
       <Z>132.5391</Z>
@@ -58499,6 +59327,28 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89179</Entry>
+    <Name>Choluna</Name>
+    <Position>
+      <X>6544.713</X>
+      <Y>631.758667</Y>
+      <Z>242.016922</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89400</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4380.405</X>
+      <Y>862.008667</Y>
+      <Z>175.483536</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>89763</Entry>
@@ -58546,6 +59396,120 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90180</Entry>
+    <Name>Exarque Naïelle</Name>
+    <Position>
+      <X>3742.39331</X>
+      <Y>782.944458</Y>
+      <Z>255.785919</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90309</Entry>
+    <Name>Exarque Yrel</Name>
+    <Position>
+      <X>3820.89966</X>
+      <Y>-1364.06165</Y>
+      <Z>94.9195862</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90553</Entry>
+    <Name>Durotan</Name>
+    <Position>
+      <X>3965.361</X>
+      <Y>1200.13721</Y>
+      <Z>166.642853</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90559</Entry>
+    <Name>Aktar</Name>
+    <Position>
+      <X>4574.31</X>
+      <Y>352.0764</Y>
+      <Z>220.930069</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90644</Entry>
+    <Name>Lagar le Sage</Name>
+    <Position>
+      <X>3466.48438</X>
+      <Y>-774.1233</Y>
+      <Z>40.1847</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90894</Entry>
+    <Name>Alexi Hackercam</Name>
+    <Position>
+      <X>1942.45142</X>
+      <Y>312.1007</Y>
+      <Z>90.404686</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90963</Entry>
+    <Name>Angar Soufflacier</Name>
+    <Position>
+      <X>3879.79346</X>
+      <Y>-1344.37158</Y>
+      <Z>91.90568</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90974</Entry>
+    <Name>Redresseur de torts Krethos</Name>
+    <Position>
+      <X>3816.47046</X>
+      <Y>-1359.18408</Y>
+      <Z>94.9226761</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90991</Entry>
+    <Name>P’tite Trix</Name>
+    <Position>
+      <X>4270.507</X>
+      <Y>-1433.84546</Y>
+      <Z>75.61306</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90993</Entry>
+    <Name>Fraggs</Name>
+    <Position>
+      <X>4271.124</X>
+      <Y>-1437.65625</Y>
+      <Z>75.5486</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>91015</Entry>
@@ -58616,6 +59580,28 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>91291</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4573.07129</X>
+      <Y>355.027771</Y>
+      <Z>220.947586</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91324</Entry>
+    <Name>Braknoth</Name>
+    <Position>
+      <X>4627.19434</X>
+      <Y>-47.4496536</Y>
+      <Z>-24.6647873</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>91362</Entry>
     <Name>Kura Thunderhoof</Name>
     <Position>
@@ -58625,6 +59611,90 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4388.48242</X>
+      <Y>823.146667</Y>
+      <Z>175.5579</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4504.863</X>
+      <Y>748.6806</Y>
+      <Z>179.021378</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4538.5874</X>
+      <Y>679.6628</Y>
+      <Z>178.234848</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4545.143</X>
+      <Y>433.245544</Y>
+      <Z>230.09848</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4573.373</X>
+      <Y>357.333</Y>
+      <Z>220.974335</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4587.169</X>
+      <Y>542.6628</Y>
+      <Z>226.242325</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91375</Entry>
+    <Name>Reshad</Name>
+    <Position>
+      <X>4623.06543</X>
+      <Y>650.493958</Y>
+      <Z>201.670654</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>91404</Entry>
@@ -58649,6 +59719,63 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>91913</Entry>
+    <Name>Exarque Yrel</Name>
+    <Position>
+      <X>1943.98792</X>
+      <Y>324.170135</Y>
+      <Z>90.2804947</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91935</Entry>
+    <Name>Exarque Maladaar</Name>
+    <Position>
+      <X>4057.81958</X>
+      <Y>1192.07813</Y>
+      <Z>158.223557</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92213</Entry>
+    <Name>Archimage Khadgar</Name>
+    <Position>
+      <X>1947.71533</X>
+      <Y>328.4705</Y>
+      <Z>90.2806854</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92213</Entry>
+    <Name>Archimage Khadgar</Name>
+    <Position>
+      <X>2201.72583</X>
+      <Y>419.678833</Y>
+      <Z>5.96691561</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92219</Entry>
+    <Name>Roi Varian Wrynn</Name>
+    <Position>
+      <X>1945.87671</X>
+      <Y>327.1875</Y>
+      <Z>90.2806854</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92223</Entry>
     <Name>Surveyor Daltry</Name>
     <Position>
@@ -58658,6 +59785,144 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92545</Entry>
+    <Name>Norman Électincelle</Name>
+    <Position>
+      <X>3883.32471</X>
+      <Y>-1344.61108</Y>
+      <Z>91.9281845</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92805</Entry>
+    <Name>Z’tenga le Marcheur</Name>
+    <Position>
+      <X>3317.757</X>
+      <Y>-1194.224</Y>
+      <Z>57.9487152</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93396</Entry>
+    <Name>Nimi Brillecastel</Name>
+    <Position>
+      <X>4326.10059</X>
+      <Y>-1425.4375</Y>
+      <Z>69.4440842</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93812</Entry>
+    <Name>Jorren le Salé</Name>
+    <Position>
+      <X>2175.69971</X>
+      <Y>347.098969</Y>
+      <Z>6.09993</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93822</Entry>
+    <Name>Merreck Vonder</Name>
+    <Position>
+      <X>2138.43921</X>
+      <Y>378.902771</Y>
+      <Z>16.3797379</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94686</Entry>
+    <Name>Sage-soleil Chakkis</Name>
+    <Position>
+      <X>4537.65527</X>
+      <Y>348.7882</Y>
+      <Z>222.010574</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94870</Entry>
+    <Name>Voyant Kazal</Name>
+    <Position>
+      <X>1922.78479</X>
+      <Y>319.6736</Y>
+      <Z>88.96592</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94870</Entry>
+    <Name>Voyant Kazal</Name>
+    <Position>
+      <X>5566.33936</X>
+      <Y>4571.224</Y>
+      <Z>136.589478</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95002</Entry>
+    <Name>Yanas Cognehoule</Name>
+    <Position>
+      <X>2182.76733</X>
+      <Y>270.625</Y>
+      <Z>1.05083323</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95424</Entry>
+    <Name>Traque-aube Krisek</Name>
+    <Position>
+      <X>3855.70483</X>
+      <Y>-1335.908</Y>
+      <Z>91.15328</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95659</Entry>
+    <Name>Archimage Khadgar </Name>
+    <Position>
+      <X>3970.922</X>
+      <Y>-732.930542</Y>
+      <Z>33.5473938</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>HellfireRaid62</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96147</Entry>
+    <Name>Parvink</Name>
+    <Position>
+      <X>3840.70142</X>
+      <Y>-1327.68921</Y>
+      <Z>94.0209351</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
     <Entry>112888</Entry>

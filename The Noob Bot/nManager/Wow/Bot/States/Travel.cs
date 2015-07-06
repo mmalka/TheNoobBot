@@ -151,7 +151,7 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + (ContinentId) Usefuls.ContinentId + " to " + TravelTo + " " + (ContinentId) TravelToContinentId + ".");
+            Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) + " to " + TravelTo + " " + Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
             MovementManager.StopMove();
 
             foreach (Transport transport in _generatedRoutePath)
@@ -869,7 +869,7 @@ namespace nManager.Wow.Bot.States
                     List<Point> wayOff = PathFinder.FindPath(taxi.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId));
                     currentTransportDistance = Math.DistanceListPoint(wayIn) + Math.DistanceListPoint(wayOff);
                     if (travelFromContinentId == travelToContinentId)
-                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/1.5f);
+                        currentTransportDistance += (taxi.APoint.DistanceTo(taxi.BPoint)/2.5f);
                     currentId = taxi.Id;
                 }
                 else

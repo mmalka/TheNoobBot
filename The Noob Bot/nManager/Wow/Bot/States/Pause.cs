@@ -34,7 +34,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (Products.Products.IsStarted && Products.Products.InPause)
+                if (Products.Products.IsStarted && Products.Products.InAutoPause)
                 {
                     _onBreak = false;
                     return true;
@@ -75,7 +75,7 @@ namespace nManager.Wow.Bot.States
             {
                 // That's the normal pausing system.
                 Helpers.MovementManager.StopMove();
-                while (Products.Products.IsStarted && Products.Products.InPause)
+                while (Products.Products.IsStarted && Products.Products.InAutoPause)
                 {
                     Thread.Sleep(300);
                 }

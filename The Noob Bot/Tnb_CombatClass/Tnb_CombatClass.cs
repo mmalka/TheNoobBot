@@ -24,9 +24,15 @@ using Timer = nManager.Helpful.Timer;
 public class Main : ICombatClass
 {
     internal static float InternalRange = 5.0f;
+    internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
 
     #region ICombatClass Members
+
+    public float AggroRange
+    {
+        get { return InternalAggroRange; }
+    }
 
     public float Range
     {
@@ -1005,7 +1011,7 @@ public class Main : ICombatClass
                     {
                         Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
-                        InternalRange = 40.0f;
+                        InternalRange = 35.0f;
                         EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
                         new HunterMarksmanship();
                     }
@@ -1197,7 +1203,7 @@ public class DeathknightApprentice
 
     public DeathknightApprentice()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightApprenticeSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightApprenticeSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1661,7 +1667,7 @@ public class DeathknightBlood
 
     public DeathknightBlood()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightBloodSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightBloodSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -2621,7 +2627,8 @@ public class DeathknightUnholy
 
     public DeathknightUnholy()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalAggroRange = 29f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightUnholySettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightUnholySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -2647,13 +2654,13 @@ public class DeathknightUnholy
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 30)
+                                if (ObjectManager.Target.GetDistance < Main.InternalAggroRange)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 30)
+                                if (ObjectManager.Target.GetDistance < Main.InternalAggroRange)
                                     Combat();
                             }
                         }
@@ -3551,7 +3558,7 @@ public class DeathknightFrost
 
     public DeathknightFrost()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = DeathknightFrostSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -4560,13 +4567,13 @@ public class MageArcane
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -5432,13 +5439,13 @@ public class MageFrost
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -6319,13 +6326,13 @@ public class MageFire
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -7058,13 +7065,13 @@ public class WarlockDemonology
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -7884,13 +7891,13 @@ public class WarlockDestruction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -8651,13 +8658,13 @@ public class WarlockAffliction
                             if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -9424,12 +9431,12 @@ public class DruidBalance
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
                         {
-                            if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                 LowCombat();
                         }
                         else
                         {
-                            if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                 Combat();
                         }
                     }
@@ -10214,7 +10221,7 @@ public class DruidFeral
 
     public DruidFeral()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach; ;
         MySettings = DruidFeralSettings.GetSettings();
         Main.DumpCurrentSettings<DruidFeralSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -11701,7 +11708,7 @@ public class DruidGuardian
 
     public DruidGuardian()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = DruidGuardianSettings.GetSettings();
         Main.DumpCurrentSettings<DruidGuardianSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -12904,7 +12911,7 @@ public class PaladinProtection
 
     public PaladinProtection()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = PaladinProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -13458,7 +13465,7 @@ public class PaladinRetribution
 
     public PaladinRetribution()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = PaladinRetributionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -14122,7 +14129,7 @@ public class ShamanEnhancement
 
     public ShamanEnhancement()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = ShamanEnhancementSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanEnhancementSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -15879,13 +15886,13 @@ public class ShamanElemental
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -16675,13 +16682,13 @@ public class PriestShadow
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -18853,7 +18860,7 @@ public class RogueCombat
 
     public RogueCombat()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = RogueCombatSettings.GetSettings();
         Main.DumpCurrentSettings<RogueCombatSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -19606,7 +19613,7 @@ public class RogueSubtlety
 
     public RogueSubtlety()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = RogueSubtletySettings.GetSettings();
         Main.DumpCurrentSettings<RogueSubtletySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -20339,7 +20346,7 @@ public class RogueAssassination
 
     public RogueAssassination()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = RogueAssassinationSettings.GetSettings();
         Main.DumpCurrentSettings<RogueAssassinationSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -21094,7 +21101,7 @@ public class WarriorArms
 
     public WarriorArms()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = WarriorArmsSettings.GetSettings();
         Main.DumpCurrentSettings<WarriorArmsSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -21946,7 +21953,7 @@ public class WarriorProtection
 
     public WarriorProtection()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = WarriorProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<WarriorProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -22788,7 +22795,7 @@ public class WarriorFury
 
     public WarriorFury()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = WarriorFurySettings.GetSettings();
         Main.DumpCurrentSettings<WarriorFurySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -23643,13 +23650,13 @@ public class HunterMarksmanship
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -24456,13 +24463,13 @@ public class HunterBeastMastery
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -25245,6 +25252,7 @@ public class HunterSurvival
     public HunterSurvival()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = HunterSurvivalSettings.GetSettings();
         Main.DumpCurrentSettings<HunterSurvivalSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -25269,12 +25277,12 @@ public class HunterSurvival
                             if (MySettings.UseLowCombat &&
                                 ((ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)))
                             {
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     LowCombat();
                             }
                             else
                             {
-                                if (CombatClass.InCustomRange(ObjectManager.Target, 0, Main.InternalRange))
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                     Combat();
                             }
                         }
@@ -25488,17 +25496,10 @@ public class HunterSurvival
     {
         if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            if (Disengage.KnownSpell && MySettings.UseDisengage && Disengage.IsSpellUsable)
             {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
+                Logging.WriteFight("Too Close. Using disengage");
+                Disengage.Cast();
                 MovementManager.Face(ObjectManager.Target.Position);
             }
         }
@@ -26085,7 +26086,8 @@ public class MonkBrewmaster
 
     public MonkBrewmaster()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = 25.0f;
         MySettings = MonkBrewmasterSettings.GetSettings();
         Main.DumpCurrentSettings<MonkBrewmasterSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -26107,7 +26109,7 @@ public class MonkBrewmaster
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 30)
+                            if (ObjectManager.Target.GetDistance < Main.InternalAggroRange)
                                 Combat();
                         }
                         if (!ObjectManager.Me.IsCast)
@@ -26184,21 +26186,13 @@ public class MonkBrewmaster
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 1.0f && ObjectManager.Target.GetDistance < ObjectManager.Target.GetBoundingRadius && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
+            Logging.WriteFight("Too Close. Moving forward");
+            MovementsAction.MoveForward(true);
+            Others.SafeSleep(1250);
+            MovementsAction.MoveForward(false);
+            MovementManager.Face(ObjectManager.Target.Position);
         }
     }
 
@@ -26486,8 +26480,7 @@ public class MonkBrewmaster
     [Serializable]
     public class MonkBrewmasterSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
+        public bool DoAvoidMelee = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -26728,7 +26721,7 @@ public class MonkWindwalker
 
     public MonkWindwalker()
     {
-        Main.InternalRange = 5.0f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = MonkWindwalkerSettings.GetSettings();
         Main.DumpCurrentSettings<MonkWindwalkerSettings>(MySettings);
         UInt128 lastTarget = 0;
