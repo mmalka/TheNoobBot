@@ -343,15 +343,14 @@ namespace Quester.Tasks
                         {
                             Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot #" + (iLast + 1) + " to Hotspot #" + (i + 1));
                             points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
+                            questObjective.PathHotspots.AddRange(points);
                         }
                         else
                         {
-                            Logging.Write("Create path to Hotspot #" + (i+1));
-                            var tmpPoint = new Point(questObjective.Hotspots[i]);
-                            tmpPoint.X++;
-                            points = PathFinder.FindPath(tmpPoint, questObjective.Hotspots[i]);
+                            Logging.Write("Create path to Hotspot #" + (i + 1));
+                            questObjective.PathHotspots.Add(questObjective.Hotspots[i]);
+                            questObjective.PathHotspots.Add(questObjective.Hotspots[i]);
                         }
-                        questObjective.PathHotspots.AddRange(points);
                     }
                 }
                 else if (questObjective.Position.IsValid)
