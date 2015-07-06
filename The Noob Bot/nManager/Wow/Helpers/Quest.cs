@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 using nManager.Wow.Class;
 using System.Runtime.InteropServices;
@@ -332,6 +333,17 @@ namespace nManager.Wow.Helpers
             AbandonnedId = 0;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
+            var unitTest = new WoWUnit(baseAddress);
+            if (unitTest.IsValid)
+                if (unitTest.UnitQuestGiverStatus != Enums.UnitQuestGiverStatus.Available &&
+                    unitTest.UnitQuestGiverStatus != Enums.UnitQuestGiverStatus.AvailableRepeatable &&
+                    unitTest.UnitQuestGiverStatus != Enums.UnitQuestGiverStatus.LowLevelAvailable &&
+                    unitTest.UnitQuestGiverStatus != Enums.UnitQuestGiverStatus.LowLevelAvailableRepeatable)
+                {
+                    nManagerSetting.AddBlackList(unitTest.Guid, 60000);
+                    Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
+                    return;
+                }
             if (MovementManager.InMovement)
                 return;
             //End target finding based on QuestGiver.
