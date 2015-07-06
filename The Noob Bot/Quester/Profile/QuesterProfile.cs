@@ -88,6 +88,7 @@ namespace Quester.Profile
         public int MinLevel = 0;
         public int MaxLevel = 0;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed
+        public bool AutoAccepted = false;
 
         public bool ShouldSerializeNeedQuestCompletedId()
         {
@@ -150,6 +151,7 @@ namespace Quester.Profile
         public Objective Objective = Objective.None;
         [DefaultValue(0)] public uint InternalIndex = 0;
         [DefaultValue(0)] public int InternalQuestId = 0;
+        [DefaultValue(false)] public bool IsBonusObjective;
         [DefaultValue(0)] public int Count = 0;
         internal int CurrentCount = 0;
         internal List<Point> PathHotspots = null;
@@ -214,7 +216,10 @@ namespace Quester.Profile
         [DefaultValue(0)] public int EquipItemId = 0;
 
         // UseVehicule
-        [DefaultValue(0)] public int EntryVehicle = 0;
+        [DefaultValue(0)]
+        public int EntryVehicle = 0;
+        [DefaultValue(false)] public bool OnlyInVehicule = false;
+        [DefaultValue(false)] public bool OnlyOutVehicule = false;
 
         // PressKey
         [DefaultValue(Keybindings.NONE)] public Keybindings Keys = Keybindings.NONE;
@@ -238,6 +243,9 @@ namespace Quester.Profile
 
         // TravelTo
         [DefaultValue(0)] public int ContinentId = 0;
+
+        // MessageBox
+        [DefaultValue("")] public string Message = "";
     }
 
     [Serializable]
@@ -265,6 +273,10 @@ namespace Quester.Profile
         UseVehicle,
         Wait,
         TravelTo,
+        ClickOnTerrain,
+        MessageBox,
+        PickUpNPC,
+        GarrisonHearthstone,
     }
 
     [Serializable]

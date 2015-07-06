@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
                 return;
             if (point == null)
                 return;
-            if (point.X == 0 && point.Y == 0)
+            if (!point.IsValid)
                 return;
 
             ItemsManager.UseItem(ItemsManager.GetItemNameById(Entry));
@@ -55,13 +55,25 @@ namespace nManager.Wow.Helpers
             Pulse(point);
         }
 
+        public static void ClickOnly(Point point)
+        {
+            if (point == null)
+                return;
+            if (!point.IsValid)
+                return;
+            
+            Thread.Sleep(Usefuls.Latency + 50);
+
+            Pulse(point);
+        }
+
         private static void Pulse(Point point)
         {
             try
             {
                 if (point == null)
                     return;
-                if (point.X == 0 && point.Y == 0)
+                if (!point.IsValid)
                     return;
 
                 uint codeCaveStructClickOnTerrain =

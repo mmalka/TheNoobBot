@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Products;
 using nManager.Wow.Bot.States;
 using Quester.Bot;
@@ -15,6 +17,7 @@ using Quest = nManager.Wow.Helpers.Quest;
 using Timer = nManager.Helpful.Timer;
 using nManager.Wow.Bot.Tasks;
 using Keybindings = nManager.Wow.Helpers.Keybindings;
+using Math = nManager.Helpful.Math;
 
 namespace Quester.Tasks
 {
@@ -61,6 +64,8 @@ namespace Quester.Tasks
                 }
                 foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
+                    if (quest.AutoAccepted)
+                        continue;
                     if (ObjectManager.Me.Level >= quest.MinLevel && (ObjectManager.Me.Level <= quest.MaxLevel || QuesterSettings.CurrentSettings.IgnoreQuestsMaxLevel) &&
                         (QuesterSettings.CurrentSettings.IgnoreQuestsLevel || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
@@ -127,7 +132,8 @@ namespace Quester.Tasks
             {
                 QuestObjective objective = obj;
                 if (objective.InternalQuestId > 0 && objective.InternalQuestId != objective.QuestId && objective.IsObjectiveCompleted)
-                    return true; // Hack when dealing with multiple-quest and restarting the bot.
+                    continue; // Hack when dealing with multiple-quest and restarting the bot.
+                
                 if (objective.IgnoreQuestCompleted && !QuestObjectiveIsFinish(ref objective))
                     return false;
             }
@@ -143,6 +149,18 @@ namespace Quester.Tasks
             // shortcut since we do objective one by one, for kill it can be completed before we do them all
             if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(questObjective.InternalQuestId != 0 ? questObjective.InternalQuestId : CurrentQuest.Id))
                 return true;
+
+            if (questObjective.Objective != Objective.PickUpQuest && questObjective.InternalQuestId > 0 && !Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+            {
+                if (questObjective.IsBonusObjective)
+                {
+                    if (!Quest.GetQuestCompleted(questObjective.InternalQuestId) && !Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId))
+                    {
+                        return false; // Force the bot to go on zone to check about the current status of the objective as the quest has not been completed.
+                    }
+                }
+                return true; // We don't have this nested quest anymore. The first check is "just in case", but a PickUpQuest objective shouldn't contains InternalQuestId anyway.
+            }
 
             // If we can check the objective in quest log, then rely on it
             if (questObjective.InternalIndex != 0 && (questObjective.Count > 0 || questObjective.CollectCount > 0))
@@ -186,7 +204,7 @@ namespace Quester.Tasks
                 return false;
             }
 
-            // PICK UP
+            // PICK UP OBJECT
             if (questObjective.Objective == Objective.PickUpObject)
             {
                 if (questObjective.CurrentCount >= questObjective.CollectCount)
@@ -195,6 +213,12 @@ namespace Quester.Tasks
                     ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     return true;
                 return false;
+            }
+
+            // PICK UP NPC
+            if (questObjective.Objective == Objective.PickUpNPC)
+            {
+                return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsObjectiveCompleted;
             }
 
             // USE ITEM
@@ -211,6 +235,18 @@ namespace Quester.Tasks
                 return false;
             }
 
+            // PICK UP QUEST
+            if (questObjective.Objective == Objective.PickUpQuest)
+            {
+                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId);
+            }
+
+            // TURN IN QUEST
+            if (questObjective.Objective == Objective.TurnInQuest)
+            {
+                return Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId);
+            }
+
             /* MOVE TO || WAIT || INTERACT WITH ||
              * USE SPELL || EQUIP ITEM || PICK UP QUEST ||
              * TURN IN QUEST || PRESS KEY || USE ITEM AOE ||
@@ -220,7 +256,8 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
-                questObjective.Objective == Objective.UseLuaMacro)
+                questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox ||
+                questObjective.Objective == Objective.GarrisonHearthstone)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -277,6 +314,18 @@ namespace Quester.Tasks
 
             QuestStatus = questObjective.Objective.ToString();
             CheckMandatoryFieldsByObjective(questObjective);
+            if (questObjective.OnlyInVehicule && !ObjectManager.Me.InTransport)
+            {
+                questObjective.IsObjectiveCompleted = true;
+                // we cannot do it now, do it later
+                return;
+            }
+            if (questObjective.OnlyOutVehicule && ObjectManager.Me.InTransport)
+            {
+                questObjective.IsObjectiveCompleted = true;
+                // we cannot do it now, do it later
+                return;
+            }
 
             // Create Path:
             if (questObjective.PathHotspots == null)
@@ -289,11 +338,19 @@ namespace Quester.Tasks
                         int iLast = i - 1;
                         if (iLast < 0)
                             iLast = questObjective.Hotspots.Count - 1;
+                        List<Point> points = new List<Point>();
                         if (iLast != i)
-                            Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot nr" + iLast + 1 + " to Hotspot nr " + i + 1);
+                        {
+                            Logging.Write( /*Translate.Get(...)*/ "Create path from Hotspot #" + (iLast + 1) + " to Hotspot #" + (i + 1));
+                            points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
+                        }
                         else
-                            Logging.Write("Create path to Hotspot nr " + i);
-                        List<Point> points = PathFinder.FindPath(questObjective.Hotspots[iLast], questObjective.Hotspots[i]);
+                        {
+                            Logging.Write("Create path to Hotspot #" + (i+1));
+                            var tmpPoint = new Point(questObjective.Hotspots[i]);
+                            tmpPoint.X++;
+                            points = PathFinder.FindPath(tmpPoint, questObjective.Hotspots[i]);
+                        }
                         questObjective.PathHotspots.AddRange(points);
                     }
                 }
@@ -389,9 +446,84 @@ namespace Quester.Tasks
                 if (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
-                    FarmingTask.Pulse(new List<WoWGameObject> {node});
+                    FarmingTask.Pulse(new List<WoWGameObject> { node });
                     if (Statistics.Farms > tNumber)
                         questObjective.CurrentCount++;
+                    else if (node.GetDistance < 5)
+                    {
+                        Thread.Sleep(300);
+                        nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 3);
+                    }
+                }
+                else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
+                {
+                    // Mounting Mount
+                    MountTask.Mount();
+                    // Need GoTo Zone:
+                    if (
+                        questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5f)
+                    {
+                        MovementManager.Go(PathFinder.FindPath(questObjective.PathHotspots[Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)]));
+                    }
+                    else
+                    {
+                        // Start Move
+                        MovementManager.GoLoop(questObjective.PathHotspots);
+                    }
+                }
+            }
+            // PICK UP NPC
+            if (questObjective.Objective == Objective.PickUpNPC)
+            {
+                WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead));
+                Point pos;
+                uint baseAddress;
+                if (!nManagerSetting.IsBlackListedZone(unit.Position) && !nManagerSetting.IsBlackListed(unit.Guid) && unit.IsValid)
+                {
+                    if (unit.IsValid)
+                    {
+                        pos = new Point(unit.Position);
+                        baseAddress = unit.GetBaseAddress;
+                    }
+                    else
+                    {
+                        if (questObjective.InternalQuestId > 0)
+                        {
+                            if (!Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+                                questObjective.IsObjectiveCompleted = true;
+                        }
+                        return;
+                    }
+                    MovementManager.Go(PathFinder.FindPath(pos));
+                    Thread.Sleep(500 + Usefuls.Latency);
+                    while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
+                    {
+                        if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
+                            return;
+                        Thread.Sleep(100);
+                    }
+                    if (questObjective.IgnoreFight)
+                        Quest.GetSetIgnoreFight = true;
+                    MountTask.DismountMount();
+                    MovementManager.StopMove();
+                    Interact.InteractWith(baseAddress);
+                    Thread.Sleep(Usefuls.Latency);
+                    while (ObjectManager.Me.IsCast)
+                    {
+                        Thread.Sleep(Usefuls.Latency);
+                    }
+
+                    if (questObjective.GossipOptionsInteractWith != 0)
+                    {
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
+                    }
+                    if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+                        return;
+                    Thread.Sleep(questObjective.WaitMs);
+                    questObjective.CurrentCount++;
+                    nManagerSetting.AddBlackList(unit.Guid, 60000);
+                    Quest.GetSetIgnoreFight = false;
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
@@ -567,9 +699,23 @@ namespace Quester.Tasks
                 }
             }
 
+            if (questObjective.Objective == Objective.GarrisonHearthstone)
+            {
+                if (ObjectManager.Me.InCombat)
+                    return;
+                if (ItemsManager.GetItemCount(110560) > 0 && !ItemsManager.IsItemOnCooldown(110560) && ItemsManager.IsItemUsable(110560))
+                {
+                    ItemsManager.UseItem(ItemsManager.GetItemNameById(110560));
+                    Thread.Sleep(6000);
+                    Logging.WriteFight("Use Garrison Hearthstone");
+                }
+                questObjective.IsObjectiveCompleted = true;
+            }
+
             // INTERACT WITH
             if (questObjective.Objective == Objective.InteractWith)
             {
+                CheckMandatoryFieldsByType(questObjective, true, true);
                 Thread.Sleep(250 + Usefuls.Latency);
                 if (!MovementManager.InMovement)
                 {
@@ -595,6 +741,11 @@ namespace Quester.Tasks
                         }
                         else
                         {
+                            if (questObjective.InternalQuestId > 0)
+                            {
+                                if (!Quest.GetLogQuestId().Contains(questObjective.InternalQuestId))
+                                    questObjective.IsObjectiveCompleted = true;
+                            }
                             return;
                         }
 
@@ -611,12 +762,20 @@ namespace Quester.Tasks
                         MountTask.DismountMount();
                         MovementManager.StopMove();
                         Interact.InteractWith(baseAddress);
+                        Thread.Sleep(Usefuls.Latency);
+                        while (ObjectManager.Me.IsCast)
+                        {
+                            Thread.Sleep(Usefuls.Latency);
+                        }
 
                         if (questObjective.GossipOptionsInteractWith != 0)
                         {
                             Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
+                        if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
+                            return;
+                        Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
                         Quest.GetSetIgnoreFight = false;
                     }
@@ -732,11 +891,6 @@ namespace Quester.Tasks
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                if (Quest.GetQuestCompleted(questObjective.QuestId))
-                {
-                    questObjective.IsObjectiveCompleted = true;
-                    return;
-                }
                 if (!MovementManager.InMovement)
                 {
                     Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
@@ -749,11 +903,6 @@ namespace Quester.Tasks
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                if (Quest.GetQuestCompleted(questObjective.QuestId))
-                {
-                    questObjective.IsObjectiveCompleted = true;
-                    return;
-                }
                 if (!MovementManager.InMovement)
                 {
                     Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
@@ -831,6 +980,24 @@ namespace Quester.Tasks
                         Quest.GetSetIgnoreFight = false;
                     }
                 }
+            }
+
+            // Click On terrain
+            if (questObjective.Objective == Objective.ClickOnTerrain)
+            {
+                ClickOnTerrain.ClickOnly(questObjective.Position);
+                if (questObjective.WaitMs > 0)
+                    Thread.Sleep(questObjective.WaitMs);
+                questObjective.IsObjectiveCompleted = true;
+                Quest.GetSetIgnoreFight = false;
+            }
+
+            // MessageBox
+            if (questObjective.Objective == Objective.MessageBox)
+            {
+                MessageBox.Show(questObjective.Message);
+                questObjective.IsObjectiveCompleted = true;
+                Quest.GetSetIgnoreFight = false;
             }
 
             // USE SPELL AOE

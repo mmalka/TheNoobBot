@@ -116,6 +116,9 @@ namespace nManager.Wow.Bot.Tasks
 
             if (Usefuls.IsOutdoors)
             {
+                if (ObjectManager.ObjectManager.Me.HaveBuff(178256)) // Panicked Rush
+                    return MountCapacity.Feet; // Tannan Jungle Intro to leave to the docks.
+
                 if ((ObjectManager.ObjectManager.Me.Level >= 60 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 58)) && _flyMount != string.Empty &&
                     Usefuls.IsFlyableArea)
                 {

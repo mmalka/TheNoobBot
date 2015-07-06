@@ -62,7 +62,7 @@ namespace Quester.Bot
                     // Now check the integrity by checking we have all NPC required
                     foreach (Profile.Quest q in Profile.Quests)
                     {
-                        if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0)
+                        if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0 && !q.AutoAccepted)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.PickUp +
                                             "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
@@ -88,9 +88,9 @@ namespace Quester.Bot
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
-                            if (o.InternalIndex > 4)
+                            if (o.InternalIndex > 23)
                             {
-                                MessageBox.Show("Your profile has an objective with an InternalIndex > 4, which is not possible." +
+                                MessageBox.Show("Your profile has an objective with an InternalIndex > 23, which is not possible." +
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }

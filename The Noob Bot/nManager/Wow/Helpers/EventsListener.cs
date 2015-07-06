@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
         private static readonly int EventsCount = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.EventsListener.EventsCount);
         private static Object _ourLock = new Object();
 
-        private static void EnumWoWEventsDumper()
+        public static void EnumWoWEventsDumper()
         {
             string eventsList = "";
             for (uint i = 0; i <= EventsCount - 1; i++)

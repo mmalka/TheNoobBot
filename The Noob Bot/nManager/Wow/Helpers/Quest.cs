@@ -80,7 +80,10 @@ namespace nManager.Wow.Helpers
 
         public static void AcceptQuest()
         {
-            Lua.LuaDoString("AcceptQuest() ");
+            Lua.LuaDoString("AcceptQuest()");
+            if (Others.IsFrameVisible("QuestFrameCompleteQuestButton"))
+                Lua.RunMacroText("/click QuestFrameCompleteQuestButton");
+            // hack for SelfComplete quests
         }
 
         public static int GetQuestID()
@@ -238,13 +241,10 @@ namespace nManager.Wow.Helpers
                 uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
 
                 List<int> list = new List<int>();
-                for (int index = 0; index < 50; ++index)
+                for (int index = 0; index < 25; ++index)
                 {
-                    PlayerQuest playerQuest =
-                        (PlayerQuest)
-                            Memory.WowMemory.Memory.ReadObject(
-                                (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
-                                typeof (PlayerQuest));
+                    uint pointer = (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index));
+                    PlayerQuest playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject(pointer, typeof (PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
                         list.Add(playerQuest.ID);
@@ -523,7 +523,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
                                                  Descriptors.StartDescriptors);
             uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
-            for (int index = 0; index < 50; ++index)
+            for (int index = 0; index < 25; ++index)
             {
                 PlayerQuest playerQuest =
                     (PlayerQuest)
@@ -531,7 +531,7 @@ namespace nManager.Wow.Helpers
                             (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
                             typeof (PlayerQuest));
                 if (playerQuest.ID == questId)
-                    return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] == count;
+                    return playerQuest.ObjectiveRequiredCounts[ObjectiveInternalIndex - 1] >= count;
             }
             return false;
         }
@@ -568,7 +568,7 @@ namespace nManager.Wow.Helpers
         {
             public int ID;
             public StateFlag State;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public short[] ObjectiveRequiredCounts;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 23)] public short[] ObjectiveRequiredCounts;
             public int Time;
 
             public enum StateFlag : uint
@@ -577,6 +577,13 @@ namespace nManager.Wow.Helpers
                 Complete = 1,
                 Failed = 2,
             }
+        }
+
+        public static bool IsQuestFlaggedCompletedLUA(int internalQuestId)
+        {
+            string result = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(result + " = tostring(IsQuestFlaggedCompleted(" + internalQuestId + ")");
+            return Lua.GetLocalizedText(result) == "true";
         }
     }
 }
