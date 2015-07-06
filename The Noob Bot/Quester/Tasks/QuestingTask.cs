@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ using Quest = nManager.Wow.Helpers.Quest;
 using Timer = nManager.Helpful.Timer;
 using nManager.Wow.Bot.Tasks;
 using Keybindings = nManager.Wow.Helpers.Keybindings;
+using Math = nManager.Helpful.Math;
 
 namespace Quester.Tasks
 {
@@ -254,7 +256,8 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
-                questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox)
+                questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox ||
+                questObjective.Objective == Objective.GarrisonHearthstone)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -694,6 +697,19 @@ namespace Quester.Tasks
                     waitTimer = null;
                     Quest.GetSetIgnoreFight = false;
                 }
+            }
+
+            if (questObjective.Objective == Objective.GarrisonHearthstone)
+            {
+                if (ObjectManager.Me.InCombat)
+                    return;
+                if (ItemsManager.GetItemCount(110560) > 0 && !ItemsManager.IsItemOnCooldown(110560) && ItemsManager.IsItemUsable(110560))
+                {
+                    ItemsManager.UseItem(ItemsManager.GetItemNameById(110560));
+                    Thread.Sleep(6000);
+                    Logging.WriteFight("Use Garrison Hearthstone");
+                }
+                questObjective.IsObjectiveCompleted = true;
             }
 
             // INTERACT WITH

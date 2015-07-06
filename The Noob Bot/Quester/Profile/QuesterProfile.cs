@@ -275,7 +275,8 @@ namespace Quester.Profile
         TravelTo,
         ClickOnTerrain,
         MessageBox,
-        PickUpNPC
+        PickUpNPC,
+        GarrisonHearthstone,
     }
 
     [Serializable]
