@@ -88,9 +88,9 @@ namespace Quester.Bot
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
-                            if (o.InternalIndex > 4)
+                            if (o.InternalIndex > 23)
                             {
-                                MessageBox.Show("Your profile has an objective with an InternalIndex > 4, which is not possible." +
+                                MessageBox.Show("Your profile has an objective with an InternalIndex > 23, which is not possible." +
                                                 "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                                 return false;
                             }
