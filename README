@@ -3,26 +3,18 @@ TheNoobBot is a software that intend to reproduce real players movements in the 
 The bot do uses Injection of ASM for Click To Move, Interact, Lua Executions.
 The bot do read the WoW memory by retrieving the offsets addresses of the usefuls value from the executable file.
 
-TheNoobBot project have been public since 17 february 2013, for the WoW version 4.3.3 and the project is still active as of expansion Mists of Pandaria.
+TheNoobBot project have been public since 17 february 2012, for the WoW version 4.3.3 and the project is still active as of expansion Warlord of Draenor.
 
 
-Importants things to do for 5.4.0 support:
+To do :
 
-Find a solution to the new DBC system, SpellDBC and SpellMiscDBC have changed their way of being read to get informations like "SpellName InGame" (client lang) can be temp-fixed by using a LUA + internal caching (list), others DBC seems not affected.
-There should be a way to keep reading DBC like before, they are maybe just encrypted, we can analyze how LUA reads them the first time to get them.
-They are possbility now server-side, like items names, and will be cached in WDA files after they got read once, will allow more maniability from Blizzard servers.
-It still possible to extract the DBC from the MPQ though... (But wont work as we need to fit client language)
+FailOver auth server : Working solution, but we can't afford another server.
 
+Send informations to servers about the items looted every 55 seconds. (every statistic pulse)
+ItemId mostly and maybe a basic ItemType as well.
 
-Ideas to realizes
+Work on as much questing profiles as possible. Priority over Draenor.
 
-Make sure the FailOver auth server is working well, and merge the Mesh server on it so we can get separated from the Mesh server (useless cost).
+Implement Battle Pet system.
 
-Implement a loot tracking system, that will be able to provide statistic on the collections of a defined ItemId or GameObjectId,
-can provides "all time, last 24h, last 48h, last week, last month, last year" informations, with graphs.
-
-Test/Improve the Melee Control Manager system (currently on stand-by).
-
-Test/Improve the InteractWithBeta functions that will allow us to interact with an Unit/Object without walking to it.
-
-Test/Improve the QuickSpellUsableLUA functions that will allow us to cast more spell, faster.
+Implement DungeonBot. (either just solo farm old dungeon or tag and follow the tank in random dungeon queue)
