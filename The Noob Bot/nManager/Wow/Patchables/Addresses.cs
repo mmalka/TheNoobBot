@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 20201
+    ///   Offset and Pointer for Wow 20216
     /// </summary>
     public static class Addresses
     {
@@ -245,13 +245,13 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayerObj = 0x3D0D,
-            FrameScript_ExecuteBuffer = 0x272CB,
-            CGUnit_C__InitializeTrackingState = 0x326B31, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x3184C0,
-            CGWorldFrame__Intersect = 0x5600D2,
-            Spell_C_HandleTerrainClick = 0x281BDB,
-            CGUnit_C__Interact = 0x98C217,
-            strlen = 0x6A72A0, // ida _strlen
+            FrameScript_ExecuteBuffer = 0x27426,
+            CGUnit_C__InitializeTrackingState = 0x326C9E, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x3185E8,
+            CGWorldFrame__Intersect = 0x56010C,
+            Spell_C_HandleTerrainClick = 0x281E0A,
+            CGUnit_C__Interact = 0x98C294,
+            strlen = 0x6A7180, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
