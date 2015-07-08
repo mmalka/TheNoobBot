@@ -133,7 +133,7 @@ namespace Quester.Tasks
                 QuestObjective objective = obj;
                 if (objective.InternalQuestId > 0 && objective.InternalQuestId != objective.QuestId && objective.IsObjectiveCompleted)
                     continue; // Hack when dealing with multiple-quest and restarting the bot.
-                
+
                 if (objective.IgnoreQuestCompleted && !QuestObjectiveIsFinish(ref objective))
                     return false;
             }
@@ -238,13 +238,13 @@ namespace Quester.Tasks
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId);
+                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId);
             }
 
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId);
+                return Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId);
             }
 
             /* MOVE TO || WAIT || INTERACT WITH ||
@@ -445,13 +445,13 @@ namespace Quester.Tasks
                 if (!nManagerSetting.IsBlackListedZone(node.Position) && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
-                    FarmingTask.Pulse(new List<WoWGameObject> { node });
+                    FarmingTask.Pulse(new List<WoWGameObject> {node});
                     if (Statistics.Farms > tNumber)
                         questObjective.CurrentCount++;
                     else if (node.GetDistance < 5)
                     {
                         Thread.Sleep(300);
-                        nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 3);
+                        nManagerSetting.AddBlackList(node.Guid, 1000*60*3);
                     }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
@@ -895,7 +895,7 @@ namespace Quester.Tasks
                     Npc Quester = Bot.Bot.FindQuesterById(questObjective.NpcEntry);
                     Quest.QuestPickUp(ref Quester, questObjective.QuestName, questObjective.QuestId);
                 }
-                if (Quest.GetLogQuestId().Contains(questObjective.QuestId))
+                if (Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.GetLogQuestIsComplete(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.QuestId))
                     questObjective.IsObjectiveCompleted = true;
             }
 
