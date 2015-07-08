@@ -89,6 +89,8 @@ namespace nManager.Wow.Helpers
             }
             if (SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(116755)))
                 return true; // Do not cancel Nat Pagle Lukers Lure.
+            if (SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(128229)))
+                return true; // Do not cancel Felmouth Frenzy Bait.
             return false;
         }
 
@@ -143,7 +145,7 @@ namespace nManager.Wow.Helpers
 
         public static void UseDraenicBait()
         {
-            if (Usefuls.ContinentId != 1116 || HaveDraenicBaitBuff())
+            if (Usefuls.ContinentId != 1116 && Usefuls.ContinentId != 1464 || HaveDraenicBaitBuff())
                 return;
             int baitToUse = 0;
             if (Usefuls.AreaId == 7004 || Usefuls.AreaId == 7078)
@@ -184,6 +186,10 @@ namespace nManager.Wow.Helpers
             {
                 // Nagrand
                 baitToUse = DraenicBaitList[5];
+            }
+            else if (Usefuls.ContinentId == 1474)
+            {
+                baitToUse = 128229; // Felmouth Frenzy Bait can't be used in Garrison.
             }
 
             if (baitToUse == 0 || ItemsManager.GetItemCount(baitToUse) <= 0)
