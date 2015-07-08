@@ -3366,4 +3366,58 @@
     <Xcoord>0.4637109041214</Xcoord>
     <Ycoord>0.85643792152405</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="92809" Name="Sha'naari Refuge, Tanaan Jungle" ContinentId="1464">
+    <Position>
+      <X>3723.54419</X>
+      <Y>156.763885</Y>
+      <Z>56.1244354</Z>
+    </Position>
+    <Xcoord>0.60740619897842</Xcoord>
+    <Ycoord>0.51838129758835</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="90552" Name="The Iron Front, Tanaan Jungle" ContinentId="1464">
+    <Position>
+      <X>3978.289</X>
+      <Y>1221.57471</Y>
+      <Z>164.196991</Z>
+    </Position>
+    <Xcoord>0.54285591840744</Xcoord>
+    <Ycoord>0.53368502855301</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="90560" Name="Aktar's Post, Tanaan Jungle" ContinentId="1464">
+    <Position>
+      <X>4572.857</X>
+      <Y>336.026031</Y>
+      <Z>221.524048</Z>
+    </Position>
+    <Xcoord>0.59660667181015</Xcoord>
+    <Ycoord>0.56967794895172</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="92808" Name="Malo's Lookout, Tanaan Jungle" ContinentId="1464">
+    <Position>
+      <X>4455.00439</X>
+      <Y>-570.050354</Y>
+      <Z>49.8086433</Z>
+    </Position>
+    <Xcoord>0.65207570791245</Xcoord>
+    <Ycoord>0.56285315752029</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="90562" Name="Vault of the Earth, Tanaan Jungle" ContinentId="1464">
+    <Position>
+      <X>3474.22485</X>
+      <Y>-758.8924</Y>
+      <Z>41.34118</Z>
+    </Position>
+    <Xcoord>0.663529753685</Xcoord>
+    <Ycoord>0.50294464826584</Ycoord>
+  </Taxi>
+  <Taxi Faction="Horde" Id="90550" Name="Vol'mar, Tanaan Jungle" ContinentId="1464">
+    <Position>
+      <X>4308.067</X>
+      <Y>-1463.92017</Y>
+      <Z>79.05174</Z>
+    </Position>
+    <Xcoord>0.70637828111649</Xcoord>
+    <Ycoord>0.55372714996338</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
