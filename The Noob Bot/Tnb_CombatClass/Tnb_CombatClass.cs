@@ -10221,7 +10221,7 @@ public class DruidFeral
 
     public DruidFeral()
     {
-        Main.InternalRange = ObjectManager.Me.GetCombatReach; ;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         MySettings = DruidFeralSettings.GetSettings();
         Main.DumpCurrentSettings<DruidFeralSettings>(MySettings);
         UInt128 lastTarget = 0;

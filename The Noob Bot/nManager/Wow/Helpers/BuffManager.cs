@@ -45,9 +45,11 @@ namespace nManager.Wow.Helpers
                 {
                     if (buff.IsActive)
                         return buff.AuraCount;
-                    if (buff.Flags.HasFlag(UnitAuraFlags.Passive) && !buff.Flags.HasFlag(UnitAuraFlags.Cancelable))
-                        return -1;
-                    return buff.AuraCount;
+                    if (!buff.Flags.HasFlag(UnitAuraFlags.Passive) || buff.Flags.HasFlag(UnitAuraFlags.Cancelable))
+                        return buff.AuraCount;
+                    if (buff.Flags.HasFlag(UnitAuraFlags.Duration) || buff.Flags.HasFlag(UnitAuraFlags.BasePoints))
+                        return buff.AuraCount;
+                    return -1;
                 }
             }
             return -1;
@@ -79,7 +81,7 @@ namespace nManager.Wow.Helpers
                         int auraDuration = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructDuration);
                         int auraSpellEndTime = Memory.WowMemory.Memory.ReadInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructSpellEndTime);
                         uint auraUnk2 = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructUnk2);
-                        uint auraMask = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint)Addresses.UnitBaseGetUnitAura.AuraStructMask);
+                        uint auraMask = Memory.WowMemory.Memory.ReadUInt(currentAuraPtr + (uint) Addresses.UnitBaseGetUnitAura.AuraStructMask);
                         var currUnitAura = new Auras.UnitAura
                         {
                             AuraCreatorGUID = auraCreatorGuid,
@@ -93,7 +95,7 @@ namespace nManager.Wow.Helpers
                             AuraSpellEndTime = auraSpellEndTime,
                             AuraUnk2 = auraUnk2
                         };
-                        /*Console.WriteLine("Pointer = " + currentAuraPtr + " , affect: " + auraAffectedGuid);
+                        /*Console.WriteLine("Pointer = " + currentAuraPtr);
                             Console.WriteLine(currUnitAura);*/
                         unitAuras.Auras.Add(currUnitAura);
                     }
