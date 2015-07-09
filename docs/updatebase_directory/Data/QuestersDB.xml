@@ -13,78 +13,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>70909</Entry>
-    <Name>Ga'nar</Name>
-    <Position>
-      <X>7221.95068</X>
-      <Y>5617.127</Y>
-      <Z>125.794891</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74000</Entry>
-    <Name>Ga'nar</Name>
-    <Position>
-      <X>7224.15967</X>
-      <Y>5305.03369</Y>
-      <Z>62.3504448</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74202</Entry>
-    <Name>Ligra the Unyielding</Name>
-    <Position>
-      <X>7199.478</X>
-      <Y>5416.888</Y>
-      <Z>68.39802</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74202</Entry>
-    <Name>Ligra the Unyielding</Name>
-    <Position>
-      <X>7214.64453</X>
-      <Y>5357.9707</Y>
-      <Z>62.31947</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74222</Entry>
-    <Name>Ligra the Unyielding</Name>
-    <Position>
-      <X>7226.55664</X>
-      <Y>5310.05127</Y>
-      <Z>62.27328</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>74635</Entry>
-    <Name>Igrimar the Resolute</Name>
-    <Position>
-      <X>7091.213</X>
-      <Y>6011.75537</Y>
-      <Z>133.866989</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>33</Entry>
     <Name>Locked Chest</Name>
     <Position>
@@ -12347,7 +12275,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
+      <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12371,30 +12299,6 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>103.496796</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
       <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -12407,7 +12311,31 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>-166.801468</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-417.438171</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20624,7 +20552,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20636,7 +20564,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -48339,6 +48267,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>70909</Entry>
+    <Name>Ga'nar</Name>
+    <Position>
+      <X>7221.95068</X>
+      <Y>5617.127</Y>
+      <Z>125.794891</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>70910</Entry>
     <Name>Ga’nar</Name>
     <Position>
@@ -48991,7 +48931,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
+      <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -49002,7 +48942,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>706.5976</Z>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -49308,6 +49248,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>74000</Entry>
+    <Name>Ga'nar</Name>
+    <Position>
+      <X>7224.15967</X>
+      <Y>5305.03369</Y>
+      <Z>62.3504448</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>74121</Entry>
     <Name>Erudite Heidii</Name>
     <Position>
@@ -49355,11 +49307,35 @@
   </Npc>
   <Npc>
     <Entry>74202</Entry>
+    <Name>Ligra the Unyielding</Name>
+    <Position>
+      <X>7199.478</X>
+      <Y>5416.888</Y>
+      <Z>68.39802</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>74202</Entry>
     <Name>Ligra l’Inflexible</Name>
     <Position>
       <X>7206.569</X>
       <Y>5380.01953</Y>
       <Z>62.62014</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>74202</Entry>
+    <Name>Ligra the Unyielding</Name>
+    <Position>
+      <X>7214.64453</X>
+      <Y>5357.9707</Y>
+      <Z>62.31947</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49384,6 +49360,18 @@
       <X>6965.89258</X>
       <Y>4673.152</Y>
       <Z>186.82605</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>74222</Entry>
+    <Name>Ligra the Unyielding</Name>
+    <Position>
+      <X>7226.55664</X>
+      <Y>5310.05127</Y>
+      <Z>62.27328</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49600,6 +49588,18 @@
       <X>5668.52539</X>
       <Y>1756.09375</Y>
       <Z>121.964867</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>74635</Entry>
+    <Name>Igrimar the Resolute</Name>
+    <Position>
+      <X>7091.213</X>
+      <Y>6011.75537</Y>
+      <Z>133.866989</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -50177,6 +50177,18 @@
       <X>5790.737</X>
       <Y>1278.14417</Y>
       <Z>108.967529</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>76720</Entry>
+    <Name>Thrall</Name>
+    <Position>
+      <X>5604.17969</X>
+      <Y>3503.138</Y>
+      <Z>111.673744</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
