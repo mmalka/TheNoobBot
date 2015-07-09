@@ -594,7 +594,7 @@ namespace nManager.Wow.Helpers
         public static bool IsQuestFlaggedCompletedLUA(int internalQuestId)
         {
             string result = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(result + " = tostring(IsQuestFlaggedCompleted(" + internalQuestId + ")");
+            Lua.LuaDoString(result + " = tostring(IsQuestFlaggedCompleted(" + internalQuestId + "))");
             return Lua.GetLocalizedText(result) == "true";
         }
     }

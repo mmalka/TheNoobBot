@@ -13384,6 +13384,9 @@ public class PaladinRetribution
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
+    public readonly Spell SanctifiedWrath = new Spell(53376);
+    public Timer AvengingWrathTimer = new Timer(0);
+
     #endregion
 
     #region Paladin Seals & Buffs
@@ -13714,11 +13717,17 @@ public class PaladinRetribution
         if (MySettings.UseHolyAvenger && HolyAvenger.IsSpellUsable)
         {
             HolyAvenger.Cast();
-            if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+            if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrathTimer.IsReady && AvengingWrath.IsSpellUsable)
+            {
+                AvengingWrathTimer = new Timer(120000);
+                AvengingWrathTimer.Reset();
                 AvengingWrath.Cast();
+            }
         }
-        else if (MySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable)
+        else if (MySettings.UseAvengingWrath && AvengingWrathTimer.IsReady && AvengingWrath.IsSpellUsable)
         {
+            AvengingWrathTimer = new Timer(120000);
+            AvengingWrathTimer.Reset();
             AvengingWrath.Cast();
         }
         if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
