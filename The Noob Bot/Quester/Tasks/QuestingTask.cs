@@ -521,7 +521,7 @@ namespace Quester.Tasks
                         return;
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.CurrentCount++;
-                    nManagerSetting.AddBlackList(unit.Guid, 60000);
+                    nManagerSetting.AddBlackList(unit.Guid, 5000);
                     Quest.GetSetIgnoreFight = false;
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
@@ -772,6 +772,8 @@ namespace Quester.Tasks
                             Thread.Sleep(250 + Usefuls.Latency);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
+                        if (Others.IsFrameVisible("StaticPopup1Button1"))
+                            Lua.RunMacroText("/click StaticPopup1Button1");
                         if (ObjectManager.Me.InCombat && !questObjective.IgnoreFight)
                             return;
                         Thread.Sleep(questObjective.WaitMs);
