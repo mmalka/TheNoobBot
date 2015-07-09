@@ -12275,6 +12275,18 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-31.1677113</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -12299,30 +12311,6 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-31.1677113</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
       <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -12336,6 +12324,18 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>-417.438171</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49111,6 +49111,18 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>72976</Entry>
+    <Name>Outrider Urukag</Name>
+    <Position>
+      <X>6273.432</X>
+      <Y>3468.8645</Y>
+      <Z>134.838547</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>73082</Entry>
     <Name>Master Li</Name>
     <Position>
@@ -50040,6 +50052,30 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>76487</Entry>
+    <Name>Lokra</Name>
+    <Position>
+      <X>5876.69775</X>
+      <Y>3016.414</Y>
+      <Z>184.959122</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>76487</Entry>
+    <Name>Lokra</Name>
+    <Position>
+      <X>6005.98438</X>
+      <Y>2916.994</Y>
+      <Z>186.645462</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>FrostfireFinaleScenario</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>76557</Entry>
     <Name>Durotan</Name>
     <Position>
@@ -50193,6 +50229,18 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>76730</Entry>
+    <Name>Makar Stonebinder</Name>
+    <Position>
+      <X>6008.22559</X>
+      <Y>2912.591</Y>
+      <Z>188.612854</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>FrostfireFinaleScenario</ContinentId>
   </Npc>
   <Npc>
     <Entry>76746</Entry>
@@ -50484,6 +50532,18 @@
       <Z>72.9462051</Z>
     </Position>
     <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>77485</Entry>
+    <Name>Durotan</Name>
+    <Position>
+      <X>6001.14063</X>
+      <Y>2920.92017</Y>
+      <Z>184.520737</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
