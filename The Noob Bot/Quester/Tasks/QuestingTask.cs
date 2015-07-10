@@ -238,13 +238,13 @@ namespace Quester.Tasks
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId);
+                return Quest.GetQuestCompleted(questObjective.QuestId) || Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.QuestId);
             }
 
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                return Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.InternalQuestId);
+                return Quest.GetQuestCompleted(questObjective.QuestId) || !Quest.GetLogQuestId().Contains(questObjective.QuestId) || Quest.IsQuestFlaggedCompletedLUA(questObjective.QuestId);
             }
 
             /* MOVE TO || WAIT || INTERACT WITH ||
