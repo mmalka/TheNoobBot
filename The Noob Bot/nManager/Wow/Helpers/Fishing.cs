@@ -187,7 +187,7 @@ namespace nManager.Wow.Helpers
                 // Nagrand
                 baitToUse = DraenicBaitList[5];
             }
-            else if (Usefuls.ContinentId == 1474)
+            else if (Usefuls.ContinentId == 1464)
             {
                 baitToUse = 128229; // Felmouth Frenzy Bait can't be used in Garrison.
             }

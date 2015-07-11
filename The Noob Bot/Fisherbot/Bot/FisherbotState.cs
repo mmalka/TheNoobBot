@@ -83,7 +83,7 @@ namespace Fisherbot.Bot
                 {
                     if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 5)
                         LongMove.LongMoveGo(FisherbotSetting.CurrentSetting.FisherbotPosition);
-                    else if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 1)
+                    else if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 1.5f)
                         MovementManager.MoveTo(FisherbotSetting.CurrentSetting.FisherbotPosition);
                     MovementManager.Face(FisherbotSetting.CurrentSetting.FisherbotRotation);
                 }
