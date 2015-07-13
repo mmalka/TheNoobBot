@@ -3420,4 +3420,22 @@
     <Xcoord>0.70637828111649</Xcoord>
     <Ycoord>0.55372714996338</Ycoord>
   </Taxi>
+  <Taxi Faction="Alliance" Id="91940" Name="Front de Fer, jungle de Tanaan" ContinentId="1464">
+    <Position>
+      <X>4076.01221</X>
+      <Y>1181.74658</Y>
+      <Z>160.929108</Z>
+    </Position>
+    <Xcoord>0.54486006498337</Xcoord>
+    <Ycoord>0.53951996564865</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="90960" Name="Guet du Lion, Jungle de Tanaan" ContinentId="1464">
+    <Position>
+      <X>3876.64063</X>
+      <Y>-1310.99133</Y>
+      <Z>90.4179459</Z>
+    </Position>
+    <Xcoord>0.69701355695724</Xcoord>
+    <Ycoord>0.52733713388443</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
