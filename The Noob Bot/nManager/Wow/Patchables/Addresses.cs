@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 20253
+    ///   Offset and Pointer for Wow 20338
     /// </summary>
     public static class Addresses
     {
@@ -248,7 +248,7 @@
             FrameScript_ExecuteBuffer = 0x2723E,
             CGUnit_C__InitializeTrackingState = 0x326AC6, // alias CGPlayer_C__ClickToMove
             FrameScript__GetLocalizedText = 0x318426,
-            CGWorldFrame__Intersect = 0x5600A6,
+            CGWorldFrame__Intersect = 0x5600B9,
             Spell_C_HandleTerrainClick = 0x281BCF,
             CGUnit_C__Interact = 0x98C332,
             strlen = 0x6A7230, // ida _strlen
