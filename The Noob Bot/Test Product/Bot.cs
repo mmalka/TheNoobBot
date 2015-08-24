@@ -234,7 +234,7 @@ namespace Test_Product
                         newtype = Npc.NpcType.CookingTrainer;
                     else if (n.SubName.Contains("First Aid") || n.SubName.Contains("secouristes"))
                         newtype = Npc.NpcType.FirstAidTrainer;
-                    else if (n.SubName.Contains("Fishing") || n.SubName.Contains("forgerons"))
+                    else if (n.SubName.Contains("Fishing") || n.SubName.Contains("pêche"))
                         newtype = Npc.NpcType.FishingTrainer;
                     else if (n.SubName.Contains("Riding") || n.SubName.Contains(" de vol") || n.SubName.Contains(" de monte"))
                         newtype = Npc.NpcType.RidingTrainer;
