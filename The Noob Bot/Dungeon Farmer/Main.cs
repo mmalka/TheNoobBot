@@ -99,6 +99,7 @@ public class Main : IProduct
     {
         try
         {
+#pragma warning disable 162
             return; // Disable ProductTipOff for now.
 
             if (ObjectManager.Me.Level < 90 &&
@@ -128,6 +129,7 @@ public class Main : IProduct
                     string.Format("{0}\n{1}{2}{3}{4}", Translate.Get(Translate.Id.ArchaeologistTipOffMessage), _looting,
                         _useground, _mindistground, _usefly), Translate.Get(Translate.Id.ArchaeologistTipOffTitle));
             }
+#pragma warning restore 162
         }
         catch (Exception e)
         {
