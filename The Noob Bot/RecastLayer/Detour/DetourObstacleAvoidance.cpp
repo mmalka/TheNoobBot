@@ -331,7 +331,7 @@ float dtObstacleAvoidanceQuery::processSample(const float* vcand, const float cs
 	// find the threshold hit time to bail out based on the early out penalty
 	// (see how the penalty is calculated below to understnad)
 	float minPen = minPenalty - vpen - vcpen;
-	float tThresold = ((double)m_params.weightToi/(double)minPen - 0.1) * (double)m_params.horizTime;
+	float tThresold = (float)(((double)m_params.weightToi/(double)minPen - 0.1) * (double)m_params.horizTime);
 	if (tThresold - m_params.horizTime > -FLT_EPSILON)
 		return minPenalty; // already too much
 
