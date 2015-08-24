@@ -1536,7 +1536,7 @@ namespace nManager.Wow.Helpers
             _updatePathSpecialTimer = new Timer(2000);
         }
 
-        public static uint FindTarget(WoWGameObject Object, float SpecialRange = 0, bool doMount = true)
+        public static uint FindTarget(WoWGameObject Object, float SpecialRange = 0, bool doMount = true, float maxDist = 0)
         {
             if (_trakedTargetGuid != Object.Guid)
             {
@@ -1545,7 +1545,7 @@ namespace nManager.Wow.Helpers
                 _trakedTargetGuid = Object.Guid;
                 resetTimers();
             }
-            return FindTarget(ref _trakedTarget, SpecialRange, doMount);
+            return FindTarget(ref _trakedTarget, SpecialRange, doMount, false, maxDist);
         }
 
         public static uint FindTarget(WoWUnit Unit, float SpecialRange = 0, bool doMount = true)
@@ -1571,7 +1571,7 @@ namespace nManager.Wow.Helpers
             return FindTarget(ref _trakedTarget, SpecialRange, doMount);
         }
 
-        public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true, bool isDead = false)
+        public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true, bool isDead = false, float maxDist = 0)
         {
             if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
@@ -1592,6 +1592,8 @@ namespace nManager.Wow.Helpers
                 }
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 if (!patherResult)
+                    return 0;
+                if (maxDist > 0 && Helpful.Math.DistanceListPoint(points) > maxDist)
                     return 0;
                 if (Target.Guid == 0)
                     Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");

@@ -226,6 +226,8 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
+        private static WoWGameObject _curNode;
+
         private static void Ground(IEnumerable<WoWGameObject> nodes)
         {
             try
@@ -233,11 +235,15 @@ namespace nManager.Wow.Bot.Tasks
                 nodes = nodes.OrderBy(x => x.GetDistance);
                 foreach (WoWGameObject node in nodes)
                 {
-                    if (node.IsValid)
+                    WoWGameObject inode = node;
+                    if (_curNode != null && _curNode.IsValid)
+                        inode = _curNode;
+                    else if (inode.IsValid)
                     {
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 5.0f)
+                        _curNode = node;
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) > 5.0f)
                         {
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
                                 nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
                                 !nManagerSetting.CurrentSetting.UseGroundMount)
                             {
@@ -259,26 +265,28 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                             }
                             // fallback to ground mount or feet
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) >=
                                 nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
                                 nManagerSetting.CurrentSetting.UseGroundMount)
                             {
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
                                     MountTask.Mount();
                             }
-                            if (MovementManager.FindTarget(node, 5.0f) == 0)
+                            if (MovementManager.FindTarget(inode, 5.0f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius * 4.0f) == 0)
                             {
-                                nManagerSetting.AddBlackList(node.Guid, 1000*60*5);
+                                nManagerSetting.AddBlackList(inode.Guid, 1000*60*5);
+                                _curNode = null;
                                 return;
                             }
-                            if (_lastnode != node.Guid)
+                            if (_lastnode != inode.Guid)
                             {
-                                _lastnode = node.Guid;
-                                Logging.Write("Farm " + node.Name + " > " + node.Position);
+                                _lastnode = inode.Guid;
+                                Logging.Write("Farm " + inode.Name + " > " + inode.Position);
                             }
                             if (MovementManager.InMovement)
                                 return;
                         }
+                        MovementManager.StopMove();
                         while (ObjectManager.ObjectManager.Me.GetMove)
                         {
                             Thread.Sleep(250);
@@ -286,19 +294,19 @@ namespace nManager.Wow.Bot.Tasks
                         Thread.Sleep(250 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
-                            if (!node.IsHerb || (node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())))
+                            if (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())))
                                 MountTask.DismountMount();
                             return;
                         }
                         _wasLooted = false;
                         _countThisLoot = true;
-                        Interact.InteractWith(node.GetBaseAddress);
+                        Interact.InteractWith(inode.GetBaseAddress);
+                        Thread.Sleep(250 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             _countThisLoot = false;
                             return;
                         }
-                        Thread.Sleep(250 + Usefuls.Latency);
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Thread.Sleep(250);
@@ -315,13 +323,13 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                         if (_wasLooted)
-                            nManagerSetting.AddBlackList(node.Guid, 1000*20); // 20 sec
+                            nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
                         else
                             Logging.Write("Farm failed");
                         return;
                     }
                     MovementManager.StopMove();
-                    nManagerSetting.AddBlackList(node.Guid);
+                    nManagerSetting.AddBlackList(inode.Guid);
                     Logging.Write("Farm failed");
                 }
             }
@@ -340,6 +348,7 @@ namespace nManager.Wow.Bot.Tasks
                 Statistics.Farms++;
                 Logging.Write("Farm successful");
                 _wasLooted = true;
+                _curNode = null;
                 if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)
                     Elemental.AutoMakeElemental();
             }
