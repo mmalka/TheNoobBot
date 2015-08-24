@@ -201,7 +201,7 @@ namespace nManager.Wow.Helpers
                     locList[i] = offset;
                 }
 
-                Logging.WriteNavigator("Path Count: " + locList.Count());
+                Logging.WriteNavigator("Path Count: " + locList.Count() + (resultSuccess ? "" : " but imcomplete"));
 
                 return locList;
             }
@@ -226,6 +226,18 @@ namespace nManager.Wow.Helpers
 
                 return locList;
             }
+        }
+
+        public static Point GetClosestPointOnTile(Point position, out bool success)
+        {
+            if (_pather == null)
+                _pather = new Pather(Usefuls.ContinentNameMpq);
+            if (_pather.Continent != Usefuls.ContinentNameMpq)
+            {
+                _pather.Dispose();
+                _pather = new Pather(Usefuls.ContinentNameMpq);
+            }
+            return _pather.GetClosestPointOnTile(position, out success);
         }
 
         public static float GetZPosition(float x, float y, float z, bool strict = false)

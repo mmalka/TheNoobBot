@@ -77,6 +77,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
     internal class Pather
     {
+        private const int Division = 2;
         public delegate bool ConnectionHandlerDelegate(ConnectionData data);
 
         private readonly NavMesh _mesh;
@@ -183,9 +184,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
             try
             {
                 string cont = Continent;
+                int baseX = (int)(x / Division);
+                int baseY = (int)(y / Division);
                 if (Continent == "Draenor")
                 {
-                    if (x == 23 && y == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
+                    if (baseX == 23 && baseY == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                     {
                         switch (Usefuls.GetGarrisonLevel())
                         {
@@ -200,7 +203,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                                 break;
                         }
                     }
-                    else if (x == 31 && y == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
+                    else if (baseX == 31 && baseY == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
                     {
                         switch (Usefuls.GetGarrisonLevel())
                         {
@@ -216,7 +219,18 @@ namespace nManager.Wow.Helpers.PathFinderClass
                         }
                     }
                 }
-                return (onlyName ? "" : cont + "\\") + cont + "_" + x + "_" + y + ".tile";
+#pragma warning disable 162
+                if (Division == 1)
+                    return (onlyName ? "" : cont + "\\") + cont + "_" + x + "_" + y + ".tile";
+                else
+                {
+                    float offsetI = (x * (Utility.TileSize / Division)) - (baseX * Utility.TileSize);
+                    float offsetJ = (y * (Utility.TileSize / Division)) - (baseY * Utility.TileSize);
+                    int i = (int)Math.Round(offsetI / (Utility.TileSize / Division));
+                    int j = (int)Math.Round(offsetJ / (Utility.TileSize / Division));
+                    return (onlyName ? "" : cont + "\\") + cont + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
+                }
+#pragma warning restore 162
             }
             catch (Exception exception)
             {
@@ -245,19 +259,16 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
+        public static void GetWoWTileByLocation(float[] loc, out float x, out float y)
+        {
+            x = (loc[0] - Utility.Origin[0]) / Utility.TileSize;
+            y = (loc[2] - Utility.Origin[2]) / Utility.TileSize;
+        }
+
         public static void GetTileByLocation(float[] loc, out float x, out float y)
         {
-            try
-            {
-                x = (loc[0] - Utility.Origin[0])/Utility.TileSize;
-                y = (loc[2] - Utility.Origin[2])/Utility.TileSize;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetTileByLocation(float[] loc, out float x, out float y): " + exception);
-                x = 0;
-                y = 0;
-            }
+            x = (loc[0] - Utility.Origin[0]) / (Utility.TileSize / Division);
+            y = (loc[2] - Utility.Origin[2]) / (Utility.TileSize / Division);
         }
 
         public void LoadAllTiles()
@@ -294,20 +305,32 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 GetTileByLocation(loc, out tx, out ty);
                 int x = (int) Math.Floor(tx);
                 int y = (int) Math.Floor(ty);
-                int thirdx, thirdy;
 
-                LoadTile(x, y);
-                if (tx < x + 0.5f)
-                    thirdx = x - 1;
+#pragma warning disable 162
+                if (Division == 1)
+                {
+                    int thirdx, thirdy;
+                    LoadTile(x, y);
+                    if (tx < x + 0.5f)
+                        thirdx = x - 1;
+                    else
+                        thirdx = x + 1;
+                    if (
+                        ty < y + 0.5f)
+                        thirdy = y - 1;
+                    else
+                        thirdy = y + 1;
+                    LoadTile(thirdx, y);
+                    LoadTile(x, thirdy);
+                    LoadTile(thirdx, thirdy);
+                }
                 else
-                    thirdx = x + 1;
-                if (ty < y + 0.5f)
-                    thirdy = y - 1;
-                else
-                    thirdy = y + 1;
-                LoadTile(thirdx, y);
-                LoadTile(x, thirdy);
-                LoadTile(thirdx, thirdy);
+                {
+                    for (int i = -1; i < 2; i++)
+                        for (int j = -1; j < 2; j++)
+                            LoadTile(x + i, y + j);
+                }
+#pragma warning restore 162
             }
             catch (Exception exception)
             {
@@ -529,7 +552,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             float ndiff = 5f;
             while (ndiff < diff)
             {
-                int limit = (int)(path.Count * 0.75f);
+                int limit = (int)(path.Count * 0.80f);
                 List<Point> path2;
                 path2 = FindPathSimple(path[limit], endVec, out resultSuccess);
 
@@ -616,6 +639,34 @@ namespace nManager.Wow.Helpers.PathFinderClass
             return new List<Point>();
         }
 
+        public Point GetClosestPointOnTile(Point position, out bool success)
+        {
+            float[] extents = new Point(20.0f, 2000.0f, 20.0f).ToFloatArray();
+            float[] center = position.ToRecast().ToFloatArray();
+
+            float tx, ty;
+            GetTileByLocation(position, out tx, out ty);
+            int x = (int)Math.Floor(tx);
+            int y = (int)Math.Floor(ty);
+            LoadTile(x, y);
+
+            dtPolyRef startRef = _query.FindNearestPolygon(center, extents, Filter);
+            if (startRef == 0)
+            {
+                success = false;
+                return new Point();
+            }
+            float[] result;
+            DetourStatus status = _query.closestPointOnPolyBoundary(startRef, center, out result);
+            if (status.HasFailed())
+            {
+                success = false;
+                return new Point();
+            }
+            success = true;
+            return new Point(result.ToWoW());
+        }
+
         public float GetZ(Point position, bool strict = false)
         {
             float[] extents = strict ? new Point(0.5f, 2000.0f, 0.5f).ToFloatArray() : new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
@@ -696,14 +747,14 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     AddMemoryPressure(data.Length);
                     IsDungeon = true;
                 }
-                else //                       15bits 9bits
-                    status = _mesh.Initialize(32767, 511, Utility.Origin, Utility.TileSize, Utility.TileSize);
+                else //                       20bits 28bits
+                    status = _mesh.Initialize(150000, 512 * Division * Division, Utility.Origin, Utility.TileSize / Division, Utility.TileSize / Division);
 
                 if (status.HasFailed())
                     Logging.WriteNavigator(status + " Failed to initialize the mesh");
 
                 _query = new NavMeshQuery(new PatherCallback(this));
-                _query.Initialize(_mesh, 65536);
+                _query.Initialize(_mesh, 65536); // If only we could use a larger number...
                 Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
                 // Add the costs
                 Filter.SetAreaCost((int) PolyArea.Water, 4);
