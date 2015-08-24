@@ -279,8 +279,8 @@ namespace nManager.Wow.Bot.States
                         {
                             int LodestoneID = 117389;
                             if (!_travelDisabled && ItemsManager.GetItemCount(LodestoneID) > 0 &&
-                                (Enums.ContinentId)Usefuls.RealContinentId == Enums.ContinentId.Draenor &&
-                                qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 2000f)
+                                Usefuls.RealContinentId == 1116 &&
+                                qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 3000f)
                             {
                                 ObjectManager.WoWItem item = ObjectManager.ObjectManager.GetWoWItemById(LodestoneID);
                                 if (item != null && item.IsValid && !ItemsManager.IsItemOnCooldown(LodestoneID) && ItemsManager.IsItemUsable(LodestoneID))
