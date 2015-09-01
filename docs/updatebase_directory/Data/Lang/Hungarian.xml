@@ -1115,7 +1115,7 @@
     </Translation>
     <Translation>
       <Id>Damage_Dealer_Product_Description</Id>
-      <Text>(DPS az aktuális célponton - BETA)</Text>
+      <Text>(DPS az aktuális célponton)</Text>
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
