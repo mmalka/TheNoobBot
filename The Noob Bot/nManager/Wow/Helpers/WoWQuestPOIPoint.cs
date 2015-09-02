@@ -12,22 +12,22 @@ namespace nManager.Wow.Helpers
         private Point _center = new Point(0, 0, 0);
         private bool _middlePointSet;
 
-        private static DBC<QuestPOIPointDbcRecord> _qpPointDBC;
+        private static DB2<QuestPOIPointDb2Record> _qpPointDB2;
 
         private WoWQuestPOIPoint(uint setId)
         {
             _setPoints = new List<Point>();
-            if (_qpPointDBC == null)
-                _qpPointDBC = new DBC<QuestPOIPointDbcRecord>((int) Addresses.DBC.QuestPOIPoint);
+            if (_qpPointDB2 == null)
+                _qpPointDB2 = new DB2<QuestPOIPointDb2Record>((int) Addresses.DBC.QuestPOIPoint);
             bool flag = false;
-            for (int id = _qpPointDBC.MinIndex; id <= _qpPointDBC.MaxIndex; id++)
+            for (int id = _qpPointDB2.MinIndex; id <= _qpPointDB2.MaxIndex; id++)
             {
-                QuestPOIPointDbcRecord qpPointDbcRecord = _qpPointDBC.GetRow(id);
-                if (qpPointDbcRecord.Id == id)
+                QuestPOIPointDb2Record qpPointDb2Record = _qpPointDB2.GetRow(id);
+                if (qpPointDb2Record.Id == id)
                 {
-                    if (qpPointDbcRecord.SetId == setId)
+                    if (qpPointDb2Record.SetId == setId)
                     {
-                        _setPoints.Add(new Point(qpPointDbcRecord.X, qpPointDbcRecord.Y, 0));
+                        _setPoints.Add(new Point(qpPointDb2Record.X, qpPointDb2Record.Y, 0));
                         flag = true;
                     }
                     else if (flag)
@@ -194,7 +194,7 @@ namespace nManager.Wow.Helpers
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct QuestPOIPointDbcRecord
+        private struct QuestPOIPointDb2Record
         {
             public readonly uint Id;
             public readonly int X;
