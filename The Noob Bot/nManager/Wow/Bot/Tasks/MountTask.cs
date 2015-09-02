@@ -127,7 +127,7 @@ namespace nManager.Wow.Bot.Tasks
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
 
                     // We are in Draenor and we have the achievement
-                    if (_dreaneorFly && cont == ContinentId.Draenor)
+                    if (_dreaneorFly && (cont == ContinentId.Draenor || Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) == "TanaanJungle"))
                         return MountCapacity.Fly;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
