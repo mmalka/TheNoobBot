@@ -710,6 +710,9 @@ namespace nManager.Wow.ObjectManager
                     if (Entry == 210565 && (ObjectManager.Me.Level < 90 || Usefuls.IsCompletedAchievement(6552, true)))
                         return false;
 
+                    if (Entry == 236256) // Odd Boulder
+                        return false;
+
                     //if (Entry == 214945) // Onyx Egg. Maybe we should disabled them when exalted with Cloud Serpents
                     //    return false;
                 }
