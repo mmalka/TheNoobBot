@@ -593,7 +593,7 @@ namespace nManager.Wow.ObjectManager
         }
 
         public bool IsHerb { get; set; }
-        public Spell LoggingSpell;
+        public static Spell LoggingSpell;
 
         public bool CanOpen
         {
