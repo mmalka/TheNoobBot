@@ -275,9 +275,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                for (int y = 0; y < 64; y++)
+                for (int y = 0; y < 64 * Division; y++)
                 {
-                    for (int x = 0; x < 64; x++)
+                    for (int x = 0; x < 64 * Division; x++)
                     {
                         downloadTile(GetTileName(x, y));
 
