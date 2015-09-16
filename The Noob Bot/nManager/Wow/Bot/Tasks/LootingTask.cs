@@ -78,7 +78,7 @@ namespace nManager.Wow.Bot.Tasks
                                             nManagerSetting.AddBlackList(u.Guid, 2600);
                                         }
                                         nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                        break;
+                                        return;
                                     }
                                 }
 
