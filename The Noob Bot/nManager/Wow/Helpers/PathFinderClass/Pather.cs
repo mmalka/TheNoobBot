@@ -489,7 +489,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (entry.Value < Others.TimesSec - (15*60)) // 15 * 60 = 15 mins
                 {
                     RemoveTile(entry.Key.Item1, entry.Key.Item2);
-                    Logging.WriteNavigator("Unloading old tile (" + entry.Key.Item1 + ", " + entry.Key.Item2 + ")");
+                    Logging.WriteNavigator("Unloading old tile (" + GetTileName(entry.Key.Item1, entry.Key.Item2, true) + ")");
                     toRemove.Add(entry.Key);
                 }
             }
