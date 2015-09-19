@@ -628,6 +628,8 @@ namespace nManager.Wow.Bot.States
                                     }
                                 }
                             }
+                            if (d1 > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount && !nManagerSetting.CurrentSetting.UseGroundMount)
+                                MountTask.Mount();
                             if (Usefuls.IsFlying)
                                 for (int i = 0; i < points.Count; i++)
                                     points[i].Type = "flying";
