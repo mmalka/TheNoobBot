@@ -20,6 +20,16 @@ namespace nManager.Wow.Bot.States
 
         public static bool IsLooting;
 
+        public Looting()
+        {
+            if (ItemsManager.GetItemCount(109167) > 0)
+                LootingTask.LootARangeId = 109167;
+            else if (ItemsManager.GetItemCount(60854) > 0)
+                LootingTask.LootARangeId = 60854;
+            else
+                LootingTask.LootARangeId = 0;
+        }
+
         public override bool NeedToRun
         {
             get

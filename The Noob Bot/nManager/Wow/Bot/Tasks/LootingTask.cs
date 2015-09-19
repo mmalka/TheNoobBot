@@ -14,6 +14,8 @@ namespace nManager.Wow.Bot.Tasks
 {
     public static class LootingTask
     {
+        public static int LootARangeId;
+
         public static void Pulse(IEnumerable<WoWUnit> woWUnits)
         {
             try
@@ -33,80 +35,37 @@ namespace nManager.Wow.Bot.Tasks
                             Thread.Sleep(250 + Usefuls.Latency);
                             while (ObjectManager.ObjectManager.Me.IsCast)
                                 Thread.Sleep(200);
-                            if (wowUnit.IsValid)
+
+                            if (!wowUnit.IsValid)
+                                continue;
+
+                            bool looted = false;
+                            if (wowUnit.IsLootable)
+                                Logging.Write("Loot " + wowUnit.Name);
+                            else if (wowUnit.IsSkinnable && nManagerSetting.CurrentSetting.ActivateBeastSkinning)
+                                Logging.Write("Skin " + wowUnit.Name);
+                            else
+                                continue;
+
+                            float distanceToUnit = ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position);
+                            // We have no item to loot at range, then go to mob
+                            if (distanceToUnit > 4.0f && (!nManagerSetting.CurrentSetting.UseLootARange || LootARangeId == 0 || distanceToUnit > 40f || !ItemsManager.IsItemUsable(LootARangeId)))
                             {
-                                bool looted = false;
-                                if (wowUnit.IsLootable)
-                                    Logging.Write("Loot " + wowUnit.Name);
-                                else if (wowUnit.IsSkinnable && nManagerSetting.CurrentSetting.ActivateBeastSkinning)
-                                    Logging.Write("Skin " + wowUnit.Name);
-                                else
-                                    continue;
-
-                                List<Point> points = new List<Point>();
-
-                                // Hidden testing 109167 Findle's Loot-A-Range or 60854 Loot-A-Rang
-                                if (nManagerSetting.CurrentSetting.UseLootARange && ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
+                                List<Point> points = PathFinder.FindPath(wowUnit.Position);
+                                if (points.Count <= 0)
                                 {
-                                    int itemId = 0;
-                                    if (ItemsManager.GetItemCount(109167) > 0)
-                                        itemId = 109167;
-                                    else if (ItemsManager.GetItemCount(60854) > 0)
-                                        itemId = 60854;
-                                    if (itemId != 0 && !ItemsManager.IsItemOnCooldown(itemId) && ItemsManager.IsItemUsable(itemId) &&
-                                        ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 40f)
-                                    {
-                                        ItemsManager.UseItem(itemId);
-                                        Thread.Sleep(250 + Usefuls.Latency);
-                                        while (ObjectManager.ObjectManager.Me.IsCast)
-                                        {
-                                            if (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
-                                            {
-                                                return;
-                                            }
-                                            Thread.Sleep(50);
-                                        }
-
-                                        Statistics.Loots++;
-                                        if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
-                                            Elemental.AutoMakeElemental();
-                                        if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
-                                        {
-                                            Thread.Sleep(2000 + Usefuls.Latency); // let the client react to unit flag change
-                                            looted = true;
-                                        }
-                                        else
-                                        {
-                                            WoWUnit unit = wowUnit;
-                                            // we blacklist all unit around for a short time to be sure we loot then
-                                            foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo2D(unit.Position) <= 40f))
-                                            {
-                                                nManagerSetting.AddBlackList(u.Guid, 2600);
-                                            }
-                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                            return;
-                                        }
-                                    }
+                                    points.Add(ObjectManager.ObjectManager.Me.Position);
+                                    points.Add(wowUnit.Position);
                                 }
-
-                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
-                                {
-                                    points = PathFinder.FindPath(wowUnit.Position);
-                                    if (points.Count <= 0)
-                                    {
-                                        points.Add(ObjectManager.ObjectManager.Me.Position);
-                                        points.Add(wowUnit.Position);
-                                    }
-                                    MovementManager.Go(points);
-                                }
-                                Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 5000);
+                                MovementManager.Go(points);
+                                Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 3000);
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
-                                       Products.Products.IsStarted &&
-                                       ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
-                                       !(ObjectManager.ObjectManager.Me.InCombat &&
-                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                                       !timer.IsReady)
+                                    Products.Products.IsStarted &&
+                                    ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
+                                    !(ObjectManager.ObjectManager.Me.InCombat &&
+                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                    !timer.IsReady)
                                 {
                                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
                                     {
@@ -118,124 +77,174 @@ namespace nManager.Wow.Bot.Tasks
                                         {
                                             Thread.Sleep(50);
                                         }
-
-                                        if (wowUnit.IsLootable)
+                                        break;
+                                    }
+                                }
+                            }
+                            // Now loot
+                            if (wowUnit.IsLootable)
+                            {
+                                // Still hidden testing for 109167 Findle's Loot-A-Range and 60854 Loot-A-Rang
+                                if (nManagerSetting.CurrentSetting.UseLootARange && distanceToUnit > 4.0f && distanceToUnit <= 40f && LootARangeId != 0 && ItemsManager.IsItemUsable(LootARangeId))
+                                {
+                                    // Since these items have a CD of only 3 sec, it's worth waiting for the CD to recover
+                                    while (ItemsManager.IsItemOnCooldown(LootARangeId))
+                                        Thread.Sleep(250);
+                                    ItemsManager.UseItem(LootARangeId);
+                                    Thread.Sleep(250 + Usefuls.Latency);
+                                    while (ObjectManager.ObjectManager.Me.IsCast)
+                                    {
+                                        if (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
                                         {
-                                            Interact.InteractWith(wowUnit.GetBaseAddress);
-                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                                            {
-                                                return;
-                                            }
-                                            Thread.Sleep(500 + Usefuls.Latency);
-                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
-                                                ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                                                return;
-                                            Statistics.Loots++;
-                                            if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
-                                                !ObjectManager.ObjectManager.Me.InCombat)
-                                                Elemental.AutoMakeElemental();
-                                            //Thread.Sleep(250 + Usefuls.Latency);
-                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
-                                            {
-                                                Thread.Sleep(2000 + Usefuls.Latency); // let the client react to unit flag change
-                                                looted = true;
-                                            }
-                                            else
-                                            {
-                                                WoWUnit unit = wowUnit;
-                                                // we blacklist all unit around for a short time to be sure we loot then
-                                                foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo2D(unit.Position) <= 25f))
-                                                {
-                                                    nManagerSetting.AddBlackList(u.Guid, 2600);
-                                                }
-                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                                break;
-                                            }
+                                            return;
                                         }
-                                        if (looted && !wowUnit.IsSkinnable)
-                                            break;
-                                        // From here we are sure the unit is skinnable
-                                        // if this is the unit we just looted, we need to redo check for extra loot
-                                        // if this is NOT the unit we just looted, then the check is already done at list building time
-                                        if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
-                                            ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
+                                        Thread.Sleep(150);
+                                    }
+                                }
+                                else
+                                {
+                                    Interact.InteractWith(wowUnit.GetBaseAddress);
+                                    if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                    {
+                                        return;
+                                    }
+                                    Thread.Sleep(500 + Usefuls.Latency);
+                                }
+                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                    ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                                    return;
+                                Statistics.Loots++;
+                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
+                                    !ObjectManager.ObjectManager.Me.InCombat)
+                                    Elemental.AutoMakeElemental();
+
+                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
+                                {
+                                    Thread.Sleep(2000 + Usefuls.Latency); // let the client react to unit flag change
+                                    looted = true;
+                                }
+                                else
+                                {
+                                    WoWUnit unit = wowUnit;
+                                    // we blacklist all unit around for a short time to be sure we loot then
+                                    foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo2D(unit.Position) <= 25f))
+                                    {
+                                        nManagerSetting.AddBlackList(u.Guid, 2600);
+                                    }
+                                    nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                    return;
+                                }
+                            }
+                            if (looted && !wowUnit.IsSkinnable)
+                                continue;
+                            // From here we are sure the unit is skinnable
+                            // if this is the unit we just looted, we need to redo check for extra loot
+                            // if this is NOT the unit we just looted, then the check is already done at list building time
+                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
+                            {
+                                if (looted)
+                                {
+                                    if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
+                                    {
+                                        int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
+                                        if (myHerbalismLevel > 0)
+                                            myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
+                                        if (wowUnit.GetSkillLevelRequired > myHerbalismLevel)
                                         {
-                                            if (looted)
-                                            {
-                                                if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
-                                                {
-                                                    int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
-                                                    if (myHerbalismLevel > 0)
-                                                        myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
-                                                    if (wowUnit.GetSkillLevelRequired > myHerbalismLevel)
-                                                    {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                                        break;
-                                                    }
-                                                }
-                                                else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
-                                                {
-                                                    int myMiningLevel = Skill.GetValue(Enums.SkillLine.Mining);
-                                                    if (myMiningLevel > 0)
-                                                        myMiningLevel += Skill.GetSkillBonus(Enums.SkillLine.Mining);
-                                                    if (wowUnit.GetSkillLevelRequired > myMiningLevel)
-                                                    {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                                        break;
-                                                    }
-                                                }
-                                                else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
-                                                {
-                                                    int myEngeneeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
-                                                    if (myEngeneeringLevel > 0)
-                                                        myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
-                                                    if (wowUnit.GetSkillLevelRequired > myEngeneeringLevel)
-                                                    {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                                        break;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
-                                                    if (mySkinningLevel <= 0)
-                                                    {
-                                                        nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                            Logging.Write("Skin " + wowUnit.Name);
-                                            Interact.InteractWith(wowUnit.GetBaseAddress);
-                                            Thread.Sleep(200 + Usefuls.Latency);
-                                            while (ObjectManager.ObjectManager.Me.IsCast)
-                                            {
-                                                Thread.Sleep(100);
-                                            }
-                                            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
-                                                    Usefuls.IsFlying))))
-                                            {
-                                                return;
-                                            }
-                                            Thread.Sleep(400 + Usefuls.Latency);
-                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
-                                                ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                                                return;
-                                            Statistics.Farms++;
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                            continue;
+                                        }
+                                    }
+                                    else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
+                                    {
+                                        int myMiningLevel = Skill.GetValue(Enums.SkillLine.Mining);
+                                        if (myMiningLevel > 0)
+                                            myMiningLevel += Skill.GetSkillBonus(Enums.SkillLine.Mining);
+                                        if (wowUnit.GetSkillLevelRequired > myMiningLevel)
+                                        {
+                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                            continue;
+                                        }
+                                    }
+                                    else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
+                                    {
+                                        int myEngeneeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
+                                        if (myEngeneeringLevel > 0)
+                                            myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
+                                        if (wowUnit.GetSkillLevelRequired > myEngeneeringLevel)
+                                        {
+                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                            continue;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        int mySkinningLevel = Skill.GetValue(Enums.SkillLine.Skinning);
+                                        if (mySkinningLevel <= 0)
+                                        {
+                                            nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
+                                            continue;
+                                        }
+                                    }
+                                }
+                                // If we looted at range, we must go to creature to skin it
+                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
+                                {
+                                    List<Point> points = PathFinder.FindPath(wowUnit.Position);
+                                    if (points.Count <= 0)
+                                    {
+                                        points.Add(ObjectManager.ObjectManager.Me.Position);
+                                        points.Add(wowUnit.Position);
+                                    }
+                                    MovementManager.Go(points);
+                                    Timer timer = new Timer((int)(Math.DistanceListPoint(points) / 3 * 1000) + 3000);
+                                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
+                                        Products.Products.IsStarted &&
+                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
+                                        !(ObjectManager.ObjectManager.Me.InCombat &&
+                                            !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                            (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                        !timer.IsReady)
+                                    {
+                                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
+                                        {
+                                            MovementManager.StopMove();
+                                            MovementManager.StopMove();
+                                            MountTask.DismountMount();
+                                            Thread.Sleep(250);
+                                            while (ObjectManager.ObjectManager.Me.GetMove)
+                                            {
+                                                Thread.Sleep(50);
+                                            }
                                             break;
                                         }
                                     }
-                                    Thread.Sleep(30);
                                 }
-                                if (timer.IsReady)
-                                    nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*20);
+                                Logging.Write("Skin " + wowUnit.Name);
+                                Interact.InteractWith(wowUnit.GetBaseAddress);
+                                Thread.Sleep(200 + Usefuls.Latency);
+                                while (ObjectManager.ObjectManager.Me.IsCast)
+                                {
+                                    Thread.Sleep(100);
+                                }
+                                if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                        Usefuls.IsFlying))))
+                                {
+                                    return;
+                                }
+                                Thread.Sleep(400 + Usefuls.Latency);
+                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                    ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                                    return;
+                                Statistics.Farms++;
+                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                             }
-                            MovementManager.StopMove();
-                            MovementManager.StopMove();
                         }
+                        MovementManager.StopMove();
+                        MovementManager.StopMove();
                     }
                     catch
                     {
