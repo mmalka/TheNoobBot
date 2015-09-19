@@ -91,7 +91,7 @@ namespace nManager.Wow.Bot.Tasks
                                     while (ItemsManager.IsItemOnCooldown(LootARangeId))
                                         Thread.Sleep(250);
                                     ItemsManager.UseItem(LootARangeId);
-                                    Thread.Sleep(250 + Usefuls.Latency);
+                                    Thread.Sleep(1000 + Usefuls.Latency);
                                     while (ObjectManager.ObjectManager.Me.IsCast)
                                     {
                                         if (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)))
