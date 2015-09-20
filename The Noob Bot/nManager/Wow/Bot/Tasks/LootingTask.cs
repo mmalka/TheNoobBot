@@ -84,7 +84,7 @@ namespace nManager.Wow.Bot.Tasks
                             // Now loot
                             if (wowUnit.IsLootable)
                             {
-                                // Still hidden testing for 109167 Findle's Loot-A-Range and 60854 Loot-A-Rang
+                                // Code for 109167 Findle's Loot-A-Range and 60854 Loot-A-Rang
                                 if (nManagerSetting.CurrentSetting.UseLootARange && distanceToUnit > 4.0f && distanceToUnit <= 40f && LootARangeId != 0 && ItemsManager.IsItemUsable(LootARangeId))
                                 {
                                     // Since these items have a CD of only 3 sec, it's worth waiting for the CD to recover
@@ -118,9 +118,9 @@ namespace nManager.Wow.Bot.Tasks
                                     !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
 
-                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && Skill.GetValue(Enums.SkillLine.Skinning) > 0)
+                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                 {
-                                    Thread.Sleep(2000 + Usefuls.Latency); // let the client react to unit flag change
+                                    Thread.Sleep(475 + Usefuls.Latency); // let the client react to unit flag change
                                     looted = true;
                                 }
                                 else
