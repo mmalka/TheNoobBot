@@ -251,6 +251,8 @@ namespace nManager.Helpful.Forms
             this.BroadcastingIPLocalLabel = new System.Windows.Forms.Label();
             this.BroadcastingPortLabel = new System.Windows.Forms.Label();
             this.AdvancedSettingsPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.UseFrameLockLabel = new System.Windows.Forms.Label();
+            this.UseFrameLock = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.HideSDKFilesLabel = new System.Windows.Forms.Label();
             this.HideSDKFiles = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.AutoCloseChatFrameLabel = new System.Windows.Forms.Label();
@@ -264,8 +266,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.UseFrameLockLabel = new System.Windows.Forms.Label();
-            this.UseFrameLock = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.UseLootARangeLabel = new System.Windows.Forms.Label();
+            this.UseLootARange = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -1135,6 +1137,8 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.LootingFarmingManagementPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.LootingFarmingManagementPanelName.ContentSize = new System.Drawing.Size(556, 518);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.UseLootARangeLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.UseLootARange);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatisticsLabel);
             this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateLootStatistics);
             this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjectsHelper);
@@ -1374,7 +1378,7 @@ namespace nManager.Helpful.Forms
             // 
             this.MakeStackOfElementalsItemsLabel.BackColor = System.Drawing.Color.Transparent;
             this.MakeStackOfElementalsItemsLabel.ForeColor = System.Drawing.Color.Black;
-            this.MakeStackOfElementalsItemsLabel.Location = new System.Drawing.Point(4, 519);
+            this.MakeStackOfElementalsItemsLabel.Location = new System.Drawing.Point(4, 524);
             this.MakeStackOfElementalsItemsLabel.Name = "MakeStackOfElementalsItemsLabel";
             this.MakeStackOfElementalsItemsLabel.Size = new System.Drawing.Size(154, 22);
             this.MakeStackOfElementalsItemsLabel.TabIndex = 51;
@@ -1383,7 +1387,7 @@ namespace nManager.Helpful.Forms
             // MakeStackOfElementalsItems
             // 
             this.MakeStackOfElementalsItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.MakeStackOfElementalsItems.Location = new System.Drawing.Point(163, 519);
+            this.MakeStackOfElementalsItems.Location = new System.Drawing.Point(163, 524);
             this.MakeStackOfElementalsItems.MaximumSize = new System.Drawing.Size(60, 20);
             this.MakeStackOfElementalsItems.MinimumSize = new System.Drawing.Size(60, 20);
             this.MakeStackOfElementalsItems.Name = "MakeStackOfElementalsItems";
@@ -3258,6 +3262,33 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.TitleText = "Advanced Settings";
             this.AdvancedSettingsPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.UnfolderImage")));
             // 
+            // UseFrameLockLabel
+            // 
+            this.UseFrameLockLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseFrameLockLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseFrameLockLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.UseFrameLockLabel.Location = new System.Drawing.Point(4, 133);
+            this.UseFrameLockLabel.Name = "UseFrameLockLabel";
+            this.UseFrameLockLabel.Size = new System.Drawing.Size(430, 22);
+            this.UseFrameLockLabel.TabIndex = 37;
+            this.UseFrameLockLabel.Text = "Allow Game FrameLocking to increase TheNoobBot performance";
+            this.UseFrameLockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // UseFrameLock
+            // 
+            this.UseFrameLock.BackColor = System.Drawing.Color.White;
+            this.UseFrameLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseFrameLock.ForeColor = System.Drawing.Color.Black;
+            this.UseFrameLock.Location = new System.Drawing.Point(448, 133);
+            this.UseFrameLock.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseFrameLock.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseFrameLock.Name = "UseFrameLock";
+            this.UseFrameLock.OffText = "OFF";
+            this.UseFrameLock.OnText = "ON";
+            this.UseFrameLock.Size = new System.Drawing.Size(60, 20);
+            this.UseFrameLock.TabIndex = 36;
+            this.UseFrameLock.Value = true;
+            // 
             // HideSDKFilesLabel
             // 
             this.HideSDKFilesLabel.BackColor = System.Drawing.Color.Transparent;
@@ -3428,32 +3459,28 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
             // 
-            // UseFrameLockLabel
+            // UseLootARangeLabel
             // 
-            this.UseFrameLockLabel.BackColor = System.Drawing.Color.Transparent;
-            this.UseFrameLockLabel.ForeColor = System.Drawing.Color.Black;
-            this.UseFrameLockLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.UseFrameLockLabel.Location = new System.Drawing.Point(4, 133);
-            this.UseFrameLockLabel.Name = "UseFrameLockLabel";
-            this.UseFrameLockLabel.Size = new System.Drawing.Size(430, 22);
-            this.UseFrameLockLabel.TabIndex = 37;
-            this.UseFrameLockLabel.Text = "Allow Game FrameLocking to increase TheNoobBot performance";
-            this.UseFrameLockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UseLootARangeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseLootARangeLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseLootARangeLabel.Location = new System.Drawing.Point(4, 551);
+            this.UseLootARangeLabel.Name = "UseLootARangeLabel";
+            this.UseLootARangeLabel.Size = new System.Drawing.Size(154, 22);
+            this.UseLootARangeLabel.TabIndex = 82;
+            this.UseLootARangeLabel.Text = "Use Loot-A-Range items";
             // 
-            // UseFrameLock
+            // UseLootARange
             // 
-            this.UseFrameLock.BackColor = System.Drawing.Color.White;
-            this.UseFrameLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.UseFrameLock.ForeColor = System.Drawing.Color.Black;
-            this.UseFrameLock.Location = new System.Drawing.Point(448, 133);
-            this.UseFrameLock.MaximumSize = new System.Drawing.Size(60, 20);
-            this.UseFrameLock.MinimumSize = new System.Drawing.Size(60, 20);
-            this.UseFrameLock.Name = "UseFrameLock";
-            this.UseFrameLock.OffText = "OFF";
-            this.UseFrameLock.OnText = "ON";
-            this.UseFrameLock.Size = new System.Drawing.Size(60, 20);
-            this.UseFrameLock.TabIndex = 36;
-            this.UseFrameLock.Value = true;
+            this.UseLootARange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseLootARange.Location = new System.Drawing.Point(163, 551);
+            this.UseLootARange.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseLootARange.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseLootARange.Name = "UseLootARange";
+            this.UseLootARange.OffText = "OFF";
+            this.UseLootARange.OnText = "ON";
+            this.UseLootARange.Size = new System.Drawing.Size(60, 20);
+            this.UseLootARange.TabIndex = 83;
+            this.UseLootARange.Value = true;
             // 
             // GeneralSettings
             // 
@@ -3749,5 +3776,7 @@ namespace nManager.Helpful.Forms
         private TnbSwitchButton HideSDKFiles;
         private Label UseFrameLockLabel;
         private TnbSwitchButton UseFrameLock;
+        private Label UseLootARangeLabel;
+        private TnbSwitchButton UseLootARange;
     }
 }

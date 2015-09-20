@@ -536,6 +536,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers = ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
+                nManagerSetting.CurrentSetting.UseLootARange = UseLootARange.Value;
                 nManagerSetting.CurrentSetting.AutoCloseChatFrame = AutoCloseChatFrame.Value;
                 if (nManagerSetting.CurrentSetting.ActivateLootStatistics && !ActivateLootStatistics.Value)
                     Others.LootStatistics(false);
@@ -680,6 +681,7 @@ namespace nManager.Helpful.Forms
                 ActivatePluginsSystem.Value = managerSetting.ActivatePluginsSystem;
                 LaunchExpiredPlugins.Value = managerSetting.LaunchExpiredPlugins;
                 HideSDKFiles.Value = managerSetting.HideSdkFiles;
+                UseLootARange.Value = managerSetting.UseLootARange;
                 ActivatedPluginsList.Items.Clear();
                 UseFrameLock.Value = managerSetting.UseFrameLock;
                 foreach (string s in managerSetting.ActivatedPluginsList)
