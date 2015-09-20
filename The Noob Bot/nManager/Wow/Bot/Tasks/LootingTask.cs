@@ -60,12 +60,12 @@ namespace nManager.Wow.Bot.Tasks
                                 MovementManager.Go(points);
                                 Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 3000);
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
-                                    Products.Products.IsStarted &&
-                                    ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
-                                    !(ObjectManager.ObjectManager.Me.InCombat &&
-                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                                    !timer.IsReady)
+                                       Products.Products.IsStarted &&
+                                       ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
+                                       !(ObjectManager.ObjectManager.Me.InCombat &&
+                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                       !timer.IsReady)
                                 {
                                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
                                     {
@@ -118,7 +118,7 @@ namespace nManager.Wow.Bot.Tasks
                                     !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
 
-                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning)
+                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && Skill.GetValue(Enums.SkillLine.Skinning) > 0)
                                 {
                                     Thread.Sleep(2000 + Usefuls.Latency); // let the client react to unit flag change
                                     looted = true;
@@ -198,14 +198,14 @@ namespace nManager.Wow.Bot.Tasks
                                         points.Add(wowUnit.Position);
                                     }
                                     MovementManager.Go(points);
-                                    Timer timer = new Timer((int)(Math.DistanceListPoint(points) / 3 * 1000) + 3000);
+                                    Timer timer = new Timer((int) (Math.DistanceListPoint(points)/3*1000) + 3000);
                                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && wowUnit.IsValid &&
-                                        Products.Products.IsStarted &&
-                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
-                                        !(ObjectManager.ObjectManager.Me.InCombat &&
-                                            !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                            (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                                        !timer.IsReady)
+                                           Products.Products.IsStarted &&
+                                           ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
+                                           !(ObjectManager.ObjectManager.Me.InCombat &&
+                                             !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                           !timer.IsReady)
                                     {
                                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
                                         {
@@ -229,8 +229,8 @@ namespace nManager.Wow.Bot.Tasks
                                     Thread.Sleep(100);
                                 }
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
                                         Usefuls.IsFlying))))
                                 {
                                     return;
