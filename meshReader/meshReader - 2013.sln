@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshReader", "meshReader\meshReader.csproj", "{55A65512-1497-4EF3-80D1-8EBD9BC0CDDF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshDisplay", "meshDisplay\meshDisplay\meshDisplay.csproj", "{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshDisplayContent", "meshDisplay\meshDisplayContent\meshDisplayContent.contentproj", "{CB522F8A-2660-4FE1-A065-5E0CA9EBB278}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshReaderTest", "meshReaderTest\meshReaderTest.csproj", "{B419558D-1CB7-44B4-8F8F-CB491C04804F}"
 EndProject
@@ -21,15 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshPather", "meshPather\me
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utility", "Utility", "{D38B65F1-716B-49E4-9F51-90D71FBB62DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshMarker", "meshMarker\meshMarker.csproj", "{0465B51A-F333-4C40-A1DC-228F3289D06C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshDatabase", "meshDatabase\meshDatabase.csproj", "{A7997652-1C78-4C0F-9D4E-31F64501D555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshPathVisualizer", "meshPathVisualizer\meshPathVisualizer.csproj", "{BC3C07B1-3070-4A23-BA61-BE99EE9106F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryPatherFindConsole", "TryPatherFindConsole\TryPatherFindConsole.csproj", "{DB5166A0-A6E8-4EEA-BFDC-D2FEC858F5E1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meshFlood", "meshFlood\meshFlood.csproj", "{430AEBEF-4B6C-40AF-93C3-C0409A59DBA9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CascLib", "CascLib\CascLib.csproj", "{E08E1E48-6585-4137-8405-661C62C10713}"
 EndProject
@@ -49,16 +41,6 @@ Global
 		{55A65512-1497-4EF3-80D1-8EBD9BC0CDDF}.Release|x64.Build.0 = Release|x64
 		{55A65512-1497-4EF3-80D1-8EBD9BC0CDDF}.Release|x86.ActiveCfg = Release|x86
 		{55A65512-1497-4EF3-80D1-8EBD9BC0CDDF}.Release|x86.Build.0 = Release|x86
-		{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}.Debug|x64.ActiveCfg = Debug|x86
-		{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}.Debug|x86.ActiveCfg = Debug|x86
-		{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}.Debug|x86.Build.0 = Debug|x86
-		{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}.Release|x64.ActiveCfg = Release|x86
-		{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}.Release|x86.ActiveCfg = Release|x86
-		{1AB561DA-C0E3-46AA-AC70-13EA9A33F1EF}.Release|x86.Build.0 = Release|x86
-		{CB522F8A-2660-4FE1-A065-5E0CA9EBB278}.Debug|x64.ActiveCfg = Debug|x86
-		{CB522F8A-2660-4FE1-A065-5E0CA9EBB278}.Debug|x86.ActiveCfg = Debug|x86
-		{CB522F8A-2660-4FE1-A065-5E0CA9EBB278}.Release|x64.ActiveCfg = Release|x86
-		{CB522F8A-2660-4FE1-A065-5E0CA9EBB278}.Release|x86.ActiveCfg = Release|x86
 		{B419558D-1CB7-44B4-8F8F-CB491C04804F}.Debug|x64.ActiveCfg = Debug|x64
 		{B419558D-1CB7-44B4-8F8F-CB491C04804F}.Debug|x64.Build.0 = Debug|x64
 		{B419558D-1CB7-44B4-8F8F-CB491C04804F}.Debug|x86.ActiveCfg = Debug|x86
@@ -99,14 +81,6 @@ Global
 		{AC6A0F0E-0AC1-4687-A484-323FBB3C7E97}.Release|x64.Build.0 = Release|x64
 		{AC6A0F0E-0AC1-4687-A484-323FBB3C7E97}.Release|x86.ActiveCfg = Release|x86
 		{AC6A0F0E-0AC1-4687-A484-323FBB3C7E97}.Release|x86.Build.0 = Release|x86
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Debug|x64.ActiveCfg = Debug|x64
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Debug|x64.Build.0 = Debug|x64
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Debug|x86.ActiveCfg = Debug|x86
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Debug|x86.Build.0 = Debug|x86
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Release|x64.ActiveCfg = Release|x64
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Release|x64.Build.0 = Release|x64
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Release|x86.ActiveCfg = Release|x86
-		{0465B51A-F333-4C40-A1DC-228F3289D06C}.Release|x86.Build.0 = Release|x86
 		{A7997652-1C78-4C0F-9D4E-31F64501D555}.Debug|x64.ActiveCfg = Debug|x64
 		{A7997652-1C78-4C0F-9D4E-31F64501D555}.Debug|x64.Build.0 = Debug|x64
 		{A7997652-1C78-4C0F-9D4E-31F64501D555}.Debug|x86.ActiveCfg = Debug|x86
@@ -131,14 +105,10 @@ Global
 		{DB5166A0-A6E8-4EEA-BFDC-D2FEC858F5E1}.Release|x64.Build.0 = Release|x64
 		{DB5166A0-A6E8-4EEA-BFDC-D2FEC858F5E1}.Release|x86.ActiveCfg = Release|x86
 		{DB5166A0-A6E8-4EEA-BFDC-D2FEC858F5E1}.Release|x86.Build.0 = Release|x86
-		{430AEBEF-4B6C-40AF-93C3-C0409A59DBA9}.Debug|x64.ActiveCfg = Debug|x86
-		{430AEBEF-4B6C-40AF-93C3-C0409A59DBA9}.Debug|x86.ActiveCfg = Debug|x86
-		{430AEBEF-4B6C-40AF-93C3-C0409A59DBA9}.Release|x64.ActiveCfg = Release|x86
-		{430AEBEF-4B6C-40AF-93C3-C0409A59DBA9}.Release|x86.ActiveCfg = Release|x86
 		{E08E1E48-6585-4137-8405-661C62C10713}.Debug|x64.ActiveCfg = Debug|x64
 		{E08E1E48-6585-4137-8405-661C62C10713}.Debug|x64.Build.0 = Debug|x64
-		{E08E1E48-6585-4137-8405-661C62C10713}.Debug|x86.ActiveCfg = Debug|x86
-		{E08E1E48-6585-4137-8405-661C62C10713}.Debug|x86.Build.0 = Debug|x86
+		{E08E1E48-6585-4137-8405-661C62C10713}.Debug|x86.ActiveCfg = Debug|x64
+		{E08E1E48-6585-4137-8405-661C62C10713}.Debug|x86.Build.0 = Debug|x64
 		{E08E1E48-6585-4137-8405-661C62C10713}.Release|x64.ActiveCfg = Release|x64
 		{E08E1E48-6585-4137-8405-661C62C10713}.Release|x64.Build.0 = Release|x64
 		{E08E1E48-6585-4137-8405-661C62C10713}.Release|x86.ActiveCfg = Release|x86
@@ -148,9 +118,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0465B51A-F333-4C40-A1DC-228F3289D06C} = {D38B65F1-716B-49E4-9F51-90D71FBB62DF}
 		{BC3C07B1-3070-4A23-BA61-BE99EE9106F8} = {D38B65F1-716B-49E4-9F51-90D71FBB62DF}
-		{430AEBEF-4B6C-40AF-93C3-C0409A59DBA9} = {D38B65F1-716B-49E4-9F51-90D71FBB62DF}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

@@ -5,7 +5,6 @@ using meshReader.Helper;
 
 namespace meshReader.Game.WMO
 {
-    
     public class WorldModelRoot
     {
         public string Path { get; private set; }
@@ -14,6 +13,7 @@ namespace meshReader.Game.WMO
         public List<DoodadInstance> DoodadInstances { get; private set; }
         public List<DoodadSet> DoodadSets { get; private set; }
         public List<WorldModelGroup> Groups { get; private set; }
+        public List<WorldModelMaterialTexture> Materials { get; private set; }
 
         public WorldModelRoot(string path)
         {
@@ -21,6 +21,7 @@ namespace meshReader.Game.WMO
             Path = path;
 
             ReadHeader();
+            //ReadMaterialTextures();
             ReadGroups();
             ReadDoodadInstances();
             ReadDoodadSets();
@@ -89,6 +90,29 @@ namespace meshReader.Game.WMO
             var stream = chunk.GetStream();
             Header = WorldModelHeader.Read(stream);
         }
-    }
 
+        private void ReadMaterialTextures()
+        {
+            var chunk = Data.GetChunkByName("MOMT");
+            var nameChunk = Data.GetChunkByName("MOTX");
+            if (chunk == null || nameChunk == null)
+                return;
+
+            const int materialSize = 64;
+            var countMaterials = (int)(chunk.Length / materialSize);
+            Materials = new List<WorldModelMaterialTexture>(countMaterials);
+            for (int i = 0; i < countMaterials; i++)
+            {
+                var stream = chunk.GetStream();
+                stream.Seek(materialSize * i, SeekOrigin.Current);
+                var material = WorldModelMaterialTexture.Read(stream);
+                var nameStream = nameChunk.GetStream();
+                if (material.Texture1 >= nameChunk.Length)
+                    continue;
+                nameStream.Seek(material.Texture1, SeekOrigin.Current);
+                material.Texture1Name = nameStream.ReadCString();
+                Materials.Add(material);
+            }
+        }
+    }
 }

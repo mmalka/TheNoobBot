@@ -66,10 +66,12 @@ namespace meshBuilder
 
         private string GetTileNameAndPath(int x, int y, int i=0, int j=0)
         {
+#pragma warning disable 162
             if (Constant.Division != 1)
                 return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + "_" + i + j + ".tile";
             else
                 return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile";
+#pragma warning restore 162
         }
 
         private string GetTileLockAndPath(int x, int y)
@@ -77,12 +79,19 @@ namespace meshBuilder
             return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".lock";
         }
 
+        private string GetTileNoneAndPath(int x, int y)
+        {
+            return _meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".none";
+        }
+
         private void SaveTile(int x, int y, byte[] data, int i=0, int j=0)
         {
+#pragma warning disable 162
             if (Constant.Division != 1)
                 File.WriteAllBytes(_meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + "_" + i + j + ".tile", data);
             else
                 File.WriteAllBytes(_meshDir + Continent + "\\" + Continent + "_" + x + "_" + y + ".tile", data);
+#pragma warning restore 162
         }
 
         private void Report(int x, int y, TileEventType type)
@@ -207,7 +216,7 @@ namespace meshBuilder
                 {
                     _doneTiles[x, y] = 0;
                     // Get if tile is alreay Build
-                    if (File.Exists(GetTileNameAndPath(x, y)) || File.Exists(GetTileLockAndPath(x, y)))
+                    if (File.Exists(GetTileNameAndPath(x, y)) || File.Exists(GetTileLockAndPath(x, y)) || File.Exists(GetTileNoneAndPath(x, y)))
                     {
                         continue;
                     }
@@ -249,6 +258,8 @@ namespace meshBuilder
                                 if (data == null)
                                 {
                                     failed = true;
+                                    var none = File.CreateText(GetTileNoneAndPath(x, y));
+                                    none.Close();
                                     break;
                                 }
                                 SaveTile(x, y, data, i, j);

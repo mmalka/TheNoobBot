@@ -6,6 +6,8 @@ using meshBuilder;
 using meshDatabase;
 using meshReader.Game;
 using Microsoft.Win32;
+using meshDatabase.Database;
+using System.Collections.Generic;
 
 namespace meshBuilderGui
 {
@@ -16,6 +18,9 @@ namespace meshBuilderGui
         private Thread _buildThread;
         private int _lastProgressX;
         private bool _buildStarted = false;
+        private bool _initialized = false;
+        private int _buildIndex = -1;
+        private bool _onlyOneCategory = false;
 
         public Interface()
         {
@@ -34,19 +39,42 @@ namespace meshBuilderGui
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (continentNameCB.Text == string.Empty)
+            _onlyOneCategory = false;
+            if (wowDirCB.Text == string.Empty)
                 return;
-
-            try
+            if (continentNameCB.Text == "BUILD ALL")
+            {
+                _buildIndex = 2;
+                continentNameCB.SelectedIndex = _buildIndex;
+            }
+            if (continentNameCB.Text.Contains("------"))
+            {
+                _onlyOneCategory = true;
+                _buildIndex = continentNameCB.SelectedIndex + 1;
+                continentNameCB.SelectedIndex = _buildIndex;
+            }
+            if (!_initialized)
             {
                 MpqManager.Initialize(wowDirCB.Text);
-                var wdt = new WDT("World\\Maps\\" + continentNameCB.Text + "\\" + continentNameCB.Text + ".wdt");
+                _initialized = true;
+            }
+            builderLauncher(continentNameCB.Text);
+        }
+
+        private void builderLauncher(string mapname)
+        {
+            if (mapname.Contains("------"))
+                return;
+            try
+            {
+                string continentInternalName = mapname;
+                var wdt = new WDT("World\\Maps\\" + continentInternalName + "\\" + continentInternalName + ".wdt");
                 if (!wdt.IsValid)
                     return;
 
                 if (wdt.IsGlobalModel)
                 {
-                    _dungeonBuilder = new DungeonBuilder(continentNameCB.Text);
+                    _dungeonBuilder = new DungeonBuilder(continentInternalName, meshTB.Text);
                     _dungeonBuilder.OnProgress += OnProgress;
                     _builder = null;
                     _lastProgressX = 0;
@@ -62,6 +90,14 @@ namespace meshBuilderGui
                     if (countY > (64 - startY))
                         countY = 64 - startY;
 
+                    if (_buildIndex != -1) // We are building everything, then no limits
+                    {
+                        startX = 0;
+                        startY = 0;
+                        countX = 64;
+                        countY = 64;
+                    }
+
                     startXBox.Text = startX.ToString();
                     startXBox.ReadOnly = true;
                     startYBox.Text = startY.ToString();
@@ -71,7 +107,7 @@ namespace meshBuilderGui
                     countYBox.Text = countY.ToString();
                     countYBox.ReadOnly = true;
 
-                    _builder = new ContinentBuilder(continentNameCB.Text, meshTB.Text, startX, startY, countX, countY);
+                    _builder = new ContinentBuilder(continentInternalName, meshTB.Text, startX, startY, countX, countY);
                     _builder.OnTileEvent += OnTileEvent;
                     _dungeonBuilder = null;
                 }
@@ -89,6 +125,7 @@ namespace meshBuilderGui
             meshTB.ReadOnly = true;
             button1.Enabled = false;
             button1.Text = "Building...";
+            populate.Enabled = false;
             
             _buildThread = new Thread(RunBuild) {IsBackground = true}; 
             _buildThread.Start();
@@ -118,15 +155,9 @@ namespace meshBuilderGui
                 }
                 else if (_dungeonBuilder != null)  
                 {
-                    var log = new MemoryLog();
-                    var mesh = _dungeonBuilder.Build(log);
-
-                    if (Directory.Exists(_dungeonBuilder.Dungeon))
-                        Directory.Delete(_dungeonBuilder.Dungeon, true);
-                    Directory.CreateDirectory(_dungeonBuilder.Dungeon);
-                    log.WriteToFile(_dungeonBuilder.Dungeon + "\\Build.log");
+                    var mesh = _dungeonBuilder.Build();
                     if (mesh != null)
-                        File.WriteAllBytes(_dungeonBuilder.Dungeon + "\\" + _dungeonBuilder.Dungeon + ".dmesh", mesh);
+                        _dungeonBuilder.SaveTile(mesh);
                 }
             }
             catch (Exception e)
@@ -173,17 +204,45 @@ namespace meshBuilderGui
                 timeLeftL.Text = "Time Left: " + ContinentBuilder.GetTimeLeft();
                 if (!_buildThread.IsAlive)
                 {
-                    _buildStarted = false;
-                    continentNameCB.Enabled = true;
-                    wowDirCB.Enabled = false; // let this locked
-                    meshTB.ReadOnly = false;
-                    button1.Enabled = true;
-                    startXBox.ReadOnly = false;
-                    startYBox.ReadOnly = false;
-                    countXBox.ReadOnly = false;
-                    countYBox.ReadOnly = false;
-                    ContinentBuilder.Reset();
-                    button1.Text = "Start Build";
+                    if (_buildIndex != -1)
+                        _buildIndex++;
+                    if (_buildIndex == -1 || _buildIndex > continentNameCB.Items.Count - 1)
+                    {
+                        _buildStarted = false;
+                        continentNameCB.Enabled = true;
+                        wowDirCB.Enabled = false; // let this locked
+                        meshTB.ReadOnly = false;
+                        button1.Enabled = true;
+                        startXBox.ReadOnly = false;
+                        startYBox.ReadOnly = false;
+                        countXBox.ReadOnly = false;
+                        countYBox.ReadOnly = false;
+                        ContinentBuilder.Reset();
+                        button1.Text = "Start Build";
+                    }
+                    else
+                    {
+                        if (_onlyOneCategory && continentNameCB.Text.Contains("------"))
+                        {
+                            _buildStarted = false;
+                            continentNameCB.Enabled = true;
+                            wowDirCB.Enabled = false; // let this locked
+                            meshTB.ReadOnly = false;
+                            button1.Enabled = true;
+                            startXBox.ReadOnly = false;
+                            startYBox.ReadOnly = false;
+                            countXBox.ReadOnly = false;
+                            countYBox.ReadOnly = false;
+                            ContinentBuilder.Reset();
+                            button1.Text = "Start Build";
+                        }
+                        else
+                        {
+                            continentNameCB.SelectedIndex = _buildIndex;
+                            ContinentBuilder.Reset();
+                            builderLauncher(continentNameCB.Text);
+                        }
+                    }
                 }
             }
         }
@@ -193,6 +252,72 @@ namespace meshBuilderGui
             MpqManager.Close();
             if (_builder != null)
                 _builder.CleanupLastLock();
+        }
+
+        private void populate_Click(object sender, EventArgs e)
+        {
+            if (wowDirCB.Text == string.Empty)
+                return;
+            continentNameCB.Enabled = false;
+            wowDirCB.Enabled = false;
+            meshTB.ReadOnly = true;
+            button1.Enabled = false;
+            populate.Enabled = false;
+            if (!_initialized)
+            {
+                MpqManager.Initialize(wowDirCB.Text);
+                _initialized = true;
+            }
+            // Doing them one by one to be able to add some separators
+            List<MapEntry> l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.World, MapType.ADTType);
+            List<string> strl = new List<string>();
+            strl.Add("BUILD ALL");
+            strl.Add("------- Big tiled world maps -------");
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            strl.Add("------- BG -------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Battleground, MapType.ADTType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            strl.Add("------- Big tiled Instances-------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Instance, MapType.ADTType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            strl.Add("------- Small Instances-------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Instance, MapType.WDTOnlyType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            strl.Add("------- Big tiled Raids -------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.RaidInstance, MapType.ADTType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            strl.Add("------- Small raids -------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.RaidInstance, MapType.WDTOnlyType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            strl.Add("------- Scenarios -------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Scenario, MapType.ADTType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            /*strl.Add("------- Small Scenarios -------");
+            l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Scenario, MapType.WDTOnlyType);
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);*/
+            strl.Add("------- Garrison maps -------");
+            l0 = PhaseHelper.GetGarrisonMaps();
+            foreach (MapEntry m in l0)
+                strl.Add(m.InternalName);
+            //foreach (string s in strl)
+            //    Console.WriteLine(s);
+            this.continentNameCB.AutoCompleteCustomSource.Clear();
+            this.continentNameCB.AutoCompleteCustomSource.AddRange(strl.ToArray());
+            this.continentNameCB.Items.Clear();
+            this.continentNameCB.Items.AddRange(strl.ToArray());
+            continentNameCB.Enabled = true;
+            wowDirCB.Enabled = true;
+            meshTB.ReadOnly = false;
+            button1.Enabled = true;
+            continentNameCB.SelectedIndex = 2;
         }
 
     }

@@ -60,6 +60,16 @@ namespace meshBuilder
                 _mutex.SetAccessControl(securitySettings);
             }
         }
+        private void CalculateTileBounds2(out float[] bmin, out float[] bmax, int i = 0, int j = 0)
+        {
+            var origin = meshReader.Game.World.Origin;
+            bmin = new float[3];
+            bmax = new float[3];
+            bmin[0] = origin[0] + (Constant.TileSize * i * Constant.Division);
+            bmin[2] = origin[2] + (Constant.TileSize * j * Constant.Division);
+            bmax[0] = origin[0] + (Constant.TileSize * (i + 1) * Constant.Division);
+            bmax[2] = origin[2] + (Constant.TileSize * (j + 1) * Constant.Division);
+        }
 
         private void CalculateTileBounds(out float[] bmin, out float[] bmax, bool forBaseTile = false, int i=0, int j=0)
         {
@@ -87,9 +97,20 @@ namespace meshBuilder
             //if (Cache.Adt.TryGetValue(new Tuple<int, int>(x, y), out adt))
             //    return adt;
             ADT adt = new ADT(GetAdtPath(world, x, y));
-            adt.Read();
+            if (adt.HasObjectData)
+                adt.Read();
             //Cache.Adt.Add(new Tuple<int, int>(x, y), adt);
             return adt;
+        }
+
+        public void InsertAllGameobjectGeometry(int x, int y, int map)
+        {
+            float[] bbMin, bbMax;
+            CalculateTileBounds2(out bbMin, out bbMax, x, y);
+            foreach (GameObject go in GameObjectHelper.GetAllGameobjectInBoundingBox(bbMin, bbMax, map))
+            {
+                Geometry.AddGameObject(go);
+            }
         }
 
         public void PrepareData(BaseLog log)
@@ -100,7 +121,7 @@ namespace meshBuilder
             Cache.Clear();
 
             Geometry = new Geometry { Transform = true };
-            List<ADT> adtList = new List<ADT>();
+            //List<ADT> adtList = new List<ADT>();
 
             bool hasHandle = false;
             try
@@ -117,11 +138,12 @@ namespace meshBuilder
                     hasHandle = true;
                 }
 
-                // Do the work which require this mutex locking
-                {
-                    ADT main = GetAdt(World, X, Y);
-                    Geometry.AddAdt(main);
-                }
+                // Do the work which require this mutex locking (useless with CACS)
+                //{
+                ADT main = GetAdt(World, X, Y);
+                Geometry.AddAdt(main);
+                InsertAllGameobjectGeometry(X, Y, MapId);
+                //}
 
                 if (Geometry.Vertices.Count == 0 && Geometry.Triangles.Count == 0)
                     throw new InvalidOperationException("Can't build tile with empty geometry");
@@ -131,20 +153,30 @@ namespace meshBuilder
                 {
                     for (int tx = X - 1; tx <= X + 1; tx++)
                     {
-                        try
-                        {
-                            // don't load main tile again
-                            if (tx == X && ty == Y)
-                                continue;
+                        // don't load main tile again
+                        if (tx == X && ty == Y)
+                            continue;
 
-                            // Let's make an horible hack here to map garrison tile on draenor map
-                            string nWorld = World.Contains("GarrisonLeve") ? "Draenor" : World;
-                            ADT adt = GetAdt(nWorld, tx, ty);
-                            adtList.Add(adt);
-                        }
-                        catch (FileNotFoundException)
+                        ADT adt = GetAdt(World, tx, ty);
+                        if (adt.HasObjectData)
                         {
-                            // don't care - no file means no geometry
+                            //Console.WriteLine("-> " + World + "_" + tx + "_" + ty);
+                            Geometry.AddAdt(adt);
+                            InsertAllGameobjectGeometry(tx, ty, MapId);
+                        }
+                        else
+                        {
+                            string parentMap = PhaseHelper.GetParentMap(World);
+                            if (parentMap != string.Empty)
+                            {
+                                ADT adtParent = GetAdt(parentMap, tx, ty);
+                                if (adtParent.HasObjectData)
+                                {
+                                    Console.WriteLine("-> " + parentMap + "_" + tx + "_" + ty);
+                                    Geometry.AddAdt(adtParent);
+                                    InsertAllGameobjectGeometry(tx, ty, PhaseHelper.GetMapIdByName(parentMap));
+                                }
+                            }
                         }
                     }
                 }
@@ -155,10 +187,6 @@ namespace meshBuilder
                 if (hasHandle)
                     _mutex.ReleaseMutex();
             }
-
-            foreach (ADT adt in adtList)
-                Geometry.AddAdt(adt);
-            adtList.Clear();
 
             Context = new RecastContext();
             Context.SetContextHandler(Log);
@@ -209,17 +237,19 @@ namespace meshBuilder
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
 
-            Context.ClearUnwalkableTriangles(Config.WalkableSlopeAngle, ref vertices, ref triangles, areas);
-            #if (TIMETHIS)
-                Console.WriteLine("ClearUnwalkableTriangles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
-                cur = stopWatch.ElapsedMilliseconds;
-            #endif
-            Context.RasterizeTriangles(ref vertices, ref triangles, ref areas, hf, Config.WalkableClimb);
-            #if (TIMETHIS)
-                Console.WriteLine("RasterizeTriangles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
-                cur = stopWatch.ElapsedMilliseconds;
-            #endif
-
+            if (triangles.Count() > 0)
+            {
+                Context.ClearUnwalkableTriangles(Config.WalkableSlopeAngle, ref vertices, ref triangles, areas);
+                #if (TIMETHIS)
+                    Console.WriteLine("ClearUnwalkableTriangles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
+                    cur = stopWatch.ElapsedMilliseconds;
+                #endif
+                Context.RasterizeTriangles(ref vertices, ref triangles, ref areas, hf, Config.WalkableClimb);
+                #if (TIMETHIS)
+                    Console.WriteLine("RasterizeTriangles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
+                    cur = stopWatch.ElapsedMilliseconds;
+                #endif
+            }
             vertices = null;
             triangles = null;
             areas = null;
@@ -331,6 +361,29 @@ namespace meshBuilder
 
             var connections = new List<OffMeshConnection>();
 
+            /*if (MapId == 0 && X == 31 && Y == 58)
+            {
+                //<X>-14250.71</X>
+                //<Y>329.7578</Y>
+                //<Z>24.17678</Z>
+
+                //<X>-14254.86</X>
+                //<Y>336.1039</Y>
+                //<Z>26.79213</Z>
+                
+                SlimDX.Vector3 from = new SlimDX.Vector3(1.0f, 1.0f, 1.0f);
+                SlimDX.Vector3 to   = new SlimDX.Vector3(1.0f, 1.0f, 1.0f);
+                OffMeshConnection conn = new OffMeshConnection
+                        { 
+                            From = from.ToRecast().ToFloatArray(),
+                            To = to.ToRecast().ToFloatArray(),
+                            Radius = 2.5f,
+                            Type = ConnectionType.BiDirectional,
+                            UserID = 88,
+                        };
+                connections.Add(conn);
+            }*/
+
             /* // Disable mesh connexion RIVAL
             var taxis = TaxiHelper.GetNodesInBBox(MapId, tilebMax.ToWoW(), tilebMin.ToWoW());
             foreach (var taxi in taxis)
@@ -356,8 +409,8 @@ namespace meshBuilder
                     Log.Log(LogCategory.Warning,
                             "\tPath to: \"" + target.Value.Name + "\" Id: " + target.Value.Id + " Path Id: " +
                             target.Key);
-            }
-            */
+            }*/
+            
 
             byte[] tileData;
             if (!Detour.CreateNavMeshData(out tileData, pmesh, dmesh,

@@ -4,6 +4,7 @@ using System.IO;
 using meshReader.Game;
 using meshReader.Game.ADT;
 using meshReader.Game.WMO;
+using meshDatabase.Database;
 using System.Linq;
 using SlimDX;
 using RecastLayer;
@@ -107,6 +108,14 @@ namespace meshBuilder
             var verts = new List<Vector3>();
             var tris = new List<Triangle<uint>>();
             WorldModelHandler.InsertModelGeometry(verts, tris, def, model);
+            AddData(verts, tris);
+        }
+
+        public void AddGameObject(GameObject go)
+        {
+            var verts = new List<Vector3>();
+            var tris = new List<Triangle<uint>>();
+            WorldModelHandler.InsertGameObjectModelGeometry(verts, tris, GameObjectHelper.GetFullFileNameFromDisplayId(go.Model), go.Transformation/*, go.Rotations*/);
             AddData(verts, tris);
         }
 

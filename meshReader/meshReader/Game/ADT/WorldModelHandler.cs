@@ -87,14 +87,75 @@ namespace meshReader.Game.ADT
             }
         }
 
+        public static void InsertGameObjectModelGeometry(List<Vector3> vertices, List<Triangle<uint>> triangles, string m2path, Matrix transformation)
+        {
+            if (m2path.EndsWith(".WMO", System.StringComparison.InvariantCultureIgnoreCase))
+            {
+                var wmo = Cache.WorldModel.Get(m2path);
+                if (wmo == null)
+                {
+                    try
+                    {
+                        wmo = new WorldModelRoot(m2path);
+                    }
+                    catch { }
+                    Cache.WorldModel.Insert(m2path, wmo);
+                    System.Console.WriteLine(m2path);
+                    foreach (var group in wmo.Groups)
+                    {
+                        if ((group.Flags & 0x80) != 0) // Here is a group of triangles that mess-up the WMO
+                            continue;
+                        int vertOffset = vertices.Count;
+                        if (group.Triangles != null)
+                        {
+                            bool one = false;
+                            for (int i = 0; i < group.Triangles.Length; i++)
+                            {
+                                // only include collidable triangles
+                                if ((group.TriangleFlags[i] & 0x04) == 0 && group.TriangleMaterials[i] != 0xFF)
+                                    continue;
+                                var tri = group.Triangles[i];
+                                triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
+                                                                 (uint)(tri.V1 + vertOffset),
+                                                                 (uint)(tri.V2 + vertOffset)));
+                                one = true;
+                            }
+                            if (one)
+                                vertices.AddRange(group.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
+                        }
+                    }
+
+                }
+            }
+            else // .M2
+            {
+                var model = Cache.Model.Get(m2path);
+                if (model == null)
+                {
+                    model = new Model(m2path);
+                    Cache.Model.Insert(m2path, model);
+                }
+                System.Console.WriteLine(m2path);
+                if (!model.IsCollidable)
+                    return;
+
+                int vertOffset = vertices.Count;
+                vertices.AddRange(model.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
+                foreach (var tri in model.Triangles)
+                    triangles.Add(new Triangle<uint>(TriangleType.Doodad, (uint)(tri.V0 + vertOffset),
+                                                     (uint)(tri.V1 + vertOffset), (uint)(tri.V2 + vertOffset)));
+            }
+        }
+
         public static void InsertModelGeometry(List<Vector3> vertices, List<Triangle<uint>> triangles, WorldModelDefinition def, WorldModelRoot root)
         {
             var transformation = Transformation.GetTransformation(def);
 
             foreach (var group in root.Groups)
             {
+                if ((group.Flags & 0x80) != 0) // Here is a group of triangles that mess-up the WMO
+                    continue;
                 int vertOffset = vertices.Count;
-                //vertices.AddRange(group.Vertices.Select(vert => Vector3.Transform(vert, transformation)));
                 if (group.Triangles != null)
                 {
                     bool one = false;
@@ -103,7 +164,6 @@ namespace meshReader.Game.ADT
                         // only include collidable tris
                         if ((group.TriangleFlags[i] & 0x04) != 0 && group.TriangleMaterials[i] != 0xFF)
                             continue;
-
                         var tri = group.Triangles[i];
                         triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
                                                          (uint)(tri.V1 + vertOffset),

@@ -353,8 +353,8 @@ namespace TheNoobViewer
             //bw.Flush();
             //bw.Close();
 
-            Logger.WriteLine("CASCHandler: {0} file names missing", NumUnknownFiles);
-
+            //Logger.WriteLine("CASCHandler: {0} file names missing", NumUnknownFiles);
+            Logger.WriteLine("Done openning SASC storage");
             return root;
         }
 

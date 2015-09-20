@@ -3,7 +3,7 @@
 
     public static class Constant
     {
-        public const int Division = 1;
+        public const int Division = 2;
         public const float BaseTileSize = 533f + (1 / (float)3);
         public const float TileSize = BaseTileSize / Division;
         public const float MaxXY = 32.0f * BaseTileSize;

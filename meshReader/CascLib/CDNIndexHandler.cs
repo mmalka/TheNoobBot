@@ -173,7 +173,7 @@ namespace TheNoobViewer
             var indexEntry = CDNIndexData[key];
 
             var index = CASCConfig.Archives[indexEntry.Index];
-            var url = CASCConfig.CDNUrl + "/data/" + index.Substring(0, 2) + "/" + index.Substring(2, 2) + "/" + index;
+            var url = CASCConfig.CDNUrl/*.Split(' ')[0]*/ + "/data/" + index.Substring(0, 2) + "/" + index.Substring(2, 2) + "/" + index;
 
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.AddRange(indexEntry.Offset, indexEntry.Offset + indexEntry.Size - 1);

@@ -133,13 +133,13 @@ namespace meshReaderTest
             System.Console.WriteLine("AgentKearnen-Tower Length : " + l);
             System.Console.WriteLine("--------------------------------------------");
 
-            System.Console.WriteLine("BootyTunnel-BootyBay...");
+            /*System.Console.WriteLine("BootyTunnel-BootyBay...");
             l = TryHugePath(BootyTunnel, BootyBay, out path);
             image = new PathImage(Pather.Continent, 128 * 5, 128 * 2, path);
             image.Generate();
             image.Result.Save("BootyTunnelBootyBay.png", ImageFormat.Png);
             System.Console.WriteLine("BootyTunnel-BootyBay Length : " + l);
-            System.Console.WriteLine("--------------------------------------------");
+            System.Console.WriteLine("--------------------------------------------");*/
 
             System.Console.WriteLine("IronForge-LocModanCity...");
             l = TryPath(IronForgeFly, LocModanCityFly, out path, true);
@@ -165,24 +165,24 @@ namespace meshReaderTest
             System.Console.WriteLine("IronForge-Goldshire Length : " + l);
             System.Console.WriteLine("--------------------------------------------");
 
-            System.Console.WriteLine("Goldshire-BootyTunnel...");
+            /*System.Console.WriteLine("Goldshire-BootyTunnel...");
             l = TryHugePath(Goldshire, BootyTunnel, out path);
             image = new PathImage(Pather.Continent, 128 * 2, 128 * 10, path);
             image.Generate();
             image.Result.Save("GoldshireBootyTunnel.png", ImageFormat.Png);
             System.Console.WriteLine("Goldshire-BootyTunnel Length : " + l);
-            System.Console.WriteLine("--------------------------------------------");
+            System.Console.WriteLine("--------------------------------------------");*/
 
             System.Console.WriteLine("Goldshire-BootyTown...");
             l = TryHugePath(Goldshire, BootyBay, out path);
-            image = new PathImage(Pather.Continent, 128 * 3, 128 * 11, path);
+            image = new PathImage(Pather.Continent, 128 * 2, 128 * 10, path);
             image.Generate();
             image.Result.Save("GoldshireBootyTown.png", ImageFormat.Png);
             System.Console.WriteLine("Goldshire-BootyTown Length : " + l);
             System.Console.WriteLine("--------------------------------------------");
 
             System.Console.WriteLine("IronForge-Booty...");
-            l = TryHugePath(IronForgeFly, BootyTunnel, out path);
+            l = TryHugePath(IronForgeFly, BootyBay, out path);
             image = new PathImage(Pather.Continent, 128 * 6, 128 * 18, path);
             image.Generate();
             image.Result.Save("IronForgeBooty.png", ImageFormat.Png);
@@ -200,7 +200,7 @@ namespace meshReaderTest
             // And the final one, the biggest, the best, the .... I am the best ^^
 
             System.Console.WriteLine("Booty-MalTerre...");
-            l = TryHugePath(BootyTunnel, MalTerreEstNord, out path);
+            l = TryHugePath(BootyBay, MalTerreEstNord, out path);
             image = new PathImage(Pather.Continent, 128 * 10, 128 * 34, path);
             image.Generate();
             image.Result.Save("BootyMalTerre.png", ImageFormat.Png);

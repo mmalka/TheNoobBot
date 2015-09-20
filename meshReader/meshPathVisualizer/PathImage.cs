@@ -63,7 +63,8 @@ namespace meshPathVisualizer
                 points[i] = new PointF(tX*Background.TileWidth, tY*Background.TileHeight);
             }
             graphics.SmoothingMode = SmoothingMode.HighQuality;
-            graphics.DrawLines(new Pen(Color.Red, 4f), points);
+            if (points.Length >= 2)
+                graphics.DrawLines(new Pen(Color.Red, 4f), points);
             foreach (var point in points)
                 graphics.DrawEllipse(new Pen(Color.Black, 1f), point.X - (6f/2), point.Y - (6f/2), 6, 6);
             graphics.Dispose();

@@ -50,17 +50,19 @@ namespace meshBuilderGui
             this.meshTB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buildDisplay1 = new meshBuilderGui.BuildDisplay();
+            this.populate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(172, 319);
+            this.button1.Location = new System.Drawing.Point(206, 319);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 20);
+            this.button1.Size = new System.Drawing.Size(64, 20);
             this.button1.TabIndex = 1;
             this.button1.Text = "Start Build";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Enabled = false;
             // 
             // label1
             // 
@@ -131,7 +133,7 @@ namespace meshBuilderGui
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 250;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // statL
@@ -154,7 +156,7 @@ namespace meshBuilderGui
             // 
             // continentNameCB
             // 
-            this.continentNameCB.AutoCompleteCustomSource.AddRange(new string[] {
+            /*this.continentNameCB.AutoCompleteCustomSource.AddRange(new string[] {
             "Azeroth",
             "Kalimdor",
             "Expansion01",
@@ -190,10 +192,13 @@ namespace meshBuilderGui
             "SMVAllianceGarrisonLevel1",
             "SMVAllianceGarrisonLevel2new",
             "SMVAllianceGarrisonLevel2",
-            "BlackrockFoundryRaid"});
+            "BlackrockFoundryRaid",
+            "StormwindJail",
+            "OnyxiaLairInstance"});*/
             this.continentNameCB.FormattingEnabled = true;
             this.continentNameCB.Items.AddRange(new object[] {
-            "Azeroth",
+            "Please click on list button"
+            /*"Azeroth",
             "Kalimdor",
             "Expansion01",
             "Northrend",
@@ -228,12 +233,14 @@ namespace meshBuilderGui
             "SMVAllianceGarrisonLevel1",
             "SMVAllianceGarrisonLevel2new",
             "SMVAllianceGarrisonLevel2",
-            "BlackrockFoundryRaid"});
+            "BlackrockFoundryRaid",
+            "StormwindJail",
+            "OnyxiaLairInstance"*/});
             this.continentNameCB.Location = new System.Drawing.Point(8, 318);
             this.continentNameCB.Name = "continentNameCB";
             this.continentNameCB.Size = new System.Drawing.Size(158, 21);
             this.continentNameCB.TabIndex = 13;
-            this.continentNameCB.Text = "Azeroth";
+            this.continentNameCB.SelectedIndex = 0;
             // 
             // wowDirCB
             // 
@@ -244,6 +251,7 @@ namespace meshBuilderGui
             this.wowDirCB.Name = "wowDirCB";
             this.wowDirCB.Size = new System.Drawing.Size(208, 21);
             this.wowDirCB.TabIndex = 14;
+            this.wowDirCB.SelectedIndex = 0;
             // 
             // label5
             // 
@@ -260,7 +268,7 @@ namespace meshBuilderGui
             this.meshTB.Name = "meshTB";
             this.meshTB.Size = new System.Drawing.Size(208, 20);
             this.meshTB.TabIndex = 16;
-            this.meshTB.Text = Settings.Default.MeshesPath;
+            this.meshTB.Text = global::meshBuilderGui.Properties.Settings.Default.MeshesPath;
             // 
             // label6
             // 
@@ -278,11 +286,22 @@ namespace meshBuilderGui
             this.buildDisplay1.Size = new System.Drawing.Size(262, 262);
             this.buildDisplay1.TabIndex = 0;
             // 
+            // populate
+            // 
+            this.populate.Location = new System.Drawing.Point(170, 319);
+            this.populate.Name = "populate";
+            this.populate.Size = new System.Drawing.Size(34, 20);
+            this.populate.TabIndex = 18;
+            this.populate.Text = "List";
+            this.populate.UseVisualStyleBackColor = true;
+            this.populate.Click += new System.EventHandler(this.populate_Click);
+            // 
             // Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(278, 417);
+            this.Controls.Add(this.populate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.meshTB);
             this.Controls.Add(this.label5);
@@ -331,6 +350,7 @@ namespace meshBuilderGui
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox meshTB;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button populate;
 
 
     }

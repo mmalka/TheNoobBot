@@ -18,10 +18,9 @@ namespace meshReader.Game.ADT
 
         public ADT(string file)
         {
-            Data = new ChunkedData(file);
-
             try
             {
+                Data = new ChunkedData(file);
                 ObjectData = new ChunkedData(file.Replace(".adt", "_obj0.adt"));
                 HasObjectData = true;
             }

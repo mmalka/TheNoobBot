@@ -8,6 +8,7 @@ namespace meshReader.Game.WMO
     public class DoodadInstance
     {
         public uint FileOffset;
+        public ushort Flags;
         public string File;
         public Vector3 Position;
         public float QuatW;
@@ -21,12 +22,14 @@ namespace meshReader.Game.WMO
         {
             var r = new BinaryReader(s);
             var ret = new DoodadInstance();
-            ret.FileOffset = r.ReadUInt32();
+            uint OffsetAndFlag = r.ReadUInt32();
+            ret.FileOffset = OffsetAndFlag & 0x00FFFFFF;
+            ret.Flags = (ushort)(OffsetAndFlag >> 24);
             ret.Position = Vector3Helper.Read(s);
-            ret.QuatW = r.ReadSingle();
             ret.QuatX = r.ReadSingle();
             ret.QuatY = r.ReadSingle();
             ret.QuatZ = r.ReadSingle();
+            ret.QuatW = r.ReadSingle();
             ret.Scale = r.ReadSingle();
             ret.LightColor = r.ReadUInt32();
             return ret;

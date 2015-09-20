@@ -70,7 +70,7 @@ static const int DT_VERTS_PER_POLYGON = 6;
 static const int DT_NAVMESH_MAGIC = 'D'<<24 | 'N'<<16 | 'A'<<8 | 'V';
 
 /// A version number used to detect compatibility of navigation tile data.
-static const int DT_NAVMESH_VERSION = 721;
+static const int DT_NAVMESH_VERSION = 733;
 
 /// A magic number used to detect the compatibility of navigation tile states.
 static const int DT_NAVMESH_STATE_MAGIC = 'D'<<24 | 'N'<<16 | 'M'<<8 | 'S';
@@ -116,6 +116,25 @@ enum dtStraightPathOptions
 	DT_STRAIGHTPATH_AREA_CROSSINGS = 0x01,	///< Add a vertex at every polygon edge crossing where area changes.
 	DT_STRAIGHTPATH_ALL_CROSSINGS = 0x02,	///< Add a vertex at every polygon edge crossing.
 };
+
+
+/// Options for dtNavMeshQuery::findPath
+enum dtFindPathOptions
+{
+	DT_FINDPATH_LOW_QUALITY_FAR = 0x01,		///< [provisional] trade quality for performance far from the origin. The idea is that by then a new query will be issued
+	DT_FINDPATH_ANY_ANGLE	= 0x02,			///< use raycasts during pathfind to "shortcut" (raycast still consider costs)
+};
+
+/// Options for dtNavMeshQuery::raycast
+enum dtRaycastOptions
+{
+	DT_RAYCAST_USE_COSTS = 0x01,		///< Raycast should calculate movement cost along the ray and fill RaycastHit::cost
+};
+
+
+/// Limit raycasting during any angle pahfinding
+/// The limit is given as a multiple of the character radius
+static const float DT_RAY_CAST_LIMIT_PROPORTIONS = 50.0f;
 
 /// Flags representing the type of a navigation mesh polygon.
 enum dtPolyTypes

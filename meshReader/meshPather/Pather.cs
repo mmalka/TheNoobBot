@@ -62,7 +62,7 @@ namespace meshPather
 
     public class Pather
     {
-        private const int Division = 1;
+        private const int Division = 2;
         public delegate bool ConnectionHandlerDelegate(ConnectionData data);
 
         private readonly NavMesh _mesh;
@@ -110,6 +110,7 @@ namespace meshPather
 
         public string GetTilePath(int x, int y)
         {
+#pragma warning disable 162
             if (Division == 1)
                 return _meshPath + "\\" + Continent + "_" + x + "_" + y + ".tile";
             else
@@ -122,6 +123,7 @@ namespace meshPather
                 int j = (int) Math.Round(offsetJ / (Utility.TileSize / Division));
                 return _meshPath + "\\" + Continent + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
             }
+#pragma warning restore 162
         }
 
         public void GetTileByLocation(Vector3 loc, out float x, out float y)
@@ -131,8 +133,8 @@ namespace meshPather
             var input = loc.ToRecast().ToFloatArray();
             float fx, fy;
             GetTileByLocation(input, out fx, out fy);
-            x = /*(int)Math.Floor(fx)*/ fx;
-            y = /*(int)Math.Floor(fy)*/ fy;
+            x = fx;
+            y = fy;
         }
 
         public static void GetWoWTileByLocation(float[] loc, out float x, out float y)
@@ -288,11 +290,19 @@ namespace meshPather
 
             dtPolyRef startRef = _query.FindNearestPolygon(start, extents, Filter);
             if (startRef == 0)
-                throw new NavMeshException(DetourStatus.Failure, "No polyref found for start");
+            {
+                Console.WriteLine("No polyref found for start");
+                return new List<Hop>();
+                //throw new NavMeshException(DetourStatus.Failure, "No polyref found for start");
+            }
 
             dtPolyRef endRef = _query.FindNearestPolygon(end, extents, Filter);
             if (endRef == 0)
-                throw new NavMeshException(DetourStatus.Failure, "No polyref found for end");
+            {
+                Console.WriteLine("No polyref found for end");
+                return new List<Hop>();
+                //throw new NavMeshException(DetourStatus.Failure, "No polyref found for end");
+            }
 
             dtPolyRef[] pathCorridor;
             Console.WriteLine("Findpath...");

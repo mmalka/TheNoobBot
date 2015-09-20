@@ -13,7 +13,7 @@ namespace meshReader.Game.WMO
         public uint CountModels;
         public uint CountDoodads;
         public uint CountSets;
-        public uint AmbientColorUnk;
+        public uint AmbientColor;
         public uint WmoId;
         public Vector3[] BoundingBox;
         public uint LiquidTypeRelated;
@@ -29,7 +29,7 @@ namespace meshReader.Game.WMO
             ret.CountModels = r.ReadUInt32();
             ret.CountDoodads = r.ReadUInt32();
             ret.CountSets = r.ReadUInt32();
-            ret.AmbientColorUnk = r.ReadUInt32();
+            ret.AmbientColor = r.ReadUInt32();
             ret.WmoId = r.ReadUInt32();
             ret.BoundingBox = new Vector3[2];
             ret.BoundingBox[0] = Vector3Helper.Read(s);

@@ -1,6 +1,8 @@
 ﻿using System;
 using DetourLayer;
+using System.IO;
 using meshDatabase;
+using meshDatabase.Database;
 using meshReader.Game;
 using meshReader.Game.WMO;
 using RecastLayer;
@@ -10,20 +12,66 @@ namespace meshBuilder
     
     public class DungeonBuilder : ProgressTracker
     {
+        public int MapId { get; private set; }
+
         public string Dungeon { get; private set; }
         public Geometry Geometry { get; private set; }
         public BaseLog Log { get; private set; }
         public RecastContext Context { get; private set; }
         public RecastConfig Config { get; private set; }
+        private string _meshDir = "";
 
-        public DungeonBuilder(string world)
+        public DungeonBuilder(string world, string meshDir)
         {
             Dungeon = world;
+            _meshDir = meshDir;
             Config = RecastConfig.Dungeon;
+            MapId = PhaseHelper.GetMapIdByName(Dungeon);
         }
 
-        public byte[] Build(BaseLog log)
+        public void SaveTile(byte[] data)
         {
+            File.WriteAllBytes(GetMeshPath(), data);
+        }
+
+        private string GetMeshPath()
+        {
+            return _meshDir + "Dungeons\\" + Dungeon + ".dmesh";
+        }
+
+        private string GetDungeonLockAndPath()
+        {
+            return _meshDir + "Dungeons\\" + Dungeon + ".lock";
+        }
+
+        public void InsertAllGameobjectGeometry(int map)
+        {
+            foreach (GameObject go in GameObjectHelper.GetAllGameobjectInMap(map))
+            {
+                Geometry.AddGameObject(go);
+            }
+        }
+
+        public byte[] Build()
+        {
+            Log = new MemoryLog(); //ConsoleLog();
+            if (!Directory.Exists(_meshDir + "Dungeons"))
+                Directory.CreateDirectory(_meshDir + "Dungeons");
+
+            if (File.Exists(GetDungeonLockAndPath()) || File.Exists(GetMeshPath()))
+                return null;
+
+            try
+            {
+                string tlock = GetDungeonLockAndPath();
+                var sw = File.CreateText(tlock);
+                sw.Close();
+            }
+            catch (Exception)
+            {
+                // In case 2 builder are trying to create the same file
+                return null;
+            }
             var wdt = new WDT("World\\maps\\" + Dungeon + "\\" + Dungeon + ".wdt");
             if (!wdt.IsGlobalModel || !wdt.IsValid)
                 return null;
@@ -38,8 +86,9 @@ namespace meshBuilder
 
             if (Geometry.Vertices.Count == 0 && Geometry.Triangles.Count == 0)
                 throw new InvalidOperationException("Can't build mesh with empty geometry");
+            
+            InsertAllGameobjectGeometry(MapId);
 
-            Log = log;
             Context = new RecastContext();
             Context.SetContextHandler(Log);
 
@@ -66,6 +115,11 @@ namespace meshBuilder
             // Find triangles which are walkable based on their slope and rasterize them.
             Context.ClearUnwalkableTriangles(Config.WalkableSlopeAngle, ref vertices, ref triangles, areas);
             Context.RasterizeTriangles(ref vertices, ref triangles, ref areas, hf, Config.WalkableClimb);
+
+            vertices = null;
+            triangles = null;
+            areas = null;
+            GC.Collect();
 
             CompleteWorkUnit();
 
@@ -117,13 +171,13 @@ namespace meshBuilder
             CompleteWorkUnit();
 
             // Build detail mesh.
-            PolyMeshDetail dmesh;
-            if (!Context.BuildPolyMeshDetail(pmesh, chf, Config.DetailSampleDistance, Config.DetailSampleMaxError, out dmesh))
-                throw new OutOfMemoryException("BuildPolyMeshDetail ran out of memory");
-            CompleteWorkUnit();
-
+            PolyMeshDetail dmesh = null;
+            //if (!Context.BuildPolyMeshDetail(pmesh, chf, Config.DetailSampleDistance, Config.DetailSampleMaxError, out dmesh))
+            //    throw new OutOfMemoryException("BuildPolyMeshDetail ran out of memory");
             chf.Delete();
             cset.Delete();
+
+            CompleteWorkUnit();
 
             // Set flags according to area types (e.g. Swim for Water)
             pmesh.MarkAll();
@@ -132,13 +186,14 @@ namespace meshBuilder
             if (!Detour.CreateNavMeshData(out meshData, pmesh, dmesh, 0, 0, bmin, bmax, Config.WorldWalkableHeight, Config.WorldWalkableRadius, Config.WorldWalkableClimb, Config.CellSize, Config.CellHeight, Config.BuildBvTree, null))
             {
                 pmesh.Delete();
-                dmesh.Delete();
+                //dmesh.Delete();
                 return null;
             }
             
             CompleteWorkUnit();
             pmesh.Delete();
-            dmesh.Delete();
+            //dmesh.Delete();
+            File.Delete(GetDungeonLockAndPath());
             return meshData;
         }
 

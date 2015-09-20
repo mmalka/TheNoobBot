@@ -39,11 +39,10 @@ namespace meshReader.Game
 
             var translation = Matrix.Translation(inst.Position);
             var scale = Matrix.Scaling(new Vector3(inst.Scale, inst.Scale, inst.Scale));
-            var rotation = Matrix.RotationY(MathHelper.Pi);
             var quatRotation =
-                Matrix.RotationQuaternion(new Quaternion(-inst.QuatY, inst.QuatZ, -inst.QuatX, inst.QuatW));
+                Matrix.RotationQuaternion(new Quaternion(inst.QuatX, inst.QuatY, inst.QuatZ, inst.QuatW));
 
-            return scale*rotation*quatRotation*translation*rootTransformation;
+            return scale * quatRotation * translation * rootTransformation;
         }
     }
 
