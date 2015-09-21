@@ -42,11 +42,16 @@ namespace nManager.Wow.Helpers
             return reach;
         }
 
+        public static bool InMeleeRange(WoWUnit unit)
+        {
+            return unit.GetDistance < CombatDistance(unit, true) -1f;
+        }
+
         public static bool InRange(WoWUnit unit)
         {
             if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                 return HealerClass.InRange(unit);
-            return unit.GetDistance < CombatDistance(unit) + (isMeleeClass ? 0 : GetRange);
+            return unit.GetDistance < CombatDistance(unit) + (isMeleeClass ? -1f : GetRange);
         }
 
         public static bool InAggroRange(WoWUnit unit)
