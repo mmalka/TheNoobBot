@@ -47,9 +47,9 @@ namespace nManager.Wow.Bot.Tasks
                             else
                                 continue;
 
-                            float distanceToUnit = ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position);
                             // We have no item to loot at range, then go to mob
-                            if (distanceToUnit > 4.0f && (!nManagerSetting.CurrentSetting.UseLootARange || LootARangeId == 0 || distanceToUnit > 40f || !ItemsManager.IsItemUsable(LootARangeId)))
+                            if (!CombatClass.InMeleeRange(wowUnit) && (!nManagerSetting.CurrentSetting.UseLootARange || LootARangeId == 0 ||
+                                ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 40f || !ItemsManager.IsItemUsable(LootARangeId)))
                             {
                                 List<Point> points = PathFinder.FindPath(wowUnit.Position);
                                 if (points.Count <= 0)
@@ -85,7 +85,9 @@ namespace nManager.Wow.Bot.Tasks
                             if (wowUnit.IsLootable)
                             {
                                 // Code for 109167 Findle's Loot-A-Range and 60854 Loot-A-Rang
-                                if (nManagerSetting.CurrentSetting.UseLootARange && distanceToUnit > 4.0f && distanceToUnit <= 40f && LootARangeId != 0 && ItemsManager.IsItemUsable(LootARangeId))
+                                if (nManagerSetting.CurrentSetting.UseLootARange && !CombatClass.InMeleeRange(wowUnit) && 
+                                    ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 40f && LootARangeId != 0 && 
+                                    ItemsManager.IsItemUsable(LootARangeId))
                                 {
                                     // Since these items have a CD of only 3 sec, it's worth waiting for the CD to recover
                                     while (ItemsManager.IsItemOnCooldown(LootARangeId))
@@ -189,7 +191,7 @@ namespace nManager.Wow.Bot.Tasks
                                     }
                                 }
                                 // If we looted at range, we must go to creature to skin it
-                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
+                                if (!CombatClass.InMeleeRange(wowUnit))
                                 {
                                     List<Point> points = PathFinder.FindPath(wowUnit.Position);
                                     if (points.Count <= 0)
@@ -207,7 +209,7 @@ namespace nManager.Wow.Bot.Tasks
                                                (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                                            !timer.IsReady)
                                     {
-                                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
+                                        if (CombatClass.InMeleeRange(wowUnit))
                                         {
                                             MovementManager.StopMove();
                                             MovementManager.StopMove();
