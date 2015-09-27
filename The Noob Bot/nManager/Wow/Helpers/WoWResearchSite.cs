@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                 if (_rSiteDB2Record0.Id == id)
                 {
                     string temp = Name;
-                    if (temp == name)
+                    if (temp == name && _rSiteDB2Record0.Map == Usefuls.ContinentId)
                     {
                         if (SecondOne && !second)
                             second = true;
