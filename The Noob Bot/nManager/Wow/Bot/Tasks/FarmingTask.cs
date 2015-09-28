@@ -236,9 +236,9 @@ namespace nManager.Wow.Bot.Tasks
                 foreach (WoWGameObject node in nodes)
                 {
                     WoWGameObject inode = node;
-                    if (_curNode != null && _curNode.IsValid)
+                    if (_curNode != null && _curNode.IsValid && ! nManagerSetting.IsBlackListed(_curNode.Guid))
                         inode = _curNode;
-                    else if (inode.IsValid)
+                    if (inode.IsValid)
                     {
                         _curNode = node;
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(inode.Position) > 5.0f)
@@ -301,30 +301,29 @@ namespace nManager.Wow.Bot.Tasks
                         _wasLooted = false;
                         _countThisLoot = true;
                         Interact.InteractWith(inode.GetBaseAddress);
-                        Thread.Sleep(250 + Usefuls.Latency);
-                        if (ObjectManager.ObjectManager.Me.InCombat)
+                        Thread.Sleep(Usefuls.Latency + 500);
+                        if (!ObjectManager.ObjectManager.Me.IsCast)
                         {
-                            _countThisLoot = false;
-                            return;
+                            Interact.InteractWith(node.GetBaseAddress);
+                            Thread.Sleep(Usefuls.Latency + 500);
                         }
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
-                            Thread.Sleep(250);
+                            Thread.Sleep(150);
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             _countThisLoot = false;
                             return;
                         }
-                        Thread.Sleep(500 + Usefuls.Latency);
+                        Thread.Sleep(100 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             _countThisLoot = false;
                             return;
                         }
+                        nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
                         if (_wasLooted)
-                            nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
-                        else
                             Logging.Write("Farm failed");
                         return;
                     }
