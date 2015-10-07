@@ -524,6 +524,23 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
+        public List<Point> FindLocalPath(Point startVec, Point endVec)
+        {
+            {
+                try
+                {
+                    bool b;
+                    return FindPathSimple(startVec, endVec, out b, true);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("FindLocalpath(Point startVec, Point endVec): " + exception);
+                    return new List<Point>();
+                }
+            }
+
+        }
+
         public List<Point> FindPath(Point startVec, Point endVec)
         {
             try
@@ -572,7 +589,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             return path;
         }
 
-        public List<Point> FindPathSimple(Point startVec, Point endVec, out bool resultSuccess)
+        public List<Point> FindPathSimple(Point startVec, Point endVec, out bool resultSuccess, bool ShortPath = false)
         {
             try
             {
@@ -599,7 +616,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     return new List<Point>();
 
                 dtPolyRef[] pathCorridor;
-                DetourStatus status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
+                DetourStatus status;
+                if (ShortPath)
+                    status = _query.FindLocalPath(startRef, endRef, start, end, Filter, out pathCorridor);
+                else
+                    status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
                 if (status.HasFailed() || pathCorridor == null)
                 {
                     Logging.WriteNavigator(status + " FindPath failed, start: " + startRef + " end: " + endRef);
