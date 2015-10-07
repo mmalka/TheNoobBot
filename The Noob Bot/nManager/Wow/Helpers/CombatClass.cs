@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
 
         public static bool InMeleeRange(WoWUnit unit)
         {
-            return unit.GetDistance < CombatDistance(unit, true) -1f;
+            return unit.GetDistance < CombatDistance(unit, true) - 0.2f;
         }
 
         public static bool InRange(WoWUnit unit)
