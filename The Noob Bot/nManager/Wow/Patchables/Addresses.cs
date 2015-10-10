@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 20490
+    ///   Offset and Pointer for Wow 20574
     /// </summary>
     public static class Addresses
     {
@@ -70,8 +70,8 @@
             SpellCategories = 0xD7547C,
             FactionTemplate = 0xD6C854,
             Lock = 0xD7262C,
-            QuestPOIPoint = 0xD754B0, // DB2! QuestPOIPointDBTableFound
-            ResearchSite = 0xD76488, // DB2! CGWorldMap__SetMap+36D
+            QuestPOIPoint = 0xD754B0, // DB2! OneFunction // QuestPOIPointDbTable
+            ResearchSite = 0xD76488, // DB2! CGWorldMap__SetMap+36D // ResearchSiteDBTable
             Map = 0xD7CF10,
         }
 
@@ -246,12 +246,12 @@
         {
             ClntObjMgrGetActivePlayerObj = 0x3D0F,
             FrameScript_ExecuteBuffer = 0x2734F,
-            CGUnit_C__InitializeTrackingState = 0x32B6D4, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x31CEF7,
-            CGWorldFrame__Intersect = 0x569EE8,
-            Spell_C_HandleTerrainClick = 0x284851,
-            CGUnit_C__Interact = 0x9963B0,
-            strlen = 0x6B0E50, // ida _strlen
+            CGUnit_C__InitializeTrackingState = 0x32B72C, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x31CF4E,
+            CGWorldFrame__Intersect = 0x569EDF,
+            Spell_C_HandleTerrainClick = 0x2848A8,
+            CGUnit_C__Interact = 0x996373,
+            strlen = 0x6B0E40, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
