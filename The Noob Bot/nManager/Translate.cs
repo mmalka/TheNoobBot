@@ -517,6 +517,7 @@ namespace nManager
             DigsiteName,
             Priority,
             UseKeystones,
+            CrateRestoredArtifacts,
             LatestLogEntry,
             TargetLevel,
             TargetName,

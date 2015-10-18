@@ -1786,6 +1786,10 @@
       <Text>Brug Keystones</Text>
     </Translation>
     <Translation>
+      <Id>CrateRestoredArtifacts</Id>
+      <Text>Crate Restored Artifacts</Text>
+    </Translation>
+    <Translation>
       <Id>LatestLogEntry</Id>
       <Text>Seneste Log Entry:</Text>
     </Translation>

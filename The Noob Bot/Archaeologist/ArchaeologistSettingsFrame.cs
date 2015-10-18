@@ -30,6 +30,7 @@ namespace Archaeologist
                 SolvingEveryXMin.Value = ArchaeologistSetting.CurrentSetting.SolvingEveryXMin;
                 MaxTryByDigsite.Value = ArchaeologistSetting.CurrentSetting.MaxTryByDigsite;
                 UseKeystones.Checked = ArchaeologistSetting.CurrentSetting.UseKeystones;
+                CrateRestored.Checked = ArchaeologistSetting.CurrentSetting.CrateRestored;
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
                 DigSitesTable.Columns.Add("Id", "Id");
@@ -64,6 +65,7 @@ namespace Archaeologist
         private void Translate()
         {
             UseKeystones.Text = nManager.Translate.Get(nManager.Translate.Id.UseKeystones);
+            CrateRestored.Text = nManager.Translate.Get(nManager.Translate.Id.CrateRestoredArtifacts);
             _digsiteNameColumn = nManager.Translate.Get(nManager.Translate.Id.DigsiteName);
             _priorityDigsiteColumn = nManager.Translate.Get(nManager.Translate.Id.Priority);
             _activeDigsiteColumn = nManager.Translate.Get(nManager.Translate.Id.Active);
@@ -145,6 +147,7 @@ namespace Archaeologist
                 ArchaeologistSetting.CurrentSetting.SolvingEveryXMin = (int) SolvingEveryXMin.Value;
                 ArchaeologistSetting.CurrentSetting.MaxTryByDigsite = (int) MaxTryByDigsite.Value;
                 ArchaeologistSetting.CurrentSetting.UseKeystones = UseKeystones.Checked;
+                ArchaeologistSetting.CurrentSetting.CrateRestored = CrateRestored.Checked;
                 ArchaeologistSetting.CurrentSetting.Save();
                 var digsite = new List<Digsite>();
                 for (int i = 0; i < DigSitesTable.Rows.Count - 1; i++)

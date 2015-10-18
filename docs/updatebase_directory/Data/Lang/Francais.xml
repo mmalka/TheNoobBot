@@ -1787,6 +1787,10 @@
       <Text>Pierres angulaires</Text>
     </Translation>
     <Translation>
+      <Id>CrateRestoredArtifacts</Id>
+      <Text>Mettre dans une caisse</Text>
+    </Translation>
+    <Translation>
       <Id>LatestLogEntry</Id>
       <Text>Latest Log Entry :</Text>
     </Translation>

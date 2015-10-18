@@ -39,6 +39,7 @@ namespace nManager.Wow.Bot.States
         public int MaxTryByDigsite = 30;
         private int nbCastSurveyError;
         public bool UseKeystones = true;
+        public bool CrateRestored = true;
 
         private LocState myState = LocState.LocalMove;
         private Timer timerLooting;
@@ -164,7 +165,9 @@ namespace nManager.Wow.Bot.States
                 {
                     MovementManager.StopMove();
                     LongMove.StopLongMove();
-                    Archaeology.SolveAllArtifact(UseKeystones);
+                    if (Archaeology.SolveAllArtifact(UseKeystones) > 0)
+                        if (CrateRestored)
+                            Archaeology.CrateRestoredArtifact();
                     timerAutoSolving = new Timer(SolvingEveryXMin*1000*60);
                 }
 
@@ -214,6 +217,8 @@ namespace nManager.Wow.Bot.States
                                 nManagerSetting.AddBlackList(t.Guid); // bugged artifacts not lootable
                                 Logging.Write("Black-listing bugged artifact");
                             }
+                            else if (CrateRestored)
+                                Archaeology.CrateRestoredArtifact();
                             nbLootAttempt = 0;
                             return;
                         }

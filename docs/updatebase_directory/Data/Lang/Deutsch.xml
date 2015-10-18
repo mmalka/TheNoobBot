@@ -1786,6 +1786,10 @@
       <Text>Benutze Schlussstein</Text>
     </Translation>
     <Translation>
+      <Id>CrateRestoredArtifacts</Id>
+      <Text>Crate Restored Artifacts</Text>
+    </Translation>
+    <Translation>
       <Id>LatestLogEntry</Id>
       <Text>Letzter Log Eintrag :</Text>
     </Translation>

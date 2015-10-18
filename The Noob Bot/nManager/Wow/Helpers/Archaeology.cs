@@ -13,10 +13,13 @@ namespace nManager.Wow.Helpers
     public class Archaeology
     {
         private static List<Digsite> _allDigsiteZone = new List<Digsite>();
+        private static string _CrateRestoredArtifactSpellName;
 
         public static void Initialize()
         {
             _allDigsiteZone = new List<Digsite>();
+             Spell spell = new Spell(126935);
+             _CrateRestoredArtifactSpellName = spell.NameInGame;
         }
 
         public static void ClearList()
@@ -369,6 +372,26 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("Archaeology >  solveAllArtifact(): " + e);
                 return 0;
             }
+        }
+
+        public static void CrateRestoredArtifact()
+        {
+            foreach (WoWItem item in ObjectManager.ObjectManager.GetObjectWoWItem())
+            {
+                Memory.WowMemory.GameFrameLock();
+                string spellname = ItemsManager.GetItemSpell(item.Entry);
+                if (spellname == _CrateRestoredArtifactSpellName)
+                {
+                    Memory.WowMemory.GameFrameUnLock();
+                    ItemsManager.UseItem(item.Entry);
+                    Thread.Sleep(500 + Usefuls.Latency);
+                    while (ObjectManager.ObjectManager.Me.IsCast)
+                    {
+                        Thread.Sleep(150);
+                    }
+                }
+            }
+            Memory.WowMemory.GameFrameUnLock();
         }
 
         private struct DigsitesZoneLua

@@ -43,6 +43,7 @@
             this.MaxTryByDigsiteLabel = new System.Windows.Forms.Label();
             this.SolvingEveryXMin = new System.Windows.Forms.NumericUpDown();
             this.MaxTryByDigsite = new System.Windows.Forms.NumericUpDown();
+            this.CrateRestored = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.TopLeftLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ControlMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReduceButton)).BeginInit();
@@ -204,9 +205,9 @@
             this.UseKeystones.BackColor = System.Drawing.Color.Transparent;
             this.UseKeystones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UseKeystones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
-            this.UseKeystones.Location = new System.Drawing.Point(35, 552);
+            this.UseKeystones.Location = new System.Drawing.Point(35, 536);
             this.UseKeystones.Name = "UseKeystones";
-            this.UseKeystones.Size = new System.Drawing.Size(115, 29);
+            this.UseKeystones.Size = new System.Drawing.Size(198, 29);
             this.UseKeystones.TabIndex = 26;
             this.UseKeystones.Text = "Use Keystones";
             this.UseKeystones.UseVisualStyleBackColor = false;
@@ -216,12 +217,12 @@
             this.SolvingEveryXMinLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.SolvingEveryXMinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.SolvingEveryXMinLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
-            this.SolvingEveryXMinLabel.Location = new System.Drawing.Point(161, 552);
+            this.SolvingEveryXMinLabel.Location = new System.Drawing.Point(272, 535);
             this.SolvingEveryXMinLabel.Name = "SolvingEveryXMinLabel";
-            this.SolvingEveryXMinLabel.Size = new System.Drawing.Size(142, 29);
+            this.SolvingEveryXMinLabel.Size = new System.Drawing.Size(209, 29);
             this.SolvingEveryXMinLabel.TabIndex = 27;
             this.SolvingEveryXMinLabel.Text = "Solving Every X Min:";
-            this.SolvingEveryXMinLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SolvingEveryXMinLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MaxTryByDigsiteLabel
             // 
@@ -229,12 +230,12 @@
             this.MaxTryByDigsiteLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.MaxTryByDigsiteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.MaxTryByDigsiteLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
-            this.MaxTryByDigsiteLabel.Location = new System.Drawing.Point(361, 552);
+            this.MaxTryByDigsiteLabel.Location = new System.Drawing.Point(275, 564);
             this.MaxTryByDigsiteLabel.Name = "MaxTryByDigsiteLabel";
-            this.MaxTryByDigsiteLabel.Size = new System.Drawing.Size(130, 29);
+            this.MaxTryByDigsiteLabel.Size = new System.Drawing.Size(206, 29);
             this.MaxTryByDigsiteLabel.TabIndex = 28;
             this.MaxTryByDigsiteLabel.Text = "Max Try By Digsite:";
-            this.MaxTryByDigsiteLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MaxTryByDigsiteLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // SolvingEveryXMin
             // 
@@ -242,7 +243,7 @@
             this.SolvingEveryXMin.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SolvingEveryXMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.SolvingEveryXMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
-            this.SolvingEveryXMin.Location = new System.Drawing.Point(306, 560);
+            this.SolvingEveryXMin.Location = new System.Drawing.Point(484, 543);
             this.SolvingEveryXMin.Margin = new System.Windows.Forms.Padding(0);
             this.SolvingEveryXMin.Maximum = new decimal(new int[] {
             120,
@@ -269,7 +270,7 @@
             this.MaxTryByDigsite.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MaxTryByDigsite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.MaxTryByDigsite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
-            this.MaxTryByDigsite.Location = new System.Drawing.Point(494, 560);
+            this.MaxTryByDigsite.Location = new System.Drawing.Point(482, 573);
             this.MaxTryByDigsite.Margin = new System.Windows.Forms.Padding(0);
             this.MaxTryByDigsite.Minimum = new decimal(new int[] {
             20,
@@ -286,12 +287,25 @@
             0,
             0});
             // 
+            // CrateRestored
+            // 
+            this.CrateRestored.BackColor = System.Drawing.Color.Transparent;
+            this.CrateRestored.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CrateRestored.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(160)))), ((int)(((byte)(229)))));
+            this.CrateRestored.Location = new System.Drawing.Point(35, 565);
+            this.CrateRestored.Name = "CrateRestored";
+            this.CrateRestored.Size = new System.Drawing.Size(198, 29);
+            this.CrateRestored.TabIndex = 31;
+            this.CrateRestored.Text = "Crate restored artifacts";
+            this.CrateRestored.UseVisualStyleBackColor = false;
+            // 
             // ArchaeologistSettingsFrame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.CrateRestored);
             this.Controls.Add(this.MaxTryByDigsite);
             this.Controls.Add(this.SolvingEveryXMin);
             this.Controls.Add(this.MaxTryByDigsiteLabel);
@@ -340,6 +354,7 @@
         private System.Windows.Forms.Label MaxTryByDigsiteLabel;
         private System.Windows.Forms.NumericUpDown SolvingEveryXMin;
         private System.Windows.Forms.NumericUpDown MaxTryByDigsite;
+        private System.Windows.Forms.CheckBox CrateRestored;
     }
 }
 

@@ -43,5 +43,6 @@ namespace Archaeologist.Bot
         public int SolvingEveryXMin = 20;
         public int MaxTryByDigsite = 50;
         public bool UseKeystones = true;
+        public bool CrateRestored = true;
     }
 }
