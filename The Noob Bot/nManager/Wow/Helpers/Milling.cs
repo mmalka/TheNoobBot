@@ -7,11 +7,12 @@ namespace nManager.Wow.Helpers
 {
     public static class Milling
     {
+        private static Spell spell = new Spell("Milling");
+
         public static void Pulse(List<string> items)
         {
             try
             {
-                var spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return;
 
@@ -78,7 +79,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return false;
 
