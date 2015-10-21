@@ -204,6 +204,7 @@ namespace nManager.Wow.Bot.States
                         {
                             MountTask.Mount();
                             Point p = new Point(t.Position);
+                            p.Z += 5.0f;
                             points.Add(t.Position);
                         }
                         MovementManager.Go(points);
@@ -418,14 +419,13 @@ namespace nManager.Wow.Bot.States
                     float angle;
                     {
                         Point p;
-                        float distance, distanceMin, distanceMax, decrement, increment;
+                        float distance, distanceMin, distanceMax, decrement;
                         if (t.DisplayId == 10103) // Survey Tool (Red) 100 yard
                         {
                             distance = 90f;
                             distanceMin = 20f;
                             distanceMax = 210f;
-                            increment = 8f;
-                            decrement = 8f;
+                            decrement = 10f;
                             _lastGreenPosition = new Point();
                             _AntiPingPong = false;
                             _greenCount = 0;
@@ -434,8 +434,7 @@ namespace nManager.Wow.Bot.States
                         {
                             distance = 46f;
                             distanceMin = 20f;
-                            distanceMax = 60f;
-                            increment = 7f;
+                            distanceMax = 56f;
                             decrement = 6.5f;
                             _lastGreenPosition = new Point();
                             _AntiPingPong = false;
@@ -444,7 +443,6 @@ namespace nManager.Wow.Bot.States
                         else // Survey Tool (Green) 25 yard (t.DisplayId == 10101)
                         {
                             _greenCount++;
-                            increment = 4f;
                             if (_greenCount >= 10)
                             {
                                 _greenCount = 0;
@@ -468,7 +466,7 @@ namespace nManager.Wow.Bot.States
                             {
                                 distance = 19f;
                                 distanceMin = 7f;
-                                distanceMax = 41f;
+                                distanceMax = 36f;
                                 decrement = 3f;
                             }
                         }
@@ -477,6 +475,8 @@ namespace nManager.Wow.Bot.States
                             p0 = new Point(t.Position);
                             angle = t.Orientation;
                             p = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
+
+                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                             p.Z = PathFinder.GetZPosition(p, true);
                             bool valid;
                             PathFinder.FindPath(p, out valid);
@@ -485,46 +485,19 @@ namespace nManager.Wow.Bot.States
                                 bool IamOutOfWater = IsPointOutOfWater(ObjectManager.ObjectManager.Me.Position);
                                 while (!valid || p.Z == 0 || !qPOI.IsInside(p) || !(!IamOutOfWater || IsPointOutOfWater(p)))
                                 {
-                                    if (d + increment > distanceMax)
+                                    if (d + 5 > distanceMax)
                                         break;
-                                    d += increment;
+                                    d += 5;
                                     Point newone = Math.GetPosition2DOfAngleAndDistance(p0, angle, d);
                                     if (qPOI.IsInside(newone))
                                     {
                                         p = new Point(newone);
-                                        p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
-                                        p.Z = PathFinder.GetZPosition(p, true);
+                                        p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                        p.Z = PathFinder.GetZPosition(p, true); //(t.DisplayId == 10101 ? false : true));
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d*5 && d > 30)
                                             valid = false;
-                                    }
-                                    // Since these direction are approximate, also search in a pi/5 angle
-                                    if (!valid/* && t.DisplayId == 10103*/)
-                                    {
-                                        float angleplus = Math.FixAngle(angle + ((float)System.Math.PI / 10f));
-                                        newone = Math.GetPosition2DOfAngleAndDistance(p0, angleplus, d);
-                                        p = new Point(newone);
-                                        p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
-                                        p.Z = PathFinder.GetZPosition(p, true);
-                                        if (p.Z == 0) // if p == 0 we don't care about the path
-                                            valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
-                                            valid = false;
-                                        if (valid) Logging.Write("Angles+ for distance " + d);
-                                    }
-                                    if (!valid/* && t.DisplayId == 10103*/)
-                                    {
-                                        float angleminus = Math.FixAngle(angle - ((float)System.Math.PI / 10f));
-                                        newone = Math.GetPosition2DOfAngleAndDistance(p0, angleminus, d);
-                                        p = new Point(newone);
-                                        p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
-                                        p.Z = PathFinder.GetZPosition(p, true);
-                                        if (p.Z == 0) // if p == 0 we don't care about the path
-                                            valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
-                                            valid = false;
-                                        if (valid) Logging.Write("Angles- for distance " + d);
                                     }
                                 }
                                 if (!valid || p.Z == 0 || !qPOI.IsInside(p) || !(!IamOutOfWater || IsPointOutOfWater(p)))
@@ -539,39 +512,12 @@ namespace nManager.Wow.Bot.States
                                         if (qPOI.IsInside(newone))
                                         {
                                             p = new Point(newone);
-                                            p.Z += d / 10.0f; // just so that the the GetZ don't find caves too easiely
+                                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindPath(p, out valid)) > d*5 && d > 30)
                                                 valid = false;
-                                        }
-                                        // Since these direction are approximate, also search in a pi/5 angle
-                                        if (!valid/* && t.DisplayId == 10103*/)
-                                        {
-                                            float angleplus = Math.FixAngle(angle + ((float)System.Math.PI / 10f));
-                                            newone = Math.GetPosition2DOfAngleAndDistance(p0, angleplus, d);
-                                            p = new Point(newone);
-                                            p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
-                                            p.Z = PathFinder.GetZPosition(p, true);
-                                            if (p.Z == 0) // if p == 0 we don't care about the path
-                                                valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
-                                                valid = false;
-                                            if (valid) Logging.Write("Angles+ for distance " + d);
-                                        }
-                                        if (!valid/* && t.DisplayId == 10103*/)
-                                        {
-                                            float angleminus = Math.FixAngle(angle - ((float)System.Math.PI / 10f));
-                                            newone = Math.GetPosition2DOfAngleAndDistance(p0, angleminus, d);
-                                            p = new Point(newone);
-                                            p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
-                                            p.Z = PathFinder.GetZPosition(p, true);
-                                            if (p.Z == 0) // if p == 0 we don't care about the path
-                                                valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
-                                                valid = false;
-                                            if (valid) Logging.Write("Angles- for distance " + d);
                                         }
                                     }
                                 }
@@ -579,7 +525,7 @@ namespace nManager.Wow.Bot.States
                             // check pingpong but not a second time
                             if (_AntiPingPong)
                                 _AntiPingPong = false;
-                            else if (t.DisplayId == 10101 && _lastGreenPosition.IsValid && p.DistanceTo2D(_lastGreenPosition) <= 7f)
+                            else if (t.DisplayId == 10101 && _lastGreenPosition.IsValid && p.DistanceTo2D(_lastGreenPosition) <= 6f)
                                 _AntiPingPong = true;
                             // then remmember the last Green Position
                             if (t.DisplayId == 10101)
@@ -595,20 +541,20 @@ namespace nManager.Wow.Bot.States
 
                         // Find Path
                         bool resultB;
-                        List<Point> points = PathFinder.FindLocalPath(p, out resultB, false);
+                        List<Point> points = PathFinder.FindPath(p, out resultB, false);
 
                         // If path not found find nearer
                         if (points.Count <= 0)
                         {
                             Point pt = Math.GetPosition2DOfAngleAndDistance(p0, angle, 15);
                             pt.Z = ObjectManager.ObjectManager.Me.Position.Z;
-                            points = PathFinder.FindLocalPath(pt, out resultB, false);
+                            points = PathFinder.FindPath(pt, out resultB, false);
                             if (points.Count > 0 && resultB)
                                 p = new Point(pt);
                         }
 
                         // Go to next position
-                        /*if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
+                        if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
                             nbStuck >= 2)
                             // Use fly mount
                         {
@@ -653,7 +599,7 @@ namespace nManager.Wow.Bot.States
                             nbStuck = 0;
 // ReSharper restore RedundantAssignment
                         }
-                        else //  walk to next position*/
+                        else //  walk to next position
                         {
                             float d1 = Math.DistanceListPoint(points);
                             float d2 = points[0].DistanceTo(points[points.Count - 1]);

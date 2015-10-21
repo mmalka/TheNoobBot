@@ -1466,26 +1466,6 @@ exit:
 			return (DetourStatus)status;
 		}
 
-        DetourStatus FindLocalPath(dtPolyRef startRef, dtPolyRef endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
-        {
-            pin_ptr<float> startPosPointer = &startPos[0];
-            pin_ptr<float> endPosPointer = &endPos[0];
-            int hops;
-            dtPolyRef* hopBuffer = new dtPolyRef[44];
-            dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 44);
-            if (dtStatusSucceed(status))
-            {
-                polyRefHops = gcnew array<dtPolyRef>(hops);
-                for (int i = 0; i < hops; i++)
-                    polyRefHops[i] = hopBuffer[i];
-                delete[] hopBuffer;
-                return (DetourStatus)status;
-            }
-
-            delete[] hopBuffer;
-            return (DetourStatus)status;
-        }
-
 		DetourStatus FindPath(dtPolyRef startRef, dtPolyRef endRef, array<float>^ startPos, array<float>^ endPos, QueryFilter^ filter, [Out] array<dtPolyRef>^% polyRefHops)
 		{
 			pin_ptr<float> startPosPointer = &startPos[0];
