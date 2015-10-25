@@ -6302,6 +6302,7 @@ public class MageFire
     public MageFire()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = MageFireSettings.GetSettings();
         Main.DumpCurrentSettings<MageFireSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -6395,7 +6396,7 @@ public class MageFire
         }
         if (MySettings.UseInfernoBlast && InfernoBlast.KnownSpell && InfernoBlast.IsHostileDistanceGood && InfernoBlast.IsSpellUsable)
         {
-            FireBlast.Cast();
+            InfernoBlast.Cast();
             return;
         }
         if (MySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable)
@@ -6489,7 +6490,7 @@ public class MageFire
             return;
         }
 
-        if (MySettings.UseRingofFrost && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
+        if (MySettings.UseRingofFrost && RingofFrost.KnownSpell && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
         {
             SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
             _onCd = new Timer(1000*10);
@@ -6503,7 +6504,7 @@ public class MageFire
                 Others.SafeSleep(200);
             }
 
-            if (FrostNova.IsSpellUsable)
+            if (FrostNova.KnownSpell && FrostNova.IsSpellUsable)
             {
                 FrostNova.Cast();
                 _onCd = new Timer(1000*8);
@@ -6751,7 +6752,7 @@ public class MageFire
             if (MySettings.UseInfernoBlast && InfernoBlast.KnownSpell && InfernoBlast.IsHostileDistanceGood && InfernoBlast.IsSpellUsable
                 && ObjectManager.Me.HaveBuff(48107))
             {
-                FireBlast.Cast();
+                InfernoBlast.Cast();
                 return;
             }
             if (MySettings.UseScorch && Scorch.KnownSpell && Scorch.IsHostileDistanceGood && Scorch.IsSpellUsable
