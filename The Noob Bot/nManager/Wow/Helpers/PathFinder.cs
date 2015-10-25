@@ -86,7 +86,18 @@ namespace nManager.Wow.Helpers
         /// <param name="to">To.</param>
         /// <param name="resultSuccess"> </param>
         /// <returns></returns>
-        public static List<Point> FindPath(Point to, out bool resultSuccess, bool addFromAndStart = true)
+        public static List<Point> FindLocalPath(Point to, out bool resultSuccess, bool addFromAndStart = true)
+        {
+            return FindPath(to, out resultSuccess, addFromAndStart, true);
+        }
+
+        /// <summary>
+        /// Finds the path.
+        /// </summary>
+        /// <param name="to">To.</param>
+        /// <param name="resultSuccess"> </param>
+        /// <returns></returns>
+        public static List<Point> FindPath(Point to, out bool resultSuccess, bool addFromAndStart = true, bool ShortPath = false)
         {
             try
             {
@@ -108,7 +119,7 @@ namespace nManager.Wow.Helpers
                     else
                         Logging.WriteNavigator("Using the PathFinder to destination out of water");
                 }
-                return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess, addFromAndStart);
+                return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess, addFromAndStart, false, ShortPath);
             }
             catch (Exception exception)
             {
@@ -150,7 +161,7 @@ namespace nManager.Wow.Helpers
         /// <param name="loadAllTile"></param>
         /// <returns></returns>
         public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
-            bool addFromAndStart = true, bool loadAllTile = false)
+            bool addFromAndStart = true, bool loadAllTile = false, bool ShortPath = false)
         {
             List<Point> locList = new List<Point>();
             resultSuccess = true;
@@ -177,7 +188,7 @@ namespace nManager.Wow.Helpers
                 if (loadAllTile)
                     _pather.LoadAllTiles();
 
-                locList = _pather.FindPath(from, to, out resultSuccess);
+                locList = ShortPath ? _pather.FindPathSimple(from, to, out resultSuccess, true) : _pather.FindPath(from, to, out resultSuccess);
                 if (addFromAndStart && resultSuccess)
                     locList.Add(to);
 
