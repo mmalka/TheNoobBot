@@ -496,7 +496,7 @@ namespace nManager.Wow.Bot.States
                                         p.Z = PathFinder.GetZPosition(p, true);
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
                                             valid = false;
                                     }
                                     // Since these direction are approximate, also search in a pi/5 angle
@@ -509,7 +509,7 @@ namespace nManager.Wow.Bot.States
                                         p.Z = PathFinder.GetZPosition(p, true);
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
                                             valid = false;
                                         if (valid) Logging.Write("Angles+ for distance " + d);
                                     }
@@ -522,7 +522,7 @@ namespace nManager.Wow.Bot.States
                                         p.Z = PathFinder.GetZPosition(p, true);
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
                                             valid = false;
                                         if (valid) Logging.Write("Angles- for distance " + d);
                                     }
@@ -543,7 +543,7 @@ namespace nManager.Wow.Bot.States
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
                                                 valid = false;
                                         }
                                         // Since these direction are approximate, also search in a pi/5 angle
@@ -556,7 +556,7 @@ namespace nManager.Wow.Bot.States
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
                                                 valid = false;
                                             if (valid) Logging.Write("Angles+ for distance " + d);
                                         }
@@ -569,7 +569,7 @@ namespace nManager.Wow.Bot.States
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 5 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
                                                 valid = false;
                                             if (valid) Logging.Write("Angles- for distance " + d);
                                         }
@@ -608,7 +608,7 @@ namespace nManager.Wow.Bot.States
                         }
 
                         // Go to next position
-                        /*if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
+                        if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
                             nbStuck >= 2)
                             // Use fly mount
                         {
@@ -653,7 +653,7 @@ namespace nManager.Wow.Bot.States
                             nbStuck = 0;
 // ReSharper restore RedundantAssignment
                         }
-                        else //  walk to next position*/
+                        else //  walk to next position
                         {
                             float d1 = Math.DistanceListPoint(points);
                             float d2 = points[0].DistanceTo(points[points.Count - 1]);
