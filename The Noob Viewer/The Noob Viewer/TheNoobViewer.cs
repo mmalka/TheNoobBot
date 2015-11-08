@@ -295,6 +295,7 @@ namespace TheNoobViewer
             Darkmoon.Checked = false;
             IsleThunder.Checked = false;
             Draenor.Checked = false;
+            TanaanJungle.Checked = false;
             ignorewater = false;
         }
 
@@ -387,6 +388,14 @@ namespace TheNoobViewer
             Draenor.Checked = true;
             continent = "Draenor";
             toolStripStatusContinent.Text = "Current continent: Draenor";
+        }
+
+        private void TannanJungle_Click(object sender, EventArgs e)
+        {
+            uncheckAll();
+            TanaanJungle.Checked = true;
+            continent = "TanaanJungle";
+            toolStripStatusContinent.Text = "Current continent: Tanaan Jungle";
         }
 
         private void menuWebLink_Click(object sender, EventArgs e)

@@ -32,6 +32,7 @@ namespace TheNoobViewer
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WowPath = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,7 @@ namespace TheNoobViewer
             this.Deepholm = new System.Windows.Forms.ToolStripMenuItem();
             this.Darkmoon = new System.Windows.Forms.ToolStripMenuItem();
             this.IsleThunder = new System.Windows.Forms.ToolStripMenuItem();
+            this.TanaanJungle = new System.Windows.Forms.ToolStripMenuItem();
             this.ZoomCombo = new System.Windows.Forms.ToolStripComboBox();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWebLink = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +57,6 @@ namespace TheNoobViewer
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusContinent = new System.Windows.Forms.ToolStripStatusLabel();
-            this.WowPath = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -92,6 +93,14 @@ namespace TheNoobViewer
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
+            // WowPath
+            // 
+            this.WowPath.Name = "WowPath";
+            this.WowPath.Size = new System.Drawing.Size(173, 22);
+            this.WowPath.Text = "Select WoW path...";
+            this.WowPath.ToolTipText = "Change or set your \"World of Warcraft\" installation folder.";
+            this.WowPath.Click += new System.EventHandler(this.WowPath_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -113,6 +122,7 @@ namespace TheNoobViewer
             this.Northrend,
             this.Pandaria,
             this.Draenor,
+            this.TanaanJungle,
             this.TolBarad,
             this.Deepholm,
             this.Darkmoon,
@@ -200,6 +210,13 @@ namespace TheNoobViewer
             this.IsleThunder.Text = "Isle of Thunder";
             this.IsleThunder.Click += new System.EventHandler(this.IsleThunder_Click);
             // 
+            // TanaanJungle
+            // 
+            this.TanaanJungle.Name = "TanaanJungle";
+            this.TanaanJungle.Size = new System.Drawing.Size(164, 22);
+            this.TanaanJungle.Text = "Tannan Jungle";
+            this.TanaanJungle.Click += new System.EventHandler(this.TannanJungle_Click);
+            // 
             // ZoomCombo
             // 
             this.ZoomCombo.CausesValidation = false;
@@ -276,14 +293,6 @@ namespace TheNoobViewer
             this.toolStripStatusContinent.Size = new System.Drawing.Size(29, 17);
             this.toolStripStatusContinent.Text = "toto";
             // 
-            // WowPath
-            // 
-            this.WowPath.Name = "WowPath";
-            this.WowPath.Size = new System.Drawing.Size(173, 22);
-            this.WowPath.Text = "Select WoW path...";
-            this.WowPath.ToolTipText = "Change or set your \"World of Warcraft\" installation folder.";
-            this.WowPath.Click += new System.EventHandler(this.WowPath_Click);
-            // 
             // TheNoobViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +348,7 @@ namespace TheNoobViewer
         private System.Windows.Forms.ToolStripMenuItem IsleThunder;
         private System.Windows.Forms.ToolStripMenuItem Draenor;
         private System.Windows.Forms.ToolStripMenuItem WowPath;
+        private System.Windows.Forms.ToolStripMenuItem TanaanJungle;
     }
 }
 
