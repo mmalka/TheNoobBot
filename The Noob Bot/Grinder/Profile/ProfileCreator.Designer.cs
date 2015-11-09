@@ -125,7 +125,7 @@ namespace Grinder.Profile
             this.listBlackRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.listBlackRadius.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.listBlackRadius.FormattingEnabled = true;
-            this.listBlackRadius.Location = new System.Drawing.Point(13, 385);
+            this.listBlackRadius.Location = new System.Drawing.Point(13, 381);
             this.listBlackRadius.Name = "listBlackRadius";
             this.listBlackRadius.Size = new System.Drawing.Size(551, 95);
             this.listBlackRadius.TabIndex = 9;
@@ -134,7 +134,7 @@ namespace Grinder.Profile
             // 
             this.radiusN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.radiusN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.radiusN.Location = new System.Drawing.Point(191, 488);
+            this.radiusN.Location = new System.Drawing.Point(230, 485);
             this.radiusN.Maximum = new decimal(new int[] {
             200,
             0,
@@ -224,7 +224,7 @@ namespace Grinder.Profile
             this.minLevelPlayer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.minLevelPlayer.Location = new System.Drawing.Point(122, 166);
             this.minLevelPlayer.Maximum = new decimal(new int[] {
-            90,
+            110,
             0,
             0,
             0});
@@ -259,6 +259,11 @@ namespace Grinder.Profile
             this.maxLevelPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maxLevelPlayer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.maxLevelPlayer.Location = new System.Drawing.Point(248, 166);
+            this.maxLevelPlayer.Maximum = new decimal(new int[] {
+            110,
+            0,
+            0,
+            0});
             this.maxLevelPlayer.Minimum = new decimal(new int[] {
             1,
             0,
@@ -281,7 +286,7 @@ namespace Grinder.Profile
             this.maxLevelTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.maxLevelTarget.Location = new System.Drawing.Point(521, 166);
             this.maxLevelTarget.Maximum = new decimal(new int[] {
-            103,
+            113,
             0,
             0,
             0});
@@ -316,6 +321,11 @@ namespace Grinder.Profile
             this.minLevelTarget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minLevelTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.minLevelTarget.Location = new System.Drawing.Point(405, 166);
+            this.minLevelTarget.Maximum = new decimal(new int[] {
+            110,
+            0,
+            0,
+            0});
             this.minLevelTarget.Minimum = new decimal(new int[] {
             1,
             0,
@@ -365,9 +375,9 @@ namespace Grinder.Profile
             // BlackListRadius
             // 
             this.BlackListRadius.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.BlackListRadius.Location = new System.Drawing.Point(10, 482);
+            this.BlackListRadius.Location = new System.Drawing.Point(12, 479);
             this.BlackListRadius.Name = "BlackListRadius";
-            this.BlackListRadius.Size = new System.Drawing.Size(170, 29);
+            this.BlackListRadius.Size = new System.Drawing.Size(212, 29);
             this.BlackListRadius.TabIndex = 38;
             this.BlackListRadius.Text = "BlackList Radius";
             this.BlackListRadius.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -539,11 +549,11 @@ namespace Grinder.Profile
             this.addBlackB.AutoEllipsis = true;
             this.addBlackB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.addBlackB.ForeColor = System.Drawing.Color.Snow;
-            this.addBlackB.HooverImage = ((System.Drawing.Image)(resources.GetObject("addBlackB.HooverImage")));
-            this.addBlackB.Image = ((System.Drawing.Image)(resources.GetObject("addBlackB.Image")));
-            this.addBlackB.Location = new System.Drawing.Point(154, 503);
+            this.addBlackB.HooverImage = global::Grinder.Properties.Resources.greenB_260;
+            this.addBlackB.Image = global::Grinder.Properties.Resources.blackB_260;
+            this.addBlackB.Location = new System.Drawing.Point(12, 450);
             this.addBlackB.Name = "addBlackB";
-            this.addBlackB.Size = new System.Drawing.Size(233, 23);
+            this.addBlackB.Size = new System.Drawing.Size(260, 26);
             this.addBlackB.TabIndex = 12;
             this.addBlackB.Text = "Add this position to Black list Radius";
             this.addBlackB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -557,7 +567,7 @@ namespace Grinder.Profile
             this.delBlackRadius.ForeColor = System.Drawing.Color.Snow;
             this.delBlackRadius.HooverImage = global::Grinder.Properties.Resources.greenB_70;
             this.delBlackRadius.Image = global::Grinder.Properties.Resources.blackB_70;
-            this.delBlackRadius.Location = new System.Drawing.Point(493, 386);
+            this.delBlackRadius.Location = new System.Drawing.Point(493, 382);
             this.delBlackRadius.Name = "delBlackRadius";
             this.delBlackRadius.Size = new System.Drawing.Size(70, 29);
             this.delBlackRadius.TabIndex = 10;

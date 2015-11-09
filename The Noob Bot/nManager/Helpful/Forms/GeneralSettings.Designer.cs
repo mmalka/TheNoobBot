@@ -94,6 +94,8 @@ namespace nManager.Helpful.Forms
             this.UseGroundMountLabel = new System.Windows.Forms.Label();
             this.UseGroundMount = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.LootingFarmingManagementPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.UseLootARangeLabel = new System.Windows.Forms.Label();
+            this.UseLootARange = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.ActivateLootStatisticsLabel = new System.Windows.Forms.Label();
             this.ActivateLootStatistics = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.DontHarvestTheFollowingObjectsHelper = new System.Windows.Forms.Button();
@@ -266,8 +268,6 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.UseLootARangeLabel = new System.Windows.Forms.Label();
-            this.UseLootARange = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -1206,6 +1206,29 @@ namespace nManager.Helpful.Forms
             this.LootingFarmingManagementPanelName.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.LootingFarmingManagementPanelName.TitleText = "Looting/Farming Management";
             this.LootingFarmingManagementPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("LootingFarmingManagementPanelName.UnfolderImage")));
+            // 
+            // UseLootARangeLabel
+            // 
+            this.UseLootARangeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UseLootARangeLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseLootARangeLabel.Location = new System.Drawing.Point(4, 551);
+            this.UseLootARangeLabel.Name = "UseLootARangeLabel";
+            this.UseLootARangeLabel.Size = new System.Drawing.Size(154, 22);
+            this.UseLootARangeLabel.TabIndex = 82;
+            this.UseLootARangeLabel.Text = "Use Loot-A-Range items";
+            // 
+            // UseLootARange
+            // 
+            this.UseLootARange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.UseLootARange.Location = new System.Drawing.Point(163, 551);
+            this.UseLootARange.MaximumSize = new System.Drawing.Size(60, 20);
+            this.UseLootARange.MinimumSize = new System.Drawing.Size(60, 20);
+            this.UseLootARange.Name = "UseLootARange";
+            this.UseLootARange.OffText = "OFF";
+            this.UseLootARange.OnText = "ON";
+            this.UseLootARange.Size = new System.Drawing.Size(60, 20);
+            this.UseLootARange.TabIndex = 83;
+            this.UseLootARange.Value = true;
             // 
             // ActivateLootStatisticsLabel
             // 
@@ -2897,7 +2920,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBAfterXLevelup.ForeColor = System.Drawing.Color.Black;
             this.StopTNBAfterXLevelup.Location = new System.Drawing.Point(162, 163);
             this.StopTNBAfterXLevelup.Maximum = new decimal(new int[] {
-            90,
+            110,
             0,
             0,
             0});
@@ -3458,29 +3481,6 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
-            // 
-            // UseLootARangeLabel
-            // 
-            this.UseLootARangeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.UseLootARangeLabel.ForeColor = System.Drawing.Color.Black;
-            this.UseLootARangeLabel.Location = new System.Drawing.Point(4, 551);
-            this.UseLootARangeLabel.Name = "UseLootARangeLabel";
-            this.UseLootARangeLabel.Size = new System.Drawing.Size(154, 22);
-            this.UseLootARangeLabel.TabIndex = 82;
-            this.UseLootARangeLabel.Text = "Use Loot-A-Range items";
-            // 
-            // UseLootARange
-            // 
-            this.UseLootARange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.UseLootARange.Location = new System.Drawing.Point(163, 551);
-            this.UseLootARange.MaximumSize = new System.Drawing.Size(60, 20);
-            this.UseLootARange.MinimumSize = new System.Drawing.Size(60, 20);
-            this.UseLootARange.Name = "UseLootARange";
-            this.UseLootARange.OffText = "OFF";
-            this.UseLootARange.OnText = "ON";
-            this.UseLootARange.Size = new System.Drawing.Size(60, 20);
-            this.UseLootARange.TabIndex = 83;
-            this.UseLootARange.Value = true;
             // 
             // GeneralSettings
             // 
