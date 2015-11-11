@@ -400,7 +400,7 @@ namespace Grinder.Profile
             this.addTargetEntryB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.addTargetEntryB.ForeColor = System.Drawing.Color.Snow;
             this.addTargetEntryB.HooverImage = global::Grinder.Properties.Resources.greenB_150;
-            this.addTargetEntryB.Image = global::Grinder.Properties.Resources.blackB_150;
+            this.addTargetEntryB.Image = ((System.Drawing.Image)(resources.GetObject("addTargetEntryB.Image")));
             this.addTargetEntryB.Location = new System.Drawing.Point(413, 199);
             this.addTargetEntryB.Name = "addTargetEntryB";
             this.addTargetEntryB.Size = new System.Drawing.Size(150, 29);
@@ -551,13 +551,12 @@ namespace Grinder.Profile
             this.addBlackB.ForeColor = System.Drawing.Color.Snow;
             this.addBlackB.HooverImage = global::Grinder.Properties.Resources.greenB_260;
             this.addBlackB.Image = global::Grinder.Properties.Resources.blackB_260;
-            this.addBlackB.Location = new System.Drawing.Point(12, 450);
+            this.addBlackB.Location = new System.Drawing.Point(222, 382);
             this.addBlackB.Name = "addBlackB";
-            this.addBlackB.Size = new System.Drawing.Size(260, 26);
+            this.addBlackB.Size = new System.Drawing.Size(260, 29);
             this.addBlackB.TabIndex = 12;
             this.addBlackB.Text = "Add this position to Black list Radius";
             this.addBlackB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.addBlackB.Visible = false;
             this.addBlackB.Click += new System.EventHandler(this.addBlackB_Click);
             // 
             // delBlackRadius
@@ -611,7 +610,7 @@ namespace Grinder.Profile
             this.recordWayB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.recordWayB.ForeColor = System.Drawing.Color.Snow;
             this.recordWayB.HooverImage = global::Grinder.Properties.Resources.greenB_260;
-            this.recordWayB.Image = global::Grinder.Properties.Resources.blackB_260;
+            this.recordWayB.Image = ((System.Drawing.Image)(resources.GetObject("recordWayB.Image")));
             this.recordWayB.Location = new System.Drawing.Point(303, 345);
             this.recordWayB.Name = "recordWayB";
             this.recordWayB.Size = new System.Drawing.Size(260, 29);
