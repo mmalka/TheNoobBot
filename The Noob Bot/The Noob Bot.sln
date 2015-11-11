@@ -82,6 +82,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonFarmer", "Dungeon Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEREAutoUseItem", "CEREAutoUseItem\CEREAutoUseItem.csproj", "{2164D12E-7B5F-46AC-97FD-97D15C327F6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEREWhisperForwarding", "CEREWhisperForwarding\CEREWhisperForwarding.csproj", "{53AA21C4-4B2A-42EC-8345-1A6B281B826A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -461,6 +463,20 @@ Global
 		{2164D12E-7B5F-46AC-97FD-97D15C327F6D}.Release|Win32.Build.0 = Release|x86
 		{2164D12E-7B5F-46AC-97FD-97D15C327F6D}.Release|x86.ActiveCfg = Release|x86
 		{2164D12E-7B5F-46AC-97FD-97D15C327F6D}.Release|x86.Build.0 = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|Win32.ActiveCfg = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|Win32.Build.0 = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|x86.ActiveCfg = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Debug|x86.Build.0 = Debug|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|Any CPU.ActiveCfg = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|Win32.ActiveCfg = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|Win32.Build.0 = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|x86.ActiveCfg = Release|x86
+		{53AA21C4-4B2A-42EC-8345-1A6B281B826A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
