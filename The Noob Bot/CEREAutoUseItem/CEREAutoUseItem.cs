@@ -6,6 +6,7 @@ using nManager.Helpful;
 using nManager.Plugins;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using nManager.Products;
 
 #region Interface Implementation - Edition Expert only
 
@@ -108,7 +109,7 @@ public static class MyPluginClass
     public static string Author = "CEREAL";
     public static string Name = "Automatic Item Usage";
     public static string TargetVersion = "4.8.x";
-    public static string Version = "1.0.1";
+    public static string Version = "1.0.3";
     public static string Description = "Plugins that allow to track/refresh buff such as experience potion...";
     // Variables de debug
     public static bool BDebugVerboseFull = false;
@@ -118,7 +119,6 @@ public static class MyPluginClass
     public static bool BBotInAction = false;
     // Settings
     private static readonly MyPluginSettings MySettings = MyPluginSettings.GetSettings();
-
 
     public static void Init()
     {
@@ -133,111 +133,162 @@ public static class MyPluginClass
     {
         while (InternalLoop)
         {
-            // Si je dois looter les créatures et que le follow est pas en combat et moi non plus...
-            if (!ObjectManager.Me.InCombat && ObjectManager.Me.IsAlive)
+            if (Products.IsStarted)
             {
-                // ********************************************************************************
-                // Section de l'item
-                string sItemCount = "ITEM 01 : ";
-                string sItemname = MySettings.SItem01;
-                string sBuffname = MySettings.SBuff01;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem01 && sItemname != "" && sBuffname != "")
+                // Si je dois looter les créatures et que le follow est pas en combat et moi non plus...
+                if (!ObjectManager.Me.InCombat && ObjectManager.Me.IsAlive)
                 {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 02 : ";
-                sItemname = MySettings.SItem02;
-                sBuffname = MySettings.SBuff02;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem02 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 03 : ";
-                sItemname = MySettings.SItem03;
-                sBuffname = MySettings.SBuff03;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem03 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 04 : ";
-                sItemname = MySettings.SItem04;
-                sBuffname = MySettings.SBuff04;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem04 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 05 : ";
-                sItemname = MySettings.SItem05;
-                sBuffname = MySettings.SBuff05;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem05 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 06 : ";
-                sItemname = MySettings.SItem06;
-                sBuffname = MySettings.SBuff06;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem06 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 07 : ";
-                sItemname = MySettings.SItem07;
-                sBuffname = MySettings.SBuff07;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem07 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 08 : ";
-                sItemname = MySettings.SItem08;
-                sBuffname = MySettings.SBuff08;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem08 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
-                }
-                // ********************************************************************************
-                // Section de l'item
-                sItemCount = "ITEM 09 : ";
-                sItemname = MySettings.SItem09;
-                sBuffname = MySettings.SBuff09;
-                // Si il faut utilise l'objet                
-                if (MySettings.BUseItem09 && sItemname != "" && sBuffname != "")
-                {
-                    VoidCheckItem(sItemCount, sItemname, sBuffname);
+                    // ********************************************************************************
+                    // Retour de fonction permettant de désactiver l'item quand il y en a plus dans l'inventaire
+                    bool bReturn = true;
+                    // Section de l'item
+                    string sItemCount = "ITEM 01 : ";
+                    string sItemname = MySettings.sItem01;
+                    string sBuffname = MySettings.sBuff01;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem01 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem01 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 02 : ";
+                    sItemname = MySettings.sItem02;
+                    sBuffname = MySettings.sBuff02;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem02 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem02 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 03 : ";
+                    sItemname = MySettings.sItem03;
+                    sBuffname = MySettings.sBuff03;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem03 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem03 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 04 : ";
+                    sItemname = MySettings.sItem04;
+                    sBuffname = MySettings.sBuff04;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem04 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem04 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 05 : ";
+                    sItemname = MySettings.sItem05;
+                    sBuffname = MySettings.sBuff05;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem05 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem05 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 06 : ";
+                    sItemname = MySettings.sItem06;
+                    sBuffname = MySettings.sBuff06;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem06 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem06 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 07 : ";
+                    sItemname = MySettings.sItem07;
+                    sBuffname = MySettings.sBuff07;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem07 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem07 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 08 : ";
+                    sItemname = MySettings.sItem08;
+                    sBuffname = MySettings.sBuff08;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem08 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem08 = false;
+                        }
+                    }
+                    // ********************************************************************************
+                    // Section de l'item
+                    sItemCount = "ITEM 09 : ";
+                    sItemname = MySettings.sItem09;
+                    sBuffname = MySettings.sBuff09;
+                    // Si il faut utilise l'objet                
+                    if (MySettings.bUseItem09 && sItemname != "" && sBuffname != "")
+                    {
+                        bReturn = boolCheckItem(sItemCount, sItemname, sBuffname);
+                        // Si return = false déactive l'utilisation de l'item
+                        if (bReturn == false)
+                        {
+                            MySettings.bUseItem09 = false;
+                        }
+                    }
                 }
             }
+
         }
     }
 
-    public static void VoidCheckItem(string sItemDescID, string sItemname, string sBuffname)
+    public static bool boolCheckItem(string sItemDescID, string sItemname, string sBuffname)
     {
         // ********************************************************************************
         int iItemIDToUse = ItemsManager.GetItemIdByName(sItemname);
         // Logging.WriteDebug(ItemsManager.GetItemCount(iItemIDToUse).ToString());
 
         // Teste si l'objet est bien dans l'inventaire avant de...
-        if (ItemsManager.GetItemCount(iItemIDToUse) != 0)
+        if (ItemsManager.GetItemCount(iItemIDToUse) > 0)
         {
             Logging.WriteDebug(sItemDescID);
             Logging.WriteDebug(sItemDescID + "Item name : " + sItemname + " : ItemID " + iItemIDToUse);
@@ -249,6 +300,7 @@ public static class MyPluginClass
                 Logging.WriteDebug(sItemDescID + "Have Buff = No");
                 // lance l'objet
                 ItemsManager.UseItem(sItemname);
+                return true;
             }
             else
             {
@@ -257,11 +309,15 @@ public static class MyPluginClass
             }
             Thread.Sleep(Usefuls.Latency + 100);
             // ********************************************************************************
+            return true;
         }
         else
         {
+            Logging.Write("********************************************************");
             Logging.Write("!!! Warning !!! : " + sItemDescID + " : " + sItemname + " is not part of your inventory.");
+            Logging.Write("********************************************************");
             Logging.WriteError("!!! Warning !!! : " + sItemDescID + " : " + sItemname + " is not part of your inventory.");
+            return false;
         }
     }
 
@@ -302,38 +358,42 @@ public static class MyPluginClass
     public class MyPluginSettings : Settings
     {
         // bouton on/off
-        public bool BUseItem01 = false;
-        public bool BUseItem02 = false;
-        public bool BUseItem03 = false;
-        public bool BUseItem04 = false;
-        public bool BUseItem05 = false;
-        public bool BUseItem06 = false;
-        public bool BUseItem07 = false;
-        public bool BUseItem08 = false;
-        public bool BUseItem09 = false;
-        public string SBuff01 = "Apprentissage accéléré";
-        public string SBuff02 = "Murmures de démence";
-        public string SBuff03 = "Whispers of Insanity	";
-        public string SBuff04 = "Accelerated Learning";
-        public string SBuff05 = "";
-        public string SBuff06 = "";
-        public string SBuff07 = "";
-        public string SBuff08 = "";
-        public string SBuff09 = "";
-        public string SItem01 = "Potion excessive d’apprentissage accéléré";
-        public string SItem02 = "Cristal murmurant d’Oralius";
-        public string SItem03 = "Oralius' Whispering Crystal";
-        public string SItem04 = "Excess Potion of Accelerated Learning";
-        public string SItem05 = "";
-        public string SItem06 = "";
-        public string SItem07 = "";
-        public string SItem08 = "";
-        public string SItem09 = "";
+        public bool bStartProduct = true;
+        public bool bUseItem01 = false;
+        public bool bUseItem02 = false;
+        public bool bUseItem03 = false;
+        public bool bUseItem04 = false;
+        public bool bUseItem05 = false;
+        public bool bUseItem06 = false;
+        public bool bUseItem07 = false;
+        public bool bUseItem08 = false;
+        public bool bUseItem09 = false;
+        public string sBuff01 = "Apprentissage accéléré";
+        public string sBuff02 = "Murmures de démence";
+        public string sBuff03 = "Whispers of Insanity	";
+        public string sBuff04 = "Accelerated Learning";
+        public string sBuff05 = "";
+        public string sBuff06 = "";
+        public string sBuff07 = "";
+        public string sBuff08 = "";
+        public string sBuff09 = "";
+        public string sItem01 = "Potion excessive d’apprentissage accéléré";
+        public string sItem02 = "Cristal murmurant d’Oralius";
+        public string sItem03 = "Oralius' Whispering Crystal";
+        public string sItem04 = "Excess Potion of Accelerated Learning";
+        public string sItem05 = "";
+        public string sItem06 = "";
+        public string sItem07 = "";
+        public string sItem08 = "";
+        public string sItem09 = "";
 
         public MyPluginSettings()
         {
             // Informations affichées dans la fenêtre de config
             ConfigWinForm("Plugin management");
+
+            AddControlInWinForm("Activate pluggin only when product is started [START PRODUCT] ?", "bStartProduct", "Configuration", "List");
+ 
             AddControlInWinForm("01 Use Item ?", "bUseItem01", "Configuration", "List");
             AddControlInWinForm("01 Item Name : ", "sItem01", "Configuration", "List");
             AddControlInWinForm("01 Item Buff Name : ", "sBuff01", "Configuration", "List");
