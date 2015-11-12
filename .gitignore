@@ -48,3 +48,7 @@ docs/updatebase_directory/RecastLayer.dll
 docs/updatebase_directory/nManager.dll
 docs/updatebase_directory/Products/*
 docs/updatebase_directory/StormLib.dll
+docs/updatebase_directory/Plugins/CEREWhisperForwarding.dll
+docs/updatebase_directory/Plugins/CEREWhisperForwarding.cs
+docs/updatebase_directory/Plugins/CEREAutoUseItem.cs
+docs/updatebase_directory/Plugins/CEREAutoUseItem.dll
