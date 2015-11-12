@@ -112,8 +112,8 @@ public static class MyPluginClass
     // Informations relatives à la version du pluggin
     public static string Author = "CEREAL";
     public static string Name = "Whisper Forwarding";
-    public static string TargetVersion = "4.8.x"; // Only the two first numbers are checked.
-    public static string Version = "BETA 1.0.0";
+    public static string TargetVersion = "4.9.x"; // Only the two first numbers are checked.
+    public static string Version = "BETA 1.0.1";
     public static string Description = "Forward every chat/whisp that bot receive to another player";
 
     // Whisp chanel
@@ -134,7 +134,7 @@ public static class MyPluginClass
     public static void Init()
     {
         // Démarre l'instance de chat
-        Logging.Write("Start Thread ChatChannel Class");
+        Logging.WritePlugin("Start Thread ChatChannel Class", Name);
         ChatMonitor.ThreadChatChannel();
 
         // Charge la boucle principale, tâches d'initialisation ici
@@ -147,7 +147,7 @@ public static class MyPluginClass
 
     public static void MainLoop()
     {
-        Logging.Write("Start plugin : " + Name);
+        Logging.WritePlugin("Start plugin : " + Name, Name);
 
         while (InternalLoop)
         {
@@ -179,7 +179,7 @@ public static class MyPluginClass
                 {
                     if (bDebugVerboseFull)
                     {
-                        Logging.WriteDebug("MySettings.ActiveChatForward : " + MySettings.ActiveChatForward);
+                        Logging.WritePluginDebug("MySettings.ActiveChatForward : " + MySettings.ActiveChatForward, Name);
                     }
 
                     // string sPlayerName = "Bankkiss-Vol'jin";
@@ -194,7 +194,7 @@ public static class MyPluginClass
                         sTMP = sTMP.Trim();
                         sTMP = "CHAT message from [" + sPlayerName + "] : {" + sTMP + "}";
 
-                        Logging.Write("Renvoie du chat vers : " + sPlayerName + " Contenu : " + sMsgChat);
+                        Logging.WritePlugin("Renvoie du chat vers : " + sPlayerName + " Contenu : " + sMsgChat, Name);
                         Lua.LuaDoString("SendChatMessage(\"" + sTMP + "\", \"WHISPER\", nil, \"" + sPlayerName + "\");", false, true);
                         sMsgChat = string.Empty;
                         ChatMonitor.ChatMessageContent = string.Empty;
@@ -344,12 +344,12 @@ public static class ChatMonitor
             Name = "Thread Chat Monitoring"
         };
         thread.Start();
-        Logging.WriteDebug("{ThreadChatChannel} : " + thread.ThreadState);
+        Logging.WritePluginDebug("{ThreadChatChannel} : " + thread.ThreadState, MyPluginClass.Name);
     }
 
     public static void WhispAlert()
     {
-        Logging.Write("Chatmonitor Start !");
+        Logging.WritePlugin("Chatmonitor Start !", MyPluginClass.Name);
         var cChatChan2 = new Channel();
         bool bLoop = true;
         while (bLoop)
@@ -358,7 +358,7 @@ public static class ChatMonitor
             // le bot ne renvoie plus de messages au bout d'un moment alors je réinstancie l'objet
             if (iLoop == 1)
             {
-                // Logging.Write("Netoyage de l'objet cChatChan2");
+                // Logging.WritePlugin("Netoyage de l'objet cChatChan2");
                 cChatChan2 = null;
                 cChatChan2 = new Channel();
                 iLoop = 0;
@@ -367,12 +367,12 @@ public static class ChatMonitor
             // Lis le contenu du chat
             string str = cChatChan2.ReadAllChannel();
 
-            // Logging.Write(iLoop + " Whisp : " + " : " + str.ToString());
+            // Logging.WritePlugin(iLoop + " Whisp : " + " : " + str.ToString());
 
             // Si il y a qqch de nouveau alors...
             if (!string.IsNullOrEmpty(str))
             {
-                // Logging.WriteDebug(iLoop + " Whisp : " + " : " + str.ToString().Trim());
+                // Logging.WritePluginDebug(iLoop + " Whisp : " + " : " + str.ToString().Trim());
                 // Affecte la valeur du message en chat
                 ChatMessageContent = str.Trim();
                 iLoop++;

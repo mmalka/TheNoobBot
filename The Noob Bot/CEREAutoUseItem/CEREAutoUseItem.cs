@@ -108,8 +108,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "CEREAL";
     public static string Name = "Automatic Item Usage";
-    public static string TargetVersion = "4.8.x";
-    public static string Version = "1.0.3";
+    public static string TargetVersion = "4.9.x";
+    public static string Version = "1.0.4";
     public static string Description = "Plugins that allow to track/refresh buff such as experience potion...";
     // Variables de debug
     public static bool BDebugVerboseFull = false;
@@ -122,7 +122,7 @@ public static class MyPluginClass
 
     public static void Init()
     {
-        Logging.Write(string.Format("The plugin {0} is loaded...", Name));
+        Logging.WritePlugin(string.Format("The plugin {0} is loaded...", Name), Name);
 
         // Do some init stuff here.
         MainLoop();
@@ -285,19 +285,19 @@ public static class MyPluginClass
     {
         // ********************************************************************************
         int iItemIDToUse = ItemsManager.GetItemIdByName(sItemname);
-        // Logging.WriteDebug(ItemsManager.GetItemCount(iItemIDToUse).ToString());
+        // Logging.WritePluginDebug(ItemsManager.GetItemCount(iItemIDToUse).ToString());
 
         // Teste si l'objet est bien dans l'inventaire avant de...
         if (ItemsManager.GetItemCount(iItemIDToUse) > 0)
         {
-            Logging.WriteDebug(sItemDescID);
-            Logging.WriteDebug(sItemDescID + "Item name : " + sItemname + " : ItemID " + iItemIDToUse);
-            Logging.WriteDebug(sItemDescID + "Buff name : " + sBuffname + " : " + SpellManager.HaveBuffLua(sBuffname));
+            Logging.WritePluginDebug(sItemDescID, Name);
+            Logging.WritePluginDebug(sItemDescID + "Item name : " + sItemname + " : ItemID " + iItemIDToUse, Name);
+            Logging.WritePluginDebug(sItemDescID + "Buff name : " + sBuffname + " : " + SpellManager.HaveBuffLua(sBuffname), Name);
 
             // Si l'item est pas en cooldown et que le buff est pas présent alors...
             if (!ItemsManager.IsItemOnCooldown(iItemIDToUse) && !SpellManager.HaveBuffLua(sBuffname))
             {
-                Logging.WriteDebug(sItemDescID + "Have Buff = No");
+                Logging.WritePluginDebug(sItemDescID + "Have Buff = No", Name);
                 // lance l'objet
                 ItemsManager.UseItem(sItemname);
                 return true;
@@ -305,7 +305,7 @@ public static class MyPluginClass
             else
             {
                 // Juste un message de debug
-                Logging.WriteDebug(sItemDescID + "Have Buff = Yes");
+                Logging.WritePluginDebug(sItemDescID + "Have Buff = Yes", Name);
             }
             Thread.Sleep(Usefuls.Latency + 100);
             // ********************************************************************************
@@ -313,10 +313,10 @@ public static class MyPluginClass
         }
         else
         {
-            Logging.Write("********************************************************");
-            Logging.Write("!!! Warning !!! : " + sItemDescID + " : " + sItemname + " is not part of your inventory.");
-            Logging.Write("********************************************************");
-            Logging.WriteError("!!! Warning !!! : " + sItemDescID + " : " + sItemname + " is not part of your inventory.");
+            Logging.WritePlugin("********************************************************", Name);
+            Logging.WritePlugin("!!! Warning !!! : " + sItemDescID + " : " + sItemname + " is not part of your inventory.", Name);
+            Logging.WritePlugin("********************************************************", Name);
+            Logging.WritePluginError("!!! Warning !!! : " + sItemDescID + " : " + sItemname + " is not part of your inventory.", Name);
             return false;
         }
     }

@@ -108,8 +108,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "AutoInterrupt";
-    public static string TargetVersion = "4.6.x";
-    public static string Version = "1.3.1";
+    public static string TargetVersion = "4.9.x";
+    public static string Version = "1.3.2";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
@@ -121,16 +121,16 @@ public static class MyPluginClass
         GetAllAvailableInterrupters();
         if (AvailableInterruptersPVP.Count <= 0 && AvailableInterruptersPve.Count <= 0)
         {
-            Logging.WriteDebug(Name + ": No spell capable of interrupt has been found.");
+            Logging.WritePluginDebug(Name + ": No spell capable of interrupt has been found.", Name);
             return;
         }
         foreach (Spell spell in AvailableInterruptersPVP)
         {
-            Logging.Write("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVP.");
+            Logging.WritePlugin("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVP.", Name);
         }
         foreach (Spell spell in AvailableInterruptersPve)
         {
-            Logging.Write("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVE.");
+            Logging.WritePlugin("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVE.", Name);
         }
         MainLoop();
     }
@@ -189,7 +189,7 @@ public static class MyPluginClass
                     if (spellId > 0)
                     {
                         kicker.Launch();
-                        Logging.Write("SpellId " + spellId + " from " + ObjectManager.Target.Name + " has been interrupted.");
+                        Logging.WritePlugin("SpellId " + spellId + " from " + ObjectManager.Target.Name + " has been interrupted.", Name);
                         Thread.Sleep(500);
                     }
                     break;
@@ -229,7 +229,7 @@ public static class MyPluginClass
                     if (spellId > 0)
                     {
                         kicker.Launch();
-                        Logging.Write("SpellId " + spellId + " from " + ObjectManager.Target.Name + " has been interrupted.");
+                        Logging.WritePlugin("SpellId " + spellId + " from " + ObjectManager.Target.Name + " has been interrupted.", Name);
                         Thread.Sleep(500);
                     }
                     break;
@@ -245,7 +245,7 @@ public static class MyPluginClass
         {
             if (sId.Contains(ObjectManager.Target.CastingSpellId.ToString()))
             {
-                Logging.Write("Target is casting spellId " + ObjectManager.Target.CastingSpellId + " but it's ignored.");
+                Logging.WritePlugin("Target is casting spellId " + ObjectManager.Target.CastingSpellId + " but it's ignored.", Name);
                 return true;
             }
         }

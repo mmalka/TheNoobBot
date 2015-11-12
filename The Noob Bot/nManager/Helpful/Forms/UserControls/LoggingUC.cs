@@ -12,7 +12,7 @@ namespace nManager.Helpful.Forms.UserControls
             {
                 InitializeComponent();
                 Translate();
-                Logging.OnChanged += SynchroniseLoggin;
+                Logging.OnChanged += SynchroniseLogging;
 
                 CbCheckedChanged(null, null);
             }
@@ -32,7 +32,7 @@ namespace nManager.Helpful.Forms.UserControls
 
         private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
 
-        private void SynchroniseLoggin(object sender, Logging.LoggingChangeEventArgs e)
+        private void SynchroniseLogging(object sender, Logging.LoggingChangeEventArgs e)
         {
             try
             {
@@ -80,10 +80,13 @@ namespace nManager.Helpful.Forms.UserControls
 
                 if (NormalLogSwitchButton.Value)
                     flag |= Logging.LogType.S;
+                    flag |= Logging.LogType.P;
                 if (DebugLogSwitchButton.Value)
                 {
                     flag |= Logging.LogType.D;
                     flag |= Logging.LogType.E;
+                    flag |= Logging.LogType.EP;
+                    flag |= Logging.LogType.DP;
                 }
                 if (FightLogSwitchButton.Value)
                     flag |= Logging.LogType.F;
@@ -143,7 +146,7 @@ namespace nManager.Helpful.Forms.UserControls
         private void LoggingUC_ControlRemoved(object sender, ControlEventArgs e)
         {
             LoggingAreaTimer.Enabled = false;
-            Logging.OnChanged -= SynchroniseLoggin;
+            Logging.OnChanged -= SynchroniseLogging;
         }
     }
 }

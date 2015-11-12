@@ -162,6 +162,21 @@ namespace nManager.Helpful
             Write(text, LogType.D, Color.MediumVioletRed);
         }
 
+        public static void WritePlugin(string text, string pluginName)
+        {
+            Write(pluginName + ": " +  text, LogType.P, Color.DarkOrange);
+        }
+
+        public static void WritePluginError(string text, string pluginName)
+        {
+            Write(pluginName + ": " + text, LogType.EP, Color.OrangeRed);
+        }
+
+        public static void WritePluginDebug(string text, string pluginName)
+        {
+            Write(pluginName + ": " + text, LogType.DP, Color.DarkViolet);
+        }
+
         public static void WriteNavigator(string text)
         {
             Write(text, LogType.N, Color.Blue);
@@ -272,6 +287,9 @@ namespace nManager.Helpful
             N = 0x8, // Navigation
             F = 0x10, // Fight
             IO = 0x20, // FileOnly
+            P = 0x30, // Plugin
+            EP = 0x40, // Plugin Error
+            DP = 0x50, // Plugin Debug
         }
 
         public class Log
