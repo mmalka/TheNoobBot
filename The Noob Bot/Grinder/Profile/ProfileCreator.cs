@@ -145,7 +145,7 @@ namespace Grinder.Profile
                     foreach (GrinderZone p in _profile.GrinderZones)
                     {
                         // if (!listZoneCb.Items.Contains(p.Name))
-                        listZoneCb.Items.Add(p.Name + " - Level " + p.MinLevel + " to " + p.MaxLevel + " with " + p.TargetEntry.Count + " targets");
+                        listZoneCb.Items.Add(p.Name + "(" + listZoneCb.Items.Count + ")" + " - Level " + p.MinLevel + " to " + p.MaxLevel + " with " + p.TargetEntry.Count + " targets");
                     }
                     if (listZoneCb.SelectedIndex != _idZone)
                     {
@@ -485,9 +485,12 @@ namespace Grinder.Profile
         {
             try
             {
+                _idZone = listZoneCb.SelectedIndex;
+                RefreshForm();
                 _profile.GrinderZones.Add(new GrinderZone {Name = Usefuls.MapZoneName});
                 _idZone = _profile.GrinderZones.Count - 1;
                 RefreshListZones();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -599,10 +602,6 @@ namespace Grinder.Profile
             {
                 Logging.WriteError("addTargetEntryB_Click(object sender, EventArgs e): " + ex);
             }
-        }
-
-        private void EditZoneButton_Click(object sender, EventArgs e)
-        {
         }
     }
 }
