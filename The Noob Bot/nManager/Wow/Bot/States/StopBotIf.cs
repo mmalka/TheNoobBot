@@ -247,28 +247,41 @@ namespace nManager.Wow.Bot.States
 
         private void closeWow(string reason)
         {
-            Logging.Write(reason);
-            if (nManagerSetting.CurrentSetting.UseHearthstone && ItemsManager.GetItemCount(6948) > 0 &&
-                !ItemsManager.IsItemOnCooldown(6948) && ItemsManager.IsItemUsable(6948))
+            Logging.Write("Closing WoW because: " + reason);
+            if (nManagerSetting.CurrentSetting.UseHearthstone)
             {
-                Timer timerHearthstone = new Timer(1000*45);
-                Tasks.MountTask.DismountMount();
-                MovementManager.StopMove();
-                MovementManager.StopMove();
-                timerHearthstone.Reset();
-                while (!Usefuls.IsLoadingOrConnecting && !timerHearthstone.IsReady)
+                Logging.Write("Loading Hearthstone informations");
+                if (ItemsManager.GetItemCount(6948) <= 0)
                 {
-                    ItemsManager.UseItem(ItemsManager.GetItemNameById(6948));
-                    Thread.Sleep(1000);
+                    Logging.Write(Translate.Get(Translate.Id.HearthstoneNotFound));
                 }
-                Thread.Sleep(1000);
+                else
+                {
+                    if (!ItemsManager.IsItemOnCooldown(6948) && ItemsManager.IsItemUsable(6948))
+                    {
+                        Timer timerHearthstone = new Timer(1000*45);
+                        Tasks.MountTask.DismountMount();
+                        MovementManager.StopMove();
+                        MovementManager.StopMove();
+                        timerHearthstone.Reset();
+                        Logging.Write("Hearthstone available, using it.");
+                        while (!Usefuls.IsLoadingOrConnecting && !timerHearthstone.IsReady)
+                        {
+                            ItemsManager.UseItem(ItemsManager.GetItemNameById(6948));
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    else
+                    {
+                        Logging.Write("Hearthstone found but on cooldown.");
+                    }
+
+                    Memory.WowProcess.KillWowProcess();
+                    MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    Process.GetCurrentProcess().Kill();
+                }
             }
-            else if (nManagerSetting.CurrentSetting.StopTNBIfBagAreFull)
-                Logging.Write(Translate.Get(Translate.Id.HearthstoneNotFound));
-            Memory.WowProcess.KillWowProcess();
-            MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
-            Process.GetCurrentProcess().Kill();
         }
     }
 }
