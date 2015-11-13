@@ -10154,7 +10154,6 @@ public class DruidFeral
     public readonly Spell Prowl = new Spell("Prowl");
     public readonly Spell SavageRoar = new Spell("Savage Roar");
     public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
-    private bool _fivePtSav;
     private Timer _savageRoarTimer = new Timer(0);
 
     #endregion
@@ -10171,11 +10170,8 @@ public class DruidFeral
     public readonly Spell Shred = new Spell("Shred");
     public readonly Spell Swipe = new Spell("Swipe");
     public readonly Spell Thrash = new Spell("Thrash");
-    private bool _fivePtFer;
     private bool _fivePtRip;
-/*
-        private Timer _rakeTimer = new Timer(0);
-*/
+    private Timer _rakeTimer = new Timer(0);
     private Timer _ripTimer = new Timer(0);
 
     #endregion
@@ -10185,7 +10181,7 @@ public class DruidFeral
     public readonly Spell Berserk = new Spell("Berserk");
     public readonly Spell ForceofNature = new Spell("Force of Nature");
     public readonly Spell HeartoftheWild = new Spell("Heart of the Wild");
-    public readonly Spell Incarnation = new Spell("Incarnation");
+    public readonly Spell Incarnation = new Spell("Incarnation: King of the Jungle");
     public readonly Spell NaturesVigil = new Spell("Nature's Vigil");
     public readonly Spell TigersFury = new Spell("Tiger's Fury");
 
@@ -10319,12 +10315,12 @@ public class DruidFeral
             return;
         }
 
-        if (Mangle.IsSpellUsable && Mangle.KnownSpell && Mangle.IsHostileDistanceGood && MySettings.UseMangle)
+        if (Shred.IsSpellUsable && Shred.KnownSpell && Shred.IsHostileDistanceGood && MySettings.UseShred)
         {
-            Mangle.Cast();
+            Shred.Cast();
             if (ObjectManager.Target.HealthPercent < 50 && ObjectManager.Target.HealthPercent > 0)
             {
-                Mangle.Cast();
+                Shred.Cast();
             }
             return;
         }
@@ -10344,7 +10340,6 @@ public class DruidFeral
         DPSCycle();
         Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -10633,12 +10628,6 @@ public class DruidFeral
             Incarnation.Cast();
             return;
         }
-        if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && MySettings.UseHeartoftheWild
-            && ObjectManager.Target.GetDistance < 30)
-        {
-            HeartoftheWild.Cast();
-            return;
-        }
         if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && MySettings.UseNaturesVigil
             && ObjectManager.Target.GetDistance < 30)
         {
@@ -10670,13 +10659,6 @@ public class DruidFeral
                 CatForm.Cast();
                 return;
             }
-
-            if (FaerieFire.KnownSpell && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood
-                && MySettings.UseFaerieFire && !FaerieFire.TargetHaveBuff)
-            {
-                FaerieFire.Cast();
-                return;
-            }
             if (ObjectManager.GetNumberAttackPlayer() > 2 && Thrash.IsSpellUsable && Thrash.KnownSpell
                 && Thrash.IsHostileDistanceGood && !Thrash.TargetHaveBuff && MySettings.UseThrash)
             {
@@ -10689,37 +10671,29 @@ public class DruidFeral
                 Swipe.Cast();
                 return;
             }
-            if (FerociousBite.IsSpellUsable && FerociousBite.KnownSpell && FerociousBite.IsHostileDistanceGood
-                && MySettings.UseFerociousBite && !_ripTimer.IsReady && ObjectManager.Me.ComboPoint > 4
-                && ObjectManager.Target.HealthPercent > 24 && !_savageRoarTimer.IsReady
-                && ObjectManager.Me.Energy > 49 && _fivePtRip)
+            if (HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && ObjectManager.Me.HaveBuff(69369)
+                && MySettings.UseHealingTouch)
             {
-                FerociousBite.Cast();
+                HealingTouch.Cast();
                 return;
             }
-            if (SavageRoar.IsSpellUsable && SavageRoar.KnownSpell && SavageRoar.IsHostileDistanceGood && !_fivePtSav
-                && ObjectManager.Me.ComboPoint > 4 && MySettings.UseSavageRoar)
+            if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsHostileDistanceGood && 
+                (!ObjectManager.Target.HaveBuff(155722) || _rakeTimer.IsReady)
+                && MySettings.UseRake)
             {
-                CP = ObjectManager.Me.ComboPoint;
-                SavageRoar.Cast();
-                _savageRoarTimer = new Timer(1000*(12 + (6*CP)));
-                _fivePtSav = true;
+                Rake.Cast();
+                _rakeTimer = new Timer(1000 * 10);
+                if (MySettings.UseGlyphofSavageRoar && Incarnation.KnownSpell && ObjectManager.Me.HaveBuff(102543))
+                    _savageRoarTimer = new Timer(1000*37);
                 return;
             }
             if (SavageRoar.IsSpellUsable && SavageRoar.KnownSpell && SavageRoar.IsHostileDistanceGood
                 && (!SavageRoar.HaveBuff || _savageRoarTimer.IsReady) && MySettings.UseSavageRoar
-                && ObjectManager.Me.ComboPoint < 5)
+                && ObjectManager.Me.ComboPoint > 0)
             {
                 CP = ObjectManager.Me.ComboPoint;
                 SavageRoar.Cast();
-                _savageRoarTimer = new Timer(1000*(12 + (6*CP)));
-                _fivePtSav = false;
-                return;
-            }
-            if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsHostileDistanceGood && !Rake.TargetHaveBuff
-                && MySettings.UseRake)
-            {
-                Rake.Cast();
+                _savageRoarTimer = new Timer(1000*(7 + (6*CP)));
                 return;
             }
 
@@ -10729,67 +10703,87 @@ public class DruidFeral
                     && ObjectManager.Me.ComboPoint > 4 && MySettings.UseRip)
                 {
                     Rip.Cast();
-                    _ripTimer = new Timer(1000*13);
+                    _ripTimer = new Timer(1000*19);
                     _fivePtRip = true;
                     return;
                 }
 
                 if (Rip.IsSpellUsable && Rip.KnownSpell && Rip.IsHostileDistanceGood && MySettings.UseRip
-                    && (!Rip.TargetHaveBuff || _ripTimer.IsReady))
+                    && (!Rip.TargetHaveBuff || _ripTimer.IsReady) && ObjectManager.Me.ComboPoint > 0)
                 {
+                    CP = ObjectManager.Me.ComboPoint;
                     Rip.Cast();
-                    _ripTimer = new Timer(1000*19);
-                    _fivePtRip = false;
+                    _ripTimer = new Timer(1000 * 19);
+                    if (CP == 5)
+                        _fivePtRip = true;
+                    else
+                        _fivePtRip = false;
                     return;
                 }
             }
             else
             {
                 if (Rip.IsSpellUsable && Rip.KnownSpell && Rip.IsHostileDistanceGood && !Rip.TargetHaveBuff
-                    && MySettings.UseRip)
+                    && MySettings.UseRip && ObjectManager.Me.ComboPoint > 0)
                 {
                     CP = ObjectManager.Me.ComboPoint;
                     Rip.Cast();
                     _ripTimer = new Timer(1000*19);
-                    _fivePtFer = CP == 5;
+                    if (CP == 5)
+                        _fivePtRip = true;
+                    else
+                        _fivePtRip = false;
                     return;
                 }
 
                 if (FerociousBite.IsSpellUsable && FerociousBite.KnownSpell && FerociousBite.IsHostileDistanceGood
-                    && !_fivePtFer && ObjectManager.Me.ComboPoint > 4 && MySettings.UseFerociousBite)
+                    && ObjectManager.Me.ComboPoint > 4 && MySettings.UseFerociousBite)
                 {
                     FerociousBite.Cast();
                     _ripTimer = new Timer(1000*19);
-                    _fivePtFer = true;
+                    _fivePtRip = true;
                     return;
                 }
 
                 if (FerociousBite.IsSpellUsable && FerociousBite.KnownSpell && FerociousBite.IsHostileDistanceGood
-                    && MySettings.UseFerociousBite && _ripTimer.IsReady && ObjectManager.Me.ComboPoint < 5)
+                    && MySettings.UseFerociousBite && _ripTimer.IsReady && Rip.TargetHaveBuff
+                    && ObjectManager.Me.ComboPoint < 5 && ObjectManager.Me.ComboPoint > 0)
                 {
                     FerociousBite.Cast();
                     _ripTimer = new Timer(1000*19);
-                    _fivePtFer = false;
+                    _fivePtRip = false;
                     return;
                 }
             }
 
-            if (ObjectManager.Me.HaveBuff(102543) && Ravage.KnownSpell && Ravage.IsSpellUsable && Ravage.IsHostileDistanceGood && MySettings.UseRavage)
+            if (FerociousBite.IsSpellUsable && FerociousBite.KnownSpell && FerociousBite.IsHostileDistanceGood
+                && MySettings.UseFerociousBite && !_ripTimer.IsReady && ObjectManager.Me.ComboPoint > 4
+                && ObjectManager.Target.HealthPercent > 24 && !_savageRoarTimer.IsReady
+                && ObjectManager.Me.Energy > 49 && _fivePtRip)
             {
-                Ravage.Cast();
+                FerociousBite.Cast();
                 return;
             }
+
             if (Shred.KnownSpell && Shred.IsSpellUsable && Shred.IsHostileDistanceGood
-                && MySettings.UseShred && MySettings.UseGlyphofShred
-                && (TigersFury.HaveBuff || Berserk.HaveBuff))
+                && MySettings.UseShred && ObjectManager.Me.ComboPoint < 5 && !_rakeTimer.IsReady)
             {
+                if (Rip.IsSpellUsable && Rip.KnownSpell && Rip.IsHostileDistanceGood && !Rip.TargetHaveBuff
+                    && MySettings.UseRip && ObjectManager.Me.ComboPoint > 0)
+                {
+                    CP = ObjectManager.Me.ComboPoint;
+                    Rip.Cast();
+                    _ripTimer = new Timer(1000 * 19);
+                    if (CP == 5)
+                        _fivePtRip = true;
+                    else
+                        _fivePtRip = false;
+                    return;
+                }
+
                 Shred.Cast();
-                return;
-            }
-            if (Mangle.KnownSpell && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood
-                && MySettings.UseMangle)
-            {
-                Mangle.Cast();
+                if (MySettings.UseGlyphofSavageRoar && Incarnation.KnownSpell && ObjectManager.Me.HaveBuff(102543))
+                    _savageRoarTimer = new Timer(1000 * 37);
                 return;
             }
 
@@ -10838,7 +10832,7 @@ public class DruidFeral
         public bool UseForceofNature = true;
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGlyphofShred = false;
+        public bool UseGlyphofSavageRoar = false;
         public bool UseHealingTouch = true;
         public bool UseHeartoftheWild = true;
         public bool UseIncarnation = true;
@@ -10940,7 +10934,7 @@ public class DruidFeral
             AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spell");
             AddControlInWinForm("Use Tranquility", "UseTranquility", "Healing Spell");
             /* Game Settings */
-            AddControlInWinForm("Using Glyph of Shred?", "UseGlyphofShred", "Game Settings");
+            AddControlInWinForm("Using Glyph of Savage Roar?", "UseGlyphofSavageRoar", "Game Settings");
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -26653,6 +26647,7 @@ public class MonkWindwalker
     private Timer _onCd = new Timer(0);
     private Timer _risingSunKickTimer = new Timer(0);
     private Timer _tigerPowerTimer = new Timer(0);
+    private Timer _rollTimer = new Timer(0);
 
     #endregion
 
@@ -26815,8 +26810,12 @@ public class MonkWindwalker
             TigersLust.Cast();
 
         if (MySettings.UseRoll && !ObjectManager.Me.InCombat && Roll.KnownSpell && ObjectManager.Me.GetMove
-            && !TigersLust.HaveBuff && Roll.IsSpellUsable && ObjectManager.Target.GetDistance > 14)
+            && !TigersLust.HaveBuff && _rollTimer.IsReady && Roll.IsSpellUsable && ObjectManager.Target.GetDistance > 14)
+        {
             Roll.Cast();
+            _rollTimer = new Timer(1000 * 15);
+            return;
+        }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
@@ -27031,14 +27030,18 @@ public class MonkWindwalker
 
             if (ObjectManager.GetNumberAttackPlayer() > 3)
             {
-                if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && !ObjectManager.Me.HaveBuff(125359) && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable)
+                if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && !ObjectManager.Me.HaveBuff(125359) && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable
+                    && ObjectManager.Me.Chi > 0 && (_tigerPowerTimer.IsReady || !ObjectManager.Me.HaveBuff(125359)))
                 {
                     TigerPalm.Cast();
+                    _tigerPowerTimer = new Timer(1000 * 16);
                     return;
                 }
-                if (MySettings.UseRisingSunKick && RisingSunKick.KnownSpell && !RisingSunKick.TargetHaveBuff && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable)
+                if (MySettings.UseRisingSunKick && RisingSunKick.KnownSpell && !ObjectManager.Target.HaveBuff(130320) && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable
+                    && ObjectManager.Me.Chi > 1 && (_risingSunKickTimer.IsReady || !ObjectManager.Target.HaveBuff(130320)))
                 {
                     RisingSunKick.Cast();
+                    _risingSunKickTimer = new Timer(1000 * 6);
                     return;
                 }
                 if (MySettings.UseSpinningCraneKick && SpinningCraneKick.KnownSpell && SpinningCraneKick.IsHostileDistanceGood && !ObjectManager.Me.IsCast &&
@@ -27049,45 +27052,46 @@ public class MonkWindwalker
                 }
             }
 
-            if (MySettings.UseRisingSunKick && RisingSunKick.KnownSpell && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable
-                && (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath))
+            if (MySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseExpelHarmAtPercentage && ExpelHarm.IsHostileDistanceGood &&
+                ExpelHarm.IsSpellUsable
+                && ObjectManager.Me.Chi < 4)
             {
-                RisingSunKick.Cast();
-                _risingSunKickTimer = new Timer(1000*4);
+                ExpelHarm.Cast();
+                return;
+            }
+            if (MySettings.UseJab && Jab.KnownSpell && !ObjectManager.Me.HaveBuff(116768) && Jab.IsHostileDistanceGood && Jab.IsSpellUsable
+                && ObjectManager.Me.Chi < 4 && !ObjectManager.Me.HaveBuff(118864))
+            {
+                Jab.Cast();
                 return;
             }
             if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable &&
-                (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath)
+                (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath) && ObjectManager.Me.Chi > 0
                 && (_tigerPowerTimer.IsReady || !ObjectManager.Me.HaveBuff(125359) || ObjectManager.Me.HaveBuff(118864)))
             {
                 TigerPalm.Cast();
-                _tigerPowerTimer = new Timer(1000*15);
+                _tigerPowerTimer = new Timer(1000*16);
+                return;
+            }
+            if (MySettings.UseRisingSunKick && RisingSunKick.KnownSpell && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable
+                && (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath) && ObjectManager.Me.Chi > 1
+                && (_risingSunKickTimer.IsReady || !ObjectManager.Target.HaveBuff(130320)))
+            {
+                RisingSunKick.Cast();
+                _risingSunKickTimer = new Timer(1000 * 6);
                 return;
             }
             if (MySettings.UseFistsofFury && FistsofFury.KnownSpell && FistsofFury.IsHostileDistanceGood && FistsofFury.IsSpellUsable &&
-                (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath)
+                (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath) && ObjectManager.Me.Chi > 2
                 && !_tigerPowerTimer.IsReady && !_risingSunKickTimer.IsReady && ObjectManager.Me.EnergyPercentage < 81)
             {
                 FistsofFury.Cast();
                 return;
             }
             if (MySettings.UseBlackoutKick && BlackoutKick.KnownSpell && BlackoutKick.IsHostileDistanceGood && BlackoutKick.IsSpellUsable
-                && (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath))
+                && (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath) && ObjectManager.Me.Chi > 1)
             {
                 BlackoutKick.Cast();
-                return;
-            }
-            if (MySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseExpelHarmAtPercentage && ExpelHarm.IsHostileDistanceGood &&
-                ExpelHarm.IsSpellUsable
-                && ObjectManager.Me.Chi < 3)
-            {
-                ExpelHarm.Cast();
-                return;
-            }
-            if (MySettings.UseJab && Jab.KnownSpell && !ObjectManager.Me.HaveBuff(116768) && Jab.IsHostileDistanceGood && Jab.IsSpellUsable
-                && ObjectManager.Me.Chi < 3 && !ObjectManager.Me.HaveBuff(118864))
-            {
-                Jab.Cast();
                 return;
             }
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.EnergyPercentage < 90)
