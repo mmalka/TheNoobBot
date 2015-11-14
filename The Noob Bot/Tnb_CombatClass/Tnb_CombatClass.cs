@@ -12684,7 +12684,7 @@ public class PaladinHoly
                 HolyShock.Cast();
                 return;
             }
-            if (HammerOfWrath.KnownSpell && HammerOfWrath.IsHostileDistanceGood && HammerOfWrath.IsSpellUsable &&
+            if (HammerOfWrath.KnownSpell && HammerOfWrath.IsHostileDistanceGood && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable &&
                 MySettings.UseHammerOfWrath)
             {
                 HammerOfWrath.Cast();
@@ -13503,7 +13503,7 @@ public class PaladinRetribution
 
     private void Pull()
     {
-        if (MySettings.UseHammerOfWrath && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
+        if (MySettings.UseHammerOfWrath && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
         {
             HammerOfWrath.Cast();
             return;
@@ -13784,7 +13784,7 @@ public class PaladinRetribution
                 Exorcism.Cast();
                 return;
             }
-            if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
+            if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
             {
                 HammerOfWrath.Cast();
                 return;
@@ -13843,7 +13843,7 @@ public class PaladinRetribution
                 return;
             }
             if ((MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable) || (MySettings.UseDivineStorm && DivineStorm.IsSpellUsable) ||
-                (MySettings.UseJudgment && Judgment.IsSpellUsable) || (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable) || (MySettings.UseHammerOfWrath && HammerOfWrath.IsSpellUsable) ||
+                (MySettings.UseJudgment && Judgment.IsSpellUsable) || (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable) || (MySettings.UseHammerOfWrath && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable) ||
                 (MySettings.UseExorcism && Exorcism.IsSpellUsable))
             {
                 return;
