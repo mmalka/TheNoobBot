@@ -10677,12 +10677,12 @@ public class DruidFeral
                 HealingTouch.Cast();
                 return;
             }
-            if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsHostileDistanceGood && 
+            if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsHostileDistanceGood &&
                 (!ObjectManager.Target.HaveBuff(155722) || _rakeTimer.IsReady)
                 && MySettings.UseRake)
             {
                 Rake.Cast();
-                _rakeTimer = new Timer(1000 * 10);
+                _rakeTimer = new Timer(1000*10);
                 if (MySettings.UseGlyphofSavageRoar && Incarnation.KnownSpell && ObjectManager.Me.HaveBuff(102543))
                     _savageRoarTimer = new Timer(1000*37);
                 return;
@@ -10713,7 +10713,7 @@ public class DruidFeral
                 {
                     CP = ObjectManager.Me.ComboPoint;
                     Rip.Cast();
-                    _ripTimer = new Timer(1000 * 19);
+                    _ripTimer = new Timer(1000*19);
                     if (CP == 5)
                         _fivePtRip = true;
                     else
@@ -10773,7 +10773,7 @@ public class DruidFeral
                 {
                     CP = ObjectManager.Me.ComboPoint;
                     Rip.Cast();
-                    _ripTimer = new Timer(1000 * 19);
+                    _ripTimer = new Timer(1000*19);
                     if (CP == 5)
                         _fivePtRip = true;
                     else
@@ -10783,7 +10783,7 @@ public class DruidFeral
 
                 Shred.Cast();
                 if (MySettings.UseGlyphofSavageRoar && Incarnation.KnownSpell && ObjectManager.Me.HaveBuff(102543))
-                    _savageRoarTimer = new Timer(1000 * 37);
+                    _savageRoarTimer = new Timer(1000*37);
                 return;
             }
 
@@ -26813,7 +26813,7 @@ public class MonkWindwalker
             && !TigersLust.HaveBuff && _rollTimer.IsReady && Roll.IsSpellUsable && ObjectManager.Target.GetDistance > 14)
         {
             Roll.Cast();
-            _rollTimer = new Timer(1000 * 15);
+            _rollTimer = new Timer(1000*15);
             return;
         }
 
@@ -27034,14 +27034,14 @@ public class MonkWindwalker
                     && ObjectManager.Me.Chi > 0 && (_tigerPowerTimer.IsReady || !ObjectManager.Me.HaveBuff(125359)))
                 {
                     TigerPalm.Cast();
-                    _tigerPowerTimer = new Timer(1000 * 16);
+                    _tigerPowerTimer = new Timer(1000*16);
                     return;
                 }
                 if (MySettings.UseRisingSunKick && RisingSunKick.KnownSpell && !ObjectManager.Target.HaveBuff(130320) && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable
                     && ObjectManager.Me.Chi > 1 && (_risingSunKickTimer.IsReady || !ObjectManager.Target.HaveBuff(130320)))
                 {
                     RisingSunKick.Cast();
-                    _risingSunKickTimer = new Timer(1000 * 6);
+                    _risingSunKickTimer = new Timer(1000*6);
                     return;
                 }
                 if (MySettings.UseSpinningCraneKick && SpinningCraneKick.KnownSpell && SpinningCraneKick.IsHostileDistanceGood && !ObjectManager.Me.IsCast &&
@@ -27078,7 +27078,7 @@ public class MonkWindwalker
                 && (_risingSunKickTimer.IsReady || !ObjectManager.Target.HaveBuff(130320)))
             {
                 RisingSunKick.Cast();
-                _risingSunKickTimer = new Timer(1000 * 6);
+                _risingSunKickTimer = new Timer(1000*6);
                 return;
             }
             if (MySettings.UseFistsofFury && FistsofFury.KnownSpell && FistsofFury.IsHostileDistanceGood && FistsofFury.IsSpellUsable &&

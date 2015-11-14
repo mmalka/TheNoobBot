@@ -83,7 +83,8 @@ namespace nManager.Wow.Class
                     "AuraTimeLeftInMs: {8}{0}" +
                     "AuraMask: {9}{0}" +
                     "AuraUnk1: {10}{0}" +
-                    "AuraUnk2: {11}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlag, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraMask.ToString("X8"), AuraUnk1, AuraUnk2);
+                    "AuraUnk2: {11}{0}", Environment.NewLine, AuraCasterLevel, AuraCount, AuraCreatorGUID, AuraDuration, AuraFlag, AuraSpellEndTime, AuraSpellId, AuraTimeLeftInMs, AuraMask.ToString("X8"), AuraUnk1,
+                    AuraUnk2);
             }
         }
 

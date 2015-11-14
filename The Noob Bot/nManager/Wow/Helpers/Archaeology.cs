@@ -18,8 +18,8 @@ namespace nManager.Wow.Helpers
         public static void Initialize()
         {
             _allDigsiteZone = new List<Digsite>();
-             Spell spell = new Spell(126935);
-             _CrateRestoredArtifactSpellName = spell.NameInGame;
+            Spell spell = new Spell(126935);
+            _CrateRestoredArtifactSpellName = spell.NameInGame;
         }
 
         public static void ClearList()

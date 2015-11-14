@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
         private static void init()
         {
             if (_rSiteDB2 == null)
-                _rSiteDB2 = new DB2<ResearchSiteDb2Record>((int)Addresses.DBC.ResearchSite);
+                _rSiteDB2 = new DB2<ResearchSiteDb2Record>((int) Addresses.DBC.ResearchSite);
         }
 
         private WoWResearchSite(string name, bool SecondOne = false)

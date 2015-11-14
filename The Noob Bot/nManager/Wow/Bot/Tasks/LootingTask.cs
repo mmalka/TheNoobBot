@@ -49,7 +49,7 @@ namespace nManager.Wow.Bot.Tasks
 
                             // We have no item to loot at range, then go to mob
                             if (!CombatClass.InMeleeRange(wowUnit) && (!nManagerSetting.CurrentSetting.UseLootARange || LootARangeId == 0 ||
-                                ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 40f || !ItemsManager.IsItemUsable(LootARangeId)))
+                                                                       ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 40f || !ItemsManager.IsItemUsable(LootARangeId)))
                             {
                                 List<Point> points = PathFinder.FindPath(wowUnit.Position);
                                 if (points.Count <= 0)
@@ -85,8 +85,8 @@ namespace nManager.Wow.Bot.Tasks
                             if (wowUnit.IsLootable)
                             {
                                 // Code for 109167 Findle's Loot-A-Range and 60854 Loot-A-Rang
-                                if (nManagerSetting.CurrentSetting.UseLootARange && !CombatClass.InMeleeRange(wowUnit) && 
-                                    ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 40f && LootARangeId != 0 && 
+                                if (nManagerSetting.CurrentSetting.UseLootARange && !CombatClass.InMeleeRange(wowUnit) &&
+                                    ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 40f && LootARangeId != 0 &&
                                     ItemsManager.IsItemUsable(LootARangeId))
                                 {
                                     // Since these items have a CD of only 3 sec, it's worth waiting for the CD to recover

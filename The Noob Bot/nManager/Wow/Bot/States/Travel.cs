@@ -151,7 +151,8 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) + " to " + TravelTo + " " + Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
+            Logging.Write("Start travel from " + ObjectManager.ObjectManager.Me.Position + " " + Usefuls.ContinentNameMpqByContinentId(Usefuls.ContinentId) + " to " + TravelTo + " " +
+                          Usefuls.ContinentNameMpqByContinentId(TravelToContinentId) + ".");
             MovementManager.StopMove();
 
             foreach (Transport transport in _generatedRoutePath)

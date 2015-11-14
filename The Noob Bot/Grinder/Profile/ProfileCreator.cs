@@ -185,8 +185,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Player Level
-                    var savedMinPlayer = (int)_profile.GrinderZones[_idZone].MinLevel;
-                    var savedMaxPlayer = (int)_profile.GrinderZones[_idZone].MaxLevel;
+                    var savedMinPlayer = (int) _profile.GrinderZones[_idZone].MinLevel;
+                    var savedMaxPlayer = (int) _profile.GrinderZones[_idZone].MaxLevel;
 
                     maxLevelPlayer.Value = savedMaxPlayer;
                     minLevelPlayer.Value = savedMinPlayer;
@@ -197,8 +197,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target Level
-                    var savedMinLevelTarget = (int)_profile.GrinderZones[_idZone].MinTargetLevel;
-                    var savedMaxLevelTarget = (int)_profile.GrinderZones[_idZone].MaxTargetLevel;
+                    var savedMinLevelTarget = (int) _profile.GrinderZones[_idZone].MinTargetLevel;
+                    var savedMaxLevelTarget = (int) _profile.GrinderZones[_idZone].MaxTargetLevel;
                     maxLevelTarget.Value = savedMaxLevelTarget;
                     minLevelTarget.Value = savedMinLevelTarget;
                 }

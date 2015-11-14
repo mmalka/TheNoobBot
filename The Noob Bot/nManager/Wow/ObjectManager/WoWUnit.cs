@@ -1401,10 +1401,7 @@ namespace nManager.Wow.ObjectManager
 
         public UnitQuestGiverStatus UnitQuestGiverStatus
         {
-            get
-            {
-                return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint)Addresses.Quests.QuestGiverStatus);
-            }
+            get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
         }
 
         public bool IsLootable

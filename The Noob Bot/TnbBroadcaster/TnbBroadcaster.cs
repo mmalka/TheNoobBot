@@ -125,7 +125,8 @@ public static class MyPluginClass
         while (InternalLoop)
         {
             Thread.Sleep(1000);
-            Logging.WritePlugin("The plugin is running...", Name); // Always uses WritePlugin // WritePluginError // WritePluginDebug. Don't forget to pass ", Name" as a parameter to announce which profile is sending it.
+            Logging.WritePlugin("The plugin is running...", Name);
+                // Always uses WritePlugin // WritePluginError // WritePluginDebug. Don't forget to pass ", Name" as a parameter to announce which profile is sending it.
         }
     }
 }

@@ -277,7 +277,6 @@ public static class MyPluginClass
                     }
                 }
             }
-
         }
     }
 
@@ -393,7 +392,7 @@ public static class MyPluginClass
             ConfigWinForm("Plugin management");
 
             AddControlInWinForm("Activate pluggin only when product is started [START PRODUCT] ?", "bStartProduct", "Configuration", "List");
- 
+
             AddControlInWinForm("01 Use Item ?", "bUseItem01", "Configuration", "List");
             AddControlInWinForm("01 Item Name : ", "sItem01", "Configuration", "List");
             AddControlInWinForm("01 Item Buff Name : ", "sBuff01", "Configuration", "List");

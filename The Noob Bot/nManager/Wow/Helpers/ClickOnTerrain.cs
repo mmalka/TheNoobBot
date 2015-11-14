@@ -61,7 +61,7 @@ namespace nManager.Wow.Helpers
                 return;
             if (!point.IsValid)
                 return;
-            
+
             Thread.Sleep(Usefuls.Latency + 50);
 
             Pulse(point);

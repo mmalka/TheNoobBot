@@ -67,7 +67,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public static float TileSize
         {
-            get { return 533f + (1 / (float)3); }
+            get { return 533f + (1/(float) 3); }
         }
     }
 }

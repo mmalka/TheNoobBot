@@ -216,8 +216,7 @@ namespace Quester.Profile
         [DefaultValue(0)] public int EquipItemId = 0;
 
         // UseVehicule
-        [DefaultValue(0)]
-        public int EntryVehicle = 0;
+        [DefaultValue(0)] public int EntryVehicle = 0;
         [DefaultValue(false)] public bool OnlyInVehicule = false;
         [DefaultValue(false)] public bool OnlyOutVehicule = false;
 

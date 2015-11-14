@@ -164,7 +164,7 @@ namespace nManager.Helpful
 
         public static void WritePlugin(string text, string pluginName)
         {
-            Write(pluginName + ": " +  text, LogType.P, Color.DarkOrange);
+            Write(pluginName + ": " + text, LogType.P, Color.DarkOrange);
         }
 
         public static void WritePluginError(string text, string pluginName)

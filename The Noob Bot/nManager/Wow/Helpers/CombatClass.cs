@@ -126,6 +126,7 @@ namespace nManager.Wow.Helpers
                 }
             }
         }
+
         public static bool IsAliveCombatClass
         {
             get

@@ -118,10 +118,10 @@ namespace nManager.Helpful
         /// <returns></returns>
         public static float FixAngle(float angle)
         {
-            if (angle > (2f * (float)System.Math.PI))
-                return angle - (2f * (float)System.Math.PI);
+            if (angle > (2f*(float) System.Math.PI))
+                return angle - (2f*(float) System.Math.PI);
             else if (angle < 0)
-                return angle + (2f * (float)System.Math.PI);
+                return angle + (2f*(float) System.Math.PI);
             else return angle;
         }
 
