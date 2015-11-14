@@ -16551,6 +16551,7 @@ public class PriestShadow
     public readonly Spell Levitate = new Spell("Levitate");
     public readonly Spell PowerWordFortitude = new Spell("Power Word: Fortitude");
     public readonly Spell Shadowform = new Spell("Shadowform");
+    public readonly Spell ClarityofPower = new Spell("Clarity of Power");
     private Timer _levitateTimer = new Timer(0);
 
     #endregion
@@ -16566,13 +16567,15 @@ public class PriestShadow
     public readonly Spell MindSear = new Spell("Mind Sear");
     public readonly Spell MindSpike = new Spell("Mind Spike");
     public readonly Spell ShadowWordDeath = new Spell("Shadow Word: Death");
-    public readonly Spell ShadowWordInsanity = new Spell("Shadow Word: Insanity");
+    public readonly Spell Insanity = new Spell("Insanity");
     public readonly Spell ShadowWordPain = new Spell("Shadow Word: Pain");
     public readonly Spell Smite = new Spell("Smite");
     public readonly Spell VampiricTouch = new Spell("Vampiric Touch");
+    public readonly Spell VoidEntropy = new Spell("Void Entropy");
     private Timer _devouringPlagueTimer = new Timer(0);
     private Timer _shadowWordPainTimer = new Timer(0);
     private Timer _vampiricTouchTimer = new Timer(0);
+    private Timer _voidEntropyTimer = new Timer(0);
 
     #endregion
 
@@ -17045,32 +17048,33 @@ public class PriestShadow
                 return;
             }
             if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
-                && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath)
+                && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath && ObjectManager.Me.ShadowOrbs < 5)
             {
                 ShadowWordDeath.Cast();
                 return;
             }
             if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
-                && ShadowWordPain.IsHostileDistanceGood && MySettings.UseShadowWordPain
+                && ShadowWordPain.IsHostileDistanceGood && MySettings.UseShadowWordPain && !ClarityofPower.KnownSpell
                 && (!ShadowWordPain.TargetHaveBuff || _shadowWordPainTimer.IsReady))
             {
                 ShadowWordPain.Cast();
-                _shadowWordPainTimer = new Timer(1000*14);
-                return;
-            }
-            if (ShadowWordInsanity.KnownSpell && ShadowWordInsanity.IsHostileDistanceGood
-                && ShadowWordInsanity.IsSpellUsable && MySettings.UseShadowWordInsanity)
-            {
-                ShadowWordInsanity.Cast();
-                _shadowWordPainTimer = new Timer(0);
+                _shadowWordPainTimer = new Timer(1000*15);
                 return;
             }
             if (VampiricTouch.KnownSpell && VampiricTouch.IsSpellUsable
-                && VampiricTouch.IsHostileDistanceGood && MySettings.UseVampiricTouch
+                && VampiricTouch.IsHostileDistanceGood && MySettings.UseVampiricTouch && !ClarityofPower.KnownSpell
                 && (!VampiricTouch.TargetHaveBuff || _vampiricTouchTimer.IsReady))
             {
                 VampiricTouch.Cast();
-                _vampiricTouchTimer = new Timer(1000*11);
+                _vampiricTouchTimer = new Timer(1000*12);
+                return;
+            }
+            if (VoidEntropy.KnownSpell && VoidEntropy.IsSpellUsable
+                && VoidEntropy.IsHostileDistanceGood && MySettings.UseVoidEntropy
+                && (!VoidEntropy.TargetHaveBuff || _voidEntropyTimer.IsReady))
+            {
+                VoidEntropy.Cast();
+                _voidEntropyTimer = new Timer(1000*57);
                 return;
             }
             if (MindSpike.IsSpellUsable && MindSpike.IsHostileDistanceGood && MindSpike.KnownSpell &&
@@ -17080,24 +17084,35 @@ public class PriestShadow
                 return;
             }
             if (DevouringPlague.KnownSpell && DevouringPlague.IsSpellUsable && DevouringPlague.IsHostileDistanceGood &&
-                ObjectManager.Me.ShadowOrbs == 3 && MySettings.UseDevouringPlague
+                ObjectManager.Me.ShadowOrbs > 2 && MySettings.UseDevouringPlague
                 && (!DevouringPlague.TargetHaveBuff || _devouringPlagueTimer.IsReady))
             {
                 DevouringPlague.Cast();
                 _devouringPlagueTimer = new Timer(1000*3);
+                if (Insanity.KnownSpell)
+                {
+                    Others.SafeSleep(1000);
+                    MindFlay.Cast();
+                }
                 return;
             }
             if (MindBlast.KnownSpell && MindBlast.IsSpellUsable && MindBlast.IsHostileDistanceGood
-                && ObjectManager.Me.ShadowOrbs < 3 && MySettings.UseMindBlast)
+                && ObjectManager.Me.ShadowOrbs < 5 && MySettings.UseMindBlast)
             {
                 MindBlast.Cast();
+                return;
+            }
+            if (MindSpike.IsSpellUsable && MindSpike.IsHostileDistanceGood && MindSpike.KnownSpell &&
+                (ObjectManager.Me.HaveBuff(87160) || ClarityofPower.KnownSpell) && MySettings.UseMindSpike)
+            {
+                MindSpike.Cast();
                 return;
             }
             if (MySettings.UseMindFlay && MindFlay.KnownSpell && MindFlay.IsHostileDistanceGood && MindFlay.IsSpellUsable && !ObjectManager.Me.IsCast
                 && (ShadowWordPain.TargetHaveBuff || !MySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
                 (VampiricTouch.TargetHaveBuff || !MySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                && ObjectManager.Me.ShadowOrbs != 3)
+                && ObjectManager.Me.ShadowOrbs < 3 && !ClarityofPower.KnownSpell)
             {
                 MindFlay.Cast();
                 return;
@@ -17105,9 +17120,9 @@ public class PriestShadow
             // Blizzard API Calls for Mind Flay using Smite Function
             if (MySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
                 && (ShadowWordPain.TargetHaveBuff || !MySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
-                (VampiricTouch.TargetHaveBuff || !MySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
+                (VampiricTouch.TargetHaveBuff || !MySettings.UseVampiricTouch || !VampiricTouch.KnownSpell || !_vampiricTouchTimer.IsReady)
                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                && ObjectManager.Me.ShadowOrbs != 3)
+                && ObjectManager.Me.ShadowOrbs < 3 && !ClarityofPower.KnownSpell)
             {
                 Smite.Cast();
             }
@@ -17197,6 +17212,7 @@ public class PriestShadow
         public bool UseVampiricEmbrace = true;
         public int UseVampiricEmbraceAtPercentage = 80;
         public bool UseVampiricTouch = true;
+        public bool UseVoidEntropy = true;
         public bool UseVoidTendrils = true;
         public int UseVoidTendrilsAtPercentage = 35;
         public bool UseWarStomp = true;
@@ -17233,6 +17249,7 @@ public class PriestShadow
             AddControlInWinForm("Use Shadow Word: Insanity", "UseShadowWordInsanity", "Offensive Spell");
             AddControlInWinForm("Use Shadow Word: Pain", "UseShadowWordPain", "Offensive Spell");
             AddControlInWinForm("Use Vampiric Touch", "UseVampiricTouch", "Offensive Spell");
+            AddControlInWinForm("Use Void Entropy", "UseVoidEntropy", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Power Infusion", "UsePowerInfusion", "Offensive Cooldown");
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
