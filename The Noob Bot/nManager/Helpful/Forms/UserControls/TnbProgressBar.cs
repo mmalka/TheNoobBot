@@ -39,6 +39,8 @@ namespace nManager.Helpful.Forms.UserControls
             get { return _value; }
             set
             {
+                if (value == _value)
+                    return;
                 if (value < 0)
                     value = 0;
                 if (value > Maximum)
