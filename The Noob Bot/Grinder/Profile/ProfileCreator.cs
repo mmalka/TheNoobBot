@@ -106,12 +106,14 @@ namespace Grinder.Profile
                     _profile = new GrinderProfile();
                     _profile = XmlSerializer.Deserialize<GrinderProfile>(file);
                     RefreshForm();
+                    RefreshListZones();
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Grinder > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " + ex);
                 RefreshForm();
+                RefreshListZones();
             }
         }
 
