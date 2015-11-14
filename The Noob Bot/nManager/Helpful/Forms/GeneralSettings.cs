@@ -429,6 +429,8 @@ namespace nManager.Helpful.Forms
             LaunchExpiredPlugins.OnText = onText;
             HideSDKFiles.OffText = offText;
             HideSDKFiles.OnText = onText;
+            UseLootARange.OffText = offText;
+            UseLootARange.OnText = onText;
         }
 
         private void SaveSetting()
