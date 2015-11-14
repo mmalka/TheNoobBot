@@ -275,13 +275,13 @@ namespace nManager.Wow.Bot.States
                     {
                         Logging.Write("Hearthstone found but on cooldown.");
                     }
-
-                    Memory.WowProcess.KillWowProcess();
-                    MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    Process.GetCurrentProcess().Kill();
                 }
             }
+
+            Memory.WowProcess.KillWowProcess();
+            MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            Process.GetCurrentProcess().Kill();
         }
     }
 }
