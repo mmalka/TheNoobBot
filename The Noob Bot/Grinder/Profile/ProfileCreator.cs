@@ -139,6 +139,8 @@ namespace Grinder.Profile
                 {
                     // List Zones
                     listZoneCb.Items.Clear();
+                    if (_idZone > _profile.GrinderZones.Count - 1)
+                        _idZone = _profile.GrinderZones.Count - 1;
                     if (_profile.GrinderZones.Count <= 0)
                     {
                         addZoneB_Click(null, null);
