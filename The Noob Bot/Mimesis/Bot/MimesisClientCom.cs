@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
@@ -112,7 +111,7 @@ namespace Mimesis.Bot
             try
             {
                 int bytesRead = clientStream.Read(opCodeAndSize, 0, 2);
-                int len = opCodeAndSize[1];
+                int len = opCodeAndSize[1]; // 3 float[4] + 1 byte (type)
                 buffer = new byte[len];
                 bytesRead += clientStream.Read(buffer, 0, len);
             }
@@ -122,7 +121,23 @@ namespace Mimesis.Bot
                 return new Point();
             }
             if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyPosition)
-                return MimesisHelpers.BytesToObject<Point>(buffer);
+            {
+                if (buffer.Length != 13)
+                    return new Point();
+                var masterPositionXYZ = new float[3];
+                Buffer.BlockCopy(buffer, 0, masterPositionXYZ, 0, 12);
+                var masterPosition = new Point {X = masterPositionXYZ[0], Y = masterPositionXYZ[1], Z = masterPositionXYZ[2]};
+                switch (buffer[12])
+                {
+                    case 2:
+                        masterPosition.Type = "Flying";
+                        break;
+                    case 1:
+                        masterPosition.Type = "Swimming";
+                        break;
+                }
+                return masterPosition;
+            }
             return new Point();
         }
 

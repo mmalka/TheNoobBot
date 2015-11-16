@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Linq;
 using System.Collections.Generic;
+using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Helpers;
 using nManager.Wow.Enums;
@@ -270,7 +271,17 @@ namespace nManager.Helpful
                         switch ((MimesisHelpers.opCodes) opCodeAndLen[0])
                         {
                             case MimesisHelpers.opCodes.QueryPosition:
-                                byte[] bufferPos = MimesisHelpers.ObjectToBytes(ObjectManager.Me.Position);
+                                var masterPosition = new[] {ObjectManager.Me.Position.X, ObjectManager.Me.Position.Y, ObjectManager.Me.Position.Z};
+                                // create a byte array and copy the floats into it...
+                                var byteArray = new byte[13]; // 3 float[4] + 1 byte (type)
+                                Buffer.BlockCopy(masterPosition, 0, byteArray, 0, 12);
+                                byte typeByte = 0;
+                                if (ObjectManager.Me.Position.Type == "Flying")
+                                    typeByte = 2;
+                                else if (ObjectManager.Me.Position.Type == "Swimming")
+                                    typeByte = 1;
+                                byteArray[12] = typeByte;
+                                byte[] bufferPos = byteArray;
                                 opCodeAndLen[0] = (byte) MimesisHelpers.opCodes.ReplyPosition;
                                 opCodeAndLen[1] = (byte) bufferPos.Length;
                                 clientStream.Write(opCodeAndLen, 0, 2);
