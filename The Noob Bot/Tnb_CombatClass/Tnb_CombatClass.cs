@@ -9317,10 +9317,8 @@ public class DruidBalance
     public readonly Spell Wrath = new Spell("Wrath");
     private Timer _moonfireTimer = new Timer(0);
     private Timer _sunfireTimer = new Timer(0);
-    private Timer _balanceTimer = new Timer(0);
     private Timer _starsurgeTimer = new Timer(0);
     private Timer _starfallTimer = new Timer(0);
-    private bool _starfireUse = true;
 
     #endregion
 
@@ -9330,7 +9328,7 @@ public class DruidBalance
     public readonly Spell CelestialAlignment = new Spell("Celestial Alignment");
     public readonly Spell ForceofNature = new Spell("Force of Nature");
     public readonly Spell HeartoftheWild = new Spell("Heart of the Wild");
-    public readonly Spell Incarnation = new Spell("Incarnation");
+    public readonly Spell Incarnation = new Spell("Incarnation: Chosen of Elune");
     public readonly Spell NaturesVigil = new Spell("Nature's Vigil");
 
     #endregion
@@ -9420,10 +9418,6 @@ public class DruidBalance
         {
             Moonfire.Cast();
             _moonfireTimer = new Timer(1000*37);
-            if (Euphoria.KnownSpell)
-                _balanceTimer = new Timer(1000*10);
-            else
-                _balanceTimer = new Timer(1000*20);
             return;
         }
         if (Sunfire.IsHostileDistanceGood && Sunfire.IsSpellUsable && MySettings.UseSunfire)
@@ -9439,28 +9433,7 @@ public class DruidBalance
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
         DefenseCycle();
-        Heal();
-
-        if (_balanceTimer.IsReady)
-        {
-            if (Euphoria.KnownSpell)
-                _balanceTimer = new Timer(1000*10);
-            else
-                _balanceTimer = new Timer(1000*20);
-
-            if (_starfireUse == true)
-                _starfireUse = false;
-            else
-                _starfireUse = true;
-        }
-
-        if (ObjectManager.Me.HaveBuff(171743))
-        {
-            if (Euphoria.KnownSpell)
-                _balanceTimer = new Timer(1000*5);
-            else
-                _balanceTimer = new Timer(1000*10);
-        }   
+        Heal(); 
 
         if (!ObjectManager.Me.HaveBuff(24858) && MySettings.UseMoonkinForm)
         {
@@ -9488,13 +9461,13 @@ public class DruidBalance
             return;
         }
         if (Starfire.KnownSpell && Starfire.IsHostileDistanceGood && Starfire.IsSpellUsable
-            && _starfireUse && MySettings.UseStarfire)
+            && MySettings.UseStarfire)
         {
             Starfire.Cast();
             return;
         }
         if (Wrath.KnownSpell && Wrath.IsHostileDistanceGood && Wrath.IsSpellUsable
-            && MySettings.UseWrath && !_starfireUse)
+            && MySettings.UseWrath)
         {
             Wrath.Cast();
             return;
@@ -9551,6 +9524,12 @@ public class DruidBalance
             && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
         {
             StampedingRoar.Cast();
+        }
+
+        if (MySettings.UseMoonkinForm && MoonkinForm.KnownSpell && !ObjectManager.Me.HaveBuff(24858))
+        {
+            MoonkinForm.Cast();
+            return;
         }
     }
 
@@ -9836,53 +9815,14 @@ public class DruidBalance
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (_balanceTimer.IsReady)
-            {
-                if (Euphoria.KnownSpell)
-                    _balanceTimer = new Timer(1000*10);
-                else
-                    _balanceTimer = new Timer(1000*20);
-
-                if (_starfireUse == true)
-                    _starfireUse = false;
-                else
-                    _starfireUse = true;
-            }
-
-            if (ObjectManager.Me.HaveBuff(171743))
-            {
-                if (Euphoria.KnownSpell)
-                    _balanceTimer = new Timer(1000*5);
-                else
-                    _balanceTimer = new Timer(1000*10);
-
-                _starfireUse = true;
-            }
-
-            if (ObjectManager.Me.HaveBuff(171744))
-            {
-                if (Euphoria.KnownSpell)
-                    _balanceTimer = new Timer(1000*5);
-                else
-                    _balanceTimer = new Timer(1000*10);
-
-                _starfireUse = false;
-            }
-
-            if (MySettings.UseMoonkinForm && MoonkinForm.KnownSpell && !ObjectManager.Me.HaveBuff(24858))
-            {
-                MoonkinForm.Cast();
-                return;
-            }
-
-            if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable && _starfireUse
+            if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable && ObjectManager.Me.Eclipse <= 0
                 && MySettings.UseMoonfire && (!ObjectManager.Target.HaveBuff(164812) || _moonfireTimer.IsReady))
             {
                 Moonfire.Cast();
                 _moonfireTimer = new Timer(1000*37);
                 return;
             }
-            if (Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable && !_starfireUse
+            if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable && ObjectManager.Me.Eclipse > 0
                 && MySettings.UseSunfire && (!ObjectManager.Target.HaveBuff(164815) || _sunfireTimer.IsReady))
             {
                 Moonfire.Cast();
@@ -9910,7 +9850,7 @@ public class DruidBalance
                 return;
             }
             if (Starfire.KnownSpell && Starfire.IsSpellUsable && Starfire.IsHostileDistanceGood
-                && _starfireUse && MySettings.UseStarfire && ObjectManager.Target.HaveBuff(164812))
+                && MySettings.UseStarfire && ObjectManager.Target.HaveBuff(164812) && ObjectManager.Me.Eclipse < -20)
             {
                 if (Starsurge.IsHostileDistanceGood && Starsurge.IsSpellUsable && Starsurge.KnownSpell && MySettings.UseStarsurge
                     && !ObjectManager.Me.HaveBuff(164547) && _starsurgeTimer.IsReady)
@@ -9924,7 +9864,7 @@ public class DruidBalance
                 return;
             }
             if (Wrath.KnownSpell && Wrath.IsSpellUsable && Wrath.IsHostileDistanceGood
-                && MySettings.UseWrath && !_starfireUse && ObjectManager.Target.HaveBuff(164815))
+                && MySettings.UseWrath && ObjectManager.Target.HaveBuff(164815) && ObjectManager.Me.Eclipse > 10)
             {
                 if (Starsurge.IsHostileDistanceGood && Starsurge.IsSpellUsable && Starsurge.KnownSpell && MySettings.UseStarsurge 
                     && !ObjectManager.Me.HaveBuff(164545) && _starsurgeTimer.IsReady)
