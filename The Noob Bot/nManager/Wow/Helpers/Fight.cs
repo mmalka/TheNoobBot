@@ -181,7 +181,10 @@ namespace nManager.Wow.Helpers
                         MovementManager.StopMoveTo();
                     }
                     if (ObjectManager.ObjectManager.Me.IsMounted)
+                    {
                         MountTask.DismountMount();
+                        Interact.InteractWith(targetNpc.GetBaseAddress);
+                    }
 
                     // Face player to mob
                     MovementManager.Face(targetNpc);
