@@ -271,17 +271,16 @@ namespace nManager.Helpful
                         switch ((MimesisHelpers.opCodes) opCodeAndLen[0])
                         {
                             case MimesisHelpers.opCodes.QueryPosition:
-                                var masterPosition = new[] {ObjectManager.Me.Position.X, ObjectManager.Me.Position.Y, ObjectManager.Me.Position.Z};
+                                var masterPosition = ObjectManager.Me.Position.Array;
                                 // create a byte array and copy the floats into it...
-                                var byteArray = new byte[13]; // 3 float[4] + 1 byte (type)
-                                Buffer.BlockCopy(masterPosition, 0, byteArray, 0, 12);
+                                var bufferPos = new byte[13]; // 3 float[4] + 1 byte (type)
+                                Buffer.BlockCopy(masterPosition, 0, bufferPos, 0, 12);
                                 byte typeByte = 0;
                                 if (ObjectManager.Me.Position.Type == "Flying")
                                     typeByte = 2;
                                 else if (ObjectManager.Me.Position.Type == "Swimming")
                                     typeByte = 1;
-                                byteArray[12] = typeByte;
-                                byte[] bufferPos = byteArray;
+                                bufferPos[12] = typeByte;
                                 opCodeAndLen[0] = (byte) MimesisHelpers.opCodes.ReplyPosition;
                                 opCodeAndLen[1] = (byte) bufferPos.Length;
                                 clientStream.Write(opCodeAndLen, 0, 2);

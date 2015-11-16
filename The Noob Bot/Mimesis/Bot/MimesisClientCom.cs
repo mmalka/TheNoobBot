@@ -102,7 +102,6 @@ namespace Mimesis.Bot
             byte[] buffer;
             opCodeAndSize[0] = (byte) MimesisHelpers.opCodes.QueryPosition;
             opCodeAndSize[1] = 0;
-
             NetworkStream clientStream = client.GetStream();
             clientStream.Write(opCodeAndSize, 0, 2);
             clientStream.Flush();
@@ -126,7 +125,8 @@ namespace Mimesis.Bot
                     return new Point();
                 var masterPositionXYZ = new float[3];
                 Buffer.BlockCopy(buffer, 0, masterPositionXYZ, 0, 12);
-                var masterPosition = new Point {X = masterPositionXYZ[0], Y = masterPositionXYZ[1], Z = masterPositionXYZ[2]};
+                var masterPosition = new Point(masterPositionXYZ);
+
                 switch (buffer[12])
                 {
                     case 2:
