@@ -785,49 +785,18 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint Eclipse
+        public int Eclipse
         {
             get
             {
                 try
                 {
-                    return GetPowerByPowerType(PowerType.Eclipse);
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    return Others.ToInt32(Lua.LuaDoString(randomStringResult + " = UnitPower('player',8)", randomStringResult));
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > Eclipse: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint MaxEclipse
-        {
-            get
-            {
-                try
-                {
-                    return GetMaxPowerByPowerType(PowerType.Eclipse);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > MaxEclipse: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint EclipsePercentage
-        {
-            get
-            {
-                try
-                {
-                    return Eclipse*100/MaxEclipse;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > EclipsePercentage: " + e);
                     return 0;
                 }
             }
@@ -1236,8 +1205,8 @@ namespace nManager.Wow.ObjectManager
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.Multiplicator +
-                                                  index*4)); // To be updated. (Use Get Descriptors)
+                                                 ((uint)Descriptors.UnitFields.Power * Descriptors.Multiplicator +
+                                                  index * 4)); // To be updated. (Use Get Descriptors)
             return powerValue;
         }
 
