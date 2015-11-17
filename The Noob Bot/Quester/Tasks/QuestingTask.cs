@@ -30,6 +30,7 @@ namespace Quester.Tasks
         private static Timer waitTimer;
         public static bool completed = false;
         private static int EntryListRow = 0;
+        private static WoWUnit lockedTarget = null;
 
         public static void Cleanup()
         {

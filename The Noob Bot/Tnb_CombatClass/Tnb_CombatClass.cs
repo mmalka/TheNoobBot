@@ -5369,6 +5369,7 @@ public class MageFrost
     public MageFrost()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = MageFrostSettings.GetSettings();
         Main.DumpCurrentSettings<MageFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
