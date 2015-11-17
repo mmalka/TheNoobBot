@@ -116,7 +116,11 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     if (_instanceFromOtherAssembly != null)
+                    {
+                        if (_instanceFromOtherAssembly.AggroRange < _instanceFromOtherAssembly.Range)
+                            return _instanceFromOtherAssembly.Range;
                         return _instanceFromOtherAssembly.AggroRange < 5.0f ? 5.0f : _instanceFromOtherAssembly.AggroRange;
+                    }
                     return 1.5f;
                 }
                 catch (Exception exception)
