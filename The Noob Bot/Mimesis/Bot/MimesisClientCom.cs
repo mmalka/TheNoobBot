@@ -247,9 +247,9 @@ namespace Mimesis.Bot
                         quester.Position = u.Position;
                         quester.Name = u.Name;
 
-                        if (evt.eType == MimesisHelpers.eventType.pickupQuest)
+                        if (evt.eType == MimesisHelpers.eventType.pickupQuest && !Quest.GetQuestCompleted(evt.EventValue2) && !Quest.GetLogQuestId().Contains(evt.EventValue2))
                             Quest.QuestPickUp(ref quester, evt.EventString1, evt.EventValue2);
-                        else
+                        else if (evt.eType == MimesisHelpers.eventType.turninQuest && Quest.GetLogQuestId().Contains(evt.EventValue2) && Quest.GetLogQuestIsComplete(evt.EventValue2))
                             Quest.QuestTurnIn(ref quester, Quest.GetLogQuestTitle(evt.EventValue2), evt.EventValue2);
                     }
                     break;
