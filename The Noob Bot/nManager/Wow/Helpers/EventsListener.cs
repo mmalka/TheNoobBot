@@ -39,13 +39,16 @@ namespace nManager.Wow.Helpers
             Logging.Write(eventsList);
         }
 
-        private static List<KeyValuePair<string, uint>> WoWEventsType = new List<KeyValuePair<string, uint>>();
+        public static Dictionary<string, uint> WoWEventsType = new Dictionary<string, uint>();
 
-        private static int GetWoWEventsTypeValue(WoWEventsType eventsType)
+        private static uint GetWoWEventsTypeValue(WoWEventsType eventsType)
         {
-            if (WoWEventsType.Count <= 0)
+            if (WoWEventsType.Count > 0)
+                return WoWEventsType.ContainsKey(eventsType.ToString()) ? WoWEventsType[eventsType.ToString()] : 0;
+            // Already generated then immediatly return the value.
+            try
             {
-                try
+                lock (WoWEventsType)
                 {
                     for (uint i = 0; i <= EventsCount - 1; i++)
                     {
@@ -56,33 +59,26 @@ namespace nManager.Wow.Helpers
                             if (ptrCurrentEventName <= 0) continue;
                             string currentEventName = Memory.WowMemory.Memory.ReadUTF8String((ptrCurrentEventName));
                             if (currentEventName == "") continue;
-                            if (WoWEventsType.Contains(new KeyValuePair<string, uint>(currentEventName, i)))
+                            if (WoWEventsType.ContainsKey(currentEventName))
                                 continue;
-                            WoWEventsType.Add(new KeyValuePair<string, uint>(currentEventName, i));
+                            WoWEventsType.Add(currentEventName, i);
                         }
                     }
                 }
-                catch (Exception e)
-                {
-                    Logging.WriteError("GetWoWEventsTypeValue(WoWEventsType eventsType): " + e);
-                    WoWEventsType.Clear();
-                    return 0;
-                }
+                // return the value after the generation.
+                return WoWEventsType.ContainsKey(eventsType.ToString()) ? WoWEventsType[eventsType.ToString()] : 0;
             }
-            for (int i = 0; i < WoWEventsType.Count; i++)
+            catch (Exception e)
             {
-                KeyValuePair<string, uint> keyValuePair = WoWEventsType[i];
-                if (keyValuePair.Key == eventsType.ToString())
-                {
-                    return (int) keyValuePair.Value;
-                }
+                Logging.WriteError("GetWoWEventsTypeValue(WoWEventsType eventsType): " + e);
+                WoWEventsType.Clear();
+                return 0;
             }
-            return 0;
         }
 
         private static int GetEventFireCount(WoWEventsType eventType)
         {
-            uint eventId = (uint) GetWoWEventsTypeValue(eventType);
+            uint eventId = GetWoWEventsTypeValue(eventType);
             if (eventId > EventsCount)
                 return 0;
             uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 4*eventId);
