@@ -4496,6 +4496,7 @@ public class MageArcane
     public MageArcane()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = MageArcaneSettings.GetSettings();
         Main.DumpCurrentSettings<MageArcaneSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -6996,6 +6997,7 @@ public class WarlockDemonology
     public WarlockDemonology()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = WarlockDemonologySettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDemonologySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -7822,6 +7824,7 @@ public class WarlockDestruction
     public WarlockDestruction()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = WarlockDestructionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDestructionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -8589,6 +8592,7 @@ public class WarlockAffliction
     public WarlockAffliction()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = WarlockAfflictionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockAfflictionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -9366,6 +9370,7 @@ public class DruidBalance
     public DruidBalance()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = DruidBalanceSettings.GetSettings();
         Main.DumpCurrentSettings<DruidBalanceSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -11002,6 +11007,7 @@ public class DruidRestoration
     public DruidRestoration()
     {
         Main.InternalRange = 30.0f;
+        Main.InternalAggroRange = 30f;
         MySettings = DruidRestorationSettings.GetSettings();
         Main.DumpCurrentSettings<DruidRestorationSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -12376,6 +12382,7 @@ public class PaladinHoly
     public PaladinHoly()
     {
         Main.InternalRange = 30f;
+        Main.InternalAggroRange = 30f;
         MySettings = PaladinHolySettings.GetSettings();
         Main.DumpCurrentSettings<PaladinHolySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -14935,6 +14942,7 @@ public class ShamanRestoration
     public ShamanRestoration()
     {
         Main.InternalRange = 30.0f;
+        Main.InternalAggroRange = 30f;
         MySettings = ShamanRestorationSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanRestorationSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -15814,6 +15822,7 @@ public class ShamanElemental
     public ShamanElemental()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = ShamanElementalSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanElementalSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -16611,6 +16620,7 @@ public class PriestShadow
     public PriestShadow()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = PriestShadowSettings.GetSettings();
         Main.DumpCurrentSettings<PriestShadowSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -17390,6 +17400,7 @@ public class PriestDiscipline
     public PriestDiscipline()
     {
         Main.InternalRange = 30.0f;
+        Main.InternalAggroRange = 30f;
         MySettings = PriestDisciplineSettings.GetSettings();
         Main.DumpCurrentSettings<PriestDisciplineSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -18092,6 +18103,7 @@ public class PriestHoly
     public PriestHoly()
     {
         Main.InternalRange = 30.0f;
+        Main.InternalAggroRange = 30.0f;
         MySettings = PriestHolySettings.GetSettings();
         Main.DumpCurrentSettings<PriestHolySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -23594,6 +23606,7 @@ public class HunterMarksmanship
     public HunterMarksmanship()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = HunterMarksmanshipSettings.GetSettings();
         Main.DumpCurrentSettings<HunterMarksmanshipSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -24407,6 +24420,7 @@ public class HunterBeastMastery
     public HunterBeastMastery()
     {
         Main.InternalRange = 39f;
+        Main.InternalAggroRange = 39f;
         MySettings = HunterBeastMasterySettings.GetSettings();
         Main.DumpCurrentSettings<HunterBeastMasterySettings>(MySettings);
         UInt128 lastTarget = 0;
