@@ -393,7 +393,7 @@ namespace Quester.Tasks
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
                     (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
-                    MovementManager.FindTarget(wowUnit, wowUnit.AggroDistance*1.1f);
+                    MovementManager.FindTarget(wowUnit, CombatClass.GetRange);
                     if (MovementManager.InMovement)
                         return;
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
