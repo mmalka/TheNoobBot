@@ -393,9 +393,16 @@ namespace Quester.Tasks
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
                     (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
-                    MovementManager.FindTarget(wowUnit, CombatClass.GetRange);
-                    if (MovementManager.InMovement)
-                        return;
+                    if (lockedTarget == null)
+                    {
+                        lockedTarget = wowUnit;
+                        MovementManager.FindTarget(wowUnit, CombatClass.GetAggroRange);
+                        Thread.Sleep(100);
+                        if (MovementManager.InMovement)
+                        {
+                            return;
+                        }
+                    }
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
                     UInt128 Unkillable = Fight.StartFight(wowUnit.Guid);
                     if (!wowUnit.IsDead && Unkillable != 0 && wowUnit.HealthPercent == 100.0f)
@@ -418,6 +425,7 @@ namespace Quester.Tasks
                         }
                         Fight.StopFight();
                     }
+                    lockedTarget = null;
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
