@@ -39,6 +39,8 @@ namespace nManager.Wow.Helpers
             public eventType eType;
             public int EventValue1;
             public int EventValue2;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
             public string EventString1;
         }
 
