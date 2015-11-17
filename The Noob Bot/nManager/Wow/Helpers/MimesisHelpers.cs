@@ -40,8 +40,7 @@ namespace nManager.Wow.Helpers
             public int EventValue1;
             public int EventValue2;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
-            public string EventString1;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)] public string EventString1;
         }
 
         public static T BytesToObject<T>(byte[] arrBytes)

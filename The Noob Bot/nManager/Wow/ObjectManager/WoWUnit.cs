@@ -1205,8 +1205,8 @@ namespace nManager.Wow.ObjectManager
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint)Descriptors.UnitFields.Power * Descriptors.Multiplicator +
-                                                  index * 4)); // To be updated. (Use Get Descriptors)
+                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.Multiplicator +
+                                                  index*4)); // To be updated. (Use Get Descriptors)
             return powerValue;
         }
 

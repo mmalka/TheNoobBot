@@ -43,13 +43,15 @@ namespace nManager.Wow.Helpers
 
         private static uint GetWoWEventsTypeValue(WoWEventsType eventsType)
         {
-            if (WoWEventsType.Count > 0)
-                return WoWEventsType.ContainsKey(eventsType.ToString()) ? WoWEventsType[eventsType.ToString()] : 0;
-            // Already generated then immediatly return the value.
             try
             {
                 lock (WoWEventsType)
                 {
+                    if (WoWEventsType.Count > 0)
+                        return WoWEventsType.ContainsKey(eventsType.ToString()) ? WoWEventsType[eventsType.ToString()] : 0;
+                    // Already generated then immediatly return the value.
+
+                    Logging.WriteDebug("Loading WoWEventsLUA database...");
                     for (uint i = 0; i <= EventsCount - 1; i++)
                     {
                         uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 0x4*i);
@@ -64,12 +66,14 @@ namespace nManager.Wow.Helpers
                             WoWEventsType.Add(currentEventName, i);
                         }
                     }
+                    Logging.WriteDebug("WoWEventsLUA database loaded.");
                 }
                 // return the value after the generation.
                 return WoWEventsType.ContainsKey(eventsType.ToString()) ? WoWEventsType[eventsType.ToString()] : 0;
             }
             catch (Exception e)
             {
+                Logging.WriteDebug("WoWEventsLUA database loading failed.");
                 Logging.WriteError("GetWoWEventsTypeValue(WoWEventsType eventsType): " + e);
                 WoWEventsType.Clear();
                 return 0;

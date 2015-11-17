@@ -200,7 +200,7 @@
             SpellDBCMaxIndex = 200000,
             SpellBookNumSpells = 0xF0C6FC, // CGSpellBook__MakeKnownSpellModelsLocal
             SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xF0C748 + 0x4 * 0x4, // Script_GetNumCompanions
+            MountBookNumMounts = 0xF0C748 + 0x4*0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
             FirstTalentBookPtr = 0xF0C8B4, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
