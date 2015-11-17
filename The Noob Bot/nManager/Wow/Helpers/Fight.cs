@@ -69,6 +69,8 @@ namespace nManager.Wow.Helpers
                     List<Point> points = PathFinder.FindPath(targetNpc.Position, out resultSucces);
                     if (!resultSucces && !Usefuls.IsFlying && MountTask.GetMountCapacity() >= MountCapacity.Fly)
                         MountTask.Mount();
+
+                    // TODO: Code a FindTarget that includes CombatClass.GetRange here or we will often do wierd thing with casters.
                     MovementManager.Go(points);
                     timer = Others.Times + (int) (Math.DistanceListPoint(points)/3*1000) + 15000;
 
