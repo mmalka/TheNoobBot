@@ -58,7 +58,7 @@ namespace nManager.Wow.Bot.States
                         if (playerGuid != ObjectManager.ObjectManager.Me.Guid)
                         {
                             WoWPlayer p = ObjectManager.ObjectManager.GetObjectWoWPlayer(playerGuid);
-                            if (p != null && p.InCombat && p.Target != 0)
+                            if (p != null && p.InCombatBlizzard && p.Target != 0)
                             {
                                 WoWObject o = ObjectManager.ObjectManager.GetObjectByGuid(p.Target);
                                 if (o == null)
