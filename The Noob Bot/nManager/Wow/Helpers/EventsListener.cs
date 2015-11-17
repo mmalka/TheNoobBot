@@ -37,10 +37,51 @@ namespace nManager.Wow.Helpers
             }
             Logging.Write(eventsList);
         }
+        private static List<KeyValuePair<string, uint>> WoWEventsType = new List<KeyValuePair<string, uint>>();
+            
+        private static int GetWoWEventsTypeValue(WoWEventsType eventsType)
+        {
+            if (WoWEventsType.Count <= 0)
+            {
+                try
+                {
+                    for (uint i = 0; i <= EventsCount - 1; i++)
+                    {
+                        uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 0x4*i);
+                        if (ptrCurrentEvent > 0)
+                        {
+                            uint ptrCurrentEventName = Memory.WowMemory.Memory.ReadUInt(ptrCurrentEvent + (uint) Addresses.EventsListener.EventOffsetName);
+                            if (ptrCurrentEventName <= 0) continue;
+                            string currentEventName = Memory.WowMemory.Memory.ReadUTF8String((ptrCurrentEventName));
+                            if (currentEventName == "") continue;
+                            if (WoWEventsType.Contains(new KeyValuePair<string, uint>(currentEventName, i)))
+                                continue;
+                            WoWEventsType.Add(new KeyValuePair<string, uint>(currentEventName, i));
+                        }
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GetWoWEventsTypeValue(WoWEventsType eventsType): " + e);
+                    WoWEventsType.Clear();
+                    return 0;
+                }
+            }
+            for (int i = 0; i < WoWEventsType.Count; i++)
+            {
+                KeyValuePair<string, uint> keyValuePair = WoWEventsType[i];
+                if (keyValuePair.Key == eventsType.ToString())
+                {
+                    return (int) keyValuePair.Value;
+                }
+            }
+            return 0;
+        }
 
         private static int GetEventFireCount(WoWEventsType eventType)
         {
-            uint eventId = (uint) eventType;
+            uint eventId = (uint) GetWoWEventsTypeValue(eventType);
             if (eventId > EventsCount)
                 return 0;
             uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 4*eventId);
@@ -163,7 +204,7 @@ namespace nManager.Wow.Helpers
             {
                 switch (EventType)
                 {
-                    case WoWEventsType.CHAT_MSG_LOOT:
+                    case Enums.WoWEventsType.CHAT_MSG_LOOT:
                         // when looting multiple items, fire multiples times, we want to make sure to jump to the latest eventFireCount.
                         Thread.Sleep(2000); // Allow some times to the bot to mount up etc before slowing down because of the ObjectList stuff.
                         break;
