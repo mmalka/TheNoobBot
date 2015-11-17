@@ -32,13 +32,15 @@ namespace nManager.Wow.Helpers
                     if (currentEventName == "") continue;
                     if (eventsList.Contains(Environment.NewLine + currentEventName + " = ")) continue;
                     object previousLine = eventsList;
-                    eventsList = string.Concat(new[] {previousLine, currentEventName, " = ", i, ",", Environment.NewLine});
+                    eventsList = string.Concat(new[] {previousLine, currentEventName, ",", Environment.NewLine}); // NAME ONLY
+                    // eventsList = string.Concat(new[] { previousLine, currentEventName, " = ", i, ",", Environment.NewLine }); // NAME + VALUE
                 }
             }
             Logging.Write(eventsList);
         }
+
         private static List<KeyValuePair<string, uint>> WoWEventsType = new List<KeyValuePair<string, uint>>();
-            
+
         private static int GetWoWEventsTypeValue(WoWEventsType eventsType)
         {
             if (WoWEventsType.Count <= 0)
@@ -58,7 +60,6 @@ namespace nManager.Wow.Helpers
                                 continue;
                             WoWEventsType.Add(new KeyValuePair<string, uint>(currentEventName, i));
                         }
-
                     }
                 }
                 catch (Exception e)
