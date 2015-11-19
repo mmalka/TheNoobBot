@@ -1590,9 +1590,9 @@ public class DeathknightBlood
 
     #region Deathknight Presence & Buffs
 
-    public readonly Spell BloodPlague = new Spell("Blood Plague");
+    public readonly Spell BloodPlague = new Spell(55078);
     public readonly Spell BloodPresence = new Spell("Blood Presence");
-    public readonly Spell FrostFever = new Spell("Frost Fever");
+    public readonly Spell FrostFever = new Spell(55095);
     public readonly Spell FrostPresence = new Spell("Frost Presence");
     public readonly Spell HornofWinter = new Spell("Horn of Winter");
     public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
@@ -2175,9 +2175,8 @@ public class DeathknightBlood
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
-                && BloodPlague.TargetHaveBuff && (FrostFever.TargetHaveBuff || (NecroticPlague.KnownSpell && NecroticPlague.TargetHaveBuff)) && Outbreak.IsSpellUsable &&
-                PlagueLeech.IsSpellUsable)
+            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell
+                && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
             {
                 PlagueLeech.Cast();
                 Others.SafeSleep(400);
@@ -2190,9 +2189,14 @@ public class DeathknightBlood
                 return;
             }
 
-            if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && ObjectManager.Target.GetDistance < 9 && (!BloodPlague.TargetHaveBuff
-                || _bloodPlagueTimer.IsReady || (!FrostFever.TargetHaveBuff || (NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff)) ||
-                                                                                                                  _frostFeverTimer.IsReady) && UnholyBlight.IsSpellUsable)
+            if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && UnholyBlight.IsSpellUsable 
+                && ObjectManager.Target.GetDistance < 9)
+            {
+                UnholyBlight.Cast();
+                return;
+            }
+            else if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && (!BloodPlague.TargetHaveBuff || _bloodPlagueTimer.IsReady || !FrostFever.TargetHaveBuff || _frostFeverTimer.IsReady) 
+                && UnholyBlight.IsSpellUsable && ObjectManager.Target.GetDistance < 9)
             {
                 UnholyBlight.Cast();
                 _bloodPlagueTimer = new Timer(1000*27);
@@ -2200,9 +2204,14 @@ public class DeathknightBlood
                 return;
             }
 
-            if (MySettings.UseOutbreak && Outbreak.KnownSpell && Outbreak.IsHostileDistanceGood && (_bloodPlagueTimer.IsReady
-                || _frostFeverTimer.IsReady || !BloodPlague.TargetHaveBuff ||
-                (!FrostFever.TargetHaveBuff || (NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff))) && Outbreak.IsSpellUsable)
+            if (MySettings.UseOutbreak && Outbreak.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && Outbreak.IsSpellUsable
+                && Outbreak.IsHostileDistanceGood)
+            {
+                Outbreak.Cast();
+                return;
+            }
+            else if (MySettings.UseOutbreak && Outbreak.KnownSpell && (_bloodPlagueTimer.IsReady || _frostFeverTimer.IsReady || !BloodPlague.TargetHaveBuff ||
+                !FrostFever.TargetHaveBuff) && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood)
             {
                 Outbreak.Cast();
                 _bloodPlagueTimer = new Timer(1000*27);
@@ -2210,41 +2219,46 @@ public class DeathknightBlood
                 return;
             }
 
-            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood && DeathStrike.IsSpellUsable)
+            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
             {
                 DeathStrike.Cast();
                 return;
             }
-
-            if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable)
+            if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsSpellUsable && DeathCoil.IsHostileDistanceGood)
             {
                 DeathCoil.Cast();
                 return;
             }
 
-            if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && (_bloodPlagueTimer.IsReady || !BloodPlague.TargetHaveBuff)
-                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable)
+            if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && PlagueStrike.IsSpellUsable
+                && PlagueStrike.IsHostileDistanceGood)
+            {
+                PlagueStrike.Cast();
+                return;
+            }
+            else if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && (_bloodPlagueTimer.IsReady || !BloodPlague.TargetHaveBuff)
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable && PlagueStrike.IsHostileDistanceGood)
             {
                 PlagueStrike.Cast();
                 _bloodPlagueTimer = new Timer(1000*27);
-                if (NecroticPlague.KnownSpell)
-                    _frostFeverTimer = new Timer(1000 * 27);
                 return;
             }
 
-            if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood && (_frostFeverTimer.IsReady || (!FrostFever.TargetHaveBuff 
-                || (NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff)))
-                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && IcyTouch.IsSpellUsable)
+            if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && IcyTouch.IsSpellUsable
+                && IcyTouch.IsHostileDistanceGood)
+            {
+                IcyTouch.Cast();
+                return;
+            }
+            else if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && (_frostFeverTimer.IsReady || !FrostFever.TargetHaveBuff)
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && IcyTouch.IsSpellUsable && IcyTouch.IsHostileDistanceGood)
             {
                 IcyTouch.Cast();
                 _frostFeverTimer = new Timer(1000*27);
-                if (NecroticPlague.KnownSpell)
-                    _bloodPlagueTimer = new Timer(1000 * 27);
                 return;
             }
 
-            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsHostileDistanceGood
-                && DeathandDecay.IsSpellUsable)
+            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
             {
                 SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
                 return;
@@ -2254,39 +2268,34 @@ public class DeathknightBlood
                 ArmyoftheDead.Cast();
                 return;
             }
-
-            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood && DeathStrike.IsSpellUsable)
+            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
             {
                 DeathStrike.Cast();
                 return;
             }
-
+            if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && ObjectManager.Target.HealthPercent < 35
+                && SoulReaper.IsSpellUsable && !DeathStrike.IsSpellUsable && SoulReaper.IsHostileDistanceGood)
+            {
+                SoulReaper.Cast();
+                return;
+            }
+            if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsSpellUsable && !DeathStrike.IsSpellUsable && BloodBoil.IsHostileDistanceGood)
+            {
+                BloodBoil.Cast();
+                if (BloodPlague.TargetHaveBuff)
+                    _bloodPlagueTimer = new Timer(1000 * 27);
+                if (FrostFever.TargetHaveBuff)
+                    _frostFeverTimer = new Timer(1000 * 27);
+                return;
+            }
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Cast();
                 return;
             }
-
             if (MySettings.UseEmpowerRuneWeapon && EmpowerRuneWeapon.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 75 && EmpowerRuneWeapon.IsSpellUsable)
             {
                 EmpowerRuneWeapon.Cast();
-            }
-
-            if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && SoulReaper.IsHostileDistanceGood && ObjectManager.Target.HealthPercent < 35
-                && SoulReaper.IsSpellUsable && !DeathStrike.IsSpellUsable)
-            {
-                SoulReaper.Cast();
-                return;
-            }
-
-            if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsHostileDistanceGood && BloodBoil.IsSpellUsable && !DeathStrike.IsSpellUsable)
-            {
-                BloodBoil.Cast();
-                if (BloodPlague.TargetHaveBuff)
-                    _bloodPlagueTimer = new Timer(1000 * 27);
-                if (FrostFever.TargetHaveBuff || (NecroticPlague.KnownSpell && NecroticPlague.TargetHaveBuff))
-                    _frostFeverTimer = new Timer(1000 * 27);
-                return;
             }
         }
         finally
@@ -3436,10 +3445,10 @@ public class DeathknightFrost
 
     #region Deathknight Presence & Buffs
 
-    public readonly Spell BloodPlague = new Spell("Blood Plague");
+    public readonly Spell BloodPlague = new Spell(55078);
     public readonly Spell BloodPresence = new Spell("Blood Presence");
     public readonly Spell FreezingFog = new Spell(59052);
-    public readonly Spell FrostFever = new Spell("Frost Fever");
+    public readonly Spell FrostFever = new Spell(55095);
     public readonly Spell FrostPresence = new Spell("Frost Presence");
     public readonly Spell HornofWinter = new Spell("Horn of Winter");
     public readonly Spell PathofFrost = new Spell("Path of Frost");
@@ -3466,6 +3475,9 @@ public class DeathknightFrost
     public readonly Spell PlagueStrike = new Spell("Plague Strike");
     public readonly Spell SoulReaper = new Spell("Soul Reaper");
     public readonly Spell UnholyBlight = new Spell("Unholy Blight");
+    public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
+    public readonly Spell Defile = new Spell("Defile");
+    private Timer _defileTimer = new Timer(0);
 
     #endregion
 
@@ -3700,10 +3712,9 @@ public class DeathknightFrost
             return;
         }
 
-        // Blizzard API Calls for Frost Strike using Blood Strike Function
-        if (MySettings.UseFrostStrike && BloodStrike.KnownSpell && BloodStrike.IsHostileDistanceGood && BloodStrike.IsSpellUsable)
+        if (MySettings.UseFrostStrike && FrostStrike.KnownSpell && FrostStrike.IsHostileDistanceGood && FrostStrike.IsSpellUsable)
         {
-            BloodStrike.Cast();
+            FrostStrike.Cast();
             return;
         }
 
@@ -4001,70 +4012,90 @@ public class DeathknightFrost
                 DeathCoil.Cast();
                 return;
             }
-
-            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
-                && _bloodPlagueTimer.IsReady && BloodPlague.TargetHaveBuff && _frostFeverTimer.IsReady && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable &&
-                PlagueLeech.IsSpellUsable)
+            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell
+                && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
             {
                 PlagueLeech.Cast();
                 Others.SafeSleep(400);
                 if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable)
                 {
                     Outbreak.Cast();
-                    _bloodPlagueTimer = new Timer(1000*27);
-                    _frostFeverTimer = new Timer(1000*27);
+                    _bloodPlagueTimer = new Timer(1000 * 27);
+                    _frostFeverTimer = new Timer(1000 * 27);
                 }
                 return;
             }
 
-            if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && ObjectManager.Target.GetDistance < 9
-                && (!BloodPlague.TargetHaveBuff || _bloodPlagueTimer.IsReady || !FrostFever.TargetHaveBuff || _frostFeverTimer.IsReady) && UnholyBlight.IsSpellUsable)
+            if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && UnholyBlight.IsSpellUsable
+                && ObjectManager.Target.GetDistance < 9)
             {
                 UnholyBlight.Cast();
-                _bloodPlagueTimer = new Timer(1000*27);
-                _frostFeverTimer = new Timer(1000*27);
+                return;
+            }
+            else if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && (!BloodPlague.TargetHaveBuff || _bloodPlagueTimer.IsReady || !FrostFever.TargetHaveBuff || _frostFeverTimer.IsReady)
+                && UnholyBlight.IsSpellUsable && ObjectManager.Target.GetDistance < 9)
+            {
+                UnholyBlight.Cast();
+                _bloodPlagueTimer = new Timer(1000 * 27);
+                _frostFeverTimer = new Timer(1000 * 27);
                 return;
             }
 
-            if (MySettings.UseOutbreak && Outbreak.KnownSpell && Outbreak.IsHostileDistanceGood
-                && (_bloodPlagueTimer.IsReady || _frostFeverTimer.IsReady || !BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff) && Outbreak.IsSpellUsable)
+            if (MySettings.UseOutbreak && Outbreak.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && Outbreak.IsSpellUsable
+                && Outbreak.IsHostileDistanceGood)
             {
                 Outbreak.Cast();
-                _bloodPlagueTimer = new Timer(1000*27);
-                _frostFeverTimer = new Timer(1000*27);
                 return;
             }
-
-            if (MySettings.UseBloodBoil && RoilingBlood.KnownSpell && BloodBoil.KnownSpell && ObjectManager.Target.GetDistance < 9
-                && ((_bloodPlagueTimer.IsReady && BloodPlague.TargetHaveBuff) || (_frostFeverTimer.IsReady && FrostFever.TargetHaveBuff)) && BloodBoil.IsSpellUsable)
+            else if (MySettings.UseOutbreak && Outbreak.KnownSpell && (_bloodPlagueTimer.IsReady || _frostFeverTimer.IsReady || !BloodPlague.TargetHaveBuff ||
+                !FrostFever.TargetHaveBuff) && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood)
             {
-                BloodBoil.Cast();
-                if (BloodPlague.TargetHaveBuff)
-                    _bloodPlagueTimer = new Timer(1000*27);
-                if (FrostFever.TargetHaveBuff)
-                    _frostFeverTimer = new Timer(1000*27);
+                Outbreak.Cast();
+                _bloodPlagueTimer = new Timer(1000 * 27);
+                _frostFeverTimer = new Timer(1000 * 27);
                 return;
             }
 
-            if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && (_bloodPlagueTimer.IsReady || !BloodPlague.TargetHaveBuff)
-                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable)
+            if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && PlagueStrike.IsSpellUsable
+                && PlagueStrike.IsHostileDistanceGood)
             {
                 PlagueStrike.Cast();
-                _bloodPlagueTimer = new Timer(1000*27);
+                return;
+            }
+            else if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && (_bloodPlagueTimer.IsReady || !BloodPlague.TargetHaveBuff)
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable && PlagueStrike.IsHostileDistanceGood)
+            {
+                if (_bloodPlagueTimer.IsReady)
+                    Logging.WriteFight("Plague Timer");
+                if (!BloodPlague.TargetHaveBuff)
+                    Logging.WriteFight("Plague Buff");
+                PlagueStrike.Cast();
+                _bloodPlagueTimer = new Timer(1000 * 27);
                 return;
             }
 
-            if (MySettings.UseHowlingBlast && HowlingBlast.KnownSpell && HowlingBlast.IsHostileDistanceGood && (_frostFeverTimer.IsReady || !FrostFever.TargetHaveBuff)
-                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && HowlingBlast.IsSpellUsable)
+            if (MySettings.UseHowlingBlast && HowlingBlast.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && HowlingBlast.IsSpellUsable
+                && HowlingBlast.IsHostileDistanceGood)
+            {
+                HowlingBlast.Cast();
+                return;
+            }
+            else if (MySettings.UseHowlingBlast && HowlingBlast.KnownSpell && (_frostFeverTimer.IsReady || !FrostFever.TargetHaveBuff)
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && HowlingBlast.IsSpellUsable && HowlingBlast.IsHostileDistanceGood)
             {
                 HowlingBlast.Cast();
                 _frostFeverTimer = new Timer(1000*27);
                 return;
             }
 
-            if (MySettings.UseIcyTouch && !MySettings.UseHowlingBlast && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood &&
-                (_frostFeverTimer.IsReady || !FrostFever.TargetHaveBuff)
-                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && IcyTouch.IsSpellUsable)
+            if (MySettings.UseIcyTouch && !MySettings.UseHowlingBlast && IcyTouch.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff 
+                && IcyTouch.IsSpellUsable && IcyTouch.IsHostileDistanceGood)
+            {
+                IcyTouch.Cast();
+                return;
+            }
+            else if (MySettings.UseIcyTouch && !MySettings.UseHowlingBlast && IcyTouch.KnownSpell && (_frostFeverTimer.IsReady || !FrostFever.TargetHaveBuff)
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && IcyTouch.IsSpellUsable && IcyTouch.IsHostileDistanceGood)
             {
                 IcyTouch.Cast();
                 _frostFeverTimer = new Timer(1000*27);
@@ -4073,11 +4104,13 @@ public class DeathknightFrost
 
             if (ObjectManager.GetUnitInSpellRange() > 2)
             {
-                if (MySettings.UsePestilence && (!RoilingBlood.KnownSpell || !MySettings.UseBloodBoil) && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood
-                    && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 2 && Pestilence.IsSpellUsable)
+                if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodPlague.TargetHaveBuff && _bloodPlagueTimer.IsReady && BloodBoil.IsSpellUsable && ObjectManager.Target.GetDistance < 9)
                 {
-                    Pestilence.Cast();
-                    //_pestilenceTimer = new Timer(1000*30);
+                    BloodBoil.Cast();
+                    if (BloodPlague.TargetHaveBuff)
+                        _bloodPlagueTimer = new Timer(1000 * 27);
+                    if (FrostFever.TargetHaveBuff)
+                        _frostFeverTimer = new Timer(1000 * 27);
                     return;
                 }
 
@@ -4096,23 +4129,9 @@ public class DeathknightFrost
                 }
             }
 
-            if (MySettings.UseHowlingBlast && FreezingFog.HaveBuff && HowlingBlast.KnownSpell && HowlingBlast.IsHostileDistanceGood && ObjectManager.Me.RunicPowerPercentage < 90 &&
-                HowlingBlast.IsSpellUsable)
-            {
-                HowlingBlast.Cast();
-                _frostFeverTimer = new Timer(1000*27);
-                return;
-            }
-
-            // Blizzard API Calls for Frost Strike using Blood Strike Function
-            if (MySettings.UseFrostStrike && BloodStrike.KnownSpell && BloodStrike.IsHostileDistanceGood && ObjectManager.Me.RunicPowerPercentage >= 80 && BloodStrike.IsSpellUsable)
-            {
-                BloodStrike.Cast();
-                return;
-            }
-
-            if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && SoulReaper.IsHostileDistanceGood && ObjectManager.Target.HealthPercent < 35
-                && (ObjectManager.Me.HealthPercent > MySettings.UseDeathStrikeAtPercentage || !MySettings.UseDeathStrike) && SoulReaper.IsSpellUsable)
+            if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && ObjectManager.Target.HealthPercent < 35
+                && (ObjectManager.Me.HealthPercent > MySettings.UseDeathStrikeAtPercentage || !MySettings.UseDeathStrike) 
+                && SoulReaper.IsSpellUsable && SoulReaper.IsHostileDistanceGood)
             {
                 SoulReaper.Cast();
                 return;
@@ -4120,36 +4139,92 @@ public class DeathknightFrost
 
             if (MySettings.UseDuelWield)
             {
-                if (MySettings.UseFrostStrike && BloodStrike.KnownSpell && BloodStrike.IsHostileDistanceGood && ObjectManager.Me.HaveBuff(51124) && BloodStrike.IsSpellUsable)
+                if (MySettings.UseFrostStrike && FrostStrike.KnownSpell && (ObjectManager.Me.HaveBuff(51124) || ObjectManager.Me.RunicPower > 88)
+                    && FrostStrike.IsSpellUsable && FrostStrike.IsHostileDistanceGood)
                 {
                     if ((MySettings.UseLichborne && ObjectManager.Me.HealthPercent <= MySettings.UseLichborneAtPercentage && Lichborne.KnownSpell)
                         || (MySettings.UseConversion && ObjectManager.Me.HealthPercent <= MySettings.UseConversionAtPercentage && Conversion.KnownSpell))
                         return;
-                    BloodStrike.Cast();
+                    FrostStrike.Cast();
                     return;
                 }
-
-                if (MySettings.UseObliterate && Obliterate.KnownSpell && Obliterate.IsHostileDistanceGood && ObjectManager.Me.HaveBuff(51124) && Obliterate.IsSpellUsable)
+                if (MySettings.UseObliterate && Obliterate.KnownSpell && ObjectManager.Me.HaveBuff(51124) && ObjectManager.Me.RunicPower < 40 && Obliterate.IsSpellUsable
+                    && Obliterate.IsHostileDistanceGood)
                 {
-                    if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood &&
-                        ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
-                        && DeathStrike.IsSpellUsable)
+                    if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
+                        && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
                     {
                         DeathStrike.Cast();
                         return;
                     }
                     Obliterate.Cast();
+                    return;
+                }
+                if (MySettings.UseDefile && Defile.KnownSpell && Defile.IsSpellUsable && Defile.IsHostileDistanceGood)
+                {
+                    SpellManager.CastSpellByIDAndPosition(152280, ObjectManager.Target.Position);
+                    _defileTimer = new Timer(1000 * 30);
+                    return;
+                }
+                if (MySettings.UseHowlingBlast && HowlingBlast.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 90 &&
+                    HowlingBlast.IsSpellUsable && HowlingBlast.IsHostileDistanceGood)
+                {
+                    if (Defile.KnownSpell && _defileTimer.IsReady)
+                    {
+                        SpellManager.CastSpellByIDAndPosition(152280, ObjectManager.Target.Position);
+                        _defileTimer = new Timer(1000 * 30);
+                    }
+                    else
+                    {
+                        HowlingBlast.Cast();
+                        _frostFeverTimer = new Timer(1000 * 27);
+                    }
                     return;
                 }
             }
 
             if (MySettings.UseTwoHander)
             {
-                if (MySettings.UseObliterate && Obliterate.KnownSpell && Obliterate.IsHostileDistanceGood && ObjectManager.Me.HaveBuff(51124) && Obliterate.IsSpellUsable)
+                if (MySettings.UseDefile && Defile.KnownSpell && Defile.IsSpellUsable && Defile.IsHostileDistanceGood)
                 {
-                    if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood &&
-                        ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
-                        && DeathStrike.IsSpellUsable)
+                    SpellManager.CastSpellByIDAndPosition(152280, ObjectManager.Target.Position);
+                    _defileTimer = new Timer(1000 * 30);
+                    return;
+                }
+                if (MySettings.UseObliterate && Obliterate.KnownSpell && ObjectManager.Me.HaveBuff(51124) && Obliterate.IsSpellUsable && Obliterate.IsHostileDistanceGood)
+                {
+                    if (Defile.KnownSpell && _defileTimer.IsReady)
+                    {
+                        SpellManager.CastSpellByIDAndPosition(152280, ObjectManager.Target.Position);
+                        _defileTimer = new Timer(1000 * 30);
+                    }
+                    else if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
+                        && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
+                        DeathStrike.Cast();
+                    else
+                        Obliterate.Cast();
+                    return;
+                }
+                if (MySettings.UseHowlingBlast && HowlingBlast.KnownSpell && FreezingFog.HaveBuff && ObjectManager.Me.RunicPowerPercentage < 90 &&
+                    HowlingBlast.IsSpellUsable && HowlingBlast.IsHostileDistanceGood)
+                {
+                    HowlingBlast.Cast();
+                    _frostFeverTimer = new Timer(1000 * 27);
+                    return;
+                }
+                if (MySettings.UseFrostStrike && FrostStrike.KnownSpell && (ObjectManager.Me.HaveBuff(51124) || ObjectManager.Me.RunicPower > 76)
+                    && FrostStrike.IsSpellUsable && FrostStrike.IsHostileDistanceGood)
+                {
+                    if ((MySettings.UseLichborne && ObjectManager.Me.HealthPercent <= MySettings.UseLichborneAtPercentage && Lichborne.KnownSpell)
+                        || (MySettings.UseConversion && ObjectManager.Me.HealthPercent <= MySettings.UseConversionAtPercentage && Conversion.KnownSpell))
+                        return;
+                    FrostStrike.Cast();
+                    return;
+                }
+                if (MySettings.UseObliterate && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsHostileDistanceGood)
+                {
+                    if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
+                        && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
                     {
                         DeathStrike.Cast();
                         return;
@@ -4158,36 +4233,14 @@ public class DeathknightFrost
                     return;
                 }
 
-                if (MySettings.UseFrostStrike && BloodStrike.KnownSpell && BloodStrike.IsHostileDistanceGood && ObjectManager.Me.HaveBuff(51124) && BloodStrike.IsSpellUsable)
+                if (MySettings.UseFrostStrike && FrostStrike.KnownSpell && FrostStrike.IsSpellUsable && FrostStrike.IsHostileDistanceGood)
                 {
                     if ((MySettings.UseLichborne && ObjectManager.Me.HealthPercent <= MySettings.UseLichborneAtPercentage && Lichborne.KnownSpell)
                         || (MySettings.UseConversion && ObjectManager.Me.HealthPercent <= MySettings.UseConversionAtPercentage && Conversion.KnownSpell))
                         return;
-                    BloodStrike.Cast();
+                    FrostStrike.Cast();
                     return;
                 }
-            }
-
-            if (MySettings.UseObliterate && Obliterate.KnownSpell && Obliterate.IsHostileDistanceGood && Obliterate.IsSpellUsable)
-            {
-                if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood &&
-                    ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
-                    && DeathStrike.IsSpellUsable)
-                {
-                    DeathStrike.Cast();
-                    return;
-                }
-                Obliterate.Cast();
-                return;
-            }
-
-            if (MySettings.UseFrostStrike && BloodStrike.KnownSpell && BloodStrike.IsHostileDistanceGood && BloodStrike.IsSpellUsable)
-            {
-                if ((MySettings.UseLichborne && ObjectManager.Me.HealthPercent <= MySettings.UseLichborneAtPercentage && Lichborne.KnownSpell)
-                    || (MySettings.UseConversion && ObjectManager.Me.HealthPercent <= MySettings.UseConversionAtPercentage && Conversion.KnownSpell))
-                    return;
-                BloodStrike.Cast();
-                return;
             }
 
             if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
@@ -4195,24 +4248,15 @@ public class DeathknightFrost
                 HornofWinter.Cast();
                 return;
             }
-
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Cast();
                 return;
             }
-
             if (MySettings.UseEmpowerRuneWeapon && EmpowerRuneWeapon.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 75 && EmpowerRuneWeapon.IsSpellUsable)
             {
                 EmpowerRuneWeapon.Cast();
                 return;
-            }
-
-            if (MySettings.UseHowlingBlast && MySettings.UseDuelWield && HowlingBlast.KnownSpell && HowlingBlast.IsHostileDistanceGood
-                && !FrostStrike.IsSpellUsable && !Obliterate.IsSpellUsable && ObjectManager.Me.RunicPowerPercentage < 20 && HowlingBlast.IsSpellUsable)
-            {
-                HowlingBlast.Cast();
-                _frostFeverTimer = new Timer(1000*27);
             }
         }
         finally
@@ -4266,6 +4310,7 @@ public class DeathknightFrost
         public bool UseDeathStrike = true;
         public int UseDeathStrikeAtPercentage = 80;
         public bool UseDeathandDecay = true;
+        public bool UseDefile = true;
         public bool UseDeathsAdvance = true;
         public bool UseDuelWield = false;
         public bool UseEmpowerRuneWeapon = true;
@@ -4331,6 +4376,7 @@ public class DeathknightFrost
             AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
+            AddControlInWinForm("Use Defile", "UseDefile", "Offensive Spell");
             AddControlInWinForm("Use Frost Strike", "UseFrostStrike", "Offensive Spell");
             AddControlInWinForm("Use Howling Blast", "UseHowlingBlast", "Offensive Spell");
             AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
