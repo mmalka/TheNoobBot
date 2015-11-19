@@ -81,8 +81,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i
-xcopy "$(ProjectDir)TnbNPCRadar.cs" "$(TargetDir)" /y /i</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(SolutionDir)..\docs\updatebase_directory\Plugins\" /y /i</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
