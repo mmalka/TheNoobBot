@@ -1182,9 +1182,7 @@ public class DeathknightApprentice
     #region Offensive Cooldown
 
     public readonly Spell DeathGrip = new Spell("Death Grip");
-    public readonly Spell Pestilence = new Spell("Pestilence");
     public readonly Spell RaiseDead = new Spell("Raise Dead");
-    private Timer _pestilenceTimer = new Timer(0);
 
     #endregion
 
@@ -1410,15 +1408,6 @@ public class DeathknightApprentice
                 return;
             }
 
-            if (MySettings.UsePestilence && Pestilence.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 1 &&
-                _pestilenceTimer.IsReady
-                && Pestilence.IsHostileDistanceGood && Pestilence.IsSpellUsable)
-            {
-                Pestilence.Cast();
-                _pestilenceTimer = new Timer(1000*30);
-                return;
-            }
-
             if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetUnitInSpellRange(BloodBoil.MaxRangeHostile) > 2
                 && ObjectManager.Target.GetDistance < 11 && BloodBoil.IsSpellUsable)
             {
@@ -1498,7 +1487,6 @@ public class DeathknightApprentice
 
         public bool UseMindFreeze = true;
         public int UseMindFreezeAtPercentage = 100;
-        public bool UsePestilence = true;
         public bool UsePlagueStrike = true;
         public bool UseRaiseDead = true;
         public bool UseStoneform = true;
@@ -1529,7 +1517,6 @@ public class DeathknightApprentice
             AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
-            AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Chains of Ice", "UseChainsofIce", "Defensive Cooldown");
@@ -1613,13 +1600,14 @@ public class DeathknightBlood
     public readonly Spell DeathCoil = new Spell("Death Coil");
     public readonly Spell DeathStrike = new Spell("Death Strike");
     public readonly Spell DeathandDecay = new Spell("Death and Decay");
+    public readonly Spell Defile = new Spell("Defile");
     public readonly Spell HeartStrike = new Spell("Heart Strike");
     public readonly Spell IcyTouch = new Spell("Icy Touch");
     public readonly Spell PlagueLeech = new Spell("Plague Leech");
     public readonly Spell PlagueStrike = new Spell("Plague Strike");
-    public readonly Spell RuneStrike = new Spell("Rune Strike");
     public readonly Spell SoulReaper = new Spell("Soul Reaper");
     public readonly Spell UnholyBlight = new Spell("Unholy Blight");
+    private Timer _defileTimer = new Timer(0);
 
     #endregion
 
@@ -1627,16 +1615,13 @@ public class DeathknightBlood
 
     public readonly Spell BloodTap = new Spell("Blood Tap");
     public readonly Spell BloodCharge = new Spell(114851);
+    public readonly Spell BreathofSindragosa = new Spell("Breath of Sindragosa");
     public readonly Spell DancingRuneWeapon = new Spell("Dancing Rune Weapon");
     public readonly Spell DeathGrip = new Spell("Death Grip");
     public readonly Spell EmpowerRuneWeapon = new Spell("Empower Rune Weapon");
     public readonly Spell Outbreak = new Spell("Outbreak");
-    public readonly Spell Pestilence = new Spell("Pestilence");
     public readonly Spell RaiseDead = new Spell("Raise Dead");
     private Timer _dancingRuneWeaponTimer = new Timer(0);
-/*
-        private Timer _pestilenceTimer = new Timer(0);
-*/
 
     #endregion
 
@@ -2175,12 +2160,12 @@ public class DeathknightBlood
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell
-                && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
+            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell && BloodPlague.TargetHaveBuff 
+                && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && !DeathStrike.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
             {
                 PlagueLeech.Cast();
-                Others.SafeSleep(400);
-                if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable)
+                Others.SafeSleep(1000);
+                if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable && !BloodPlague.TargetHaveBuff)
                 {
                     Outbreak.Cast();
                     _bloodPlagueTimer = new Timer(1000*27);
@@ -2219,15 +2204,35 @@ public class DeathknightBlood
                 return;
             }
 
-            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
+            if (MySettings.UseDefile && Defile.KnownSpell && Defile.IsSpellUsable && Defile.IsHostileDistanceGood)
+            {
+                SpellManager.CastSpellByIDAndPosition(152280, ObjectManager.Target.Position);
+                _defileTimer = new Timer(1000*30);
+                return;
+            }
+            if (MySettings.UseBreathofSindragosa && BreathofSindragosa.KnownSpell && ObjectManager.Me.RunicPower > 75 && BreathofSindragosa.IsSpellUsable
+                && ObjectManager.Target.GetDistance < 11)
+            {
+                BreathofSindragosa.Cast();
+                return;
+            }
+            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && !_defileTimer.IsReady && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
             {
                 DeathStrike.Cast();
                 return;
             }
             if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsSpellUsable && DeathCoil.IsHostileDistanceGood)
             {
-                DeathCoil.Cast();
-                return;
+                if (MySettings.UseBreathofSindragosa && BreathofSindragosa.KnownSpell && !BreathofSindragosa.IsSpellUsable)
+                {
+                    DeathCoil.Cast();
+                    return;
+                }
+                else if (!BreathofSindragosa.KnownSpell)
+                {
+                    DeathCoil.Cast();
+                    return;
+                }
             }
 
             if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && PlagueStrike.IsSpellUsable
@@ -2258,7 +2263,7 @@ public class DeathknightBlood
                 return;
             }
 
-            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
+            if (MySettings.UseDeathandDecay && DeathandDecay.KnownSpell && !Defile.KnownSpell && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
             {
                 SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
                 return;
@@ -2268,24 +2273,20 @@ public class DeathknightBlood
                 ArmyoftheDead.Cast();
                 return;
             }
-            if (MySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
-            {
-                DeathStrike.Cast();
-                return;
-            }
             if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && ObjectManager.Target.HealthPercent < 35
                 && SoulReaper.IsSpellUsable && !DeathStrike.IsSpellUsable && SoulReaper.IsHostileDistanceGood)
             {
                 SoulReaper.Cast();
                 return;
             }
-            if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsSpellUsable && !DeathStrike.IsSpellUsable && BloodBoil.IsHostileDistanceGood)
+            if (MySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsSpellUsable && 
+                (!DeathStrike.IsSpellUsable || ObjectManager.Me.HaveBuff(50421) && BloodBoil.IsHostileDistanceGood))
             {
                 BloodBoil.Cast();
                 if (BloodPlague.TargetHaveBuff)
-                    _bloodPlagueTimer = new Timer(1000 * 27);
+                    _bloodPlagueTimer = new Timer(1000*27);
                 if (FrostFever.TargetHaveBuff)
-                    _frostFeverTimer = new Timer(1000 * 27);
+                    _frostFeverTimer = new Timer(1000*27);
                 return;
             }
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
@@ -2338,6 +2339,7 @@ public class DeathknightBlood
         public int UseBloodPresenceAtPercentage = 50;
         public bool UseBloodTapForDPS = true;
         public bool UseBloodTapToHeal = true;
+        public bool UseBreathofSindragosa = true;
         public bool UseBoneShield = true;
         public int UseBoneShieldAtPercentage = 100;
         public bool UseChainsofIce = false;
@@ -2352,6 +2354,7 @@ public class DeathknightBlood
         public int UseDeathSiphonAtPercentage = 80;
         public bool UseDeathStrike = true;
         public bool UseDeathandDecay = true;
+        public bool UseDefile = true;
         public bool UseDeathsAdvance = true;
         public bool UseEmpowerRuneWeapon = true;
 
@@ -2371,13 +2374,11 @@ public class DeathknightBlood
         public int UseMindFreezeAtPercentage = 100;
         public bool UseOutbreak = true;
         public bool UsePathofFrost = true;
-        public bool UsePestilence = true;
         public bool UsePlagueLeech = true;
         public bool UsePlagueStrike = true;
         public bool UseRaiseDeadForDPS = true;
         public bool UseRemorselessWinter = true;
         public int UseRemorselessWinterAtPercentage = 70;
-        public bool UseRuneStrike = true;
         public bool UseSoulReaper = true;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
@@ -2414,22 +2415,22 @@ public class DeathknightBlood
             AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
+            AddControlInWinForm("Use Defile", "UseDefile", "Offensive Spell");
             AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Offensive Spell");
             AddControlInWinForm("Use Heart Strike", "UseHeartStrike", "Offensive Spell");
             AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
             AddControlInWinForm("Use Plague Leech", "UsePlagueLeech", "Offensive Spell");
             AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
-            AddControlInWinForm("Use Rune Strike", "UseRuneStrike", "Offensive Spell");
             AddControlInWinForm("Use Soul Reaper", "UseSoulReaper", "Offensive Spell");
             AddControlInWinForm("Use Unholy Blight", "UseUnholyBlight", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Blood Tap for Healing", "UseBloodTapForHeal", "Offensive Cooldown");
             AddControlInWinForm("Use Blood Tap for DPS", "UseBloodTapForDPS", "Offensive Cooldown");
+            AddControlInWinForm("Use Breath of Sindragosa", "UseBreathofSindragosa", "Offensive Cooldown");
             AddControlInWinForm("Use Dancing Rune Weapon", "UseDancingRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
             AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
-            AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead For DPS", "UseRaiseDeadForDPS", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShell", "Defensive Cooldown", "AtPercentage");
@@ -2509,20 +2510,15 @@ public class DeathknightUnholy
 
     #region Deathknight Presence & Buffs
 
-    public readonly Spell BloodPlague = new Spell("Blood Plague");
+    public readonly Spell BloodPlague = new Spell(55078);
     public readonly Spell BloodPresence = new Spell("Blood Presence");
-    public readonly Spell FrostFever = new Spell("Frost Fever");
+    public readonly Spell FrostFever = new Spell(55095);
     public readonly Spell FrostPresence = new Spell("Frost Presence");
     public readonly Spell HornofWinter = new Spell("Horn of Winter");
+    public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
     public readonly Spell PathofFrost = new Spell("Path of Frost");
-    public readonly Spell RoilingBlood = new Spell("Roiling Blood");
+    public readonly Spell ShadowInfusion = new Spell(91342);
     public readonly Spell UnholyPresence = new Spell("Unholy Presence");
-/*
-        private Timer _bloodPlagueTimer = new Timer(0);
-*/
-/*
-        private Timer _frostFeverTimer = new Timer(0);
-*/
     private Timer _pathofFrostBuffTimer = new Timer(0);
     private Timer _pathofFrostTimer = new Timer(0);
 
@@ -2531,10 +2527,9 @@ public class DeathknightUnholy
     #region Offensive Spell
 
     public readonly Spell BloodBoil = new Spell("Blood Boil");
-    public readonly Spell BloodStrike = new Spell("Blood Strike");
-    public readonly Spell DarkTransformation = new Spell("Dark Transformation");
-    public readonly Spell DeathCoil = new Spell("Death Coil");
     public readonly Spell DeathandDecay = new Spell("Death and Decay");
+    public readonly Spell DeathCoil = new Spell("Death Coil");
+    public readonly Spell Defile = new Spell("Defile");
     public readonly Spell FesteringStrike = new Spell("Festering Strike");
     public readonly Spell IcyTouch = new Spell("Icy Touch");
     public readonly Spell PlagueLeech = new Spell("Plague Leech");
@@ -2542,23 +2537,20 @@ public class DeathknightUnholy
     public readonly Spell ScourgeStrike = new Spell("Scourge Strike");
     public readonly Spell SoulReaper = new Spell("Soul Reaper");
     public readonly Spell UnholyBlight = new Spell("Unholy Blight");
-    private Timer _darkTransformationTimer = new Timer(0);
+    private Timer _defileTimer = new Timer(0);
 
     #endregion
 
     #region Offensive Cooldown
 
     public readonly Spell BloodTap = new Spell("Blood Tap");
+    public readonly Spell BreathofSindragosa = new Spell("Breath of Sindragosa");
+    public readonly Spell DarkTransformation = new Spell("Dark Transformation");
     public readonly Spell DeathGrip = new Spell("Death Grip");
     public readonly Spell EmpowerRuneWeapon = new Spell("Empower Rune Weapon");
     public readonly Spell Outbreak = new Spell("Outbreak");
-    public readonly Spell Pestilence = new Spell("Pestilence");
     public readonly Spell RaiseDead = new Spell("Raise Dead");
     public readonly Spell SummonGargoyle = new Spell("Summon Gargoyle");
-    public readonly Spell UnholyFrenzy = new Spell("Unholy Frenzy");
-/*
-        private Timer _pestilenceTimer = new Timer(0);
-*/
 
     #endregion
 
@@ -2570,6 +2562,8 @@ public class DeathknightUnholy
     public readonly Spell Asphyxiate = new Spell("Asphyxiate");
     public readonly Spell ChainsofIce = new Spell("Chains of Ice");
     public readonly Spell DeathsAdvance = new Spell("Death's Advance");
+    public readonly Spell DesecratedGround = new Spell("Desecrated Ground");
+    public readonly Spell GorefiendsGrasp = new Spell("Gorefriend's Grasp");
     public readonly Spell IceboundFortitude = new Spell("Icebound Fortitude");
     public readonly Spell MindFreeze = new Spell("Mind Freeze");
     public readonly Spell RemorselessWinter = new Spell("Remorseless Winter");
@@ -2831,7 +2825,7 @@ public class DeathknightUnholy
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (MySettings.UseRaiseDead && RaiseDead.KnownSpell && ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
+        if (MySettings.UseRaiseDead && RaiseDead.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             RaiseDead.IsSpellUsable)
         {
             Logging.WriteFight(" - PET DEAD - ");
@@ -3077,23 +3071,9 @@ public class DeathknightUnholy
             BloodTap.Cast();
             return;
         }
-        if (MySettings.UseUnholyFrenzy && UnholyFrenzy.KnownSpell && ObjectManager.Target.GetDistance < 30 && UnholyFrenzy.IsSpellUsable)
-        {
-            UnholyFrenzy.Cast();
-        }
         if (MySettings.UseSummonGargoyle && SummonGargoyle.KnownSpell && ObjectManager.Target.GetDistance < 30 && SummonGargoyle.IsSpellUsable)
         {
             SummonGargoyle.Cast();
-        }
-        if (_darkTransformationTimer.IsReady && DT == 0)
-        {
-            DT++;
-        }
-        if (MySettings.UseDarkTransformation && DarkTransformation.KnownSpell && DT == 1 && DarkTransformation.IsSpellUsable)
-        {
-            DarkTransformation.Cast();
-            _darkTransformationTimer = new Timer(1000*30);
-            DT--;
         }
     }
 
@@ -3110,60 +3090,72 @@ public class DeathknightUnholy
                 DeathCoil.Cast();
                 return;
             }
-
-            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
-                && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable)
+            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell && BloodPlague.TargetHaveBuff 
+                && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && !FesteringStrike.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
             {
                 PlagueLeech.Cast();
                 Others.SafeSleep(400);
                 if (Outbreak.IsHostileDistanceGood && Outbreak.IsSpellUsable)
-                {
                     Outbreak.Cast();
-                    return;
-                }
+                return;
             }
 
-            if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && ObjectManager.Target.GetDistance < 9 && (!BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff) &&
-                UnholyBlight.IsSpellUsable)
+            if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && NecroticPlague.KnownSpell && (!NecroticPlague.TargetHaveBuff || ObjectManager.Me.BuffStack(155159) < 15)
+                && UnholyBlight.IsSpellUsable && ObjectManager.Target.GetDistance < 9)
+            {
+                UnholyBlight.Cast();
+                return;
+            }
+            else if (MySettings.UseUnholyBlight && UnholyBlight.KnownSpell && (!BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff)
+                && UnholyBlight.IsSpellUsable && ObjectManager.Target.GetDistance < 9)
             {
                 UnholyBlight.Cast();
                 return;
             }
 
-            if (MySettings.UseOutbreak && Outbreak.KnownSpell && Outbreak.IsHostileDistanceGood && (!BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff) &&
-                Outbreak.IsSpellUsable)
+            if (MySettings.UseOutbreak && Outbreak.KnownSpell && NecroticPlague.KnownSpell && (!NecroticPlague.TargetHaveBuff || ObjectManager.Me.BuffStack(155159) < 15)
+                && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood)
+            {
+                Outbreak.Cast();
+                return;
+            }
+            else if (MySettings.UseOutbreak && Outbreak.KnownSpell && (!BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff) && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood)
             {
                 Outbreak.Cast();
                 return;
             }
 
-            if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && (!BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff)
-                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable)
+            if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff && PlagueStrike.IsSpellUsable
+                && PlagueStrike.IsHostileDistanceGood)
+            {
+                PlagueStrike.Cast();
+                return;
+            }
+            else if (MySettings.UsePlagueStrike && PlagueStrike.KnownSpell && !BloodPlague.TargetHaveBuff
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && PlagueStrike.IsSpellUsable && PlagueStrike.IsHostileDistanceGood)
             {
                 PlagueStrike.Cast();
                 return;
             }
 
-            if (MySettings.UsePestilence && (!RoilingBlood.KnownSpell || !MySettings.UseBloodBoil) && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood
-                && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetUnitInSpellRange() > 2 && Pestilence.IsSpellUsable)
+            if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && NecroticPlague.KnownSpell && !NecroticPlague.TargetHaveBuff
+                && IcyTouch.IsSpellUsable && IcyTouch.IsHostileDistanceGood)
             {
-                Pestilence.Cast();
-                //PestilenceTimer = new Timer(1000*30);
+                IcyTouch.Cast();
+                return;
+            }
+            else if (MySettings.UseIcyTouch && IcyTouch.KnownSpell && !FrostFever.TargetHaveBuff
+                && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && IcyTouch.IsSpellUsable && IcyTouch.IsHostileDistanceGood)
+            {
+                IcyTouch.Cast();
                 return;
             }
 
-            if (MySettings.UseDarkTransformation && _darkTransformationTimer.IsReady && DT == 1)
+            if (MySettings.UseDarkTransformation && DarkTransformation.KnownSpell && ObjectManager.Me.BuffStack(91342) > 4 && DarkTransformation.IsSpellUsable)
             {
-                if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable)
-                {
-                    if ((MySettings.UseLichborne && ObjectManager.Me.HealthPercent <= MySettings.UseLichborneAtPercentage && Lichborne.KnownSpell)
-                        || (MySettings.UseConversion && ObjectManager.Me.HealthPercent <= MySettings.UseConversionAtPercentage && Conversion.KnownSpell))
-                        return;
-                    DeathCoil.Cast();
-                    return;
-                }
+                DarkTransformation.Cast();
+                return;
             }
-
             if (ObjectManager.GetUnitInSpellRange(DeathandDecay.MaxRangeHostile) > 2 || ObjectManager.GetUnitInSpellRange(ArmyoftheDead.MaxRangeHostile) > 3)
             {
                 if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
@@ -3185,57 +3177,59 @@ public class DeathknightUnholy
                     return;
                 }
             }
-
-            if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && SoulReaper.IsHostileDistanceGood && ObjectManager.Target.HealthPercent < 35
-                && (ObjectManager.Me.HealthPercent > MySettings.UseDeathStrikeAtPercentage || !MySettings.UseDeathStrike) && SoulReaper.IsSpellUsable)
+            if (MySettings.UseBreathofSindragosa && BreathofSindragosa.KnownSpell && ObjectManager.Me.RunicPower > 75 && BreathofSindragosa.IsSpellUsable
+                && ObjectManager.Target.GetDistance < 11)
+            {
+                BreathofSindragosa.Cast();
+                return;
+            }
+            if (MySettings.UseSoulReaper && SoulReaper.KnownSpell && ObjectManager.Target.HealthPercent < 35
+                && (ObjectManager.Me.HealthPercent > MySettings.UseDeathStrikeAtPercentage || !MySettings.UseDeathStrike)
+                && SoulReaper.IsSpellUsable && SoulReaper.IsHostileDistanceGood)
             {
                 SoulReaper.Cast();
                 return;
             }
-
-            if (MySettings.UseScourgeStrike && ScourgeStrike.KnownSpell && ScourgeStrike.IsHostileDistanceGood && ObjectManager.Me.RunicPowerPercentage < 90 &&
-                ScourgeStrike.IsSpellUsable)
+            if (MySettings.UseDefile && Defile.KnownSpell && Defile.IsSpellUsable && Defile.IsHostileDistanceGood)
+            {
+                SpellManager.CastSpellByIDAndPosition(152280, ObjectManager.Target.Position);
+                _defileTimer = new Timer(1000 * 30);
+                return;
+            }
+            if (MySettings.UseScourgeStrike && ScourgeStrike.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 90
+                && ScourgeStrike.IsSpellUsable && ScourgeStrike.IsHostileDistanceGood)
             {
                 ScourgeStrike.Cast();
                 return;
             }
-
-            if (MySettings.UseFesteringStrike && FesteringStrike.KnownSpell && FesteringStrike.IsHostileDistanceGood && ObjectManager.Me.RunicPowerPercentage < 90 &&
-                FesteringStrike.IsSpellUsable)
+            if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && (ObjectManager.Me.RunicPowerPercentage > 79 || ObjectManager.Me.HaveBuff(81340)
+                || !ObjectManager.Pet.HaveBuff(63560)) && DeathCoil.IsSpellUsable && DeathCoil.IsHostileDistanceGood)
+            {
+                if (MySettings.UseBreathofSindragosa && BreathofSindragosa.KnownSpell && !BreathofSindragosa.IsSpellUsable)
+                {
+                    DeathCoil.Cast();
+                    return;
+                }
+                else if(!BreathofSindragosa.KnownSpell)
+                {
+                    DeathCoil.Cast();
+                    return;
+                }
+            }
+            if (MySettings.UseFesteringStrike && FesteringStrike.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 90 && !ScourgeStrike.IsSpellUsable
+                && FesteringStrike.IsSpellUsable && FesteringStrike.IsHostileDistanceGood)
             {
                 FesteringStrike.Cast();
                 return;
             }
-
-            if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood &&
-                (ObjectManager.Me.RunicPowerPercentage > 89 || ObjectManager.Me.HaveBuff(81340)) &&
-                DeathCoil.IsSpellUsable)
-            {
-                DeathCoil.Cast();
-                return;
-            }
-
-            if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
-            {
-                HornofWinter.Cast();
-                return;
-            }
-
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Cast();
                 return;
             }
-
             if (MySettings.UseEmpowerRuneWeapon && EmpowerRuneWeapon.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 75 && EmpowerRuneWeapon.IsSpellUsable)
             {
                 EmpowerRuneWeapon.Cast();
-                return;
-            }
-
-            if (MySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable)
-            {
-                DeathCoil.Cast();
             }
         }
         finally
@@ -3277,6 +3271,7 @@ public class DeathknightUnholy
         public bool UseBloodPresence = true;
         public int UseBloodPresenceAtPercentage = 50;
         public bool UseBloodTap = true;
+        public bool UseBreathofSindragosa = true;
         public bool UseChainsofIce = false;
         public bool UseConversion = true;
         public int UseConversionAtPercentage = 45;
@@ -3290,6 +3285,7 @@ public class DeathknightUnholy
         public bool UseDeathStrike = true;
         public int UseDeathStrikeAtPercentage = 80;
         public bool UseDeathandDecay = true;
+        public bool UseDefile = true;
         public bool UseDeathsAdvance = true;
         public bool UseEmpowerRuneWeapon = true;
 
@@ -3309,7 +3305,6 @@ public class DeathknightUnholy
         public int UseMindFreezeAtPercentage = 100;
         public bool UseOutbreak = true;
         public bool UsePathofFrost = true;
-        public bool UsePestilence = true;
         public bool UsePlagueLeech = true;
         public bool UsePlagueStrike = true;
         public bool UseRaiseDead = true;
@@ -3325,7 +3320,6 @@ public class DeathknightUnholy
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
         public bool UseUnholyBlight = true;
-        public bool UseUnholyFrenzy = true;
         public bool UseUnholyPresence = true;
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
@@ -3353,6 +3347,7 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
+            AddControlInWinForm("Use Defile", "UseDefile", "Offensive Spell");
             AddControlInWinForm("Use Festering Strike", "UseFesteringStrike", "Offensive Spell");
             AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
             AddControlInWinForm("Use Plague Leech", "UsePlagueLeech", "Offensive Spell");
@@ -3362,13 +3357,12 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Unholy Blight", "UseUnholyBlight", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Blood Tap", "UseBloodTap", "Offensive Cooldown");
+            AddControlInWinForm("Use Breath of Sindragosa", "UseBreathofSindragosa", "Offensive Cooldown");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
             AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
-            AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Gargoyle", "UseSummonGargoyle", "Offensive Cooldown");
-            AddControlInWinForm("Use Unholy Frenzy", "UseUnholyFrenzy", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShell", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Anti-Magic Zone", "UseAntiMagicZone", "Defensive Cooldown", "AtPercentage");
@@ -3452,6 +3446,7 @@ public class DeathknightFrost
     public readonly Spell FrostPresence = new Spell("Frost Presence");
     public readonly Spell HornofWinter = new Spell("Horn of Winter");
     public readonly Spell PathofFrost = new Spell("Path of Frost");
+    public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
     public readonly Spell RoilingBlood = new Spell("Roiling Blood");
     public readonly Spell UnholyPresence = new Spell("Unholy Presence");
     private Timer _bloodPlagueTimer = new Timer(0);
@@ -3475,7 +3470,6 @@ public class DeathknightFrost
     public readonly Spell PlagueStrike = new Spell("Plague Strike");
     public readonly Spell SoulReaper = new Spell("Soul Reaper");
     public readonly Spell UnholyBlight = new Spell("Unholy Blight");
-    public readonly Spell NecroticPlague = new Spell("Necrotic Plague");
     public readonly Spell Defile = new Spell("Defile");
     private Timer _defileTimer = new Timer(0);
 
@@ -3487,12 +3481,8 @@ public class DeathknightFrost
     public readonly Spell DeathGrip = new Spell("Death Grip");
     public readonly Spell EmpowerRuneWeapon = new Spell("Empower Rune Weapon");
     public readonly Spell Outbreak = new Spell("Outbreak");
-    public readonly Spell Pestilence = new Spell("Pestilence");
     public readonly Spell PillarofFrost = new Spell("Pillar of Frost");
     public readonly Spell RaiseDead = new Spell("Raise Dead");
-/*
-        private Timer _pestilenceTimer = new Timer(0);
-*/
 
     #endregion
 
@@ -4012,8 +4002,8 @@ public class DeathknightFrost
                 DeathCoil.Cast();
                 return;
             }
-            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell
-                && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
+            if (MySettings.UsePlagueLeech && MySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && !NecroticPlague.KnownSpell && BloodPlague.TargetHaveBuff 
+                && FrostFever.TargetHaveBuff && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && !Obliterate.IsSpellUsable && PlagueLeech.IsHostileDistanceGood)
             {
                 PlagueLeech.Cast();
                 Others.SafeSleep(400);
@@ -4242,12 +4232,6 @@ public class DeathknightFrost
                     return;
                 }
             }
-
-            if (MySettings.UseHornofWinter && HornofWinter.KnownSpell && !HornofWinter.HaveBuff && HornofWinter.IsSpellUsable)
-            {
-                HornofWinter.Cast();
-                return;
-            }
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 85 && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Cast();
@@ -4333,7 +4317,6 @@ public class DeathknightFrost
         public bool UseObliterate = true;
         public bool UseOutbreak = true;
         public bool UsePathofFrost = true;
-        public bool UsePestilence = true;
         public bool UsePillarofFrost = true;
         public bool UsePlagueLeech = true;
         public bool UsePlagueStrike = true;
@@ -4373,7 +4356,6 @@ public class DeathknightFrost
             AddControlInWinForm("Use Unholy Presence", "UseUnholyPresence", "Deathknight Presence & Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spell");
-            AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
             AddControlInWinForm("Use Defile", "UseDefile", "Offensive Spell");
@@ -4390,7 +4372,6 @@ public class DeathknightFrost
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
             AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
-            AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
             AddControlInWinForm("Use Pillar of Frost", "UsePillarofFrost", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead For DPS", "UseRaiseDeadForDPS", "Offensive Cooldown");
             /* Defensive Cooldown */
