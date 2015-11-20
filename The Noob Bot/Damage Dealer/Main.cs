@@ -60,6 +60,11 @@ public class Main : IProduct
         }
     }
 
+    public void RemoteStart(string[] args)
+    {
+        throw new NotImplementedException();
+    }
+
     public void Stop()
     {
         try

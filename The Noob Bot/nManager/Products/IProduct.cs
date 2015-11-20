@@ -23,6 +23,11 @@
         void Start();
 
         /// <summary>
+        /// RemoteStart Product.
+        /// </summary>
+        void RemoteStart(string[] args);
+
+        /// <summary>
         /// Stop Product.
         /// </summary>
         void Stop();

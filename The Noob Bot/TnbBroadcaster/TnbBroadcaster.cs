@@ -126,7 +126,7 @@ public static class MyPluginClass
         {
             Thread.Sleep(1000);
             Logging.WritePlugin("The plugin is running...", Name);
-                // Always uses WritePlugin // WritePluginError // WritePluginDebug. Don't forget to pass ", Name" as a parameter to announce which profile is sending it.
+            // Always uses WritePlugin // WritePluginError // WritePluginDebug. Don't forget to pass ", Name" as a parameter to announce which profile is sending it.
         }
     }
 }
