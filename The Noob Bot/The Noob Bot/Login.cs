@@ -37,6 +37,13 @@ namespace The_Noob_Bot
             }
         }
 
+        private int _autoStarted = -1;
+
+        public void AutoStart(int sessId)
+        {
+            _autoStarted = sessId;
+        }
+
         private void Translate()
         {
             try
@@ -168,6 +175,28 @@ namespace The_Noob_Bot
                 RefreshButton.Enabled = true;
 
                 RefreshProcessList();
+
+                /* Begin AutoStart code */
+                bool sIdFound = false;
+                if (_autoStarted > 0)
+                {
+                    for (int i = 0; i < SessionList.Items.Count; i++)
+                    {
+                        var item = SessionList.Items[i];
+                        if (item.ToString().Contains(_autoStarted + " -"))
+                        {
+                            SessionList.SelectedIndex = i;
+                            sIdFound = true;
+                            break;
+                        }
+                    }
+                    if (sIdFound)
+                    {
+                        nManagerSetting.ActivateProductTipOff = false;
+                        LoginButton_Click(new object(), new EventArgs());
+                    }
+                }
+                /* End AutoStart code */
             }
             catch (Exception ex)
             {

@@ -17,7 +17,8 @@ public class Main : IProduct
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Gatherer\\");
             GathererSetting.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
-            GetProductTipOff();
+            if (nManagerSetting.ActivateProductTipOff)
+                GetProductTipOff();
         }
         catch (Exception e)
         {

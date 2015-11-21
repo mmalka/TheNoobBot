@@ -17,7 +17,8 @@ public class Main : IProduct
         {
             ArchaeologistSetting.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
-            GetProductTipOff();
+            if (nManagerSetting.ActivateProductTipOff)
+                GetProductTipOff();
         }
         catch (Exception e)
         {

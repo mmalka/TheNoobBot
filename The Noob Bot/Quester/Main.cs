@@ -27,7 +27,8 @@ public class Main : IProduct
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\");
             QuesterSettings.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
-            GetProductTipOff();
+            if (nManagerSetting.ActivateProductTipOff)
+                GetProductTipOff();
         }
         catch (Exception e)
         {

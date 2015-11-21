@@ -23,7 +23,8 @@ public class Main : IProduct
         {
             DungeonFarmerSetting.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
-            GetProductTipOff();
+            if (nManagerSetting.ActivateProductTipOff)
+                GetProductTipOff();
         }
         catch (Exception e)
         {

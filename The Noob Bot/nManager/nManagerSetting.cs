@@ -15,6 +15,7 @@ namespace nManager
     {
         private static nManagerSetting _currentSetting;
         private static string _lastName = "";
+        public static bool ActivateProductTipOff = true;
 
         public static nManagerSetting CurrentSetting
         {
