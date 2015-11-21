@@ -287,9 +287,9 @@ namespace nManager.Helpful
             N = 0x8, // Navigation
             F = 0x10, // Fight
             IO = 0x20, // FileOnly
-            P = 0x30, // Plugin
-            EP = 0x40, // Plugin Error
-            DP = 0x50, // Plugin Debug
+            P = 0x40, // Plugin
+            EP = 0x80, // Plugin Error
+            DP = 0x100, // Plugin Debug
         }
 
         public class Log

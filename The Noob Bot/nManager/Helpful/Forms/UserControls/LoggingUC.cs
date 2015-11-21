@@ -79,8 +79,10 @@ namespace nManager.Helpful.Forms.UserControls
                 Logging.LogType flag = Logging.LogType.None;
 
                 if (NormalLogSwitchButton.Value)
+                {
                     flag |= Logging.LogType.S;
-                flag |= Logging.LogType.P;
+                    flag |= Logging.LogType.P;
+                }
                 if (DebugLogSwitchButton.Value)
                 {
                     flag |= Logging.LogType.D;
