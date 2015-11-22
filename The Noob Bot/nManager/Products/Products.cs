@@ -216,6 +216,43 @@ namespace nManager.Products
             return false;
         }
 
+        public static bool ProductRemoteStart(string[] args)
+        {
+            try
+            {
+                if (_instanceFromOtherAssembly != null)
+                {
+                    _inAutoPause = false;
+                    _inManualPause = false;
+                    TravelToContinentId = 9999999;
+                    TravelTo = new Point();
+                    nManagerSetting.ActivateProductTipOff = false;
+
+                    _instanceFromOtherAssembly.RemoteStart(args);
+                    if (!_instanceFromOtherAssembly.IsStarted)
+                        return false;
+                    EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
+                    EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
+
+                    Statistics.Reset();
+
+                    // Fsm
+                    Fsm.States.Clear();
+                    Fsm.AddState(new Relogger {Priority = 10});
+                    Fsm.AddState(new StopBotIf {Priority = 5});
+                    Fsm.AddState(new Idle {Priority = 1});
+                    Fsm.States.Sort();
+                    Fsm.StartEngine(1);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("ProductRemoteStart(): " + (object) ex, true);
+            }
+            return false;
+        }
+
         public static bool ProductRestart()
         {
             try
