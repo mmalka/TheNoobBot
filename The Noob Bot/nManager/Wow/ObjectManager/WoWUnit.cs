@@ -165,7 +165,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    float p = (Health*100/(float) MaxHealth);
+                    var tempHealth = (Int64) Health;
+                    float p = (tempHealth*100/(float) MaxHealth);
                     if (p < 0 || p > 100)
                     {
                         return 0;
