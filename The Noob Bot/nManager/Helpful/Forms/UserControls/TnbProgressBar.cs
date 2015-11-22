@@ -46,7 +46,7 @@ namespace nManager.Helpful.Forms.UserControls
                 if (value > Maximum)
                     value = Maximum;
                 _value = value;
-                Invalidate();
+                Invalidate(_barRect);
             }
         }
 
@@ -73,6 +73,8 @@ namespace nManager.Helpful.Forms.UserControls
             }
         }
 
+        private Rectangle _barRect;
+
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -82,14 +84,14 @@ namespace nManager.Helpful.Forms.UserControls
                 Graphics g = Graphics.FromHwnd(Handle);
                 var mainRect = new Rectangle(0, 0, Width, Height);
                 ControlPaint.DrawBorder(g, mainRect, BorderColor, BorderStyle);
-                var barRect = new Rectangle(mainRect.X + 1, mainRect.Y + 1, mainRect.Width - 2, mainRect.Height - 2);
+                _barRect = new Rectangle(mainRect.X + 1, mainRect.Y + 1, mainRect.Width - 2, mainRect.Height - 2);
                 if (Value != 0)
                 {
-                    barRect.Width = (int) (barRect.Width*((double) Value/Maximum));
-                    FillPattern(g, BarImage, barRect);
+                    _barRect.Width = (int) (_barRect.Width*((double) Value/Maximum));
+                    FillPattern(g, BarImage, _barRect);
                 }
                 if (Value != 100)
-                    g.FillRectangle(new SolidBrush(BackColor), barRect.Width + barRect.X, barRect.Y, Width - barRect.Width - 2, barRect.Height);
+                    g.FillRectangle(new SolidBrush(BackColor), _barRect.Width + _barRect.X, _barRect.Y, Width - _barRect.Width - 2, _barRect.Height);
             }
         }
 
