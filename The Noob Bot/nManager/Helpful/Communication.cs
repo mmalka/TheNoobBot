@@ -117,19 +117,22 @@ namespace nManager.Helpful
                     }
                     // Now check if mount status changed
                     bool update = false;
-                    if (MountTask.OnGroundMount() && _myMountStatus != MountCapacity.Ground)
+                    if (MountTask.OnGroundMount())
                     {
-                        update = true;
+                        if (_myMountStatus != MountCapacity.Ground)
+                            update = true;
                         _myMountStatus = MountCapacity.Ground;
                     }
-                    else if (MountTask.OnFlyMount() && _myMountStatus != MountCapacity.Fly)
+                    else if (MountTask.OnFlyMount())
                     {
-                        update = true;
+                        if (_myMountStatus != MountCapacity.Fly)
+                            update = true;
                         _myMountStatus = MountCapacity.Fly;
                     }
-                    else if (MountTask.OnAquaticMount() && _myMountStatus != MountCapacity.Swimm)
+                    else if (MountTask.OnAquaticMount())
                     {
-                        update = true;
+                        if (_myMountStatus != MountCapacity.Swimm)
+                            update = true;
                         _myMountStatus = MountCapacity.Swimm;
                     }
                     else if (_myMountStatus != MountCapacity.Feet)
