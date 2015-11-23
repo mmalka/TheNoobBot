@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
-using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
@@ -30,6 +26,7 @@ namespace nManager.Wow.Helpers
             turninQuest = 2,
             interactObject = 3,
             mount = 4,
+            taxi = 5,
         }
 
         [Serializable]

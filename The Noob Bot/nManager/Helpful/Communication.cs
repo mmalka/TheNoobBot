@@ -2,9 +2,8 @@
 using System.Threading;
 using System.Net.Sockets;
 using System.Net;
-using System.Linq;
 using System.Collections.Generic;
-using nManager.Wow.Class;
+using nManager.Wow.Bot.States;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Helpers;
 using nManager.Wow.Enums;
@@ -82,6 +81,8 @@ namespace nManager.Helpful
             _listenThread.Start();
 
             MountTask.GetMountCapacity(); // Fix issue where Master without product launch will be considered on Feet everytimes.
+
+            Travel.AutomaticallyTookTaxi += EventTaxi;
         }
 
         private static void ListenForClients(int port)
@@ -227,6 +228,24 @@ namespace nManager.Helpful
             evt.SerialNumber = _eventSerialNumber;
             evt.eType = MimesisHelpers.eventType.mount;
             evt.EventValue1 = (int) _myMountStatus;
+            // now add this new event to the globale list
+            lock (_myLock) _globalList.Add(evt);
+            _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it
+        }
+
+        public static void EventTaxi(object sender, EventArgs args)
+        {
+            var eventArgs = new Travel.TaxiEventArgs();
+            if (args is Travel.TaxiEventArgs)
+                eventArgs = args as Travel.TaxiEventArgs;
+            // Build an event in _globalEvent
+            _eventSerialNumber++;
+            MimesisHelpers.MimesisEvent evt = new MimesisHelpers.MimesisEvent();
+            evt.SerialNumber = _eventSerialNumber;
+            evt.eType = MimesisHelpers.eventType.taxi;
+            evt.EventValue1 = eventArgs.From;
+            evt.EventValue2 = eventArgs.To;
+            //evt.EventString1 = arrived.ToString();
             // now add this new event to the globale list
             lock (_myLock) _globalList.Add(evt);
             _cleanupTimer.Reset(); // Let 5 seconds for all client threads to pickup this event before purging it

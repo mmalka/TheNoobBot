@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -6,9 +7,9 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using Math = nManager.Helpful.Math;
 
 namespace nManager.Wow.Bot.States
 {
@@ -271,6 +272,14 @@ namespace nManager.Wow.Bot.States
             }
         }
 
+        public static event EventHandler AutomaticallyTookTaxi;
+
+        public class TaxiEventArgs : EventArgs
+        {
+            public int From { get; set; }
+            public int To { get; set; }
+        }
+
         private void EnterTransportOrTakePortal(Transport selectedTransport)
         {
             if (selectedTransport is Portal)
@@ -389,6 +398,10 @@ namespace nManager.Wow.Bot.States
                         }
                         CombatClass.DisposeCombatClass();
                         Gossip.TakeTaxi(nextHop.Xcoord, nextHop.Ycoord);
+
+                        if (AutomaticallyTookTaxi != null)
+                            AutomaticallyTookTaxi(this, new TaxiEventArgs {From = memoryTaxi.Entry, To = (int) nextHop.Id}); // Fires event
+                        //nextHop.Id;
                         Logging.Write("Flying to " + nextHop.Name);
                         loop = false;
                     }
