@@ -80,6 +80,8 @@ namespace nManager.Helpful
             _tcpListener = new TcpListener(IPAddress.Any, port);
             _listenThread = new Thread(new ThreadStart(() => ListenForClients(port)));
             _listenThread.Start();
+
+            MountTask.GetMountCapacity(); // Fix issue where Master without product launch will be considered on Feet everytimes.
         }
 
         private static void ListenForClients(int port)
