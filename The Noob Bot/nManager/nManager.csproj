@@ -134,6 +134,7 @@
     <Compile Include="Helpful\Forms\UserControls\TnbSwitchButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helpful\Garrison.cs" />
     <Compile Include="Helpful\GZip.cs" />
     <Compile Include="Helpful\IniFile.cs" />
     <Compile Include="Helpful\Interface\IScriptOnlineManager.cs" />
