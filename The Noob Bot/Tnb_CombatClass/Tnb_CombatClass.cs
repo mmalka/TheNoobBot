@@ -4097,7 +4097,6 @@ public class MageArcane
     public readonly Spell PrismaticCrystal = new Spell("Prismatic Crystal");
     public readonly Spell Supernova = new Spell("Supernova");
     public readonly Spell TimeWarp = new Spell("Time Warp");
-    private Timer _supernovaTimer = new Timer(0);
 
     #endregion
 
@@ -4590,7 +4589,7 @@ public class MageArcane
                     ArcanePower.Cast();
             }
 
-            if (ObjectManager.Me.ManaPercentage <= MySettings.UseEvocationAtPercentage)
+            if (ObjectManager.Me.ManaPercentage < MySettings.UseEvocationBelowPercentage)
             {
                 _burnPhaseStarted = false;
                 Evocation.Launch(true, false, true);
@@ -4606,7 +4605,6 @@ public class MageArcane
             if (MySettings.UseIceFloes && !IceFloes.HaveBuff && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
             {
                 IceFloes.Cast();
-                return;
             }
             if (MySettings.UseNetherTempest && ArcaneChargePassive.BuffStack == 4 && (!NetherTempest.TargetHaveBuff || ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(NetherTempest.Id, 3599)) 
                 && NetherTempest.IsSpellUsable && NetherTempest.IsHostileDistanceGood)
@@ -4614,10 +4612,9 @@ public class MageArcane
                 NetherTempest.Cast();
                 return;
             }
-            if (MySettings.UseSupernova && _supernovaTimer.IsReady && Supernova.IsSpellUsable && Supernova.IsHostileDistanceGood)
+            if (MySettings.UseSupernova && Supernova.GetSpellCharges > 0 && Supernova.IsSpellUsable && Supernova.IsHostileDistanceGood)
             {
-                Supernova.Cast(); // todo Handle Spell.AvailableCharge (return 1 if not applicate and not on cooldown, or charge count)
-                _supernovaTimer = new Timer(1000 * 15); 
+                Supernova.Cast();
                 return;
             }
             if (MySettings.UseArcaneOrb && ArcaneChargePassive.BuffStack <= 1 && ArcaneOrb.IsSpellUsable && ArcaneOrb.IsHostileDistanceGood)
@@ -4625,12 +4622,12 @@ public class MageArcane
                 ArcaneOrb.Cast();
                 return;
             }
-            if (MySettings.UseConeofCold && MySettings.UseConeofColdGlyph && ConeofCold.IsSpellUsable && ObjectManager.GetUnitInSpellRange(12f) >= 5 && ConeofCold.IsHostileDistanceGood)
+            if (MySettings.UseConeofCold && MySettings.UseConeofColdGlyph && ConeofCold.IsSpellUsable && ObjectManager.GetUnitInSpellRange(12f) >= 5)
             {
                 ConeofCold.Cast();
                 return;
             }
-            if (MySettings.UseArcaneExplosion && ArcaneChargePassive.BuffStack < 4 && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(10f) >= 5 && ArcaneExplosion.IsHostileDistanceGood)
+            if (MySettings.UseArcaneExplosion && ArcaneChargePassive.BuffStack < 4 && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(10f) >= 5)
             {
                 ArcaneExplosion.Cast();
                 return;
@@ -4651,7 +4648,7 @@ public class MageArcane
                 return;
             }
             if (MySettings.UseArcaneExplosion && ObjectManager.Me.GetMove && ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(ArcaneChargePassive.Id, 3500) && ObjectManager.GetUnitInSpellRange(10f) >= 1 
-                && ArcaneExplosion.IsSpellUsable && ArcaneExplosion.IsHostileDistanceGood)
+                && ArcaneExplosion.IsSpellUsable)
             {
                 ArcaneExplosion.Cast();
                 return;
@@ -4709,7 +4706,7 @@ public class MageArcane
         public bool UseEvanesce = true;
         public int UseEvanesceAtPercentage = 90;
         public bool UseEvocation = true;
-        public int UseEvocationAtPercentage = 50;
+        public int UseEvocationBelowPercentage = 50;
         public bool UseFrostNova = true;
         public int UseFrostNovaAtPercentage = 50;
         public bool UseFrostjaw = true;
@@ -4795,7 +4792,7 @@ public class MageArcane
             /* Healing Spell */
             AddControlInWinForm("Use Cold Snap For Healing", "UseColdSnapForHeal", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
-            AddControlInWinForm("Use Evocation", "UseEvocation", "Healing Spell", "AtPercentage"); 
+            AddControlInWinForm("Use Evocation", "UseEvocation", "Healing Spell", "BelowPercentage"); 
             /* Game Settings */
             AddControlInWinForm("Use Cone of Cold Glyph", "UseConeofColdGlyph", "Game Settings");
             AddControlInWinForm("Use Low Combat - Level Difference", "UseLowCombat", "Game Settings", "AtPercentage");

@@ -138,7 +138,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("IsSpellReadyInMs(Spell spell, int time): " + exception);
+                Logging.WriteError("public static bool IsSpellUsableLUA(Spell spell): " + exception);
                 return false;
             }
         }
