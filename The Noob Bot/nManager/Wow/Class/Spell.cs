@@ -174,6 +174,22 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
+        /// Return the available SpellCharges using LUA.
+        /// </summary>
+        /// <value>
+        /// Return <c>currentCharges</c>.
+        /// </value>
+        public int GetSpellCharges
+        {
+            get
+            {
+                string result = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(result + " = tostring(GetSpellCharges(" + Id + ")");
+                return Others.ToInt32(Lua.GetLocalizedText(result));
+            }
+        }
+
+        /// <summary>
         /// Return true if the player distance from casting a spell to a Hostile unit is good.
         /// Else, return false.
         /// </summary>
