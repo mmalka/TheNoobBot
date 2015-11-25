@@ -3,11 +3,11 @@ TheNoobBot's team is glad that you choose us to improve your botting experience 
 In order to be able to communicate with the community, you must create a forum account that is independent from the website account for security reasons.
 There is an Anti-Bot system protecting the forum registration, the answer to the question given is currently: "13" (numbers of Classes in WoW)
 
-If TheNoobBot crash when you are trying to start it, read this thread: http://thenoobbot.com/community/viewtopic.php?f=43&t=464
-If World of Warcraft crash when you load TheNoobBot, read this thread: http://thenoobbot.com/community/viewtopic.php?f=43&t=464
-If TheNoobBot completely freeze when you load TheNoobBot, read this thread: http://thenoobbot.com/community/viewtopic.php?f=43&t=464
+If TheNoobBot crash when you are trying to start it, read this thread: http://thenoobbot.com/community/thread-110.html
+If World of Warcraft crash when you load TheNoobBot, read this thread: http://thenoobbot.com/community/thread-110.html
+If TheNoobBot completely freeze when you load TheNoobBot, read this thread: http://thenoobbot.com/community/thread-110.html
 
-For any other issues, you may want to read this thread: http://thenoobbot.com/community/viewtopic.php?f=43&t=4051
+For any other issues, you may want to read this thread: http://thenoobbot.com/community/thread-476.html
 
 If you need to attach a log to share with the community, to help resolving an issue you are getting, you must follow this tutorial: http://thenoobbot.com/community/viewtopic.php?f=43&t=4316
 Please do not copy/paste the log tabs of TheNoobBot, use the files instead.
