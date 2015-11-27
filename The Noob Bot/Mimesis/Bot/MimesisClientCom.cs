@@ -30,8 +30,6 @@ namespace Mimesis.Bot
             {
                 client.Connect(serviceEndPoint);
                 Logging.Write("Connected!");
-                EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => CleanQuestEvents());
-                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => CleanQuestEvents());
                 return true;
             }
             catch
@@ -61,8 +59,6 @@ namespace Mimesis.Bot
                 }
             }
             Logging.Write("Disconnected from main bot.");
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED, callback => CleanQuestEvents());
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => CleanQuestEvents());
             EventsListener.UnHookEvent(WoWEventsType.START_LOOT_ROLL, callback => RollItem());
             client.Close();
         }
@@ -264,6 +260,7 @@ namespace Mimesis.Bot
                             Quest.QuestPickUp(ref quester, evt.EventString1, evt.EventValue2);
                         else if (evt.eType == MimesisHelpers.eventType.turninQuest && Quest.GetLogQuestId().Contains(evt.EventValue2) && Quest.GetLogQuestIsComplete(evt.EventValue2))
                             Quest.QuestTurnIn(ref quester, Quest.GetLogQuestTitle(evt.EventValue2), evt.EventValue2);
+                        CleanQuestEvents();
                     }
                     break;
                 case MimesisHelpers.eventType.mount:
@@ -316,12 +313,12 @@ namespace Mimesis.Bot
                         break;
                     }
                 }
-                if (evtsToRemove.Count <= 0)
-                    return;
-                foreach (MimesisHelpers.MimesisEvent mimesisEvent in evtsToRemove)
-                {
-                    myTaskList.Remove(mimesisEvent);
-                }
+            }
+            if (evtsToRemove.Count <= 0)
+                return;
+            foreach (MimesisHelpers.MimesisEvent mimesisEvent in evtsToRemove)
+            {
+                myTaskList.Remove(mimesisEvent);
             }
         }
 
