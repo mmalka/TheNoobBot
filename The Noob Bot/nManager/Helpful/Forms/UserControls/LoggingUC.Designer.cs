@@ -43,6 +43,8 @@ namespace nManager.Helpful.Forms.UserControls
             this.FightLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.NormalLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.LoggingAreaTimer = new System.Windows.Forms.Timer(this.components);
+            this.WhispersLogSwitchButton = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
+            this.WhispersLogSwitchLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DebugLogSwitchLabel
@@ -173,11 +175,39 @@ namespace nManager.Helpful.Forms.UserControls
             this.LoggingAreaTimer.Enabled = true;
             this.LoggingAreaTimer.Tick += new System.EventHandler(this.LoggingAreaTimer_Tick);
             // 
+            // WhispersLogSwitchButton
+            // 
+            this.WhispersLogSwitchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.WhispersLogSwitchButton.Location = new System.Drawing.Point(424, 141);
+            this.WhispersLogSwitchButton.MaximumSize = new System.Drawing.Size(60, 20);
+            this.WhispersLogSwitchButton.MinimumSize = new System.Drawing.Size(60, 20);
+            this.WhispersLogSwitchButton.Name = "WhispersLogSwitchButton";
+            this.WhispersLogSwitchButton.OffText = "OFF";
+            this.WhispersLogSwitchButton.OnText = "ON";
+            this.WhispersLogSwitchButton.Size = new System.Drawing.Size(60, 20);
+            this.WhispersLogSwitchButton.TabIndex = 18;
+            this.WhispersLogSwitchButton.Value = true;
+            this.WhispersLogSwitchButton.ValueChanged += new System.EventHandler(this.LoggingSwitchs_ValueChanged);
+            // 
+            // WhispersLogSwitchLabel
+            // 
+            this.WhispersLogSwitchLabel.AutoEllipsis = true;
+            this.WhispersLogSwitchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WhispersLogSwitchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.WhispersLogSwitchLabel.Location = new System.Drawing.Point(493, 141);
+            this.WhispersLogSwitchLabel.Name = "WhispersLogSwitchLabel";
+            this.WhispersLogSwitchLabel.Size = new System.Drawing.Size(70, 20);
+            this.WhispersLogSwitchLabel.TabIndex = 17;
+            this.WhispersLogSwitchLabel.Text = "Whispers";
+            this.WhispersLogSwitchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // LoggingUC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Controls.Add(this.WhispersLogSwitchButton);
+            this.Controls.Add(this.WhispersLogSwitchLabel);
             this.Controls.Add(this.NormalLogSwitchButton);
             this.Controls.Add(this.NormalLogSwitchLabel);
             this.Controls.Add(this.DebugLogSwitchButton);
@@ -209,6 +239,8 @@ namespace nManager.Helpful.Forms.UserControls
         private TnbSwitchButton DebugLogSwitchButton;
         private TnbSwitchButton NavigationLogSwitchButton;
         private System.Windows.Forms.Timer LoggingAreaTimer;
+        private TnbSwitchButton WhispersLogSwitchButton;
+        private Label WhispersLogSwitchLabel;
     }
 }
 

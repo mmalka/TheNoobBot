@@ -192,6 +192,11 @@ namespace nManager.Helpful
             Write(text, LogType.IO, Color.Gray);
         }
 
+        public static void WriteWhispers(string text)
+        {
+            Write(text, LogType.W, Color.BlueViolet);
+        }
+
         public static void WriteError(string text, bool skipThreadAbortExceptionError = true)
         {
             if (string.IsNullOrEmpty(text))
@@ -290,6 +295,7 @@ namespace nManager.Helpful
             P = 0x40, // Plugin
             EP = 0x80, // Plugin Error
             DP = 0x100, // Plugin Debug
+            W = 0x200, // Whispers
         }
 
         public class Log

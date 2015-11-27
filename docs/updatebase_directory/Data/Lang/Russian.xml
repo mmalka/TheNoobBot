@@ -1561,7 +1561,7 @@
       <Id>CantSaveEmptyGroupedNew</Id>
       <Text>Вы не можете сохранить пустой сгруппированный профиль</Text>
     </Translation>
-	<Translation>
+    <Translation>
       <Id>CantSaveEmptyGroupedExisting</Id>
       <Text>Вы не можете сохранить пустой Сгруппированный Профиль, если Вы хотите удалить его, нажмите Отменить и удалите его из предыдущего окна</Text>
     </Translation>
@@ -1924,6 +1924,22 @@
     <Translation>
       <Id>TrackerPopUp</Id>
       <Text>Вам необходимо оставить окно трекинга открытым. Результаты будут отображаться на миникарте в клиенте WoW.</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormUseKey</Id>
+      <Text>Use Key</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormKey</Id>
+      <Text>KEY</Text>
+    </Translation>
+    <Translation>
+      <Id>HideSdkFiles</Id>
+      <Text>Hide SDK Files</Text>
+    </Translation>
+    <Translation>
+      <Id>Whisper</Id>
+      <Text>Whispers</Text>
     </Translation>
   </Translations>
 </Language>

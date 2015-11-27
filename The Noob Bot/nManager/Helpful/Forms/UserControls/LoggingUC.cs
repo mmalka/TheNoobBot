@@ -28,6 +28,7 @@ namespace nManager.Helpful.Forms.UserControls
             FightLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Fight);
             NavigationLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Navigator);
             DebugLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Debug);
+            WhispersLogSwitchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Whisper);
         }
 
         private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
@@ -94,6 +95,8 @@ namespace nManager.Helpful.Forms.UserControls
                     flag |= Logging.LogType.F;
                 if (NavigationLogSwitchButton.Value)
                     flag |= Logging.LogType.N;
+                if (WhispersLogSwitchButton.Value)
+                    flag |= Logging.LogType.W;
 
                 return flag;
             }

@@ -197,7 +197,7 @@ namespace nManager.Wow.Bot.States
                 {
                     _numberWhisper++;
                     if (nManagerSetting.CurrentSetting.RecordWhispsInLogFiles)
-                        Logging.Write(msg, Logging.LogType.S, Color.BlueViolet);
+                        Logging.WriteWhispers(msg);
                     if (_numberWhisper >= nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers &&
                         nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers)
                         closeWow(Translate.Get(Translate.Id.Whisper_Egal_at) + " " + _numberWhisper);

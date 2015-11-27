@@ -1921,5 +1921,25 @@
       <Id>FtGConverterHeaderText</Id>
       <Text>Flying to Ground Converter</Text>
     </Translation>
+    <Translation>
+      <Id>TrackerPopUp</Id>
+      <Text>You must keep the tracking window open and check your Ingame Minimap to see results of the tracking.</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormUseKey</Id>
+      <Text>Use Key</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormKey</Id>
+      <Text>KEY</Text>
+    </Translation>
+    <Translation>
+      <Id>HideSdkFiles</Id>
+      <Text>Hide SDK Files</Text>
+    </Translation>
+    <Translation>
+      <Id>Whisper</Id>
+      <Text>Whispers</Text>
+    </Translation>
   </Translations>
 </Language>

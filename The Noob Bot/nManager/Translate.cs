@@ -552,7 +552,8 @@ namespace nManager
             FtGConverterLine3,
             FtGConverterButton,
             TrackerPopUp,
-            HideSdkFiles
+            HideSdkFiles,
+            Whisper,
         };
 
         [Serializable]

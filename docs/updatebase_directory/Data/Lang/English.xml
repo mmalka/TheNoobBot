@@ -1937,5 +1937,9 @@
       <Id>HideSdkFiles</Id>
       <Text>Hide SDK Files</Text>
     </Translation>
+    <Translation>
+      <Id>Whisper</Id>
+      <Text>Whispers</Text>
+    </Translation>
   </Translations>
 </Language>

@@ -1925,5 +1925,21 @@
       <Id>TrackerPopUp</Id>
       <Text>Zostaw otwarte okno trackingu i sprawdź minimapę w grze, by zobaczyć rezultaty.</Text>
     </Translation>
+    <Translation>
+      <Id>LoginFormUseKey</Id>
+      <Text>Use Key</Text>
+    </Translation>
+    <Translation>
+      <Id>LoginFormKey</Id>
+      <Text>KEY</Text>
+    </Translation>
+    <Translation>
+      <Id>HideSdkFiles</Id>
+      <Text>Hide SDK Files</Text>
+    </Translation>
+    <Translation>
+      <Id>Whisper</Id>
+      <Text>Whispers</Text>
+    </Translation>
   </Translations>
 </Language>
