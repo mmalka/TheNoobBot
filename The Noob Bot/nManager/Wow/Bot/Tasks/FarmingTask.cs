@@ -323,7 +323,7 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                         nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
-                        if (_wasLooted)
+                        if (!_wasLooted)
                             Logging.Write("Farm failed");
                         return;
                     }
