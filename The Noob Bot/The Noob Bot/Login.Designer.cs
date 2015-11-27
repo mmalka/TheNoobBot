@@ -52,7 +52,6 @@ namespace The_Noob_Bot
             this.RefreshButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.LoginButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.LoginMainFormTimer = new System.Windows.Forms.Timer(this.components);
             this.UseKey = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.keyLogoPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.manLogoIdentifier)).BeginInit();
@@ -342,11 +341,6 @@ namespace The_Noob_Bot
             this.MainHeader.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
             this.MainHeader.TitleText = "Login - TheNoobBot DevVersionRestrict";
             // 
-            // LoginMainFormTimer
-            // 
-            this.LoginMainFormTimer.Interval = 2500;
-            this.LoginMainFormTimer.Tick += new System.EventHandler(this.RefreshButton_Click);
-            // 
             // UseKey
             // 
             this.UseKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
@@ -433,7 +427,6 @@ namespace The_Noob_Bot
         private TnbButton LoginButton;
         private TnbButton RefreshButton;
         private TnbControlMenu MainHeader;
-        private System.Windows.Forms.Timer LoginMainFormTimer;
         private System.Windows.Forms.CheckBox UseKey;
     }
 }
