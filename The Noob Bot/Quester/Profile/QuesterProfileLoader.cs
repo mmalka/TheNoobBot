@@ -45,7 +45,7 @@ namespace Quester.Profile
                 {
                     GroupedProfilesList.Items.Add(f);
                     if (load && !QuesterSettings.CurrentSettings.LastProfileSimple && QuesterSettings.CurrentSettings.LastProfile == f)
-                        currentSelection = SimpleProfilesList.Items.Count - 1;
+                        currentSelection = GroupedProfilesList.Items.Count - 1;
                 }
                 if (load && GroupedProfilesList.Items.Count > 0 && QuesterSettings.CurrentSettings.LastProfile == "")
                     GroupedProfilesList.SelectedIndex = 0;
