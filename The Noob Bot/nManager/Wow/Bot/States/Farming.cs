@@ -27,7 +27,7 @@ namespace nManager.Wow.Bot.States
         }
 
         //private static List<int> _listDisplayIdFarm;
-        private List<WoWGameObject> _nodes;
+        private static List<WoWGameObject> _nodes = new List<WoWGameObject>();
 
         public override bool NeedToRun
         {
@@ -51,7 +51,16 @@ namespace nManager.Wow.Bot.States
                 if (LongMove.IsLongMove && !nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements)
                     return false;
 
-                _nodes = new List<WoWGameObject>();
+                _nodes = GetFarmableGameObjects;
+                return _nodes.Count > 0;
+            }
+        }
+
+        public static List<WoWGameObject> GetFarmableGameObjects
+        {
+            get
+            {
+                var nodes = new List<WoWGameObject>();
                 List<WoWGameObject> tNodes = ObjectManager.ObjectManager.GetWoWGameObjectForFarm();
 
                 for (int i = 0; i < tNodes.Count; i++)
@@ -66,10 +75,9 @@ namespace nManager.Wow.Bot.States
                     if (!node.CanOpen) continue;
                     if (PlayerNearest(node)) continue;
                     if (node.UnitNearest) continue;
-                    _nodes.Add(node);
+                    nodes.Add(node);
                 }
-
-                return _nodes.Count > 0;
+                return tNodes;
             }
         }
 
