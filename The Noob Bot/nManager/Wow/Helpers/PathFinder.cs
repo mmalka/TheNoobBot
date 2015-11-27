@@ -212,7 +212,7 @@ namespace nManager.Wow.Helpers
                     locList[i] = offset;
                 }
 
-                Logging.WriteNavigator("Path Count: " + locList.Count() + (resultSuccess ? "" : " but imcomplete"));
+                Logging.WriteNavigator("Path Count: " + locList.Count() + (resultSuccess ? "" : " but incomplete"));
 
                 return locList;
             }
