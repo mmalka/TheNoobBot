@@ -229,6 +229,12 @@ namespace Mimesis.Bot
         {
             get
             {
+                if (myTaskList.Count == 0 || myTaskList[0].eType == MimesisHelpers.eventType.none)
+                {
+                    if (myTaskList.Count > 0)
+                        myTaskList.Remove(myTaskList[0]); // Stop blocking the mimesis client if received a wrong/corrupted event from the master.
+                    return new MimesisHelpers.MimesisEvent();
+                }
                 foreach (var mimesisEvent in myTaskList)
                 {
                     if (mimesisEvent.eType == MimesisHelpers.eventType.turninQuest && Quest.GetLogQuestId().Contains(mimesisEvent.EventValue2) && Quest.GetLogQuestIsComplete(mimesisEvent.EventValue2))
@@ -239,15 +245,16 @@ namespace Mimesis.Bot
                     // Also, what happend if the Master tells you to PickUp a quest that you cannot PickUp ?
                     // Do we stay at the NPC for ever like actually ? Or do we ignore the order ? (we need to receive the PickUp requirement from the master)
                 }
+
                 return myTaskList[0];
             }
         }
 
         public static void DoTasks()
         {
-            if (!HasTaskToDo())
-                return;
             MimesisHelpers.MimesisEvent evt = GetBestTask;
+            if (evt.eType == MimesisHelpers.eventType.none)
+                return; // "new instance of MimesisEvent" => nothing to do
             switch (evt.eType)
             {
                 case MimesisHelpers.eventType.pickupQuest:
