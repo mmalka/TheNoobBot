@@ -255,8 +255,10 @@ namespace GarrisonFarming.Bot
                     {
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 500);
-                        Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
+                        Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 1000);
+                        Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
+                        Thread.Sleep(Usefuls.Latency + 10000);
                         Logging.Write(currentTask.Key + " terminated.");
                         TaskList[currentTask.Key] = "Done";
                     }
@@ -314,8 +316,10 @@ namespace GarrisonFarming.Bot
                     {
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 500);
-                        Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
+                        Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 1000);
+                        Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
+                        Thread.Sleep(Usefuls.Latency + 10000);
                         Logging.Write(currentTask.Key + " terminated.");
                         TaskList[currentTask.Key] = "Done";
                     }
