@@ -30,8 +30,8 @@ namespace Mimesis.Bot
             {
                 client.Connect(serviceEndPoint);
                 Logging.Write("Connected!");
-                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
                 EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
+                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
                 return true;
             }
             catch
@@ -61,8 +61,8 @@ namespace Mimesis.Bot
                 }
             }
             Logging.Write("Disconnected from main bot.");
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
             EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
             EventsListener.UnHookEvent(WoWEventsType.START_LOOT_ROLL, callback => RollItem());
             client.Close();
         }
@@ -229,11 +229,24 @@ namespace Mimesis.Bot
             }
         }
 
+        public static MimesisHelpers.MimesisEvent GetBestTask
+        {
+            get
+            {
+                foreach (var mimesisEvent in myTaskList)
+                {
+                    if (mimesisEvent.eType == MimesisHelpers.eventType.turninQuest && Quest.GetLogQuestId().Contains(mimesisEvent.EventValue2) && Quest.GetLogQuestIsComplete(mimesisEvent.EventValue2))
+                        return mimesisEvent; // If a quest is finishable right away, just do it as a priority. (the Quester bot sends QuestPickUp faster than QuestTurnIn for some reasons)
+                }
+                return myTaskList[0];
+            }
+        }
+
         public static void DoTasks()
         {
             if (!HasTaskToDo())
                 return;
-            MimesisHelpers.MimesisEvent evt = myTaskList[0];
+            MimesisHelpers.MimesisEvent evt = GetBestTask;
             switch (evt.eType)
             {
                 case MimesisHelpers.eventType.pickupQuest:

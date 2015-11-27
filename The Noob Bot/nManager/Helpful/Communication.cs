@@ -42,8 +42,8 @@ namespace nManager.Helpful
             {
                 Logging.Write("This TheNoobBot session is no longer broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
                 // We now unhook these events
-                EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
                 EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
+                EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
             }
         }
 
@@ -53,8 +53,8 @@ namespace nManager.Helpful
             {
                 _tcpListener.Start();
                 Logging.Write("This TheNoobBot session is now broadcasting its position and actions on port " + port + " for others TheNoobBot sessions with Mimesis started.");
-                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
                 EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
+                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
                 _eventSerialNumber = 0;
                 _currentQuestList = Quest.GetLogQuestId();
                 _globalList = new List<MimesisHelpers.MimesisEvent>();
