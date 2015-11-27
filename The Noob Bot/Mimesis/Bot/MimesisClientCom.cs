@@ -233,6 +233,11 @@ namespace Mimesis.Bot
                 {
                     if (mimesisEvent.eType == MimesisHelpers.eventType.turninQuest && Quest.GetLogQuestId().Contains(mimesisEvent.EventValue2) && Quest.GetLogQuestIsComplete(mimesisEvent.EventValue2))
                         return mimesisEvent; // If a quest is finishable right away, just do it as a priority. (the Quester bot sends QuestPickUp faster than QuestTurnIn for some reasons)
+
+                    // We need to do something about the following issue: Master tells you to TurnIn a quest, but you did not complete it ?
+                    // Then what to do ? Create a task to finish that quest ? Or just ignore the order ?
+                    // Also, what happend if the Master tells you to PickUp a quest that you cannot PickUp ?
+                    // Do we stay at the NPC for ever like actually ? Or do we ignore the order ? (we need to receive the PickUp requirement from the master)
                 }
                 return myTaskList[0];
             }
