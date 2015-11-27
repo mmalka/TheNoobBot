@@ -686,7 +686,14 @@ namespace nManager.Wow.ObjectManager
                                     currentSkillLevel += Skill.GetSkillBonus(skill);
                                 //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + currentSkillLevel);
                                 IsHerb = skill == SkillLine.Herbalism;
-                                return currentSkillLevel > 0 && currentSkillLevel >= reqSkillValue;
+
+                                if (currentSkillLevel > 0 && currentSkillLevel >= reqSkillValue)
+                                    return true;
+                                if (currentSkillLevel > 0 && currentSkillLevel < reqSkillValue)
+                                    return false;
+
+                                // currentSkillLevel == 0 but we allow to farm in garrison.
+                                return Usefuls.GarrisonMapIdList.Contains(Usefuls.RealContinentId);
                         }
                     }
                 }
