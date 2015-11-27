@@ -77,7 +77,7 @@ namespace nManager.Wow.Bot.States
                     if (node.UnitNearest) continue;
                     nodes.Add(node);
                 }
-                return tNodes;
+                return nodes;
             }
         }
 
