@@ -191,7 +191,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 {
                     if (baseX == 23 && baseY == 21 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                     {
-                        switch (Usefuls.GetGarrisonLevel())
+                        switch (Garrison.GetGarrisonLevel())
                         {
                             case 1:
                                 cont = "FWHordeGarrisonLevel1";
@@ -206,7 +206,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     }
                     else if (baseX == 31 && baseY == 28 && ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() != "horde")
                     {
-                        switch (Usefuls.GetGarrisonLevel())
+                        switch (Garrison.GetGarrisonLevel())
                         {
                             case 1:
                                 cont = "SMVAllianceGarrisonLevel1";

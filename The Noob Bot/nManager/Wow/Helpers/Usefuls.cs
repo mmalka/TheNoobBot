@@ -956,14 +956,6 @@ namespace nManager.Wow.Helpers
             return "Unknow";
         }
 
-        public static int GetGarrisonLevel()
-        {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
-            string ret = Lua.GetLocalizedText(randomString);
-            return Others.ToInt32(ret);
-        }
-
         public static void ResetAllInstances()
         {
             Lua.LuaDoString("ResetInstances()");

@@ -82,6 +82,14 @@ namespace nManager.Helpful
             Menagerie3 = 168,
         }
 
+        public static int GetGarrisonLevel()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
+            string ret = Lua.GetLocalizedText(randomString);
+            return Others.ToInt32(ret);
+        }
+
         public static int GetGarrisonMineLevel
         {
             get
