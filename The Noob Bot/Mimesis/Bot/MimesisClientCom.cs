@@ -30,8 +30,8 @@ namespace Mimesis.Bot
             {
                 client.Connect(serviceEndPoint);
                 Logging.Write("Connected!");
-                EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
-                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+                EventsListener.HookEvent(WoWEventsType.QUEST_FINISHED, callback => CleanQuestEvents());
+                EventsListener.HookEvent(WoWEventsType.QUEST_ACCEPTED, callback => CleanQuestEvents());
                 return true;
             }
             catch
@@ -61,8 +61,8 @@ namespace Mimesis.Bot
                 }
             }
             Logging.Write("Disconnected from main bot.");
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED, callback => EventQuestFinished());
-            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => EventQuestAccepted());
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_FINISHED, callback => CleanQuestEvents());
+            EventsListener.UnHookEvent(WoWEventsType.QUEST_ACCEPTED, callback => CleanQuestEvents());
             EventsListener.UnHookEvent(WoWEventsType.START_LOOT_ROLL, callback => RollItem());
             client.Close();
         }
@@ -287,59 +287,41 @@ namespace Mimesis.Bot
             }
         }
 
-        public static void EventQuestAccepted()
+        public static void CleanQuestEvents()
         {
-            List<int> newQuestList = Quest.GetLogQuestId();
-            int questId = 0;
-            foreach (var quest in newQuestList)
+            List<MimesisHelpers.MimesisEvent> evtsToRemove = new List<MimesisHelpers.MimesisEvent>();
+            foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
             {
-                if (!myQuestList.Contains(quest))
+                if (evt.eType == MimesisHelpers.eventType.pickupQuest)
                 {
-                    questId = quest;
-                    break;
-                }
-            }
-            if (questId != 0)
-            {
-                MimesisHelpers.MimesisEvent evtToRemove = new MimesisHelpers.MimesisEvent();
-                foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
-                {
-                    if (evt.eType == MimesisHelpers.eventType.pickupQuest && evt.EventValue2 == questId)
+                    if (evt.EventValue2 == 0 || Quest.GetQuestCompleted(evt.EventValue2) || Quest.GetLogQuestId().Contains(evt.EventValue2))
                     {
-                        evtToRemove = evt;
+                        if (evt.EventValue2 == 0) // happend if you abandon a quest from the master and restart Quester to take it
+                            Logging.Write("Received an invalid QuestPickUp from the master, if you abandonned a quest from it, please restart the Master bot");
+                        else if (!myQuestList.Contains(evt.EventValue2))
+                            myQuestList.Add(evt.EventValue2);
+                        evtsToRemove.Add(evt);
                         break;
                     }
                 }
-                myTaskList.Remove(evtToRemove);
-                myQuestList.Add(questId);
-            }
-        }
-
-        public static void EventQuestFinished()
-        {
-            List<int> newQuestList = Quest.GetLogQuestId();
-            int questId = 0;
-            foreach (var quest in myQuestList)
-            {
-                if (!newQuestList.Contains(quest))
+                else if (evt.eType == MimesisHelpers.eventType.turninQuest)
                 {
-                    questId = quest;
-                    break;
-                }
-            }
-            if (questId != 0)
-            {
-                MimesisHelpers.MimesisEvent evtToRemove = new MimesisHelpers.MimesisEvent();
-                foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
-                {
-                    if (evt.eType == MimesisHelpers.eventType.turninQuest && evt.EventValue2 == questId)
+                    if (evt.EventValue2 == 0 || !Quest.GetLogQuestIsComplete(evt.EventValue2) || !Quest.GetLogQuestId().Contains(evt.EventValue2))
                     {
-                        evtToRemove = evt;
+                        if (evt.EventValue2 == 0) // should not be a case
+                            Logging.Write("Received an invalid QuestTurnIn from the master, cannot TurnIn the right quest.");
+                        else if (myQuestList.Contains(evt.EventValue2))
+                            myQuestList.Remove(evt.EventValue2);
+                        evtsToRemove.Add(evt);
                         break;
                     }
                 }
-                myTaskList.Remove(evtToRemove);
-                myQuestList.Remove(questId);
+                if (evtsToRemove.Count <= 0)
+                    return;
+                foreach (MimesisHelpers.MimesisEvent mimesisEvent in evtsToRemove)
+                {
+                    myTaskList.Remove(mimesisEvent);
+                }
             }
         }
 
