@@ -335,11 +335,16 @@ namespace GarrisonFarming.Bot
                     _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
                     if (MovementManager.InMovement)
                         return;
-                    if (_targetBaseAddress > 0)
+                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
                     {
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 2500);
                         nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*20);
+                        Logging.Write(currentTask.Key + " terminated.");
+                        TaskList[currentTask.Key] = "Done";
+                    }
+                    else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                    {
                         Logging.Write(currentTask.Key + " terminated.");
                         TaskList[currentTask.Key] = "Done";
                     }
