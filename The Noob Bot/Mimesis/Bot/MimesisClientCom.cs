@@ -16,6 +16,7 @@ namespace Mimesis.Bot
         private static TcpClient client = null;
         private static IPEndPoint serviceEndPoint = null;
         public static List<MimesisHelpers.MimesisEvent> myTaskList = new List<MimesisHelpers.MimesisEvent>();
+        public static List<MimesisHelpers.MimesisEvent> oldTaskList = new List<MimesisHelpers.MimesisEvent>();
         public static List<int> myQuestList = Quest.GetLogQuestId();
         private static uint RollId = 0;
 
@@ -207,19 +208,24 @@ namespace Mimesis.Bot
             if ((MimesisHelpers.opCodes) opCodeAndSize[0] == MimesisHelpers.opCodes.ReplyEvent && opCodeAndSize[1] > 0)
             {
                 MimesisHelpers.MimesisEvent evt = MimesisHelpers.BytesToStruct<MimesisHelpers.MimesisEvent>(buffer);
+                if (oldTaskList.Contains(evt))
+                    return;
                 switch (evt.eType)
                 {
                     case MimesisHelpers.eventType.pickupQuest:
                         Logging.WriteDebug("Received pickupquest " + evt.EventValue2);
                         myTaskList.Add(evt);
+                        oldTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.turninQuest:
                         Logging.WriteDebug("Received turninquest " + evt.EventValue2);
                         myTaskList.Add(evt);
+                        oldTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.mount:
                         Logging.WriteDebug("Received mount type " + (MountCapacity) evt.EventValue1);
                         myTaskList.Add(evt);
+                        oldTaskList.Add(evt);
                         break;
                 }
             }
