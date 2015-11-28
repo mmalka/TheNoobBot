@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\Bot.cs" />
-    <Compile Include="Bot\GarrisonState.cs" />
     <Compile Include="Bot\GarrisonFarmingSetting.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
-using nManager.Products;
-using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
-namespace GarrisonFarming.Bot
+namespace nManager.Wow.Bot.States
 {
     public class GarrisonState : State
     {
@@ -44,14 +41,9 @@ namespace GarrisonFarming.Bot
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting ||
-                    ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.Me.IsValid ||
-                    (ObjectManager.Me.InCombat &&
-                     !(ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
-                    !Products.IsStarted)
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    !Products.Products.IsStarted)
                     return false;
 
                 if (TaskList.Count <= 0)
@@ -152,7 +144,7 @@ namespace GarrisonFarming.Bot
                 // Initialize Points
                 _cacheGarrison = new List<int> {237722, 236916, 237191, 237724, 237720, 237723};
                 // All garrison cache ids.
-                if (ObjectManager.Me.PlayerFaction == "Alliance")
+                if (ObjectManager.ObjectManager.Me.PlayerFaction == "Alliance")
                 {
                     _npcGarden = 85514;
                     _cacheGarden = 235885;
@@ -209,7 +201,7 @@ namespace GarrisonFarming.Bot
             {
                 case "GatherMinerals":
                     List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
-                    if (_mineEntrance.DistanceTo(ObjectManager.Me.Position) > 5)
+                    if (_mineEntrance.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                     {
                         if (!MovementManager.InMoveTo && success)
                             MovementManager.Go(pathToMine);
@@ -241,14 +233,14 @@ namespace GarrisonFarming.Bot
                         _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
                         if (MovementManager.InMovement)
                             return;
-                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Interact.InteractWith(_targetBaseAddress, true);
                             Thread.Sleep(Usefuls.Latency + 2500);
                             nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*60*60);
                             _cacheMineGathered = true;
                         }
-                        else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        else if (_targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                             _cacheMineGathered = true;
                     }
                     if (!_cacheMineGathered)
@@ -259,7 +251,7 @@ namespace GarrisonFarming.Bot
                     _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
                     if (MovementManager.InMovement)
                         return;
-                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                     {
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 500);
@@ -273,7 +265,7 @@ namespace GarrisonFarming.Bot
                     break;
                 case "GatherHerbs":
                     List<Point> pathToGarden = PathFinder.FindPath(_garden, out success);
-                    if (_garden.DistanceTo(ObjectManager.Me.Position) > 5f)
+                    if (_garden.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
                     {
                         if (!MovementManager.InMoveTo && success)
                             MovementManager.Go(pathToGarden);
@@ -305,14 +297,14 @@ namespace GarrisonFarming.Bot
                         _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
                         if (MovementManager.InMovement)
                             return;
-                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Interact.InteractWith(_targetBaseAddress, true);
                             Thread.Sleep(Usefuls.Latency + 2500);
                             nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*60*60);
                             _cacheGardenGathered = true;
                         }
-                        else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        else if (_targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                             _cacheGardenGathered = true;
                     }
                     if (!_cacheGardenGathered)
@@ -324,7 +316,7 @@ namespace GarrisonFarming.Bot
                     _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
                     if (MovementManager.InMovement)
                         return;
-                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                     {
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 500);
@@ -340,12 +332,12 @@ namespace GarrisonFarming.Bot
                     if (currentTask.Value == "NotStarted")
                     {
                         List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
-                        if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) > 5f)
+                        if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
                         {
                             if (!MovementManager.InMoveTo)
                                 MovementManager.Go(pathToGCache);
                         }
-                        else if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        else if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Logging.Write(currentTask.Key + " started.");
                             TaskList[currentTask.Key] = "OnGoing";
@@ -353,7 +345,7 @@ namespace GarrisonFarming.Bot
                     }
                     else if (currentTask.Value == "OnGoing")
                     {
-                        WoWGameObject o = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(_cacheGarrison));
+                        WoWGameObject o = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectById(_cacheGarrison));
                         if (o.GetBaseAddress <= 0)
                         {
                             Logging.Write(GetLastTask.Key + " terminated.");
@@ -364,7 +356,7 @@ namespace GarrisonFarming.Bot
                         _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
                         if (MovementManager.InMovement)
                             return;
-                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Interact.InteractWith(_targetBaseAddress, true);
                             Thread.Sleep(Usefuls.Latency + 2500);
@@ -372,7 +364,7 @@ namespace GarrisonFarming.Bot
                             Logging.Write(GetLastTask.Key + " terminated.");
                             TaskList[GetLastTask.Key] = "Done";
                         }
-                        else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        else if (_targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Logging.Write(GetLastTask.Key + " terminated.");
                             TaskList[GetLastTask.Key] = "Done";
