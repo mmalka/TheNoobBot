@@ -5462,8 +5462,8 @@ public class MageFrost
             }
             if (FrostBomb.KnownSpell)
             {
-                if (MySettings.UseIceLance && FingersofFrost.HaveBuff && (FingersofFrost.BuffStack > 1 || FrostBomb.TargetHaveBuff)
-                    && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood)
+                if (MySettings.UseIceLance && FingersofFrost.HaveBuff && (FingersofFrost.BuffStack > 1 || FrostBomb.TargetHaveBuff
+                    || ObjectManager.Me.UnitAura(44544).AuraTimeLeftInMs < 4000) && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood)
                 {
                     IceLance.Cast();
                     return;
