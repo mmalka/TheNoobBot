@@ -242,7 +242,7 @@ namespace nManager
         public bool OnlyUseMillingInTown;
         public int TimeBetweenEachMillingAttempt = 15;
         public List<string> HerbsToBeMilled = new List<string>();
-        public List<string> DontHarvestTheFollowingObjects = new List<string> {"231118", "231016"};
+        public List<string> DontHarvestTheFollowingObjects = new List<string> {"231118", "231016", "241507", "241728", "241669", "241728", "239971"};
         public bool MakeStackOfElementalsItems = true;
         public bool ActivateReloggerFeature;
         public string EmailOfTheBattleNetAccount = "";
