@@ -79,33 +79,8 @@ namespace GarrisonFarming.Bot
                             break;
                         case "GardenWorkOrder":
                         case "MineWorkOrder":
-                            return true; // force run if OnGoing
                         case "CheckGarrisonRessourceCache":
-                            WoWGameObject o = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(_cacheGarrison));
-                            if (o.GetBaseAddress <= 0)
-                            {
-                                Logging.Write(GetLastTask.Key + " terminated.");
-                                TaskList[GetLastTask.Key] = "Done";
-                            }
-                            if (_targetNpc.Entry != o.Entry)
-                                _targetNpc = new Npc {Entry = o.Entry, Position = _cacheGarrisonPoint};
-                            _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
-                            if (MovementManager.InMovement)
-                                return false;
-                            if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
-                            {
-                                Interact.InteractWith(_targetBaseAddress, true);
-                                Thread.Sleep(Usefuls.Latency + 2500);
-                                nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*20);
-                                Logging.Write(GetLastTask.Key + " terminated.");
-                                TaskList[GetLastTask.Key] = "Done";
-                            }
-                            else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
-                            {
-                                Logging.Write(GetLastTask.Key + " terminated.");
-                                TaskList[GetLastTask.Key] = "Done";
-                            }
-                            break;
+                            return true; // force run if OnGoing
                     }
                 }
 
@@ -362,16 +337,46 @@ namespace GarrisonFarming.Bot
                     }
                     break;
                 case "CheckGarrisonRessourceCache":
-                    List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
-                    if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) > 5f)
+                    if (currentTask.Value == "NotStarted")
                     {
-                        if (!MovementManager.InMoveTo)
-                            MovementManager.Go(pathToGCache);
+                        List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
+                        if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) > 5f)
+                        {
+                            if (!MovementManager.InMoveTo)
+                                MovementManager.Go(pathToGCache);
+                        }
+                        else if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        {
+                            Logging.Write(currentTask.Key + " started.");
+                            TaskList[currentTask.Key] = "OnGoing";
+                        }
                     }
-                    else if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                    else if (currentTask.Value == "OnGoing")
                     {
-                        Logging.Write(currentTask.Key + " started.");
-                        TaskList[currentTask.Key] = "OnGoing";
+                        WoWGameObject o = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(_cacheGarrison));
+                        if (o.GetBaseAddress <= 0)
+                        {
+                            Logging.Write(GetLastTask.Key + " terminated.");
+                            TaskList[GetLastTask.Key] = "Done";
+                        }
+                        if (_targetNpc.Entry != o.Entry)
+                            _targetNpc = new Npc {Entry = o.Entry, Position = _cacheGarrisonPoint};
+                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                        if (MovementManager.InMovement)
+                            return;
+                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        {
+                            Interact.InteractWith(_targetBaseAddress, true);
+                            Thread.Sleep(Usefuls.Latency + 2500);
+                            nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*20);
+                            Logging.Write(GetLastTask.Key + " terminated.");
+                            TaskList[GetLastTask.Key] = "Done";
+                        }
+                        else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                        {
+                            Logging.Write(GetLastTask.Key + " terminated.");
+                            TaskList[GetLastTask.Key] = "Done";
+                        }
                     }
                     break;
             }
