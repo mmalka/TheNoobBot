@@ -153,13 +153,13 @@ namespace nManager.Wow.Bot.States
                     switch (Garrison.GetGarrisonLevel())
                     {
                         case 1:
-                            _garden = new Point();
-                            _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
+                            _garden = new Point(); // Doesn't exist in Ally 1 ?
+                            _mineEntrance = new Point {X = 1912.648f, Y = 92.09844f, Z = 83.5269f};
+                            _cacheGarrisonPoint = new Point {X = 1899.979f, Y = 93.62897f, Z = 83.52692f};
                             break;
                         case 2:
-                            _garden = new Point();
-                            _mineEntrance = new Point();
+                            _garden = new Point {X = 1820.335f, Y = 151.5252f, Z = 76.6043f};
+                            _mineEntrance = new Point {X = 1912.648f, Y = 92.09844f, Z = 83.5269f};
                             _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
                             break;
                         case 3:
@@ -188,8 +188,8 @@ namespace nManager.Wow.Bot.States
                             _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                             break;
                         case 3:
-                            _garden = new Point();
-                            _mineEntrance = new Point();
+                            _garden = new Point {X = 5413.17f, Y = 4558.384f, Z = 139.1283f};
+                            _mineEntrance = new Point {X = 5475.534f, Y = 4446.189f, Z = 144.5391f};
                             _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                             break;
                     }
