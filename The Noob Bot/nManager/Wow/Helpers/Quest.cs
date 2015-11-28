@@ -321,6 +321,13 @@ namespace nManager.Wow.Helpers
 
         public static void QuestPickUp(ref Npc npc, string questName, int questId)
         {
+            bool cancelPickUp;
+            QuestPickUp(ref npc, questName, questId, out cancelPickUp);
+        }
+
+        public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp)
+        {
+            cancelPickUp = false;
             if (AbandonnedId == questId) // should happen only when we do a different quest requirement for optimization
             {
                 AbandonnedId = 0;
@@ -342,6 +349,7 @@ namespace nManager.Wow.Helpers
                 {
                     nManagerSetting.AddBlackList(unitTest.Guid, 60000);
                     Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
+                    cancelPickUp = true;
                     return;
                 }
             if (MovementManager.InMovement)
@@ -349,6 +357,11 @@ namespace nManager.Wow.Helpers
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
+                if (baseAddress <= 0)
+                {
+                    cancelPickUp = true; // We are there but no NPC waiting for us.
+                    // This code is there for Mimesis and I'm not currently working on Quester, so I'm not going to "return;" there as quester will be even more lost.
+                }
                 InteractTarget(ref npc, baseAddress);
                 Logging.Write("PickUp Quest " + questName + " id: " + questId);
                 int id = Quest.GetQuestID();

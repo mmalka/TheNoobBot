@@ -267,12 +267,12 @@ namespace Mimesis.Bot
                         quester.Entry = evt.EventValue1;
                         quester.Position = u.Position;
                         quester.Name = u.Name;
-
+                        bool cancelPickUp = false;
                         if (evt.eType == MimesisHelpers.eventType.pickupQuest && !Quest.GetQuestCompleted(evt.EventValue2) && !Quest.GetLogQuestId().Contains(evt.EventValue2))
-                            Quest.QuestPickUp(ref quester, evt.EventString1, evt.EventValue2);
+                            Quest.QuestPickUp(ref quester, evt.EventString1, evt.EventValue2, out cancelPickUp);
                         else if (evt.eType == MimesisHelpers.eventType.turninQuest && Quest.GetLogQuestId().Contains(evt.EventValue2) && Quest.GetLogQuestIsComplete(evt.EventValue2))
                             Quest.QuestTurnIn(ref quester, Quest.GetLogQuestTitle(evt.EventValue2), evt.EventValue2);
-                        CleanQuestEvents();
+                        CleanQuestEvents(cancelPickUp);
                     }
                     break;
                 case MimesisHelpers.eventType.mount:
@@ -296,7 +296,7 @@ namespace Mimesis.Bot
             }
         }
 
-        public static void CleanQuestEvents()
+        public static void CleanQuestEvents(bool cancelPickUp)
         {
             List<MimesisHelpers.MimesisEvent> evtsToRemove = new List<MimesisHelpers.MimesisEvent>();
             foreach (MimesisHelpers.MimesisEvent evt in myTaskList)
@@ -312,6 +312,8 @@ namespace Mimesis.Bot
                         evtsToRemove.Add(evt);
                         break;
                     }
+                    if (cancelPickUp)
+                        evtsToRemove.Add(evt); // The NPC Found did not have any quest take-able for us.
                 }
                 else if (evt.eType == MimesisHelpers.eventType.turninQuest)
                 {
