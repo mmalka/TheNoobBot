@@ -272,16 +272,6 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
                                     MountTask.Mount();
                             }
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceZ(inode.Position) > 50f)
-                            {
-                                if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, inode.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
-                                {
-                                    Logging.Write(inode.Name + "(" + inode.Position + ") blacklisted for 20 seconds. Node under ground. ");
-                                    nManagerSetting.AddBlackList(inode.Guid, 1000*20);
-                                    _curNode = null;
-                                    return;
-                                }
-                            }
                             if (MovementManager.FindTarget(inode, 5.0f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
                             {
                                 nManagerSetting.AddBlackList(inode.Guid, 1000*60*5);
