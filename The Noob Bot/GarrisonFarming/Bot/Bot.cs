@@ -9,7 +9,6 @@ namespace GarrisonFarming.Bot
     internal class Bot
     {
         private static readonly Engine Fsm = new Engine();
-        public static GarrisonFarmingProfile Profile = new GarrisonFarmingProfile();
 
         internal static bool Pulse()
         {
@@ -27,20 +26,18 @@ namespace GarrisonFarming.Bot
                 Fsm.States.Clear();
 
                 Fsm.AddState(new Pause {Priority = 100});
-                Fsm.AddState(new Resurrect {Priority = 13});
-                Fsm.AddState(new IsAttacked {Priority = 12});
-                //Fsm.AddState(new Regeneration {Priority = 11});
-                Fsm.AddState(new ToTown {Priority = 10});
-                Fsm.AddState(new Looting {Priority = 9});
-                Fsm.AddState(new SpecializationCheck {Priority = 7});
-                Fsm.AddState(new LevelupCheck {Priority = 6});
-                Fsm.AddState(new GarrisonState {Priority = 5});
-                /* 3-4
-                 * EmptyGarrisonCache
-                 * SendWorkOrders
+                Fsm.AddState(new Resurrect {Priority = 11});
+                Fsm.AddState(new IsAttacked {Priority = 10});
+                Fsm.AddState(new Regeneration {Priority = 9});
+                Fsm.AddState(new ToTown {Priority = 8});
+                Fsm.AddState(new Looting {Priority = 7});
+                Fsm.AddState(new SpecializationCheck {Priority = 6});
+                Fsm.AddState(new LevelupCheck {Priority = 5});
+                Fsm.AddState(new GarrisonState {Priority = 4});
+                /* 3
+                 * SendFollowerOnDuty
                  */
                 Fsm.AddState(new Farming {Priority = 2});
-
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

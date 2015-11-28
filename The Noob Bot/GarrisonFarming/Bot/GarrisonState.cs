@@ -229,20 +229,28 @@ namespace GarrisonFarming.Bot
                 }
             }
             KeyValuePair<string, string> currentTask = GetLastTask;
+            bool success;
             switch (currentTask.Key)
             {
                 case "GatherMinerals":
-                    List<Point> pathToMine = PathFinder.FindPath(_mineEntrance);
+                    List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
                     if (_mineEntrance.DistanceTo(ObjectManager.Me.Position) > 5)
-                        if (!MovementManager.InMoveTo)
+                    {
+                        if (!MovementManager.InMoveTo && success)
                             MovementManager.Go(pathToMine);
-                        else
+                        else if (!success)
                         {
-                            Logging.Write(currentTask.Key + " started.");
-                            TaskList[currentTask.Key] = "OnGoing";
-                            nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
-                            nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                            Logging.Write(currentTask.Key + " aborted, no paths.");
+                            TaskList[currentTask.Key] = "Done";
                         }
+                    }
+                    else
+                    {
+                        Logging.Write(currentTask.Key + " started.");
+                        TaskList[currentTask.Key] = "OnGoing";
+                        nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
+                        nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                    }
                     break;
                 case "MineWorkOrder":
                     if (currentTask.Value == "NotStarted")
@@ -289,12 +297,16 @@ namespace GarrisonFarming.Bot
                     }
                     break;
                 case "GatherHerbs":
-                    bool succes;
-                    List<Point> pathToGarden = PathFinder.FindPath(_garden, out succes);
+                    List<Point> pathToGarden = PathFinder.FindPath(_garden, out success);
                     if (_garden.DistanceTo(ObjectManager.Me.Position) > 5f)
                     {
-                        if (!MovementManager.InMoveTo && succes)
+                        if (!MovementManager.InMoveTo && success)
                             MovementManager.Go(pathToGarden);
+                        else if (!success)
+                        {
+                            Logging.Write(currentTask.Key + " aborted, no paths.");
+                            TaskList[currentTask.Key] = "Done";
+                        }
                     }
                     else
                     {
