@@ -23,7 +23,7 @@ namespace GarrisonFarming.Bot
         private static int _npcMine;
         private static int _cacheMine;
         private static int _cacheGarden;
-        private static int _cacheGarrison;
+        private static List<int> _cacheGarrison;
         private static bool _cacheGardenGathered;
         private static bool _cacheMineGathered;
         private static Point _cacheGarrisonPoint;
@@ -79,8 +79,33 @@ namespace GarrisonFarming.Bot
                             break;
                         case "GardenWorkOrder":
                         case "MineWorkOrder":
-                        case "CheckGarrisonRessourceCache":
                             return true; // force run if OnGoing
+                        case "CheckGarrisonRessourceCache":
+                            WoWGameObject o = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(_cacheGarrison));
+                            if (o.GetBaseAddress <= 0)
+                            {
+                                Logging.Write(GetLastTask.Key + " terminated.");
+                                TaskList[GetLastTask.Key] = "Done";
+                            }
+                            if (_targetNpc.Entry != o.Entry)
+                                _targetNpc = new Npc {Entry = o.Entry, Position = _cacheGarrisonPoint};
+                            _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                            if (MovementManager.InMovement)
+                                return false;
+                            if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                            {
+                                Interact.InteractWith(_targetBaseAddress, true);
+                                Thread.Sleep(Usefuls.Latency + 2500);
+                                nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*20);
+                                Logging.Write(GetLastTask.Key + " terminated.");
+                                TaskList[GetLastTask.Key] = "Done";
+                            }
+                            else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
+                            {
+                                Logging.Write(GetLastTask.Key + " terminated.");
+                                TaskList[GetLastTask.Key] = "Done";
+                            }
+                            break;
                     }
                 }
 
@@ -150,29 +175,30 @@ namespace GarrisonFarming.Bot
                 _oldActivateHerbsHarvesting = nManagerSetting.CurrentSetting.ActivateHerbsHarvesting;
 
                 // Initialize Points
+                _cacheGarrison = new List<int> {237722, 236916, 237191, 237724, 237720, 237723};
+                // All garrison cache ids.
                 if (ObjectManager.Me.PlayerFaction == "Alliance")
                 {
                     _npcGarden = 85514;
                     _cacheGarden = 235885;
                     _npcMine = 77730;
                     _cacheMine = 235886;
-                    _cacheGarrison = 237722; // 1000/1000 Alliance
                     switch (Garrison.GetGarrisonLevel())
                     {
                         case 1:
                             _garden = new Point();
                             _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point();
+                            _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
                             break;
                         case 2:
                             _garden = new Point();
                             _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point();
+                            _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
                             break;
                         case 3:
                             _garden = new Point {X = 1820.335f, Y = 151.5252f, Z = 76.6043f};
                             _mineEntrance = new Point {X = 1912.648f, Y = 92.09844f, Z = 83.5269f};
-                            _cacheGarrisonPoint = new Point {X = 1946.547f, Y = 292.625f, Z = 88.96585f};
+                            _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
                             break;
                     }
                 }
@@ -182,23 +208,22 @@ namespace GarrisonFarming.Bot
                     _cacheGarden = 235885;
                     _npcMine = 81688;
                     _cacheMine = 235886;
-                    _cacheGarrison = 0;
                     switch (Garrison.GetGarrisonLevel())
                     {
                         case 1:
                             _garden = new Point();
                             _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point();
+                            _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                             break;
                         case 2:
                             _garden = new Point {X = 5413.17f, Y = 4558.384f, Z = 139.1283f};
                             _mineEntrance = new Point {X = 5475.534f, Y = 4446.189f, Z = 144.5391f};
-                            _cacheGarrisonPoint = new Point();
+                            _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                             break;
                         case 3:
                             _garden = new Point();
                             _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point();
+                            _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                             break;
                     }
                 }
@@ -266,7 +291,7 @@ namespace GarrisonFarming.Bot
                 case "GatherHerbs":
                     bool succes;
                     List<Point> pathToGarden = PathFinder.FindPath(_garden, out succes);
-                    if (_garden.DistanceTo(ObjectManager.Me.Position) > 5)
+                    if (_garden.DistanceTo(ObjectManager.Me.Position) > 5f)
                     {
                         if (!MovementManager.InMoveTo && succes)
                             MovementManager.Go(pathToGarden);
@@ -325,28 +350,16 @@ namespace GarrisonFarming.Bot
                     }
                     break;
                 case "CheckGarrisonRessourceCache":
-                    if (currentTask.Value == "NotStarted")
+                    List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
+                    if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) > 5f)
+                    {
+                        if (!MovementManager.InMoveTo)
+                            MovementManager.Go(pathToGCache);
+                    }
+                    else if (_cacheGarrisonPoint.DistanceTo(ObjectManager.Me.Position) <= 5f)
                     {
                         Logging.Write(currentTask.Key + " started.");
                         TaskList[currentTask.Key] = "OnGoing";
-                    }
-                    if (_targetNpc.Entry != _cacheGarrison)
-                        _targetNpc = new Npc {Entry = _cacheGarrison, Position = _cacheGarrisonPoint};
-                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
-                    if (MovementManager.InMovement)
-                        return;
-                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
-                    {
-                        Interact.InteractWith(_targetBaseAddress, true);
-                        Thread.Sleep(Usefuls.Latency + 2500);
-                        nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*20);
-                        Logging.Write(currentTask.Key + " terminated.");
-                        TaskList[currentTask.Key] = "Done";
-                    }
-                    else if (_targetNpc.Position.DistanceTo(ObjectManager.Me.Position) <= 5f)
-                    {
-                        Logging.Write(currentTask.Key + " terminated.");
-                        TaskList[currentTask.Key] = "Done";
                     }
                     break;
             }
