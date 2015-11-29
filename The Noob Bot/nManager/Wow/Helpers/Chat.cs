@@ -199,6 +199,27 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
+        public string ReadWhisperAndRealIdChannel()
+        {
+            try
+            {
+                Message unMsg = ReadMsg();
+                if (unMsg.Msg != null)
+                {
+                    if (unMsg.Canal == 7 || unMsg.Canal == 51)
+                    {
+                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                               "\r\n";
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("ReadWhisperChannel(): " + exception);
+            }
+            return "";
+        }
+
         public string ReadLootChannel()
         {
             try

@@ -693,7 +693,7 @@ namespace nManager.Wow.ObjectManager
                                     return false;
 
                                 // currentSkillLevel == 0 but we allow to farm in garrison.
-                                return Usefuls.GarrisonMapIdList.Contains(Usefuls.RealContinentId);
+                                return Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId);
                         }
                     }
                 }

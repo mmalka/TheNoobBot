@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using nManager.Wow.Helpers;
 
 namespace nManager.Helpful
@@ -82,12 +83,31 @@ namespace nManager.Helpful
             Menagerie3 = 168,
         }
 
-        public static int GetGarrisonLevel()
+        private static List<int> _garrisonMapIdList;
+
+        public static List<int> GarrisonMapIdList
         {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
-            string ret = Lua.GetLocalizedText(randomString);
-            return Others.ToInt32(ret);
+            get
+            {
+                try
+                {
+                    if (_garrisonMapIdList == null)
+                    {
+                        _garrisonMapIdList = new List<int>();
+                        foreach (string i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\garrisonMapIdList.txt"))
+                        {
+                            if (!String.IsNullOrWhiteSpace(i))
+                                _garrisonMapIdList.Add(Others.ToInt32(i));
+                        }
+                    }
+                    return _garrisonMapIdList;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("Usefuls.GarrisonMapIdList : " + e);
+                    return new List<int>();
+                }
+            }
         }
 
         public static int GetGarrisonMineLevel
@@ -118,6 +138,14 @@ namespace nManager.Helpful
                     return 3;
                 return 0;
             }
+        }
+
+        public static int GetGarrisonLevel()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
+            string ret = Lua.GetLocalizedText(randomString);
+            return Others.ToInt32(ret);
         }
 
         public static List<BuildingID> GetBuildingOwnedList()

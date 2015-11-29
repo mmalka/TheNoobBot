@@ -492,7 +492,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_continentId == 1116 || _continentId == 0 || _continentId == 1 || _continentId == 530 || _continentId == 870)
                     return _continentId;
-                return GarrisonMapIdList.Contains(_continentId) ? 1116 : _continentId;
+                return Garrison.GarrisonMapIdList.Contains(_continentId) ? 1116 : _continentId;
             }
             set { _continentId = value; }
         }
@@ -580,33 +580,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static List<int> _garrisonMapIdList;
         private static int _continentId;
-
-        public static List<int> GarrisonMapIdList
-        {
-            get
-            {
-                try
-                {
-                    if (_garrisonMapIdList == null)
-                    {
-                        _garrisonMapIdList = new List<int>();
-                        foreach (string i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\garrisonMapIdList.txt"))
-                        {
-                            if (!String.IsNullOrWhiteSpace(i))
-                                _garrisonMapIdList.Add(Others.ToInt32(i));
-                        }
-                    }
-                    return _garrisonMapIdList;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("Usefuls.GarrisonMapIdList : " + e);
-                    return new List<int>();
-                }
-            }
-        }
 
         public static int SubAreaId
         {
