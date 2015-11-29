@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Media;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -16,33 +16,33 @@ public class Main : IPlugins
 
     public bool Loop
     {
-        get { return MyPluginClass.InternalLoop; }
-        set { MyPluginClass.InternalLoop = value; }
+        get { return WhisperForwarding.InternalLoop; }
+        set { WhisperForwarding.InternalLoop = value; }
     }
 
     public string Name
     {
-        get { return MyPluginClass.Name; }
+        get { return WhisperForwarding.Name; }
     }
 
     public string Author
     {
-        get { return MyPluginClass.Author; }
+        get { return WhisperForwarding.Author; }
     }
 
     public string Description
     {
-        get { return MyPluginClass.Description; }
+        get { return WhisperForwarding.Description; }
     }
 
     public string TargetVersion
     {
-        get { return MyPluginClass.TargetVersion; }
+        get { return WhisperForwarding.TargetVersion; }
     }
 
     public string Version
     {
-        get { return MyPluginClass.Version; }
+        get { return WhisperForwarding.Version; }
     }
 
     public bool IsStarted
@@ -63,12 +63,12 @@ public class Main : IPlugins
 
     public void ShowConfiguration()
     {
-        MyPluginClass.ShowConfiguration();
+        WhisperForwarding.ShowConfiguration();
     }
 
     public void ResetConfiguration()
     {
-        MyPluginClass.ResetConfiguration();
+        WhisperForwarding.ResetConfiguration();
     }
 
     public void CheckFields() // do not edit.
@@ -87,7 +87,7 @@ public class Main : IPlugins
         {
             if (!configOnly && !resetSettings)
                 Loop = true;
-            MyPluginClass.Init();
+            WhisperForwarding.Init();
         }
         catch (Exception e)
         {
@@ -101,43 +101,21 @@ public class Main : IPlugins
 
 #region Plugin core Class
 
-#region Declaration variables
-
-public static class MyPluginClass
+public static class WhisperForwarding
 {
-    #region configurations du pluggin
-
     // Variable permettant de faire tourner en boucle le pluggin
     public static bool InternalLoop = true;
-    // Informations relatives à la version du pluggin
     public static string Author = "CEREAL";
     public static string Name = "Whisper Forwarding";
     public static string TargetVersion = "4.9.x"; // Only the two first numbers are checked.
-    public static string Version = "BETA 1.0.1";
-    public static string Description = "Forward every chat/whisp that bot receive to another player";
-
-    // Whisp chanel
-    public static readonly Channel Whisp = new Channel();
-
-    // Settings
-    private static readonly MyPluginSettings MySettings = MyPluginSettings.GetSettings();
-
-    // Son
-    public static bool bJouerSon = false;
-
-    // Variables de debug
-    public static bool bDebugVerboseLight = false;
-    public static bool bDebugVerboseFull = false;
+    public static string Version = "1.0.3";
+    public static string Description = "Forwards every whispers to a defined Master Player.";
+    private static readonly WhisperForwardingSettings MySettings = WhisperForwardingSettings.GetSettings();
 
     #region Init()
 
     public static void Init()
     {
-        // Démarre l'instance de chat
-        Logging.WritePlugin("Start Thread ChatChannel Class", Name);
-        ChatMonitor.ThreadChatChannel();
-
-        // Charge la boucle principale, tâches d'initialisation ici
         MainLoop();
     }
 
@@ -145,149 +123,97 @@ public static class MyPluginClass
 
     #region MainLoop()
 
+    private static readonly Channel WhisperChannel = new Channel();
+
+    private static KeyValuePair<string, string> ExtractPlayerNameAndMessage(string msg)
+    {
+        //  "11/29/2015 14:37:50 - Zazalaouf-Dalaran [Whisper] : zo\r\n"
+        if (msg.Length > 22)
+        {
+            string senderName = msg.Substring(22, msg.Length - 22).Split('[')[0].Trim();
+            if (senderName == "|Kb17|k0000000|k")
+                senderName = "REAL ID";
+            string[] tempMsg = msg.Split(':');
+            string content = "";
+            for (int i = 3; i < tempMsg.Length; i++)
+            {
+                if (i == 3)
+                    content = content + tempMsg[i];
+                else
+                    content = content + ":" + tempMsg[i];
+            }
+            return new KeyValuePair<string, string>(senderName, content.Trim());
+        }
+        return new KeyValuePair<string, string>("", ""); // invalid whisper
+    }
+
     public static void MainLoop()
     {
         Logging.WritePlugin("Start plugin : " + Name, Name);
 
         while (InternalLoop)
         {
-            // Permet de gérer les messages arrivant dans le chat
-            // "[Addon]";
-            // "[Say]";
-            // "[Party]";
-            // "[Raid]";
-            // "[Guild]";
-            // "[Officers]";
-            // "[Yell]";
-            // "[Whisper]";
-            // "[Monster Whisper]";
-            // "[To]";
-            // "[Emote]";
-            // "[General]";
-            // "[Loot]";
-            // "[Real Id Whisper]";
-            // "[Real Id To]";
-            //     MySettings.ActiveChatForward
-            //     MySettings.ChatForwardWhispPlayer
-            //     MySettings.ChatPause
-            //     MySettings.ChatStart
-            string sMsgChat = ChatMonitor.ChatMessageContent;
-            if (sMsgChat.Contains("[Real Id Whisper]") | sMsgChat.Contains("[Whisper]"))
+            while (WhisperChannel.CurrentMsg < WhisperChannel.GetCurrentMsgInWow)
             {
-                // Si il faut renvoyer les messages à un autre joueur
-                if (MySettings.ActiveChatForward)
+                string msg = WhisperChannel.ReadWhisperAndRealIdChannel();
+                if (!String.IsNullOrWhiteSpace(msg))
                 {
-                    if (bDebugVerboseFull)
+                    KeyValuePair<string, string> whisp = ExtractPlayerNameAndMessage(msg);
+                    string sPlayerName = MySettings.ForwardWhispersToPlayerName;
+                    if (MySettings.ActivateWhisperForwarding)
                     {
-                        Logging.WritePluginDebug("MySettings.ActiveChatForward : " + MySettings.ActiveChatForward, Name);
-                    }
-
-                    // string sPlayerName = "Bankkiss-Vol'jin";
-                    string sPlayerName = MySettings.ChatForwardWhispPlayer;
-                    int iL = 0;
-                    if (iL <= 1)
-                    {
-                        // Concatène la chaine à renvoyer dans le chat
-                        string sTMP = string.Empty;
-                        sTMP = sMsgChat.Remove(sMsgChat.LastIndexOf(":"));
-                        sTMP = sMsgChat.Replace(sTMP, string.Empty).Replace(":", string.Empty);
-                        sTMP = sTMP.Trim();
-                        sTMP = "CHAT message from [" + sPlayerName + "] : {" + sTMP + "}";
-
-                        Logging.WritePlugin("Renvoie du chat vers : " + sPlayerName + " Contenu : " + sMsgChat, Name);
-                        Lua.LuaDoString("SendChatMessage(\"" + sTMP + "\", \"WHISPER\", nil, \"" + sPlayerName + "\");", false, true);
-                        sMsgChat = string.Empty;
-                        ChatMonitor.ChatMessageContent = string.Empty;
+                        string resultString = "CHAT message from [" + whisp.Key + "] : {" + whisp.Value + "}";
+                        Logging.WritePlugin("Fowarding Whisper received to " + sPlayerName + ", Content : " + resultString, Name);
+                        Lua.RunMacroText("/w " + sPlayerName + " " + resultString);
                         Thread.Sleep(Usefuls.Latency + 500);
-                        iL++;
                     }
                 }
             }
-            Thread.Sleep(Usefuls.Latency + 500);
-            Application.DoEvents();
+
+            Thread.Sleep(200);
         }
     }
 
     #endregion
 
-    #region lancement d'une alerte sonore
-
-    // Joue un son
-    public static void JouerSonHorsPortee()
-    {
-        var player = new SoundPlayer
-        {
-            SoundLocation = (Application.StartupPath + "\\Plugins\\sound\\hors_portee.wav")
-        };
-        if (bJouerSon)
-        {
-            player.PlaySync();
-        }
-        else
-        {
-            player.Stop();
-        }
-    }
-
-    #endregion
-
-    #endregion
-
-    // ****************************************************************************************************************************************
-    // Bouton de reset des configurations du pluggin
     public static void ResetConfiguration()
     {
-        // Affecte le fichier de config XML à la variable
         string currentSettingsFile = Application.StartupPath + "\\Plugins\\Settings\\" + Name + "_" + ObjectManager.Me.Name + ".xml";
-        var currentSetting = new MyPluginSettings();
-        // Reset les champs
+        var currentSetting = new WhisperForwardingSettings();
         currentSetting.ToForm();
-        // Sauvegarde la config
         currentSetting.Save(currentSettingsFile);
     }
 
-    // Bouton afficher la configuration du pluggin
     public static void ShowConfiguration()
     {
-        // Affecte le fichier de config XML à la variable
         string currentSettingsFile = Application.StartupPath + "\\Plugins\\Settings\\" + Name + "_" + ObjectManager.Me.Name + ".xml";
-        var currentSetting = new MyPluginSettings();
-        // Si le fichier existe 
+        var currentSetting = new WhisperForwardingSettings();
         if (File.Exists(currentSettingsFile))
         {
-            // Charge les paramètres
-            currentSetting = Settings.Load<MyPluginSettings>(currentSettingsFile);
+            currentSetting = Settings.Load<WhisperForwardingSettings>(currentSettingsFile);
         }
         currentSetting.ToForm();
-        // Sauvegarde la config
         currentSetting.Save(currentSettingsFile);
     }
 
-    // Class de Settings
     [Serializable]
-    public class MyPluginSettings : Settings
+    public class WhisperForwardingSettings : Settings
     {
-        // bouton on/off
-        public bool ActiveChatForward = true;
-        // champ de caractères
-        public string ChatForwardWhispPlayer = "";
+        public bool ActivateWhisperForwarding = true;
+        public string ForwardWhispersToPlayerName = "";
 
-        public MyPluginSettings()
+        public WhisperForwardingSettings()
         {
-            // Informations affichées dans la fenêtre de config
-            ConfigWinForm("Gestion du pluggin");
-            // Ajoute le texte + le nom du bouton et sa fonction ci-dessus
-            AddControlInWinForm("Enable chat forwarding to another player ? ", "ActiveChatForward", "Options", "List");
-            // Ajoute le texte + le nom du bouton et sa fonction ci-dessus
-            AddControlInWinForm("Player name to forward whisp automatically (format : {Playername-Realmname} :", "ChatForwardWhispPlayer", "Options", "List");
-            // Ajoute le texte + le nom du bouton et sa fonction ci-dessus
-            AddControlInWinForm("Player names to conserve, separated by comma [,] :", "LigneVide2", "Options", "List");
+            ConfigWinForm("Whisper Fowarding Settings");
+            AddControlInWinForm("Activate Whisper Forwarding ? ", "ActivateWhisperForwarding", "Settings", "List");
+            AddControlInWinForm("Foward whispers to player (format : Playername-Realmname :", "ForwardWhispersToPlayerName", "Settings", "List");
+            AddControlInWinForm("Player names to conserve, separated by comma [,] :", "LigneVide2", "Settings", "List");
+            // dunno about this
         }
 
-        // Class permettant le get et set
-        public static MyPluginSettings CurrentSetting { get; set; }
-        // fonction Get
-        public static MyPluginSettings GetSettings()
+        public static WhisperForwardingSettings CurrentSetting { get; set; }
+
+        public static WhisperForwardingSettings GetSettings()
         {
             // Affecte le fichier de config XML à la variable
             string currentSettingsFile = Application.StartupPath + "\\Plugins\\Settings\\" + Name + "_" + ObjectManager.Me.Name + ".xml";
@@ -295,94 +221,10 @@ public static class MyPluginClass
             if (File.Exists(currentSettingsFile))
             {
                 // Charge les paramètres
-                return CurrentSetting = Load<MyPluginSettings>(currentSettingsFile);
+                return CurrentSetting = Load<WhisperForwardingSettings>(currentSettingsFile);
             }
             // Renvoie l'objet en retour de fonctions
-            return new MyPluginSettings();
-        }
-    }
-}
-
-#endregion
-
-#endregion
-
-#region Chat Monitor Class
-
-public static class ChatMonitor
-{
-    // Propriété contenant le message renvoyé
-    private static string _sChatMessage = string.Empty;
-    public static int iLoop = 0;
-
-    public static string ChatMessageContent
-    {
-        get { return _sChatMessage; }
-        set { _sChatMessage = value; }
-    }
-
-    // void permettant d'instancier le thread
-    // "[Addon]";
-    // "[Say]";
-    // "[Party]";
-    // "[Raid]";
-    // "[Guild]";
-    // "[Officers]";
-    // "[Yell]";
-    // "[Whisper]";
-    // "[Monster Whisper]";
-    // "[To]";
-    // "[Emote]";
-    // "[General]";
-    // "[Loot]";
-    // "[Real Id Whisper]";
-    // "[Real Id To]";
-    public static void ThreadChatChannel()
-    {
-        var thread = new Thread(WhispAlert)
-        {
-            Name = "Thread Chat Monitoring"
-        };
-        thread.Start();
-        Logging.WritePluginDebug("{ThreadChatChannel} : " + thread.ThreadState, MyPluginClass.Name);
-    }
-
-    public static void WhispAlert()
-    {
-        Logging.WritePlugin("Chatmonitor Start !", MyPluginClass.Name);
-        var cChatChan2 = new Channel();
-        bool bLoop = true;
-        while (bLoop)
-        {
-            // Si la boucle atteint 1 passage détruit l'objet chat et le recrée car il y a un bug
-            // le bot ne renvoie plus de messages au bout d'un moment alors je réinstancie l'objet
-            if (iLoop == 1)
-            {
-                // Logging.WritePlugin("Netoyage de l'objet cChatChan2");
-                cChatChan2 = null;
-                cChatChan2 = new Channel();
-                iLoop = 0;
-            }
-
-            // Lis le contenu du chat
-            string str = cChatChan2.ReadAllChannel();
-
-            // Logging.WritePlugin(iLoop + " Whisp : " + " : " + str.ToString());
-
-            // Si il y a qqch de nouveau alors...
-            if (!string.IsNullOrEmpty(str))
-            {
-                // Logging.WritePluginDebug(iLoop + " Whisp : " + " : " + str.ToString().Trim());
-                // Affecte la valeur du message en chat
-                ChatMessageContent = str.Trim();
-                iLoop++;
-            }
-            else
-            {
-                // Vide la variable de message
-                _sChatMessage = string.Empty;
-            }
-            Thread.Sleep(Usefuls.Latency + 1000);
+            return new WhisperForwardingSettings();
         }
     }
 }
