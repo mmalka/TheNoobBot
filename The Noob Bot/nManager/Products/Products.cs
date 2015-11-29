@@ -267,6 +267,11 @@ namespace nManager.Products
             return false;
         }
 
+        public static void ProductStopFromFSM()
+        {
+            ProductStop();
+        }
+
         public static bool ProductStop()
         {
             try

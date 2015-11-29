@@ -3,6 +3,7 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 
 namespace GarrisonFarming.Bot
 {
@@ -18,7 +19,11 @@ namespace GarrisonFarming.Bot
                 Dictionary<Point, float> blackListDic = Profile.BlackListRadius.ToDictionary(b => b.Position, b => b.Radius);
                 nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
                 */
-
+                if (ObjectManager.Me.Level < 90)
+                {
+                    Logging.Write("You don't have the required level for this product.");
+                    return false;
+                }
                 // Load CC:
                 CombatClass.LoadCombatClass();
 

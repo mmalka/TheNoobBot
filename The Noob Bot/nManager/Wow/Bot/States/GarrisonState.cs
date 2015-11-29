@@ -10,6 +10,7 @@ namespace nManager.Wow.Bot.States
 {
     public class GarrisonState : State
     {
+        private const int GarrisonHearthstone = 110560;
         public static Dictionary<string, string> TaskList = new Dictionary<string, string>();
         private static readonly List<int> ListHerbsObjects = new List<int> {235376, 235387, 235388, 235389, 235390, 235391}; // Plants available in Garrison's Garden.
         private static readonly List<int> ListVeinsObjects = new List<int> {/* mine cart 232541,*/ 232542, 232543, 232544, 232545}; // Veins available in Garrison's Mine.
@@ -72,6 +73,7 @@ namespace nManager.Wow.Bot.States
                         case "GardenWorkOrder":
                         case "MineWorkOrder":
                         case "CheckGarrisonRessourceCache":
+                        case "GoTogarrison":
                             return true; // force run if OnGoing
                     }
                 }
@@ -86,7 +88,7 @@ namespace nManager.Wow.Bot.States
                 nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = _oldActivateVeinsHarvesting;
                 nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = _oldActivateHerbsHarvesting;
                 Logging.Write("The GarrisonFarming task is 100% complete.");
-                // Cannot close the product from inside an FSM, todo: find a solution
+                CloseProduct();
                 // Maybe add an infinite task "check missions, send followers on duty".
                 return false;
             }
@@ -119,11 +121,19 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
+        private static void CloseProduct()
+        {
+            var threadProductStop = new Thread(Products.Products.ProductStopFromFSM);
+            threadProductStop.Start();
+        }
+
         public override void Run()
         {
             if (TaskList.Count <= 0)
             {
                 // Initialize Tasks
+                TaskList.Add("GoToGarrison", "NotStarted");
+                Logging.Write("Task GoToGarrison added to the TaskList.");
                 TaskList.Add("GatherHerbs", "NotStarted");
                 Logging.Write("Task GatherHerbs added to the TaskList.");
                 TaskList.Add("GardenWorkOrder", "NotStarted");
@@ -199,6 +209,57 @@ namespace nManager.Wow.Bot.States
             bool success;
             switch (currentTask.Key)
             {
+                case "GoToGarrison":
+                    if (currentTask.Value == "Not Started")
+                    {
+                        Logging.Write(currentTask.Key + " started.");
+                        TaskList[currentTask.Key] = "OnGoing";
+                    }
+                    if (Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId))
+                    {
+                        Logging.Write(currentTask.Key + " terminated.");
+                        TaskList[currentTask.Key] = "Done";
+                    }
+                    if (ItemsManager.GetItemCount(GarrisonHearthstone) <= 0 || ItemsManager.IsItemOnCooldown(GarrisonHearthstone))
+                    {
+                        if (Usefuls.ContinentIdByContinentName("Draenor") == Usefuls.ContinentId)
+                        {
+                            List<Point> pathToGarrison = PathFinder.FindPath(_cacheGarrisonPoint, out success);
+                            if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
+                            {
+                                if (!MovementManager.InMoveTo && success)
+                                    MovementManager.Go(pathToGarrison);
+                                else if (!success)
+                                {
+                                    Logging.Write(currentTask.Key + " aborted, no paths.");
+                                    TaskList[currentTask.Key] = "Done";
+                                    CloseProduct();
+                                }
+                            }
+                            else
+                            {
+                                Logging.Write(currentTask.Key + " terminated.");
+                                TaskList[currentTask.Key] = "Done";
+                            }
+                        }
+                        else
+                        {
+                            Logging.Write(currentTask.Key + " aborted, you are not in Draenor and don't have a Garrison Hearthstone or it's on Cooldown.");
+                            TaskList[currentTask.Key] = "Done";
+                            CloseProduct();
+                        }
+                    }
+                    else
+                    {
+                        ItemsManager.UseItem(GarrisonHearthstone);
+                        Logging.Write("Using Garrison Hearthstone to go back to Garrison.");
+                        Thread.Sleep(200);
+                        while (ObjectManager.ObjectManager.Me.IsCast || Usefuls.IsLoadingOrConnecting)
+                        {
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    break;
                 case "GatherMinerals":
                     List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
                     if (_mineEntrance.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
