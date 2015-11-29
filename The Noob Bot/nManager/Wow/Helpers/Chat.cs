@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Patchables;
 
@@ -122,10 +121,10 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Message unMsg = ReadMsg();
-                if (unMsg.Msg != null)
+                Message aMsg = ReadMsg();
+                if (aMsg.Msg != null)
                 {
-                    return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                    return DateTime.Now + " - " + aMsg.Nickname + " " + getChannel(aMsg.Channel) + " : " + aMsg.Msg +
                            "\r\n";
                 }
             }
@@ -140,12 +139,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Message unMsg = ReadMsg();
-                if (unMsg.Msg != null)
+                Message aMsg = ReadMsg();
+                if (aMsg.Msg != null)
                 {
-                    if (unMsg.Canal == 4)
+                    if (aMsg.Channel == 4)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + aMsg.Nickname + " " + getChannel(aMsg.Channel) + " : " + aMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -161,12 +160,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Message unMsg = ReadMsg();
-                if (unMsg.Msg != null)
+                Message aMsg = ReadMsg();
+                if (aMsg.Msg != null)
                 {
-                    if (unMsg.Canal == 1)
+                    if (aMsg.Channel == 1)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + aMsg.Nickname + " " + getChannel(aMsg.Channel) + " : " + aMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -182,12 +181,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Message unMsg = ReadMsg();
-                if (unMsg.Msg != null)
+                Message aMsg = ReadMsg();
+                if (aMsg.Msg != null)
                 {
-                    if (unMsg.Canal == 7)
+                    if (aMsg.Channel == 7)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + aMsg.Nickname + " " + getChannel(aMsg.Channel) + " : " + aMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -203,12 +202,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Message unMsg = ReadMsg();
-                if (unMsg.Msg != null)
+                Message aMsg = ReadMsg();
+                if (aMsg.Msg != null)
                 {
-                    if (unMsg.Canal == 7 || unMsg.Canal == 51)
+                    if (aMsg.Channel == 7 || aMsg.Channel == 51)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + aMsg.Nickname + " " + getChannel(aMsg.Channel) + " : " + aMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -224,12 +223,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Message unMsg = ReadMsg();
-                if (unMsg.Msg != null)
+                Message aMsg = ReadMsg();
+                if (aMsg.Msg != null)
                 {
-                    if (unMsg.Canal == 27)
+                    if (aMsg.Channel == 27)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + aMsg.Nickname + " " + getChannel(aMsg.Channel) + " : " + aMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -275,16 +274,16 @@ namespace nManager.Wow.Helpers
                             (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
                              (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(CurrentMsg)));
 
-                Message unMsg = new Message();
+                var aMsg = new Message();
                 if (stream != "")
                 {
                     CurrentMsg++;
-                    unMsg.Canal = Others.ToInt32(stringBetween(stream, "Type: [", "]"));
-                    unMsg.Pseudo = Others.ToUtf8(stringBetween(stream, "Name: [", "]"));
-                    unMsg.Msg = Others.ToUtf8(stringBetween(stream, "Text: [", "]"));
+                    aMsg.Channel = Others.ToInt32(stringBetween(stream, "Type: [", "]"));
+                    aMsg.Nickname = Others.ToUtf8(stringBetween(stream, "Name: [", "]"));
+                    aMsg.Msg = Others.ToUtf8(stringBetween(stream, "Text: [", "]"));
                 }
 
-                return unMsg;
+                return aMsg;
             }
             catch (Exception exception)
             {
@@ -335,20 +334,20 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("getCanal(int canal): " + exception);
+                Logging.WriteError("getChannel(int Channel): " + exception);
                 return "";
             }
         }
 
-        private string stringBetween(string chaine, string debut, string fin)
+        private string stringBetween(string str, string begin, string end)
         {
             try
             {
-                int d = chaine.IndexOf(debut, StringComparison.Ordinal) + debut.Length;
-                int f = chaine.IndexOf(fin, d, StringComparison.Ordinal);
+                int d = str.IndexOf(begin, StringComparison.Ordinal) + begin.Length;
+                int f = str.IndexOf(end, d, StringComparison.Ordinal);
                 if (f - d <= 0)
                     return "";
-                return chaine.Substring(d, f - d);
+                return str.Substring(d, f - d);
             }
             catch (Exception exception)
             {
@@ -366,13 +365,13 @@ namespace nManager.Wow.Helpers
             #region Fields
 
             public
-                int Canal;
+                int Channel;
 
             public
                 string Msg;
 
             public
-                string Pseudo;
+                string Nickname;
 
             #endregion Fields
         }
