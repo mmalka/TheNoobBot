@@ -17,6 +17,7 @@ namespace The_Noob_Bot
     {
         private const string UpdateCheck = "573-567-555-554-606-605-593";
         private const string KeyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
+        private int _autoStarted = -1;
 
         public Login()
         {
@@ -37,11 +38,14 @@ namespace The_Noob_Bot
             }
         }
 
-        private int _autoStarted = -1;
-
-        public void AutoStart(int sessId)
+        public void AutoStart(int sessId, string productName, string profileName)
         {
             _autoStarted = sessId;
+            if (string.IsNullOrEmpty(productName)) return;
+            nManagerSetting.AutoStartProduct = true;
+            nManagerSetting.AutoStartProductName = productName;
+            if (string.IsNullOrEmpty(profileName)) return;
+            nManagerSetting.AutoStartProfileName = profileName;
         }
 
         private void Translate()
@@ -71,7 +75,7 @@ namespace The_Noob_Bot
                 LangSelection.SelectedIndexChanged += LangSelection_SelectedIndexChanged;
 
                 MainHeader.TitleText = nManager.Translate.Get(nManager.Translate.Id.LoginFormTitle) + @" - " + Information.MainTitle;
-                this.Text = MainHeader.TitleText;
+                Text = MainHeader.TitleText;
                 Identifier.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormDefaultIdentifier);
                 Remember.Text = nManager.Translate.Get(nManager.Translate.Id.LoginFormRemember);
                 SetToolTypeIfNeeded(Remember);
@@ -182,7 +186,7 @@ namespace The_Noob_Bot
                 {
                     for (int i = 0; i < SessionList.Items.Count; i++)
                     {
-                        var item = SessionList.Items[i];
+                        object item = SessionList.Items[i];
                         if (item.ToString().Contains(_autoStarted + " -"))
                         {
                             SessionList.SelectedIndex = i;
@@ -330,7 +334,7 @@ namespace The_Noob_Bot
                 SessionList.Items.Clear();
                 SessionList.SelectedIndex = -1;
                 var usedProcess = new List<string>();
-                List<string> listWowProcess = new List<string> {"Wow", "WowT", "WowB", "WowTR"};
+                var listWowProcess = new List<string> {"Wow", "WowT", "WowB", "WowTR"};
                 foreach (string s in listWowProcess)
                 {
                     for (int i = nManager.Wow.MemoryClass.Process.ListeProcessIdByName(s).Length - 1; i >= 0; i--)

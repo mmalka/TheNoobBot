@@ -53,6 +53,13 @@ namespace The_Noob_Bot
                     Logging.Write("Please set it to 100% size or you may have problems reading TheNoobBot's forms. hint: http://www.wikihow.com/Change-Font-Size-on-a-Computer");
                 }
             }
+            if (nManagerSetting.AutoStartProduct && !string.IsNullOrEmpty(nManagerSetting.AutoStartProductName) && !string.IsNullOrEmpty(nManagerSetting.AutoStartProfileName))
+            {
+                if (nManagerSetting.AutoStartProductName == nManagerSetting.CurrentSetting.LastProductLoaded.Split('-')[0].Trim())
+                {
+                    Products.ProductRemoteStart(new[] {nManagerSetting.AutoStartProfileName});
+                }
+            }
         }
 
         private void InitializeBot()
@@ -124,7 +131,10 @@ namespace The_Noob_Bot
                     MainHeader.TitleText += " - Trial";
                 this.Text = MainHeader.TitleText;
 
-
+                if (nManagerSetting.AutoStartProduct)
+                {
+                    nManagerSetting.CurrentSetting.LastProductLoaded = nManagerSetting.AutoStartProductName;
+                }
                 // Products:
                 int i = 0;
                 int i2 = -1;
@@ -137,7 +147,7 @@ namespace The_Noob_Bot
                         if (!string.IsNullOrEmpty(nManager.Translate.Get(ret)))
                             text = text + " - " + nManager.Translate.Get(ret);
                     }
-                    if (text == nManagerSetting.CurrentSetting.LastProductLoaded)
+                    if (text.Split('-')[0].Trim() == nManagerSetting.CurrentSetting.LastProductLoaded)
                         i2 = i;
                     ProductList.Items.Add(text);
                     i++;

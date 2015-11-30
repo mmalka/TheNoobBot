@@ -16,6 +16,9 @@ namespace nManager
         private static nManagerSetting _currentSetting;
         private static string _lastName = "";
         public static bool ActivateProductTipOff = true;
+        public static bool AutoStartProduct = false;
+        public static string AutoStartProductName = "";
+        public static string AutoStartProfileName = "";
 
         public static nManagerSetting CurrentSetting
         {

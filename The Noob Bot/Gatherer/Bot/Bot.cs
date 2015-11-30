@@ -16,20 +16,19 @@ namespace Gatherer.Bot
         private static readonly Engine Fsm = new Engine();
         public static GathererProfile Profile = new GathererProfile();
 
-        internal static bool Pulse()
+        internal static bool Pulse(bool autoLoaded = false)
         {
             try
             {
-                // Load Profile:
-                LoadProfile f = new LoadProfile();
-                f.ShowDialog();
-                if (
-                    !File.Exists(Application.StartupPath + "\\Profiles\\Gatherer\\" +
-                                 GathererSetting.CurrentSetting.ProfileName))
+                if (!autoLoaded)
+                {
+                    // Load Profile:
+                    LoadProfile f = new LoadProfile();
+                    f.ShowDialog();
+                }
+                if (!File.Exists(Application.StartupPath + "\\Profiles\\Gatherer\\" + GathererSetting.CurrentSetting.ProfileName))
                     return false;
-                Profile =
-                    XmlSerializer.Deserialize<GathererProfile>(Application.StartupPath + "\\Profiles\\Gatherer\\" +
-                                                               GathererSetting.CurrentSetting.ProfileName);
+                Profile = XmlSerializer.Deserialize<GathererProfile>(Application.StartupPath + "\\Profiles\\Gatherer\\" + GathererSetting.CurrentSetting.ProfileName);
                 if (Profile.Points.Count <= 0)
                     return false;
 

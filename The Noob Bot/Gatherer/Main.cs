@@ -62,7 +62,26 @@ public class Main : IProduct
 
     public void RemoteStart(string[] args)
     {
-        throw new NotImplementedException();
+        GathererSetting.CurrentSetting.ProfileName = args[0];
+        Others.ProductStatusLog(Products.ProductName, 1);
+
+        try
+        {
+            Others.ProductStatusLog(Products.ProductName, 3);
+            if (Bot.Pulse(true))
+            {
+                _isStarted = true;
+                Others.ProductStatusLog(Products.ProductName, 4);
+            }
+            else
+            {
+                Others.ProductStatusLog(Products.ProductName, 5);
+            }
+        }
+        catch (Exception exception)
+        {
+            Logging.WriteError("Gatherer > Main > Start(): " + exception, true);
+        }
     }
 
     public void Stop()
