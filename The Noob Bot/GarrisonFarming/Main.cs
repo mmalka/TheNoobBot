@@ -58,7 +58,24 @@ public class Main : IProduct
 
     public void RemoteStart(string[] args)
     {
-        throw new NotImplementedException();
+        Others.ProductStatusLog(Products.ProductName, 1);
+        try
+        {
+            Others.ProductStatusLog(Products.ProductName, 3);
+            if (Bot.Pulse())
+            {
+                _isStarted = true;
+                Others.ProductStatusLog(Products.ProductName, 4);
+            }
+            else
+            {
+                Others.ProductStatusLog(Products.ProductName, 5);
+            }
+        }
+        catch (Exception e)
+        {
+            Logging.WriteError("GarrisonFarming > Main > RemoteStart(): " + e);
+        }
     }
 
     public void Stop()

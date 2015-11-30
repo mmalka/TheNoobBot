@@ -60,6 +60,10 @@ namespace The_Noob_Bot
                     Products.ProductRemoteStart(new[] {nManagerSetting.AutoStartProfileName});
                 }
             }
+            else if (nManagerSetting.AutoStartProduct)
+            {
+                Products.ProductRemoteStart(new string[0]);
+            }
         }
 
         private void InitializeBot()
