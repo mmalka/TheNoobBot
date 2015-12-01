@@ -646,6 +646,10 @@ namespace nManager.Wow.ObjectManager
                                         return LoggingSpell.Id == 167946 || LoggingSpell.Id == 167947;
                                     return true;
                                 }
+                                if ((WoWGameObjectLockType) Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING)
+                                {
+                                    return Entry == 232541; // Add special support for WoD Garrison Mine Cart.
+                                }
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType) Row.Record.LockType[j]);
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
                                 {
