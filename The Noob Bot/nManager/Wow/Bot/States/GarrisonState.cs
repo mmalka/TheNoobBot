@@ -87,6 +87,7 @@ namespace nManager.Wow.Bot.States
                                     TaskList[GetLastTask.Key] = "Done";
                                     nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
                                     nManagerSetting.CurrentSetting.ActivatePathFindingFeature = true;
+                                    return false;
                                 }
                                 if (FarmingState.NeedToRun)
                                     FarmingState.Run();
