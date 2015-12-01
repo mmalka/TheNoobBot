@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\Bot.cs" />
-    <Compile Include="GathererProfile.cs" />
     <Compile Include="Bot\GathererSetting.cs" />
     <Compile Include="Bot\LoadProfile.cs">
       <SubType>Form</SubType>

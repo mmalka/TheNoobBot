@@ -42,7 +42,6 @@ namespace GarrisonFarming.Bot
                 /* 3
                  * SendFollowerOnDuty
                  */
-                Fsm.AddState(new Farming {Priority = 2});
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

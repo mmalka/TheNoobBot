@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -16,6 +17,7 @@ namespace nManager.Wow.Bot.States
         private static readonly List<int> ListVeinsObjects = new List<int> {/* mine cart 232541,*/ 232542, 232543, 232544, 232545}; // Veins available in Garrison's Mine.
 
         private static Point _mineEntrance;
+        private static GathererProfile _mineProfile;
         private static Point _garden;
         private static int _npcGarden;
         private static int _npcMine;
@@ -27,9 +29,12 @@ namespace nManager.Wow.Bot.States
         private static Point _cacheGarrisonPoint;
         private static bool _oldActivateVeinsHarvesting;
         private static bool _oldActivateHerbsHarvesting;
+        private static float _oldGatheringSearchRadius;
         private static Npc _targetNpc = new Npc();
         private static uint _targetBaseAddress;
         private static bool _isCompleted;
+        private static MovementLoop _movementLoopState;
+        private static readonly Farming FarmingState = new Farming();
 
         public override string DisplayName
         {
@@ -54,22 +59,46 @@ namespace nManager.Wow.Bot.States
                 {
                     switch (GetLastTask.Key)
                     {
-                        case "GatherMinerals":
-                            if (IsListObjectGathered(ListVeinsObjects))
-                            {
-                                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
-                                Logging.Write(GetLastTask.Key + " terminated.");
-                                TaskList[GetLastTask.Key] = "Done";
-                            }
-                            break;
                         case "GatherHerbs":
-                            if (IsListObjectGathered(ListHerbsObjects))
+                            if (FarmingState.NeedToRun)
+                            {
+                                FarmingState.Run();
+                            }
+                            else
                             {
                                 nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
                                 Logging.Write(GetLastTask.Key + " terminated.");
                                 TaskList[GetLastTask.Key] = "Done";
                             }
+                            /*if (IsListObjectGathered(ListHerbsObjects))
+                            {
+                                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                                Logging.Write(GetLastTask.Key + " terminated.");
+                                TaskList[GetLastTask.Key] = "Done";
+                            }*/
                             break;
+                        case "GatherMinerals":
+                            if (_mineProfile != null && _movementLoopState != null)
+                            {
+                                if (MovementManager.PointId == _mineProfile.Points.Count - 1)
+                                {
+                                    nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
+                                    Logging.Write(GetLastTask.Key + " terminated.");
+                                    TaskList[GetLastTask.Key] = "Done";
+                                    nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
+                                    nManagerSetting.CurrentSetting.ActivatePathFindingFeature = true;
+                                }
+                                if (FarmingState.NeedToRun)
+                                    FarmingState.Run();
+                                else if (_movementLoopState.NeedToRun)
+                                    _movementLoopState.Run();
+                                return false;
+                            }
+                            Logging.Write(GetLastTask.Key + " aborted, did not find profile informations.");
+                            TaskList[GetLastTask.Key] = "Done";
+                            nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
+                            nManagerSetting.CurrentSetting.ActivatePathFindingFeature = true;
+                            return false;
                         case "GardenWorkOrder":
                         case "MineWorkOrder":
                         case "CheckGarrisonRessourceCache":
@@ -138,8 +167,8 @@ namespace nManager.Wow.Bot.States
                 Logging.Write("Task GatherHerbs added to the TaskList.");
                 TaskList.Add("GardenWorkOrder", "NotStarted");
                 Logging.Write("Task GardenWorkOrder added to the TaskList.");
-                //TaskList.Add("GatherMinerals", "NotStarted");
-                //Logging.Write("Task GatherMinerals added to the TaskList.");
+                TaskList.Add("GatherMinerals", "NotStarted");
+                Logging.Write("Task GatherMinerals added to the TaskList.");
                 TaskList.Add("MineWorkOrder", "NotStarted");
                 Logging.Write("Task MineWorkOrder added to the TaskList.");
                 TaskList.Add("CheckGarrisonRessourceCache", "NotStarted");
@@ -154,7 +183,14 @@ namespace nManager.Wow.Bot.States
                 // Initialize Points
                 _cacheGarrison = new List<int> {237722, 236916, 237191, 237724, 237720, 237723};
                 // All garrison cache ids.
-                if (ObjectManager.ObjectManager.Me.PlayerFaction == "Alliance")
+                string playerFaction = ObjectManager.ObjectManager.Me.PlayerFaction;
+                if (Garrison.GetGarrisonGardenLevel <= 0)
+                {
+                    TaskList.Remove("GatherHerbs");
+                    TaskList.Remove("GardenWorkOrder");
+                    Logging.Write("Task GatherHerbs/GardenWorkOrder removed from to the TaskList, reason: There is no garden in your garrison.");
+                }
+                if (playerFaction == "Alliance")
                 {
                     _npcGarden = 85514;
                     _cacheGarden = 235885;
@@ -202,6 +238,27 @@ namespace nManager.Wow.Bot.States
                             _mineEntrance = new Point {X = 5475.534f, Y = 4446.189f, Z = 144.5391f};
                             _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                             break;
+                    }
+                }
+
+                int mineLevel = Garrison.GetGarrisonMineLevel;
+                if (_movementLoopState == null || _mineProfile == null)
+                {
+                    _mineProfile = XmlSerializer.Deserialize<GathererProfile>(Application.StartupPath + "\\Profiles\\GarrisonFarming\\" + playerFaction + "Mine" + mineLevel + ".xml");
+                    if (_mineProfile != null && _mineProfile.Points.Count > 0)
+                    {
+                        _movementLoopState = new MovementLoop {PathLoop = _mineProfile.Points};
+                    }
+                    else
+                    {
+                        TaskList.Remove("GatherMinerals");
+                        if (mineLevel > 0)
+                            Logging.Write("Task GatherMinerals removed from to the TaskList, reason: " + playerFaction + " Mine Profile not found for Mine level: " + mineLevel + ".");
+                        else
+                        {
+                            TaskList.Remove("MineWorkOrder");
+                            Logging.Write("Task GatherMinerals/MineWorkOrder removed from to the TaskList, reason: There is no mine in your garrison.");
+                        }
                     }
                 }
             }
@@ -261,23 +318,29 @@ namespace nManager.Wow.Bot.States
                     }
                     break;
                 case "GatherMinerals":
-                    List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
-                    if (_mineEntrance.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+                    if (currentTask.Value == "NotStarted")
                     {
-                        if (!MovementManager.InMoveTo && success)
-                            MovementManager.Go(pathToMine);
-                        else if (!success)
+                        List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
+                        if (_mineEntrance.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                         {
-                            Logging.Write(currentTask.Key + " aborted, no paths.");
-                            TaskList[currentTask.Key] = "Done";
+                            if (!MovementManager.InMoveTo && success)
+                                MovementManager.Go(pathToMine);
+                            else if (!success)
+                            {
+                                Logging.Write(currentTask.Key + " aborted, no paths.");
+                                TaskList[currentTask.Key] = "Done";
+                            }
                         }
-                    }
-                    else
-                    {
-                        Logging.Write(currentTask.Key + " started.");
-                        TaskList[currentTask.Key] = "OnGoing";
-                        nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
-                        nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                        else
+                        {
+                            Logging.Write(currentTask.Key + " started.");
+                            TaskList[currentTask.Key] = "OnGoing";
+                            _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
+                            nManagerSetting.CurrentSetting.GatheringSearchRadius = 7f;
+                            nManagerSetting.CurrentSetting.ActivatePathFindingFeature = false;
+                            nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
+                            nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                        }
                     }
                     break;
                 case "MineWorkOrder":
@@ -319,7 +382,7 @@ namespace nManager.Wow.Bot.States
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 1000);
                         Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
-                        Thread.Sleep(Usefuls.Latency + 10000);
+                        Thread.Sleep(Usefuls.Latency + 5000);
                         Logging.Write(currentTask.Key + " terminated.");
                         TaskList[currentTask.Key] = "Done";
                     }
@@ -340,9 +403,9 @@ namespace nManager.Wow.Bot.States
                     {
                         Logging.Write(currentTask.Key + " started.");
                         TaskList[currentTask.Key] = "OnGoing";
+                        nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
+                        nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = true;
                     }
-                    nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
-                    nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = true;
                     break;
                 case "GardenWorkOrder":
                     if (currentTask.Value == "NotStarted")
@@ -384,7 +447,7 @@ namespace nManager.Wow.Bot.States
                         Interact.InteractWith(_targetBaseAddress, true);
                         Thread.Sleep(Usefuls.Latency + 1000);
                         Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
-                        Thread.Sleep(Usefuls.Latency + 10000);
+                        Thread.Sleep(Usefuls.Latency + 5000);
                         Logging.Write(currentTask.Key + " terminated.");
                         TaskList[currentTask.Key] = "Done";
                     }

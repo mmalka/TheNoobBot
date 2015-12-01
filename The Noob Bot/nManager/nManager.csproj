@@ -185,6 +185,7 @@
     <Compile Include="Wow\Bot\States\Travel.cs" />
     <Compile Include="Wow\Class\Auras.cs" />
     <Compile Include="Wow\Class\DB2Struct.cs" />
+    <Compile Include="Wow\Class\GathererProfile.cs" />
     <Compile Include="Wow\Class\Instance.cs" />
     <Compile Include="Wow\Class\Int128.cs" />
     <Compile Include="Wow\Class\Matrix4.cs" />

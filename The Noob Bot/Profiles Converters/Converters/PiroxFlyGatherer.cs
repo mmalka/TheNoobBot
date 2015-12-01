@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Gatherer;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using GathererProfile = nManager.Wow.Class.GathererProfile;
 
 namespace Profiles_Converters.Converters
 {

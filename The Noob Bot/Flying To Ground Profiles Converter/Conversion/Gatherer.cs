@@ -7,6 +7,7 @@ using nManager;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
+using GathererProfile = nManager.Wow.Class.GathererProfile;
 
 namespace Flying_To_Ground_Profiles_Converter.Conversion
 {

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using nManager.Wow.Class;
-using System.ComponentModel;
 
-namespace Gatherer
+namespace nManager.Wow.Class
 {
     [Serializable]
     public class GathererProfile
