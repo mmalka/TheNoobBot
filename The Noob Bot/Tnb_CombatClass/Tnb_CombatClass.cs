@@ -4321,20 +4321,6 @@ public class MageArcane
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (MySettings.UseIceBlock && Cauterize.HaveBuff && !Hypothermia.HaveBuff)
-        {
-            if (MySettings.UseColdSnapForDefence && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (IceBlock.IsSpellUsable)
-            {
-                IceBlock.Cast();
-                _onCd = new Timer(1000*10);
-                return;
-            }
-        }
         if (MySettings.UseArcaneBrilliance && !ArcaneBrilliance.HaveBuff && !DalaranBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable)
             ArcaneBrilliance.Cast();
 
