@@ -648,7 +648,7 @@ namespace nManager.Wow.ObjectManager
                                 }
                                 if ((WoWGameObjectLockType) Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING)
                                 {
-                                    return Entry == 232541; // Add special support for WoD Garrison Mine Cart.
+                                    return nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && Entry == 232541; // Add special support for WoD Garrison Mine Cart.
                                 }
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType) Row.Record.LockType[j]);
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
