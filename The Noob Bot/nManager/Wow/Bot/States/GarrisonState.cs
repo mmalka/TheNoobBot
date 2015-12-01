@@ -276,6 +276,7 @@ namespace nManager.Wow.Bot.States
                     {
                         Logging.Write(currentTask.Key + " terminated.");
                         TaskList[currentTask.Key] = "Done";
+                        break;
                     }
                     if (ItemsManager.GetItemCount(GarrisonHearthstone) <= 0 || ItemsManager.IsItemOnCooldown(GarrisonHearthstone))
                     {
