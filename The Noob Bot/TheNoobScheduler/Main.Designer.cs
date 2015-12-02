@@ -39,9 +39,9 @@
             this.AccountDelButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.CharactersList = new System.Windows.Forms.ListBox();
             this.CharacterNote = new System.Windows.Forms.RichTextBox();
-            this.tnbButton1 = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.tnbButton2 = new nManager.Helpful.Forms.UserControls.TnbButton();
-            this.tnbButton3 = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.CharDelButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.CharEditButton = new nManager.Helpful.Forms.UserControls.TnbButton();
+            this.CharAddButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.CharacterNoteSaveButton = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.StartGarrisonFarming = new nManager.Helpful.Forms.UserControls.TnbButton();
             this.InfoLabel = new System.Windows.Forms.Label();
@@ -151,6 +151,7 @@
             this.AccountDelButton.TabIndex = 9;
             this.AccountDelButton.Text = "Delete";
             this.AccountDelButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AccountDelButton.Click += new System.EventHandler(this.AccountDelButton_Click);
             // 
             // CharactersList
             // 
@@ -174,48 +175,48 @@
             this.CharacterNote.TabIndex = 11;
             this.CharacterNote.Text = "";
             // 
-            // tnbButton1
+            // CharDelButton
             // 
-            this.tnbButton1.AutoEllipsis = true;
-            this.tnbButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tnbButton1.ForeColor = System.Drawing.Color.Snow;
-            this.tnbButton1.HooverImage = ((System.Drawing.Image)(resources.GetObject("tnbButton1.HooverImage")));
-            this.tnbButton1.Image = ((System.Drawing.Image)(resources.GetObject("tnbButton1.Image")));
-            this.tnbButton1.Location = new System.Drawing.Point(282, 366);
-            this.tnbButton1.Name = "tnbButton1";
-            this.tnbButton1.Size = new System.Drawing.Size(106, 29);
-            this.tnbButton1.TabIndex = 14;
-            this.tnbButton1.Text = "Delete";
-            this.tnbButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tnbButton1.Click += new System.EventHandler(this.tnbButton1_Click);
+            this.CharDelButton.AutoEllipsis = true;
+            this.CharDelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.CharDelButton.ForeColor = System.Drawing.Color.Snow;
+            this.CharDelButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("CharDelButton.HooverImage")));
+            this.CharDelButton.Image = ((System.Drawing.Image)(resources.GetObject("CharDelButton.Image")));
+            this.CharDelButton.Location = new System.Drawing.Point(282, 366);
+            this.CharDelButton.Name = "CharDelButton";
+            this.CharDelButton.Size = new System.Drawing.Size(106, 29);
+            this.CharDelButton.TabIndex = 14;
+            this.CharDelButton.Text = "Delete";
+            this.CharDelButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CharDelButton.Click += new System.EventHandler(this.CharDelButton_Click);
             // 
-            // tnbButton2
+            // CharEditButton
             // 
-            this.tnbButton2.AutoEllipsis = true;
-            this.tnbButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tnbButton2.ForeColor = System.Drawing.Color.Snow;
-            this.tnbButton2.HooverImage = ((System.Drawing.Image)(resources.GetObject("tnbButton2.HooverImage")));
-            this.tnbButton2.Image = ((System.Drawing.Image)(resources.GetObject("tnbButton2.Image")));
-            this.tnbButton2.Location = new System.Drawing.Point(170, 366);
-            this.tnbButton2.Name = "tnbButton2";
-            this.tnbButton2.Size = new System.Drawing.Size(106, 29);
-            this.tnbButton2.TabIndex = 13;
-            this.tnbButton2.Text = "Edit";
-            this.tnbButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CharEditButton.AutoEllipsis = true;
+            this.CharEditButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.CharEditButton.ForeColor = System.Drawing.Color.Snow;
+            this.CharEditButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("CharEditButton.HooverImage")));
+            this.CharEditButton.Image = ((System.Drawing.Image)(resources.GetObject("CharEditButton.Image")));
+            this.CharEditButton.Location = new System.Drawing.Point(170, 366);
+            this.CharEditButton.Name = "CharEditButton";
+            this.CharEditButton.Size = new System.Drawing.Size(106, 29);
+            this.CharEditButton.TabIndex = 13;
+            this.CharEditButton.Text = "Edit";
+            this.CharEditButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tnbButton3
+            // CharAddButton
             // 
-            this.tnbButton3.AutoEllipsis = true;
-            this.tnbButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tnbButton3.ForeColor = System.Drawing.Color.Snow;
-            this.tnbButton3.HooverImage = ((System.Drawing.Image)(resources.GetObject("tnbButton3.HooverImage")));
-            this.tnbButton3.Image = ((System.Drawing.Image)(resources.GetObject("tnbButton3.Image")));
-            this.tnbButton3.Location = new System.Drawing.Point(15, 366);
-            this.tnbButton3.Name = "tnbButton3";
-            this.tnbButton3.Size = new System.Drawing.Size(106, 29);
-            this.tnbButton3.TabIndex = 12;
-            this.tnbButton3.Text = "Add";
-            this.tnbButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CharAddButton.AutoEllipsis = true;
+            this.CharAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.CharAddButton.ForeColor = System.Drawing.Color.Snow;
+            this.CharAddButton.HooverImage = ((System.Drawing.Image)(resources.GetObject("CharAddButton.HooverImage")));
+            this.CharAddButton.Image = ((System.Drawing.Image)(resources.GetObject("CharAddButton.Image")));
+            this.CharAddButton.Location = new System.Drawing.Point(15, 366);
+            this.CharAddButton.Name = "CharAddButton";
+            this.CharAddButton.Size = new System.Drawing.Size(106, 29);
+            this.CharAddButton.TabIndex = 12;
+            this.CharAddButton.Text = "Add";
+            this.CharAddButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CharacterNoteSaveButton
             // 
@@ -264,9 +265,9 @@
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.StartGarrisonFarming);
             this.Controls.Add(this.CharacterNoteSaveButton);
-            this.Controls.Add(this.tnbButton1);
-            this.Controls.Add(this.tnbButton2);
-            this.Controls.Add(this.tnbButton3);
+            this.Controls.Add(this.CharDelButton);
+            this.Controls.Add(this.CharEditButton);
+            this.Controls.Add(this.CharAddButton);
             this.Controls.Add(this.CharacterNote);
             this.Controls.Add(this.CharactersList);
             this.Controls.Add(this.AccountDelButton);
@@ -300,9 +301,9 @@
         private nManager.Helpful.Forms.UserControls.TnbButton AccountDelButton;
         private System.Windows.Forms.ListBox CharactersList;
         private System.Windows.Forms.RichTextBox CharacterNote;
-        private nManager.Helpful.Forms.UserControls.TnbButton tnbButton1;
-        private nManager.Helpful.Forms.UserControls.TnbButton tnbButton2;
-        private nManager.Helpful.Forms.UserControls.TnbButton tnbButton3;
+        private nManager.Helpful.Forms.UserControls.TnbButton CharDelButton;
+        private nManager.Helpful.Forms.UserControls.TnbButton CharEditButton;
+        private nManager.Helpful.Forms.UserControls.TnbButton CharAddButton;
         private nManager.Helpful.Forms.UserControls.TnbButton CharacterNoteSaveButton;
         private nManager.Helpful.Forms.UserControls.TnbButton StartGarrisonFarming;
         private System.Windows.Forms.Label InfoLabel;

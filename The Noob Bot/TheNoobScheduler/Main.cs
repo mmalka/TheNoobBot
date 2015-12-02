@@ -63,17 +63,20 @@ namespace TheNoobScheduler
             {
                 AccountList.SelectedIndex = selectedIndex <= AccountList.Items.Count - 1 ? selectedIndex : 0;
             }
+
+            RefreshCharactersList();
         }
 
         public void RefreshCharactersList()
         {
+            CharactersList.Items.Clear();
+            CharacterNote.Clear();
             if (string.IsNullOrEmpty(AccountList.Text))
                 return;
             foreach (BattleNetAccounts bnetAccount in _profile.Accounts)
             {
                 if (AccountList.Text == bnetAccount.AccountEmail + " - " + bnetAccount.AccountName)
                 {
-                    CharactersList.Items.Clear();
                     foreach (Character character in bnetAccount.Characters)
                     {
                         CharactersList.Items.Add(character.CharacterName + " - " + character.CharacterRealm + " - " + character.CharacterFaction + " - " + (character.IsActive ? "Active" : "Inactive"));
@@ -82,6 +85,7 @@ namespace TheNoobScheduler
                         CharactersList.SelectedIndex = 0;
                 }
             }
+            RefreshCharacterNote();
         }
 
         public void RefreshCharacterNote()
@@ -182,9 +186,55 @@ namespace TheNoobScheduler
             CharactersList.Enabled = true;
         }
 
-        private void tnbButton1_Click(object sender, EventArgs e)
+        private void CharDelButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("...");
+            CharDelButton.Enabled = false;
+            DialogResult result = MessageBox.Show("Do you really want to delete this character ?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                CharDelButton.Enabled = true;
+                return;
+            }
+            foreach (BattleNetAccounts bnetAccount in _profile.Accounts)
+            {
+                if (AccountList.Text == bnetAccount.AccountEmail + " - " + bnetAccount.AccountName)
+                {
+                    foreach (Character character in bnetAccount.Characters)
+                    {
+                        if (CharactersList.Text == character.CharacterName + " - " + character.CharacterRealm + " - " + character.CharacterFaction + " - " + (character.IsActive ? "Active" : "Inactive"))
+                        {
+                            bnetAccount.Characters.Remove(character);
+                            XmlSerializer.Serialize(SchedulerSettingsPath, _profile);
+                            RefreshCharactersList();
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            CharDelButton.Enabled = true;
+        }
+
+        private void AccountDelButton_Click(object sender, EventArgs e)
+        {
+            AccountDelButton.Enabled = false;
+            DialogResult result = MessageBox.Show("Do you really want to delete this account ?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                AccountDelButton.Enabled = true;
+                return;
+            }
+            foreach (BattleNetAccounts bnetAccount in _profile.Accounts)
+            {
+                if (AccountList.Text == bnetAccount.AccountEmail + " - " + bnetAccount.AccountName)
+                {
+                    _profile.Accounts.Remove(bnetAccount);
+                    XmlSerializer.Serialize(SchedulerSettingsPath, _profile);
+                    RefreshAccountList();
+                    break;
+                }
+            }
+            AccountDelButton.Enabled = true;
         }
     }
 }
