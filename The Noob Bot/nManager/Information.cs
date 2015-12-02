@@ -9,5 +9,6 @@
         // The Min and Max check are in case the build offset have changed and the address return a value higher than 0, it's kind of a pattern check.
         public const string Version = "MD5HashVersionForDev"; // current = 4.9.0 vs MD5HashVersionForDev
         public static string MainTitle = "The Noob Bot " + Version;
+        public static string SchedulerTitle = "The Noob Scheduler for " + MainTitle;
     }
 }
