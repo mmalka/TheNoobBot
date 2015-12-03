@@ -94,8 +94,7 @@ namespace Fisherbot.Bot
                     FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;
                     FisherbotSetting.CurrentSetting.FisherbotRotation = ObjectManager.Me.Rotation;
                     Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
-                    FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
-                        FisherbotSetting.CurrentSetting.LureName, false, FisherbotSetting.AutomaticallyUseDraenorSecondaryBait);
+                    FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure, FisherbotSetting.CurrentSetting.LureName, FisherbotSetting.CurrentSetting.FishingPoleName, false, FisherbotSetting.AutomaticallyUseDraenorSecondaryBait);
                 }
                     // If the timer ended, stop fishing, equip weapon, null the timer
                 else if (timer.IsReady)
@@ -237,9 +236,7 @@ namespace Fisherbot.Bot
 
             // Fish
             Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
-            FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.UseLure,
-                FisherbotSetting.CurrentSetting.LureName,
-                FisherbotSetting.CurrentSetting.PrecisionMode, FisherbotSetting.AutomaticallyUseDraenorSecondaryBait);
+            FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.UseLure, FisherbotSetting.CurrentSetting.LureName, FisherbotSetting.CurrentSetting.FishingPoleName, FisherbotSetting.CurrentSetting.PrecisionMode, FisherbotSetting.AutomaticallyUseDraenorSecondaryBait);
 
             timer = new nManager.Helpful.Timer(2*60*1000);
             while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&

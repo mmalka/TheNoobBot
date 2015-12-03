@@ -18,6 +18,7 @@ namespace nManager.Wow.Bot.Tasks
         private static UInt128 _guidNode;
         private static bool _precision;
         private static string _lureName = "";
+        private static string _fisingPoleName = "";
         private static bool _useLure;
         private static bool _automaticallyUseDraenorSecondaryBait;
 
@@ -54,12 +55,13 @@ namespace nManager.Wow.Bot.Tasks
         /// Loop of the fish bot.
         /// </summary>
         /// <param name="guidNode">The node GUID.</param>
-        /// <param name="lureName"> </param>
-        /// <param name="precision"> </param>
         /// <param name="useLure"> </param>
+        /// <param name="lureName"> </param>
+        /// <param name="fishingPoleName"></param>
+        /// <param name="precision"> </param>
         /// <param name="automaticallyUseDraenorSecondaryBait"></param>
-        public static void LoopFish(UInt128 guidNode = default(UInt128), bool useLure = false, string lureName = "",
-            bool precision = false, bool automaticallyUseDraenorSecondaryBait = true)
+        public static void LoopFish(UInt128 guidNode = default(UInt128), bool useLure = false, string lureName = "", string fishingPoleName = "", bool precision = false,
+            bool automaticallyUseDraenorSecondaryBait = true)
         {
             try
             {
