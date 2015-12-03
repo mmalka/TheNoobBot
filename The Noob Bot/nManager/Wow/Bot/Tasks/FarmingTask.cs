@@ -139,7 +139,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             if (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                             {
-                                if (!(SpellManager.HasSpell(169606) && Usefuls.ContinentId == 1116)) // Passive Silver Dollar Club given by Stables.
+                                if (!(SpellManager.HasSpell(169606) && Usefuls.ContinentId == 1116 || Usefuls.ContinentId == 1464)) // Passive Silver Dollar Club given by Stables.
                                     Usefuls.DisMount();
                             }
                             else if (node.IsHerb)
