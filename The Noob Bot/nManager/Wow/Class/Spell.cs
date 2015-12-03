@@ -184,7 +184,7 @@ namespace nManager.Wow.Class
             get
             {
                 string result = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(result + " = tostring(GetSpellCharges(" + Id + ")");
+                Lua.LuaDoString(result + " = tostring(GetSpellCharges(" + Id + "))");
                 return Others.ToInt32(Lua.GetLocalizedText(result));
             }
         }
