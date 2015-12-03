@@ -504,8 +504,9 @@ namespace nManager.Wow.Helpers
                             return;
                         }
 
-                        while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
+                        while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted && MountTask.GetMountCapacity() == MountCapacity.Fly)
                         {
+                            // Can also check if we are currently using a flying mount.
                             MovementsAction.Ascend(true);
                             Thread.Sleep(200);
                             MovementsAction.Ascend(false);
