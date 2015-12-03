@@ -35,6 +35,10 @@ namespace nManager.Wow.Bot.States
         private static bool _isCompleted;
         private static MovementLoop _movementLoopState;
         private static readonly Farming FarmingState = new Farming();
+        private const int MinerCoffee = 118897;
+        private const uint MinerCoffeeBuff = 176049;
+        private const int PreservedMiningPick = 118903;
+        private const uint PreservedMiningPickBuff = 176061;
 
         public override string DisplayName
         {
@@ -88,6 +92,26 @@ namespace nManager.Wow.Bot.States
                                     nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
                                     nManagerSetting.CurrentSetting.ActivatePathFindingFeature = true;
                                     return false;
+                                }
+                                if (ItemsManager.GetItemCount(PreservedMiningPick) > 0 && !ItemsManager.IsItemOnCooldown(PreservedMiningPick) &&
+                                    ItemsManager.IsItemUsable(PreservedMiningPick) && !ObjectManager.ObjectManager.Me.HaveBuff(PreservedMiningPickBuff))
+                                {
+                                    ItemsManager.UseItem(PreservedMiningPick);
+                                    Thread.Sleep(50 + Usefuls.Latency);
+                                    while (ObjectManager.ObjectManager.Me.IsCast)
+                                    {
+                                        Thread.Sleep(200);
+                                    }
+                                }
+                                if (ItemsManager.GetItemCount(MinerCoffee) > 0 && !ItemsManager.IsItemOnCooldown(MinerCoffee) &&
+                                    ItemsManager.IsItemUsable(MinerCoffee) && ObjectManager.ObjectManager.Me.BuffStack(MinerCoffeeBuff) < 2)
+                                {
+                                    ItemsManager.UseItem(MinerCoffee);
+                                    Thread.Sleep(50 + Usefuls.Latency);
+                                    while (ObjectManager.ObjectManager.Me.IsCast)
+                                    {
+                                        Thread.Sleep(200);
+                                    }
                                 }
                                 if (FarmingState.NeedToRun)
                                     FarmingState.Run();
