@@ -243,9 +243,9 @@ namespace nManager.Wow.Bot.States
                 else
                 {
                     _npcGarden = 85783;
-                    _cacheGarden = 235885;
+                    _cacheGarden = 239238;
                     _npcMine = 81688;
-                    _cacheMine = 235886;
+                    _cacheMine = 239237;
                     switch (Garrison.GetGarrisonLevel())
                     {
                         case 1:
