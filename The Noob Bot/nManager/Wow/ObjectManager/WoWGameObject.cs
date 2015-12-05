@@ -646,6 +646,8 @@ namespace nManager.Wow.ObjectManager
                                         return LoggingSpell.Id == 167946 || LoggingSpell.Id == 167947;
                                     return true;
                                 }
+                                if ((WoWGameObjectLockType)Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING && Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId))
+                                    return true;
                                 if ((WoWGameObjectLockType) Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING)
                                 {
                                     return nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && Entry == 232541; // Add special support for WoD Garrison Mine Cart.
@@ -661,6 +663,11 @@ namespace nManager.Wow.ObjectManager
                                     break;
                                 // let's accept it, we check for quest later in code and act like if no lock was set
 
+                                uint reqSkillValue = Row.Record.Skill[j];
+
+                                if ((skill == SkillLine.Mining || skill == SkillLine.Herbalism) && reqSkillValue == 0 && Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId))
+                                    return true;
+
                                 // Prevent herbing when the setting is off
                                 if (skill == SkillLine.Herbalism &&
                                     !nManagerSetting.CurrentSetting.ActivateHerbsHarvesting)
@@ -669,8 +676,6 @@ namespace nManager.Wow.ObjectManager
                                 // Prevent mining when the setting is off
                                 if (skill == SkillLine.Mining && !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting)
                                     return false;
-
-                                uint reqSkillValue = Row.Record.Skill[j];
 
                                 if (skill == SkillLine.Lockpicking &&
                                     !nManagerSetting.CurrentSetting.ActivateChestLooting)
