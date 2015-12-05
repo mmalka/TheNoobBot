@@ -13,8 +13,6 @@ namespace nManager.Wow.Bot.States
     {
         private const int GarrisonHearthstone = 110560;
         public static Dictionary<string, string> TaskList = new Dictionary<string, string>();
-        private static readonly List<int> ListHerbsObjects = new List<int> {235376, 235387, 235388, 235389, 235390, 235391}; // Plants available in Garrison's Garden.
-        private static readonly List<int> ListVeinsObjects = new List<int> {/* mine cart 232541,*/ 232542, 232543, 232544, 232545}; // Veins available in Garrison's Mine.
 
         private static Point _mineEntrance;
         private static GathererProfile _mineProfile;
@@ -90,7 +88,6 @@ namespace nManager.Wow.Bot.States
                                     Logging.Write(GetLastTask.Key + " terminated.");
                                     TaskList[GetLastTask.Key] = "Done";
                                     nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
-                                    nManagerSetting.CurrentSetting.ActivatePathFindingFeature = true;
                                     return false;
                                 }
                                 if (ItemsManager.GetItemCount(PreservedMiningPick) > 0 && !ItemsManager.IsItemOnCooldown(PreservedMiningPick) &&
@@ -362,8 +359,7 @@ namespace nManager.Wow.Bot.States
                             Logging.Write(currentTask.Key + " started.");
                             TaskList[currentTask.Key] = "OnGoing";
                             _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
-                            nManagerSetting.CurrentSetting.GatheringSearchRadius = 7f;
-                            nManagerSetting.CurrentSetting.ActivatePathFindingFeature = false;
+                            nManagerSetting.CurrentSetting.GatheringSearchRadius = 13f;
                             nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
                             nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
                         }
