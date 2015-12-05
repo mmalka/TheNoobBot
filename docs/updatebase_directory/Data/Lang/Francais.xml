@@ -7,11 +7,11 @@
     </Translation>
     <Translation>
       <Id>In_progress</Id>
-      <Text>In progress</Text>
+      <Text>En cours</Text>
     </Translation>
     <Translation>
       <Id>Please_select_game_Process_and_connect_to_the_game</Id>
-      <Text>Veuillez selectionner le personnage sur lequel vous voulez utiliser TheNoobBot</Text>
+      <Text>Veuillez selectionner le personnage à connecter avec TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>Stop</Id>
@@ -19,15 +19,15 @@
     </Translation>
     <Translation>
       <Id>Please_connect_to_the_game</Id>
-      <Text>Vous devez être en ligne avec le personnage</Text>
+      <Text>Veuillez vous connecter au jeu</Text>
     </Translation>
     <Translation>
       <Id>The_Game_is_currently_used_by_TheNoobBot_or_contains_traces</Id>
-      <Text>Le jeu est actuellement utilisé par TheNoobBot ou contient des traces d'une utilisation récente de TheNoobBot, êtes-vous sûr de vouloir utiliser ce processus ?</Text>
+      <Text>Le jeu est actuellement utilisé par TheNoobBot ou contient des traces d'une utilisation récente, êtes-vous sûr de vouloir continuer ?</Text>
     </Translation>
     <Translation>
       <Id>If_no_others_session_of_TheNoobBot_is_currently_active</Id>
-      <Text>Si aucune session de TheNoobBot utilise cette session du jeu, il est grandement recommandé de relancer le jeu.</Text>
+      <Text>Si aucune session de TheNoobBot est active sur ce personnage, il est grandement recommandé de relancer le jeu.</Text>
     </Translation>
     <Translation>
       <Id>Use_this_Game</Id>
@@ -39,7 +39,7 @@
     </Translation>
     <Translation>
       <Id>Please_enter_your_user_name_and_password</Id>
-      <Text>Merci d'entrer votre pseudo et votre mot de passe</Text>
+      <Text>Veuillez saisir votre nom d'utilisateur et votre mot de passe</Text>
     </Translation>
     <Translation>
       <Id>Error</Id>
@@ -59,15 +59,15 @@
     </Translation>
     <Translation>
       <Id>User_Name</Id>
-      <Text>Pseudo</Text>
+      <Text>Utilisateur</Text>
     </Translation>
     <Translation>
       <Id>Password</Id>
-      <Text>MDP</Text>
+      <Text>Mot de passe</Text>
     </Translation>
     <Translation>
       <Id>Save</Id>
-      <Text>Memoriser</Text>
+      <Text>Sauvegarder</Text>
     </Translation>
     <Translation>
       <Id>Create</Id>
@@ -83,23 +83,23 @@
     </Translation>
     <Translation>
       <Id>Login</Id>
-      <Text>Pseudo</Text>
+      <Text>Utilisateur</Text>
     </Translation>
     <Translation>
       <Id>User_name_or_Password_error</Id>
-      <Text>Erreur lors de l'identification</Text>
+      <Text>Erreur d'authentification</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
-      <Text>Mot de passe erroné, rendez-vous sur http://thenoobbot.fr/ si vous avez perdu votre mot de passe</Text>
+      <Text>Mot de passe incorrect, rendez-vous sur http://thenoobbot.fr/ si vous avez oublié votre mot de passe</Text>
     </Translation>
     <Translation>
       <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
-      <Text>Pseudo erroné, vous pouvez créer un compte en cliquant sur CREER COMPTE</Text>
+      <Text>Nom d'utilisateur incorrect vous pouvez créer un nouveau compte en cliquant sur le bouton CREER COMPTE</Text>
     </Translation>
     <Translation>
       <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
-      <Text>Problème de connexion, soyez sûr que votre parfeu ne bloque pas TheNoobBot et rééssayez plus tard</Text>
+      <Text>Problème de connexion, vérifiez que votre pare-feu ne bloque pas TheNoobBot et/ou rééssayez plus tard</Text>
     </Translation>
     <Translation>
       <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
@@ -107,7 +107,7 @@
     </Translation>
     <Translation>
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
-      <Text>TheNoobBot est lancé en version d'essai, la session terminera au bout de 20 minutes</Text>
+      <Text>La version d'essai de TheNoobBot se terminera automatiquement après 20 minutes</Text>
     </Translation>
     <Translation>
       <Id>LatestUpdateVersion</Id>
@@ -115,7 +115,7 @@
     </Translation>
     <Translation>
       <Id>LatestUpdateDescription</Id>
-      <Text>Informations complémentaires: </Text>
+      <Text>Informations complémentaires : </Text>
     </Translation>
     <Translation>
       <Id>ConfirmUpdate</Id>
@@ -123,20 +123,20 @@
     </Translation>
     <Translation>
       <Id>LatestUpdateTitle</Id>
-      <Text>TheNoobBot, mise à jour disponible</Text>
+      <Text>Une mise-à-jour de TheNoobBot est disponible</Text>
     </Translation>
     <Translation>
       <Id>Suspect_Activity</Id>
-      <Text>NEW WARDEN SCAN</Text>
+      <Text>Activité suspecte détectée</Text>
     </Translation>
     <Translation>
       <Id>TheNoobBotServerIsOffline</Id>
-      <Text>Le serveur de TheNoobBot est probablement en panne, cependant, vous pouvez essayer de désactiver votre AntiVirus/Firewall.
-      Note: Nous avons peut-être bloqué cette version depuis nos serveurs à cause d'une alerte confirmée du Warden de blizzard ou si la version est crackée. Vous pouvez verifier si une mise à jour est disponible sur notre site internet</Text>
+      <Text>Le serveur TheNoobBot est actuellement indisponible, veuillez également si le problème persiste essayer de désactiver votre AntiVirus/Firewall.
+      Note: Nous avons peut-être bloqué cette version depuis nos serveurs suite à une alerte confirmée du Warden de blizzard ou si la version est crackée. Pour de plus amples informations veuillez vous connecter sur notre forum</Text>
     </Translation>
     <Translation>
       <Id>WoWIsReducedError</Id>
-      <Text>Vous avez réduit WoW dans votre barre des tâches, cependant, TheNoobBot require que le jeu soit au minimum derrière vos autres applications</Text>
+      <Text>L'application World of Warcraft est actuellement baissée dans votre barre des tâches, TheNoobBot requiert que la fenêtre de jeu soit au minimum ouverte et visible en arrière plan</Text>
     </Translation>
     <Translation>
       <Id>Information</Id>
@@ -148,7 +148,7 @@
     </Translation>
     <Translation>
       <Id>UserName</Id>
-      <Text>Pseudo</Text>
+      <Text>Utilisateur</Text>
     </Translation>
     <Translation>
       <Id>Trial_version__time_left</Id>
@@ -156,11 +156,11 @@
     </Translation>
     <Translation>
       <Id>Subscription_time_left</Id>
-      <Text>Temps restant de votre abo</Text>
+      <Text>Temps restant sur votre abonnement</Text>
     </Translation>
     <Translation>
       <Id>Tnb_online</Id>
-      <Text>Nombre de TNB en ligne</Text>
+      <Text>Nombre de sessions TNB en ligne</Text>
     </Translation>
     <Translation>
       <Id>Start</Id>
@@ -208,11 +208,11 @@
     </Translation>
     <Translation>
       <Id>Target_Name</Id>
-      <Text>Nom de la cible</Text>
+      <Text>Nom cible</Text>
     </Translation>
     <Translation>
       <Id>Health</Id>
-      <Text>PV</Text>
+      <Text>Vie</Text>
     </Translation>
     <Translation>
       <Id>Last_log</Id>
@@ -236,7 +236,7 @@
     </Translation>
     <Translation>
       <Id>Target_Health</Id>
-      <Text>Pv de la cible</Text>
+      <Text>PV de la cible</Text>
     </Translation>
     <Translation>
       <Id>Account_Informations</Id>
@@ -244,11 +244,11 @@
     </Translation>
     <Translation>
       <Id>Information_account</Id>
-      <Text>Information account</Text>
+      <Text>Informations de compte</Text>
     </Translation>
     <Translation>
       <Id>Remote</Id>
-      <Text>Contrôler TNB via le site</Text>
+      <Text>Contrôle à distance via le site</Text>
     </Translation>
     <Translation>
       <Id>Home</Id>
@@ -260,7 +260,7 @@
     </Translation>
     <Translation>
       <Id>My_tnb_Account</Id>
-      <Text>Mon compte TNB</Text>
+      <Text>Mon compte</Text>
     </Translation>
     <Translation>
       <Id>Player_Name</Id>
@@ -268,7 +268,7 @@
     </Translation>
     <Translation>
       <Id>Product</Id>
-      <Text>Outils</Text>
+      <Text>Produit</Text>
     </Translation>
     <Translation>
       <Id>Anti_Afk</Id>
@@ -288,15 +288,15 @@
     </Translation>
     <Translation>
       <Id>No_setting_for_this_product</Id>
-      <Text>Il n'y a pas d'options particulières à ce produit</Text>
+      <Text>Il n'y a pas d'options de configuration pour ce produit</Text>
     </Translation>
     <Translation>
       <Id>Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List</Id>
-      <Text>Merci de définir les minerais à prospecter dans "Configuration générale" =&gt; 'Gestion des loots' =&gt; 'Minerais à prospecter'</Text>
+      <Text>Veuillez définir la liste des minerais à prospecter dans "Configuration générale" =&gt; 'Gestion des loots' =&gt; 'Minerais à prospecter'</Text>
     </Translation>
     <Translation>
       <Id>Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List</Id>
-      <Text>Merci de définir les plantes à moudre dans "Configuration générale" =&gt; 'Gestion des loots' =&gt; 'Plantes à moudre'</Text>
+      <Text>Veuillez définir la liste des plantes à moudre dans "Configuration générale" =&gt; 'Gestion des loots' =&gt; 'Plantes à moudre'</Text>
     </Translation>
     <Translation>
       <Id>Convertion_finish</Id>
@@ -328,15 +328,15 @@
     </Translation>
     <Translation>
       <Id>Name_Empty</Id>
-      <Text>Non non défini</Text>
+      <Text>Nom non défini</Text>
     </Translation>
     <Translation>
       <Id>NPCNotFound</Id>
-      <Text>NPC not found, make sure to write as it appear in your client language.</Text>
+	  <Text>PNJ non trouvé, veuillez vous assurer d'avoir saisi exactement le nom tel qu'il apparait dans la langue de votre jeu</Text>
     </Translation>
     <Translation>
       <Id>Separation_distance_record</Id>
-      <Text>Separation distance record</Text>
+      <Text>Distance d'enregistrement</Text>
     </Translation>
     <Translation>
       <Id>Del</Id>
@@ -344,11 +344,11 @@
     </Translation>
     <Translation>
       <Id>Add_this_position_to_Black_list_Radius</Id>
-      <Text>Blacklister cette position</Text>
+      <Text>Ignorer cette position</Text>
     </Translation>
     <Translation>
       <Id>Add_Target_to_Npc_list</Id>
-      <Text>Ajouter la cible à la liste</Text>
+      <Text>Ajouter la cible à la liste des PNJ</Text>
     </Translation>
     <Translation>
       <Id>Load</Id>
@@ -372,7 +372,7 @@
     </Translation>
     <Translation>
       <Id>Del_Zone</Id>
-      <Text>Supprimer la zone</Text>
+      <Text>Supprimer cette zone</Text>
     </Translation>
     <Translation>
       <Id>Zone_Name</Id>
@@ -396,7 +396,7 @@
     </Translation>
     <Translation>
       <Id>Add_Target</Id>
-      <Text>Ajouter cible</Text>
+      <Text>Ajouter la cible</Text>
     </Translation>
     <Translation>
       <Id>points</Id>
@@ -404,7 +404,7 @@
     </Translation>
     <Translation>
       <Id>Clear</Id>
-      <Text>Supprimer</Text>
+      <Text>Nettoyer</Text>
     </Translation>
     <Translation>
       <Id>Target_Ids</Id>
@@ -424,7 +424,7 @@
     </Translation>
     <Translation>
       <Id>Use_Lure</Id>
-      <Text>Utiliser appât</Text>
+      <Text>Utiliser un appât</Text>
     </Translation>
     <Translation>
       <Id>Fish_School</Id>
@@ -436,7 +436,7 @@
     </Translation>
     <Translation>
       <Id>Fishing_Pole_Name</Id>
-      <Text>Nom de la canne à pêche</Text>
+      <Text>Canne à pêche</Text>
     </Translation>
     <Translation>
       <Id>Weapon_Name</Id>
@@ -444,35 +444,35 @@
     </Translation>
     <Translation>
       <Id>If_special__If_empty__default_items_is_used</Id>
-      <Text>If special. If empty, default items is used</Text>
+      <Text>Si vide l'objet par défaut est utilisé</Text>
     </Translation>
     <Translation>
       <Id>Profile_Creator</Id>
-      <Text>Editeur de profil</Text>
+      <Text>Créateur de profils</Text>
     </Translation>
     <Translation>
       <Id>Precision_Mode__fish_school</Id>
-      <Text>Precision Mode (fish school)</Text>
+      <Text>Mode précision (banc de poisson)</Text>
     </Translation>
     <Translation>
       <Id>Settings_Fisherbot</Id>
-      <Text>Paramètres du Fisherbot</Text>
+      <Text>Paramètres de Fisherbot</Text>
     </Translation>
     <Translation>
       <Id>Please_select_an_profile_or_disable_School_Fish_option</Id>
-      <Text>Merci de charger un profil ou de désactiver la pêche dans les bancs</Text>
+      <Text>Veuillez selectionner un profil ou désactiver le mode précision</Text>
     </Translation>
     <Translation>
       <Id>Survey_spell_not_found__stopping_tnb</Id>
-      <Text>Sort de fouille est introuvable, fermeture de l'archéologue</Text>
+      <Text>Sort de fouille introuvable, fermeture de l'archéologie</Text>
     </Translation>
     <Translation>
       <Id>SolvingEveryXMinutes</Id>
-      <Text>Reconstituer toutes les X mins</Text>
+      <Text>Reconstituer toutes les X minutes</Text>
     </Translation>
     <Translation>
       <Id>MaxTryByDigsite</Id>
-      <Text>Essai max par site de fouille</Text>
+      <Text>Essai maximum par sites de fouille</Text>
     </Translation>
     <Translation>
       <Id>min</Id>
@@ -500,31 +500,31 @@
     </Translation>
     <Translation>
       <Id>Get_informations_of_all_ingame_objects</Id>
-      <Text>Obtenir une liste de tous les Gameobject en jeu</Text>
+      <Text>Liste de tous les objets en mémoire</Text>
     </Translation>
     <Translation>
       <Id>Get_Taget_informations</Id>
-      <Text>Obtenir des infos sur la cible</Text>
+      <Text>Informations de la cible</Text>
     </Translation>
     <Translation>
       <Id>Get_My_Position</Id>
-      <Text>Obtenir ma position GPS</Text>
+      <Text>Obtenir ma position</Text>
     </Translation>
     <Translation>
       <Id>Npc_type_list</Id>
-      <Text>Obtenir une liste des type de PNJ</Text>
+      <Text>Liste des type de PNJ</Text>
     </Translation>
     <Translation>
       <Id>Get_infomations_by_name</Id>
-      <Text>Obtenir des infos par nom</Text>
+      <Text>Info d'un objet par nom</Text>
     </Translation>
     <Translation>
       <Id>Launch_Lua_script</Id>
-      <Text>Executer le script Lua</Text>
+      <Text>Lancer le code Lua</Text>
     </Translation>
     <Translation>
       <Id>Developer_Tools</Id>
-      <Text>Outils pour développeurs</Text>
+      <Text>Outils dév</Text>
     </Translation>
     <Translation>
       <Id>AdvancedSettingsPanelName</Id>
@@ -532,7 +532,7 @@
     </Translation>
     <Translation>
       <Id>Npc_Mailbox_Search_Radius</Id>
-      <Text>Zone de recherche de PNJ/Boite au lettre</Text>
+      <Text>Distance de recherche de PNJ/BaL</Text>
     </Translation>
     <Translation>
       <Id>Use_Paths_Finder</Id>
@@ -540,11 +540,11 @@
     </Translation>
     <Translation>
       <Id>SecuritySystemPanelName</Id>
-      <Text>Arrêt du jeu / TNB / Securités</Text>
+      <Text>Gestion des sécurités (Pause, Stop, Fermeture de WoW)</Text>
     </Translation>
     <Translation>
       <Id>Song_if_New_Whisper</Id>
-      <Text>Lancer un son si nouveau MP</Text>
+      <Text>Jouer un son si nouveau MP</Text>
     </Translation>
     <Translation>
       <Id>Security</Id>
@@ -576,7 +576,7 @@
     </Translation>
     <Translation>
       <Id>Pause_tnb_if_Nearby_Player</Id>
-      <Text>Pause de TNB si un joueur est proche</Text>
+      <Text>Pause si un joueur est proche</Text>
     </Translation>
     <Translation>
       <Id>If_reached______Honor_Points</Id>
@@ -592,7 +592,7 @@
     </Translation>
     <Translation>
       <Id>MailsManagementPanelName</Id>
-      <Text>Courriers (Envoyer vos loots sur vos reroll)</Text>
+      <Text>Gestion du courrier (Envoyer vos loots sur vos reroll)</Text>
     </Translation>
     <Translation>
       <Id>Mail_Recipient</Id>
@@ -600,23 +600,23 @@
     </Translation>
     <Translation>
       <Id>Force_Mail_List__one_item_by_line</Id>
-      <Text>Forcer l'envoie de ces objets (un nom par ligne)</Text>
+      <Text>Forcer l'envoi des objets listés (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Mail_Purple_items</Id>
-      <Text>Envoyer les objets epic</Text>
+      <Text>Envoyer les objets épiques</Text>
     </Translation>
     <Translation>
       <Id>Mail_Blue_items</Id>
-      <Text>Envoyer les objets bleu</Text>
+      <Text>Envoyer les objets bleus</Text>
     </Translation>
     <Translation>
       <Id>Mail_Green_items</Id>
-      <Text>Envoyer les objets vert</Text>
+      <Text>Envoyer les objets verts</Text>
     </Translation>
     <Translation>
       <Id>Mail_White_items</Id>
-      <Text>Envoyer les objets blanc</Text>
+      <Text>Envoyer les objets blancs</Text>
     </Translation>
     <Translation>
       <Id>Mail_Gray_items</Id>
@@ -624,39 +624,39 @@
     </Translation>
     <Translation>
       <Id>Subject</Id>
-      <Text>Nom des messages</Text>
+      <Text>Sujet</Text>
     </Translation>
     <Translation>
       <Id>Use_Mail</Id>
-      <Text>Utiliser l'envoie automatique</Text>
+      <Text>Utiliser la messagerie</Text>
     </Translation>
     <Translation>
       <Id>Do_not_Mail_List__one_item_by_line</Id>
-      <Text>Ne pas envoyer ces objets (un nom par ligne)</Text>
+      <Text>Ignorer l'envoi des objets listés (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>NPCsRepairSellBuyPanelName</Id>
-      <Text>PNJ vendeurs (Achats / Ventes)</Text>
+      <Text>Gestion des PNJ - Réparation, achats, ventes</Text>
     </Translation>
     <Translation>
       <Id>Force_Sell_List__one_item_by_line</Id>
-      <Text>Items à vendre (un nom par ligne)</Text>
+      <Text>Forcer la vente des objets listés (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Sell_Purple_items</Id>
-      <Text>Vendre les objets epic</Text>
+      <Text>Vendre les objets épiques</Text>
     </Translation>
     <Translation>
       <Id>Sell_Blue_items</Id>
-      <Text>Vendre les objets bleu</Text>
+      <Text>Vendre les objets bleus</Text>
     </Translation>
     <Translation>
       <Id>Sell_Green_items</Id>
-      <Text>Vendre les objets vert</Text>
+      <Text>Vendre les objets verts</Text>
     </Translation>
     <Translation>
       <Id>Sell_White_items</Id>
-      <Text>Vendre les objets blanc</Text>
+      <Text>Vendre les objets blancs</Text>
     </Translation>
     <Translation>
       <Id>Sell_Gray_items</Id>
@@ -672,31 +672,31 @@
     </Translation>
     <Translation>
       <Id>Food_Amount</Id>
-      <Text>Nombre de nourriture (PV)</Text>
+      <Text>Quantité de nourriture</Text>
     </Translation>
     <Translation>
       <Id>Drink_Amount</Id>
-      <Text>Nombre de boissons (Mana)</Text>
+      <Text>Quantité de boissons</Text>
     </Translation>
     <Translation>
       <Id>Do_not_Sell_List__one_item_by_line</Id>
-      <Text>NE PAS VENDRE (un nom par liste)</Text>
+      <Text>Ne jamais vendre les objets listés (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Relogger</Id>
-      <Text>Reconnexion automatique au jeu</Text>
+      <Text>Reconnexion automatique</Text>
     </Translation>
     <Translation>
       <Id>BattleNet_Account</Id>
-      <Text>Nom du compte Battle.net</Text>
+      <Text>Nom du compte Battle.Net</Text>
     </Translation>
     <Translation>
       <Id>Account_Password</Id>
-      <Text>Mot de passe Battle.net</Text>
+      <Text>Mot de passe</Text>
     </Translation>
     <Translation>
       <Id>Account_Email</Id>
-      <Text>Email Battle.net</Text>
+      <Text>Email du compte</Text>
     </Translation>
     <Translation>
       <Id>LootingFarmingManagementPanelName</Id>
@@ -708,7 +708,7 @@
     </Translation>
     <Translation>
       <Id>Prospecting_Every__in_minute</Id>
-      <Text>Prospecter toutes les XX (minutes)</Text>
+      <Text>Prospecter toutes les X (minutes)</Text>
     </Translation>
     <Translation>
       <Id>Prospecting</Id>
@@ -716,7 +716,7 @@
     </Translation>
     <Translation>
       <Id>Prospecting_list__one_item_by_line</Id>
-      <Text>Minerais à prospecter (un nom par ligne)</Text>
+      <Text>Minerais à prospecter (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Milling_only_in_town</Id>
@@ -724,7 +724,7 @@
     </Translation>
     <Translation>
       <Id>Milling_Every__in_minute</Id>
-      <Text>Moudre toutes les XX (minutes)</Text>
+      <Text>Moudre toutes les X (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Milling</Id>
@@ -732,7 +732,7 @@
     </Translation>
     <Translation>
       <Id>Milling_list__one_item_by_line</Id>
-      <Text>Plantes à moudre (un nom par ligne)</Text>
+      <Text>Plantes à moudre (un nom d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Smelting</Id>
@@ -740,11 +740,11 @@
     </Translation>
     <Translation>
       <Id>Don_t_harvest</Id>
-      <Text>Liste à ne pas farm (un id par ligne)</Text>
+      <Text>Liste des ID à ne jamais récolter (un ID d'objet par ligne)</Text>
     </Translation>
     <Translation>
       <Id>Harvest_During_Long_Move</Id>
-      <Text>Farmer pendant les longs déplacements</Text>
+      <Text>Récolter pendant les longs déplacements</Text>
     </Translation>
     <Translation>
       <Id>Ninja</Id>
@@ -760,11 +760,11 @@
     </Translation>
     <Translation>
       <Id>Harvest_Herbs</Id>
-      <Text>Farmer les herbes</Text>
+      <Text>Récolter les herbes</Text>
     </Translation>
     <Translation>
       <Id>Harvest_Minerals</Id>
-      <Text>Farmer les minerais</Text>
+      <Text>Récolter les minerais</Text>
     </Translation>
     <Translation>
       <Id>Skin_Mobs</Id>
@@ -780,7 +780,7 @@
     </Translation>
     <Translation>
       <Id>Loot_Mobs</Id>
-      <Text>Looter les créatures</Text>
+      <Text>Ramasser les créatures</Text>
     </Translation>
     <Translation>
       <Id>ActivateLootStatistics</Id>
@@ -808,23 +808,23 @@
     </Translation>
     <Translation>
       <Id>Aquatic</Id>
-      <Text>Forme/monture Aquatique</Text>
+      <Text>Monture Aquatique</Text>
     </Translation>
     <Translation>
       <Id>Ignore_Fight_if_in_Gound_Mount</Id>
-      <Text>Ignorer combats en monture au sol</Text>
+      <Text>Ignorer les combats en monture au sol</Text>
     </Translation>
     <Translation>
       <Id>Mount_Distance</Id>
-      <Text>Distance min pour monture au sol</Text>
+      <Text>Distance de monte</Text>
     </Translation>
     <Translation>
       <Id>Flying</Id>
-      <Text>Forme/monture volante</Text>
+      <Text>Monture volante</Text>
     </Translation>
     <Translation>
       <Id>Ground</Id>
-      <Text>Forme/monture au sol</Text>
+      <Text>Monture au sol</Text>
     </Translation>
     <Translation>
       <Id>Use_Ground_Mount</Id>
@@ -840,11 +840,11 @@
     </Translation>
     <Translation>
       <Id>ActivateSkillsAutoTraining</Id>
-      <Text>Activer l'apprentissage automatique des métiers</Text>
+      <Text>Apprentissage automatique des métiers</Text>
     </Translation>
     <Translation>
       <Id>OnlyTrainCurrentlyUsedSkills</Id>
-      <Text>S'entrainer seulement si ce métier est actif</Text>
+      <Text>Apprendre uniquement si le métier est actif</Text>
     </Translation>
     <Translation>
       <Id>TrainMountingCapacity</Id>
@@ -852,19 +852,19 @@
     </Translation>
     <Translation>
       <Id>OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum</Id>
-      <Text>Apprendre les métiers seulement si nous avons le double de la somme</Text>
+      <Text>Apprendre les métiers seulement si il y a le double de la somme requise</Text>
     </Translation>
     <Translation>
       <Id>BecomeApprenticeIfNeededByProduct</Id>
-      <Text>Devenir apprenti dans un métier si le produit en a besoin</Text>
+      <Text>Apprendre un métier si le produit en a besoin</Text>
     </Translation>
     <Translation>
       <Id>BecomeApprenticeOfSecondarySkillsWhileQuesting</Id>
-      <Text>Devenir apprenti dans les métiers secondaires pendant le leveling</Text>
+      <Text>Apprendre automatiquement les métiers secondaires</Text>
     </Translation>
     <Translation>
       <Id>Don_t_start_fighting</Id>
-      <Text>Ne pas commencer le combat</Text>
+      <Text>Ne jamais commencer le combat</Text>
     </Translation>
     <Translation>
       <Id>Can_attack_units_already_in_fight</Id>
@@ -876,11 +876,11 @@
     </Translation>
     <Translation>
       <Id>CombatClass</Id>
-      <Text>Combat Class</Text>
+      <Text>Classe de combat</Text>
     </Translation>
     <Translation>
       <Id>HealerClass</Id>
-      <Text>Healer Class</Text>
+      <Text>Classe de soins</Text>
     </Translation>
     <Translation>
       <Id>CloseWithoutSaving</Id>
@@ -908,19 +908,19 @@
     </Translation>
     <Translation>
       <Id>VisualStudioRedistribuablePackages</Id>
-      <Text>Le paquet Visual Studio 2013 Reditribuable est requis pour que le générateur de chemin puisse fonctionner. Voulez-vous l'installer maintenant ? (Le logiciel se fermera dans les deux cas)</Text>
+      <Text>Visual Studio 2013 Reditribuable est requis pour qfaire fonctionner le générateur de chemin. Voulez-vous l'installer maintenant ? (Le logiciel se fermera dans les deux cas)</Text>
     </Translation>
     <Translation>
       <Id>New_whisper</Id>
-      <Text>Nouveau MP</Text>
+      <Text>Nouveau message</Text>
     </Translation>
     <Translation>
       <Id>Stop_tnb_if</Id>
-      <Text>Stop tnb if</Text>
+      <Text>Arrêt TNB si</Text>
     </Translation>
     <Translation>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
-      <Text>Merci de selectionner une monture/forme volante dans les configutations générales</Text>
+      <Text>MVeuillez selectionner une monture volante dans les configutations générales</Text>
     </Translation>
     <Translation>
       <Id>ThisAquaticMountDoesNotExist</Id>
@@ -944,35 +944,35 @@
     </Translation>
     <Translation>
       <Id>UpdateRequiredCasesTitle</Id>
-      <Text>This version of the bot is not compatible with this version of World of Warcraft</Text>
+      <Text>Cette vesrion du bot n'st pas compatible avec cette version de World of Warcraft</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCases</Id>
-      <Text>Please use the right version of the bot or wait for an update if not yet available.</Text>
+      <Text>Veuillez utiliser la bonne version du bot ou attendre qu'une mise-à-jour soir disponible</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireOlderTheNoobBotTitle</Id>
-      <Text>This version of TheNoobBot is too advanced for this version of WoW</Text>
+      <Text>Cette version de TheNoobBot est trop récente pour cette version de WoW</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireOlderTheNoobBot</Id>
-      <Text>This version is for WoW Build </Text>
+      <Text>Cette version est adaptés pour WoW version </Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireNewerTheNoobBotTitle</Id>
-      <Text>This version of WoW is too advanced for this version of TheNoobBot</Text>
+      <Text>Cette version de WoW est trop récente pour cette version de TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequireNewerTheNoobBot</Id>
-      <Text>This version is for WoW Build </Text>
+      <Text>Cette version est adaptés pour WoW version </Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCase1</Id>
-      <Text>Case 1: You may have a version of TheNoobBot too recent for this WoW version</Text>
+      <Text>Case 1: Vous avez une version de TheNoobBot trop récente pour cette version de WoW</Text>
     </Translation>
     <Translation>
       <Id>UpdateRequiredCase2</Id>
-      <Text>Case 2: You may have a version of WoW too recent for this TheNoobBot version</Text>
+      <Text>Case 2: Vous avez une version de WoW trop récente pour cette version de TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>RunningWoWBuildDot</Id>
@@ -980,19 +980,19 @@
     </Translation>
     <Translation>
       <Id>RunningWoWBuild</Id>
-      <Text> but you are running WoW Build </Text>
+      <Text> mais vous exécutez WoW version </Text>
     </Translation>
     <Translation>
       <Id>PleaseDownloadOlder</Id>
-      <Text>Please download an older version of TheNoobBot on our forum "News and release". (WoW usually update US realms before EU/RU)</Text>
+      <Text>S'il vous plait veuillez télécharger une ancienne version de TheNoobBot depuis notre forum "News and release". (WoW met-à-jour les version US avant EU/RU)</Text>
     </Translation>
     <Translation>
       <Id>PleaseDownloadNewer</Id>
-      <Text>Please download a newer version of TheNoobBot on our forum "News and release". (You may wait until an update is available)</Text>
+      <Text>S'il vous plait veuillez télécharger une nouvelle version de TheNoobBot depuis notre forum "News and release". (Vous devez attendre qu'une mise-à-jour soit disponible)</Text>
     </Translation>
     <Translation>
       <Id>Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb</Id>
-      <Text>Une alerte Warden est détéctée, fermeture du jeu/TNB</Text>
+      <Text>Une activité du jeu suspecte à été détectée et n'a pu être vérifiée. Fermeture du jeu et de TNB</Text>
     </Translation>
     <Translation>
       <Id>Click_on__Yes__to_close_tnb</Id>
@@ -1024,7 +1024,7 @@
     </Translation>
     <Translation>
       <Id>success</Id>
-      <Text>succes</Text>
+      <Text>succès</Text>
     </Translation>
     <Translation>
       <Id>errors</Id>
@@ -1032,43 +1032,43 @@
     </Translation>
     <Translation>
       <Id>Npc_faction_list</Id>
-      <Text>Npc faction list</Text>
+      <Text>Liste de faction du PNJ</Text>
     </Translation>
     <Translation>
       <Id>Translate_Tools</Id>
-      <Text>Translate Tools</Text>
+      <Text>Outils de traductions</Text>
     </Translation>
     <Translation>
       <Id>Whisper_Egal_at</Id>
-      <Text>Whisper Egal at</Text>
+      <Text>Chuchotement égal à</Text>
     </Translation>
     <Translation>
       <Id>tnb_started_since</Id>
-      <Text>Bot started since</Text>
+      <Text>Bot démarré depuis</Text>
     </Translation>
     <Translation>
       <Id>Your_player_is_now_level</Id>
-      <Text>Vous êtes désormais level</Text>
+      <Text>Vous êtes désormais niveau</Text>
     </Translation>
     <Translation>
       <Id>level_upper</Id>
-      <Text>level upper</Text>
+      <Text>augmentation du niveau</Text>
     </Translation>
     <Translation>
       <Id>Player_Teleported</Id>
-      <Text>Player Teleported</Text>
+      <Text>Joueur téléporté</Text>
     </Translation>
     <Translation>
       <Id>Reached_4000_Honor_Points</Id>
-      <Text>Reached 4000 Honor Points</Text>
+      <Text>Atteint 4000 points d'honneur</Text>
     </Translation>
     <Translation>
       <Id>Bag_is_full</Id>
-      <Text>Bag is full</Text>
+      <Text>Les sacs sont pleins</Text>
     </Translation>
     <Translation>
       <Id>After</Id>
-      <Text>After</Text>
+      <Text>Après</Text>
     </Translation>
     <Translation>
       <Id>Add</Id>
@@ -1076,43 +1076,43 @@
     </Translation>
     <Translation>
       <Id>Launch_C__script</Id>
-      <Text>Launch C# script</Text>
+      <Text>Exécuter un script C#</Text>
     </Translation>
     <Translation>
       <Id>Auto_Make_Elemental</Id>
-      <Text>Auto Make Elemental</Text>
+      <Text>Création des piles automatiquement</Text>
     </Translation>
     <Translation>
       <Id>Nodes_List_Manager</Id>
-      <Text>Nodes List Manager</Text>
+      <Text>gestion des listes de noeuds</Text>
     </Translation>
     <Translation>
       <Id>Smelting_Product_Description</Id>
-      <Text>(Minerai)</Text>
+      <Text>(Permet de traiter le minerai brut en barres)</Text>
     </Translation>
     <Translation>
       <Id>Milling_Product_Description</Id>
-      <Text>(Plante)</Text>
+      <Text>(Permet de fabriquer des pigments à base d'herbes)</Text>
     </Translation>
     <Translation>
       <Id>Prospecting_Product_Description</Id>
-      <Text>(Minerai)</Text>
+      <Text>(Prospection permet la collecte de minerai)</Text>
     </Translation>
     <Translation>
       <Id>Profiles_Converters_Product_Description</Id>
-      <Text>(WowRobot/Pirox/HonorBuddy et plus)</Text>
+      <Text>(Convertis les profils WowRobot/Pirox/HonorBuddy dans le format TnB)</Text>
     </Translation>
     <Translation>
       <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
-      <Text>(Profils du Gatherer, Grinder et Fisherbot seulement)</Text>
+      <Text>(Convertis les profils volants de TnB en des profils terrestre)</Text>
     </Translation>
     <Translation>
       <Id>Grinder_Product_Description</Id>
-      <Text>(Exp, Dépeçage, Réputation et loots)</Text>
+      <Text>(Tuer des monstres et faire des tâches de collecte, utilisé pour XP, la réputation et la récolte d'objets)</Text>
     </Translation>
     <Translation>
       <Id>Gatherer_Product_Description</Id>
-      <Text>(Minage et herboriste)</Text>
+      <Text>(Récolte d'herbes, des veines, de coffres)</Text>
     </Translation>
     <Translation>
       <Id>Damage_Dealer_Product_Description</Id>
@@ -1120,11 +1120,11 @@
     </Translation>
     <Translation>
       <Id>Heal_Bot_Product_Description</Id>
-      <Text>(Soigne les membres de votre groupe et vous - BETA)</Text>
+      <Text>(Soigne les membres de votre groupe - BETA)</Text>
     </Translation>
     <Translation>
       <Id>Fisherbot_Product_Description</Id>
-      <Text>(Fish in Fishing School as well as outside)</Text>
+      <Text>(Apprentissage de la pêche et pêche en extérieur)</Text>
     </Translation>
     <Translation>
       <Id>Battlegrounder_Product_Description</Id>
@@ -1132,31 +1132,31 @@
     </Translation>
     <Translation>
       <Id>Quester_Product_Description</Id>
-      <Text>(XP en quêtant)</Text>
+      <Text>(Gagner des niveaux eu quêtant)</Text>
     </Translation>
     <Translation>
       <Id>Archaeologist_Product_Description</Id>
-      <Text>(Do archaeology to farms exp, achievements and items.)</Text>
+      <Text>(Faire de l'archéologie pour récolter des objets, faire des succès et de l'expérience)</Text>
     </Translation>
     <Translation>
       <Id>Mimesis_Product_Description</Id>
-      <Text>(Do follow, assist and quests with its Master - Beta)</Text>
+      <Text>(Suivre, assister et quêter avec son maître - Beta)</Text>
     </Translation>
     <Translation>
       <Id>By_npc_name</Id>
-      <Text>By npc name</Text>
+      <Text>Par nom de PNJ</Text>
     </Translation>
     <Translation>
       <Id>Object_type</Id>
-      <Text>Object type</Text>
+      <Text>Type d'objets</Text>
     </Translation>
     <Translation>
       <Id>Creature_type</Id>
-      <Text>Creature type</Text>
+      <Text>Type de créature</Text>
     </Translation>
     <Translation>
       <Id>Tracker</Id>
-      <Text>Tracker</Text>
+      <Text>Traqueur</Text>
     </Translation>
     <Translation>
       <Id>Tracker_Product_Description</Id>
@@ -1164,7 +1164,7 @@
     </Translation>
     <Translation>
       <Id>With</Id>
-      <Text>With</Text>
+      <Text>avec</Text>
     </Translation>
     <Translation>
       <Id>Launch_Game</Id>
@@ -1264,11 +1264,11 @@
     </Translation>
     <Translation>
       <Id>WoW_Client_64bit</Id>
-      <Text>Erreur : World of Warcraft 64bit trouvé Attention: TheNoobBot n'est pas compatible avec Wow x64. Merci d'utiliser l'option "Lancer le client 32-bit" dans les préférences de jeu du client Battle.net.</Text>
+      <Text>Erreur : World of Warcraft 64bit détecté, Attention: TheNoobBot n'est pas compatible avec Wow x64 (bit). Veuillez utiliser l'option "Lancer le client 32-bit" dans les préférences de jeu du client Battle.net.</Text>
     </Translation>
     <Translation>
       <Id>Title_WoW_Client_64bit</Id>
-      <Text>Error : World of Warcraft 64bit detected</Text>
+      <Text>Erreur : World of Warcraft 64bit détecté</Text>
     </Translation>
     <Translation>
       <Id>Uncap_MaxFPS</Id>
@@ -1276,7 +1276,7 @@
     </Translation>
     <Translation>
       <Id>AlwaysOnTop</Id>
-      <Text>Garder au dessus</Text>
+      <Text>Garder au dessus des autres fenêtres</Text>
     </Translation>
     <Translation>
       <Id>No_mounts_in_settings</Id>
@@ -1284,11 +1284,11 @@
     </Translation>
     <Translation>
       <Id>AutoConfirmOnBoPItems</Id>
-      <Text>Confirmer automatiquement les items LQR</Text>
+      <Text>Confirmer automatiquement les objets liés quand ramassé</Text>
     </Translation>
     <Translation>
       <Id>JoinQueue</Id>
-      <Text>Join Queue</Text>
+      <Text>Joindre la file d'attente</Text>
     </Translation>
     <Translation>
       <Id>RequeueingInProcess</Id>
@@ -1296,7 +1296,7 @@
     </Translation>
     <Translation>
       <Id>Battleground_Ended</Id>
-      <Text>Battleground has ended.</Text>
+      <Text>Champs de bataille terminé</Text>
     </Translation>
     <Translation>
       <Id>NotInBg</Id>
@@ -1316,35 +1316,35 @@
     </Translation>
     <Translation>
       <Id>RequeueAfterXMinutes</Id>
-      <Text>Requeue after X minutes</Text>
+      <Text>Se remettre en attente après X minutes</Text>
     </Translation>
     <Translation>
       <Id>ErrorMultipleQueue</Id>
-      <Text>You can only be queued for 2 battles at once.</Text>
+      <Text>Vous pouvez seulement vous mettre dans deux files d'attentes à la fois.</Text>
     </Translation>
     <Translation>
       <Id>ErrorRandomQueue</Id>
-      <Text>Can't queue for Random Battleground while in another Battleground queue.</Text>
+      <Text>Impossible de se mettre en fille d'attente aléatoire car vous êtes déjà dans une autre file d'attentede champs de bataille</Text>
     </Translation>
     <Translation>
       <Id>ErrorSingleRandomQueue</Id>
-      <Text>Can't do that while in a Random Battleground queue.</Text>
+      <Text>Vous ne pouvez pas faire cela alors que vous êtes dans une file d'attente de champs de bataille aléatoire.</Text>
     </Translation>
     <Translation>
       <Id>CantDuplicateZone</Id>
-      <Text>You can't have the same zone twice inside the same profile.</Text>
+      <Text>Vous ne pouvez pas avoir la même zone deux fois à l'intérieur du même profil.</Text>
     </Translation>
     <Translation>
       <Id>CantRecordInWrongZone</Id>
-      <Text>You must select the current Battleground corresponding zone prior to start recording.</Text>
+      <Text>Vous devez sélectionner la zone actuelle de Battleground correspondant avant de vous inscrire.</Text>
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffTitle</Id>
-      <Text>Battlegrounder - Settings Tip-off</Text>
+      <Text>Battlegrounder - Options Tip-off</Text>
     </Translation>
     <Translation>
       <Id>BattlegrounderTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Battlegrounder product: </Text>
+      <Text>Vos Paramètres généraux ne sont pas optimisés pour le produit Battlegrounder: </Text>
     </Translation>
     <Translation>
       <Id>GrinderTipOffTitle</Id>
@@ -1352,7 +1352,7 @@
     </Translation>
     <Translation>
       <Id>GrinderTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Grinder product: </Text>
+      <Text>Vos Paramètres généraux ne sont pas optimisés pour le produit Grinder: </Text>
     </Translation>
     <Translation>
       <Id>GathererTipOffTitle</Id>
@@ -1360,7 +1360,7 @@
     </Translation>
     <Translation>
       <Id>GathererTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Gatherer product: </Text>
+      <Text>Vos Paramètres généraux ne sont pas optimisés pour le produit Gatherer: </Text>
     </Translation>
     <Translation>
       <Id>QuesterTipOffTitle</Id>
@@ -1376,259 +1376,259 @@
     </Translation>
     <Translation>
       <Id>ArchaeologistTipOffMessage</Id>
-      <Text>Your General Settings are not optimized for the Archaeologist product: </Text>
+      <Text>Vos Paramètres généraux ne sont pas optimisés pour le produit Archéologie: </Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOn</Id>
-      <Text>We highly recommand to activate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
+      <Text>Nous recommandons fortement d'activer la fonction de ramassage (looting) dans Configurations générales =&gt; Gestion des loots et farms =&gt; Ramasser les créatures =&gt; Oui</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOff</Id>
-      <Text>We highly recommand to deactivate the Looting function in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
+      <Text>Nous recommandons fortement de désactiver la fonction de ramassage (looting) dans Configurations générales =&gt; Gestion des loots et farms =&gt; Ramasser les créatures =&gt; Non</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOnArchaeologist</Id>
-      <Text>We recommand to activate the Looting function for Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; ON</Text>
+      <Text>Nous recommandons fortement d'activer la fonction de ramassage en Pandarie (looting) dans Configurations générales =&gt; Gestion des loots et farms =&gt; Ramasser les créatures =&gt; Oui</Text>
     </Translation>
     <Translation>
       <Id>TipOffLootingOffArchaeologist</Id>
-      <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings =&gt; Looting &amp; Farming options =&gt; Loot mobs =&gt; OFF</Text>
+      <Text>ous recommandons fortement désactiver la fonction de ramassage en Pandarie (looting) dans Configurations générales =&gt; Gestion des loots et farms =&gt; Ramasser les créatures =&gt; Non</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingOnQuester</Id>
-      <Text>We highly recommand to activate the Selling function while questing, in General Settings =&gt; NPCs Management - Repairer, Vendor (Selling or Buying) =&gt; Selling =&gt; ON</Text>
+      <Text>Nous recommandons fortement d'activer la fonction de vente tout en quêtant, dans Configurations générales =&gt; Gestion des PNJ - Réparations, achats, ventes =&gt; Vendre automatiquement =&gt; Oui</Text>
     </Translation>
     <Translation>
       <Id>TipOffSellingQualityQuester</Id>
-      <Text>We also recommand to activate selling for Grey, White and Green items to avoid getting your bags full / not able to sell its content.</Text>
+      <Text>Nous recommandons également d'activer la vente des objets Gris, Blanc et vert afin éviter d'avoir vos sacs pleins.</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusLow</Id>
-      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; -30</Text>
+      <Text>Nous recommandons fortement de définir la valeur du rayon de recherche au maximum à 30 mètres dans Configurations générales =&gt; Gestion des loots et farms =&gt; Zone de recherche =&gt; -30 (moins que 30 mètres)</Text>
     </Translation>
     <Translation>
       <Id>TipOffRadiusHigh</Id>
-      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings =&gt; Looting &amp; Farming options =&gt; Search Radius =&gt; 100+</Text>
+      <Text>Nous recommandons fortement de définir la valeur du rayon de recherche au maximum à 100 mètres dans Configurations générales =&gt; Gestion des loots et farms =&gt; Zone de recherche =&gt; +100 (plus que 100 mètres)</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOn</Id>
-      <Text>We highly recommand to activate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; YES.</Text>
+      <Text>Nous recommandons fortement d'activer la monture au sol dans Configurations générales =&gt; Gestion des montures et formes =&gt; Utiliser la monture au sol =&gt; Oui.</Text>
     </Translation>
     <Translation>
       <Id>TipOffUseGroundMountOff</Id>
-      <Text>We highly recommand to deactivate Ground Mount in General Settings =&gt; Mount options =&gt; Use Ground Mount =&gt; NO.</Text>
+      <Text>Nous recommandons fortement de désactiver la monture au sol dans Configurations générales =&gt; Gestion des montures et formes =&gt; Utiliser la monture au sol =&gt; Non.</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyGroundMount</Id>
-      <Text>We highly recommand to set a Ground Mount Name in General Settings =&gt; Mount options =&gt; Ground =&gt; Name of the Mount.</Text>
+      <Text>Nous recommandons fortement de configurer une monture au sol dans Configurations générales =&gt; Gestion des montures et formes =&gt; Monture au sol =&gt; Nom de la monture.</Text>
     </Translation>
     <Translation>
       <Id>TipOffEmptyFlyingMount</Id>
-      <Text>We highly recommand to set a Flying Mount Name in General Settings =&gt; Mount options =&gt; Flying =&gt; Name of the Mount.</Text>
+      <Text>Nous recommandons fortement de configurer une monture volante dans Configurations générales =&gt; Gestion des montures et formes =&gt; Monture volante =&gt; Nom de la monture.</Text>
     </Translation>
     <Translation>
       <Id>TipOffMinimumDistanceToUseGroundMount</Id>
-      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings =&gt; Mount options.</Text>
+      <Text>Nous vous recommandons deconfigurer une distance minimale pour l'utilisation de la monture au sol de 30 mètres dans Configurations générales =&gt; Gestion des montures et formes =&gt; Distance de monte.</Text>
     </Translation>
     <Translation>
       <Id>UseHearthstone</Id>
-      <Text>Use Hearthstone</Text>
+      <Text>Utiliser la pierre de foyer</Text>
     </Translation>
     <Translation>
       <Id>HearthstoneNotFound</Id>
-      <Text>Use Hearthstone prior to log-off activated, but HearthStone not found.</Text>
+      <Text>Utilisez votre pierre de foyer avant déconnexion activé, mais la pierre de foyer n'est pas trouvée.</Text>
     </Translation>
     <Translation>
       <Id>UseMollE</Id>
-      <Text>Use MOLL-E if up</Text>
+      <Text>Utilisez MAIL-E si disponible</Text>
     </Translation>
     <Translation>
       <Id>UseRobot</Id>
-      <Text>Use Robot when up</Text>
+      <Text>Utilisez Robot réparateur quand disponible</Text>
     </Translation>
     <Translation>
       <Id>ReloggerManagementPanelName</Id>
-      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Text>AutoRelogger - (Permet de vous reconnecter automatiquement après une déconnexion)</Text>
     </Translation>
     <Translation>
       <Id>QuesterProfileManagementSystem</Id>
-      <Text>Quester Profile Management System</Text>
+      <Text>System de gestion des profils de quêtes</Text>
     </Translation>
     <Translation>
       <Id>GroupedProfileManager</Id>
-      <Text>Grouped Profile Manager</Text>
+      <Text>Gestion des profils groupés</Text>
     </Translation>
     <Translation>
       <Id>SimpleProfileManager</Id>
-      <Text>Simple Profile Manager</Text>
+      <Text>Gestion des profils simple</Text>
     </Translation>
     <Translation>
       <Id>GroupedQuestProfileFile</Id>
-      <Text>Grouped Quest Profile File</Text>
+      <Text>Fichier de profils de quêtes groupés</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToEdit</Id>
-      <Text>There is no Grouped Profile to edit</Text>
+      <Text>Il n'y a pas de profil groupés à éditer</Text>
     </Translation>
     <Translation>
       <Id>RemoveGroupedProfile</Id>
-      <Text>Remove Grouped Profile</Text>
+      <Text>Enlever le profil groupé</Text>
     </Translation>
     <Translation>
       <Id>Confirm</Id>
-      <Text>Confirm</Text>
+      <Text>Confirmer</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToDelete</Id>
-      <Text>There is no Grouped Profile to delete.</Text>
+      <Text>Il n'y a pas de profil groupés à supprimer.</Text>
     </Translation>
     <Translation>
       <Id>FeatureNotYetAvailable</Id>
-      <Text>This feature is not yet available</Text>
+      <Text>Cette optiosn n'est actuellement pas disponible</Text>
     </Translation>
     <Translation>
       <Id>AddGrouped</Id>
-      <Text>Create a grouped profile</Text>
+      <Text>Créer un profil groupés</Text>
     </Translation>
     <Translation>
       <Id>EditGrouped</Id>
-      <Text>Edit a grouped profile</Text>
+      <Text>Editer un profil groupés</Text>
     </Translation>
     <Translation>
       <Id>GroupedDocumentation</Id>
-      <Text>Grouped Profile Documentation</Text>
+      <Text>Documentation des profils groupés</Text>
     </Translation>
     <Translation>
       <Id>RemoveGrouped</Id>
-      <Text>Remove a grouped profile</Text>
+      <Text>Retirer un profil groupés</Text>
     </Translation>
     <Translation>
       <Id>AddSimple</Id>
-      <Text>Create a simple profile</Text>
+      <Text>Créer un profil simple</Text>
     </Translation>
     <Translation>
       <Id>EditSimple</Id>
-      <Text>Edit a simple profile</Text>
+      <Text>Editer un profil simple</Text>
     </Translation>
     <Translation>
       <Id>SimpleDocumentation</Id>
-      <Text>Simple Profile Documentation</Text>
+      <Text>Documentation du profil simple</Text>
     </Translation>
     <Translation>
       <Id>RemoveSimple</Id>
-      <Text>Remove a simple profile</Text>
+      <Text>Retirer un profil simple</Text>
     </Translation>
     <Translation>
       <Id>AvailableSimpleProfiles</Id>
-      <Text>Available profiles :</Text>
+      <Text>Profils disponibles :</Text>
     </Translation>
     <Translation>
       <Id>CurrentlyGroupedProfiles</Id>
-      <Text>Currently grouped profiles :</Text>
+      <Text>Profil groupés actuel :</Text>
     </Translation>
     <Translation>
       <Id>GroupSelectedProfile</Id>
-      <Text>Group the selected profile</Text>
+      <Text>Grouper le profil sélectionné</Text>
     </Translation>
     <Translation>
       <Id>UngroupSelectedProfile</Id>
-      <Text>Ungroup selected profile</Text>
+      <Text>Dégrouper le profil sélectionné</Text>
     </Translation>
     <Translation>
       <Id>UngroupAllProfiles</Id>
-      <Text>Ungroup ALL Profiles</Text>
+      <Text>Dégrouper tous les profils</Text>
     </Translation>
     <Translation>
       <Id>SaveAsAndClose</Id>
-      <Text>Save as new &amp;&amp; Close</Text>
+      <Text>Sauver comme nouveau &amp;&amp; Fermer</Text>
     </Translation>
     <Translation>
       <Id>SaveAndClose</Id>
-      <Text>Save &amp;&amp; Close</Text>
+      <Text>Sauver &amp;&amp; Fermer</Text>
     </Translation>
     <Translation>
       <Id>CancelAndClose</Id>
-      <Text>Cancel &amp;&amp; Close</Text>
+      <Text>Annuler &amp;&amp; Fermer</Text>
     </Translation>
     <Translation>
       <Id>MoveUp</Id>
-      <Text>Move Up</Text>
+      <Text>Monter</Text>
     </Translation>
     <Translation>
       <Id>MoveDown</Id>
-      <Text>Move Down</Text>
+      <Text>Descendre</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedNew</Id>
-      <Text>You can't save an empty Grouped Profile</Text>
+      <Text>Vous ne pouvez pas enregistrer un profil groupés vide</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptyGroupedExisting</Id>
-      <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+      <Text>Vous ne pouvez pas enregistrer un profil groupés vide, si vous désirez l'effacer cliquez sur Annuler et effacer le depuis la fenêtre précédente</Text>
     </Translation>
     <Translation>
       <Id>QuesterProfileLoader</Id>
-      <Text>Quester Profile Loader</Text>
+      <Text>Chargement de profils de quêtes</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToLoad</Id>
-      <Text>There is no simple profiles to load, make sure to download the latest TheNoobBot version to get profiles</Text>
+      <Text>Il n'y a pas de profils simple à charger, assurez-vous d'avoir télécharger la dernière version de TheNoobBot pour obtenir des profils à jour</Text>
     </Translation>
     <Translation>
       <Id>NoGroupedProfileToLoad</Id>
-      <Text>There is no grouped profiles to load, please create one or download one from TheNoobBot community forum</Text>
+      <Text>Il n'y a pas de profils groupés à charger, veuillez en créer un ou en télécharger depuis le forum de la communauté TheNoobBot</Text>
     </Translation>
     <Translation>
       <Id>SimpleProfilesList</Id>
-      <Text>Simple Profile List</Text>
+      <Text>Liste des profils simple</Text>
     </Translation>
     <Translation>
       <Id>GroupedProfilesList</Id>
-      <Text>Grouped Profile List</Text>
+      <Text>GListe des profils groupés</Text>
     </Translation>
     <Translation>
       <Id>LoadSimpleProfile</Id>
-      <Text>Load a Simple Profile</Text>
+      <Text>Charger un profil simple</Text>
     </Translation>
     <Translation>
       <Id>LoadGroupedProfile</Id>
-      <Text>Load a Grouped Profile</Text>
+      <Text>Charger un profil groupés</Text>
     </Translation>
     <Translation>
       <Id>ProfileQuestList</Id>
-      <Text>Profile's Quest List :</Text>
+      <Text>List des profils de quêtes :</Text>
     </Translation>
     <Translation>
       <Id>AddNewQuest</Id>
-      <Text>Add a new Quest</Text>
+      <Text>Ajouter une nouvelle quête</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuest</Id>
-      <Text>Edit the selected Quest</Text>
+      <Text>Editer la quête sélectionnée</Text>
     </Translation>
     <Translation>
       <Id>DeleteSelectedQuest</Id>
-      <Text>Delete the selected Quest</Text>
+      <Text>Effacer la quête sélectionnée</Text>
     </Translation>
     <Translation>
       <Id>SimpleQuestProfileFile</Id>
-      <Text>Simple Quest Profile File</Text>
+      <Text>Fichier de profil de quête simple</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptySimpleNew</Id>
-      <Text>You can't save an empty Simple Profile</Text>
+      <Text>Vous ne pouvez pas enregistrer un profil de quête simple qui est vide</Text>
     </Translation>
     <Translation>
       <Id>CantSaveEmptySimpleExisting</Id>
-      <Text>You can't save an empty Simple Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+      <Text>Vous ne pouvez pas enregistrer un profil simple vide, si vous désirez l'effacer cliquez sur Annuler et effacer le depuis la fenêtre précédente</Text>
     </Translation>
     <Translation>
       <Id>NoSimpleProfileToEdit</Id>
-      <Text>There is no Simple Profile to edit</Text>
+      <Text>Il n'y a pas de profil simple à éditer</Text>
     </Translation>
     <Translation>
       <Id>AutoCloseChatFrame</Id>
-      <Text>Auto Close Chat</Text>
+      <Text>Fermeture automatique du chat</Text>
     </Translation>
     <Translation>
       <Id>Settings_Mimesis</Id>
@@ -1644,51 +1644,51 @@
     </Translation>
     <Translation>
       <Id>ActivatePartyMode</Id>
-      <Text>Party Mode (Asks master to invite us)</Text>
+      <Text>Groupe (Demander de vous inviter)</Text>
     </Translation>
     <Translation>
       <Id>MimesisBroadcasterSettings</Id>
-      <Text>Mimesis Broadcaster - (Others sessions with a started Mimesis can teamplay with this session)</Text>
+      <Text>Diffusion de Mimesis - (Les autres sessions avec un Mimesis démarré peuvent se connecter à cette session)</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingPortDefault</Id>
-      <Text>Default: 6543</Text>
+      <Text>Défaut: 6543</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingIPWan</Id>
-      <Text>IP Wan (internet)</Text>
+      <Text>IP WAN (internet)</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingIPLan</Id>
-      <Text>IP Lan (network)</Text>
+      <Text>IP LAN (réseau local)</Text>
     </Translation>
     <Translation>
       <Id>ActivateBroadcastingMimesis</Id>
-      <Text>Activate Broadcasting</Text>
+      <Text>Activer la diffusion</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingIPLocal</Id>
-      <Text>IP Local (computer)</Text>
+      <Text>IP locale (ordinateur)</Text>
     </Translation>
     <Translation>
       <Id>BroadcastingPort</Id>
-      <Text>Broadcasting Port</Text>
+      <Text>Port de dissusion</Text>
     </Translation>
     <Translation>
       <Id>ProfileQuesterList</Id>
-      <Text>Profile's Questers List :</Text>
+      <Text>Liste des profils de quêtes :</Text>
     </Translation>
     <Translation>
       <Id>AddNewQuester</Id>
-      <Text>Add the target PNJ</Text>
+      <Text>Ajouter le PNJ ciblé</Text>
     </Translation>
     <Translation>
       <Id>EditSelectedQuester</Id>
-      <Text>Edit the selected PNJ</Text>
+      <Text>Editer le PNJ sélectionné</Text>
     </Translation>
     <Translation>
       <Id>DeleteSelectedQuester</Id>
-      <Text>Delete the selected PNJ</Text>
+      <Text>Supprimer le PNJ sélectionné</Text>
     </Translation>
     <Translation>
       <Id>LoginFormTitle</Id>
@@ -1696,7 +1696,7 @@
     </Translation>
     <Translation>
       <Id>LoginFormDefaultIdentifier</Id>
-      <Text>PSEUDO</Text>
+      <Text>UTILISATEUR</Text>
     </Translation>
     <Translation>
       <Id>LoginFormRemember</Id>
@@ -1704,7 +1704,7 @@
     </Translation>
     <Translation>
       <Id>LoginFormStart</Id>
-      <Text>LANCER</Text>
+      <Text>CONNECTER</Text>
     </Translation>
     <Translation>
       <Id>LoginFormRefresh</Id>
@@ -1756,15 +1756,15 @@
     </Translation>
     <Translation>
       <Id>NpcFactionButton</Id>
-      <Text>Liste des Faction de PNJ</Text>
+      <Text>Liste de Faction du PNJ</Text>
     </Translation>
     <Translation>
       <Id>SearchObjectButton</Id>
-      <Text>Chercher WoWObject</Text>
+      <Text>Chercher un objet</Text>
     </Translation>
     <Translation>
       <Id>AllObjectsButton</Id>
-      <Text>Liste de tous les objects en mémoire</Text>
+      <Text>Lister les informations de tous les objets</Text>
     </Translation>
     <Translation>
       <Id>SearchObjectBox</Id>
@@ -1788,75 +1788,75 @@
     </Translation>
     <Translation>
       <Id>CrateRestoredArtifacts</Id>
-      <Text>Mettre dans une caisse</Text>
+      <Text>Restaurer les artéfacts</Text>
     </Translation>
     <Translation>
       <Id>LatestLogEntry</Id>
-      <Text>Latest Log Entry :</Text>
+      <Text>Dernière entrée du log :</Text>
     </Translation>
     <Translation>
       <Id>TargetLevel</Id>
-      <Text>Target's Level :</Text>
+      <Text>Niveau - cible :</Text>
     </Translation>
     <Translation>
       <Id>TargetName</Id>
-      <Text>Target's Name :</Text>
+      <Text>Nom - cible :</Text>
     </Translation>
     <Translation>
       <Id>TargetHealth</Id>
-      <Text>Target's Health :</Text>
+      <Text>Vie - cible :</Text>
     </Translation>
     <Translation>
       <Id>HonorPerHour</Id>
-      <Text>Honor per Hour :</Text>
+      <Text>Points d'honneur par heure :</Text>
     </Translation>
     <Translation>
       <Id>UnitKills</Id>
-      <Text>Unit Kills :</Text>
+      <Text>Monstres tuées :</Text>
     </Translation>
     <Translation>
       <Id>XPPerHour</Id>
-      <Text>XP per Hour :</Text>
+      <Text>XP par heure :</Text>
     </Translation>
     <Translation>
       <Id>PlayerNameChanged</Id>
-      <Text>Character changed, closing bot.</Text>
+      <Text>Changement de personnage, fermeture du bot.</Text>
     </Translation>
     <Translation>
       <Id>StopProduct</Id>
-      <Text>STOP PRODUCT</Text>
+      <Text>ARRET PRODUIT</Text>
     </Translation>
     <Translation>
       <Id>StartProduct</Id>
-      <Text>START PRODUCT</Text>
+      <Text>DEMARRER PRODUIT</Text>
     </Translation>
     <Translation>
       <Id>OnlineBots</Id>
-      <Text>Online bots : </Text>
+      <Text>Bots en ligne : </Text>
     </Translation>
     <Translation>
       <Id>SessionInfo</Id>
-      <Text>SESSION STARTED WITH ID</Text>
+      <Text>SESSION DEMARREE AVEC ID</Text>
     </Translation>
     <Translation>
       <Id>ItemsFounds</Id>
-      <Text>items found.</Text>
+      <Text>Items trouvés.</Text>
     </Translation>
     <Translation>
       <Id>SwitchDxError1</Id>
-      <Text>Possible issue while botting detected, please try to switch DirectX version of your WoW client.</Text>
+      <Text>Problème possible détectés, veuillez essayer de changer la version DirectX de votre client WoW.</Text>
     </Translation>
     <Translation>
       <Id>SwitchDxError2</Id>
-      <Text>Ignore this message if you really have ZERO items in your World of Warcraft bags.</Text>
+      <Text>Ignorez ce message si vous avez vraiment aucuns items dans vos sacs.</Text>
     </Translation>
     <Translation>
       <Id>RemoteSession</Id>
-      <Text>REMOTE SESSION</Text>
+      <Text>CONTROLE DISTANT</Text>
     </Translation>
     <Translation>
       <Id>MyAccount</Id>
-      <Text>MY ACCOUNT</Text>
+      <Text>MON COMPTE</Text>
     </Translation>
     <Translation>
       <Id>DevTools</Id>
@@ -1864,83 +1864,83 @@
     </Translation>
     <Translation>
       <Id>Website</Id>
-      <Text>Website</Text>
+      <Text>Site Web</Text>
     </Translation>
     <Translation>
       <Id>WantToSubscribe</Id>
-      <Text>WANT TO SUBSCRIBE ?</Text>
+      <Text>S'ABONNER ?</Text>
     </Translation>
     <Translation>
       <Id>SelectOffer</Id>
-      <Text>Select an offer in the list below</Text>
+      <Text>Sélectionnez une offre dans la liste ci-dessous</Text>
     </Translation>
     <Translation>
       <Id>PaymentPage</Id>
-      <Text>Open the payment page</Text>
+      <Text>Ouvrir la page de payement</Text>
     </Translation>
     <Translation>
       <Id>AccountName</Id>
-      <Text>Account Name :</Text>
+      <Text>Nom du compte :</Text>
     </Translation>
     <Translation>
       <Id>TimeLeft</Id>
-      <Text>Time Left :</Text>
+      <Text>Temps restant :</Text>
     </Translation>
     <Translation>
       <Id>SubscribeMonth</Id>
-      <Text>1 month - 6.99 euros or 4 allopass</Text>
+      <Text>1 mois - 6.99 euros ou 4 allopass</Text>
     </Translation>
     <Translation>
       <Id>SubscribeHalfYear</Id>
-      <Text>6 month - 19.99 euros</Text>
+      <Text>6 mois - 19.99 euros</Text>
     </Translation>
     <Translation>
       <Id>SubscribeMonthPlatinium</Id>
-      <Text>1 month PLATINIUM - 110 euros</Text>
+      <Text>1 mois PLATINIUM - 110 euros</Text>
     </Translation>
     <Translation>
       <Id>SubscribeLifeTime</Id>
-      <Text>Life time - 44.99 euros</Text>
+      <Text>A vie - 44.99 euros</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine1</Id>
-      <Text>The Flying To Ground Profiles Converter works with Gatherer, Grinder and Fisherbot profiles.</Text>
+      <Text>Le convertisseur de profils de vols en terrestre fonctionne avec des profils de pêche, grinder, gatherer, etc.</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine2</Id>
-      <Text>The conversion process can take minutes. The generated profiles might not be good Grounds profiles, </Text>
+      <Text>Le processus de conversion peut durer quelques minutes. Les profils générés pourraient ne pas être de bons profils terrestre, </Text>
     </Translation>
     <Translation>
       <Id>FtGConverterLine3</Id>
-      <Text>if you have issue with the generated profile, just create one by hand for this zone.</Text>
+      <Text>si vous avez des problème avec le profil généré, veuillez en créer un manuellement pour cette zone.</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterButton</Id>
-      <Text>Select Flying profiles to convert into Ground profiles</Text>
+      <Text>Sélectionner les profils volants à convertir en profils terrestre</Text>
     </Translation>
     <Translation>
       <Id>FtGConverterHeaderText</Id>
-      <Text>Flying to Ground Converter</Text>
+      <Text>Convertisseur volants vers terrestre</Text>
     </Translation>
     <Translation>
       <Id>TrackerPopUp</Id>
-      <Text>You must keep the tracking window open and check your Ingame Minimap to see results of the tracking.</Text>
+      <Text>Vous devez garder la fenêtre de suivi ouverte et vérifier votre minicarte en jeu pour voir les résultats de la recherche.</Text>
     </Translation>
     <Translation>
       <Id>LoginFormUseKey</Id>
-      <Text>Use Key</Text>
+      <Text>Utiliser une clef</Text>
     </Translation>
     <Translation>
       <Id>LoginFormKey</Id>
-      <Text>KEY</Text>
+      <Text>Clef</Text>
     </Translation>
     <Translation>
       <Id>HideSdkFiles</Id>
-      <Text>Hide SDK Files</Text>
+      <Text>Cacher les fichiers SDK</Text>
     </Translation>
     <Translation>
       <Id>Whisper</Id>
-      <Text>Whispers</Text>
+      <Text>Chuchotter</Text>
     </Translation>
   </Translations>
 </Language>
