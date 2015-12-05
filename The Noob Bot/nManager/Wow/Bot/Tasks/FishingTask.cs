@@ -18,7 +18,7 @@ namespace nManager.Wow.Bot.Tasks
         private static UInt128 _guidNode;
         private static bool _precision;
         private static string _lureName = "";
-        private static string _fisingPoleName = "";
+        private static string _fishingPoleName = "";
         private static bool _useLure;
         private static bool _automaticallyUseDraenorSecondaryBait;
 
@@ -71,6 +71,7 @@ namespace nManager.Wow.Bot.Tasks
                     _precision = precision;
                     _useLure = useLure;
                     _lureName = lureName;
+                    _fishingPoleName = fishingPoleName;
                     _automaticallyUseDraenorSecondaryBait = automaticallyUseDraenorSecondaryBait;
                     Fishing.ReCheckFishingPoleTimer.ForceReady(); // In case the user stop/start the fisher bot, 
                     // we want him to be able to equip his new fishing pole if it's the case.
@@ -100,7 +101,7 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         while (_fishBotLaunched)
                         {
-                            Fishing.EquipFishingPoles();
+                            Fishing.EquipFishingPoles(_fishingPoleName);
                             if (_useLure)
                                 Fishing.UseLure(_lureName, _automaticallyUseDraenorSecondaryBait);
 
