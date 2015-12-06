@@ -7861,8 +7861,6 @@ public class WarlockDestruction
                 Others.SafeSleep(20);
         }
 
-        Others.SafeSleep(1000);
-
         if (MySettings.UseGrimoireofSacrifice && !GrimoireofSacrifice.HaveBuff && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && GrimoireofSacrifice.IsSpellUsable)
             GrimoireofSacrifice.Cast();
     }
