@@ -6515,6 +6515,7 @@ public class WarlockDemonology
     public readonly Spell CorruptionDebuff = new Spell(146739);
     public readonly Spell BurningRush = new Spell("Burning Rush");
     public readonly Spell DarkIntent = new Spell("Dark Intent");
+    public readonly Spell GrimoireofSupremacy = new Spell("Grimoire of Supremacy");
     public readonly Spell KilJaedensCunning = new Spell("Kil'Jaeden's Cunning");
     public readonly Spell Metamorphosis = new Spell("Metamorphosis");
     public readonly Spell MoltenCore = new Spell("Molten Core");
@@ -6525,9 +6526,9 @@ public class WarlockDemonology
 
     #region Offensive Spell
 
-    public readonly Spell Corruption = new Spell("Corruption");
     public readonly Spell ChaosWave = new Spell(124916);
     public readonly Spell CommandDemon = new Spell("Command Demon");
+    public readonly Spell Corruption = new Spell("Corruption");
     public readonly Spell DemonicServitude = new Spell("Demonic Servitude");
     public readonly Spell Demonbolt = new Spell("Demonbolt");
     public readonly Spell Doom = new Spell(603);
@@ -6538,8 +6539,13 @@ public class WarlockDemonology
     public readonly Spell SoulFire = new Spell("Soul Fire");
     public readonly Spell SummonFelguard = new Spell("Summon Felguard");
     public readonly Spell SummonFelhunter = new Spell("Summon Felhunter");
+    public readonly Spell SummonFelImp = new Spell("Summon Fel Imp");
     public readonly Spell SummonImp = new Spell("Summon Imp");
+    public readonly Spell SummonObserver = new Spell("Summon Observer");
+    public readonly Spell SummonShivarra = new Spell("Summon Shivarra");
     public readonly Spell SummonSuccubus = new Spell("Summon Succubus");
+    public readonly Spell SummonWrathguard = new Spell("Summon Wrathguard");
+    public readonly Spell SummonVoidlord = new Spell("Summon Voidlord");
     public readonly Spell SummonVoidwalker = new Spell("Summon Voidwalker");
     public readonly Spell TouchofChaos = new Spell(103964);
 
@@ -6551,8 +6557,10 @@ public class WarlockDemonology
     public readonly Spell DarkSoulKnowledge = new Spell("Dark Soul: Knowledge");
     public readonly Spell GrimoireofService = new Spell("Grimoire of Service");
     public readonly Spell MannarothsFury = new Spell("Mannaroth's Fury");
+    public readonly Spell SummonAbyssal = new Spell("Summon Abyssal");
     public readonly Spell SummonDoomguard = new Spell("Summon Doomguard");
     public readonly Spell SummonInfernal = new Spell("Summon Infernal");
+    public readonly Spell SummonTerrorguard = new Spell(112927);
 
     #endregion
 
@@ -6753,7 +6761,7 @@ public class WarlockDemonology
 
         DPSCycle();
 
-        if (_onCd.IsReady && (ObjectManager.Me.HealthPercent <= DefenseHP || ObjectManager.GetNumberAttackPlayer() > 2))
+        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
             DefenseCycle();
 
         if (ObjectManager.Me.HealthPercent <= HealHP || ObjectManager.Me.ManaPercentage <= HealMP)
@@ -6826,65 +6834,87 @@ public class WarlockDemonology
             return;
         }
 
-        if (MySettings.UseSummonDoomguard && DemonicServitude.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonDoomguard.IsSpellUsable)
+        if (MySettings.UseSummonDoomguard && DemonicServitude.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) 
+            && (SummonDoomguard.IsSpellUsable || SummonTerrorguard.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonDoomguard.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonTerrorguard.Cast();
+            else
+                SummonDoomguard.Cast();
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(20);
         }
-
-        else if (MySettings.UseSummonInfernal && DemonicServitude.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonInfernal.IsSpellUsable)
+        else if (MySettings.UseSummonInfernal && DemonicServitude.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) 
+            && (SummonInfernal.IsSpellUsable || SummonAbyssal.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
+            if (GrimoireofSupremacy.KnownSpell)
+                SpellManager.CastSpellByIDAndPosition(140763, ObjectManager.Target.Position);
+            else
+                SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonFelguard && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonFelguard.IsSpellUsable)
+        else if (MySettings.UseSummonFelguard && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && (SummonFelguard.IsSpellUsable || SummonWrathguard.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonFelguard.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonWrathguard.Cast();
+            else
+                SummonFelguard.Cast();
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonFelhunter && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonFelhunter.IsSpellUsable)
+        else if (MySettings.UseSummonFelhunter && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && (SummonFelhunter.IsSpellUsable || SummonObserver.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonFelhunter.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonObserver.Cast();
+            else
+                SummonFelhunter.Cast();
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonImp && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonImp.IsSpellUsable)
+        else if (MySettings.UseSummonImp && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && (SummonImp.IsSpellUsable || SummonFelImp.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonImp.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonFelImp.Cast();
+            else
+                SummonImp.Cast();
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonVoidwalker && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonVoidwalker.IsSpellUsable)
+        else if (MySettings.UseSummonVoidwalker && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && (SummonVoidwalker.IsSpellUsable || SummonVoidlord.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonVoidwalker.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonVoidlord.Cast();
+            else
+                SummonVoidwalker.Cast();
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonSuccubus && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonSuccubus.IsSpellUsable)
+        else if (MySettings.UseSummonSuccubus && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && (SummonSuccubus.IsSpellUsable || SummonShivarra.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonSuccubus.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonShivarra.Cast();
+            else
+                SummonSuccubus.Cast();
             Others.SafeSleep(500);
 
             while (ObjectManager.Me.IsCast)
@@ -7082,10 +7112,19 @@ public class WarlockDemonology
             DarkSoulKnowledge.Cast();
 
         if (MySettings.UseSummonDoomguard && !DemonicServitude.KnownSpell && SummonDoomguard.IsSpellUsable && ObjectManager.GetUnitInSpellRange(Hellfire.MaxRangeHostile) < 8)
-            SummonDoomguard.Cast();
-
+        {
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonTerrorguard.Cast();
+            else
+                SummonDoomguard.Cast();
+        }
         if (MySettings.UseSummonInfernal && !DemonicServitude.KnownSpell && SummonInfernal.IsSpellUsable && ObjectManager.GetUnitInSpellRange(Hellfire.MaxRangeHostile) > 7)
-            SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
+        {
+            if (GrimoireofSupremacy.KnownSpell)
+                SpellManager.CastSpellByIDAndPosition(140763, ObjectManager.Target.Position);
+            else
+                SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
+        }
 
         if (MySettings.UseGrimoireofService && GrimoireofService.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
             GrimoireofService.Cast();
@@ -7152,7 +7191,7 @@ public class WarlockDemonology
                 return;
             }
             if (MySettings.UseHellfire && Hellfire.IsSpellUsable && ObjectManager.Me.HealthPercent > MySettings.UseHellfireAbovePercentage && (ObjectManager.GetUnitInSpellRange(Hellfire.MaxRangeHostile) > 4 
-                || (ObjectManager.GetUnitInSpellRange(Hellfire.MaxRangeHostile) > 2 || MannarothsFury.HaveBuff)))
+                || MannarothsFury.HaveBuff))
             {
                 Hellfire.Cast();
                 Others.SafeSleep(200);
@@ -7423,6 +7462,10 @@ public class WarlockDestruction
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    public int DecastHP = 0;
+    public int DefenseHP = 0;
+    public int HealHP = 0;
+    public int HealMP = 0;
     public int LC = 0;
 
     private Timer _onCd = new Timer(0);
@@ -7431,13 +7474,10 @@ public class WarlockDestruction
 
     #region Professions & Racials
 
-    public readonly Spell Alchemy = new Spell("Alchemy");
     public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     public readonly Spell Berserking = new Spell("Berserking");
     public readonly Spell BloodFury = new Spell("Blood Fury");
-
     public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
     public readonly Spell Stoneform = new Spell("Stoneform");
     public readonly Spell WarStomp = new Spell("War Stomp");
 
@@ -7445,12 +7485,15 @@ public class WarlockDestruction
 
     #region Warlock Buffs
 
-    public readonly Spell CurseofEnfeeblement = new Spell("Curse of Enfeeblement");
-    public readonly Spell CurseoftheElements = new Spell("Curse of the Elements");
+    public readonly Spell BurningRush = new Spell("Burning Rush");
     public readonly Spell DarkIntent = new Spell("Dark Intent");
     public readonly Spell GrimoireofSacrifice = new Spell("Grimoire of Sacrifice");
-    public readonly Spell SoulLink = new Spell("Soul Link");
+    public readonly Spell GrimoireofSupremacy = new Spell("Grimoire of Supremacy");
+    public readonly Spell ImmolateDebuff = new Spell(157736);
+    public readonly Spell KilJaedensCunning = new Spell("Kil'Jaeden's Cunning");
+    public readonly Spell RainofFireDebuff = new Spell(104232);
     public readonly Spell Soulstone = new Spell("Soulstone");
+    public readonly Spell UnendingBreath = new Spell("Unending Breath");
 
     #endregion
 
@@ -7459,43 +7502,46 @@ public class WarlockDestruction
     public readonly Spell ChaosBolt = new Spell("Chaos Bolt");
     public readonly Spell CommandDemon = new Spell("Command Demon");
     public readonly Spell Conflagrate = new Spell("Conflagrate");
-    public readonly Spell Corruption = new Spell("Corruption");
-    public readonly Spell FelFlame = new Spell("Fel Flame");
-    public readonly Spell FireandBrimstone = new Spell("Fire and Brimstone");
-    public readonly Spell HarvestLife = new Spell("Harvest Life");
+    public readonly Spell DemonicServitude = new Spell("Demonic Servitude");
     public readonly Spell Immolate = new Spell("Immolate");
     public readonly Spell Incinerate = new Spell("Incinerate");
     public readonly Spell RainofFire = new Spell("Rain of Fire");
-    public readonly Spell ShadowBolt = new Spell("Shadow Bolt");
     public readonly Spell Shadowburn = new Spell("Shadowburn");
     public readonly Spell SummonFelhunter = new Spell("Summon Felhunter");
+    public readonly Spell SummonFelImp = new Spell("Summon Fel Imp");
     public readonly Spell SummonImp = new Spell("Summon Imp");
+    public readonly Spell SummonObserver = new Spell("Summon Observer");
+    public readonly Spell SummonShivarra = new Spell("Summon Shivarra");
     public readonly Spell SummonSuccubus = new Spell("Summon Succubus");
+    public readonly Spell SummonVoidlord = new Spell("Summon Voidlord");
     public readonly Spell SummonVoidwalker = new Spell("Summon Voidwalker");
-    private Timer _immolateTimer = new Timer(0);
-    private Timer _rainOfFireTimer = new Timer(0);
 
     #endregion
 
     #region Offensive Cooldown
 
-    public readonly Spell ArchimondesVengeance = new Spell("Archimonde's Vengeance");
-    public readonly Spell DarkSoul = new Spell("Dark Soul: Instability");
+    public readonly Spell Cataclysm = new Spell("Cataclysm");
+    public readonly Spell DarkSoulInstability = new Spell("Dark Soul: Instability");
+    public readonly Spell FireandBrimstone = new Spell("Fire and Brimstone");
     public readonly Spell GrimoireofService = new Spell("Grimoire of Service");
+    public readonly Spell MannarothsFury = new Spell("Mannaroth's Fury");
+    public readonly Spell SummonAbyssal = new Spell("Summon Abyssal");
     public readonly Spell SummonDoomguard = new Spell("Summon Doomguard");
     public readonly Spell SummonInfernal = new Spell("Summon Infernal");
+    public readonly Spell SummonTerrorguard = new Spell(112927);
 
     #endregion
 
     #region Defensive Cooldown
 
+    public readonly Spell BloodHorror = new Spell("Blood Horror");
     public readonly Spell DarkBargain = new Spell("Dark Bargain");
+    public readonly Spell Fear = new Spell("Fear");
     public readonly Spell HowlofTerror = new Spell("HowlofTerror");
     public readonly Spell SacrificialPact = new Spell("Sacrificial Pact");
     public readonly Spell Shadowfury = new Spell("Shadowfury");
-    public readonly Spell TwilightWard = new Spell("Twilight Ward");
-    public readonly Spell UnboundWill = new Spell("Unbound Will");
     public readonly Spell UnendingResolve = new Spell("Unending Resolve");
+    private Timer _fearTimer = new Timer(0);
 
     #endregion
 
@@ -7503,21 +7549,10 @@ public class WarlockDestruction
 
     public readonly Spell CreateHealthstone = new Spell("Create Healthstone");
     public readonly Spell DarkRegeneration = new Spell("Dark Regeneration");
-    public readonly Spell DrainLife = new Spell("Drain Life");
     public readonly Spell EmberTap = new Spell("Ember Tap");
     public readonly Spell FlamesofXoroth = new Spell("Flames of Xoroth");
-    public readonly Spell HealthFunnel = new Spell("Health Funnel");
-    public readonly Spell LifeTap = new Spell("Life Tap");
     public readonly Spell MortalCoil = new Spell("Mortal Coil");
     private Timer _healthstoneTimer = new Timer(0);
-
-    #endregion
-
-    #region Procs
-
-    public readonly uint Backdraft = 117828; // Reduce cast time of chaos bolt and incinerate
-    public readonly uint DarkSoulInstability = 113858;
-    public readonly uint FourT16Parts = 145091;
 
     #endregion
 
@@ -7528,6 +7563,7 @@ public class WarlockDestruction
         MySettings = WarlockDestructionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDestructionSettings>(MySettings);
         UInt128 lastTarget = 0;
+        LowHP();
 
         while (Main.InternalLoop)
         {
@@ -7539,14 +7575,13 @@ public class WarlockDestruction
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (CurseoftheElements.IsHostileDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget && (Immolate.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (MySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
+                            if (MySettings.UseLowCombat && (ObjectManager.Me.Level - ObjectManager.Target.Level >= MySettings.UseLowCombatAtPercentage))
                             {
                                 LC = 1;
                                 if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
@@ -7573,48 +7608,126 @@ public class WarlockDestruction
         }
     }
 
+    private void LowHP()
+    {
+        if (MySettings.UseBloodHorrorAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseBloodHorrorAtPercentage;
+
+        if (MySettings.UseDarkBargainAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseDarkBargainAtPercentage;
+
+        if (MySettings.UseFearAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseFearAtPercentage;
+
+        if (MySettings.UseHowlofTerrorAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseHowlofTerrorAtPercentage;
+
+        if (MySettings.UseSacrificialPactAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseSacrificialPactAtPercentage;
+
+        if (MySettings.UseShadowfuryAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseShadowfuryAtPercentage;
+
+        if (MySettings.UseStoneformAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseStoneformAtPercentage;
+
+        if (MySettings.UseUnendingResolveAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseUnendingResolveAtPercentage;
+
+        if (MySettings.UseWarStompAtPercentage > DefenseHP)
+            DefenseHP = MySettings.UseWarStompAtPercentage;
+
+        if (MySettings.UseArcaneTorrentForDecastAtPercentage > DecastHP)
+            DecastHP = MySettings.UseArcaneTorrentForDecastAtPercentage;
+
+        if (MySettings.UseArcaneTorrentForResourceAtPercentage > HealMP)
+            HealMP = MySettings.UseArcaneTorrentForResourceAtPercentage;
+
+        if (MySettings.UseCreateHealthstoneAtPercentage > HealHP)
+            HealHP = MySettings.UseCreateHealthstoneAtPercentage;
+
+        if (MySettings.UseDarkRegenerationAtPercentage > HealHP)
+            HealHP = MySettings.UseDarkRegenerationAtPercentage;
+
+        if (MySettings.UseGiftoftheNaaruAtPercentage > HealHP)
+            HealHP = MySettings.UseGiftoftheNaaruAtPercentage;
+
+        if (MySettings.UseMortalCoilAtPercentage > HealHP)
+            HealHP = MySettings.UseMortalCoilAtPercentage;
+    }
+
     private void Pull()
     {
-        if (MySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsSpellUsable
-            && CurseoftheElements.IsHostileDistanceGood && !CurseoftheElements.TargetHaveBuff)
+        if (ObjectManager.Pet.IsAlive)
         {
-            CurseoftheElements.Cast();
+            Lua.RunMacroText("/petattack");
+            Logging.WriteFight("Cast Pet Attack");
         }
+        if (MySettings.UseImmolate && Immolate.IsSpellUsable && Immolate.IsHostileDistanceGood)
+        {
+            Immolate.Cast();
+            return;
+        }
+
+        if (MySettings.UseIncinerate && Incinerate.IsSpellUsable && Incinerate.IsHostileDistanceGood)
+            Incinerate.Cast();
     }
 
     private void LowCombat()
     {
         Buff();
+
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        Heal();
 
-        if (MySettings.UseIncinerate && Incinerate.KnownSpell && Incinerate.IsHostileDistanceGood && Incinerate.IsSpellUsable)
+        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
+            DefenseCycle();
+
+        if (ObjectManager.Me.HealthPercent <= HealHP)
+            Heal();
+
+        if (MySettings.UseConflagrate && Conflagrate.GetSpellCharges > 0 && Conflagrate.IsSpellUsable && Conflagrate.IsHostileDistanceGood)
+        {
+            Conflagrate.Cast();
+            return;
+        }
+        if (MySettings.UseCommandDemon && CommandDemon.IsSpellUsable && Conflagrate.IsHostileDistanceGood)
+        {
+            CommandDemon.Cast();
+            return;
+        }
+        if (MySettings.UseRainofFire && !RainofFireDebuff.TargetHaveBuff && RainofFire.IsSpellUsable && ObjectManager.GetUnitInSpellRange(8) > 2)
+        {
+            SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
+            return;
+        }
+        if (MySettings.UseIncinerate && Incinerate.IsSpellUsable && Incinerate.IsHostileDistanceGood)
         {
             Incinerate.Cast();
             return;
-        }
-        if (MySettings.UseRainofFire && RainofFire.KnownSpell && _rainOfFireTimer.IsReady
-            && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
-            _rainOfFireTimer = new Timer(1000*6.5);
         }
     }
 
     private void Combat()
     {
         Buff();
-        DPSBurst();
+
         if (MySettings.DoAvoidMelee)
             AvoidMelee();
+
         DPSCycle();
-        Decast();
-        if (_onCd.IsReady)
+
+        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
             DefenseCycle();
-        Heal();
+
+        if (ObjectManager.Me.HealthPercent <= HealHP || ObjectManager.Me.ManaPercentage <= HealMP)
+            Heal();
+
+        if (ObjectManager.Me.HealthPercent <= DecastHP)
+            Decast();
+
+        DPSBurst();
+        DPSCycle();
     }
 
     private void Buff()
@@ -7624,79 +7737,134 @@ public class WarlockDestruction
 
         Pet();
 
-        if (MySettings.UseDarkIntent && DarkIntent.KnownSpell && !DarkIntent.HaveBuff && DarkIntent.IsSpellUsable)
-            DarkIntent.Cast();
+        if (MySettings.UseBurningRush && !BurningRush.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Me.InCombat && BurningRush.IsSpellUsable)
+            BurningRush.Cast();
 
-        if (MySettings.UseSoulLink && SoulLink.KnownSpell && !SoulLink.HaveBuff && SoulLink.IsSpellUsable && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) &&
-            ObjectManager.Me.InCombat)
-            SoulLink.Cast();
+        if (MySettings.UseBurningRush && BurningRush.HaveBuff && (!ObjectManager.Me.GetMove || ObjectManager.Me.InCombat
+            || ObjectManager.Me.HealthPercent < MySettings.UseBurningRushAbovePercentage) && BurningRush.IsSpellUsable)
+            BurningRush.Cast();
 
-        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable && Usefuls.GetContainerNumFreeSlots > 0)
-            Soulstone.Cast();
-
-        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCount(5512) == 0 &&
-            Usefuls.GetContainerNumFreeSlots > 0)
+        if (MySettings.UseCreateHealthstone && ItemsManager.GetItemCount(5512) == 0 && Usefuls.GetContainerNumFreeSlots > 0 && CreateHealthstone.IsSpellUsable)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Cast();
+            Others.SafeSleep(500);
+
             while (ObjectManager.Me.IsCast)
                 Others.SafeSleep(200);
         }
 
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
+        if (MySettings.UseDarkIntent && !DarkIntent.HaveBuff && DarkIntent.IsSpellUsable)
+            DarkIntent.Cast();
+
+        if (MySettings.UseSoulstone && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
+        {
+            Soulstone.Cast();
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
+        }
+
+        if (MySettings.UseUnendingBreath && ObjectManager.Me.UnitAura(5697).AuraTimeLeftInMs < 1 && UnendingBreath.IsSpellUsable)
+            UnendingBreath.Cast();
+
+        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
     private void Pet()
     {
-        if (MySettings.UseHealthFunnel && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0 && HealthFunnel.IsSpellUsable && ObjectManager.Pet.HealthPercent < 50)
-        {
-            HealthFunnel.Cast();
-            while (ObjectManager.Me.IsCast)
-            {
-                if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
-                    break;
-                Others.SafeSleep(100);
-            }
-        }
-
-        if (MySettings.UseFlamesofXoroth && FlamesofXoroth.KnownSpell && ObjectManager.Me.InCombat && FlamesofXoroth.IsSpellUsable &&
-            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        if (MySettings.UseFlamesofXoroth && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff && FlamesofXoroth.IsSpellUsable)
         {
             FlamesofXoroth.Cast();
             Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (MySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelhunter.IsSpellUsable && ObjectManager.Me.InCombat &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        
+        if (MySettings.UseSummonDoomguard && DemonicServitude.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff
+            && (SummonDoomguard.IsSpellUsable || SummonTerrorguard.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonFelhunter.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonTerrorguard.Cast();
+            else
+                SummonDoomguard.Cast();
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonImp && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonImp.IsSpellUsable && ObjectManager.Me.InCombat &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (MySettings.UseSummonInfernal && DemonicServitude.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff
+            && (SummonInfernal.IsSpellUsable || SummonAbyssal.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonImp.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SpellManager.CastSpellByIDAndPosition(140763, ObjectManager.Target.Position);
+            else
+                SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonVoidwalker.IsSpellUsable &&
-                 ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (MySettings.UseSummonFelhunter && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff 
+            && (SummonFelhunter.IsSpellUsable || SummonObserver.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonVoidwalker.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonObserver.Cast();
+            else
+                SummonFelhunter.Cast();
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
         }
-        else if (MySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonSuccubus.IsSpellUsable && ObjectManager.Me.InCombat &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (MySettings.UseSummonImp && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff
+            && (SummonImp.IsSpellUsable || SummonFelImp.IsSpellUsable))
         {
             Logging.WriteFight(" - PET DEAD - ");
-            SummonSuccubus.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonFelImp.Cast();
+            else
+                SummonImp.Cast();
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
         }
-        Others.SafeSleep(200);
-        if (MySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable &&
-            (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        else if (MySettings.UseSummonVoidwalker && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff 
+            && (SummonVoidwalker.IsSpellUsable || SummonVoidlord.IsSpellUsable))
         {
+            Logging.WriteFight(" - PET DEAD - ");
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonVoidlord.Cast();
+            else
+                SummonVoidwalker.Cast();
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
+        }
+        else if (MySettings.UseSummonSuccubus && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff 
+            && (SummonSuccubus.IsSpellUsable || SummonShivarra.IsSpellUsable))
+        {
+            Logging.WriteFight(" - PET DEAD - ");
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonShivarra.Cast();
+            else
+                SummonSuccubus.Cast();
+            Others.SafeSleep(500);
+
+            while (ObjectManager.Me.IsCast)
+                Others.SafeSleep(20);
+        }
+
+        Others.SafeSleep(1000);
+
+        if (MySettings.UseGrimoireofSacrifice && !GrimoireofSacrifice.HaveBuff && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && GrimoireofSacrifice.IsSpellUsable)
             GrimoireofSacrifice.Cast();
-        }
     }
 
     private void AvoidMelee()
@@ -7721,51 +7889,74 @@ public class WarlockDestruction
 
     private void DefenseCycle()
     {
-        if (MySettings.UseUnendingResolve && UnendingResolve.KnownSpell && UnendingResolve.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseUnendingResolveAtPercentage)
+        if (MySettings.UseBloodHorror && ObjectManager.Me.HealthPercent <= MySettings.UseBloodHorrorAtPercentage && BloodHorror.IsSpellUsable && ObjectManager.Target.GetDistance < 6)
         {
-            UnendingResolve.Cast();
-            _onCd = new Timer(1000*8);
+            BloodHorror.Cast();
             return;
         }
-        if (MySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseHowlofTerrorAtPercentage)
-        {
-            HowlofTerror.Cast();
-            return;
-        }
-        if (MySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseDarkBargainAtPercentage)
+        if (MySettings.UseDarkBargain && ObjectManager.Me.HealthPercent <= MySettings.UseDarkBargainAtPercentage && DarkBargain.IsSpellUsable)
         {
             DarkBargain.Cast();
             _onCd = new Timer(1000*8);
             return;
         }
-        if (MySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseSacrificialPactAtPercentage
-            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        if (MySettings.UseFear && ObjectManager.Me.HealthPercent <= MySettings.UseFearAtPercentage && _fearTimer.IsReady && Fear.IsSpellUsable)
+        {
+            Fear.Cast();
+            _fearTimer = new Timer(1000*10);
+            _onCd = new Timer(1000*2);
+            return;
+        }
+        if (MySettings.UseHowlofTerror && ObjectManager.Me.HealthPercent <= MySettings.UseHowlofTerrorAtPercentage && HowlofTerror.IsSpellUsable 
+            && ObjectManager.GetUnitInSpellRange(HowlofTerror.MaxRangeHostile) > 0)
+        {
+            HowlofTerror.Cast();
+            return;
+        }
+        if (MySettings.UseMeteorStrike && MySettings.UseSummonInfernal && ObjectManager.Me.HealthPercent <= MySettings.UseMeteorStrikeAtPercentage 
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && CommandDemon.IsSpellUsable)
+        {
+            CommandDemon.Cast();
+            return;
+        }
+        if (MySettings.UseSacrificialPact && ObjectManager.Me.HealthPercent <= MySettings.UseSacrificialPactAtPercentage && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
+            && SacrificialPact.IsSpellUsable)
         {
             SacrificialPact.Cast();
             _onCd = new Timer(1000*10);
             return;
         }
-        if (MySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseShadowfuryAtPercentage)
+        if (MySettings.UseShadowfury && ObjectManager.Me.HealthPercent <= MySettings.UseShadowfuryAtPercentage && Shadowfury.IsSpellUsable 
+            && Shadowfury.IsHostileDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             _onCd = new Timer(1000*3);
             return;
         }
-        if (MySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
+        if (MySettings.UseStoneform && ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
+        {
+            Stoneform.Cast();
+            _onCd = new Timer(1000*8);
+            return;
+        }
+        if (MySettings.UseUnendingResolve && ObjectManager.Me.HealthPercent <= MySettings.UseUnendingResolveAtPercentage && UnendingResolve.IsSpellUsable)
+        {
+            UnendingResolve.Cast();
+            _onCd = new Timer(1000*8);
+            return;
+        }
+        if (MySettings.UseWarStomp && ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable 
+            && ObjectManager.GetUnitInSpellRange(WarStomp.MaxRangeHostile) > 0)
         {
             WarStomp.Cast();
             _onCd = new Timer(1000*2);
             return;
         }
-        if (MySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
+        if (MySettings.UseWhiplash && MySettings.UseSummonSuccubus && ObjectManager.Me.HealthPercent <= MySettings.UseWhiplashAtPercentage && CommandDemon.IsSpellUsable 
+            && ObjectManager.Target.GetDistance < 6)
         {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
+            CommandDemon.Cast();
+            _onCd = new Timer(1000*2);
         }
     }
 
@@ -7774,50 +7965,42 @@ public class WarlockDestruction
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage)
+        if (MySettings.UseCauterizeMaster && MySettings.UseSummonImp && ObjectManager.Me.HealthPercent <= MySettings.UseCauterizeMasterAtPercentage
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && CommandDemon.IsSpellUsable)
         {
-            ArcaneTorrent.Cast();
+            CommandDemon.Cast();
             return;
         }
-        if (MySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage)
+        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage
+            && ItemsManager.GetItemCount(5512) > 0)
         {
-            GiftoftheNaaru.Cast();
+            Logging.WriteFight("Use Healthstone.");
+            ItemsManager.UseItem("Healthstone");
+            _healthstoneTimer = new Timer(1000 * 60);
             return;
         }
-        if (MySettings.UseEmberTap && EmberTap.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
-        {
-            EmberTap.Cast();
-            return;
-        }
-        if (MySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseDarkRegenerationAtPercentage)
+        if (MySettings.UseDarkRegeneration && ObjectManager.Me.HealthPercent <= MySettings.UseDarkRegenerationAtPercentage && DarkRegeneration.IsSpellUsable)
         {
             DarkRegeneration.Cast();
             return;
         }
-        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCount(5512) > 0
-            && ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage)
+        if (MySettings.UseEmberTap && ObjectManager.Me.HealthPercent <= MySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
         {
-            Logging.WriteFight("Use Healthstone.");
-            ItemsManager.UseItem(5512); // "Healthstone" works only with US or UK client
-            _healthstoneTimer = new Timer(1000*60*2);
+            EmberTap.Cast();
             return;
         }
-        if (MySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseMortalCoilAtPercentage)
+        if (MySettings.UseGiftoftheNaaru && ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
+        {
+            GiftoftheNaaru.Cast();
+            return;
+        }
+        if (MySettings.UseMortalCoil && ObjectManager.Me.HealthPercent <= MySettings.UseMortalCoilAtPercentage && MortalCoil.IsSpellUsable && MortalCoil.IsHostileDistanceGood)
         {
             MortalCoil.Cast();
             return;
         }
-        if (MySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= MySettings.UseDrainLifeAtPercentage)
-        {
-            DrainLife.Cast();
-            while (ObjectManager.Me.IsCast)
-                Others.SafeSleep(200);
-        }
+        if (MySettings.UseArcaneTorrentForResource && ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.IsSpellUsable)
+            ArcaneTorrent.Cast();
     }
 
     private void Decast()
@@ -7829,18 +8012,16 @@ public class WarlockDestruction
             ArcaneTorrent.Cast();
             return;
         }
-        if (MySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && ObjectManager.Me.HealthPercent <= MySettings.UseTwilightWardAtPercentage)
-        {
-            TwilightWard.Cast();
-            return;
-        }
-        if (MySettings.UseCommandDemon && MySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance <= 40f && CommandDemon.IsSpellUsable
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
+        if (MySettings.UseShadowLock && MySettings.UseSummonDoomguard && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && CommandDemon.IsSpellUsable && Incinerate.IsHostileDistanceGood)
         {
             CommandDemon.Cast();
+            return;
         }
+
+        if (MySettings.UseSpellLock && MySettings.UseSummonFelhunter && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && CommandDemon.IsSpellUsable && Incinerate.IsHostileDistanceGood)
+            CommandDemon.Cast();
     }
 
     private void DPSBurst()
@@ -7850,43 +8031,39 @@ public class WarlockDestruction
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
         }
-
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && Berserking.IsSpellUsable)
-        {
+        if (MySettings.UseBerserking && Berserking.IsSpellUsable && Incinerate.IsHostileDistanceGood)
             Berserking.Cast();
-            return;
-        }
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && BloodFury.IsSpellUsable)
-        {
+
+        if (MySettings.UseBloodFury && BloodFury.IsSpellUsable && Incinerate.IsHostileDistanceGood)
             BloodFury.Cast();
-        }
-        if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance <= 40f)
+
+        if (MySettings.UseDarkSoulInstability && !DarkSoulInstability.HaveBuff && DarkSoulInstability.IsSpellUsable && Incinerate.IsHostileDistanceGood)
+            DarkSoulInstability.Cast();
+
+        if (MySettings.UseSummonDoomguard && !DemonicServitude.KnownSpell && (SummonDoomguard.IsSpellUsable || SummonTerrorguard.IsSpellUsable)
+            && ObjectManager.GetUnitInSpellRange(8) < 8)
         {
-            DarkSoul.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SummonTerrorguard.Cast();
+            else
+                SummonDoomguard.Cast();
         }
-        if (MySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
+        if (MySettings.UseSummonInfernal && !DemonicServitude.KnownSpell && (SummonInfernal.IsSpellUsable || SummonAbyssal.IsSpellUsable)
+            && ObjectManager.GetUnitInSpellRange(8) > 7)
         {
-            SummonDoomguard.Cast();
+            if (GrimoireofSupremacy.KnownSpell)
+                SpellManager.CastSpellByIDAndPosition(140763, ObjectManager.Target.Position);
+            else
+                SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
         }
-        else if (MySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-        }
-        if (MySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance <= 40f && ArchimondesVengeance.IsSpellUsable)
-        {
-            ArchimondesVengeance.Cast();
-        }
-        if (MySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance <= 40f && GrimoireofService.IsSpellUsable)
-        {
+
+        if (MySettings.UseGrimoireofService && GrimoireofService.IsSpellUsable && Incinerate.IsHostileDistanceGood)
             GrimoireofService.Cast();
-        }
     }
 
     private void DPSCycle()
@@ -7896,121 +8073,71 @@ public class WarlockDestruction
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
-                && !CurseoftheElements.TargetHaveBuff)
+            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
             {
-                CurseoftheElements.Cast();
-                return;
-            }
-            if (MySettings.UseCurseofEnfeeblement && !MySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsHostileDistanceGood &&
-                CurseofEnfeeblement.IsSpellUsable
-                && !CurseofEnfeeblement.TargetHaveBuff)
-            {
-                CurseofEnfeeblement.Cast();
-                return;
+                if (GrimoireofSacrifice.KnownSpell && GrimoireofSacrifice.HaveBuff)
+                    Others.SafeSleep(20);
+                else
+                    Pet();
             }
 
-            bool hasImmolateBuff = Immolate.TargetHaveBuff;
-            if (ObjectManager.GetNumberAttackPlayer() > 4)
-            {
-                if (MySettings.UseFireandBrimstone && MySettings.UseImmolate && FireandBrimstone.KnownSpell
-                    && !hasImmolateBuff && Immolate.KnownSpell && Immolate.IsHostileDistanceGood
-                    && FireandBrimstone.IsSpellUsable && Immolate.IsSpellUsable)
-                {
-                    FireandBrimstone.Cast();
-                    Others.SafeSleep(200);
-                    Immolate.Cast();
-                    _immolateTimer = new Timer(1000*12);
-                    return;
-                }
-                if (MySettings.UseHarvestLife && hasImmolateBuff && HarvestLife.KnownSpell
-                    && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
-                {
-                    HarvestLife.Cast();
-                    while (ObjectManager.Me.IsCast)
-                        Others.SafeSleep(200);
-                    return;
-                }
-                if (MySettings.UseHarvestLife && hasImmolateBuff && DrainLife.KnownSpell
-                    && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
-                {
-                    DrainLife.Cast();
-                    while (ObjectManager.Me.IsCast)
-                        Others.SafeSleep(200);
-                    return;
-                }
-                if (MySettings.UseFireandBrimstone && MySettings.UseIncinerate && FireandBrimstone.KnownSpell
-                    && Incinerate.KnownSpell && Incinerate.IsHostileDistanceGood && FireandBrimstone.IsSpellUsable && Incinerate.IsSpellUsable)
-                {
-                    FireandBrimstone.Cast();
-                    Others.SafeSleep(200);
-                    Incinerate.Cast();
-                    return;
-                }
-                if (MySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
-                {
-                    SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
-                    return;
-                }
-            }
+            if (MySettings.UseKilJaedensCunning && !KilJaedensCunning.HaveBuff && ObjectManager.Me.GetMove && KilJaedensCunning.IsSpellUsable && Incinerate.IsHostileDistanceGood)
+                KilJaedensCunning.Cast();
 
-            // 1) Cast Shadowburn, when your target has less than 20% health and the conditions below for Chaos Bolt are met.
-            if (ObjectManager.Target.HealthPercent <= 20f && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
-                && MySettings.UseShadowburn)
+            if (MySettings.UseMannarothsFury && MannarothsFury.IsSpellUsable && ObjectManager.GetUnitInSpellRange(8) > 2)
+                MannarothsFury.Cast();
+
+            if (MySettings.UseFireandBrimstone && FireandBrimstone.IsSpellUsable && ObjectManager.GetUnitInSpellRange(8) > 5)
+            {
+                FireandBrimstone.Cast();
+                Others.SafeSleep(1000);
+            }
+            if (MySettings.UseRainofFire && !RainofFireDebuff.TargetHaveBuff && RainofFire.IsSpellUsable && (ObjectManager.GetUnitInSpellRange(8) > 4
+                || MannarothsFury.HaveBuff))
+            {
+                SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
+                return;
+            }
+            if (MySettings.UseShadowburn && ObjectManager.Target.HealthPercent < 20 && (ObjectManager.Me.BurningEmbers > 35 || DarkSoulInstability.HaveBuff)
+                && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood)
             {
                 Shadowburn.Cast();
                 return;
             }
-            // 2) Apply Immolate and refresh it, if it is about to drop.
-            if (MySettings.UseImmolate && (!hasImmolateBuff || _immolateTimer.IsReady) &&
-                Immolate.KnownSpell && Immolate.IsHostileDistanceGood && Immolate.IsSpellUsable)
+            if (MySettings.UseImmolate && (!ImmolateDebuff.TargetHaveBuff || ObjectManager.Target.UnitAura(157736).AuraTimeLeftInMs < 4500) 
+                && Immolate.IsSpellUsable && Immolate.IsHostileDistanceGood)
             {
-                Immolate.Cast();
-                _immolateTimer = new Timer(1000*12);
+                if (Cataclysm.KnownSpell && Cataclysm.IsSpellUsable)
+                    Cataclysm.Cast();
+                else
+                    Immolate.Cast();
+
                 return;
             }
-            // 3) Cast Conflagrate if you have two charges. // But I don't know how to know number of charges
-            if (MySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable
-                && ObjectManager.Me.BurningEmbers < 31 && !ObjectManager.Me.HaveBuff(Backdraft))
+            if (MySettings.UseConflagrate && Conflagrate.GetSpellCharges > 1 && Conflagrate.IsSpellUsable && Conflagrate.IsHostileDistanceGood)
             {
                 Conflagrate.Cast();
                 return;
             }
-            // 4) Cast Chaos Bolt if
-            //    * you have more than 3.5 Burning Embers or
-            //    * you have an Intellect/Critical Strike/Mastery/Spell Power proc or
-            //    * Dark Soul: Instability is up or
-            //    * your Tier 16 4-piece bonus is up and you have more than 3 Burning Embers.
-            if (MySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable &&
-                (ObjectManager.Me.BurningEmbers > 35 ||
-                 false ||
-                 ObjectManager.Me.HaveBuff(DarkSoulInstability) || ObjectManager.Me.HaveBuff(Backdraft) ||
-                 ObjectManager.Me.HaveBuff(FourT16Parts)
-                    )
-                )
+            if (MySettings.UseCataclysm && Cataclysm.IsSpellUsable && Cataclysm.IsHostileDistanceGood)
+            {
+                SpellManager.CastSpellByIDAndPosition(152108, ObjectManager.Target.Position);
+                return;
+            }
+            if (MySettings.UseChaosBolt && (ObjectManager.Me.BurningEmbers > 35 || DarkSoulInstability.HaveBuff)
+                && ChaosBolt.IsSpellUsable && ChaosBolt.IsHostileDistanceGood)
             {
                 ChaosBolt.Cast();
                 return;
             }
-            // 5) Cast Rain of Fire if it is not ticking.
-            if (MySettings.UseRainofFire && RainofFire.KnownSpell && _rainOfFireTimer.IsReady && RainofFire.IsHostileDistanceGood
-                && !RainofFire.TargetHaveBuff && RainofFire.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIDAndPosition(RainofFire.Id, ObjectManager.Target.Position);
-                _rainOfFireTimer = new Timer(1000*6.5);
-                return;
-            }
-            // 6) Cast Conflagrate if you have one charge.
-            if (MySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable)
+            if (MySettings.UseConflagrate && Conflagrate.GetSpellCharges > 0 && Conflagrate.IsSpellUsable && Conflagrate.IsHostileDistanceGood)
             {
                 Conflagrate.Cast();
                 return;
             }
-            // 7) Filler: Incinerate
-            if (MySettings.UseIncinerate && Incinerate.KnownSpell && Incinerate.IsSpellUsable && Incinerate.IsHostileDistanceGood)
-            {
+            if (MySettings.UseIncinerate && Conflagrate.GetSpellCharges < 1 && ObjectManager.Me.BurningEmbers < 36 && Incinerate.IsSpellUsable 
+                && Incinerate.IsHostileDistanceGood)
                 Incinerate.Cast();
-            }
         }
         finally
         {
@@ -8040,51 +8167,56 @@ public class WarlockDestruction
         public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
+        public bool UseBloodHorror = true;
+        public int UseBloodHorrorAtPercentage = 20;
+        public bool UseBurningRush = true;
+        public int UseBurningRushAbovePercentage = 50;
+        public bool UseCataclysm = true;
+        public bool UseCauterizeMaster = true;
+        public int UseCauterizeMasterAtPercentage = 90;
         public bool UseChaosBolt = true;
         public bool UseCommandDemon = true;
         public bool UseConflagrate = true;
         public bool UseCreateHealthstone = true;
-        public int UseCreateHealthstoneAtPercentage = 75;
-        public bool UseCurseofEnfeeblement = false;
-        public bool UseCurseoftheElements = true;
+        public int UseCreateHealthstoneAtPercentage = 80;
         public bool UseDarkBargain = true;
-        public int UseDarkBargainAtPercentage = 40;
+        public int UseDarkBargainAtPercentage = 60;
         public bool UseDarkIntent = true;
         public bool UseDarkRegeneration = true;
-        public int UseDarkRegenerationAtPercentage = 65;
-        public bool UseDarkSoul = true;
-        public bool UseDrainLife = true;
-        public int UseDrainLifeAtPercentage = 70;
+        public int UseDarkRegenerationAtPercentage = 70;
+        public bool UseDarkSoulInstability = true;
         public bool UseEmberTap = true;
-        public int UseEmberTapAtPercentage = 60;
-
-        public bool UseFelFlame = true;
+        public int UseEmberTapAtPercentage = 65;
+        public bool UseFear = true;
+        public int UseFearAtPercentage = 20;
         public bool UseFireandBrimstone = true;
         public bool UseFlamesofXoroth = true;
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
-        public bool UseHarvestLife = false;
-        public bool UseHealthFunnel = true;
         public bool UseHowlofTerror = true;
         public int UseHowlofTerrorAtPercentage = 20;
         public bool UseImmolate = true;
         public bool UseIncinerate = true;
-        public bool UseLifeTap = true;
-        public int UseLifeTapAtPercentage = 75;
-
+        public bool UseKilJaedensCunning = true;
         public bool UseLowCombat = true;
+        public int UseLowCombatAtPercentage = 15;
+        public bool UseMannarothsFury = true;
+        public bool UseMeteorStrike = true;
+        public int UseMeteorStrikeAtPercentage = 85;
         public bool UseMortalCoil = true;
         public int UseMortalCoilAtPercentage = 85;
         public bool UseRainofFire = true;
         public bool UseSacrificialPact = true;
-        public int UseSacrificialPactAtPercentage = 95;
+        public int UseSacrificialPactAtPercentage = 70;
         public bool UseShadowburn = true;
         public bool UseShadowfury = true;
         public int UseShadowfuryAtPercentage = 90;
-        public bool UseSoulLink = true;
+        public bool UseShadowLock = true;
+        public int UseShadowLockAtPercentage = 100;
         public bool UseSoulstone = true;
+        public bool UseSpellLock = true;
         public int UseSpellLockAtPercentage = 100;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
@@ -8096,13 +8228,13 @@ public class WarlockDestruction
         public bool UseSummonVoidwalker = false;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseTwilightWard = true;
-        public int UseTwilightWardAtPercentage = 100;
-        public bool UseUnboundWill = true;
+        public bool UseUnendingBreath = false;
         public bool UseUnendingResolve = true;
         public int UseUnendingResolveAtPercentage = 70;
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
+        public bool UseWhiplash = true;
+        public int UseWhiplashAtPercentage = 85;
 
         public WarlockDestructionSettings()
         {
@@ -8112,23 +8244,19 @@ public class WarlockDestruction
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Warlock Buffs */
-            AddControlInWinForm("Use Curse of Enfeeblement", "UseCurseofEnfeeblement", "Warlock Buffs");
-            AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
+            AddControlInWinForm("Use Burning Rush", "UseBurningRush", "Warlock Buffs", "AbovePercentage");
             AddControlInWinForm("Use Dark Intent", "UseDarkIntent", "Warlock Buffs");
             AddControlInWinForm("Use Grimoire of Sacrifice", "UseGrimoireofSacrifice", "Warlock Buffs");
-            AddControlInWinForm("Use Soul Link ", "UseSoulLink ", "Warlock Buffs");
+            AddControlInWinForm("Use Kil'Jaeden's Cunning", "UseKilJaedensCunning", "Warlock Buffs");
             AddControlInWinForm("Use Soulstone", "UseSoulstone", "Warlock Buffs");
+            AddControlInWinForm("Use Unending Breath", "UseUnendingBreath", "Warlock Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Chaos Bolt", "UseChaosBolt", "Offensive Spell");
             AddControlInWinForm("Use Command Demon", "UseCommandDemon", "Offensive Spell");
             AddControlInWinForm("Use Conflagrate", "UseConflagrate", "Offensive Spell");
-            AddControlInWinForm("Use Fel Flame", "UseFelFlame", "Offensive Spell");
-            AddControlInWinForm("Use Fire and Brimstone", "UseFireandBrimstone", "Offensive Spell");
-            AddControlInWinForm("Use Harvest Life", "UseHarvestLife", "Offensive Spell");
             AddControlInWinForm("Use Immolate", "UseImmolate", "Offensive Spell");
             AddControlInWinForm("Use Incinerate", "UseIncinerate", "Offensive Spell");
             AddControlInWinForm("Use Rain of Fire", "UseRainofFire", "Offensive Spell");
@@ -8138,34 +8266,33 @@ public class WarlockDestruction
             AddControlInWinForm("Use Summon Felhunter", "UseSummonFelhunter", "Offensive Spell");
             AddControlInWinForm("Use Summon Succubus", "UseSummonSuccubus", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Archimonde's Vengeance", "UseArchimondesVengeance", "Offensive Cooldown");
-            AddControlInWinForm("Use Dark Soul", "UseDarkSoul", "Offensive Cooldown");
+            AddControlInWinForm("Use Cataclysm", "UseCataclysm", "Offensive Cooldown");
+            AddControlInWinForm("Use Dark Soul: Instability", "UseDarkSoulInstability", "Offensive Cooldown");
+            AddControlInWinForm("Use Fire and Brimstone", "UseFireandBrimstone", "Offensive Cooldown");
             AddControlInWinForm("Use Grimoire of Service", "UseGrimoireofService", "Offensive Cooldown");
+            AddControlInWinForm("Use Mannaroth's Fury", "UseMannarothsFury", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Doomguard", "UseSummonDoomguard", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Infernal", "UseSummonInfernal", "Offensive Cooldown");
             /* Defensive Cooldown */
+            AddControlInWinForm("Use Blood Horror", "UseBloodHorror", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Fear", "UseFear", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Spell Lock", "UseSpellLock", "Offensive Spell", "AtPercentage");
-            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Shadow Lock", "UseShadowLock", "Offensive Spell", "AtPercentage");
             AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Ember Tap", "UseEmberTap", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flames of Xoroth", "UseFlamesofXoroth", "Healing Spell");
-            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell", "AtPercentage");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
+            AddControlInWinForm("Use Low Combat Settings - Level Difference", "UseLowCombat", "Game Settings", "AtPercentage");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
