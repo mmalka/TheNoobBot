@@ -30,18 +30,13 @@ namespace TheNoobScheduler
         internal static string Login = "";
         internal static string Password = "";
         internal static string HardwareKey = "";
-        private static string TrueResultLoop = "";
+        private static string _trueResultLoop = "";
 
         internal static bool IsOnlineserver;
         private static readonly InteractGame LoginThread = new InteractGame(LoopThreads) {Name = "LoopLogon"};
 
         private static bool _trial;
 
-        private static int _levelStat;
-        private static int _honnorStat;
-        private static int _expStat;
-        private static int _farmStat;
-        private static int _killStat;
         internal static bool IsConnected { get; set; }
 
         internal static bool IsFreeVersion { get; private set; }
@@ -91,7 +86,7 @@ namespace TheNoobScheduler
 
                     if (resultRandom[0] == goodResultRandomTry && resultConnectReq[0] == goodResultConnectReq)
                     {
-                        TrueResultLoop = goodResultConnectReq;
+                        _trueResultLoop = goodResultConnectReq;
                         var connectThreadLaunch = new InteractGame(LoopThread) {Name = "LoopLogin"};
                         connectThreadLaunch.Start();
                         return;
@@ -181,7 +176,7 @@ namespace TheNoobScheduler
 
                         string resultReqLoop =
                             GetReqWithAuthHeader(Others.GetAuthScriptLink + "?HardwareKey=" + HardwareKey, Login, Password)[0];
-                        if (TrueResultLoop != resultReqLoop)
+                        if (_trueResultLoop != resultReqLoop)
                         {
                             if (!lastResult)
                                 break;

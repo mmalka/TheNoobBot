@@ -59,10 +59,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="fasmdll_managed, Version=1.0.3829.8764, Culture=neutral, PublicKeyToken=53d73c680b668dc5, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Others\fasmdll_managed.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -451,6 +447,10 @@
     <None Include="Resources\backgroundCustomSettings.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\fasmdll_managed\fasmdll_managed.vcxproj">
+      <Project>{61d8cf34-1fd7-4a01-bec1-1a8e8050a9c6}</Project>
+      <Name>fasmdll_managed</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
       <Project>{88abd3da-803d-4d83-9894-f669b8cfaead}</Project>
       <Name>RecastLayer</Name>

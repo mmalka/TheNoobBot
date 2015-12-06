@@ -1,0 +1,6 @@
+#define FASM_OK 0
+#define FASM_WORKING 1
+#define FASM_ERROR 2
+
+#define DEFAULT_MEMORY_SIZE 0x1000
+#define DEFAULT_PASS_LIMIT 100
