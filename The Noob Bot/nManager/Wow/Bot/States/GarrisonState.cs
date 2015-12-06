@@ -221,8 +221,8 @@ namespace nManager.Wow.Bot.States
                     switch (Garrison.GetGarrisonLevel())
                     {
                         case 1:
-                            _garden = new Point(); // Doesn't exist in Ally 1 ?
-                            _mineEntrance = new Point {X = 1912.648f, Y = 92.09844f, Z = 83.5269f};
+                            _garden = new Point();
+                            _mineEntrance = new Point();
                             _cacheGarrisonPoint = new Point {X = 1899.979f, Y = 93.62897f, Z = 83.52692f};
                             break;
                         case 2:
@@ -263,6 +263,16 @@ namespace nManager.Wow.Bot.States
                     }
                 }
 
+                if (Garrison.GetGarrisonLevel() == 1)
+                {
+                    TaskList.Remove("GatherMinerals");
+                    TaskList.Remove("MineWorkOrder");
+
+                    TaskList.Remove("GatherHerbs");
+                    TaskList.Remove("GardenWorkOrder");
+                    Logging.Write("Task GatherMinerals, MineWorkOrder, GatherHerbs, GardenWorkOrder are removed from to the TaskList, reason: Garrison level 1 does not have Mine nor Garden.");
+                    return;
+                }
                 int mineLevel = Garrison.GetGarrisonMineLevel;
                 if (_movementLoopState == null || _mineProfile == null)
                 {
