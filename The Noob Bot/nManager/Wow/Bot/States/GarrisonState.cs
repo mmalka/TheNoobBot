@@ -12,6 +12,10 @@ namespace nManager.Wow.Bot.States
     public class GarrisonState : State
     {
         private const int GarrisonHearthstone = 110560;
+        private const int MinerCoffee = 118897;
+        private const uint MinerCoffeeBuff = 176049;
+        private const int PreservedMiningPick = 118903;
+        private const uint PreservedMiningPickBuff = 176061;
         public static Dictionary<string, string> TaskList = new Dictionary<string, string>();
 
         private static Point _mineEntrance;
@@ -33,10 +37,6 @@ namespace nManager.Wow.Bot.States
         private static bool _isCompleted;
         private static MovementLoop _movementLoopState;
         private static readonly Farming FarmingState = new Farming();
-        private const int MinerCoffee = 118897;
-        private const uint MinerCoffeeBuff = 176049;
-        private const int PreservedMiningPick = 118903;
-        private const uint PreservedMiningPickBuff = 176061;
 
         public override string DisplayName
         {
@@ -392,7 +392,7 @@ namespace nManager.Wow.Bot.States
                         if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Interact.InteractWith(_targetBaseAddress, true);
-                            Thread.Sleep(Usefuls.Latency + 2500);
+                            Thread.Sleep(Usefuls.Latency + 3500);
                             nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*60*60);
                             _cacheMineGathered = true;
                         }
@@ -456,7 +456,7 @@ namespace nManager.Wow.Bot.States
                         if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
                         {
                             Interact.InteractWith(_targetBaseAddress, true);
-                            Thread.Sleep(Usefuls.Latency + 2500);
+                            Thread.Sleep(Usefuls.Latency + 3500);
                             nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*60*60);
                             _cacheGardenGathered = true;
                         }
@@ -528,20 +528,6 @@ namespace nManager.Wow.Bot.States
                     }
                     break;
             }
-        }
-
-        public static bool IsListObjectGathered(List<int> listObject)
-        {
-            List<WoWGameObject> farmableGOs = Farming.GetFarmableGameObjects;
-            foreach (WoWGameObject o in farmableGOs)
-            {
-                foreach (int i in listObject)
-                {
-                    if (o.Entry == i)
-                        return false;
-                }
-            }
-            return true;
         }
     }
 }
