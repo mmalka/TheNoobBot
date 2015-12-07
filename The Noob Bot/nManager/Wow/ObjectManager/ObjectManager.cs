@@ -1287,7 +1287,7 @@ namespace nManager.Wow.ObjectManager
                     continue;
                 if (!u.IsHostile)
                     continue;
-                if (fromUnit == null)
+                if (fromUnit == null || !fromUnit.IsValid || !fromUnit.IsAlive)
                 {
                     if (u.GetDistance > spellRange)
                         continue;
