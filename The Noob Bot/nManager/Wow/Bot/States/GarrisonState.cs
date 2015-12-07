@@ -88,6 +88,7 @@ namespace nManager.Wow.Bot.States
                                     Logging.Write(GetLastTask.Key + " terminated.");
                                     TaskList[GetLastTask.Key] = "Done";
                                     nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
+                                    MovementManager.StopMove();
                                     return false;
                                 }
                                 if (ItemsManager.GetItemCount(PreservedMiningPick) > 0 && !ItemsManager.IsItemOnCooldown(PreservedMiningPick) &&
@@ -353,6 +354,8 @@ namespace nManager.Wow.Bot.States
                 case "GatherMinerals":
                     if (currentTask.Value == "NotStarted")
                     {
+                        if (MovementManager.InMovement)
+                            return;
                         List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
                         if (_mineEntrance.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                         {
@@ -369,9 +372,10 @@ namespace nManager.Wow.Bot.States
                             Logging.Write(currentTask.Key + " started.");
                             TaskList[currentTask.Key] = "OnGoing";
                             _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
-                            nManagerSetting.CurrentSetting.GatheringSearchRadius = 13f;
+                            nManagerSetting.CurrentSetting.GatheringSearchRadius = 7f;
                             nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
                             nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                            nManagerSetting.CurrentSetting.ActivatePathFindingFeature = false;
                         }
                     }
                     break;
@@ -381,12 +385,14 @@ namespace nManager.Wow.Bot.States
                         Logging.Write(currentTask.Key + " started.");
                         TaskList[currentTask.Key] = "OnGoing";
                     }
+                    if (MovementManager.InMovement)
+                        return;
                     if (!_cacheMineGathered)
                     {
                         // Gather Mine's Cache
                         if (_targetNpc.Entry != _cacheMine)
                             _targetNpc = new Npc {Entry = _cacheMine, Position = _mineEntrance};
-                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
                         if (MovementManager.InMovement)
                             return;
                         if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
@@ -404,7 +410,7 @@ namespace nManager.Wow.Bot.States
                     // Send Mine's Work Orders
                     if (_targetNpc.Entry != _npcMine)
                         _targetNpc = new Npc {Entry = _npcMine, Position = _mineEntrance};
-                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
                     if (MovementManager.InMovement)
                         return;
                     if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
@@ -420,6 +426,8 @@ namespace nManager.Wow.Bot.States
                     }
                     break;
                 case "GatherHerbs":
+                    if (MovementManager.InMovement)
+                        return;
                     List<Point> pathToGarden = PathFinder.FindPath(_garden, out success);
                     if (_garden.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
                     {
@@ -445,12 +453,14 @@ namespace nManager.Wow.Bot.States
                         Logging.Write(currentTask.Key + " started.");
                         TaskList[currentTask.Key] = "OnGoing";
                     }
+                    if (MovementManager.InMovement)
+                        return;
                     if (!_cacheGardenGathered)
                     {
                         // Gather Garden's Cache
                         if (_targetNpc.Entry != _cacheGarden)
                             _targetNpc = new Npc {Entry = _cacheGarden, Position = _garden};
-                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
                         if (MovementManager.InMovement)
                             return;
                         if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
@@ -469,7 +479,7 @@ namespace nManager.Wow.Bot.States
 
                     if (_targetNpc.Entry != _npcGarden)
                         _targetNpc = new Npc {Entry = _npcGarden, Position = _garden};
-                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
                     if (MovementManager.InMovement)
                         return;
                     if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
@@ -487,6 +497,8 @@ namespace nManager.Wow.Bot.States
                 case "CheckGarrisonRessourceCache":
                     if (currentTask.Value == "NotStarted")
                     {
+                        if (MovementManager.InMovement)
+                            return;
                         List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
                         if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
                         {
@@ -501,6 +513,8 @@ namespace nManager.Wow.Bot.States
                     }
                     else if (currentTask.Value == "OnGoing")
                     {
+                        if (MovementManager.InMovement)
+                            return;
                         WoWGameObject o = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectById(_cacheGarrison));
                         if (o.GetBaseAddress <= 0)
                         {
@@ -509,7 +523,7 @@ namespace nManager.Wow.Bot.States
                         }
                         if (_targetNpc.Entry != o.Entry)
                             _targetNpc = new Npc {Entry = o.Entry, Position = _cacheGarrisonPoint};
-                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc);
+                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
                         if (MovementManager.InMovement)
                             return;
                         if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
