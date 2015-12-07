@@ -431,6 +431,8 @@ namespace nManager.Helpful.Forms
             HideSDKFiles.OnText = onText;
             UseLootARange.OffText = offText;
             UseLootARange.OnText = onText;
+            HideCharacterNameFromTitle.OffText = offText;
+            HideCharacterNameFromTitle.OnText = onText;
         }
 
         private void SaveSetting()
@@ -539,6 +541,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
                 nManagerSetting.CurrentSetting.UseLootARange = UseLootARange.Value;
+                nManagerSetting.CurrentSetting.HideCharacterNameFromTitle = HideCharacterNameFromTitle.Value;
                 nManagerSetting.CurrentSetting.AutoCloseChatFrame = AutoCloseChatFrame.Value;
                 if (nManagerSetting.CurrentSetting.ActivateLootStatistics && !ActivateLootStatistics.Value)
                     Others.LootStatistics(false);
@@ -684,6 +687,7 @@ namespace nManager.Helpful.Forms
                 LaunchExpiredPlugins.Value = managerSetting.LaunchExpiredPlugins;
                 HideSDKFiles.Value = managerSetting.HideSdkFiles;
                 UseLootARange.Value = managerSetting.UseLootARange;
+                HideCharacterNameFromTitle.Value = managerSetting.HideCharacterNameFromTitle;
                 ActivatedPluginsList.Items.Clear();
                 UseFrameLock.Value = managerSetting.UseFrameLock;
                 foreach (string s in managerSetting.ActivatedPluginsList)

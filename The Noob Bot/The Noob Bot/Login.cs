@@ -109,7 +109,7 @@ namespace The_Noob_Bot
                     var sw = new StreamWriter(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
                     sw.WriteLine("<?xml version=\"1.0\"?>");
                     sw.WriteLine("<configuration>");
-                    sw.WriteLine("<startup useLegacyV2RuntimeActivationPolicy=\"true\">");
+                    sw.WriteLine("<startup>");
                     sw.WriteLine("<supportedRuntime version=\"v4.0\"/>");
                     sw.WriteLine("</startup>");
                     sw.WriteLine("<runtime>");

@@ -122,7 +122,7 @@ namespace The_Noob_Bot
 
         private void InitializeLogging()
         {
-            LoggingUC LogMainWindow = new LoggingUC {Size = new Size(PanelLog.Size.Width, PanelLog.Size.Height)};
+            var LogMainWindow = new LoggingUC {Size = new Size(PanelLog.Size.Width, PanelLog.Size.Height)};
             PanelLog.Controls.Add(LogMainWindow);
         }
 
@@ -130,10 +130,10 @@ namespace The_Noob_Bot
         {
             try
             {
-                MainHeader.TitleText = ObjectManager.Me.Name + " - " + Information.MainTitle;
+                MainHeader.TitleText = (nManagerSetting.CurrentSetting.HideCharacterNameFromTitle ? "Anonymous" : ObjectManager.Me.Name) + " - " + Information.MainTitle;
                 if (LoginServer.IsFreeVersion)
                     MainHeader.TitleText += " - Trial";
-                this.Text = MainHeader.TitleText;
+                Text = MainHeader.TitleText;
 
                 if (nManagerSetting.AutoStartProduct)
                 {

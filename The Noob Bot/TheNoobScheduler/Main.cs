@@ -153,6 +153,8 @@ namespace TheNoobScheduler
         public void Translate()
         {
             MainHeader.TitleText = Information.SchedulerTitle;
+            if (LoginServer.IsFreeVersion)
+                MainHeader.TitleText += " - Trial";
         }
 
         private void CloseButton_Click(object sender, FormClosedEventArgs e)

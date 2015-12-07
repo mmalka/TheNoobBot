@@ -306,5 +306,6 @@ namespace nManager
         public bool HideSdkFiles = true;
         public bool UseFrameLock = false;
         public bool UseLootARange = true;
+        public bool HideCharacterNameFromTitle = false;
     }
 }

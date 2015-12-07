@@ -268,6 +268,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.HideCharacterNameFromTitleLabel = new System.Windows.Forms.Label();
+            this.HideCharacterNameFromTitle = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -3250,7 +3252,9 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
             this.AdvancedSettingsPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.AdvancedSettingsPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(556, 103);
+            this.AdvancedSettingsPanelName.ContentSize = new System.Drawing.Size(556, 123);
+            this.AdvancedSettingsPanelName.Controls.Add(this.HideCharacterNameFromTitleLabel);
+            this.AdvancedSettingsPanelName.Controls.Add(this.HideCharacterNameFromTitle);
             this.AdvancedSettingsPanelName.Controls.Add(this.UseFrameLockLabel);
             this.AdvancedSettingsPanelName.Controls.Add(this.UseFrameLock);
             this.AdvancedSettingsPanelName.Controls.Add(this.HideSDKFilesLabel);
@@ -3481,6 +3485,33 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
+            // 
+            // HideCharacterNameFromTitleLabel
+            // 
+            this.HideCharacterNameFromTitleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HideCharacterNameFromTitleLabel.ForeColor = System.Drawing.Color.Black;
+            this.HideCharacterNameFromTitleLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.HideCharacterNameFromTitleLabel.Location = new System.Drawing.Point(4, 161);
+            this.HideCharacterNameFromTitleLabel.Name = "HideCharacterNameFromTitleLabel";
+            this.HideCharacterNameFromTitleLabel.Size = new System.Drawing.Size(430, 22);
+            this.HideCharacterNameFromTitleLabel.TabIndex = 39;
+            this.HideCharacterNameFromTitleLabel.Text = "Replace your Character\'s Name with \"Anonymous\" in the title of the Main Window";
+            this.HideCharacterNameFromTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // HideCharacterNameFromTitle
+            // 
+            this.HideCharacterNameFromTitle.BackColor = System.Drawing.Color.White;
+            this.HideCharacterNameFromTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.HideCharacterNameFromTitle.ForeColor = System.Drawing.Color.Black;
+            this.HideCharacterNameFromTitle.Location = new System.Drawing.Point(448, 161);
+            this.HideCharacterNameFromTitle.MaximumSize = new System.Drawing.Size(60, 20);
+            this.HideCharacterNameFromTitle.MinimumSize = new System.Drawing.Size(60, 20);
+            this.HideCharacterNameFromTitle.Name = "HideCharacterNameFromTitle";
+            this.HideCharacterNameFromTitle.OffText = "OFF";
+            this.HideCharacterNameFromTitle.OnText = "ON";
+            this.HideCharacterNameFromTitle.Size = new System.Drawing.Size(60, 20);
+            this.HideCharacterNameFromTitle.TabIndex = 38;
+            this.HideCharacterNameFromTitle.Value = false;
             // 
             // GeneralSettings
             // 
@@ -3778,5 +3809,7 @@ namespace nManager.Helpful.Forms
         private TnbSwitchButton UseFrameLock;
         private Label UseLootARangeLabel;
         private TnbSwitchButton UseLootARange;
+        private Label HideCharacterNameFromTitleLabel;
+        private TnbSwitchButton HideCharacterNameFromTitle;
     }
 }
