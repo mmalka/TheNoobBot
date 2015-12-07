@@ -1272,7 +1272,7 @@ namespace nManager.Wow.ObjectManager
             return 0;
         }
 
-        public static uint GetUnitInSpellRange(float spellRange = 5)
+        public static uint GetUnitInSpellRange(float spellRange = 5, WoWUnit fromUnit = null)
         {
             if (spellRange < 5)
                 spellRange = 5;
@@ -1287,8 +1287,16 @@ namespace nManager.Wow.ObjectManager
                     continue;
                 if (!u.IsHostile)
                     continue;
-                if (u.GetDistance > spellRange)
-                    continue;
+                if (fromUnit == null)
+                {
+                    if (u.GetDistance > spellRange)
+                        continue;
+                }
+                else
+                {
+                    if (u.Position.DistanceTo(fromUnit.Position) > spellRange)
+                        continue;
+                }
                 unitInSpellRange++;
             }
             return unitInSpellRange;
