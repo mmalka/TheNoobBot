@@ -166,7 +166,7 @@ namespace Fasm
 		if (fasm_state->condition != FASM_OK)
 			throw gcnew Exception(String::Format("Assembly failed!  Error code: {0};  Error Line: {1}", fasm_state->error_code, fasm_state->error_data->line_number));
 		
-		return WriteProcessMemory((HANDLE)hProcess, (void *)dwAddress, fasm_state->output_data, fasm_state->output_length, NULL);
+		return WriteProcessMemory((HANDLE)hProcess, (void *)dwAddress, fasm_state->output_data, fasm_state->output_length, NULL) != 0;
 	}
 
 	bool ManagedFasm::Inject(DWORD dwAddress)
