@@ -129,7 +129,7 @@ namespace nManager.Wow.Bot.States
                 previousTask = currentTask;
                 display = true;
             }
-            switch (tList.Peek())
+            switch (currentTask)
             {
                 case Task.GoToGarrison:
                     if (display)
@@ -220,7 +220,7 @@ namespace nManager.Wow.Bot.States
                         MovementManager.Go(pathToMine);
                         return;
                     }
-                    nManagerSetting.CurrentSetting.GatheringSearchRadius = 100f;
+                    nManagerSetting.CurrentSetting.GatheringSearchRadius = 120f;
                     nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
                     if (FarmingState.NeedToRun)
                     {
@@ -234,6 +234,7 @@ namespace nManager.Wow.Bot.States
                             {
                                 Thread.Sleep(150);
                             }
+                            Thread.Sleep(1000);
                         }
                         if (ItemsManager.GetItemCount(MinerCoffee) > 0 && !ItemsManager.IsItemOnCooldown(MinerCoffee) &&
                             ItemsManager.IsItemUsable(MinerCoffee) && ObjMgr.Me.BuffStack(MinerCoffeeBuff) < 2)
