@@ -34,7 +34,7 @@ namespace GarrisonFarming.Bot
                 Fsm.AddState(new Looting {Priority = 7});
                 Fsm.AddState(new SpecializationCheck {Priority = 6});
                 Fsm.AddState(new LevelupCheck {Priority = 5});
-                Fsm.AddState(new Farming { Priority = 4 });
+                Fsm.AddState(new Farming {Priority = 4});
                 Fsm.AddState(new GarrisonState {Priority = 3});
                 /* 2
                  * SendFollowerOnDuty
@@ -67,6 +67,7 @@ namespace GarrisonFarming.Bot
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();
+                GarrisonState.RestoreSettings();
             }
             catch (Exception e)
             {

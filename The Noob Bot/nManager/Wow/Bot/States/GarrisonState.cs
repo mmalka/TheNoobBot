@@ -35,6 +35,7 @@ namespace nManager.Wow.Bot.States
         private static float _oldGatheringSearchRadius;
         private static Npc _targetNpc = new Npc();
         private static readonly Farming FarmingState = new Farming();
+        private static bool _settingsUnclean = false;
 
         public GarrisonState()
         {
@@ -44,6 +45,18 @@ namespace nManager.Wow.Bot.States
             _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
             nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
             nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+            _settingsUnclean = true;
+        }
+
+        public static void RestoreSettings()
+        {
+            if (_settingsUnclean)
+            {
+                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = _oldActivateVeinsHarvesting;
+                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = _oldActivateHerbsHarvesting;
+                nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
+                _settingsUnclean = false;
+            }
         }
 
         public override string DisplayName
@@ -350,9 +363,6 @@ namespace nManager.Wow.Bot.States
             if (tList.Count == 0)
             {
                 Logging.Write("Garrison Farming completed");
-                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = _oldActivateVeinsHarvesting;
-                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = _oldActivateHerbsHarvesting;
-                nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
                 CloseProduct();
             }
         }
