@@ -36,6 +36,16 @@ namespace nManager.Wow.Bot.States
         private static Npc _targetNpc = new Npc();
         private static readonly Farming FarmingState = new Farming();
 
+        public GarrisonState()
+        {
+            // Save settings and disable farming at instance creation
+            _oldActivateVeinsHarvesting = nManagerSetting.CurrentSetting.ActivateVeinsHarvesting;
+            _oldActivateHerbsHarvesting = nManagerSetting.CurrentSetting.ActivateHerbsHarvesting;
+            _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
+            nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
+            nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+        }
+
         public override string DisplayName
         {
             get { return "GarrisonState"; }
@@ -114,12 +124,6 @@ namespace nManager.Wow.Bot.States
                 }
                 _cacheGardenGathered = false;
                 _cacheMineGathered = false;
-                // Then save settings
-                _oldActivateVeinsHarvesting = nManagerSetting.CurrentSetting.ActivateVeinsHarvesting;
-                _oldActivateHerbsHarvesting = nManagerSetting.CurrentSetting.ActivateHerbsHarvesting;
-                _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
-                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
-                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
             }
             bool success, display = false;
             Point me = ObjMgr.Me.Position;
@@ -345,10 +349,10 @@ namespace nManager.Wow.Bot.States
             }
             if (tList.Count == 0)
             {
+                Logging.Write("Garrison Farming completed");
                 nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = _oldActivateVeinsHarvesting;
                 nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = _oldActivateHerbsHarvesting;
                 nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
-                Logging.Write("Garrison Farming completed");
                 CloseProduct();
             }
         }
