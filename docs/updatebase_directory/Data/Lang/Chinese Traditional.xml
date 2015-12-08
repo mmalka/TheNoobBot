@@ -1102,7 +1102,7 @@
       <Text>( 轉換腳本 )</Text>
     </Translation>
     <Translation>
-      <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
+      <Id>Flying_To_Ground_Profiles_Converter_Product_Description</Id>
       <Text>(Gatherer, Grinder, Fisherbot profiles)</Text>
     </Translation>
     <Translation>
@@ -1159,7 +1159,7 @@
     </Translation>
     <Translation>
       <Id>Tracker_Product_Description</Id>
-      <Text>( 獵殺模式 )</Text>
+      <Text>(Advanced minimap tracking)</Text>
     </Translation>
     <Translation>
       <Id>With</Id>
@@ -1940,6 +1940,10 @@
     <Translation>
       <Id>Whisper</Id>
       <Text>Whispers</Text>
+    </Translation>
+    <Translation>
+      <Id>GarrisonFarming_Product_Description</Id>
+      <Text>(Farm your Garrison Garden and Mine and their work orders)</Text>
     </Translation>
   </Translations>
 </Language>
