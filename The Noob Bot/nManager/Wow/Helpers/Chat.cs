@@ -71,7 +71,7 @@ namespace nManager.Wow.Helpers
                 }
                 catch (Exception exception)
                 {
-                    Logging.WriteError("GetMsgActuelInWow: " + exception);
+                    Logging.WriteError("GetCurrentMsgInWow: " + exception);
                 }
                 return 0;
             }
@@ -249,7 +249,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetMsgActuel(): " + exception);
+                Logging.WriteError("GetCurrentMsg(): " + exception);
             }
         }
 

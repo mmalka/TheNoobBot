@@ -1070,7 +1070,7 @@ namespace nManager.Helpful
                             // Can do anything here, like equip cool items etc.
                             if (ItemStockUpdated != null)
                                 ItemStockUpdated(pair, new EventArgs());
-                            Logging.Write("You recieve loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
+                            Logging.Write("You receive loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
                         }
                     }
                     // When all the processing is done, let's now check if we are missing items completly.
