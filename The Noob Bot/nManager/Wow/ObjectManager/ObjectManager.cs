@@ -18,7 +18,8 @@ namespace nManager.Wow.ObjectManager
         private static uint _lastTargetBase;
         // All Objects except Units are in _objectList
         private static List<WoWObject> _objectList;
-        // Units and Gameobjects are in separate lists
+        // Players, Units and Gameobjects are in separate lists
+        private static List<WoWPlayer> _playerList;
         private static List<WoWUnit> _unitList;
         private static List<WoWGameObject> _gameobjectList;
         public static List<UInt128> BlackListMobAttack = new List<UInt128>();
@@ -136,6 +137,9 @@ namespace nManager.Wow.ObjectManager
                             {
                                 case WoWObjectType.Unit:
                                     _unitList.Add(new WoWUnit(o.Value.GetBaseAddress));
+                                    break;
+                                case WoWObjectType.Player:
+                                    _playerList.Add(new WoWPlayer(o.Value.GetBaseAddress));
                                     break;
                                 case WoWObjectType.GameObject:
                                     _gameobjectList.Add(new WoWGameObject(o.Value.GetBaseAddress));
@@ -430,10 +434,16 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                foreach (WoWObject o in ObjectList)
-                    if (o.Type == WoWObjectType.Player && o.Guid == guid)
-                        return new WoWPlayer(o.GetBaseAddress);
-                return null;
+                lock (Locker)
+                {
+                    for (int i = 0; i < _playerList.Count; i++)
+                    {
+                        WoWPlayer p = _playerList[i];
+                        if (p.Guid == guid)
+                            return p;
+                    }
+                    return null;
+                }
             }
             catch (Exception e)
             {
@@ -446,11 +456,17 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var result = new List<WoWPlayer>();
-                foreach (WoWObject o in ObjectList)
-                    if (o.Type == WoWObjectType.Player && o.GetBaseAddress != Me.GetBaseAddress)
-                        result.Add(new WoWPlayer(o.GetBaseAddress));
-                return result;
+                lock (Locker)
+                {
+                    var result = new List<WoWPlayer>();
+                    for (int i = 0; i < _playerList.Count; i++)
+                    {
+                        WoWPlayer p = _playerList[i];
+                        if (p.GetBaseAddress != Me.GetBaseAddress)
+                            result.Add(p);
+                    }
+                    return result;
+                }
             }
             catch (Exception e)
             {
