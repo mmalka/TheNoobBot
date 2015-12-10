@@ -128,6 +128,7 @@ namespace nManager.Wow.ObjectManager
                     var toRemove = new List<UInt128>();
                     _objectList = new List<WoWObject>();
                     _unitList = new List<WoWUnit>();
+                    _playerList = new List<WoWPlayer>();
                     _gameobjectList = new List<WoWGameObject>();
                     foreach (var o in ObjectDictionary)
                     {
@@ -1906,6 +1907,40 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("GetWoWUnitAuctioneer(): " + e);
             }
             return new List<WoWUnit>();
+        }
+
+        // HealerClass oriented function
+        public static List<WoWUnit> GetFriendlyUnits()
+        {
+            try
+            {
+                lock (Locker)
+                {
+                    var list = new List<WoWUnit>();
+                    var partyGuidList = Party.GetPartyPlayersGUID();
+
+                    for (int i = 0; i < _unitList.Count; i++)
+                    {
+                        WoWUnit unit = _unitList[i];
+                        if (partyGuidList.Contains(unit.Guid))
+                            list.Add(unit);
+                    }
+                    for (int i = 0; i < _playerList.Count; i++)
+                    {
+                        WoWUnit unit = _playerList[i]; // read player as simple WoWUnit for now
+                        if (partyGuidList.Contains(unit.Guid))
+                            list.Add(unit);
+                    }
+                    if (list.Count == 0)
+                        list.Add(Me);
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetFriendlyUnits(): " + e);
+                return new List<WoWUnit>();
+            }
         }
     }
 }
