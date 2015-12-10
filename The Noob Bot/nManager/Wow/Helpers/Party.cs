@@ -51,9 +51,7 @@ namespace nManager.Wow.Helpers
                     {
                         uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
                         if (partyPlayer <= 0) continue;
-                        UInt128 currentPlayerGUID =
-                            Memory.WowMemory.Memory.ReadUInt128(
-                                partyPlayer + (uint) Addresses.Party.PlayerGuid);
+                        UInt128 currentPlayerGUID = Memory.WowMemory.Memory.ReadUInt128(partyPlayer + (uint) Addresses.Party.PlayerGuid);
                         if (currentPlayerGUID > 0)
                         {
                             partyPlayersGUID.Add(currentPlayerGUID);

@@ -3,15 +3,15 @@
 * Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
 */
+
+using System.Collections.Generic;
 // ReSharper disable EmptyGeneralCatchClause
 // ReSharper disable ObjectCreationAsStatement
-
 using System;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
-using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -392,74 +392,51 @@ public class DruidRestoration
         {
             try
             {
-                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                Thread.Sleep(100);
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                 {
-                    if (ObjectManager.Me.Target > 0)
-                    {
-                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    }
-                    else
-                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Heal.IsHealing)
-                        {
-                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
-                            {
-                                ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                            }
-                            else if (Party.IsInGroup())
-                            {
-                                double lowestHp = 100;
-                                var lowestHpPlayer = new WoWUnit(0);
-                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                                {
-                                    if (playerInMyParty <= 0) continue;
-                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
-                                        continue;
-                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    continue;
+                }
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
-                                    {
-                                        lowestHp = currentPlayer.HealthPercent;
-                                        lowestHpPlayer = currentPlayer;
-                                    }
-                                }
-                                if (lowestHpPlayer.Guid > 0)
-                                {
-                                    if (ObjectManager.Me.HealthPercent < 50 &&
-                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
-                                    {
-                                        lowestHpPlayer = ObjectManager.Me;
-                                    }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
-                                    {
-                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                                    }
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                            }
-                            else
-                            {
-                                Heal.IsHealing = false;
-                                break;
-                            }
-                            if (HealerClass.InRange(ObjectManager.Target))
-                                MountTask.DismountMount(false);
-                            HealingFight();
-                        }
-                        else if (!ObjectManager.Me.IsCast)
-                        {
-                            Patrolling();
-                        }
+                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
+
+                if (healingList.Count == 1)
+                {
+                    if (ObjectManager.Me.HealthPercent < 100)
+                        HealingFight(ObjectManager.Me);
+                    continue;
+                }
+                double partyPercentHealthMedian = 0;
+                double lowestHp = 100;
+                var lowestHpPlayer = new WoWUnit(0);
+                foreach (WoWUnit currentPlayer in healingList)
+                {
+                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
+                        continue;
+                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+
+                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    {
+                        lowestHp = currentPlayer.HealthPercent;
+                        lowestHpPlayer = currentPlayer;
                     }
                 }
-                Thread.Sleep(500);
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
+                    {
+                        lowestHpPlayer = ObjectManager.Me;
+                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
+                        // Prioritize me instead. So selfish!
+                    }
+                }
+                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
+                // use partyPercentHealthMedian in the HealingFight() code may be useful.
+                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
+                    continue;
+                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
+                    continue;
+                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
             }
             catch
             {
@@ -467,8 +444,9 @@ public class DruidRestoration
         }
     }
 
-    private void HealingFight()
+    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
+        ObjectManager.Me.Target = lowestHPUnit.Guid;
         Buff();
         if (_onCd.IsReady)
             DefenseCycle();
@@ -992,74 +970,51 @@ public class PaladinHoly
         {
             try
             {
-                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                Thread.Sleep(100);
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                 {
-                    if (ObjectManager.Me.Target > 0)
-                    {
-                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    }
-                    else
-                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Heal.IsHealing)
-                        {
-                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
-                            {
-                                ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                            }
-                            else if (Party.IsInGroup())
-                            {
-                                double lowestHp = 100;
-                                var lowestHpPlayer = new WoWUnit(0);
-                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                                {
-                                    if (playerInMyParty <= 0) continue;
-                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
-                                        continue;
-                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    continue;
+                }
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
-                                    {
-                                        lowestHp = currentPlayer.HealthPercent;
-                                        lowestHpPlayer = currentPlayer;
-                                    }
-                                }
-                                if (lowestHpPlayer.Guid > 0)
-                                {
-                                    if (ObjectManager.Me.HealthPercent < 50 &&
-                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
-                                    {
-                                        lowestHpPlayer = ObjectManager.Me;
-                                    }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
-                                    {
-                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                                    }
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                            }
-                            else
-                            {
-                                Heal.IsHealing = false;
-                                break;
-                            }
-                            if (HealerClass.InRange(ObjectManager.Target))
-                                MountTask.DismountMount(false);
-                            HealingFight();
-                        }
-                        else if (!ObjectManager.Me.IsCast)
-                        {
-                            Patrolling();
-                        }
+                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
+
+                if (healingList.Count == 1)
+                {
+                    if (ObjectManager.Me.HealthPercent < 100)
+                        HealingFight(ObjectManager.Me);
+                    continue;
+                }
+                double partyPercentHealthMedian = 0;
+                double lowestHp = 100;
+                var lowestHpPlayer = new WoWUnit(0);
+                foreach (WoWUnit currentPlayer in healingList)
+                {
+                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
+                        continue;
+                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+
+                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    {
+                        lowestHp = currentPlayer.HealthPercent;
+                        lowestHpPlayer = currentPlayer;
                     }
                 }
-                Thread.Sleep(500);
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
+                    {
+                        lowestHpPlayer = ObjectManager.Me;
+                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
+                        // Prioritize me instead. So selfish!
+                    }
+                }
+                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
+                // use partyPercentHealthMedian in the HealingFight() code may be useful.
+                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
+                    continue;
+                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
+                    continue;
+                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
             }
             catch
             {
@@ -1067,21 +1022,15 @@ public class PaladinHoly
         }
     }
 
-    private void HealingFight()
+    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
+        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        // Logging.Write("Most interesting target to heal is " + lowestHPUnit.Name + " (GUID: " + lowestHPUnit.Guid + "), %HP: " + lowestHPUnit.HealthPercent);
+        // Logging.Write("Party has a HealthPercent median of " + partyHealthPercentMedian);
         if (ObjectManager.Target.HealthPercent < 40)
             HealBurst();
         HealCycle();
         Buffs();
-    }
-
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Blessing();
-        }
-        Seal();
     }
 
     private void Buffs()
@@ -1117,17 +1066,17 @@ public class PaladinHoly
 
         if (BlessingOfKings.KnownSpell && _mySettings.UseBlessingOfKings)
         {
-            if (!BlessingOfKings.TargetHaveBuff && BlessingOfKings.IsSpellUsable)
+            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
                 BlessingOfKings.Launch();
         }
         else if (BlessingOfMight.KnownSpell && _mySettings.UseBlessingOfMight)
         {
-            if (!BlessingOfMight.TargetHaveBuff && BlessingOfMight.IsSpellUsable)
+            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
                 BlessingOfMight.Launch();
         }
         if (BeaconOfLight.KnownSpell && _mySettings.UseBeaconOfLight)
         {
-            if (!BeaconOfLight.TargetHaveBuff && BeaconOfLight.IsSpellUsable)
+            if (!BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable)
                 BeaconOfLight.Launch();
         }
     }
@@ -1452,75 +1401,51 @@ public class ShamanRestoration
         {
             try
             {
-                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                Thread.Sleep(100);
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                 {
-                    if (ObjectManager.Me.Target > 0)
-                    {
-                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    }
-                    else
-                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Heal.IsHealing)
-                        {
-                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
-                            {
-                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                            }
-                            else if (Party.IsInGroup())
-                            {
-                                double lowestHp = 100;
-                                var lowestHpPlayer = new WoWUnit(0);
-                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                                {
-                                    if (playerInMyParty <= 0) continue;
-                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
-                                        continue;
-                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    continue;
+                }
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
-                                    {
-                                        lowestHp = currentPlayer.HealthPercent;
-                                        lowestHpPlayer = currentPlayer;
-                                    }
-                                }
-                                if (lowestHpPlayer.Guid > 0)
-                                {
-                                    if (ObjectManager.Me.HealthPercent < 50 &&
-                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
-                                    {
-                                        lowestHpPlayer = ObjectManager.Me;
-                                    }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
-                                    {
-                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                                    }
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                            }
-                            else
-                            {
-                                Heal.IsHealing = false;
-                                break;
-                            }
-                            if (HealerClass.InRange(ObjectManager.Target))
-                                MountTask.DismountMount(false);
-                            HealingFight();
-                        }
-                        else if (!ObjectManager.Me.IsCast)
-                        {
-                            Patrolling();
-                        }
+                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
+
+                if (healingList.Count == 1)
+                {
+                    if (ObjectManager.Me.HealthPercent < 100)
+                        HealingFight(ObjectManager.Me);
+                    continue;
+                }
+                double partyPercentHealthMedian = 0;
+                double lowestHp = 100;
+                var lowestHpPlayer = new WoWUnit(0);
+                foreach (WoWUnit currentPlayer in healingList)
+                {
+                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
+                        continue;
+                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+
+                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    {
+                        lowestHp = currentPlayer.HealthPercent;
+                        lowestHpPlayer = currentPlayer;
                     }
                 }
-                Thread.Sleep(500);
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
+                    {
+                        lowestHpPlayer = ObjectManager.Me;
+                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
+                        // Prioritize me instead. So selfish!
+                    }
+                }
+                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
+                // use partyPercentHealthMedian in the HealingFight() code may be useful.
+                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
+                    continue;
+                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
+                    continue;
+                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
             }
             catch
             {
@@ -1528,8 +1453,9 @@ public class ShamanRestoration
         }
     }
 
-    private void HealingFight()
+    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
+        ObjectManager.Me.Target = lowestHPUnit.Guid;
         Buff();
         if (_onCd.IsReady)
             DefenseCycle();
@@ -1921,14 +1847,6 @@ public class ShamanRestoration
         return !FireTotemReady() || !EarthTotemReady() || !WaterTotemReady() || !AirTotemReady();
     }
 
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-        }
-    }
-
     #region Nested type: ShamanRestorationSettings
 
     [Serializable]
@@ -2194,75 +2112,51 @@ public class PriestDiscipline
         {
             try
             {
-                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                Thread.Sleep(100);
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                 {
-                    if (ObjectManager.Me.Target > 0)
-                    {
-                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    }
-                    else
-                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Heal.IsHealing)
-                        {
-                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
-                            {
-                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                            }
-                            else if (Party.IsInGroup())
-                            {
-                                double lowestHp = 100;
-                                var lowestHpPlayer = new WoWUnit(0);
-                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                                {
-                                    if (playerInMyParty <= 0) continue;
-                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
-                                        continue;
-                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    continue;
+                }
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
-                                    {
-                                        lowestHp = currentPlayer.HealthPercent;
-                                        lowestHpPlayer = currentPlayer;
-                                    }
-                                }
-                                if (lowestHpPlayer.Guid > 0)
-                                {
-                                    if (ObjectManager.Me.HealthPercent < 50 &&
-                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
-                                    {
-                                        lowestHpPlayer = ObjectManager.Me;
-                                    }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
-                                    {
-                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                                    }
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                            }
-                            else
-                            {
-                                Heal.IsHealing = false;
-                                break;
-                            }
-                            if (HealerClass.InRange(ObjectManager.Target))
-                                MountTask.DismountMount(false);
-                            HealingFight();
-                        }
-                        else if (!ObjectManager.Me.IsCast)
-                        {
-                            Patrolling();
-                        }
+                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
+
+                if (healingList.Count == 1)
+                {
+                    if (ObjectManager.Me.HealthPercent < 100)
+                        HealingFight(ObjectManager.Me);
+                    continue;
+                }
+                double partyPercentHealthMedian = 0;
+                double lowestHp = 100;
+                var lowestHpPlayer = new WoWUnit(0);
+                foreach (WoWUnit currentPlayer in healingList)
+                {
+                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
+                        continue;
+                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+
+                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    {
+                        lowestHp = currentPlayer.HealthPercent;
+                        lowestHpPlayer = currentPlayer;
                     }
                 }
-                Thread.Sleep(500);
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
+                    {
+                        lowestHpPlayer = ObjectManager.Me;
+                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
+                        // Prioritize me instead. So selfish!
+                    }
+                }
+                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
+                // use partyPercentHealthMedian in the HealingFight() code may be useful.
+                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
+                    continue;
+                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
+                    continue;
+                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
             }
             catch
             {
@@ -2270,20 +2164,9 @@ public class PriestDiscipline
         }
     }
 
-/*
-        private void BuffLevitate()
-        {
-            if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && _mySettings.UseLevitate
-                && (!Levitate.TargetHaveBuff || _levitateTimer.IsReady))
-            {
-                Levitate.Launch();
-                _levitateTimer = new Timer(1000*60*9);
-            }
-        }
-*/
-
-    private void HealingFight()
+    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
+        ObjectManager.Me.Target = lowestHPUnit.Guid;
         if (_onCd.IsReady)
             DefenseCycle();
         Buff();
@@ -2545,14 +2428,6 @@ public class PriestDiscipline
         }
     }
 
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-        }
-    }
-
     #region Nested type: PriestDisciplineSettings
 
     [Serializable]
@@ -2799,75 +2674,51 @@ public class PriestHoly
         {
             try
             {
-                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                Thread.Sleep(100);
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                 {
-                    if (ObjectManager.Me.Target > 0)
-                    {
-                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    }
-                    else
-                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Heal.IsHealing)
-                        {
-                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
-                            {
-                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                            }
-                            else if (Party.IsInGroup())
-                            {
-                                double lowestHp = 100;
-                                var lowestHpPlayer = new WoWUnit(0);
-                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                                {
-                                    if (playerInMyParty <= 0) continue;
-                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
-                                        continue;
-                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    continue;
+                }
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
-                                    {
-                                        lowestHp = currentPlayer.HealthPercent;
-                                        lowestHpPlayer = currentPlayer;
-                                    }
-                                }
-                                if (lowestHpPlayer.Guid > 0)
-                                {
-                                    if (ObjectManager.Me.HealthPercent < 50 &&
-                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
-                                    {
-                                        lowestHpPlayer = ObjectManager.Me;
-                                    }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
-                                    {
-                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                                    }
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                            }
-                            else
-                            {
-                                Heal.IsHealing = false;
-                                break;
-                            }
-                            if (HealerClass.InRange(ObjectManager.Target))
-                                MountTask.DismountMount(false);
-                            HealingFight();
-                        }
-                        else if (!ObjectManager.Me.IsCast)
-                        {
-                            Patrolling();
-                        }
+                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
+
+                if (healingList.Count == 1)
+                {
+                    if (ObjectManager.Me.HealthPercent < 100)
+                        HealingFight(ObjectManager.Me);
+                    continue;
+                }
+                double partyPercentHealthMedian = 0;
+                double lowestHp = 100;
+                var lowestHpPlayer = new WoWUnit(0);
+                foreach (WoWUnit currentPlayer in healingList)
+                {
+                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
+                        continue;
+                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+
+                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    {
+                        lowestHp = currentPlayer.HealthPercent;
+                        lowestHpPlayer = currentPlayer;
                     }
                 }
-                Thread.Sleep(500);
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
+                    {
+                        lowestHpPlayer = ObjectManager.Me;
+                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
+                        // Prioritize me instead. So selfish!
+                    }
+                }
+                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
+                // use partyPercentHealthMedian in the HealingFight() code may be useful.
+                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
+                    continue;
+                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
+                    continue;
+                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
             }
             catch
             {
@@ -2875,20 +2726,9 @@ public class PriestHoly
         }
     }
 
-/*
-        private void BuffLevitate()
-        {
-            if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && _mySettings.UseLevitate
-                && (!Levitate.TargetHaveBuff || _levitateTimer.IsReady))
-            {
-                Levitate.Launch();
-                _levitateTimer = new Timer(1000*60*9);
-            }
-        }
-*/
-
-    private void HealingFight()
+    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
+        ObjectManager.Me.Target = lowestHPUnit.Guid;
         if (_onCd.IsReady)
             DefenseCycle();
         Buff();
@@ -3433,75 +3273,51 @@ public class MonkMistweaver
         {
             try
             {
-                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                Thread.Sleep(100);
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                 {
-                    if (ObjectManager.Me.Target > 0)
-                    {
-                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    }
-                    else
-                        ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Heal.IsHealing)
-                        {
-                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
-                            {
-                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = ObjectManager.Me.Guid;
-                            }
-                            else if (Party.IsInGroup())
-                            {
-                                double lowestHp = 100;
-                                var lowestHpPlayer = new WoWUnit(0);
-                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                                {
-                                    if (playerInMyParty <= 0) continue;
-                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
-                                        continue;
-                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    continue;
+                }
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
-                                    {
-                                        lowestHp = currentPlayer.HealthPercent;
-                                        lowestHpPlayer = currentPlayer;
-                                    }
-                                }
-                                if (lowestHpPlayer.Guid > 0)
-                                {
-                                    if (ObjectManager.Me.HealthPercent < 50 &&
-                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
-                                    {
-                                        lowestHpPlayer = ObjectManager.Me;
-                                    }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
-                                    {
-                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                                    }
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    ObjectManager.Me.Target = lowestHpPlayer.Guid;
-                            }
-                            else
-                            {
-                                Heal.IsHealing = false;
-                                break;
-                            }
-                            if (HealerClass.InRange(ObjectManager.Target))
-                                MountTask.DismountMount(false);
-                            HealingFight();
-                        }
-                        else if (!ObjectManager.Me.IsCast)
-                        {
-                            Patrolling();
-                        }
+                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
+
+                if (healingList.Count == 1)
+                {
+                    if (ObjectManager.Me.HealthPercent < 100)
+                        HealingFight(ObjectManager.Me);
+                    continue;
+                }
+                double partyPercentHealthMedian = 0;
+                double lowestHp = 100;
+                var lowestHpPlayer = new WoWUnit(0);
+                foreach (WoWUnit currentPlayer in healingList)
+                {
+                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
+                        continue;
+                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+
+                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    {
+                        lowestHp = currentPlayer.HealthPercent;
+                        lowestHpPlayer = currentPlayer;
                     }
                 }
-                Thread.Sleep(500);
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
+                    {
+                        lowestHpPlayer = ObjectManager.Me;
+                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
+                        // Prioritize me instead. So selfish!
+                    }
+                }
+                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
+                // use partyPercentHealthMedian in the HealingFight() code may be useful.
+                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
+                    continue;
+                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
+                    continue;
+                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
             }
             catch
             {
@@ -3509,8 +3325,9 @@ public class MonkMistweaver
         }
     }
 
-    private void HealingFight()
+    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
+        ObjectManager.Me.Target = lowestHPUnit.Guid;
         Buff();
         if (_onCd.IsReady)
             DefenseCycle();
@@ -3800,14 +3617,6 @@ public class MonkMistweaver
             && _mySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
         {
             RushingJadeWind.Launch();
-        }
-    }
-
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
         }
     }
 
