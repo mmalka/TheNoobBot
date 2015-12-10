@@ -354,7 +354,8 @@ public class DruidRestoration
 
     private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
-        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
+            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
         Buff();
         DefenseCycle();
         HealingBurst();
@@ -472,7 +473,8 @@ public class PaladinHoly
 
     private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
-        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
+            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
         // Logging.Write("Most interesting target to heal is " + lowestHPUnit.Name + " (GUID: " + lowestHPUnit.Guid + "), %HP: " + lowestHPUnit.HealthPercent);
         // Logging.Write("Party has a HealthPercent median of " + partyHealthPercentMedian);
         if (ObjectManager.Target.HealthPercent < 40)
@@ -598,7 +600,8 @@ public class ShamanRestoration
 
     private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
-        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
+            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
         Buff();
         DefenseCycle();
         Decast();
@@ -721,7 +724,8 @@ public class PriestDiscipline
 
     private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
-        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
+            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
         DefenseCycle();
         Buff();
         HealingBurst();
@@ -835,7 +839,8 @@ public class PriestHoly
 
     private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
-        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
+            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
         DefenseCycle();
         Buff();
         HealingBurst();
@@ -953,7 +958,8 @@ public class MonkMistweaver
 
     private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
     {
-        ObjectManager.Me.Target = lowestHPUnit.Guid;
+        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
+            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
         Buff();
         DefenseCycle();
         Decast();
