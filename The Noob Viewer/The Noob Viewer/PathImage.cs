@@ -99,10 +99,17 @@ namespace meshPathVisualizer
                 points[i] = new PointF(tX*Background.TileWidth, tY*Background.TileHeight);
             }
             graphics.SmoothingMode = SmoothingMode.HighQuality;
-            graphics.DrawLines(new Pen(NpcDB == null ? Color.Red : Color.Orange, 4f), points);
-
-            foreach (var point in points)
-                graphics.DrawEllipse(new Pen(Color.Black, 1f), point.X - (6f/2), point.Y - (6f/2), 6, 6);
+            if (Hops.Count > 1)
+            {
+                graphics.DrawLines(new Pen(NpcDB == null ? Color.Red : Color.Orange, 4f), points);
+                foreach (var point in points)
+                    graphics.DrawEllipse(new Pen(Color.Black, 1f), point.X - (6f / 2), point.Y - (6f / 2), 6f, 6f);
+            }
+            else
+            {
+                graphics.DrawEllipse(new Pen(Color.Black, 1f), points[0].X - (8f / 2), points[0].Y - (8f / 2), 8f, 8f);
+                graphics.FillEllipse(new SolidBrush(NpcDB == null ? Color.Red : Color.Orange), points[0].X - (8f / 2), points[0].Y - (8f / 2), 8f, 8f);
+            }
 
             if (NpcDB != null)
             {
@@ -118,17 +125,17 @@ namespace meshPathVisualizer
                         {
                             tX -= minX;
                             tY -= minY;
-                            graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                            graphics.DrawEllipse(new Pen(Color.White, 1f), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6f, 6f);
                             switch (hop.Type)
                             {
                                 case HopType.Alliance:
-                                    graphics.FillEllipse(new SolidBrush(Color.Blue), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    graphics.FillEllipse(new SolidBrush(Color.Blue), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6f, 6f);
                                     break;
                                 case HopType.Horde:
-                                    graphics.FillEllipse(new SolidBrush(Color.Red), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    graphics.FillEllipse(new SolidBrush(Color.Red), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6f, 6f);
                                     break;
                                 case HopType.Neutral:
-                                    graphics.FillEllipse(new SolidBrush(Color.Yellow), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6, 6);
+                                    graphics.FillEllipse(new SolidBrush(Color.Yellow), tX * Background.TileWidth - (6f / 2), tY * Background.TileHeight - (6f / 2), 6f, 6f);
                                     break;
                             }
                         }
