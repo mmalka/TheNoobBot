@@ -213,11 +213,13 @@ namespace Mimesis.Bot
                 switch (evt.eType)
                 {
                     case MimesisHelpers.eventType.pickupQuest:
+                        break;
                         Logging.WriteDebug("Received pickupquest " + evt.EventValue2);
                         myTaskList.Add(evt);
                         oldTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.turninQuest:
+                        break;
                         Logging.WriteDebug("Received turninquest " + evt.EventValue2);
                         myTaskList.Add(evt);
                         oldTaskList.Add(evt);
