@@ -213,16 +213,16 @@ namespace Mimesis.Bot
                 switch (evt.eType)
                 {
                     case MimesisHelpers.eventType.pickupQuest:
+                        oldTaskList.Add(evt);
                         break;
                         Logging.WriteDebug("Received pickupquest " + evt.EventValue2);
                         myTaskList.Add(evt);
-                        oldTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.turninQuest:
+                        oldTaskList.Add(evt);
                         break;
                         Logging.WriteDebug("Received turninquest " + evt.EventValue2);
                         myTaskList.Add(evt);
-                        oldTaskList.Add(evt);
                         break;
                     case MimesisHelpers.eventType.mount:
                         Logging.WriteDebug("Received mount type " + (MountCapacity) evt.EventValue1);
