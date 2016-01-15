@@ -183,7 +183,7 @@ namespace nManager.Wow.Bot.States
                         {
                             Logging.Write("Run aborted, you are not in Draenor or too far away and don't known how to fly and don't have a Garrison Hearthstone or it's on Cooldown.");
                             tList.Clear();
-                            break; // prevent poping an empry stack, jump to the end
+                            break; // prevent poping an empty stack, break to the end
                         }
                     }
                     tList.Pop();
