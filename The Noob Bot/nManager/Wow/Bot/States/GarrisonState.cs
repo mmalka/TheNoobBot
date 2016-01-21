@@ -6,6 +6,8 @@ using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using ObjMgr = nManager.Wow.ObjectManager.ObjectManager;
+using nManager.Wow.Bot.Tasks;
 
 namespace nManager.Wow.Bot.States
 {
@@ -16,10 +18,9 @@ namespace nManager.Wow.Bot.States
         private const uint MinerCoffeeBuff = 176049;
         private const int PreservedMiningPick = 118903;
         private const uint PreservedMiningPickBuff = 176061;
-        public static Dictionary<string, string> TaskList = new Dictionary<string, string>();
-
+        private static Stack<Task> tList = null;
+        private static Task previousTask = Task.None;
         private static Point _mineEntrance;
-        private static GathererProfile _mineProfile;
         private static Point _garden;
         private static int _npcGarden;
         private static int _npcMine;
@@ -33,9 +34,6 @@ namespace nManager.Wow.Bot.States
         private static bool _oldActivateHerbsHarvesting;
         private static float _oldGatheringSearchRadius;
         private static Npc _targetNpc = new Npc();
-        private static uint _targetBaseAddress;
-        private static bool _isCompleted;
-        private static MovementLoop _movementLoopState;
         private static readonly Farming FarmingState = new Farming();
 
         public override string DisplayName
@@ -45,121 +43,312 @@ namespace nManager.Wow.Bot.States
 
         public override int Priority { get; set; }
 
+        private enum Task : int
+        {
+            None = 0,
+            GoToGarrison = 1,
+            GatherHerbs = 2,
+            GardenWorkOrder = 3,
+            GatherMinerals = 4,
+            MineWorkOrder = 5,
+            CheckGarrisonRessourceCache = 6
+        }
+
         public override bool NeedToRun
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
-                    !Products.Products.IsStarted)
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjMgr.Me.IsDeadMe || !ObjMgr.Me.IsValid ||
+                    (ObjMgr.Me.InCombat && !(ObjMgr.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                    Usefuls.IsFlying))) || !Products.Products.IsStarted)
                     return false;
-
-                if (TaskList.Count <= 0)
+                // Not initialized, then run
+                if (tList == null)
                     return true;
-
-                if (GetLastTask.Value == "OnGoing")
-                {
-                    switch (GetLastTask.Key)
-                    {
-                        case "GatherHerbs":
-                            if (FarmingState.NeedToRun)
-                            {
-                                FarmingState.Run();
-                            }
-                            else
-                            {
-                                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
-                                Logging.Write(GetLastTask.Key + " terminated.");
-                                TaskList[GetLastTask.Key] = "Done";
-                            }
-                            /*if (IsListObjectGathered(ListHerbsObjects))
-                            {
-                                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
-                                Logging.Write(GetLastTask.Key + " terminated.");
-                                TaskList[GetLastTask.Key] = "Done";
-                            }*/
-                            break;
-                        case "GatherMinerals":
-                            if (_mineProfile != null && _movementLoopState != null)
-                            {
-                                if (MovementManager.PointId == _mineProfile.Points.Count - 1)
-                                {
-                                    nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
-                                    Logging.Write(GetLastTask.Key + " terminated.");
-                                    TaskList[GetLastTask.Key] = "Done";
-                                    nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
-                                    MovementManager.StopMove();
-                                    return false;
-                                }
-                                if (ItemsManager.GetItemCount(PreservedMiningPick) > 0 && !ItemsManager.IsItemOnCooldown(PreservedMiningPick) &&
-                                    ItemsManager.IsItemUsable(PreservedMiningPick) && !ObjectManager.ObjectManager.Me.HaveBuff(PreservedMiningPickBuff))
-                                {
-                                    ItemsManager.UseItem(PreservedMiningPick);
-                                    Thread.Sleep(50 + Usefuls.Latency);
-                                    while (ObjectManager.ObjectManager.Me.IsCast)
-                                    {
-                                        Thread.Sleep(200);
-                                    }
-                                }
-                                if (ItemsManager.GetItemCount(MinerCoffee) > 0 && !ItemsManager.IsItemOnCooldown(MinerCoffee) &&
-                                    ItemsManager.IsItemUsable(MinerCoffee) && ObjectManager.ObjectManager.Me.BuffStack(MinerCoffeeBuff) < 2)
-                                {
-                                    ItemsManager.UseItem(MinerCoffee);
-                                    Thread.Sleep(50 + Usefuls.Latency);
-                                    while (ObjectManager.ObjectManager.Me.IsCast)
-                                    {
-                                        Thread.Sleep(200);
-                                    }
-                                }
-                                if (FarmingState.NeedToRun)
-                                    FarmingState.Run();
-                                else if (_movementLoopState.NeedToRun)
-                                    _movementLoopState.Run();
-                                return false;
-                            }
-                            Logging.Write(GetLastTask.Key + " aborted, did not find profile informations.");
-                            TaskList[GetLastTask.Key] = "Done";
-                            nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
-                            nManagerSetting.CurrentSetting.ActivatePathFindingFeature = true;
-                            return false;
-                        case "GardenWorkOrder":
-                        case "MineWorkOrder":
-                        case "CheckGarrisonRessourceCache":
-                        case "GoTogarrison":
-                            return true; // force run if OnGoing
-                    }
-                }
-
-                if (GetLastTask.Value != null)
-                    return GetLastTask.Value != "OnGoing";
-
-                if (_isCompleted)
+                // Task list empty, then we did finish
+                if (tList.Count == 0)
                     return false;
-                _isCompleted = true;
-                // Restore original parameters
-                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = _oldActivateVeinsHarvesting;
-                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = _oldActivateHerbsHarvesting;
-                Logging.Write("The GarrisonFarming task is 100% complete.");
-                CloseProduct();
-                // Maybe add an infinite task "check missions, send followers on duty".
-                return false;
+                return true;
             }
         }
 
-        public static KeyValuePair<string, string> GetLastTask
+        public override void Run()
         {
-            get
+            if (MovementManager.InMovement)
+                return;
+            // Now configure if not already done
+            if (tList == null)
             {
-                foreach (var valuePair in TaskList)
+                // Fill the task list
+                tList = new Stack<Task>();
+                tList.Push(Task.CheckGarrisonRessourceCache);
+                if (Garrison.GetGarrisonLevel() > 1)
                 {
-                    if (valuePair.Value == "Done")
-                        continue;
-                    if (valuePair.Value == "OnGoing")
-                        return valuePair;
-                    return valuePair;
+                    tList.Push(Task.MineWorkOrder);
+                    tList.Push(Task.GatherMinerals);
+                    tList.Push(Task.GardenWorkOrder);
+                    tList.Push(Task.GatherHerbs);
                 }
-
-                return new KeyValuePair<string, string>();
+                tList.Push(Task.GoToGarrison);
+                // And fill the variables
+                _cacheGarrison = new List<int> { 237722, 236916, 237191, 237724, 237720, 237723 };
+                if (ObjMgr.Me.PlayerFaction == "Alliance")
+                {
+                    _npcGarden = 85514;
+                    _cacheGarden = 235885;
+                    _npcMine = 77730;
+                    _cacheMine = 235886;
+                    _garden = new Point { X = 1833.85f, Y = 154.7408f, Z = 76.66339f };
+                    _mineEntrance = new Point { X = 1886.021f, Y = 83.23455f, Z = 84.31888f };
+                    _cacheGarrisonPoint = new Point { X = 1914.361f, Y = 290.3863f, Z = 88.96407f };
+                }
+                else
+                {
+                    _npcGarden = 85783;
+                    _cacheGarden = 239238;
+                    _npcMine = 81688;
+                    _cacheMine = 239237;
+                    _garden = new Point { X = 5413.795f, Y = 4548.928f, Z = 139.1232f };
+                    _mineEntrance = new Point { X = 5465.796f, Y = 4430.045f, Z = 145.4595f };
+                    _cacheGarrisonPoint = new Point { X = 5592.229f, Y = 4569.476f, Z = 136.1069f };
+                }
+                _cacheGardenGathered = false;
+                _cacheMineGathered = false;
+                // Then save settings
+                _oldActivateVeinsHarvesting = nManagerSetting.CurrentSetting.ActivateVeinsHarvesting;
+                _oldActivateHerbsHarvesting = nManagerSetting.CurrentSetting.ActivateHerbsHarvesting;
+                _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
+                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
+                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+            }
+            bool success, display = false;
+            Point me = ObjMgr.Me.Position;
+            Task currentTask = tList.Peek();
+            if (currentTask != previousTask)
+            {
+                previousTask = currentTask;
+                display = true;
+            }
+            switch (tList.Peek())
+            {
+                case Task.GoToGarrison:
+                    if (display)
+                        Logging.Write("Task: go to garrison");
+                    if (!Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId))
+                    {
+                        // We are in Draenor
+                        if (Usefuls.ContinentId == Usefuls.ContinentIdByContinentName("Draenor"))
+                        {
+                            // We can fly, then fly
+                            if (MountTask.GetMountCapacity() == MountCapacity.Fly)
+                            {
+                                LongMove.LongMoveGo(_cacheGarrisonPoint);
+                                return;
+                            }
+                            // else if not too far go by foot
+                            else if (_cacheGarrisonPoint.DistanceTo(me) < 100)
+                            {
+                                List<Point> pathToGarrison = PathFinder.FindPath(_cacheGarrisonPoint, out success);
+                                if (success)
+                                {
+                                    MovementManager.Go(pathToGarrison);
+                                    return;
+                                }
+                            }
+                        }
+                        // We have to use the garrison hearthstone
+                        if (ItemsManager.GetItemCount(GarrisonHearthstone) > 0 && !ItemsManager.IsItemOnCooldown(GarrisonHearthstone))
+                        {
+                            Logging.Write("Using garrison Hearthstone");
+                            ItemsManager.UseItem(GarrisonHearthstone);
+                        }
+                        else
+                        {
+                            Logging.Write("Run aborted, you are not in Draenor or too far away and don't known how to fly and don't have a Garrison Hearthstone or it's on Cooldown.");
+                            tList.Clear();
+                            break; // prevent poping an empry stack, jump to the end
+                        }
+                    }
+                    tList.Pop();
+                    break;
+                case Task.CheckGarrisonRessourceCache:
+                    if (display)
+                        Logging.Write("Task: gather garrison cache");
+                    if (_cacheGarrisonPoint.DistanceTo(me) > 75.0f)
+                    {
+                        List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
+                        MovementManager.Go(pathToGCache);
+                        return;
+                    }
+                    WoWGameObject cache = ObjMgr.GetNearestWoWGameObject(ObjMgr.GetWoWGameObjectById(_cacheGarrison));
+                    if (cache.GetBaseAddress != 0)
+                    {
+                        if (cache.Position.DistanceTo(me) > 5.0f)
+                        {
+                            _targetNpc = new Npc { Entry = cache.Entry, Position = cache.Position };
+                            MovementManager.FindTarget(ref _targetNpc, 5f);
+                            return;
+                        }
+                        Interact.InteractWith(cache.GetBaseAddress, true);
+                    }
+                    tList.Pop();
+                    break;
+                case Task.GatherHerbs:
+                    if (display)
+                        Logging.Write("Task: gather plants in garrison garden");
+                    if (_garden.DistanceTo(me) > 15.0f)
+                    {
+                        List<Point> pathToGarden = PathFinder.FindPath(_garden, out success); // assume success
+                        MovementManager.Go(pathToGarden);
+                        return;
+                    }
+                    nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = true;
+                    nManagerSetting.CurrentSetting.GatheringSearchRadius = 30f;
+                    if (!FarmingState.NeedToRun) // Nothing anymore to farm, then next task
+                    {
+                        Logging.Write("Finished to farm garrison garden");
+                        nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
+                        tList.Pop();
+                    }
+                    break;
+                case Task.GatherMinerals:
+                    if (display)
+                        Logging.Write("Task: gather ores and carts in garrison mine");
+                    if (_mineEntrance.DistanceTo(me) > 15.0f)
+                    {
+                        List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success); // assume success
+                        MovementManager.Go(pathToMine);
+                        return;
+                    }
+                    nManagerSetting.CurrentSetting.GatheringSearchRadius = 100f;
+                    nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
+                    if (FarmingState.NeedToRun)
+                    {
+                        Logging.Write("Take coffee and Mining Pick buffs");
+                        if (ItemsManager.GetItemCount(PreservedMiningPick) > 0 && !ItemsManager.IsItemOnCooldown(PreservedMiningPick) &&
+                            ItemsManager.IsItemUsable(PreservedMiningPick) && !ObjMgr.Me.HaveBuff(PreservedMiningPickBuff))
+                        {
+                            ItemsManager.UseItem(PreservedMiningPick);
+                            Thread.Sleep(150 + Usefuls.Latency);
+                            while (ObjMgr.Me.IsCast)
+                            {
+                                Thread.Sleep(150);
+                            }
+                        }
+                        if (ItemsManager.GetItemCount(MinerCoffee) > 0 && !ItemsManager.IsItemOnCooldown(MinerCoffee) &&
+                            ItemsManager.IsItemUsable(MinerCoffee) && ObjMgr.Me.BuffStack(MinerCoffeeBuff) < 2)
+                        {
+                            ItemsManager.UseItem(MinerCoffee);
+                            Thread.Sleep(150 + Usefuls.Latency);
+                            while (ObjMgr.Me.IsCast)
+                            {
+                                Thread.Sleep(150);
+                            }
+                        }
+                    }
+                    else // Nothing anymore to farm, then next task
+                    {
+                        Logging.Write("Finished to farm garrison mine");
+                        nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
+                        tList.Pop();
+                    }
+                    break;
+                case Task.GardenWorkOrder:
+                    if (display)
+                        Logging.Write("Task: collect garden cache and send work order");
+                    if (!_cacheGardenGathered)
+                    {
+                        WoWGameObject gardenCache = ObjMgr.GetNearestWoWGameObject(ObjMgr.GetWoWGameObjectById(_cacheGarden));
+                        if (gardenCache.GetBaseAddress != 0)
+                        {
+                            if (gardenCache.Position.DistanceTo(me) > 5.0f)
+                            {
+                                _targetNpc = new Npc { Entry = gardenCache.Entry, Position = gardenCache.Position };
+                                MovementManager.FindTarget(ref _targetNpc, 5f);
+                                return;
+                            }
+                            else
+                            {
+                                Thread.Sleep(Usefuls.Latency + 250);
+                                Interact.InteractWith(gardenCache.GetBaseAddress, true);
+                                _cacheGardenGathered = true;
+                                Thread.Sleep(Usefuls.Latency + 1750);
+                            }
+                        }
+                    }
+                    WoWUnit gardenNpc = ObjMgr.GetNearestWoWUnit(ObjMgr.GetWoWUnitByEntry(_npcGarden));
+                    if (gardenNpc.GetBaseAddress != 0)
+                    {
+                        if (gardenNpc.Position.DistanceTo(me) > 5.0f)
+                        {
+                            _targetNpc = new Npc { Entry = gardenNpc.Entry, Position = gardenNpc.Position };
+                            MovementManager.FindTarget(ref _targetNpc, 5f);
+                            return;
+                        }
+                        else
+                        {
+                            Interact.InteractWith(gardenNpc.GetBaseAddress, true);
+                            Thread.Sleep(Usefuls.Latency + 1000);
+                            Interact.InteractWith(gardenNpc.GetBaseAddress, true);
+                            Thread.Sleep(Usefuls.Latency + 500);
+                            Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
+                            Thread.Sleep(Usefuls.Latency + 1000);
+                        }
+                    }
+                    tList.Pop();
+                    break;
+                case Task.MineWorkOrder:
+                    if (display)
+                        Logging.Write("Task: collect mine cache and send work order");
+                    if (!_cacheMineGathered)
+                    {
+                        WoWGameObject mineCache = ObjMgr.GetNearestWoWGameObject(ObjMgr.GetWoWGameObjectById(_cacheMine));
+                        if (mineCache.GetBaseAddress != 0)
+                        {
+                            if (mineCache.Position.DistanceTo(me) > 5.0f)
+                            {
+                                _targetNpc = new Npc { Entry = mineCache.Entry, Position = mineCache.Position };
+                                MovementManager.FindTarget(ref _targetNpc, 5f);
+                                return;
+                            }
+                            else
+                            {
+                                Thread.Sleep(Usefuls.Latency + 250);
+                                Interact.InteractWith(mineCache.GetBaseAddress, true);
+                                _cacheMineGathered = true;
+                                Thread.Sleep(Usefuls.Latency + 1750);
+                            }
+                        }
+                    }
+                    WoWUnit mineNpc = ObjMgr.GetNearestWoWUnit(ObjMgr.GetWoWUnitByEntry(_npcMine));
+                    if (mineNpc.GetBaseAddress != 0)
+                    {
+                        if (mineNpc.Position.DistanceTo(me) > 5.0f)
+                        {
+                            _targetNpc = new Npc { Entry = mineNpc.Entry, Position = mineNpc.Position };
+                            MovementManager.FindTarget(ref _targetNpc, 5f);
+                            return;
+                        }
+                        else
+                        {
+                            Interact.InteractWith(mineNpc.GetBaseAddress, true);
+                            Thread.Sleep(Usefuls.Latency + 1000);
+                            Interact.InteractWith(mineNpc.GetBaseAddress, true);
+                            Thread.Sleep(Usefuls.Latency + 500);
+                            Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
+                            Thread.Sleep(Usefuls.Latency + 1000);
+                        }
+                    }
+                    tList.Pop();
+                    break;
+            }
+            if (tList.Count == 0)
+            {
+                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = _oldActivateVeinsHarvesting;
+                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = _oldActivateHerbsHarvesting;
+                nManagerSetting.CurrentSetting.GatheringSearchRadius = _oldGatheringSearchRadius;
+                Logging.Write("Garrison Farming completed");
+                CloseProduct();
             }
         }
 
@@ -177,371 +366,6 @@ namespace nManager.Wow.Bot.States
         {
             var threadProductStop = new Thread(Products.Products.ProductStopFromFSM);
             threadProductStop.Start();
-        }
-
-        public override void Run()
-        {
-            if (TaskList.Count <= 0)
-            {
-                // Initialize Tasks
-                TaskList.Add("GoToGarrison", "NotStarted");
-                Logging.Write("Task GoToGarrison added to the TaskList.");
-                TaskList.Add("GatherHerbs", "NotStarted");
-                Logging.Write("Task GatherHerbs added to the TaskList.");
-                TaskList.Add("GardenWorkOrder", "NotStarted");
-                Logging.Write("Task GardenWorkOrder added to the TaskList.");
-                TaskList.Add("GatherMinerals", "NotStarted");
-                Logging.Write("Task GatherMinerals added to the TaskList.");
-                TaskList.Add("MineWorkOrder", "NotStarted");
-                Logging.Write("Task MineWorkOrder added to the TaskList.");
-                TaskList.Add("CheckGarrisonRessourceCache", "NotStarted");
-                Logging.Write("Task CheckGarrisonRessourceCache added to the TaskList.");
-                //TaskList.Add("SendFollowersOnDuty", "NotStarted");
-                //Logging.Write("Task SendFollowersOnDuty added to the TaskList.");
-
-                // Initialize Settings
-                _oldActivateVeinsHarvesting = nManagerSetting.CurrentSetting.ActivateVeinsHarvesting;
-                _oldActivateHerbsHarvesting = nManagerSetting.CurrentSetting.ActivateHerbsHarvesting;
-
-                // Initialize Points
-                _cacheGarrison = new List<int> {237722, 236916, 237191, 237724, 237720, 237723};
-                // All garrison cache ids.
-                string playerFaction = ObjectManager.ObjectManager.Me.PlayerFaction;
-                if (Garrison.GetGarrisonGardenLevel <= 0)
-                {
-                    TaskList.Remove("GatherHerbs");
-                    TaskList.Remove("GardenWorkOrder");
-                    Logging.Write("Task GatherHerbs/GardenWorkOrder removed from to the TaskList, reason: There is no garden in your garrison.");
-                }
-                if (playerFaction == "Alliance")
-                {
-                    _npcGarden = 85514;
-                    _cacheGarden = 235885;
-                    _npcMine = 77730;
-                    _cacheMine = 235886;
-                    switch (Garrison.GetGarrisonLevel())
-                    {
-                        case 1:
-                            _garden = new Point();
-                            _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point {X = 1899.979f, Y = 93.62897f, Z = 83.52692f};
-                            break;
-                        case 2:
-                            _garden = new Point {X = 1820.335f, Y = 151.5252f, Z = 76.6043f};
-                            _mineEntrance = new Point {X = 1912.648f, Y = 92.09844f, Z = 83.5269f};
-                            _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
-                            break;
-                        case 3:
-                            _garden = new Point {X = 1820.335f, Y = 151.5252f, Z = 76.6043f};
-                            _mineEntrance = new Point {X = 1912.648f, Y = 92.09844f, Z = 83.5269f};
-                            _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
-                            break;
-                    }
-                }
-                else
-                {
-                    _npcGarden = 85783;
-                    _cacheGarden = 239238;
-                    _npcMine = 81688;
-                    _cacheMine = 239237;
-                    switch (Garrison.GetGarrisonLevel())
-                    {
-                        case 1:
-                            _garden = new Point();
-                            _mineEntrance = new Point();
-                            _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
-                            break;
-                        case 2:
-                            _garden = new Point {X = 5413.17f, Y = 4558.384f, Z = 139.1283f};
-                            _mineEntrance = new Point {X = 5475.534f, Y = 4446.189f, Z = 144.5391f};
-                            _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
-                            break;
-                        case 3:
-                            _garden = new Point {X = 5413.17f, Y = 4558.384f, Z = 139.1283f};
-                            _mineEntrance = new Point {X = 5475.534f, Y = 4446.189f, Z = 144.5391f};
-                            _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
-                            break;
-                    }
-                }
-
-                if (Garrison.GetGarrisonLevel() == 1)
-                {
-                    TaskList.Remove("GatherMinerals");
-                    TaskList.Remove("MineWorkOrder");
-
-                    TaskList.Remove("GatherHerbs");
-                    TaskList.Remove("GardenWorkOrder");
-                    Logging.Write("Task GatherMinerals, MineWorkOrder, GatherHerbs, GardenWorkOrder are removed from to the TaskList, reason: Garrison level 1 does not have Mine nor Garden.");
-                    return;
-                }
-                int mineLevel = Garrison.GetGarrisonMineLevel;
-                if (_movementLoopState == null || _mineProfile == null)
-                {
-                    _mineProfile = XmlSerializer.Deserialize<GathererProfile>(Application.StartupPath + "\\Profiles\\GarrisonFarming\\" + playerFaction + "Mine" + mineLevel + ".xml");
-                    if (_mineProfile != null && _mineProfile.Points.Count > 0)
-                    {
-                        _movementLoopState = new MovementLoop {PathLoop = _mineProfile.Points};
-                    }
-                    else
-                    {
-                        TaskList.Remove("GatherMinerals");
-                        if (mineLevel > 0)
-                            Logging.Write("Task GatherMinerals removed from to the TaskList, reason: " + playerFaction + " Mine Profile not found for Mine level: " + mineLevel + ".");
-                        else
-                        {
-                            TaskList.Remove("MineWorkOrder");
-                            Logging.Write("Task GatherMinerals/MineWorkOrder removed from to the TaskList, reason: There is no mine in your garrison.");
-                        }
-                    }
-                }
-            }
-            KeyValuePair<string, string> currentTask = GetLastTask;
-            bool success;
-            switch (currentTask.Key)
-            {
-                case "GoToGarrison":
-                    if (currentTask.Value == "Not Started")
-                    {
-                        Logging.Write(currentTask.Key + " started.");
-                        TaskList[currentTask.Key] = "OnGoing";
-                    }
-                    if (Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId))
-                    {
-                        Logging.Write(currentTask.Key + " terminated.");
-                        TaskList[currentTask.Key] = "Done";
-                        break;
-                    }
-                    if (ItemsManager.GetItemCount(GarrisonHearthstone) <= 0 || ItemsManager.IsItemOnCooldown(GarrisonHearthstone))
-                    {
-                        if (Usefuls.ContinentIdByContinentName("Draenor") == Usefuls.ContinentId)
-                        {
-                            List<Point> pathToGarrison = PathFinder.FindPath(_cacheGarrisonPoint, out success);
-                            if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
-                            {
-                                if (!MovementManager.InMoveTo && success)
-                                    MovementManager.Go(pathToGarrison);
-                                else if (!success)
-                                {
-                                    Logging.Write(currentTask.Key + " aborted, no paths.");
-                                    TaskList[currentTask.Key] = "Done";
-                                    CloseProduct();
-                                }
-                            }
-                            else
-                            {
-                                Logging.Write(currentTask.Key + " terminated.");
-                                TaskList[currentTask.Key] = "Done";
-                            }
-                        }
-                        else
-                        {
-                            Logging.Write(currentTask.Key + " aborted, you are not in Draenor and don't have a Garrison Hearthstone or it's on Cooldown.");
-                            TaskList[currentTask.Key] = "Done";
-                            CloseProduct();
-                        }
-                    }
-                    else
-                    {
-                        ItemsManager.UseItem(GarrisonHearthstone);
-                        Logging.Write("Using Garrison Hearthstone to go back to Garrison.");
-                        Thread.Sleep(200);
-                        while (ObjectManager.ObjectManager.Me.IsCast || Usefuls.IsLoadingOrConnecting)
-                        {
-                            Thread.Sleep(1000);
-                        }
-                    }
-                    break;
-                case "GatherMinerals":
-                    if (currentTask.Value == "NotStarted")
-                    {
-                        if (MovementManager.InMovement)
-                            return;
-                        List<Point> pathToMine = PathFinder.FindPath(_mineEntrance, out success);
-                        if (_mineEntrance.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
-                        {
-                            if (!MovementManager.InMoveTo && success)
-                                MovementManager.Go(pathToMine);
-                            else if (!success)
-                            {
-                                Logging.Write(currentTask.Key + " aborted, no paths.");
-                                TaskList[currentTask.Key] = "Done";
-                            }
-                        }
-                        else
-                        {
-                            Logging.Write(currentTask.Key + " started.");
-                            TaskList[currentTask.Key] = "OnGoing";
-                            _oldGatheringSearchRadius = nManagerSetting.CurrentSetting.GatheringSearchRadius;
-                            nManagerSetting.CurrentSetting.GatheringSearchRadius = 7f;
-                            nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = true;
-                            nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = false;
-                            nManagerSetting.CurrentSetting.ActivatePathFindingFeature = false;
-                        }
-                    }
-                    break;
-                case "MineWorkOrder":
-                    if (currentTask.Value == "NotStarted")
-                    {
-                        Logging.Write(currentTask.Key + " started.");
-                        TaskList[currentTask.Key] = "OnGoing";
-                    }
-                    if (MovementManager.InMovement)
-                        return;
-                    if (!_cacheMineGathered)
-                    {
-                        // Gather Mine's Cache
-                        if (_targetNpc.Entry != _cacheMine)
-                            _targetNpc = new Npc {Entry = _cacheMine, Position = _mineEntrance};
-                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
-                        if (MovementManager.InMovement)
-                            return;
-                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                        {
-                            Interact.InteractWith(_targetBaseAddress, true);
-                            Thread.Sleep(Usefuls.Latency + 3500);
-                            nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*60*60);
-                            _cacheMineGathered = true;
-                        }
-                        else if (_targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                            _cacheMineGathered = true;
-                    }
-                    if (!_cacheMineGathered)
-                        return;
-                    // Send Mine's Work Orders
-                    if (_targetNpc.Entry != _npcMine)
-                        _targetNpc = new Npc {Entry = _npcMine, Position = _mineEntrance};
-                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
-                    if (MovementManager.InMovement)
-                        return;
-                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                    {
-                        Interact.InteractWith(_targetBaseAddress, true);
-                        Thread.Sleep(Usefuls.Latency + 500);
-                        Interact.InteractWith(_targetBaseAddress, true);
-                        Thread.Sleep(Usefuls.Latency + 1000);
-                        Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
-                        Thread.Sleep(Usefuls.Latency + 5000);
-                        Logging.Write(currentTask.Key + " terminated.");
-                        TaskList[currentTask.Key] = "Done";
-                    }
-                    break;
-                case "GatherHerbs":
-                    if (MovementManager.InMovement)
-                        return;
-                    List<Point> pathToGarden = PathFinder.FindPath(_garden, out success);
-                    if (_garden.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
-                    {
-                        if (!MovementManager.InMoveTo && success)
-                            MovementManager.Go(pathToGarden);
-                        else if (!success)
-                        {
-                            Logging.Write(currentTask.Key + " aborted, no paths.");
-                            TaskList[currentTask.Key] = "Done";
-                        }
-                    }
-                    else
-                    {
-                        Logging.Write(currentTask.Key + " started.");
-                        TaskList[currentTask.Key] = "OnGoing";
-                        nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = false;
-                        nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = true;
-                    }
-                    break;
-                case "GardenWorkOrder":
-                    if (currentTask.Value == "NotStarted")
-                    {
-                        Logging.Write(currentTask.Key + " started.");
-                        TaskList[currentTask.Key] = "OnGoing";
-                    }
-                    if (MovementManager.InMovement)
-                        return;
-                    if (!_cacheGardenGathered)
-                    {
-                        // Gather Garden's Cache
-                        if (_targetNpc.Entry != _cacheGarden)
-                            _targetNpc = new Npc {Entry = _cacheGarden, Position = _garden};
-                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
-                        if (MovementManager.InMovement)
-                            return;
-                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                        {
-                            Interact.InteractWith(_targetBaseAddress, true);
-                            Thread.Sleep(Usefuls.Latency + 3500);
-                            nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*60*60);
-                            _cacheGardenGathered = true;
-                        }
-                        else if (_targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                            _cacheGardenGathered = true;
-                    }
-                    if (!_cacheGardenGathered)
-                        return;
-                    // Send Garden's Work Orders
-
-                    if (_targetNpc.Entry != _npcGarden)
-                        _targetNpc = new Npc {Entry = _npcGarden, Position = _garden};
-                    _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
-                    if (MovementManager.InMovement)
-                        return;
-                    if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                    {
-                        Interact.InteractWith(_targetBaseAddress, true);
-                        Thread.Sleep(Usefuls.Latency + 500);
-                        Interact.InteractWith(_targetBaseAddress, true);
-                        Thread.Sleep(Usefuls.Latency + 1000);
-                        Lua.LuaDoString("GarrisonCapacitiveDisplayFrame.CreateAllWorkOrdersButton:Click()");
-                        Thread.Sleep(Usefuls.Latency + 5000);
-                        Logging.Write(currentTask.Key + " terminated.");
-                        TaskList[currentTask.Key] = "Done";
-                    }
-                    break;
-                case "CheckGarrisonRessourceCache":
-                    if (currentTask.Value == "NotStarted")
-                    {
-                        if (MovementManager.InMovement)
-                            return;
-                        List<Point> pathToGCache = PathFinder.FindPath(_cacheGarrisonPoint);
-                        if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f)
-                        {
-                            if (!MovementManager.InMoveTo)
-                                MovementManager.Go(pathToGCache);
-                        }
-                        else if (_cacheGarrisonPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                        {
-                            Logging.Write(currentTask.Key + " started.");
-                            TaskList[currentTask.Key] = "OnGoing";
-                        }
-                    }
-                    else if (currentTask.Value == "OnGoing")
-                    {
-                        if (MovementManager.InMovement)
-                            return;
-                        WoWGameObject o = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectById(_cacheGarrison));
-                        if (o.GetBaseAddress <= 0)
-                        {
-                            Logging.Write(GetLastTask.Key + " terminated.");
-                            TaskList[GetLastTask.Key] = "Done";
-                        }
-                        if (_targetNpc.Entry != o.Entry)
-                            _targetNpc = new Npc {Entry = o.Entry, Position = _cacheGarrisonPoint};
-                        _targetBaseAddress = MovementManager.FindTarget(ref _targetNpc, 5f);
-                        if (MovementManager.InMovement)
-                            return;
-                        if (_targetBaseAddress > 0 && _targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                        {
-                            Interact.InteractWith(_targetBaseAddress, true);
-                            Thread.Sleep(Usefuls.Latency + 2500);
-                            nManagerSetting.AddBlackList(_targetNpc.Guid, 1000*20);
-                            Logging.Write(GetLastTask.Key + " terminated.");
-                            TaskList[GetLastTask.Key] = "Done";
-                        }
-                        else if (_targetNpc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
-                        {
-                            Logging.Write(GetLastTask.Key + " terminated.");
-                            TaskList[GetLastTask.Key] = "Done";
-                        }
-                    }
-                    break;
-            }
         }
     }
 }

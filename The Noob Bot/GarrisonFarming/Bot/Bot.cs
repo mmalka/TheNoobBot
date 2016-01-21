@@ -15,10 +15,6 @@ namespace GarrisonFarming.Bot
         {
             try
             {
-                /*
-                Dictionary<Point, float> blackListDic = Profile.BlackListRadius.ToDictionary(b => b.Position, b => b.Radius);
-                nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
-                */
                 if (ObjectManager.Me.Level < 90)
                 {
                     Logging.Write("You don't have the required level for this product.");
@@ -38,14 +34,14 @@ namespace GarrisonFarming.Bot
                 Fsm.AddState(new Looting {Priority = 7});
                 Fsm.AddState(new SpecializationCheck {Priority = 6});
                 Fsm.AddState(new LevelupCheck {Priority = 5});
-                Fsm.AddState(new GarrisonState {Priority = 4});
-                /* 3
+                Fsm.AddState(new Farming { Priority = 4 });
+                Fsm.AddState(new GarrisonState {Priority = 3});
+                /* 2
                  * SendFollowerOnDuty
                  */
                 Fsm.AddState(new Idle {Priority = 0});
-
                 Fsm.States.Sort();
-                Fsm.StartEngine(10, "FSM GarrisonFarming");
+                Fsm.StartEngine(5, "FSM GarrisonFarming");
 
                 return true;
             }
