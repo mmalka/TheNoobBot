@@ -4,7 +4,6 @@ using nManager.Helpful;
 using nManager.Wow.ObjectManager;
 using CSharpMath = System.Math;
 using System.ComponentModel;
-using MsQuaternion = System.Windows.Media.Media3D.Quaternion;
 
 namespace nManager.Wow.Class
 {
