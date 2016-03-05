@@ -10175,7 +10175,7 @@ public class DruidFeral
     public readonly Spell HeartoftheWild = new Spell("Heart of the Wild");
     public readonly Spell LunarInspiration = new Spell("Lunar Inspiration");
     public readonly Spell MarkoftheWild = new Spell("Mark of the Wild");
-    public readonly Spell MoonfireDebuff = new Spell(164812);
+    public readonly Spell MoonfireDebuff = new Spell(155625);
     public readonly Spell PredatorySwiftness = new Spell(69369);
     public readonly Spell Prowl = new Spell("Prowl");
     public readonly Spell RakeDebuff = new Spell(155722);
@@ -10687,7 +10687,7 @@ public class DruidFeral
                 Rake.Cast();
                 return;
             }
-            if (MySettings.UseMoonfire && LunarInspiration.KnownSpell && (!MoonfireDebuff.TargetHaveBuff || ObjectManager.Target.UnitAura(164812).AuraTimeLeftInMs < 4200) 
+            if (MySettings.UseMoonfire && LunarInspiration.KnownSpell && (!MoonfireDebuff.TargetHaveBuff || ObjectManager.Target.UnitAura(155625).AuraTimeLeftInMs < 4200) 
                 && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable)
             {
                 Moonfire.Cast();
