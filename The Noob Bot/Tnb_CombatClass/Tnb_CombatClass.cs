@@ -4717,6 +4717,11 @@ public class MageArcane
                 ArcaneExplosion.Cast();
                 return;
             }
+            if (MySettings.UseArcaneBlast && (!MySettings.UseArcaneBarrage || !ArcaneBarrage.KnownSpell) && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
+            {
+                ArcaneBlast.Launch(true, false, true);
+                return;
+            }
         }
         finally
         {
@@ -5856,7 +5861,7 @@ public class MageFire
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (Scorch.IsHostileDistanceGood || Fireball.IsHostileDistanceGood))
+                                && (Scorch.IsHostileDistanceGood || Pyroblast.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -6356,6 +6361,11 @@ public class MageFire
 
                 if (ObjectManager.Me.IsCast)
                     ObjectManager.Me.StopCast();
+                return;
+            }
+            if (MySettings.UsePyroblast && (!MySettings.UseFireball || !Fireball.KnownSpell) && Pyroblast.IsSpellUsable && Pyroblast.IsHostileDistanceGood)
+            {
+                Pyroblast.Cast();
                 return;
             }
         }
@@ -7628,7 +7638,8 @@ public class WarlockDestruction
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget && (Immolate.IsHostileDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget
+                                && (Immolate.IsHostileDistanceGood || ChaosBolt.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -8510,7 +8521,7 @@ public class WarlockAffliction
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (SoulSwap.IsHostileDistanceGood || Agony.IsHostileDistanceGood))
+                                && (UnstableAffliction.IsHostileDistanceGood || Agony.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -9946,6 +9957,20 @@ public class DruidBalance
                 Wrath.Cast(true, false, true);
                 return;
             }
+            if (ObjectManager.Me.Level < 10)
+            {
+                if (MySettings.UseMoonfire && !MoonfireDebuff.TargetHaveBuff && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood)
+                {
+                    Moonfire.Cast();
+                    return;
+                }
+
+                if (MySettings.UseWrath && !MoonfireDebuff.TargetHaveBuff && Wrath.IsSpellUsable && Wrath.IsHostileDistanceGood)
+                {
+                    Wrath.Cast(true, false, true);
+                    return;
+                }
+            }
         }
         finally
         {
@@ -10224,7 +10249,7 @@ public class DruidFeral
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (FaerieFire.IsHostileDistanceGood || WildCharge.IsHostileDistanceGood))
+                                && (FaerieFire.IsHostileDistanceGood || Rake.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -11613,7 +11638,7 @@ public class DruidGuardian
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (FaerieFire.IsHostileDistanceGood || WildCharge.IsHostileDistanceGood))
+                                && (FaerieFire.IsHostileDistanceGood || Maul.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -13310,7 +13335,7 @@ public class PaladinRetribution
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (Judgment.IsHostileDistanceGood || Exorcism.IsHostileDistanceGood))
+                                && (Judgment.IsHostileDistanceGood || CrusaderStrike.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -13894,6 +13919,7 @@ public class ShamanEnhancement
     public readonly Spell FrostbrandWeapon = new Spell("Frostbrand Weapon");
     public readonly Spell GhostWolf = new Spell("Ghost Wolf");
     public readonly Spell LightningShield = new Spell("Lightning Shield");
+    public readonly Spell MaelstromWeapon = new Spell("Maelstrom Weapon");
     public readonly Spell RockbiterWeapon = new Spell("Rockbiter Weapon");
     public readonly Spell SpiritwalkersGrace = new Spell("Spiritwalker's Grace");
     public readonly Spell WaterShield = new Spell("Water Shield");
@@ -13980,7 +14006,7 @@ public class ShamanEnhancement
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (FlameShock.IsHostileDistanceGood || EarthShock.IsHostileDistanceGood))
+                                && (LavaLash.IsHostileDistanceGood || EarthShock.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -14082,7 +14108,6 @@ public class ShamanEnhancement
             DefenseCycle();
         Heal();
     }
-
 
     private void Buff()
     {
@@ -14493,6 +14518,11 @@ public class ShamanEnhancement
                 FireTotemTimer.Reset();
                 return;
             }
+            if (MySettings.UseLightningBolt && !MaelstromWeapon.KnownSpell && !FrostShock.IsSpellUsable && LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable)
+            {
+                LightningBolt.Cast();
+                return;
+            }
         }
         finally
         {
@@ -14834,7 +14864,7 @@ public class ShamanRestoration
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (FlameShock.IsHostileDistanceGood || EarthShock.IsHostileDistanceGood))
+                                && (FlameShock.IsHostileDistanceGood || LightningBolt.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -14937,7 +14967,6 @@ public class ShamanRestoration
             DefenseCycle();
         Heal();
     }
-
 
     private void Buff()
     {
@@ -15713,7 +15742,7 @@ public class ShamanElemental
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget && FlameShock.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget && EarthShock.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -15810,7 +15839,6 @@ public class ShamanElemental
             DefenseCycle();
         Heal();
     }
-
 
     private void Buff()
     {
@@ -16513,7 +16541,7 @@ public class PriestShadow
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget &&
-                                (MindSpike.IsHostileDistanceGood || ShadowWordPain.IsHostileDistanceGood))
+                                (Smite.IsHostileDistanceGood || ShadowWordPain.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -17006,6 +17034,12 @@ public class PriestShadow
                 && ObjectManager.Me.ShadowOrbs < 3 && !ClarityofPower.KnownSpell)
             {
                 Smite.Cast();
+            }
+
+            if (Smite.KnownSpell && Smite.IsSpellUsable && Smite.IsHostileDistanceGood && ObjectManager.Me.Level < 10)
+            {
+                Smite.Cast();
+                return;
             }
         }
         finally
@@ -18733,7 +18767,7 @@ public class RogueCombat
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (Throw.IsHostileDistanceGood || CheapShot.IsHostileDistanceGood))
+                                && (Throw.IsHostileDistanceGood || SinisterStrike.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -19486,7 +19520,7 @@ public class RogueSubtlety
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (Throw.IsHostileDistanceGood || CheapShot.IsHostileDistanceGood))
+                                && (Throw.IsHostileDistanceGood || SinisterStrike.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -19930,10 +19964,10 @@ public class RogueSubtlety
                 ExposeArmor.Cast();
                 return;
             }
-            if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            if (Hemorrhage.KnownSpell && Hemorrhage.IsSpellUsable && Hemorrhage.IsHostileDistanceGood
                 && MySettings.UseHemorrhage)
             {
-                SinisterStrike.Cast();
+                Hemorrhage.Cast();
                 return;
             }
             if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
@@ -20219,7 +20253,7 @@ public class RogueAssassination
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && (Throw.IsHostileDistanceGood || CheapShot.IsHostileDistanceGood))
+                                && (Throw.IsHostileDistanceGood || SinisterStrike.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -20974,7 +21008,7 @@ public class WarriorArms
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && Taunt.IsHostileDistanceGood)
+                                && HeroicStrike.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -21826,7 +21860,7 @@ public class WarriorProtection
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && Taunt.IsHostileDistanceGood)
+                                && HeroicStrike.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -21969,7 +22003,6 @@ public class WarriorProtection
             DefenseCycle();
         Heal();
     }
-
 
     private void Buff()
     {
@@ -22668,7 +22701,7 @@ public class WarriorFury
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && Taunt.IsHostileDistanceGood)
+                                && HeroicStrike.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -22823,7 +22856,6 @@ public class WarriorFury
             DefenseCycle();
         Heal();
     }
-
 
     private void Buff()
     {
@@ -23498,7 +23530,7 @@ public class HunterMarksmanship
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && SerpentSting.IsHostileDistanceGood)
+                                && ArcaneShot.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -24007,7 +24039,8 @@ public class HunterMarksmanship
                 SteadyShot.Cast();
                 return;
             }
-            if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && MySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 64)
+            if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && MySettings.UseArcaneShot 
+                && (ObjectManager.Me.FocusPercentage > 64 || ObjectManager.Me.Level < 3))
             {
                 ArcaneShot.Cast();
                 return;
@@ -25127,7 +25160,7 @@ public class HunterSurvival
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget
-                                && SerpentSting.IsHostileDistanceGood)
+                                && ArcaneShot.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -25961,8 +25994,8 @@ public class MonkBrewmaster
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget &&
-                                Provoke.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget 
+                                && (Jab.IsHostileDistanceGood || Provoke.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -26596,8 +26629,8 @@ public class MonkWindwalker
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget &&
-                                Provoke.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget 
+                                && (Jab.IsHostileDistanceGood || Provoke.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -27226,8 +27259,8 @@ public class MonkMistweaver
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget &&
-                                Provoke.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget 
+                                && (Jab.IsHostileDistanceGood || Provoke.IsHostileDistanceGood))
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
