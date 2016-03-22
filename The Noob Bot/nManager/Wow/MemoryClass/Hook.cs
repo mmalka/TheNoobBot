@@ -480,7 +480,7 @@ namespace nManager.Wow.MemoryClass
                 {
                     baseModule = (uint) v.BaseAddress;
                 }
-                return (memory.ReadInt(baseModule + (uint) Addresses.GameInfo.isLoadingOrConnecting) == 0) &&
+                return (memory.ReadInt(baseModule + (uint) Addresses.GameInfo.isLoading) == 0) &&
                        (memory.ReadByte(baseModule + (uint) Addresses.GameInfo.gameState) > 0);
             }
             catch (Exception e)

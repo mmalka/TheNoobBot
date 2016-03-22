@@ -173,11 +173,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 // Make sure we have a valid address for the objmgr.
-                while (Addresses.ObjectManagerClass.clientConnection == 0)
+                while (Addresses.ObjectManagerClass.sCurMgr == 0)
                     Thread.Sleep(10);
 
-                ObjectManagerAddress =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.clientConnection) + (uint) Addresses.ObjectManager.objectManager);
+                ObjectManagerAddress = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + Addresses.ObjectManagerClass.sCurMgr);
                 UInt128 localPlayerGuid = Memory.WowMemory.Memory.ReadUInt128(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
                 Usefuls.ContinentId = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.continentId);
                 // Get the first object in the linked list.
