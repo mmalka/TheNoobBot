@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 21348
+    ///   Offset and Pointer for Wow 21355
     /// </summary>
     public static class Addresses
     {
@@ -243,13 +243,13 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayerObj = 0x3C47,
-            FrameScript_ExecuteBuffer = 0x27D36,
-            CGUnit_C__InitializeTrackingState = 0x30DA28, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x2FE588,
-            CGWorldFrame__Intersect = 0x5676A4,
-            Spell_C_HandleTerrainClick = 0x2859FB,
-            CGUnit_C__Interact = 0x94FA92,
-            strlen = 0x6CA190, // ida _strlen
+            FrameScript_ExecuteBuffer = 0x27DD1,
+            CGUnit_C__InitializeTrackingState = 0x30D8B7, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x2FE4CA,
+            CGWorldFrame__Intersect = 0x5675BC,
+            Spell_C_HandleTerrainClick = 0x2859FF,
+            CGUnit_C__Interact = 0x94FB3E,
+            strlen = 0x6C9E50, // ida _strlen
             // saving
             IsOutdoors = 0x0, // ?
             UnitCanAttack = 0x0, // ?
