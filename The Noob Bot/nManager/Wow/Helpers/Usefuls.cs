@@ -60,6 +60,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
+                    return false;
                     return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.isLoading) <= 0;
                 }
                 catch (Exception e)

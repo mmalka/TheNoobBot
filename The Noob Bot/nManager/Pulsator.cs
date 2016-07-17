@@ -44,7 +44,7 @@ namespace nManager
             {
                 lock (typeof (Pulsator))
                 {
-                    Thread thread = new Thread(ThreadDispose) {Name = "Thread Dispose nManager."};
+                    Thread thread = new Thread(() => ThreadDispose(closePocess)) { Name = "Thread Dispose nManager." };
                     _isDisposed = false;
                     thread.Start();
                     Timer t = new Timer(3*1000);
@@ -70,16 +70,18 @@ namespace nManager
             }
         }
 
-        private static void ThreadDispose()
+        private static void ThreadDispose(bool closeProcess)
         {
             try
             {
                 Products.Products.DisposeProduct();
-                Wow.ObjectManager.Pulsator.Shutdown();
-                Wow.Memory.WowMemory.AllowReHook = false; // Don't try to rehook before shutdown the bot.
-                Wow.Memory.WowMemory.DisposeHooking();
-                Wow.Memory.WowProcess = new Process();
-
+                if (closeProcess)
+                {
+                    Wow.ObjectManager.Pulsator.Shutdown();
+                    Wow.Memory.WowMemory.AllowReHook = false; // Don't try to rehook before shutdown the bot.
+                    Wow.Memory.WowMemory.DisposeHooking();
+                    Wow.Memory.WowProcess = new Process();
+                }
                 try
                 {
                     Timer t = new Timer(2*1000);
