@@ -56,7 +56,7 @@ static main()
 {
 	// Normal func:
 	auto registerFunc, xRef;
-	registerFunc = FindBinary( 0, SEARCH_DOWN, "55 8B EC A1  ?  ?  ?  ? 56 6A  ? FF 75  ? 8B F0 50 E8  ?  ?  ?  ? FF 75  ? 56" );
+	registerFunc = FindBinary( 0, SEARCH_DOWN, "55 8B EC 56 8B 35  ?  ?  ?  ? 6A  ? FF 75  ? 56 E8  ?  ?  ?  ? FF 75  ? 56 E8" );
 	
 	if ( registerFunc == BADADDR )
 	{
@@ -94,8 +94,7 @@ static main()
 	// Special func:
 	registerFunc = BADADDR;
 	xRef = BADADDR;
-	
-	registerFunc = FindBinary( 0, SEARCH_DOWN, "83 C4 1C 43 3B 5D 0C" );
+	registerFunc = FindBinary( 0, SEARCH_DOWN, "53 8B DC 51 51 83 E4" );
 	
 	if ( registerFunc == BADADDR )
 	{
