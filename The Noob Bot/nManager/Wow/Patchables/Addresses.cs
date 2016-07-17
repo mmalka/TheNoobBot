@@ -10,7 +10,7 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0x0; // dropped usage, // ?kept only for online script not crashing for older versions.
+            public static uint clientConnection = 0x0; // dropped usage, kept only for online script not crashing for older versions.
             public static uint sCurMgr = 0x0; // 0xD481C0 CCommand_ObjUsage
         }
 
@@ -115,9 +115,9 @@
         public enum EventsListener
         {
             EventsCount = 0xCB1410, // EventSystem
-            BaseEvents = EventsCount + 0x4, // ?
-            EventOffsetName = 0x18, // ?
-            EventOffsetCount = 0x48, // ?
+            BaseEvents = EventsCount + 0x4,
+            EventOffsetName = 0x18,
+            EventOffsetCount = 0x48,
         }
 
 
@@ -176,9 +176,9 @@
         /// </summary>
         public enum Battleground
         {
-            StatPvp = 0xBC0688, // ?// StatPvpFOUND inside first call in Script_InActiveBattlefield
-            PvpExitWindow = 0xE03A60, // ?// Script_GetBattlefieldWinner
-            MaxBattlegroundId = 0xE03A2C, // ?// Script_GetMaxBattlefieldID
+            StatPvp = 0xC3B044, // StatPvpFOUND inside first call in Script_InActiveBattlefield
+            PvpExitWindow = 0xEC3124, // Script_GetBattlefieldWinner
+            MaxBattlegroundId = 0xEC2FA8, // Script_GetMaxBattlefieldID
         }
 
         /// <summary>
@@ -186,7 +186,7 @@
         /// </summary>
         public enum Fishing
         {
-            BobberHasMoved = 0x104, // ?// ??
+            BobberHasMoved = 0xF8,
         }
 
         /// <summary>
@@ -194,16 +194,17 @@
         /// </summary>
         public enum SpellBook
         {
-            KnownAllSpells = 0xE02EE0, // ?// SpellBookNumSpells - 4 // KnownAllSpells
             SpellDBCMaxIndex = 200000,
-            SpellBookNumSpells = 0xE02EE4, // ?// CGSpellBook__MakeKnownSpellModelsLocal
-            SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // ?// CGSpellBook__MakeKnownSpellModelsLocal
-            MountBookNumMounts = 0xE02F30 + 0x4 * 0x4, // ?// Script_GetNumCompanions
+
+            KnownAllSpells = 0xEB40C0, // found via SpellBookNumSpells - 4
+            SpellBookNumSpells = 0xEB40C4, // CGSpellBook__MakeKnownSpellModelsLocal
+            SpellBookSpellsPtr = SpellBookNumSpells + 0x4, // CGSpellBook__MakeKnownSpellModelsLocal
+            MountBookNumMounts = 0xEB4110 + 0x4 * 0x4, // Script_GetNumCompanions
             MountBookMountsPtr = MountBookNumMounts + 0x4,
-            FirstTalentBookPtr = 0xE0309C, // ?// FirstTalentBookFOUND
+            FirstTalentBookPtr = 0xEB427C, // FirstTalentBookFOUND
             NextTalentBookPtr = FirstTalentBookPtr - 0x8,
-            TalentBookSpellId = 0x14, // ?// check or update
-            TalentBookOverrideSpellId = 0x1C, // ?// check or update
+            TalentBookSpellId = 0x14, // ?
+            TalentBookOverrideSpellId = 0x1C, // ?
         }
 
         /// <summary>
@@ -211,10 +212,10 @@
         /// </summary>
         public enum Chat
         {
-            chatBufferStart = 0xDA7518,
+            chatBufferStart = 0xE57120,
             NextMessage = 0x17E8,
             msgFormatedChat = 0x65,
-            chatBufferPos = 0xE01894,
+            chatBufferPos = 0xEB0B80,
         }
 
         /// <summary>
@@ -222,9 +223,9 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0xD2F560, // ?// GetClickToMoveStruct
-            CTM_PUSH = 0xD2F57C, // ?// CGUnit_C::IsAutoTracking
-            CTM_X = CTM + 0x84, // ?// check or update
+            CTM = 0xDDE890, // GetClickToMoveStruct
+            CTM_PUSH = 0xDDE84C, // CGUnit_C::IsAutoTracking
+            CTM_X = CTM + 0x28, // to Check
             CTM_Y = CTM_X + 0x4,
             CTM_Z = CTM_Y + 0x4,
         }
@@ -234,7 +235,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 0x2C, // ?// *4 > MovementGetTransportFacing
+            CGUnit_C__GetFacing = 0x35, // *4 > MovementGetTransportFacing
         }
 
         /// <summary>
@@ -249,10 +250,10 @@
             CGWorldFrame__Intersect = 0x5E454F,
             Spell_C_HandleTerrainClick = 0x2B7AE3,
             CGUnit_C__Interact = 0x524F4,
-            strlen = 0x74F900, // ?// ida _strlen
+            strlen = 0x74F900, // ida _strlen
             // saving
-            IsOutdoors = 0x0, // ?// ?
-            UnitCanAttack = 0x0, // ?// ?
+            IsOutdoors = 0x0,
+            UnitCanAttack = 0x0,
         }
 
         /// <summary>
@@ -260,7 +261,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xDA594C,
+            X = 0xE567E8, // to check
             Y = X + 0x4,
             Z = X + 0x8,
         }
@@ -270,7 +271,7 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            PlayerNameStorePtr = 0xC60428, // ?// CGUnit_C__GetUnitName + 0x64
+            PlayerNameStorePtr = 0xD0A480, // CGUnit_C__GetUnitName + 0x62
             PlayerNameNextOffset = 0x14,
             PlayerNameStringOffset = 0x11,
         }
@@ -280,7 +281,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xE981C0 + 0x6, // ?// ClientServices__GetSelectedRealm
+            realmName = 0xF35158 + 0x6, // REALMNAMEFOUND old: ClientServices__GetSelectedRealm
         }
 
         /// <summary>
@@ -288,10 +289,10 @@
         /// </summary>
         public enum ActivateSettings
         {
-            AutoInteract_Activate_Pointer = 0xDA5744, // ?// CGUnit_C__CanAutoInteract
-            AutoDismount_Activate_Pointer = 0xDA574C, // ?// CGUnit_C__CanAutoDismount
-            AutoLoot_Activate_Pointer = 0xDA5764, // ?// CGGameUI__IsAutoLooting
-            AutoSelfCast_Activate_Pointer = 0xDA5774, // ?// CGGame_UI__IsAutoSelfCast
+            AutoInteract_Activate_Pointer = 0xE557E0, // CGUnit_C__CanAutoInteract
+            AutoDismount_Activate_Pointer = 0xE557EC, // Cvars
+            AutoLoot_Activate_Pointer = 0xE55800, // CGGameUI__IsAutoLooting
+            AutoSelfCast_Activate_Pointer = 0xE5580C, // offset aAutoselfcast ; "autoSelfCast"
             Activate_Offset = 0x34,
         }
 
@@ -310,12 +311,12 @@
         }
 
         /// <summary>
-        ///   Get Buff CGUnit_C__HasAura2
+        ///   Get Buff GetAuraInfo / GetAura2
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AuraTable1 = 0x1108,
-            AuraTable2 = 0x480,
+            AuraTable1 = 0x1150,
+            AuraTable2 = 0x580,
             AuraSize = 0x48,
 
             AuraStructCreatorGuid = 0x20, // ?// read 16 bytes (GUID)
@@ -335,7 +336,7 @@
         /// </summary>
         public enum PowerIndex
         {
-            PowerIndexArrays = 0xD2F1BC, // ?// PowerTypePointer
+            PowerIndexArrays = 0xDDE8B4, // PowerTypePointer
             Multiplicator = 0x10,
         }
     }
