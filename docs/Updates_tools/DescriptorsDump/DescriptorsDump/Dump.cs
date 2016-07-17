@@ -24,8 +24,9 @@ namespace DescriptorsDump
                     return "Process not open.";
 
                 // Check function
-                uint dwStartFunc = _memory.FindPattern("53 56 57 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 68 00 00 00 00 BE 00 00 00 00 56 56",
-                    "xxxx????x????x????x????x????x????x????x????x????x????x????x????x????x????x????x????x????x????xx");
+                /* 2D1D1D */
+                uint dwStartFunc = _memory.FindPattern("53 56 57 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 E8 00 00 00 00 6A 00 5B 53 6A",
+                    "xxxx????x????x????x????x????x????x????x????x????x????x????x????x????x????x????x????x?xxx");
                 if (dwStartFunc <= 0)
                 {
                     _memory.Close();
@@ -57,6 +58,55 @@ namespace DescriptorsDump
                 // WoD new:
                 s_conversationData = _memory.ReadUInt(dwStartFunc + 0x1 + 0x137);
                 s_conversationDynamicData = _memory.ReadUInt(dwStartFunc + 0x1 + 0x1CE);
+
+
+                const int g_baseObjDescriptors = 0xDBE1C8;
+                s_objectDescriptors = g_baseObjDescriptors;
+
+                const int g_baseItemDescriptors = 0xDBE258;
+                s_itemDescriptors = g_baseItemDescriptors;
+
+                const int g_baseContainerDescriptors = 0xDBEC98;
+                s_containerDescriptors = g_baseContainerDescriptors;
+
+                const int g_baseUnitDescriptors = 0xDBECB0;
+                s_unitDescriptors = g_baseUnitDescriptors;
+
+                const int g_basePlayerDescriptors = 0xDBF650;
+                s_playerDescriptors = g_basePlayerDescriptors;
+
+                const int g_baseGameObjectDescriptors = 0xDC9780;
+                s_gameobjectDescriptors = g_baseGameObjectDescriptors;
+
+                const int g_baseDynamicObjectDescriptors = 0xDC9888;
+                s_dynamicObjectDescriptors = g_baseDynamicObjectDescriptors;
+
+                const int g_baseCorpseDescriptors = 0xDC98E8;
+                s_corpseDescriptors = g_baseCorpseDescriptors;
+
+                const int g_baseAreaTriggerDescriptors = 0xDC9B28;
+                s_areaTriggerDescriptors = g_baseAreaTriggerDescriptors;
+
+                const int g_baseSceneObjectDescriptors = 0xDC9BB8;
+                s_sceneObjectDescriptors = g_baseSceneObjectDescriptors;
+
+                const int g_baseConversationDescriptors = 0xDBECA4;
+                s_itemDynamicData = g_baseConversationDescriptors;
+
+                const int g_baseItemDynamicDescriptors = 0xDBE5B8;
+                s_unitDynamicData = g_baseItemDynamicDescriptors;
+
+                const int g_baseUnitDynamicDescriptors = 0xDBF640;
+                s_playerDynamicData = g_baseUnitDynamicDescriptors;
+
+                const int g_basePlayerDynamicDescriptors = 0xDC9730;
+                s_conversationData = g_basePlayerDynamicDescriptors;
+
+                const int g_baseGameObjectDynamicDescriptors = 0xDC987C;
+                s_conversationDynamicData = g_baseGameObjectDynamicDescriptors;
+
+
+                const int g_baseConversationDynamicDescriptors = 0xDC9C0C;
                 if (s_objectDescriptors <= 0 || s_itemDescriptors <= 0 || s_containerDescriptors <= 0 || s_unitDescriptors <= 0 || s_playerDescriptors <= 0 || s_gameobjectDescriptors <= 0 || s_dynamicObjectDescriptors <= 0 || s_corpseDescriptors <= 0 || s_areaTriggerDescriptors <= 0 || s_sceneObjectDescriptors <= 0 || s_itemDynamicData <= 0 || s_unitDynamicData <= 0 || s_playerDynamicData <= 0 || s_conversationData <= 0 || s_conversationDynamicData <= 0)
                 {
                     _memory.Close();
@@ -105,13 +155,14 @@ namespace DescriptorsDump
 
         static string DumpField(string szName, string sPrefix, uint dwPointer, uint lastIndex, out uint outLastIndex, string prefixEnum, bool multiply, bool upper, bool remLocal)
         {
+            
             string valueReturn = "";
 
             valueReturn = valueReturn + "public enum " + prefixEnum + szName + Environment.NewLine + "{" + Environment.NewLine;
             string lastPszName = "";
             while (true)
             {
-                var descriptorStruct = (DescriptorStruct)_memory.ReadObject(dwPointer, typeof (DescriptorStruct));
+                DescriptorStruct descriptorStruct = (DescriptorStruct)_memory.ReadObject((uint)_memory.MainModule.BaseAddress+dwPointer, typeof(DescriptorStruct));
                 // Get name:
                 string pszName = _memory.ReadASCIIString(descriptorStruct.pName, 100);
                 uint multiplyNum = 1;
