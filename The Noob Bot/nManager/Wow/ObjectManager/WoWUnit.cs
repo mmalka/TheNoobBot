@@ -41,17 +41,16 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (BaseAddress == 0)
                         return new Point(0, 0, 0);
-                    /*uint i = (uint)(Addresses.UnitField.UNIT_FIELD_X + (-500));
+                    /*uint i = 0;//(uint)(Addresses.UnitField.UNIT_FIELD_X);
                     while (true)
                     {
-                        Logging.Write("New check, i=" + i);
                         var pt = new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress + i),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 4),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress + i + 8));
-                        if (pt.X > -12000 && pt.X < 12000 && pt.Y > -12000 && pt.Y < 12000 && pt.Z > -12000 && pt.Z < 12000)
+                        if (pt.X > 1800 && pt.X < 2000 && pt.Z > 70 && pt.Z < 90)
                             if (!(pt.X.ToString().Contains("E") || pt.Y.ToString().Contains("E") || pt.Z.ToString().Contains("E")))
-                                Logging.Write(pt.ToString());
+                                Logging.Write(pt + " with i = "+ i);
                         i += 4;
                         if (i > 0x1200)
                             break;
@@ -2138,7 +2137,8 @@ namespace nManager.Wow.ObjectManager
                         uint castTest = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset);
                         uint castTest2 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset2);
                         uint castTest3 = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + (uint) Addresses.UnitField.CanInterruptOffset3);
-                        bool canInterrupt = (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint) Addresses.UnitField.CanInterrupt) & 8) == 0 && (castTest > 0 || castTest2 > 0 || castTest3 > 0);
+                        bool canInterrupt = (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint) Addresses.UnitField.CanInterrupt) & 8) == 0;
+                        /*&& (castTest > 0 || castTest2 > 0 || castTest3 > 0)*/
                         return canInterrupt;
                     }
                     return false;

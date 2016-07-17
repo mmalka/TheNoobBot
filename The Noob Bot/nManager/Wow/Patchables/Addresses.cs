@@ -127,29 +127,32 @@
         public enum UnitField
         {
             // ToDo: Check CachedTypeFlag
-            UNIT_FIELD_X = 0xAC0, // ?// found with a ugly while
+            UNIT_FIELD_X = 0xAF8, // found with a ugly while
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
-            CastingSpellID = 0xF98, // ?// Script_UnitCastingInfo
-            CastingSpellStartTime = 0xFB0, // ?
-            CastingSpellEndTime = 0xFB4, // ?
-            ChannelSpellID = 0xFB8, // ?// Script_UnitChannelInfo
-            ChannelSpellStartTime = 0xFBC,
-            ChannelSpellEndTime = 0xFC0,
-            CanInterrupt = 0xF2C, // ?// SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
-            CanInterruptOffset = 0xE02EA0, // ?// SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
-            CanInterruptOffset2 = CanInterruptOffset + 4, // ?// = CGSpellBook::m_interruptSchoolMask
-            CanInterruptOffset3 = CanInterruptOffset2 + 4, // ?// = CGSpellBook::m_silenceSchoolMask
-            TransportGUID = 0xAB0, // ?// CGUnit_C__HasVehicleTransport // ??
-            DBCacheRow = 0xC38, // ?// CGUnit_C__GetUnitName ???
+            CastingSpellID = 0x1064, // Script_UnitCastingInfo
+            CastingSpellStartTime = 0x1088,
+            CastingSpellEndTime = 0x108C,
+            ChannelSpellID = 0x1090, // Script_UnitChannelInfo
+            ChannelSpellStartTime = 0x1094,
+            ChannelSpellEndTime = 0x1098,
+            CanInterrupt = 0xFC4, // SpellCanBeInterrupted from Script_UnitCastingInfo/Script_UnitChannelInfo
+
+            // SpellCanBeInterrupted changed too much, not sure if CanInterrupt even work.
+            CanInterruptOffset = 0xE02EA0, // SpellCanBeInterrupted = CGSpellBook::m_silenceHarmfulSchoolMask
+            CanInterruptOffset2 = CanInterruptOffset + 4, // = CGSpellBook::m_interruptSchoolMask
+            CanInterruptOffset3 = CanInterruptOffset2 + 4, // = CGSpellBook::m_silenceSchoolMask
+
+            TransportGUID = 2792, // ?// CGUnit_C__HasVehicleTransport // ??
+            DBCacheRow = 3200, // ?// CGUnit_C__GetUnitName ???
             CachedSubName = 0x0, // ?// beginning of DBCacheRow pointer = CachedSubName
-            CachedName = 0x7C, // ?// check or update
+            CachedName = 0x80, // end of CGUnit_C::GetCreatureRank
             CachedTypeFlag = 0x24, // ?// check or update
             CachedQuestItem1 = 0x3C, // ?// check or update
             CachedModelId1 = 0x6C, // ?// check or update
-            CachedUnitClassification = 0x2C, // ?// Script_UnitClassification + 0x3E (CGUnit_C::GetCreatureRank)
-            CachedIsBoss = 0x5C, // ?// IDA Script_IsBossFOUND
+            CachedUnitClassification = 0x2C, // Script_UnitClassification + 0x3C (CGUnit_C::GetCreatureRank)
+            CachedIsBoss = 0x60,
         }
 
         /// <summary>
@@ -157,7 +160,7 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0x2A8, // ?// check or update
+            GAMEOBJECT_FIELD_X = 0x138,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             PackedRotationQuaternion = 0x150, // ?// check or update
@@ -165,8 +168,8 @@
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
             CachedIconName = 0x08,
             CachedCastBarCaption = 0xC,
-            CachedName = 0xB4, // ?// CGGameObject_C__GetName_2
-            CachedData0 = 0x14, // ?// CGGameObject_C::GetLockRecord
+            CachedName = 0xB4, // CGGameObject_C__GetName_2
+            CachedData0 = 0x14, // CGGameObject_C::GetLockRecord
             CachedSize = CachedData0 + (0x04*33), // ?// just after the 32 data uint32 + 1 unknown value
             CachedQuestItem1 = CachedSize + 0x04, // ?// just after the size float
         }
