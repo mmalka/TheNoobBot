@@ -300,14 +300,20 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return
+                    /*for (int i = 0xE42824; i < 0xE6A824; i++)
+                    {*/
+                    var posCorpse =
                         new Point(
-                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule +
-                                                              (uint) Addresses.CorpsePlayer.X),
-                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule +
-                                                              (uint) Addresses.CorpsePlayer.Y),
-                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule +
-                                                              (uint) Addresses.CorpsePlayer.Z));
+                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule + (uint) Addresses.CorpsePlayer.X), // Addresses.CorpsePlayer.X 
+                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule + (uint) Addresses.CorpsePlayer.Y),
+                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule + (uint) Addresses.CorpsePlayer.Z));
+
+                    /*if (posCorpse.X > 1510.22 && posCorpse.Y < 60.93436 && posCorpse.X < 1530.22 && posCorpse.Y > 50.93436 && posCorpse.Z > 60 && posCorpse.Z < 70.09796)
+                    {
+                            Logging.Write("i =  " + i.ToString("x8") + ", pos: " + posCorpse);
+                        }
+                    }*/
+                    return posCorpse;
                 }
                 catch (Exception e)
                 {

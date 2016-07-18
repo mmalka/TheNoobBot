@@ -20,7 +20,19 @@ namespace nManager.Wow.Class
             public int MaxId;
             private int Locale;
             private int Unk5;
-            // Other data with size depending on MaxId value
+            uint32_t magic;
+            uint32_t record_count;
+            uint32_t field_count;
+            uint32_t record_size;
+            uint32_t string_table_size; // if flags & 0x01 != 0, it becomes an absolute offset to the beginning of the offset_map
+            uint32_t table_hash;
+            uint32_t layout_hash;  // replace "build"
+            uint32_t min_id;
+            uint32_t max_id;
+            uint32_t locale;
+            uint32_t copy_table_size;
+            uint16_t flags;
+            uint16_t id_index; // this is the index of the field containing ID values; this is ignored if flags & 0x04 != 0
         }*/
 
         [StructLayout(LayoutKind.Sequential)]

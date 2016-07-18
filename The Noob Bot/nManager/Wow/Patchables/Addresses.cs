@@ -63,8 +63,8 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xF34770, // DB2! Script_GetItemInfo+1C6 // 22248 F34770
-            ItemSubClass = 0xC698FC,
+            ItemClass = 0xD16E30+0xB4, // DB2! Script_GetItemInfo+1C6 // string: ItemClass.db2
+            ItemSubClass = 0xB7A3C0, // string: ItemSubClass.db2
             SpellCategories = 0xC6D85C,
             FactionTemplate = 0xC64C34,
             Lock = 0xC6AA0C,
@@ -264,7 +264,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xE567E8, // to check
+            X = 0xE56824, // value pushed into calling of CGWorldMap__SetMapToCurrentZone // ex: CorpsePlayerFound
             Y = X + 0x4,
             Z = X + 0x8,
         }
