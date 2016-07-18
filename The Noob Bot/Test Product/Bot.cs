@@ -805,6 +805,28 @@ namespace Test_Product
         {
             try
             {
+                var m_definitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = m_definitions.Tables.Where(t => t.Name == "Map");
+
+                if (!definitions.Any())
+                {
+                    definitions = m_definitions.Tables.Where(t => t.Name == Path.GetFileName("Map"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    var test = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Map.db2", table);
+                    if (test.RecordsCount > 0)
+                    {
+                        Logging.Write(test.FileName + " loaded with " + test.RecordsCount + " entries.");
+                    }
+                }
+                else
+                {
+                    Logging.Write("DBC Map not read-able.");
+                }
+
+                /*
                 // Update spell list
                 //SpellManager.UpdateSpellBook();
                 DoTaxiLinksCleaning();
