@@ -94,6 +94,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                return default(T);
                 if (HasRow(index))
                     return m_rows[index];
                 return default(T);

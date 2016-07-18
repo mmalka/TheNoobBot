@@ -63,14 +63,16 @@
         /// </summary>
         public enum DBC
         {
+            Unknown = 0xF34770, // important to read
+            
             ItemClass = 0xD16E30+0xB4, // DB2! Script_GetItemInfo+1C6 // string: ItemClass.db2
             ItemSubClass = 0xB7A3C0, // string: ItemSubClass.db2
             SpellCategories = 0xC6D85C,
             FactionTemplate = 0xC64C34,
             Lock = 0xC6AA0C,
             QuestPOIPoint = 0xD1D9D0, // DB2! OneFunction // QuestPOIPointDbTable 
-            ResearchSite = 0xC6E868, // ?// DB2! CGWorldMap__SetMap+36D // ResearchSiteDBTable
-            Map = 0xC74BB8,
+            ResearchSite = 0xD1D2D0, // DB2! CGWorldMap__SetMap+36D // ResearchSiteDBTable
+            Map = 0xD28140, // DB2! Script_GetRealZoneText
         }
 
         /// <summary>
@@ -250,6 +252,7 @@
             FrameScript_ExecuteBuffer = 0xA6791,
             CGUnit_C__InitializeTrackingState = 0x306678, // alias CGPlayer_C__ClickToMove
             FrameScript__GetLocalizedText = 0x300F85,
+            WowClientDB2__GetRowPointer = 0x20C7D9,
             CGWorldFrame__Intersect = 0x5E454F,
             Spell_C_HandleTerrainClick = 0x2B7AE3,
             CGUnit_C__Interact = 0x524F4,
