@@ -1,30 +1,55 @@
-﻿using System.Runtime.InteropServices;
-using nManager.Wow.Patchables;
+﻿using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
     public class WoWItemClass
     {
         private ItemClassDB2Record _rItemClassRec0;
+        private static DB5Reader _itemClassDB2;
 
-        private static DB2<ItemClassDB2Record> _rItemClassDB2;
+        private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
+        {
+            if (_itemClassDB2 == null)
+            {
+                var mDefinitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = mDefinitions.Tables.Where(t => t.Name == "ItemClass");
+
+                if (!definitions.Any())
+                {
+                    definitions = mDefinitions.Tables.Where(t => t.Name == Path.GetFileName("ItemClass"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    _itemClassDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\ItemClass.db2", table) as DB5Reader;
+                    Logging.Write(_itemClassDB2.FileName + " loaded with " + _itemClassDB2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DBC ItemClass not read-able.");
+                }
+            }
+        }
 
         private WoWItemClass(string name)
         {
-            if (_rItemClassDB2 == null)
-                _rItemClassDB2 = new DB2<ItemClassDB2Record>((uint) Addresses.DBC.ItemClass);
-            for (int id = _rItemClassDB2.MinIndex; id <= _rItemClassDB2.MaxIndex; id++)
+            Init();
+            ItemClassDB2Record tempItemClassDb2Record = new ItemClassDB2Record();
+            bool found = false;
+            for (int i = 0; i < _itemClassDB2.RecordsCount; i++)
             {
-                _rItemClassRec0 = _rItemClassDB2.GetRow(id);
-                if (_rItemClassRec0.ClassId == id)
+                tempItemClassDb2Record = DB5Reader.ByteToType<ItemClassDB2Record>(_itemClassDB2.Rows.ElementAt(i));
+                if (tempItemClassDb2Record.Name() == name)
                 {
-                    if (Name == name)
-                    {
-                        return;
-                    }
+                    found = true;
+                    break;
                 }
             }
-            _rItemClassRec0 = new ItemClassDB2Record();
+            _rItemClassRec0 = found ? tempItemClassDb2Record : new ItemClassDB2Record();
         }
 
         // Factory function
@@ -40,21 +65,27 @@ namespace nManager.Wow.Helpers
 
         public string Name
         {
-            get
-            {
-                return _rItemClassDB2.String(_rItemClassDB2.GetRowOffset((int) _rItemClassRec0.ClassId) +
-                                             _rItemClassRec0.ClassNameOffset +
-                                             (uint) Marshal.OffsetOf(typeof (ItemClassDB2Record), "ClassNameOffset"));
-            }
+            get { return _rItemClassRec0.Name(); }
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct ItemClassDB2Record
         {
             public uint ClassId;
-            public uint unk2;
-            public uint unk3;
+            public uint PointerToStringTable;
             public uint ClassNameOffset;
+            public uint lastByte;
+
+
+            public string Name()
+            {
+                string strValue;
+                if (_itemClassDB2.StringTable != null && _itemClassDB2.StringTable.TryGetValue((int) ClassNameOffset, out strValue))
+                {
+                    return strValue;
+                }
+                return "";
+            }
         }
     }
 }
