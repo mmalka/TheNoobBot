@@ -1,4 +1,8 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -7,13 +11,47 @@ namespace nManager.Wow.Helpers
     {
         private readonly LockDbcRecord _lockDBCRecord0;
 
-        private static DBC<LockDbcRecord> _lockDBC;
+        private static DB5Reader _lockDB2;
+
+        private static void Init()
+        {
+            if (_lockDB2 == null)
+            {
+                var mDefinitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = mDefinitions.Tables.Where(t => t.Name == "Lock");
+
+                if (!definitions.Any())
+                {
+                    definitions = mDefinitions.Tables.Where(t => t.Name == Path.GetFileName("Lock"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    _lockDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Lock.db2", table) as DB5Reader;
+                    Logging.Write(_lockDB2.FileName + " loaded with " + _lockDB2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DBC Lock not read-able.");
+                }
+            }
+        }
 
         private WoWLock(uint id)
         {
-            if (_lockDBC == null)
-                _lockDBC = new DBC<LockDbcRecord>((int) Addresses.DBC.Lock);
-            _lockDBCRecord0 = _lockDBC.GetRow((int) id);
+            Init();
+            LockDbcRecord tempLockDbcRecord = new LockDbcRecord();
+            bool found = false;
+            for (int i = 0; i < _lockDB2.RecordsCount; i++)
+            {
+                tempLockDbcRecord = DB5Reader.ByteToType<LockDbcRecord>(_lockDB2.Rows.ElementAt(i));
+                if (tempLockDbcRecord.Id == id)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            _lockDBCRecord0 = found ? tempLockDbcRecord : new LockDbcRecord();
         }
 
         // Factory function
@@ -30,12 +68,11 @@ namespace nManager.Wow.Helpers
         [StructLayout(LayoutKind.Sequential)]
         public struct LockDbcRecord
         {
-            // 1 + 4*8 = 33 fields
             public uint Id;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] KeyType;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] LockType;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] Skill;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] Action;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public ushort[] LockType;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public byte[] Skill;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public byte[] Action;
         }
     }
 }
