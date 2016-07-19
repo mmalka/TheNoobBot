@@ -205,7 +205,6 @@
     <Compile Include="Wow\Enums\UnitFlags.cs" />
     <Compile Include="Wow\Helpers\DB2.cs" />
     <Compile Include="Wow\Helpers\Db2Caller.cs" />
-    <Compile Include="Wow\Helpers\DB2WDB5.cs" />
     <Compile Include="Wow\Helpers\DB5Reader.cs" />
     <Compile Include="Wow\Helpers\DBCExtensions.cs" />
     <Compile Include="Wow\Helpers\DBCReader.cs">

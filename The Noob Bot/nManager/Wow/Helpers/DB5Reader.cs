@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace nManager.Wow.Helpers
@@ -22,6 +23,17 @@ namespace nManager.Wow.Helpers
         public int RecordsCount
         {
             get { return Lookup.Count; }
+        }
+
+        public static T ByteToType<T>(BinaryReader reader)
+        {
+            byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof (T)));
+
+            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+            T theStructure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof (T));
+            handle.Free();
+
+            return theStructure;
         }
 
         public int FieldsCount { get; private set; }

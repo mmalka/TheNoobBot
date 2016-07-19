@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
     public class WoWMap
     {
         private MapDbcRecord _rMapDBCRecord0;
-        private static DBC<MapDbcRecord> _rMapDBC;
+
         // Small list of unused map which have nor flags, nor type able to filter them
         private static List<uint> _blacklistedMaps = new List<uint>(new uint[] {930, 995, 1187});
 
@@ -49,7 +49,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < mapDB2.RecordsCount; i++)
             {
-                tempMapDbcRecord = ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
                 string temp = (mpq ? tempMapDbcRecord.MapMPQName() : tempMapDbcRecord.MapName());
                 if (temp == name)
                 {
@@ -87,7 +87,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < mapDB2.RecordsCount; i++)
             {
-                tempMapDbcRecord = ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
                 if (tempMapDbcRecord.Id == reqId)
                 {
                     found = true;
@@ -118,17 +118,6 @@ namespace nManager.Wow.Helpers
             return new WoWMap(name, true);
         }
 
-        public static T ByteToType<T>(BinaryReader reader)
-        {
-            byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof (T)));
-
-            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            T theStructure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof (T));
-            handle.Free();
-
-            return theStructure;
-        }
-
         public static List<MapDbcRecord> WoWMaps(InstanceType iType, MapType mType)
         {
             init();
@@ -137,7 +126,7 @@ namespace nManager.Wow.Helpers
             List<MapDbcRecord> result = new List<MapDbcRecord>();
             for (int i = 0; i < mapDB2.RecordsCount; i++)
             {
-                tempMapDbcRecord = ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
                 if (!tempMapDbcRecord.IsBlacklistedMap() && tempMapDbcRecord.InstanceType == iType && tempMapDbcRecord.MapType == mType && !tempMapDbcRecord.IsTestMap() && !tempMapDbcRecord.IsGarrisonMap())
                     result.Add(tempMapDbcRecord);
             }
