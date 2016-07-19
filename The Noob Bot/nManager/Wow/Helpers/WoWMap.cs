@@ -1,4 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Data;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 using nManager.Wow.Patchables;
 using System.Collections.Generic;
 
@@ -11,28 +16,48 @@ namespace nManager.Wow.Helpers
         // Small list of unused map which have nor flags, nor type able to filter them
         private static List<uint> _blacklistedMaps = new List<uint>(new uint[] {930, 995, 1187});
 
+        private static DB5Reader mapDB2;
+
         private static void init()
         {
-            if (_rMapDBC == null)
-                _rMapDBC = new DBC<MapDbcRecord>((int) Addresses.DBC.Map);
+            if (mapDB2 == null)
+            {
+                var m_definitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = m_definitions.Tables.Where(t => t.Name == "Map");
+
+                if (!definitions.Any())
+                {
+                    definitions = m_definitions.Tables.Where(t => t.Name == Path.GetFileName("Map"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    mapDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Map.db2", table) as DB5Reader;
+                    Logging.Write(mapDB2.FileName + " loaded with " + mapDB2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DBC Map not read-able.");
+                }
+            }
         }
 
         private WoWMap(string name, bool mpq = false)
         {
             init();
-            for (int id = _rMapDBC.MinIndex; id <= _rMapDBC.MaxIndex; id++)
+            MapDbcRecord tempMapDbcRecord = new MapDbcRecord();
+            bool found = false;
+            for (int i = 0; i < mapDB2.RecordsCount; i++)
             {
-                _rMapDBCRecord0 = _rMapDBC.GetRow(id);
-                if (_rMapDBCRecord0.Id == id)
+                tempMapDbcRecord = ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                string temp = (mpq ? tempMapDbcRecord.MapMPQName() : tempMapDbcRecord.MapName());
+                if (temp == name)
                 {
-                    string temp = (mpq ? MapMPQName : MapName);
-                    if (temp == name)
-                    {
-                        return;
-                    }
+                    found = true;
+                    break;
                 }
             }
-            _rMapDBCRecord0 = new MapDbcRecord();
+            _rMapDBCRecord0 = found ? tempMapDbcRecord : new MapDbcRecord();
         }
 
         public string MapName
@@ -58,15 +83,18 @@ namespace nManager.Wow.Helpers
         private WoWMap(int reqId)
         {
             init();
-            for (int id = _rMapDBC.MinIndex; id <= _rMapDBC.MaxIndex; id++)
+            MapDbcRecord tempMapDbcRecord = new MapDbcRecord();
+            bool found = false;
+            for (int i = 0; i < mapDB2.RecordsCount; i++)
             {
-                _rMapDBCRecord0 = _rMapDBC.GetRow(id);
-                if (_rMapDBCRecord0.Id == id && id == reqId)
+                tempMapDbcRecord = ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                if (tempMapDbcRecord.Id == reqId)
                 {
-                    return;
+                    found = true;
+                    break;
                 }
             }
-            _rMapDBCRecord0 = new MapDbcRecord();
+            _rMapDBCRecord0 = found ? tempMapDbcRecord : new MapDbcRecord();
         }
 
         public MapDbcRecord Record
@@ -90,21 +118,34 @@ namespace nManager.Wow.Helpers
             return new WoWMap(name, true);
         }
 
+        public static T ByteToType<T>(BinaryReader reader)
+        {
+            byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof (T)));
+
+            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+            T theStructure = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof (T));
+            handle.Free();
+
+            return theStructure;
+        }
+
         public static List<MapDbcRecord> WoWMaps(InstanceType iType, MapType mType)
         {
             init();
+
+            MapDbcRecord tempMapDbcRecord = new MapDbcRecord();
             List<MapDbcRecord> result = new List<MapDbcRecord>();
-            for (int id = _rMapDBC.MinIndex; id <= _rMapDBC.MaxIndex; id++)
+            for (int i = 0; i < mapDB2.RecordsCount; i++)
             {
-                MapDbcRecord one = _rMapDBC.GetRow(id);
-                if (!one.IsBlacklistedMap() && one.InstanceType == iType && one.MapType == mType && !one.IsTestMap() && !one.IsGarrisonMap())
-                    result.Add(one);
+                tempMapDbcRecord = ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                if (!tempMapDbcRecord.IsBlacklistedMap() && tempMapDbcRecord.InstanceType == iType && tempMapDbcRecord.MapType == mType && !tempMapDbcRecord.IsTestMap() && !tempMapDbcRecord.IsGarrisonMap())
+                    result.Add(tempMapDbcRecord);
             }
             return result;
         }
 
         // data
-        public enum InstanceType : uint
+        public enum InstanceType : byte
         {
             None = 0,
             Party = 1,
@@ -114,12 +155,23 @@ namespace nManager.Wow.Helpers
             Scenario = 5,
         }
 
-        public enum MapType : uint
+        public enum MapType : byte
         {
             ADTType = 1,
             WDTOnlyType = 2,
             TransportType = 3,
             WMOType = 4,
+        }
+
+        public enum ExtensionId : byte
+        {
+            Vanilla = 0,
+            TBC = 1,
+            WoTLK = 2,
+            Cataclysm = 3,
+            MoP = 4,
+            WoD = 5,
+            Legion = 6,
         }
 
         private enum MapFlags : uint
@@ -136,37 +188,50 @@ namespace nManager.Wow.Helpers
         {
             public uint Id;
             private uint MPQDirectoryNameOffset;
+            public int Flags;
+            public int Flags2;
+            private int field10; // looks like the pointer we used to use for strings
+            public int field14_0;
+            public int field14_1;
+            private int MapNameOffset;
+            private int MapDescriptionHordeOffset;
+            private int MapDescriptionAllianceOffset;
+            public ushort field28;
+            public ushort field2A;
+            public ushort field2C;
+            public ushort field2E;
+            public ushort field30;
+            public ushort field32;
+            public ushort field34;
             public InstanceType InstanceType;
-            public uint Flags;
-            public uint unk4;
             public MapType MapType;
-            private uint MapNameOffset;
-            public uint AreaTableId;
-            private uint MapDescriptionHordeOffset;
-            private uint MapDescriptionAllianceOffset;
-            public uint LoadingScreenId;
-            public float MinimapIconScale;
-            public int GhostEntranceMapId;
-            public float GhostEntranceX;
-            public float GhostEntranceY;
-            public int TimeOfDayOverride;
-            public uint ExpansionId;
-            public uint RaidOffset;
-            public uint MaxPlayers;
-            public int ParentMapId;
-            public int CosmeticParentMapID;
-            public uint TimeOffset;
+            public ExtensionId ExtensionId;
+            public byte field39;
+            public byte field3A_0;
+            public byte field3A_1;
 
             public string MapMPQName()
             {
-                return _rMapDBC.String(_rMapDBC.GetRowOffset((int) Id) + MPQDirectoryNameOffset +
-                                       (uint) Marshal.OffsetOf(typeof (MapDbcRecord), "MPQDirectoryNameOffset"));
+                string strValue;
+                if (mapDB2.StringTable != null && mapDB2.StringTable.TryGetValue((int) MPQDirectoryNameOffset, out strValue))
+                {
+                    return strValue;
+                }
+                return "";
+                /*return _rMapDBC.String(_rMapDBC.GetRowOffset((int) Id) + MPQDirectoryNameOffset +
+                                       (uint) Marshal.OffsetOf(typeof (MapDbcRecord), "MPQDirectoryNameOffset"));*/
             }
 
             public string MapName()
             {
-                return _rMapDBC.String(_rMapDBC.GetRowOffset((int) Id) + MapNameOffset +
-                                       (uint) Marshal.OffsetOf(typeof (MapDbcRecord), "MapNameOffset"));
+                string strValue;
+                if (mapDB2.StringTable != null && mapDB2.StringTable.TryGetValue((int) MapNameOffset, out strValue))
+                {
+                    return strValue;
+                }
+                return "";
+                /*return _rMapDBC.String(_rMapDBC.GetRowOffset((int) Id) + MapNameOffset +
+                                       (uint) Marshal.OffsetOf(typeof (MapDbcRecord), "MapNameOffset"));*/
             }
 
             public bool IsTestMap()
