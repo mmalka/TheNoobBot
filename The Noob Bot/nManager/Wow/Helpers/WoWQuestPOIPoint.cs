@@ -1,4 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 using nManager.Wow.Patchables;
 using nManager.Wow.Class;
 using System.Collections.Generic;
@@ -12,19 +17,47 @@ namespace nManager.Wow.Helpers
         private Point _center = new Point(0, 0, 0);
         private bool _middlePointSet;
 
-        private static DB2<QuestPOIPointDb2Record> _qpPointDB2;
+        private static DB5Reader _questPOIPointDB2;
 
+        private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
+        {
+            if (_questPOIPointDB2 == null)
+            {
+                var mDefinitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = mDefinitions.Tables.Where(t => t.Name == "QuestPOIPoint");
+
+                if (!definitions.Any())
+                {
+                    definitions = mDefinitions.Tables.Where(t => t.Name == Path.GetFileName("QuestPOIPoint"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    _questPOIPointDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\QuestPOIPoint.db2", table) as DB5Reader;
+                    if (cachedQuestPOIPointRows == null)
+                    {
+                        cachedQuestPOIPointRows = _questPOIPointDB2.Rows.ToArray();
+                    }
+                    Logging.Write(_questPOIPointDB2.FileName + " loaded with " + _questPOIPointDB2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DBC QuestPOIPoint not read-able.");
+                }
+            }
+        }
+
+        static BinaryReader[] cachedQuestPOIPointRows;
         private WoWQuestPOIPoint(uint setId)
         {
-            _setPoints = new List<Point>();
-            if (_qpPointDB2 == null)
-                _qpPointDB2 = new DB2<QuestPOIPointDb2Record>((int) Addresses.DBC.QuestPOIPoint);
-            bool flag = false;
-            for (int id = _qpPointDB2.MinIndex; id <= _qpPointDB2.MaxIndex; id++)
-            {
-                QuestPOIPointDb2Record qpPointDb2Record = _qpPointDB2.GetRow(id);
-                if (qpPointDb2Record.Id == id)
+                Init();
+                _setPoints = new List<Point>();
+                bool flag = false;
+                QuestPOIPointDb2Record qpPointDb2Record = new QuestPOIPointDb2Record();
+
+                for (int i = 0; i < _questPOIPointDB2.RecordsCount-1; i++)
                 {
+                    qpPointDb2Record = DB5Reader.ByteToType<QuestPOIPointDb2Record>(cachedQuestPOIPointRows[i]);
                     if (qpPointDb2Record.SetId == setId)
                     {
                         _setPoints.Add(new Point(qpPointDb2Record.X, qpPointDb2Record.Y, 0));
@@ -33,7 +66,6 @@ namespace nManager.Wow.Helpers
                     else if (flag)
                         break;
                 }
-            }
         }
 
         // Factory function
@@ -196,10 +228,10 @@ namespace nManager.Wow.Helpers
         [StructLayout(LayoutKind.Sequential)]
         private struct QuestPOIPointDb2Record
         {
-            public readonly uint Id;
-            public readonly int X;
-            public readonly int Y;
             public readonly uint SetId;
+            public readonly ushort X;
+            public readonly ushort Y;
+            public readonly uint Id;
         }
     }
 }

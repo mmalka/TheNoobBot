@@ -1,5 +1,9 @@
-﻿using System.Runtime.InteropServices;
-using nManager.Wow.Patchables;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
@@ -7,48 +11,85 @@ namespace nManager.Wow.Helpers
     {
         private ResearchSiteDb2Record _rSiteDB2Record0;
 
-        private static DB2<ResearchSiteDb2Record> _rSiteDB2;
+        private static DB5Reader _rSiteDB2;
 
         private static void init()
         {
             if (_rSiteDB2 == null)
-                _rSiteDB2 = new DB2<ResearchSiteDb2Record>((int) Addresses.DBC.ResearchSite);
+            {
+                var mDefinitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = mDefinitions.Tables.Where(t => t.Name == "ResearchSite");
+
+                if (!definitions.Any())
+                {
+                    definitions = mDefinitions.Tables.Where(t => t.Name == Path.GetFileName("ResearchSite"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\ResearchSite.db2", table) as DB5Reader;
+                    Logging.Write(_rSiteDB2.FileName + " loaded with " + _rSiteDB2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DBC ResearchSite not read-able.");
+                }
+            }
         }
 
         private WoWResearchSite(string name, bool SecondOne = false)
         {
             bool second = false;
             init();
-            for (int id = _rSiteDB2.MinIndex; id <= _rSiteDB2.MaxIndex; id++)
+            ResearchSiteDb2Record tempResearchSiteDb2Record = new ResearchSiteDb2Record();
+            bool found = false;
+            for (int i = 0; i < _rSiteDB2.RecordsCount - 1; i++)
             {
-                _rSiteDB2Record0 = _rSiteDB2.GetRow(id);
-                if (_rSiteDB2Record0.Id == id)
+                tempResearchSiteDb2Record = DB5Reader.ByteToType<ResearchSiteDb2Record>(_rSiteDB2.Rows.ElementAt(i));
+                if (tempResearchSiteDb2Record.Name() == name && tempResearchSiteDb2Record.Map == Usefuls.ContinentId)
                 {
-                    string temp = Name;
-                    if (temp == name && _rSiteDB2Record0.Map == Usefuls.ContinentId)
+                    if (SecondOne && !second)
+                        second = true;
+                    else
                     {
-                        if (SecondOne && !second)
-                            second = true;
-                        else
-                            return;
+                        found = true;
+                        break;
                     }
                 }
             }
-            _rSiteDB2Record0 = new ResearchSiteDb2Record();
+            _rSiteDB2Record0 = found ? tempResearchSiteDb2Record : new ResearchSiteDb2Record();
+        }
+
+        public static List<ResearchSiteDb2Record> ExtractAllDigsites()
+        {
+            List<ResearchSiteDb2Record> digSites = new List<ResearchSiteDb2Record>();
+            init();
+            ResearchSiteDb2Record tempResearchSiteDb2Record = new ResearchSiteDb2Record();
+
+            for (int i = 0; i < _rSiteDB2.RecordsCount - 1; i++)
+            {
+                tempResearchSiteDb2Record = DB5Reader.ByteToType<ResearchSiteDb2Record>(_rSiteDB2.Rows.ElementAt(i));
+                digSites.Add(tempResearchSiteDb2Record);
+            }
+
+            return digSites;
         }
 
         private WoWResearchSite(int reqId)
         {
             init();
-            for (int id = _rSiteDB2.MinIndex; id <= _rSiteDB2.MaxIndex; id++)
+            ResearchSiteDb2Record tempResearchSiteDb2Record = new ResearchSiteDb2Record();
+            bool found = false;
+            for (int i = 0; i < _rSiteDB2.RecordsCount - 1; i++)
             {
-                _rSiteDB2Record0 = _rSiteDB2.GetRow(id);
-                if (_rSiteDB2Record0.Id == id && id == reqId)
+                tempResearchSiteDb2Record = DB5Reader.ByteToType<ResearchSiteDb2Record>(_rSiteDB2.Rows.ElementAt(i));
+                if (tempResearchSiteDb2Record.Id == reqId)
                 {
-                    return;
+                    found = true;
+                    break;
                 }
             }
-            _rSiteDB2Record0 = new ResearchSiteDb2Record();
+            _rSiteDB2Record0 = found ? tempResearchSiteDb2Record : new ResearchSiteDb2Record();
         }
 
         // Factory function
@@ -69,12 +110,7 @@ namespace nManager.Wow.Helpers
 
         public string Name
         {
-            get
-            {
-                return _rSiteDB2.String(_rSiteDB2.GetRowOffset((int) _rSiteDB2Record0.Id) +
-                                        _rSiteDB2Record0.NameOffset +
-                                        (uint) Marshal.OffsetOf(typeof (ResearchSiteDb2Record), "NameOffset"));
-            }
+            get { return _rSiteDB2Record0.Name(); }
         }
 
         // I don't like to expose this, but did not find another way
@@ -83,7 +119,7 @@ namespace nManager.Wow.Helpers
             get
             {
                 init();
-                return _rSiteDB2.MinIndex;
+                return _rSiteDB2.MinId;
             }
         }
 
@@ -92,7 +128,7 @@ namespace nManager.Wow.Helpers
             get
             {
                 init();
-                return _rSiteDB2.MaxIndex;
+                return _rSiteDB2.MaxId;
             }
         }
 
@@ -100,10 +136,21 @@ namespace nManager.Wow.Helpers
         public struct ResearchSiteDb2Record
         {
             public uint Id;
-            public uint Map;
             public uint QuestIdPoint;
             public uint NameOffset;
-            public uint Unk;
+            public ushort Map;
+            public byte textureIndex; // 177
+            public byte Unk2;
+
+            public string Name()
+            {
+                string strValue;
+                if (_rSiteDB2.StringTable != null && _rSiteDB2.StringTable.TryGetValue((int) NameOffset, out strValue))
+                {
+                    return strValue;
+                }
+                return "";
+            }
         }
     }
 }

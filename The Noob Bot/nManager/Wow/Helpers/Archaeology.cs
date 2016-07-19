@@ -112,15 +112,11 @@ namespace nManager.Wow.Helpers
             List<Digsite> fullList = new List<Digsite>();
 
             // Extracting the complete list from the DBC
-            WoWResearchSite curRec = WoWResearchSite.FromId(0); // This record is invalid
-            int MinIndex = curRec.MinIndex;
-            int MaxIndex = curRec.MaxIndex;
-            for (int i = MinIndex; i <= MaxIndex; i++)
+            foreach (var digsite in WoWResearchSite.ExtractAllDigsites())
             {
-                curRec = WoWResearchSite.FromId(i);
-                if (curRec.Record.Id != 0)
+                if (digsite.Id != 0)
                 {
-                    Digsite curDigSite = new Digsite {id = (int) curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
+                    Digsite curDigSite = new Digsite {id = (int) digsite.Id, name = digsite.Name(), PriorityDigsites = 1, Active = true};
                     fullList.Add(curDigSite);
                 }
             }
@@ -229,7 +225,7 @@ namespace nManager.Wow.Helpers
                 luaCommand = luaCommand + "SetMapZoom(continent) ";
                 luaCommand = luaCommand + "local totalPOIs = GetNumMapLandmarks() ";
                 luaCommand = luaCommand + "for index = 1 , totalPOIs do ";
-                luaCommand = luaCommand + "	local name, description, textureIndex, px, py = GetMapLandmarkInfo(index) ";
+                luaCommand = luaCommand + "	local landmarkType, name, description, textureIndex, px, py, maplinkID, showInBattleMap = GetMapLandmarkInfo(index) ";
                 luaCommand = luaCommand + "	if textureIndex == 177 then ";
                 luaCommand = luaCommand + "		" + randomString + " = " + randomString + " .. name .. '" + separatorDigsites + "' ";
                 luaCommand = luaCommand + "	end ";
