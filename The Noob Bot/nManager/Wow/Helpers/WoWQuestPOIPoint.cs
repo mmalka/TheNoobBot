@@ -34,11 +34,13 @@ namespace nManager.Wow.Helpers
                 {
                     var table = definitions.First();
                     _questPOIPointDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\QuestPOIPoint.db2", table) as DB5Reader;
-                    if (cachedQuestPOIPointRows == null)
+                    if (_cachedQuestPOIPointRows == null)
                     {
-                        cachedQuestPOIPointRows = _questPOIPointDB2.Rows.ToArray();
+                        if (_questPOIPointDB2 != null)
+                            _cachedQuestPOIPointRows = _questPOIPointDB2.Rows.ToArray();
                     }
-                    Logging.Write(_questPOIPointDB2.FileName + " loaded with " + _questPOIPointDB2.RecordsCount + " entries.");
+                    if (_questPOIPointDB2 != null)
+                        Logging.Write(_questPOIPointDB2.FileName + " loaded with " + _questPOIPointDB2.RecordsCount + " entries.");
                 }
                 else
                 {
@@ -47,25 +49,26 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        static BinaryReader[] cachedQuestPOIPointRows;
+        private static BinaryReader[] _cachedQuestPOIPointRows;
+
         private WoWQuestPOIPoint(uint setId)
         {
-                Init();
-                _setPoints = new List<Point>();
-                bool flag = false;
-                QuestPOIPointDb2Record qpPointDb2Record = new QuestPOIPointDb2Record();
+            Init();
+            _setPoints = new List<Point>();
+            bool flag = false;
+            QuestPOIPointDb2Record qpPointDb2Record = new QuestPOIPointDb2Record();
 
-                for (int i = 0; i < _questPOIPointDB2.RecordsCount-1; i++)
+            for (int i = 0; i < _questPOIPointDB2.RecordsCount - 1; i++)
+            {
+                qpPointDb2Record = DB5Reader.ByteToType<QuestPOIPointDb2Record>(_cachedQuestPOIPointRows[i]);
+                if (qpPointDb2Record.SetId == setId)
                 {
-                    qpPointDb2Record = DB5Reader.ByteToType<QuestPOIPointDb2Record>(cachedQuestPOIPointRows[i]);
-                    if (qpPointDb2Record.SetId == setId)
-                    {
-                        _setPoints.Add(new Point(qpPointDb2Record.X, qpPointDb2Record.Y, 0));
-                        flag = true;
-                    }
-                    else if (flag)
-                        break;
+                    _setPoints.Add(new Point(qpPointDb2Record.X, qpPointDb2Record.Y, 0));
+                    flag = true;
                 }
+                else if (flag)
+                    break;
+            }
         }
 
         // Factory function

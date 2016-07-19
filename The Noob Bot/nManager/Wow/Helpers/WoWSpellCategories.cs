@@ -1,5 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
@@ -7,25 +11,50 @@ namespace nManager.Wow.Helpers
 {
     public class WoWSpellCategories
     {
-        [CompilerGenerated] private static SpellCategoriesDbcRecord spellCategoriesDbcRecord_0;
+        [CompilerGenerated] private static SpellCategoriesDbcRecord _spellCategoriesDB2Record0;
 
-        private static DBC<SpellCategoriesDbcRecord> spellCategoriesDBC;
+        private static DB5Reader _spellCategoriesDb2;
 
-        private static void Init()
+        private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
         {
-            if (spellCategoriesDBC == null)
-                spellCategoriesDBC = new DBC<SpellCategoriesDbcRecord>((int) Addresses.DBC.SpellCategories);
+            if (_spellCategoriesDb2 == null)
+            {
+                var mDefinitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = mDefinitions.Tables.Where(t => t.Name == "SpellCategories");
+
+                if (!definitions.Any())
+                {
+                    definitions = mDefinitions.Tables.Where(t => t.Name == Path.GetFileName("SpellCategories"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    _spellCategoriesDb2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\SpellCategories.db2", table) as DB5Reader;
+                    if (_cachedSpellCategoriesRows == null)
+                    {
+                        if (_spellCategoriesDb2 != null)
+                            _cachedSpellCategoriesRows = _spellCategoriesDb2.Rows.ToArray();
+                    }
+                    if (_spellCategoriesDb2 != null) Logging.Write(_spellCategoriesDb2.FileName + " loaded with " + _spellCategoriesDb2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DB2 SpellCategories not read-able.");
+                }
+            }
         }
+
+        private static BinaryReader[] _cachedSpellCategoriesRows;
 
         public static uint GetSpellCategoryBySpellId(uint spellid)
         {
             Init();
-            for (int id = spellCategoriesDBC.MinIndex; id <= spellCategoriesDBC.MaxIndex; id++)
+            for (int id = 0; id <= _spellCategoriesDb2.RecordsCount - 1; id++)
             {
-                spellCategoriesDbcRecord_0 = spellCategoriesDBC.GetRow(id);
-                if (spellCategoriesDbcRecord_0.m_spellID == spellid)
+                _spellCategoriesDB2Record0 = DB5Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[id]);
+                if (_spellCategoriesDB2Record0.m_spellID == spellid)
                 {
-                    return spellCategoriesDbcRecord_0.m_category;
+                    return _spellCategoriesDB2Record0.m_spellCategoryID;
                 }
             }
             return 0;
@@ -33,12 +62,12 @@ namespace nManager.Wow.Helpers
 
         public static uint GetSpellStartRecoverCategoryBySpellId(uint spellid)
         {
-            for (int id = spellCategoriesDBC.MinIndex; id <= spellCategoriesDBC.MaxIndex; id++)
+            for (int id = 0; id <= _spellCategoriesDb2.RecordsCount - 1; id++)
             {
-                spellCategoriesDbcRecord_0 = spellCategoriesDBC.GetRow(id);
-                if (spellCategoriesDbcRecord_0.m_spellID == spellid)
+                _spellCategoriesDB2Record0 = DB5Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[id]);
+                if (_spellCategoriesDB2Record0.m_spellID == spellid)
                 {
-                    return spellCategoriesDbcRecord_0.m_startRecoveryCategory;
+                    return _spellCategoriesDB2Record0.m_StartRecoveryCategory;
                 }
             }
             return 0;
@@ -46,7 +75,7 @@ namespace nManager.Wow.Helpers
 
         public SpellCategoriesDbcRecord Record
         {
-            get { return spellCategoriesDbcRecord_0; }
+            get { return _spellCategoriesDB2Record0; }
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -54,14 +83,16 @@ namespace nManager.Wow.Helpers
         {
             public uint m_ID;
             public uint m_spellID;
-            public uint m_difficultyID;
-            public uint m_category;
-            public uint m_defenseType;
-            public uint m_dispelType;
-            public uint m_mechanic;
-            public uint m_preventionType;
-            public uint m_startRecoveryCategory;
-            public uint m_chargeCategory;
+            public uint m_spellCategoryID;
+            public ushort m_StartRecoveryCategory;
+            public ushort field0A;
+            public ushort m_SpellDifficultyID;
+            public byte m_DefenseType;
+            public byte m_DispelType;
+            public byte m_SpellMechanic;
+            public byte m_PreventionType;
+            public byte field12_0;
+            public byte field12_1;
         }
     }
 }
