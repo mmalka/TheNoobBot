@@ -324,7 +324,7 @@
         {
             AuraTable1 = 0x1150,
             AuraTable2 = 0x580,
-            AuraSize = 0x48,
+            AuraSize = 0x58,
 
             AuraStructCreatorGuid = 0x20, // ?// read 16 bytes (GUID)
             AuraStructSpellId = AuraStructCreatorGuid + 16, // ?// read 4 bytes (UINT)
