@@ -1,5 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using nManager.Helpful;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
@@ -9,15 +13,47 @@ namespace nManager.Wow.Helpers
     {
         [CompilerGenerated] private FactionTemplateDbcRecord factionTemplateDbcRecord_0;
         [CompilerGenerated] private uint uint_0;
+        private static DB5Reader factionTemplateDB2;
 
-        private static DBC<FactionTemplateDbcRecord> factionTemplateDBC;
-
-        private WoWFactionTemplate(uint id)
+        private static void init()
         {
-            Id = id;
-            if (factionTemplateDBC == null)
-                factionTemplateDBC = new DBC<FactionTemplateDbcRecord>((int) Addresses.DBC.FactionTemplate);
-            Record = factionTemplateDBC.GetRow((int) id);
+            if (factionTemplateDB2 == null)
+            {
+                var m_definitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
+                var definitions = m_definitions.Tables.Where(t => t.Name == "FactionTemplate");
+
+                if (!definitions.Any())
+                {
+                    definitions = m_definitions.Tables.Where(t => t.Name == Path.GetFileName("FactionTemplate"));
+                }
+                if (definitions.Count() == 1)
+                {
+                    var table = definitions.First();
+                    factionTemplateDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\FactionTemplate.db2", table) as DB5Reader;
+                    Logging.Write(factionTemplateDB2.FileName + " loaded with " + factionTemplateDB2.RecordsCount + " entries.");
+                }
+                else
+                {
+                    Logging.Write("DBC FactionTemplate not read-able.");
+                }
+            }
+        }
+
+        private WoWFactionTemplate(uint reqId)
+        {
+            init();
+            FactionTemplateDbcRecord tempfactionTemplateDBC = new FactionTemplateDbcRecord();
+            bool found = false;
+            for (int i = 0; i < factionTemplateDB2.RecordsCount; i++)
+            {
+                tempfactionTemplateDBC = DB5Reader.ByteToType<FactionTemplateDbcRecord>(factionTemplateDB2.Rows.ElementAt(i));
+                if (tempfactionTemplateDBC.Id == reqId)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            Record = found ? tempfactionTemplateDBC : new FactionTemplateDbcRecord();
         }
 
         public static WoWFactionTemplate FromId(uint id)
@@ -83,7 +119,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
             }
-            uint num4 = (~(record.FactionFlags >> 12) & 2) | 1;
+            uint num4 = (uint) ((~(record.FactionFlags >> 12) & 2) | 1);
             return (Reaction) num4;
         }
 
@@ -103,13 +139,15 @@ namespace nManager.Wow.Helpers
         public struct FactionTemplateDbcRecord
         {
             public uint Id;
-            public uint FactionId;
-            public uint FactionFlags;
-            public uint FightSupport;
-            public uint FriendlyMask;
-            public uint HostileMask;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public uint[] EnemyFactions;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public uint[] FriendlyFactions;
+            public ushort FactionId;
+            public ushort FactionFlags;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+            public ushort[] EnemyFactions;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+            public ushort[] FriendlyFactions;
+            public byte FightSupport;
+            public byte FriendlyMask;
+            public byte HostileMask;
         }
     }
 }
