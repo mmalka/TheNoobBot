@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    Logging.Write("DBC ResearchSite not read-able.");
+                    Logging.Write("DB2 ResearchSite not read-able.");
                 }
             }
         }

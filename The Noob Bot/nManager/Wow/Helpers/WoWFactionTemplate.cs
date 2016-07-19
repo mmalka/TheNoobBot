@@ -34,7 +34,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    Logging.Write("DBC FactionTemplate not read-able.");
+                    Logging.Write("DB2 FactionTemplate not read-able.");
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
             init();
             FactionTemplateDbcRecord tempfactionTemplateDBC = new FactionTemplateDbcRecord();
             bool found = false;
-            for (int i = 0; i < factionTemplateDB2.RecordsCount; i++)
+            for (int i = 0; i < factionTemplateDB2.RecordsCount - 1; i++)
             {
                 tempfactionTemplateDBC = DB5Reader.ByteToType<FactionTemplateDbcRecord>(factionTemplateDB2.Rows.ElementAt(i));
                 if (tempfactionTemplateDBC.Id == reqId)

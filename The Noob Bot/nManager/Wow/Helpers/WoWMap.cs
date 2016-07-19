@@ -37,7 +37,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    Logging.Write("DBC Map not read-able.");
+                    Logging.Write("DB2 Map not read-able.");
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace nManager.Wow.Helpers
             init();
             MapDbcRecord tempMapDbcRecord = new MapDbcRecord();
             bool found = false;
-            for (int i = 0; i < mapDB2.RecordsCount; i++)
+            for (int i = 0; i < mapDB2.RecordsCount - 1; i++)
             {
                 tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
                 string temp = (mpq ? tempMapDbcRecord.MapMPQName() : tempMapDbcRecord.MapName());
@@ -85,7 +85,7 @@ namespace nManager.Wow.Helpers
             init();
             MapDbcRecord tempMapDbcRecord = new MapDbcRecord();
             bool found = false;
-            for (int i = 0; i < mapDB2.RecordsCount; i++)
+            for (int i = 0; i < mapDB2.RecordsCount - 1; i++)
             {
                 tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
                 if (tempMapDbcRecord.Id == reqId)
@@ -124,7 +124,7 @@ namespace nManager.Wow.Helpers
 
             MapDbcRecord tempMapDbcRecord = new MapDbcRecord();
             List<MapDbcRecord> result = new List<MapDbcRecord>();
-            for (int i = 0; i < mapDB2.RecordsCount; i++)
+            for (int i = 0; i < mapDB2.RecordsCount - 1; i++)
             {
                 tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
                 if (!tempMapDbcRecord.IsBlacklistedMap() && tempMapDbcRecord.InstanceType == iType && tempMapDbcRecord.MapType == mType && !tempMapDbcRecord.IsTestMap() && !tempMapDbcRecord.IsGarrisonMap())

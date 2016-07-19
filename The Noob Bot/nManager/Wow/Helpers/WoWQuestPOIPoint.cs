@@ -42,7 +42,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    Logging.Write("DBC QuestPOIPoint not read-able.");
+                    Logging.Write("DB2 QuestPOIPoint not read-able.");
                 }
             }
         }

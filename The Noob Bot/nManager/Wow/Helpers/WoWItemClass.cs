@@ -30,7 +30,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    Logging.Write("DBC ItemClass not read-able.");
+                    Logging.Write("DB2 ItemClass not read-able.");
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace nManager.Wow.Helpers
             Init();
             ItemClassDB2Record tempItemClassDb2Record = new ItemClassDB2Record();
             bool found = false;
-            for (int i = 0; i < _itemClassDB2.RecordsCount; i++)
+            for (int i = 0; i < _itemClassDB2.RecordsCount - 1; i++)
             {
                 tempItemClassDb2Record = DB5Reader.ByteToType<ItemClassDB2Record>(_itemClassDB2.Rows.ElementAt(i));
                 if (tempItemClassDb2Record.Name() == name)
@@ -76,16 +76,16 @@ namespace nManager.Wow.Helpers
             public uint ClassNameOffset;
             public uint lastByte;
 
-
             public string Name()
             {
                 string strValue;
-                if (_itemClassDB2.StringTable != null && _itemClassDB2.StringTable.TryGetValue((int) ClassNameOffset, out strValue))
+                if (_itemClassDB2.StringTable != null && _itemClassDB2.StringTable.TryGetValue((int)ClassNameOffset, out strValue))
                 {
                     return strValue;
                 }
                 return "";
             }
+
         }
     }
 }

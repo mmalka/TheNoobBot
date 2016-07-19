@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    Logging.Write("DBC Lock not read-able.");
+                    Logging.Write("DB2 Lock not read-able.");
                 }
             }
         }
@@ -42,7 +42,7 @@ namespace nManager.Wow.Helpers
             Init();
             LockDbcRecord tempLockDbcRecord = new LockDbcRecord();
             bool found = false;
-            for (int i = 0; i < _lockDB2.RecordsCount; i++)
+            for (int i = 0; i < _lockDB2.RecordsCount - 1; i++)
             {
                 tempLockDbcRecord = DB5Reader.ByteToType<LockDbcRecord>(_lockDB2.Rows.ElementAt(i));
                 if (tempLockDbcRecord.Id == id)
