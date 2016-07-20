@@ -593,7 +593,7 @@ namespace nManager.Wow.Helpers
         {
             public int ID;
             public StateFlag State;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 23)] public short[] ObjectiveRequiredCounts;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 25)] public short[] ObjectiveRequiredCounts;
             public int Time;
 
             public enum StateFlag : uint
