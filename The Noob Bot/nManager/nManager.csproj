@@ -219,6 +219,7 @@
     <Compile Include="Wow\Helpers\EventsListener.cs" />
     <Compile Include="Wow\Helpers\MimesisHelpers.cs" />
     <Compile Include="Wow\Helpers\QuestersDB.cs" />
+    <Compile Include="Wow\Helpers\WDB5MemoryReader.cs" />
     <Compile Include="Wow\Helpers\WoWItemSubClass.cs" />
     <Compile Include="Wow\Helpers\WoWItemClass.cs" />
     <Compile Include="Wow\Helpers\MovementsAction.cs" />

@@ -73,7 +73,7 @@
             Lock = 0x0,
             QuestPOIPoint = 0xD1D9D0, // DB2! OneFunction // QuestPOIPointDbTable 
             ResearchSite = 0xD1D2D0, // DB2! CGWorldMap__SetMap+36D // ResearchSiteDBTable
-            Map = 0xD28140, // DB2! Script_GetRealZoneText
+            Map = 0xD29120, // DB2! Script_GetRealZoneText
         }
 
         /// <summary>

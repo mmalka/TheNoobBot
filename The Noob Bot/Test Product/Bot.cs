@@ -805,26 +805,15 @@ namespace Test_Product
         {
             try
             {
-                var m_definitions = DBFilesClient.Load(Application.StartupPath + @"\Data\DBFilesClient\dblayout.xml");
-                var definitions = m_definitions.Tables.Where(t => t.Name == "Map");
+                uint azerothPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 0);
+                Logging.Write("Eastern Kingdoms Ptr: " + azerothPtr);
+                uint kalimdorPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 1);
+                Logging.Write("Kalimdor Ptr: " + kalimdorPtr);
+                uint invalidPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 2);
+                Logging.Write("Invalid Ptr: " + invalidPtr);
+                uint testPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 13);
+                Logging.Write("Art Team Map Ptr: " + testPtr);
 
-                if (!definitions.Any())
-                {
-                    definitions = m_definitions.Tables.Where(t => t.Name == Path.GetFileName("Map"));
-                }
-                if (definitions.Count() == 1)
-                {
-                    var table = definitions.First();
-                    var test = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Map.db2", table);
-                    if (test.RecordsCount > 0)
-                    {
-                        Logging.Write(test.FileName + " loaded with " + test.RecordsCount + " entries.");
-                    }
-                }
-                else
-                {
-                    Logging.Write("DBC Map not read-able.");
-                }
 
                 /*
                 // Update spell list
