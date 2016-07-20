@@ -242,7 +242,7 @@ namespace nManager.Wow.Helpers
                 uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
 
                 List<int> list = new List<int>();
-                for (int index = 0; index < 25; ++index)
+                for (int index = 0; index < 50; ++index)
                 {
                     uint pointer = (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index));
                     PlayerQuest playerQuest = (PlayerQuest) Memory.WowMemory.Memory.ReadObject(pointer, typeof (PlayerQuest));
