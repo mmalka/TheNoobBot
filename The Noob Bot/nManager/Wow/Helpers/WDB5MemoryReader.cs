@@ -4,7 +4,7 @@ namespace nManager.Wow.Helpers
 {
     public class WDB5MemoryReader
     {
-        private static int sub_214AF6(int a1, int a2, ref short a3)
+        private static int WowClientDB2__GetIndexAddressByIndex(int a1, int a2, ref short a3)
         {
             // this function read the Index list of the DB2 and return the address of the Index you wanted.
             // I'm not exactly sure why it needs that tho but we can use it to verify (standalone) if an index exists.
@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
             return v3;
         }
 
-        private static int sub_214B30(int a1, int a2, int a3)
+        private static int WowClientDB2__GetIndexAddress2ByIndex(int a1, int a2, int a3)
         {
             // this function does a similar thing to the previous one, but I think for secondary indexes.
             // I have not seen any db2 that would use it.
@@ -46,7 +46,7 @@ namespace nManager.Wow.Helpers
             return v3;
         }
 
-        private static int sub_216ECB(uint _this, int a2)
+        private static int WowClientDB2__GetRowPointerBySecondaryIndex(uint _this, int a2)
         {
             uint v2; // esi@1
             int v3; // eax@1
@@ -54,7 +54,7 @@ namespace nManager.Wow.Helpers
             if (_this <= 0)
                 return 0;
             v2 = (uint) (Memory.WowMemory.Memory.ReadInt(_this) + 8*(Memory.WowMemory.Memory.ReadInt(_this) + 1));
-            v3 = sub_214B30(Memory.WowMemory.Memory.ReadInt(_this), Memory.WowMemory.Memory.ReadInt(_this) + 8*(Memory.WowMemory.Memory.ReadInt(_this) + 1), a2);
+            v3 = WowClientDB2__GetIndexAddress2ByIndex(Memory.WowMemory.Memory.ReadInt(_this), Memory.WowMemory.Memory.ReadInt(_this) + 8 * (Memory.WowMemory.Memory.ReadInt(_this) + 1), a2);
             if (v3 == v2 || Memory.WowMemory.Memory.ReadInt((uint) v3) != a2)
                 result = 0;
             else
@@ -78,25 +78,26 @@ namespace nManager.Wow.Helpers
         }
 
 
-        private static int sub_216B59(uint _this, int a2)
+        private static int WowClientDB2__GetRowPointerByIndex(uint _this, int a2)
         {
             int result;
             uint v2 = _this;
             int v5 = 0;
             short v6 = 0;
             bool goToEnd = false;
-            Memory.WowMemory.Memory.WriteUInt(Memory.WowMemory.Memory.ReadUInt(v2 + 56), Memory.WowMemory.Memory.ReadUInt(v2 + 56) + 1);
+            /*Memory.WowMemory.Memory.WriteUInt(Memory.WowMemory.Memory.ReadUInt(v2 + 56), Memory.WowMemory.Memory.ReadUInt(v2 + 56) + 1);
             if (a2 == Memory.WowMemory.Memory.ReadUInt(v2 + 64))
-                Memory.WowMemory.Memory.WriteUInt(Memory.WowMemory.Memory.ReadUInt(_this + 60), Memory.WowMemory.Memory.ReadUInt(_this + 60) + 1);
-            Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(_this + 64), a2);
-            if (a2 < Memory.WowMemory.Memory.ReadInt(_this + 24) || a2 > Memory.WowMemory.Memory.ReadInt(_this + 28))
+                Memory.WowMemory.Memory.WriteUInt(Memory.WowMemory.Memory.ReadUInt(v2 + 60), Memory.WowMemory.Memory.ReadUInt(v2 + 60) + 1);
+            Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(v2 + 64), a2);*/
+
+            if (a2 < Memory.WowMemory.Memory.ReadInt(v2 + 24) || a2 > Memory.WowMemory.Memory.ReadInt(v2 + 28))
                 goToEnd = true;
-            if (!goToEnd)
+            else
             {
-                uint v3 = Memory.WowMemory.Memory.ReadUInt(_this + 76);
+                uint v3 = Memory.WowMemory.Memory.ReadUInt(v2 + 76);
                 int v4 = a2 - Memory.WowMemory.Memory.ReadShort(v2 + 24);
                 short v10 = (short) (a2 - Memory.WowMemory.Memory.ReadShort(v2 + 24));
-                v5 = sub_214AF6(Memory.WowMemory.Memory.ReadInt(v2 + 72), (int) (Memory.WowMemory.Memory.ReadInt(v2 + 72) + 4*v3), ref v10);
+                v5 = WowClientDB2__GetIndexAddressByIndex(Memory.WowMemory.Memory.ReadInt(v2 + 72), (int)(Memory.WowMemory.Memory.ReadInt(v2 + 72) + 4 * v3), ref v10);
                 if (v5 == Memory.WowMemory.Memory.ReadInt(v2 + 72) + 4*Memory.WowMemory.Memory.ReadInt(v2 + 76) || Memory.WowMemory.Memory.ReadShort((uint) v5) != v4)
                     goToEnd = true;
             }
@@ -108,7 +109,7 @@ namespace nManager.Wow.Helpers
             }
             if (v6 == -1 || goToEnd)
             {
-                result = sub_216ECB(Memory.WowMemory.Memory.ReadUInt(_this + 84), a2);
+                result = WowClientDB2__GetRowPointerBySecondaryIndex(Memory.WowMemory.Memory.ReadUInt(_this + 84), a2);
             }
             else
             {
@@ -171,25 +172,24 @@ namespace nManager.Wow.Helpers
             */
         }
 
-        private static bool sub_B6C05(uint v6, int v8)
+        private static bool WowClientDB2__CheckRowPointer(uint addressToDB2, int rowPtr)
         {
-            return v8 > 0 && v8 != Memory.WowMemory.Memory.ReadByte(v6 + 220);
+            return rowPtr > 0 && rowPtr != Memory.WowMemory.Memory.ReadByte(addressToDB2 + 0xDC);
         }
 
-        public static uint GetRowPtr(uint db2Offset, int a2)
+        public static uint WowClientDB2__GetRowPointer(uint db2Offset, int reqId)
         {
-            uint v6 = Memory.WowProcess.WowModule + db2Offset;
+            uint addressToDB2 = Memory.WowProcess.WowModule + db2Offset;
 
-            if ((a2 >= 0 || Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.Memory.ReadUInt(v6 + 152) + 88) == 1 && a2 != -1))
+            if ((reqId >= 0 || Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.Memory.ReadUInt(addressToDB2 + 0x98) + 0x58) == 1 && reqId != -1))
             {
-                if (a2 >= Memory.WowMemory.Memory.ReadUInt(v6 + 200) && a2 <= Memory.WowMemory.Memory.ReadUInt(v6 + 196))
+                if (reqId >= Memory.WowMemory.Memory.ReadUInt(addressToDB2 + 0xC8) && reqId <= Memory.WowMemory.Memory.ReadUInt(addressToDB2 + 0xC4))
                 {
-                    int v8 = sub_216B59(Memory.WowMemory.Memory.ReadUInt(v6 + 168), a2);
-                    if (v8 > 0)
+                    int rowPtr = WowClientDB2__GetRowPointerByIndex(Memory.WowMemory.Memory.ReadUInt(addressToDB2 + 0xA8), reqId);
+                    if (rowPtr > 0)
                     {
-                        int v9 = v8;
-                        if (sub_B6C05(Memory.WowMemory.Memory.ReadUInt(v6), v8))
-                            return (uint) v9;
+                        if (WowClientDB2__CheckRowPointer(Memory.WowMemory.Memory.ReadUInt(addressToDB2), rowPtr))
+                            return (uint) rowPtr;
                     }
                 }
             }
