@@ -69,9 +69,9 @@ namespace nManager.Wow.Helpers
         public struct LockDbcRecord
         {
             public uint Id;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] KeyType;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public ushort[] LockType;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public byte[] Skill;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] LockType;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public ushort[] Skill;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public byte[] KeyType;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public byte[] Action;
         }
     }

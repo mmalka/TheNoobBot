@@ -43,6 +43,7 @@
         DraenorPhaseBuilding = 43,
         FiefMonumentBase = 44,
         FiefCommand = 45,
-        FiefMonument = 46
+        FiefMonument = 46,
+        SharedNodes = 50 // this is GoType for Veins and maybe herbs as well. They are now shared among players.
     }
 }

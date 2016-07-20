@@ -552,6 +552,7 @@ namespace nManager.Wow.ObjectManager
                         case WoWGameObjectType.Goober: // 10
                         case WoWGameObjectType.FlagStand: // 24
                         case WoWGameObjectType.FlagDrop: // 26
+                        case WoWGameObjectType.SharedNodes: // 50
                             return Data0;
                         default:
                             return 0;
@@ -631,7 +632,6 @@ namespace nManager.Wow.ObjectManager
                                 if (ItemsManager.GetItemCount(itemId) < 0)
                                     return false;
                                 break;
-
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
                                 if ((WoWGameObjectLockType) Row.Record.LockType[j] == WoWGameObjectLockType.LOCKTYPE_SAW_TREE)
                                 {
