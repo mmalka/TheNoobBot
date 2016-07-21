@@ -12,10 +12,21 @@ namespace nManager.Wow.Bot.States
     public class IsAttacked : State
     {
         private WoWUnit _unit;
+        private WoWUnit _unitToPull;
+        private Thread _StrikeBackThread;
 
         public override string DisplayName
         {
             get { return "IsAttacked"; }
+        }
+
+        public void StrikeBack()
+        {
+            while (Products.Products.IsStarted)
+            {
+                _unitToPull = ObjectManager.ObjectManager.GetUnitInAggroRange();
+                Thread.Sleep(100);
+            }
         }
 
         public override int Priority { get; set; }
@@ -43,12 +54,16 @@ namespace nManager.Wow.Bot.States
                     _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer());
 
                 if (_unit != null && _unit.IsValid)
-
                     return true;
 
                 if (!nManagerSetting.CurrentSetting.DontPullMonsters)
                 {
-                    _unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
+                    if (_StrikeBackThread == null || !_StrikeBackThread.IsAlive)
+                    {
+                        _StrikeBackThread = new Thread(StrikeBack);
+                        _StrikeBackThread.Start();
+                    }
+                    _unit = _unitToPull;
                     if (_unit != null)
                     {
                         Logging.Write("Pulling " + _unit.Name);

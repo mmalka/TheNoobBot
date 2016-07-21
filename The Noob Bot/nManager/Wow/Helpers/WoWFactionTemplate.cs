@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -14,6 +15,8 @@ namespace nManager.Wow.Helpers
         [CompilerGenerated] private FactionTemplateDbcRecord factionTemplateDbcRecord_0;
         [CompilerGenerated] private uint uint_0;
         private static DB5Reader factionTemplateDB2;
+        private static BinaryReader[] _cachedFactionTemplateRows;
+        private static FactionTemplateDbcRecord[] _cachedRecords; 
 
         private static void init()
         {
@@ -30,6 +33,18 @@ namespace nManager.Wow.Helpers
                 {
                     var table = definitions.First();
                     factionTemplateDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\FactionTemplate.db2", table) as DB5Reader;
+                    if (_cachedFactionTemplateRows == null)
+                    {
+                        if (factionTemplateDB2 != null)
+                        {
+                            _cachedFactionTemplateRows = factionTemplateDB2.Rows.ToArray();
+                            _cachedRecords = new FactionTemplateDbcRecord[_cachedFactionTemplateRows.Length];
+                            for (int i = 0; i < _cachedFactionTemplateRows.Length-1; i++)
+                            {
+                                _cachedRecords[i] = DB5Reader.ByteToType<FactionTemplateDbcRecord>(_cachedFactionTemplateRows[i]);
+                            }
+                        }
+                    }
                     Logging.Write(factionTemplateDB2.FileName + " loaded with " + factionTemplateDB2.RecordsCount + " entries.");
                 }
                 else
@@ -46,7 +61,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < factionTemplateDB2.RecordsCount - 1; i++)
             {
-                tempfactionTemplateDBC = DB5Reader.ByteToType<FactionTemplateDbcRecord>(factionTemplateDB2.Rows.ElementAt(i));
+                tempfactionTemplateDBC = _cachedRecords[i];
                 if (tempfactionTemplateDBC.Id == reqId)
                 {
                     found = true;
