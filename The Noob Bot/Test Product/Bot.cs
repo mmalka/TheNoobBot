@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Threading;
+using nManager;
 using nManager.Products;
 using nManager.Wow.Bot.States;
 using nManager.Wow.ObjectManager;
@@ -800,21 +802,50 @@ namespace Test_Product
             });
             XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDBnew.xml", npcListResult);
         }
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SpellDB2
+        {
+            //public int field00;
+            public int field04;
+            public int field08;
+            public int field0C;
+            public int field10;
+            public int m_ID;
+            public short field17;
+            public short field17_1; // just a padding to the next value
+            public short field18;
+            public short field18_1; // just a padding to the end of the row
+        }
 
+        
         public static bool Pulse()
         {
             try
             {
-                uint azerothPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 0);
-                Logging.Write("Eastern Kingdoms Ptr: " + azerothPtr);
-                uint kalimdorPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 1);
-                Logging.Write("Kalimdor Ptr: " + kalimdorPtr);
-                uint invalidPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 2);
-                Logging.Write("Invalid Ptr: " + invalidPtr);
-                uint testPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 13);
-                Logging.Write("Art Team Map Ptr: " + testPtr);
+                /*
+                uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
+                Logging.Write("mortel Ptr: " + mortel);
+                uint suicide = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 186);
+                Logging.Write("suicide Ptr: " + suicide);
+                */
 
+                uint db2ptr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + 0xD20EF0 + 0xA8);
+                uint RowsOfSpellDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x4);
+                uint RowsOfIndexDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x48);
 
+                for (int i = 0; i < 158391; i++) //max rows
+                {
+                    var sizeArray = Marshal.SizeOf(typeof (SpellDB2));
+                    var readPtr = RowsOfSpellDb2 + i*sizeArray;
+                    SpellDB2 currRow = (SpellDB2) Memory.WowMemory.Memory.ReadObject((uint) readPtr, typeof(SpellDB2));
+
+                    uint fieldNameAddress = Memory.WowMemory.Memory.ReadUInt((uint) (RowsOfIndexDb2+i*4));
+                    string SpellName = Memory.WowMemory.Memory.ReadUTF8String(fieldNameAddress + Memory.WowMemory.Memory.ReadUInt(fieldNameAddress));
+                    if (SpellName == "")
+                        continue;
+                    Logging.Write("Current SpellId: " + currRow.m_ID + " , Name: " + SpellName);
+                }
+                
                 /*
                 // Update spell list
                 //SpellManager.UpdateSpellBook();

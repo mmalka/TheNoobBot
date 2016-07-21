@@ -66,6 +66,7 @@
             Unknown = 0xF35428, // Script_GetItemSpecInfo
             
             // DBC Offsets are as of 22248 and does not requires update as we now read files.
+            Spell = 0xD20EF0,
             ItemClass = 0xD173C0, // DB2! Script_GetItemInfo+1C6 // string: ItemClass.db2
             ItemSubClass = 0x0, // string: ItemSubClass.db2
             SpellCategories = 0x0,
