@@ -143,7 +143,7 @@ namespace nManager.Helpful
         public static int GetGarrisonLevel()
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo()");
+            Lua.LuaDoString(randomString + " = C_Garrison.GetGarrisonInfo(LE_GARRISON_TYPE_6_0)");
             string ret = Lua.GetLocalizedText(randomString);
             return Others.ToInt32(ret);
         }
@@ -155,7 +155,7 @@ namespace nManager.Helpful
                 var listOwnedBuildings = new List<BuildingID>();
                 Lua.LuaDoString(
                     "mygb = \"\"; " +
-                    "local buildings = C_Garrison.GetBuildings() " +
+                    "local buildings = C_Garrison.GetBuildings(LE_GARRISON_TYPE_6_0) " +
                     " for i = 1, #buildings do " +
                     "  mygb =  mygb.. tostring(buildings[i].buildingID) .. \"|\" end ");
                 foreach (string value in Lua.GetLocalizedText("mygb").Split('|'))
