@@ -805,13 +805,13 @@ namespace Test_Product
         {
             try
             {
-                uint azerothPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 0);
+                uint azerothPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 0);
                 Logging.Write("Eastern Kingdoms Ptr: " + azerothPtr);
-                uint kalimdorPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 1);
+                uint kalimdorPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 1);
                 Logging.Write("Kalimdor Ptr: " + kalimdorPtr);
-                uint invalidPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 2);
+                uint invalidPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 2);
                 Logging.Write("Invalid Ptr: " + invalidPtr);
-                uint testPtr = WDB5MemoryReader.GetRowPtr((uint)Addresses.DBC.Map, 13);
+                uint testPtr = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Map, 13);
                 Logging.Write("Art Team Map Ptr: " + testPtr);
 
 

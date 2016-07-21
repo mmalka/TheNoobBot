@@ -48,13 +48,13 @@ namespace nManager.Wow.Helpers
 
         private static int WowClientDB2__GetRowPointerBySecondaryIndex(uint _this, int a2)
         {
-            uint v2; // esi@1
+            int v2; // esi@1
             int v3; // eax@1
             int result; // eax@3
             if (_this <= 0)
                 return 0;
-            v2 = (uint) (Memory.WowMemory.Memory.ReadInt(_this) + 8*(Memory.WowMemory.Memory.ReadInt(_this) + 1));
-            v3 = WowClientDB2__GetIndexAddress2ByIndex(Memory.WowMemory.Memory.ReadInt(_this), Memory.WowMemory.Memory.ReadInt(_this) + 8 * (Memory.WowMemory.Memory.ReadInt(_this) + 1), a2);
+            v2 = (Memory.WowMemory.Memory.ReadInt(_this) + 8*(Memory.WowMemory.Memory.ReadInt(_this) + 1));
+            v3 = WowClientDB2__GetIndexAddress2ByIndex(Memory.WowMemory.Memory.ReadInt(_this), v2, a2);
             if (v3 == v2 || Memory.WowMemory.Memory.ReadInt((uint) v3) != a2)
                 result = 0;
             else
