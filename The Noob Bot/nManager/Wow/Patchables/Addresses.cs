@@ -250,14 +250,14 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayerObj = 0x816D7,
-            FrameScript_ExecuteBuffer = 0xA67CB,
-            CGUnit_C__InitializeTrackingState = 0x3062F4, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x300BFF,
-            WowClientDB2__GetRowPointer = 0x20C678,
-            CGWorldFrame__Intersect = 0x5E466E,
-            Spell_C_HandleTerrainClick = 0x2B77B5,
+            FrameScript_ExecuteBuffer = 0xA6772,
+            CGUnit_C__InitializeTrackingState = 0x30623B, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x300B48,
+            WowClientDB2__GetRowPointer = 0x20C775,
+            CGWorldFrame__Intersect = 0x5E46AB,
+            Spell_C_HandleTerrainClick = 0x2B76FF,
             CGUnit_C__Interact = 0x524FF,
-            strlen = 0x74FB00, // ida _strlen
+            strlen = 0x74FCB0, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
