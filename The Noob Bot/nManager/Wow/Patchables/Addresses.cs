@@ -268,7 +268,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xE55D24, // value pushed into calling of CGWorldMap__SetMapToCurrentZone // ex: CorpsePlayerFound
+            X = 0xE57858 + 0x3C, // RetrieveCorpseWindowFOUND
             Y = X + 0x4,
             Z = X + 0x8,
         }
