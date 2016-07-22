@@ -26,7 +26,7 @@
         PriestHoly = 257,
         PriestShadow = 258,
         RogueAssassination = 259,
-        RogueCombat = 260,
+        RogueOutlaw = 260,
         RogueSubtlety = 261,
         ShamanElemental = 262,
         ShamanEnhancement = 263,

@@ -43,12 +43,6 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                if (Level < 10)
-                {
-                    if (doOutput)
-                        Logging.WriteDebug("WoW Specialization: low level don't have specialization");
-                    return WoWSpecialization.None;
-                }
                 string specInfo = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(
                     "if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id,name,description,icon,background,role = GetSpecializationInfo(GetSpecialization()) " +

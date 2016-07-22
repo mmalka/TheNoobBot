@@ -172,7 +172,7 @@ namespace nManager.Wow.Helpers
                     InternalEquipableWeapons.Add(WowItemSubClassWeapon.Dagger);
                     InternalEquipableWeapons.Add(WowItemSubClassWeapon.Mace); // + OffHand
                     break;
-                case WoWSpecialization.RogueCombat:
+                case WoWSpecialization.RogueOutlaw:
                 case WoWSpecialization.RogueAssassination:
                 case WoWSpecialization.RogueSubtlety:
                     InternalEquipableArmorItemType = WowItemSubClassArmor.Leather;
@@ -295,7 +295,7 @@ namespace nManager.Wow.Helpers
                 case WoWSpecialization.PriestHoly:
                     InternalEquipementStats.AddRange(Heal);
                     break;
-                case WoWSpecialization.RogueCombat:
+                case WoWSpecialization.RogueOutlaw:
                 case WoWSpecialization.RogueAssassination:
                 case WoWSpecialization.RogueSubtlety:
                     InternalEquipementStats.AddRange(AgilityBased);
@@ -370,7 +370,7 @@ namespace nManager.Wow.Helpers
                     SetPlayerSpe(WoWSpecialization.PriestShadow);
                     break;
                 case WoWClass.Rogue:
-                    SetPlayerSpe(WoWSpecialization.RogueCombat);
+                    SetPlayerSpe(WoWSpecialization.RogueOutlaw);
                     break;
                 case WoWClass.Shaman:
                     SetPlayerSpe(WoWSpecialization.ShamanRestoration);

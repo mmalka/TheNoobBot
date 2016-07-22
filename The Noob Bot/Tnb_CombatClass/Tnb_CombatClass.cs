@@ -101,7 +101,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.DeathknightUnholy)
+                    if (wowSpecialization == WoWSpecialization.DeathknightUnholy || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -144,26 +144,6 @@ public class Main : ICombatClass
                             new DeathknightFrost();
                         }
                         break;
-                    }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Deathknight Apprentice Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
-                        var currentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<DeathknightApprentice.DeathknightApprenticeSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Deathknight Apprentice Combat class...");
-                        InternalRange = 5.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DeathknightUnholy);
-                        new DeathknightApprentice();
                     }
                     break;
 
@@ -217,7 +197,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.MageFrost)
+                    if (wowSpecialization == WoWSpecialization.MageFrost || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -238,25 +218,6 @@ public class Main : ICombatClass
                             new MageFrost();
                         }
                         break;
-                    }
-                    if (configOnly)
-                    {
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
-                        var currentSetting = new MageFrost.MageFrostSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Mage Frost Combat class...");
-                        InternalRange = 30.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MageFrost);
-                        new MageFrost();
                     }
                     break;
 
@@ -288,7 +249,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.WarlockAffliction)
+                    if (wowSpecialization == WoWSpecialization.WarlockAffliction || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -332,26 +293,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Warlock Demonology Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
-                        var currentSetting = new WarlockDemonology.WarlockDemonologySettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Warlock Demonology Combat class...");
-                        InternalRange = 40.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDemonology);
-                        new WarlockDemonology();
-                    }
                     break;
 
                     #endregion
@@ -360,7 +301,7 @@ public class Main : ICombatClass
 
                 case WoWClass.Druid:
 
-                    if (wowSpecialization == WoWSpecialization.DruidFeral)
+                    if (wowSpecialization == WoWSpecialization.DruidFeral || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -446,25 +387,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Balance.xml";
-                        var currentSetting = new DruidBalance.DruidBalanceSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Druid Balance Combat class...");
-                        InternalRange = 30.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DruidBalance);
-                        new DruidBalance();
-                    }
                     break;
 
                     #endregion
@@ -473,7 +395,7 @@ public class Main : ICombatClass
 
                 case WoWClass.Paladin:
 
-                    if (wowSpecialization == WoWSpecialization.PaladinRetribution)
+                    if (wowSpecialization == WoWSpecialization.PaladinRetribution || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -537,25 +459,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
-                        var currentSetting = new PaladinRetribution.PaladinRetributionSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Paladin Retribution Combat class...");
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
-                        new PaladinRetribution();
-                    }
                     break;
 
                     #endregion
@@ -585,7 +488,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.ShamanElemental)
+                    if (wowSpecialization == WoWSpecialization.ShamanElemental || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -629,25 +532,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
-                        var currentSetting = new ShamanRestoration.ShamanRestorationSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Shaman Restoration Combat class...");
-                        InternalRange = 30.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.ShamanRestoration);
-                        new ShamanRestoration();
-                    }
                     break;
 
                     #endregion
@@ -678,7 +562,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.PriestDiscipline)
+                    if (wowSpecialization == WoWSpecialization.PriestDiscipline || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -722,26 +606,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Priest Shadow Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Shadow.xml";
-                        var currentSetting = new PriestShadow.PriestShadowSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Priest Shadow Combat class...");
-                        InternalRange = 30.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PriestShadow);
-                        new PriestShadow();
-                    }
                     break;
 
                     #endregion
@@ -750,28 +614,28 @@ public class Main : ICombatClass
 
                 case WoWClass.Rogue:
 
-                    if (wowSpecialization == WoWSpecialization.RogueCombat)
+                    if (wowSpecialization == WoWSpecialization.RogueOutlaw)
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                            var currentSetting = new RogueCombat.RogueCombatSettings();
+                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Outlaw.xml";
+                            var currentSetting = new RogueOutlaw.RogueOutlawSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                currentSetting = Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
+                                currentSetting = Settings.Load<RogueOutlaw.RogueOutlawSettings>(currentSettingsFile);
                             }
                             currentSetting.ToForm();
                             currentSetting.Save(currentSettingsFile);
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Rogue Combat Combat class...");
-                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueCombat);
-                            new RogueCombat();
+                            Logging.WriteFight("Loading Rogue Outlaw Combat class...");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueOutlaw);
+                            new RogueOutlaw();
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.RogueAssassination)
+                    if (wowSpecialization == WoWSpecialization.RogueAssassination || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -813,24 +677,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                        var currentSetting = new RogueCombat.RogueCombatSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Rogue Combat Combat class...");
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueCombat);
-                        new RogueCombat();
-                    }
                     break;
 
                     #endregion
@@ -839,7 +685,7 @@ public class Main : ICombatClass
 
                 case WoWClass.Warrior:
 
-                    if (wowSpecialization == WoWSpecialization.WarriorArms)
+                    if (wowSpecialization == WoWSpecialization.WarriorArms || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -902,25 +748,6 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Warrior Arms Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Arms.xml";
-                        var currentSetting = new WarriorArms.WarriorArmsSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Warrior Arms Combat class...");
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarriorArms);
-                        new WarriorArms();
-                    }
                     break;
 
                     #endregion
@@ -973,7 +800,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.HunterBeastMastery)
+                    if (wowSpecialization == WoWSpecialization.HunterBeastMastery || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -994,26 +821,6 @@ public class Main : ICombatClass
                             new HunterBeastMastery();
                         }
                         break;
-                    }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Hunter Marksmanship Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
-                        var currentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting = Settings.Load<HunterMarksmanship.HunterMarksmanshipSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
-                        InternalRange = 35.0f;
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
-                        new HunterMarksmanship();
                     }
                     break;
 
@@ -1044,7 +851,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.MonkWindwalker)
+                    if (wowSpecialization == WoWSpecialization.MonkWindwalker || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
                         {
@@ -1086,27 +893,6 @@ public class Main : ICombatClass
                             new MonkMistweaver();
                         }
                         break;
-                    }
-                    if (configOnly)
-                    {
-                        MessageBox.Show(@"Your specification haven't be found, loading Monk Brewmaster Settings");
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
-                        var currentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
-                        {
-                            currentSetting =
-                                Settings.Load<MonkBrewmaster.MonkBrewmasterSettings>(currentSettingsFile);
-                        }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Monk Brewmaster Combat class...");
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MonkBrewmaster);
-                        new MonkBrewmaster();
                     }
                     break;
 
@@ -18647,9 +18433,9 @@ public class PriestHoly
 
 #region Rogue
 
-public class RogueCombat
+public class RogueOutlaw
 {
-    private static RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
+    private static RogueOutlawSettings MySettings = RogueOutlawSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -18749,11 +18535,11 @@ public class RogueCombat
 
     #endregion
 
-    public RogueCombat()
+    public RogueOutlaw()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
-        MySettings = RogueCombatSettings.GetSettings();
-        Main.DumpCurrentSettings<RogueCombatSettings>(MySettings);
+        MySettings = RogueOutlawSettings.GetSettings();
+        Main.DumpCurrentSettings<RogueOutlawSettings>(MySettings);
         UInt128 lastTarget = 0;
 
         while (Main.InternalLoop)
@@ -19252,10 +19038,10 @@ public class RogueCombat
         Heal();
     }
 
-    #region Nested type: RogueCombatSettings
+    #region Nested type: RogueOutlawSettings
 
     [Serializable]
-    public class RogueCombatSettings : Settings
+    public class RogueOutlawSettings : Settings
     {
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
@@ -19317,9 +19103,9 @@ public class RogueCombat
         public int UseWarStompAtPercentage = 80;
         public bool UseWoundPoison = false;
 
-        public RogueCombatSettings()
+        public RogueOutlawSettings()
         {
-            ConfigWinForm("Rogue Combat Settings");
+            ConfigWinForm("Rogue Outlaw Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
@@ -19385,17 +19171,17 @@ public class RogueCombat
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
-        public static RogueCombatSettings CurrentSetting { get; set; }
+        public static RogueOutlawSettings CurrentSetting { get; set; }
 
-        public static RogueCombatSettings GetSettings()
+        public static RogueOutlawSettings GetSettings()
         {
             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
-                    CurrentSetting = Load<RogueCombatSettings>(currentSettingsFile);
+                    CurrentSetting = Load<RogueOutlawSettings>(currentSettingsFile);
             }
-            return new RogueCombatSettings();
+            return new RogueOutlawSettings();
         }
     }
 
