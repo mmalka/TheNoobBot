@@ -289,8 +289,9 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xF35B14,
-            realmNameOffset = 0x384,
+            // Script_SelectedRealmName
+            realmName = 0xF35B14, // SelectedRealmName_DWORD
+            realmNameOffset = 0x384, // SelectedRealmName_Offset
         }
 
         /// <summary>
