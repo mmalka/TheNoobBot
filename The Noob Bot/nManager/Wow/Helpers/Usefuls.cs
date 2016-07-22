@@ -70,7 +70,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int GetMoneyCopper
+        public static UInt64 GetMoneyCopper
         {
             get
             {
@@ -80,7 +80,7 @@ namespace nManager.Wow.Helpers
                     {
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString(randomString + " = GetMoney()");
-                        return Others.ToInt32(Lua.GetLocalizedText(randomString));
+                        return Others.ToUInt64(Lua.GetLocalizedText(randomString));
                     }
                     catch (Exception e)
                     {

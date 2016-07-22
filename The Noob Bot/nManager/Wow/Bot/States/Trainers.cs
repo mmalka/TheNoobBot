@@ -10,7 +10,7 @@ namespace nManager.Wow.Bot.States
 {
     public class Trainers : State
     {
-        private static uint _whishListSum;
+        private static ulong _whishListSum;
         private static uint _lastPriceAddedToWhishList;
         private static uint _primarySkillsSlotOnWhishList;
         private static uint _lastPrimarySkillsWhishList;

@@ -64,6 +64,18 @@ namespace nManager.Helpful
             return UInt32.TryParse(value.Trim(), out res) ? res : 0;
         }
 
+        public static Int64 ToInt64(string value)
+        {
+            long res;
+            return Int64.TryParse(value.Trim(), out res) ? res : 0;
+        }
+
+        public static UInt64 ToUInt64(string value)
+        {
+            ulong res;
+            return UInt64.TryParse(value.Trim(), out res) ? res : 0;
+        }
+
         public static float ToSingle(string value)
         {
             float res;
