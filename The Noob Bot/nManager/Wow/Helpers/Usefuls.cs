@@ -373,7 +373,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint) Addresses.Login.realmName);
+                    return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Login.realmName) + (uint) Addresses.Login.realmNameOffset);
                 }
                 catch (Exception e)
                 {
