@@ -70,10 +70,10 @@ namespace nManager.Wow.Bot.States
 
                 Login.Pulse(s);
                 _relogger = true;
-                if (_relogger && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (_relogger && Usefuls.InGame && !Usefuls.IsLoading)
                 {
                     Thread.Sleep(5000);
-                    if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    if (Usefuls.InGame && !Usefuls.IsLoading)
                     {
                         Logging.Write("Ending player relogging with success.");
                         _relogger = false;

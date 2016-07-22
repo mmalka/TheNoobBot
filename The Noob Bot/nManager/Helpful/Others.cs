@@ -258,7 +258,7 @@ namespace nManager.Helpful
 
         public static void LUAGlobalVarDestructor()
         {
-            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+            if (!Usefuls.InGame || Usefuls.IsLoading)
                 return;
             string toExec = "";
             if (LUAVariableToDestruct.Count <= 0) return;

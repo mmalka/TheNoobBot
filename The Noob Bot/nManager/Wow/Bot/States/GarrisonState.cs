@@ -81,7 +81,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjMgr.Me.IsDeadMe || !ObjMgr.Me.IsValid ||
+                if (!Usefuls.InGame || Usefuls.IsLoading || ObjMgr.Me.IsDeadMe || !ObjMgr.Me.IsValid ||
                     (ObjMgr.Me.InCombat && !(ObjMgr.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
                     Usefuls.IsFlying))) || !Products.Products.IsStarted)
                     return false;

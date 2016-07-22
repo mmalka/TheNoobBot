@@ -54,18 +54,17 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static bool IsLoadingOrConnecting
+        public static bool IsLoading
         {
             get
             {
                 try
                 {
-                    return false;
-                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.isLoading) <= 0;
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.isLoading) != 0;
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("IsLoadingOrConnecting: " + e);
+                    Logging.WriteError("IsLoading: " + e);
                     return false;
                 }
             }
@@ -967,7 +966,7 @@ namespace nManager.Wow.Helpers
             {
                 if (Memory.WowMemory.IsGameFrameLocked)
                     return;
-                if (!InGame || IsLoadingOrConnecting)
+                if (!InGame || IsLoading)
                 {
                     Thread.Sleep(10);
                     return;

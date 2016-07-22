@@ -31,7 +31,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe ||
+                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
                     return false;
 

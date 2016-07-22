@@ -22,7 +22,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting) return false;
+                if (!Usefuls.InGame || Usefuls.IsLoading) return false;
                 _currPosition = string.Format("CurrentPositionTracker({0}, {1}, {2}, {3});", ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
                     ObjectManager.ObjectManager.Me.Position.Z, ObjectManager.ObjectManager.Me.Position.Type);
                 if (_currPosition == _lastPosition) return false;

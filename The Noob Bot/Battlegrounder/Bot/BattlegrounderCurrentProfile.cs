@@ -48,7 +48,7 @@ namespace Battlegrounder.Bot
             get
             {
                 if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting ||
+                    Usefuls.IsLoading ||
                     ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.Me.IsValid ||
                     !Products.IsStarted)

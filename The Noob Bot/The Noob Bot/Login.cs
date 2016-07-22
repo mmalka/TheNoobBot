@@ -309,7 +309,7 @@ namespace The_Noob_Bot
                     Logging.Write("Select game process: " + SessionList.SelectedItem);
                     if (Pulsator.IsActive)
                     {
-                        if (Usefuls.InGame || !Usefuls.IsLoadingOrConnecting)
+                        if (Usefuls.InGame || !Usefuls.IsLoading)
                             return true;
                     }
                 }

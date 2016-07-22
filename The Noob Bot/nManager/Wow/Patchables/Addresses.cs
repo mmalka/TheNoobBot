@@ -66,7 +66,7 @@
             Unknown = 0xF34428, // Script_GetItemSpecInfo
             
             // DBC Offsets are as of 22248 and does not requires update as we now read files.
-            Spell = 0xD20EF0,
+            Spell = 0xD1FEF0,
             ItemClass = 0xD173C0, // DB2! Script_GetItemInfo+1C6 // string: ItemClass.db2
             ItemSubClass = 0x0, // string: ItemSubClass.db2
             SpellCategories = 0x0,
@@ -290,7 +290,7 @@
         public enum Login
         {
             // Script_SelectedRealmName
-            realmName = 0xF35B14, // SelectedRealmName_DWORD
+            realmName = 0xF34B14, // SelectedRealmName_DWORD
             realmNameOffset = 0x384, // SelectedRealmName_Offset
         }
 

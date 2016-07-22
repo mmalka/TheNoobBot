@@ -140,7 +140,7 @@ public static class MyPluginClass
     // Various mount repair, portable mailbox, repair robots, Guild Page...
     public static void PulseRadar()
     {
-        if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+        if (!Usefuls.InGame || Usefuls.IsLoading)
             return;
         var npcRadar = new List<Npc>();
         List<WoWGameObject> Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);

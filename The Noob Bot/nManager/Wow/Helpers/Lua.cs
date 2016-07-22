@@ -46,7 +46,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                while (!notInGameMode && !Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                while (!notInGameMode && !Usefuls.InGame || Usefuls.IsLoading)
                 {
                     Memory.WowMemory.GameFrameUnLock();
                     Thread.Sleep(200);
@@ -136,7 +136,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                while (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                while (!Usefuls.InGame || Usefuls.IsLoading)
                 {
                     Memory.WowMemory.GameFrameUnLock();
                     Thread.Sleep(200);

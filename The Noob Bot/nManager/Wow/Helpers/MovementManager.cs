@@ -213,7 +213,7 @@ namespace nManager.Wow.Helpers
                 {
                     lock (typeof (MovementManager))
                     {
-                        while ((_loop || _first) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                        while ((_loop || _first) && !Usefuls.IsLoading && Usefuls.InGame)
                         {
                             if (Statistics.OffsetStats == 0xB5)
                             {
@@ -317,7 +317,7 @@ namespace nManager.Wow.Helpers
                     MoveTo(_points[idPoint]);
 
                     bool end = false;
-                    while ((_movement && !end) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                    while ((_movement && !end) && !Usefuls.IsLoading && Usefuls.InGame)
                     {
                         try
                         {
@@ -423,7 +423,7 @@ namespace nManager.Wow.Helpers
                     }
 
                     bool end = false;
-                    while ((_movement && !end) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                    while ((_movement && !end) && !Usefuls.IsLoading && Usefuls.InGame)
                     {
                         if (_points[idPoint].Type.ToLower() != "flying")
                         {
@@ -497,7 +497,7 @@ namespace nManager.Wow.Helpers
                     }
 
                     bool end = false;
-                    while ((_movement && !end) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
+                    while ((_movement && !end) && !Usefuls.IsLoading && Usefuls.InGame)
                     {
                         if (_points[idPoint].Type.ToLower() != "swimming")
                         {

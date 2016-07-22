@@ -32,7 +32,7 @@ namespace nManager.Wow.Bot.States
             get
             {
                 if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting ||
+                    Usefuls.IsLoading ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
                     ObjectManager.ObjectManager.Me.InCombat ||

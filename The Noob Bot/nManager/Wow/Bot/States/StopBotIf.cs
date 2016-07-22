@@ -35,7 +35,7 @@ namespace nManager.Wow.Bot.States
                     return false;
                 }
 
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                if (!Usefuls.InGame || Usefuls.IsLoading)
                 {
                     if (!_inPause && !Products.Products.InAutoPause)
                     {
@@ -87,10 +87,10 @@ namespace nManager.Wow.Bot.States
             // If Bag Full
             if (nManagerSetting.CurrentSetting.StopTNBIfBagAreFull)
             {
-                if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoading)
                 {
                     Thread.Sleep(800);
-                    if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoading)
                     {
                         closeWow(Translate.Get(Translate.Id.Bag_is_full));
                         return;
@@ -101,10 +101,10 @@ namespace nManager.Wow.Bot.States
             // If 4000 honor
             if (nManagerSetting.CurrentSetting.StopTNBIfHonorPointsLimitReached)
             {
-                if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoading)
                 {
                     Thread.Sleep(800);
-                    if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoading)
                     {
                         closeWow(Translate.Get(Translate.Id.Reached_4000_Honor_Points));
                         return;
@@ -115,7 +115,7 @@ namespace nManager.Wow.Bot.States
             // If player teleported
             if (nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported)
             {
-                if (_lastPos == null && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (_lastPos == null && Usefuls.InGame && !Usefuls.IsLoading)
                     _lastPos = ObjectManager.ObjectManager.Me.Position;
 
                 if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_lastPos) >= 450 &&
@@ -124,15 +124,15 @@ namespace nManager.Wow.Bot.States
                     closeWow(Translate.Get(Translate.Id.Player_Teleported));
                     return;
                 }
-                if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (Usefuls.InGame && !Usefuls.IsLoading)
                     _lastPos = ObjectManager.ObjectManager.Me.Position;
             }
 
             // After X level
-            if (_startedLevel == 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if (_startedLevel == 0 && Usefuls.InGame && !Usefuls.IsLoading)
                 _startedLevel = ObjectManager.ObjectManager.Me.Level;
             if ((int) (ObjectManager.ObjectManager.Me.Level - _startedLevel) >=
-                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting &&
+                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoading &&
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXLevelup)
             {
                 closeWow(Translate.Get(Translate.Id.Your_player_is_now_level) + " " +
@@ -163,12 +163,12 @@ namespace nManager.Wow.Bot.States
 
             // Pause bot if player near
             if (nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer && Usefuls.InGame &&
-                !Usefuls.IsLoadingOrConnecting)
+                !Usefuls.IsLoading)
             {
                 if (!_inPause && !Products.Products.InAutoPause)
                 {
                     if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count >= 1 && Usefuls.InGame &&
-                        !Usefuls.IsLoadingOrConnecting)
+                        !Usefuls.IsLoading)
                     {
                         _inPause = true;
                         Products.Products.InAutoPause = true;
@@ -179,7 +179,7 @@ namespace nManager.Wow.Bot.States
                 {
                     Thread.Sleep(800);
                     if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count <= 0 && Usefuls.InGame &&
-                        !Usefuls.IsLoadingOrConnecting)
+                        !Usefuls.IsLoading)
                     {
                         _inPause = false;
                         Products.Products.InAutoPause = false;
@@ -265,7 +265,7 @@ namespace nManager.Wow.Bot.States
                         MovementManager.StopMove();
                         timerHearthstone.Reset();
                         Logging.Write("Hearthstone available, using it.");
-                        while (!Usefuls.IsLoadingOrConnecting && !timerHearthstone.IsReady)
+                        while (!Usefuls.IsLoading && !timerHearthstone.IsReady)
                         {
                             ItemsManager.UseItem(ItemsManager.GetItemNameById(6948));
                             Thread.Sleep(1000);

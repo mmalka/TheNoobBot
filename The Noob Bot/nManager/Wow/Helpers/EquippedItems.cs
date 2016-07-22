@@ -90,7 +90,7 @@ namespace nManager.Wow.Helpers
 
         public static WoWItem GetEquippedItem(WoWInventorySlot inventorySlot, uint resultNb = 1)
         {
-            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+            if (!Usefuls.InGame || Usefuls.IsLoading)
                 return new WoWItem(0);
             uint nb = 1;
             try

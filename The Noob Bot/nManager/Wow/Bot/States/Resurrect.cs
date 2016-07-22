@@ -40,7 +40,7 @@ namespace nManager.Wow.Bot.States
             get
             {
                 if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting)
+                    Usefuls.IsLoading)
                     return false;
 
                 if (ObjectManager.ObjectManager.Me.IsDeadMe &&
@@ -115,7 +115,7 @@ namespace nManager.Wow.Bot.States
             if (Usefuls.IsInBattleground)
             {
                 _battlegroundResurrect = new Timer(1000*35);
-                while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
+                while (Usefuls.IsLoading && Products.Products.IsStarted && Usefuls.InGame)
                 {
                     Thread.Sleep(100);
                 }
@@ -165,7 +165,7 @@ namespace nManager.Wow.Bot.States
                 ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 &&
                 !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
             {
-                while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
+                while (Usefuls.IsLoading && Products.Products.IsStarted && Usefuls.InGame)
                 {
                     Thread.Sleep(100);
                 }

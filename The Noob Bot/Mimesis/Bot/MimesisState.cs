@@ -41,7 +41,7 @@ namespace Mimesis.Bot
                     _master.Position = MimesisClientCom.GetMasterPosition();
                 }
                 if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting ||
+                    Usefuls.IsLoading ||
                     ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.Me.IsValid ||
                     (ObjectManager.Me.InCombat &&

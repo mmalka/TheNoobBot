@@ -54,7 +54,7 @@ namespace Test_Product
                 }*/
                 Thread.Sleep(650 * 2); // Every 2 ObjectManager refresh
                 // Prevent corruptions while the game loads after a zone change
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                if (!Usefuls.InGame || Usefuls.IsLoading)
                     continue;
                 List<Npc> npcRadar = new List<Npc>();
                 List<WoWGameObject> Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
@@ -822,14 +822,14 @@ namespace Test_Product
         {
             try
             {
-                /*
+                
                 uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
                 Logging.Write("mortel Ptr: " + mortel);
                 uint suicide = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 186);
                 Logging.Write("suicide Ptr: " + suicide);
-                */
+                
 
-                uint db2ptr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + 0xD20EF0 + 0xA8);
+                /*uint db2ptr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + 0xD20EF0 + 0xA8);
                 uint RowsOfSpellDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x4);
                 uint RowsOfIndexDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x48);
 
@@ -844,7 +844,7 @@ namespace Test_Product
                     if (SpellName == "")
                         continue;
                     Logging.Write("Current SpellId: " + currRow.m_ID + " , Name: " + SpellName);
-                }
+                }*/
                 
                 /*
                 // Update spell list

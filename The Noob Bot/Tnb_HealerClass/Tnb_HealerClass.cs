@@ -303,7 +303,7 @@ public class DruidRestoration
             try
             {
                 Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                     continue;
 
                 List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
@@ -422,7 +422,7 @@ public class PaladinHoly
             try
             {
                 Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                     continue;
 
                 List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
@@ -549,7 +549,7 @@ public class ShamanRestoration
             try
             {
                 Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                     continue;
 
                 List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
@@ -673,7 +673,7 @@ public class PriestDiscipline
             try
             {
                 Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                     continue;
 
                 List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
@@ -788,7 +788,7 @@ public class PriestHoly
             try
             {
                 Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                     continue;
 
                 List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
@@ -907,7 +907,7 @@ public class MonkMistweaver
             try
             {
                 Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoadingOrConnecting || !Usefuls.InGame || ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
                     continue;
 
                 List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();

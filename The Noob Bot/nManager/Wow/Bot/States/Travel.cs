@@ -604,7 +604,7 @@ namespace nManager.Wow.Bot.States
             while (loop)
             {
                 Thread.Sleep(1000);
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                if (!Usefuls.InGame || Usefuls.IsLoading)
                     continue;
                 if (!ObjectManager.ObjectManager.Me.OnTaxi &&
                     refPoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 1.0f)
@@ -625,7 +625,7 @@ namespace nManager.Wow.Bot.States
             int i2 = 0;
             while (loop)
             {
-                if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (!ObjectManager.ObjectManager.Me.InTransport && Usefuls.InGame && !Usefuls.IsLoading)
                 {
                     if (i > 5)
                         loop = false;
