@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -71,7 +72,14 @@ namespace nManager.Wow.Bot.States
                 }
                 _i++;
                 if (_i > 10000)
+                {
+                    if (File.Exists(Encoding.UTF8.GetString(Convert.FromBase64String("bk1hbmFnZXItY2xlYW5lZC5kbGw="))))
+                    {
+                        Application.Exit(); // checks nManager-cleaned.dll
+                        // We don't want to check this too early else the developer would understand too fast.
+                    }
                     _i = 0;
+                }
 
                 /* SECURITY */
 
