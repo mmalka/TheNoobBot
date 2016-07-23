@@ -311,7 +311,7 @@
         /// </summary>
         public enum Quests
         {
-            QuestGiverStatus = 0xF4, // ?// check or update
+            QuestGiverStatus = 0xEC, //overlooked with cheat engine with baseaddress of 3 NPCs.
             // TODO Retrieve unknown Quests offsets
             /*ActiveQuests = 0x0,
             SelectedQuestId = 0x0,
