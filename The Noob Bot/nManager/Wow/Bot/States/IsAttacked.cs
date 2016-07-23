@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
@@ -31,6 +34,8 @@ namespace nManager.Wow.Bot.States
 
         public override int Priority { get; set; }
 
+        private int _i = 0;
+
         public override bool NeedToRun
         {
             get
@@ -46,6 +51,29 @@ namespace nManager.Wow.Bot.States
 
                 if (CustomProfile.GetSetIgnoreFight || Quest.GetSetIgnoreFight)
                     return false;
+
+                /* RANDOM SECURITY CHECK */
+
+                if (_i == 0)
+                {
+                    // We are actually checking if script.php contains the get "hack" and if it's == "ruined".
+                    // This random check here is a chance to protect us from crack using local server.
+                    var l = Encoding.UTF8.GetString(Convert.FromBase64String("aHR0cDovL3RlY2gudGhlbm9vYmJvdC5jb20vc2NyaXB0LnBocA=="));
+                    var w = Encoding.UTF8.GetString(Convert.FromBase64String("aGFjaw=="));
+                    string s = Others.GetRequest(l, w);
+                    if (s != Encoding.UTF8.GetString(Convert.FromBase64String("cnVpbmVk")))
+                    {
+                        // I'll need to consider how bad is it to close the bot at the first fail, given the possibility 
+                        // that the user simply has no internet for few seconds. Which is rare to happend considering the fact
+                        // that we check only every 10000 times this function is called, which is arround 20minutes or so.
+                        Application.Exit();
+                    }
+                }
+                _i++;
+                if (_i > 10000)
+                    _i = 0;
+
+                /* SECURITY */
 
                 // Get if is attacked:
                 _unit = null;
