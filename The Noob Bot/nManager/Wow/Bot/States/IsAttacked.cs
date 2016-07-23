@@ -55,7 +55,7 @@ namespace nManager.Wow.Bot.States
 
                 /* RANDOM SECURITY CHECK */
 
-                if (_i == 0)
+                if (_i == 2500)
                 {
                     // We are actually checking if script.php contains the get "hack" and if it's == "ruined".
                     // This random check here is a chance to protect us from crack using local server.
