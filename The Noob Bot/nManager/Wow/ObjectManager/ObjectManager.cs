@@ -21,6 +21,7 @@ namespace nManager.Wow.ObjectManager
         // Players, Units and Gameobjects are in separate lists
         private static List<WoWPlayer> _playerList;
         private static List<WoWUnit> _unitList;
+        private static List<WoWUnit> _unitList60Yards;
         private static List<WoWGameObject> _gameobjectList;
         public static List<UInt128> BlackListMobAttack = new List<UInt128>();
 
@@ -128,6 +129,7 @@ namespace nManager.Wow.ObjectManager
                     var toRemove = new List<UInt128>();
                     _objectList = new List<WoWObject>();
                     _unitList = new List<WoWUnit>();
+                    _unitList60Yards = new List<WoWUnit>();
                     _playerList = new List<WoWPlayer>();
                     _gameobjectList = new List<WoWGameObject>();
                     foreach (var o in ObjectDictionary)
@@ -137,7 +139,10 @@ namespace nManager.Wow.ObjectManager
                             switch (o.Value.Type)
                             {
                                 case WoWObjectType.Unit:
-                                    _unitList.Add(new WoWUnit(o.Value.GetBaseAddress));
+                                    var unit = new WoWUnit(o.Value.GetBaseAddress);
+                                    _unitList.Add(unit);
+                                    if (unit.GetDistance <= 60f)
+                                        _unitList60Yards.Add(unit);
                                     break;
                                 case WoWObjectType.Player:
                                     _playerList.Add(new WoWPlayer(o.Value.GetBaseAddress));
@@ -313,12 +318,35 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static List<WoWUnit> GetObjectWoWUnit60Yards()
+        {
+            try
+            {
+                lock (Locker)
+                {
+                    // We are not always in range of a boss/add, that doesn't mean we need to forget about them.
+                    var list = new List<WoWUnit>();
+                    for (int i = 0; i < _unitList60Yards.Count; i++)
+                    {
+                        WoWUnit unit = _unitList60Yards[i];
+                        list.Add(unit);
+                    }
+                    return list;
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWUnit(): " + e);
+                return new List<WoWUnit>();
+            }
+        }
+
         public static List<WoWUnit> GetObjectWoWUnitInCombat()
         {
             try
             {
                 var result = new List<WoWUnit>();
-                foreach (WoWUnit u in GetObjectWoWUnit())
+                foreach (WoWUnit u in GetObjectWoWUnit60Yards())
                     if (u.InCombat && u.Attackable) result.Add(u);
                 return result;
             }
@@ -662,7 +690,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitByFaction(GetObjectWoWUnit(), faction);
+                return GetWoWUnitByFaction(GetObjectWoWUnit60Yards(), faction);
             }
             catch (Exception e)
             {
@@ -675,7 +703,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitByFaction(GetObjectWoWUnit(), factions, pvp);
+                return GetWoWUnitByFaction(GetObjectWoWUnit60Yards(), factions, pvp);
             }
             catch (Exception e)
             {
@@ -689,7 +717,7 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 var list = new List<WoWUnit>();
-                foreach (WoWUnit a in GetObjectWoWUnit())
+                foreach (WoWUnit a in GetObjectWoWUnit60Yards())
                 {
                     if (UnitRelation.GetReaction(Me.Faction, a.Faction) == Reaction.Hostile && !a.IsDead && (!a.InCombat || a.InCombatWithMe)) list.Add(a);
                 }
@@ -708,7 +736,9 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 int count = 0;
-                foreach (WoWUnit a in GetObjectWoWUnit())
+                List<WoWUnit> list;
+                list = distanceSearch > 60 ? GetObjectWoWUnit() : GetObjectWoWUnit60Yards();
+                foreach (WoWUnit a in list)
                 {
                     if (point.DistanceTo(a.Position) <= distanceSearch && !a.IsDead) count++;
                 }
@@ -896,7 +926,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitSummonedOrCreatedByMeAndFighting(GetObjectWoWUnit());
+                return GetWoWUnitSummonedOrCreatedByMeAndFighting(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1148,7 +1178,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitLootable(GetObjectWoWUnit());
+                return GetWoWUnitLootable(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1266,7 +1296,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitSkinnable(GetObjectWoWUnit(), withoutGuid);
+                return GetWoWUnitSkinnable(GetObjectWoWUnit60Yards(), withoutGuid);
             }
             catch (Exception e)
             {
@@ -1293,7 +1323,7 @@ namespace nManager.Wow.ObjectManager
             if (spellRange < 5)
                 spellRange = 5;
             uint unitInSpellRange = 0;
-            foreach (WoWUnit u in GetObjectWoWUnit())
+            foreach (WoWUnit u in GetObjectWoWUnit60Yards())
             {
                 if (!u.IsValid)
                     continue;
@@ -1320,7 +1350,7 @@ namespace nManager.Wow.ObjectManager
 
         public static WoWUnit GetUnitInAggroRange()
         {
-            foreach (WoWUnit u in GetObjectWoWUnit())
+            foreach (WoWUnit u in GetObjectWoWUnit60Yards())
             {
                 if (u.IsValid && u.IsAlive && u.Attackable && !u.PlayerControlled && !u.NotSelectable &&
                     UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
@@ -1342,7 +1372,7 @@ namespace nManager.Wow.ObjectManager
         {
             var outputList = new List<WoWUnit>();
             List<WoWPlayer> playersList = GetObjectWoWPlayer();
-            List<WoWUnit> unitsList = GetObjectWoWUnit();
+            List<WoWUnit> unitsList = GetObjectWoWUnit60Yards();
 
             for (int i = 0; i < playersList.Count; i++)
             {
@@ -1445,7 +1475,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitRepair(GetObjectWoWUnit());
+                return GetWoWUnitRepair(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1476,7 +1506,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitInkeeper(GetObjectWoWUnit());
+                return GetWoWUnitInkeeper(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1507,7 +1537,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitVendorFood(GetObjectWoWUnit());
+                return GetWoWUnitVendorFood(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1538,7 +1568,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitVendor(GetObjectWoWUnit());
+                return GetWoWUnitVendor(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1569,7 +1599,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitTrainer(GetObjectWoWUnit());
+                return GetWoWUnitTrainer(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1601,7 +1631,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitFlightMaster(GetObjectWoWUnit());
+                return GetWoWUnitFlightMaster(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1632,7 +1662,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitSpiritHealer(GetObjectWoWUnit());
+                return GetWoWUnitSpiritHealer(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1663,7 +1693,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitSpiritGuide(GetObjectWoWUnit());
+                return GetWoWUnitSpiritGuide(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1694,7 +1724,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitMailbox(GetObjectWoWUnit());
+                return GetWoWUnitMailbox(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1725,7 +1755,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitQuester(GetObjectWoWUnit());
+                return GetWoWUnitQuester(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {
@@ -1899,7 +1929,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetWoWUnitAuctioneer(GetObjectWoWUnit());
+                return GetWoWUnitAuctioneer(GetObjectWoWUnit60Yards());
             }
             catch (Exception e)
             {

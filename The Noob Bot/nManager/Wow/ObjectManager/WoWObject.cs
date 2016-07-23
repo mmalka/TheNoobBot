@@ -58,7 +58,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                List<WoWUnit> units = ObjectManager.GetObjectWoWUnit();
+                List<WoWUnit> units = ObjectManager.GetObjectWoWUnit60Yards();
                 float i = 0;
                 foreach (WoWUnit iUnit in units)
                 {
