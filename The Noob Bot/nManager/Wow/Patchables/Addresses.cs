@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("NameOfOtherAssembly")]
-namespace nManager.Wow.Patchables
+﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
     ///   Offset and Pointer for Wow 22293
