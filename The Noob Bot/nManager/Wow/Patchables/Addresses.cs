@@ -3,7 +3,7 @@
     /// <summary>
     ///   Offset and Pointer for Wow 22293
     /// </summary>
-    internal static class Addresses
+    public static class Addresses
     {
         /// <summary>
         ///   ObjectManager
