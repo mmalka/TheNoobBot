@@ -12550,17 +12550,15 @@ public class PaladinRetribution
 
     #region Offensive Spell
 
-    public readonly bool BoundlessConviction = ObjectManager.Me.Level >= 85;
     public readonly Spell CrusaderStrike = new Spell("Crusader Strike");
-    public readonly uint DivineCrusaderBuff = 144595;
-    public readonly uint DivinePurposeBuff = 90174;
+    public readonly Spell BladeOfJustice = new Spell("Blade of Justice");
+    public readonly Spell BladeOfWrath = new Spell("Blade of Wrath");
+    public readonly Spell DivineHammer = new Spell("Divine Hammer");
+    public readonly uint DivinePurposeBuff = 223819;
     public readonly Spell DivineStorm = new Spell("Divine Storm");
     public readonly Spell ExecutionSentence = new Spell("Execution Sentence");
-    public readonly Spell Exorcism = new Spell("Exorcism");
-    public readonly Spell FinalVerdict = new Spell("Final Verdict");
+    public readonly Spell JusticarsVengeance = new Spell("Justicar's Vengeance");
     public readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
-    public readonly Spell HammerOfTheRighteous = new Spell("Hammer of the Righteous");
-    public readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
     public readonly Spell Judgment = new Spell("Judgment");
     public readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
 
@@ -12569,7 +12567,6 @@ public class PaladinRetribution
     #region Offensive Cooldown
 
     public readonly Spell AvengingWrath = new Spell("Avenging Wrath");
-    public readonly Spell HolyAvenger = new Spell("Holy Avenger");
 
     #endregion
 
@@ -12630,8 +12627,7 @@ public class PaladinRetribution
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Judgment.IsHostileDistanceGood || CrusaderStrike.IsHostileDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget && Reckoning.IsHostileDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -12655,24 +12651,9 @@ public class PaladinRetribution
 
     private void Pull()
     {
-        if (MySettings.UseHammerOfWrath && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
-        {
-            HammerOfWrath.Cast();
-            return;
-        }
         if (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood)
         {
             CrusaderStrike.Cast();
-            return;
-        }
-        if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
-        {
-            Judgment.Cast();
-            return;
-        }
-        if (MySettings.UseExorcism && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
-        {
-            Exorcism.Cast();
             return;
         }
         if (MySettings.UseReckoning && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
@@ -12815,20 +12796,8 @@ public class PaladinRetribution
 
     private void DPSBurst()
     {
-        if (MySettings.UseHolyAvenger && HolyAvenger.IsSpellUsable)
+        if (MySettings.UseAvengingWrath && Judgment.TargetHaveBuff && !AvengingWrath.HaveBuff && AvengingWrath.IsSpellUsable)
         {
-            HolyAvenger.Cast();
-            if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrathTimer.IsReady && AvengingWrath.IsSpellUsable)
-            {
-                AvengingWrathTimer = new Timer(120000);
-                AvengingWrathTimer.Reset();
-                AvengingWrath.Cast();
-            }
-        }
-        else if (MySettings.UseAvengingWrath && AvengingWrathTimer.IsReady && AvengingWrath.IsSpellUsable)
-        {
-            AvengingWrathTimer = new Timer(120000);
-            AvengingWrathTimer.Reset();
             AvengingWrath.Cast();
         }
         if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
@@ -12850,121 +12819,90 @@ public class PaladinRetribution
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && DivineStorm.KnownSpell && FinalVerdict.HaveBuff &&
-                DivineStorm.IsSpellUsable &&
-                ((ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.HaveBuff(DivineCrusaderBuff)) &&
-                 (ObjectManager.Me.HaveBuff(DivineCrusaderBuff) || ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile*2) >= 2)) &&
-                DivineStorm.IsHostileDistanceGood)
+
+            if (MySettings.UseJusticarsVengeance && ObjectManager.Me.HaveBuff(DivinePurposeBuff) &&
+                (!MySettings.UseDivineStorm || !DivineStorm.IsSpellUsable || ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) < 3) &&
+                JusticarsVengeance.IsSpellUsable && JusticarsVengeance.IsHostileDistanceGood)
             {
-                DivineStorm.Cast();
+                JusticarsVengeance.Cast();
                 return;
             }
-            if (MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.IsSpellUsable &&
-                (ObjectManager.Me.HolyPower == 5 || ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000)) &&
-                FinalVerdict.IsHostileDistanceGood)
+            if (MySettings.UseExecutionSentence && (!MySettings.UseJudgment || !Judgment.TargetHaveBuff) && ObjectManager.Me.HaveBuff(DivinePurposeBuff) ||
+                ObjectManager.Me.HolyPower >= 3 && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
             {
-                FinalVerdict.Cast();
-                return;
-            }
-            if (MySettings.UseExecutionSentence && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
-            {
+                // don't cast if target have judgment buff because it's mean it will be expired when Sentence hit. If Judgement just faded, is no issues since we can recast it before the end of Sentence.
                 ExecutionSentence.Cast();
                 return;
             }
-            if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) ||
-                (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
-                (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) &&
-                TemplarsVerdict.IsHostileDistanceGood)
+            if (MySettings.UseJudgment && (ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(ExecutionSentence.Id, 2000) || ObjectManager.Me.HolyPower == 5) && Judgment.IsSpellUsable &&
+                Judgment.IsHostileDistanceGood)
+            {
+                // We cast judgment before ExecutionSentence deals its damages for 50% more damages.
+                // We do 3 Holy Power worth of generation.
+                Judgment.Cast();
+                return;
+            }
+            if (((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) ||
+                 (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2)) &&
+                ((ObjectManager.Me.HaveBuff(DivinePurposeBuff) || (ObjectManager.Me.HolyPower == 5 || (Judgment.TargetHaveBuff && ObjectManager.Me.HolyPower >= 3))) &&
+                 TemplarsVerdict.IsHostileDistanceGood))
             {
                 TemplarsVerdict.Cast();
                 return;
             }
-            if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
-                (ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(DivinePurposeBuff, 4000) || ObjectManager.Me.HolyPower == 5 || (!BoundlessConviction || HolyAvenger.HaveBuff)) && DivineStorm.IsHostileDistanceGood)
+            if (((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) >= 3)) &&
+                ((ObjectManager.Me.HaveBuff(DivinePurposeBuff) || (ObjectManager.Me.HolyPower == 5 || Judgment.TargetHaveBuff && ObjectManager.Me.HolyPower >= 3))))
             {
                 DivineStorm.Cast();
                 return;
             }
-            if (MySettings.UseExorcism && ObjectManager.Me.HaveBuff(166831) && ObjectManager.Me.HolyPower <= 3 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+            if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood && CrusaderStrike.GetSpellCharges == 2)
             {
-                Exorcism.Cast();
+                // burn first CS Charge before any blade.
+                CrusaderStrike.Cast();
                 return;
             }
-            if (MySettings.UseHammerOfWrath && ObjectManager.Me.HolyPower < 5 && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
+            if (MySettings.UseBladeOfJustice && ObjectManager.Me.HolyPower < 4 && BladeOfJustice.IsSpellUsable && BladeOfJustice.IsHostileDistanceGood)
             {
-                HammerOfWrath.Cast();
+                BladeOfJustice.Cast();
                 return;
             }
-            if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
-                (!MySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) <= 6))
+            if (MySettings.UseBladeOfWrath && ObjectManager.Me.HolyPower < 4 && BladeOfWrath.IsSpellUsable && BladeOfWrath.IsHostileDistanceGood)
+            {
+                BladeOfWrath.Cast();
+                return;
+            }
+            if (MySettings.UseDivineHammer && ObjectManager.Me.HolyPower < 4 && DivineHammer.IsSpellUsable && DivineHammer.IsHostileDistanceGood)
+            {
+                DivineHammer.Cast();
+                return;
+            }
+            if (MySettings.UseCrusaderStrike && ObjectManager.Me.HolyPower < 5 && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood)
             {
                 CrusaderStrike.Cast();
                 return;
             }
-            if (MySettings.UseHammerOfTheRighteous && ObjectManager.Me.HolyPower < 5 && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
-                (!MySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || ObjectManager.GetUnitInSpellRange(HammerOfTheRighteous.MaxRangeHostile) >= 7))
-            {
-                HammerOfTheRighteous.Cast();
-                return;
-            }
-            if (MySettings.UseJudgment && ObjectManager.Me.HolyPower < 5 && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
-            {
-                Judgment.Cast();
-                return;
-            }
-
-            if (MySettings.UseExorcism && ObjectManager.Me.HolyPower < 5 && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
-            {
-                Exorcism.Cast();
-                return;
-            }
-            if (MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && FinalVerdict.KnownSpell && FinalVerdict.HaveBuff && DivineStorm.IsSpellUsable &&
-                ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) >= 2 &&
-                DivineStorm.IsHostileDistanceGood)
-            {
-                DivineStorm.Cast();
-                return;
-            }
-            if (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable && FinalVerdict.IsHostileDistanceGood)
-            {
-                FinalVerdict.Cast();
-                return;
-            }
             if ((!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) ||
-                (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) &&
-                TemplarsVerdict.IsHostileDistanceGood)
+                (TemplarsVerdict.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) <= 2) && TemplarsVerdict.IsHostileDistanceGood)
             {
                 TemplarsVerdict.Cast();
                 return;
             }
-            if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) || (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) &&
-                DivineStorm.IsHostileDistanceGood)
+            if ((MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict && DivineStorm.IsSpellUsable) ||
+                (DivineStorm.IsSpellUsable && ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) > 2) && DivineStorm.IsHostileDistanceGood)
             {
                 DivineStorm.Cast();
+                return;
+            }
+            if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+            {
+                Judgment.Cast(); // fill with Judgment for low level paladins.
                 return;
             }
             if (MySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable && ObjectManager.Target.IsStunnable && HammerOfJustice.IsHostileDistanceGood)
             {
                 HammerOfJustice.Cast();
                 return;
-            }
-            if ((MySettings.UseTemplarsVerdict && TemplarsVerdict.IsSpellUsable) || (MySettings.UseTemplarsVerdict && FinalVerdict.IsSpellUsable) || (MySettings.UseDivineStorm && DivineStorm.IsSpellUsable) ||
-                (MySettings.UseJudgment && Judgment.IsSpellUsable) || (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable) ||
-                (MySettings.UseHammerOfWrath && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable) ||
-                (MySettings.UseExorcism && Exorcism.IsSpellUsable))
-            {
-                return;
-            }
-            // We have a hole in our rotation, so a GCD is available here, use a free talent level 45.
-
-            if (MySettings.UseSacredShield && SacredShield.IsSpellUsable)
-            {
-                SacredShield.Cast();
-                return;
-            }
-            if (MySettings.UseFlashOfLight && ObjectManager.Me.BuffStack(114250) == 3 && ObjectManager.Me.HealthPercent < 95 && FlashOfLight.IsSpellUsable)
-            {
-                FlashOfLight.Cast();
             }
         }
         finally
@@ -13017,19 +12955,20 @@ public class PaladinRetribution
         public bool UseGreaterBlessingOfWisdom = true;
         public bool UseCombatPotion = false;
         public bool UseCrusaderStrike = true;
+        public bool UseBladeOfWrath = true;
+        public bool UseBladeOfJustice = true;
+        public bool UseDivineHammer = true;
         public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
         public bool UseDivineStorm = true;
         public bool UseExecutionSentence = true;
-        public bool UseExorcism = true;
+        public bool UseJusticarsVengeance = true;
         public bool UseFlashOfLight = true;
         public bool UseFlaskOrBattleElixir = false;
         public bool UseGiftoftheNaaru = true;
         public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGuardianElixir = false;
         public bool UseHammerOfJustice = true;
-        public bool UseHammerOfTheRighteous = true;
-        public bool UseHammerOfWrath = true;
         public bool UseHandOfProtection = false;
         public bool UseHolyAvenger = true;
         public bool UseJudgment = true;
@@ -13037,11 +12976,6 @@ public class PaladinRetribution
 
         public bool UseReckoning = true;
         public bool UseSacredShield = true;
-        public bool UseSealOfCommand = true;
-        public bool UseSealOfInsight = false;
-        public bool UseSealOfJustice = false;
-        public bool UseSealOfTheRighteousness = true;
-        public bool UseSealOfTruth = true;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
         public bool UseTeasureFindingPotion = false;
@@ -13053,7 +12987,7 @@ public class PaladinRetribution
         public bool UseWellFedBuff = false;
         public bool UseWordOfGlory = true;
 
-        public string WellFedBuff = "Black Pepper Ribs and Shrimp";
+        public string WellFedBuff = "Sleeper Sushi";
 
         public PaladinRetributionSettings()
         {
@@ -13072,20 +13006,19 @@ public class PaladinRetribution
             AddControlInWinForm("Use Greater Blessing of Wisdom", "UseGreaterBlessingOfWisdom", "Paladin Blessings");
             /* Offensive Spell */
             AddControlInWinForm("Use Templar's Verdict", "UseTemplarsVerdict", "Offensive Spell");
+            AddControlInWinForm("Use Justicar's Vengeance", "UseJusticarsVengeance", "Offensive Spell");
             AddControlInWinForm("Use Divine Storm", "UseDivineStorm", "Offensive Spell");
-            AddControlInWinForm("Use Exorcism", "UseExorcism", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
             AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
+            AddControlInWinForm("Use Blade of Wrath", "UseBladeOfWrath", "Offensive Spell");
+            AddControlInWinForm("Use Blade of Justice", "UseBladeOfJustice", "Offensive Spell");
+            AddControlInWinForm("Use Divine Hammer", "UseDivineHammer", "Offensive Spell");
             AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
             AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
             AddControlInWinForm("Use Execution Sentence", "UseExecutionSentence", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Reckoning", "UseReckoning", "Defensive Cooldown");
-            AddControlInWinForm("Refresh Weakened Blows", "RefreshWeakenedBlows", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
             AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
