@@ -1186,16 +1186,32 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public WoWClass WowClass
+        {
+            get
+            {
+                try
+                {
+                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
+                    uint displayPower = descriptorsArray + ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
+                    var res = Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
+                    if (res == 0)
+                        res = Memory.WowMemory.Memory.ReadBytes((displayPower - 0x4), 4)[1];
+                    return (WoWClass) res;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > WowClass: " + e);
+                    return WoWClass.None;
+                }
+            }
+        }
+
         private uint GetPowerIndexByPowerType(PowerType powerType)
         {
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-            uint displayPower = descriptorsArray +
-                                ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
-            uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint) powerType +
-                         (uint) Addresses.PowerIndex.Multiplicator*Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
-            uint result =
-                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                 (uint) Addresses.PowerIndex.PowerIndexArrays + index*4); // To be updated. (Use Get Descriptors)
+            var classId = (uint) ObjectManager.Me.WowClass;
+            uint index = classId + (uint) powerType + (uint) Addresses.PowerIndex.Multiplicator*classId;
+            uint result = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PowerIndex.PowerIndexArrays + index*4);
             return result;
         }
 
