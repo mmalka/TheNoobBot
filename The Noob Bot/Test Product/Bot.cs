@@ -823,10 +823,10 @@ namespace Test_Product
             try
             {
                 
-                uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
+                /*uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
                 Logging.Write("mortel Ptr: " + mortel);
                 uint suicide = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 186);
-                Logging.Write("suicide Ptr: " + suicide);
+                Logging.Write("suicide Ptr: " + suicide);*/
                 
 
                 /*uint db2ptr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + 0xD20EF0 + 0xA8);

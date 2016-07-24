@@ -1,9 +1,12 @@
-﻿namespace nManager.Wow.Patchables
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("NameOfOtherAssembly")]
+namespace nManager.Wow.Patchables
 {
     /// <summary>
     ///   Offset and Pointer for Wow 22293
     /// </summary>
-    public static class Addresses
+    internal static class Addresses
     {
         /// <summary>
         ///   ObjectManager
