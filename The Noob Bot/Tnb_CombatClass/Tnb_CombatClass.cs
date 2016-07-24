@@ -11684,12 +11684,6 @@ public class PaladinHoly
 
     #region Paladin Seals & Buffs
 
-    public readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
-    public readonly Spell BlessingOfMight = new Spell("Blessing of Might");
-    public readonly Spell SealOfInsight = new Spell("Seal of Insight");
-    public readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
-    public readonly Spell SealOfTruth = new Spell("Seal of Truth");
-
     #endregion
 
     #region Offensive Spell
@@ -11793,80 +11787,17 @@ public class PaladinHoly
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Blessing();
             Heal();
         }
-
-        Seal();
     }
 
     private void Buffs()
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Blessing();
             if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
                 ItemsManager.UseItem(75525);
-        }
-
-        Seal();
-    }
-
-    private void Seal()
-    {
-        if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
-        {
-            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
-            {
-                SealOfInsight.Cast();
-            }
-            return;
-        }
-        if (SealOfTruth.KnownSpell && MySettings.UseSealOfTruth)
-        {
-            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
-            {
-                SealOfTruth.Cast();
-            }
-            return;
-        }
-        if (SealOfTheRighteousness.KnownSpell && MySettings.UseSealOfTheRighteousness)
-        {
-            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
-            {
-                SealOfTheRighteousness.Cast();
-            }
-        }
-    }
-
-    private void Blessing()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings)
-        {
-            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
-            {
-                BlessingOfKings.Cast();
-            }
-            return;
-        }
-        if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
-        {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
-            {
-                BlessingOfMight.Cast();
-            }
-            return;
-        }
-        if (BeaconOfLight.KnownSpell && MySettings.UseBeaconOfLight)
-        {
-            if (!BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable)
-            {
-                BeaconOfLight.Cast();
-            }
         }
     }
 
@@ -12049,8 +11980,6 @@ public class PaladinHoly
         public bool UseAvengingWrath = true;
         public bool UseBeaconOfLight = true;
         public bool UseBerserking = true;
-        public bool UseBlessingOfKings = true;
-        public bool UseBlessingOfMight = true;
         public bool UseDenounce = true;
         public bool UseDevotionAura = true;
         public bool UseDivineProtection = true;
@@ -12069,9 +11998,6 @@ public class PaladinHoly
         public bool UseLayOnHands = true;
 
         public bool UseSacredShield = true;
-        public bool UseSealOfInsight = true;
-        public bool UseSealOfTheRighteousness = true;
-        public bool UseSealOfTruth = true;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
         public bool UseTrinketOne = true;
@@ -12093,11 +12019,6 @@ public class PaladinHoly
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             /* Paladin Seals & Buffs */
-            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spell");
             AddControlInWinForm("Use Denounce", "UseDenounce", "Offensive Spell");
@@ -12161,12 +12082,6 @@ public class PaladinProtection
     #endregion
 
     #region Paladin Seals & Buffs
-
-    public readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
-    public readonly Spell BlessingOfMight = new Spell("Blessing of Might");
-    public readonly Spell SealOfInsight = new Spell("Seal of Insight");
-    public readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
-    public readonly Spell SealOfTruth = new Spell("Seal of Truth");
 
     #endregion
 
@@ -12283,73 +12198,17 @@ public class PaladinProtection
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Blessing();
             Heal();
         }
-        Seal();
     }
 
     private void Buffs()
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Blessing();
             if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
                 ItemsManager.UseItem(75525);
-        }
-        Seal();
-    }
-
-    private void Seal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-        if (SealOfTruth.KnownSpell && MySettings.UseSealOfTruth &&
-            (ObjectManager.GetNumberAttackPlayer() <= 7 || !MySettings.UseSealOfTheRighteousness))
-        {
-            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
-            {
-                SealOfTruth.Cast();
-            }
-            return;
-        }
-        if (SealOfTheRighteousness.KnownSpell && MySettings.UseSealOfTheRighteousness)
-        {
-            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
-            {
-                SealOfTheRighteousness.Cast();
-            }
-            return;
-        }
-        if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
-        {
-            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
-            {
-                SealOfInsight.Cast();
-            }
-        }
-    }
-
-    private void Blessing()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
-        {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
-            {
-                BlessingOfMight.Cast();
-            }
-            return;
-        }
-        if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings)
-        {
-            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
-            {
-                BlessingOfKings.Cast();
-            }
         }
     }
 
@@ -12575,8 +12434,6 @@ public class PaladinProtection
         public bool UseArdentDefender = true;
         public bool UseAvengersShield = true;
         public bool UseBerserking = true;
-        public bool UseBlessingOfKings = true;
-        public bool UseBlessingOfMight = true;
         public bool UseConsecration = true;
         public bool UseCrusaderStrike = true;
         public bool UseDivineProtection = true;
@@ -12596,9 +12453,6 @@ public class PaladinProtection
         public bool UseLayOnHands = true;
 
         public bool UseSacredShield = true;
-        public bool UseSealOfInsight = false;
-        public bool UseSealOfTheRighteousness = true;
-        public bool UseSealOfTruth = true;
         public bool UseShieldOfTheRighteous = true;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
@@ -12621,11 +12475,6 @@ public class PaladinProtection
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             /* Paladin Seals & Buffs */
-            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Shield of the Righteous", "UseShieldOfTheRighteous", "Offensive Spell");
             AddControlInWinForm("Use Consecration", "UseConsecration", "Offensive Spell");
@@ -12693,13 +12542,9 @@ public class PaladinRetribution
 
     #region Paladin Seals & Buffs
 
-    public readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
-    public readonly Spell BlessingOfMight = new Spell("Blessing of Might");
-    public readonly Spell SealOfCommand = new Spell("Seal of Command");
-    public readonly Spell SealOfInsight = new Spell("Seal of Insight");
-    public readonly Spell SealOfJustice = new Spell("Seal of Justice");
-    public readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
-    public readonly Spell SealOfTruth = new Spell("Seal of Truth");
+    public readonly Spell GreaterBlessingOfKings = new Spell("Greater Blessing of Kings");
+    public readonly Spell GreaterBlessingOfMight = new Spell("Greater Blessing of Might");
+    public readonly Spell GreaterBlessingOfWisdom = new Spell("Greater Blessing of Wisdom");
 
     #endregion
 
@@ -12862,7 +12707,6 @@ public class PaladinRetribution
             Blessing();
             Heal();
         }
-        Seal();
     }
 
     private void Buffs()
@@ -12884,52 +12728,6 @@ public class PaladinRetribution
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
                 ItemsManager.UseItem(75525);
         }
-        Seal();
-    }
-
-    private void Seal()
-    {
-        Usefuls.SleepGlobalCooldown();
-        if (MySettings.UseSealOfTruth && SealOfTruth.KnownSpell &&
-            (ObjectManager.GetUnitInSpellRange(8) <= 5 || !MySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
-        {
-            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
-            {
-                SealOfTruth.Cast();
-            }
-            return;
-        }
-        if (MySettings.UseSealOfTheRighteousness && SealOfTheRighteousness.KnownSpell)
-        {
-            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
-            {
-                SealOfTheRighteousness.Cast();
-            }
-            return;
-        }
-        if (MySettings.UseSealOfJustice && SealOfJustice.KnownSpell)
-        {
-            if (!SealOfJustice.HaveBuff && SealOfJustice.IsSpellUsable)
-            {
-                SealOfJustice.Cast();
-            }
-            return;
-        }
-        if (MySettings.UseSealOfInsight && SealOfInsight.KnownSpell)
-        {
-            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
-            {
-                SealOfInsight.Cast();
-            }
-            return;
-        }
-        if (MySettings.UseSealOfCommand && SealOfCommand.KnownSpell)
-        {
-            if (!SealOfCommand.HaveBuff && SealOfCommand.IsSpellUsable)
-            {
-                SealOfCommand.Cast();
-            }
-        }
     }
 
     private void Blessing()
@@ -12938,20 +12736,21 @@ public class PaladinRetribution
             return;
         Usefuls.SleepGlobalCooldown();
 
-        if (MySettings.UseBlessingOfKings && BlessingOfKings.KnownSpell)
+        if (MySettings.UseGreaterBlessingOfKings && GreaterBlessingOfKings.KnownSpell && !GreaterBlessingOfKings.HaveBuff && GreaterBlessingOfKings.IsSpellUsable)
         {
-            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
-            {
-                BlessingOfKings.Cast();
-            }
+            GreaterBlessingOfKings.Cast();
             return;
         }
-        if (MySettings.UseBlessingOfMight && BlessingOfMight.KnownSpell)
+        if (MySettings.UseGreaterBlessingOfMight && GreaterBlessingOfMight.KnownSpell && !GreaterBlessingOfMight.HaveBuff && GreaterBlessingOfMight.IsSpellUsable)
         {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
-            {
-                BlessingOfMight.Cast();
-            }
+            Logging.Write("If for raiding reasons you need to bless certains party member, disable Greater Blessings in settings and do it manually.");
+            GreaterBlessingOfMight.Cast();
+            return;
+        }
+        if (MySettings.UseGreaterBlessingOfWisdom && GreaterBlessingOfWisdom.KnownSpell && !GreaterBlessingOfWisdom.HaveBuff && GreaterBlessingOfWisdom.IsSpellUsable)
+        {
+            GreaterBlessingOfWisdom.Cast();
+            return;
         }
     }
 
@@ -13213,8 +13012,9 @@ public class PaladinRetribution
         public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvengingWrath = true;
         public bool UseBerserking = true;
-        public bool UseBlessingOfKings = true;
-        public bool UseBlessingOfMight = true;
+        public bool UseGreaterBlessingOfKings = true;
+        public bool UseGreaterBlessingOfMight = true;
+        public bool UseGreaterBlessingOfWisdom = true;
         public bool UseCombatPotion = false;
         public bool UseCrusaderStrike = true;
         public bool UseDivineProtection = true;
@@ -13267,13 +13067,9 @@ public class PaladinRetribution
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             /* Paladin Seals & Buffs */
-            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Justice", "UseSealOfJustice", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Command", "UseSealOfCommand", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Greater Blessing of Might", "UseGreaterBlessingOfMight", "Paladin Blessings");
+            AddControlInWinForm("Use Greater Blessing of Kings", "UseGreaterBlessingOfKings", "Paladin Blessings");
+            AddControlInWinForm("Use Greater Blessing of Wisdom", "UseGreaterBlessingOfWisdom", "Paladin Blessings");
             /* Offensive Spell */
             AddControlInWinForm("Use Templar's Verdict", "UseTemplarsVerdict", "Offensive Spell");
             AddControlInWinForm("Use Divine Storm", "UseDivineStorm", "Offensive Spell");
