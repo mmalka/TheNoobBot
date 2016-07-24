@@ -108,8 +108,8 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "CEREAL";
     public static string Name = "Automatic Item Usage";
-    public static string TargetVersion = "4.9.x";
-    public static string Version = "1.0.4";
+    public static string TargetVersion = "6.0.x";
+    public static string Version = "1.0.5";
     public static string Description = "Plugins that allow to track/refresh buff such as experience potion...";
     // Variables de debug
     public static bool BDebugVerboseFull = false;
