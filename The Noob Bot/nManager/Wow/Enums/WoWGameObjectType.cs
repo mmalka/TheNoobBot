@@ -44,6 +44,10 @@
         FiefMonumentBase = 44,
         FiefCommand = 45,
         FiefMonument = 46,
-        SharedNodes = 50 // this is GoType for Veins and maybe herbs as well. They are now shared among players.
+        ArtifactForge = 47,
+        UILink = 48,
+        KeystoneReceptacle = 49,
+        GatheringNode = 50, // herbs and mining nodes so far got this new type...
+        ChallengeModeReward = 51,
     }
 }

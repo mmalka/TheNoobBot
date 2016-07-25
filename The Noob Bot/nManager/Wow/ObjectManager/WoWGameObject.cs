@@ -552,7 +552,7 @@ namespace nManager.Wow.ObjectManager
                         case WoWGameObjectType.Goober: // 10
                         case WoWGameObjectType.FlagStand: // 24
                         case WoWGameObjectType.FlagDrop: // 26
-                        case WoWGameObjectType.SharedNodes: // 50
+                        case WoWGameObjectType.GatheringNode: // 50
                             return Data0;
                         default:
                             return 0;

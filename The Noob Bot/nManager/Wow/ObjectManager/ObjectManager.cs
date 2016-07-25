@@ -1117,7 +1117,7 @@ namespace nManager.Wow.ObjectManager
                 var list = new List<WoWGameObject>();
                 foreach (WoWGameObject a in GetObjectWoWGameObject())
                 {
-                    if ((a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober || a.GOType == WoWGameObjectType.SharedNodes)) list.Add(a);
+                    if ((a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober || a.GOType == WoWGameObjectType.GatheringNode)) list.Add(a);
                 }
                 return
                     list;
