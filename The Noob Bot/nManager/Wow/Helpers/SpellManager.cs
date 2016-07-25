@@ -182,6 +182,7 @@ namespace nManager.Wow.Helpers
             if (KnownGetCooldownIssues.Contains(spellId))
                 return TimeLeftOnSpellCooldownLUA(spellId) > 0;
             List<SpellCooldownEntry> spellsOnCooldownList = GetAllSpellsOnCooldown;
+
             foreach (SpellCooldownEntry spellCooldown in spellsOnCooldownList)
             {
                 if (spellCooldown.GCDDuration > 0)
@@ -196,6 +197,8 @@ namespace nManager.Wow.Helpers
                     if (spellCooldown.SpellOrItemCooldownDuration >= elaspedTime)
                         return true;
                 }
+                if (spellCooldown.CategoryCooldownDuration <= 0 && spellCooldown.SpellOrItemCooldownDuration <= 0 && spellCooldown.GCDDuration <= 0 && spellCooldown.StartTime > 0)
+                    return true; // happend wierdly
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
                 if (spellCooldown.CategoryCooldownDuration >= elaspedTime)

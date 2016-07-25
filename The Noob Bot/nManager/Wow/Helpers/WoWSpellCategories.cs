@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
@@ -60,7 +61,7 @@ namespace nManager.Wow.Helpers
             for (int id = 0; id <= _spellCategoriesDb2.RecordsCount - 1; id++)
             {
                 _spellCategoriesDB2Record0 = _cachedRecords[id];
-                if (_spellCategoriesDB2Record0.m_spellID == spellid)
+                if (_spellCategoriesDB2Record0.m_spellID == spellid || _spellCategoriesDB2Record0.m_ID == spellid)
                 {
                     return _spellCategoriesDB2Record0.m_spellCategoryID;
                 }
