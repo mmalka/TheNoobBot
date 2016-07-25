@@ -22,8 +22,6 @@ namespace nManager.Wow.MemoryClass
         /// </summary>
         public static readonly object Locker = new object();
 
-        public static readonly object LockerUnlock = new object();
-
         private readonly BlackMagic _memory = new BlackMagic();
         public bool AllowReHook = false;
         internal uint JumpAddress;
@@ -88,6 +86,7 @@ namespace nManager.Wow.MemoryClass
 
             fasm.AddLine("pushad");
             fasm.AddLine("pushfd");
+
             fasm.AddLine("@execution:");
 
             fasm.AddLine("mov eax, [{0}]", _mExecuteRequested);
@@ -101,17 +100,10 @@ namespace nManager.Wow.MemoryClass
 
             fasm.AddLine("@lockcheck:");
 
-            fasm.AddLine("mov eax, [{0}]", _mLockRequested);
+            fasm.AddLine("mov eax, [{0}]", _mLocked);
             fasm.AddLine("test eax, eax");
-            fasm.AddLine("je @exit");
+            fasm.AddLine("jne @execution");
 
-            fasm.AddLine("mov eax, 1");
-            fasm.AddLine("mov [" + _mLocked + "], eax");
-            fasm.AddLine("jmp @execution");
-
-            fasm.AddLine("@exit:");
-            fasm.AddLine("xor eax, eax");
-            fasm.AddLine("mov [" + _mLocked + "], eax");
             fasm.AddLine("popfd");
             fasm.AddLine("popad");
 
@@ -139,12 +131,12 @@ namespace nManager.Wow.MemoryClass
 
                 fasm.Inject(_mInjectionCode);
 
-                Memory.WriteUInt(_mExecuteRequested, 1);
+                Memory.WriteByte(_mExecuteRequested, 1);
                 Timer injectTimer = new Timer(2000);
                 injectTimer.Reset();
-                while (Memory.ReadUInt(_mExecuteRequested) == 1 && !injectTimer.IsReady)
+                while (Memory.ReadByte(_mExecuteRequested) == 1 && !injectTimer.IsReady)
                 {
-                    Thread.Sleep(0);
+                    Thread.Sleep(1);
                 }
 
                 if (injectTimer.IsReady)
@@ -191,8 +183,8 @@ namespace nManager.Wow.MemoryClass
             {
                 if (!nManagerSetting.CurrentSetting.UseFrameLock)
                     return;
-                Memory.WriteByte(_mLocked, 0);
-                Memory.WriteByte(_mLockRequested, 1);
+                Memory.WriteByte(_mLocked, 1);
+                //Memory.WriteByte(_mLockRequested, 1);
             }
         }
 
@@ -277,7 +269,7 @@ namespace nManager.Wow.MemoryClass
                                 else if (D3D.OriginalBytes[0] == 0x6A)
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7); // Win8, add 2 nop to fit 5 bytes for UnHook.
                             }
-                            _mLockRequested = Memory.AllocateMemory(0x4);
+                            //_mLockRequested = Memory.AllocateMemory(0x4);
                             _mLocked = Memory.AllocateMemory(0x4);
                             _mResult = Memory.AllocateMemory(0x4);
                             _mExecuteRequested = Memory.AllocateMemory(0x4);
@@ -339,15 +331,12 @@ namespace nManager.Wow.MemoryClass
 
         public bool IsGameFrameLocked
         {
-            get { return Memory.ReadUInt(_mLocked) == 1; }
+            get { return Memory.ReadByte(_mLocked) == 1; }
         }
 
         public void GameFrameUnLock()
         {
-            lock (LockerUnlock) // Allow to UnLock from a thread that is not locking.
-            {
-                Memory.WriteUInt(_mLockRequested, 0);
-            }
+            Memory.WriteByte(_mLocked, 0);
         }
 
         /// <summary>
