@@ -88,7 +88,6 @@ namespace nManager.Wow.MemoryClass
 
             fasm.AddLine("pushad");
             fasm.AddLine("pushfd");
-
             fasm.AddLine("@execution:");
 
             fasm.AddLine("mov eax, [{0}]", _mExecuteRequested);
@@ -192,8 +191,8 @@ namespace nManager.Wow.MemoryClass
             {
                 if (!nManagerSetting.CurrentSetting.UseFrameLock)
                     return;
-                Memory.WriteUInt(_mLocked, 0);
-                Memory.WriteUInt(_mLockRequested, 1);
+                Memory.WriteByte(_mLocked, 0);
+                Memory.WriteByte(_mLockRequested, 1);
             }
         }
 
