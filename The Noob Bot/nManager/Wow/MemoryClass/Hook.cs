@@ -177,12 +177,33 @@ namespace nManager.Wow.MemoryClass
             Memory.WriteBytes(address, originalBytes);
         }
 
+        public bool IsGameFrameLocked
+        {
+            get { return Memory.ReadByte(_mLocked) == 1; }
+        }
+
+        private int _lockRequests;
+
+        public void GameFrameUnLock()
+        {
+            lock (Locker)
+            {
+                _lockRequests--;
+                if (_lockRequests <= 0 || _lockRequests > 10)
+                {
+                    Memory.WriteByte(_mLocked, 0);
+                    _lockRequests = 0;
+                }
+            }
+        }
+
         public void GameFrameLock()
         {
             lock (Locker)
             {
                 if (!nManagerSetting.CurrentSetting.UseFrameLock)
                     return;
+                _lockRequests++;
                 Memory.WriteByte(_mLocked, 1);
                 //Memory.WriteByte(_mLockRequested, 1);
             }
@@ -327,16 +348,6 @@ namespace nManager.Wow.MemoryClass
                 Logging.WriteError("GetJumpAdresse(): " + e);
             }
             return 0;
-        }
-
-        public bool IsGameFrameLocked
-        {
-            get { return Memory.ReadByte(_mLocked) == 1; }
-        }
-
-        public void GameFrameUnLock()
-        {
-            Memory.WriteByte(_mLocked, 0);
         }
 
         /// <summary>
