@@ -13,17 +13,22 @@ namespace nManager.Wow.ObjectManager
         {
         }
 
+        private string _cachedName;
+
         public override string Name
         {
             get
             {
                 try
                 {
+                    if (!string.IsNullOrEmpty(_cachedName))
+                        return _cachedName;
                     lock (this)
                     {
                         string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString(randomStringResult + ", _, _, _, _, _, _, _ = GetItemInfo(" + Entry + ")");
-                        return Lua.GetLocalizedText(randomStringResult);
+                        _cachedName = Lua.GetLocalizedText(randomStringResult);
+                        return _cachedName;
                     }
                 }
                 catch (Exception e)

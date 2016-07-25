@@ -14,6 +14,7 @@ namespace nManager.Wow.Helpers
         [CompilerGenerated] private static SpellCategoriesDbcRecord _spellCategoriesDB2Record0;
 
         private static DB5Reader _spellCategoriesDb2;
+        private static SpellCategoriesDbcRecord[] _cachedRecords;
 
         private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
         {
@@ -30,10 +31,17 @@ namespace nManager.Wow.Helpers
                 {
                     var table = definitions.First();
                     _spellCategoriesDb2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\SpellCategories.db2", table) as DB5Reader;
-                    if (_cachedSpellCategoriesRows == null)
+                    if (_cachedSpellCategoriesRows == null || _cachedRecords == null)
                     {
                         if (_spellCategoriesDb2 != null)
+                        {
                             _cachedSpellCategoriesRows = _spellCategoriesDb2.Rows.ToArray();
+                            _cachedRecords = new SpellCategoriesDbcRecord[_cachedSpellCategoriesRows.Length];
+                            for (int i = 0; i < _cachedSpellCategoriesRows.Length - 1; i++)
+                            {
+                                _cachedRecords[i] = DB5Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[i]);
+                            }
+                        }
                     }
                     if (_spellCategoriesDb2 != null) Logging.Write(_spellCategoriesDb2.FileName + " loaded with " + _spellCategoriesDb2.RecordsCount + " entries.");
                 }
@@ -51,7 +59,7 @@ namespace nManager.Wow.Helpers
             Init();
             for (int id = 0; id <= _spellCategoriesDb2.RecordsCount - 1; id++)
             {
-                _spellCategoriesDB2Record0 = DB5Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[id]);
+                _spellCategoriesDB2Record0 = _cachedRecords[id];
                 if (_spellCategoriesDB2Record0.m_spellID == spellid)
                 {
                     return _spellCategoriesDB2Record0.m_spellCategoryID;
@@ -62,9 +70,10 @@ namespace nManager.Wow.Helpers
 
         public static uint GetSpellStartRecoverCategoryBySpellId(uint spellid)
         {
+            Init();
             for (int id = 0; id <= _spellCategoriesDb2.RecordsCount - 1; id++)
             {
-                _spellCategoriesDB2Record0 = DB5Reader.ByteToType<SpellCategoriesDbcRecord>(_cachedSpellCategoriesRows[id]);
+                _spellCategoriesDB2Record0 = _cachedRecords[id];
                 if (_spellCategoriesDB2Record0.m_spellID == spellid)
                 {
                     return _spellCategoriesDB2Record0.m_StartRecoveryCategory;
