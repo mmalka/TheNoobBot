@@ -12827,8 +12827,8 @@ public class PaladinRetribution
                 JusticarsVengeance.Cast();
                 return;
             }
-            if (MySettings.UseExecutionSentence && (!MySettings.UseJudgment || !Judgment.TargetHaveBuff) && ObjectManager.Me.HaveBuff(DivinePurposeBuff) ||
-                ObjectManager.Me.HolyPower >= 3 && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
+            if (MySettings.UseExecutionSentence && (!MySettings.UseJudgment || !Judgment.TargetHaveBuff) && (ObjectManager.Me.HaveBuff(DivinePurposeBuff) ||
+                ObjectManager.Me.HolyPower >= 3) && ExecutionSentence.IsSpellUsable && ExecutionSentence.IsHostileDistanceGood)
             {
                 // don't cast if target have judgment buff because it's mean it will be expired when Sentence hit. If Judgement just faded, is no issues since we can recast it before the end of Sentence.
                 ExecutionSentence.Cast();
