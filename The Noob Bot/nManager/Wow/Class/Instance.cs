@@ -9,7 +9,7 @@ namespace nManager.Wow.Class
     {
         [XmlAttribute("Id")] public int InstanceId = 0; // Simple indexing Id. The real "InstanceId" will be its ContinentId.
         [XmlAttribute("Name")] public string InstanceName = "None";
-        [XmlAttribute("Level")] public uint InstanceLevel = 100; // Will determine if the instance is actually solo-able for this character or not.
+        [XmlAttribute("Level")] public uint InstanceLevel = 110; // Will determine if the instance is actually solo-able for this character or not.
         [XmlAttribute("Active")] public bool Active = false;
 
         public int EntranceContinentId = -1; // Continent where you can find the instance entrance.

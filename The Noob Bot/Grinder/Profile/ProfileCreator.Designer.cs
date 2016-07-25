@@ -273,7 +273,7 @@ namespace Grinder.Profile
             this.maxLevelPlayer.Size = new System.Drawing.Size(43, 22);
             this.maxLevelPlayer.TabIndex = 30;
             this.maxLevelPlayer.Value = new decimal(new int[] {
-            100,
+            110,
             0,
             0,
             0});
@@ -299,7 +299,7 @@ namespace Grinder.Profile
             this.maxLevelTarget.Size = new System.Drawing.Size(43, 22);
             this.maxLevelTarget.TabIndex = 34;
             this.maxLevelTarget.Value = new decimal(new int[] {
-            100,
+            113,
             0,
             0,
             0});

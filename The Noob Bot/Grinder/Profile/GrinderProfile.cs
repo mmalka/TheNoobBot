@@ -16,8 +16,8 @@ namespace Grinder.Profile
     {
         public List<GrinderBlackListRadius> BlackListRadius = new List<GrinderBlackListRadius>();
         public bool Hotspots;
-        [DefaultValue(100)] public uint MaxLevel = 100;
-        [DefaultValue(103)] public uint MaxTargetLevel = 103;
+        [DefaultValue(110)] public uint MaxLevel = 110;
+        [DefaultValue(113)] public uint MaxTargetLevel = 113;
         [DefaultValue(1)] public uint MinLevel = 1;
         [DefaultValue(1)] public uint MinTargetLevel = 1;
         public string Name = "";
