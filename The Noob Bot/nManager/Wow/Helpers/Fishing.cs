@@ -389,7 +389,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                foreach (WoWGameObject t in ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(668))
+                var listDisplayID = new List<uint> {668, 29716}; // 29716 = big bobber
+                foreach (WoWGameObject t in ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(listDisplayID))
                 {
                     if (t.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
                     {
