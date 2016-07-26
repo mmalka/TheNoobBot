@@ -322,7 +322,9 @@ namespace nManager.Wow.Bot.Tasks
                             _countThisLoot = false;
                             return;
                         }
-                        nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
+                        if (_countThisLoot)
+                            nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
+                        Thread.Sleep(1000);
                         if (!_wasLooted)
                             Logging.Write("Farm failed");
                         return;
@@ -342,11 +344,11 @@ namespace nManager.Wow.Bot.Tasks
         {
             if (_countThisLoot)
             {
+                _wasLooted = true;
                 _countThisLoot = false;
                 LootingTask.LootAndConfirmBoPForAllItems(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems);
                 Statistics.Farms++;
                 Logging.Write("Farm successful");
-                _wasLooted = true;
                 _curNode = null;
                 if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)
                     Elemental.AutoMakeElemental();
