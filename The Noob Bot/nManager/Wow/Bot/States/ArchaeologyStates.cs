@@ -492,37 +492,37 @@ namespace nManager.Wow.Bot.States
                                     if (qPOI.IsInside(newone))
                                     {
                                         p = new Point(newone);
-                                        p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
+                                        p.Z += d/10.0f; // just so that GetZ don't find caves too easiely
                                         p.Z = PathFinder.GetZPosition(p, true);
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d*4 && d > 30)
                                             valid = false;
                                     }
                                     // Since these direction are approximate, also search in a pi/5 angle
-                                    if (!valid/* && t.DisplayId == 10103*/)
+                                    if (!valid /* && t.DisplayId == 10103*/)
                                     {
-                                        float angleplus = Math.FixAngle(angle + ((float)System.Math.PI / 10f));
+                                        float angleplus = Math.FixAngle(angle + ((float) System.Math.PI/10f));
                                         newone = Math.GetPosition2DOfAngleAndDistance(p0, angleplus, d);
                                         p = new Point(newone);
-                                        p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
+                                        p.Z += d/10.0f; // just so that GetZ don't find caves too easiely
                                         p.Z = PathFinder.GetZPosition(p, true);
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d*4 && d > 30)
                                             valid = false;
                                         if (valid) Logging.Write("Angles+ for distance " + d);
                                     }
-                                    if (!valid/* && t.DisplayId == 10103*/)
+                                    if (!valid /* && t.DisplayId == 10103*/)
                                     {
-                                        float angleminus = Math.FixAngle(angle - ((float)System.Math.PI / 10f));
+                                        float angleminus = Math.FixAngle(angle - ((float) System.Math.PI/10f));
                                         newone = Math.GetPosition2DOfAngleAndDistance(p0, angleminus, d);
                                         p = new Point(newone);
-                                        p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
+                                        p.Z += d/10.0f; // just so that GetZ don't find caves too easiely
                                         p.Z = PathFinder.GetZPosition(p, true);
                                         if (p.Z == 0) // if p == 0 we don't care about the path
                                             valid = false;
-                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
+                                        else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d*4 && d > 30)
                                             valid = false;
                                         if (valid) Logging.Write("Angles- for distance " + d);
                                     }
@@ -539,37 +539,37 @@ namespace nManager.Wow.Bot.States
                                         if (qPOI.IsInside(newone))
                                         {
                                             p = new Point(newone);
-                                            p.Z += d / 10.0f; // just so that the the GetZ don't find caves too easiely
+                                            p.Z += d/10.0f; // just so that the the GetZ don't find caves too easiely
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d*4 && d > 30)
                                                 valid = false;
                                         }
                                         // Since these direction are approximate, also search in a pi/5 angle
-                                        if (!valid/* && t.DisplayId == 10103*/)
+                                        if (!valid /* && t.DisplayId == 10103*/)
                                         {
-                                            float angleplus = Math.FixAngle(angle + ((float)System.Math.PI / 10f));
+                                            float angleplus = Math.FixAngle(angle + ((float) System.Math.PI/10f));
                                             newone = Math.GetPosition2DOfAngleAndDistance(p0, angleplus, d);
                                             p = new Point(newone);
-                                            p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
+                                            p.Z += d/10.0f; // just so that GetZ don't find caves too easiely
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d*4 && d > 30)
                                                 valid = false;
                                             if (valid) Logging.Write("Angles+ for distance " + d);
                                         }
-                                        if (!valid/* && t.DisplayId == 10103*/)
+                                        if (!valid /* && t.DisplayId == 10103*/)
                                         {
-                                            float angleminus = Math.FixAngle(angle - ((float)System.Math.PI / 10f));
+                                            float angleminus = Math.FixAngle(angle - ((float) System.Math.PI/10f));
                                             newone = Math.GetPosition2DOfAngleAndDistance(p0, angleminus, d);
                                             p = new Point(newone);
-                                            p.Z += d / 10.0f; // just so that GetZ don't find caves too easiely
+                                            p.Z += d/10.0f; // just so that GetZ don't find caves too easiely
                                             p.Z = PathFinder.GetZPosition(p, true);
                                             if (p.Z == 0) // if p == 0 we don't care about the path
                                                 valid = false;
-                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d * 4 && d > 30)
+                                            else if (Math.DistanceListPoint(PathFinder.FindLocalPath(p, out valid)) > d*4 && d > 30)
                                                 valid = false;
                                             if (valid) Logging.Write("Angles- for distance " + d);
                                         }

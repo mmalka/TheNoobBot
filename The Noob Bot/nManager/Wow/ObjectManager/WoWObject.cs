@@ -89,7 +89,7 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     if (BaseAddress != 0)
-                        return Memory.WowMemory.Memory.ReadUInt128(BaseAddress + (uint)Addresses.ObjectManager.objectGUID);
+                        return Memory.WowMemory.Memory.ReadUInt128(BaseAddress + (uint) Addresses.ObjectManager.objectGUID);
                     return 0;
                 }
                 catch (Exception e)

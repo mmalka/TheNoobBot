@@ -6,12 +6,14 @@ using System.Text;
 
 namespace nManager.Wow.Helpers
 {
+
     #region Coords3
+
     /// <summary>
     ///  Represents a coordinates of WoW object without orientation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    struct Coords3
+    internal struct Coords3
     {
         public float X, Y, Z;
 
@@ -31,14 +33,16 @@ namespace nManager.Wow.Helpers
             return coords;
         }
     }
+
     #endregion
 
     #region Coords4
+
     /// <summary>
     ///  Represents a coordinates of WoW object with specified orientation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    struct Coords4
+    internal struct Coords4
     {
         public float X, Y, Z, O;
 
@@ -60,9 +64,10 @@ namespace nManager.Wow.Helpers
             return coords;
         }
     }
+
     #endregion
 
-    static class Extensions
+    internal static class Extensions
     {
         public static BinaryReader FromFile(string fileName)
         {
@@ -70,6 +75,7 @@ namespace nManager.Wow.Helpers
         }
 
         #region ReadPackedGuid
+
         /// <summary>
         ///  Reads the packed guid from the current stream and advances the current position of the stream by packed guid size.
         /// </summary>
@@ -86,14 +92,16 @@ namespace nManager.Wow.Helpers
             while (i < 9)
             {
                 if ((mask & 1 << i) != 0)
-                    res += (ulong)reader.ReadByte() << (i * 8);
+                    res += (ulong) reader.ReadByte() << (i*8);
                 i++;
             }
             return res;
         }
+
         #endregion
 
         #region ReadStringNumber
+
         /// <summary>
         ///  Reads the string with known length from the current stream and advances the current position of the stream by string length.
         /// <seealso cref="GenericReader.ReadStringNull"/>
@@ -105,13 +113,15 @@ namespace nManager.Wow.Helpers
 
             for (uint i = 0; i < num; i++)
             {
-                text += (char)reader.ReadByte();
+                text += (char) reader.ReadByte();
             }
             return text;
         }
+
         #endregion
 
         #region ReadStringNull
+
         /// <summary>
         ///  Reads the NULL terminated string from the current stream and advances the current position of the stream by string length + 1.
         /// <seealso cref="GenericReader.ReadStringNumber"/>
@@ -129,9 +139,11 @@ namespace nManager.Wow.Helpers
 
             return text;
         }
+
         #endregion
 
         #region ReadCoords3
+
         /// <summary>
         ///  Reads the object coordinates from the current stream and advances the current position of the stream by 12 bytes.
         /// </summary>
@@ -145,9 +157,11 @@ namespace nManager.Wow.Helpers
 
             return v;
         }
+
         #endregion
 
         #region ReadCoords4
+
         /// <summary>
         ///  Reads the object coordinates and orientation from the current stream and advances the current position of the stream by 16 bytes.
         /// </summary>
@@ -162,9 +176,11 @@ namespace nManager.Wow.Helpers
 
             return v;
         }
+
         #endregion
 
         #region ReadStruct
+
         /// <summary>
         /// Reads struct from the current stream and advances the current position if the stream by SizeOf(T) bytes.
         /// </summary>
@@ -173,15 +189,17 @@ namespace nManager.Wow.Helpers
         /// <returns></returns>
         public static T ReadStruct<T>(this BinaryReader reader) where T : struct
         {
-            byte[] rawData = reader.ReadBytes(Marshal.SizeOf(typeof(T)));
+            byte[] rawData = reader.ReadBytes(Marshal.SizeOf(typeof (T)));
             GCHandle handle = GCHandle.Alloc(rawData, GCHandleType.Pinned);
-            T returnObject = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+            T returnObject = (T) Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof (T));
             handle.Free();
             return returnObject;
         }
+
         #endregion
 
         #region ReadInt8
+
         /// <summary>
         ///  Reads the Int8 from the current stream and advances the current position of the stream by Int8 size.
         /// </summary>
@@ -203,9 +221,11 @@ namespace nManager.Wow.Helpers
             //    return i8;
             //}
         }
+
         #endregion
 
         #region ReadUInt8
+
         /// <summary>
         ///  Reads the UInt8 from the current stream and advances the current position of the stream by UInt8 size.
         /// </summary>
@@ -227,9 +247,11 @@ namespace nManager.Wow.Helpers
             //    return u8;
             //}
         }
+
         #endregion
 
         #region ReadInt16
+
         /// <summary>
         ///  Reads the Int16 from the current stream and advances the current position of the stream by Int16 size.
         /// </summary>
@@ -251,9 +273,11 @@ namespace nManager.Wow.Helpers
             //    return i16;
             //}
         }
+
         #endregion
 
         #region ReadUInt16
+
         /// <summary>
         ///  Reads the UInt16 from the current stream and advances the current position of the stream by UInt16 size.
         /// </summary>
@@ -275,9 +299,11 @@ namespace nManager.Wow.Helpers
             //    return u16;
             //}
         }
+
         #endregion
 
         #region ReadInt32
+
         /// <summary>
         ///  Reads the Int32 from the current stream and advances the current position of the stream by Int32 size.
         /// </summary>
@@ -291,14 +317,16 @@ namespace nManager.Wow.Helpers
 
                 int i32 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    i32 |= (b[i] << i * 8);
+                    i32 |= (b[i] << i*8);
 
                 return i32;
             }
         }
+
         #endregion
 
         #region ReadUInt32
+
         /// <summary>
         ///  Reads the UInt32 from the current stream and advances the current position of the stream by UInt32 size.
         /// </summary>
@@ -312,14 +340,16 @@ namespace nManager.Wow.Helpers
 
                 uint u32 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    u32 |= ((uint)b[i] << i * 8);
+                    u32 |= ((uint) b[i] << i*8);
 
                 return u32;
             }
         }
+
         #endregion
 
         #region ReadInt64
+
         /// <summary>
         ///  Reads the Int64 from the current stream and advances the current position of the stream by Int64 size.
         /// </summary>
@@ -333,14 +363,16 @@ namespace nManager.Wow.Helpers
 
                 long i64 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    i64 |= ((long)b[i] << i * 8);
+                    i64 |= ((long) b[i] << i*8);
 
                 return i64;
             }
         }
+
         #endregion
 
         #region ReadUInt64
+
         /// <summary>
         ///  Reads the UInt64 from the current stream and advances the current position of the stream by UInt64 size.
         /// </summary>
@@ -354,14 +386,16 @@ namespace nManager.Wow.Helpers
 
                 ulong u64 = 0;
                 for (int i = 0; i < b.Length; i++)
-                    u64 |= ((ulong)b[i] << i * 8);
+                    u64 |= ((ulong) b[i] << i*8);
 
                 return u64;
             }
         }
+
         #endregion
 
         #region ReadSingle
+
         /// <summary>
         ///  Reads the Single from the current stream and advances the current position of the stream by Single size.
         /// </summary>
@@ -371,9 +405,11 @@ namespace nManager.Wow.Helpers
                 throw new Exception("TypeCode.Single Unknown meta.Bits");
             return reader.ReadSingle();
         }
+
         #endregion
 
         #region ReadDouble
+
         /// <summary>
         ///  Reads the Double from the current stream and advances the current position of the stream by Double size.
         /// </summary>
@@ -383,9 +419,11 @@ namespace nManager.Wow.Helpers
                 throw new Exception("TypeCode.Double Unknown meta.Bits");
             return reader.ReadDouble();
         }
+
         #endregion
 
         #region ReadString
+
         /// <summary>
         ///  Reads the String from the current stream and advances the current position of the stream by String size.
         /// </summary>
@@ -395,6 +433,7 @@ namespace nManager.Wow.Helpers
                 throw new Exception("TypeCode.String Unknown meta.Bits");
             return reader.ReadStringNull();
         }
+
         #endregion
 
         public static void AppendFormatLine(this StringBuilder sb, string format, params object[] args)

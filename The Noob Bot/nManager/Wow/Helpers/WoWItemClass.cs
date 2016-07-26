@@ -79,13 +79,12 @@ namespace nManager.Wow.Helpers
             public string Name()
             {
                 string strValue;
-                if (_itemClassDB2.StringTable != null && _itemClassDB2.StringTable.TryGetValue((int)ClassNameOffset, out strValue))
+                if (_itemClassDB2.StringTable != null && _itemClassDB2.StringTable.TryGetValue((int) ClassNameOffset, out strValue))
                 {
                     return strValue;
                 }
                 return "";
             }
-
         }
     }
 }

@@ -12,7 +12,8 @@ namespace nManager.Wow.Helpers
             var ext = Path.GetExtension(file).ToUpperInvariant();
             /*if (ext == ".DBC")
                 reader = new DBCReader(file);
-            else */if (ext == ".DB2")
+            else */
+            if (ext == ".DB2")
             {
                 uint magic = 0xFFFFFFFF;
 
@@ -25,7 +26,7 @@ namespace nManager.Wow.Helpers
 
                 switch (magic)
                 {
-                    /*case DB2Reader.DB2FmtSig:
+                        /*case DB2Reader.DB2FmtSig:
                         return new DB2Reader(file);
                     case DB3Reader.DB3FmtSig:
                         return new DB3Reader(file);
@@ -35,7 +36,7 @@ namespace nManager.Wow.Helpers
                         return new DB5Reader(file);
                 }
             }
-            /*else if (ext == ".ADB")
+                /*else if (ext == ".ADB")
                 reader = new ADBReader(file);
             else if (ext == ".WDB")
                 reader = new WDBReader(file);

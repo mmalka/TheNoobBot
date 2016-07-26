@@ -16,7 +16,7 @@ namespace nManager.Wow.Helpers
         [CompilerGenerated] private uint uint_0;
         private static DB5Reader factionTemplateDB2;
         private static BinaryReader[] _cachedFactionTemplateRows;
-        private static FactionTemplateDbcRecord[] _cachedRecords; 
+        private static FactionTemplateDbcRecord[] _cachedRecords;
 
         private static void init()
         {
@@ -39,7 +39,7 @@ namespace nManager.Wow.Helpers
                         {
                             _cachedFactionTemplateRows = factionTemplateDB2.Rows.ToArray();
                             _cachedRecords = new FactionTemplateDbcRecord[_cachedFactionTemplateRows.Length];
-                            for (int i = 0; i < _cachedFactionTemplateRows.Length-1; i++)
+                            for (int i = 0; i < _cachedFactionTemplateRows.Length - 1; i++)
                             {
                                 _cachedRecords[i] = DB5Reader.ByteToType<FactionTemplateDbcRecord>(_cachedFactionTemplateRows[i]);
                             }
@@ -156,10 +156,8 @@ namespace nManager.Wow.Helpers
             public uint Id;
             public ushort FactionId;
             public ushort FactionFlags;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-            public ushort[] EnemyFactions;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-            public ushort[] FriendlyFactions;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public ushort[] EnemyFactions;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public ushort[] FriendlyFactions;
             public byte FightSupport;
             public byte FriendlyMask;
             public byte HostileMask;

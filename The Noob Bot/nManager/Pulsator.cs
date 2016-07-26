@@ -44,7 +44,7 @@ namespace nManager
             {
                 lock (typeof (Pulsator))
                 {
-                    Thread thread = new Thread(() => ThreadDispose(closePocess)) { Name = "Thread Dispose nManager." };
+                    Thread thread = new Thread(() => ThreadDispose(closePocess)) {Name = "Thread Dispose nManager."};
                     _isDisposed = false;
                     thread.Start();
                     Timer t = new Timer(3*1000);

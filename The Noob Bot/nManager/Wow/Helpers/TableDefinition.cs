@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace nManager.Wow.Helpers
 {
-[Serializable]
+    [Serializable]
     public class DBFilesClient
     {
         [XmlElement("Table")]
@@ -19,10 +19,10 @@ namespace nManager.Wow.Helpers
 
         public static DBFilesClient Load(string path)
         {
-            XmlSerializer deser = new XmlSerializer(typeof(DBFilesClient));
+            XmlSerializer deser = new XmlSerializer(typeof (DBFilesClient));
             using (var fs = new FileStream(path, FileMode.Open))
             {
-                DBFilesClient cat = (DBFilesClient)deser.Deserialize(fs);
+                DBFilesClient cat = (DBFilesClient) deser.Deserialize(fs);
                 cat.File = path;
                 return cat;
             }
@@ -35,7 +35,7 @@ namespace nManager.Wow.Helpers
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            XmlSerializer ser = new XmlSerializer(typeof(DBFilesClient));
+            XmlSerializer ser = new XmlSerializer(typeof (DBFilesClient));
             XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
             namespaces.Add(string.Empty, string.Empty);
             using (var fs = new FileStream(db.File, FileMode.Create))
@@ -48,8 +48,10 @@ namespace nManager.Wow.Helpers
     {
         [XmlAttribute]
         public string Name { get; set; }
+
         [XmlAttribute]
         public int Build { get; set; }
+
         [XmlElement("Field")]
         public List<Field> Fields { get; set; }
 
@@ -70,24 +72,31 @@ namespace nManager.Wow.Helpers
     {
         [XmlIgnore]
         public int Index { get; set; }
+
         [XmlAttribute]
         public string Name { get; set; }
+
         [XmlAttribute]
         public string Type { get; set; }
+
         [XmlAttribute, DefaultValue("")]
         public string Format { get; set; }
+
         [XmlAttribute, DefaultValue(1)]
         public int ArraySize { get; set; }
+
         [XmlAttribute, DefaultValue(false)]
         public bool IsIndex { get; set; }
+
         [XmlAttribute, DefaultValue(true)]
         public bool Visible { get; set; }
+
         [XmlAttribute, DefaultValue(100)]
         public int Width { get; set; }
 
         public Field Clone()
         {
-            return (Field)MemberwiseClone();
+            return (Field) MemberwiseClone();
         }
     }
 }

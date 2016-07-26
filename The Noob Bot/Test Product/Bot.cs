@@ -31,8 +31,8 @@ namespace Test_Product
         /*private const string CurrentProfileName = "afk.xml";
         private static bool _xmlProfile = true;
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
-        private static readonly Thread RadarThread = new Thread(LaunchRadar) { Name = "RadarThread" };
-        private static readonly Thread TaxiThread = new Thread(LaunchTaxi) { Name = "TaxiThread" };
+        private static readonly Thread RadarThread = new Thread(LaunchRadar) {Name = "RadarThread"};
+        private static readonly Thread TaxiThread = new Thread(LaunchTaxi) {Name = "TaxiThread"};
 
         public static void LaunchRadar()
         {
@@ -40,7 +40,7 @@ namespace Test_Product
             var myConn = new MySqlConnection("server=192.168.10.222; user id=root; password=aabbcc; database=offydump;");
             myConn.Open();
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006 });
+            List<int> BlackListed = new List<int>(new int[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
             //Spell WildCharge = new Spell("Wild Charge");
             while (true)
             {
@@ -52,7 +52,7 @@ namespace Test_Product
                     Logging.Write("Target BoundingRadius : " + target.GetBoundingRadius);
                     Logging.Write("In Range ? " + CombatClass.InSpellRange(target, WildCharge.MinRangeHostile, WildCharge.MaxRangeHostile));
                 }*/
-                Thread.Sleep(650 * 2); // Every 2 ObjectManager refresh
+                Thread.Sleep(650*2); // Every 2 ObjectManager refresh
                 // Prevent corruptions while the game loads after a zone change
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     continue;
@@ -82,10 +82,10 @@ namespace Test_Product
                         if (go.Entry != 0 && go.Name != "" && go.CreatedBy == 0)
                         {
                             query = "SELECT entry FROM gameobject WHERE entry = " + go.Entry + " AND " +
-                                "map = " + Usefuls.RealContinentId + " AND " +
-                                "SQRT((x-" + go.Position.X + ")*(x-" + go.Position.X + ") + " +
-                                     "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ") + " +
-                                     "(z-" + go.Position.Z + ")*(z-" + go.Position.Z + ")) < 0.5;";
+                                    "map = " + Usefuls.RealContinentId + " AND " +
+                                    "SQRT((x-" + go.Position.X + ")*(x-" + go.Position.X + ") + " +
+                                    "(y-" + go.Position.Y + ")*(y-" + go.Position.Y + ") + " +
+                                    "(z-" + go.Position.Z + ")*(z-" + go.Position.Z + ")) < 0.5;";
                             var cmd = new MySqlCommand(query, myConn);
                             MySqlDataReader result = cmd.ExecuteReader();
                             if (!result.HasRows && go.GOType != WoWGameObjectType.MoTransport && go.GOType != WoWGameObjectType.Transport)
@@ -93,8 +93,10 @@ namespace Test_Product
                                 result.Close();
                                 Quaternion rotations = go.Rotations;
                                 Matrix4 matrice = go.WorldMatrix;
-                                query = "INSERT INTO gameobject (entry,map,x,y,z,o,r0,r1,r2,r3,m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44) VALUES (" + go.Entry + "," + Usefuls.RealContinentId + "," + go.Position.X + "," + go.Position.Y + "," + go.Position.Z + "," + go.Orientation + "," + rotations.X + "," + rotations.Y + "," + rotations.Z + "," + rotations.W + "," +
-                                    matrice.xx + "," + matrice.xy + "," + matrice.xz + "," + matrice.xw + "," + matrice.yx + "," + matrice.yy + "," + matrice.yz + "," + matrice.yw + "," + matrice.zx + "," + matrice.zy + "," + matrice.zz + "," + matrice.zw + "," + matrice.wx + "," + matrice.wy + "," + matrice.wz + "," + matrice.ww + ");";
+                                query = "INSERT INTO gameobject (entry,map,x,y,z,o,r0,r1,r2,r3,m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44) VALUES (" + go.Entry + "," + Usefuls.RealContinentId +
+                                        "," + go.Position.X + "," + go.Position.Y + "," + go.Position.Z + "," + go.Orientation + "," + rotations.X + "," + rotations.Y + "," + rotations.Z + "," + rotations.W + "," +
+                                        matrice.xx + "," + matrice.xy + "," + matrice.xz + "," + matrice.xw + "," + matrice.yx + "," + matrice.yy + "," + matrice.yz + "," + matrice.yw + "," + matrice.zx + "," +
+                                        matrice.zy + "," + matrice.zz + "," + matrice.zw + "," + matrice.wx + "," + matrice.wy + "," + matrice.wz + "," + matrice.ww + ");";
                                 cmd = new MySqlCommand(query, myConn);
                                 cmd.ExecuteNonQuery();
                             }
@@ -110,7 +112,8 @@ namespace Test_Product
                                 query = "INSERT IGNORE INTO gameobject_template (entry,type,name,iconname,castbarcaption,model,faction,flags,size";
                                 for (uint i = 0; i < 32; i++)
                                     query += ",data" + i;
-                                query += ",questitem1,questitem2,questitem3,questitem4) VALUES (" + go.Entry + "," + (uint)go.GOType + ",'" + go.Name.Replace("'", "\\'") + "','" + go.IconName.Replace("'", "\\'") + "','" + go.CastBarCaption.Replace("'", "\\'") + "'," + go.DisplayId + "," + go.Faction + "," + (uint)go.GOFlags + "," + go.Size;
+                                query += ",questitem1,questitem2,questitem3,questitem4) VALUES (" + go.Entry + "," + (uint) go.GOType + ",'" + go.Name.Replace("'", "\\'") + "','" + go.IconName.Replace("'", "\\'") +
+                                         "','" + go.CastBarCaption.Replace("'", "\\'") + "'," + go.DisplayId + "," + go.Faction + "," + (uint) go.GOFlags + "," + go.Size;
                                 for (uint i = 0; i < 32; i++)
                                     query += "," + go.Data(i);
                                 query += "," + go.QuestItem1 + "," + go.QuestItem2 + "," + go.QuestItem3 + "," + go.QuestItem4;
@@ -126,7 +129,8 @@ namespace Test_Product
                                 result.Close();
                                 if (questitem > 1000000 || questitem < 0) // 1065353216
                                 {
-                                    query = "UPDATE gameobject_template set size = " + go.Size + ", questitem1 = " + go.QuestItem1 + ", questitem2 = " + go.QuestItem2 + ", questitem3 = " + go.QuestItem3 + ", questitem4 = " + go.QuestItem4 + " WHERE entry =" + go.Entry + ";";
+                                    query = "UPDATE gameobject_template set size = " + go.Size + ", questitem1 = " + go.QuestItem1 + ", questitem2 = " + go.QuestItem2 + ", questitem3 = " + go.QuestItem3 +
+                                            ", questitem4 = " + go.QuestItem4 + " WHERE entry =" + go.Entry + ";";
                                     cmd = new MySqlCommand(query, myConn);
                                     cmd.ExecuteNonQuery();
                                 }
@@ -371,143 +375,143 @@ namespace Test_Product
         {
             try
             {
-
-            if (_availableTaxis == null)
-                _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
-            if (_availableTaxiLinks == null)
-                _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
-            uint firstTaxiId = 0;
-            while (true)
-            {
-                _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
-                _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
-                if (IsTaxiOpen())
+                if (_availableTaxis == null)
+                    _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+                if (_availableTaxiLinks == null)
+                    _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+                uint firstTaxiId = 0;
+                while (true)
                 {
-                    if (firstTaxiId != 0 && firstTaxiId == ObjectManager.Me.Target.GetWoWId)
+                    _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+                    _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+                    if (IsTaxiOpen())
                     {
-                        Logging.Write("The continent have been parsed !");
-                        break;
-                    }
-                    if (firstTaxiId == 0)
-                        firstTaxiId = ObjectManager.Me.Target.GetWoWId;
-                    if (TaxiListContainsTaxiId(ObjectManager.Me.Target.GetWoWId))
-                    {
-                        Logging.WriteDebug("The taxi from NPC " + ObjectManager.Target.Name + " is already in our database.");
-                        var myTaxi = GetTaxiFromTaxiId(ObjectManager.Me.Target.GetWoWId);
-                        if (myTaxi.Faction != Npc.FactionType.Neutral && ObjectManager.Me.PlayerFaction != myTaxi.Faction.ToString())
+                        if (firstTaxiId != 0 && firstTaxiId == ObjectManager.Me.Target.GetWoWId)
                         {
-                            for (int i = 0; i < _availableTaxis.Count; i++)
+                            Logging.Write("The continent have been parsed !");
+                            break;
+                        }
+                        if (firstTaxiId == 0)
+                            firstTaxiId = ObjectManager.Me.Target.GetWoWId;
+                        if (TaxiListContainsTaxiId(ObjectManager.Me.Target.GetWoWId))
+                        {
+                            Logging.WriteDebug("The taxi from NPC " + ObjectManager.Target.Name + " is already in our database.");
+                            var myTaxi = GetTaxiFromTaxiId(ObjectManager.Me.Target.GetWoWId);
+                            if (myTaxi.Faction != Npc.FactionType.Neutral && ObjectManager.Me.PlayerFaction != myTaxi.Faction.ToString())
                             {
-                                if (myTaxi.Id == _availableTaxis[i].Id)
+                                for (int i = 0; i < _availableTaxis.Count; i++)
                                 {
-                                    _availableTaxis[i].Faction = Npc.FactionType.Neutral;
+                                    if (myTaxi.Id == _availableTaxis[i].Id)
+                                    {
+                                        _availableTaxis[i].Faction = Npc.FactionType.Neutral;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        Taxi localTaxi = new Taxi();
-                        localTaxi.Id = ObjectManager.Me.Target.GetWoWId;
-                        localTaxi.Position = ObjectManager.Target.Position;
-                        string taxiInfo = ExtractCurrentTaxiInfo();
-                        localTaxi.Name = taxiInfo.Split('#')[0];
-                        localTaxi.ContinentId = Usefuls.ContinentId;
-                        localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
-                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
-                        localTaxi.Faction = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
-                        _availableTaxis.Add(localTaxi);
-                        foreach (TaxiLink taxiLink in _availableTaxiLinks)
+                        else
                         {
-                            if (taxiLink.PointB == 0 && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
+                            Taxi localTaxi = new Taxi();
+                            localTaxi.Id = ObjectManager.Me.Target.GetWoWId;
+                            localTaxi.Position = ObjectManager.Target.Position;
+                            string taxiInfo = ExtractCurrentTaxiInfo();
+                            localTaxi.Name = taxiInfo.Split('#')[0];
+                            localTaxi.ContinentId = Usefuls.ContinentId;
+                            localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
+                            localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
+                            localTaxi.Faction = ObjectManager.Me.PlayerFaction == "Alliance" ? Npc.FactionType.Alliance : Npc.FactionType.Horde;
+                            _availableTaxis.Add(localTaxi);
+                            foreach (TaxiLink taxiLink in _availableTaxiLinks)
                             {
-                                taxiLink.PointB = localTaxi.Id;
-                                taxiLink.PointB_XY = "";
+                                if (taxiLink.PointB == 0 && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
+                                {
+                                    taxiLink.PointB = localTaxi.Id;
+                                    taxiLink.PointB_XY = "";
+                                }
                             }
                         }
-                    }
 
-                    foreach (string ctaxi in ExtractDirectPathTaxiInfoList())
-                    {
-                        string taxiInfo = ctaxi;
-                        Taxi localTaxi = new Taxi();
-                        localTaxi.Name = taxiInfo.Split('#')[0];
-                        localTaxi.ContinentId = Usefuls.ContinentId;
-                        localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
-                        localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
-                        bool taxiExist = false;
-                        Taxi taxiFound = new Taxi();
-                        foreach (Taxi taxi in _availableTaxis)
+                        foreach (string ctaxi in ExtractDirectPathTaxiInfoList())
                         {
-                            if (taxi.Xcoord == localTaxi.Xcoord && taxi.Ycoord == localTaxi.Ycoord)
+                            string taxiInfo = ctaxi;
+                            Taxi localTaxi = new Taxi();
+                            localTaxi.Name = taxiInfo.Split('#')[0];
+                            localTaxi.ContinentId = Usefuls.ContinentId;
+                            localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
+                            localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
+                            bool taxiExist = false;
+                            Taxi taxiFound = new Taxi();
+                            foreach (Taxi taxi in _availableTaxis)
                             {
-                                // this taxi exist in the list so we have its ID
-                                taxiExist = true;
-                                taxiFound = taxi;
+                                if (taxi.Xcoord == localTaxi.Xcoord && taxi.Ycoord == localTaxi.Ycoord)
+                                {
+                                    // this taxi exist in the list so we have its ID
+                                    taxiExist = true;
+                                    taxiFound = taxi;
+                                }
+                            }
+                            bool found = false;
+                            foreach (TaxiLink taxiLink in _availableTaxiLinks)
+                            {
+                                if (taxiExist && taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB == taxiFound.Id)
+                                {
+                                    found = true;
+                                    break;
+                                }
+                                if (taxiExist && taxiLink.PointB == ObjectManager.Me.Target.GetWoWId && taxiLink.PointA == taxiFound.Id)
+                                {
+                                    found = true;
+                                    break;
+                                }
+                                if (taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                _availableTaxiLinks.Add(taxiExist
+                                    ? new TaxiLink {PointA = ObjectManager.Me.Target.GetWoWId, PointB = taxiFound.Id}
+                                    : new TaxiLink {PointA = ObjectManager.Me.Target.GetWoWId, PointB_XY = localTaxi.Xcoord + localTaxi.Ycoord});
                             }
                         }
-                        bool found = false;
-                        foreach (TaxiLink taxiLink in _availableTaxiLinks)
-                        {
-                            if (taxiExist && taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB == taxiFound.Id)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (taxiExist && taxiLink.PointB == ObjectManager.Me.Target.GetWoWId && taxiLink.PointA == taxiFound.Id)
-                            {
-                                found = true;
-                                break;
-                            }
-                            if (taxiLink.PointA == ObjectManager.Me.Target.GetWoWId && taxiLink.PointB_XY == localTaxi.Xcoord + localTaxi.Ycoord)
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found)
-                        {
-                            _availableTaxiLinks.Add(taxiExist
-                                ? new TaxiLink { PointA = ObjectManager.Me.Target.GetWoWId, PointB = taxiFound.Id }
-                                : new TaxiLink { PointA = ObjectManager.Me.Target.GetWoWId, PointB_XY = localTaxi.Xcoord + localTaxi.Ycoord });
-                        }
-                    }
 
-                    XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiList.xml", _availableTaxis);
-                    XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiLinks.xml", _availableTaxiLinks);
-                    string nextHop = ExtractNextTaxiInfo();
-                    Logging.Write("Taking taxi from " + ExtractCurrentTaxiInfo().Split('#')[0] + " to " + nextHop.Split('#')[0]);
-                    Gossip.TakeTaxi(nextHop.Split('#')[1].Split('^')[0], nextHop.Split('^')[1].Split('@')[0]);
-                    Thread.Sleep(1000);
-                }
-                if (ObjectManager.Me.OnTaxi)
-                {
-                    Travel.TravelPatientlybyTaxiOrPortal(true);
-                    Thread.Sleep(2000);
-                    continue;
-                }
-                WoWUnit taxiUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster());
-                var baseAddress = MovementManager.FindTarget(taxiUnit);
-                if (MovementManager.InMovement)
-                    continue;
-                if (baseAddress > 0)
-                {
-                    Interact.InteractWith(baseAddress);
-                    Thread.Sleep(500);
-                    if (!Gossip.IsTaxiWindowOpen())
-                    {
-                        Gossip.SelectGossip(Gossip.GossipOption.Taxi);
-                        Thread.Sleep(250 + Usefuls.Latency);
+                        XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiList.xml", _availableTaxis);
+                        XmlSerializer.Serialize(Application.StartupPath + @"\Data\TaxiLinks.xml", _availableTaxiLinks);
+                        string nextHop = ExtractNextTaxiInfo();
+                        Logging.Write("Taking taxi from " + ExtractCurrentTaxiInfo().Split('#')[0] + " to " + nextHop.Split('#')[0]);
+                        Gossip.TakeTaxi(nextHop.Split('#')[1].Split('^')[0], nextHop.Split('^')[1].Split('@')[0]);
+                        Thread.Sleep(1000);
                     }
+                    if (ObjectManager.Me.OnTaxi)
+                    {
+                        Travel.TravelPatientlybyTaxiOrPortal(true);
+                        Thread.Sleep(2000);
+                        continue;
+                    }
+                    WoWUnit taxiUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster());
+                    var baseAddress = MovementManager.FindTarget(taxiUnit);
+                    if (MovementManager.InMovement)
+                        continue;
+                    if (baseAddress > 0)
+                    {
+                        Interact.InteractWith(baseAddress);
+                        Thread.Sleep(500);
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Gossip.SelectGossip(Gossip.GossipOption.Taxi);
+                            Thread.Sleep(250 + Usefuls.Latency);
+                        }
+                    }
+                    Thread.Sleep(200);
                 }
-                Thread.Sleep(200);
-            }
             }
             catch (Exception e)
             {
                 Logging.WriteDebug(e.ToString());
             }
         }
+
         public static int AddQuesters(List<Npc> npcqList, bool neutralIfPossible = false)
         {
             int count = 0;
@@ -624,7 +628,9 @@ namespace Test_Product
             }
             return "";
         }
+
         public static string FirstReachable = "";
+
         public static string ExtractNextTaxiInfo()
         {
             bool currentFound = false;
@@ -802,6 +808,7 @@ namespace Test_Product
             });
             XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDBnew.xml", npcListResult);
         }
+
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellDB2
         {
@@ -817,17 +824,16 @@ namespace Test_Product
             public short field18_1; // just a padding to the end of the row
         }
 
-        
+
         public static bool Pulse()
         {
             try
             {
-                
                 /*uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
                 Logging.Write("mortel Ptr: " + mortel);
                 uint suicide = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 186);
                 Logging.Write("suicide Ptr: " + suicide);*/
-                
+
 
                 /*uint db2ptr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + 0xD20EF0 + 0xA8);
                 uint RowsOfSpellDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x4);
@@ -845,7 +851,7 @@ namespace Test_Product
                         continue;
                     Logging.Write("Current SpellId: " + currRow.m_ID + " , Name: " + SpellName);
                 }*/
-                
+
                 /*
                 // Update spell list
                 //SpellManager.UpdateSpellBook();

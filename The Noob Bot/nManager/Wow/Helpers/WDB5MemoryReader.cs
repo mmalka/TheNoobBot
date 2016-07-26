@@ -97,7 +97,7 @@ namespace nManager.Wow.Helpers
                 uint v3 = Memory.WowMemory.Memory.ReadUInt(v2 + 76);
                 int v4 = a2 - Memory.WowMemory.Memory.ReadShort(v2 + 24);
                 short v10 = (short) (a2 - Memory.WowMemory.Memory.ReadShort(v2 + 24));
-                v5 = WowClientDB2__GetIndexAddressByIndex(Memory.WowMemory.Memory.ReadInt(v2 + 72), (int)(Memory.WowMemory.Memory.ReadInt(v2 + 72) + 4 * v3), ref v10);
+                v5 = WowClientDB2__GetIndexAddressByIndex(Memory.WowMemory.Memory.ReadInt(v2 + 72), (int) (Memory.WowMemory.Memory.ReadInt(v2 + 72) + 4*v3), ref v10);
                 if (v5 == Memory.WowMemory.Memory.ReadInt(v2 + 72) + 4*Memory.WowMemory.Memory.ReadInt(v2 + 76) || Memory.WowMemory.Memory.ReadShort((uint) v5) != v4)
                     goToEnd = true;
             }

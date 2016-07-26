@@ -27,7 +27,7 @@ namespace nManager.Wow.Helpers
                 };
 
                 //return Core.Memory.Read<IntPtr>(Core.Executor.Execute(asm, "DB2Reader"));
-                    ;
+                ;
                 uint ret = Memory.WowMemory.InjectAndExecute(asm);
                 if (box)
                     MessageBox.Show(ret.ToString("X"));

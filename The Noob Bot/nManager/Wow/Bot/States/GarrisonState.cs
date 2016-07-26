@@ -83,7 +83,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (!Usefuls.InGame || Usefuls.IsLoading || ObjMgr.Me.IsDeadMe || !ObjMgr.Me.IsValid ||
                     (ObjMgr.Me.InCombat && !(ObjMgr.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
-                    Usefuls.IsFlying))) || !Products.Products.IsStarted)
+                                                                     Usefuls.IsFlying))) || !Products.Products.IsStarted)
                     return false;
                 // Not initialized, then run
                 if (tList == null)
@@ -114,16 +114,16 @@ namespace nManager.Wow.Bot.States
                 }
                 tList.Push(Task.GoToGarrison);
                 // And fill the variables
-                _cacheGarrison = new List<int> { 237722, 236916, 237191, 237724, 237720, 237723 };
+                _cacheGarrison = new List<int> {237722, 236916, 237191, 237724, 237720, 237723};
                 if (ObjMgr.Me.PlayerFaction == "Alliance")
                 {
                     _npcGarden = 85514;
                     _cacheGarden = 235885;
                     _npcMine = 77730;
                     _cacheMine = 235886;
-                    _garden = new Point { X = 1833.85f, Y = 154.7408f, Z = 76.66339f };
-                    _mineEntrance = new Point { X = 1886.021f, Y = 83.23455f, Z = 84.31888f };
-                    _cacheGarrisonPoint = new Point { X = 1914.361f, Y = 290.3863f, Z = 88.96407f };
+                    _garden = new Point {X = 1833.85f, Y = 154.7408f, Z = 76.66339f};
+                    _mineEntrance = new Point {X = 1886.021f, Y = 83.23455f, Z = 84.31888f};
+                    _cacheGarrisonPoint = new Point {X = 1914.361f, Y = 290.3863f, Z = 88.96407f};
                 }
                 else
                 {
@@ -131,9 +131,9 @@ namespace nManager.Wow.Bot.States
                     _cacheGarden = 239238;
                     _npcMine = 81688;
                     _cacheMine = 239237;
-                    _garden = new Point { X = 5413.795f, Y = 4548.928f, Z = 139.1232f };
-                    _mineEntrance = new Point { X = 5465.796f, Y = 4430.045f, Z = 145.4595f };
-                    _cacheGarrisonPoint = new Point { X = 5592.229f, Y = 4569.476f, Z = 136.1069f };
+                    _garden = new Point {X = 5413.795f, Y = 4548.928f, Z = 139.1232f};
+                    _mineEntrance = new Point {X = 5465.796f, Y = 4430.045f, Z = 145.4595f};
+                    _cacheGarrisonPoint = new Point {X = 5592.229f, Y = 4569.476f, Z = 136.1069f};
                 }
                 _cacheGardenGathered = false;
                 _cacheMineGathered = false;
@@ -162,7 +162,7 @@ namespace nManager.Wow.Bot.States
                                 LongMove.LongMoveGo(_cacheGarrisonPoint);
                                 return;
                             }
-                            // else if not too far go by foot
+                                // else if not too far go by foot
                             else if (_cacheGarrisonPoint.DistanceTo(me) < 100)
                             {
                                 List<Point> pathToGarrison = PathFinder.FindPath(_cacheGarrisonPoint, out success);
@@ -202,7 +202,7 @@ namespace nManager.Wow.Bot.States
                     {
                         if (cache.Position.DistanceTo(me) > 5.0f)
                         {
-                            _targetNpc = new Npc { Entry = cache.Entry, Position = cache.Position };
+                            _targetNpc = new Npc {Entry = cache.Entry, Position = cache.Position};
                             MovementManager.FindTarget(ref _targetNpc, 5f);
                             return;
                         }
@@ -281,7 +281,7 @@ namespace nManager.Wow.Bot.States
                         {
                             if (gardenCache.Position.DistanceTo(me) > 5.0f)
                             {
-                                _targetNpc = new Npc { Entry = gardenCache.Entry, Position = gardenCache.Position };
+                                _targetNpc = new Npc {Entry = gardenCache.Entry, Position = gardenCache.Position};
                                 MovementManager.FindTarget(ref _targetNpc, 5f);
                                 return;
                             }
@@ -299,7 +299,7 @@ namespace nManager.Wow.Bot.States
                     {
                         if (gardenNpc.Position.DistanceTo(me) > 5.0f)
                         {
-                            _targetNpc = new Npc { Entry = gardenNpc.Entry, Position = gardenNpc.Position };
+                            _targetNpc = new Npc {Entry = gardenNpc.Entry, Position = gardenNpc.Position};
                             MovementManager.FindTarget(ref _targetNpc, 5f);
                             return;
                         }
@@ -325,7 +325,7 @@ namespace nManager.Wow.Bot.States
                         {
                             if (mineCache.Position.DistanceTo(me) > 5.0f)
                             {
-                                _targetNpc = new Npc { Entry = mineCache.Entry, Position = mineCache.Position };
+                                _targetNpc = new Npc {Entry = mineCache.Entry, Position = mineCache.Position};
                                 MovementManager.FindTarget(ref _targetNpc, 5f);
                                 return;
                             }
@@ -343,7 +343,7 @@ namespace nManager.Wow.Bot.States
                     {
                         if (mineNpc.Position.DistanceTo(me) > 5.0f)
                         {
-                            _targetNpc = new Npc { Entry = mineNpc.Entry, Position = mineNpc.Position };
+                            _targetNpc = new Npc {Entry = mineNpc.Entry, Position = mineNpc.Position};
                             MovementManager.FindTarget(ref _targetNpc, 5f);
                             return;
                         }
