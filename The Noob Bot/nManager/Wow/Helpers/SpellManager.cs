@@ -197,8 +197,6 @@ namespace nManager.Wow.Helpers
                     if (spellCooldown.SpellOrItemCooldownDuration >= elaspedTime)
                         return true;
                 }
-                if (spellCooldown.CategoryCooldownDuration <= 0 && spellCooldown.SpellOrItemCooldownDuration <= 0 && spellCooldown.GCDDuration <= 0 && spellCooldown.StartTime > 0)
-                    return true; // happend wierdly
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
                 if (spellCooldown.CategoryCooldownDuration >= elaspedTime)
