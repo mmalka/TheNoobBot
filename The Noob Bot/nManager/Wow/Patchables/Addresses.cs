@@ -167,8 +167,8 @@
             GAMEOBJECT_FIELD_X = 0x138,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
-            PackedRotationQuaternion = 0x150, // ?// check or update
-            TransformationMatrice = 0x278, // ?// CGGameObject_C::GetMatrix
+            PackedRotationQuaternion = 0x148, // GetQuaternionOffset => UnpackQuaternion
+            TransformationMatrice = 0x270, // GetMatrixOffset  ((this + 0x270), 0x40u)
             DBCacheRow = 0x26C, // CGGameObject_C::GetName
             CachedIconName = 0x08,
             CachedCastBarCaption = 0xC,
