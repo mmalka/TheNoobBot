@@ -824,25 +824,6 @@
     </Quest>
     <!--Simple Letter (Warrior)-->
 
-    <!--Etched Letter (Hunter)-->
-    <Quest>
-      <Name>Etched Letter</Name>
-      <Id>26910</Id>
-      <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1</RaceMask> <!-- Human -->
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>3</MinLevel>
-      <MaxLevel>6</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28759</int>
-      </NeedQuestCompletedId>
-      <PickUp>197</PickUp>
-      <TurnIn>43278</TurnIn>
-      <Objectives>
-      </Objectives>
-    </Quest>
-    <!--Etched Letter (Hunter)-->
-
     <!--Calligraphed Letter (Monk)-->
     <Quest>
       <Name>Calligraphed Letter</Name>

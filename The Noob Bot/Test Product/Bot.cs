@@ -829,6 +829,12 @@ namespace Test_Product
         {
             try
             {
+                string x = "";
+                foreach (var spell in SpellManager.SpellBook())
+                {
+                    x = x + ("public readonly Spell " + spell.Name.Trim().Replace(" ", "").Replace(":", "") + " = new Spell(\"" + spell.Name + "\");") + Environment.NewLine;
+                }
+                Logging.Write(x);
                 /*uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
                 Logging.Write("mortel Ptr: " + mortel);
                 uint suicide = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 186);
