@@ -19,6 +19,7 @@ namespace nManager.Wow.Helpers
 
         private static DB5Reader _questPOIPointDB2;
         private static QuestPOIPointDb2Record[] _cachedRecords;
+        private static BinaryReader[] _cachedQuestPOIPointRows;
 
         private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
         {
@@ -56,8 +57,6 @@ namespace nManager.Wow.Helpers
                 }
             }
         }
-
-        private static BinaryReader[] _cachedQuestPOIPointRows;
 
         private WoWQuestPOIPoint(uint setId)
         {

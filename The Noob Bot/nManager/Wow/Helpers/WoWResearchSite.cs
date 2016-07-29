@@ -12,6 +12,8 @@ namespace nManager.Wow.Helpers
         private ResearchSiteDb2Record _rSiteDB2Record0;
 
         private static DB5Reader _rSiteDB2;
+        private static ResearchSiteDb2Record[] _cachedRecords;
+        private static BinaryReader[] _cachedResearchSiteRows;
 
         private static void init()
         {
@@ -28,6 +30,18 @@ namespace nManager.Wow.Helpers
                 {
                     var table = definitions.First();
                     _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\ResearchSite.db2", table) as DB5Reader;
+                    if (_cachedResearchSiteRows == null || _cachedRecords == null)
+                    {
+                        if (_rSiteDB2 != null)
+                        {
+                            _cachedResearchSiteRows = _rSiteDB2.Rows.ToArray();
+                            _cachedRecords = new ResearchSiteDb2Record[_cachedResearchSiteRows.Length];
+                            for (int i = 0; i < _cachedResearchSiteRows.Length - 1; i++)
+                            {
+                                _cachedRecords[i] = DB5Reader.ByteToType<ResearchSiteDb2Record>(_cachedResearchSiteRows[i]);
+                            }
+                        }
+                    }
                     Logging.Write(_rSiteDB2.FileName + " loaded with " + _rSiteDB2.RecordsCount + " entries.");
                 }
                 else
@@ -45,7 +59,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < _rSiteDB2.RecordsCount - 1; i++)
             {
-                tempResearchSiteDb2Record = DB5Reader.ByteToType<ResearchSiteDb2Record>(_rSiteDB2.Rows.ElementAt(i));
+                tempResearchSiteDb2Record = _cachedRecords[i];
                 if (tempResearchSiteDb2Record.Name() == name && tempResearchSiteDb2Record.Map == Usefuls.ContinentId)
                 {
                     if (SecondOne && !second)
@@ -68,7 +82,7 @@ namespace nManager.Wow.Helpers
 
             for (int i = 0; i < _rSiteDB2.RecordsCount - 1; i++)
             {
-                tempResearchSiteDb2Record = DB5Reader.ByteToType<ResearchSiteDb2Record>(_rSiteDB2.Rows.ElementAt(i));
+                tempResearchSiteDb2Record = _cachedRecords[i];
                 digSites.Add(tempResearchSiteDb2Record);
             }
 
@@ -82,7 +96,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < _rSiteDB2.RecordsCount - 1; i++)
             {
-                tempResearchSiteDb2Record = DB5Reader.ByteToType<ResearchSiteDb2Record>(_rSiteDB2.Rows.ElementAt(i));
+                tempResearchSiteDb2Record = _cachedRecords[i];
                 if (tempResearchSiteDb2Record.Id == reqId)
                 {
                     found = true;

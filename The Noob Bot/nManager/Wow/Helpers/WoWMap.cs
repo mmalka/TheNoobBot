@@ -12,6 +12,8 @@ namespace nManager.Wow.Helpers
     public class WoWMap
     {
         private MapDbcRecord _rMapDBCRecord0;
+        private static MapDbcRecord[] _cachedRecords;
+        private static BinaryReader[] _cachedMapRows;
 
         // Small list of unused map which have nor flags, nor type able to filter them
         private static List<uint> _blacklistedMaps = new List<uint>(new uint[] {930, 995, 1187});
@@ -33,6 +35,18 @@ namespace nManager.Wow.Helpers
                 {
                     var table = definitions.First();
                     mapDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\Map.db2", table) as DB5Reader;
+                    if (_cachedMapRows == null || _cachedRecords == null)
+                    {
+                        if (mapDB2 != null)
+                        {
+                            _cachedMapRows = mapDB2.Rows.ToArray();
+                            _cachedRecords = new MapDbcRecord[_cachedMapRows.Length];
+                            for (int i = 0; i < _cachedMapRows.Length - 1; i++)
+                            {
+                                _cachedRecords[i] = DB5Reader.ByteToType<MapDbcRecord>(_cachedMapRows[i]);
+                            }
+                        }
+                    }
                     Logging.Write(mapDB2.FileName + " loaded with " + mapDB2.RecordsCount + " entries.");
                 }
                 else
@@ -49,7 +63,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < mapDB2.RecordsCount - 1; i++)
             {
-                tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                tempMapDbcRecord = _cachedRecords[i];
                 string temp = (mpq ? tempMapDbcRecord.MapMPQName() : tempMapDbcRecord.MapName());
                 if (temp == name)
                 {
@@ -87,7 +101,7 @@ namespace nManager.Wow.Helpers
             bool found = false;
             for (int i = 0; i < mapDB2.RecordsCount - 1; i++)
             {
-                tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                tempMapDbcRecord = _cachedRecords[i];
                 if (tempMapDbcRecord.Id == reqId)
                 {
                     found = true;
@@ -126,7 +140,7 @@ namespace nManager.Wow.Helpers
             List<MapDbcRecord> result = new List<MapDbcRecord>();
             for (int i = 0; i < mapDB2.RecordsCount - 1; i++)
             {
-                tempMapDbcRecord = DB5Reader.ByteToType<MapDbcRecord>(mapDB2.Rows.ElementAt(i));
+                tempMapDbcRecord = _cachedRecords[i];
                 if (!tempMapDbcRecord.IsBlacklistedMap() && tempMapDbcRecord.InstanceType == iType && tempMapDbcRecord.MapType == mType && !tempMapDbcRecord.IsTestMap() && !tempMapDbcRecord.IsGarrisonMap())
                     result.Add(tempMapDbcRecord);
             }
