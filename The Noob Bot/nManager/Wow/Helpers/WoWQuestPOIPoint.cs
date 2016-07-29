@@ -232,8 +232,8 @@ namespace nManager.Wow.Helpers
         private struct QuestPOIPointDb2Record
         {
             public readonly uint SetId;
-            public readonly ushort X;
-            public readonly ushort Y;
+            public readonly short X;
+            public readonly short Y;
             public readonly uint Id;
         }
     }
