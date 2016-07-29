@@ -18,6 +18,7 @@ namespace nManager.Wow.Helpers
         private bool _middlePointSet;
 
         private static DB5Reader _questPOIPointDB2;
+        private static QuestPOIPointDb2Record[] _cachedRecords;
 
         private static void Init() // todo make DBC loading shared accross all others reads with a better loading class.
         {
@@ -37,7 +38,14 @@ namespace nManager.Wow.Helpers
                     if (_cachedQuestPOIPointRows == null)
                     {
                         if (_questPOIPointDB2 != null)
+                        {
                             _cachedQuestPOIPointRows = _questPOIPointDB2.Rows.ToArray();
+                            _cachedRecords = new QuestPOIPointDb2Record[_cachedQuestPOIPointRows.Length];
+                            for (int i = 0; i < _cachedQuestPOIPointRows.Length - 1; i++)
+                            {
+                                _cachedRecords[i] = DB5Reader.ByteToType<QuestPOIPointDb2Record>(_cachedQuestPOIPointRows[i]);
+                            }
+                        }
                     }
                     if (_questPOIPointDB2 != null)
                         Logging.Write(_questPOIPointDB2.FileName + " loaded with " + _questPOIPointDB2.RecordsCount + " entries.");
@@ -60,7 +68,7 @@ namespace nManager.Wow.Helpers
 
             for (int i = 0; i < _questPOIPointDB2.RecordsCount - 1; i++)
             {
-                qpPointDb2Record = DB5Reader.ByteToType<QuestPOIPointDb2Record>(_cachedQuestPOIPointRows[i]);
+                qpPointDb2Record = _cachedRecords[i];
                 if (qpPointDb2Record.SetId == setId)
                 {
                     _setPoints.Add(new Point(qpPointDb2Record.X, qpPointDb2Record.Y, 0));
