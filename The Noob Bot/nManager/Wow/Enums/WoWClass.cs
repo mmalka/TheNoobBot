@@ -14,6 +14,7 @@
         Warlock = 9,
         Monk = 10,
         Druid = 11,
+        DemonHunter = 12,
     }
 
     public enum WoWClassMask
@@ -29,5 +30,6 @@
         Warlock = 256,
         Monk = 512,
         Druid = 1024,
+        DemonHunter = 2048,
     }
 }

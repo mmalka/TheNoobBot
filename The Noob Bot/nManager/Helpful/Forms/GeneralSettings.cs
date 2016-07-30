@@ -21,6 +21,7 @@ namespace nManager.Helpful.Forms
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
                 Plugins.Plugins.DisposePlugins();
+                CombatClass.Items.Add("OfficialTnbClassSelector");
                 foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
                 {
                     CombatClass.Items.Add(f);

@@ -202,7 +202,7 @@ namespace nManager
 
         // Global Settings:
         public string LastProductLoaded;
-        public string CombatClass = "Tnb_CombatClass.dll";
+        public string CombatClass = "OfficialTnbClassSelector";
         public string HealerClass = "Tnb_HealerClass.dll";
         public bool AutoAssignTalents; // To be fixed.
         public bool ActivateSkillsAutoTraining = true;

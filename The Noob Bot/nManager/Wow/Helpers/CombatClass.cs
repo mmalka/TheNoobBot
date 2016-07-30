@@ -157,10 +157,15 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                string __pathToCombatClassFile;
                 if (nManagerSetting.CurrentSetting.CombatClass != "")
                 {
-                    string __pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" +
-                                                     nManagerSetting.CurrentSetting.CombatClass;
+                    if (nManagerSetting.CurrentSetting.CombatClass == "OfficialTnbClassSelector")
+                    {
+                        __pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\OfficialTnbClassSelector\\Tnb_" + ObjectManager.ObjectManager.Me.WowClass + "Rotations.dll";
+                    }
+                    else
+                        __pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" + nManagerSetting.CurrentSetting.CombatClass;
                     string fileExt = __pathToCombatClassFile.Substring(__pathToCombatClassFile.Length - 3);
                     if (fileExt == "dll")
                         LoadCombatClass(__pathToCombatClassFile, false, false, false);

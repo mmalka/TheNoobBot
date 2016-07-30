@@ -253,6 +253,8 @@ namespace nManager.Helpful.Forms
             this.BroadcastingIPLocalLabel = new System.Windows.Forms.Label();
             this.BroadcastingPortLabel = new System.Windows.Forms.Label();
             this.AdvancedSettingsPanelName = new nManager.Helpful.Forms.UserControls.TnbExpendablePanel();
+            this.HideCharacterNameFromTitleLabel = new System.Windows.Forms.Label();
+            this.HideCharacterNameFromTitle = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.UseFrameLockLabel = new System.Windows.Forms.Label();
             this.UseFrameLock = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.HideSDKFilesLabel = new System.Windows.Forms.Label();
@@ -268,8 +270,6 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
-            this.HideCharacterNameFromTitleLabel = new System.Windows.Forms.Label();
-            this.HideCharacterNameFromTitle = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -414,6 +414,7 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.Location = new System.Drawing.Point(0, 0);
             this.SpellManagementSystemPanelName.Margin = new System.Windows.Forms.Padding(0);
             this.SpellManagementSystemPanelName.MaximumSize = new System.Drawing.Size(556, 0);
+            this.SpellManagementSystemPanelName.MinimumSize = new System.Drawing.Size(556, 36);
             this.SpellManagementSystemPanelName.Name = "SpellManagementSystemPanelName";
             this.SpellManagementSystemPanelName.OrderIndex = 1;
             this.SpellManagementSystemPanelName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
@@ -3289,6 +3290,33 @@ namespace nManager.Helpful.Forms
             this.AdvancedSettingsPanelName.TitleText = "Advanced Settings";
             this.AdvancedSettingsPanelName.UnfolderImage = ((System.Drawing.Image)(resources.GetObject("AdvancedSettingsPanelName.UnfolderImage")));
             // 
+            // HideCharacterNameFromTitleLabel
+            // 
+            this.HideCharacterNameFromTitleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HideCharacterNameFromTitleLabel.ForeColor = System.Drawing.Color.Black;
+            this.HideCharacterNameFromTitleLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.HideCharacterNameFromTitleLabel.Location = new System.Drawing.Point(4, 161);
+            this.HideCharacterNameFromTitleLabel.Name = "HideCharacterNameFromTitleLabel";
+            this.HideCharacterNameFromTitleLabel.Size = new System.Drawing.Size(430, 22);
+            this.HideCharacterNameFromTitleLabel.TabIndex = 39;
+            this.HideCharacterNameFromTitleLabel.Text = "Replace your Character\'s Name with \"Anonymous\" in the title of the Main Window";
+            this.HideCharacterNameFromTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // HideCharacterNameFromTitle
+            // 
+            this.HideCharacterNameFromTitle.BackColor = System.Drawing.Color.White;
+            this.HideCharacterNameFromTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.HideCharacterNameFromTitle.ForeColor = System.Drawing.Color.Black;
+            this.HideCharacterNameFromTitle.Location = new System.Drawing.Point(448, 161);
+            this.HideCharacterNameFromTitle.MaximumSize = new System.Drawing.Size(60, 20);
+            this.HideCharacterNameFromTitle.MinimumSize = new System.Drawing.Size(60, 20);
+            this.HideCharacterNameFromTitle.Name = "HideCharacterNameFromTitle";
+            this.HideCharacterNameFromTitle.OffText = "OFF";
+            this.HideCharacterNameFromTitle.OnText = "ON";
+            this.HideCharacterNameFromTitle.Size = new System.Drawing.Size(60, 20);
+            this.HideCharacterNameFromTitle.TabIndex = 38;
+            this.HideCharacterNameFromTitle.Value = false;
+            // 
             // UseFrameLockLabel
             // 
             this.UseFrameLockLabel.BackColor = System.Drawing.Color.Transparent;
@@ -3485,33 +3513,6 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
-            // 
-            // HideCharacterNameFromTitleLabel
-            // 
-            this.HideCharacterNameFromTitleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.HideCharacterNameFromTitleLabel.ForeColor = System.Drawing.Color.Black;
-            this.HideCharacterNameFromTitleLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.HideCharacterNameFromTitleLabel.Location = new System.Drawing.Point(4, 161);
-            this.HideCharacterNameFromTitleLabel.Name = "HideCharacterNameFromTitleLabel";
-            this.HideCharacterNameFromTitleLabel.Size = new System.Drawing.Size(430, 22);
-            this.HideCharacterNameFromTitleLabel.TabIndex = 39;
-            this.HideCharacterNameFromTitleLabel.Text = "Replace your Character\'s Name with \"Anonymous\" in the title of the Main Window";
-            this.HideCharacterNameFromTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // HideCharacterNameFromTitle
-            // 
-            this.HideCharacterNameFromTitle.BackColor = System.Drawing.Color.White;
-            this.HideCharacterNameFromTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.HideCharacterNameFromTitle.ForeColor = System.Drawing.Color.Black;
-            this.HideCharacterNameFromTitle.Location = new System.Drawing.Point(448, 161);
-            this.HideCharacterNameFromTitle.MaximumSize = new System.Drawing.Size(60, 20);
-            this.HideCharacterNameFromTitle.MinimumSize = new System.Drawing.Size(60, 20);
-            this.HideCharacterNameFromTitle.Name = "HideCharacterNameFromTitle";
-            this.HideCharacterNameFromTitle.OffText = "OFF";
-            this.HideCharacterNameFromTitle.OnText = "ON";
-            this.HideCharacterNameFromTitle.Size = new System.Drawing.Size(60, 20);
-            this.HideCharacterNameFromTitle.TabIndex = 38;
-            this.HideCharacterNameFromTitle.Value = false;
             // 
             // GeneralSettings
             // 
