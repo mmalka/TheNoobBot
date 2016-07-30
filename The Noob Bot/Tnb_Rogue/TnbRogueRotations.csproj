@@ -70,7 +70,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Tnb_RogueRotations.dll" "$(SolutionDir)..\docs\updatebase_directory\CombatClasses\\CombatClasses\OfficialTnbClassSelector\" /y /i
+    <PostBuildEvent>xcopy "$(TargetDir)Tnb_RogueRotations.dll" "$(SolutionDir)..\docs\updatebase_directory\CombatClasses\OfficialTnbClassSelector\" /y /i
 xcopy "$(ProjectDir)Tnb_Rogue.cs" "$(TargetDir)" /y /i</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
