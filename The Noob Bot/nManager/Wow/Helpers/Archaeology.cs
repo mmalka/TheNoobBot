@@ -296,7 +296,7 @@ namespace nManager.Wow.Helpers
 
                 Lua.RunMacroText("/cast " + archaeologySpell.NameInGame);
                 int j = 1;
-                while (j <= 15)
+                while (j <= 18)
                 {
                     Lua.RunMacroText("/click ArchaeologyFrameSummaryButton");
                     if (j == 13)
