@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Plugins;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.ObjectManager;
 
 namespace nManager.Helpful.Forms
 {
@@ -769,14 +770,24 @@ namespace nManager.Helpful.Forms
             }
         }
 
+        private string GetCombatClassPath()
+        {
+            string pathToCombatClassFile;
+            if (CombatClass.Text == "OfficialTnbClassSelector")
+                pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\OfficialTnbClassSelector\\Tnb_" + ObjectManager.Me.WowClass + "Rotations.dll";
+            else
+                pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" + CombatClass.Text;
+            return pathToCombatClassFile;
+        }
+
         private void CombatClassSettingsButton_Click(object sender, EventArgs e)
         {
-            Wow.Helpers.CombatClass.ShowConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" + CombatClass.Text);
+            Wow.Helpers.CombatClass.ShowConfigurationCombatClass(GetCombatClassPath());
         }
 
         private void CombatClassResetSettingsButton_Click(object sender, EventArgs e)
         {
-            Wow.Helpers.CombatClass.ResetConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" + CombatClass.Text);
+            Wow.Helpers.CombatClass.ResetConfigurationCombatClass(GetCombatClassPath());
         }
 
         private void DontHaverstObjectsTutorial_Click(object sender, EventArgs e)

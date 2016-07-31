@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Damage_Dealer.Bot;
 using nManager;
 using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 
 namespace Damage_Dealer
 {
@@ -53,7 +54,12 @@ namespace Damage_Dealer
 
         private void SpellSettingsShortcutButton_Click(object sender, EventArgs e)
         {
-            CombatClass.ShowConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" + nManagerSetting.CurrentSetting.CombatClass);
+            string pathToCombatClassFile;
+            if (nManagerSetting.CurrentSetting.CombatClass == "OfficialTnbClassSelector")
+                pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\OfficialTnbClassSelector\\Tnb_" + ObjectManager.Me.WowClass + "Rotations.dll";
+            else
+                pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" + nManagerSetting.CurrentSetting.CombatClass;
+            CombatClass.ShowConfigurationCombatClass(pathToCombatClassFile);
         }
     }
 }
