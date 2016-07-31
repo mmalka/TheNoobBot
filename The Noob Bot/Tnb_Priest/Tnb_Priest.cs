@@ -1435,72 +1435,23 @@ public class PriestDiscipline
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-                && MySettings.UseArcaneTorrentForResource)
+            if (MySettings.UseArcaneTorrentForResource && ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Cast();
                 return;
             }
-            if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
-                && Cascade.IsHostileDistanceGood && MySettings.UseCascade)
-            {
-                Cascade.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
-                && DivineStar.IsHostileDistanceGood && MySettings.UseDivineStar)
-            {
-                DivineStar.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
-                && Halo.IsHostileDistanceGood && MySettings.UseHalo)
-            {
-                Halo.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
-                && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseMindSear)
-            {
-                MindSear.Cast();
-                return;
-            }
-            if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
-                && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath)
-            {
-                ShadowWordDeath.Cast();
-                return;
-            }
-            if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
-                && ShadowWordPain.IsHostileDistanceGood && MySettings.UseShadowWordPain
-                && (!ShadowWordPain.TargetHaveBuff || _shadowWordPainTimer.IsReady))
+            if (MySettings.UseShadowWordPain && ShadowWordPain.IsSpellUsable && ShadowWordPain.IsHostileDistanceGood &&
+                (!ShadowWordPain.TargetHaveBuff || ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(ShadowWordPain.Id, 2000)))
             {
                 ShadowWordPain.Cast();
-                _shadowWordPainTimer = new Timer(1000*14);
                 return;
             }
-            if (PowerWordSolace.KnownSpell && PowerWordSolace.IsHostileDistanceGood
-                && PowerWordSolace.IsSpellUsable && MySettings.UsePowerWordSolace
-                && ObjectManager.Me.ManaPercentage < 50)
-            {
-                PowerWordSolace.Cast();
-                return;
-            }
-            if (Penance.IsSpellUsable && Penance.IsHostileDistanceGood && Penance.KnownSpell
-                && MySettings.UsePenance)
+            if (MySettings.UsePenance && Penance.IsSpellUsable && Penance.IsHostileDistanceGood)
             {
                 Penance.Cast();
                 return;
             }
-            if (HolyFire.IsSpellUsable && HolyFire.IsHostileDistanceGood && HolyFire.KnownSpell
-                && MySettings.UseHolyFire)
-            {
-                HolyFire.Cast();
-                return;
-            }
-            if (Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                && MySettings.UseSmite && ShadowWordPain.TargetHaveBuff
-                && ObjectManager.GetNumberAttackPlayer() < 5)
+            if (MySettings.UseSmite && Smite.IsSpellUsable && Smite.IsHostileDistanceGood)
             {
                 Smite.Cast();
             }
