@@ -279,6 +279,13 @@ namespace nManager.Wow.Helpers
 
         private static Spell archaeologySpell;
 
+        private static bool IsButtonActive(string buttonName)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = " + buttonName + ":GetButtonState();");
+            return Lua.GetLocalizedText(randomString) == "NORMAL";
+        }
+
         public static int SolveAllArtifact(bool useKeystone)
         {
             try
@@ -297,10 +304,21 @@ namespace nManager.Wow.Helpers
                         Lua.RunMacroText("/click ArchaeologyFrameSummarytButton");
                         Lua.RunMacroText("/click ArchaeologyFrameSummaryPageNextPageButton");
                     }
+                    string buttonName;
                     if (j > 12)
-                        Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + (j - 12));
+                        buttonName = "ArchaeologyFrameSummaryPageRace" + (j - 12);
                     else
-                        Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + j);
+                        buttonName = "ArchaeologyFrameSummaryPageRace" + j;
+
+                    if (IsButtonActive(buttonName))
+                    {
+                        Lua.RunMacroText("/click " + buttonName);
+                    }
+                    else
+                    {
+                        j++;
+                        continue;
+                    }
                     Thread.Sleep(200 + Usefuls.Latency);
                     if (useKeystone)
                     {
