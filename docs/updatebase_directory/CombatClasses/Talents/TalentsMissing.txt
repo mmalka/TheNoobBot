@@ -7,6 +7,7 @@ The talents system works as is, first of all, make sure you chose the specialisa
 10 - 11 - 12
 13 - 14 - 15
 16 - 17 - 18
+19 - 20 - 21
 
 
 then simply fill the file with the format below.
@@ -16,7 +17,27 @@ Example, I want only the left column of each talent row:
 Example, I want only the left column of each talent row except the third one where I want the third column instead:
 1|4|9|10|13|16
 
+
+As of Legion:
 done:
+None.
+
+todo:
+WarriorArms.talents.txt
+WarriorFury.talents.txt
+WarriorProtection.talents.txt
+DeathknightBlood.talents.txt
+DeathknightFrost.talents.txt
+DeathknightUnholy .talents.txt
+RogueAssassination .talents.txt
+RogueCombat.talents.txt
+RogueSubtlety.talents.txt
+WarlockAffliction.talents.txt
+WarlockDemonology.talents.txt
+WarlockDestruction .talents.txt
+MonkBrewmaster.talents.txt
+MonkWindwalker.talents.txt
+MonkMistweaver.talents.txt
 PaladinHoly.talents.txt
 PaladinProtection.talents.txt
 PaladinRetribution.talents.txt
@@ -36,21 +57,5 @@ DruidRestoration.talents.txt
 MageArcane.talents.txt
 MageFire.talents.txt
 MageFrost.talents.txt
-
-
-todo:
-WarriorArms.talents.txt
-WarriorFury.talents.txt
-WarriorProtection.talents.txt
-DeathknightBlood.talents.txt
-DeathknightFrost.talents.txt
-DeathknightUnholy .talents.txt
-RogueAssassination .talents.txt
-RogueCombat.talents.txt
-RogueSubtlety.talents.txt
-WarlockAffliction.talents.txt
-WarlockDemonology.talents.txt
-WarlockDestruction .talents.txt
-MonkBrewmaster.talents.txt
-MonkWindwalker.talents.txt
-MonkMistweaver.talents.txt
+DemonHunterHavoc.talents.txt
+DemonHunterVengeance.talents.txt
