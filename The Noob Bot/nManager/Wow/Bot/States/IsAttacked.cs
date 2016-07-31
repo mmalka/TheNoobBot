@@ -28,6 +28,10 @@ namespace nManager.Wow.Bot.States
         {
             while (Products.Products.IsStarted)
             {
+                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid || (ObjectManager.ObjectManager.Me.IsMounted &&
+                                                                                                                                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                                                                                                                                    Usefuls.IsFlying)) || !Products.Products.IsStarted)
+                    continue;
                 _unitToPull = ObjectManager.ObjectManager.GetUnitInAggroRange();
                 Thread.Sleep(100);
             }

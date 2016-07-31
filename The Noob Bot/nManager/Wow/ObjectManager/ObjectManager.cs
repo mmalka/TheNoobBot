@@ -1357,6 +1357,12 @@ namespace nManager.Wow.ObjectManager
                     u.GetDistance < (u.AggroDistance*0.90f) &&
                     !(u.InCombat && !u.IsTargetingMe))
                 {
+                    /*Logging.Write("Target is: " + u.Name);
+                    Logging.Write("Target Distance: " + u.GetDistance);
+                    Logging.Write("Target Alive ? : " + u.IsAlive);
+                    Logging.Write("Target Position : " + u.Position);
+                    Logging.Write("My Position : " + Me.Position);
+                    Logging.Write("Reaction : " + UnitRelation.GetReaction(Me, u));*/
                     bool r;
                     List<Point> points = PathFinder.FindPath(u.Position, out r);
                     if (!r)
