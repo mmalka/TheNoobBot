@@ -960,36 +960,36 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
+        private static bool _lastHardwareActionDone = true;
+
         public static void UpdateLastHardwareAction()
         {
-            if (Memory.WowMemory.IsGameFrameLocked)
+            if (Memory.WowMemory.IsGameFrameLocked || !_lastHardwareActionDone || !InGame || IsLoading)
                 return;
-            lock (ThisLock)
-            {
-                if (!InGame || IsLoading)
-                {
-                    Thread.Sleep(10);
-                    return;
-                }
-                // The below Memory Write update LastHardwareAction with the current WoW.GetTime().
-                // However, it wont get you out of AFK Status if you was already AFK upon starting TheNoobBot.
-                // To remove the AFK Status, you need to call CGGameUI__UpdatePlayerAFK right after updating LastHardwareAction.
-                // Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.LastHardwareAction, Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.GetTime);
+            _lastHardwareActionDone = false;
+            // The below Memory Write update LastHardwareAction with the current WoW.GetTime().
+            // However, it wont get you out of AFK Status if you was already AFK upon starting TheNoobBot.
+            // To remove the AFK Status, you need to call CGGameUI__UpdatePlayerAFK right after updating LastHardwareAction.
+            // Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.LastHardwareAction, Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.GetTime);
 
-                // The below code use LUA to get a key that is not binded in World of Warcraft.
-                // It will then press it and let WoW handle the "LastHardwareAction + UpdatePlayerAFK" task at once.
-                if (String.IsNullOrEmpty(AfkKeyPress))
-                {
-                    Thread.Sleep(10);
-                    AfkKeyPress = Keybindings.GetAFreeKey(true);
-                    AfkTimer.Reset();
-                }
-                if (!AfkTimer.IsReady) return;
-                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, AfkKeyPress);
+            // The below code use LUA to get a key that is not binded in World of Warcraft.
+            // It will then press it and let WoW handle the "LastHardwareAction + UpdatePlayerAFK" task at once.
+            if (String.IsNullOrEmpty(AfkKeyPress))
+            {
                 Thread.Sleep(10);
-                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, AfkKeyPress);
+                AfkKeyPress = Keybindings.GetAFreeKey(true);
                 AfkTimer.Reset();
             }
+            if (!AfkTimer.IsReady)
+            {
+                _lastHardwareActionDone = true;
+                return;
+            }
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, AfkKeyPress);
+            Thread.Sleep(10);
+            Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, AfkKeyPress);
+            AfkTimer.Reset();
+            _lastHardwareActionDone = true;
         }
     }
 }
