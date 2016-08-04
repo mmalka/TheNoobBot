@@ -4,7 +4,7 @@ static main(){
     auto curAddr, xref;
  
 	// DB2Load
-	curAddr = FindBinary( 0, SEARCH_DOWN, "53 56 8B F1 33 DB C7 06 ? ? ? ? 8D 46 04 89 40 04" );
+	curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 83 EC 18 53 56 8B F1 33 DB C7 06 ? ? ? ?" );
 	
     if ( curAddr == BADADDR ){
         Message("Can't find DB2Load, aborting...\n");
@@ -21,7 +21,7 @@ static main(){
 		
 		disasmAddr = PrevHead( disasmAddr, prevFunc );
 		disasm = GetDisasm( disasmAddr );
-		if ( strstr( disasm, "mov" ) > -1 && strstr( disasm, "off" ) > -1 && strstr( disasm, "dword" ) > -1 && strstr( disasm, "ecx" ) > -1 )
+		if ( strstr( disasm, "mov" ) > -1 && strstr( disasm, "offset" ) > -1 && strstr( disasm, "dword" ) > -1 && strstr( disasm, "ecx" ) > -1 )
         {
 			dbAddress = GetOperandValue(disasmAddr, 1);
 			if ( dbAddress == BADADDR ){
@@ -33,18 +33,12 @@ static main(){
 			continue;
 		}
 		
-		disasmAddr = NextHead( disasmAddr, nextFunc);
-		disasmAddr = NextHead( disasmAddr, nextFunc);
-		disasmAddr = NextHead( disasmAddr, nextFunc);
-		disasmAddr = NextHead( disasmAddr, nextFunc);
+		disasmAddr = PrevHead( disasmAddr, prevFunc );
 		disasm = GetDisasm( disasmAddr );
-		if ( strstr( disasm, "mov" ) > -1 && strstr( disasm, "off" ) > -1 && strstr( disasm, "dword" ) > -1 )
+		if ( strstr( disasm, "push" ) > -1 && strstr( disasm, "offset" ) > -1 ) 
         {
-			dbNameAddress = GetOperandValue(disasmAddr, 1);
+			dbNameAddress = GetOperandValue(disasmAddr, 0);
 			if ( dbNameAddress == BADADDR ){
-				continue;
-			}
-			if (GetOperandValue(disasmAddr, 0) == dbAddress){
 				continue;
 			}
 		}
