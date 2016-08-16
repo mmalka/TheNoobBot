@@ -21,5 +21,6 @@
         BurningEmbers = 0xE,
         DemonicFury = 0xF,
         ArcaneCharges = 0x10, // Not proven to really exist, need testing on Mage.
+        Fury = 0x11,
     };
 }

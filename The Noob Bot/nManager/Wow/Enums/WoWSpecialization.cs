@@ -37,7 +37,7 @@
         MonkBrewmaster = 268,
         MonkWindwalker = 269,
         MonkMistweaver = 270,
-        DemonHunterVengeance = 271,
-        DemonHunterHavoc = 272,
+        DemonHunterVengeance = 581,
+        DemonHunterHavoc = 577,
     }
 }

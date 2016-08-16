@@ -104,7 +104,7 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\DemonHunter_Havor.xml";
+                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\DemonHunter_Havoc.xml";
                             var currentSetting = new DemonHunterHavoc.DemonHunterHavocSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
@@ -115,7 +115,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading DemonHunter Havor Combat class...");
+                            Logging.WriteFight("Loading DemonHunter Havoc Combat class...");
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DemonHunterHavoc);
                             new DemonHunterHavoc();
                         }
@@ -175,9 +175,15 @@ public class DemonHunterHavoc
 
     #region Offensive Spell
 
+    public static Spell BladeDance = new Spell("Blade Dance");
+    public static Spell ChaosStrike = new Spell("Chaos Strike");
+    public static Spell DemonBite = new Spell("Demon's Bite");
+
     #endregion
 
     #region Offensive Cooldown
+
+    public static Spell Metamorphosis = new Spell("Metamorphosis");
 
     #endregion
 
@@ -206,7 +212,7 @@ public class DemonHunterHavoc
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget /* && Judgment.IsHostileDistanceGood*/)
+                            if (ObjectManager.Me.Target != lastTarget)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -230,7 +236,6 @@ public class DemonHunterHavoc
 
     private void Pull()
     {
-        DPSBurst();
     }
 
     private void Combat()
@@ -288,6 +293,10 @@ public class DemonHunterHavoc
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
         }
+        if (Metamorphosis.IsSpellUsable && ObjectManager.Me.Fury >= 50 && ObjectManager.Target.GetDistance <= 8f)
+        {
+            Metamorphosis.Cast();
+        }
     }
 
     private void DefenseCycle()
@@ -300,6 +309,21 @@ public class DemonHunterHavoc
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+            if (BladeDance.IsSpellUsable && BladeDance.IsHostileDistanceGood && ObjectManager.Me.Fury > 60)
+            {
+                BladeDance.Cast();
+                return;
+            }
+            if (ChaosStrike.IsSpellUsable && ChaosStrike.IsHostileDistanceGood && ObjectManager.Me.Fury > 60)
+            {
+                ChaosStrike.Cast();
+                return;
+            }
+            if (DemonBite.IsSpellUsable && DemonBite.IsHostileDistanceGood)
+            {
+                DemonBite.Cast();
+                return;
+            }
         }
         finally
         {

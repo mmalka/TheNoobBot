@@ -1138,6 +1138,54 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint Fury
+        {
+            get
+            {
+                try
+                {
+                    return GetPowerByPowerType(PowerType.Fury);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Fury: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxFury
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(PowerType.Fury);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxFury: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint FuryPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Fury*100/MaxFury;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > FuryPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public uint ArcaneCharges
         {
             get
