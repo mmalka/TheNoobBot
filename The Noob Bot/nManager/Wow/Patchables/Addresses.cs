@@ -183,7 +183,7 @@
         /// </summary>
         public enum Battleground
         {
-            StatPvp = 0xC3C05C, // StatPvpFOUND inside first call in Script_InActiveBattlefield
+            StatPvp = 0xC3C060, // StatPvpFOUND inside first call in Script_InActiveBattlefield
             PvpExitWindow = 0xEC4970, // Script_GetBattlefieldWinner
             MaxBattlegroundId = 0xEC47B4, // Script_GetMaxBattlefieldID
         }
