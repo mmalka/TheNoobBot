@@ -63,6 +63,15 @@ namespace nManager.Wow.Bot.States
                 if (!_unit.IsValid)
                     return false;
 
+                if (!_unit.Attackable)
+                {
+                    Logging.Write("Unit " + _unit.Name + " is non-attackable, blacklisting it.");
+                    nManagerSetting.AddBlackList(_unit.Guid, 10*60*1000); // 10 minutes
+                    return false;
+                    // This may cause issues or not, I'm not sure why it never been there in the first case.
+                    // Note: This code handle Grinder's "target selection".
+                }
+
                 if (_unit.IsTapped && !_unit.IsTappedByMe)
                     return false;
                 if (!nManagerSetting.IsBlackListedZone(_unit.Position) &&

@@ -49492,6 +49492,7 @@
       <Y>187.3028</Y>
       <Z>84.5007248</Z>
     </Position>
+	<Faction>Alliance</Faction>
     <Type>FishingTrainer</Type>
     <ContinentId>Draenor</ContinentId>
   </Npc>
