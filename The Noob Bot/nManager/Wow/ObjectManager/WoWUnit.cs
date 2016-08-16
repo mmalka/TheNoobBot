@@ -2233,12 +2233,16 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static List<uint> CombatMount = new List<uint> {164222, 165803};
+
         public bool IsMounted
         {
             get
             {
                 try
                 {
+                    if (ObjectManager.Me.HaveBuff(CombatMount))
+                        return false;
                     return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID) > 0 || HaveBuff(SpellManager.MountDruidId()) || InTransport || Usefuls.IsFlying;
                 }
                 catch (Exception e)

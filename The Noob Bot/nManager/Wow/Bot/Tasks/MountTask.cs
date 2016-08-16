@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -93,6 +94,9 @@ namespace nManager.Wow.Bot.Tasks
                 }
                 return MountCapacity.Feet;
             }
+
+            if (ObjectManager.ObjectManager.Me.HaveBuff(ObjectManager.WoWUnit.CombatMount))
+                return MountCapacity.Feet;
 
             // Wherever we are if we have an aquatic mount and are swimming
             if ((ObjectManager.ObjectManager.Me.Level >= 20 || (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Druid && ObjectManager.ObjectManager.Me.Level >= 18)) && Usefuls.IsSwimming &&
