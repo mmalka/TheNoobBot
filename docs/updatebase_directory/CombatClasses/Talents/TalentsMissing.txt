@@ -20,7 +20,7 @@ Example, I want only the left column of each talent row except the third one whe
 
 As of Legion:
 done:
-None.
+ShamanEnhancement.talents
 
 todo:
 WarriorArms.talents.txt
@@ -42,7 +42,6 @@ PaladinHoly.talents.txt
 PaladinProtection.talents.txt
 PaladinRetribution.talents.txt
 ShamanElemental.talents.txt
-ShamanEnhancement.talents.txt
 ShamanRestoration.talents.txt
 HunterBeastMastery.talents.txt
 HunterMarksmanship.talents.txt
