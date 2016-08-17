@@ -217,6 +217,23 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static uint GetUnitsCountArroundUnit(WoWUnit targetUnit, float range = 5f)
+        {
+            List<WoWUnit> units = ObjectManager.GetObjectWoWUnit60Yards();
+            uint unitCount = 0;
+            foreach (var unit in units)
+            {
+                if (targetUnit.Position.DistanceTo2D(unit.Position) <= range)
+                    unitCount++;
+            }
+            return unitCount;
+        }
+
+        public uint GetUnitCountInRange(float range = 5f)
+        {
+            return GetUnitsCountArroundUnit(this, range);
+        }
+
         public bool IsHostile
         {
             get
