@@ -898,49 +898,49 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint DarkForce
+        public uint Maelstrom
         {
             get
             {
                 try
                 {
-                    return GetPowerByPowerType(PowerType.DarkForce);
+                    return GetPowerByPowerType(PowerType.Maelstrom);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > DarkForce: " + e);
+                    Logging.WriteError("WoWUnit > Maelstrom: " + e);
                     return 0;
                 }
             }
         }
 
-        public uint MaxDarkForce
+        public uint MaxMaelstrom
         {
             get
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(PowerType.DarkForce);
+                    return GetMaxPowerByPowerType(PowerType.Maelstrom);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MaxDarkForce: " + e);
+                    Logging.WriteError("WoWUnit > MaxMaelstrom: " + e);
                     return 0;
                 }
             }
         }
 
-        public uint DarkForcePercentage
+        public uint MaelstromPercentage
         {
             get
             {
                 try
                 {
-                    return DarkForce*100/MaxDarkForce;
+                    return Maelstrom*100/MaxMaelstrom;
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWPlayer > DarkForcePercentage: " + e);
+                    Logging.WriteError("WoWPlayer > MaelstromPercentage: " + e);
                     return 0;
                 }
             }

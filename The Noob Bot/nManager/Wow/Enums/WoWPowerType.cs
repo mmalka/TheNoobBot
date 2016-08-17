@@ -14,7 +14,7 @@
         Eclipse = 0x8,
         HolyPower = 0x9,
         Alternate = 0xA, // Alternate bar. (Example: Atramedes Song bar)
-        DarkForce = 0xB, // Previous PowerType of the Monk. Not used anymore.
+        Maelstrom = 0xB,
         LightForce = 0xC, // Previous PowerType of the Monk. Now called Chi.
         Chi = 0xC,
         ShadowOrbs = 0xD,
