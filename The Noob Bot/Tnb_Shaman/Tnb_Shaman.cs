@@ -429,7 +429,7 @@ public class ShamanEnhancement
             //Heals
             if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && MySettings.UseHealingSurge &&
                 ObjectManager.Me.HealthPercent < MySettings.UseHealingSurgeAtPercentage &&
-                (!MySettings.UseHealingSurgeInstantOnly || ObjectManager.Me.DarkForce >= 20))
+                (!MySettings.UseHealingSurgeInstantOnly || ObjectManager.Me.Maelstrom >= 20))
             {
                 HealingSurge.CastOnSelf();
                 return;
@@ -449,7 +449,7 @@ public class ShamanEnhancement
                 return;
             }
             if (Boulderfist.KnownSpell && Boulderfist.IsSpellUsable && MySettings.UseBoulderfist &&
-                Boulderfist.IsHostileDistanceGood && ObjectManager.Me.DarkForce < 130 && Boulderfist.GetSpellCharges == 2)
+                Boulderfist.IsHostileDistanceGood && ObjectManager.Me.Maelstrom < 130 && Boulderfist.GetSpellCharges == 2)
             {
                 Boulderfist.Cast();
                 return;
@@ -511,7 +511,7 @@ public class ShamanEnhancement
 
             //Offensive 2
             if (LavaLash.KnownSpell && LavaLash.IsSpellUsable && MySettings.UseLavaLash &&
-                LavaLash.IsHostileDistanceGood && ObjectManager.Me.DarkForce > 110)
+                LavaLash.IsHostileDistanceGood && ObjectManager.Me.Maelstrom > 110)
             {
                 LavaLash.Cast();
                 return;
