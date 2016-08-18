@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
+using Heal_Bot;
 using Heal_Bot.Bot;
-using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -15,6 +14,7 @@ public class Main : IProduct
     {
         try
         {
+            HealBotSettings.Load();
             Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
@@ -80,7 +80,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            var f = new HealBotSettingsForm();
+            f.ShowDialog();
             Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)

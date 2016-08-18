@@ -790,19 +790,29 @@ namespace nManager.Helpful.Forms
             Wow.Helpers.CombatClass.ResetConfigurationCombatClass(GetCombatClassPath());
         }
 
-        private void DontHaverstObjectsTutorial_Click(object sender, EventArgs e)
+        private string GetHealerClassPath()
         {
-            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612");
+            string pathToHealerClassFile;
+            if (HealerClass.Text == "OfficialTnbClassSelector")
+                pathToHealerClassFile = Application.StartupPath + "\\HealerClasses\\OfficialTnbClassSelector\\Tnb_" + ObjectManager.Me.WowClass + "Healing.dll";
+            else
+                pathToHealerClassFile = Application.StartupPath + "\\HealerClasses\\" + HealerClass.Text;
+            return pathToHealerClassFile;
         }
 
         private void HealerClassSettingsButton_Click(object sender, EventArgs e)
         {
-            Wow.Helpers.HealerClass.ShowConfigurationHealerClass(Application.StartupPath + "\\HealerClass\\" + HealerClass.Text);
+            Wow.Helpers.HealerClass.ShowConfigurationHealerClass(GetHealerClassPath());
         }
 
         private void HealerClassResetSettingsButton_Click(object sender, EventArgs e)
         {
-            Wow.Helpers.HealerClass.ResetConfigurationHealerClass(Application.StartupPath + "\\HealerClass\\" + HealerClass.Text);
+            Wow.Helpers.HealerClass.ResetConfigurationHealerClass(GetHealerClassPath());
+        }
+
+        private void DontHaverstObjectsTutorial_Click(object sender, EventArgs e)
+        {
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612");
         }
 
         private void LoadPlugin(object sender, EventArgs e)
