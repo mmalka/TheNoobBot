@@ -1087,6 +1087,7 @@ public class WarriorProtection
     public readonly Spell SunderArmor = new Spell("Sunder Armor");
     public readonly Spell Taunt = new Spell("Taunt");
     public readonly Spell ThunderClap = new Spell("Thunder Clap");
+    public readonly Spell Slam = new Spell("Slam");
 
     #endregion
 
@@ -1693,6 +1694,11 @@ public class WarriorProtection
                 && MySettings.UseArcaneTorrentForResource)
             {
                 ArcaneTorrent.Cast();
+            }
+            if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsHostileDistanceGood)
+            {
+                Slam.Cast();
+                return;
             }
         }
         finally
