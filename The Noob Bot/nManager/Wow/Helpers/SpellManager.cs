@@ -30,9 +30,9 @@ namespace nManager.Wow.Helpers
             {
                 BlackMagic m = Memory.WowMemory.Memory;
 
-                uint currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 4);
-                // 0x4 = Last Spell Used.
-                // 0x8 = Last Spell that initiated a GCD.
+                uint currentListObject = m.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Player.LocalPlayerSpellsOnCooldown + 0x8);
+                // 0x4 = Pointer to last Spell of the list.
+                // 0x8 = Pointer of the beginning of the list.
 
                 var spellCooldowns = new List<SpellCooldownEntry>();
                 while ((currentListObject != 0) && ((currentListObject & 1) == 0))
