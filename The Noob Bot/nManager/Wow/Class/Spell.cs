@@ -458,16 +458,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                WoWUnit lowestHpPlayer = ObjectManager.ObjectManager.Target;
-                if (lowestHpPlayer.IsValid)
-                {
-                    Interact.InteractWithBeta(ObjectManager.ObjectManager.Me.GetBaseAddress);
-                }
-                Launch(CastTime != 0);
-                if (lowestHpPlayer.IsValid)
-                {
-                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress, true);
-                }
+                Launch(CastTime != 0, true, false, "player");
             }
             catch (Exception exception)
             {
@@ -494,16 +485,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                WoWUnit lowestHpPlayer = ObjectManager.ObjectManager.Target;
-                if (lowestHpPlayer.IsValid)
-                {
-                    Interact.InteractWithBeta(ObjectManager.ObjectManager.Me.GetBaseAddress);
-                }
-                Launch(StopMove, waitIsCast, ignoreIfCast);
-                if (lowestHpPlayer.IsValid)
-                {
-                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress, true);
-                }
+                Launch(StopMove, waitIsCast, ignoreIfCast, "player");
             }
             catch (Exception exception)
             {
