@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -113,6 +114,12 @@ namespace nManager.Wow.Class
                         if (s.Name.ToLower().Trim() != spellName.ToLower().Trim() && s.NameInGame.ToLower().Trim() != spellName.ToLower().Trim()) continue;
                         tSpell = s;
                         break;
+                    }
+                    if (tSpell == null)
+                    {
+                        tSpell = new Spell(SpellManager.SpellListManager.SpellIdByName(spellName).FirstOrDefault());
+                        if (tSpell.Id == 0)
+                            tSpell = null;
                     }
                 }
                 if (tSpell == null)
