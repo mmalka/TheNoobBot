@@ -43,6 +43,12 @@ namespace nManager.Wow.Bot.States
                     !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
                     return false;
 
+                if (ObjectManager.ObjectManager.Me.InTransport && !ObjectManager.ObjectManager.Me.InCombatBlizzard)
+                {
+                    Fight.StopFight();
+                    return false;
+                }
+
                 // Get unit:
                 _unit = ObjectManager.ObjectManager.Target;
 
@@ -77,6 +83,7 @@ namespace nManager.Wow.Bot.States
                     }
                 }
                 _unit = new WoWUnit(0);
+                Fight.StopFight();
                 return false;
             }
         }
