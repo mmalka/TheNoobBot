@@ -137,7 +137,7 @@ namespace nManager.Wow.Bot.Tasks
                                     return;
                                 }
                             }
-                            if (looted && !wowUnit.IsSkinnable)
+                            if ((looted || !wowUnit.IsLootable) && !wowUnit.IsSkinnable)
                                 continue;
                             // From here we are sure the unit is skinnable
                             // if this is the unit we just looted, we need to redo check for extra loot
@@ -145,7 +145,7 @@ namespace nManager.Wow.Bot.Tasks
                             if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                 ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                             {
-                                if (looted)
+                                if ((looted || !wowUnit.IsLootable))
                                 {
                                     if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
                                     {
