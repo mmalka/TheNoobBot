@@ -1368,6 +1368,20 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsInRange(float range)
+        {
+            Vector3 delta = (Position - ObjectManager.Me.Position);
+            float positiveDeltaX = delta.X < 0 ? -delta.X : delta.X;
+            float positiveDeltaY = delta.Y < 0 ? -delta.Y : delta.Y;
+            float positiveDeltaZ = delta.Z < 0 ? -delta.Z : delta.Z;
+
+            if (positiveDeltaX > range || positiveDeltaY > range || positiveDeltaZ > range)
+                return false;
+            if (GetDistance > range)
+                return false;
+            return true;
+        }
+
         public override float GetDistance
         {
             get

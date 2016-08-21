@@ -141,7 +141,7 @@ namespace nManager.Wow.ObjectManager
                                 case WoWObjectType.Unit:
                                     var unit = new WoWUnit(o.Value.GetBaseAddress);
                                     _unitList.Add(unit);
-                                    if (unit.GetDistance <= 60f)
+                                    if (unit.IsInRange(60f))
                                         _unitList60Yards.Add(unit);
                                     break;
                                 case WoWObjectType.Player:
