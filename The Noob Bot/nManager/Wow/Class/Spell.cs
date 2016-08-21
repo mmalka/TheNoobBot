@@ -127,8 +127,14 @@ namespace nManager.Wow.Class
                     Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " => Failed");
                     return;
                 }
-                Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id +
-                                   ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame + ", KnownSpell: " + tSpell.KnownSpell);
+                string notEnglish = "";
+                string haveBuff = "";
+                if (tSpell.Name != tSpell.NameInGame)
+                    notEnglish = "NameClient: " + tSpell.NameInGame + ", ";
+                if (tSpell.HaveBuff)
+                    haveBuff = ", HaveBuffOrPassive: " + tSpell.HaveBuff;
+
+                Logging.WriteDebug("Spell(string spellName): Id: " + tSpell.Id + ", Name: " + tSpell.Name + ", " + notEnglish + "Known: " + tSpell.KnownSpell + haveBuff);
                 Id = tSpell.Id;
                 CastTime = tSpell.CastTime;
                 Cost = tSpell.Cost;
