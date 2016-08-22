@@ -270,6 +270,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeatureLabel = new System.Windows.Forms.Label();
             this.ActivatePathFindingFeature = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainHeader = new nManager.Helpful.Forms.UserControls.TnbControlMenu();
+            this.DontSellReagentsLabel = new System.Windows.Forms.Label();
+            this.DontSellReagents = new nManager.Helpful.Forms.UserControls.TnbSwitchButton();
             this.MainPanel.SuspendLayout();
             this.SpellManagementSystemPanelName.SuspendLayout();
             this.PluginsManagementSystemPanelName.SuspendLayout();
@@ -1826,6 +1828,8 @@ namespace nManager.Helpful.Forms
             this.NPCsRepairSellBuyPanelName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.NPCsRepairSellBuyPanelName.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this.NPCsRepairSellBuyPanelName.ContentSize = new System.Drawing.Size(556, 316);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.DontSellReagentsLabel);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.DontSellReagents);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellPurple);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellBlue);
             this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellGreen);
@@ -1940,7 +1944,7 @@ namespace nManager.Helpful.Forms
             // SellItemsWhenLessThanXSlotLeft
             // 
             this.SellItemsWhenLessThanXSlotLeft.ForeColor = System.Drawing.Color.Black;
-            this.SellItemsWhenLessThanXSlotLeft.Location = new System.Drawing.Point(488, 138);
+            this.SellItemsWhenLessThanXSlotLeft.Location = new System.Drawing.Point(488, 112);
             this.SellItemsWhenLessThanXSlotLeft.Maximum = new decimal(new int[] {
             200,
             0,
@@ -1963,7 +1967,7 @@ namespace nManager.Helpful.Forms
             // RepairWhenDurabilityIsUnderPercent
             // 
             this.RepairWhenDurabilityIsUnderPercent.ForeColor = System.Drawing.Color.Black;
-            this.RepairWhenDurabilityIsUnderPercent.Location = new System.Drawing.Point(488, 110);
+            this.RepairWhenDurabilityIsUnderPercent.Location = new System.Drawing.Point(488, 84);
             this.RepairWhenDurabilityIsUnderPercent.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1982,7 +1986,7 @@ namespace nManager.Helpful.Forms
             // 
             this.SellItemsWhenLessThanXSlotLeftLabel.BackColor = System.Drawing.Color.Transparent;
             this.SellItemsWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
-            this.SellItemsWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(280, 136);
+            this.SellItemsWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(280, 110);
             this.SellItemsWhenLessThanXSlotLeftLabel.Name = "SellItemsWhenLessThanXSlotLeftLabel";
             this.SellItemsWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(196, 23);
             this.SellItemsWhenLessThanXSlotLeftLabel.TabIndex = 37;
@@ -1992,7 +1996,7 @@ namespace nManager.Helpful.Forms
             // 
             this.RepairWhenDurabilityIsUnderPercentLabel.BackColor = System.Drawing.Color.Transparent;
             this.RepairWhenDurabilityIsUnderPercentLabel.ForeColor = System.Drawing.Color.Black;
-            this.RepairWhenDurabilityIsUnderPercentLabel.Location = new System.Drawing.Point(279, 108);
+            this.RepairWhenDurabilityIsUnderPercentLabel.Location = new System.Drawing.Point(279, 82);
             this.RepairWhenDurabilityIsUnderPercentLabel.Name = "RepairWhenDurabilityIsUnderPercentLabel";
             this.RepairWhenDurabilityIsUnderPercentLabel.Size = new System.Drawing.Size(197, 23);
             this.RepairWhenDurabilityIsUnderPercentLabel.TabIndex = 36;
@@ -2067,7 +2071,7 @@ namespace nManager.Helpful.Forms
             // NumberOfFoodsWeGot
             // 
             this.NumberOfFoodsWeGot.ForeColor = System.Drawing.Color.Black;
-            this.NumberOfFoodsWeGot.Location = new System.Drawing.Point(466, 80);
+            this.NumberOfFoodsWeGot.Location = new System.Drawing.Point(466, 54);
             this.NumberOfFoodsWeGot.Name = "NumberOfFoodsWeGot";
             this.NumberOfFoodsWeGot.Size = new System.Drawing.Size(63, 22);
             this.NumberOfFoodsWeGot.TabIndex = 24;
@@ -2076,7 +2080,7 @@ namespace nManager.Helpful.Forms
             // 
             this.NumberOfFoodsWeGotLabel.BackColor = System.Drawing.Color.Transparent;
             this.NumberOfFoodsWeGotLabel.ForeColor = System.Drawing.Color.Black;
-            this.NumberOfFoodsWeGotLabel.Location = new System.Drawing.Point(280, 80);
+            this.NumberOfFoodsWeGotLabel.Location = new System.Drawing.Point(280, 54);
             this.NumberOfFoodsWeGotLabel.Name = "NumberOfFoodsWeGotLabel";
             this.NumberOfFoodsWeGotLabel.Size = new System.Drawing.Size(154, 22);
             this.NumberOfFoodsWeGotLabel.TabIndex = 23;
@@ -3514,6 +3518,29 @@ namespace nManager.Helpful.Forms
             this.MainHeader.TitleForeColor = System.Drawing.Color.White;
             this.MainHeader.TitleText = "General Settings";
             // 
+            // DontSellReagentsLabel
+            // 
+            this.DontSellReagentsLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DontSellReagentsLabel.ForeColor = System.Drawing.Color.Black;
+            this.DontSellReagentsLabel.Location = new System.Drawing.Point(280, 137);
+            this.DontSellReagentsLabel.Name = "DontSellReagentsLabel";
+            this.DontSellReagentsLabel.Size = new System.Drawing.Size(154, 22);
+            this.DontSellReagentsLabel.TabIndex = 45;
+            this.DontSellReagentsLabel.Text = "Dont sell crafting reagents";
+            // 
+            // DontSellReagents
+            // 
+            this.DontSellReagents.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.DontSellReagents.Location = new System.Drawing.Point(469, 137);
+            this.DontSellReagents.MaximumSize = new System.Drawing.Size(60, 20);
+            this.DontSellReagents.MinimumSize = new System.Drawing.Size(60, 20);
+            this.DontSellReagents.Name = "DontSellReagents";
+            this.DontSellReagents.OffText = "OFF";
+            this.DontSellReagents.OnText = "ON";
+            this.DontSellReagents.Size = new System.Drawing.Size(60, 20);
+            this.DontSellReagents.TabIndex = 46;
+            this.DontSellReagents.Value = true;
+            // 
             // GeneralSettings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -3812,5 +3839,7 @@ namespace nManager.Helpful.Forms
         private TnbSwitchButton UseLootARange;
         private Label HideCharacterNameFromTitleLabel;
         private TnbSwitchButton HideCharacterNameFromTitle;
+        private Label DontSellReagentsLabel;
+        private TnbSwitchButton DontSellReagents;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Ink;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
 
 namespace nManager.Wow.Helpers
@@ -348,6 +350,26 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("GetItemType(List<WoWItem> listItem, Enums.WoWItemClass type): " + exception);
             }
             return new List<WoWItem>();
+        }
+
+        public static List<string> GetAllReagentsItems()
+        {
+            List<string> reagentsItems = new List<string>();
+            var listItems = ObjectManager.ObjectManager.GetObjectWoWItem();
+            try
+            {
+                Memory.WowMemory.GameFrameLock();
+                foreach (var item in listItems)
+                {
+                    if (item.GetItemInfo.ItemType == "Tradeskill" && !reagentsItems.Contains(item.Name))
+                        reagentsItems.Add(item.Name);
+                }
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
+            return reagentsItems;
         }
     }
 }

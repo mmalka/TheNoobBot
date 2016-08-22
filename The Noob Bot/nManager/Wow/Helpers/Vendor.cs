@@ -24,6 +24,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (nManagerSetting.CurrentSetting.DontSellReagents)
+                    itemNoSell.AddRange(ItemsManager.GetAllReagentsItems());
                 string syntaxSellItem = itemSell.Aggregate("", (current, s) => current + " or namei == \"" + s + "\" ");
 
                 string syntaxQualityItem = itemQuality.Aggregate(" 1 == 2 ",

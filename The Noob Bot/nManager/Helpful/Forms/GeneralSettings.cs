@@ -161,6 +161,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(SellGray);
             labelX52.Text = Translate.Get(Translate.Id.Selling);
             SetToolTypeIfNeeded(labelX52);
+            //DontSellReagentsLabel.Text = Translate.Get(Translate.Id.DontSellReagents);
+            SetToolTypeIfNeeded(DontSellReagentsLabel);
             ActivateAutoRepairFeatureLabel.Text = Translate.Get(Translate.Id.Repair);
             SetToolTypeIfNeeded(ActivateAutoRepairFeatureLabel);
             NumberOfFoodsWeGotLabel.Text = Translate.Get(Translate.Id.Food_Amount);
@@ -435,6 +437,8 @@ namespace nManager.Helpful.Forms
             UseLootARange.OnText = onText;
             HideCharacterNameFromTitle.OffText = offText;
             HideCharacterNameFromTitle.OnText = onText;
+            DontSellReagents.OffText = offText;
+            DontSellReagents.OnText = onText;
         }
 
         private void SaveSetting()
@@ -559,6 +563,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.HideSdkFiles = HideSDKFiles.Value;
                 nManagerSetting.CurrentSetting.ActivatedPluginsList.Clear();
                 nManagerSetting.CurrentSetting.UseFrameLock = UseFrameLock.Value;
+                nManagerSetting.CurrentSetting.DontSellReagents = DontSellReagents.Value;
                 foreach (string s in ActivatedPluginsList.Items)
                 {
                     nManagerSetting.CurrentSetting.ActivatedPluginsList.Add(s);
@@ -700,6 +705,7 @@ namespace nManager.Helpful.Forms
                         ActivatedPluginsList.Items.Add(s);
                     }
                 }
+                DontSellReagents.Value = managerSetting.DontSellReagents;
             }
             catch (Exception ex)
             {
