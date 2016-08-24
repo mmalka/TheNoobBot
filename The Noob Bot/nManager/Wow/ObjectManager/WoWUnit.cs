@@ -2665,6 +2665,78 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public string UnitId
+        {
+            get
+            {
+                if (!IsValid)
+                    return "none"; // Can be dead and valid. (Think about battle ress)
+                if (Guid == ObjectManager.Me.Guid)
+                    return "player";
+                if (Guid == ObjectManager.Pet.Guid)
+                    return "pet";
+                if (Type == WoWObjectType.Player && Party.IsInGroup())
+                {
+                    List<UInt128> partyPlayersGUID = Party.GetPartyPlayersGUID();
+                    if (partyPlayersGUID.Contains(Guid))
+                    {
+                        // this player is in our party.
+                        string randomString = Others.GetRandomString(Others.Random(5, 10));
+                        uint numPlayers = Party.GetPartyNumberPlayers();
+                        if (Party.GetPartyNumberPlayers() <= 5)
+                        {
+                            for (int i = 1; i <= numPlayers; i++)
+                            {
+                                Lua.LuaDoString(randomString + " = UnitName(\"party" + i + "\");");
+                                string s = Lua.GetLocalizedText(randomString);
+                                if (s == Name)
+                                    return "party" + i;
+                                if (s == "nil")
+                                    break; // If partyN does not exists, then there is no more player frame.
+                            }
+                        }
+                        // We don't return previously because we can be in an old raid with few friends.
+
+                        try
+                        {
+                            Memory.WowMemory.GameFrameLock();
+                            for (int i = 1; i <= numPlayers; i++)
+                            {
+                                Lua.LuaDoString(randomString + " = UnitName(\"raid" + i + "\");");
+                                string s = Lua.GetLocalizedText(randomString);
+                                if (s == Name)
+                                    return "raid" + i;
+                                if (s == "nil")
+                                    break; // If partyN does not exists, then there is no more player frame.
+                            }
+                        }
+                        finally
+                        {
+                            Memory.WowMemory.GameFrameUnLock();
+                        }
+                    }
+                }
+                else if (Type == WoWObjectType.Player)
+                    return "none"; // Random friendly player arround or ennemy player. Todo: Add check for Arenas.
+                if (!IsBoss)
+                {
+                    return Guid == ObjectManager.Me.Target ? "target" : "none";
+                    // Normal creatures don't have special nameplate, so let's go for simple target UnitID.
+                }
+                string randomString2 = Others.GetRandomString(Others.Random(5, 10));
+                for (int i = 1; i <= 5; i++)
+                {
+                    Lua.LuaDoString(randomString2 + " = UnitName(\"boss" + i + "\");");
+                    string s = Lua.GetLocalizedText(randomString2);
+                    if (s == Name)
+                        return "boss" + i;
+                    if (s == "nil")
+                        break; // If bossN does not exists, then there is no more Boss frame.
+                }
+                return "none";
+            }
+        }
+
         public bool IsTrivial
         {
             get

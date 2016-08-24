@@ -255,6 +255,9 @@ namespace nManager.Helpful.Forms
                         woWPlayer.GetDistance + "</td>     <td>" + woWPlayer.Faction +
                         "</td>     <td bgcolor=\"#CCCCCC\">" + woWPlayer.Guid + "</td>     <td>" + woWPlayer.SummonedBy +
                         "</td>   </tr>";
+                    string unitId = woWPlayer.TryGetUnitId;
+                    if (unitId != "none")
+                        Logging.WriteDebug("UnitID Found for player: " + woWPlayer.Name + " is " + unitId);
                 }
                 // WoWUnit
                 foreach (WoWUnit wowO in ObjectManager.GetObjectWoWUnit())
@@ -269,6 +272,10 @@ namespace nManager.Helpful.Forms
                         wowO.GetDistance + "</td>     <td>" + wowO.Faction + "</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Guid + "</td>     <td>" + wowO.SummonedBy + "</td>        <td>" + wowO.CreatedBy +
                         "</td>   </tr>";
+
+                    string unitId = wowO.TryGetUnitId;
+                    if (unitId != "none")
+                        Logging.WriteDebug("UnitID Found for unit: " + wowO.Name + " is " + unitId);
                 }
                 // WoWGameObject
                 foreach (WoWGameObject wowO in ObjectManager.GetObjectWoWGameObject())
