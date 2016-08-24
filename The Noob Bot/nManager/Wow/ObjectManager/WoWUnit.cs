@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using System.Threading;
 using System.Collections.Generic;
 using nManager.Helpful;
@@ -7,6 +8,7 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
 using Math = System.Math;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -2665,7 +2667,44 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public string UnitId
+        private class UnitIdInfo
+        {
+            public UInt128 Guid;
+            public string UnitId;
+            public int TickCount;
+        }
+
+        private readonly List<UnitIdInfo> _cachedUnitIdInfo = new List<UnitIdInfo>();
+        private readonly Timer _cleanTimer = new Timer(600000);
+
+        public string GetUnitId()
+        {
+            if (_cleanTimer.IsReady)
+            {
+                for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
+                {
+                    if (_cachedUnitIdInfo[i].TickCount > Environment.TickCount - 60000)
+                        _cachedUnitIdInfo.Remove(_cachedUnitIdInfo[i]);
+                }
+                _cleanTimer.Reset();
+            }
+            foreach (UnitIdInfo info in _cachedUnitIdInfo)
+            {
+                if (info.Guid == Guid && info.TickCount < Environment.TickCount - 60000)
+                    return info.UnitId;
+                if (info.Guid == Guid)
+                {
+                    _cachedUnitIdInfo.Remove(info);
+                    break; // More than 60 seconds elapsed, regenerate.
+                }
+            }
+            string unitId = UnitId;
+            var tmpClass = new UnitIdInfo {Guid = Guid, TickCount = Environment.TickCount, UnitId = unitId};
+            _cachedUnitIdInfo.Add(tmpClass);
+            return unitId;
+        }
+
+        private string UnitId
         {
             get
             {
