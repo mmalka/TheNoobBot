@@ -625,16 +625,16 @@ namespace nManager.Wow.Helpers
                             if (!string.IsNullOrWhiteSpace(slipped[0]) && slipped[0] != "nil")
                                 spellInfo.Name = slipped[0];
                             // icon
-                            if (!string.IsNullOrWhiteSpace(slipped[2]))
-                                spellInfo.Icon = slipped[2];
+                            if (!string.IsNullOrWhiteSpace(slipped[1]))
+                                spellInfo.Icon = slipped[1];
                             // castTime
-                            if (!string.IsNullOrWhiteSpace(slipped[3]) && int.TryParse(slipped[3].Replace(".", ","), out intOut))
+                            if (!string.IsNullOrWhiteSpace(slipped[2]) && int.TryParse(slipped[2].Replace(".", ","), out intOut))
                                 spellInfo.CastTime = intOut;
                             // minRange
-                            if (!string.IsNullOrWhiteSpace(slipped[4]) && float.TryParse(slipped[4].Replace(".", ","), out floatOut))
+                            if (!string.IsNullOrWhiteSpace(slipped[3]) && float.TryParse(slipped[3].Replace(".", ","), out floatOut))
                                 spellInfo.MinRange = floatOut;
                             // maxRange
-                            if (!string.IsNullOrWhiteSpace(slipped[5]) && float.TryParse(slipped[5].Replace(".", ","), out floatOut))
+                            if (!string.IsNullOrWhiteSpace(slipped[4]) && float.TryParse(slipped[4].Replace(".", ","), out floatOut))
                                 spellInfo.MaxRange = floatOut;
 
                             _spellInfos.Add(id, spellInfo);
