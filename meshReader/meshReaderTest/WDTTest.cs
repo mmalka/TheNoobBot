@@ -48,7 +48,7 @@ namespace meshReaderTest
             var wdt = new WDT(@"World\maps\OrgrimmarInstance\OrgrimmarInstance.wdt");
             Assert.IsTrue(wdt.IsValid);
             Assert.IsTrue(wdt.IsGlobalModel);
-            Assert.IsNotNullOrEmpty(wdt.ModelFile);
+            Assert.That(wdt.ModelFile, Is.Not.Null.Or.Empty);
             Assert.IsNotNull(wdt.ModelDefinition);
         }
     }

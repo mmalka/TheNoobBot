@@ -1,6 +1,6 @@
 ﻿namespace meshDatabase.Database
-{   
-    public enum InstanceType
+{
+    public enum InstanceType : byte
     {
         World = 0,
         Instance = 1,
@@ -10,7 +10,7 @@
         Scenario = 5
     }
 
-    public enum MapType : uint
+    public enum MapType : byte
     {
         ADTType = 1,
         WDTOnlyType = 2,

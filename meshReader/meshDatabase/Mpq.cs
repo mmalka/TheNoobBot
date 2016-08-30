@@ -20,25 +20,25 @@ namespace MPQ
             // Now get locale to be able to extract any file
             try
             {
-                CASC.OpenFile("DBFilesClient\\Map.dbc", LocaleFlags.enUS);
+                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.enUS);
                 locale = LocaleFlags.enUS;
                 return;
             } catch {}
             try
             {
-                CASC.OpenFile("DBFilesClient\\Map.dbc", LocaleFlags.frFR);
+                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.frFR);
                 locale = LocaleFlags.frFR;
                 return;
             } catch {}
             try
             {
-                CASC.OpenFile("DBFilesClient\\Map.dbc", LocaleFlags.deDE);
+                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.deDE);
                 locale = LocaleFlags.deDE;
                 return;
             } catch {}
             try
             {
-                CASC.OpenFile("DBFilesClient\\Map.dbc", LocaleFlags.enGB);
+                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.enGB);
                 locale = LocaleFlags.enGB;
                 return;
             } catch

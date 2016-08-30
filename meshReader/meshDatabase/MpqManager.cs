@@ -20,10 +20,19 @@ namespace meshDatabase
             Mpq.Init(path);
         }
 
+
+        public static DB5Reader GetDB5(string name)
+        {
+            string path = "DBFilesClient\\" + name + ".db2";
+            return new DB5Reader(Mpq.GetFile(path));
+
+        }
+
         public static DBC GetDBC(string name)
         {
-            string path = "DBFilesClient\\" + name + ".dbc";
+            string path = "DBFilesClient\\" + name + ".db2";
             return new DBC(Mpq.GetFile(path));
+
         }
 
         public static Stream GetFile(string path)

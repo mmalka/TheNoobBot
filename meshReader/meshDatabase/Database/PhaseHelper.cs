@@ -6,9 +6,9 @@ namespace meshDatabase.Database
     
     public static class PhaseHelper
     {
-        private static DBC _map;
+        public static DB5Reader _map;
         private static bool _initialized;
-        private static IEnumerable<MapEntry> _entries;
+        private static IEnumerable<WoWMap.MapDbcRecord> _entries;
         private static List<int> _blacklistedMaps = new List<int>(new int[] { 930, 995, 1187 });
 
         public static void Initialize()
@@ -16,12 +16,13 @@ namespace meshDatabase.Database
             if (_initialized)
                 return;
 
-            _map = MpqManager.GetDBC("Map");
-            _entries = _map.Records.Select(r => new MapEntry(r));
+
+            _map = MpqManager.GetDB5("Map");
+            _entries = _map.Rows.Select(DB5Reader.ByteToType<WoWMap.MapDbcRecord>);
             _initialized = true;
         }
 
-        public static List<MapEntry> GetAllMaps()
+        public static List<WoWMap.MapDbcRecord> GetAllMaps()
         {
             Initialize();
             return _entries.ToList();
@@ -31,56 +32,61 @@ namespace meshDatabase.Database
         {
             Initialize();
 
-            var entry = _entries.Where(e => e.Name == search || e.InternalName == search).FirstOrDefault();
-            if (entry == null)
-                return -1;
-            return entry.Id;
+            var entry = _entries.FirstOrDefault(e => e.MapName() == search || e.MapMPQName() == search);
+            return (int) entry.Id;
         }
 
         public static string GetParentMap(string internalMapName)
         {
             Initialize();
 
-            MapEntry root = _entries.FirstOrDefault(entry => entry.InternalName == internalMapName);
+            WoWMap.MapDbcRecord root = _entries.FirstOrDefault(entry => entry.MapMPQName() == internalMapName);
 
-            if (root == null || root.PhaseParent == -1)
+            if (root.PhaseParent == -1)
                 return string.Empty;
 
-            return _entries.Where(entry => entry.Id == root.PhaseParent).FirstOrDefault().InternalName;
+            return _entries.FirstOrDefault(entry => entry.Id == root.PhaseParent).MapMPQName();
         }
 
-        public static List<MapEntry> GetPhasesByMap(string internalMapName)
+        public static List<WoWMap.MapDbcRecord> GetPhasesByMap(string internalMapName)
         {
             Initialize();
 
-            MapEntry root = _entries.FirstOrDefault(entry => entry.InternalName == internalMapName);
-
-            if (root == null)
-                return null;
-
+            WoWMap.MapDbcRecord root = _entries.FirstOrDefault(entry => entry.MapMPQName() == internalMapName);
+            
             return _entries.Where(entry => entry.IsPhase && entry.PhaseParent == root.Id).ToList();
         }
 
-        public static List<MapEntry> GetGarrisonMaps()
+        public static List<WoWMap.MapDbcRecord> GetGarrisonMaps()
         {
             Initialize();
 
-            return _entries.Where(entry => entry.IsGarrisonMap).ToList();
+            return _entries.Where(entry => entry.IsGarrisonMap()).ToList();
         }
 
-        public static List<MapEntry> GetAllMapOfInstanceType(InstanceType iType, MapType mType)
+        public static List<WoWMap.MapDbcRecord> GetAllMapOfInstanceType(InstanceType iType, MapType mType)
         {
             Initialize();
-
-            return _entries.Where(entry => !_blacklistedMaps.Contains(entry.Id) && entry.InstanceType == iType && entry.MapType == mType && !entry.IsTestMap && !entry.IsGarrisonMap).ToList();
+            var list = new List<WoWMap.MapDbcRecord>();
+            foreach (WoWMap.MapDbcRecord entry in _entries)
+            {
+                if (_blacklistedMaps.Contains((int) entry.Id))
+                    continue;
+                if (entry.InstanceType != iType)
+                    continue;
+                if (entry.MapType != mType)
+                    continue;
+                if (entry.IsTestMap() || entry.IsGarrisonMap())
+                    continue;
+                list.Add(entry);
+            }
+            return list;
         }
 
         public static string GetMapInternalNameFromName(string name)
         {
-            var entry = _entries.Where(e => e.Name == name).FirstOrDefault();
-            if (entry == null)
-                return string.Empty;
-            return entry.InternalName;
+            var entry = _entries.FirstOrDefault(e => e.MapName() == name);
+            return entry.MapMPQName();
         }
     }
 

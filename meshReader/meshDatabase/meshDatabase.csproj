@@ -80,9 +80,15 @@
     <Compile Include="Database\TaxiNode.cs" />
     <Compile Include="Database\TaxiPath.cs" />
     <Compile Include="Database\WorldMapArea.cs" />
+    <Compile Include="DB5Reader.cs" />
+    <Compile Include="DBCExtensions.cs" />
+    <Compile Include="DBReaderFactory.cs" />
+    <Compile Include="IWowClientDBReader.cs" />
+    <Compile Include="MAPDB2.cs" />
     <Compile Include="Mpq.cs" />
     <Compile Include="MpqManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CascLib\CascLib.csproj">

@@ -35,7 +35,7 @@ namespace meshReaderTest
             }
 
             // Load into mesh
-            var pather = new Pather("G:\\Meshes\\Azeroth");
+            var pather = new Pather("X:\\Meshes\\Azeroth");
             Assert.IsTrue(pather.LoadTile(dataA));
             Assert.IsTrue(pather.LoadTile(dataB));
             

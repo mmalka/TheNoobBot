@@ -202,7 +202,7 @@ namespace meshReaderTest
             }
 
             //Pather.Filter.ExcludeFlags = (ushort)(PolyFlag.FlightMaster);
-            /*Pather = new Pather("G:\\Meshes\\Azeroth", MockConnectionHandler); // accept alliance fly
+            /*Pather = new Pather("X:\\Meshes\\Azeroth", MockConnectionHandler); // accept alliance fly
             Console.WriteLine("Goldshire -> Ironforge by fly");
             TryPath(Goldshire, IronForgeFly, out walkHops, true);
             WriteFile("Goldshire-Ironforge_byFly.xml", walkHops, IronForgeFly);*/

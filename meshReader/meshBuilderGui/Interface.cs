@@ -269,44 +269,44 @@ namespace meshBuilderGui
                 _initialized = true;
             }
             // Doing them one by one to be able to add some separators
-            List<MapEntry> l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.World, MapType.ADTType);
+            List<WoWMap.MapDbcRecord> l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.World, MapType.ADTType);
             List<string> strl = new List<string>();
             strl.Add("BUILD ALL");
             strl.Add("------- Big tiled world maps -------");
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             strl.Add("------- BG -------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Battleground, MapType.ADTType);
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             strl.Add("------- Big tiled Instances-------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Instance, MapType.ADTType);
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             strl.Add("------- Small Instances-------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Instance, MapType.WDTOnlyType);
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             strl.Add("------- Big tiled Raids -------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.RaidInstance, MapType.ADTType);
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             strl.Add("------- Small raids -------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.RaidInstance, MapType.WDTOnlyType);
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             strl.Add("------- Scenarios -------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Scenario, MapType.ADTType);
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             /*strl.Add("------- Small Scenarios -------");
             l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.Scenario, MapType.WDTOnlyType);
             foreach (MapEntry m in l0)
                 strl.Add(m.InternalName);*/
             strl.Add("------- Garrison maps -------");
             l0 = PhaseHelper.GetGarrisonMaps();
-            foreach (MapEntry m in l0)
-                strl.Add(m.InternalName);
+            foreach (WoWMap.MapDbcRecord m in l0)
+                strl.Add(m.MapMPQName());
             //foreach (string s in strl)
             //    Console.WriteLine(s);
             this.continentNameCB.AutoCompleteCustomSource.Clear();

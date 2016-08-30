@@ -42,7 +42,7 @@ namespace meshBuilderGui.Properties {
 
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G:\\Meshes\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("X:\\Meshes\\")]
         public string MeshesPath
         {
             get
