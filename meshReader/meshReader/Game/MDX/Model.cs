@@ -29,8 +29,6 @@ namespace meshReader.Game.MDX
             if (Header.OffsetBoundingNormals > 0 && Header.OffsetBoundingVertices > 0 &&
                 Header.OffsetBoundingTriangles > 0 && Header.BoundingRadius > 0.0f)
             {
-                if (System.Text.Encoding.Default.GetString(Header.Magic) == "MD21")
-                    return; // hack MD21 chunks, not yet used, or are they ?
                 IsCollidable = true;
                 ReadVertices(_stream);
                 ReadBoundingNormals(_stream);

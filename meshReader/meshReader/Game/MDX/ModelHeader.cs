@@ -62,6 +62,14 @@ namespace meshReader.Game.MDX
         {
             var r = new BinaryReader(s);
             Magic = r.ReadBytes(4);
+            if (System.Text.Encoding.Default.GetString(Magic) == "MD21")
+            {
+                // MD21: 4D 44 32 31 X X X X 4D 44 32 30
+                // MD20: 4D 44 32 30
+                // 8 bytes to bypass, including MD21 magic.
+                r.ReadBytes(4); // read 4 bytes more
+                Magic = r.ReadBytes(4); // rewrite the new magic
+            }
             Version = r.ReadUInt32();
             LengthModelName = r.ReadUInt32();
             OffsetName = r.ReadUInt32();
