@@ -86,8 +86,9 @@ namespace TheNoobViewer
                     if (block.LocaleFlags == LocaleFlags.None)
                         throw new Exception("block.LocaleFlags == LocaleFlags.None");
 
-                    if (block.ContentFlags != ContentFlags.None && (block.ContentFlags & (ContentFlags.LowViolence | ContentFlags.NoCompression)) == 0)
-                        throw new Exception("block.ContentFlags != ContentFlags.None");
+                    /*if (block.ContentFlags != ContentFlags.None && (block.ContentFlags & (ContentFlags.LowViolence | ContentFlags.NoCompression)) == 0)
+                        throw new Exception("block.ContentFlags != ContentFlags.None");*/
+                    //Probably requires CASCExplorer update
 
                     RootEntry[] entries = new RootEntry[count];
 

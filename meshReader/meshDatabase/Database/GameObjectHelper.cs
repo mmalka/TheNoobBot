@@ -18,6 +18,7 @@ namespace meshDatabase.Database
     
         public static void Initialize()
         {
+            return; // hack gameobject
             if (_initialized)
                 return;
 

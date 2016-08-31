@@ -46,6 +46,7 @@ namespace meshBuilder
 
         public void InsertAllGameobjectGeometry(int map)
         {
+            return; // hack, bypass gameobject in meshes
             foreach (GameObject go in GameObjectHelper.GetAllGameobjectInMap(map))
             {
                 Geometry.AddGameObject(go);

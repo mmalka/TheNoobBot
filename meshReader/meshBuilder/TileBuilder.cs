@@ -105,6 +105,7 @@ namespace meshBuilder
 
         public void InsertAllGameobjectGeometry(int x, int y, int map)
         {
+            return; // hack gameobject
             float[] bbMin, bbMax;
             CalculateTileBounds2(out bbMin, out bbMax, x, y);
             foreach (GameObject go in GameObjectHelper.GetAllGameobjectInBoundingBox(bbMin, bbMax, map))
