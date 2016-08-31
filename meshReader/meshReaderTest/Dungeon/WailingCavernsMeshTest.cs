@@ -9,7 +9,7 @@ namespace meshReaderTest.Dungeon
     public class WailingCavernsMeshTest : DungeonMeshTest
     {
         
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             Initialize("S:\\meshReader\\Meshes\\WailingCaverns");

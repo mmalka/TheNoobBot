@@ -1,53 +1,25 @@
 ﻿using System;
 using System.IO;
+using CASCExplorer;
 using meshDatabase;
-using TheNoobViewer;
 using System.Reflection;
 
 namespace MPQ
 {
     static class Mpq
     {
-        static CASCHandler CASC;
-        static CASCFolder Root;
-        static LocaleFlags locale;
+        static CASCHandler _casc;
+        private static CASCFolder Root;
 
         public static void Init(string path)
         {
-            CASC = CASCHandler.OpenLocalStorage(path);
-            Root = CASC.CreateStorageTree(LocaleFlags.All);
-
-            // Now get locale to be able to extract any file
-            try
-            {
-                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.enUS);
-                locale = LocaleFlags.enUS;
-                return;
-            } catch {}
-            try
-            {
-                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.frFR);
-                locale = LocaleFlags.frFR;
-                return;
-            } catch {}
-            try
-            {
-                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.deDE);
-                locale = LocaleFlags.deDE;
-                return;
-            } catch {}
-            try
-            {
-                CASC.OpenFile("DBFilesClient\\Map.db2", LocaleFlags.enGB);
-                locale = LocaleFlags.enGB;
-                return;
-            } catch
-            {
-                locale = LocaleFlags.All;
-            }
+            _casc = CASCHandler.OpenOnlineStorage("wow", "us");
+            _casc.Root.SetFlags(LocaleFlags.enUS, ContentFlags.None);
+            if (_casc.FileExists("DBFilesClient\\Map.db2"))
+                _casc.OpenFile("DBFilesClient\\Map.db2");
         }
 
-        public static bool ExtractFile(string from, string to)
+        /*public static bool ExtractFile(string from, string to)
         {
             try
             {
@@ -58,19 +30,13 @@ namespace MPQ
             {
                 return false;
             }
-        }
+        }*/
 
         public static Stream GetFile(string from)
         {
             try
             {
-                //Console.WriteLine(from);
-                return CASC.OpenFile(from, locale, ContentFlags.None);
-            } catch {}
-            try
-            {
-                //Console.WriteLine(from);
-                return CASC.OpenFile(from, locale, ContentFlags.LowViolence);
+                return _casc.OpenFile(from);
             }
             catch
             {
@@ -78,6 +44,16 @@ namespace MPQ
                     Console.WriteLine("Problem: " + from);
                 return null;
             }
+        }
+
+        public static Stream GetFile(int fileDataId)
+        {
+            return _casc.OpenFile(fileDataId);
+        }
+
+        public static Stream GetFile(ulong hash)
+        {
+            return _casc.OpenFile(hash);
         }
 
         public static void Close()

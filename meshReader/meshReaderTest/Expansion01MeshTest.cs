@@ -8,7 +8,7 @@ namespace meshReaderTest
     public class Expansion01MeshTest : MeshTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
             string iMeshesPath = MeshesPath + "Expansion01";

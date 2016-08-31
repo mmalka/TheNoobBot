@@ -42,7 +42,7 @@ namespace meshDatabase.Database
 
             WoWMap.MapDbcRecord root = _entries.FirstOrDefault(entry => entry.MapMPQName() == internalMapName);
 
-            if (root.PhaseParent == -1)
+            if (root.PhaseParent == 0)
                 return string.Empty;
 
             return _entries.FirstOrDefault(entry => entry.Id == root.PhaseParent).MapMPQName();

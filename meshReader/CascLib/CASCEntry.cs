@@ -3,59 +3,63 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace TheNoobViewer
+namespace CASCExplorer
 {
-    public interface ICASCEntry : IComparable<ICASCEntry>
+    public interface ICASCEntry
     {
         string Name { get; }
         ulong Hash { get; }
+        int CompareTo(ICASCEntry entry, int col, CASCHandler casc);
     }
 
-    public class CASCFolder : ICASCEntry, IComparable<ICASCEntry>
+    public class CASCFolder : ICASCEntry
     {
-        public Dictionary<ulong, ICASCEntry> SubEntries;
-        ulong hash;
+        private string _name;
 
-        public CASCFolder(ulong _hash)
+        public Dictionary<string, ICASCEntry> Entries { get; set; }
+
+        public CASCFolder(string name)
         {
-            SubEntries = new Dictionary<ulong, ICASCEntry>();
-            hash = _hash;
+            Entries = new Dictionary<string, ICASCEntry>(StringComparer.OrdinalIgnoreCase);
+            _name = name;
         }
 
         public string Name
         {
-            get { return FolderNames[hash]; }
+            get { return _name; }
         }
 
         public ulong Hash
         {
-            get { return hash; }
+            get { return 0; }
         }
 
-        public ICASCEntry GetEntry(ulong hash)
+        public ICASCEntry GetEntry(string name)
         {
             ICASCEntry entry;
-            SubEntries.TryGetValue(hash, out entry);
+            Entries.TryGetValue(name, out entry);
             return entry;
         }
 
-        public IEnumerable<CASCFile> GetFiles(IEnumerable<int> selection = null, bool recursive = true)
+        public static IEnumerable<CASCFile> GetFiles(IEnumerable<ICASCEntry> entries, IEnumerable<int> selection = null, bool recursive = true)
         {
             if (selection != null)
             {
                 foreach (int index in selection)
                 {
-                    var entry = SubEntries.ElementAt(index);
+                    var entry = entries.ElementAt(index);
 
-                    if (entry.Value is CASCFile)
+                    if (entry is CASCFile)
                     {
-                        yield return entry.Value as CASCFile;
+                        yield return entry as CASCFile;
                     }
                     else
                     {
                         if (recursive)
                         {
-                            foreach (var file in (entry.Value as CASCFolder).GetFiles())
+                            var folder = entry as CASCFolder;
+
+                            foreach (var file in GetFiles(folder.Entries.Select(kv => kv.Value)))
                             {
                                 yield return file;
                             }
@@ -65,17 +69,19 @@ namespace TheNoobViewer
             }
             else
             {
-                foreach (var entry in SubEntries)
+                foreach (var entry in entries)
                 {
-                    if (entry.Value is CASCFile)
+                    if (entry is CASCFile)
                     {
-                        yield return entry.Value as CASCFile;
+                        yield return entry as CASCFile;
                     }
                     else
                     {
                         if (recursive)
                         {
-                            foreach (var file in (entry.Value as CASCFolder).GetFiles())
+                            var folder = entry as CASCFolder;
+
+                            foreach (var file in GetFiles(folder.Entries.Select(kv => kv.Value)))
                             {
                                 yield return file;
                             }
@@ -85,24 +91,36 @@ namespace TheNoobViewer
             }
         }
 
-        public int CompareTo(ICASCEntry other)
+        public int CompareTo(ICASCEntry other, int col, CASCHandler casc)
         {
-            if (other is CASCFolder)
-                return Name.CompareTo(other.Name);
-            else
-                return this is CASCFolder ? -1 : 1;
-        }
+            int result = 0;
 
-        public static readonly Dictionary<ulong, string> FolderNames = new Dictionary<ulong, string>();
+            if (other is CASCFile)
+                return -1;
+
+            switch (col)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    result = Name.CompareTo(other.Name);
+                    break;
+                case 4:
+                    break;
+            }
+
+            return result;
+        }
     }
 
-    public class CASCFile : ICASCEntry, IComparable<ICASCEntry>
+    public class CASCFile : ICASCEntry
     {
-        ulong hash;
+        private ulong hash;
 
-        public CASCFile(ulong _hash)
+        public CASCFile(ulong hash)
         {
-            hash = _hash;
+            this.hash = hash;
         }
 
         public string Name
@@ -113,6 +131,7 @@ namespace TheNoobViewer
         public string FullName
         {
             get { return FileNames[hash]; }
+            set { FileNames[hash] = value; }
         }
 
         public ulong Hash
@@ -120,12 +139,57 @@ namespace TheNoobViewer
             get { return hash; }
         }
 
-        public int CompareTo(ICASCEntry other)
+        public int GetSize(CASCHandler casc)
         {
-            if (other is CASCFile)
-                return Name.CompareTo(other.Name);
-            else
-                return this is CASCFile ? 1 : -1;
+            EncodingEntry enc;
+            return casc.GetEncodingEntry(hash, out enc) ? enc.Size : 0;
+        }
+
+        public int CompareTo(ICASCEntry other, int col, CASCHandler casc)
+        {
+            int result = 0;
+
+            if (other is CASCFolder)
+                return 1;
+
+            switch (col)
+            {
+                case 0:
+                    result = Name.CompareTo(other.Name);
+                    break;
+                case 1:
+                    result = Path.GetExtension(Name).CompareTo(Path.GetExtension(other.Name));
+                    break;
+                case 2:
+                    {
+                        var e1 = casc.Root.GetEntries(Hash);
+                        var e2 = casc.Root.GetEntries(other.Hash);
+                        var flags1 = e1.Any() ? e1.First().LocaleFlags : LocaleFlags.None;
+                        var flags2 = e2.Any() ? e2.First().LocaleFlags : LocaleFlags.None;
+                        result = flags1.CompareTo(flags2);
+                    }
+                    break;
+                case 3:
+                    {
+                        var e1 = casc.Root.GetEntries(Hash);
+                        var e2 = casc.Root.GetEntries(other.Hash);
+                        var flags1 = e1.Any() ? e1.First().ContentFlags : ContentFlags.None;
+                        var flags2 = e2.Any() ? e2.First().ContentFlags : ContentFlags.None;
+                        result = flags1.CompareTo(flags2);
+                    }
+                    break;
+                case 4:
+                    var size1 = GetSize(casc);
+                    var size2 = (other as CASCFile).GetSize(casc);
+
+                    if (size1 == size2)
+                        result = 0;
+                    else
+                        result = size1 < size2 ? -1 : 1;
+                    break;
+            }
+
+            return result;
         }
 
         public static readonly Dictionary<ulong, string> FileNames = new Dictionary<ulong, string>();

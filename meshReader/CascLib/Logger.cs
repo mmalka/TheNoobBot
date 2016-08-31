@@ -1,15 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
-namespace TheNoobViewer
+namespace CASCExplorer
 {
     public class Logger
     {
-        //static FileStream fs = new FileStream("debug.log", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-        //static StreamWriter logger = new StreamWriter(fs) { AutoFlush = true };
+        static FileStream fs = new FileStream("debug.log", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+        static StreamWriter logger = new StreamWriter(fs) { AutoFlush = true };
 
         public static void WriteLine(string format, params object[] args)
         {
-            /*logger*/System.Console.WriteLine(format, args);
+            logger.Write("[{0}]: ", DateTime.Now);
+            logger.WriteLine(format, args);
         }
     }
 }

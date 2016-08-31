@@ -12,7 +12,7 @@ namespace meshReaderTest
     public class NorthrendMeshTest : MeshTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
             string iMeshesPath = MeshesPath + "Northrend";

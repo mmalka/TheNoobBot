@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>meshReaderTest</RootNamespace>
     <AssemblyName>meshReaderTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -90,10 +90,6 @@
     <Compile Include="WMOTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CascLib\CascLib.csproj">
-      <Project>{E08E1E48-6585-4137-8405-661C62C10713}</Project>
-      <Name>CascLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\meshBuilder\meshBuilder.csproj">
       <Project>{11536EC8-063C-48BD-A49E-B7DA7D0C4399}</Project>
       <Name>meshBuilder</Name>

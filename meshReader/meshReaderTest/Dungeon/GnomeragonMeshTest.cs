@@ -9,7 +9,7 @@ namespace meshReaderTest.Dungeon
     public class GnomeragonMeshTest : DungeonMeshTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             Initialize("S:\\meshReader\\Meshes\\GnomeragonInstance");

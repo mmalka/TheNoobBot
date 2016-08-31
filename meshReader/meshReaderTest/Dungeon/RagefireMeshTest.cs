@@ -8,7 +8,7 @@ namespace meshReaderTest.Dungeon
     public class RagefireMeshTest : DungeonMeshTest
     {
         
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             Initialize("S:\\meshReader\\Meshes\\OrgrimmarInstance");

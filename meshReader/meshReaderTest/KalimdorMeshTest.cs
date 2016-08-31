@@ -8,7 +8,7 @@ namespace meshReaderTest
     public class KalidmorMeshTest : MeshTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
             string iMeshesPath = MeshesPath + "Kalimdor";

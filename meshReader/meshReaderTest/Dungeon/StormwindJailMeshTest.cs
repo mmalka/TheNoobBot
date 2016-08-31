@@ -9,7 +9,7 @@ namespace meshReaderTest.Dungeon
     public class StormwindJailMeshTest : DungeonMeshTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             Initialize("S:\\meshReader\\Meshes\\StormwindJail");

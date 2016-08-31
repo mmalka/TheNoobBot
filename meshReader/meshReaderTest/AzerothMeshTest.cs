@@ -13,7 +13,7 @@ namespace meshReaderTest
     {
         static private string iMeshesPath;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WoWPath)
         {
             iMeshesPath = MeshesPath + "Azeroth";

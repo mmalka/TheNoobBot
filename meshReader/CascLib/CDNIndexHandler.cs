@@ -1,67 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Net;
-using System.Threading;
+//using System.Net.Http;
+//using System.Net.Http.Headers;
 
-namespace TheNoobViewer
+namespace CASCExplorer
 {
-    internal class UserState
+    public class IndexEntry
     {
         public int Index;
-        public string Path;
-        public Stream Stream;
-        public ManualResetEvent ResetEvent = new ManualResetEvent(false);
+        public int Offset;
+        public int Size;
     }
 
-    internal class CDNIndexHandler
+    public class CDNIndexHandler
     {
-        private static readonly ByteArrayComparer comparer = new ByteArrayComparer();
-        private readonly Dictionary<byte[], IndexEntry> CDNIndexData = new Dictionary<byte[], IndexEntry>(comparer);
+        private static readonly MD5HashComparer comparer = new MD5HashComparer();
+        private Dictionary<MD5Hash, IndexEntry> CDNIndexData = new Dictionary<MD5Hash, IndexEntry>(comparer);
 
-        private CASCConfig CASCConfig;
-        private AsyncAction worker;
-        private Semaphore downloadSemaphore = new Semaphore(1, 1);
+        private CASCConfig config;
+        private BackgroundWorkerEx worker;
+        private SyncDownloader downloader;
+        public static readonly CDNCache Cache = new CDNCache("cache");
 
-        public int Count
+        public int Count => CDNIndexData.Count;
+
+        private CDNIndexHandler(CASCConfig cascConfig, BackgroundWorkerEx worker)
         {
-            get { return CDNIndexData.Count; }
-        }
-
-        private CDNIndexHandler(CASCConfig cascConfig, AsyncAction worker)
-        {
-            CASCConfig = cascConfig;
+            config = cascConfig;
             this.worker = worker;
+            downloader = new SyncDownloader(worker);
         }
 
-        public static CDNIndexHandler Initialize(CASCConfig config, AsyncAction worker)
+        public static CDNIndexHandler Initialize(CASCConfig config, BackgroundWorkerEx worker)
         {
             var handler = new CDNIndexHandler(config, worker);
 
-            if (worker != null)
-            {
-                worker.ThrowOnCancel();
-                //worker.ReportProgress(0);
-            }
+            worker?.ReportProgress(0, "Loading \"CDN indexes\"...");
 
             for (int i = 0; i < config.Archives.Count; i++)
             {
-                string index = config.Archives[i];
+                string archive = config.Archives[i];
 
                 if (config.OnlineMode)
-                    handler.DownloadFile(index, i);
+                    handler.DownloadIndexFile(archive, i);
                 else
-                    handler.OpenFile(index, i);
+                    handler.OpenIndexFile(archive, i);
 
-                if (worker != null)
-                {
-                    worker.ThrowOnCancel();
-                    //worker.ReportProgress((int)((float)i / (float)config.Archives.Count * 100));
-                }
+                worker?.ReportProgress((int)((i + 1) / (float)config.Archives.Count * 100));
             }
-
-            Logger.WriteLine("CDNIndexHandler: loaded {0} indexes", handler.Count);
 
             return handler;
         }
@@ -74,12 +62,15 @@ namespace TheNoobViewer
                 int count = br.ReadInt32();
                 stream.Seek(0, SeekOrigin.Begin);
 
+                if (count * (16 + 4 + 4) > stream.Length)
+                    throw new Exception("ParseIndex failed");
+
                 for (int j = 0; j < count; ++j)
                 {
-                    byte[] key = br.ReadBytes(16);
+                    MD5Hash key = br.Read<MD5Hash>();
 
                     if (key.IsZeroed()) // wtf?
-                        key = br.ReadBytes(16);
+                        key = br.Read<MD5Hash>();
 
                     if (key.IsZeroed()) // wtf?
                         throw new Exception("key.IsZeroed()");
@@ -94,32 +85,23 @@ namespace TheNoobViewer
             }
         }
 
-        private void DownloadFile(string index, int i)
+        private void DownloadIndexFile(string archive, int i)
         {
-            var rootPath = Path.Combine("data", CASCConfig.Build.ToString(), "indices");
-
-            if (!Directory.Exists(rootPath))
-                Directory.CreateDirectory(rootPath);
-
-            var path = Path.Combine(rootPath, index + ".index");
-
-            if (File.Exists(path))
-            {
-                using (FileStream fs = new FileStream(path, FileMode.Open))
-                    ParseIndex(fs, i);
-                return;
-            }
-
             try
             {
-                var url = CASCConfig.CDNUrl + "/data/" + index.Substring(0, 2) + "/" + index.Substring(2, 2) + "/" + index + ".index";
+                string file = config.CDNPath + "/data/" + archive.Substring(0, 2) + "/" + archive.Substring(2, 2) + "/" + archive + ".index";
+                string url = "http://" + config.CDNHost + "/" + file;
 
-                using (WebClient webClient = new WebClient())
+                Stream stream = Cache.OpenFile(file, url, false);
+
+                if (stream != null)
                 {
-                    webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
-                    webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
-                    webClient.DownloadFileAsync(new Uri(url), path, new UserState() { Index = i, Path = path });
-                    downloadSemaphore.WaitOne();
+                    ParseIndex(stream, i);
+                }
+                else
+                {
+                    using (var fs = downloader.OpenFile(url))
+                        ParseIndex(fs, i);
                 }
             }
             catch
@@ -128,38 +110,15 @@ namespace TheNoobViewer
             }
         }
 
-        private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            if (e.Cancelled)
-                return;
-
-            downloadSemaphore.Release();
-
-            var state = (UserState)e.UserState;
-
-            using (FileStream fs = File.OpenRead(state.Path))
-                ParseIndex(fs, state.Index);
-        }
-
-        private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            if (worker != null)
-            {
-                if (worker.IsCancellationRequested)
-                    (sender as WebClient).CancelAsync();
-
-                //worker.ThrowOnCancel();
-                //worker.ReportProgress(e.ProgressPercentage);
-            }
-        }
-
-        private void OpenFile(string index, int i)
+        private void OpenIndexFile(string archive, int i)
         {
             try
             {
-                var path = Path.Combine(CASCConfig.BasePath, "Data\\indices\\", index + ".index");
+                string dataFolder = CASCGame.GetDataFolder(config.GameType);
 
-                using (FileStream fs = new FileStream(path, FileMode.Open))
+                string path = Path.Combine(config.BasePath, dataFolder, "indices", archive + ".index");
+
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     ParseIndex(fs, i);
             }
             catch
@@ -168,86 +127,118 @@ namespace TheNoobViewer
             }
         }
 
-        public Stream OpenDataFile(byte[] key)
+        public Stream OpenDataFile(IndexEntry entry)
         {
-            var indexEntry = CDNIndexData[key];
+            var archive = config.Archives[entry.Index];
 
-            var index = CASCConfig.Archives[indexEntry.Index];
-            var url = CASCConfig.CDNUrl/*.Split(' ')[0]*/ + "/data/" + index.Substring(0, 2) + "/" + index.Substring(2, 2) + "/" + index;
+            string file = config.CDNPath + "/data/" + archive.Substring(0, 2) + "/" + archive.Substring(2, 2) + "/" + archive;
+            string url = "http://" + config.CDNHost + "/" + file;
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.AddRange(indexEntry.Offset, indexEntry.Offset + indexEntry.Size - 1);
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            return resp.GetResponseStream();
-        }
+            Stream stream = Cache.OpenFile(file, url, true);
 
-        public Stream OpenDataFileDirect(byte[] key)
-        {
-            if (worker != null)
+            if (stream != null)
             {
-                worker.ThrowOnCancel();
-                //worker.ReportProgress(0);
+                stream.Position = entry.Offset;
+                MemoryStream ms = new MemoryStream(entry.Size);
+                stream.CopyBytes(ms, entry.Size);
+                ms.Position = 0;
+                return ms;
             }
 
-            var file = key.ToHexString().ToLower();
-            var url = CASCConfig.CDNUrl + "/data/" + file.Substring(0, 2) + "/" + file.Substring(2, 2) + "/" + file;
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    client.DefaultRequestHeaders.Range = new RangeHeaderValue(entry.Offset, entry.Offset + entry.Size - 1);
 
-            WebClient client = new WebClient();
-            client.DownloadProgressChanged += Client_DownloadProgressChanged;
-            client.DownloadDataCompleted += Client_DownloadDataCompleted;
+            //    var resp = client.GetStreamAsync(url).Result;
 
-            UserState state = new UserState();
+            //    MemoryStream ms = new MemoryStream(entry.Size);
+            //    resp.CopyBytes(ms, entry.Size);
+            //    ms.Position = 0;
+            //    return ms;
+            //}
 
-            client.DownloadDataAsync(new Uri(url), state);
-            state.ResetEvent.WaitOne();
-            return state.Stream;
-        }
-
-        private void Client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
-        {
-            if (e.Cancelled)
-                return;
-
-            UserState state = e.UserState as UserState;
-
-            state.Stream = new MemoryStream(e.Result);
-            state.ResetEvent.Set();
-        }
-
-        private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            if (worker != null)
+            HttpWebRequest req = WebRequest.CreateHttp(url);
+            //req.Headers[HttpRequestHeader.Range] = string.Format("bytes={0}-{1}", entry.Offset, entry.Offset + entry.Size - 1);
+            req.AddRange(entry.Offset, entry.Offset + entry.Size - 1);
+            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponseAsync().Result)
             {
-                if (worker.IsCancellationRequested)
-                    (sender as WebClient).CancelAsync();
-
-                worker.ThrowOnCancel();
-                //worker.ReportProgress(e.ProgressPercentage);
+                MemoryStream ms = new MemoryStream(entry.Size);
+                resp.GetResponseStream().CopyBytes(ms, entry.Size);
+                ms.Position = 0;
+                return ms;
             }
         }
 
-        public static Stream OpenConfigFileDirect(string cdnUrl, string key)
+        public Stream OpenDataFileDirect(MD5Hash key)
         {
-            var url = cdnUrl + "/config/" + key.Substring(0, 2) + "/" + key.Substring(2, 2) + "/" + key;
+            var keyStr = key.ToHexString().ToLower();
+
+            worker?.ReportProgress(0, string.Format("Downloading \"{0}\" file...", keyStr));
+
+            string file = config.CDNPath + "/data/" + keyStr.Substring(0, 2) + "/" + keyStr.Substring(2, 2) + "/" + keyStr;
+            string url = "http://" + config.CDNHost + "/" + file;
+
+            Stream stream = Cache.OpenFile(file, url, false);
+
+            if (stream != null)
+                return stream;
+
+            return downloader.OpenFile(url);
+        }
+
+        public static Stream OpenConfigFileDirect(CASCConfig cfg, string key)
+        {
+            string file = cfg.CDNPath + "/config/" + key.Substring(0, 2) + "/" + key.Substring(2, 2) + "/" + key;
+            string url = "http://" + cfg.CDNHost + "/" + file;
+
+            Stream stream = Cache.OpenFile(file, url, false);
+
+            if (stream != null)
+                return stream;
 
             return OpenFileDirect(url);
         }
 
         public static Stream OpenFileDirect(string url)
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            return resp.GetResponseStream();
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    var resp = client.GetStreamAsync(url).Result;
+
+            //    MemoryStream ms = new MemoryStream();
+            //    resp.CopyTo(ms);
+            //    ms.Position = 0;
+            //    return ms;
+            //}
+
+            HttpWebRequest req = WebRequest.CreateHttp(url);
+            using (HttpWebResponse resp = (HttpWebResponse)req.GetResponseAsync().Result)
+            {
+                MemoryStream ms = new MemoryStream();
+                resp.GetResponseStream().CopyTo(ms);
+                ms.Position = 0;
+                return ms;
+            }
         }
 
-        public IndexEntry GetIndexInfo(byte[] key)
+        public IndexEntry GetIndexInfo(MD5Hash key)
         {
             IndexEntry result;
 
             if (!CDNIndexData.TryGetValue(key, out result))
-                Logger.WriteLine("CDNHandler: missing index: {0}", key.ToHexString());
+                Logger.WriteLine("CDNIndexHandler: missing index: {0}", key.ToHexString());
 
             return result;
+        }
+
+        public void Clear()
+        {
+            CDNIndexData.Clear();
+            CDNIndexData = null;
+
+            config = null;
+            worker = null;
+            downloader = null;
         }
     }
 }

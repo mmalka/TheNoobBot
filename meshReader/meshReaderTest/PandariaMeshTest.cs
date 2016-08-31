@@ -14,7 +14,7 @@ namespace meshReaderTest
     {
         private static string iMeshesPath;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize(string MeshesPath, string WowPath)
         {
             iMeshesPath = MeshesPath + "HawaiiMainLand";
