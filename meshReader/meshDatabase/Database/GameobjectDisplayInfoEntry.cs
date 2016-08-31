@@ -1,10 +1,24 @@
-﻿using SlimDX;
+﻿using System.Runtime.InteropServices;
+using SlimDX;
 
 namespace meshDatabase.Database
 {
 
     public class GameobjectDisplayInfoEntry
     {
+        [StructLayout(LayoutKind.Sequential)]
+        public struct GameobjectDisplayInfoDb2Record
+        {
+            public int DisplayId;
+            public int DataId;
+            public Vector3 LowerBound;
+            public Vector3 HigherBound;
+            public int unk1;
+            public int unk2;
+            public ushort unk3;
+            public ushort unk4;
+        }
+
         public int DisplayId { get; private set; }
         public int DataId { get; private set; }
         public Vector3 LowerBound { get; private set; }

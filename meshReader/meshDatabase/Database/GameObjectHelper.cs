@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using SlimDX;
@@ -8,25 +9,33 @@ namespace meshDatabase.Database
 
     public static class GameObjectHelper
     {
-        private static DBC _gameobjectDisplayInfo;
+        private static DB5Reader _gameobjectDisplayInfo;
         private static DBC _fileData;
         private static bool _initialized;
-        private static IEnumerable<GameobjectDisplayInfoEntry> _displayInfoEntries;
         private static IEnumerable<FileDataEntry> _filaDataEntries;
         private static MySqlConnection _myConn;
         private static Dictionary<int, string> _cache;
+        private static BinaryReader[] _cachedGameobjectDisplayInfoRows;
+        private static GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record[] _cachedGameobjectDisplayInfoRecords;
     
         public static void Initialize()
         {
-            return; // hack gameobject
+            return; // hack gameobject until it's working.
             if (_initialized)
                 return;
 
             _cache = new Dictionary<int, string>(1000);
-            _gameobjectDisplayInfo = MpqManager.GetDBC("GameobjectDisplayInfo");
-            _displayInfoEntries = _gameobjectDisplayInfo.Records.Select(r => new GameobjectDisplayInfoEntry(r));
-            _fileData = MpqManager.GetDBC("FileData");
-            _filaDataEntries = _fileData.Records.Select(r => new FileDataEntry(r));
+            _gameobjectDisplayInfo = MpqManager.GetDB5("GameobjectDisplayInfo");
+            _cachedGameobjectDisplayInfoRows = _gameobjectDisplayInfo.Rows.ToArray();
+
+            _cachedGameobjectDisplayInfoRecords = new GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record[_cachedGameobjectDisplayInfoRows.Length];
+            for (int i = 0; i < _cachedGameobjectDisplayInfoRows.Length - 1; i++)
+            {
+                _cachedGameobjectDisplayInfoRecords[i] = DB5Reader.ByteToType<GameobjectDisplayInfoEntry.GameobjectDisplayInfoDb2Record>(_cachedGameobjectDisplayInfoRows[i]);
+            }
+            /*_fileData = MpqManager.GetDBC("FileData");
+            _filaDataEntries = _fileData.Records.Select(r => new FileDataEntry(r));*/
+            // FileData no longer requires, we can open files directly from their FileDataId, but need a CascLib update first.
             _myConn = new MySqlConnection("server=192.168.10.222; user id=root; password=aabbcc; database=offydump;");
             _myConn.Open();
 
@@ -48,8 +57,8 @@ namespace meshDatabase.Database
             string ret;
             if (_cache.TryGetValue(displayId, out ret))
                 return ret;
-            var displayInfoEntry = _displayInfoEntries.Where(e => e.DisplayId == displayId).FirstOrDefault();
-            if (displayInfoEntry == null)
+            var displayInfoEntry = _cachedGameobjectDisplayInfoRecords.Where(e => e.DisplayId == displayId).FirstOrDefault();
+            if (displayInfoEntry.DataId == 0)
                 return string.Empty;
 
             var fileDataEntry = _filaDataEntries.Where(e => e.DataId == displayInfoEntry.DataId).FirstOrDefault();
