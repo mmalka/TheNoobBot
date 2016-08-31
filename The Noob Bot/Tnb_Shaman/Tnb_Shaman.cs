@@ -286,10 +286,11 @@ public class ShamanEnhancement
                         {
                             if (ObjectManager.Me.Target != lastTarget)
                             {
+                                Logging.Write("New Target == " + ObjectManager.Target.Name);
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance <= 40f)
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -340,7 +341,6 @@ public class ShamanEnhancement
             Logging.Write(method.Name + "(" + parameterDescriptions + ") [color=#0000ff]returns[/color] " + method.ReturnType);
         }
     }
-
 
     private void Patrolling()
     {
@@ -395,7 +395,7 @@ public class ShamanEnhancement
             return;
 
         //Combat
-        if (ObjectManager.Target.GetDistance < MySettings.BurstDistance)
+        if (CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.BurstDistance))
             Burst(); //GCD independent
         GCDCycle(); //GCD dependent
     }
@@ -568,7 +568,7 @@ public class ShamanEnhancement
                 Flametongue.Cast();
                 return;
             }
-            if (Berserking.IsSpellUsable && ObjectManager.Target.GetDistance < MySettings.BurstDistance &&
+            if (Berserking.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.BurstDistance) &&
                 MySettings.UseBerserking)
             {
                 Berserking.Cast();
@@ -576,7 +576,7 @@ public class ShamanEnhancement
             }
 
             //Offensive Cooldowns
-            if (FeralSpirit.IsSpellUsable && ObjectManager.Target.GetDistance < MySettings.BurstDistance &&
+            if (FeralSpirit.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.BurstDistance) &&
                 MySettings.UseFeralSpirit)
             {
                 FeralSpirit.Cast();
@@ -625,6 +625,12 @@ public class ShamanEnhancement
             }
             if (FeralLunge.IsHostileDistanceGood && FeralLunge.IsSpellUsable && MySettings.UseFeralLunge)
             {
+                //Logging.WriteFight("IsHostileDistanceGood == " + FeralLunge.IsHostileDistanceGood);
+                //Logging.WriteFight("Target.GetDistance == " + ObjectManager.Target.GetDistance);
+                //Logging.WriteFight("InSpellRange(MinRangeHostile, MaxRangeHostile) == " + CombatClass.InSpellRange(ObjectManager.Target, FeralLunge.MinRangeHostile, FeralLunge.MaxRangeHostile));
+                //Logging.WriteFight("InSpellRange(8, 25) == " + CombatClass.InSpellRange(ObjectManager.Target, 8, 25));
+                //Logging.WriteFight("MinRangeHostile == " + FeralLunge.MinRangeHostile);
+                //Logging.WriteFight("MaxRangeHostile == " + FeralLunge.MaxRangeHostile);
                 FeralLunge.Cast();
                 return;
             }
@@ -1735,8 +1741,6 @@ public class ShamanElemental
         Main.DumpCurrentSettings<ShamanElementalSettings>(MySettings);
         UInt128 lastTarget = 0;
 
-        //Test();
-
         while (Main.InternalLoop)
         {
             try
@@ -1752,7 +1756,7 @@ public class ShamanElemental
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance <= 40f)
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -1770,27 +1774,6 @@ public class ShamanElemental
             Thread.Sleep(100);
         }
     }
-
-    private void Test()
-    {
-        Usefuls.SleepGlobalCooldown();
-        try
-        {
-            Memory.WowMemory.GameFrameLock();
-
-            Logging.Write("!ObjectManager.Me.HaveBuff(210659) == " + !ObjectManager.Me.HaveBuff(210659));
-            Logging.Write("!ObjectManager.Me.HaveBuff(210652) == " + !ObjectManager.Me.HaveBuff(210652));
-            Logging.Write("!ObjectManager.Me.HaveBuff(202192) == " + !ObjectManager.Me.HaveBuff(202192));
-            Logging.Write("!ObjectManager.Me.HaveBuff(210658) == " + !ObjectManager.Me.HaveBuff(210658));
-            Logging.Write("TotemMastery.IsSpellUsable == " + TotemMastery.IsSpellUsable);
-            Logging.Write("MySettings.UseTotemMastery == " + MySettings.UseTotemMastery);
-        }
-        finally
-        {
-            Memory.WowMemory.GameFrameUnLock();
-        }
-    }
-
 
     private void Patrolling()
     {
@@ -1997,7 +1980,7 @@ public class ShamanElemental
             }
 
             //Single Target Rotation
-            if (!FlameShock.TargetHaveBuff && FlameShock.IsHostileDistanceGood &&
+            if (!FlameShock.TargetHaveBuffFromMe && FlameShock.IsHostileDistanceGood &&
                 /* ObjectManager.Target.HealthPercent >= 5 && */ FlameShock.IsSpellUsable &&
                 MySettings.UseFlameShock)
             {
@@ -2034,7 +2017,7 @@ public class ShamanElemental
                 EarthShock.Cast();
                 return;
             }
-            if (ObjectManager.Target.GetUnitCountInRange(10f) > 1 && ChainLightning.IsHostileDistanceGood &&
+            if (ObjectManager.Target.GetUnitCountInRange(8f) > 1 && ChainLightning.IsHostileDistanceGood &&
                 ChainLightning.IsSpellUsable && MySettings.UseChainLightning)
             {
                 ChainLightning.Cast();

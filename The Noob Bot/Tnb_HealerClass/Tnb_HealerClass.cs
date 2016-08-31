@@ -497,7 +497,7 @@ public class PaladinHoly
     {
         if (ObjectManager.Me.Target != lowestHPUnit.Guid)
             Interact.InteractWith(lowestHPUnit.GetBaseAddress);
-        // Logging.Write("Most interesting target to heal is " + lowestHPUnit.Name + " (GUID: " + lowestHPUnit.Guid + "), %HP: " + lowestHPUnit.HealthPercent);
+        // Logging.Write("Most interesting lowestHpPlayer to heal is " + lowestHPUnit.Name + " (GUID: " + lowestHPUnit.Guid + "), %HP: " + lowestHPUnit.HealthPercent);
         // Logging.Write("Party has a HealthPercent median of " + partyHealthPercentMedian);
         if (ObjectManager.Target.HealthPercent < 40)
             HealBurst();
@@ -564,8 +564,10 @@ public class ShamanRestoration
 
     #region General Timers & Variables
 
+    private bool CombatMode = true;
+
     private WoWPlayer Tank = new WoWPlayer(0);
-    private WoWPlayer LowestHpPlayer = new WoWPlayer(0);
+    private WoWPlayer Target = new WoWPlayer(0);
     private int DamagedPlayers;
     private double PartyHpMedian;
 
@@ -581,6 +583,7 @@ public class ShamanRestoration
     #region Shaman Buffs
 
     public readonly Spell Riptide = new Spell("Riptide");
+    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
 
     #endregion
 
@@ -610,9 +613,15 @@ public class ShamanRestoration
     #region Healing Cooldown
 
     public readonly Spell ChainHeal = new Spell("Chain Heal");
-    //public readonly Spell HealingRain = new Spell("Healing Rain");
+    public readonly Spell HealingRain = new Spell("Healing Rain");
     public readonly Spell HealingSurge = new Spell("Healing Surge");
     public readonly Spell HealingWave = new Spell("Healing Wave");
+
+    #endregion
+
+    #region Utility Cooldowns
+
+    public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
 
     #endregion
 
@@ -640,6 +649,7 @@ public class ShamanRestoration
                             Tank = ObjectManager.Me;
                             PartyHpMedian = ObjectManager.Me.HealthPercent;
                             DamagedPlayers = 1;
+                            Target = ObjectManager.Me;
                         }
                             //Setup Group
                         else
@@ -648,7 +658,7 @@ public class ShamanRestoration
                             int alivePlayers = 0;
                             PartyHpMedian = 0;
                             DamagedPlayers = 0;
-                            LowestHpPlayer = Tank;
+                            Target = Tank;
 
                             try
                             {
@@ -667,11 +677,11 @@ public class ShamanRestoration
                                     alivePlayers++;
                                     if (currentPlayer.HealthPercent < 100)
                                         DamagedPlayers++;
-                                    //Setup LowestHpPlayer
+                                    //Setup Target
                                     if (currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
-                                        LowestHpPlayer = currentPlayer;
+                                        Target = currentPlayer;
                                     }
                                     //Setup Tank
                                     if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && Tank != currentPlayer)
@@ -687,35 +697,42 @@ public class ShamanRestoration
                             }
                             PartyHpMedian /= alivePlayers;
 
-                            if (LowestHpPlayer.Guid > 0)
+                            if (Target.Guid > 0)
                             {
                                 //Prioritize Me
-                                if (LowestHpPlayer != ObjectManager.Me && ObjectManager.Me.HealthPercent <= MySettings.PrioritizeMeBelowPercentage)
-                                    // && ObjectManager.Me.HealthPercent - 10 < LowestHpPlayer.HealthPercent)
+                                if (Target != ObjectManager.Me && ObjectManager.Me.HealthPercent <= MySettings.PrioritizeMeBelowPercentage)
                                 {
-                                    LowestHpPlayer = ObjectManager.Me;
+                                    Target = ObjectManager.Me;
                                 }
 
                                 //Prioritize Tank
-                                if (Tank != null && LowestHpPlayer != Tank &&
-                                    (Tank.HealthPercent <= MySettings.PrioritizeTankBelowPercentage) || LowestHpPlayer.HealthPercent == 100)
+                                if (Tank != null && Target != Tank &&
+                                    (Tank.HealthPercent <= MySettings.PrioritizeTankBelowPercentage) || Target.HealthPercent == 100)
                                 {
-                                    LowestHpPlayer = Tank;
+                                    Target = Tank;
                                 }
 
-                                //Setup Target //TODO implement Casts that doesn't need to be targeted first.
-                                if (ObjectManager.Me.Target != LowestHpPlayer.Guid && HealerClass.InRange(LowestHpPlayer) && LowestHpPlayer.IsAlive)
-                                {
-                                    Logging.WriteFight("New Target: " + LowestHpPlayer.Name);
-                                    Interact.InteractWith(LowestHpPlayer.GetBaseAddress);
-                                }
-                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                {
-                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
-                                }
+                                //Setup Target //TODO implement Casts that doesn't need to be Targeted first.
+                                //if (ObjectManager.Me.Target != Target.Guid && HealerClass.InRange(Target) && Target.IsAlive)
+                                //{
+                                //    Logging.WriteFight("New Target: " + Target.Name);
+                                //    Interact.InteractWith(Target.GetBaseAddress);
+                                //}
+                                //else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
+                                //{
+                                //    //Logging.WriteFight("New Target: " + ObjectManager.Me.Name);
+                                //    //Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                                //}
                             }
                         }
-                        Combat();
+                        if (Fight.InFight || PartyHpMedian < 90)
+                        {
+                            Combat();
+                        }
+                        else
+                        {
+                            Patrolling();
+                        }
                     }
                 }
                 else
@@ -748,8 +765,44 @@ public class ShamanRestoration
         }
     }
 
+    private void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
+
+            if (ObjectManager.Me.GetMove)
+            {
+                //Wind Rush Totem
+                if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
+                {
+                    SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
+                    return;
+                }
+
+                //Ghost Wolf
+                if (!GhostWolf.HaveBuff && GhostWolf.IsSpellUsable && MySettings.UseGhostWolf)
+                {
+                    GhostWolf.Cast();
+                }
+            }
+        }
+    }
+
     private void Combat()
     {
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+
         Burst(); //GCD independent
         GCDCycle(); //GCD dependent
     }
@@ -775,43 +828,46 @@ public class ShamanRestoration
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            //Logging.WriteFight("Tank.GetUnitId() == " + Tank.GetUnitId());
+            //Logging.WriteFight("Target.GetUnitId() == " + Target.GetUnitId());
+            //Logging.WriteFight("------------------");
             //Heal Buffs
-            if (!Tank.HaveBuff(53390) && Riptide.IsSpellUsable &&
-                Tank.HealthPercent <= MySettings.UseRiptideAtTankPercentage && MySettings.UseRiptide)
+            if ( /*!Tank.HaveBuff(61295)*/!Tank.UnitAura(61295, ObjectManager.Me.Guid).IsValid && Riptide.IsSpellUsable && Tank.HealthPercent <= MySettings.UseRiptideAtTankPercentage &&
+                                          CombatClass.InSpellRange(Tank, Riptide.MinRangeFriend, Riptide.MaxRangeFriend) && MySettings.UseRiptide)
             {
-                Logging.WriteFight("New Target: " + Tank.Name);
-                Interact.InteractWith(Tank.GetBaseAddress);
-                Riptide.Cast();
+                Riptide.Cast(false, true, false, Tank.GetUnitId());
                 return;
             }
-            if (!Riptide.TargetHaveBuff && Riptide.IsSpellUsable &&
-                ObjectManager.Target.HealthPercent <= MySettings.UseRiptideBelowPercentage && MySettings.UseRiptide)
+            if ( /*!Target.HaveBuff(61295)*/!Target.UnitAura(61295, ObjectManager.Me.Guid).IsValid && Riptide.IsSpellUsable && Target.HealthPercent <= MySettings.UseRiptideBelowPercentage &&
+                                            CombatClass.InSpellRange(Target, Riptide.MinRangeFriend, Riptide.MaxRangeFriend) && MySettings.UseRiptide)
             {
-                Riptide.Cast();
+                Riptide.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
 
             //Emergency Heals
-            if (ObjectManager.Target.HealthPercent <= MySettings.UseHealingSurgeBelowPercentage &&
-                (!MySettings.UseHealingSurgeWithTidalWavesOnly || ObjectManager.Target.HaveBuff(53390)) &&
+            if (Target.HealthPercent <= MySettings.UseHealingSurgeBelowPercentage &&
+                (!MySettings.UseHealingSurgeWithTidalWavesOnly || /*!Target.HaveBuff(53390)*/ !Target.UnitAura(53390, ObjectManager.Me.Guid).IsValid) &&
+                CombatClass.InSpellRange(Target, HealingSurge.MinRangeFriend, HealingSurge.MaxRangeFriend) &&
                 HealingSurge.IsSpellUsable && MySettings.UseHealingSurge)
             {
-                HealingSurge.Cast();
+                HealingSurge.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
 
             //Heal Cooldowns
-            if (ObjectManager.Target.HealthPercent <= MySettings.UseSpiritLinkTotemBelowPercentage && SpiritLinkTotem.CreatedBySpellInRange(35) && //SpiritLinkTotemCooldown.IsReady &&
+            if (Target.HealthPercent <= MySettings.UseSpiritLinkTotemBelowPercentage && SpiritLinkTotemCooldown.IsReady &&
+                CombatClass.InSpellRange(Target, SpiritLinkTotem.MinRangeFriend, SpiritLinkTotem.MaxRangeFriend) &&
                 MySettings.UseSpiritLinkTotem && SpiritLinkTotem.KnownSpell)
             {
-                SpellManager.CastSpellByIDAndPosition(SpiritLinkTotem.Id, ObjectManager.Target.Position);
+                SpellManager.CastSpellByIDAndPosition(SpiritLinkTotem.Id, Target.Position);
                 SpiritLinkTotemCooldown = new Timer(1000*180);
                 return;
             }
             if (PartyHpMedian <= MySettings.UseHealingTideTotemAtPartyPercentage && HealingTideTotemCooldown.IsReady &&
                 MySettings.UseHealingTideTotem && HealingTideTotem.KnownSpell)
             {
-                SpellManager.CastSpellByIDAndPosition(HealingTideTotem.Id, ObjectManager.Me.Position);
+                HealingTideTotem.Cast();
                 HealingTideTotemCooldown = new Timer(1000*180);
                 return;
             }
@@ -822,32 +878,42 @@ public class ShamanRestoration
                 HealingStreamTotemCooldown = new Timer(1000*30);
                 return;
             }
-            if (EarthenShieldTotemCooldown.IsReady && ObjectManager.Target.HealthPercent <= MySettings.UseEarthenShieldTotemBelowPercentage &&
+            if (EarthenShieldTotemCooldown.IsReady && Target.HealthPercent <= MySettings.UseEarthenShieldTotemBelowPercentage &&
+                CombatClass.InSpellRange(Target, EarthenShieldTotem.MinRangeFriend, EarthenShieldTotem.MaxRangeFriend) &&
                 MySettings.UseEarthenShieldTotem && EarthenShieldTotem.KnownSpell)
             {
-                EarthenShieldTotem.Cast();
+                SpellManager.CastSpellByIDAndPosition(EarthenShieldTotem.Id, Target.Position);
                 EarthenShieldTotemCooldown = new Timer(1000*60);
                 return;
             }
+            /*if (Target.GetPlayerInSpellRange(10f) >= MySettings.UseHealingRainAtPlayerDensity &&
+                PartyHpMedian <= MySettings.UseHealingRainAtPartyPercentage && HealingRain.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, HealingRain.MinRangeFriend, HealingRain.MaxRangeFriend) && MySettings.UseHealingRain)
+            {
+                HealingRain.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }*/
 
             //Filler
-            if (ObjectManager.Target.HealthPercent <= MySettings.UseHealingWaveWithTidalWavesBelowPercentage && //95
-                ObjectManager.Target.HaveBuff(53390) && HealingWave.IsSpellUsable && MySettings.UseHealingWave)
-            {
-                HealingWave.Cast();
-                return;
-            }
-            if (DamagedPlayers >= MySettings.UseChainHealAtDamagedPlayers &&
-                PartyHpMedian <= MySettings.UseChainHealAtPartyPercentage &&
-                ChainHeal.IsSpellUsable && MySettings.UseChainHeal)
-            {
-                ChainHeal.Cast();
-                return;
-            }
-            if (ObjectManager.Target.HealthPercent <= MySettings.UseHealingWaveBelowPercentage &&
+            if (Target.HealthPercent <= MySettings.UseHealingWaveWithTidalWavesBelowPercentage && /*!Target.HaveBuff(53390)*/ !Target.UnitAura(53390, ObjectManager.Me.Guid).IsValid &&
+                CombatClass.InSpellRange(Target, HealingWave.MinRangeFriend, HealingWave.MaxRangeFriend) &&
                 HealingWave.IsSpellUsable && MySettings.UseHealingWave)
             {
-                HealingWave.Cast();
+                HealingWave.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+            if (DamagedPlayers >= MySettings.UseChainHealAtDamagedPlayers && PartyHpMedian <= MySettings.UseChainHealAtPartyPercentage &&
+                CombatClass.InSpellRange(Target, ChainHeal.MinRangeFriend, ChainHeal.MaxRangeFriend) &&
+                ChainHeal.IsSpellUsable && MySettings.UseChainHeal)
+            {
+                ChainHeal.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+            if (Target.HealthPercent <= MySettings.UseHealingWaveBelowPercentage &&
+                CombatClass.InSpellRange(Target, HealingWave.MinRangeFriend, HealingWave.MaxRangeFriend) &&
+                HealingWave.IsSpellUsable && MySettings.UseHealingWave)
+            {
+                HealingWave.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
         }
@@ -862,6 +928,8 @@ public class ShamanRestoration
     [Serializable]
     public class ShamanRestorationSettings : Settings
     {
+        /* Shaman Buffs */
+        public bool UseGhostWolf = true;
         /* Healing Buffs */
         public bool UseRiptide = true;
         public int UseRiptideBelowPercentage = 95;
@@ -879,12 +947,17 @@ public class ShamanRestoration
         public bool UseChainHeal = true;
         public int UseChainHealAtDamagedPlayers = 4;
         public int UseChainHealAtPartyPercentage = 60;
+        public bool UseHealingRain = true;
+        public int UseHealingRainAtPlayerDensity = 3;
+        public int UseHealingRainAtPartyPercentage = 60;
         public bool UseHealingSurge = true;
         public bool UseHealingSurgeWithTidalWavesOnly = true;
         public int UseHealingSurgeBelowPercentage = 40;
         public bool UseHealingWave = true;
         public int UseHealingWaveBelowPercentage = 95;
         public int UseHealingWaveWithTidalWavesBelowPercentage = 60;
+        /* Utility Cooldowns */
+        public bool UseWindRushTotem = true;
         /* Offensive Cooldowns */
         public bool UseBloodlustHeroism = false;
         /* Game Settings */
@@ -897,6 +970,8 @@ public class ShamanRestoration
         public ShamanRestorationSettings()
         {
             ConfigWinForm("Shaman Restoration Settings");
+            /* Shaman Buffs */
+            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
             /* Healing Buffs */
             AddControlInWinForm("Use Riptide", "UseRiptide", "Healing Buffs");
             AddControlInWinForm("Use Riptide", "UseRiptideBelowPercentage", "Healing Buffs", "BelowPercentage", "Life");
@@ -911,6 +986,9 @@ public class ShamanRestoration
             AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotem", "Healing Cooldowns");
             AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotemBelowPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
             /* Healing Spells */
+            AddControlInWinForm("Use Healing Rain", "UseHealingRain", "Healing Spells");
+            AddControlInWinForm("Use Healing Rain If Damaged Players stay together", "UseHealingRainAtPlayerDensity", "Healing Spells"); //TODO add AbovePercentage alternative
+            AddControlInWinForm("Use Healing Rain If Party Average", "UseHealingRainAtPartyPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spells");
             AddControlInWinForm("Use Chain Heal If Damaged Players Count Reaches", "UseChainHealAtDamagedPlayers", "Healing Spells"); //TODO add AbovePercentage alternative
             AddControlInWinForm("Use Chain Heal If Party Average", "UseChainHealAtPartyPercentage", "Healing Spells", "BelowPercentage", "Life");
@@ -920,6 +998,8 @@ public class ShamanRestoration
             AddControlInWinForm("Use Healing Wave", "UseHealingWave", "Healing Spells");
             AddControlInWinForm("Use Healing Wave", "UseHealingWaveBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Healing Wave\nWhile Tidal Waves Buff Is Active", "UseHealingWaveWithTidalWavesBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Cooldowns");
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
             /* Game Settings */
