@@ -7,7 +7,6 @@ using DetourLayer;
 using meshDatabase.Database;
 using SlimDX;
 using RecastLayer;
-
 using dtPolyRef = System.UInt64;
 
 namespace meshPather
@@ -26,7 +25,6 @@ namespace meshPather
         public Danger(Vector3 loc, int levelDifference)
             : this(loc, levelDifference, 1.0f)
         {
-            
         }
 
         public Danger(Vector3 loc, int levelDifference, float factor)
@@ -63,6 +61,7 @@ namespace meshPather
     public class Pather
     {
         private const int Division = 2;
+
         public delegate bool ConnectionHandlerDelegate(ConnectionData data);
 
         private readonly NavMesh _mesh;
@@ -92,7 +91,7 @@ namespace meshPather
         {
             get { return _mesh; }
         }
-        
+
         public NavMeshQuery Query
         {
             get { return _query; }
@@ -102,10 +101,10 @@ namespace meshPather
         {
             var extents = new[] {2.5f, 2.5f, 2.5f};
             return (from danger in dangers
-                    let loc = danger.Location.ToRecast().ToFloatArray()
-                    let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
-                    where polyRef != 0
-                    select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
+                let loc = danger.Location.ToRecast().ToFloatArray()
+                let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
+                where polyRef != 0
+                select Query.MarkAreaInCircle(polyRef, loc, danger.Radius, Filter, PolyArea.Danger)).Sum();
         }
 
         public string GetTilePath(int x, int y)
@@ -115,12 +114,12 @@ namespace meshPather
                 return _meshPath + "\\" + Continent + "_" + x + "_" + y + ".tile";
             else
             {
-                int baseX = (int) (x / Division);
-                int baseY = (int) (y / Division);
-                float offsetI = (x * (Utility.TileSize / Division)) - (baseX * Utility.TileSize);
-                float offsetJ = (y * (Utility.TileSize / Division)) - (baseY * Utility.TileSize);
-                int i = (int) Math.Round(offsetI / (Utility.TileSize / Division));
-                int j = (int) Math.Round(offsetJ / (Utility.TileSize / Division));
+                int baseX = (int) (x/Division);
+                int baseY = (int) (y/Division);
+                float offsetI = (x*(Utility.TileSize/Division)) - (baseX*Utility.TileSize);
+                float offsetJ = (y*(Utility.TileSize/Division)) - (baseY*Utility.TileSize);
+                int i = (int) Math.Round(offsetI/(Utility.TileSize/Division));
+                int j = (int) Math.Round(offsetJ/(Utility.TileSize/Division));
                 return _meshPath + "\\" + Continent + "_" + baseX + "_" + baseY + "_" + i + j + ".tile";
             }
 #pragma warning restore 162
@@ -139,14 +138,14 @@ namespace meshPather
 
         public static void GetWoWTileByLocation(float[] loc, out float x, out float y)
         {
-            x = (loc[0] - Utility.Origin[0]) / Utility.TileSize;
-            y = (loc[2] - Utility.Origin[2]) / Utility.TileSize;
+            x = (loc[0] - Utility.Origin[0])/Utility.TileSize;
+            y = (loc[2] - Utility.Origin[2])/Utility.TileSize;
         }
 
         public static void GetTileByLocation(float[] loc, out float x, out float y)
         {
-            x = (loc[0] - Utility.Origin[0]) / (Utility.TileSize / Division);
-            y = (loc[2] - Utility.Origin[2]) / (Utility.TileSize / Division);
+            x = (loc[0] - Utility.Origin[0])/(Utility.TileSize/Division);
+            y = (loc[2] - Utility.Origin[2])/(Utility.TileSize/Division);
         }
 
         public void LoadAllTiles()
@@ -169,8 +168,8 @@ namespace meshPather
 
             float tx, ty;
             GetTileByLocation(loc, out tx, out ty);
-            int x = (int)Math.Floor(tx);
-            int y = (int)Math.Floor(ty);
+            int x = (int) Math.Floor(tx);
+            int y = (int) Math.Floor(ty);
             //int thirdx, thirdy;
 
             for (int i = -1; i < 2; i++)
@@ -213,25 +212,25 @@ namespace meshPather
 
             //if (Divide == 1)
             //{
-                if (_mesh.HasTileAt(x, y))
-                    return true;
-                var path = GetTilePath(x, y);
-                if (!File.Exists(path))
+            if (_mesh.HasTileAt(x, y))
+                return true;
+            var path = GetTilePath(x, y);
+            if (!File.Exists(path))
+            {
+                if (!_missingTile.Contains(path))
                 {
-                    if (!_missingTile.Contains(path))
-                    {
-                        _missingTile.Add(path);
-                        Console.WriteLine(path + " manque !");
-                    }
-                    return false;
-                }
-                var data = File.ReadAllBytes(path);
-                if (LoadTile(data))
-                {
-                    Console.WriteLine(path + " ok");
-                    return true;
+                    _missingTile.Add(path);
+                    Console.WriteLine(path + " manque !");
                 }
                 return false;
+            }
+            var data = File.ReadAllBytes(path);
+            if (LoadTile(data))
+            {
+                Console.WriteLine(path + " ok");
+                return true;
+            }
+            return false;
             //}
             /*else
             {
@@ -321,7 +320,7 @@ namespace meshPather
                 throw new NavMeshException(status, "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
 
             var ret = new List<Hop>(finalPath.Length/3);
-            for (int i = 0; i < (finalPath.Length / 3); i++)
+            for (int i = 0; i < (finalPath.Length/3); i++)
             {
                 if (pathFlags[i].HasFlag(StraightPathFlag.OffMeshConnection))
                 {
@@ -341,7 +340,7 @@ namespace meshPather
 
                         if (con.PolyId == polyIndex)
                         {
-                            pathId = (int)con.UserID;
+                            pathId = (int) con.UserID;
                             break;
                         }
                     }
@@ -352,39 +351,38 @@ namespace meshPather
                 }
                 else
                 {
-
                     var hop = new Hop
-                                  {
-                                      Location =
-                                          new Vector3(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).
-                                          ToWoW(),
-                                      Type = HopType.Waypoint
-                                  };
+                    {
+                        Location =
+                            new Vector3(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).
+                                ToWoW(),
+                        Type = HopType.Waypoint
+                    };
 
                     ret.Add(hop);
                 }
             }
-            
+
             return ret;
         }
 
         private static Hop BuildFlightmasterHop(int pathId)
         {
-            var path = TaxiHelper.GetPath(pathId);
-            if (path == null)
+            var path = TaxiHelper.GetRecordById(pathId);
+            if (!path.IsValid())
                 throw new NavMeshException(DetourStatus.Failure, "FindStraightPath returned a hop with an invalid path id");
 
             var from = TaxiHelper.GetNode(path.From);
             var to = TaxiHelper.GetNode(path.To);
-            if (from == null || to == null)
+            if (!from.IsValid() || !to.IsValid())
                 throw new NavMeshException(DetourStatus.Failure, "FindStraightPath returned a hop with unresolvable flight path");
 
             return new Hop
-                       {
-                           Location = from.Location,
-                           FlightTarget = to.Name,
-                           Type = HopType.Flightmaster
-                       };
+            {
+                Location = from.Location,
+                FlightTarget = to.Name(),
+                Type = HopType.Flightmaster
+            };
         }
 
         private string GetDungeonPath()
@@ -402,7 +400,7 @@ namespace meshPather
             ConnectionHandler = connectionHandler;
 
             Continent = continent.Substring(continent.LastIndexOf('\\') + 1);
-            _missingTile = new System.Collections.Generic.List<string>();
+            _missingTile = new List<string>();
 
             if (Directory.Exists(continent))
                 _meshPath = continent;
@@ -412,7 +410,7 @@ namespace meshPather
                 var dir = Path.GetDirectoryName(assembly);
                 if (Directory.Exists(dir + "\\Meshes"))
                     _meshPath = dir + "\\Meshes\\" + continent;
-                else 
+                else
                     _meshPath = dir + "\\" + continent;
             }
 
@@ -430,9 +428,9 @@ namespace meshPather
                 status = _mesh.Initialize(data);
                 AddMemoryPressure(data.Length);
                 IsDungeon = true;
-            }    //                       20 = 1048575, 28 = toomuch 
+            } //                       20 = 1048575, 28 = toomuch 
             else //                       15bits = 32767  9bits
-                status = _mesh.Initialize(150000, 512 * Division * Division, Utility.Origin, Utility.TileSize / Division, Utility.TileSize / Division);
+                status = _mesh.Initialize(150000, 512*Division*Division, Utility.Origin, Utility.TileSize/Division, Utility.TileSize/Division);
 
             if (status.HasFailed())
                 throw new NavMeshException(status, "Failed to initialize the mesh");
@@ -440,10 +438,10 @@ namespace meshPather
             _query = new NavMeshQuery(new PatherCallback(this));
             _query.Initialize(_mesh, 65536);
             Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
-            Filter.SetAreaCost((int)PolyArea.Water, 4);
-            Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-            Filter.SetAreaCost((int)PolyArea.Road, 1);
-            Filter.SetAreaCost((int)PolyArea.Danger, 20);
+            Filter.SetAreaCost((int) PolyArea.Water, 4);
+            Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+            Filter.SetAreaCost((int) PolyArea.Road, 1);
+            Filter.SetAreaCost((int) PolyArea.Danger, 20);
         }
 
         private static bool DefaultConnectionHandler(ConnectionData data)
@@ -462,29 +460,29 @@ namespace meshPather
                 var con = tile.GetOffMeshConnection(i);
                 if (con == null)
                     continue;
-                var path = TaxiHelper.GetPath((int)con.UserID);
-                if (path == null)
+                var path = TaxiHelper.GetRecordById((int) con.UserID);
+                if (!path.IsValid())
                 {
                     DisableConnection(tile, i);
                     continue;
                 }
                 var from = TaxiHelper.GetNode(path.From);
                 var to = TaxiHelper.GetNode(path.To);
-                if (from == null || to == null)
+                if (!from.IsValid() || !to.IsValid())
                 {
                     DisableConnection(tile, i);
                     continue;
                 }
 
                 var data = new ConnectionData
-                               {
-                                   Alliance = from.IsAlliance || to.IsAlliance,
-                                   Horde = from.IsHorde || to.IsHorde,
-                                   Cost = path.Cost,
-                                   From = from.Name,
-                                   To = to.Name,
-                                   Id = (int)con.UserID
-                               };
+                {
+                    Alliance = from.IsAlliance() || to.IsAlliance(),
+                    Horde = from.IsHorde() || to.IsHorde(),
+                    Cost = path.Cost,
+                    From = from.Name(),
+                    To = to.Name(),
+                    Id = (int) con.UserID
+                };
 
                 if (!ConnectionHandler(data))
                     DisableConnection(tile, i);
@@ -493,7 +491,7 @@ namespace meshPather
 
         private static void DisableConnection(MeshTile tile, int index)
         {
-            var poly = tile.GetPolygon((ushort)(index + tile.Header.OffMeshBase));
+            var poly = tile.GetPolygon((ushort) (index + tile.Header.OffMeshBase));
             if (poly == null)
                 return;
             poly.Disable();
@@ -513,7 +511,9 @@ namespace meshPather
             if (prevPt[0] == point[0] && prevPt[1] == point[1] && prevPt[2] == point[2])
                 return;
 
-            prevPt[0] = point[0]; prevPt[1] = point[1]; prevPt[2] = point[2];
+            prevPt[0] = point[0];
+            prevPt[1] = point[1];
+            prevPt[2] = point[2];
             //Console.WriteLine("Callback : " + point);
             LoadAround(new Vector3(point[0], point[1], point[2]));
             return;
@@ -567,7 +567,5 @@ namespace meshPather
                 HandleLog(text);
             }
         }
-
     }
-
 }

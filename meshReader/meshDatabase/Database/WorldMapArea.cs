@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace meshDatabase.Database
 {
@@ -11,6 +12,20 @@ namespace meshDatabase.Database
         public string Name { get; private set; }
         public float[] BMin { get; private set; }
         public float[] BMax { get; private set; }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WorldMapAreaDb2Record
+        {
+            public uint Id;
+            public float locLeft;
+            public float locRight;
+            public float locTop;
+            public float locBottom;
+            public int Map;
+            public int Area;
+            // to be continued...
+        }
+
 
         public WorldMapArea(Record src)
         {

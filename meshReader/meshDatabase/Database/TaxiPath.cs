@@ -1,25 +1,23 @@
-﻿namespace meshDatabase.Database
-{
+﻿using System.Runtime.InteropServices;
 
+namespace meshDatabase.Database
+{
     public class TaxiPath
     {
-        public int Id { get; private set; }
-        public int From { get; private set; }
-        public int To { get; private set; }
-        public int Cost { get; private set; }
 
-        public bool IsValid
+        [StructLayout(LayoutKind.Sequential)]
+        public struct TaxiPathDb2Record
         {
-            get { return From > 0 && To > 0; }
-        }
+            public int To;
+            public int From;
+            public int Id;
+            public int Cost;
 
-        public TaxiPath(Record rec)
-        {
-            Id = rec[0];
-            From = rec[1];
-            To = rec[2];
-            Cost = rec[3];
+
+            public bool IsValid()
+            {
+                return From > 0 && To > 0;
+            }
         }
     }
-
 }
