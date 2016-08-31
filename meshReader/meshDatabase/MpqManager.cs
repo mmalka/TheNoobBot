@@ -35,11 +35,52 @@ namespace meshDatabase
 
         }
 
+        public static ulong GetHashByDataId(int dataId)
+        {
+            return Mpq.GetHashByDataId(dataId);
+        }
+
+        public static string GeFullNameByDataId(int dataId)
+        {
+            return Mpq.GeFullNameByDataId(dataId);
+        }
+
+        public static bool FileExists(string path)
+        {
+            return Mpq.FileExists(path);
+        }
+
+        public static bool FileExists(uint fileId)
+        {
+            return Mpq.FileExists(fileId);
+        }
+
+        public static bool FileExists(ulong hash)
+        {
+            return Mpq.FileExists(hash);
+        }
+
         public static Stream GetFile(string path)
         {
             Stream file = Mpq.GetFile(path);
             if (file == null)
                 throw new FileNotFoundException("Unable to find " + path);
+            return file;
+        }
+
+        public static Stream GetFile(uint fileId)
+        {
+            Stream file = Mpq.GetFile(fileId);
+            if (file == null)
+                throw new FileNotFoundException("Unable to find " + fileId);
+            return file;
+        }
+
+        public static Stream GetFile(ulong hash)
+        {
+            Stream file = Mpq.GetFile(hash);
+            if (file == null)
+                throw new FileNotFoundException("Unable to find " + hash);
             return file;
         }
 

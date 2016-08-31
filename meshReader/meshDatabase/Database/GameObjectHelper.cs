@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CASCExplorer;
 using MySql.Data.MySqlClient;
 using SlimDX;
 
@@ -20,7 +22,6 @@ namespace meshDatabase.Database
     
         public static void Initialize()
         {
-            return; // hack gameobject until it's working.
             if (_initialized)
                 return;
 
@@ -36,7 +37,7 @@ namespace meshDatabase.Database
             /*_fileData = MpqManager.GetDBC("FileData");
             _filaDataEntries = _fileData.Records.Select(r => new FileDataEntry(r));*/
             // FileData no longer requires, we can open files directly from their FileDataId, but need a CascLib update first.
-            _myConn = new MySqlConnection("server=192.168.10.222; user id=root; password=aabbcc; database=offydump;");
+            _myConn = new MySqlConnection("server=127.0.0.1; user id=tnb; password=tnb006; database=offydump;");
             _myConn.Open();
 
             /*List<MapEntry> titi = PhaseHelper.GetAllMaps();
@@ -61,12 +62,13 @@ namespace meshDatabase.Database
             if (displayInfoEntry.DataId == 0)
                 return string.Empty;
 
-            var fileDataEntry = _filaDataEntries.Where(e => e.DataId == displayInfoEntry.DataId).FirstOrDefault();
-            if (fileDataEntry == null)
-                return string.Empty;
-            ret = fileDataEntry.FilePath + fileDataEntry.FileName;
-            _cache.Add(displayId, ret);
-            return ret;
+            string path = MpqManager.GeFullNameByDataId(displayInfoEntry.DataId);
+            Console.WriteLine("path found:  " + path);
+            if (path.Contains("unknown")) // the path with unknown is actually fine, but the next function will break it by adding .m2 at the end. so better go fileId.
+                return displayInfoEntry.DataId.ToString();
+            else
+                return path;
+
         }
 
         // Alliance Fief maps lvl1, 2, 3 then Horde ones

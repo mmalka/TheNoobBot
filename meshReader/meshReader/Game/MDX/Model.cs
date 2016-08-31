@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using meshDatabase;
 using meshReader.Helper;
 using SlimDX;
@@ -20,7 +21,10 @@ namespace meshReader.Game.MDX
 
         public Model(string path)
         {
-            _stream = MpqManager.GetFile(FixModelPath(path));
+            uint fileId;
+            uint.TryParse(path, out fileId);
+
+            _stream = fileId == 0 ? MpqManager.GetFile(FixModelPath(path)) : MpqManager.GetFile(fileId);
             //if (_stream == null) // required for file list
             //    return;
             Header = new ModelHeader();

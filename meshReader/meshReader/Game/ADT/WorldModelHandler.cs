@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using meshReader.Game.Caching;
@@ -89,6 +90,13 @@ namespace meshReader.Game.ADT
 
         public static void InsertGameObjectModelGeometry(List<Vector3> vertices, List<Triangle<uint>> triangles, string m2path, Matrix transformation)
         {
+            uint fileId;
+            uint.TryParse(m2path, out fileId);
+            if (fileId > 0)
+            {
+                // do something to try and get the good type.
+                Console.WriteLine("problem");
+            }
             if (m2path.EndsWith(".WMO", System.StringComparison.InvariantCultureIgnoreCase))
             {
                 var wmo = Cache.WorldModel.Get(m2path);

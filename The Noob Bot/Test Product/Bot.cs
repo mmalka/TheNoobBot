@@ -37,7 +37,7 @@ namespace Test_Product
         public static void LaunchRadar()
         {
             int d;
-            var myConn = new MySqlConnection("server=192.168.10.222; user id=root; password=aabbcc; database=offydump;");
+            var myConn = new MySqlConnection("server=127.0.0.1; user id=tnb; password=tnb006; database=offydump;");
             myConn.Open();
             // Various mount repair, portable mailbox, repair robots, Guild Page...
             List<int> BlackListed = new List<int>(new int[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
@@ -829,7 +829,7 @@ namespace Test_Product
         {
             try
             {
-                string x = "";
+                /*string x = "";
                 foreach (var spell in SpellManager.SpellBook())
                 {
                     x = x + ("public readonly Spell " + spell.Name.Trim().Replace(" ", "").Replace(":", "") + " = new Spell(\"" + spell.Name + "\");") + Environment.NewLine;
@@ -860,11 +860,12 @@ namespace Test_Product
 
                 /*
                 // Update spell list
-                //SpellManager.UpdateSpellBook();
-                DoTaxiLinksCleaning();
-                //MergeFiles();
+                //SpellManager.UpdateSpellBook();*/
+                /*DoTaxiLinksCleaning();
+                //MergeFiles(); */
                 RadarThread.Start();
-                TaxiThread.Start();
+                
+                /*TaxiThread.Start();
 
                 while (TaxiThread.IsAlive)
                 {
