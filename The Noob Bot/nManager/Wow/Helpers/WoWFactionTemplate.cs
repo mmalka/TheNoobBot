@@ -161,6 +161,7 @@ namespace nManager.Wow.Helpers
             public byte FightSupport;
             public byte FriendlyMask;
             public byte HostileMask;
+            public byte Unknown;
         }
     }
 }

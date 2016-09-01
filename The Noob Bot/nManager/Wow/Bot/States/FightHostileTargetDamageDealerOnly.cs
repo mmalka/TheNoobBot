@@ -57,23 +57,25 @@ namespace nManager.Wow.Bot.States
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
+                return;
             }
-            else if (_unit.IsDead)
+            if (_unit.IsDead)
             {
                 Statistics.Kills++;
                 _unit = AcquireTarger();
                 if (_unit.IsValid)
                     Run();
-                Fight.StopFight();
+                return;
             }
         }
 
         public WoWUnit AcquireTarger()
         {
-            if (ObjectManager.ObjectManager.Me.Target == 0)
-                return new WoWUnit(0);
             if (nManagerSetting.CurrentSetting.DontPullMonsters && !ObjectManager.ObjectManager.Target.InCombat)
+            {
+                Fight.StopFight();
                 return new WoWUnit(0);
+            }
 
             // Get unit:
             WoWUnit localUnit = ObjectManager.ObjectManager.Target;
@@ -81,34 +83,7 @@ namespace nManager.Wow.Bot.States
             if (localUnit.IsValid && localUnit.IsAlive && localUnit.Health > 0 && ((localUnit.Attackable && localUnit.IsHostile) || localUnit.IsUnitBrawlerAndTappedByMe))
                 return localUnit;
 
-            /*// If in party, then search for the target if one member is in combat
-            if (Party.IsInGroup())
-            {
-                List<WoWUnit> targets = new List<WoWUnit>();
-                foreach (UInt128 playerGuid in Party.GetPartyPlayersGUID())
-                {
-                    if (playerGuid != ObjectManager.ObjectManager.Me.Guid)
-                    {
-                        WoWPlayer p = ObjectManager.ObjectManager.GetObjectWoWPlayer(playerGuid);
-                        if (p != null && p.InCombat && p.Target != 0)
-                        {
-                            WoWObject o = ObjectManager.ObjectManager.GetObjectByGuid(p.Target);
-                            if (o == null)
-                                break;
-                            WoWUnit u = new WoWUnit(o.GetBaseAddress);
-                            if (u.IsValid && !u.IsDead && u.IsAlive && u.Health > 0 && u.Attackable &&
-                                ((u is WoWPlayer && (u as WoWPlayer).PlayerFaction != ObjectManager.ObjectManager.Me.PlayerFaction) || u.Reaction <= Reaction.Neutral))
-                                targets.Add(u);
-                        }
-                    }
-                }
-                // Now take the most occuring unit in the list
-                if (targets.Count > 0)
-                {
-                    localUnit = targets.GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
-                    return localUnit;
-                }
-            }*/
+            Fight.StopFight();
             return new WoWUnit(0);
         }
     }

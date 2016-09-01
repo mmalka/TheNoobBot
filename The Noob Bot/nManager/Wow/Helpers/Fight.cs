@@ -292,8 +292,11 @@ namespace nManager.Wow.Helpers
                         MovementManager.Face(targetNpc, false);
                 }
 
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight && !ObjectManager.ObjectManager.Me.InTransport)
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight)
                 {
+                    // check for IsTransport if we are specifically inside a taxi, but allow fighting in ships etc.
+                    // I guess transport Id become the creature Id in that case ? So check if transport id is actually a unit and not a gameobject or a continentid ? 
+
                     // Target Pos Verif
                     if (!targetNpc.Position.IsValid)
                         return targetNpc.Guid;
