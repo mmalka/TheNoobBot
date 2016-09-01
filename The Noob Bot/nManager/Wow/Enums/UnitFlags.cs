@@ -21,7 +21,7 @@ namespace nManager.Wow.Enums
         PvPFlagged = 0x1000,
         Silenced = 0x2000,
         Flag_14_0x4000 = 0x4000,
-        Flag_15_0x8000 = 0x8000,
+        CanSwim = 0x8000,
         SelectableNotAttackable_3 = 0x10000,
         Pacified = 0x20000,
         Stunned = 0x40000,
