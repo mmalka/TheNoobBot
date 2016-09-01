@@ -12275,7 +12275,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
+      <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12335,7 +12335,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>103.496796</Z>
+      <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20492,7 +20492,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>27.8561249</Z>
+      <Z>106.571053</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20516,7 +20516,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>106.571053</Z>
+      <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -48931,7 +48931,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>706.5976</Z>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -48942,7 +48942,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
+      <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -60030,6 +60030,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>93841</Entry>
+    <Name>Lasan Skyhorn</Name>
+    <Position>
+      <X>4855.69873</X>
+      <Y>3979.47754</Y>
+      <Z>832.155</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>93974</Entry>
     <Name>Leyweaver Erenyi</Name>
     <Position>
@@ -60050,6 +60061,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94522</Entry>
+    <Name>Maltha Silenthoof</Name>
+    <Position>
+      <X>4700.738</X>
+      <Y>4353.91846</Y>
+      <Z>696.7749</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>94561</Entry>
@@ -60185,6 +60207,39 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>95410</Entry>
+    <Name>Lasan Skyhorn</Name>
+    <Position>
+      <X>5117.7207</X>
+      <Y>4458.95068</Y>
+      <Z>1022.6524</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95410</Entry>
+    <Name>Lasan Skyhorn</Name>
+    <Position>
+      <X>5238.10938</X>
+      <Y>4209.41943</Y>
+      <Z>943.1349</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95410</Entry>
+    <Name>Lasan Skyhorn</Name>
+    <Position>
+      <X>5246.30127</X>
+      <Y>3989.95044</Y>
+      <Z>815.5789</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>95424</Entry>
     <Name>Traque-aube Krisek</Name>
     <Position>
@@ -60296,12 +60351,67 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>96270</Entry>
+    <Name>Ebyssian</Name>
+    <Position>
+      <X>3419.82642</X>
+      <Y>4198.66162</Y>
+      <Z>721.3153</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96513</Entry>
+    <Name>Razik Gazbolt</Name>
+    <Position>
+      <X>4294.724</X>
+      <Y>3614.605</Y>
+      <Z>898.675</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96514</Entry>
+    <Name>Mayla Highmountain</Name>
+    <Position>
+      <X>3649.54346</X>
+      <Y>4343.19971</Y>
+      <Z>664.8136</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>96520</Entry>
     <Name>Jale Rivermane</Name>
     <Position>
       <X>4077.51123</X>
       <Y>4974.14063</Y>
       <Z>663.218262</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96523</Entry>
+    <Name>Mayla Highmountain</Name>
+    <Position>
+      <X>3397.316</X>
+      <Y>4188.071</Y>
+      <Z>722.527954</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96523</Entry>
+    <Name>Mayla Highmountain</Name>
+    <Position>
+      <X>3427.07813</X>
+      <Y>4289.24756</Y>
+      <Z>703.2316</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -60331,6 +60441,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>96984</Entry>
+    <Name>Oenia Skyhorn</Name>
+    <Position>
+      <X>4841.94629</X>
+      <Y>3822.23779</Y>
+      <Z>764.2229</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>97001</Entry>
     <Name>Orton Bennet</Name>
     <Position>
@@ -60338,6 +60459,18 @@
       <Y>4445.57129</Y>
       <Z>748.550842</Z>
     </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97130</Entry>
+    <Name>Bluewax Gatekeeper</Name>
+    <Position>
+      <X>4993.47559</X>
+      <Y>3778.33423</Y>
+      <Z>733.9992</Z>
+    </Position>
+    <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
@@ -60496,6 +60629,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>97974</Entry>
+    <Name>Lorna Stoutfoot</Name>
+    <Position>
+      <X>4304.07275</X>
+      <Y>3617.25952</Y>
+      <Z>898.861145</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>98017</Entry>
     <Name>Guron Twaintail</Name>
     <Position>
@@ -60535,6 +60679,39 @@
       <X>3904.534</X>
       <Y>4458.46875</Y>
       <Z>776.54364</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99153</Entry>
+    <Name>Spiritwalker Ebonhorn</Name>
+    <Position>
+      <X>3652.25513</X>
+      <Y>4340.96338</Y>
+      <Z>664.846</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99190</Entry>
+    <Name>Spiritwalker Ebonhorn</Name>
+    <Position>
+      <X>3405.0105</X>
+      <Y>4185.56934</Y>
+      <Z>722.3918</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99190</Entry>
+    <Name>Spiritwalker Ebonhorn</Name>
+    <Position>
+      <X>3420.36719</X>
+      <Y>4294.18164</Y>
+      <Z>703.812561</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -60645,6 +60822,39 @@
       <X>4050.93237</X>
       <Y>4385.3125</Y>
       <Z>667.7915</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108305</Entry>
+    <Name>Mayla Highmountain</Name>
+    <Position>
+      <X>2969.533</X>
+      <Y>4332.866</Y>
+      <Z>651.5731</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108434</Entry>
+    <Name>Mayla Highmountain</Name>
+    <Position>
+      <X>4083.1416</X>
+      <Y>4385.414</Y>
+      <Z>670.626038</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109227</Entry>
+    <Name>Meliah Grayfeather</Name>
+    <Position>
+      <X>4866.44775</X>
+      <Y>3939.90186</Y>
+      <Z>833.5277</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>

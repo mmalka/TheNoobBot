@@ -12125,6 +12125,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>3765.42114</X>
+      <Y>4548.797</Y>
+      <Z>776.7476</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3765.42114</X>
+      <Y>4548.797</Y>
+      <Z>776.7476</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>3806.42065</X>
       <Y>2066.283</Y>
       <Z>93.47985</Z>
@@ -55830,6 +55852,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>97786</Entry>
+    <Name>Harum Grayfeather</Name>
+    <Position>
+      <X>4847.41162</X>
+      <Y>3941.84033</Y>
+      <Z>833.5605</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>97852</Entry>
     <Name>Ernu Mesawind</Name>
     <Position>
@@ -55891,6 +55924,94 @@
       <X>4069.96533</X>
       <Y>4410.10254</Y>
       <Z>768.1867</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97862</Entry>
+    <Name>Parek Splitfeather</Name>
+    <Position>
+      <X>4833</X>
+      <Y>3954.93579</Y>
+      <Z>832.517639</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97865</Entry>
+    <Name>De'tu Frostwing</Name>
+    <Position>
+      <X>4814.67725</X>
+      <Y>3915.73169</Y>
+      <Z>826.866638</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97865</Entry>
+    <Name>De'tu Frostwing</Name>
+    <Position>
+      <X>4814.67725</X>
+      <Y>3915.73169</Y>
+      <Z>826.866638</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97866</Entry>
+    <Name>Nata Windchaser</Name>
+    <Position>
+      <X>4829.51</X>
+      <Y>3942.65967</Y>
+      <Z>833.5277</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97867</Entry>
+    <Name>Tola Springfoot</Name>
+    <Position>
+      <X>4851.606</X>
+      <Y>3937.02441</Y>
+      <Z>833.539856</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97874</Entry>
+    <Name>Haren Stonepath</Name>
+    <Position>
+      <X>3941.97583</X>
+      <Y>3931.73877</Y>
+      <Z>905.176</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97876</Entry>
+    <Name>Cale Fireheart</Name>
+    <Position>
+      <X>3935.39</X>
+      <Y>3899.2666</Y>
+      <Z>905.3185</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97876</Entry>
+    <Name>Cale Fireheart</Name>
+    <Position>
+      <X>3935.39</X>
+      <Y>3899.2666</Y>
+      <Z>905.3185</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -56093,6 +56214,17 @@
       <X>-796.691</X>
       <Y>4388.21875</Y>
       <Z>740.2408</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108555</Entry>
+    <Name>Old Kud</Name>
+    <Position>
+      <X>3926.329</X>
+      <Y>3907.53638</Y>
+      <Z>905.217651</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -63661,6 +63793,17 @@
       <X>4067.30566</X>
       <Y>4324.686</Y>
       <Z>768.1508</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>260296</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>4853.21973</X>
+      <Y>3958.50513</Y>
+      <Z>832.6034</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
