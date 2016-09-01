@@ -2548,15 +2548,16 @@ namespace nManager.Wow.ObjectManager
 
         public int AuraTimeLeft(UInt32 idBuff, bool fromMe = false)
         {
-            var aura = UnitAura(idBuff);
-            if (aura.IsActive && (!fromMe || aura.AuraCreatorGUID == ObjectManager.Me.Guid))
-                return aura.AuraTimeLeftInMs;
-            return 0;
+            Auras.UnitAura aura = fromMe ? UnitAura(idBuff, ObjectManager.Me.Guid) : UnitAura(idBuff);
+            return !aura.IsValid ? 0 : aura.AuraTimeLeftInMs;
         }
 
         public bool AuraIsActiveAndExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs, bool fromMe = false)
         {
-            return (AuraTimeLeft(idBuff, fromMe) > 0 && AuraTimeLeft(idBuff, fromMe) < expireInLessThanMs);
+            int timeLeft = AuraTimeLeft(idBuff, fromMe);
+            if (timeLeft <= 0)
+                return false;
+            return timeLeft <= expireInLessThanMs;
         }
 
         public Reaction Reaction
