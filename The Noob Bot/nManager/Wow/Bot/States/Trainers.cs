@@ -744,9 +744,11 @@ namespace nManager.Wow.Bot.States
                             break;
                     }
                     break;
-                case SkillRank.ZenMaster: // Learnable by complex way (need a scroll, etc...)
-                case SkillRank.DraenorMaster: // Nothing to learn.
+                case SkillRank.ZenMaster: // To Learn DraenorMaster. Complex.
+                case SkillRank.DraenorMaster: // To Learn Legion. Complex.
+                case SkillRank.Legion: // Nothing to learn anymore.
                     return false;
+                    // Secondary skills should be easier to learn for Zen to Draenor to Legion (Fishing, Archaeology, etc)
             }
             if (nManagerSetting.CurrentSetting.OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum)
                 price = price*2;
