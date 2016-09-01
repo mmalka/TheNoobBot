@@ -12200,6 +12200,28 @@
   </Npc>
   <Npc>
     <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>5309.94531</X>
+      <Y>4570.58154</Y>
+      <Z>717.108948</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>5309.94531</X>
+      <Y>4570.58154</Y>
+      <Z>717.108948</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
     <Name>Gardien des âmes</Name>
     <Position>
       <X>5864.25342</X>
@@ -12241,6 +12263,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>6365.107</X>
+      <Y>4835.40967</Y>
+      <Z>1.33311534</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>6365.107</X>
+      <Y>4835.40967</Y>
+      <Z>1.33311534</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -55312,6 +55356,39 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>94099</Entry>
+    <Name>Greta Stonebrow</Name>
+    <Position>
+      <X>4485.811</X>
+      <Y>4862.89258</Y>
+      <Z>662.161865</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94100</Entry>
+    <Name>Lucas Sigmund</Name>
+    <Position>
+      <X>4494.18652</X>
+      <Y>4865.43652</Y>
+      <Z>662.133</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94100</Entry>
+    <Name>Lucas Sigmund</Name>
+    <Position>
+      <X>4494.18652</X>
+      <Y>4865.43652</Y>
+      <Z>662.133</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>94512</Entry>
     <Name>Tiffy Piègearessort</Name>
     <Position>
@@ -55984,6 +56061,28 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>97869</Entry>
+    <Name>Bar'tu Silverstream</Name>
+    <Position>
+      <X>5114.55566</X>
+      <Y>4973.08057</Y>
+      <Z>752.586853</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97869</Entry>
+    <Name>Bar'tu Silverstream</Name>
+    <Position>
+      <X>5114.55566</X>
+      <Y>4973.08057</Y>
+      <Z>752.586853</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>97874</Entry>
     <Name>Haren Stonepath</Name>
     <Position>
@@ -56072,6 +56171,61 @@
       <Z>776.54364</Z>
     </Position>
     <Type>LeatherworkingTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99205</Entry>
+    <Name>Darbrul</Name>
+    <Position>
+      <X>5867.962</X>
+      <Y>4547.085</Y>
+      <Z>614.2995</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99205</Entry>
+    <Name>Darbrul</Name>
+    <Position>
+      <X>5867.962</X>
+      <Y>4547.085</Y>
+      <Z>614.2995</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99206</Entry>
+    <Name>Bargrogg</Name>
+    <Position>
+      <X>5841.84033</X>
+      <Y>4653.913</Y>
+      <Z>630.7354</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99207</Entry>
+    <Name>Margul</Name>
+    <Position>
+      <X>5830.413</X>
+      <Y>4606.63525</Y>
+      <Z>629.774353</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99208</Entry>
+    <Name>Dantiogg</Name>
+    <Position>
+      <X>5878.12842</X>
+      <Y>4567.152</Y>
+      <Z>628.2448</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -56216,6 +56370,39 @@
       <Z>740.2408</Z>
     </Position>
     <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108534</Entry>
+    <Name>Adaleigh Mae Nelson</Name>
+    <Position>
+      <X>6460.24561</X>
+      <Y>4747.122</Y>
+      <Z>12.7831688</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108537</Entry>
+    <Name>Crafty Palu</Name>
+    <Position>
+      <X>6470.42627</X>
+      <Y>4746.604</Y>
+      <Z>12.7351465</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108537</Entry>
+    <Name>Crafty Palu</Name>
+    <Position>
+      <X>6470.42627</X>
+      <Y>4746.604</Y>
+      <Z>12.7351465</Z>
+    </Position>
+    <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -63798,12 +63985,34 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>250974</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>5350.03125</X>
+      <Y>4926.82568</Y>
+      <Z>692.1229</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>260296</Entry>
     <Name>Mailbox</Name>
     <Position>
       <X>4853.21973</X>
       <Y>3958.50513</Y>
       <Z>832.6034</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>260302</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>5215.82471</X>
+      <Y>4898.94775</Y>
+      <Z>710.8175</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
