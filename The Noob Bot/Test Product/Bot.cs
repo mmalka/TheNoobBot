@@ -580,8 +580,9 @@ namespace Test_Product
 
         public static bool IsTaxiOpen()
         {
-            Lua.LuaDoString("test = tostring(TaxiFrame and TaxiFrame:IsVisible())");
-            return Lua.GetLocalizedText("test") == "true";
+            string result = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(result + " = tostring((TaxiFrame and TaxiFrame:IsVisible()) or (FlightMapFrame and FlightMapFrame:IsVisible()))");
+            return Lua.GetLocalizedText(result) == "true";
         }
 
         public static List<string> ExtractAllPathsTaxi()
@@ -869,11 +870,11 @@ namespace Test_Product
                 /*
                 // Update spell list
                 //SpellManager.UpdateSpellBook();*/
-                /*DoTaxiLinksCleaning();
+                DoTaxiLinksCleaning();
                 //MergeFiles(); */
                 RadarThread.Start();
-                
-                /*TaxiThread.Start();
+
+                TaxiThread.Start();
 
                 while (TaxiThread.IsAlive)
                 {

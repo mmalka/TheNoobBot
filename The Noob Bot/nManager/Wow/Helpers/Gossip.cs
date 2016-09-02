@@ -94,10 +94,9 @@ namespace nManager.Wow.Helpers
 
         public static bool IsTaxiWindowOpen()
         {
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString(randomString + " = NumTaxiNodes()");
-            string result = Lua.GetLocalizedText(randomString);
-            return Others.ToInt32(result) > 0;
+            string result = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(result + " = tostring((TaxiFrame and TaxiFrame:IsVisible()) or (FlightMapFrame and FlightMapFrame:IsVisible()))");
+            return Lua.GetLocalizedText(result) == "true";
         }
 
         public static void TakeTaxi(string px, string py)
