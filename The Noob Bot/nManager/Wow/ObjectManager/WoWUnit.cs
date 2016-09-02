@@ -2276,7 +2276,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (ObjectManager.Me.HaveBuff(CombatMount))
                         return false;
-                    return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID) > 0 || HaveBuff(SpellManager.MountDruidId()) || Usefuls.IsFlying;
+                    return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID) > 0 || HaveBuff(SpellManager.MountDruidId()) || Usefuls.IsFlying || OnTaxi;
                 }
                 catch (Exception e)
                 {
