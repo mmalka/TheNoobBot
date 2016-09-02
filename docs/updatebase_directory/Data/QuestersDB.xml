@@ -12275,7 +12275,19 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-31.1677113</Z>
+      <Z>-166.801468</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12288,18 +12300,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>-333.8926</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12335,7 +12335,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>103.496796</Z>
+      <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -48942,6 +48942,17 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
+      <Z>513.6742</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>72447</Entry>
+    <Name>Chronalis</Name>
+    <Position>
+      <X>2890.49658</X>
+      <Y>627.434</Y>
       <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
@@ -48954,17 +48965,6 @@
       <X>2890.49658</X>
       <Y>627.434</Y>
       <Z>593.3703</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72447</Entry>
-    <Name>Chronalis</Name>
-    <Position>
-      <X>2890.49658</X>
-      <Y>627.434</Y>
-      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -49271,11 +49271,11 @@
   </Npc>
   <Npc>
     <Entry>74000</Entry>
-    <Name>Ga’nar</Name>
+    <Name>Ga'nar</Name>
     <Position>
       <X>7224.15967</X>
       <Y>5305.03369</Y>
-      <Z>62.3509865</Z>
+      <Z>62.3504448</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49283,11 +49283,11 @@
   </Npc>
   <Npc>
     <Entry>74000</Entry>
-    <Name>Ga'nar</Name>
+    <Name>Ga’nar</Name>
     <Position>
       <X>7224.15967</X>
       <Y>5305.03369</Y>
-      <Z>62.3504448</Z>
+      <Z>62.3509865</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -58782,6 +58782,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>87209</Entry>
+    <Name>Trader Joseph</Name>
+    <Position>
+      <X>1856.872</X>
+      <Y>315.436035</Y>
+      <Z>83.3261948</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>87210</Entry>
     <Name>Marchand Joseph</Name>
     <Position>
@@ -59224,6 +59235,39 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88115</Entry>
+    <Name>Prince Farondis</Name>
+    <Position>
+      <X>-10.8506947</X>
+      <Y>6734.116</Y>
+      <Z>55.5886269</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88117</Entry>
+    <Name>Nightwatcher Thaldrys</Name>
+    <Position>
+      <X>-140.7118</X>
+      <Y>6416.315</Y>
+      <Z>27.0583611</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88117</Entry>
+    <Name>Nightwatcher Thaldrys</Name>
+    <Position>
+      <X>-15.6909723</X>
+      <Y>5727.26465</Y>
+      <Z>8.507958</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88147</Entry>
     <Name>Makar Stonebinder</Name>
     <Position>
@@ -59377,6 +59421,72 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>88798</Entry>
+    <Name>Lady Irisse</Name>
+    <Position>
+      <X>-16.1545143</X>
+      <Y>6730.362</Y>
+      <Z>55.63962</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88850</Entry>
+    <Name>Nightwatcher Ayelle</Name>
+    <Position>
+      <X>-149.852432</X>
+      <Y>6396.15625</Y>
+      <Z>22.4002285</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88863</Entry>
+    <Name>Seska Seafang</Name>
+    <Position>
+      <X>-874.588562</X>
+      <Y>6514.014</Y>
+      <Z>3.66031981</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88867</Entry>
+    <Name>Prince Farondis</Name>
+    <Position>
+      <X>-139.940979</X>
+      <Y>6418.818</Y>
+      <Z>27.39929</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88873</Entry>
+    <Name>Okuna Longtusk</Name>
+    <Position>
+      <X>-327.267365</X>
+      <Y>6535.98633</Y>
+      <Z>1.660449</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88890</Entry>
+    <Name>Prince Farondis</Name>
+    <Position>
+      <X>-39.6649323</X>
+      <Y>6260.809</Y>
+      <Z>8.488121</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>88892</Entry>
     <Name>Nixxie</Name>
     <Position>
@@ -59397,6 +59507,105 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>88923</Entry>
+    <Name>Sternfathom</Name>
+    <Position>
+      <X>-332.079865</X>
+      <Y>6673.57275</Y>
+      <Z>4.179629</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89009</Entry>
+    <Name>Prince Farondis</Name>
+    <Position>
+      <X>-98.34375</X>
+      <Y>6018.329</Y>
+      <Z>0.420235932</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89009</Entry>
+    <Name>Prince Farondis</Name>
+    <Position>
+      <X>-30.0318279</X>
+      <Y>5985.41553</Y>
+      <Z>1.13396454</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89023</Entry>
+    <Name>Nightwatcher Idri</Name>
+    <Position>
+      <X>-15.6128473</X>
+      <Y>5731.59131</Y>
+      <Z>8.559288</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89023</Entry>
+    <Name>Nightwatcher Idri</Name>
+    <Position>
+      <X>-4.743056</X>
+      <Y>6736.632</Y>
+      <Z>55.64054</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89023</Entry>
+    <Name>Nightwatcher Idri</Name>
+    <Position>
+      <X>288.520844</X>
+      <Y>6643.104</Y>
+      <Z>56.0444527</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89048</Entry>
+    <Name>Sternfathom</Name>
+    <Position>
+      <X>-334.2882</X>
+      <Y>6674.67871</Y>
+      <Z>3.734181</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89051</Entry>
+    <Name>Okuna Longtusk</Name>
+    <Position>
+      <X>-992.611145</X>
+      <Y>6286.488</Y>
+      <Z>28.63846</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89051</Entry>
+    <Name>Okuna Longtusk</Name>
+    <Position>
+      <X>-950.7599</X>
+      <Y>6362.27441</Y>
+      <Z>20.6658478</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>89174</Entry>
@@ -59422,6 +59631,50 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>89326</Entry>
+    <Name>Kallistia Starlance</Name>
+    <Position>
+      <X>-184.704865</X>
+      <Y>6320.58936</Y>
+      <Z>21.6327</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89341</Entry>
+    <Name>Magister Garuhod</Name>
+    <Position>
+      <X>-13.442708</X>
+      <Y>6726.50439</Y>
+      <Z>55.58857</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89362</Entry>
+    <Name>Kayn Sunfury</Name>
+    <Position>
+      <X>-103.434029</X>
+      <Y>6961.33252</Y>
+      <Z>12.4620123</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89398</Entry>
+    <Name>Allari the Souleater</Name>
+    <Position>
+      <X>-90.15625</X>
+      <Y>6978.989</Y>
+      <Z>12.4157705</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>89400</Entry>
     <Name>Reshad</Name>
     <Position>
@@ -59431,6 +59684,28 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89660</Entry>
+    <Name>Thyrillion</Name>
+    <Position>
+      <X>183.503479</X>
+      <Y>6342.241</Y>
+      <Z>-30.7091751</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89661</Entry>
+    <Name>Instructor Nidriel</Name>
+    <Position>
+      <X>201.53299</X>
+      <Y>6470.866</Y>
+      <Z>-52.8877869</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>89763</Entry>
@@ -59443,6 +59718,39 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89793</Entry>
+    <Name>Harrison Jones</Name>
+    <Position>
+      <X>1942.4635</X>
+      <Y>312.1146</Y>
+      <Z>90.40476</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89794</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>613.1719</X>
+      <Y>6670.91162</Y>
+      <Z>60.2075233</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89795</Entry>
+    <Name>Emmigosa</Name>
+    <Position>
+      <X>614.361145</X>
+      <Y>6669.012</Y>
+      <Z>60.2356567</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>89805</Entry>
@@ -59469,6 +59777,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>89849</Entry>
+    <Name>Andellis</Name>
+    <Position>
+      <X>182.638885</X>
+      <Y>6344.258</Y>
+      <Z>-30.7102032</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>89931</Entry>
     <Name>Bath'rah's Cauldron</Name>
     <Position>
@@ -59478,6 +59797,50 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89975</Entry>
+    <Name>Senegos</Name>
+    <Position>
+      <X>634.654541</X>
+      <Y>6679.65967</Y>
+      <Z>54.25775</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89978</Entry>
+    <Name>Projection of Senegos</Name>
+    <Position>
+      <X>1076.59375</X>
+      <Y>6590.37158</Y>
+      <Z>139.654831</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89978</Entry>
+    <Name>Projection of Senegos</Name>
+    <Position>
+      <X>1091.8269</X>
+      <Y>6315.43164</Y>
+      <Z>121.391747</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90065</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>1111.717</X>
+      <Y>6758.375</Y>
+      <Z>167.41861</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>90180</Entry>
@@ -59513,6 +59876,17 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>90255</Entry>
+    <Name>Kor'vas Bloodthorn</Name>
+    <Position>
+      <X>-412.979156</X>
+      <Y>7113.74756</Y>
+      <Z>1.57135</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>90259</Entry>
     <Name>Lord Maxwell Tyrosus</Name>
     <Position>
@@ -59534,6 +59908,39 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90317</Entry>
+    <Name>Jace Darkweaver</Name>
+    <Position>
+      <X>-109.786461</X>
+      <Y>6988.105</Y>
+      <Z>12.1142807</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90383</Entry>
+    <Name>Runas the Shamed</Name>
+    <Position>
+      <X>1067.90979</X>
+      <Y>6287.22852</Y>
+      <Z>117.247665</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90383</Entry>
+    <Name>Runas the Shamed</Name>
+    <Position>
+      <X>1099.49658</X>
+      <Y>6588.107</Y>
+      <Z>139.656036</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>90417</Entry>
@@ -59558,6 +59965,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>90423</Entry>
+    <Name>Mana-Drained Whelpling</Name>
+    <Position>
+      <X>1123.632</X>
+      <Y>6576.79346</Y>
+      <Z>142.313858</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>90431</Entry>
     <Name>Archmage Ansirem Runeweaver</Name>
     <Position>
@@ -59575,6 +59993,28 @@
       <X>-845.3889</X>
       <Y>4638.033</Y>
       <Z>749.25824</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90520</Entry>
+    <Name>Lady Challiane</Name>
+    <Position>
+      <X>1400.54163</X>
+      <Y>7145.491</Y>
+      <Z>60.1578636</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90543</Entry>
+    <Name>Agapanthus</Name>
+    <Position>
+      <X>647.033</X>
+      <Y>6607.3457</Y>
+      <Z>60.18798</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -59611,6 +60051,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90738</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>640.131958</X>
+      <Y>6540.541</Y>
+      <Z>74.45568</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>90749</Entry>
@@ -59658,6 +60109,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90916</Entry>
+    <Name>Agapanthus</Name>
+    <Position>
+      <X>1080.4115</X>
+      <Y>6628.6665</Y>
+      <Z>141.454315</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>90963</Entry>
@@ -59729,6 +60191,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>91061</Entry>
+    <Name>Cellarman Voodani</Name>
+    <Position>
+      <X>1396.776</X>
+      <Y>7144.244</Y>
+      <Z>59.969738</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>91066</Entry>
     <Name>Elothir</Name>
     <Position>
@@ -59768,6 +60241,28 @@
       <X>2610.59814</X>
       <Y>6745.277</Y>
       <Z>106.446564</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91131</Entry>
+    <Name>Runas the Shamed</Name>
+    <Position>
+      <X>805.533</X>
+      <Y>6652.4707</Y>
+      <Z>58.72282</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91166</Entry>
+    <Name>Daglop</Name>
+    <Position>
+      <X>-437.5275</X>
+      <Y>5770.905</Y>
+      <Z>39.809433</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -59981,6 +60476,17 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>91403</Entry>
+    <Name>Prince Farondis</Name>
+    <Position>
+      <X>-12.744792</X>
+      <Y>5733.02246</Y>
+      <Z>8.560969</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>91404</Entry>
     <Name>Samantha Ecarlate</Name>
     <Position>
@@ -59990,6 +60496,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>91419</Entry>
+    <Name>Mr. Shackle</Name>
+    <Position>
+      <X>-812.449646</X>
+      <Y>6101.11035</Y>
+      <Z>7.006913</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>91589</Entry>
@@ -60035,6 +60552,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92195</Entry>
+    <Name>Professor Pallin</Name>
+    <Position>
+      <X>-786.463562</X>
+      <Y>4533.52441</Y>
+      <Z>730.7791</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>92213</Entry>
@@ -60093,6 +60621,39 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92420</Entry>
+    <Name>Ysera</Name>
+    <Position>
+      <X>2708.04688</X>
+      <Y>6271.05566</Y>
+      <Z>223.497711</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92458</Entry>
+    <Name>Deucus Valdera</Name>
+    <Position>
+      <X>-766.536438</X>
+      <Y>4533.18066</Y>
+      <Z>730.7396</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92464</Entry>
+    <Name>Kuhuine Tenderstride</Name>
+    <Position>
+      <X>-766.2726</X>
+      <Y>4519.23633</Y>
+      <Z>732.217163</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92545</Entry>
     <Name>Norman Électincelle</Name>
     <Position>
@@ -60105,12 +60666,78 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92618</Entry>
+    <Name>Granny Marl</Name>
+    <Position>
+      <X>2707.60938</X>
+      <Y>7462.568</Y>
+      <Z>5.313941</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92619</Entry>
+    <Name>Mayor Heathrow</Name>
+    <Position>
+      <X>2797.552</X>
+      <Y>7272.849</Y>
+      <Z>21.7229118</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92620</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>2798.51221</X>
+      <Y>7266.741</Y>
+      <Z>21.5902042</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92680</Entry>
     <Name>Lyanis Moonfall</Name>
     <Position>
       <X>2871.15967</X>
       <Y>6771.768</Y>
       <Z>220.177826</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92680</Entry>
+    <Name>Lyanis Moonfall</Name>
+    <Position>
+      <X>2924.24658</X>
+      <Y>6680.04932</Y>
+      <Z>215.312653</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92681</Entry>
+    <Name>Elizabeth</Name>
+    <Position>
+      <X>2773.39063</X>
+      <Y>7253.126</Y>
+      <Z>22.9580383</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92683</Entry>
+    <Name>Emmeline</Name>
+    <Position>
+      <X>2796.11816</X>
+      <Y>7284.8125</Y>
+      <Z>23.4484634</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -60138,6 +60765,61 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92697</Entry>
+    <Name>Isoraen Nightstar</Name>
+    <Position>
+      <X>2908.97827</X>
+      <Y>6646.37842</Y>
+      <Z>215.091736</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92710</Entry>
+    <Name>Ysera</Name>
+    <Position>
+      <X>2714.29785</X>
+      <Y>6028.8457</Y>
+      <Z>279.394531</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92738</Entry>
+    <Name>Grumpy</Name>
+    <Position>
+      <X>2552.77</X>
+      <Y>7478.54932</Y>
+      <Z>39.01011</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92742</Entry>
+    <Name>Ysera</Name>
+    <Position>
+      <X>2636.72046</X>
+      <Y>6714.74072</Y>
+      <Z>105.886185</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92783</Entry>
+    <Name>Elothir</Name>
+    <Position>
+      <X>3330.32642</X>
+      <Y>5959.685</Y>
+      <Z>253.644989</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92805</Entry>
     <Name>Z’tenga le Marcheur</Name>
     <Position>
@@ -60147,6 +60829,160 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92842</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3017.697</X>
+      <Y>7354.92432</Y>
+      <Z>37.1667366</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92842</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3117.55566</X>
+      <Y>7191.44629</Y>
+      <Z>53.5593872</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92842</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3263.21265</X>
+      <Y>7230.83643</Y>
+      <Z>89.993576</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92842</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3287.07666</X>
+      <Y>7302.91064</Y>
+      <Z>90.76936</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92850</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3017.60254</X>
+      <Y>7361.725</Y>
+      <Z>35.2378044</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92850</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3094.97485</X>
+      <Y>7461.887</Y>
+      <Z>53.05112</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92850</Entry>
+    <Name>Commander Jarod Shadowsong</Name>
+    <Position>
+      <X>3338.09717</X>
+      <Y>7370.2876</Y>
+      <Z>16.642355</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92987</Entry>
+    <Name>Maiev Shadowsong</Name>
+    <Position>
+      <X>3418.53125</X>
+      <Y>7430.646</Y>
+      <Z>16.7641926</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93027</Entry>
+    <Name>Maiev Shadowsong</Name>
+    <Position>
+      <X>3418.52954</X>
+      <Y>7430.71436</Y>
+      <Z>16.7631435</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93029</Entry>
+    <Name>Arduen Soulblade</Name>
+    <Position>
+      <X>3335.91748</X>
+      <Y>7370.404</Y>
+      <Z>16.6413269</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93149</Entry>
+    <Name>Maiev Shadowsong</Name>
+    <Position>
+      <X>3094.36548</X>
+      <Y>7464.921</Y>
+      <Z>52.8537979</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93273</Entry>
+    <Name>Vindicator Boros</Name>
+    <Position>
+      <X>-162.27951</X>
+      <Y>7810.241</Y>
+      <Z>112.736282</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93326</Entry>
+    <Name>Archmage Khadgar</Name>
+    <Position>
+      <X>-101.348961</X>
+      <Y>6961.514</Y>
+      <Z>12.5882912</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93354</Entry>
+    <Name>Archmage Khadgar</Name>
+    <Position>
+      <X>611.743042</X>
+      <Y>6672.58</Y>
+      <Z>60.20613</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>93396</Entry>
@@ -60159,6 +60995,39 @@
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93526</Entry>
+    <Name>Tiffany Cartier</Name>
+    <Position>
+      <X>-773.635437</X>
+      <Y>4541.75342</Y>
+      <Z>730.673</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93527</Entry>
+    <Name>Timothy Jones</Name>
+    <Position>
+      <X>-777.0052</X>
+      <Y>4543.46875</Y>
+      <Z>730.604065</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93529</Entry>
+    <Name>Olisarra the Kind</Name>
+    <Position>
+      <X>-789.131958</X>
+      <Y>4576.8916</Y>
+      <Z>728.0712</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>93530</Entry>
@@ -60178,6 +61047,17 @@
       <X>-804.78125</X>
       <Y>4557.93945</Y>
       <Z>729.5831</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93543</Entry>
+    <Name>Sminx Glasseye</Name>
+    <Position>
+      <X>-777.9514</X>
+      <Y>4547.28027</Y>
+      <Z>730.6109</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -60211,6 +61091,17 @@
       <X>2032.776</X>
       <Y>6644.257</Y>
       <Z>84.91107</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93620</Entry>
+    <Name>Cedonu</Name>
+    <Position>
+      <X>762.816</X>
+      <Y>6646.24463</Y>
+      <Z>63.3602257</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -60350,6 +61241,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>93967</Entry>
+    <Name>Lyndras</Name>
+    <Position>
+      <X>290.71875</X>
+      <Y>5877.88965</Y>
+      <Z>15.7853508</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>93974</Entry>
     <Name>Leyweaver Erenyi</Name>
     <Position>
@@ -60367,6 +61269,17 @@
       <X>4498.0625</X>
       <Y>4861.14746</Y>
       <Z>661.959961</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>94117</Entry>
+    <Name>Cecily Radcliffe</Name>
+    <Position>
+      <X>2816.4895</X>
+      <Y>7564.252</Y>
+      <Z>4.32157135</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -60503,6 +61416,28 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95028</Entry>
+    <Name>Asha Ravensong</Name>
+    <Position>
+      <X>3089.54858</X>
+      <Y>7450.205</Y>
+      <Z>52.49683</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>95041</Entry>
+    <Name>Maiev Shadowsong</Name>
+    <Position>
+      <X>3428.572</X>
+      <Y>7316.599</Y>
+      <Z>23.9345531</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>95117</Entry>
@@ -60847,6 +61782,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>96362</Entry>
+    <Name>Izzy Hollyfizzle</Name>
+    <Position>
+      <X>1858.85767</X>
+      <Y>243.229172</Y>
+      <Z>76.6395645</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>96513</Entry>
     <Name>Razik Gazbolt</Name>
     <Position>
@@ -61136,6 +62082,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>97736</Entry>
+    <Name>Baric Stormrunner</Name>
+    <Position>
+      <X>1133.783</X>
+      <Y>6272.19775</Y>
+      <Z>109.8719</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>97846</Entry>
     <Name>Apprentice Rosalyn</Name>
     <Position>
@@ -61290,12 +62247,67 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>98156</Entry>
+    <Name>Nalamya</Name>
+    <Position>
+      <X>2844.97827</X>
+      <Y>6608.769</Y>
+      <Z>210.901718</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>98159</Entry>
+    <Name>Alynblaze</Name>
+    <Position>
+      <X>13.0572891</X>
+      <Y>6743.33</Y>
+      <Z>55.58732</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>98381</Entry>
+    <Name>Merrus Dawnwind</Name>
+    <Position>
+      <X>10.0173616</X>
+      <Y>6744.884</Y>
+      <Z>55.5871773</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>98489</Entry>
+    <Name>Shipwrecked Captive</Name>
+    <Position>
+      <X>-161.333984</X>
+      <Y>6546.865</Y>
+      <Z>3.2540462</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>98584</Entry>
     <Name>Ysera</Name>
     <Position>
       <X>2636.72046</X>
       <Y>6714.74072</Y>
       <Z>105.886017</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>98791</Entry>
+    <Name>Glielle</Name>
+    <Position>
+      <X>-175.772568</X>
+      <Y>6733.366</Y>
+      <Z>38.1234</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -61329,6 +62341,17 @@
       <X>3904.534</X>
       <Y>4458.46875</Y>
       <Z>776.54364</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>98964</Entry>
+    <Name>Celea</Name>
+    <Position>
+      <X>-134.361115</X>
+      <Y>6701.645</Y>
+      <Z>38.24077</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -61378,6 +62401,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>99420</Entry>
+    <Name>Kharmeera</Name>
+    <Position>
+      <X>648.6042</X>
+      <Y>6717.57129</Y>
+      <Z>57.8969078</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>99619</Entry>
     <Name>Navarrogg</Name>
     <Position>
@@ -61395,6 +62429,17 @@
       <X>4123.887</X>
       <Y>4475.311</Y>
       <Z>660.1112</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>99635</Entry>
+    <Name>Taldranis</Name>
+    <Position>
+      <X>-744.5955</X>
+      <Y>6425.106</Y>
+      <Z>-12.2141352</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -61455,6 +62500,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>100482</Entry>
+    <Name>Senegos</Name>
+    <Position>
+      <X>664.2726</X>
+      <Y>6673.741</Y>
+      <Z>55.765</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>100573</Entry>
     <Name>Evelle Nightwhisper</Name>
     <Position>
@@ -61477,6 +62533,50 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>102938</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>-835.90155</X>
+      <Y>4458.858</Y>
+      <Z>588.7736</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>102938</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>2903.65967</X>
+      <Y>5889.23633</Y>
+      <Z>297.115875</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>102938</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>2946.67017</X>
+      <Y>5824.36328</Y>
+      <Z>305.196381</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>102988</Entry>
+    <Name>Archmage Khadgar</Name>
+    <Position>
+      <X>628.2726</X>
+      <Y>6559.6665</Y>
+      <Z>67.63632</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>103022</Entry>
     <Name>Tyrande Whisperwind</Name>
     <Position>
@@ -61488,12 +62588,210 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>103022</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3174.66</X>
+      <Y>5844.167</Y>
+      <Z>286.0194</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>103022</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3291.45947</X>
+      <Y>5939.87939</Y>
+      <Z>253.290131</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>103485</Entry>
     <Name>Lessah Moonwater</Name>
     <Position>
       <X>4117.9165</X>
       <Y>4372.586</Y>
       <Z>768.224854</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104728</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3320.364</X>
+      <Y>5958.03271</Y>
+      <Z>249.064377</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104728</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3413.70044</X>
+      <Y>6124.011</Y>
+      <Z>211.796844</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104728</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3496.92163</X>
+      <Y>6120.929</Y>
+      <Z>188.897491</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104728</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3558.65649</X>
+      <Y>6177.13135</Y>
+      <Z>177.748779</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>2964.912</X>
+      <Y>6564.13574</Y>
+      <Z>207.395157</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>ValSharahTempleofEluneScenario</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3042.55371</X>
+      <Y>6584.38135</Y>
+      <Z>200.5344</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>ValSharahTempleofEluneScenario</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3095.41821</X>
+      <Y>6515.561</Y>
+      <Z>205.82338</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>ValSharahTempleofEluneScenario</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3165.15674</X>
+      <Y>6483.7207</Y>
+      <Z>206.304764</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3241.16162</X>
+      <Y>6468.30469</Y>
+      <Z>211.076447</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3300.60059</X>
+      <Y>6401.951</Y>
+      <Z>206.305557</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3389.22876</X>
+      <Y>6406.03467</Y>
+      <Z>192.76709</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3470.526</X>
+      <Y>6448.302</Y>
+      <Z>182.33107</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104799</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3547.35083</X>
+      <Y>6420.46973</Y>
+      <Z>168.302521</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104824</Entry>
+    <Name>Ernest Carlisle</Name>
+    <Position>
+      <X>2663.895</X>
+      <Y>7446.303</Y>
+      <Z>5.3143177</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104885</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>3123.24146</X>
+      <Y>5918.394</Y>
+      <Z>286.050781</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>104921</Entry>
+    <Name>Tyrande Whisperwind</Name>
+    <Position>
+      <X>2911.55737</X>
+      <Y>6648.0166</Y>
+      <Z>215.092255</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -61554,6 +62852,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>106881</Entry>
+    <Name>Looper Allen</Name>
+    <Position>
+      <X>-660.3785</X>
+      <Y>5596.9165</Y>
+      <Z>2.7786696</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>106901</Entry>
     <Name>Sylvia Hartshorn</Name>
     <Position>
@@ -61576,12 +62885,100 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>106914</Entry>
+    <Name>Tehd Shoemaker</Name>
+    <Position>
+      <X>453.460083</X>
+      <Y>6509.20752</Y>
+      <Z>40.258503</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>106915</Entry>
+    <Name>Marius Felbane</Name>
+    <Position>
+      <X>455.854156</X>
+      <Y>6505.94971</Y>
+      <Z>40.3040276</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>106930</Entry>
     <Name>Lieutenant Surtees</Name>
     <Position>
       <X>-993.9566</X>
       <Y>4637.597</Y>
       <Z>741.199768</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107139</Entry>
+    <Name>Enchantress Ilanya</Name>
+    <Position>
+      <X>6.99652767</X>
+      <Y>6743.783</Y>
+      <Z>55.5887146</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107244</Entry>
+    <Name>Tehd Shoemaker</Name>
+    <Position>
+      <X>534.8368</X>
+      <Y>5623.67529</Y>
+      <Z>77.29914</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107245</Entry>
+    <Name>Marius Felbane</Name>
+    <Position>
+      <X>537.368042</X>
+      <Y>5622.202</Y>
+      <Z>77.63012</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107334</Entry>
+    <Name>Sythorne</Name>
+    <Position>
+      <X>191.3507</X>
+      <Y>6463.492</Y>
+      <Z>-53.7761269</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107372</Entry>
+    <Name>Hudson Crawford</Name>
+    <Position>
+      <X>2760.77954</X>
+      <Y>7308.553</Y>
+      <Z>22.0561447</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107376</Entry>
+    <Name>Veridis Fallon</Name>
+    <Position>
+      <X>-14.239583</X>
+      <Y>6740.421</Y>
+      <Z>55.5877266</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -61615,6 +63012,149 @@
       <X>-869.1719</X>
       <Y>4659.107</Y>
       <Z>767.6945</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>620.1814</X>
+      <Y>6360.74268</Y>
+      <Z>74.35374</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>623.869141</X>
+      <Y>6436.22754</Y>
+      <Z>85.29709</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>624.451</X>
+      <Y>6249.994</Y>
+      <Z>71.7277145</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>627.534546</X>
+      <Y>6511.424</Y>
+      <Z>78.65128</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>695.149</X>
+      <Y>6190.30664</Y>
+      <Z>85.2054</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>776.126</X>
+      <Y>6187.73047</Y>
+      <Z>126.371788</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>844.547</X>
+      <Y>6163.425</Y>
+      <Z>171.050522</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>923.3661</X>
+      <Y>6175.185</Y>
+      <Z>168.955017</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>978.2333</X>
+      <Y>6237.017</Y>
+      <Z>148.996689</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>1063.10046</X>
+      <Y>6243.343</Y>
+      <Z>116.50206</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>1124.46838</X>
+      <Y>6190.66</Y>
+      <Z>118.419693</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>1182.21582</X>
+      <Y>6127.1</Y>
+      <Z>123.573914</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107995</Entry>
+    <Name>Stellagosa</Name>
+    <Position>
+      <X>1208.03821</X>
+      <Y>6037.164</Y>
+      <Z>121.408249</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -61664,6 +63204,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>108328</Entry>
+    <Name>Olothil Starlance</Name>
+    <Position>
+      <X>-189.739578</X>
+      <Y>6313.20654</Y>
+      <Z>20.58771</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>108358</Entry>
     <Name>Leirana</Name>
     <Position>
@@ -61703,6 +63254,17 @@
       <X>4866.44775</X>
       <Y>3939.90186</Y>
       <Z>833.5277</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109334</Entry>
+    <Name>Okuna Longtusk</Name>
+    <Position>
+      <X>-908.1565</X>
+      <Y>6408.94434</Y>
+      <Z>3.57426667</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -66223,6 +67785,28 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>239120</Entry>
+    <Name>Okuna Longtusk's Pack</Name>
+    <Position>
+      <X>-482.0625</X>
+      <Y>6676.999</Y>
+      <Z>-2.054145</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>239328</Entry>
+    <Name>Captain's Foot Locker</Name>
+    <Position>
+      <X>-694.991333</X>
+      <Y>5502.91943</Y>
+      <Z>-10.4494905</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>239791</Entry>
     <Name>Relic Hunting Notes</Name>
     <Position>
@@ -66232,6 +67816,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>240552</Entry>
+    <Name>Tidestone Core</Name>
+    <Position>
+      <X>303.56076</X>
+      <Y>6260.76465</Y>
+      <Z>-50.3311958</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>241607</Entry>
@@ -66267,6 +67862,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>243227</Entry>
+    <Name>Ravencrest Cemetery</Name>
+    <Position>
+      <X>3469.553</X>
+      <Y>7292.20654</Y>
+      <Z>23.94489</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>243402</Entry>
     <Name>Navarrogg's Cage</Name>
     <Position>
@@ -66284,6 +67890,17 @@
       <X>-791.118042</X>
       <Y>4532.135</Y>
       <Z>731.4007</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>244818</Entry>
+    <Name>Tur'xoran's Summoning Stone</Name>
+    <Position>
+      <X>3649.52075</X>
+      <Y>6111.817</Y>
+      <Z>192.8995</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -66344,6 +67961,50 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>246884</Entry>
+    <Name>Portal Activation Altar</Name>
+    <Position>
+      <X>-99.56541</X>
+      <Y>7365.13672</Y>
+      <Z>102.587761</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>246885</Entry>
+    <Name>Portal Activation Altar</Name>
+    <Position>
+      <X>-81.8829346</X>
+      <Y>7379.17432</Y>
+      <Z>102.587311</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>248534</Entry>
+    <Name>Tears of Elune</Name>
+    <Position>
+      <X>2909.45044</X>
+      <Y>6660.5957</Y>
+      <Z>219.32515</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>248539</Entry>
+    <Name>Blooming Nightmare Flower</Name>
+    <Position>
+      <X>3514.84888</X>
+      <Y>5953.91064</Y>
+      <Z>256.162262</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>248933</Entry>
     <Name>Compendium of Ancient Weapons Volume I</Name>
     <Position>
@@ -66383,6 +68044,17 @@
       <X>-854.191</X>
       <Y>4456.021</Y>
       <Z>592.613831</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>252232</Entry>
+    <Name>Aponi's Libram</Name>
+    <Position>
+      <X>661.5469</X>
+      <Y>5471.07666</Y>
+      <Z>62.0396042</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>

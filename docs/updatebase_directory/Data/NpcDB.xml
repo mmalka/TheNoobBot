@@ -2953,6 +2953,17 @@
     <Entry>1685</Entry>
     <Name>Forge</Name>
     <Position>
+      <X>50.65278</X>
+      <Y>6708.818</Y>
+      <Z>50.64462</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>1685</Entry>
+    <Name>Forge</Name>
+    <Position>
       <X>2478.99</X>
       <Y>-1954.66235</Y>
       <Z>10.8832016</Z>
@@ -12059,6 +12070,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>-392.727448</X>
+      <Y>7116.108</Y>
+      <Z>3.34353256</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-392.727448</X>
+      <Y>7116.108</Y>
+      <Z>3.34353256</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>734.4251</X>
       <Y>-2984.14331</Y>
       <Z>25.5184155</Z>
@@ -12125,6 +12158,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>2789.65186</X>
+      <Y>7359.862</Y>
+      <Z>17.7224121</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2789.65186</X>
+      <Y>7359.862</Y>
+      <Z>17.7224121</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>2850.49146</X>
       <Y>6557.335</Y>
       <Z>209.161514</Z>
@@ -12183,6 +12238,28 @@
       <X>3290.539</X>
       <Y>5598.942</Y>
       <Z>330.895172</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3493.986</X>
+      <Y>6098.474</Y>
+      <Z>196.75116</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3493.986</X>
+      <Y>6098.474</Y>
+      <Z>196.75116</Z>
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -50505,6 +50582,17 @@
     <Entry>80285</Entry>
     <Name>Guh</Name>
     <Position>
+      <X>1844.50525</X>
+      <Y>229.355911</Y>
+      <Z>75.98196</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>80285</Entry>
+    <Name>Guh</Name>
+    <Position>
       <X>5539.757</X>
       <Y>4485.98438</Y>
       <Z>133.435364</Z>
@@ -54378,6 +54466,17 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>87205</Entry>
+    <Name>Ancient Trading Mechanism</Name>
+    <Position>
+      <X>1873.90918</X>
+      <Y>306.560181</Y>
+      <Z>83.3528442</Z>
+    </Position>
+    <Type>Auctioneer</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>87300</Entry>
     <Name>Vora Gros-Bras</Name>
     <Position>
@@ -55024,6 +55123,28 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>89257</Entry>
+    <Name>Cleave Thunderhill</Name>
+    <Position>
+      <X>-793.387146</X>
+      <Y>6102.134</Y>
+      <Z>4.653608</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89257</Entry>
+    <Name>Cleave Thunderhill</Name>
+    <Position>
+      <X>-793.387146</X>
+      <Y>6102.134</Y>
+      <Z>4.653608</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>89281</Entry>
     <Name>Warspear Peon</Name>
     <Position>
@@ -55046,6 +55167,39 @@
     <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89639</Entry>
+    <Name>Belath Dawnblade</Name>
+    <Position>
+      <X>-66.01215</X>
+      <Y>6990.54346</Y>
+      <Z>20.0098362</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89640</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>-89.1441</X>
+      <Y>6951.3584</Y>
+      <Z>14.1057262</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89640</Entry>
+    <Name>Falara Nightsong</Name>
+    <Position>
+      <X>-89.1441</X>
+      <Y>6951.3584</Y>
+      <Z>14.1057262</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>89702</Entry>
@@ -55079,6 +55233,83 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89938</Entry>
+    <Name>Enchanted Claw of Ceruledan</Name>
+    <Position>
+      <X>624.4566</X>
+      <Y>6616.4707</Y>
+      <Z>61.76412</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89938</Entry>
+    <Name>Enchanted Claw of Ceruledan</Name>
+    <Position>
+      <X>624.4566</X>
+      <Y>6616.4707</Y>
+      <Z>61.76412</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>89939</Entry>
+    <Name>Berazus</Name>
+    <Position>
+      <X>781.8177</X>
+      <Y>6682.039</Y>
+      <Z>60.686924</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90086</Entry>
+    <Name>Ooka Dooker</Name>
+    <Position>
+      <X>-380.368073</X>
+      <Y>6519.69971</Y>
+      <Z>3.52479339</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90518</Entry>
+    <Name>Winemaster Lydell</Name>
+    <Position>
+      <X>1402.74475</X>
+      <Y>7153.363</Y>
+      <Z>61.2003365</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90638</Entry>
+    <Name>Vestulio the Servant</Name>
+    <Position>
+      <X>1402.4115</X>
+      <Y>7129.866</Y>
+      <Z>60.92434</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>90638</Entry>
+    <Name>Vestulio the Servant</Name>
+    <Position>
+      <X>1402.4115</X>
+      <Y>7129.866</Y>
+      <Z>60.92434</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>90866</Entry>
@@ -55259,6 +55490,17 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>91457</Entry>
+    <Name>Gentle Rosh</Name>
+    <Position>
+      <X>-811.0851</X>
+      <Y>6098.343</Y>
+      <Z>7.00522137</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92000</Entry>
     <Name>Javan Clawthorn</Name>
     <Position>
@@ -55314,6 +55556,83 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92195</Entry>
+    <Name>Professor Pallin</Name>
+    <Position>
+      <X>-786.463562</X>
+      <Y>4533.52441</Y>
+      <Z>730.7791</Z>
+    </Position>
+    <Type>InscriptionTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92456</Entry>
+    <Name>Linzy Blackbolt</Name>
+    <Position>
+      <X>-757.696167</X>
+      <Y>4527.38037</Y>
+      <Z>730.740356</Z>
+    </Position>
+    <Type>AlchemyTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92457</Entry>
+    <Name>Patricia Egan</Name>
+    <Position>
+      <X>-760.65625</X>
+      <Y>4526.066</Y>
+      <Z>730.8226</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92458</Entry>
+    <Name>Deucus Valdera</Name>
+    <Position>
+      <X>-766.536438</X>
+      <Y>4533.18066</Y>
+      <Z>730.7396</Z>
+    </Position>
+    <Type>AlchemyTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92459</Entry>
+    <Name>Dorothy Egan</Name>
+    <Position>
+      <X>-773.4184</X>
+      <Y>4528.272</Y>
+      <Z>732.299438</Z>
+    </Position>
+    <Type>HerbalismTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92460</Entry>
+    <Name>Edward Egan</Name>
+    <Position>
+      <X>-774.616333</X>
+      <Y>4526.827</Y>
+      <Z>732.381042</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92464</Entry>
+    <Name>Kuhuine Tenderstride</Name>
+    <Position>
+      <X>-766.2726</X>
+      <Y>4519.23633</Y>
+      <Z>732.217163</Z>
+    </Position>
+    <Type>HerbalismTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92489</Entry>
     <Name>Mei Francis</Name>
     <Position>
@@ -55358,6 +55677,17 @@
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92684</Entry>
+    <Name>Alistair Thornton</Name>
+    <Position>
+      <X>2775.49219</X>
+      <Y>7260.41748</Y>
+      <Z>22.9460316</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>92749</Entry>
@@ -55470,6 +55800,50 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>93526</Entry>
+    <Name>Tiffany Cartier</Name>
+    <Position>
+      <X>-773.635437</X>
+      <Y>4541.75342</Y>
+      <Z>730.673</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93527</Entry>
+    <Name>Timothy Jones</Name>
+    <Position>
+      <X>-777.0052</X>
+      <Y>4543.46875</Y>
+      <Z>730.604065</Z>
+    </Position>
+    <Type>JewelcraftingTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93528</Entry>
+    <Name>Angelique Butler</Name>
+    <Position>
+      <X>-792.482666</X>
+      <Y>4571.81934</Y>
+      <Z>728.0869</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93529</Entry>
+    <Name>Olisarra the Kind</Name>
+    <Position>
+      <X>-789.131958</X>
+      <Y>4576.8916</Y>
+      <Z>728.0712</Z>
+    </Position>
+    <Type>FirstAidTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>93530</Entry>
     <Name>Ildine Sorrowspear</Name>
     <Position>
@@ -55489,6 +55863,17 @@
       <Z>729.5831</Z>
     </Position>
     <Type>EnchantingTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93532</Entry>
+    <Name>Jessica Sellers</Name>
+    <Position>
+      <X>-785.430542</X>
+      <Y>4537.10352</Y>
+      <Z>730.750244</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -55524,6 +55909,28 @@
       <Z>727.2808</Z>
     </Position>
     <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93543</Entry>
+    <Name>Sminx Glasseye</Name>
+    <Position>
+      <X>-777.9514</X>
+      <Y>4547.28027</Y>
+      <Z>730.6109</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93544</Entry>
+    <Name>Jang Quillpaw</Name>
+    <Position>
+      <X>-782.9427</X>
+      <Y>4535.03</Y>
+      <Z>730.7734</Z>
+    </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
@@ -55574,6 +55981,28 @@
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93945</Entry>
+    <Name>Rhys Carrington</Name>
+    <Position>
+      <X>2817.95825</X>
+      <Y>7264.6665</Y>
+      <Z>22.1355686</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93945</Entry>
+    <Name>Rhys Carrington</Name>
+    <Position>
+      <X>2817.95825</X>
+      <Y>7264.6665</Y>
+      <Z>22.1355686</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>94099</Entry>
@@ -55697,6 +56126,17 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96362</Entry>
+    <Name>Izzy Hollyfizzle</Name>
+    <Position>
+      <X>1858.85767</X>
+      <Y>243.229172</Y>
+      <Z>76.6395645</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
     <Entry>96479</Entry>
@@ -55912,6 +56352,18 @@
       <X>-768.550354</X>
       <Y>4324.40967</Y>
       <Z>729.1209</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96804</Entry>
+    <Name>Hamaka</Name>
+    <Position>
+      <X>-764.8924</X>
+      <Y>4286.318</Y>
+      <Z>729.0623</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -56491,6 +56943,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>98279</Entry>
+    <Name>General Lena Stormpike</Name>
+    <Position>
+      <X>2483.217</X>
+      <Y>-5409.943</Y>
+      <Z>54.7027931</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>98723</Entry>
     <Name>Tiffy Trapspring</Name>
     <Position>
@@ -56527,12 +56990,34 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>98791</Entry>
+    <Name>Glielle</Name>
+    <Position>
+      <X>-175.772568</X>
+      <Y>6733.366</Y>
+      <Z>38.1234</Z>
+    </Position>
+    <Type>SkinningTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>98948</Entry>
     <Name>Hrul Sharphoof</Name>
     <Position>
       <X>3904.534</X>
       <Y>4458.46875</Y>
       <Z>776.54364</Z>
+    </Position>
+    <Type>LeatherworkingTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>98964</Entry>
+    <Name>Celea</Name>
+    <Position>
+      <X>-134.361115</X>
+      <Y>6701.645</Y>
+      <Z>38.24077</Z>
     </Position>
     <Type>LeatherworkingTrainer</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -56803,6 +57288,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>107376</Entry>
+    <Name>Veridis Fallon</Name>
+    <Position>
+      <X>-14.239583</X>
+      <Y>6740.421</Y>
+      <Z>55.5877266</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>108534</Entry>
     <Name>Adaleigh Mae Nelson</Name>
     <Position>
@@ -56903,6 +57399,72 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>109368</Entry>
+    <Name>Thordal</Name>
+    <Position>
+      <X>48.0416679</X>
+      <Y>6707.8335</Y>
+      <Z>50.645874</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109368</Entry>
+    <Name>Thordal</Name>
+    <Position>
+      <X>48.0416679</X>
+      <Y>6707.8335</Y>
+      <Z>50.645874</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109372</Entry>
+    <Name>Nalysse Dawnsorrow</Name>
+    <Position>
+      <X>-10.3715277</X>
+      <Y>6712.157</Y>
+      <Z>53.51485</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109377</Entry>
+    <Name>Filrich</Name>
+    <Position>
+      <X>185.953125</X>
+      <Y>6344.39258</Y>
+      <Z>-30.3125229</Z>
+    </Position>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109383</Entry>
+    <Name>Brother Luckhammer</Name>
+    <Position>
+      <X>-374.830261</X>
+      <Y>6517.976</Y>
+      <Z>3.483068</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>109383</Entry>
+    <Name>Brother Luckhammer</Name>
+    <Position>
+      <X>-374.830261</X>
+      <Y>6517.976</Y>
+      <Z>3.483068</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>110521</Entry>
     <Name>Supplier Barleyfoot</Name>
     <Position>
@@ -56958,6 +57520,28 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>110974</Entry>
+    <Name>Adept Yad M'Sivart</Name>
+    <Position>
+      <X>-268.228516</X>
+      <Y>7715.10352</Y>
+      <Z>139.754715</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>110974</Entry>
+    <Name>Adept Yad M'Sivart</Name>
+    <Position>
+      <X>-268.228516</X>
+      <Y>7715.10352</Y>
+      <Z>139.754715</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>112007</Entry>
     <Name>Mel Lynchen</Name>
     <Position>
@@ -56967,6 +57551,17 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112097</Entry>
+    <Name>Justicar Set</Name>
+    <Position>
+      <X>2429.75879</X>
+      <Y>-5400.85938</Y>
+      <Z>50.76779</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <Entry>112629</Entry>
@@ -64217,6 +64812,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>242044</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-763.0234</X>
+      <Y>4544.17236</Y>
+      <Z>728.044067</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>242126</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -64234,6 +64840,28 @@
       <X>-836.332336</X>
       <Y>4336.198</Y>
       <Z>744.884949</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>242200</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-732.2481</X>
+      <Y>4444.607</Y>
+      <Z>733.7956</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>242201</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-721.6205</X>
+      <Y>4472.55127</Y>
+      <Z>733.0105</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -64544,6 +65172,61 @@
       <Z>692.1229</Z>
     </Position>
     <Type>SmeltingForge</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>251829</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-799.2031</X>
+      <Y>6102.30127</Y>
+      <Z>5.190535</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>251831</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>1373.32983</X>
+      <Y>7154.67871</Y>
+      <Z>61.8720856</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>253548</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-92.44444</X>
+      <Y>6949.97559</Y>
+      <Z>13.993845</Z>
+    </Position>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>255795</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>-64.97396</X>
+      <Y>6966.936</Y>
+      <Z>15.3853579</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>258983</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>663.3299</X>
+      <Y>6599.91064</Y>
+      <Z>60.7157478</Z>
+    </Position>
+    <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
