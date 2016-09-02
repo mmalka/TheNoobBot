@@ -3438,4 +3438,175 @@
     <Xcoord>0.69701355695724</Xcoord>
     <Ycoord>0.52733713388443</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="96813" Name="Dalaran" ContinentId="1220">
+    <Position>
+      <X>-863.934</X>
+      <Y>4298.434</Y>
+      <Z>745.346863</Z>
+    </Position>
+    <Xcoord>0.308753490448</Xcoord>
+    <Ycoord>-0.32688274979591</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="112866" Name="Shackle's Den, Azsuna" ContinentId="1220">
+    <Position>
+      <X>-782.512146</X>
+      <Y>6128.51025</Y>
+      <Z>4.6459837</Z>
+    </Position>
+    <Xcoord>0.093686677515507</Xcoord>
+    <Ycoord>-0.30890575051308</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="110971" Name="Illidari Perch, Azsuna" ContinentId="1220">
+    <Position>
+      <X>-227.232635</X>
+      <Y>7734.89063</Y>
+      <Z>139.190887</Z>
+    </Position>
+    <Xcoord>-0.094359777867794</Xcoord>
+    <Ycoord>-0.17857363820076</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="88110" Name="Illidari Stand, Azsuna" ContinentId="1220">
+    <Position>
+      <X>-120.324654</X>
+      <Y>6892.693</Y>
+      <Z>16.5600052</Z>
+    </Position>
+    <Xcoord>0.0044336374849081</Xcoord>
+    <Ycoord>-0.15263485908508</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="111624" Name="Felblaze Ingress, Azsuna" ContinentId="1220">
+    <Position>
+      <X>555.3542</X>
+      <Y>5624.91943</Y>
+      <Z>80.089325</Z>
+    </Position>
+    <Xcoord>0.152453109622</Xcoord>
+    <Ycoord>0.0049348012544215</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="90556" Name="Azurewing Repose, Azsuna" ContinentId="1220">
+    <Position>
+      <X>573.072937</X>
+      <Y>6639.729</Y>
+      <Z>58.4828</Z>
+    </Position>
+    <Xcoord>0.033415831625462</Xcoord>
+    <Ycoord>0.010179416276515</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="90639" Name="Challiane's Terrace, Azsuna" ContinentId="1220">
+    <Position>
+      <X>1411.441</X>
+      <Y>7142.11963</Y>
+      <Z>61.3408661</Z>
+    </Position>
+    <Xcoord>-0.024824131280184</Xcoord>
+    <Ycoord>0.20475608110428</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="93447" Name="Lorlathil, Val'sharah" ContinentId="1220">
+    <Position>
+      <X>2303.04175</X>
+      <Y>6576.663</Y>
+      <Z>142.240646</Z>
+    </Position>
+    <Xcoord>0.041198387742043</Xcoord>
+    <Ycoord>0.41437146067619</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="93940" Name="Bradensbrook, Val'sharah" ContinentId="1220">
+    <Position>
+      <X>2816.71875</X>
+      <Y>7278.94629</Y>
+      <Z>21.87162</Z>
+    </Position>
+    <Xcoord>-0.040668364614248</Xcoord>
+    <Ycoord>0.53501170873642</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="100459" Name="Garden of the Moon, Val'sharah" ContinentId="1220">
+    <Position>
+      <X>2844.37158</X>
+      <Y>6479.683</Y>
+      <Z>206.685669</Z>
+    </Position>
+    <Xcoord>0.052381560206413</Xcoord>
+    <Ycoord>0.54146105051041</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="96565" Name="Obsidian Overlook, Highmountain" ContinentId="1220">
+    <Position>
+      <X>2974.09375</X>
+      <Y>4347.88037</Y>
+      <Z>652.8822</Z>
+    </Position>
+    <Xcoord>0.3031824529171</Xcoord>
+    <Ycoord>0.57192540168762</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="100468" Name="Starsong Refuge, Val'sharah" ContinentId="1220">
+    <Position>
+      <X>3097.64</X>
+      <Y>5802.71875</Y>
+      <Z>300.572571</Z>
+    </Position>
+    <Xcoord>0.13154198229313</Xcoord>
+    <Ycoord>0.60062384605408</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="98114" Name="Skyfire Triage Camp, Stormheim" ContinentId="1220">
+    <Position>
+      <X>3218.24316</X>
+      <Y>3085.21973</Y>
+      <Z>440.212433</Z>
+    </Position>
+    <Xcoord>0.45134615898132</Xcoord>
+    <Ycoord>0.62959665060043</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="100550" Name="Sylvan Falls, Highmountain" ContinentId="1220">
+    <Position>
+      <X>3855.96875</X>
+      <Y>5154.288</Y>
+      <Z>644.294434</Z>
+    </Position>
+    <Xcoord>0.20853777229786</Xcoord>
+    <Ycoord>0.77874064445496</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="100559" Name="Stonehoof Watch, Highmountain" ContinentId="1220">
+    <Position>
+      <X>3896.97656</X>
+      <Y>3501.42358</Y>
+      <Z>800.404236</Z>
+    </Position>
+    <Xcoord>0.40206614136696</Xcoord>
+    <Ycoord>0.78774625062943</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="95688" Name="Thunder Totem, Highmountain" ContinentId="1220">
+    <Position>
+      <X>4158.713</X>
+      <Y>4383.21729</Y>
+      <Z>768.213135</Z>
+    </Position>
+    <Xcoord>0.29954853653908</Xcoord>
+    <Ycoord>0.84979122877121</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="94973" Name="Nesingwary, Highmountain" ContinentId="1220">
+    <Position>
+      <X>4479.038</X>
+      <Y>4845.356</Y>
+      <Z>662.821533</Z>
+    </Position>
+    <Xcoord>0.2445719987154</Xcoord>
+    <Ycoord>0.92646807432175</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="97860" Name="Skyhorn, Highmountain" ContinentId="1220">
+    <Position>
+      <X>4832.238</X>
+      <Y>3971.65186</Y>
+      <Z>831.837646</Z>
+    </Position>
+    <Xcoord>0.34728306531906</Xcoord>
+    <Ycoord>1.0086609125137</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="97868" Name="The Witchwood, Highmountain" ContinentId="1220">
+    <Position>
+      <X>5110.85352</X>
+      <Y>4978.03369</Y>
+      <Z>752.602</Z>
+    </Position>
+    <Xcoord>0.22828797996044</Xcoord>
+    <Ycoord>1.0748381614685</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
