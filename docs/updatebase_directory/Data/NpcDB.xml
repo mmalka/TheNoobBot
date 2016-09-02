@@ -12046,6 +12046,28 @@
   </Npc>
   <Npc>
     <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1819.05383</X>
+      <Y>6455.729</Y>
+      <Z>175.989639</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>-1819.05383</X>
+      <Y>6455.729</Y>
+      <Z>175.989639</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
     <Name>Gardien des âmes</Name>
     <Position>
       <X>-574.673645</X>
@@ -55556,6 +55578,39 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92183</Entry>
+    <Name>Alard Schmied</Name>
+    <Position>
+      <X>-740.861145</X>
+      <Y>4509.92041</Y>
+      <Z>731.050232</Z>
+    </Position>
+    <Type>BlacksmithingTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92184</Entry>
+    <Name>Imindril Spearsong</Name>
+    <Position>
+      <X>-730.387146</X>
+      <Y>4490.11475</Y>
+      <Z>730.997864</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92184</Entry>
+    <Name>Imindril Spearsong</Name>
+    <Position>
+      <X>-730.387146</X>
+      <Y>4490.11475</Y>
+      <Z>730.997864</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92195</Entry>
     <Name>Professor Pallin</Name>
     <Position>
@@ -55745,6 +55800,17 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92936</Entry>
+    <Name>Aimee</Name>
+    <Position>
+      <X>-743.0174</X>
+      <Y>4454.606</Y>
+      <Z>734.346252</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>93178</Entry>
     <Name>Forika le Voyant</Name>
     <Position>
@@ -55765,6 +55831,28 @@
     </Position>
     <Type>Repair</Type>
     <ContinentId>TanaanJungle</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93188</Entry>
+    <Name>Mongar</Name>
+    <Position>
+      <X>-731.151062</X>
+      <Y>4489.961</Y>
+      <Z>738.9787</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93189</Entry>
+    <Name>Mama Diggs</Name>
+    <Position>
+      <X>-729.5382</X>
+      <Y>4493.96436</Y>
+      <Z>738.8925</Z>
+    </Position>
+    <Type>MiningTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>93460</Entry>
@@ -56238,6 +56326,39 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>96782</Entry>
+    <Name>Lucian Trias</Name>
+    <Position>
+      <X>-755.928833</X>
+      <Y>4424.80127</Y>
+      <Z>737.7959</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96784</Entry>
+    <Name>Fialla Sweetberry</Name>
+    <Position>
+      <X>-773.908</X>
+      <Y>4436.558</Y>
+      <Z>737.8136</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96785</Entry>
+    <Name>Christi Stockton</Name>
+    <Position>
+      <X>-760.0799</X>
+      <Y>4432.57031</Y>
+      <Z>737.7972</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>96789</Entry>
     <Name>Caliel Brightwillow</Name>
     <Position>
@@ -56525,6 +56646,50 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>96979</Entry>
+    <Name>Bragund Brightlink</Name>
+    <Position>
+      <X>-989.1424</X>
+      <Y>4453.67529</Y>
+      <Z>735.608337</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96979</Entry>
+    <Name>Bragund Brightlink</Name>
+    <Position>
+      <X>-989.1424</X>
+      <Y>4453.67529</Y>
+      <Z>735.608337</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96980</Entry>
+    <Name>Matilda Brightlink</Name>
+    <Position>
+      <X>-984.824646</X>
+      <Y>4446.737</Y>
+      <Z>735.6073</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96980</Entry>
+    <Name>Matilda Brightlink</Name>
+    <Position>
+      <X>-984.824646</X>
+      <Y>4446.737</Y>
+      <Z>735.6073</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>96987</Entry>
     <Name>Norvin Alderman</Name>
     <Position>
@@ -56542,6 +56707,17 @@
       <X>-898.2222</X>
       <Y>4520.598</Y>
       <Z>730.9129</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96999</Entry>
+    <Name>Susana Averoy</Name>
+    <Position>
+      <X>-980.7743</X>
+      <Y>4434.132</Y>
+      <Z>743.846863</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -56652,6 +56828,28 @@
       <X>-933.114563</X>
       <Y>4425.22656</Y>
       <Z>736.1757</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97012</Entry>
+    <Name>Abra Cadabra</Name>
+    <Position>
+      <X>-991.4219</X>
+      <Y>4471.328</Y>
+      <Z>735.4817</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>97012</Entry>
+    <Name>Abra Cadabra</Name>
+    <Position>
+      <X>-991.4219</X>
+      <Y>4471.328</Y>
+      <Z>735.4817</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -57255,6 +57453,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>106655</Entry>
+    <Name>Arcanomancer Vridiel</Name>
+    <Position>
+      <X>-742.8906</X>
+      <Y>4501.166</Y>
+      <Z>730.997437</Z>
+    </Position>
+    <Type>BlacksmithingTrainer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>106901</Entry>
     <Name>Sylvia Hartshorn</Name>
     <Position>
@@ -57294,6 +57503,17 @@
       <X>-14.239583</X>
       <Y>6740.421</Y>
       <Z>55.5877266</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107379</Entry>
+    <Name>Marin Bladewing</Name>
+    <Position>
+      <X>-1441.08337</X>
+      <Y>6656.882</Y>
+      <Z>12.0021229</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -57537,6 +57757,28 @@
       <X>-268.228516</X>
       <Y>7715.10352</Y>
       <Z>139.754715</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>111627</Entry>
+    <Name>Trainee Skyshadow</Name>
+    <Position>
+      <X>-1408.00171</X>
+      <Y>6642.98438</Y>
+      <Z>11.9454775</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>111627</Entry>
+    <Name>Trainee Skyshadow</Name>
+    <Position>
+      <X>-1408.00171</X>
+      <Y>6642.98438</Y>
+      <Z>11.9454775</Z>
     </Position>
     <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>

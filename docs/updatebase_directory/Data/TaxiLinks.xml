@@ -4371,8 +4371,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>96813</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.059963662177324-0.54824578762054</PointB_XY>
+    <PointB>111418</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>96813</PointA>
@@ -4409,8 +4408,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>112866</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.031911365687847-0.45418152213097</PointB_XY>
+    <PointB>108888</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>112866</PointA>
@@ -4426,8 +4424,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>110971</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.031911365687847-0.45418152213097</PointB_XY>
+    <PointB>108888</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>110971</PointA>
@@ -4439,8 +4436,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>88110</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.031911365687847-0.45418152213097</PointB_XY>
+    <PointB>108888</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>88110</PointA>
@@ -4704,5 +4700,14 @@
     <PointA>97868</PointA>
     <PointB>0</PointB>
     <PointB_XY>0.392116546630861.1914633512497</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>111418</PointA>
+    <PointB>0</PointB>
+    <PointB_XY>0.24695007503033-0.91353660821915</PointB_XY>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>111418</PointA>
+    <PointB>108888</PointB>
   </TaxiLink>
 </ArrayOfTaxiLink>

@@ -12275,43 +12275,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-166.801468</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>103.496796</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-333.8926</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
+      <Z>-31.1677113</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12335,7 +12299,43 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-31.1677113</Z>
+      <Z>-249.86586</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-333.8926</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>103.496796</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20492,7 +20492,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>106.571053</Z>
+      <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20516,7 +20516,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>-123.336624</Z>
+      <Z>106.571053</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20552,7 +20552,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20564,7 +20564,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49401,11 +49401,11 @@
   </Npc>
   <Npc>
     <Entry>74222</Entry>
-    <Name>Ligra the Unyielding</Name>
+    <Name>Ligra l’Inflexible</Name>
     <Position>
       <X>7226.55664</X>
       <Y>5310.05127</Y>
-      <Z>62.27328</Z>
+      <Z>62.27382</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49413,11 +49413,11 @@
   </Npc>
   <Npc>
     <Entry>74222</Entry>
-    <Name>Ligra l’Inflexible</Name>
+    <Name>Ligra the Unyielding</Name>
     <Position>
       <X>7226.55664</X>
       <Y>5310.05127</Y>
-      <Z>62.27382</Z>
+      <Z>62.27328</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -60554,6 +60554,28 @@
     <ContinentId>TanaanJungle</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92183</Entry>
+    <Name>Alard Schmied</Name>
+    <Position>
+      <X>-740.861145</X>
+      <Y>4509.92041</Y>
+      <Z>731.050232</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92185</Entry>
+    <Name>Braeg Stoutbeard</Name>
+    <Position>
+      <X>-740.217041</X>
+      <Y>4489.229</Y>
+      <Z>732.267456</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92195</Entry>
     <Name>Professor Pallin</Name>
     <Position>
@@ -60952,6 +60974,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>93189</Entry>
+    <Name>Mama Diggs</Name>
+    <Position>
+      <X>-729.5382</X>
+      <Y>4493.96436</Y>
+      <Z>738.8925</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>93273</Entry>
     <Name>Vindicator Boros</Name>
     <Position>
@@ -61140,6 +61173,17 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93826</Entry>
+    <Name>Mayla Highmountain</Name>
+    <Position>
+      <X>-832.6589</X>
+      <Y>4462.618</Y>
+      <Z>588.7736</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>93826</Entry>
@@ -61843,6 +61887,17 @@
       <X>3427.07813</X>
       <Y>4289.24756</Y>
       <Z>703.2316</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>96785</Entry>
+    <Name>Christi Stockton</Name>
+    <Position>
+      <X>-760.0799</X>
+      <Y>4432.57031</Y>
+      <Z>737.7972</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -62984,6 +63039,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>107379</Entry>
+    <Name>Marin Bladewing</Name>
+    <Position>
+      <X>-1441.08337</X>
+      <Y>6656.882</Y>
+      <Z>12.0021229</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>107660</Entry>
     <Name>Bolas Skyfeather</Name>
     <Position>
@@ -63320,6 +63386,17 @@
       <X>-884.1406</X>
       <Y>4349.942</Y>
       <Z>741.231934</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112130</Entry>
+    <Name>Archmage Khadgar</Name>
+    <Position>
+      <X>-804.611145</X>
+      <Y>4517.19775</Y>
+      <Z>603.9421</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -68025,6 +68102,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>250548</Entry>
+    <Name>Hammer of Khaz'goroth</Name>
+    <Position>
+      <X>2809.16626</X>
+      <Y>2004.09851</Y>
+      <Z>-208.079987</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>7_DungeonExteriorNeltharionsLair</ContinentId>
   </Npc>
   <Npc>
     <Entry>251425</Entry>

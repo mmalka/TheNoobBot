@@ -3609,4 +3609,22 @@
     <Xcoord>0.22828797996044</Xcoord>
     <Ycoord>1.0748381614685</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="111418" Name="Watchers' Aerie, Azsuna" ContinentId="1220">
+    <Position>
+      <X>-1801.606</X>
+      <Y>6421.04932</Y>
+      <Z>178.669449</Z>
+    </Position>
+    <Xcoord>0.059963662177324</Xcoord>
+    <Ycoord>-0.54824578762054</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="108888" Name="Wardens' Redoubt, Azsuna" ContinentId="1220">
+    <Position>
+      <X>-1399.18054</X>
+      <Y>6655.632</Y>
+      <Z>11.9473839</Z>
+    </Position>
+    <Xcoord>0.031911365687847</Xcoord>
+    <Ycoord>-0.45418152213097</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
