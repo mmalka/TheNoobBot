@@ -38,7 +38,15 @@ namespace Test_Product
         {
             int d;
             var myConn = new MySqlConnection("server=127.0.0.1; user id=tnb; password=tnb006; database=offydump;");
-            myConn.Open();
+            try
+            {
+                myConn.Open();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError(e.ToString());
+                return;
+            }
             // Various mount repair, portable mailbox, repair robots, Guild Page...
             List<int> BlackListed = new List<int>(new int[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
             //Spell WildCharge = new Spell("Wild Charge");
