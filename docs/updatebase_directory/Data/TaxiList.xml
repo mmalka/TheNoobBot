@@ -3645,4 +3645,49 @@
     <Xcoord>0.47055345773697</Xcoord>
     <Ycoord>0.62167465686798</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="111675" Name="Meredil, Suramar" ContinentId="1220">
+    <Position>
+      <X>1616.56775</X>
+      <Y>4749.73633</Y>
+      <Z>139.205475</Z>
+    </Position>
+    <Xcoord>0.25458961725235</Xcoord>
+    <Ycoord>0.2538743019104</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="114666" Name="Irongrove Retreat, Suramar" ContinentId="1220">
+    <Position>
+      <X>2271.25</X>
+      <Y>5244.77344</Y>
+      <Z>113.184158</Z>
+    </Position>
+    <Xcoord>0.19786705076694</Xcoord>
+    <Ycoord>0.40708255767822</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="98113" Name="Lorna's Watch, Stormheim" ContinentId="1220">
+    <Position>
+      <X>2700.87329</X>
+      <Y>2864.00879</Y>
+      <Z>309.766418</Z>
+    </Position>
+    <Xcoord>0.47710716724396</Xcoord>
+    <Ycoord>0.50926125049591</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="98161" Name="Valdisdall, Stormheim" ContinentId="1220">
+    <Position>
+      <X>3209.14</X>
+      <Y>1509.75525</Y>
+      <Z>181.328583</Z>
+    </Position>
+    <Xcoord>0.63478189706802</Xcoord>
+    <Ycoord>0.62678003311157</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="111327" Name="Stormtorn Foothills, Stormheim" ContinentId="1220">
+    <Position>
+      <X>3830.12769</X>
+      <Y>2017.69275</Y>
+      <Z>244.240723</Z>
+    </Position>
+    <Xcoord>0.57608819007874</Xcoord>
+    <Ycoord>0.7745333313942</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
