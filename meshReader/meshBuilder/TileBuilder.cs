@@ -250,8 +250,8 @@ namespace meshBuilder
             // now we can find the min/max height for THIS tile
             float MinHeight, MaxHeight;
             Geometry.CalculateMinMaxHeight(out MinHeight, out MaxHeight, bbMin, bbMax);
-            Geometry.Triangles.Clear(); // We no longer uses Geometry.Triangles/Verticle, let's clean them.
-            Geometry.Vertices.Clear();
+            //Geometry.Triangles.Clear(); // We should not clear triangles and stuff because we have severals files for one tile.
+            //Geometry.Vertices.Clear(); // It will be reset at the next tile anyway, no memory issues.
             bbMin[1] = MinHeight;
             bbMax[1] = MaxHeight;
 
