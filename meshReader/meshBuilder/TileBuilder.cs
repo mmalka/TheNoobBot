@@ -111,10 +111,10 @@ namespace meshBuilder
             {
                 Geometry.AddGameObject(go);
 
-                if (!IsGeometryFine(Geometry))
+                /*if (!IsGeometryFine(Geometry))
                 {
                     Console.WriteLine("Broken after adding GameObject " + go.Model);
-                }
+                }*/
             }
         }
 

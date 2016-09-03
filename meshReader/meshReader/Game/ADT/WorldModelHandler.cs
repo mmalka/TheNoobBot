@@ -127,7 +127,7 @@ namespace meshReader.Game.ADT
                         {
                         }
                         Cache.WorldModel.Insert(m2path, wmo);
-                        System.Console.WriteLine(m2path);
+                        //System.Console.WriteLine(m2path);
                         foreach (var group in wmo.Groups)
                         {
                             if ((group.Flags & 0x80) != 0) // Here is a group of triangles that mess-up the WMO
@@ -162,7 +162,7 @@ namespace meshReader.Game.ADT
                         model = new Model(m2path);
                         Cache.Model.Insert(m2path, model);
                     }
-                    System.Console.WriteLine(m2path);
+                    //System.Console.WriteLine(m2path);
                     if (!model.IsCollidable)
                         return;
 
