@@ -34,9 +34,9 @@ namespace meshReader.Game.MDX
                 Header.OffsetBoundingTriangles > 0 && Header.BoundingRadius > 0.0f)
             {
                 IsCollidable = true;
-                ReadVertices(_stream);
-                ReadBoundingNormals(_stream);
-                ReadBoundingTriangles(_stream);
+                ReadVertices(_stream, Header.IsMD21);
+                ReadBoundingNormals(_stream, Header.IsMD21);
+                ReadBoundingTriangles(_stream, Header.IsMD21);
             }
         }
 
@@ -48,10 +48,12 @@ namespace meshReader.Game.MDX
             return Path.ChangeExtension(path, ".M2");
         }
 
-        private void ReadVertices(Stream s)
+        private void ReadVertices(Stream s, bool isMD21)
         {
-            s.Seek(Header.OffsetBoundingVertices, SeekOrigin.Begin);
-
+            if (isMD21)
+                s.Seek(Header.OffsetBoundingVertices+8, SeekOrigin.Begin);
+            else
+                s.Seek(Header.OffsetBoundingVertices, SeekOrigin.Begin);
             Vertices = new Vector3[Header.CountBoundingVertices];
             for (int i = 0; i < Header.CountBoundingVertices; i++)
             {
@@ -59,9 +61,12 @@ namespace meshReader.Game.MDX
             }
         }
 
-        private void ReadBoundingTriangles(Stream s)
+        private void ReadBoundingTriangles(Stream s, bool isMD21)
         {
-            s.Seek(Header.OffsetBoundingTriangles, SeekOrigin.Begin);
+            if (isMD21)
+                s.Seek(Header.OffsetBoundingTriangles+8, SeekOrigin.Begin);
+            else
+                s.Seek(Header.OffsetBoundingTriangles, SeekOrigin.Begin);
 
             var r = new BinaryReader(s);
             Triangles = new Triangle<ushort>[Header.CountBoundingTriangles/3];
@@ -69,9 +74,12 @@ namespace meshReader.Game.MDX
                 Triangles[i] = new Triangle<ushort>(TriangleType.Doodad, r.ReadUInt16(), r.ReadUInt16(), r.ReadUInt16());
         }
 
-        private void ReadBoundingNormals(Stream s)
+        private void ReadBoundingNormals(Stream s, bool isMD21)
         {
-            s.Seek(Header.OffsetBoundingNormals, SeekOrigin.Begin);
+            if (isMD21)
+                s.Seek(Header.OffsetBoundingNormals+8, SeekOrigin.Begin);
+            else
+                s.Seek(Header.OffsetBoundingNormals, SeekOrigin.Begin);
 
             Normals = new Vector3[Header.CountBoundingNormals];
             for (int i = 0; i < Header.CountBoundingNormals; i++)

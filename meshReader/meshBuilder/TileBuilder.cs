@@ -110,6 +110,30 @@ namespace meshBuilder
             foreach (GameObject go in GameObjectHelper.GetAllGameobjectInBoundingBox(bbMin, bbMax, map))
             {
                 Geometry.AddGameObject(go);
+
+                if (!IsGeometryFine(Geometry))
+                {
+                    Console.WriteLine("Broken after adding GameObject " + go.Model);
+                }
+            }
+        }
+
+        public bool IsGeometryFine(Geometry geo)
+        {
+            try
+            {
+                float sum = 0;
+                foreach (var t in geo.Triangles)
+                {
+                    sum += geo.Vertices[(int)t.V0].X + geo.Vertices[(int)t.V0].Y + geo.Vertices[(int)t.V0].Z;
+                    sum += geo.Vertices[(int)t.V1].X + geo.Vertices[(int)t.V1].Y + geo.Vertices[(int)t.V1].Z;
+                    sum += geo.Vertices[(int)t.V2].X + geo.Vertices[(int)t.V2].Y + geo.Vertices[(int)t.V2].Z;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
@@ -220,7 +244,7 @@ namespace meshBuilder
             // Following code would check if we have Index out of range error while computing the sum. the result itself is useless.
             /*float sum = 0;
             foreach (int i2 in triangles)
-                sum += vertices[i2] + vertices[i2 + 1] + vertices[i2 + 2];
+                sum += vertices[i2*3+0] + vertices[i2*3+1] + vertices[i2*3+2];
             Console.WriteLine(sum);*/
 
             // now we can find the min/max height for THIS tile

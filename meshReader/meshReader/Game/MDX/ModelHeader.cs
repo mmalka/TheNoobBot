@@ -57,6 +57,7 @@ namespace meshReader.Game.MDX
         public uint OffsetBoundingVertices;
         public uint CountBoundingNormals;
         public uint OffsetBoundingNormals;
+        public bool IsMD21;
 
         public void Read(Stream s)
         {
@@ -64,6 +65,7 @@ namespace meshReader.Game.MDX
             Magic = r.ReadBytes(4);
             if (System.Text.Encoding.Default.GetString(Magic) == "MD21")
             {
+                IsMD21 = true;
                 // MD21: 4D 44 32 31 X X X X 4D 44 32 30
                 // MD20: 4D 44 32 30
                 // 8 bytes to bypass, including MD21 magic.
