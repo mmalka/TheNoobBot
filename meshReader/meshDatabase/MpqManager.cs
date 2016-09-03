@@ -60,6 +60,11 @@ namespace meshDatabase
             return Mpq.FileExists(hash);
         }
 
+        public static string GetFileExtension(int fileId)
+        {
+            return Mpq.GetFileExtension(fileId);
+        }
+
         public static Stream GetFile(string path)
         {
             Stream file = Mpq.GetFile(path);

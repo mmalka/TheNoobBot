@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using meshDatabase;
 using meshReader.Game.Caching;
 using meshReader.Game.MDX;
 using meshReader.Game.WMO;
@@ -92,66 +93,85 @@ namespace meshReader.Game.ADT
         {
             uint fileId;
             uint.TryParse(m2path, out fileId);
+            bool isWMO = false;
             if (fileId > 0)
             {
                 // do something to try and get the good type.
-                Console.WriteLine("problem");
-            }
-            if (m2path.EndsWith(".WMO", System.StringComparison.InvariantCultureIgnoreCase))
-            {
-                var wmo = Cache.WorldModel.Get(m2path);
-                if (wmo == null)
+                var t = MpqManager.GetFileExtension((int) fileId);
+                var _stream = MpqManager.GetFile(fileId);
+                var binary = new BinaryReader(_stream);
+                var magic = binary.ReadBytes(4);
+                if (t != ".m2" && System.Text.Encoding.Default.GetString(magic) != "MD21" && System.Text.Encoding.Default.GetString(magic) != "MD20")
                 {
-                    try
+                    if (string.IsNullOrEmpty(t))
+                        return;
+                    if (String.Equals(t, ".wmo", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        wmo = new WorldModelRoot(m2path);
+                        isWMO = true;
                     }
-                    catch { }
-                    Cache.WorldModel.Insert(m2path, wmo);
-                    System.Console.WriteLine(m2path);
-                    foreach (var group in wmo.Groups)
+                    else
                     {
-                        if ((group.Flags & 0x80) != 0) // Here is a group of triangles that mess-up the WMO
-                            continue;
-                        int vertOffset = vertices.Count;
-                        if (group.Triangles != null)
+                        return;
+                    }
+                }
+                if (m2path.EndsWith(".WMO", StringComparison.InvariantCultureIgnoreCase) || isWMO)
+                {
+                    var wmo = Cache.WorldModel.Get(m2path);
+                    if (wmo == null)
+                    {
+                        try
                         {
-                            bool one = false;
-                            for (int i = 0; i < group.Triangles.Length; i++)
-                            {
-                                // only include collidable triangles
-                                if ((group.TriangleFlags[i] & 0x04) == 0 && group.TriangleMaterials[i] != 0xFF)
-                                    continue;
-                                var tri = group.Triangles[i];
-                                triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint)(tri.V0 + vertOffset),
-                                                                 (uint)(tri.V1 + vertOffset),
-                                                                 (uint)(tri.V2 + vertOffset)));
-                                one = true;
-                            }
-                            if (one)
-                                vertices.AddRange(group.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
+                            wmo = new WorldModelRoot(m2path);
                         }
+                        catch
+                        {
+                        }
+                        Cache.WorldModel.Insert(m2path, wmo);
+                        System.Console.WriteLine(m2path);
+                        foreach (var group in wmo.Groups)
+                        {
+                            if ((group.Flags & 0x80) != 0) // Here is a group of triangles that mess-up the WMO
+                                continue;
+                            int vertOffset = vertices.Count;
+                            if (group.Triangles != null)
+                            {
+                                bool one = false;
+                                for (int i = 0; i < group.Triangles.Length; i++)
+                                {
+                                    // only include collidable triangles
+                                    if ((group.TriangleFlags[i] & 0x04) == 0 && group.TriangleMaterials[i] != 0xFF)
+                                        continue;
+                                    var tri = group.Triangles[i];
+                                    triangles.Add(new Triangle<uint>(TriangleType.Wmo, (uint) (tri.V0 + vertOffset),
+                                        (uint) (tri.V1 + vertOffset),
+                                        (uint) (tri.V2 + vertOffset)));
+                                    one = true;
+                                }
+                                if (one)
+                                    vertices.AddRange(group.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
+                            }
+                        }
+
                     }
-
                 }
-            }
-            else // .M2
-            {
-                var model = Cache.Model.Get(m2path);
-                if (model == null)
+                else // .M2
                 {
-                    model = new Model(m2path);
-                    Cache.Model.Insert(m2path, model);
-                }
-                System.Console.WriteLine(m2path);
-                if (!model.IsCollidable)
-                    return;
+                    var model = Cache.Model.Get(m2path);
+                    if (model == null)
+                    {
+                        model = new Model(m2path);
+                        Cache.Model.Insert(m2path, model);
+                    }
+                    System.Console.WriteLine(m2path);
+                    if (!model.IsCollidable)
+                        return;
 
-                int vertOffset = vertices.Count;
-                vertices.AddRange(model.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
-                foreach (var tri in model.Triangles)
-                    triangles.Add(new Triangle<uint>(TriangleType.Doodad, (uint)(tri.V0 + vertOffset),
-                                                     (uint)(tri.V1 + vertOffset), (uint)(tri.V2 + vertOffset)));
+                    int vertOffset = vertices.Count;
+                    vertices.AddRange(model.Vertices.Select(vert => Vector3.TransformCoordinate(vert, transformation)));
+                    foreach (var tri in model.Triangles)
+                        triangles.Add(new Triangle<uint>(TriangleType.Doodad, (uint) (tri.V0 + vertOffset),
+                            (uint) (tri.V1 + vertOffset), (uint) (tri.V2 + vertOffset)));
+                }
             }
         }
 

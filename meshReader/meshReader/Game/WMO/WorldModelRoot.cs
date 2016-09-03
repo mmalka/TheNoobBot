@@ -17,7 +17,9 @@ namespace meshReader.Game.WMO
 
         public WorldModelRoot(string path)
         {
-            Data = new ChunkedData(path);
+            uint fileId;
+            uint.TryParse(path, out fileId);
+            Data = fileId > 0 ? new ChunkedData(fileId) : new ChunkedData(path);
             Path = path;
 
             ReadHeader();
@@ -29,18 +31,29 @@ namespace meshReader.Game.WMO
 
         private void ReadGroups()
         {
-            var pathBase = Path.Substring(0, Path.LastIndexOf('.'));
-            Groups = new List<WorldModelGroup>((int)Header.CountGroups);
-            for (int i = 0; i < Header.CountGroups; i++)
+            string pathBase;
+            uint fileId;
+            uint.TryParse(Path, out fileId);
+            if (fileId <= 0)
             {
-                try
+                pathBase = Path.Substring(0, Path.LastIndexOf('.'));
+                Groups = new List<WorldModelGroup>((int) Header.CountGroups);
+                for (int i = 0; i < Header.CountGroups; i++)
                 {
-                    Groups.Add(new WorldModelGroup(string.Format("{0}_{1:000}.wmo", pathBase, i), i));
+                    try
+                    {
+                        Groups.Add(new WorldModelGroup(string.Format("{0}_{1:000}.wmo", pathBase, i), i));
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        // ignore missing groups
+                    }
                 }
-                catch (FileNotFoundException)
-                {
-                    // ignore missing groups
-                }
+            }
+            else
+            {
+                Groups = new List<WorldModelGroup>(0);
+                // Not sure how to extract groups from file with no clear path.
             }
         }
 

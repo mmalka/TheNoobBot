@@ -51,6 +51,11 @@ namespace meshReader.Game
             : this(MpqManager.GetFile(file), 0, chunkHint)
         {
         }
+        
+        public ChunkedData(uint fileId, int chunkHint = 300)
+            : this(MpqManager.GetFile(fileId), 0, chunkHint)
+        {
+        }
 
         public int GetFirstIndex(string chunkName)
         {

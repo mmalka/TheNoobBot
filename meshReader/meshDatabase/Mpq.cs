@@ -11,6 +11,7 @@ namespace MPQ
         static CASCHandler _casc;
         private static CASCFolder Root;
 
+
         public static void Init(string path)
         {
             //_casc = CASCHandler.OpenOnlineStorage("wow", "us");
@@ -49,6 +50,12 @@ namespace MPQ
         public static bool FileExists(ulong hash)
         {
             return _casc.FileExists(hash);
+        }
+
+        public static string GetFileExtension(int dataId)
+        {
+            FileScanner scanner = new FileScanner(_casc, Root);
+            return scanner.GetFileExtension(new CASCFile(GetHashByDataId(dataId)));
         }
 
         public static Stream GetFile(string from)

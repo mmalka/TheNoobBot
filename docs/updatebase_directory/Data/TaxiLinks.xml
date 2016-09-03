@@ -2785,8 +2785,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>47147</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>47147</PointA>
@@ -2794,8 +2793,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>47118</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>41321</PointA>
@@ -2831,8 +2829,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>47121</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>47121</PointA>
@@ -2840,8 +2837,7 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>47155</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>41325</PointA>
@@ -3100,23 +3096,19 @@
   </TaxiLink>
   <TaxiLink>
     <PointA>47147</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>47118</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>47121</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>47155</PointA>
-    <PointB>0</PointB>
-    <PointB_XY>0.5994541645050.4646902680397</PointB_XY>
+    <PointB>47154</PointB>
   </TaxiLink>
   <TaxiLink>
     <PointA>63497</PointA>
@@ -4709,5 +4701,17 @@
   <TaxiLink>
     <PointA>111418</PointA>
     <PointB>108888</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>8018</PointA>
+    <PointB>46006</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>12596</PointA>
+    <PointB>46006</PointB>
+  </TaxiLink>
+  <TaxiLink>
+    <PointA>46006</PointA>
+    <PointB>46011</PointB>
   </TaxiLink>
 </ArrayOfTaxiLink>

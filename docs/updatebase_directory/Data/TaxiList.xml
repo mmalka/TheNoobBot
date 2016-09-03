@@ -3627,4 +3627,22 @@
     <Xcoord>0.031911365687847</Xcoord>
     <Ycoord>-0.45418152213097</Ycoord>
   </Taxi>
+  <Taxi Faction="Alliance" Id="47154" Name="Thundermar, Twilight Highlands" ContinentId="0">
+    <Position>
+      <X>-3143.99</X>
+      <Y>-4996.11</Y>
+      <Z>128.515518</Z>
+    </Position>
+    <Xcoord>0.599454164505</Xcoord>
+    <Ycoord>0.4646902680397</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="46006" Name="Andorhal, Western Plaguelands" ContinentId="0">
+    <Position>
+      <X>1373.05</X>
+      <Y>-1278.89</Y>
+      <Z>59.50178</Z>
+    </Position>
+    <Xcoord>0.47055345773697</Xcoord>
+    <Ycoord>0.62167465686798</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>

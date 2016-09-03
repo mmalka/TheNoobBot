@@ -276,11 +276,12 @@ void rcMarkWalkableTriangles(rcContext* ctx, const float walkableSlopeAngle,
 /// 
 /// @see rcHeightfield, rcClearUnwalkableTriangles, rcRasterizeTriangles
 void rcClearUnwalkableTriangles(rcContext* ctx, const float walkableSlopeAngle,
-								const float* verts, int /*nv*/,
+								const float* verts, int nv,
 								const int* tris, int nt,
 								unsigned char* areas)
 {
 	rcIgnoreUnused(ctx);
+	rcIgnoreUnused(nv);
 	
 	const float walkableThr = cosf(walkableSlopeAngle/180.0f*RC_PI);
 	
