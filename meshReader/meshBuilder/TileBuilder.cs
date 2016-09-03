@@ -20,7 +20,6 @@ using System.Runtime.InteropServices;
 
 namespace meshBuilder
 {
-
     public class TileBuilder
     {
         public string World { get; private set; }
@@ -51,7 +50,7 @@ namespace meshBuilder
             // Now create a global mutex
             if (_mutex == null)
             {
-                string appGuid = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value.ToString();
+                string appGuid = ((GuidAttribute) Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value.ToString();
                 string mutexId = string.Format("Global\\{{{0}}}", appGuid);
                 _mutex = new Mutex(false, mutexId);
                 MutexAccessRule allowEveryoneRule = new MutexAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), MutexRights.FullControl, AccessControlType.Allow);
@@ -60,35 +59,36 @@ namespace meshBuilder
                 _mutex.SetAccessControl(securitySettings);
             }
         }
+
         private void CalculateTileBounds2(out float[] bmin, out float[] bmax, int i = 0, int j = 0)
         {
             var origin = meshReader.Game.World.Origin;
             bmin = new float[3];
             bmax = new float[3];
-            bmin[0] = origin[0] + (Constant.TileSize * i * Constant.Division);
-            bmin[2] = origin[2] + (Constant.TileSize * j * Constant.Division);
-            bmax[0] = origin[0] + (Constant.TileSize * (i + 1) * Constant.Division);
-            bmax[2] = origin[2] + (Constant.TileSize * (j + 1) * Constant.Division);
+            bmin[0] = origin[0] + (Constant.TileSize*i*Constant.Division);
+            bmin[2] = origin[2] + (Constant.TileSize*j*Constant.Division);
+            bmax[0] = origin[0] + (Constant.TileSize*(i + 1)*Constant.Division);
+            bmax[2] = origin[2] + (Constant.TileSize*(j + 1)*Constant.Division);
         }
 
-        private void CalculateTileBounds(out float[] bmin, out float[] bmax, bool forBaseTile = false, int i=0, int j=0)
+        private void CalculateTileBounds(out float[] bmin, out float[] bmax, bool forBaseTile = false, int i = 0, int j = 0)
         {
             var origin = meshReader.Game.World.Origin;
             bmin = new float[3];
             bmax = new float[3];
             if (forBaseTile || Constant.Division == 1)
             {
-                bmin[0] = origin[0] + (Constant.TileSize * X);
-                bmin[2] = origin[2] + (Constant.TileSize * Y);
-                bmax[0] = origin[0] + (Constant.TileSize * (X + 1));
-                bmax[2] = origin[2] + (Constant.TileSize * (Y + 1));
+                bmin[0] = origin[0] + (Constant.TileSize*X);
+                bmin[2] = origin[2] + (Constant.TileSize*Y);
+                bmax[0] = origin[0] + (Constant.TileSize*(X + 1));
+                bmax[2] = origin[2] + (Constant.TileSize*(Y + 1));
             }
             else
             {
-                bmin[0] = origin[0] + (Constant.TileSize * X * Constant.Division) + (Constant.TileSize * i);
-                bmin[2] = origin[2] + (Constant.TileSize * Y * Constant.Division) + (Constant.TileSize * j);
-                bmax[0] = origin[0] + (Constant.TileSize * X * Constant.Division) + (Constant.TileSize * (i + 1));
-                bmax[2] = origin[2] + (Constant.TileSize * Y * Constant.Division) + (Constant.TileSize * (j + 1));
+                bmin[0] = origin[0] + (Constant.TileSize*X*Constant.Division) + (Constant.TileSize*i);
+                bmin[2] = origin[2] + (Constant.TileSize*Y*Constant.Division) + (Constant.TileSize*j);
+                bmax[0] = origin[0] + (Constant.TileSize*X*Constant.Division) + (Constant.TileSize*(i + 1));
+                bmax[2] = origin[2] + (Constant.TileSize*Y*Constant.Division) + (Constant.TileSize*(j + 1));
             }
         }
 
@@ -120,7 +120,7 @@ namespace meshBuilder
             Log = log;
             Cache.Clear();
 
-            Geometry = new Geometry { Transform = true };
+            Geometry = new Geometry {Transform = true};
             //List<ADT> adtList = new List<ADT>();
 
             bool hasHandle = false;
@@ -180,7 +180,6 @@ namespace meshBuilder
                         }
                     }
                 }
-
             }
             finally
             {
@@ -192,21 +191,21 @@ namespace meshBuilder
             Context.SetContextHandler(Log);
         }
 
-        public byte[] Build(int i=0, int j=0)
+        public byte[] Build(int i = 0, int j = 0)
         {
             float[] bbMin, bbMax;
             CalculateTileBounds(out bbMin, out bbMax, false, i, j);
 
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
                 stopWatch.Start();
                 long cur = 0;
             #endif
             // add border
-            bbMin[0] -= Config.BorderSize * Config.CellSize;
-            bbMin[2] -= Config.BorderSize * Config.CellSize;
-            bbMax[0] += Config.BorderSize * Config.CellSize;
-            bbMax[2] += Config.BorderSize * Config.CellSize;
+            bbMin[0] -= Config.BorderSize*Config.CellSize;
+            bbMin[2] -= Config.BorderSize*Config.CellSize;
+            bbMax[0] += Config.BorderSize*Config.CellSize;
+            bbMax[2] += Config.BorderSize*Config.CellSize;
 
             // get raw geometry - lots of slowness here
             float[] vertices;
@@ -214,41 +213,52 @@ namespace meshBuilder
             byte[] areas;
 
             Geometry.GetRawData(out vertices, out triangles, out areas);
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("GetRawData: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
-            #endif
-            //Geometry.Triangles.Clear();
-            //Geometry.Vertices.Clear();
+#endif
+            // Following code would check if we have Index out of range error while computing the sum. the result itself is useless.
+            /*float sum = 0;
+            foreach (int i2 in triangles)
+                sum += vertices[i2] + vertices[i2 + 1] + vertices[i2 + 2];
+            Console.WriteLine(sum);*/
 
             // now we can find the min/max height for THIS tile
             float MinHeight, MaxHeight;
             Geometry.CalculateMinMaxHeight(out MinHeight, out MaxHeight, bbMin, bbMax);
+            Geometry.Triangles.Clear(); // We no longer uses Geometry.Triangles/Verticle, let's clean them.
+            Geometry.Vertices.Clear();
             bbMin[1] = MinHeight;
             bbMax[1] = MaxHeight;
 
             Heightfield hf;
-            int width = Config.TileWidth + (Config.BorderSize * 2);
+            int width = Config.TileWidth + (Config.BorderSize*2);
             if (!Context.CreateHeightfield(out hf, width, width, bbMin, bbMax, Config.CellSize, Config.CellHeight))
                 throw new OutOfMemoryException("CreateHeightfield ran out of memory");
 
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("CreateHeightfield: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
 
             if (triangles.Count() > 0)
             {
+                /*Console.WriteLine("Context.ClearUnwalkableTriangles: verticles: " + vertices.Length + ", triangles: " + triangles.Length + ", areas: " + areas.Length);
+                Console.WriteLine("Memory allocated GC: " + GC.GetTotalMemory(true));/*/
                 Context.ClearUnwalkableTriangles(Config.WalkableSlopeAngle, ref vertices, ref triangles, areas);
-                #if (TIMETHIS)
+#if (TIMETHIS)
                     Console.WriteLine("ClearUnwalkableTriangles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                     cur = stopWatch.ElapsedMilliseconds;
                 #endif
                 Context.RasterizeTriangles(ref vertices, ref triangles, ref areas, hf, Config.WalkableClimb);
-                #if (TIMETHIS)
+#if (TIMETHIS)
                     Console.WriteLine("RasterizeTriangles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                     cur = stopWatch.ElapsedMilliseconds;
                 #endif
+
+                GC.KeepAlive(vertices); // force C# to keep vertices, triangles and areas alive while it's in unamanaged code.
+                GC.KeepAlive(triangles);
+                GC.KeepAlive(areas);
             }
             vertices = null;
             triangles = null;
@@ -259,17 +269,17 @@ namespace meshBuilder
             // remove unwanted overhangs caused by the conservative rasterization
             // as well as filter spans where the character cannot possibly stand.
             Context.FilterLowHangingWalkableObstacles(Config.WalkableClimb, hf);
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("FilterLowHangingWalkableObstacles: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
             Context.FilterLedgeSpans(Config.WalkableHeight, Config.WalkableClimb, hf);
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("FilterLedgeSpans: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
             Context.FilterWalkableLowHeightSpans(Config.WalkableHeight, hf);
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("FilterWalkableLowHeightSpans: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -287,7 +297,7 @@ namespace meshBuilder
             CompactHeightfield chf;
             if (!Context.BuildCompactHeightfield(Config.WalkableHeight, Config.WalkableClimb, hf, out chf))
                 throw new OutOfMemoryException("BuildCompactHeightfield ran out of memory");
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("BuildCompactHeightfield: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -296,7 +306,7 @@ namespace meshBuilder
             // Erode the walkable area by agent radius.
             if (!Context.ErodeWalkableArea(Config.WalkableRadius, chf))
                 throw new OutOfMemoryException("ErodeWalkableArea ran out of memory");
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("ErodeWalkableArea: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -304,7 +314,7 @@ namespace meshBuilder
             // Prepare for region partitioning, by calculating distance field along the walkable surface.
             if (!Context.BuildDistanceField(chf))
                 throw new OutOfMemoryException("BuildDistanceField ran out of memory");
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("BuildDistanceField: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -312,7 +322,7 @@ namespace meshBuilder
             // Partition the walkable surface into simple regions without holes.
             if (!Context.BuildRegions(chf, Config.BorderSize, Config.MinRegionArea, Config.MergeRegionArea))
                 throw new OutOfMemoryException("BuildRegions ran out of memory");
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("BuildRegions: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -321,7 +331,7 @@ namespace meshBuilder
             ContourSet cset;
             if (!Context.BuildContours(chf, Config.MaxSimplificationError, Config.MaxEdgeLength, out cset))
                 throw new OutOfMemoryException("BuildContours ran out of memory");
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("BuildContours: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -330,7 +340,7 @@ namespace meshBuilder
             PolyMesh pmesh;
             if (!Context.BuildPolyMesh(cset, Config.MaxVertsPerPoly, out pmesh))
                 throw new OutOfMemoryException("BuildPolyMesh ran out of memory");
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("BuildPolyMesh: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
                 cur = stopWatch.ElapsedMilliseconds;
             #endif
@@ -341,7 +351,7 @@ namespace meshBuilder
             //    throw new OutOfMemoryException("BuildPolyMeshDetail ran out of memory");
             //#if (TIMETHIS)
             //    Console.WriteLine("BuildPolyMeshDetail: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
-             //   cur = stopWatch.ElapsedMilliseconds;
+            //   cur = stopWatch.ElapsedMilliseconds;
             //#endif
 
             chf.Delete();
@@ -410,21 +420,21 @@ namespace meshBuilder
                             "\tPath to: \"" + target.Value.Name + "\" Id: " + target.Value.Id + " Path Id: " +
                             target.Key);
             }*/
-            
+
 
             byte[] tileData;
             if (!Detour.CreateNavMeshData(out tileData, pmesh, dmesh,
-                                          X * Constant.Division + i, Y * Constant.Division + j, tilebMin, tilebMax,
-                                          Config.WorldWalkableHeight, Config.WorldWalkableRadius,
-                                          Config.WorldWalkableClimb, Config.CellSize,
-                                          Config.CellHeight, Config.BuildBvTree,
-                                          connections.ToArray()))
+                X*Constant.Division + i, Y*Constant.Division + j, tilebMin, tilebMax,
+                Config.WorldWalkableHeight, Config.WorldWalkableRadius,
+                Config.WorldWalkableClimb, Config.CellSize,
+                Config.CellHeight, Config.BuildBvTree,
+                connections.ToArray()))
             {
                 pmesh.Delete();
                 //dmesh.Delete();
                 return null;
             }
-            #if (TIMETHIS)
+#if (TIMETHIS)
                 Console.WriteLine("CreateNavMeshData: " + (stopWatch.ElapsedMilliseconds - cur) + ", total: " + stopWatch.ElapsedMilliseconds);
             #endif
             pmesh.Delete();
@@ -434,5 +444,4 @@ namespace meshBuilder
             return tileData;
         }
     }
-
 }
