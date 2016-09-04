@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
+using System.Text;
 
 namespace CASCExplorer
 {
@@ -285,6 +287,29 @@ namespace CASCExplorer
 
                     CASCFile.FileNames[fileHash] = fullname;
                 }
+            }
+        }
+
+        public void DumpSpellList(CASCHandler casc)
+        {
+            if (!casc.FileExists("DBFilesClient\\Spell.db2"))
+                return;
+
+            Logger.WriteLine("WowRootHandler: loading file names from Spell.db2...");
+
+            using (var s = casc.OpenFile("DBFilesClient\\Spell.db2"))
+            {
+                DB5Reader fd = new DB5Reader(s);
+
+                var sw = new StreamWriter(System.Windows.Forms.Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
+                foreach (var row in fd)
+                {
+                    string spellName = row.Value.GetField<string>(0);
+                    uint spellId = row.Value.GetField<uint>(5);
+                    sw.Write(spellId + ";" + spellName + Environment.NewLine);
+                    //Console.WriteLine("Spell found: " + fileName + ", spellId: " + spellId);
+                }
+                sw.Close();
             }
         }
 

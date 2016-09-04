@@ -93,5 +93,10 @@ namespace meshDatabase
         {
             Mpq.Close();
         }
+
+        public static void DumpSpellList()
+        {
+            Mpq.DumpSpellList();
+        }
     }
 }

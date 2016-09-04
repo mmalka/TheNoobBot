@@ -268,6 +268,13 @@ namespace meshBuilderGui
                 MpqManager.Initialize(wowDirCB.Text);
                 _initialized = true;
             }
+
+            // SpellList dumper (keep commented to avoid fileException when opening severals builder at once, but it's very fast)
+            
+            //MpqManager.DumpSpellList(); // dumps all spells into directory/spell.txt
+            
+            // End of SpellListDumper
+
             // Doing them one by one to be able to add some separators
             List<WoWMap.MapDbcRecord> l0 = PhaseHelper.GetAllMapOfInstanceType(InstanceType.World, MapType.ADTType);
             List<string> strl = new List<string>();

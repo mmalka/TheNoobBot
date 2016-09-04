@@ -1,4 +1,4 @@
-1;Word of Recall (OLD)
+﻿1;Word of Recall (OLD)
 3;Word of Mass Recall (OLD)
 4;Word of Recall Other
 5;Death Touch
@@ -12273,7 +12273,6 @@
 31662;Anti-Magic Shell
 31664;Gargoyle Strike
 31665;Master of Subtlety
-31666;Master of Subtlety
 31671;Grow
 31673;Foul Spores
 31687;Summon Water Elemental
@@ -133686,7 +133685,6 @@
 200189;Siphon Soul
 200190;Nightmare Ichor
 200191;Nightmare Ichor
-200192;Recycle
 200193;Recycle
 200194;Bane Nova
 200196;Holy Word: Chastise
@@ -135166,9 +135164,16 @@
 201876;Tidal Momentum
 201877;Holy Nova
 201878;Create TH Conversation
+201880;Cursed Queenfish Angling
+201881;Mossgill Perch Angling
+201882;Highmountain Salmon Angling
+201883;Stormray Angling
+201884;Runescale Koi Angling
 201885;Shadow Decoy
+201887;Black Barracuda Angling
 201888;Shadow Decoy State
 201890;Algae Spores
+201891;Undercurrent
 201892;Shadow Decoy
 201893;Brackish Channel
 201894;Feral Kin - NYI
@@ -135197,6 +135202,18 @@
 201918;Arcane Lightning
 201919;Disabling
 201920;Shadow Crash
+201921;Cursed Queenfish Angling
+201922;Mossgill Perch Angling
+201923;Highmountain Salmon Angling
+201924;Stormray Angling
+201925;Runescale Koi Angling
+201926;Black Barracuda Angling
+201927;Cursed Queenfish Angling
+201928;Mossgill Perch Angling
+201929;Highmountain Salmon Angling
+201930;Stormray Angling
+201931;Runescale Koi Angling
+201932;Black Barracuda Angling
 201934;Unholy Mutation
 201935;Spotted!
 201936;Basilisk Curer
@@ -135205,9 +135222,15 @@
 201939;Protector of the Pack
 201940;Protector of the Pack
 201942;Spawn Saboteur Visual
+201943;Better Luck Next Time
+201944;Surface Tension
+201945;Bloodfishing
+201946;Luremaster
 201947;Phantom Scythe
+201948;Underlight Blessing
 201949;Bursting Ooze
 201950;Bursting Ooze
+201952;Way of the Flounder
 201953;Crystal Spike
 201954;Hurricane Shout
 201955;Create TH Conversation
@@ -147864,6 +147887,7 @@
 216423;Feast of Blood
 216424;Obstinate Determination
 216425;Way of the Flounder
+216426;Undercurrent
 216427;Fire Boom
 216428;Fire Boom
 216429;Fire Boom
@@ -147873,8 +147897,10 @@
 216433;Drain
 216434;Victory
 216435;Drain
+216438;Undercurrent
 216439;Carrying Barrel - Right Arm
 216440;Carrying Barrel - Left Arm
+216441;Surface Tension
 216443;Summon Eitrigg
 216444;Hand of Judgment
 216445;Create Conversation
@@ -158397,3 +158423,93 @@
 229118;BUG - Immune: Knockback causing grey cast bars
 229390;TEMP Vashj'ir Intro Workaround
 229399;7.X - Fix boosted characters who abandon Broken Shore
+229730;Cancel Aura
+229746;Empowering
+229747;Empowering
+229776;Empowering
+229778;Empowering
+229779;Empowering
+229780;Empowering
+229781;Empowering
+229782;Empowering
+229783;Empowering
+229784;Empowering
+229785;Empowering
+229786;Empowering
+229787;Empowering
+229788;Empowering
+229789;Empowering
+229790;Empowering
+229791;Empowering
+229792;Empowering
+229793;Empowering
+229794;Empowering
+229795;Empowering
+229796;Empowering
+229798;Empowering
+229799;Empowering
+229803;Empowering
+229804;Empowering
+229805;Empowering
+229806;Empowering
+229807;Empowering
+229857;Empowering
+229858;Empowering
+229859;Empowering
+230332;Cavalier
+230503;Boost 2.0 - Default Talent Driver
+231030;Risstyn's Portal
+231076;Abandon Quest
+231077;Abandon Quest
+231078;Abandon Quest
+231079;Abandon Quest
+231080;Abandon Quest
+231081;Abandon Quest
+231082;Abandon Quest
+231083;Abandon Quest
+231084;Abandon Quest
+231085;Abandon Quest
+231087;Abandon Quest
+231088;Abandon Quest
+231089;Destroy Artifact: Talonclaw
+231091;Abandon Quest
+231092;Abandon Quest
+231095;Abandon Quest
+231096;Abandon Quest
+231097;Abandon Quest
+231098;Abandon Quest
+231099;Abandon Quest
+231100;Souls of the Damned Driver
+231101;Abandon Quest
+231102;Abandon Quest
+231103;Abandon Quest
+231104;Demon Hunter Setup
+231105;Abandon Quest
+231106;Abandon Quest
+231107;Abandon Quest
+231108;Abandon Quest
+231109;Abandon Quest
+231110;Abandon Quest
+231111;Abandon Quest
+231113;Abandon Quest
+231116;Abandon Quest
+231117;Abandon Quest
+231118;Abandon Quest
+231119;Abandon Quest
+231120;Abandon Quest
+231121;Abandon Quest
+231122;Abandon Quest
+231123;Abandon Quest
+231125;Abandon Quest
+231126;Abandon Quest
+231131;Abandon Quest
+231132;Abandon Quest
+231134;Abandon Quest
+231135;Abandon Quest
+231138;Abandon Quest
+231139;Abandon Quest
+231140;Abandon Quest
+231141;Abandon Quest
+231148;Abandon Quest
+231149;Abandon Quest
+231371;Breaking Out: Hidden Kill Credits to Player on Login Area-Assigned Aura

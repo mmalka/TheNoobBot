@@ -859,7 +859,9 @@ namespace Test_Product
                 }
                 DoTaxiLinksCleaning(); // */
 
-                /*var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
+                // Export SpellList  with LUA: (not very good)
+                /*
+                var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
                 try
                 {
                     Memory.WowMemory.GameFrameLock();
@@ -886,6 +888,29 @@ namespace Test_Product
                     Memory.WowMemory.GameFrameUnLock();
                 }
                 sw.Close(); // */
+
+                // Example of Exporting SpellList with DB5Reader on VisualStudio 2015 (code available and working into meshReader only)
+                /*
+                    if (!casc.FileExists("DBFilesClient\\Spell.db2"))
+                        return;
+
+                    Logger.WriteLine("WowRootHandler: loading file names from Spell.db2...");
+
+                    using (var s = casc.OpenFile("DBFilesClient\\Spell.db2"))
+                    {
+                        DB5Reader fd = new DB5Reader(s);
+
+                        var sw = new StreamWriter(System.Windows.Forms.Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
+                        foreach (var row in fd)
+                        {
+                            string spellName = row.Value.GetField<string>(0);
+                            uint spellId = row.Value.GetField<uint>(5);
+                            sw.Write(spellId + ";" + spellName + Environment.NewLine);
+                            //Console.WriteLine("Spell found: " + fileName + ", spellId: " + spellId);
+                        }
+                        sw.Close();
+                    }
+                 */
             }
             catch (Exception exception)
             {

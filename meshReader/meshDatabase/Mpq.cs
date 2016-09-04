@@ -103,5 +103,11 @@ namespace MPQ
         {
             //
         }
+
+        public static void DumpSpellList()
+        {
+            WowRootHandler rh = _casc.Root as WowRootHandler;
+            rh.DumpSpellList(_casc);
+        }
     }
 }
