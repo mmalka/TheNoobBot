@@ -16,7 +16,7 @@ public class Main : IProduct
     {
         try
         {
-            Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Test_Product\\");
+            // Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Test_Product\\");
             Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)

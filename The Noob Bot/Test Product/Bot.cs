@@ -1,13 +1,9 @@
-﻿using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
+﻿using System.Runtime.InteropServices;
 using System.Threading;
-using nManager;
-using nManager.Products;
 using nManager.Wow.Bot.States;
+using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
-using ObjectManager = nManager.Wow.ObjectManager.ObjectManager;
+using Usefuls = nManager.Wow.Helpers.Usefuls;
 // ReSharper disable RedundantUsingDirective
 using System;
 using System.Collections.Generic;
@@ -28,11 +24,16 @@ namespace Test_Product
 {
     internal class Bot
     {
+        #region Methods
+
         /*private const string CurrentProfileName = "afk.xml";
         private static bool _xmlProfile = true;
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
         private static readonly Thread RadarThread = new Thread(LaunchRadar) {Name = "RadarThread"};
         private static readonly Thread TaxiThread = new Thread(LaunchTaxi) {Name = "TaxiThread"};
+        public static string FirstReachable = "";
+        private static List<Taxi> _availableTaxis;
+        private static List<TaxiLink> _availableTaxiLinks;
 
         public static void LaunchRadar()
         {
@@ -48,7 +49,7 @@ namespace Test_Product
                 return;
             }
             // Various mount repair, portable mailbox, repair robots, Guild Page...
-            List<int> BlackListed = new List<int>(new int[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
+            var BlackListed = new List<int>(new[] {77789, 32638, 32639, 32641, 32642, 35642, 191605, 24780, 29561, 49586, 49588, 62822, 211006});
             //Spell WildCharge = new Spell("Wild Charge");
             while (true)
             {
@@ -64,7 +65,7 @@ namespace Test_Product
                 // Prevent corruptions while the game loads after a zone change
                 if (!Usefuls.InGame || Usefuls.IsLoading)
                     continue;
-                List<Npc> npcRadar = new List<Npc>();
+                var npcRadar = new List<Npc>();
                 List<WoWGameObject> Mailboxes = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Mailbox);
                 List<WoWUnit> Vendors = ObjectManager.GetWoWUnitVendor();
                 List<WoWUnit> Repairers = ObjectManager.GetWoWUnitRepair();
@@ -75,7 +76,7 @@ namespace Test_Product
                 List<WoWUnit> SpiritHealers = ObjectManager.GetWoWUnitSpiritHealer();
                 List<WoWUnit> SpiritGuides = ObjectManager.GetWoWUnitSpiritGuide();
                 List<WoWUnit> NpcMailboxes = ObjectManager.GetWoWUnitMailbox();
-                List<Npc> npcRadarQuesters = new List<Npc>();
+                var npcRadarQuesters = new List<Npc>();
                 List<WoWUnit> NpcQuesters = ObjectManager.GetWoWUnitQuester();
                 List<WoWGameObject> ObjectQuesters = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver);
                 List<WoWGameObject> Forges = ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.SpellFocus);
@@ -404,7 +405,7 @@ namespace Test_Product
                         if (TaxiListContainsTaxiId(ObjectManager.Me.Target.GetWoWId))
                         {
                             Logging.WriteDebug("The taxi from NPC " + ObjectManager.Target.Name + " is already in our database.");
-                            var myTaxi = GetTaxiFromTaxiId(ObjectManager.Me.Target.GetWoWId);
+                            Taxi myTaxi = GetTaxiFromTaxiId(ObjectManager.Me.Target.GetWoWId);
                             if (myTaxi.Faction != Npc.FactionType.Neutral && ObjectManager.Me.PlayerFaction != myTaxi.Faction.ToString())
                             {
                                 for (int i = 0; i < _availableTaxis.Count; i++)
@@ -418,7 +419,7 @@ namespace Test_Product
                         }
                         else
                         {
-                            Taxi localTaxi = new Taxi();
+                            var localTaxi = new Taxi();
                             localTaxi.Id = ObjectManager.Me.Target.GetWoWId;
                             localTaxi.Position = ObjectManager.Target.Position;
                             string taxiInfo = ExtractCurrentTaxiInfo();
@@ -441,13 +442,13 @@ namespace Test_Product
                         foreach (string ctaxi in ExtractDirectPathTaxiInfoList())
                         {
                             string taxiInfo = ctaxi;
-                            Taxi localTaxi = new Taxi();
+                            var localTaxi = new Taxi();
                             localTaxi.Name = taxiInfo.Split('#')[0];
                             localTaxi.ContinentId = Usefuls.ContinentId;
                             localTaxi.Xcoord = taxiInfo.Split('#')[1].Split('^')[0];
                             localTaxi.Ycoord = taxiInfo.Split('^')[1].Split('@')[0];
                             bool taxiExist = false;
-                            Taxi taxiFound = new Taxi();
+                            var taxiFound = new Taxi();
                             foreach (Taxi taxi in _availableTaxis)
                             {
                                 if (taxi.Xcoord == localTaxi.Xcoord && taxi.Ycoord == localTaxi.Ycoord)
@@ -498,7 +499,7 @@ namespace Test_Product
                         continue;
                     }
                     WoWUnit taxiUnit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitFlightMaster());
-                    var baseAddress = MovementManager.FindTarget(taxiUnit);
+                    uint baseAddress = MovementManager.FindTarget(taxiUnit);
                     if (MovementManager.InMovement)
                         continue;
                     if (baseAddress > 0)
@@ -523,7 +524,7 @@ namespace Test_Product
         public static int AddQuesters(List<Npc> npcqList, bool neutralIfPossible = false)
         {
             int count = 0;
-            List<Npc> qesterList = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
+            var qesterList = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
             if (qesterList == null)
                 qesterList = new List<Npc>();
             for (int i = 0; i < npcqList.Count; i++)
@@ -533,7 +534,7 @@ namespace Test_Product
                     continue;
                 bool found = false;
                 bool factionChange = false;
-                Npc oldNpc = new Npc();
+                var oldNpc = new Npc();
                 for (int i2 = 0; i2 < qesterList.Count; i2++)
                 {
                     Npc npc1 = qesterList[i2];
@@ -591,7 +592,7 @@ namespace Test_Product
             Lua.LuaDoString(result + "= \"\"; nb = NumTaxiNodes(); for i=1,nb do n = TaxiNodeName(i); x,y = TaxiNodePosition(i); " + result + " = " + result +
                             ".. n .. \"#\" .. x .. \"^\" .. y  .. \"@\" .. GetNumRoutes(i) .. \"~\" .. TaxiNodeGetType(i) .. \"|\" end");
             string allPaths = Lua.GetLocalizedText(result);
-            List<string> ListPaths = new List<String>();
+            var ListPaths = new List<String>();
             for (int i = 0; i < allPaths.Split('|').Length - 1; i++)
             {
                 ListPaths.Add(allPaths.Split('|')[i]);
@@ -600,7 +601,7 @@ namespace Test_Product
             string lowerValue = "";
             while (ListPaths.Count > 0)
             {
-                foreach (var listPath in ListPaths)
+                foreach (string listPath in ListPaths)
                 {
                     if (lowerValue == "")
                         lowerValue = listPath;
@@ -618,7 +619,7 @@ namespace Test_Product
 
         public static string ExtractCurrentTaxiInfo()
         {
-            var allPaths = ExtractAllPathsTaxi();
+            List<string> allPaths = ExtractAllPathsTaxi();
             for (int i = 0; i < allPaths.Count - 1; i++)
             {
                 Application.DoEvents();
@@ -638,12 +639,10 @@ namespace Test_Product
             return "";
         }
 
-        public static string FirstReachable = "";
-
         public static string ExtractNextTaxiInfo()
         {
             bool currentFound = false;
-            var allPaths = ExtractAllPathsTaxi();
+            List<string> allPaths = ExtractAllPathsTaxi();
             for (int i = 0; i < allPaths.Count - 1; i++)
             {
                 Application.DoEvents();
@@ -668,8 +667,8 @@ namespace Test_Product
         public static List<String> ExtractDirectPathTaxiInfoList()
         {
             Logging.WriteDebug("Begin ExtractDirectPathTaxiInfoList from NPC " + ObjectManager.Me.Target.GetWoWId);
-            List<String> taxis = new List<String>();
-            var allPaths = ExtractAllPathsTaxi();
+            var taxis = new List<String>();
+            List<string> allPaths = ExtractAllPathsTaxi();
             for (int i = 0; i < allPaths.Count - 1; i++)
             {
                 Application.DoEvents();
@@ -683,9 +682,6 @@ namespace Test_Product
             }
             return taxis;
         }
-
-        private static List<Taxi> _availableTaxis;
-        private static List<TaxiLink> _availableTaxiLinks;
 
         private static bool TaxiListContainsTaxiId(uint id)
         {
@@ -769,9 +765,9 @@ namespace Test_Product
 
         private static void MergeFiles()
         {
-            List<Npc> qesterListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- QuestersDB.xml");
-            List<Npc> qesterListOther = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
-            List<Npc> qesterListResult = new List<Npc>();
+            var qesterListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- QuestersDB.xml");
+            var qesterListOther = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\QuestersDB.xml");
+            var qesterListResult = new List<Npc>();
             foreach (Npc quester in qesterListOriginal)
             {
                 if (qesterListResult.Find(x => x.Entry == quester.Entry && x.Type == quester.Type && x.Position.DistanceTo(quester.Position) < 75) == null)
@@ -793,9 +789,9 @@ namespace Test_Product
             });
             XmlSerializer.Serialize(Application.StartupPath + "\\Data\\QuestersDBnew.xml", qesterListResult);
 
-            List<Npc> npcListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- NpcDB.xml");
-            List<Npc> npcListOther = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\NpcDB.xml");
-            List<Npc> npcListResult = new List<Npc>();
+            var npcListOriginal = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\- NpcDB.xml");
+            var npcListOther = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\NpcDB.xml");
+            var npcListResult = new List<Npc>();
             foreach (Npc npc in npcListOriginal)
             {
                 if (npcListResult.Find(x => x.Entry == npc.Entry && x.Type == npc.Type && x.Position.DistanceTo(npc.Position) < 75) == null)
@@ -833,6 +829,7 @@ namespace Test_Product
             public short field18_1; // just a padding to the end of the row
         }
 
+        #endregion Methods
 
         public static bool Pulse()
         {
@@ -843,74 +840,52 @@ namespace Test_Product
                 {
                     x = x + ("public readonly Spell " + spell.Name.Trim().Replace(" ", "").Replace(":", "") + " = new Spell(\"" + spell.Name + "\");") + Environment.NewLine;
                 }
-                Logging.Write(x);
-                /*uint mortel = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 73);
-                Logging.Write("mortel Ptr: " + mortel);
-                uint suicide = WDB5MemoryReader.WowClientDB2__GetRowPointer((uint)Addresses.DBC.Spell, 186);
-                Logging.Write("suicide Ptr: " + suicide);*/
-
-
-                /*uint db2ptr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + 0xD20EF0 + 0xA8);
-                uint RowsOfSpellDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x4);
-                uint RowsOfIndexDb2 = Memory.WowMemory.Memory.ReadUInt(db2ptr + 0x48);
-
-                for (int i = 0; i < 158391; i++) //max rows
-                {
-                    var sizeArray = Marshal.SizeOf(typeof (SpellDB2));
-                    var readPtr = RowsOfSpellDb2 + i*sizeArray;
-                    SpellDB2 currRow = (SpellDB2) Memory.WowMemory.Memory.ReadObject((uint) readPtr, typeof(SpellDB2));
-
-                    uint fieldNameAddress = Memory.WowMemory.Memory.ReadUInt((uint) (RowsOfIndexDb2+i*4));
-                    string SpellName = Memory.WowMemory.Memory.ReadUTF8String(fieldNameAddress + Memory.WowMemory.Memory.ReadUInt(fieldNameAddress));
-                    if (SpellName == "")
-                        continue;
-                    Logging.Write("Current SpellId: " + currRow.m_ID + " , Name: " + SpellName);
-                }*/
-
-                /*
+                Logging.Write(x); // dump SpellBook into CombatClass ready decalarations;*/
+                
                 // Update spell list
-                //SpellManager.UpdateSpellBook();*/
-                DoTaxiLinksCleaning();
-                //MergeFiles(); */
-                RadarThread.Start();
+                //SpellManager.UpdateSpellBook();
+                /*DoTaxiLinksCleaning(); // */
+                //MergeFiles(); // Merge 2 taxis files into one, in case it got modified simultaneously from 2 differents computer.
 
-                TaxiThread.Start();
+                RadarThread.Start(); // NPC Finder, GameObject Finder.
+
+                /*TaxiThread.Start(); // Take Nearest Taxi and take ALL taxi path from bottom to top (then go back to bottom) of a Map.
 
                 while (TaxiThread.IsAlive)
                 {
-                    Application.DoEvents();
+                    // TaxiThread dies when we come back to the origine TaxiFlight.
+                    Application.DoEvents(); // Prevent the UI from freezing, allowing us to access General Settings.
                     Thread.Sleep(100);
                 }
-                DoTaxiLinksCleaning();
+                DoTaxiLinksCleaning(); // */
+
                 /*var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
-                for (uint i = 1; i <= 200000; i += 2500)
+                try
                 {
-                    var listSpell = new List<uint>();
-                    for (uint i2 = i; i2 < i + 2500; i2++)
+                    Memory.WowMemory.GameFrameLock();
+                    for (uint i = 1; i <= 200000; i += 1000)
                     {
-                        listSpell.Add(i2);
-                    }
-                    SpellManager.SpellInfoCreateCache(listSpell);
-                    foreach (uint u in listSpell)
-                    {
-                        Application.DoEvents();
-                        var spellName = SpellManager.GetSpellInfo(u);
-                        if (!string.IsNullOrEmpty(spellName.Name))
-                            sw.Write(u + ";" + spellName.Name + Environment.NewLine);
+                        // Parse 1000 Spells per injections.
+                        var listSpell = new List<uint>();
+                        for (uint i2 = i; i2 < i + 1000; i2++)
+                        {
+                            listSpell.Add(i2);
+                        }
+                        SpellManager.SpellInfoCreateCache(listSpell); // LUA way of extracting Spell list, may not always return right values.
+                        foreach (uint u in listSpell)
+                        {
+                            Application.DoEvents();
+                            var spellName = SpellManager.GetSpellInfo(u);
+                            if (!string.IsNullOrEmpty(spellName.Name))
+                                sw.Write(u + ";" + spellName.Name + Environment.NewLine);
+                        }
                     }
                 }
-                sw.Close();
-                //Cheat.AntiAfkPulse();
-                /*
-                //D3D9
-                const int VMT_ENDSCENE = 42;
-                using (var d3d = new Direct3D())
+                finally
                 {
-                    using (var tmpDevice = new Device(d3d, 0, DeviceType.Hardware, IntPtr.Zero, CreateFlags.HardwareVertexProcessing, new PresentParameters() { BackBufferWidth = 1, BackBufferHeight = 1 }))
-                    {
-                        var EndScenePointer = nManager.Wow.Memory.WowMemory.Memory.ReadUInt(nManager.Wow.Memory.WowMemory.Memory.ReadUInt((uint)tmpDevice.ComPointer) + VMT_ENDSCENE * 4);
-                    }
-                }*/
+                    Memory.WowMemory.GameFrameUnLock();
+                }
+                sw.Close(); // */
             }
             catch (Exception exception)
             {
