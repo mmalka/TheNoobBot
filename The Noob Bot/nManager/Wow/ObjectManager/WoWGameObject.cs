@@ -614,7 +614,7 @@ namespace nManager.Wow.ObjectManager
                         return false;
                     }
                 }
-                if (LockEntry != 0)
+                if (LockEntry != 0 && LockEntry != 2608) // 2608 special for Ancient Mana Chest.
                 {
                     WoWLock Row = WoWLock.FromId(LockEntry);
                     if (Row.Record.KeyType == null)
