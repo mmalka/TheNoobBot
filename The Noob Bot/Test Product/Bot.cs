@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Threading;
 using nManager.Wow.Bot.States;
-using nManager.Wow.MemoryClass;
 using nManager.Wow.ObjectManager;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
 // ReSharper disable RedundantUsingDirective
@@ -11,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using nManager.Wow.MemoryClass;
 using nManager.Helpful;
 using nManager.Wow;
 using nManager.Wow.Class;
@@ -841,7 +841,7 @@ namespace Test_Product
                     x = x + ("public readonly Spell " + spell.Name.Trim().Replace(" ", "").Replace(":", "") + " = new Spell(\"" + spell.Name + "\");") + Environment.NewLine;
                 }
                 Logging.Write(x); // dump SpellBook into CombatClass ready decalarations;*/
-                
+
                 // Update spell list
                 //SpellManager.UpdateSpellBook();
                 /*DoTaxiLinksCleaning(); // */
