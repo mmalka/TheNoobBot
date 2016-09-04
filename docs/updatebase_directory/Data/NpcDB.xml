@@ -12158,6 +12158,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>733.401062</X>
+      <Y>2385.80566</Y>
+      <Z>55.055336</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>733.401062</X>
+      <Y>2385.80566</Y>
+      <Z>55.055336</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>734.4251</X>
       <Y>-2984.14331</Y>
       <Z>25.5184155</Z>
@@ -12175,6 +12197,28 @@
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>1187.61292</X>
+      <Y>2882.46265</Y>
+      <Z>88.37269</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>1187.61292</X>
+      <Y>2882.46265</Y>
+      <Z>88.37269</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>6491</Entry>
@@ -12246,6 +12290,28 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>1583.901</X>
+      <Y>3069.35425</Y>
+      <Z>111.050278</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>1583.901</X>
+      <Y>3069.35425</Y>
+      <Z>111.050278</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>1621.64417</X>
       <Y>4615.75537</Y>
       <Z>146.847046</Z>
@@ -12260,6 +12326,28 @@
       <X>1621.64417</X>
       <Y>4615.75537</Y>
       <Z>146.847046</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>1668.19617</X>
+      <Y>5612.17627</Y>
+      <Z>57.59681</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>1668.19617</X>
+      <Y>5612.17627</Y>
+      <Z>57.59681</Z>
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -12480,6 +12568,28 @@
       <X>2877.50171</X>
       <Y>4663.605</Y>
       <Z>281.258057</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3089.64575</X>
+      <Y>4916.43945</Y>
+      <Z>361.721924</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>3089.64575</X>
+      <Y>4916.43945</Y>
+      <Z>361.721924</Z>
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -57938,6 +58048,30 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>100017</Entry>
+    <Name>Stokalfr</Name>
+    <Position>
+      <X>1652.481</X>
+      <Y>2696.144</Y>
+      <Z>23.29323</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100017</Entry>
+    <Name>Stokalfr</Name>
+    <Position>
+      <X>1652.481</X>
+      <Y>2696.144</Y>
+      <Z>23.29323</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>100196</Entry>
     <Name>Eadric the Pure</Name>
     <Position>
@@ -57991,6 +58125,30 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>102660</Entry>
+    <Name>Jandvik Metalsmith</Name>
+    <Position>
+      <X>1519.21008</X>
+      <Y>2709.09375</Y>
+      <Z>12.3605852</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>102660</Entry>
+    <Name>Jandvik Metalsmith</Name>
+    <Position>
+      <X>1519.21008</X>
+      <Y>2709.09375</Y>
+      <Z>12.3605852</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -58391,12 +58549,45 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>111770</Entry>
+    <Name>Menagerie Shopkeeper</Name>
+    <Position>
+      <X>1603.20142</X>
+      <Y>3876.014</Y>
+      <Z>113.923447</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>112007</Entry>
     <Name>Mel Lynchen</Name>
     <Position>
       <X>-790.2743</X>
       <Y>4479.15967</Y>
       <Z>735.0368</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112059</Entry>
+    <Name>Sasunne Dameuse</Name>
+    <Position>
+      <X>1599.38538</X>
+      <Y>3810.15625</Y>
+      <Z>113.983673</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112064</Entry>
+    <Name>Dolse Shimmersong</Name>
+    <Position>
+      <X>1604.73608</X>
+      <Y>3813.15625</Y>
+      <Z>113.983444</Z>
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -58411,6 +58602,18 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112226</Entry>
+    <Name>Markus Hjolbruk</Name>
+    <Position>
+      <X>1636.118</X>
+      <Y>2681.36548</Y>
+      <Z>24.5831432</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>112629</Entry>
