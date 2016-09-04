@@ -12356,6 +12356,72 @@
     <Entry>6491</Entry>
     <Name>Spirit Healer</Name>
     <Position>
+      <X>2480.57983</X>
+      <Y>4604.989</Y>
+      <Z>183.6127</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2480.57983</X>
+      <Y>4604.989</Y>
+      <Z>183.6127</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2643.32471</X>
+      <Y>5037.51025</Y>
+      <Z>109.3831</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2643.32471</X>
+      <Y>5037.51025</Y>
+      <Z>109.3831</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2676.216</X>
+      <Y>4905.249</Y>
+      <Z>224.367462</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2676.216</X>
+      <Y>4905.249</Y>
+      <Z>224.367462</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
       <X>2789.65186</X>
       <Y>7359.862</Y>
       <Z>17.7224121</Z>
@@ -12392,6 +12458,28 @@
       <X>2850.49146</X>
       <Y>6557.335</Y>
       <Z>209.161514</Z>
+    </Position>
+    <Type>SpiritGuide</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2877.50171</X>
+      <Y>4663.605</Y>
+      <Z>281.258057</Z>
+    </Position>
+    <Type>SpiritHealer</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6491</Entry>
+    <Name>Spirit Healer</Name>
+    <Position>
+      <X>2877.50171</X>
+      <Y>4663.605</Y>
+      <Z>281.258057</Z>
     </Position>
     <Type>SpiritGuide</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -66064,6 +66152,17 @@
       <X>-64.97396</X>
       <Y>6966.936</Y>
       <Z>15.3853579</Z>
+    </Position>
+    <Type>Mailbox</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>257977</Entry>
+    <Name>Mailbox</Name>
+    <Position>
+      <X>1761.35791</X>
+      <Y>4640.597</Y>
+      <Z>123.865891</Z>
     </Position>
     <Type>Mailbox</Type>
     <ContinentId>Troll Raid</ContinentId>
