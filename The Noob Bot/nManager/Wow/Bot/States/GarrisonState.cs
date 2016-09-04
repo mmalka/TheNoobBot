@@ -151,6 +151,13 @@ namespace nManager.Wow.Bot.States
                 case Task.GoToGarrison:
                     if (display)
                         Logging.Write("Task: go to garrison");
+                    /*var pathToGarrison2 = PathFinder.FindPath(new Point() { X = 2727.872f, Y = 6451.539f, Z = 191.9229f }, out success);
+                    if (success)
+                    {
+                        //this code allow me to test a path easily.
+                        MovementManager.Go(pathToGarrison2);
+                        return;
+                    }*/
                     if (!Garrison.GarrisonMapIdList.Contains(Usefuls.RealContinentId))
                     {
                         // We are in Draenor
