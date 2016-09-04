@@ -1,4 +1,4 @@
-﻿1;Word of Recall (OLD)
+1;Word of Recall (OLD)
 3;Word of Mass Recall (OLD)
 4;Word of Recall Other
 5;Death Touch
