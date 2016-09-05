@@ -1208,7 +1208,6 @@ public class PaladinRetribution
                     !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsItemUsable(_guardianElixir))
                     ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
-            Heal();
         }
     }
 
@@ -1235,7 +1234,7 @@ public class PaladinRetribution
 
     private void Blessing()
     {
-        if (ObjectManager.Me.IsMounted)
+        if (ObjectManager.Me.IsMounted || ObjectManager.Me.InCombatBlizzard) // No longer can bless in combat
             return;
         Usefuls.SleepGlobalCooldown();
 
@@ -1259,7 +1258,7 @@ public class PaladinRetribution
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 85 && !ObjectManager.Me.InCombat && !ObjectManager.Me.GetMove && !ObjectManager.Me.IsCast)
+        if (ObjectManager.Me.HealthPercent < 75 && !ObjectManager.Me.InCombat && !ObjectManager.Me.GetMove && !ObjectManager.Me.IsCast)
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {

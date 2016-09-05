@@ -948,7 +948,6 @@ public class DruidFeral
         MySettings = DruidFeralSettings.GetSettings();
         Main.DumpCurrentSettings<DruidFeralSettings>(MySettings);
         UInt128 lastTarget = 0;
-        Main.InternalLightHealingSpell = HealingTouch;
 
         while (Main.InternalLoop)
         {
