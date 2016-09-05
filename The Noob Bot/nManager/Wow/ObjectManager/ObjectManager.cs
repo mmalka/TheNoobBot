@@ -1340,12 +1340,50 @@ namespace nManager.Wow.ObjectManager
                 }
                 else
                 {
+                    if (u.Guid == fromUnit.Guid)
+                        continue;
                     if (u.Position.DistanceTo(fromUnit.Position) > spellRange)
                         continue;
                 }
                 unitInSpellRange++;
             }
             return unitInSpellRange;
+        }
+
+        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true, WoWPlayer fromPlayer = null)
+        {
+            if (spellRange < 5)
+                spellRange = 5;
+            uint playersInSpellRange = 0;
+            foreach (WoWPlayer p in GetObjectWoWPlayer())
+            {
+                if (!p.IsValid)
+                    continue;
+                if (!p.IsDead)
+                    continue;
+                if (p.NotSelectable)
+                    continue;
+                if (!friendly && (!p.IsHostile || !p.Attackable))
+                    continue;
+                if (friendly && p.IsHostile)
+                    continue;
+                if (fromPlayer == null || !fromPlayer.IsValid || !fromPlayer.IsAlive)
+                {
+                    if (p.Guid == Me.Guid)
+                        continue;
+                    if (p.GetDistance > spellRange)
+                        continue;
+                }
+                else
+                {
+                    if (p.Guid == fromPlayer.Guid)
+                        continue;
+                    if (p.Position.DistanceTo(fromPlayer.Position) > spellRange)
+                        continue;
+                }
+                playersInSpellRange++;
+            }
+            return playersInSpellRange;
         }
 
         public static WoWUnit GetUnitInAggroRange()
