@@ -27,12 +27,19 @@ public class Main : ICombatClass
     internal static float InternalRange = 5.0f;
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
+    internal static Spell InternalLightHealingSpell;
 
     #region ICombatClass Members
 
     public float AggroRange
     {
         get { return InternalAggroRange; }
+    }
+
+    public Spell LightHealingSpell
+    {
+        get { return InternalLightHealingSpell; }
+        set { InternalLightHealingSpell = value; }
     }
 
     public float Range

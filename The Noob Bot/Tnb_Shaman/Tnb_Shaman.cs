@@ -27,12 +27,19 @@ public class Main : ICombatClass
     internal static float InternalRange = 5.0f;
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
+    internal static Spell InternalLightHealingSpell;
 
     #region ICombatClass Members
 
     public float AggroRange
     {
         get { return InternalAggroRange; }
+    }
+
+    public Spell LightHealingSpell
+    {
+        get { return InternalLightHealingSpell; }
+        set { InternalLightHealingSpell = value; }
     }
 
     public float Range
@@ -267,6 +274,7 @@ public class ShamanEnhancement
     public ShamanEnhancement()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = HealingSurge;
         MySettings = ShamanEnhancementSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanEnhancementSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -881,6 +889,7 @@ public class ShamanRestoration
     {
         Main.InternalRange = 30.0f;
         Main.InternalAggroRange = 30f;
+        Main.InternalLightHealingSpell = HealingSurge;
         MySettings = ShamanRestorationSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanRestorationSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1737,6 +1746,7 @@ public class ShamanElemental
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = HealingSurge;
         MySettings = ShamanElementalSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanElementalSettings>(MySettings);
         UInt128 lastTarget = 0;

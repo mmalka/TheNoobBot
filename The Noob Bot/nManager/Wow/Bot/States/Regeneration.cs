@@ -3,6 +3,7 @@ using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
+using Math = System.Math;
 
 namespace nManager.Wow.Bot.States
 {
@@ -42,6 +43,9 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.IsMounted)
                     return false;
 
+                if (Math.Abs(ObjectManager.ObjectManager.Me.HealthPercent) < 0.001f)
+                    return false;
+
                 // Need Regeneration
                 // Hp:
                 if (ObjectManager.ObjectManager.Me.HealthPercent <=
@@ -51,6 +55,9 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.ManaPercentage <=
                     nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
                     nManagerSetting.CurrentSetting.DoRegenManaIfLow)
+                    return true;
+
+                if (CombatClass.IsAliveCombatClass && CombatClass.GetLightHealingSpell.KnownSpell && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
                     return true;
                 // Pet:
                 //if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp && ObjectManager.ObjectManager.Pet.IsAlive && ObjectManager.ObjectManager.Pet.IsValid && Config.Bot.FormConfig.RegenPet)

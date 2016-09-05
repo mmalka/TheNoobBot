@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 using System.Numerics;
 using nManager.Wow.Patchables;
@@ -340,6 +341,16 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("ShowConfigurationCombatClass(): " + exception);
             }
         }
+
+        public static Spell GetLightHealingSpell
+        {
+            get
+            {
+                if (_instanceFromOtherAssembly != null && _instanceFromOtherAssembly.LightHealingSpell.Id > 0)
+                    return _instanceFromOtherAssembly.LightHealingSpell;
+                return new Spell(0);
+            }
+        }
     }
 
 
@@ -349,6 +360,7 @@ namespace nManager.Wow.Helpers
 
         float Range { get; }
         float AggroRange { get; }
+        Spell LightHealingSpell { get; }
 
         #endregion Properties
 
