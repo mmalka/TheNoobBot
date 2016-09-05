@@ -4,6 +4,7 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 using Math = System.Math;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
@@ -57,7 +58,7 @@ namespace nManager.Wow.Bot.States
                     nManagerSetting.CurrentSetting.DoRegenManaIfLow)
                     return true;
 
-                if (CombatClass.IsAliveCombatClass && CombatClass.GetLightHealingSpell.KnownSpell && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+                if (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
                     return true;
                 // Pet:
                 //if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp && ObjectManager.ObjectManager.Pet.IsAlive && ObjectManager.ObjectManager.Pet.IsValid && Config.Bot.FormConfig.RegenPet)
@@ -130,6 +131,24 @@ namespace nManager.Wow.Bot.States
                     }
                     ObjectManager.ObjectManager.Me.forceIsCast = false;
                     Logging.Write("Regen finished");
+                }
+                if (CombatClass.GetLightHealingSpell.KnownSpell && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+                {
+                    Logging.Write("Regeneration started with Light Heal started.");
+                    MovementManager.StopMove();
+                    Thread.Sleep(500);
+                    var timer = new Timer(10000);
+                    while (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+                    {
+                        if (Math.Abs(ObjectManager.ObjectManager.Me.HealthPercent) < 0.001f)
+                            return;
+                        if (timer.IsReady)
+                            break;
+                        CombatClass.GetLightHealingSpell.CastOnSelf(true);
+                        Thread.Sleep(100);
+                    }
+
+                    Logging.Write(ObjectManager.ObjectManager.Me.HealthPercent > 85 ? "Regeneration terminated with success" : "Regeneration terminated by timer");
                 }
             }
             catch
