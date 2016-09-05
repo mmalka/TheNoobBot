@@ -49036,7 +49036,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>513.6742</Z>
+      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -49058,7 +49058,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>593.3703</Z>
+      <Z>513.6742</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -65938,6 +65938,28 @@
       <X>-789.1024</X>
       <Y>4577.53662</Y>
       <Z>700.577332</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>110987</Entry>
+    <Name>Nighteyes</Name>
+    <Position>
+      <X>1350.875</X>
+      <Y>3843.79248</Y>
+      <Z>13.2759457</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>111019</Entry>
+    <Name>Nighteyes</Name>
+    <Position>
+      <X>1509.86462</X>
+      <Y>3993.32031</Y>
+      <Z>-11.7628279</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>

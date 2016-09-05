@@ -26,9 +26,6 @@ namespace Test_Product
     {
         #region Methods
 
-        /*private const string CurrentProfileName = "afk.xml";
-        private static bool _xmlProfile = true;
-        private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();*/
         private static readonly Thread RadarThread = new Thread(LaunchRadar) {Name = "RadarThread"};
         private static readonly Thread TaxiThread = new Thread(LaunchTaxi) {Name = "TaxiThread"};
         public static string FirstReachable = "";
@@ -842,12 +839,12 @@ namespace Test_Product
 
                 // Update spell list
                 //SpellManager.UpdateSpellBook();
-                DoTaxiLinksCleaning(); // */
+                /*DoTaxiLinksCleaning(); // */
                 //MergeFiles(); // Merge 2 taxis files into one, in case it got modified simultaneously from 2 differents computer.
 
                 RadarThread.Start(); // NPC Finder, GameObject Finder.
 
-                TaxiThread.Start(); // Take Nearest Taxi and take ALL taxi path from bottom to top (then go back to bottom) of a Map.
+                /*TaxiThread.Start(); // Take Nearest Taxi and take ALL taxi path from bottom to top (then go back to bottom) of a Map.
 
                 while (TaxiThread.IsAlive)
                 {

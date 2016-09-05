@@ -59209,6 +59209,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>111771</Entry>
+    <Name>Menagerie Shopkeeper</Name>
+    <Position>
+      <X>1603.20142</X>
+      <Y>3876.014</Y>
+      <Z>113.923393</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>112007</Entry>
     <Name>Mel Lynchen</Name>
     <Position>
@@ -59397,6 +59408,39 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>113483</Entry>
+    <Name>Menagerie Shopkeeper</Name>
+    <Position>
+      <X>1540.97742</X>
+      <Y>3894.53125</Y>
+      <Z>16.8159466</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>113486</Entry>
+    <Name>Menagerie Shopkeeper</Name>
+    <Position>
+      <X>1425.85242</X>
+      <Y>3753.74219</Y>
+      <Z>19.0069847</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>113487</Entry>
+    <Name>Menagerie Shopkeeper</Name>
+    <Position>
+      <X>1424.191</X>
+      <Y>3741.81958</Y>
+      <Z>19.01526</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>113514</Entry>
     <Name>Joshen Lafave</Name>
     <Position>
@@ -59450,6 +59494,17 @@
     </Position>
     <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>113843</Entry>
+    <Name>Kieule</Name>
+    <Position>
+      <X>1482.53479</X>
+      <Y>3864.55469</Y>
+      <Z>16.4760056</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
     <Entry>114527</Entry>
