@@ -654,8 +654,6 @@ namespace Test_Product
 
                 if (type == "REACHABLE" && FirstReachable == "")
                     FirstReachable = taxi;
-                if (FirstReachable == "")
-                    FirstReachable = allPaths[0];
                 if (type == "CURRENT")
                 {
                     currentFound = true;
@@ -844,12 +842,12 @@ namespace Test_Product
 
                 // Update spell list
                 //SpellManager.UpdateSpellBook();
-                /*DoTaxiLinksCleaning(); // */
+                DoTaxiLinksCleaning(); // */
                 //MergeFiles(); // Merge 2 taxis files into one, in case it got modified simultaneously from 2 differents computer.
 
                 RadarThread.Start(); // NPC Finder, GameObject Finder.
 
-                /*TaxiThread.Start(); // Take Nearest Taxi and take ALL taxi path from bottom to top (then go back to bottom) of a Map.
+                TaxiThread.Start(); // Take Nearest Taxi and take ALL taxi path from bottom to top (then go back to bottom) of a Map.
 
                 while (TaxiThread.IsAlive)
                 {
