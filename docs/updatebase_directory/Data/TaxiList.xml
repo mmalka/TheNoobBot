@@ -3735,7 +3735,7 @@
     <Xcoord>0.44991791248322</Xcoord>
     <Ycoord>0.31877344846725</Ycoord>
   </Taxi>
-  <Taxi Faction="Alliance" Id="98966" Name="Ironhorn Enclave, Highmountain" ContinentId="1220">
+  <Taxi Faction="Neutral" Id="98966" Name="Ironhorn Enclave, Highmountain" ContinentId="1220">
     <Position>
       <X>3010.88379</X>
       <Y>3671.91333</Y>
@@ -3743,5 +3743,23 @@
     </Position>
     <Xcoord>0.38233232498169</Xcoord>
     <Ycoord>0.57990616559982</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="112926" Name="Eye of Azshara, Azsuna" ContinentId="1220">
+    <Position>
+      <X>-3365.55737</X>
+      <Y>4823.19727</Y>
+      <Z>17.712801</Z>
+    </Position>
+    <Xcoord>0.24695007503033</Xcoord>
+    <Ycoord>-0.91353660821915</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="111323" Name="Illidari Camp, Broken Shore" ContinentId="1220">
+    <Position>
+      <X>-543.762146</X>
+      <Y>3004.466</Y>
+      <Z>44.1820526</Z>
+    </Position>
+    <Xcoord>0.46071997284889</Xcoord>
+    <Ycoord>-0.25285741686821</Ycoord>
   </Taxi>
 </ArrayOfTaxi>
