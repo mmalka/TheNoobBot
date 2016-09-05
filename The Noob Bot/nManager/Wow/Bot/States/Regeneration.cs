@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
@@ -32,39 +33,57 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    ObjectManager.ObjectManager.Me.InCombat ||
-                    Usefuls.IsFlying ||
-                    !Products.Products.IsStarted)
-                    return false;
-
-                if (ObjectManager.ObjectManager.Me.IsMounted)
+                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid ||
+                    ObjectManager.ObjectManager.Me.InCombat || Usefuls.IsFlying || !Products.Products.IsStarted)
                     return false;
 
                 if (Math.Abs(ObjectManager.ObjectManager.Me.HealthPercent) < 0.001f)
-                    return false;
+                    return false; // Workarround for the "0% HP" issue.
 
-                // Need Regeneration
-                // Hp:
-                if (ObjectManager.ObjectManager.Me.HealthPercent <=
-                    nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent)
-                    return true;
-                // Mana:
-                if (ObjectManager.ObjectManager.Me.ManaPercentage <=
-                    nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
-                    nManagerSetting.CurrentSetting.DoRegenManaIfLow)
-                    return true;
+                if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FoodName) && ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.FoodName) > 0)
+                    if (ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent)
+                        return true;
+
+                if (nManagerSetting.CurrentSetting.DoRegenManaIfLow && !string.IsNullOrEmpty(nManagerSetting.CurrentSetting.BeverageName) && ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.BeverageName) > 0)
+                    if (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent)
+                        return true;
 
                 if (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
                     return true;
-                // Pet:
-                //if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp && ObjectManager.ObjectManager.Pet.IsAlive && ObjectManager.ObjectManager.Pet.IsValid && Config.Bot.FormConfig.RegenPet)
-                //    return true;
-
                 return false;
+            }
+        }
+
+        public void EatOrDrink(string itemName, bool isMana = false)
+        {
+            try
+            {
+                // isMana = false => Health
+                if (ObjectManager.ObjectManager.Me.IsMounted)
+                    Usefuls.DisMount();
+                MovementManager.StopMove();
+                Thread.Sleep(500);
+
+                ObjectManager.ObjectManager.Me.ForceIsCasting = true; // Make the bot believe it's casting something. (we set it to false in Finally())
+                ItemsManager.UseItem(itemName);
+                for (int i = 0; i < 30; i++)
+                {
+                    if (ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InCombat)
+                        return;
+                    if (!isMana && ObjectManager.ObjectManager.Me.HealthPercent > 95 || isMana && ObjectManager.ObjectManager.Me.ManaPercentage > 95)
+                        break;
+                    Thread.Sleep(500);
+                    // Eat/Drink for 15 seconds or until we get to high HP/Mana
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("public void EatOrDrink(string itemName, bool isMana = false): " + e);
+            }
+            finally
+            {
+                ObjectManager.ObjectManager.Me.ForceIsCasting = false;
+                // In case we set it to true and crash, prevent the bot from believing that its constantly casting.
             }
         }
 
@@ -74,131 +93,59 @@ namespace nManager.Wow.Bot.States
 
             try
             {
-                if ((ObjectManager.ObjectManager.Me.HealthPercent <=
-                     nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent) ||
-                    // HP
-                    (ObjectManager.ObjectManager.Me.ManaPercentage <=
-                     nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
-                     nManagerSetting.CurrentSetting.DoRegenManaIfLow))
-                    // MANA
+                if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FoodName) && ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.FoodName) > 0)
                 {
-                    Logging.Write("Regen started");
-                    MovementManager.StopMove();
-                    Thread.Sleep(500);
-
-                    // Use food:
-                    if (ObjectManager.ObjectManager.Me.HealthPercent <=
-                        nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent &&
-                        nManagerSetting.CurrentSetting.FoodName != "")
+                    if (ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent)
                     {
-                        ObjectManager.ObjectManager.Me.forceIsCast = true;
-                        ItemsManager.UseItem(nManagerSetting.CurrentSetting.FoodName);
-                        Thread.Sleep(500);
+                        Logging.Write("Health regeneration started: Food mode");
+                        EatOrDrink(nManagerSetting.CurrentSetting.FoodName);
+                        Logging.Write("Health regeneration done: Food mode");
                     }
-
-                    // Use Water:
-                    if (ObjectManager.ObjectManager.Me.ManaPercentage <=
-                        nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
-                        nManagerSetting.CurrentSetting.BeverageName != "" &&
-                        nManagerSetting.CurrentSetting.DoRegenManaIfLow)
-                    {
-                        ObjectManager.ObjectManager.Me.forceIsCast = true;
-                        ItemsManager.UseItem(nManagerSetting.CurrentSetting.BeverageName);
-                        Thread.Sleep(500);
-                    }
-
-
-                    while (ObjectManager.ObjectManager.Me.HealthPercent <= 95 && Products.Products.IsStarted)
-                        // Wait health
-                    {
-                        if (ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InCombat)
-                        {
-                            ObjectManager.ObjectManager.Me.forceIsCast = false;
-                            return;
-                        }
-                        Thread.Sleep(500);
-                    }
-
-                    while (ObjectManager.ObjectManager.Me.ManaPercentage <= 95 &&
-                           Products.Products.IsStarted && nManagerSetting.CurrentSetting.DoRegenManaIfLow) // Wait Mana
-                    {
-                        if (ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InCombat)
-                        {
-                            ObjectManager.ObjectManager.Me.forceIsCast = false;
-                            return;
-                        }
-                        Thread.Sleep(500);
-                    }
-                    ObjectManager.ObjectManager.Me.forceIsCast = false;
-                    Logging.Write("Regen finished");
                 }
-                if (CombatClass.GetLightHealingSpell.KnownSpell && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+
+                // We check for Mana -after- we eat food, to make sure we still need it since most food now gives mana too.
+                if (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.BeverageName) && ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.BeverageName) > 0)
                 {
-                    Logging.Write("Regeneration started with Light Heal started.");
+                    if (nManagerSetting.CurrentSetting.DoRegenManaIfLow && ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent)
+                    {
+                        Logging.Write("Mana regeneration started: Beverage mode");
+                        EatOrDrink(nManagerSetting.CurrentSetting.BeverageName, true);
+                        Logging.Write("Mana regeneration done: Beverage mode");
+                    }
+                }
+
+                // In case we did not use food/beverage, we check if we need to heal ourself.
+                if (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
+                {
+                    Logging.Write("Regeneration started: Light Heal mode");
+                    if (ObjectManager.ObjectManager.Me.IsMounted)
+                        Usefuls.DisMount();
                     MovementManager.StopMove();
                     Thread.Sleep(500);
                     var timer = new Timer(10000);
                     while (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
                     {
+                        Thread.Sleep(100);
+                        if (ObjectManager.ObjectManager.Me.IsCasting)
+                            continue;
                         if (Math.Abs(ObjectManager.ObjectManager.Me.HealthPercent) < 0.001f)
+                            return;
+                        if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDeadMe)
                             return;
                         if (timer.IsReady)
                             break;
                         CombatClass.GetLightHealingSpell.CastOnSelf(true);
-                        Thread.Sleep(100);
                     }
 
-                    Logging.Write(ObjectManager.ObjectManager.Me.HealthPercent > 85 ? "Regeneration terminated with success" : "Regeneration terminated by timer");
+                    Logging.Write(ObjectManager.ObjectManager.Me.HealthPercent > 85 ? "Regeneration done (success): Light Heal mode" : "Regeneration done (timer): Light Heal mode");
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Logging.WriteError("Regeneration.Run(): " + e);
             }
 
             #endregion
-
-            /*
-            #region Pet
-
-            try
-            {
-                if (Config.Bot.FormConfig.RegenPet && ObjectManager.ObjectManager.Pet.IsAlive && ObjectManager.ObjectManager.Pet.IsValid &&
-                    Products.Products.IsStarted)
-                {
-                    if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp)
-                    {
-                        Logging.Write("Regen Pet");
-                        nManager.Navigation.MovementManager.StopMove();
-                        Thread.Sleep(1000);
-
-                        // Use macro food
-                        if (Config.Bot.FormConfig.RegenUsePetMacro)
-                        {
-                            Interact.InteractGameObject(ObjectManager.ObjectManager.Pet.GetBaseAddress);
-                            Thread.Sleep(500);
-                            Keyboard.PressBarAndSlotKey(Config.Bot.FormConfig.PetBar + ";" + Config.Bot.FormConfig.PetSlot);
-                            Thread.Sleep(500);
-                        }
-
-                        while (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMaxHp  && Products.Products.IsStarted)
-                        {
-                            if (!ObjectManager.ObjectManager.Pet.IsAlive || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InCombat ||
-                                ObjectManager.ObjectManager.Pet.InCombat)
-                            {
-                                return;
-                            }
-                            Thread.Sleep(500);
-                        }
-                        Logging.Write("Regen Pet finished");
-                    }
-                }
-            }
-            catch
-            {
-            }
-
-            #endregion
-             * */
         }
     }
 }

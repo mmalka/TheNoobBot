@@ -365,25 +365,29 @@ namespace nManager.Wow.ObjectManager
             }
         }*/
 
-        public bool forceIsCast { set; get; }
+        public bool ForceIsCasting { set; get; }
 
-        public new bool IsCast
+        public bool IsCasting
         {
             get
             {
                 try
                 {
-                    return
-                        (Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID) > 0 ||
-                         Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID) > 0 ||
-                         forceIsCast);
+                    if (ObjectManager.Me.Guid == Guid && ForceIsCasting)
+                        return true;
+                    return CurrentSpellIdCast > 0 || CurrentSpellIdChannel > 0;
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWPlayer > IsCast: " + e);
+                    Logging.WriteError("WoWPlayer > IsCasting: " + e);
                 }
                 return false;
             }
+        }
+
+        public new bool IsCast
+        {
+            get { return IsCasting; }
         }
 
         public bool IsMainHandTemporaryEnchanted
