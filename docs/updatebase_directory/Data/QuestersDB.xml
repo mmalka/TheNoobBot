@@ -12299,7 +12299,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
+      <Z>-333.8926</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12359,7 +12359,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-333.8926</Z>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20516,7 +20516,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>27.8561249</Z>
+      <Z>106.571053</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20540,7 +20540,7 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
-      <Z>106.571053</Z>
+      <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -60817,6 +60817,28 @@
     <ContinentId>Draenor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92242</Entry>
+    <Name>Barm Stonebreaker</Name>
+    <Position>
+      <X>2995.06519</X>
+      <Y>3788.079</Y>
+      <Z>1347.70923</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92245</Entry>
+    <Name>Thala Steeltotem</Name>
+    <Position>
+      <X>2988.64233</X>
+      <Y>3801.52612</Y>
+      <Z>1347.45093</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92264</Entry>
     <Name>Teufelsschmiedin Nal'ryssa</Name>
     <Position>
@@ -61534,6 +61556,17 @@
       <X>762.816</X>
       <Y>6646.24463</Y>
       <Z>63.3602257</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93691</Entry>
+    <Name>Ronos Ironhorn</Name>
+    <Position>
+      <X>3001.61719</X>
+      <Y>3794.28735</Y>
+      <Z>1348.26648</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -64827,6 +64860,17 @@
       <X>2778.64063</X>
       <Y>4786.502</Y>
       <Z>186.3203</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>106271</Entry>
+    <Name>Jarum Skymane</Name>
+    <Position>
+      <X>2822.39771</X>
+      <Y>3881.138</Y>
+      <Z>1560.02026</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>

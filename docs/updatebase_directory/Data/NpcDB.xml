@@ -56374,6 +56374,28 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>92245</Entry>
+    <Name>Thala Steeltotem</Name>
+    <Position>
+      <X>2988.64233</X>
+      <Y>3801.52612</Y>
+      <Z>1347.45093</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>92245</Entry>
+    <Name>Thala Steeltotem</Name>
+    <Position>
+      <X>2988.64233</X>
+      <Y>3801.52612</Y>
+      <Z>1347.45093</Z>
+    </Position>
+    <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>92265</Entry>
     <Name>Urael</Name>
     <Position>
@@ -56951,6 +56973,17 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>93691</Entry>
+    <Name>Ronos Ironhorn</Name>
+    <Position>
+      <X>3001.61719</X>
+      <Y>3794.28735</Y>
+      <Z>1348.26648</Z>
+    </Position>
+    <Type>MiningTrainer</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -58569,6 +58602,18 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>103090</Entry>
+    <Name>Greystone Fishbrul</Name>
+    <Position>
+      <X>3401.14233</X>
+      <Y>3845.70239</Y>
+      <Z>1120.19958</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>103796</Entry>
     <Name>Riala the Hearthwatcher</Name>
     <Position>
@@ -58786,6 +58831,28 @@
       <Z>12.7351465</Z>
     </Position>
     <Type>Repair</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108553</Entry>
+    <Name>Azgo, the Old Bull</Name>
+    <Position>
+      <X>2954.91577</X>
+      <Y>3812.51733</Y>
+      <Z>1347.11011</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108554</Entry>
+    <Name>Burnedhoof the Retired</Name>
+    <Position>
+      <X>2959.66748</X>
+      <Y>3827.99316</Y>
+      <Z>1347.90552</Z>
+    </Position>
+    <Type>Innkeeper</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -59217,6 +59284,28 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Innkeeper</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112310</Entry>
+    <Name>Fredo the Patron</Name>
+    <Position>
+      <X>3688.211</X>
+      <Y>4343.261</Y>
+      <Z>919.3534</Z>
+    </Position>
+    <Type>Vendor</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>112312</Entry>
+    <Name>Provisioner Keayonni</Name>
+    <Position>
+      <X>3726.07544</X>
+      <Y>4353.046</Y>
+      <Z>917.8406</Z>
+    </Position>
+    <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>

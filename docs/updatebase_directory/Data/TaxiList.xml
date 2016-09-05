@@ -3735,4 +3735,13 @@
     <Xcoord>0.44991791248322</Xcoord>
     <Ycoord>0.31877344846725</Ycoord>
   </Taxi>
+  <Taxi Faction="Alliance" Id="98966" Name="Ironhorn Enclave, Highmountain" ContinentId="1220">
+    <Position>
+      <X>3010.88379</X>
+      <Y>3671.91333</Y>
+      <Z>1386.3783</Z>
+    </Position>
+    <Xcoord>0.38233232498169</Xcoord>
+    <Ycoord>0.57990616559982</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
