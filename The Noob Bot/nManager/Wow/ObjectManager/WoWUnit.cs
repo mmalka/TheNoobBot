@@ -168,9 +168,11 @@ namespace nManager.Wow.ObjectManager
                 {
                     var tempHealth = (Int64) Health;
                     float p = (tempHealth*100/(float) MaxHealth);
-                    if (p < 0 || p > 100)
+                    if (p > 100 || p < 0)
                     {
-                        return 0;
+                        return p > 100 ? 100f : 0f;
+                        // You can be over 100% if you have a bugged HealthBoost that wont update your "MaxHealth" properly.
+                        // Also, make sure we don't send negative value even if it's unlikely to happend.
                     }
                     return p;
                 }
