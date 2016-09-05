@@ -205,6 +205,7 @@ public class DemonHunterHavoc
     public DemonHunterHavoc()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = null;
         MySettings = DemonHunterHavocSettings.GetSettings();
         Main.DumpCurrentSettings<DemonHunterHavocSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -370,36 +371,8 @@ public class DemonHunterHavoc
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
         public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public bool UseArdentDefender = true;
-        public bool UseAvengersShield = true;
-        public bool UseBerserking = true;
-        public bool UseConsecration = true;
-        public bool UseCrusaderStrike = true;
-        public bool UseDivineHavor = true;
-        public bool UseDivineShield = true;
-        public bool UseFlashOfLight = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGuardianOfAncientKings = true;
-        public bool UseHammerOfJustice = true;
-        public bool UseHammerOfTheRighteous = true;
-        public bool UseHammerOfWrath = true;
-        public bool UseHandOfHavor = true;
-        public bool UseHandOfPurity = true;
-        public bool UseHolyAvenger = true;
-        public bool UseHolyWrath = true;
-        public bool UseJudgment = true;
-        public bool UseLayOnHands = true;
-
-        public bool UseSacredShield = true;
-        public bool UseShieldOfTheRighteous = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWordOfGlory = true;
 
         public DemonHunterHavocSettings()
         {
@@ -415,29 +388,9 @@ public class DemonHunterHavoc
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             /* DemonHunter Seals & Buffs */
             /* Offensive Spell */
-            AddControlInWinForm("Use Shield of the Righteous", "UseShieldOfTheRighteous", "Offensive Spell");
-            AddControlInWinForm("Use Consecration", "UseConsecration", "Offensive Spell");
-            AddControlInWinForm("Use Avenger's Shield", "UseAvengersShield", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
-            AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
-            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
-            AddControlInWinForm("Use Holy Wrath", "UseHolyWrath", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Defensive Cooldown");
-            AddControlInWinForm("Use Ardent Defender", "UseArdentDefender", "Defensive Cooldown");
-            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Havor", "UseDivineHavor", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Havor", "UseHandOfHavor", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
-            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
-            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
@@ -514,6 +467,7 @@ public class DemonHunterVengeance
     public DemonHunterVengeance()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = null;
         MySettings = DemonHunterVengeanceSettings.GetSettings();
         Main.DumpCurrentSettings<DemonHunterVengeanceSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -656,56 +610,22 @@ public class DemonHunterVengeance
     [Serializable]
     public class DemonHunterVengeanceSettings : Settings
     {
-        public string CombatPotion = "Potion of Mogu Power";
+        public string CombatPotion = "";
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
-        public string FlaskOrBattleElixir = "Flask of Winter's Bite";
+        public string FlaskOrBattleElixir = "";
         public string GuardianElixir = "";
-        public bool RefreshWeakenedBlows = true;
-        public string TeasureFindingPotion = "Potion of Luck";
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
         public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public bool UseAvengingWrath = true;
-        public bool UseBerserking = true;
-        public bool UseGreaterBlessingOfKings = true;
-        public bool UseGreaterBlessingOfMight = true;
-        public bool UseGreaterBlessingOfWisdom = true;
         public bool UseCombatPotion = false;
-        public bool UseCrusaderStrike = true;
-        public bool UseBladeOfWrath = true;
-        public bool UseBladeOfJustice = true;
-        public bool UseDivineHammer = true;
-        public bool UseDivineHavor = true;
-        public bool UseDivineShield = true;
-        public bool UseDivineStorm = true;
-        public bool UseExecutionSentence = true;
-        public bool UseJusticarsVengeance = true;
-        public bool UseFlashOfLight = true;
-        public bool UseFlaskOrBattleElixir = false;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGuardianElixir = false;
-        public bool UseHammerOfJustice = true;
-        public bool UseHandOfHavor = false;
-        public bool UseHolyAvenger = true;
-        public bool UseJudgment = true;
-        public bool UseLayOnHands = true;
-
-        public bool UseReckoning = true;
-        public bool UseSacredShield = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
-        public bool UseTeasureFindingPotion = false;
-        public bool UseTemplarsVerdict = true;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
         public bool UseWellFedBuff = false;
-        public bool UseWordOfGlory = true;
+        public bool UseGuardianElixir = false;
+        public bool UseFlaskOrBattleElixir = false;
 
         public string WellFedBuff = "Sleeper Sushi";
 
@@ -715,38 +635,11 @@ public class DemonHunterVengeance
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             /* DemonHunter Seals & Buffs */
-            AddControlInWinForm("Use Greater Blessing of Might", "UseGreaterBlessingOfMight", "DemonHunter Blessings");
-            AddControlInWinForm("Use Greater Blessing of Kings", "UseGreaterBlessingOfKings", "DemonHunter Blessings");
-            AddControlInWinForm("Use Greater Blessing of Wisdom", "UseGreaterBlessingOfWisdom", "DemonHunter Blessings");
             /* Offensive Spell */
-            AddControlInWinForm("Use Templar's Verdict", "UseTemplarsVerdict", "Offensive Spell");
-            AddControlInWinForm("Use Justicar's Vengeance", "UseJusticarsVengeance", "Offensive Spell");
-            AddControlInWinForm("Use Divine Storm", "UseDivineStorm", "Offensive Spell");
-            AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
-            AddControlInWinForm("Use Blade of Wrath", "UseBladeOfWrath", "Offensive Spell");
-            AddControlInWinForm("Use Blade of Justice", "UseBladeOfJustice", "Offensive Spell");
-            AddControlInWinForm("Use Divine Hammer", "UseDivineHammer", "Offensive Spell");
-            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
-            AddControlInWinForm("Use Execution Sentence", "UseExecutionSentence", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Reckoning", "UseReckoning", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Havor", "UseDivineHavor", "Defensive Cooldown");
-            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Havor", "UseHandOfHavor", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
-            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
-            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
             /* Flask & Potion Management */
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
@@ -757,8 +650,6 @@ public class DemonHunterVengeance
             AddControlInWinForm("Guardian Elixir Name", "GuardianElixir", "Flask & Potion Management");
             AddControlInWinForm("Use Combat Potion", "UseCombatPotion", "Flask & Potion Management");
             AddControlInWinForm("Combat Potion Name", "CombatPotion", "Flask & Potion Management");
-            AddControlInWinForm("Use Teasure Finding Potion", "UseTeasureFindingPotion", "Flask & Potion Management");
-            AddControlInWinForm("Teasure Finding Potion Name", "TeasureFindingPotion", "Flask & Potion Management");
             AddControlInWinForm("Use Well Fed Buff", "UseWellFedBuff", "Flask & Potion Management");
             AddControlInWinForm("Well Fed Buff Name", "WellFedBuff", "Flask & Potion Management");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
