@@ -287,6 +287,7 @@ public class PriestShadow
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = FlashHeal;
         MySettings = PriestShadowSettings.GetSettings();
         Main.DumpCurrentSettings<PriestShadowSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1073,6 +1074,7 @@ public class PriestDiscipline
     {
         Main.InternalRange = 30.0f;
         Main.InternalAggroRange = 30f;
+        Main.InternalLightHealingSpell = FlashHeal;
         MySettings = PriestDisciplineSettings.GetSettings();
         Main.DumpCurrentSettings<PriestDisciplineSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1727,6 +1729,7 @@ public class PriestHoly
     {
         Main.InternalRange = 30.0f;
         Main.InternalAggroRange = 30.0f;
+        Main.InternalLightHealingSpell = FlashHeal;
         MySettings = PriestHolySettings.GetSettings();
         Main.DumpCurrentSettings<PriestHolySettings>(MySettings);
         UInt128 lastTarget = 0;

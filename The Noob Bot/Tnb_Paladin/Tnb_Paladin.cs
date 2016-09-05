@@ -248,6 +248,7 @@ public class PaladinHoly
     {
         Main.InternalRange = 30f;
         Main.InternalAggroRange = 30f;
+        Main.InternalLightHealingSpell = FlashOfLight;
         MySettings = PaladinHolySettings.GetSettings();
         Main.DumpCurrentSettings<PaladinHolySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -648,6 +649,7 @@ public class PaladinProtection
     public PaladinProtection()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = FlashOfLight;
         MySettings = PaladinProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1132,6 +1134,7 @@ public class PaladinRetribution
     public PaladinRetribution()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = FlashOfLight;
         MySettings = PaladinRetributionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
         UInt128 lastTarget = 0;

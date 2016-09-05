@@ -300,6 +300,7 @@ public class WarlockDemonology
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = WarlockDemonologySettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDemonologySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1277,6 +1278,7 @@ public class WarlockDestruction
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = WarlockDestructionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockDestructionSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -2159,6 +2161,7 @@ public class WarlockAffliction
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = WarlockAfflictionSettings.GetSettings();
         Main.DumpCurrentSettings<WarlockAfflictionSettings>(MySettings);
         UInt128 lastTarget = 0;

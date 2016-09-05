@@ -286,6 +286,7 @@ public class MageArcane
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = MageArcaneSettings.GetSettings();
         Main.DumpCurrentSettings<MageArcaneSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1081,6 +1082,7 @@ public class MageFrost
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = MageFrostSettings.GetSettings();
         Main.DumpCurrentSettings<MageFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1934,6 +1936,7 @@ public class MageFire
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = MageFireSettings.GetSettings();
         Main.DumpCurrentSettings<MageFireSettings>(MySettings);
         UInt128 lastTarget = 0;

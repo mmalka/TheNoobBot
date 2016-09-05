@@ -292,6 +292,7 @@ public class HunterMarksmanship
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = HunterMarksmanshipSettings.GetSettings();
         Main.DumpCurrentSettings<HunterMarksmanshipSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1107,6 +1108,7 @@ public class HunterBeastMastery
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = HunterBeastMasterySettings.GetSettings();
         Main.DumpCurrentSettings<HunterBeastMasterySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1922,6 +1924,7 @@ public class HunterSurvival
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
+        Main.InternalLightHealingSpell = null;
         MySettings = HunterSurvivalSettings.GetSettings();
         Main.DumpCurrentSettings<HunterSurvivalSettings>(MySettings);
         UInt128 lastTarget = 0;

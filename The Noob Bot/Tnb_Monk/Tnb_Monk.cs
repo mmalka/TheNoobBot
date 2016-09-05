@@ -277,6 +277,7 @@ public class MonkBrewmaster
     public readonly Spell ExpelHarm = new Spell("Expel Harm");
     public readonly Spell HealingSphere = new Spell("Healing Sphere");
     public readonly Spell ZenSphere = new Spell("Zen Sphere");
+    public readonly Spell Effuse = new Spell("Effuse");
 
     #endregion
 
@@ -284,6 +285,7 @@ public class MonkBrewmaster
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
         Main.InternalAggroRange = 25.0f;
+        Main.InternalLightHealingSpell = Effuse;
         MySettings = MonkBrewmasterSettings.GetSettings();
         Main.DumpCurrentSettings<MonkBrewmasterSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -913,12 +915,14 @@ public class MonkWindwalker
     public readonly Spell ExpelHarm = new Spell("Expel Harm");
     public readonly Spell HealingSphere = new Spell("Healing Sphere");
     public readonly Spell ZenSphere = new Spell("Zen Sphere");
+    public readonly Spell Effuse = new Spell("Effuse");
 
     #endregion
 
     public MonkWindwalker()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = Effuse;
         MySettings = MonkWindwalkerSettings.GetSettings();
         Main.DumpCurrentSettings<MonkWindwalkerSettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -1543,12 +1547,14 @@ public class MonkMistweaver
     public readonly Spell SurgingMist = new Spell("Surging Mist");
     public readonly Spell Uplift = new Spell("Uplift");
     public readonly Spell ZenSphere = new Spell("Zen Sphere");
+    public readonly Spell Effuse = new Spell("Effuse");
 
     #endregion
 
     public MonkMistweaver()
     {
         Main.InternalRange = 30.0f;
+        Main.InternalLightHealingSpell = Effuse;
         MySettings = MonkMistweaverSettings.GetSettings();
         Main.DumpCurrentSettings<MonkMistweaverSettings>(MySettings);
         UInt128 lastTarget = 0;
