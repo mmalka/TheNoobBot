@@ -291,6 +291,15 @@ namespace nManager.Wow.Bot.States
                         _forceSpiritHealer = false;
                         Logging.Write("The player have been resurrected by the Spirit Healer.");
                         Statistics.Deaths++;
+                        if (ObjectManager.ObjectManager.Me.HaveBuff(15007))
+                        {
+                            Logging.Write("Resurrection Sickness detected, we will now wait its full duration to avoid dieing in chain.");
+                            while (ObjectManager.ObjectManager.Me.HaveBuff(15007))
+                            {
+                                Thread.Sleep(1000);
+                                // We don't need to return if we get in combat, we would die quickly anyway, and we will ressurect from our body this time.
+                            }
+                        }
                     }
                 }
             }
