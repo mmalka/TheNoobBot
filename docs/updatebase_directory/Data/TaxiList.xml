@@ -3546,7 +3546,7 @@
     <Xcoord>0.13154198229313</Xcoord>
     <Ycoord>0.60062384605408</Ycoord>
   </Taxi>
-  <Taxi Faction="Neutral" Id="98114" Name="Skyfire Triage Camp, Stormheim" ContinentId="1220">
+  <Taxi Faction="Alliance" Id="98114" Name="Skyfire Triage Camp, Stormheim" ContinentId="1220">
     <Position>
       <X>3218.24316</X>
       <Y>3085.21973</Y>
@@ -3689,5 +3689,50 @@
     </Position>
     <Xcoord>0.57608819007874</Xcoord>
     <Ycoord>0.7745333313942</Ycoord>
+  </Taxi>
+  <Taxi Faction="Alliance" Id="98108" Name="Greywatch, Stormheim" ContinentId="1220">
+    <Position>
+      <X>2861.90625</X>
+      <Y>845.548645</Y>
+      <Z>77.852066</Z>
+    </Position>
+    <Xcoord>0.71292507648468</Xcoord>
+    <Ycoord>0.54665338993073</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="98972" Name="Prepfoot, Highmountain" ContinentId="1220">
+    <Position>
+      <X>5613.757</X>
+      <Y>3590.16846</Y>
+      <Z>237.174713</Z>
+    </Position>
+    <Xcoord>0.39211654663086</Xcoord>
+    <Ycoord>1.1914633512497</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="97870" Name="Felbane Camp, Highmountain" ContinentId="1220">
+    <Position>
+      <X>5109.539</X>
+      <Y>5572.86963</Y>
+      <Z>119.091469</Z>
+    </Position>
+    <Xcoord>0.15928590297699</Xcoord>
+    <Ycoord>1.0730136632919</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="111420" Name="Hafr Fjall, Stormheim" ContinentId="1220">
+    <Position>
+      <X>1793.72742</X>
+      <Y>1804.82642</Y>
+      <Z>298.3421</Z>
+    </Position>
+    <Xcoord>0.59947228431702</Xcoord>
+    <Ycoord>0.29651734232903</Ycoord>
+  </Taxi>
+  <Taxi Faction="Neutral" Id="114718" Name="Crimson Thicket, Suramar" ContinentId="1220">
+    <Position>
+      <X>1891.58167</X>
+      <Y>3089.71265</Y>
+      <Z>221.387589</Z>
+    </Position>
+    <Xcoord>0.44991791248322</Xcoord>
+    <Ycoord>0.31877344846725</Ycoord>
   </Taxi>
 </ArrayOfTaxi>

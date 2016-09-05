@@ -3418,6 +3418,18 @@
   </Npc>
   <Npc>
     <Entry>2198</Entry>
+    <Name>Crier Goodman</Name>
+    <Position>
+      <X>-8850.427</X>
+      <Y>659.75354</Y>
+      <Z>97.35375</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>2198</Entry>
     <Name>Crieur Goodman</Name>
     <Position>
       <X>-8746.5625</X>
@@ -12287,6 +12299,18 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
+      <Z>-249.86586</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
       <Z>103.496796</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -12336,18 +12360,6 @@
       <X>2393.547</X>
       <Y>-2525.32861</Y>
       <Z>-333.8926</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20504,6 +20516,18 @@
     <Position>
       <X>-4243.21338</X>
       <Y>323.120758</Y>
+      <Z>27.8561249</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>21060</Entry>
+    <Name>Esprit de l'air enragé</Name>
+    <Position>
+      <X>-4243.21338</X>
+      <Y>323.120758</Y>
       <Z>-123.336624</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -20517,18 +20541,6 @@
       <X>-4243.21338</X>
       <Y>323.120758</Y>
       <Z>106.571053</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>21060</Entry>
-    <Name>Esprit de l'air enragé</Name>
-    <Position>
-      <X>-4243.21338</X>
-      <Y>323.120758</Y>
-      <Z>27.8561249</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -45830,6 +45842,17 @@
     <ContinentId>Pandaria</ContinentId>
   </Npc>
   <Npc>
+    <Entry>61636</Entry>
+    <Name>Trial Master Rotun</Name>
+    <Position>
+      <X>3751.513</X>
+      <Y>524.3802</Y>
+      <Z>639.6911</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>ProvingGrounds</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>61706</Entry>
     <Name>Tai Ho</Name>
     <Position>
@@ -49024,7 +49047,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>593.3703</Z>
+      <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -49035,7 +49058,7 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>706.5976</Z>
+      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -63635,6 +63658,50 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
+    <Entry>100301</Entry>
+    <Name>Astoril</Name>
+    <Position>
+      <X>620.59375</X>
+      <Y>4542.513</Y>
+      <Z>-111.587723</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100301</Entry>
+    <Name>Astoril</Name>
+    <Position>
+      <X>1163.68225</X>
+      <Y>4556.26025</Y>
+      <Z>119.589142</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100331</Entry>
+    <Name>Iadreth</Name>
+    <Position>
+      <X>623.4705</X>
+      <Y>4542.1626</Y>
+      <Z>-111.543358</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100331</Entry>
+    <Name>Iadreth</Name>
+    <Position>
+      <X>1166.6731</X>
+      <Y>4558.623</Y>
+      <Z>119.589043</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>100387</Entry>
     <Name>Malfurion Stormrage</Name>
     <Position>
@@ -64196,6 +64263,17 @@
       <X>1729.901</X>
       <Y>4604.145</Y>
       <Z>123.804016</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>103175</Entry>
+    <Name>Lespin Silverleaf</Name>
+    <Position>
+      <X>808.529541</X>
+      <Y>4353.39941</Y>
+      <Z>116.814827</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -64820,6 +64898,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>106897</Entry>
+    <Name>Nighteyes</Name>
+    <Position>
+      <X>1627.73792</X>
+      <Y>3225.9895</Y>
+      <Z>161.831512</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>106901</Entry>
     <Name>Sylvia Hartshorn</Name>
     <Position>
@@ -65194,12 +65283,34 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>107675</Entry>
+    <Name>Rax Sixtrigger</Name>
+    <Position>
+      <X>4074.16577</X>
+      <Y>1037.68054</Y>
+      <Z>138.294952</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>107712</Entry>
     <Name>Verene</Name>
     <Position>
       <X>362.4462</X>
       <Y>3977.20825</Y>
       <Z>1.38823235</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>107712</Entry>
+    <Name>Verene</Name>
+    <Position>
+      <X>1758.65979</X>
+      <Y>4540.72559</Y>
+      <Z>124.0412</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -65458,6 +65569,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>108063</Entry>
+    <Name>Korine</Name>
+    <Position>
+      <X>1757.17017</X>
+      <Y>4541.14746</Y>
+      <Z>124.041206</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>108072</Entry>
     <Name>Sir Finley Mrrgglton</Name>
     <Position>
@@ -65574,6 +65696,17 @@
       <X>4083.1416</X>
       <Y>4385.414</Y>
       <Z>670.626038</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>108504</Entry>
+    <Name>Marius Felbane</Name>
+    <Position>
+      <X>5070.529</X>
+      <Y>5586.4165</Y>
+      <Z>114.360092</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -70545,6 +70678,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>242412</Entry>
+    <Name>Ondri's Summoning Stone</Name>
+    <Position>
+      <X>1454.64929</X>
+      <Y>3160.77856</Y>
+      <Z>110.480583</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>242641</Entry>
     <Name>Tanithria's Dyeing Tub</Name>
     <Position>
@@ -70930,6 +71074,17 @@
     <ContinentId>7_DungeonExteriorNeltharionsLair</ContinentId>
   </Npc>
   <Npc>
+    <Entry>250612</Entry>
+    <Name>Snaggle's Note</Name>
+    <Position>
+      <X>2958.01831</X>
+      <Y>2049.79</Y>
+      <Z>204.655884</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>250990</Entry>
     <Name>Kiste mit uralten Relikten</Name>
     <Position>
@@ -71013,6 +71168,17 @@
       <X>2693.04077</X>
       <Y>1635.91492</Y>
       <Z>14.6926708</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>251870</Entry>
+    <Name>The Sixtriggers' Premium Stash</Name>
+    <Position>
+      <X>4169.25</X>
+      <Y>1036.52954</Y>
+      <Z>138.1635</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
@@ -71181,6 +71347,17 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>258979</Entry>
+    <Name>Fel-Ravaged Tome</Name>
+    <Position>
+      <X>4329.924</X>
+      <Y>-346.819458</Y>
+      <Z>-283.168976</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>WardenPrisonDungeon</ContinentId>
   </Npc>
   <Npc>
     <Entry>259362</Entry>
