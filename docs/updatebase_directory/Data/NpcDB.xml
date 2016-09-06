@@ -10999,6 +10999,18 @@
     <Entry>5188</Entry>
     <Name>Garyl</Name>
     <Position>
+      <X>1235.11975</X>
+      <Y>-4395.01025</Y>
+      <Z>27.4767056</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5188</Entry>
+    <Name>Garyl</Name>
+    <Position>
       <X>1619.78992</X>
       <Y>-4334.48438</Y>
       <Z>21.1199379</Z>
@@ -13418,6 +13430,18 @@
       <X>340.362854</X>
       <Y>-4686.28662</Y>
       <Z>16.4890957</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Innkeeper</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6929</Entry>
+    <Name>Innkeeper Gryshka</Name>
+    <Position>
+      <X>1238.36975</X>
+      <Y>-4395.238</Y>
+      <Z>27.6388454</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Innkeeper</Type>
@@ -38336,6 +38360,18 @@
     <Entry>44865</Entry>
     <Name>Auctioneer Fazdran</Name>
     <Position>
+      <X>1246.52258</X>
+      <Y>-4395.71338</Y>
+      <Z>28.04589</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Auctioneer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44865</Entry>
+    <Name>Auctioneer Fazdran</Name>
+    <Position>
       <X>1643.72</X>
       <Y>-4443.32</Y>
       <Z>18.5337982</Z>
@@ -38363,6 +38399,18 @@
       <X>1640.17</X>
       <Y>-4445.12</Y>
       <Z>18.5338287</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Auctioneer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>44868</Entry>
+    <Name>Auctioneer Xifa</Name>
+    <Position>
+      <X>1522.20313</X>
+      <Y>-4393.48975</Y>
+      <Z>20.9072037</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Auctioneer</Type>
@@ -39174,6 +39222,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>46357</Entry>
+    <Name>Gonto</Name>
+    <Position>
+      <X>1591.22571</X>
+      <Y>-4357.21729</Y>
+      <Z>21.1211643</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>MiningTrainer</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>46358</Entry>
     <Name>Lutah</Name>
     <Position>
@@ -39204,6 +39264,30 @@
       <X>1596.22</X>
       <Y>-4288.39</Y>
       <Z>21.5155716</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Repair</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>46512</Entry>
+    <Name>Naros</Name>
+    <Position>
+      <X>1582.54858</X>
+      <Y>-4364.09375</Y>
+      <Z>20.8332176</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>46512</Entry>
+    <Name>Naros</Name>
+    <Position>
+      <X>1582.54858</X>
+      <Y>-4364.09375</Y>
+      <Z>20.8332176</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Repair</Type>
@@ -39252,6 +39336,18 @@
       <X>1655.42017</X>
       <Y>-4353.29541</Y>
       <Z>64.53708</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>46572</Entry>
+    <Name>Goram</Name>
+    <Position>
+      <X>1248.61108</X>
+      <Y>-4428.15967</Y>
+      <Z>23.198431</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>Vendor</Type>
@@ -49047,6 +49143,18 @@
     <Entry>73151</Entry>
     <Name>Deathguard Netharian</Name>
     <Position>
+      <X>1243.6875</X>
+      <Y>-4430.83</Y>
+      <Z>22.74108</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>73151</Entry>
+    <Name>Deathguard Netharian</Name>
+    <Position>
       <X>1638.243</X>
       <Y>-4232.462</Y>
       <Z>52.1388</Z>
@@ -58553,6 +58661,18 @@
     </Position>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100842</Entry>
+    <Name>Trak'gen</Name>
+    <Position>
+      <X>1536.9115</X>
+      <Y>-4429.17529</Y>
+      <Z>20.334856</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>Vendor</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>101846</Entry>

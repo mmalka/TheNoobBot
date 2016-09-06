@@ -5269,6 +5269,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>3304</Entry>
+    <Name>Master Vornal</Name>
+    <Position>
+      <X>1239.79688</X>
+      <Y>-4390.618</Y>
+      <Z>28.0745163</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>3310</Entry>
     <Name>Doras</Name>
     <Position>
@@ -8625,6 +8637,18 @@
     <Entry>5892</Entry>
     <Name>Searn Firewarder</Name>
     <Position>
+      <X>1239.651</X>
+      <Y>-4393.00342</Y>
+      <Z>27.8925419</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>5892</Entry>
+    <Name>Searn Firewarder</Name>
+    <Position>
       <X>1932.3</X>
       <Y>-4188.04</Y>
       <Z>36.9621849</Z>
@@ -9535,6 +9559,18 @@
     <Entry>6929</Entry>
     <Name>Innkeeper Gryshka</Name>
     <Position>
+      <X>1238.36975</X>
+      <Y>-4395.238</Y>
+      <Z>27.6388454</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>6929</Entry>
+    <Name>Innkeeper Gryshka</Name>
+    <Position>
       <X>1573.26563</X>
       <Y>-4439.158</Y>
       <Z>16.0566635</Z>
@@ -9673,6 +9709,18 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>7311</Entry>
+    <Name>Uthel'nay</Name>
+    <Position>
+      <X>1243.95483</X>
+      <Y>-4391.453</Y>
+      <Z>28.1754875</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>7311</Entry>
@@ -10135,6 +10183,18 @@
       <X>-858.092041</X>
       <Y>-4883.0415</Y>
       <Z>22.1160145</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>7952</Entry>
+    <Name>Zjolnir</Name>
+    <Position>
+      <X>1242.03821</X>
+      <Y>-4392.22559</Y>
+      <Z>28.0555954</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12299,7 +12359,7 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-333.8926</Z>
+      <Z>-249.86586</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -12335,18 +12395,6 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-417.438171</Z>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>QuestGiver</Type>
-    <ContinentId>Kalimdor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>11720</Entry>
-    <Name>Loruk Foreststrider</Name>
-    <Position>
-      <X>2393.547</X>
-      <Y>-2525.32861</Y>
       <Z>-166.801468</Z>
     </Position>
     <Faction>Horde</Faction>
@@ -12359,7 +12407,19 @@
     <Position>
       <X>2393.547</X>
       <Y>-2525.32861</Y>
-      <Z>-249.86586</Z>
+      <Z>-333.8926</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>11720</Entry>
+    <Name>Loruk Foreststrider</Name>
+    <Position>
+      <X>2393.547</X>
+      <Y>-2525.32861</Y>
+      <Z>-417.438171</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -13438,6 +13498,18 @@
     <Faction>Alliance</Faction>
     <Type>QuestGiver</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>13842</Entry>
+    <Name>Frostwolf Ambassador Rokhstrom</Name>
+    <Position>
+      <X>1247.93225</X>
+      <Y>-4409.061</Y>
+      <Z>24.5149536</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>13842</Entry>
@@ -16047,6 +16119,18 @@
       <X>-3144.23877</X>
       <Y>-2857.69678</Y>
       <Z>34.3088036</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>17098</Entry>
+    <Name>Ambassador Dawnsinger</Name>
+    <Position>
+      <X>1257.96533</X>
+      <Y>-4396.96533</Y>
+      <Z>26.1606121</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20576,7 +20660,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>17.99422</Z>
+      <Z>-124.571709</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -20588,7 +20672,7 @@
     <Position>
       <X>-4149.493</X>
       <Y>411.6227</Y>
-      <Z>-124.571709</Z>
+      <Z>17.99422</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -34031,6 +34115,18 @@
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
+    <Entry>38244</Entry>
+    <Name>Legati</Name>
+    <Position>
+      <X>1242.11462</X>
+      <Y>-4389.34033</Y>
+      <Z>28.2062511</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>38245</Entry>
     <Name>Tunari</Name>
     <Position>
@@ -39348,6 +39444,18 @@
     <Entry>45137</Entry>
     <Name>Shadow-Walker Zuru</Name>
     <Position>
+      <X>1249.618</X>
+      <Y>-4394.264</Y>
+      <Z>28.2236576</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45137</Entry>
+    <Name>Shadow-Walker Zuru</Name>
+    <Position>
       <X>1685.90283</X>
       <Y>-4130.106</Y>
       <Z>49.19857</Z>
@@ -39562,6 +39670,18 @@
       <X>1640.67</X>
       <Y>-4343.68</Y>
       <Z>26.7660027</Z>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>45347</Entry>
+    <Name>Brother Silverhallow</Name>
+    <Position>
+      <X>1244.83337</X>
+      <Y>-4396.39941</Y>
+      <Z>27.9052868</Z>
     </Position>
     <Faction>Horde</Faction>
     <Type>QuestGiver</Type>
@@ -49036,17 +49156,6 @@
     <Position>
       <X>2890.49658</X>
       <Y>627.434</Y>
-      <Z>593.3703</Z>
-    </Position>
-    <Type>QuestGiver</Type>
-    <ContinentId>Draenor</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>72447</Entry>
-    <Name>Chronalis</Name>
-    <Position>
-      <X>2890.49658</X>
-      <Y>627.434</Y>
       <Z>706.5976</Z>
     </Position>
     <Type>QuestGiver</Type>
@@ -49059,6 +49168,17 @@
       <X>2890.49658</X>
       <Y>627.434</Y>
       <Z>513.6742</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Draenor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>72447</Entry>
+    <Name>Chronalis</Name>
+    <Position>
+      <X>2890.49658</X>
+      <Y>627.434</Y>
+      <Z>593.3703</Z>
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Draenor</ContinentId>
@@ -61918,6 +62038,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>94594</Entry>
+    <Name>Theo the Huntsman</Name>
+    <Position>
+      <X>3082.69873</X>
+      <Y>6780.112</Y>
+      <Z>127.583382</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>94686</Entry>
     <Name>Sage-soleil Chakkis</Name>
     <Position>
@@ -63757,6 +63888,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>100453</Entry>
+    <Name>Eitrigg</Name>
+    <Position>
+      <X>1437.34546</X>
+      <Y>-4985.14941</Y>
+      <Z>12.0186768</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>100482</Entry>
     <Name>Senegos</Name>
     <Position>
@@ -63779,6 +63921,17 @@
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
+    <Entry>100636</Entry>
+    <Name>High Overlord Saurfang</Name>
+    <Position>
+      <X>1605.92542</X>
+      <Y>-4376.51025</Y>
+      <Z>21.7337055</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
     <Entry>100775</Entry>
     <Name>Lilryia Dawnwind</Name>
     <Position>
@@ -63788,6 +63941,28 @@
     </Position>
     <Type>QuestGiver</Type>
     <ContinentId>Troll Raid</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100866</Entry>
+    <Name>Lady Sylvanas Windrunner</Name>
+    <Position>
+      <X>1248.64063</X>
+      <Y>-4379.35938</Y>
+      <Z>34.83271</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <Entry>100873</Entry>
+    <Name>Allari the Souleater</Name>
+    <Position>
+      <X>1275.69275</X>
+      <Y>-4384.89941</Y>
+      <Z>28.738596</Z>
+    </Position>
+    <Type>QuestGiver</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <Entry>101080</Entry>

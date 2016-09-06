@@ -959,28 +959,29 @@ public class DruidFeral
 
             if (ObjectManager.Me.GetMove)
             {
-                //DEBUG
-                //Logging.Write("Dash.IsSpellUsable == " + Dash.IsSpellUsable);
-
                 //Movement Buffs
                 if (!Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
                 {
                     if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
                     {
                         Darkflight.Cast();
+                        return;
                     }
-                    else if (MySettings.UseDash && Dash.IsSpellUsable) //TODO fix Dash.IsSpellUsable
+                    if (MySettings.UseDash && Dash.IsSpellUsable)
                     {
                         Dash.Cast();
+                        return;
                     }
-                    else if (MySettings.UseStampedingRoar && StampedingRoar.IsSpellUsable && CatForm.HaveBuff)
+                    if (MySettings.UseStampedingRoar && StampedingRoar.IsSpellUsable && CatForm.HaveBuff)
                     {
                         StampedingRoar.Cast();
+                            return;
                     }
                 }
-                else if (CatForm.IsSpellUsable && !CatForm.HaveBuff)
+                if (CatForm.IsSpellUsable && !CatForm.HaveBuff)
                 {
                     CatForm.Cast();
+                    return;
                 }
             }
             else
@@ -1187,7 +1188,7 @@ public class DruidFeral
                 Incarnation.Cast();
                 return true;
             }
-            if (MySettings.UseProwl && Prowl.IsSpellUsable && !Prowl.HaveBuff && ObjectManager.Me.Target > 0 /*&& !Incarnation.HaveBuff*/)
+            if (MySettings.UseProwl && Prowl.IsSpellUsable && !Prowl.HaveBuff /*&& !Incarnation.HaveBuff*/)
             {
                 Prowl.Cast();
                 return true;
