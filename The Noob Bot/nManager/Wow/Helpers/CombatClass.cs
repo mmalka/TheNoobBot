@@ -346,7 +346,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                if (_instanceFromOtherAssembly != null && _instanceFromOtherAssembly.LightHealingSpell.Id > 0)
+                if (_instanceFromOtherAssembly != null && _instanceFromOtherAssembly.LightHealingSpell != null && _instanceFromOtherAssembly.LightHealingSpell.Id > 0)
                     return _instanceFromOtherAssembly.LightHealingSpell;
                 return new Spell(0);
             }
