@@ -3762,4 +3762,13 @@
     <Xcoord>0.46071997284889</Xcoord>
     <Ycoord>-0.25285741686821</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="114837" Name="Gloaming Reef, Val'sharah" ContinentId="1220">
+    <Position>
+      <X>2521.13379</X>
+      <Y>8178.45068</Y>
+      <Z>12.4450932</Z>
+    </Position>
+    <Xcoord>-0.14609050750732</Xcoord>
+    <Ycoord>0.46691837906837</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
