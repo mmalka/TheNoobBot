@@ -1340,8 +1340,6 @@ namespace nManager.Wow.ObjectManager
                 }
                 else
                 {
-                    if (u.Guid == fromUnit.Guid)
-                        continue;
                     if (u.Position.DistanceTo(fromUnit.Position) > spellRange)
                         continue;
                 }
@@ -1350,7 +1348,7 @@ namespace nManager.Wow.ObjectManager
             return unitInSpellRange;
         }
 
-        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true, WoWPlayer fromPlayer = null)
+        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true,  WoWUnit fromUnitOrPlayer = null)
         {
             if (spellRange < 5)
                 spellRange = 5;
@@ -1367,18 +1365,14 @@ namespace nManager.Wow.ObjectManager
                     continue;
                 if (friendly && p.IsHostile)
                     continue;
-                if (fromPlayer == null || !fromPlayer.IsValid || !fromPlayer.IsAlive)
+                if (fromUnitOrPlayer == null || !fromUnitOrPlayer.IsValid || !fromUnitOrPlayer.IsAlive)
                 {
-                    if (p.Guid == Me.Guid)
-                        continue;
                     if (p.GetDistance > spellRange)
                         continue;
                 }
                 else
                 {
-                    if (p.Guid == fromPlayer.Guid)
-                        continue;
-                    if (p.Position.DistanceTo(fromPlayer.Position) > spellRange)
+                    if (p.Position.DistanceTo(fromUnitOrPlayer.Position) > spellRange)
                         continue;
                 }
                 playersInSpellRange++;

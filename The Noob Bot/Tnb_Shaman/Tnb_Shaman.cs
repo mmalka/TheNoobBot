@@ -590,7 +590,7 @@ public class ShamanEnhancement
                 FeralSpirit.Cast();
                 return;
             }
-            if (ObjectManager.GetUnitInSpellRange(5f) > 2 && CrashLightning.IsHostileDistanceGood &&
+            if (ObjectManager.Me.GetUnitInSpellRange(5f) > 2 && CrashLightning.IsHostileDistanceGood &&
                 CrashLightning.IsSpellUsable && MySettings.UseCrashLightning)
             {
                 CrashLightning.Cast();
@@ -1857,9 +1857,12 @@ public class ShamanElemental
                 Logging.WriteFight("Target is " + leveldif + " Levels lower. Try Onehot!");
 
                 //Multiple Targets
-                if (ObjectManager.Target.GetUnitCountInRange(10f) > 1 && ChainLightning.IsHostileDistanceGood &&
+                if (ObjectManager.Target.GetUnitInSpellRange(10f) > 1 && ChainLightning.IsHostileDistanceGood &&
                     ChainLightning.IsSpellUsable && MySettings.UseChainLightning)
                 {
+                    //DEBUG
+                    Logging.Write("Target.GetUnitInSpellRange(10f) == " + ObjectManager.Target.GetUnitInSpellRange(10f));
+                    
                     ChainLightning.Cast();
                     return true;
                 }
@@ -2014,9 +2017,12 @@ public class ShamanElemental
                 LavaBurst.Cast();
                 return;
             }
-            if (ObjectManager.Target.GetUnitCountInRange(8f) > 2 && Earthquake.IsHostileDistanceGood &&
+            if (ObjectManager.Target.GetUnitInSpellRange(8f) > 2 && Earthquake.IsHostileDistanceGood &&
                 EarthquakeCooldown.IsReady && MySettings.UseEarthquake)
             {
+                //DEBUG
+                Logging.Write("Target.GetUnitInSpellRange(8f) == " + ObjectManager.Target.GetUnitInSpellRange(8f));
+                
                 Earthquake.Cast();
                 EarthquakeCooldown = new Timer(1000*10);
                 return;
@@ -2027,9 +2033,12 @@ public class ShamanElemental
                 EarthShock.Cast();
                 return;
             }
-            if (ObjectManager.Target.GetUnitCountInRange(8f) > 1 && ChainLightning.IsHostileDistanceGood &&
+            if (ObjectManager.Target.GetUnitInSpellRange(8f) > 1 && ChainLightning.IsHostileDistanceGood &&
                 ChainLightning.IsSpellUsable && MySettings.UseChainLightning)
             {
+                //DEBUG
+                Logging.Write("Target.GetUnitInSpellRange(8f) == " + ObjectManager.Target.GetUnitInSpellRange(8f));
+                
                 ChainLightning.Cast();
                 return;
             }

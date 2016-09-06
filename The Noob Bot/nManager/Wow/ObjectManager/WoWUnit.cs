@@ -221,21 +221,14 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static uint GetUnitsCountArroundUnit(WoWUnit targetUnit, float range = 5f)
+        public uint GetUnitInSpellRange(float range = 5f)
         {
-            List<WoWUnit> units = ObjectManager.GetObjectWoWUnit60Yards();
-            uint unitCount = 0;
-            foreach (var unit in units)
-            {
-                if (targetUnit.Position.DistanceTo2D(unit.Position) <= range)
-                    unitCount++;
-            }
-            return unitCount;
+            return ObjectManager.GetUnitInSpellRange(range, this);
         }
 
-        public uint GetUnitCountInRange(float range = 5f)
+        public uint GetPlayerInSpellRange(float range = 5f, bool friendly = true)
         {
-            return GetUnitsCountArroundUnit(this, range);
+            return ObjectManager.GetPlayerInSpellRange(range, friendly, this);
         }
 
         public bool IsHostile

@@ -886,13 +886,16 @@ public class ShamanRestoration
                 EarthenShieldTotemCooldown = new Timer(1000*60);
                 return;
             }
-            /*if (Target.GetPlayerInSpellRange(10f) >= MySettings.UseHealingRainAtPlayerDensity &&
+            if (Target.GetPlayerInSpellRange(10f) >= MySettings.UseHealingRainAtPlayerDensity &&
                 PartyHpMedian <= MySettings.UseHealingRainAtPartyPercentage && HealingRain.IsSpellUsable &&
                 CombatClass.InSpellRange(Target, HealingRain.MinRangeFriend, HealingRain.MaxRangeFriend) && MySettings.UseHealingRain)
             {
+                //DEBUG
+                Logging.Write("Target.GetPlayerInSpellRange(10f) == " + Target.GetPlayerInSpellRange(10f));
+
                 HealingRain.Cast(false, true, false, Target.GetUnitId());
                 return;
-            }*/
+            }
 
             //Filler
             if (Target.HealthPercent <= MySettings.UseHealingWaveWithTidalWavesBelowPercentage && /*!Target.HaveBuff(53390)*/ !Target.UnitAura(53390, ObjectManager.Me.Guid).IsValid &&

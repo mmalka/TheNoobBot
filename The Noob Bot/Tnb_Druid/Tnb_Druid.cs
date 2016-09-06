@@ -236,7 +236,7 @@ public class DruidBalance
     //public readonly Spell BlessingoftheAncients = new Spell("Blessing of the Ancients"); //No GCD //TEST THIS FIRST
     public readonly Spell CatForm = new Spell("Cat Form");
     public readonly Spell MoonkinForm = new Spell("Moonkin Form");
-    public readonly Spell TravelForm = new Spell("Travel Form");
+    //public readonly Spell TravelForm = new Spell("Travel Form");
     public readonly Spell LunarEmpowerment = new Spell(164547);
     public readonly Spell SolarEmpowerment = new Spell(164545);
 
@@ -388,67 +388,7 @@ public class DruidBalance
 
             if (ObjectManager.Me.GetMove)
             {
-                //Movement
-                if (MySettings.UseTravelForm && TravelForm.IsSpellUsable) // && TravelFormTimer.IsReady)
-                {
-                    //Logging.Write("MountCapacity == " + MountTask.GetMountCapacity());
-                    switch (MountTask.GetMountCapacity())
-                    {
-                        case MountCapacity.Feet:
-                            if (CatForm.IsSpellUsable && !CatForm.HaveBuff)
-                            {
-                                if (TravelForm.HaveBuff)
-                                {
-                                    MountTask.DismountMount();
-                                }
-                                CatForm.Cast();
-                            }
-                            break;
-
-                        case MountCapacity.Ground:
-                            if (!MountTask.OnGroundMount() && TravelForm.IsSpellUsable)
-                            {
-                                Logging.Write("Mounting Ground");
-                                if (TravelForm.HaveBuff)
-                                {
-                                    Logging.Write("Dismounting");
-                                    MountTask.DismountMount();
-                                }
-                                TravelForm.Cast();
-                            }
-                            return;
-
-                        case MountCapacity.Swimm:
-                            if (!MountTask.OnAquaticMount() && TravelForm.IsSpellUsable)
-                            {
-                                Logging.Write("Mounting Aquatic");
-                                if (TravelForm.HaveBuff)
-                                {
-                                    Logging.Write("Dismounting");
-                                    MountTask.DismountMount();
-                                }
-                                TravelForm.Cast();
-                            }
-                            return;
-
-                        case MountCapacity.Fly:
-                            if (!MountTask.OnFlyMount() && TravelForm.IsSpellUsable)
-                            {
-                                Logging.Write("Mounting Fly");
-                                if (TravelForm.HaveBuff)
-                                {
-                                    Logging.Write("Dismounting");
-                                    MountTask.DismountMount();
-                                }
-                                TravelForm.Cast();
-                            }
-                            return;
-
-                        default:
-                            break;
-                    }
-                }
-                if (!ObjectManager.Me.IsMounted && !Darkflight.HaveBuff && !Dash.HaveBuff)
+                if (!Darkflight.HaveBuff && !Dash.HaveBuff)
                 {
                     if (MySettings.UseDarkflight && Darkflight.IsSpellUsable) //they don't stack
                     {
@@ -724,7 +664,6 @@ public class DruidBalance
         /* Druid Buffs */
         public bool UseMoonkinForm = true;
         public int UseMoonkinFormBelowDistance = 55;
-        public bool UseTravelForm = true;
         //public bool UseBlessingoftheAncients  = true; //TEST THIS FIRST
 
         /* Druid DoTs */
@@ -782,7 +721,6 @@ public class DruidBalance
             /* Druid Buffs */
             AddControlInWinForm("Use Moonkin Form", "UseMoonkinForm", "Druid Buffs");
             AddControlInWinForm("Use Moonkin Form below Distance", "UseMoonkinFormBelowDistance", "Druid Buffs"); //TODO add BelowPercentage alternative
-            AddControlInWinForm("Use Travel Form", "UseTravelForm", "Druid Buffs");
             /* Druid DoTs */
             AddControlInWinForm("Use Moonfire", "UseMoonfire", "Druid DoTs");
             AddControlInWinForm("Use Sunfire", "UseSunfire", "Druid DoTs");
@@ -870,7 +808,7 @@ public class DruidFeral
     //public readonly Spell BearForm = new Spell("Bear Form");
     public readonly Spell CatForm = new Spell("Cat Form");
     //public readonly Spell MoonkinForm = new Spell("Moonkin Form");
-    public readonly Spell TravelForm = new Spell("Travel Form");
+    //public readonly Spell TravelForm = new Spell("Travel Form");
     public readonly Spell SavageRoar = new Spell("Savage Roar");
     public readonly Spell PredatorySwiftness = new Spell(69369); //Predatory Swiftness
 
@@ -957,6 +895,10 @@ public class DruidFeral
                 {
                     if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
                     {
+                        //DEBUG
+                        if (ObjectManager.Me.HealthPercent == 0)
+                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
+                            
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget)
@@ -1021,7 +963,7 @@ public class DruidFeral
                 //Logging.Write("Dash.IsSpellUsable == " + Dash.IsSpellUsable);
 
                 //Movement Buffs
-                if (!ObjectManager.Me.IsMounted && !Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
+                if (!Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
                 {
                     if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
                     {
@@ -1034,78 +976,6 @@ public class DruidFeral
                     else if (MySettings.UseStampedingRoar && StampedingRoar.IsSpellUsable && CatForm.HaveBuff)
                     {
                         StampedingRoar.Cast();
-                    }
-                }
-
-                //Shapeshifting (For Damage Dealer Module)
-                if (MySettings.UseTravelForm && TravelForm.IsSpellUsable) // && TravelFormTimer.IsReady)
-                {
-                    //DEBUG
-                    //Logging.Write("MountCapacity == " + MountTask.GetMountCapacity());
-
-                    switch (MountTask.GetMountCapacity())
-                    {
-                        case MountCapacity.Feet:
-                            if (CatForm.IsSpellUsable && !CatForm.HaveBuff)
-                            {
-                                if (TravelForm.HaveBuff)
-                                {
-                                    //DEBUG
-                                    //Logging.Write("Dismounting");
-
-                                    MountTask.DismountMount();
-                                }
-                                CatForm.Cast();
-                            }
-                            break;
-
-                        case MountCapacity.Ground:
-                            if (!MountTask.OnGroundMount() && TravelForm.IsSpellUsable)
-                            {
-                                Logging.Write("Mounting Ground");
-                                if (TravelForm.HaveBuff)
-                                {
-                                    //DEBUG
-                                    //Logging.Write("Dismounting");
-
-                                    MountTask.DismountMount();
-                                }
-                                TravelForm.Cast();
-                            }
-                            return;
-
-                        case MountCapacity.Swimm:
-                            if (!MountTask.OnAquaticMount() && TravelForm.IsSpellUsable)
-                            {
-                                Logging.Write("Mounting Aquatic");
-                                if (TravelForm.HaveBuff)
-                                {
-                                    //DEBUG
-                                    //Logging.Write("Dismounting");
-
-                                    MountTask.DismountMount();
-                                }
-                                TravelForm.Cast();
-                            }
-                            return;
-
-                        case MountCapacity.Fly:
-                            if (!MountTask.OnFlyMount() && TravelForm.IsSpellUsable)
-                            {
-                                Logging.Write("Mounting Fly");
-                                if (TravelForm.HaveBuff)
-                                {
-                                    //DEBUG
-                                    //Logging.Write("Dismounting");
-
-                                    MountTask.DismountMount();
-                                }
-                                TravelForm.Cast();
-                            }
-                            return;
-
-                        default:
-                            break;
                     }
                 }
                 else if (CatForm.IsSpellUsable && !CatForm.HaveBuff)
@@ -1560,7 +1430,6 @@ public class DruidFeral
 
         /* Druid Buffs */
         public bool UseCatForm = true;
-        public bool UseTravelForm = false;
         public bool UseSavageRoar = true;
 
         /* Druid DoTs */
@@ -1620,7 +1489,6 @@ public class DruidFeral
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
             AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
-            AddControlInWinForm("Use Travel Form", "UseTravelForm", "Druid Buffs");
             AddControlInWinForm("Use Savage Roar", "UseSavageRoar", "Druid Buffs");
             /* Druid DoTs */
             AddControlInWinForm("Use Moonfire", "UseMoonfire", "Druid DoTs");
