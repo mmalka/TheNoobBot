@@ -48,9 +48,7 @@ namespace nManager.Wow.Bot.States
                     if (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent)
                         return true;
 
-                if (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
-                    return true;
-                return false;
+                return CombatClass.GetLightHealingSpell != null && CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85;
             }
         }
 
