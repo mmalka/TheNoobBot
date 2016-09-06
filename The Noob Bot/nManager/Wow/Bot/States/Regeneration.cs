@@ -56,6 +56,16 @@ namespace nManager.Wow.Bot.States
         {
             try
             {
+                if (Usefuls.IsSwimming)
+                {
+                    Logging.WriteNavigator("Going out of water");
+                    while (Usefuls.IsSwimming)
+                    {
+                        MovementsAction.Ascend(true);
+                        Thread.Sleep(500);
+                        MovementsAction.Ascend(false);
+                    }
+                }
                 // isMana = false => Health
                 if (ObjectManager.ObjectManager.Me.IsMounted)
                     Usefuls.DisMount();

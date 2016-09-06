@@ -202,7 +202,7 @@ namespace nManager.Wow.Helpers
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
                 elaspedTime = currentWoWTime - spellCooldown.CategoryCooldownStartTime;
-                // StartTime sometimes get to 0, don't trust it when we are checking for Category.
+                 // StartTime sometimes get to 0, don't trust it when we are checking for Category.
                 if (spellCooldown.CategoryCooldownDuration >= elaspedTime)
                     return true;
             }
