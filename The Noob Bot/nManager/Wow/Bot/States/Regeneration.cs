@@ -112,6 +112,8 @@ namespace nManager.Wow.Bot.States
                     }
                 }
 
+                if (CombatClass.GetLightHealingSpell == null)
+                    return;
                 // In case we did not use food/beverage, we check if we need to heal ourself.
                 if (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
                 {
