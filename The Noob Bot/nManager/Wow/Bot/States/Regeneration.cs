@@ -123,7 +123,7 @@ namespace nManager.Wow.Bot.States
                     var timer = new Timer(10000);
                     while (CombatClass.GetLightHealingSpell.IsSpellUsable && ObjectManager.ObjectManager.Me.HealthPercent <= 85)
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(250);
                         if (ObjectManager.ObjectManager.Me.IsCasting)
                             continue;
                         if (Math.Abs(ObjectManager.ObjectManager.Me.HealthPercent) < 0.001f)
