@@ -3771,4 +3771,13 @@
     <Xcoord>-0.14609050750732</Xcoord>
     <Ycoord>0.46691837906837</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="111314" Name="Shield's Rest, Stormheim" ContinentId="1220">
+    <Position>
+      <X>4764.157</X>
+      <Y>-180.454865</Y>
+      <Z>16.9516754</Z>
+    </Position>
+    <Xcoord>0.83442741632462</Xcoord>
+    <Ycoord>0.99238276481628</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
