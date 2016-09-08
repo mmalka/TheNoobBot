@@ -21,6 +21,7 @@ namespace nManager.Wow.Bot.Tasks
         private static string _fishingPoleName = "";
         private static bool _useLure;
         private static bool _automaticallyUseDraenorSecondaryBait;
+        public static int _lastSuccessfullFishing;
 
         private const float distanceBobber = 4.0f;
 
@@ -42,6 +43,7 @@ namespace nManager.Wow.Bot.Tasks
                 lock (typeof (FishingTask))
                 {
                     _guidNode = 0;
+                    _lastSuccessfullFishing = 0;
                     _fishBotLaunched = false;
                 }
             }
@@ -101,6 +103,11 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         while (_fishBotLaunched)
                         {
+                            if (ObjectManager.ObjectManager.Me.InCombat)
+                            {
+                                StopLoopFish();
+                                continue;
+                            }
                             Fishing.EquipFishingPoles(_fishingPoleName);
                             if (_useLure)
                                 Fishing.UseLure(_lureName, _automaticallyUseDraenorSecondaryBait);
@@ -143,8 +150,9 @@ namespace nManager.Wow.Bot.Tasks
                                 if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid)
                                 {
                                     Interact.InteractWith(objBobber.GetBaseAddress);
+                                    _lastSuccessfullFishing = Environment.TickCount;
                                     Statistics.Farms++;
-                                    Thread.Sleep(1000);
+                                    Thread.Sleep(500);
                                 }
                             }
                         }

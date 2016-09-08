@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using nManager;
@@ -9,6 +10,7 @@ using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using Math = nManager.Helpful.Math;
 
 namespace Fisherbot.Bot
 {
@@ -26,20 +28,29 @@ namespace Fisherbot.Bot
         private const float DistanceMax = 19f;
         private const int TimeTryFindGoodPos = 7000;
         private nManager.Helpful.Timer timer;
+        private bool _beenFighting;
+        private bool _firstRun = true;
 
         public override bool NeedToRun
         {
             get
             {
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoading ||
-                    ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.Me.IsValid ||
-                    (ObjectManager.Me.InCombat &&
-                     !(ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
-                    !Products.IsStarted)
+                if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.Me.IsDeadMe || !ObjectManager.Me.IsValid || Usefuls.IsFlying || !Products.IsStarted)
                     return false;
+                if (ObjectManager.Me.InCombat)
+                {
+                    _beenFighting = true;
+                    if (ObjectManager.Me.IsMounted && !nManagerSetting.CurrentSetting.IgnoreFightIfMounted)
+                        return false;
+                    if (!ObjectManager.Me.IsMounted)
+                    {
+                        if (FishingTask.IsLaunched)
+                            FishingTask.StopLoopFish();
+                        ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
+                        if (!string.IsNullOrEmpty(FisherbotSetting.CurrentSetting.ShieldName))
+                            ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.ShieldName);
+                    }
+                }
 
                 if (FisherbotSetting.CurrentSetting.FishSchool)
                 {
@@ -74,13 +85,16 @@ namespace Fisherbot.Bot
 
         public override void Run()
         {
-            if (!Products.IsStarted || ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
+            if (!Products.IsStarted || ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombatBlizzard)
                 return;
             if (!FisherbotSetting.CurrentSetting.FishSchool)
             {
+                if (_firstRun && FishingTask.IsLaunched)
+                    _firstRun = false;
                 // If we have a saved position and we don't fish, then go to position
-                if (FisherbotSetting.CurrentSetting.FisherbotPosition.IsValid && !FishingTask.IsLaunched)
+                if (FisherbotSetting.CurrentSetting.FisherbotPosition.IsValid && (!FishingTask.IsLaunched || _beenFighting) && !_firstRun)
                 {
+                    _beenFighting = false;
                     if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 5)
                         LongMove.LongMoveGo(FisherbotSetting.CurrentSetting.FisherbotPosition);
                     else if (ObjectManager.Me.Position.DistanceTo(FisherbotSetting.CurrentSetting.FisherbotPosition) > 1.5f)
@@ -110,8 +124,19 @@ namespace Fisherbot.Bot
                     // We are in timer, we fish, then save the position
                 else
                 {
-                    FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;
-                    FisherbotSetting.CurrentSetting.FisherbotRotation = ObjectManager.Me.Rotation;
+                    if (FishingTask._lastSuccessfullFishing > Environment.TickCount - 5000)
+                    {
+                        FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;
+                        FisherbotSetting.CurrentSetting.FisherbotRotation = ObjectManager.Me.Rotation;
+                        // We successfully fished in the last 5 seconds, let's record our position again.
+                    }
+                    if (FishingTask._lastSuccessfullFishing != 0 && FishingTask._lastSuccessfullFishing < Environment.TickCount - 25000)
+                    {
+                        // We did not catch a single thing in the last 25 seconds...
+                        FishingTask.StopLoopFish();
+                        return;
+                    }
+                    // _lastSuccessfullFishing is fine or we never fished yet, let it load :)
                     Thread.Sleep(500);
                 }
                 // No more while, we test what we need and return
