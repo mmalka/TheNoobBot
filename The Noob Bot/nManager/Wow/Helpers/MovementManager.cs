@@ -993,7 +993,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static void MicroMove()
+        public static void MicroMove()
         {
             if (InMovement || InMoveTo)
                 return;

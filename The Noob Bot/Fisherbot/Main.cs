@@ -83,9 +83,8 @@ public class Main : IProduct
     {
         try
         {
-            MovementsAction.Ascend(true);
-            Thread.Sleep(20);
-            MovementsAction.Ascend(false); 
+            if (ObjectManager.Me.IsCasting)
+                MovementManager.MicroMove();
             // Cancel cast if we were fishing else the weapon wont be replaced.
             ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
             if (!string.IsNullOrEmpty(FisherbotSetting.CurrentSetting.ShieldName))

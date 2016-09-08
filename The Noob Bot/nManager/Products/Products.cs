@@ -235,6 +235,7 @@ namespace nManager.Products
                         return false;
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
+                    EventsListener.HookEvent(WoWEventsType.PLAYER_TALENT_UPDATE, callback => SpellManager.UpdateSpellBook());
 
                     Statistics.Reset();
 
@@ -283,6 +284,7 @@ namespace nManager.Products
                 {
                     EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
+                    EventsListener.UnHookEvent(WoWEventsType.PLAYER_TALENT_UPDATE, callback => SpellManager.UpdateSpellBook());
                     _instanceFromOtherAssembly.Stop();
                     Thread.Sleep(500);
                     MovementManager.StopMove();
