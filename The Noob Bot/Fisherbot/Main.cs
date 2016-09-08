@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using Fisherbot;
 using Fisherbot.Bot;
@@ -82,6 +83,13 @@ public class Main : IProduct
     {
         try
         {
+            MovementsAction.Ascend(true);
+            Thread.Sleep(20);
+            MovementsAction.Ascend(false); 
+            // Cancel cast if we were fishing else the weapon wont be replaced.
+            ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
+            if (!string.IsNullOrEmpty(FisherbotSetting.CurrentSetting.ShieldName))
+                ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.ShieldName);
             Bot.Dispose();
             _isStarted = false;
             Others.ProductStatusLog(Products.ProductName, 6);
