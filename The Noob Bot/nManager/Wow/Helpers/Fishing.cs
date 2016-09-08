@@ -389,7 +389,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var listDisplayID = new List<uint> {668, 29716}; // 29716 = big bobber
+                var listDisplayID = new List<uint> {668, 29716, 12161, 18332}; // 29716 = big bobber, 12161 = Duck Bobber, 18332 = Murloc Bobber
                 foreach (WoWGameObject t in ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(listDisplayID))
                 {
                     if (t.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
