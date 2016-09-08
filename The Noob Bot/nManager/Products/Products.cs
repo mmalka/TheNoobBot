@@ -195,6 +195,8 @@ namespace nManager.Products
                         return false;
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
+                    EventsListener.HookEvent(WoWEventsType.PLAYER_TALENT_UPDATE, callback => SpellManager.UpdateSpellBook());
+
 
                     Statistics.Reset();
 
