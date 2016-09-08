@@ -78,7 +78,7 @@ namespace nManager.Wow.Helpers
                 while (Products.Products.IsStarted && (ObjectManager.ObjectManager.Me.IsMounted || MountTask.GetMountCapacity() == MountCapacity.Feet) &&
                        ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f && _used && _usedLoop)
                 {
-                    if (MountTask.GetMountCapacity() == MountCapacity.Feet)
+                    if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
                     {
                         if (RegenPath.IsReady && ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f)
                         {
