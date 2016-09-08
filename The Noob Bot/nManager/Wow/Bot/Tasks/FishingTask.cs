@@ -152,7 +152,20 @@ namespace nManager.Wow.Bot.Tasks
                                     Interact.InteractWith(objBobber.GetBaseAddress);
                                     _lastSuccessfullFishing = Environment.TickCount;
                                     Statistics.Farms++;
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(Usefuls.Latency + 400); // Arround 500
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        if (!Others.IsFrameVisible("LootFrame"))
+                                            break;
+                                        Thread.Sleep(150); // usually stop at i = 2 for me
+                                        // it's like the old 1sec sleep, but can be faster sometimes to recast.
+                                        // and this will loot 100% of the time, while if you have high latency, 1sec wont loot everything.
+                                    }
+                                    /*if (Others.IsFrameVisible("LootFrame"))
+                                    {
+                                        Logging.WriteDebug("We did not loot all items within < 2 second + latency.");
+                                        // More of a debug code, no need.
+                                    }*/
                                 }
                             }
                         }
