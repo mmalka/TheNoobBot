@@ -1478,7 +1478,30 @@ namespace nManager.Wow.ObjectManager
                 Memory.WowMemory.GameFrameLock();
                 foreach (WoWUnit unit in unitsList)
                 {
-                    if (unit.IsHostile && unit.InCombat)
+                    if (unit.IsHostile && unit.InCombat && unit.Attackable)
+                        outputList.Add(unit);
+                }
+                Memory.WowMemory.GameFrameUnLock();
+
+                return outputList;
+            }
+            finally
+            {
+                Memory.WowMemory.GameFrameUnLock();
+            }
+        }
+
+        public static List<WoWUnit> GetHostileUnitNearPlayer()
+        {
+            try
+            {
+                var outputList = new List<WoWUnit>();
+                List<WoWUnit> unitsList = GetObjectWoWUnitInCombat();
+
+                Memory.WowMemory.GameFrameLock();
+                foreach (WoWUnit unit in unitsList)
+                {
+                    if (unit.IsHostile && unit.InCombat && unit.Attackable)
                         outputList.Add(unit);
                 }
                 Memory.WowMemory.GameFrameUnLock();
