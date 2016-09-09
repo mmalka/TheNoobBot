@@ -314,59 +314,188 @@ public class Main : IHealerClass
 
 public class DruidRestoration
 {
-    private readonly DruidRestorationSettings _mySettings = DruidRestorationSettings.GetSettings();
+    private static DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
+
+    #region General Timers & Variables
+
+    private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
+    private bool CombatMode = true;
+
+    private Timer StunTimer = new Timer(0);
+
+    private WoWPlayer Tank = new WoWPlayer(0);
+    private WoWPlayer Target = new WoWPlayer(0);
+    private int DamagedPlayers;
+    private double PartyHpMedian;
+
+    #endregion
+
+    #region Professions & Racials
+
+    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    public readonly Spell WarStomp = new Spell("War Stomp");
+
+    #endregion
+
+    #region Druid Buffs
+
+    public readonly Spell CatForm = new Spell("Cat Form");
+    public readonly Spell Flourish = new Spell("Flourish");
+    public readonly Spell Incarnation = new Spell("Incarnation: Tree of Life");
+
+    #endregion
+
+    #region Offensive Spells
+
+    public readonly Spell SolarWrath = new Spell("Solar Wrath");
+
+    #endregion
+
+    #region Legion Artifact
+
+    public readonly Spell EssenceofGHanir = new Spell("Essence of G'Hanir");
+
+    #endregion
+
+    #region Defensive Cooldowns
+
+    //public readonly Spell EntanglingRoots = new Spell("Entangling Roots");
+    public readonly Spell Ironbark = new Spell("Ironbark"); //No GCD
+    //public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    public readonly Spell MightyBash = new Spell("Mighty Bash");
+    //public readonly Spell Typhoon = new Spell("Typhoon");
+    //public readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
+
+    #endregion
+
+    #region Healing Spells
+
+    public readonly Spell CenarionWard = new Spell("Cenarion Ward");
+    public readonly Spell Efflorescence = new Spell("Efflorescence");
+    private Timer EfflorescenceTimer = new Timer(0);
+    public readonly Spell FrenziedRegeneration = new Spell("Frenzied Regeneration");
+    public readonly Spell HealingTouch = new Spell("Healing Touch");
+    public readonly Spell Lifebloom = new Spell("Lifebloom");
+    public readonly Spell Regrowth = new Spell("Regrowth");
+    public readonly Spell Rejuvenation = new Spell("Rejuvenation");
+    public readonly Spell Renewal = new Spell("Renewal"); //No GCD
+    public readonly Spell Swiftmend = new Spell("Swiftmend");
+    public readonly Spell Tranquility = new Spell("Tranquility");
+    public readonly Spell WildGrowth = new Spell("Wild Growth");
+
+    #endregion
+
+    #region Utility Cooldowns
+
+    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
+    //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    //public readonly Spell Prowl = new Spell("Prowl"); //No GCD
+
+    #endregion
 
     public DruidRestoration()
     {
         Main.InternalRange = 30f;
+        MySettings = DruidRestorationSettings.GetSettings();
+        Main.DumpCurrentSettings<DruidRestorationSettings>(MySettings);
 
         while (Main.InternalLoop)
         {
             try
             {
-                Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
-                    continue;
-
-                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
-
-                if (healingList.Count == 1)
+                if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (ObjectManager.Me.HealthPercent < 100)
-                        HealingFight(ObjectManager.Me);
-                    continue;
-                }
-                double partyPercentHealthMedian = 0;
-                double lowestHp = 100;
-                var lowestHpPlayer = new WoWUnit(0);
-                foreach (WoWUnit currentPlayer in healingList)
-                {
-                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
-                        continue;
-                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+                    //Dismount in Combat
+                    if (ObjectManager.Me.InCombat && ObjectManager.Me.IsMounted)
+                        MountTask.DismountMount(true);
 
-                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        lowestHp = currentPlayer.HealthPercent;
-                        lowestHpPlayer = currentPlayer;
+                        //Setup Solo
+                        if (!Party.IsInGroup())
+                        {
+                            Tank = ObjectManager.Me;
+                            PartyHpMedian = ObjectManager.Me.HealthPercent;
+                            DamagedPlayers = 1;
+                            Target = ObjectManager.Me;
+                        }
+                            //Setup Group
+                        else
+                        {
+                            double lowestHp = 100;
+                            int alivePlayers = 0;
+                            PartyHpMedian = 0;
+                            DamagedPlayers = 0;
+                            Target = Tank;
+
+                            try
+                            {
+                                Memory.WowMemory.GameFrameLock();
+
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                {
+                                    if (playerInMyParty <= 0) continue;
+                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player) continue;
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+
+                                    //Calculate Class Variables
+                                    PartyHpMedian += currentPlayer.HealthPercent;
+                                    alivePlayers++;
+                                    if (currentPlayer.HealthPercent < 100)
+                                        DamagedPlayers++;
+                                    //Setup Target
+                                    if (currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                                    {
+                                        lowestHp = currentPlayer.HealthPercent;
+                                        Target = currentPlayer;
+                                    }
+                                    //Setup Tank
+                                    if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && Tank != currentPlayer)
+                                    {
+                                        Logging.WriteFight("New Tank: " + currentPlayer.Name);
+                                        Tank = currentPlayer;
+                                    }
+                                }
+                            }
+                            finally
+                            {
+                                Memory.WowMemory.GameFrameUnLock();
+                            }
+                            PartyHpMedian /= alivePlayers;
+
+                            if (Target.Guid > 0)
+                            {
+                                //Prioritize Me
+                                if (Target != ObjectManager.Me && ObjectManager.Me.HealthPercent <= MySettings.PrioritizeMeBelowPercentage)
+                                {
+                                    Target = ObjectManager.Me;
+                                }
+
+                                //Prioritize Tank
+                                if (Tank != null && Target != Tank &&
+                                    (Tank.HealthPercent <= MySettings.PrioritizeTankBelowPercentage) || Target.HealthPercent == 100)
+                                {
+                                    Target = Tank;
+                                }
+                            }
+                        }
+                        if (Fight.InFight || PartyHpMedian < 90)
+                        {
+                            Combat();
+                        }
+                        else
+                        {
+                            Patrolling();
+                        }
                     }
                 }
-                if (lowestHpPlayer.Guid > 0)
-                {
-                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
-                    {
-                        lowestHpPlayer = ObjectManager.Me;
-                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
-                        // Prioritize me instead. So selfish!
-                    }
-                }
-                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
-                // use partyPercentHealthMedian in the HealingFight() code may be useful.
-                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
-                    continue;
-                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
-                    continue;
-                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -374,30 +503,264 @@ public class DruidRestoration
         }
     }
 
-    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
+    private void Patrolling()
     {
-        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
-            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
-        Buff();
-        DefenseCycle();
-        HealingBurst();
-        HealCycle();
+        if (!ObjectManager.Me.IsMounted)
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
+
+            if (ObjectManager.Me.GetMove)
+            {
+                //Movement Buffs
+                if (!Darkflight.HaveBuff && !Dash.HaveBuff) //they don't stack
+                {
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                    {
+                        Darkflight.Cast();
+                        return;
+                    }
+                    if (MySettings.UseDash && Dash.IsSpellUsable && (MySettings.UseCatFormOOC || CatForm.HaveBuff))
+                    {
+                        Dash.Cast();
+                        return;
+                    }
+                }
+                if (MySettings.UseCatFormOOC && CatForm.IsSpellUsable && !CatForm.HaveBuff)
+                {
+                    CatForm.Cast();
+                    return;
+                }
+            }
+        }
     }
 
-    private void Buff()
+    private void Combat()
     {
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+        if (Defensive()) return;
+        Burst(); //GCD independent
+        GCDCycle(); //GCD dependent
     }
 
-    private void DefenseCycle()
+    private bool Defensive()
     {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Defensive Cooldowns
+            if (StunTimer.IsReady)
+            {
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (MightyBash.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage && MightyBash.IsHostileDistanceGood)
+                    {
+                        MightyBash.Cast();
+                        StunTimer = new Timer(1000*5);
+                        return true;
+                    }
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsHostileDistanceGood)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2);
+                    }
+                }
+                //Frenzied Regeneration (shapeshift in Bear Form)
+                if (FrenziedRegeneration.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFrenziedRegenerationBelowPercentage)
+                {
+                    FrenziedRegeneration.CastOnSelf();
+                }
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
-    private void HealCycle()
+    private void Burst()
     {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+
+            //Renewal
+            if (Renewal.IsSpellUsable && Target.HealthPercent < MySettings.UseRenewalBelowTargetPercentage)
+            {
+                Renewal.Cast(false, true, false, Target.GetUnitId());
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
-    public void HealingBurst()
+    private void GCDCycle()
     {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Ironbark 
+            if (Target.HealthPercent < MySettings.UseIronbarkBelowTargetPercentage && Ironbark.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, Ironbark.MinRangeFriend, Ironbark.MaxRangeFriend) &&
+                Target.UnitAura(Ironbark.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 4000)
+            {
+                Ironbark.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Efflorescence 
+            if (Target.HealthPercent < MySettings.UseEfflorescenceBelowTargetPercentage && Efflorescence.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, Efflorescence.MinRangeFriend, Efflorescence.MaxRangeFriend) &&
+                Target.GetPlayerInSpellRange(10f) > MySettings.UseEfflorescenceAbovePlayerDensity && EfflorescenceTimer.IsReady)
+            {
+                SpellManager.CastSpellByIDAndPosition(Efflorescence.Id, Target.Position);
+                EfflorescenceTimer = new Timer(1000*30);
+                return;
+            }
+
+            //Heal Buffs on Tank
+            if (CenarionWard.IsSpellUsable && Tank.HealthPercent < MySettings.UseCenarionWardBelowTankPercentage &&
+                CombatClass.InSpellRange(Tank, CenarionWard.MinRangeFriend, CenarionWard.MaxRangeFriend) &&
+                Tank.UnitAura(CenarionWard.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+            {
+                CenarionWard.Cast(false, true, false, Tank.GetUnitId());
+                return;
+            }
+            if (Tank.HealthPercent < MySettings.UseLifebloomBelowTankPercentage && Lifebloom.IsSpellUsable &&
+                CombatClass.InSpellRange(Tank, Lifebloom.MinRangeFriend, Lifebloom.MaxRangeFriend) &&
+                Tank.UnitAura(Lifebloom.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+            {
+                Lifebloom.Cast(false, true, false, Tank.GetUnitId());
+                return;
+            }
+            if (Tank.HealthPercent < MySettings.UseRejuvenationBelowTankPercentage && Rejuvenation.IsSpellUsable &&
+                CombatClass.InSpellRange(Tank, Rejuvenation.MinRangeFriend, Rejuvenation.MaxRangeFriend) &&
+                Tank.UnitAura(Rejuvenation.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+            {
+                Rejuvenation.Cast(false, true, false, Tank.GetUnitId());
+                return;
+            }
+
+            //Emergency Heal
+            if (Target.HealthPercent < MySettings.UseSwiftmendBelowTargetPercentage && Swiftmend.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, Swiftmend.MinRangeFriend, Swiftmend.MaxRangeFriend))
+            {
+                Swiftmend.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //AOE Heal
+            if (PartyHpMedian < MySettings.UseTranquilityBelowPartyPercentage && Tranquility.IsSpellUsable &&
+                Target.UnitAura(Tranquility.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2666 &&
+                ObjectManager.Me.GetPlayerInSpellRange(40f) > MySettings.UseTranquilityAbovePlayerDensity)
+            {
+                Tranquility.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Buff upcoming Healings
+            if ((PartyHpMedian < MySettings.UseIncarnationBelowPartyPercentage ||
+                 Target.HealthPercent < MySettings.UseIncarnationBelowTargetPercentage) && Incarnation.IsSpellUsable)
+            {
+                Incarnation.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //AOE Heal
+            if (PartyHpMedian < MySettings.UseWildGrowthBelowPartyPercentage && WildGrowth.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, WildGrowth.MinRangeFriend, WildGrowth.MaxRangeFriend) &&
+                Target.UnitAura(WildGrowth.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333 &&
+                Target.GetPlayerInSpellRange(30f) > MySettings.UseWildGrowthAbovePlayerDensity)
+            {
+                WildGrowth.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Buff current Hots
+            if ((PartyHpMedian < MySettings.UseEssenceofGHanirBelowPartyPercentage ||
+                 Target.HealthPercent < MySettings.UseEssenceofGHanirBelowTargetPercentage) && EssenceofGHanir.IsSpellUsable)
+            {
+                EssenceofGHanir.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+            if ((PartyHpMedian < MySettings.UseFlourishBelowPartyPercentage ||
+                 Target.HealthPercent < MySettings.UseFlourishBelowTargetPercentage) && Flourish.IsSpellUsable)
+            {
+                Flourish.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Heal Buffs on Target
+            if (Target.HealthPercent < MySettings.UseRejuvenationBelowTargetPercentage && Rejuvenation.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, Rejuvenation.MinRangeFriend, Rejuvenation.MaxRangeFriend) &&
+                Target.UnitAura(Rejuvenation.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+            {
+                Rejuvenation.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+            if (Target.HealthPercent < MySettings.UseRegrowthBelowTargetPercentage && Regrowth.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, Regrowth.MinRangeFriend, Regrowth.MaxRangeFriend) &&
+                Target.UnitAura(Regrowth.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 4000)
+            {
+                Regrowth.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Filler Heal
+            if (Target.HealthPercent < MySettings.UseHealingTouchBelowTargetPercentage && HealingTouch.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, HealingTouch.MinRangeFriend, HealingTouch.MaxRangeFriend))
+            {
+                HealingTouch.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Filler Damage
+            if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood)
+            {
+                SolarWrath.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
     #region Nested type: DruidRestorationSettings
@@ -405,9 +768,103 @@ public class DruidRestoration
     [Serializable]
     public class DruidRestorationSettings : Settings
     {
+        /* Professions & Racials */
+        public bool UseBerserking = true;
+        public bool UseDarkflight = true;
+        public int UseWarStompBelowPercentage = 25;
+
+        /* Druid Buffs */
+        public bool UseCatFormOOC = false;
+        public int UseFlourishBelowTargetPercentage = 30;
+        public int UseFlourishBelowPartyPercentage = 30;
+        public int UseIncarnationBelowTargetPercentage = 40;
+        public int UseIncarnationBelowPartyPercentage = 40;
+
+        /* Offensive Spells */
+        public bool UseSolarWrath = true;
+
+        /* Artifact Spells */
+        public int UseEssenceofGHanirBelowTargetPercentage = 50;
+        public int UseEssenceofGHanirBelowPartyPercentage = 50;
+
+        /* Defensive Cooldowns */
+        public int UseIronbarkBelowTargetPercentage = 60;
+        //public bool UseEntanglingRoots = true;
+        //public bool UseMassEntanglement = true;
+        public int UseMightyBashBelowPercentage = 25;
+        //public bool UseTyphoon = true;
+        //public bool UseWildCharge = true;
+
+        /* Healing Spells */
+        public int UseCenarionWardBelowTankPercentage = 90;
+        public int UseEfflorescenceBelowTargetPercentage = 90;
+        public int UseEfflorescenceAbovePlayerDensity = 2;
+        public int UseFrenziedRegenerationBelowPercentage = 20;
+        public int UseHealingTouchBelowTargetPercentage = 80;
+        public int UseLifebloomBelowTankPercentage = 90;
+        public int UseRegrowthBelowTargetPercentage = 60;
+        public int UseRejuvenationBelowTargetPercentage = 80;
+        public int UseRejuvenationBelowTankPercentage = 90;
+        public int UseRenewalBelowTargetPercentage = 25;
+        public int UseSwiftmendBelowTargetPercentage = 30;
+        public int UseTranquilityBelowPartyPercentage = 30;
+        public int UseTranquilityAbovePlayerDensity = 4;
+        public int UseWildGrowthBelowPartyPercentage = 60;
+        public int UseWildGrowthAbovePlayerDensity = 2;
+
+        /* Utility Cooldowns */
+        public bool UseDash = true;
+        //public bool UseDisplacerBeast = true;
+        //public bool UseProwl = true;
+
+        /* Game Settings */
+        public bool UseTrinketOne = true;
+        public bool UseTrinketTwo = true;
+        public int PrioritizeTankBelowPercentage = 40;
+        public int PrioritizeMeBelowPercentage = 40;
+
         public DruidRestorationSettings()
         {
             ConfigWinForm("Druid Restoration Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Druid Buffs */
+            AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
+            AddControlInWinForm("Use Flourish", "UseFlourishBelowTargetPercentage", "Druid Buffs", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Flourish", "UseFlourishBelowPartyPercentage", "Druid Buffs", "BelowPercentage", " Party Life");
+            AddControlInWinForm("Use Incarnation", "UseIncarnationBelowTargetPercentage", "Druid Buffs", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Incarnation", "UseIncarnationBelowPartyPercentage", "Druid Buffs", "BelowPercentage", " Party Life");
+            /* Offensive Spells */
+            AddControlInWinForm("Use SolarWrath", "UseSolarWrath", "Offensive Spells");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Essence of G'Hanir", "UseEssenceofGHanirBelowTargetPercentage", "Artifact Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Essence of G'Hanir", "UseEssenceofGHanirBelowPartyPercentage", "Artifact Spells", "BelowPercentage", " Party Life");
+            /* Defensive Cooldowns */
+            AddControlInWinForm("Use Ironbark", "UseIronbarkBelowTargetPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            /* Healing Spells */
+            AddControlInWinForm("Use Cenarion Ward", "UseCenarionWardBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
+            AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegenerationBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Healing Touch", "UseHealingTouchBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Lifebloom", "UseLifebloomBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
+            AddControlInWinForm("Use Regrowth", "UseRegrowthBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Rejuvenation", "UseRejuvenationBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Rejuvenation", "UseRejuvenationBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
+            AddControlInWinForm("Use Renewal", "UseRenewalBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Swiftmend", "UseSwiftmendBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Tranquility", "UseTranquilityBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Tranquility", "UseTranquilityAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
+            AddControlInWinForm("Use Wild Growth", "UseWildGrowthBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Wild Growth", "UseWildGrowthAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
+            /* Game Settings */
+            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
+            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
+            AddControlInWinForm("Prioritize Tank", "PrioritizeTankBelowPercentage", "Game Settings", "BelowPercentage");
+            AddControlInWinForm("Prioritize Me", "PrioritizeMeBelowPercentage", "Game Settings", "BelowPercentage");
         }
 
         public static DruidRestorationSettings CurrentSetting { get; set; }
@@ -563,6 +1020,9 @@ public class ShamanRestoration
     private static ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
 
     #region General Timers & Variables
+
+    private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     private bool CombatMode = true;
 
@@ -809,7 +1269,17 @@ public class ShamanRestoration
 
     private void Burst()
     {
-        //Offensive Cooldowns
+        //Burst Buffs
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+        {
+            ItemsManager.UseItem(_firstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+        }
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+        {
+            ItemsManager.UseItem(_secondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+        }
         if (Bloodlust.IsSpellUsable && !ObjectManager.Me.HaveBuff(57724) && MySettings.UseBloodlustHeroism)
         {
             Bloodlust.Cast();
