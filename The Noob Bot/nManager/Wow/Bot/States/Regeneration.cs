@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Helpers;
 using Math = System.Math;
 using Timer = nManager.Helpful.Timer;
@@ -56,6 +57,8 @@ namespace nManager.Wow.Bot.States
         {
             try
             {
+                if (FishingTask.IsLaunched)
+                    FishingTask.StopLoopFish();
                 if (Usefuls.IsSwimming)
                 {
                     Logging.WriteNavigator("Going out of water");
@@ -64,6 +67,8 @@ namespace nManager.Wow.Bot.States
                         MovementsAction.Ascend(true);
                         Thread.Sleep(500);
                         MovementsAction.Ascend(false);
+                        if (ObjectManager.ObjectManager.Me.InCombat)
+                            return;
                     }
                 }
                 // isMana = false => Health
