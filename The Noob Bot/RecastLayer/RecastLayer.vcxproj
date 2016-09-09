@@ -119,7 +119,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)RecastLayer\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)The Noob Bot\bin\x86\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)RecastLayer\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
