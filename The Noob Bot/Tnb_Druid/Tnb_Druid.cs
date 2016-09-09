@@ -218,7 +218,7 @@ public class DruidBalance
 
     private bool CombatMode = true;
 
-    private Timer StunCD = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -233,7 +233,7 @@ public class DruidBalance
     #region Druid Buffs
 
     //public readonly Spell BearForm = new Spell("Bear Form");
-    //public readonly Spell BlessingoftheAncients = new Spell("Blessing of the Ancients"); //No GCD //TEST THIS FIRST
+    //public readonly Spell BlessingoftheAncients = new Spell("Blessing of the Ancients"); //No GCD //no need for the bot to switch the buff
     public readonly Spell CatForm = new Spell("Cat Form");
     public readonly Spell MoonkinForm = new Spell("Moonkin Form");
     //public readonly Spell TravelForm = new Spell("Travel Form");
@@ -256,15 +256,12 @@ public class DruidBalance
     public readonly Spell SolarWrath = new Spell("Solar Wrath");
     public readonly Spell Starfall = new Spell("Starfall");
     public readonly Spell Starsurge = new Spell("Starsurge");
-    //public readonly Spell FuryofElune = new Spell("Fury of Elune");
 
     #endregion
 
-    #region Scythe of Elune Spells //Legion Artifact
+    #region Legion Artifact
 
-    //public readonly Spell NewMoon = new Spell("New Moon");
-    //public readonly Spell HalfMoon = new Spell("Half Moon");
-    //public readonly Spell FullMoon = new Spell("Full Moon");
+    public readonly Spell NewMoon = new Spell(202767 /*"New Moon"*/);
 
     #endregion
 
@@ -273,6 +270,7 @@ public class DruidBalance
     public readonly Spell AstralCommunion = new Spell("Astral Communion"); //No GCD
     public readonly Spell CelestialAlignment = new Spell("Celestial Alignment");
     public readonly Spell ForceofNature = new Spell("Force of Nature");
+    public readonly Spell FuryofElune = new Spell("Fury of Elune");
     public readonly Spell Incarnation = new Spell("Incarnation: Chosen of Elune");
     public readonly Spell WarriorofElune = new Spell("Warrior of Elune"); //No GCD
 
@@ -302,7 +300,7 @@ public class DruidBalance
 
     #region Utility Cooldowns
 
-    public readonly Spell Dash = new Spell("Dash"); //No GCD
+    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
     //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
     //public readonly Spell Prowl = new Spell("Prowl"); //No GCD
 
@@ -323,18 +321,20 @@ public class DruidBalance
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    Shapeshift();
-
-                    if (!ObjectManager.Me.IsMounted)
+                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
                     {
-                        if ( /*Fight.InFight &&*/ /*ObjectManager.Me.InCombat &&*/ ObjectManager.Me.Target > 0)
+                        //DEBUG
+                        if (ObjectManager.Me.HealthPercent == 0)
+                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
+
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget)
                             {
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 45) && ObjectManager.Target.IsHostile)
+                            if (Moonfire.IsHostileDistanceGood)
                                 Combat();
                             else
                                 Patrolling();
@@ -350,28 +350,6 @@ public class DruidBalance
             {
             }
             Thread.Sleep(100);
-        }
-    }
-
-    private void Shapeshift()
-    {
-        Usefuls.SleepGlobalCooldown();
-
-        try
-        {
-            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
-
-            //Moonkin Form
-            if (MySettings.UseMoonkinForm && MoonkinForm.IsSpellUsable && ObjectManager.Target.IsHostile &&
-                !MoonkinForm.HaveBuff && !MySettings.TagOnly && ObjectManager.Me.HealthPercent > 65 && //!Incarnation.HaveBuff &&
-                CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.UseMoonkinFormBelowDistance))
-            {
-                MoonkinForm.Cast();
-            }
-        }
-        finally
-        {
-            Memory.WowMemory.GameFrameUnLock();
         }
     }
 
@@ -394,10 +372,15 @@ public class DruidBalance
                     {
                         Darkflight.Cast();
                     }
-                    else if (MySettings.UseDash && Dash.IsSpellUsable)
+                    else if (MySettings.UseDash && Dash.IsSpellUsable && (MySettings.UseCatFormOOC || CatForm.HaveBuff))
                     {
                         Dash.Cast();
                     }
+                }
+                if (MySettings.UseCatFormOOC && CatForm.IsSpellUsable && !CatForm.HaveBuff)
+                {
+                    CatForm.Cast();
+                    return;
                 }
             }
             else
@@ -405,7 +388,6 @@ public class DruidBalance
                 //Self Heal for Damage Dealer
                 if (nManager.Products.Products.ProductName == "Damage Dealer" &&
                     HealingTouch.IsSpellUsable && ObjectManager.Me.HealthPercent < 90 &&
-                    ObjectManager.Me.HealthPercent != 0 && // Workaorund because it's always 0 in Dungeons.
                     ObjectManager.Target.Guid == ObjectManager.Me.Guid)
                 {
                     HealingTouch.CastOnSelf();
@@ -425,14 +407,16 @@ public class DruidBalance
         }
         //Heal
         Heal();
+        if (Defensive()) return;
         //Tag
         if (MySettings.TagOnly && MySettings.UseSunfire)
-        {
             Tag();
-            return;
+        else
+        {
+            if (Shapeshift()) return;
+            BurstBuffs();
+            GCDCycle();
         }
-        //Combat
-        GCDCycle(); //GCD dependent
     }
 
     private void Heal()
@@ -444,39 +428,40 @@ public class DruidBalance
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Swiftmend
-            if (MySettings.UseSwiftmendBelowPercentage != 0 && Swiftmend.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < MySettings.UseSwiftmendBelowPercentage)
+            if (Swiftmend.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseSwiftmendBelowPercentage)
             {
                 Swiftmend.CastOnSelf();
                 return;
             }
             //Renewal
-            if (MySettings.UseRenewalBelowPercentage != 0 && Renewal.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < MySettings.UseRenewalBelowPercentage)
+            if (Renewal.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseRenewalBelowPercentage)
             {
                 Renewal.CastOnSelf();
             }
-            //Rejuvenation
-            if (MySettings.UseRejuvenationBelowPercentage != 0 && Rejuvenation.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < MySettings.UseRejuvenationBelowPercentage &&
-                ObjectManager.Me.UnitAura(774, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
-            {
-                Rejuvenation.CastOnSelf();
-                return;
-            }
-            //Regrowth
-            if (MySettings.UseRegrowthBelowPercentage != 0 && Regrowth.IsSpellUsable &&
-                !Regrowth.HaveBuff && ObjectManager.Me.HealthPercent < MySettings.UseRegrowthBelowPercentage)
-            {
-                Regrowth.CastOnSelf();
-                return;
-            }
             //Healing Touch
-            if (MySettings.UseHealingTouchBelowPercentage != 0 && HealingTouch.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < MySettings.UseHealingTouchBelowPercentage)
+            if (HealingTouch.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseHealingTouchBelowPercentage)
             {
                 HealingTouch.CastOnSelf();
                 return;
+            }
+
+            //outside Moonkin Form
+            if (!MoonkinForm.HaveBuff)
+            {
+                //Rejuvenation
+                if (Rejuvenation.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseRejuvenationBelowPercentage &&
+                    ObjectManager.Me.UnitAura(774, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+                {
+                    Rejuvenation.CastOnSelf();
+                    return;
+                }
+                //Regrowth
+                if (Regrowth.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseRegrowthBelowPercentage &&
+                    !Regrowth.HaveBuff)
+                {
+                    Regrowth.CastOnSelf();
+                    return;
+                }
             }
         }
         finally
@@ -513,7 +498,7 @@ public class DruidBalance
         }
     }
 
-    private void GCDCycle()
+    private bool Defensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -522,40 +507,73 @@ public class DruidBalance
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Defensive Cooldowns
-            if (MySettings.UseBarkskinBelowPercentage != 0 && Barkskin.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < MySettings.UseBarkskinBelowPercentage)
+            if (StunTimer.IsReady)
             {
-                Barkskin.Cast();
-            }
-            if (StunCD.IsReady)
-            {
-                if (MySettings.UseMightyBashBelowPercentage != 0 && MightyBash.IsSpellUsable &&
-                    ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage)
+                if (ObjectManager.Target.IsStunnable)
                 {
-                    MightyBash.Cast();
-                    StunCD = new Timer(1000*5);
-                    return;
+                    if (MightyBash.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage)
+                    {
+                        MightyBash.Cast();
+                        StunTimer = new Timer(1000*5);
+                        return true;
+                    }
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2);
+                    }
                 }
-                if (MySettings.UseWarStompBelowPercentage != 0 && WarStomp.IsSpellUsable &&
-                    ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                if (Barkskin.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseBarkskinBelowPercentage)
                 {
-                    WarStomp.Cast();
-                    StunCD = new Timer(1000*2);
-                    return;
+                    Barkskin.Cast();
                 }
             }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
 
-            //Offensive Cooldowns
-            if (MySettings.UseForceofNature && ForceofNature.IsSpellUsable)
-            {
-                ForceofNature.Cast();
-                return;
-            }
+    private bool Shapeshift()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Change Form
             if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && !Incarnation.HaveBuff)
             {
                 Incarnation.Cast();
-                return;
+                return true;
             }
+            //Moonkin Form
+            if (MySettings.UseMoonkinForm && MoonkinForm.IsSpellUsable && !MoonkinForm.HaveBuff)
+            {
+                MoonkinForm.Cast();
+                return true;
+            }
+
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Burst Buffs
             if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
             {
                 ItemsManager.UseItem(_firstTrinket.Name);
@@ -574,74 +592,106 @@ public class DruidBalance
             {
                 CelestialAlignment.Cast();
             }
-            if (MySettings.UseAstralCommunion && AstralCommunion.IsSpellUsable) // AstralPower, LunarPower, Eclipse
+            if (MySettings.UseAstralCommunion && AstralCommunion.IsSpellUsable && ObjectManager.Me.Eclipse < 25) // AstralPower, LunarPower, Eclipse
             {
                 AstralCommunion.Cast();
             }
+            if (MySettings.UseForceofNature && ForceofNature.IsSpellUsable)
+            {
+                ForceofNature.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
 
-            //Druid DoTs
-            if (MySettings.UseSunfire && Sunfire.IsSpellUsable &&
-                !ObjectManager.Target.UnitAura(Sunfire.Ids, ObjectManager.Me.Guid).IsValid && Sunfire.IsHostileDistanceGood)
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Pool Astral Power and New Moon charges for Fury of Elune
+            if (MySettings.UseFuryofElune && FuryofElune.IsSpellUsable && ObjectManager.Target.GetUnitInSpellRange(3f) >= 2)
             {
-                Sunfire.Cast();
-                return;
+                if (ObjectManager.Me.Eclipse == 100 && NewMoon.GetSpellCharges == 3)
+                {
+                    SpellManager.CastSpellByIDAndPosition(FuryofElune.Id, ObjectManager.Target.Position);
+                    return;
+                }
             }
-            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable &&
-                !ObjectManager.Target.UnitAura(Moonfire.Ids, ObjectManager.Me.Guid).IsValid && Moonfire.IsHostileDistanceGood)
+            else
             {
-                Moonfire.Cast();
-                return;
+                //Spend Astral Power on Starfall or Starsurge
+                if (MySettings.UseStarfall && Starfall.KnownSpell && ObjectManager.Target.GetUnitInSpellRange(15f) >= 3)
+                {
+                    if (Starfall.IsSpellUsable && Starfall.IsHostileDistanceGood)
+                    {
+                        SpellManager.CastSpellByIDAndPosition(Starfall.Id, ObjectManager.Target.Position);
+                        return;
+                    }
+                }
+                else if (MySettings.UseStarsurge && Starsurge.IsSpellUsable && Starsurge.IsHostileDistanceGood &&
+                         (LunarEmpowerment.TargetBuffStack < 3 || SolarEmpowerment.TargetBuffStack < 3 || ObjectManager.Me.ManaPercentage == 100))
+                {
+                    Starsurge.Cast();
+                    return;
+                }
+
+                //Don't cap on New Moon charges
+                if (MySettings.UseNewMoon && NewMoon.IsSpellUsable && NewMoon.GetSpellCharges > 1)
+                {
+                    NewMoon.Cast();
+                    return;
+                }
             }
-            if (MySettings.UseStellarFlare && StellarFlare.IsSpellUsable &&
-                !ObjectManager.Target.UnitAura(StellarFlare.Ids, ObjectManager.Me.Guid).IsValid && StellarFlare.IsHostileDistanceGood)
+
+
+            //Keep Stellar Flare, Moonfire and Sunfire up
+            if (MySettings.UseStellarFlare && StellarFlare.IsSpellUsable && StellarFlare.IsHostileDistanceGood && !StellarFlare.TargetHaveBuff)
             {
                 StellarFlare.Cast();
                 return;
             }
-
-            //Offensive Spells
-            if (MySettings.UseStarfall && Starfall.KnownSpell && ObjectManager.GetUnitInSpellRange(15f) > 2)
+            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood && !Moonfire.TargetHaveBuff)
             {
-                if (Starfall.IsSpellUsable && Starfall.IsHostileDistanceGood)
-                {
-                    SpellManager.CastSpellByIDAndPosition(Starfall.Id, ObjectManager.Target.Position);
-                    return;
-                }
+                Moonfire.Cast();
+                return;
             }
-            else if (MySettings.UseStarsurge && Starsurge.IsSpellUsable && Starsurge.IsHostileDistanceGood &&
-                     (LunarEmpowerment.TargetBuffStack < 3 || SolarEmpowerment.TargetBuffStack < 3))
+            if (MySettings.UseSunfire && Sunfire.IsSpellUsable && Sunfire.IsHostileDistanceGood && !Sunfire.TargetHaveBuff)
             {
-                Starsurge.Cast();
+                Sunfire.Cast();
+                return;
+            }
+
+            //Consume Lunar & Solar Empowerment && Fill with Lunar Strike on 2+ targets
+            if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood && SolarEmpowerment.TargetBuffStack == 3)
+            {
+                SolarWrath.Cast();
                 return;
             }
             if (MySettings.UseLunarStrike && LunarStrike.IsSpellUsable && LunarStrike.IsHostileDistanceGood &&
-                ObjectManager.GetUnitInSpellRange(8f) > 1 || LunarEmpowerment.TargetBuffStack == 3)
+                (ObjectManager.GetUnitInSpellRange(8f) >= 2 || LunarEmpowerment.TargetBuffStack == 3))
             {
                 if (MySettings.UseWarriorofElune && WarriorofElune.IsSpellUsable && LunarEmpowerment.TargetBuffStack >= 2)
                 {
                     WarriorofElune.Cast();
                     LunarStrike.Cast();
+                    Others.SafeSleep(1500 + Usefuls.Latency);
                 }
                 LunarStrike.Cast();
                 return;
             }
+
+            //Fill with Solar Wrath
             if (MySettings.UseSolarWrath && SolarWrath.IsSpellUsable && SolarWrath.IsHostileDistanceGood)
             {
-                //Logging.WriteFight("GetMove == " + ObjectManager.Me.GetMove);
                 SolarWrath.Cast();
-                return;
-            }
-
-            //Never reached because he tries casting LunarStrike/SolarWrath while moving
-            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
-                ObjectManager.Target.UnitAura(Moonfire.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < ObjectManager.Target.UnitAura(Sunfire.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs)
-            {
-                Moonfire.Cast();
-                return;
-            }
-            if (MySettings.UseSunfire && Sunfire.IsSpellUsable && Sunfire.IsHostileDistanceGood)
-            {
-                Sunfire.Cast();
                 return;
             }
         }
@@ -662,8 +712,8 @@ public class DruidBalance
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
+        public bool UseCatFormOOC = false;
         public bool UseMoonkinForm = true;
-        public int UseMoonkinFormBelowDistance = 55;
         //public bool UseBlessingoftheAncients  = true; //TEST THIS FIRST
 
         /* Druid DoTs */
@@ -677,9 +727,13 @@ public class DruidBalance
         public bool UseStarfall = true;
         public bool UseStarsurge = true;
 
+        /* Artifact Spells */
+        public bool UseNewMoon = true;
+
         /* Offensive Cooldowns */
         public bool UseCelestialAlignment = true;
         public bool UseForceofNature = true;
+        public bool UseFuryofElune = false;
         public bool UseWarriorofElune = true;
         public bool UseIncarnation = true;
         public bool UseAstralCommunion = true;
@@ -706,7 +760,6 @@ public class DruidBalance
         //public bool UseProwl = true;
 
         /* Game Settings */
-        public bool UseAlchFlask = true;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
         public bool TagOnly = false;
@@ -719,8 +772,8 @@ public class DruidBalance
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
+            AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Moonkin Form", "UseMoonkinForm", "Druid Buffs");
-            AddControlInWinForm("Use Moonkin Form below Distance", "UseMoonkinFormBelowDistance", "Druid Buffs"); //TODO add BelowPercentage alternative
             /* Druid DoTs */
             AddControlInWinForm("Use Moonfire", "UseMoonfire", "Druid DoTs");
             AddControlInWinForm("Use Sunfire", "UseSunfire", "Druid DoTs");
@@ -730,12 +783,15 @@ public class DruidBalance
             AddControlInWinForm("Use SolarWrath", "UseSolarWrath", "Offensive Spells");
             AddControlInWinForm("Use Starsurge", "UseStarsurge", "Offensive Spells");
             AddControlInWinForm("Use Starfall", "UseStarfall", "Offensive Spells");
+            /* Artifact Spells */
+            AddControlInWinForm("Use New/Half/Full Moon", "UseNewMoon", "Artifact Spells");
             /* Offensive Cooldowns */
             AddControlInWinForm("Use Celestial Alignment", "UseCelestialAlignment", "Offensive Cooldowns");
             AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldowns");
+            //AddControlInWinForm("Use Fury of Elune", "UseFuryofElune", "Offensive Cooldowns");//Not properly implemented
             AddControlInWinForm("Use Warrior of Elune", "UseWarriorofElune", "Offensive Cooldowns");
             AddControlInWinForm("Use Incarnation: Chosen of Elune", "UseIncarnation", "Offensive Cooldowns");
-            AddControlInWinForm("Use AstralCommunion", "UseAstralCommunion", "Offensive Cooldowns");
+            AddControlInWinForm("Use Astral Communion", "UseAstralCommunion", "Offensive Cooldowns");
             /* Defensive Cooldowns */
             AddControlInWinForm("Use Barkskin", "UseBarkskinBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
@@ -750,8 +806,7 @@ public class DruidBalance
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Only Tags Enemies/nFor Farming", "UseSunfire", "Game Settings");
+            AddControlInWinForm("Only Tags Enemies ", "TagOnly", "Game Settings");
         }
 
         public static DruidBalanceSettings CurrentSetting { get; set; }
@@ -782,7 +837,7 @@ public class DruidFeral
 
     private bool CombatMode = true;
 
-    private Timer StunCD = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -809,7 +864,6 @@ public class DruidFeral
     public readonly Spell CatForm = new Spell("Cat Form");
     //public readonly Spell MoonkinForm = new Spell("Moonkin Form");
     //public readonly Spell TravelForm = new Spell("Travel Form");
-    public readonly Spell SavageRoar = new Spell("Savage Roar");
     public readonly Spell PredatorySwiftness = new Spell(69369); //Predatory Swiftness
 
     #endregion
@@ -827,12 +881,13 @@ public class DruidFeral
 
     public readonly Spell BrutalSlash = new Spell("Brutal Slash");
     public readonly Spell FerociousBite = new Spell("Ferocious Bite");
+    public readonly Spell SavageRoar = new Spell("Savage Roar");
     public readonly Spell Shred = new Spell("Shred");
     public readonly Spell Swipe = new Spell("Swipe");
 
     #endregion
 
-    #region Scythe of Elune Spells //Legion Artifact
+    #region Legion Artifact
 
     public readonly Spell AshamanesFrenzy = new Spell("Ashamane's Frenzy");
 
@@ -872,7 +927,7 @@ public class DruidFeral
 
     #region Utility Cooldowns
 
-    public readonly Spell Dash = new Spell("Dash"); //No GCD
+    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
     //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
     public readonly Spell Prowl = new Spell("Prowl"); //No GCD
     public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
@@ -898,7 +953,7 @@ public class DruidFeral
                         //DEBUG
                         if (ObjectManager.Me.HealthPercent == 0)
                             Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
-                            
+
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget)
@@ -936,29 +991,23 @@ public class DruidFeral
                 CombatMode = false;
 
                 //DEBUG
-                //Logging.Write("Energy == " + ObjectManager.Me.Energy);
-                //Logging.Write("Focus == " + ObjectManager.Me.Focus);
-                //Logging.Write("Mana  == " + ObjectManager.Me.Mana);
-                //Logging.Write("ComboPoint == " + ObjectManager.Me.ComboPoint);
-                //Logging.Write("Chi == " + ObjectManager.Me.Chi);
-                //Logging.Write("Rage == " + ObjectManager.Me.Rage);
-                //Logging.Write("Runes == " + ObjectManager.Me.Runes);
-                //Logging.Write("RunicPower == " + ObjectManager.Me.RunicPower);
-                //Logging.Write("SoulShards == " + ObjectManager.Me.SoulShards);
-                //Logging.Write("Eclipse == " + ObjectManager.Me.Eclipse);
-                //Logging.Write("HolyPower == " + ObjectManager.Me.HolyPower);
-                //Logging.Write("Alternate == " + ObjectManager.Me.Alternate);
-                //Logging.Write("Maelstrom == " + ObjectManager.Me.Maelstrom);
-                //Logging.Write("LightForce == " + ObjectManager.Me.LightForce);
-                //Logging.Write("ShadowOrbs == " + ObjectManager.Me.ShadowOrbs);
-                //Logging.Write("BurningEmbers == " + ObjectManager.Me.BurningEmbers);
-                //Logging.Write("DemonicFury == " + ObjectManager.Me.DemonicFury );
-                //Logging.Write("Fury == " + ObjectManager.Me.Fury);
-                //Logging.Write("ArcaneCharges == " + ObjectManager.Me.ArcaneCharges);
+                //Logging.Write("Talents:");
+                //Logging.Write("Bloodtalons.HaveBuff == " + Bloodtalons.HaveBuff);
+                //Logging.Write("LunarInspiration.HaveBuff == " + LunarInspiration.HaveBuff);
+                //Logging.Write("Predator.HaveBuff == " + Predator.HaveBuff);
+                //Logging.Write("Sabertooth.HaveBuff == " + Sabertooth.HaveBuff);
+                //Logging.Write("SavageRoar.KnownSpell == " + SavageRoar.KnownSpell);
             }
 
             if (ObjectManager.Me.GetMove)
             {
+                //Stealth
+                if (MySettings.UseProwlOOC && Prowl.IsSpellUsable && !Prowl.HaveBuff /*&& !Incarnation.HaveBuff*/&&
+                    !ObjectManager.Target.IsLootable)
+                {
+                    Prowl.Cast();
+                    return;
+                }
                 //Movement Buffs
                 if (!Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
                 {
@@ -967,7 +1016,7 @@ public class DruidFeral
                         Darkflight.Cast();
                         return;
                     }
-                    if (MySettings.UseDash && Dash.IsSpellUsable)
+                    if (MySettings.UseDash && Dash.IsSpellUsable && (MySettings.UseCatFormOOC || CatForm.HaveBuff))
                     {
                         Dash.Cast();
                         return;
@@ -975,10 +1024,10 @@ public class DruidFeral
                     if (MySettings.UseStampedingRoar && StampedingRoar.IsSpellUsable && CatForm.HaveBuff)
                     {
                         StampedingRoar.Cast();
-                            return;
+                        return;
                     }
                 }
-                if (CatForm.IsSpellUsable && !CatForm.HaveBuff)
+                if (MySettings.UseCatFormOOC && CatForm.IsSpellUsable && !CatForm.HaveBuff)
                 {
                     CatForm.Cast();
                     return;
@@ -989,7 +1038,6 @@ public class DruidFeral
                 //Self Heal for Damage Dealer
                 if (nManager.Products.Products.ProductName == "Damage Dealer" &&
                     HealingTouch.IsSpellUsable && ObjectManager.Me.HealthPercent < 90 &&
-                    ObjectManager.Me.HealthPercent != 0 && // Workaorund because it's always 0 in Dungeons.
                     ObjectManager.Target.Guid == ObjectManager.Me.Guid)
                 {
                     HealingTouch.CastOnSelf();
@@ -1014,7 +1062,7 @@ public class DruidFeral
             //All Ranges
             Heal();
             if (Defensive()) return;
-            if (Shapeshift()) return;
+            if (ObjectManager.Target.IsAlive && Shapeshift()) return;
 
             //Close Range
             if (Rake.IsHostileDistanceGood)
@@ -1108,7 +1156,7 @@ public class DruidFeral
                         var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                        if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealingTouch.IsFriendDistanceGood)
+                        if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && CombatClass.InSpellRange(currentPlayer, 0, 40)) //TODO implement healing touch max range
                         {
                             lowestHp = currentPlayer.HealthPercent;
                             lowestHpPlayer = currentPlayer;
@@ -1141,27 +1189,26 @@ public class DruidFeral
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Defensive Cooldowns
-            if (StunCD.IsReady)
+            if (StunTimer.IsReady)
             {
+                //Stun
                 if (ObjectManager.Target.IsStunnable)
                 {
-                    if (MySettings.UseMightyBashBelowPercentage != 0 && MightyBash.IsSpellUsable &&
-                        ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage)
+                    if (MightyBash.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage)
                     {
                         MightyBash.Cast();
-                        StunCD = new Timer(1000*5);
+                        StunTimer = new Timer(1000*5);
                         return true;
                     }
-                    if (MySettings.UseWarStompBelowPercentage != 0 && WarStomp.IsSpellUsable &&
-                        ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
                     {
                         WarStomp.Cast();
-                        StunCD = new Timer(1000*2);
-                        return true;
+                        StunTimer = new Timer(1000*2);
                     }
                 }
-                if (MySettings.UseSurvivalInstinctsBelowPercentage != 0 && SurvivalInstincts.IsSpellUsable &&
-                    (ObjectManager.Me.HealthPercent < MySettings.UseSurvivalInstinctsBelowPercentage || SurvivalInstincts.GetSpellCharges == 2))
+                //Mitigate Damage
+                if (SurvivalInstincts.IsSpellUsable && (SurvivalInstincts.GetSpellCharges == 2 ||
+                                                        ObjectManager.Me.HealthPercent < MySettings.UseSurvivalInstinctsBelowPercentage))
                 {
                     SurvivalInstincts.Cast();
                 }
@@ -1239,7 +1286,9 @@ public class DruidFeral
                 ElunesGuidance.Cast();
             }
             if (MySettings.UseTigersFury && TigersFury.IsSpellUsable && ObjectManager.Me.Energy < 40 &&
+                //Pandemic mechanic
                 ObjectManager.Me.UnitAura(5217, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333 &&
+                //Wait for Ashamane's Frenzy
                 (!AshamanesFrenzy.IsSpellUsable || ObjectManager.Target.MaxHealth <= 5*ObjectManager.Me.MaxHealth))
             {
                 TigersFury.Cast();
@@ -1259,17 +1308,14 @@ public class DruidFeral
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //DEBUG
-            //Logging.Write("SavageRoar.HaveBuff == " + (!SavageRoar.KnownSpell || ObjectManager.Me.UnitAura(62071, ObjectManager.Me.Guid).IsValid));
-
             //Ashamane's Frenzy
             if (MySettings.UseAshamanesFrenzy && AshamanesFrenzy.IsSpellUsable && AshamanesFrenzy.IsHostileDistanceGood &&
                 //Check Enemy Strenght
                 ObjectManager.Target.MaxHealth > 5*ObjectManager.Me.MaxHealth &&
                 //Check Bloodtalons Buff
-                (!Bloodtalons.KnownSpell || ObjectManager.Me.UnitAura(145152, ObjectManager.Me.Guid).IsValid) &&
+                (!Bloodtalons.HaveBuff || ObjectManager.Me.UnitAura(145152, ObjectManager.Me.Guid).IsValid) &&
                 //Check Savage Roar Buff
-                (!SavageRoar.KnownSpell || ObjectManager.Me.UnitAura(62071, ObjectManager.Me.Guid).IsValid))
+                (!SavageRoar.KnownSpell || ObjectManager.Me.UnitAura(52610, ObjectManager.Me.Guid).IsValid))
             {
                 //Cast & Check Tiger's Fury Buff
                 if (MySettings.UseTigersFury && TigersFury.IsSpellUsable && ObjectManager.Me.UnitAura(5217, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333) TigersFury.Cast();
@@ -1313,7 +1359,7 @@ public class DruidFeral
                 }
                 //2. Priority: Ferocious Bite (refresh Rip DoT)
                 if (MySettings.UseFerociousBite && FerociousBite.IsSpellUsable && FerociousBite.IsHostileDistanceGood &&
-                    (Rip.TargetHaveBuff && (Sabertooth.KnownSpell || ObjectManager.Target.HealthPercent < 25)))
+                    (Rip.TargetHaveBuff && (Sabertooth.HaveBuff || ObjectManager.Target.HealthPercent < 25)))
                 {
                     FerociousBite.Cast();
                     return;
@@ -1348,7 +1394,7 @@ public class DruidFeral
                 }
                 //2. Priority: Moonfire DoT (don't leave Cat Form)
                 if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
-                    (LunarInspiration.KnownSpell || !CatForm.HaveBuff) &&
+                    (LunarInspiration.HaveBuff || !CatForm.HaveBuff) &&
                     ObjectManager.Target.UnitAura(164812, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
                 {
                     Moonfire.Cast();
@@ -1386,7 +1432,7 @@ public class DruidFeral
             }
 
             //Filler
-            if (LunarInspiration.KnownSpell && MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood)
+            if (LunarInspiration.HaveBuff && MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood)
             {
                 Moonfire.Cast();
                 return;
@@ -1407,7 +1453,7 @@ public class DruidFeral
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Moonfire
-            if (LunarInspiration.KnownSpell && MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood)
+            if (LunarInspiration.HaveBuff && MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood)
             {
                 Moonfire.Cast();
                 return;
@@ -1431,6 +1477,7 @@ public class DruidFeral
 
         /* Druid Buffs */
         public bool UseCatForm = true;
+        public bool UseCatFormOOC = true;
         public bool UseSavageRoar = true;
 
         /* Druid DoTs */
@@ -1472,14 +1519,12 @@ public class DruidFeral
         public bool UseDash = true;
         //public bool UseDisplacerBeast = true;
         public bool UseProwl = true;
+        public bool UseProwlOOC = false;
         public bool UseStampedingRoar = true;
 
         /* Game Settings */
-        public bool UseAlchFlask = true;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        //public bool TryOneshot = true;
-        //public int TryOneshotLevelDifference = 20;
 
         public DruidFeralSettings()
         {
@@ -1490,6 +1535,7 @@ public class DruidFeral
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
             AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
+            AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Savage Roar", "UseSavageRoar", "Druid Buffs");
             /* Druid DoTs */
             AddControlInWinForm("Use Moonfire", "UseMoonfire", "Druid DoTs");
@@ -1517,13 +1563,11 @@ public class DruidFeral
             /* Utility Cooldowns */
             AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
             AddControlInWinForm("Use Prowl", "UseProwl", "Utility Cooldowns");
+            AddControlInWinForm("Use Prowl out of Combat", "UseProwlOOC", "Utility Cooldowns");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Cooldowns");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            //AddControlInWinForm("Try Oneshotting Enemies", "TryOneshot", "Game Settings");
-            //AddControlInWinForm("Try Oneshotting Enemies if Level Difference is above", "TryOneshotLevelDifference", "Game Settings"); //TODO add AbovePercentage alternative
         }
 
         public static DruidFeralSettings CurrentSetting { get; set; }
@@ -2209,18 +2253,18 @@ public class DruidGuardian
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int DecastHP = 0;
-    public int DefenseHP = 0;
-    public int HealHP = 0;
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
     #region Professions & Racials
 
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell Darkflight = new Spell("Darkflight");
+    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
     public readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
@@ -2228,61 +2272,68 @@ public class DruidGuardian
     #region Druid Buffs
 
     public readonly Spell BearForm = new Spell("Bear Form");
-    public readonly Spell Dash = new Spell("Dash");
-    public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
-    public readonly Spell DreamofCenarius = new Spell(145162);
-    public readonly Spell FaerieFire = new Spell("Faerie Fire");
-    public readonly Spell MarkoftheWild = new Spell("Mark of the Wild");
-    public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
-    public readonly Spell ToothandClaw = new Spell(135286);
+    public readonly Spell CatForm = new Spell("Cat Form");
+    public readonly Spell GalacticGuardian = new Spell(213708);
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell Growl = new Spell("Growl");
-    public readonly Spell Lacerate = new Spell("Lacerate");
     public readonly Spell Mangle = new Spell("Mangle");
     public readonly Spell Maul = new Spell("Maul");
+    public readonly Spell Moonfire = new Spell("Moonfire");
     public readonly Spell Pulverize = new Spell("Pulverize");
+    public readonly Spell Swipe = new Spell("Swipe");
     public readonly Spell Thrash = new Spell("Thrash");
+
+    #endregion
+
+    #region Legion Artifact
+
+    public readonly Spell RageoftheSleeper = new Spell("Rage of the Sleeper");
 
     #endregion
 
     #region Offensive Cooldowns
 
-    public readonly Spell Berserk = new Spell("Berserk");
-    public readonly Spell ForceofNature = new Spell("Force of Nature");
-    public readonly Spell Incarnation = new Spell("Incarnation: Son of Ursoc");
+    public readonly Spell BristlingFur = new Spell("Bristling Fur");
+    public readonly Spell Incarnation = new Spell("Incarnation: Guardian of Ursoc");
+    public readonly Spell LunarBeam = new Spell("Lunar Beam");
 
     #endregion
 
     #region Defensive Cooldowns
 
     public readonly Spell Barkskin = new Spell("Barkskin");
-    public readonly Spell BristlingFur = new Spell("Bristling Fur");
-    public readonly Spell FaerieSwarm = new Spell("Faerie Swarm");
-    public readonly Spell IncapacitatingRoar = new Spell("Incapacitating Roar");
-    public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    //public readonly Spell IncapacitatingRoar = new Spell("Incapacitating Roar");
+    public readonly Spell Ironfur = new Spell("Ironfur");
+    public readonly Spell MarkofUrsol = new Spell("Mark of Ursol");
+    //public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
     public readonly Spell MightyBash = new Spell("Mighty Bash");
-    public readonly Spell SavageDefense = new Spell("Savage Defense");
-    public readonly Spell SkullBash = new Spell("Skull Bash");
+    //public readonly Spell SkullBash = new Spell("Skull Bash");
     public readonly Spell SurvivalInstincts = new Spell("Survival Instincts");
-    public readonly Spell Typhoon = new Spell("Typhoon");
-    public readonly Spell UrsolsVortex = new Spell("Ursol's Vortex");
-    public readonly Spell WildCharge = new Spell("Wild Charge");
+    //public readonly Spell Typhoon = new Spell("Typhoon");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell CenarionWard = new Spell("Cenarion Ward");
     public readonly Spell FrenziedRegeneration = new Spell("Frenzied Regeneration");
     public readonly Spell HealingTouch = new Spell("Healing Touch");
-    public readonly Spell HeartoftheWild = new Spell("Heart of the Wild");
-    public readonly Spell NaturesVigil = new Spell("Nature's Vigil");
+    public readonly Spell Regrowth = new Spell("Regrowth");
     public readonly Spell Rejuvenation = new Spell("Rejuvenation");
-    public readonly Spell Renewal = new Spell("Renewal");
+    public readonly Spell Swiftmend = new Spell("Swiftmend");
+
+    #endregion
+
+    #region Utility Cooldowns
+
+    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
+    //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    public readonly Spell Growl = new Spell("Growl");
+    public readonly Spell Prowl = new Spell("Prowl"); //No GCD
+    public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
+    //public readonly Spell WildCharge = new Spell("Wild Charge);
 
     #endregion
 
@@ -2293,7 +2344,6 @@ public class DruidGuardian
         MySettings = DruidGuardianSettings.GetSettings();
         Main.DumpCurrentSettings<DruidGuardianSettings>(MySettings);
         UInt128 lastTarget = 0;
-        LowHP();
 
         while (Main.InternalLoop)
         {
@@ -2301,21 +2351,25 @@ public class DruidGuardian
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted)
+                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
                     {
+                        //DEBUG
+                        if (ObjectManager.Me.HealthPercent == 0)
+                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
+
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (FaerieFire.IsHostileDistanceGood || Maul.IsHostileDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance <= 40f)
+                            if (Moonfire.IsHostileDistanceGood)
                                 Combat();
+                            else
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else
                             Patrolling();
                     }
                 }
@@ -2329,403 +2383,103 @@ public class DruidGuardian
         }
     }
 
-    private void LowHP()
+    private void Patrolling()
     {
-        if (MySettings.UseBarkskinBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseBarkskinBelowPercentage;
-
-        if (MySettings.UseBristlingFurBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseBristlingFurBelowPercentage;
-
-        if (MySettings.UseIncapacitatingRoarBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIncapacitatingRoarBelowPercentage;
-
-        if (MySettings.UseMassEntanglementBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseMassEntanglementBelowPercentage;
-
-        if (MySettings.UseMightyBashBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseMightyBashBelowPercentage;
-
-        if (MySettings.UseSavageDefenseBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseSavageDefenseBelowPercentage;
-
-        if (MySettings.UseSurvivalInstinctsBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseSurvivalInstinctsBelowPercentage;
-
-        if (MySettings.UseTyphoonBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseTyphoonBelowPercentage;
-
-        if (MySettings.UseUrsolsVortexBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseUrsolsVortexBelowPercentage;
-
-        if (MySettings.UseWarStompBelowPercentage > DefenseHP)
-            DefenseHP = MySettings.UseWarStompBelowPercentage;
-
-        if (MySettings.UseSkullBashBelowPercentage > DecastHP)
-            DecastHP = MySettings.UseSkullBashBelowPercentage;
-
-        if (MySettings.UseCenarionWardBelowPercentage > HealHP)
-            HealHP = MySettings.UseCenarionWardBelowPercentage;
-
-        if (MySettings.UseFrenziedRegenerationBelowPercentage > HealHP)
-            HealHP = MySettings.UseFrenziedRegenerationBelowPercentage;
-
-        if (MySettings.UseHealingTouchBelowPercentage > HealHP)
-            HealHP = MySettings.UseHealingTouchBelowPercentage;
-
-        if (MySettings.UseHeartoftheWildBelowPercentage > HealHP)
-            HealHP = MySettings.UseHeartoftheWildBelowPercentage;
-
-        if (MySettings.UseNaturesVigilBelowPercentage > HealHP)
-            HealHP = MySettings.UseNaturesVigilBelowPercentage;
-
-        if (MySettings.UseRejuvenationBelowPercentage > HealHP)
-            HealHP = MySettings.UseRejuvenationBelowPercentage;
-
-        if (MySettings.UseRenewalBelowPercentage > HealHP)
-            HealHP = MySettings.UseRenewalBelowPercentage;
-    }
-
-    private void Pull()
-    {
-        if (BearForm.HaveBuff && MySettings.UseBearForm)
-            BearForm.Cast();
-
-        if (MySettings.UseWildCharge && WildCharge.IsSpellUsable && WildCharge.IsHostileDistanceGood && ObjectManager.Target.GetDistance > Main.InternalRange)
+        if (!ObjectManager.Me.IsCast)
         {
-            WildCharge.Cast();
-            return;
-        }
-        if (MySettings.UseGrowl && Growl.IsSpellUsable && Growl.IsHostileDistanceGood)
-        {
-            Growl.Cast();
-            return;
-        }
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
 
-        if (MySettings.UseFaerieFire && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood)
-            FaerieFire.Cast();
+            if (ObjectManager.Me.GetMove)
+            {
+                //Movement Buffs
+                if (!Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
+                {
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                    {
+                        Darkflight.Cast();
+                        return;
+                    }
+                    if (MySettings.UseDash && Dash.IsSpellUsable && (MySettings.UseCatFormOOC || CatForm.HaveBuff))
+                    {
+                        Dash.Cast();
+                        return;
+                    }
+                    if (MySettings.UseStampedingRoar && StampedingRoar.IsSpellUsable && CatForm.HaveBuff)
+                    {
+                        StampedingRoar.Cast();
+                        return;
+                    }
+                }
+                if (MySettings.UseCatFormOOC && CatForm.IsSpellUsable && !CatForm.HaveBuff)
+                {
+                    CatForm.Cast();
+                    return;
+                }
+            }
+            else
+            {
+                //Self Heal for Damage Dealer
+                if (nManager.Products.Products.ProductName == "Damage Dealer" &&
+                    HealingTouch.IsSpellUsable && ObjectManager.Me.HealthPercent < 90 &&
+                    ObjectManager.Target.Guid == ObjectManager.Me.Guid)
+                {
+                    HealingTouch.CastOnSelf();
+                    return;
+                }
+            }
+        }
     }
 
     private void Combat()
     {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        DPSCycle();
-
-        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP)
-            Heal();
-
-        if (ObjectManager.Me.HealthPercent <= DecastHP)
-            Decast();
-
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseBearForm && !BearForm.HaveBuff && BearForm.KnownSpell)
-            BearForm.Cast();
-
-        if (MySettings.UseDarkflight && Darkflight.KnownSpell && !Dash.HaveBuff && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && Darkflight.IsSpellUsable)
-            Darkflight.Cast();
-
-        if (MySettings.UseDash && !Darkflight.HaveBuff && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && Dash.IsSpellUsable)
-            Dash.Cast();
-
-        if (MySettings.UseDisplacerBeast && !ObjectManager.Target.InCombat && ObjectManager.Me.GetMove && !Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff && DisplacerBeast.IsSpellUsable)
-            DisplacerBeast.Cast();
-
-        if (MySettings.UseMarkoftheWild && !MarkoftheWild.HaveBuff && MarkoftheWild.IsSpellUsable)
-            MarkoftheWild.Cast();
-
-        if (MySettings.UseStampedingRoar && !Darkflight.HaveBuff && !Dash.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && StampedingRoar.IsSpellUsable)
-            StampedingRoar.Cast();
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        //Log
+        if (!CombatMode)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
-    }
-
-    private void DefenseCycle()
-    {
-        if (MySettings.UseBarkskin && ObjectManager.Me.HealthPercent <= MySettings.UseBarkskinBelowPercentage && Barkskin.IsSpellUsable)
-        {
-            Barkskin.Cast();
-            _onCd = new Timer(1000*12);
-            return;
-        }
-
-        if (MySettings.UseFaerieFire && !FaerieFire.TargetHaveBuff && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood)
-            FaerieFire.Cast();
-
-        if (MySettings.UseFaerieSwarm && !FaerieSwarm.TargetHaveBuff && ObjectManager.Target.GetMove && FaerieSwarm.IsSpellUsable && FaerieSwarm.IsHostileDistanceGood)
-            FaerieSwarm.Cast();
-
-        if (MySettings.UseIncapacitatingRoar && (ObjectManager.Me.HealthPercent <= MySettings.UseIncapacitatingRoarBelowPercentage
-                                                 || ObjectManager.GetUnitInSpellRange(10 /*, ObjectManager.Me*/) > 2) && IncapacitatingRoar.IsSpellUsable)
-        {
-            Others.SafeSleep(1000);
-            IncapacitatingRoar.Cast();
-            _onCd = new Timer(1000*3);
-
-            if (MySettings.UseDisplacerBeast && DisplacerBeast.IsSpellUsable && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 0)
-                DisplacerBeast.Cast();
-            else
-            {
-                var maxTimeTimer = new Timer(1000*3);
-                MovementsAction.MoveBackward(true);
-                if (ObjectManager.Target.InCombat && !maxTimeTimer.IsReady && IncapacitatingRoar.TargetHaveBuff && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 0)
-                {
-                    Logging.WriteFight("Defensively Moving Away");
-                    Others.SafeSleep(3000);
-                }
-                MovementsAction.MoveBackward(false);
-                if (maxTimeTimer.IsReady && ObjectManager.Target.InCombat && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 2)
-                {
-                    MovementsAction.MoveForward(true);
-                    Others.SafeSleep(3000);
-                    MovementsAction.MoveForward(false);
-                    MovementManager.Face(ObjectManager.Target.Position);
-                }
-            }
-
-            return;
-        }
-        if (MySettings.UseMassEntanglement && (ObjectManager.Me.HealthPercent <= MySettings.UseMassEntanglementBelowPercentage
-                                               || ObjectManager.GetUnitInSpellRange(10 /*, ObjectManager.Me*/) > 2) && MassEntanglement.IsSpellUsable)
-        {
-            Others.SafeSleep(1000);
-            MassEntanglement.Cast();
-            _onCd = new Timer(1000*3);
-
-            if (MySettings.UseDisplacerBeast && DisplacerBeast.IsSpellUsable && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 0)
-                DisplacerBeast.Cast();
-            else
-            {
-                var maxTimeTimer = new Timer(1000*3);
-                MovementsAction.MoveBackward(true);
-                if (ObjectManager.Target.InCombat && !maxTimeTimer.IsReady && MassEntanglement.TargetHaveBuff && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 0)
-                {
-                    Logging.WriteFight("Defensively Moving Away");
-                    Others.SafeSleep(3000);
-                }
-                MovementsAction.MoveBackward(false);
-                if (maxTimeTimer.IsReady && ObjectManager.Target.InCombat && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 2)
-                {
-                    MovementsAction.MoveForward(true);
-                    Others.SafeSleep(3000);
-                    MovementsAction.MoveForward(false);
-                    MovementManager.Face(ObjectManager.Target.Position);
-                }
-            }
-
-            return;
-        }
-        if (MySettings.UseMightyBash && ObjectManager.Me.HealthPercent <= MySettings.UseMightyBashBelowPercentage && MightyBash.IsSpellUsable && MightyBash.IsHostileDistanceGood)
-        {
-            MightyBash.Cast();
-            _onCd = new Timer(1000*5);
-            return;
-        }
-        if (MySettings.UseSavageDefense && ObjectManager.Me.HealthPercent <= MySettings.UseSavageDefenseBelowPercentage && SavageDefense.GetSpellCharges > 0
-            && !ObjectManager.Target.IsCast && SavageDefense.IsSpellUsable)
-        {
-            SavageDefense.Cast();
-            _onCd = new Timer(1000*6);
-            return;
-        }
-        if (MySettings.UseSurvivalInstincts && ObjectManager.Me.HealthPercent <= MySettings.UseSurvivalInstinctsBelowPercentage && SurvivalInstincts.GetSpellCharges > 0
-            && SurvivalInstincts.IsSpellUsable)
-        {
-            SurvivalInstincts.Cast();
-            _onCd = new Timer(1000*6);
-            return;
-        }
-        if (MySettings.UseTyphoon && ObjectManager.Me.HealthPercent <= MySettings.UseTyphoonBelowPercentage && Typhoon.IsSpellUsable && Typhoon.IsHostileDistanceGood)
-        {
-            Typhoon.Cast();
-            _onCd = new Timer(1000*6);
-            return;
-        }
-        if (MySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent <= MySettings.UseUrsolsVortexBelowPercentage && UrsolsVortex.IsSpellUsable
-            && UrsolsVortex.IsHostileDistanceGood)
-        {
-            Others.SafeSleep(1000);
-            SpellManager.CastSpellByIDAndPosition(102793, ObjectManager.Me.Position);
-
-            if (MySettings.UseDisplacerBeast && DisplacerBeast.IsSpellUsable && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 0)
-                DisplacerBeast.Cast();
-            else
-            {
-                var maxTimeTimer = new Timer(1000*3);
-                MovementsAction.MoveBackward(true);
-                if (ObjectManager.Target.InCombat && !maxTimeTimer.IsReady && UrsolsVortex.TargetHaveBuff && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 0)
-                {
-                    Logging.WriteFight("Defensively Moving Away");
-                    Others.SafeSleep(3000);
-                }
-                MovementsAction.MoveBackward(false);
-                if (maxTimeTimer.IsReady && ObjectManager.Target.InCombat && ObjectManager.GetUnitInSpellRange(5 /*, ObjectManager.Me*/) > 2)
-                {
-                    MovementsAction.MoveForward(true);
-                    Others.SafeSleep(3000);
-                    MovementsAction.MoveForward(false);
-                    MovementManager.Face(ObjectManager.Target.Position);
-                }
-            }
-
-            return;
-        }
-        if (MySettings.UseWarStomp && ObjectManager.Me.HealthPercent <= MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable
-            && ObjectManager.GetUnitInSpellRange(WarStomp.MaxRangeHostile) > 0)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-        }
+        //All Ranges
+        Heal();
+        if (Defensive()) return;
+        if (ObjectManager.Target.IsAlive && Shapeshift()) return;
+        AgroManagement();
+        BurstBuffs();
+        GCDCycle();
     }
 
     private void Heal()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseCenarionWard && ObjectManager.Me.HealthPercent <= MySettings.UseCenarionWardBelowPercentage && CenarionWard.IsSpellUsable)
-        {
-            CenarionWard.Cast();
-            return;
-        }
-        if (MySettings.UseFrenziedRegeneration && ObjectManager.Me.HealthPercent <= MySettings.UseFrenziedRegenerationBelowPercentage
-            && ObjectManager.Me.Rage > 39 && FrenziedRegeneration.IsSpellUsable)
-        {
-            FrenziedRegeneration.Cast();
-            return;
-        }
-        if (MySettings.UseHealingTouch && ((DreamofCenarius.HaveBuff && ObjectManager.Me.HealthPercent < 100)
-                                           || (ObjectManager.Me.HealthPercent <= MySettings.UseHealingTouchBelowPercentage && !ObjectManager.Me.InCombat)) && HealingTouch.IsSpellUsable)
-        {
-            HealingTouch.Cast();
-            return;
-        }
-        if (MySettings.UseHeartoftheWild && ObjectManager.Me.HealthPercent <= MySettings.UseHeartoftheWildBelowPercentage && HeartoftheWild.IsSpellUsable)
-        {
-            HeartoftheWild.Cast();
-            return;
-        }
-        if (MySettings.UseNaturesVigil && ObjectManager.Me.HealthPercent <= MySettings.UseNaturesVigilBelowPercentage && NaturesVigil.IsSpellUsable)
-        {
-            NaturesVigil.Cast();
-            return;
-        }
-        if (MySettings.UseRejuvenation && ObjectManager.Me.HealthPercent <= MySettings.UseHealingTouchBelowPercentage && !Rejuvenation.HaveBuff && Rejuvenation.IsSpellUsable)
-        {
-            Rejuvenation.Cast();
-            return;
-        }
-        if (MySettings.UseRenewal && ObjectManager.Me.HealthPercent <= MySettings.UseRenewalBelowPercentage && Renewal.IsSpellUsable)
-            Renewal.Cast();
-    }
-
-    private void Decast()
-    {
-        if (MySettings.UseSkullBash && ObjectManager.Me.HealthPercent <= MySettings.UseSkullBashBelowPercentage
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SkullBash.IsSpellUsable && SkullBash.IsHostileDistanceGood)
-            SkullBash.Cast();
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
-        if (MySettings.UseBerserking && Berserking.IsSpellUsable && Maul.IsHostileDistanceGood)
-            Berserking.Cast();
-
-        if (MySettings.UseForceofNature && (ForceofNature.GetSpellCharges > 1 || (Berserk.HaveBuff && ForceofNature.GetSpellCharges > 0))
-            && ForceofNature.IsSpellUsable && ForceofNature.IsHostileDistanceGood)
-            ForceofNature.Cast();
-
-        if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && Maul.IsHostileDistanceGood)
-        {
-            Incarnation.Cast();
-            Others.SafeSleep(1000);
-        }
-
-        if (MySettings.UseBerserk && Berserk.IsSpellUsable && Maul.IsHostileDistanceGood)
-            Berserk.Cast();
-    }
-
-    private void DPSCycle()
-    {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseGrowl && !ObjectManager.Target.InCombat && Growl.IsSpellUsable && Growl.IsHostileDistanceGood)
+            //Frenzied Regeneration
+            if (FrenziedRegeneration.IsSpellUsable && DefensiveTimer.IsReady && (ObjectManager.Me.HealthPercent < MySettings.UseFrenziedRegenerationBelowPercentage ||
+                                                                                 (FrenziedRegeneration.GetSpellCharges == 2 && ObjectManager.Me.HealthPercent < 90)))
             {
-                Growl.Cast();
-                return;
+                FrenziedRegeneration.CastOnSelf();
             }
-            if (MySettings.UseMaul && (ToothandClaw.HaveBuff || ObjectManager.Me.RagePercentage > 90 || ObjectManager.Me.HealthPercent > 90)
-                && Maul.IsSpellUsable && Maul.IsHostileDistanceGood)
+            //Restoration Affinity
+            if (ObjectManager.Me.HealthPercent < MySettings.UseRestorationAffinityBelowPercentage)
             {
-                Maul.Cast();
-                return;
+                //Swiftmend
+                if (Swiftmend.IsSpellUsable)
+                {
+                    Swiftmend.CastOnSelf();
+                }
+                //Rejuvenation
+                if (Rejuvenation.IsSpellUsable && ObjectManager.Me.UnitAura(774, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+                {
+                    Rejuvenation.CastOnSelf();
+                }
             }
-            if (MySettings.UseMangle && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood)
-            {
-                Mangle.Cast();
-                return;
-            }
-            if (MySettings.UseThrash && !Thrash.TargetHaveBuff && Thrash.IsSpellUsable && Thrash.IsHostileDistanceGood)
-            {
-                Thrash.Cast();
-                return;
-            }
-            if (MySettings.UseLacerate && Lacerate.TargetBuffStack < 3 && !Incarnation.HaveBuff && Lacerate.IsSpellUsable && Lacerate.IsHostileDistanceGood)
-            {
-                Lacerate.Cast();
-                return;
-            }
-            if (MySettings.UsePulverize && Lacerate.TargetBuffStack > 2 && Pulverize.IsSpellUsable && Pulverize.IsHostileDistanceGood)
-                Pulverize.Cast();
         }
         finally
         {
@@ -2733,11 +2487,206 @@ public class DruidGuardian
         }
     }
 
-    private void Patrolling()
+    private bool Defensive()
     {
-        if (ObjectManager.Me.IsMounted) return;
-        Buff();
-        Heal();
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Defensive Cooldowns
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (MightyBash.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage)
+                    {
+                        MightyBash.Cast();
+                        StunTimer = new Timer(1000*5);
+                        return true;
+                    }
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2);
+                    }
+                }
+                //Mitigate Damage
+                if (SurvivalInstincts.IsSpellUsable && (SurvivalInstincts.GetSpellCharges == 2 ||
+                                                        ObjectManager.Me.HealthPercent < MySettings.UseSurvivalInstinctsBelowPercentage))
+                {
+                    SurvivalInstincts.Cast();
+                    DefensiveTimer = new Timer(1000*6);
+                }
+                if (Barkskin.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseBarkskinBelowPercentage)
+                {
+                    Barkskin.Cast();
+                    DefensiveTimer = new Timer(1000*12);
+                }
+                if (RageoftheSleeper.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseRageoftheSleeperBelowPercentage)
+                {
+                    RageoftheSleeper.Cast();
+                    DefensiveTimer = new Timer(1000*10);
+                }
+            }
+            //Mitigate Magic Damage for Rage
+            if (MarkofUrsol.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMarkofUrsolBelowPercentage &&
+                !MarkofUrsol.HaveBuff)
+            {
+                MarkofUrsol.Cast();
+                DefensiveTimer = new Timer(1000*6);
+            }
+            //Increase Armor for Rage
+            if (Ironfur.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseIronfurBelowPercentage)
+            {
+                Ironfur.Cast();
+                DefensiveTimer = new Timer(1000*6);
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private bool Shapeshift()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Change Form
+            if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && !Incarnation.HaveBuff)
+            {
+                Incarnation.Cast();
+                return true;
+            }
+            if (MySettings.UseBearForm && BearForm.IsSpellUsable && !BearForm.HaveBuff)
+            {
+                BearForm.Cast();
+                return true;
+            }
+
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBristlingFur && BristlingFur.IsSpellUsable && !DefensiveTimer.IsReady)
+            {
+                BristlingFur.Cast();
+                DefensiveTimer = new Timer(1000*8);
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void AgroManagement()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Growl
+            if (MySettings.UseGrowl && Growl.IsSpellUsable && Growl.IsHostileDistanceGood &&
+                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+            {
+                Growl.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
+                ObjectManager.Me.UnitAura(GalacticGuardian.Id).IsValid)
+            {
+                Logging.Write("GalacticGuardian.HaveBuff");
+                Moonfire.Cast();
+                return;
+            }
+            if (MySettings.UseMangle && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood)
+            {
+                Mangle.Cast();
+                return;
+            }
+            if (MySettings.UseThrash && Thrash.IsSpellUsable && Thrash.IsHostileDistanceGood)
+            {
+                Thrash.Cast();
+                return;
+            }
+            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
+                ObjectManager.Target.UnitAura(164812, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+            {
+                Moonfire.Cast();
+                return;
+            }
+            if (MySettings.UsePulverize && Thrash.TargetBuffStack >= 2 && Pulverize.IsSpellUsable && Pulverize.IsHostileDistanceGood)
+            {
+                Pulverize.Cast();
+                return;
+            }
+            if (MySettings.UseMaul && Maul.IsSpellUsable && Maul.IsHostileDistanceGood && ObjectManager.Me.RagePercentage > 90)
+            {
+                Maul.Cast();
+                return;
+            }
+            if (MySettings.UseSwipe && Swipe.IsSpellUsable && Swipe.IsHostileDistanceGood)
+            {
+                Swipe.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
     #region Nested type: DruidGuardianSettings
@@ -2745,120 +2694,96 @@ public class DruidGuardian
     [Serializable]
     public class DruidGuardianSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseBarkskin = true;
-        public int UseBarkskinBelowPercentage = 85;
-        public bool UseBearForm = true;
-        public bool UseBerserk = true;
+        /* Professions & Racials */
         public bool UseBerserking = true;
-        public bool UseBristlingFur = true;
-        public int UseBristlingFurBelowPercentage = 80;
-        public bool UseCenarionWard = true;
-        public int UseCenarionWardBelowPercentage = 85;
         public bool UseDarkflight = true;
-        public bool UseDash = true;
-        public bool UseDisplacerBeast = true;
-        public bool UseFaerieFire = false;
-        public bool UseFaerieSwarm = true;
-        public bool UseForceofNature = true;
-        public bool UseFrenziedRegeneration = true;
-        public int UseFrenziedRegenerationBelowPercentage = 70;
-        public bool UseGrowl = true;
-        public bool UseHealingTouch = true;
-        public int UseHealingTouchBelowPercentage = 60;
-        public bool UseHeartoftheWild = true;
-        public int UseHeartoftheWildBelowPercentage = 70;
-        public bool UseIncapacitatingRoar = true;
-        public int UseIncapacitatingRoarBelowPercentage = 50;
-        public bool UseIncarnation = true;
-        public bool UseLacerate = true;
+        public int UseWarStompBelowPercentage = 25;
+
+        /* Druid Buffs */
+        public bool UseBearForm = true;
+        public bool UseCatFormOOC = true;
+
+        /* Offensive Spells */
         public bool UseMangle = true;
-        public bool UseMarkoftheWild = true;
-        public bool UseMassEntanglement = true;
-        public int UseMassEntanglementBelowPercentage = 50;
         public bool UseMaul = true;
-        public bool UseMightyBash = true;
-        public int UseMightyBashBelowPercentage = 80;
-        public bool UseNaturesVigil = false;
-        public int UseNaturesVigilBelowPercentage = 80;
+        public bool UseMoonfire = true;
         public bool UsePulverize = true;
-        public bool UseRejuvenation = true;
-        public int UseRejuvenationBelowPercentage = 50;
-        public bool UseRenewal = true;
-        public int UseRenewalBelowPercentage = 65;
-        public bool UseSavageDefense = true;
-        public int UseSavageDefenseBelowPercentage = 65;
-        public bool UseSavageRoar = true;
-        public bool UseSkullBash = true;
-        public int UseSkullBashBelowPercentage = 95;
-        public bool UseStampedingRoar = true;
-        public bool UseSurvivalInstincts = true;
-        public int UseSurvivalInstinctsBelowPercentage = 70;
+        public bool UseSwipe = true;
         public bool UseThrash = true;
+
+        /* Artifact Spells */
+        public int UseRageoftheSleeperBelowPercentage = 40;
+
+        /* Offensive Cooldowns */
+        public bool UseBristlingFur = true;
+        public bool UseIncarnation = true;
+        public bool UseLunarBeam = true;
+
+        /* Defensive Cooldowns */
+        public int UseBarkskinBelowPercentage = 75;
+        public int UseIronfurBelowPercentage = 0;
+        public int UseMarkofUrsolBelowPercentage = 0;
+        //public bool UseEntanglingRoots = true;
+        //public bool UseMassEntanglement = true;
+        public int UseMightyBashBelowPercentage = 25;
+        //public bool UseSkullBash = true;
+        public int UseSurvivalInstinctsBelowPercentage = 50;
+        //public bool UseTyphoon = true;
+        //public bool UseWildCharge = true;
+
+        /* Healing Spells */
+        public int UseFrenziedRegenerationBelowPercentage = 25;
+        public int UseRestorationAffinityBelowPercentage = 10;
+
+        /* Utility Cooldowns */
+        public bool UseDash = true;
+        //public bool UseDisplacerBeast = true;
+        public bool UseGrowl = true;
+        public bool UseStampedingRoar = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseTyphoon = true;
-        public int UseTyphoonBelowPercentage = 50;
-        public bool UseUrsolsVortex = true;
-        public int UseUrsolsVortexBelowPercentage = 50;
-        public bool UseWarStomp = true;
-        public int UseWarStompBelowPercentage = 80;
-        public bool UseWildCharge = true;
 
         public DruidGuardianSettings()
         {
             ConfigWinForm("Druid Guardian Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
             AddControlInWinForm("Use Bear Form", "UseBearForm", "Druid Buffs");
-            AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
-            AddControlInWinForm("Use Displacer Beast", "UseDisplacerBeast", "Druid Buffs");
-            AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
-            AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
-            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
+            AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
             /* Offensive Spells */
-            AddControlInWinForm("Use Growl", "UseGrowl", "Offensive Spells");
-            AddControlInWinForm("Use Lacerate", "UseLacerate", "Offensive Spells");
             AddControlInWinForm("Use Mangle", "UseMangle", "Offensive Spells");
             AddControlInWinForm("Use Maul", "UseMaul", "Offensive Spells");
+            AddControlInWinForm("Use Moonfire", "UseMoonfire", "Offensive Spells");
             AddControlInWinForm("Use Pulverize", "UsePulverize", "Offensive Spells");
+            AddControlInWinForm("Use Swipe", "UseSwipe", "Offensive Spells");
             AddControlInWinForm("Use Thrash", "UseThrash", "Offensive Spells");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Rage of the Sleeper", "UseRageoftheSleeperBelowPercentage", "Artifact Spells", "BelowPercentage", "Life");
             /* Offensive Cooldowns */
-            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Cooldowns");
-            AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldowns");
-            AddControlInWinForm("Use Incarnation: Son of Ursoc", "UseIncarnation", "Offensive Cooldowns");
+            AddControlInWinForm("Use Bristling Fur", "UseBristlingFur", "Offensive Cooldowns");
+            AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldowns");
+            AddControlInWinForm("Use Lunar Beam", "UseLunarBeam", "Offensive Cooldowns");
             /* Defensive Cooldowns */
-            AddControlInWinForm("Use Barkskin", "UseBarkskin", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Bristling Fur", "UseBristlingFur", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Faerie Swarm", "UseFaerieSwarm", "Defensive Cooldowns");
-            AddControlInWinForm("Use Incapacitating Roar", "UseIncapacitatingRoar", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Mass Entanglement", "UseMassEntanglement", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Mighty Bash", "UseMightyBash", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Savage Defense", "UseSavageDefense", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Skull Bash", "UseSkullBash", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Survival Instincts", "UseSurvivalInstincts", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Typhoon", "UseTyphoon", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Ursol's Vortex", "UseUrsolsVortex", "Defensive Cooldowns", "BelowPercentage");
-            AddControlInWinForm("Use Wild Charge", "UseWildCharge", "Defensive Cooldowns");
+            AddControlInWinForm("Use Barkskin", "UseBarkskinBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ironfur", "UseIronfurBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Mark of Ursol", "UseMarkofUrsolBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use SurvivalInstincts", "UseSurvivalInstinctsBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spells */
-            AddControlInWinForm("Use Cenarion Ward", "UseCenarionWard", "Healing Spells");
-            AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegeneration", "Healing Spells");
-            AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spells");
-            AddControlInWinForm("Use Heart of the Wild", "UseHeartoftheWild", "Healing Spells");
-            AddControlInWinForm("Use Natures Vigil", "UseNaturesVigil", "Healing Spells");
-            AddControlInWinForm("Use Rejuvenation", "UseRejuvenation", "Healing Spells");
-            AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spells");
+            AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegenerationBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Restoration Affinity", "UseRestorationAffinityBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
+            AddControlInWinForm("Use Growl", "UseGrowl", "Utility Cooldowns");
+            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Cooldowns");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static DruidGuardianSettings CurrentSetting { get; set; }
