@@ -991,5 +991,54 @@ namespace nManager.Wow.Helpers
             AfkTimer.Reset();
             _lastHardwareActionDone = true;
         }
+
+        public class WoWCurrency
+        {
+            public int Entry;
+            public string Name;
+            public int CurrentAmount;
+            public int FileId;
+            public int EarnedThisWeek;
+            public int WeeklyMax;
+            public int TotalMax;
+            public bool IsDiscovered;
+
+            public bool IsValid
+            {
+                get { return Name != ""; }
+            }
+        }
+
+        public WoWCurrency GetCurrencyInfo(int entry)
+        {
+            string randomString = Others.GetRandomString(Others.Random(5, 10));
+            string result = Lua.LuaDoString(
+                randomString + " = \"\"; " +
+                "local name, currentAmount, texture, earnedThisWeek, weeklyMax, totalMax, isDiscovered = GetCurrencyInfo(" + entry + "); " +
+                randomString +
+                " = tostring(name) .. \"##\" .. tostring(currentAmount) .. \"##\" .. tostring(texture) .. \"##\" .. tostring(earnedThisWeek)  .. \"##\" .. tostring(weeklyMax)  .. \"##\" .. tostring(totalMax)  .. \"##\" .. tostring(isDiscovered);"
+                , randomString);
+            if (!string.IsNullOrWhiteSpace(result))
+            {
+                string[] ar = {"##"};
+                string[] slipped = result.Split(ar, StringSplitOptions.None);
+                if (slipped.Length == 6)
+                {
+                    var tmp = new WoWCurrency
+                    {
+                        Entry = entry,
+                        Name = slipped[0],
+                        CurrentAmount = Others.ToInt32(slipped[1]),
+                        FileId = Others.ToInt32(slipped[2]),
+                        EarnedThisWeek = Others.ToInt32(slipped[3]),
+                        WeeklyMax = Others.ToInt32(slipped[4]),
+                        TotalMax = Others.ToInt32(slipped[5]),
+                        IsDiscovered = Others.ToBoolean(slipped[6])
+                    };
+                    return tmp;
+                }
+            }
+            return new WoWCurrency();
+        }
     }
 }
