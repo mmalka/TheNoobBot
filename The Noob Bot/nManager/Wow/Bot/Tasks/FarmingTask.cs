@@ -236,7 +236,7 @@ namespace nManager.Wow.Bot.Tasks
                 foreach (WoWGameObject node in nodes)
                 {
                     WoWGameObject inode = node;
-                    if (_curNode != null && _curNode.IsValid && ! nManagerSetting.IsBlackListed(_curNode.Guid))
+                    if (_curNode != null && _curNode.IsValid && !nManagerSetting.IsBlackListed(_curNode.Guid))
                         inode = _curNode;
                     if (inode.IsValid)
                     {
@@ -347,8 +347,20 @@ namespace nManager.Wow.Bot.Tasks
                 _wasLooted = true;
                 _countThisLoot = false;
                 LootingTask.LootAndConfirmBoPForAllItems(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems);
-                Statistics.Farms++;
-                Logging.Write("Farm successful");
+                Thread.Sleep(200);
+                if (!Others.IsFrameVisible("LootFrame"))
+                {
+                    Statistics.Farms++;
+                    Logging.Write("Farm successful");
+                }
+                else
+                {
+                    Statistics.Farms++;
+                    Logging.Write("Farm partially successful");
+                    // LootWindow is still open after we accepted BoP, so one item must be stuck. (Unique(X), InventoryFull, ...)
+                    if (_curNode != null && _curNode.IsValid)
+                        nManagerSetting.AddBlackList(_curNode.Guid);
+                }
                 _curNode = null;
                 if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)
                     Elemental.AutoMakeElemental();
