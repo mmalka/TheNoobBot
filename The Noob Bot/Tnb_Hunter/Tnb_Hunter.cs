@@ -194,34 +194,52 @@ public class HunterMarksmanship
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int LC = 0;
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
+
+    private Timer CCTimer = new Timer(0);
+
+    #endregion
+
+    #region Talents
+
+    public readonly Spell LoneWolf = new Spell("Lone Wolf");
+    public readonly Spell NarrowEscape = new Spell("Narrow Escape");
+    public readonly Spell Posthaste = new Spell("Posthaste");
+    public readonly Spell SteadyFocus = new Spell("Steady Focus");
 
     #endregion
 
     #region Professions & Racials
 
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    public readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Hunter Buffs
+    #region Hunter Dots
 
-    public readonly Spell AspectoftheHawk = new Spell("Aspect of the Hawk");
-    public readonly Spell Camouflage = new Spell("Camouflage");
-    public readonly Spell FeignDeath = new Spell("Feign Death");
     public readonly Spell HuntersMark = new Spell("Hunter's Mark");
-    public readonly Spell Misdirection = new Spell("Misdirection");
-    public readonly Spell SteadyFocus = new Spell("Steady Focus");
+    public readonly Spell Vulnerable = new Spell("Vulnerable");
+
+    #endregion
+
+    #region Hunter Pets
+
+    public readonly Spell CallPet1 = new Spell("Call Pet 1");
+    public readonly Spell CallPet2 = new Spell("Call Pet 2");
+    public readonly Spell CallPet3 = new Spell("Call Pet 3");
+    public readonly Spell CallPet4 = new Spell("Call Pet 4");
+    public readonly Spell CallPet5 = new Spell("Call Pet 5");
+    public readonly Spell Dismiss = new Spell("Dismiss Pet");
+    public readonly Spell FeedPet = new Spell("Feed Pet");
+    public readonly Spell MendPet = new Spell("Mend Pet");
+    public readonly Spell RevivePet = new Spell("Revive Pet");
 
     #endregion
 
@@ -229,21 +247,14 @@ public class HunterMarksmanship
 
     public readonly Spell AimedShot = new Spell("Aimed Shot");
     public readonly Spell ArcaneShot = new Spell("Arcane Shot");
-    public readonly Spell CallPet1 = new Spell("Call Pet 1");
-    public readonly Spell CallPet2 = new Spell("Call Pet 2");
-    public readonly Spell CallPet3 = new Spell("Call Pet 3");
-    public readonly Spell CallPet4 = new Spell("Call Pet 4");
-    public readonly Spell CallPet5 = new Spell("Call Pet 5");
-    public readonly Spell ChimeraShot = new Spell("Chimera Shot");
-    public readonly Spell Dismiss = new Spell("Dismiss Pet");
-    public readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
-    public readonly Spell KillShot = new Spell("Kill Shot");
+    public readonly Spell MarkedShot = new Spell("Marked Shot");
     public readonly Spell MultiShot = new Spell("Multi-Shot");
-    public readonly Spell SerpentSting = new Spell("Serpent Sting");
-    public readonly Spell SteadyShot = new Spell("Steady Shot");
-/*
-        private Timer _serpentStingTimer = new Timer(0);
-*/
+
+    #endregion
+
+    #region Legion Artifact
+
+    public readonly Spell Windburst = new Spell("Windburst"); //No GCD
 
     #endregion
 
@@ -251,40 +262,41 @@ public class HunterMarksmanship
 
     public readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
     public readonly Spell Barrage = new Spell("Barrage");
-    public readonly Spell BlinkStrike = new Spell("Blink Strike");
-    public readonly Spell DireBeast = new Spell("Dire Beast");
-    public readonly Spell Fervor = new Spell("Fervor");
-    public readonly Spell GlaiveToss = new Spell("Glaive Toss");
-    public readonly Spell LynxRush = new Spell("Lynx Rush");
-    public readonly Spell Powershot = new Spell("Powershot");
-    public readonly Spell RapidFire = new Spell("Rapid Fire");
-    public readonly Spell Readiness = new Spell("Readiness");
-    public readonly Spell Stampede = new Spell("Stampede");
-    private Timer _direBeastTimer = new Timer(0);
+    //public readonly Spell BlackArrow = new Spell("Black Arrow");
+    //public readonly Spell ExplosiveShot = new Spell("Explosive Shot");
+    public readonly Spell PiercingShot = new Spell("Piercing Shot");
+    public readonly Spell Sidewinders = new Spell("Sidewinders");
+    //public readonly Spell Sentinel = new Spell("Sentinel");
+    public readonly Spell Trueshot = new Spell("Trueshot");
+    //public readonly Spell Volley = new Spell("Volley");
 
     #endregion
 
     #region Defensive Cooldown
 
+    public readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
     public readonly Spell BindingShot = new Spell("Binding Shot");
+    public readonly Spell BurstingShot = new Spell("Bursting Shot");
+    //public readonly Spell Camouflage = new Spell("Camouflage"); //No GCD
     public readonly Spell ConcussiveShot = new Spell("Concussive Shot");
-    public readonly Spell Deterrance = new Spell("Deterrance");
-    public readonly Spell Disengage = new Spell("Disengage");
-    public readonly Spell FreezingTrap = new Spell("Freezing Trap");
-    public readonly Spell IceTrap = new Spell("Ice Trap");
-    public readonly Spell ScatterShot = new Spell("Scatter Shot");
-    public readonly Spell SilencingShot = new Spell("Silencing Shot");
-    public readonly Spell WyvernSting = new Spell("Wyvern Sting");
+    //public readonly Spell CounterShot = new Spell("Counter Shot"); //No GCD
+    public readonly Spell Disengage = new Spell("Disengage"); //No GCD
+    public readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
+    public readonly Spell Misdirection = new Spell("Misdirection"); //No GCD
 
     #endregion
 
     #region Healing Spell
 
     public readonly Spell Exhilaration = new Spell("Exhilaration");
-    public readonly Spell FeedPet = new Spell("Feed Pet");
-    public readonly Spell MendPet = new Spell("Mend Pet");
-    public readonly Spell RevivePet = new Spell("Revive Pet");
-    private Timer _mendPetTimer = new Timer(0);
+    //public readonly Spell WyvernSting = new Spell("Wyvern Sting");
+
+    #endregion
+
+    #region Utility Cooldowns
+
+    public readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
+    //public readonly Spell Flare = new Spell("Flare");
 
     #endregion
 
@@ -303,32 +315,25 @@ public class HunterMarksmanship
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted)
+                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
                     {
+                        //DEBUG
+                        if (ObjectManager.Me.HealthPercent == 0)
+                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
+
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && ArcaneShot.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && MySettings.UseLowCombat)
-                            {
-                                LC = 1;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    LowCombat();
-                            }
+                            if (ArcaneShot.IsHostileDistanceGood)
+                                Combat();
                             else
-                            {
-                                LC = 0;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    Combat();
-                            }
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else
                             Patrolling();
                     }
                 }
@@ -342,496 +347,75 @@ public class HunterMarksmanship
         }
     }
 
-    private void Pull()
+    private void Patrolling()
     {
-        if (HuntersMark.KnownSpell && HuntersMark.IsSpellUsable && MySettings.UseHuntersMark
-            && HuntersMark.IsHostileDistanceGood && !HuntersMark.TargetHaveBuff && LC != 1)
-            HuntersMark.Cast();
+        if (!ObjectManager.Me.IsCast)
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
 
-        if (ObjectManager.Pet.IsAlive)
-        {
-            Lua.RunMacroText("/petattack");
-            Logging.WriteFight("Cast Pet Attack");
-        }
-
-        if (ObjectManager.Pet.IsAlive && MySettings.UseMisdirection && Misdirection.KnownSpell
-            && Misdirection.IsSpellUsable)
-        {
-            Misdirection.CastOnUnitID("pet");
-        }
-
-        if (SerpentSting.KnownSpell && SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood
-            && MySettings.UseSerpentSting)
-        {
-            SerpentSting.Cast();
-        }
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        Heal();
-
-        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && GlaiveToss.IsHostileDistanceGood
-            && MySettings.UseGlaiveToss)
-        {
-            GlaiveToss.Cast();
-            return;
-        }
-        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-            && MySettings.UseArcaneShot)
-        {
-            ArcaneShot.Cast();
-            return;
-        }
-        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-            && MySettings.UseSteadyShot)
-        {
-            SteadyShot.Cast();
-            return;
-        }
-        if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood
-            && MySettings.UseExplosiveTrap)
-        {
-            ExplosiveTrap.Cast();
+            if (ObjectManager.Me.GetMove)
+            {
+                if (!Darkflight.HaveBuff && !AspectoftheCheetah.HaveBuff)
+                {
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                    {
+                        Darkflight.Cast();
+                    }
+                    else if (MySettings.UseAspectoftheCheetah && AspectoftheCheetah.IsSpellUsable)
+                    {
+                        AspectoftheCheetah.Cast();
+                    }
+                }
+            }
+            else
+            {
+                Pet();
+            }
         }
     }
 
     private void Combat()
     {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        DPSCycle();
-        Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        Pet();
-
-        if (MySettings.UseAspectoftheHawk && AspectoftheHawk.KnownSpell && AspectoftheHawk.IsSpellUsable
-            && !AspectoftheHawk.HaveBuff && !ObjectManager.Me.HaveBuff(109260))
+        //Log
+        if (!CombatMode)
         {
-            AspectoftheHawk.Cast();
-            return;
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
-
-        if (MySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
-            && !ObjectManager.Me.InCombat)
+        if (!ObjectManager.Me.IsCast)
         {
-            Camouflage.Cast();
-            return;
-        }
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-    }
-
-    private void DismissPet()
-    {
-        if (MySettings.DismissOnCall)
-        {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
-            {
-                Dismiss.Cast();
-                Others.SafeSleep(1500);
-            }
-        }
-    }
-
-    private void Pet()
-    {
-        if (MountTask.JustDismounted())
-            return;
-        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet1.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet2.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet3.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet4.Cast();
-            Others.SafeSleep(1000);
-        }
-        else
-        {
-            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
-            {
-                DismissPet();
-                CallPet5.Cast();
-                Others.SafeSleep(1000);
-            }
-        }
-
-        if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
-            && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
-        {
-            RevivePet.Cast();
-            Others.SafeSleep(1000);
-            return;
-        }
-        if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
-            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
-            && !ObjectManager.Me.InCombat)
-        {
-            RevivePet.Cast();
-            Others.SafeSleep(1000);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
-    private void DefenseCycle()
-    {
-        if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseFeignDeath
-            && FeignDeath.KnownSpell && FeignDeath.IsSpellUsable)
-        {
-            FeignDeath.Cast();
-            Others.SafeSleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                return;
-            Others.SafeSleep(5000);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 50 && MySettings.UseDeterrance
-            && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
-        {
-            Deterrance.Cast();
-            Others.SafeSleep(200);
-            return;
-        }
-        if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
-            && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
-        {
-            FreezingTrap.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceTrap
-            && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
-        {
-            IceTrap.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseConcussiveShot
-            && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
-        {
-            ConcussiveShot.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseBindingShot
-            && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
-        {
-            BindingShot.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-            WarStomp.KnownSpell
-            && MySettings.UseWarStomp)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-            Stoneform.KnownSpell
-            && MySettings.UseStoneform)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
+            Heal();
+            if (Defensive()) return;
+            Pet();
+            BurstBuffs();
+            GCDCycle();
         }
     }
 
     private void Heal()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell &&
-            GiftoftheNaaru.IsSpellUsable
-            && MySettings.UseGiftoftheNaaru)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
-            && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
-        {
-            Exhilaration.Cast();
-            return;
-        }
-        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
-            && FeedPet.KnownSpell && FeedPet.IsSpellUsable && MySettings.UseFeedPet
-            && !ObjectManager.Me.InCombat)
-        {
-            FeedPet.Cast();
-            return;
-        }
-        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
-            && MendPet.KnownSpell && MendPet.IsSpellUsable && MySettings.UseMendPet
-            && _mendPetTimer.IsReady)
-        {
-            MendPet.Cast();
-            _mendPetTimer = new Timer(1000*10);
-        }
-    }
-
-    private void Decast()
-    {
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && MySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
-            && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && MySettings.UseSilencingShot)
-        {
-            SilencingShot.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
-            && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && MySettings.UseScatterShot)
-        {
-            ScatterShot.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseWyvernSting
-            && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
-        {
-            WyvernSting.Cast();
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-            return;
-        }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseBerserking)
-        {
-            Berserking.Cast();
-            return;
-        }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && MySettings.UseBloodFury)
-        {
-            BloodFury.Cast();
-            return;
-        }
-        if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
-            && MySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
-        {
-            AimedShot.Cast();
-            return;
-        }
-        if (MySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
-            && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
-        {
-            SteadyShot.Cast();
-            return;
-        }
-        if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
-            && MySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
-        {
-            AMurderofCrows.Cast();
-            return;
-        }
-        if (Barrage.KnownSpell && Barrage.IsSpellUsable && MySettings.UseBarrage && Barrage.IsHostileDistanceGood)
-        {
-            Barrage.Cast();
-            return;
-        }
-        if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance <= 40f)
-        {
-            BlinkStrike.Cast();
-            return;
-        }
-        if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && MySettings.UseDireBeast
-            && DireBeast.IsHostileDistanceGood && _direBeastTimer.IsReady)
-        {
-            DireBeast.Cast();
-            _direBeastTimer = new Timer(1000*15);
-            return;
-        }
-        if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
-            && MySettings.UseFervor)
-        {
-            Fervor.Cast();
-            return;
-        }
-        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && MySettings.UseGlaiveToss &&
-            GlaiveToss.IsHostileDistanceGood)
-        {
-            GlaiveToss.Cast();
-            return;
-        }
-        if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && MySettings.UseLynxRush &&
-            ObjectManager.Target.GetDistance <= 40f)
-        {
-            LynxRush.Cast();
-            return;
-        }
-        if (Powershot.KnownSpell && Powershot.IsSpellUsable && MySettings.UsePowershot &&
-            Powershot.IsHostileDistanceGood)
-        {
-            Powershot.Cast();
-            return;
-        }
-        if (Stampede.KnownSpell && Stampede.IsSpellUsable && MySettings.UseStampede &&
-            Stampede.IsHostileDistanceGood)
-        {
-            Stampede.Cast();
-            return;
-        }
-        if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && MySettings.UseRapidFire
-            && ObjectManager.Target.GetDistance <= 40f)
-        {
-            RapidFire.Cast();
-            return;
-        }
-        if (Readiness.KnownSpell && Readiness.IsSpellUsable && MySettings.UseReadiness)
-        {
-            Readiness.Cast();
-        }
-    }
-
-    private void DPSCycle()
-    {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (SerpentSting.IsSpellUsable && SerpentSting.IsHostileDistanceGood && SerpentSting.KnownSpell
-                && MySettings.UseSerpentSting && !SerpentSting.TargetHaveBuff)
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                SerpentSting.Cast();
-                //_serpentStingTimer = new Timer(1000*12);
+                GiftoftheNaaru.Cast();
                 return;
             }
-            if (ChimeraShot.KnownSpell && ChimeraShot.IsSpellUsable && ChimeraShot.IsHostileDistanceGood
-                && MySettings.UseChimeraShot)
+            //Exhilaration
+            if (ObjectManager.Me.HealthPercent < MySettings.UseExhilarationBelowPercentage && Exhilaration.IsSpellUsable)
             {
-                ChimeraShot.Cast();
-                //_serpentStingTimer = new Timer(1000*12);
+                Exhilaration.Cast();
                 return;
-            }
-            if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
-                && MySettings.UseKillShot)
-            {
-                KillShot.Cast();
-                return;
-            }
-            if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
-                && MySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
-            {
-                AimedShot.Cast();
-                return;
-            }
-            if (MySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
-                && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
-            {
-                SteadyShot.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 3 && MySettings.UseMultiShot && MultiShot.KnownSpell && MultiShot.IsHostileDistanceGood
-                && MultiShot.IsSpellUsable)
-            {
-                MultiShot.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 3 && MySettings.UseMultiShot && MySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood &&
-                SteadyShot.IsSpellUsable && ObjectManager.Me.FocusPercentage < 40)
-            {
-                SteadyShot.Cast();
-                return;
-            }
-            if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && MySettings.UseArcaneShot
-                && (ObjectManager.Me.FocusPercentage > 64 || ObjectManager.Me.Level < 3))
-            {
-                ArcaneShot.Cast();
-                return;
-            }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && MySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Cast();
-                return;
-            }
-            if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                && MySettings.UseSteadyShot && ObjectManager.Me.FocusPercentage < 80)
-            {
-                SteadyShot.Cast();
             }
         }
         finally
@@ -840,11 +424,316 @@ public class HunterMarksmanship
         }
     }
 
-    private void Patrolling()
+    private bool Defensive()
     {
-        if (ObjectManager.Me.IsMounted) return;
-        Buff();
-        Heal();
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Defensive Cooldowns
+            if (CCTimer.IsReady)
+            {
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    {
+                        WarStomp.Cast();
+                        CCTimer = new Timer(1000*2);
+                    }
+                }
+                if (Stoneform.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage)
+                {
+                    Stoneform.Cast();
+                }
+                if (AspectoftheTurtle.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseAspectoftheTurtleBelowPercentage)
+                {
+                    AspectoftheTurtle.Cast();
+                }
+                if (Misdirection.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMisdirectionBelowPercentage &&
+                    ObjectManager.Pet.IsAlive)
+                {
+                    Misdirection.CastOnUnitID("pet");
+                }
+                if (BurstingShot.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseBurstingShotBelowPercentage && BurstingShot.IsHostileDistanceGood)
+                {
+                    BurstingShot.Cast();
+                    CCTimer = new Timer(1000*4);
+                    return true;
+                }
+                if (ConcussiveShot.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseConcussiveShotBelowPercentage && ConcussiveShot.IsHostileDistanceGood)
+                {
+                    ConcussiveShot.Cast();
+                    CCTimer = new Timer(1000*6);
+                    return true;
+                }
+                if (Disengage.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseDisengageBelowPercentage)
+                {
+                    MovementsAction.Jump();
+                    Disengage.Cast();
+                    if (NarrowEscape.HaveBuff || Posthaste.HaveBuff)
+                        CCTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (BindingShot.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseBindingShotBelowPercentage && BindingShot.IsHostileDistanceGood)
+                {
+                    BindingShot.Cast();
+                    CCTimer = new Timer(1000*5);
+                    return true;
+                }
+                if (FeignDeath.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFeignDeathBelowPercentage)
+                {
+                    FeignDeath.Cast();
+                    Others.SafeSleep(5000);
+                    if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                        return true;
+                    Others.SafeSleep(5000);
+                    return true;
+                }
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall && Dismiss.IsSpellUsable)
+        {
+            Dismiss.Cast();
+            Others.SafeSleep(1500);
+        }
+    }
+
+    private void Pet()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (!ObjectManager.Me.IsCast && !LoneWolf.HaveBuff)
+            {
+                if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                {
+                    //Call Pet //TODO implement a check which one is active
+                    switch (MySettings.UsePet)
+                    {
+                        case 1:
+                            if (CallPet1.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet1.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 2:
+                            if (CallPet2.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet2.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 3:
+                            if (CallPet3.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet3.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 4:
+                            if (CallPet4.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet4.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 5:
+                            if (CallPet5.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet5.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    //Revive Pet
+                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.IsValid)
+                    {
+                        if (MySettings.UseCombatRevive || !ObjectManager.Me.InCombat)
+                        {
+                            RevivePet.Cast();
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if (ObjectManager.Pet.Health > 0)
+                    {
+                        if (!ObjectManager.Me.InCombat && ObjectManager.Pet.HealthPercent < MySettings.UseFeedPetBelowPercentage && FeedPet.IsSpellUsable)
+                        {
+                            FeedPet.Cast();
+                            return;
+                        }
+                        if (ObjectManager.Pet.HealthPercent < MySettings.UseMendPetBelowPercentage && MendPet.IsSpellUsable)
+                        {
+                            MendPet.Cast();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Manage Pet Targeting
+            //if (ObjectManager.Pet.IsAlive && ObjectManager.Pet.Target != ObjectManager.Me.Target)
+            //{
+            //    Lua.RunMacroText("/petattack");
+            //    Logging.WriteFight("Cast Pet Attack");
+            //}
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            if (MySettings.UseTrueshot && Trueshot.IsSpellUsable)
+            {
+                Trueshot.Cast();
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Procs
+            if (MySettings.UseMarkedShot && MarkedShot.IsSpellUsable && MarkedShot.IsHostileDistanceGood)
+            {
+                MarkedShot.Cast();
+                return;
+            }
+
+            //Cooldowns
+            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
+            {
+                Barrage.Cast();
+                return;
+            }
+            if (MySettings.UseWindburst && Windburst.IsSpellUsable && Windburst.IsHostileDistanceGood)
+            {
+                Windburst.Cast();
+                return;
+            }
+            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
+            {
+                AMurderofCrows.Cast();
+                return;
+            }
+
+            //Spend Focus
+            if (MySettings.UseAimedShot && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood &&
+                ObjectManager.Target.UnitAura(Vulnerable.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs > 2000)
+            {
+                AimedShot.Cast();
+                return;
+            }
+
+            //Generate Focus
+            if (MySettings.UseSidewinders && Sidewinders.IsSpellUsable && Sidewinders.IsHostileDistanceGood &&
+                (HuntersMark.TargetHaveBuff || Sidewinders.GetSpellCharges == 2))
+            {
+                Sidewinders.Cast();
+                return;
+            }
+            if (ObjectManager.Target.GetUnitInSpellRange(5f) > 1)
+            {
+                if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
+                {
+                    if (SteadyFocus.HaveBuff)
+                    {
+                        MultiShot.Cast();
+                        Others.SafeSleep(1500 + Usefuls.Latency);
+                        MultiShot.Cast();
+                        Others.SafeSleep(1500 + Usefuls.Latency);
+                    }
+                    MultiShot.Cast();
+                    return;
+                }
+            }
+            else
+            {
+                if (MySettings.UseArcaneShot && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood)
+                {
+                    if (SteadyFocus.HaveBuff)
+                    {
+                        ArcaneShot.Cast();
+                        Others.SafeSleep(1500 + Usefuls.Latency);
+                        ArcaneShot.Cast();
+                        Others.SafeSleep(1500 + Usefuls.Latency);
+                    }
+                    ArcaneShot.Cast();
+                    return;
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
     #region Nested type: HunterMarksmanshipSettings
@@ -852,139 +741,104 @@ public class HunterMarksmanship
     [Serializable]
     public class HunterMarksmanshipSettings : Settings
     {
-        public bool DismissOnCall = true;
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAMurderofCrows = true;
-        public bool UseAimedShot = true;
-        public bool UseAlchFlask = true;
-        public bool UseArcaneShot = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public bool UseAspectoftheHawk = true;
-        public bool UseBarrage = true;
+        /* Professions & Racials */
         public bool UseBerserking = true;
-        public bool UseBindingShot = true;
-        public bool UseBlinkStrike = true;
         public bool UseBloodFury = true;
-        public bool UseCamouflage = false;
-        public bool UseChimeraShot = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Pet */
+        public bool DismissOnCall = true;
         public bool UseCombatRevive = true;
-        public bool UseConcussiveShot = true;
-        public bool UseDeterrance = true;
-        public bool UseDireBeast = true;
-        public bool UseDisengage = true;
-
-        public bool UseExhilaration = true;
-        public bool UseExplosiveTrap = true;
-        public bool UseFeedPet = true;
-        public bool UseFeignDeath = true;
-        public bool UseFervor = true;
-        public bool UseFreezingTrap = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGlaiveToss = true;
-        public bool UseHuntersMark = true;
-        public bool UseIceTrap = true;
-        public bool UseKillShot = true;
-
-        public bool UseLowCombat = true;
-        public bool UseLynxRush = true;
-        public bool UseMendPet = true;
-        public bool UseMisdirection = true;
-        public bool UseMultiShot = true;
-        public bool UsePet1 = true;
-        public bool UsePet2 = false;
-        public bool UsePet3 = false;
-        public bool UsePet4 = false;
-        public bool UsePet5 = false;
-        public bool UsePowershot = true;
-        public bool UseRapidFire = true;
-        public bool UseReadiness = true;
+        public int UseFeedPetBelowPercentage = 0;
+        public int UseMendPetBelowPercentage = 50;
+        public int UsePet = 1;
         public bool UseRevivePet = true;
-        public bool UseScatterShot = true;
-        public bool UseSerpentSting = true;
-        public bool UseSilencingShot = true;
-        public bool UseStampede = true;
-        public bool UseSteadyShot = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
+
+        /* Offensive Spells */
+        public bool UseAimedShot = true;
+        public bool UseArcaneShot = true;
+        public bool UseMarkedShot = true;
+        public bool UseMultiShot = true;
+
+        /* Artifact Spells */
+        public bool UseWindburst = true;
+
+        /* Offensive Cooldowns */
+        public bool UseAMurderofCrows = true;
+        public bool UseBarrage = true;
+        public bool UseSidewinders = true;
+        public bool UseTrueshot = true;
+
+        /* Defensive Cooldowns */
+        public int UseAspectoftheTurtleBelowPercentage = 35;
+        public int UseBindingShotBelowPercentage = 75;
+        public int UseBurstingShotBelowPercentage = 75;
+        public int UseDisengageBelowPercentage = 75;
+        public int UseConcussiveShotBelowPercentage = 75;
+        public int UseFeignDeathBelowPercentage = 10;
+        public int UseMisdirectionBelowPercentage = 75;
+
+        /* Healing Spells */
+        public int UseExhilarationBelowPercentage = 25;
+
+        /* Utility Cooldowns */
+        public bool UseAspectoftheCheetah = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWyvernSting = true;
 
         public HunterMarksmanshipSettings()
         {
             ConfigWinForm("Hunter Marksmanship Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Hunter Buffs */
-            AddControlInWinForm("Use Aspect of the Hawk", "UseAspectoftheHawk", "Hunter Buffs");
-            AddControlInWinForm("Use Camouflage", "UseCamouflage", "Hunter Buffs");
-            AddControlInWinForm("Use Feign Death", "UseFeignDeath", "Hunter Buffs");
-            AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
-            AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Pet */
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Pet");
+            AddControlInWinForm("Use Pet (1,2,3,4,5)", "UsePet", "Pet");
+            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Pet");
+            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Pet");
+            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Pet");
+            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Pet");
+            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Pet");
+            //AddControlInWinForm("Use Feed Pet", "UseFeedPetBelowPercentage", "Pet", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Mend Pet", "UseMendPetBelowPercentage", "Pet", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Pet");
             /* Offensive Spell */
             AddControlInWinForm("Use Aimed Shot", "UseAimedShot", "Offensive Spell");
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
-            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
-            AddControlInWinForm("Use Chimera Shot", "UseChimeraShot", "Offensive Spell");
-            AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
-            AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
+            AddControlInWinForm("Use Marked Shot", "UseMarkedShot", "Offensive Spell");
             AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
-            AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
-            AddControlInWinForm("Use Steady Shot", "UseSteadyShot", "Offensive Spell");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Windburst", "UseWindburst", "Artifact Spells");
             /* Offensive Cooldown */
             AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
             AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
-            AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
-            AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
-            AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
-            AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
-            AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
-            AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
-            AddControlInWinForm("Use Rapid Fire", "UseRapidFire", "Offensive Cooldown");
-            AddControlInWinForm("Use Readiness", "UseReadiness", "Offensive Cooldown");
-            AddControlInWinForm("Use Stampede", "UseStampede", "Offensive Cooldown");
+            AddControlInWinForm("Use Sidewinders", "UseSidewinders", "Offensive Cooldown");
+            AddControlInWinForm("Use Trueshot", "UseTrueshot", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Binding Shot", "UseBindingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
-            AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
-            AddControlInWinForm("Use Freezing Trap", "UseFreezingTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
+            AddControlInWinForm("Use Aspect of the Turtle", "UseAspectoftheTurtleBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Binding Shot", "UseBindingShotBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Bursting Shot", "UseBurstingShotBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Disengage", "UseDisengageBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShotBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Feign Death", "UseFeignDeathBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Misdirection", "UseMisdirectionBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spell */
-            AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
-            AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
-            AddControlInWinForm("Use Mend Pet", "UseMendPet", "Healing Spell");
-            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Healing Spell");
+            AddControlInWinForm("Use Exhilaration", "UseExhilarationBelowPercentage", "Healing Spell", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Cooldowns");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static HunterMarksmanshipSettings CurrentSetting { get; set; }
@@ -1012,95 +866,102 @@ public class HunterBeastMastery
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int LC = 0;
-    private Timer _ancientHysteriaTimer = new Timer(0);
-    private Timer _burrowAttackTimer = new Timer(0);
 
-    private Timer _froststormBreathTimer = new Timer(0);
-    private Timer _onCd = new Timer(0);
-    private Timer _spiritMendTimer = new Timer(0);
+    private bool CombatMode = true;
+
+    private Timer CCTimer = new Timer(0);
+
+    #endregion
+
+    #region Talents
+
+    public readonly Spell BeastCleave = new Spell("Beast Cleave");
+    public readonly Spell NarrowEscape = new Spell("Narrow Escape");
+    public readonly Spell Posthaste = new Spell("Posthaste");
 
     #endregion
 
     #region Professions & Racials
 
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    public readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Hunter Buffs
+    #region Hunter Pets
 
-    public readonly Spell Camouflage = new Spell("Camouflage");
-    public readonly Spell FeignDeath = new Spell("Feign Death");
-    public readonly Spell HuntersMark = new Spell("Hunter's Mark");
-    public readonly Spell Misdirection = new Spell("Misdirection");
-
-    #endregion
-
-    #region Offensive Spell
-
-    public readonly Spell ArcaneShot = new Spell("Arcane Shot");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
     public readonly Spell CallPet4 = new Spell("Call Pet 4");
     public readonly Spell CallPet5 = new Spell("Call Pet 5");
-    public readonly Spell CobraShot = new Spell("Cobra Shot");
     public readonly Spell Dismiss = new Spell("Dismiss Pet");
-    public readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
-    public readonly Spell KillCommand = new Spell("Kill Command");
-    public readonly Spell KillShot = new Spell("Kill Shot");
+    public readonly Spell FeedPet = new Spell("Feed Pet");
+    public readonly Spell MendPet = new Spell("Mend Pet");
+    public readonly Spell RevivePet = new Spell("Revive Pet");
+
+    #endregion
+
+    #region Offensive Spell
+
+    public readonly Spell CobraShot = new Spell("Cobra Shot");
     public readonly Spell MultiShot = new Spell("Multi-Shot");
-    public readonly Spell SteadyShot = new Spell("Steady Shot");
+
+    #endregion
+
+    #region Legion Artifact
+
+    public readonly Spell TitansThunder = new Spell("Titan's Thunder"); //No GCD
 
     #endregion
 
     #region Offensive Cooldown
 
     public readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
+    public readonly Spell AspectoftheWild = new Spell("Aspect of the Wild"); //No GCD
     public readonly Spell Barrage = new Spell("Barrage");
-    public readonly Spell BestialWrath = new Spell("Bestial Wrath");
-    public readonly Spell BlinkStrike = new Spell("Blink Strike");
+    //public readonly Spell BlinkStrike = new Spell("Blink Strike");
+    //private Timer BlinkStrikeCD = new Timer(0);
+    public readonly Spell BestialWrath = new Spell("Bestial Wrath"); //No GCD
+    public readonly Spell ChimeraShot = new Spell("Chimaera Shot");
     public readonly Spell DireBeast = new Spell("Dire Beast");
-    public readonly Spell Fervor = new Spell("Fervor");
-    public readonly Spell FocusFire = new Spell("Focus Fire");
-    public readonly Spell GlaiveToss = new Spell("Glaive Toss");
-    public readonly Spell LynxRush = new Spell("Lynx Rush");
-    public readonly Spell Powershot = new Spell("Powershot");
-    public readonly Spell Stampede = new Spell("Stampede");
-    private Timer _direBeastTimer = new Timer(0);
+    private Timer DireBeastTimer = new Timer(0);
+    public readonly Spell DireFrenzy = new Spell("Dire Frenzy");
+    public readonly Spell KillCommand = new Spell("Kill Command");
+    public readonly Spell Stampede = new Spell("Stampede"); //No GCD
+    //public readonly Spell Volley = new Spell("Volley");
 
     #endregion
 
     #region Defensive Cooldown
 
+    public readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
     public readonly Spell BindingShot = new Spell("Binding Shot");
     public readonly Spell ConcussiveShot = new Spell("Concussive Shot");
-    public readonly Spell Deterrance = new Spell("Deterrance");
-    public readonly Spell Disengage = new Spell("Disengage");
-    public readonly Spell FreezingTrap = new Spell("Freezing Trap");
-    public readonly Spell IceTrap = new Spell("Ice Trap");
+    //public readonly Spell CounterShot = new Spell("Counter Shot"); //No GCD
+    public readonly Spell Disengage = new Spell("Disengage"); //No GCD
     public readonly Spell Intimidation = new Spell("Intimidation");
-    public readonly Spell ScatterShot = new Spell("Scatter Shot");
-    public readonly Spell SilencingShot = new Spell("Silencing Shot");
+    public readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
+    public readonly Spell Misdirection = new Spell("Misdirection"); //No GCD
 
     #endregion
 
     #region Healing Spell
 
     public readonly Spell Exhilaration = new Spell("Exhilaration");
-    public readonly Spell FeedPet = new Spell("Feed Pet");
-    public readonly Spell MendPet = new Spell("Mend Pet");
-    public readonly Spell RevivePet = new Spell("Revive Pet");
-    private Timer _mendPetTimer = new Timer(0);
+
+    #endregion
+
+    #region Utility Cooldowns
+
+    public readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
+    //public readonly Spell Flare = new Spell("Flare");
+    //public readonly Spell WyvernSting = new Spell("Wyvern Sting");
 
     #endregion
 
@@ -1119,32 +980,25 @@ public class HunterBeastMastery
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted)
+                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
                     {
+                        //DEBUG
+                        if (ObjectManager.Me.HealthPercent == 0)
+                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
+
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && ArcaneShot.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && MySettings.UseLowCombat)
-                            {
-                                LC = 1;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    LowCombat();
-                            }
+                            if (CobraShot.IsHostileDistanceGood)
+                                Combat();
                             else
-                            {
-                                LC = 0;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    Combat();
-                            }
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else
                             Patrolling();
                     }
                 }
@@ -1158,495 +1012,75 @@ public class HunterBeastMastery
         }
     }
 
-    private void Pull()
+    private void Patrolling()
     {
-        if (HuntersMark.KnownSpell && HuntersMark.IsSpellUsable && MySettings.UseHuntersMark
-            && HuntersMark.IsHostileDistanceGood && !HuntersMark.TargetHaveBuff && LC != 1)
-            HuntersMark.Cast();
+        if (!ObjectManager.Me.IsCast)
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
 
-        if (ObjectManager.Pet.IsAlive)
-        {
-            Lua.RunMacroText("/petattack");
-            Logging.WriteFight("Cast Pet Attack");
-        }
-
-        if (ObjectManager.Pet.IsAlive && MySettings.UseMisdirection && Misdirection.KnownSpell
-            && Misdirection.IsSpellUsable)
-        {
-            Misdirection.CastOnUnitID("pet");
-        }
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        Heal();
-
-        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss && GlaiveToss.IsHostileDistanceGood
-            && GlaiveToss.IsSpellUsable)
-        {
-            GlaiveToss.Cast();
-            return;
-        }
-        if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood
-            && ArcaneShot.IsSpellUsable)
-        {
-            ArcaneShot.Cast();
-            return;
-        }
-        if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ExplosiveTrap.IsHostileDistanceGood
-            && ExplosiveTrap.IsSpellUsable)
-        {
-            ExplosiveTrap.Cast();
-            return;
-        }
-        if (CobraShot.KnownSpell && MySettings.UseCobraShot && CobraShot.IsHostileDistanceGood
-            && CobraShot.IsSpellUsable)
-        {
-            CobraShot.Cast();
-            return;
-        }
-        if (SteadyShot.KnownSpell && (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsHostileDistanceGood
-            && SteadyShot.IsSpellUsable)
-        {
-            SteadyShot.Cast();
+            if (ObjectManager.Me.GetMove)
+            {
+                if (!Darkflight.HaveBuff && !AspectoftheCheetah.HaveBuff)
+                {
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                    {
+                        Darkflight.Cast();
+                    }
+                    else if (MySettings.UseAspectoftheCheetah && AspectoftheCheetah.IsSpellUsable)
+                    {
+                        AspectoftheCheetah.Cast();
+                    }
+                }
+            }
+            else
+            {
+                Pet();
+            }
         }
     }
 
     private void Combat()
     {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        DPSCycle();
-        Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        Pet();
-
-        if (MySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
-            && !ObjectManager.Me.InCombat)
+        //Log
+        if (!CombatMode)
         {
-            Camouflage.Cast();
-            return;
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-    }
-
-    private void DismissPet()
-    {
-        if (MySettings.DismissOnCall)
+        if (!ObjectManager.Me.IsCast)
         {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
-            {
-                Dismiss.Cast();
-                Others.SafeSleep(1500);
-            }
-        }
-    }
-
-    private void Pet()
-    {
-        if (MountTask.JustDismounted())
-            return;
-        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet1.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet2.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet3.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet4.Cast();
-            Others.SafeSleep(1000);
-        }
-        else
-        {
-            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
-            {
-                DismissPet();
-                CallPet5.Cast();
-                Others.SafeSleep(1000);
-            }
-        }
-
-        if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
-            && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
-        {
-            RevivePet.Cast();
-            Others.SafeSleep(1000);
-            return;
-        }
-        if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
-            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
-            && !ObjectManager.Me.InCombat)
-        {
-            RevivePet.Cast();
-            Others.SafeSleep(1000);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
-    private void DefenseCycle()
-    {
-        if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseFeignDeath
-            && FeignDeath.KnownSpell && FeignDeath.IsSpellUsable)
-        {
-            FeignDeath.Cast();
-            Others.SafeSleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                return;
-            Others.SafeSleep(5000);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 50 && MySettings.UseDeterrance
-            && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
-        {
-            Deterrance.Cast();
-            Others.SafeSleep(200);
-            return;
-        }
-        if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
-            && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
-        {
-            FreezingTrap.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceTrap
-            && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
-        {
-            IceTrap.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseConcussiveShot
-            && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
-        {
-            ConcussiveShot.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseBindingShot
-            && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
-            && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
-        {
-            BindingShot.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-            WarStomp.KnownSpell
-            && MySettings.UseWarStomp)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-            Stoneform.KnownSpell
-            && MySettings.UseStoneform)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-            return;
-        }
-        if (Intimidation.IsSpellUsable && Intimidation.KnownSpell && MySettings.UseIntimidation
-            && (ObjectManager.Me.HealthPercent < 80 || ObjectManager.Pet.Health < 80))
-        {
-            Intimidation.Cast();
-            _onCd = new Timer(1000*3);
+            Heal();
+            if (Defensive()) return;
+            Pet();
+            BurstBuffs();
+            GCDCycle();
         }
     }
 
     private void Heal()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (ObjectManager.Me.HealthPercent < 85 && ObjectManager.Pet.IsAlive && MySettings.UseSpiritBeastPet && _spiritMendTimer.IsReady)
-        {
-            Logging.WriteFight("Cast Spirit Mend.");
-            Lua.RunMacroText("/target Player");
-            Others.SafeSleep(200);
-            Lua.RunMacroText("/cast Spirit Mend");
-            _spiritMendTimer = new Timer(1000*40);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-            && MySettings.UseGiftoftheNaaru)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
-            && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
-        {
-            Exhilaration.Cast();
-            return;
-        }
-        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
-            && FeedPet.KnownSpell && FeedPet.IsSpellUsable && MySettings.UseFeedPet
-            && !ObjectManager.Me.InCombat)
-        {
-            FeedPet.Cast();
-            return;
-        }
-        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
-            && MendPet.KnownSpell && MendPet.IsSpellUsable && MySettings.UseMendPet
-            && _mendPetTimer.IsReady)
-        {
-            MendPet.Cast();
-            _mendPetTimer = new Timer(1000*10);
-        }
-    }
-
-    private void Decast()
-    {
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && MySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
-            && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && MySettings.UseSilencingShot)
-        {
-            SilencingShot.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
-            && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && MySettings.UseScatterShot)
-        {
-            ScatterShot.Cast();
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-            return;
-        }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseBerserking)
-        {
-            Berserking.Cast();
-            return;
-        }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f && MySettings.UseBloodFury)
-        {
-            BloodFury.Cast();
-            return;
-        }
-        if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
-            && MySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
-        {
-            AMurderofCrows.Cast();
-            return;
-        }
-        if (Barrage.KnownSpell && Barrage.IsSpellUsable && MySettings.UseBarrage && Barrage.IsHostileDistanceGood)
-        {
-            Barrage.Cast();
-            return;
-        }
-        if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-            && MySettings.UseBlinkStrike && ObjectManager.Target.GetDistance <= 40f)
-        {
-            BlinkStrike.Cast();
-            return;
-        }
-        if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && MySettings.UseDireBeast
-            && DireBeast.IsHostileDistanceGood && _direBeastTimer.IsReady)
-        {
-            DireBeast.Cast();
-            _direBeastTimer = new Timer(1000*15);
-            return;
-        }
-        if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
-            && MySettings.UseFervor)
-        {
-            Fervor.Cast();
-            return;
-        }
-        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && MySettings.UseGlaiveToss &&
-            GlaiveToss.IsHostileDistanceGood)
-        {
-            GlaiveToss.Cast();
-            return;
-        }
-        if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && MySettings.UseLynxRush &&
-            ObjectManager.Target.GetDistance <= 40f)
-        {
-            LynxRush.Cast();
-            return;
-        }
-        if (Powershot.KnownSpell && Powershot.IsSpellUsable && MySettings.UsePowershot &&
-            Powershot.IsHostileDistanceGood)
-        {
-            Powershot.Cast();
-            return;
-        }
-        if (Stampede.KnownSpell && Stampede.IsSpellUsable && MySettings.UseStampede &&
-            Stampede.IsHostileDistanceGood)
-        {
-            Stampede.Cast();
-            return;
-        }
-        if (BestialWrath.KnownSpell && BestialWrath.IsSpellUsable && MySettings.UseBestialWrath
-            && ObjectManager.Target.GetDistance <= 40f)
-        {
-            BestialWrath.Cast();
-            return;
-        }
-        if (MySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance <= 40f
-            && _ancientHysteriaTimer.IsReady && ObjectManager.Me.HaveBuff(95809)
-            && ObjectManager.Pet.IsAlive && !BestialWrath.HaveBuff)
-        {
-            Lua.RunMacroText("/cast Ancient Hysteria");
-            Logging.WriteFight("Cast Core Hound Pet Ancient Hysteria");
-            _ancientHysteriaTimer = new Timer(1000*60*6);
-            return;
-        }
-        if (ObjectManager.Pet.BuffStack(19623) == 5 && FocusFire.IsSpellUsable &&
-            FocusFire.KnownSpell
-            && MySettings.UseFocusFire)
-        {
-            FocusFire.Cast();
-        }
-    }
-
-    private void DPSCycle()
-    {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
-                && MySettings.UseKillShot)
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                KillShot.Cast();
+                GiftoftheNaaru.Cast();
                 return;
             }
-            if (ObjectManager.GetNumberAttackPlayer() > 2 && MySettings.UseMultiShot)
+            //Exhilaration
+            if (ObjectManager.Me.HealthPercent < MySettings.UseExhilarationBelowPercentage && Exhilaration.IsSpellUsable)
             {
-                if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
-                {
-                    MultiShot.Cast();
-                    return;
-                }
-                if (MySettings.UseChimeraPet && ObjectManager.Target.GetDistance < 10
-                    && ObjectManager.Pet.Guid == 780 && ObjectManager.Pet.Focus > 29
-                    && _froststormBreathTimer.IsReady && ObjectManager.Pet.IsAlive)
-                {
-                    Lua.RunMacroText("/cast Froststorm Breath");
-                    Logging.WriteFight("Cast Chimera Pet AoE");
-                    _froststormBreathTimer = new Timer(1000*8);
-                    return;
-                }
-                if (MySettings.UseWormPet && ObjectManager.Target.GetDistance < 10
-                    && ObjectManager.Pet.Guid == 784 && ObjectManager.Pet.Focus > 29
-                    && _burrowAttackTimer.IsReady && ObjectManager.Pet.IsAlive)
-                {
-                    Lua.RunMacroText("/cast Burrow Attack");
-                    Logging.WriteFight("Cast Worm Pet AoE");
-                    _burrowAttackTimer = new Timer(1000*20);
-                }
+                Exhilaration.Cast();
                 return;
-            }
-            if (KillCommand.KnownSpell && KillCommand.IsSpellUsable && KillCommand.IsHostileDistanceGood
-                && MySettings.UseKillCommand && ObjectManager.Target.GetDistance <= 40f)
-            {
-                KillCommand.Cast();
-                return;
-            }
-            if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
-                && MySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 59)
-            {
-                ArcaneShot.Cast();
-                return;
-            }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && MySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Cast();
-                return;
-            }
-            if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                && MySettings.UseCobraShot && ObjectManager.Me.FocusPercentage < 60)
-            {
-                CobraShot.Cast();
-                return;
-            }
-            if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood && (ObjectManager.Me.FocusPercentage < 60 || !CobraShot.KnownSpell || !MySettings.UseCobraShot))
-            {
-                SteadyShot.Cast();
             }
         }
         finally
@@ -1655,12 +1089,312 @@ public class HunterBeastMastery
         }
     }
 
-    private void Patrolling()
+    private bool Defensive()
     {
-        if (!ObjectManager.Me.IsMounted)
+        Usefuls.SleepGlobalCooldown();
+
+        try
         {
-            Buff();
-            Heal();
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Defensive Cooldowns
+            if (CCTimer.IsReady)
+            {
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    {
+                        WarStomp.Cast();
+                        CCTimer = new Timer(1000*2);
+                    }
+                    if (Intimidation.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseIntimidationBelowPercentage)
+                    {
+                        Intimidation.Cast();
+                        CCTimer = new Timer(1000*5);
+                    }
+                }
+                if (Stoneform.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage)
+                {
+                    Stoneform.Cast();
+                }
+                if (AspectoftheTurtle.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseAspectoftheTurtleBelowPercentage)
+                {
+                    AspectoftheTurtle.Cast();
+                }
+                if (Misdirection.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMisdirectionBelowPercentage &&
+                    ObjectManager.Pet.IsAlive)
+                {
+                    Misdirection.CastOnUnitID("pet");
+                }
+                if (ConcussiveShot.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseConcussiveShotBelowPercentage && ConcussiveShot.IsHostileDistanceGood)
+                {
+                    ConcussiveShot.Cast();
+                    CCTimer = new Timer(1000*6);
+                    return true;
+                }
+                if (Disengage.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseDisengageBelowPercentage)
+                {
+                    MovementsAction.Jump();
+                    Disengage.Cast();
+                    if (NarrowEscape.HaveBuff || Posthaste.HaveBuff)
+                        CCTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (BindingShot.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseBindingShotBelowPercentage && BindingShot.IsHostileDistanceGood)
+                {
+                    BindingShot.Cast();
+                    CCTimer = new Timer(1000*5);
+                    return true;
+                }
+                if (FeignDeath.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFeignDeathBelowPercentage)
+                {
+                    FeignDeath.Cast();
+                    Others.SafeSleep(5000);
+                    if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                        return true;
+                    Others.SafeSleep(5000);
+                    return true;
+                }
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall && Dismiss.IsSpellUsable)
+        {
+            Dismiss.Cast();
+            Others.SafeSleep(1500);
+        }
+    }
+
+    private void Pet()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (!ObjectManager.Me.IsCast)
+            {
+                if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                {
+                    //Call Pet //TODO implement a check which one is active
+                    switch (MySettings.UsePet)
+                    {
+                        case 1:
+                            if (CallPet1.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet1.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 2:
+                            if (CallPet2.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet2.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 3:
+                            if (CallPet3.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet3.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 4:
+                            if (CallPet4.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet4.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 5:
+                            if (CallPet5.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet5.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    //Revive Pet
+                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.IsValid)
+                    {
+                        if (MySettings.UseCombatRevive || !ObjectManager.Me.InCombat)
+                        {
+                            RevivePet.Cast();
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if (ObjectManager.Pet.Health > 0)
+                    {
+                        if (!ObjectManager.Me.InCombat && ObjectManager.Pet.HealthPercent < MySettings.UseFeedPetBelowPercentage && FeedPet.IsSpellUsable)
+                        {
+                            FeedPet.Cast();
+                            return;
+                        }
+                        if (ObjectManager.Pet.HealthPercent < MySettings.UseMendPetBelowPercentage && MendPet.IsSpellUsable)
+                        {
+                            MendPet.Cast();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Manage Pet Targeting
+            //if (ObjectManager.Pet.IsAlive && ObjectManager.Pet.Target != ObjectManager.Me.Target)
+            //{
+            //    Lua.RunMacroText("/petattack");
+            //    Logging.WriteFight("Cast Pet Attack");
+            //}
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            if (MySettings.UseBestialWrath && BestialWrath.IsSpellUsable)
+            {
+                BestialWrath.Cast();
+            }
+            if (MySettings.UseAspectoftheWild && AspectoftheWild.IsSpellUsable)
+            {
+                AspectoftheWild.Cast();
+            }
+            if (MySettings.UseTitansThunder && TitansThunder.IsSpellUsable && (!DireBeastTimer.IsReady || ObjectManager.Pet.HaveBuff(DireFrenzy.Ids)))
+            {
+                TitansThunder.Cast();
+            }
+            if (MySettings.UseStampede && Stampede.IsSpellUsable && Stampede.IsHostileDistanceGood && BestialWrath.HaveBuff)
+            {
+                Stampede.Cast();
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //AOEs
+            if (ObjectManager.Target.GetUnitInSpellRange(5f) > 1)
+            {
+                if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood && !ObjectManager.Pet.HaveBuff(BeastCleave.Ids))
+                {
+                    MultiShot.Cast();
+                    return;
+                }
+                if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
+                {
+                    Barrage.Cast();
+                    return;
+                }
+            }
+
+            //Cooldowns
+            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
+            {
+                AMurderofCrows.Cast();
+                return;
+            }
+            if (MySettings.UseKillCommand && KillCommand.IsSpellUsable && ObjectManager.Pet.Position.DistanceTo(ObjectManager.Target.Position) <= 25)
+            {
+                KillCommand.Cast();
+                return;
+            }
+            if (MySettings.UseDireBeast && DireBeast.IsSpellUsable && DireBeast.IsHostileDistanceGood)
+            {
+                DireBeast.Cast();
+                DireBeastTimer = new Timer(1000*8);
+                return;
+            }
+            else if (MySettings.UseDireFrenzy && DireFrenzy.IsSpellUsable && DireFrenzy.IsHostileDistanceGood)
+            {
+                DireFrenzy.Cast();
+                return;
+            }
+            if (MySettings.UseChimeraShot && ChimeraShot.IsSpellUsable && ChimeraShot.IsHostileDistanceGood)
+            {
+                ChimeraShot.Cast();
+                return;
+            }
+            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
+            {
+                Barrage.Cast();
+                return;
+            }
+
+            //Generate Focus
+            if (ObjectManager.Me.Focus > MySettings.UseCobraShotAboveValue && CobraShot.IsSpellUsable &&
+                CobraShot.IsHostileDistanceGood)
+            {
+                CobraShot.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
         }
     }
 
@@ -1669,141 +1403,110 @@ public class HunterBeastMastery
     [Serializable]
     public class HunterBeastMasterySettings : Settings
     {
-        public bool DismissOnCall = true;
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAMurderofCrows = true;
-        public bool UseAlchFlask = true;
-        public bool UseArcaneShot = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public bool UseBarrage = true;
+        /* Professions & Racials */
         public bool UseBerserking = true;
-        public bool UseBestialWrath = true;
-        public bool UseBindingShot = true;
-        public bool UseBlinkStrike = true;
         public bool UseBloodFury = true;
-        public bool UseCamouflage = false;
-        public bool UseChimeraPet = false;
-        public bool UseCobraShot = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Pet */
+        public bool DismissOnCall = true;
         public bool UseCombatRevive = true;
-        public bool UseConcussiveShot = true;
-        public bool UseCoreHoundPet = false;
-        public bool UseDeterrance = true;
-        public bool UseDireBeast = true;
-        public bool UseDisengage = true;
-
-        public bool UseExhilaration = true;
-        public bool UseExplosiveTrap = true;
-        public bool UseFeedPet = true;
-        public bool UseFeignDeath = true;
-        public bool UseFervor = true;
-        public bool UseFocusFire = false;
-        public bool UseFreezingTrap = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGlaiveToss = true;
-        public bool UseHuntersMark = true;
-        public bool UseIceTrap = true;
-        public bool UseIntimidation = true;
-        public bool UseKillCommand = true;
-        public bool UseKillShot = true;
-
-        public bool UseLowCombat = true;
-        public bool UseLynxRush = true;
-        public bool UseMendPet = true;
-        public bool UseMisdirection = true;
-        public bool UseMultiShot = true;
-        public bool UsePet1 = true;
-        public bool UsePet2 = false;
-        public bool UsePet3 = false;
-        public bool UsePet4 = false;
-        public bool UsePet5 = false;
-        public bool UsePowershot = true;
+        public int UseFeedPetBelowPercentage = 0;
+        public int UseMendPetBelowPercentage = 50;
+        public int UsePet = 1;
         public bool UseRevivePet = true;
-        public bool UseScatterShot = true;
-        public bool UseSilencingShot = true;
-        public bool UseSpiritBeastPet = false;
+
+        /* Offensive Spells */
+        public int UseCobraShotAboveValue = 90;
+        public bool UseMultiShot = true;
+
+        /* Artifact Spells */
+        public bool UseTitansThunder = true;
+
+        /* Offensive Cooldowns */
+        public bool UseAMurderofCrows = true;
+        public bool UseAspectoftheWild = true;
+        public bool UseBarrage = true;
+        public bool UseBestialWrath = true;
+        public bool UseChimeraShot = true;
+        public bool UseDireBeast = true;
+        public bool UseDireFrenzy = true;
+        public bool UseKillCommand = true;
         public bool UseStampede = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
+
+        /* Defensive Cooldowns */
+        public int UseAspectoftheTurtleBelowPercentage = 35;
+        public int UseBindingShotBelowPercentage = 50;
+        public int UseConcussiveShotBelowPercentage = 50;
+        public int UseDisengageBelowPercentage = 50;
+        public int UseIntimidationBelowPercentage = 50;
+        public int UseFeignDeathBelowPercentage = 10;
+        public int UseMisdirectionBelowPercentage = 75;
+
+        /* Healing Spells */
+        public int UseExhilarationBelowPercentage = 25;
+
+        /* Utility Cooldowns */
+        public bool UseAspectoftheCheetah = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWormPet = false;
 
         public HunterBeastMasterySettings()
         {
             ConfigWinForm("Hunter BeastMastery Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Hunter Buffs */
-            AddControlInWinForm("Use Camouflage", "UseCamouflage", "Hunter Buffs");
-            AddControlInWinForm("Use Feign Death", "UseFeignDeath", "Hunter Buffs");
-            AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
-            AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Pet */
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Pet");
+            AddControlInWinForm("Use Pet (1,2,3,4,5)", "UsePet", "Pet");
+            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Pet");
+            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Pet");
+            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Pet");
+            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Pet");
+            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Pet");
+            //AddControlInWinForm("Use Feed Pet", "UseFeedPetBelowPercentage", "Pet", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Mend Pet", "UseMendPetBelowPercentage", "Pet", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Pet");
             /* Offensive Spell */
-            AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
-            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
-            AddControlInWinForm("Use Cobra Shot", "UseCobraShot", "Offensive Spell");
-            AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
-            AddControlInWinForm("Use Kill Command", "UseKillCommand", "Offensive Spell");
-            AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
+            AddControlInWinForm("Use Cobra Shot", "UseCobraShotAboveValue", "Offensive Spell", "AbovePercentage", "Focus"); //TODO add AbovePercentage alternative
             AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Titan's Thunder", "UseTitansThunder", "Artifact Spells");
             /* Offensive Cooldown */
             AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
+            AddControlInWinForm("Use Aspect of the Wild", "UseAspectoftheWild", "Offensive Cooldown");
             AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
             AddControlInWinForm("Use Bestial Wrath", "UseBestialWrath", "Offensive Cooldown");
-            AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
+            AddControlInWinForm("Use Chimera Shot", "UseChimeraShot", "Offensive Cooldown");
             AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
-            AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
-            AddControlInWinForm("Use Focus Fire", "UseFocusFire", "Offensive Cooldown");
-            AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
-            AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
-            AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
+            AddControlInWinForm("Use Dire Frenzy", "UseDireFrenzy", "Offensive Cooldown");
+            AddControlInWinForm("Use Kill Command", "UseKillCommand", "Offensive Cooldown");
             AddControlInWinForm("Use Stampede", "UseStampede", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Binding Shot", "UseBindingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
-            AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
-            AddControlInWinForm("Use Freezing Trap", "UseFreezingTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Intimidation", "UseIntimidation", "Defensive Cooldown");
-            AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
+            AddControlInWinForm("Use Aspect of the Turtle", "UseAspectoftheTurtleBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Binding Shot", "UseBindingShotBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShotBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Disengage", "UseDisengageBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Intimidation", "UseIntimidationBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Feign Death", "UseFeignDeathBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Misdirection", "UseMisdirectionBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spell */
-            AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
-            AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
-            AddControlInWinForm("Use Mend Pet", "UseMendPet", "Healing Spell");
-            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Healing Spell");
+            AddControlInWinForm("Use Exhilaration", "UseExhilarationBelowPercentage", "Healing Spell", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Cooldowns");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Core Hound Pet", "UseCoreHoundPet", "Game Settings");
-            AddControlInWinForm("Use Worm Pet", "UseWormPet", "Game Settings");
-            AddControlInWinForm("Use Chimera Pet", "UseChimeraPet", "Game Settings");
-            AddControlInWinForm("Use Spirit Beast Pet", "UseSpiritBeastPet", "Game Settings");
-            AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static HunterBeastMasterySettings CurrentSetting { get; set; }
@@ -1832,91 +1535,112 @@ public class HunterSurvival
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
+    private uint StackMoongooseFury = 0;
+
+    private Timer CCTimer = new Timer(0);
+
+    #endregion
+
+    #region Talents
+
+    public readonly Spell WayoftheMokNathal = new Spell("Way of the Mok'Nathal");
 
     #endregion
 
     #region Professions & Racials
 
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    public readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Hunter Buffs
+    #region Hunter Pets
 
-    public readonly Spell AspectoftheHawk = new Spell("Aspect of the Hawk");
-    public readonly Spell Camouflage = new Spell("Camouflage");
-    public readonly Spell FeignDeath = new Spell("Feign Death");
-    public readonly Spell Misdirection = new Spell("Misdirection");
-    public readonly Spell SerpentSting = new Spell("Serpent Sting");
-    public readonly Spell TrapCaster = new Spell("Trap Caster");
-
-    #endregion
-
-    #region Offensive Spell
-
-    public readonly Spell ArcaneShot = new Spell("Arcane Shot");
-    public readonly Spell BlackArrow = new Spell("Black Arrow");
     public readonly Spell CallPet1 = new Spell("Call Pet 1");
     public readonly Spell CallPet2 = new Spell("Call Pet 2");
     public readonly Spell CallPet3 = new Spell("Call Pet 3");
     public readonly Spell CallPet4 = new Spell("Call Pet 4");
     public readonly Spell CallPet5 = new Spell("Call Pet 5");
-    public readonly Spell CobraShot = new Spell("Cobra Shot");
     public readonly Spell Dismiss = new Spell("Dismiss Pet");
-    public readonly Spell ExplosiveShot = new Spell("Explosive Shot");
-    public readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
-    public readonly Spell KillShot = new Spell("Kill Shot");
-    public readonly Spell MultiShot = new Spell("Multi-Shot");
-    public readonly Spell SteadyShot = new Spell("Steady Shot");
-    private Timer _serpentStingTimer = new Timer(0);
+    public readonly Spell FeedPet = new Spell("Feed Pet");
+    public readonly Spell MendPet = new Spell("Mend Pet");
+    public readonly Spell RevivePet = new Spell("Revive Pet");
+
+    #endregion
+
+    #region Hunter Buffs
+
+    public readonly Spell MokNathalTactics = new Spell("Mok'Nathal Tactics");
+
+    #endregion
+
+    #region Hunter Dots
+
+    public readonly Spell MongooseFury = new Spell("Mongoose Fury");
+
+    #endregion
+
+    #region Offensive Spell
+
+    //public readonly Spell Carve = new Spell("Carve");
+    public readonly Spell RaptorStrike = new Spell("Raptor Strike");
+
+    #endregion
+
+    #region Legion Artifact
+
+    public readonly Spell FuryoftheEagle = new Spell("Fury of the Eagle"); //No GCD
 
     #endregion
 
     #region Offensive Cooldown
 
     public readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
-    public readonly Spell Barrage = new Spell("Barrage");
-    public readonly Spell BlinkStrike = new Spell("Blink Strike");
-    public readonly Spell DireBeast = new Spell("Dire Beast");
-    public readonly Spell Fervor = new Spell("Fervor");
-    public readonly Spell GlaiveToss = new Spell("Glaive Toss");
-    public readonly Spell LynxRush = new Spell("Lynx Rush");
-    public readonly Spell Powershot = new Spell("Powershot");
-    public readonly Spell Stampede = new Spell("Stampede");
-    private Timer _direBeastTimer = new Timer(0);
+    public readonly Spell AspectoftheEagle = new Spell("Aspect of the Eagle"); //No GCD
+    //public readonly Spell Butchery = new Spell("Butchery");
+    public readonly Spell DragonsfireGrenade = new Spell("Dragonsfire Grenade");
+    public readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
+    public readonly Spell FlankingStrike = new Spell("Flanking Strike");
+    public readonly Spell Harpoon = new Spell("Harpoon");
+    public readonly Spell Lacerate = new Spell("Lacerate");
+    public readonly Spell MongooseBite = new Spell("Mongoose Bite");
+    public readonly Spell SnakeHunter = new Spell("Snake Hunter");
+    public readonly Spell SpittingCobra = new Spell("Spitting Cobra");
+    public readonly Spell ThrowingAxes = new Spell("Throwing Axes");
 
     #endregion
 
     #region Defensive Cooldown
 
-    public readonly Spell BindingShot = new Spell("Binding Shot");
-    public readonly Spell ConcussiveShot = new Spell("Concussive Shot");
-    public readonly Spell Deterrance = new Spell("Deterrance");
-    public readonly Spell Disengage = new Spell("Disengage");
-    public readonly Spell FreezingTrap = new Spell("Freezing Trap");
-    public readonly Spell IceTrap = new Spell("Ice Trap");
-    public readonly Spell ScatterShot = new Spell("Scatter Shot");
-    public readonly Spell SilencingShot = new Spell("Silencing Shot");
-    public readonly Spell WyvernSting = new Spell("Wyvern Sting");
+    public readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
+    public readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
+    //public readonly Spell Muzzle = new Spell("Muzzle");
 
     #endregion
 
     #region Healing Spell
 
     public readonly Spell Exhilaration = new Spell("Exhilaration");
-    public readonly Spell FeedPet = new Spell("Feed Pet");
-    public readonly Spell MendPet = new Spell("Mend Pet");
-    public readonly Spell RevivePet = new Spell("Revive Pet");
-    private Timer _mendPetTimer = new Timer(0);
+
+    #endregion
+
+    #region Utility Cooldowns
+
+    public readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
+    //public readonly Spell CalTrops = new Spell("CalTrops");
+    //public readonly Spell Flare = new Spell("Flare");
+    //public readonly Spell FreezingTrap = new Spell("Freezing Trap");
+    //public readonly Spell RangersNet = new Spell("Ranger's Net");
+    //public readonly Spell SteelTrap = new Spell("Steel Trap");
+    //public readonly Spell StickyBomb = new Spell("Sticky Bomb");
+    //public readonly Spell TarTrap = new Spell("Tar Trap");
+    //public readonly Spell WingClip = new Spell("Wing Clip");
 
     #endregion
 
@@ -1935,34 +1659,26 @@ public class HunterSurvival
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted)
+                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
                     {
+                        //DEBUG
+                        if (ObjectManager.Me.HealthPercent == 0)
+                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
+
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && ArcaneShot.IsHostileDistanceGood)
+                            if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (MySettings.UseLowCombat &&
-                                ((ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)))
-                            {
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    LowCombat();
-                            }
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                                Combat();
                             else
-                            {
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    Combat();
-                            }
-                        }
-                        else
-                        {
-                            if (!ObjectManager.Me.IsCast)
                                 Patrolling();
                         }
+                        else
+                            Patrolling();
                     }
                 }
                 else
@@ -1975,517 +1691,75 @@ public class HunterSurvival
         }
     }
 
-    private void UseTrap(Spell trap)
+    private void Patrolling()
     {
-        if (TrapCaster.HaveBuff)
-            SpellManager.CastSpellByIDAndPosition(trap.Id, ObjectManager.Target.Position);
-        else
-            trap.Cast();
-    }
-
-    private void Pull()
-    {
-        if (ObjectManager.Pet.IsAlive)
+        if (!ObjectManager.Me.IsCast)
         {
-            Lua.RunMacroText("/petattack");
-            Logging.WriteFight("Cast Pet Attack");
-        }
-
-        if (ObjectManager.Pet.IsAlive && MySettings.UseMisdirection && Misdirection.KnownSpell
-            && Misdirection.IsSpellUsable)
-        {
-            Misdirection.CastOnUnitID("pet");
-        }
-
-        if (ArcaneShot.KnownSpell && ArcaneShot.IsHostileDistanceGood && MySettings.UseArcaneShot &&
-            ArcaneShot.IsSpellUsable)
-        {
-            ArcaneShot.Cast();
-        }
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        Heal();
-
-        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss && GlaiveToss.IsHostileDistanceGood &&
-            GlaiveToss.IsSpellUsable)
-        {
-            GlaiveToss.Cast();
-            return;
-        }
-        if (Barrage.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && MySettings.UseBarrage && Barrage.IsHostileDistanceGood && Barrage.IsSpellUsable)
-        {
-            Barrage.Cast();
-            return;
-        }
-        if (!SerpentSting.TargetHaveBuff || _serpentStingTimer.IsReady)
-        {
-            if (MultiShot.KnownSpell && MySettings.UseMultiShot && MultiShot.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() >= 3 && MultiShot.IsSpellUsable)
+            //Log
+            if (CombatMode)
             {
-                _serpentStingTimer = new Timer(1000*12);
-                MultiShot.Cast();
-                return;
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
             }
-            if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
+
+            if (ObjectManager.Me.GetMove)
             {
-                _serpentStingTimer = new Timer(1000*12);
-                ArcaneShot.Cast();
-                return;
+                if (!Darkflight.HaveBuff && !AspectoftheCheetah.HaveBuff)
+                {
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                    {
+                        Darkflight.Cast();
+                    }
+                    else if (MySettings.UseAspectoftheCheetah && AspectoftheCheetah.IsSpellUsable)
+                    {
+                        AspectoftheCheetah.Cast();
+                    }
+                }
             }
-        }
-        if (CobraShot.KnownSpell && MySettings.UseCobraShot && CobraShot.IsHostileDistanceGood && CobraShot.IsSpellUsable)
-        {
-            CobraShot.Cast();
-            return;
-        }
-        if (SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && ObjectManager.Me.FocusPercentage < 60
-            && (!CobraShot.KnownSpell || !MySettings.UseCobraShot) && SteadyShot.IsSpellUsable)
-        {
-            SteadyShot.Cast();
-            return;
-        }
-        if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ExplosiveTrap.IsHostileDistanceGood
-            && ExplosiveTrap.IsSpellUsable)
-        {
-            UseTrap(ExplosiveTrap);
+            else
+            {
+                Pet();
+            }
         }
     }
 
     private void Combat()
     {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        DPSCycle();
-        Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        Pet();
-
-        if (MySettings.UseAspectoftheHawk && AspectoftheHawk.KnownSpell && AspectoftheHawk.IsSpellUsable
-            && !AspectoftheHawk.HaveBuff && !ObjectManager.Me.HaveBuff(109260))
+        //Log
+        if (!CombatMode)
         {
-            AspectoftheHawk.Cast();
-            return;
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
-
-        if (MySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
-            && !ObjectManager.Me.InCombat)
+        if (!ObjectManager.Me.IsCast)
         {
-            Camouflage.Cast();
-            return;
-        }
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-    }
-
-    private void DismissPet()
-    {
-        if (MySettings.DismissOnCall)
-        {
-            if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && Dismiss.KnownSpell && Dismiss.IsSpellUsable)
-            {
-                Dismiss.Cast();
-                Others.SafeSleep(1500);
-            }
-        }
-    }
-
-    private void Pet()
-    {
-        if (MountTask.JustDismounted())
-            return;
-        if (MySettings.UsePet1 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet1.KnownSpell && CallPet1.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet1.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet2 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet2.KnownSpell && CallPet2.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet2.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet3 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet3.KnownSpell && CallPet3.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet3.Cast();
-            Others.SafeSleep(1000);
-        }
-        else if (MySettings.UsePet4 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet4.KnownSpell && CallPet4.IsSpellUsable)
-        {
-            DismissPet();
-            CallPet4.Cast();
-            Others.SafeSleep(1000);
-        }
-        else
-        {
-            if (MySettings.UsePet5 && !ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) && CallPet5.KnownSpell && CallPet5.IsSpellUsable)
-            {
-                DismissPet();
-                CallPet5.Cast();
-                Others.SafeSleep(1000);
-            }
-        }
-
-        if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
-            && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
-        {
-            RevivePet.Cast();
-            Others.SafeSleep(1000);
-            return;
-        }
-        if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
-            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && MySettings.UseRevivePet
-            && !ObjectManager.Me.InCombat)
-        {
-            RevivePet.Cast();
-            Others.SafeSleep(1000);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            if (Disengage.KnownSpell && MySettings.UseDisengage && Disengage.IsSpellUsable)
-            {
-                Logging.WriteFight("Too Close. Using disengage");
-                Disengage.Cast();
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
-    private void DefenseCycle()
-    {
-        if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseFeignDeath
-            && FeignDeath.KnownSpell && FeignDeath.IsSpellUsable)
-        {
-            FeignDeath.Cast();
-            Others.SafeSleep(5000);
-            if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
-                return;
-            Others.SafeSleep(5000);
-            return;
-        }
-        if (Deterrance.KnownSpell && MySettings.UseDeterrance && ObjectManager.Me.HealthPercent < 50
-            && Deterrance.IsSpellUsable)
-        {
-            Deterrance.Cast();
-            Others.SafeSleep(200);
-            return;
-        }
-        if (MySettings.UseFreezingTrap && FreezingTrap.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 1
-            && ObjectManager.Target.GetDistance > 10 && FreezingTrap.IsSpellUsable)
-        {
-            UseTrap(FreezingTrap);
-            return;
-        }
-        if (IceTrap.KnownSpell && MySettings.UseIceTrap && Disengage.KnownSpell && MySettings.UseDisengage
-            && ObjectManager.Me.HealthPercent < 80 && ObjectManager.Target.GetDistance < 10
-            && IceTrap.IsSpellUsable && Disengage.IsSpellUsable)
-        {
-            UseTrap(IceTrap);
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (Disengage.KnownSpell && MySettings.UseDisengage && ConcussiveShot.KnownSpell
-            && MySettings.UseConcussiveShot && ConcussiveShot.IsHostileDistanceGood
-            && ObjectManager.Me.HealthPercent < 80 && ConcussiveShot.IsSpellUsable && Disengage.IsSpellUsable)
-        {
-            ConcussiveShot.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (BindingShot.KnownSpell && MySettings.UseBindingShot && Disengage.KnownSpell && MySettings.UseDisengage
-            && ObjectManager.Me.HealthPercent < 80 && BindingShot.IsHostileDistanceGood
-            && Disengage.IsSpellUsable && BindingShot.IsSpellUsable)
-        {
-            BindingShot.Cast();
-            Others.SafeSleep(1000);
-            MovementsAction.Jump();
-            Disengage.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.KnownSpell &&
-            WarStomp.IsSpellUsable
-            && MySettings.UseWarStomp)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.KnownSpell &&
-            Stoneform.IsSpellUsable
-            && MySettings.UseStoneform)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
+            Heal();
+            if (Defensive()) return;
+            Pet();
+            BurstBuffs();
+            GCDCycle();
         }
     }
 
     private void Heal()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell
-            && MySettings.UseGiftoftheNaaru && GiftoftheNaaru.IsSpellUsable)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (Exhilaration.KnownSpell && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70
-            && Exhilaration.IsSpellUsable)
-        {
-            Exhilaration.Cast();
-            return;
-        }
-        if (FeedPet.KnownSpell && MySettings.UseFeedPet && !ObjectManager.Me.InCombat
-            && ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50 && FeedPet.IsSpellUsable)
-        {
-            FeedPet.Cast();
-            return;
-        }
-        if (MySettings.UseMendPet && _mendPetTimer.IsReady && MendPet.KnownSpell && ObjectManager.Pet.Health > 0
-            && ObjectManager.Pet.HealthPercent < 80 && MendPet.IsSpellUsable)
-        {
-            MendPet.Cast();
-            _mendPetTimer = new Timer(1000*10);
-        }
-    }
-
-    private void Decast()
-    {
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && MySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
-            && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && MySettings.UseSilencingShot)
-        {
-            SilencingShot.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
-            && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && MySettings.UseScatterShot)
-        {
-            ScatterShot.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseWyvernSting
-            && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
-        {
-            WyvernSting.Cast();
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-            return;
-        }
-        if (MySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && Berserking.IsSpellUsable)
-        {
-            Berserking.Cast();
-            return;
-        }
-        if (MySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance <= 40f
-            && BloodFury.IsSpellUsable)
-        {
-            BloodFury.Cast();
-            return;
-        }
-        if (AMurderofCrows.KnownSpell && MySettings.UseAMurderofCrows && AMurderofCrows.IsHostileDistanceGood
-            && AMurderofCrows.IsSpellUsable && !AMurderofCrows.TargetHaveBuff)
-        {
-            AMurderofCrows.Cast();
-            return;
-        }
-        if (Barrage.KnownSpell && MySettings.UseBarrage && Barrage.IsHostileDistanceGood && Barrage.IsSpellUsable)
-        {
-            Barrage.Cast();
-            return;
-        }
-        if (BlinkStrike.KnownSpell && MySettings.UseBlinkStrike && ObjectManager.Pet.IsAlive
-            && ObjectManager.Target.GetDistance <= 40f && BlinkStrike.IsSpellUsable)
-        {
-            BlinkStrike.Cast();
-            return;
-        }
-        if (DireBeast.KnownSpell && MySettings.UseDireBeast && _direBeastTimer.IsReady
-            && DireBeast.IsHostileDistanceGood && DireBeast.IsSpellUsable)
-        {
-            DireBeast.Cast();
-            _direBeastTimer = new Timer(1000*15);
-            return;
-        }
-        if (Fervor.KnownSpell && MySettings.UseFervor && ObjectManager.Me.Focus < 50
-            && Fervor.IsSpellUsable)
-        {
-            Fervor.Cast();
-            return;
-        }
-        if (GlaiveToss.KnownSpell && MySettings.UseGlaiveToss && GlaiveToss.IsHostileDistanceGood
-            && GlaiveToss.IsSpellUsable)
-        {
-            GlaiveToss.Cast();
-            return;
-        }
-        if (LynxRush.KnownSpell && MySettings.UseLynxRush && ObjectManager.Target.GetDistance <= 40f
-            && LynxRush.IsSpellUsable)
-        {
-            LynxRush.Cast();
-            return;
-        }
-        if (Powershot.KnownSpell && MySettings.UsePowershot && Powershot.IsHostileDistanceGood
-            && Powershot.IsSpellUsable)
-        {
-            Powershot.Cast();
-            return;
-        }
-        if (Stampede.KnownSpell && MySettings.UseStampede && Stampede.IsHostileDistanceGood
-            && Stampede.IsSpellUsable)
-        {
-            Stampede.Cast();
-        }
-    }
-
-    private void DPSCycle()
-    {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && !SerpentSting.TargetHaveBuff
-                && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                ArcaneShot.Cast();
-                _serpentStingTimer = new Timer(1000*12);
+                GiftoftheNaaru.Cast();
                 return;
             }
-            if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && _serpentStingTimer.IsReady
-                && ArcaneShot.IsHostileDistanceGood && ArcaneShot.IsSpellUsable)
+            //Exhilaration
+            if (ObjectManager.Me.HealthPercent < MySettings.UseExhilarationBelowPercentage && Exhilaration.IsSpellUsable)
             {
-                ArcaneShot.Cast();
-                _serpentStingTimer = new Timer(1000*12);
+                Exhilaration.Cast();
                 return;
-            }
-            if (KillShot.KnownSpell && MySettings.UseKillShot && KillShot.IsHostileDistanceGood
-                && KillShot.IsSpellUsable)
-            {
-                KillShot.Cast();
-                return;
-            }
-            if (ObjectManager.GetNumberAttackPlayer() > 4 && MySettings.UseMultiShot && MySettings.UseExplosiveTrap
-                && MySettings.UseExplosiveShot)
-            {
-                if (MultiShot.KnownSpell && MultiShot.IsHostileDistanceGood && MultiShot.IsSpellUsable)
-                {
-                    MultiShot.Cast();
-                    return;
-                }
-                if (ExplosiveTrap.KnownSpell && ObjectManager.Target.GetDistance < 10 && ExplosiveTrap.IsSpellUsable)
-                {
-                    UseTrap(ExplosiveTrap);
-                    return;
-                }
-                if (ExplosiveShot.KnownSpell && ExplosiveShot.IsHostileDistanceGood && ExplosiveShot.IsSpellUsable)
-                {
-                    ExplosiveShot.Cast();
-                    return;
-                }
-                return;
-            }
-            if (ExplosiveTrap.KnownSpell && MySettings.UseExplosiveTrap && ObjectManager.Target.GetDistance < 10
-                && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1
-                && ExplosiveTrap.IsSpellUsable)
-            {
-                UseTrap(ExplosiveTrap);
-                return;
-            }
-            if (BlackArrow.KnownSpell && MySettings.UseBlackArrow && BlackArrow.IsHostileDistanceGood
-                && BlackArrow.IsSpellUsable)
-            {
-                BlackArrow.Cast();
-                return;
-            }
-            if (ExplosiveShot.KnownSpell && MySettings.UseExplosiveShot && ExplosiveShot.IsHostileDistanceGood
-                && ExplosiveShot.IsSpellUsable)
-            {
-                ExplosiveShot.Cast();
-                return;
-            }
-            if (MultiShot.KnownSpell && MySettings.UseMultiShot && MultiShot.IsHostileDistanceGood
-                && ObjectManager.Me.FocusPercentage > 79
-                && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1
-                && MultiShot.IsSpellUsable)
-            {
-                MultiShot.Cast();
-                return;
-            }
-            if (ArcaneShot.KnownSpell && MySettings.UseArcaneShot && ArcaneShot.IsHostileDistanceGood
-                && ObjectManager.Me.FocusPercentage > 79 && ArcaneShot.IsSpellUsable)
-            {
-                ArcaneShot.Cast();
-                return;
-            }
-            if (ArcaneTorrent.KnownSpell && MySettings.UseArcaneTorrentForResource
-                && ArcaneTorrent.IsSpellUsable)
-            {
-                ArcaneTorrent.Cast();
-                return;
-            }
-            if (CobraShot.KnownSpell && MySettings.UseCobraShot && CobraShot.IsHostileDistanceGood
-                && ObjectManager.Me.FocusPercentage < 80 && CobraShot.IsSpellUsable)
-            {
-                CobraShot.Cast();
-                return;
-            }
-            if (SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood
-                && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !MySettings.UseCobraShot)
-                && SteadyShot.IsSpellUsable)
-            {
-                SteadyShot.Cast();
             }
         }
         finally
@@ -2494,11 +1768,311 @@ public class HunterSurvival
         }
     }
 
-    private void Patrolling()
+    private bool Defensive()
     {
-        if (ObjectManager.Me.IsMounted) return;
-        Buff();
-        Heal();
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Defensive Cooldowns
+            if (CCTimer.IsReady)
+            {
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    {
+                        WarStomp.Cast();
+                        CCTimer = new Timer(1000*2);
+                    }
+                }
+                if (Stoneform.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage)
+                {
+                    Stoneform.Cast();
+                }
+                if (AspectoftheTurtle.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseAspectoftheTurtleBelowPercentage)
+                {
+                    AspectoftheTurtle.Cast();
+                }
+                if (FeignDeath.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFeignDeathBelowPercentage)
+                {
+                    FeignDeath.Cast();
+                    Others.SafeSleep(5000);
+                    if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                        return true;
+                    Others.SafeSleep(5000);
+                    return true;
+                }
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void DismissPet()
+    {
+        if (MySettings.DismissOnCall && Dismiss.IsSpellUsable)
+        {
+            Dismiss.Cast();
+            Others.SafeSleep(1500);
+        }
+    }
+
+    private void Pet()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (!ObjectManager.Me.IsCast)
+            {
+                if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                {
+                    //Call Pet //TODO implement a check which one is active
+                    switch (MySettings.UsePet)
+                    {
+                        case 1:
+                            if (CallPet1.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet1.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 2:
+                            if (CallPet2.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet2.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 3:
+                            if (CallPet3.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet3.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 4:
+                            if (CallPet4.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet4.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        case 5:
+                            if (CallPet5.IsSpellUsable)
+                            {
+                                DismissPet();
+                                CallPet5.Cast();
+                                Others.SafeSleep(1000 + Usefuls.Latency);
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    //Revive Pet
+                    if (MySettings.UseRevivePet && RevivePet.IsSpellUsable && ObjectManager.Pet.IsValid)
+                    {
+                        if (MySettings.UseCombatRevive || !ObjectManager.Me.InCombat)
+                        {
+                            RevivePet.Cast();
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if (ObjectManager.Pet.Health > 0)
+                    {
+                        if (!ObjectManager.Me.InCombat && ObjectManager.Pet.HealthPercent < MySettings.UseFeedPetBelowPercentage && FeedPet.IsSpellUsable)
+                        {
+                            FeedPet.Cast();
+                            return;
+                        }
+                        if (ObjectManager.Pet.HealthPercent < MySettings.UseMendPetBelowPercentage && MendPet.IsSpellUsable)
+                        {
+                            MendPet.Cast();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Manage Pet Targeting
+            //if (ObjectManager.Pet.IsAlive && ObjectManager.Pet.Target != ObjectManager.Me.Target)
+            //{
+            //    Lua.RunMacroText("/petattack");
+            //    Logging.WriteFight("Cast Pet Attack");
+            //}
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Mongoose Logic
+            if (MySettings.UseFuryoftheEagle && FuryoftheEagle.IsSpellUsable && FuryoftheEagle.IsHostileDistanceGood &&
+                MongooseFury.BuffStack == 6)
+            {
+                FuryoftheEagle.Cast();
+                return;
+            }
+            if (StackMoongooseFury == 0)
+            {
+                if (MongooseBite.GetSpellCharges == 3)
+                {
+                    Logging.WriteFight("Started stacking Moongoose Fury");
+                    StackMoongooseFury = 1;
+                }
+            }
+            else
+            {
+                if (StackMoongooseFury == 1)
+                {
+                    if (MySettings.UseAspectoftheEagle && AspectoftheEagle.IsSpellUsable)
+                    {
+                        StackMoongooseFury = 2;
+                        AspectoftheEagle.Cast();
+                    }
+                    else if (MySettings.UseSnakeHunter && SnakeHunter.IsSpellUsable &&
+                             MongooseFury.BuffStack <= 3 && MongooseBite.GetSpellCharges == 0)
+                    {
+                        StackMoongooseFury = 2;
+                        SnakeHunter.Cast();
+                        return;
+                    }
+                }
+                if (MySettings.UseMongooseBite && MongooseBite.GetSpellCharges > 0 && MongooseFury.BuffStack < 6)
+                {
+                    MongooseBite.Cast();
+                    return;
+                }
+                if (!MongooseFury.HaveBuff)
+                {
+                    Logging.WriteFight("Stopped stacking Moongoose Fury");
+                    StackMoongooseFury = 0;
+                    return;
+                }
+            }
+
+
+            //High Priority Cooldowns
+            if (MySettings.UseExplosiveTrap && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood)
+            {
+                ExplosiveTrap.Cast();
+                return;
+            }
+            if (MySettings.UseDragonsfireGrenade && DragonsfireGrenade.IsSpellUsable && DragonsfireGrenade.IsHostileDistanceGood)
+            {
+                DragonsfireGrenade.Cast();
+                return;
+            }
+            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
+            {
+                AMurderofCrows.Cast();
+                return;
+            }
+
+            //Maintain Mok'Nathal Tactics
+            if ((ObjectManager.Me.UnitAura(MokNathalTactics.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1 || MokNathalTactics.BuffStack < 4) &&
+                MySettings.UseFlankingStrike && FlankingStrike.IsSpellUsable && FlankingStrike.IsHostileDistanceGood)
+            {
+                FlankingStrike.Cast();
+                return;
+            }
+            //Maintain Lacerate
+            if (MySettings.UseLacerate && Lacerate.IsSpellUsable && Lacerate.IsHostileDistanceGood && !Lacerate.TargetHaveBuff)
+            {
+                Lacerate.Cast();
+                return;
+            }
+
+            //Low Priority Cooldowns
+            if (MySettings.UseFlankingStrike && FlankingStrike.IsSpellUsable && FlankingStrike.IsHostileDistanceGood)
+            {
+                FlankingStrike.Cast();
+                return;
+            }
+            if (MySettings.UseSpittingCobra && SpittingCobra.IsSpellUsable && SpittingCobra.IsHostileDistanceGood)
+            {
+                SpittingCobra.Cast();
+                return;
+            }
+            if (MySettings.UseThrowingAxes && ThrowingAxes.IsSpellUsable && ThrowingAxes.IsHostileDistanceGood)
+            {
+                ThrowingAxes.Cast();
+                return;
+            }
+            if (MySettings.UseHarpoon && Harpoon.IsSpellUsable && Harpoon.IsHostileDistanceGood)
+            {
+                Harpoon.Cast();
+                CCTimer = new Timer(1000*3);
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
     #region Nested type: HunterSurvivalSettings
@@ -2506,137 +2080,102 @@ public class HunterSurvival
     [Serializable]
     public class HunterSurvivalSettings : Settings
     {
-        public bool DismissOnCall = true;
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAMurderofCrows = true;
-        public bool UseAlchFlask = true;
-        public bool UseArcaneShot = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public bool UseAspectoftheHawk = true;
-        public bool UseBarrage = true;
+        /* Professions & Racials */
         public bool UseBerserking = true;
-        public bool UseBindingShot = true;
-        public bool UseBlackArrow = true;
-        public bool UseBlinkStrike = true;
         public bool UseBloodFury = true;
-        public bool UseCamouflage = false;
-        public bool UseCobraShot = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Pet */
+        public bool DismissOnCall = true;
         public bool UseCombatRevive = true;
-        public bool UseConcussiveShot = true;
-        public bool UseDeterrance = true;
-        public bool UseDireBeast = true;
-        public bool UseDisengage = true;
-
-        public bool UseExhilaration = true;
-        public bool UseExplosiveShot = true;
-        public bool UseExplosiveTrap = true;
-        public bool UseFeedPet = true;
-        public bool UseFeignDeath = true;
-        public bool UseFervor = true;
-        public bool UseFreezingTrap = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGlaiveToss = true;
-        public bool UseHuntersMark = true;
-        public bool UseIceTrap = true;
-        public bool UseKillShot = true;
-
-        public bool UseLowCombat = true;
-        public bool UseLynxRush = true;
-        public bool UseMendPet = true;
-        public bool UseMisdirection = true;
-        public bool UseMultiShot = true;
-        public bool UsePet1 = true;
-        public bool UsePet2 = false;
-        public bool UsePet3 = false;
-        public bool UsePet4 = false;
-        public bool UsePet5 = false;
-        public bool UsePowershot = true;
+        public int UseFeedPetBelowPercentage = 0;
+        public int UseMendPetBelowPercentage = 50;
+        public int UsePet = 1;
         public bool UseRevivePet = true;
-        public bool UseScatterShot = true;
-        public bool UseSerpentSting = true;
-        public bool UseSilencingShot = true;
-        public bool UseStampede = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
+
+        /* Offensive Spells */
+        public bool UseRaptorStrike = true;
+
+        /* Artifact Spells */
+        public bool UseFuryoftheEagle = true;
+
+        /* Offensive Cooldowns */
+        public bool UseAMurderofCrows = true;
+        public bool UseAspectoftheEagle = true;
+        public bool UseDragonsfireGrenade = true;
+        public bool UseExplosiveTrap = true;
+        public bool UseFlankingStrike = true;
+        public bool UseHarpoon = true;
+        public bool UseLacerate = true;
+        public bool UseMongooseBite = true;
+        public bool UseSnakeHunter = true;
+        public bool UseSpittingCobra = true;
+        public bool UseThrowingAxes = true;
+
+        /* Defensive Cooldowns */
+        public int UseAspectoftheTurtleBelowPercentage = 35;
+        public int UseFeignDeathBelowPercentage = 10;
+
+        /* Healing Spells */
+        public int UseExhilarationBelowPercentage = 25;
+
+        /* Utility Cooldowns */
+        public bool UseAspectoftheCheetah = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWyvernSting = true;
 
         public HunterSurvivalSettings()
         {
             ConfigWinForm("Hunter Survival Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Hunter Buffs */
-            AddControlInWinForm("Use Aspect of the Hawk", "UseAspectoftheHawk", "Hunter Buffs");
-            AddControlInWinForm("Use Camouflage", "UseCamouflage", "Hunter Buffs");
-            AddControlInWinForm("Use Feign Death", "UseFeignDeath", "Hunter Buffs");
-            AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
-            AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Pet */
+            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Pet");
+            AddControlInWinForm("Use Pet (1,2,3,4,5)", "UsePet", "Pet");
+            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Pet");
+            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Pet");
+            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Pet");
+            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Pet");
+            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Pet");
+            //AddControlInWinForm("Use Feed Pet", "UseFeedPetBelowPercentage", "Pet", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Mend Pet", "UseMendPetBelowPercentage", "Pet", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Pet");
             /* Offensive Spell */
-            AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
-            AddControlInWinForm("Use Black Arrow", "UseBlackArrow", "Offensive Spell");
-            AddControlInWinForm("Dismiss pet before calling again", "DismissOnCall", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
-            AddControlInWinForm("Use Cobra Shot", "UseCobraShot", "Offensive Spell");
-            AddControlInWinForm("Use Explosive Shot", "UseExplosiveShot", "Offensive Spell");
-            AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
-            AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
-            AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
-            AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
+            AddControlInWinForm("Use Raptor Strike", "UseRaptorStrike", "Offensive Spell");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Fury of the Eagle", "UseFuryoftheEagle", "Artifact Spells");
             /* Offensive Cooldown */
             AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
-            AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
-            AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
-            AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
-            AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
-            AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
-            AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
-            AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
-            AddControlInWinForm("Use Rapid Fire", "UseRapidFire", "Offensive Cooldown");
-            AddControlInWinForm("Use Readiness", "UseReadiness", "Offensive Cooldown");
-            AddControlInWinForm("Use Stampede", "UseStampede", "Offensive Cooldown");
+            AddControlInWinForm("Use Aspect of the Eagle", "UseAspectoftheEagle", "Offensive Cooldown");
+            AddControlInWinForm("Use Dragonsfire Grenade", "UseDragonsfireGrenade", "Offensive Cooldown");
+            AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Cooldown");
+            AddControlInWinForm("Use Flanking Strike", "UseFlankingStrike", "Offensive Cooldown");
+            AddControlInWinForm("Use Harpoon", "UseHarpoon", "Offensive Cooldown");
+            AddControlInWinForm("Use Lacerate", "UseLacerate", "Offensive Cooldown");
+            AddControlInWinForm("Use Mongoose Bite", "UseMongooseBite", "Offensive Cooldown");
+            AddControlInWinForm("Use Snake Hunter", "UseSnakeHunter", "Offensive Cooldown");
+            AddControlInWinForm("Use Spitting Cobra", "UseSpittingCobra", "Offensive Cooldown");
+            AddControlInWinForm("Use Throwing Axes", "UseThrowingAxes", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Binding Shot", "UseBindingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
-            AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
-            AddControlInWinForm("Use Freezing Trap", "UseFreezingTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
+            AddControlInWinForm("Use Aspect of the Turtle", "UseAspectoftheTurtleBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Feign Death", "UseFeignDeathBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spell */
-            AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
-            AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
-            AddControlInWinForm("Use Mend Pet", "UseMendPet", "Healing Spell");
-            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Healing Spell");
+            AddControlInWinForm("Use Exhilaration", "UseExhilarationBelowPercentage", "Healing Spell", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Cooldowns");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static HunterSurvivalSettings CurrentSetting { get; set; }
