@@ -1862,7 +1862,7 @@ public class ShamanElemental
                 {
                     //DEBUG
                     Logging.Write("Target.GetUnitInSpellRange(10f) == " + ObjectManager.Target.GetUnitInSpellRange(10f));
-                    
+
                     ChainLightning.Cast();
                     return true;
                 }
@@ -2022,7 +2022,7 @@ public class ShamanElemental
             {
                 //DEBUG
                 Logging.Write("Target.GetUnitInSpellRange(8f) == " + ObjectManager.Target.GetUnitInSpellRange(8f));
-                
+
                 Earthquake.Cast();
                 EarthquakeCooldown = new Timer(1000*10);
                 return;
@@ -2038,7 +2038,7 @@ public class ShamanElemental
             {
                 //DEBUG
                 Logging.Write("Target.GetUnitInSpellRange(8f) == " + ObjectManager.Target.GetUnitInSpellRange(8f));
-                
+
                 ChainLightning.Cast();
                 return;
             }

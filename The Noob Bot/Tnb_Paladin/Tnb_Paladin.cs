@@ -1082,6 +1082,8 @@ public class PaladinRetribution
     public readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
     public readonly Spell Judgment = new Spell("Judgment");
     public readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
+    public readonly Spell WakeOfAshes = new Spell("Wake of Ashes");
+    public readonly Spell AshesToAshes = new Spell("Ashes to Ashes");
 
     #endregion
 
@@ -1151,7 +1153,7 @@ public class PaladinRetribution
                         {
                             if (ObjectManager.Me.Target != lastTarget && Reckoning.IsHostileDistanceGood)
                             {
-                                Pull();
+                                //Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
                             if (ObjectManager.Target.GetDistance <= 40f)
@@ -1340,7 +1342,11 @@ public class PaladinRetribution
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-
+            if (WakeOfAshes.KnownSpell && (ObjectManager.Me.HolyPower == 0 || !AshesToAshes.HaveBuff) && WakeOfAshes.IsSpellUsable && WakeOfAshes.IsHostileDistanceGood)
+            {
+                WakeOfAshes.Cast(); // Artefact spell.
+                return;
+            }
             if (MySettings.UseJusticarsVengeance && ObjectManager.Me.HaveBuff(DivinePurposeBuff) &&
                 (!MySettings.UseDivineStorm || !DivineStorm.IsSpellUsable || ObjectManager.GetUnitInSpellRange(DivineStorm.MaxRangeHostile) < 3) &&
                 JusticarsVengeance.IsSpellUsable && JusticarsVengeance.IsHostileDistanceGood)
