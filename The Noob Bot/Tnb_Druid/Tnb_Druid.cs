@@ -321,12 +321,8 @@ public class DruidBalance
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        //DEBUG
-                        if (ObjectManager.Me.HealthPercent == 0)
-                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
-
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget)
@@ -948,12 +944,8 @@ public class DruidFeral
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        //DEBUG
-                        if (ObjectManager.Me.HealthPercent == 0)
-                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
-
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget)
@@ -2351,12 +2343,8 @@ public class DruidGuardian
             {
                 if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (!ObjectManager.Me.IsMounted && !ObjectManager.Me.HaveBuff(202477))
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        //DEBUG
-                        if (ObjectManager.Me.HealthPercent == 0)
-                            Logging.WriteFight("Health: " + ObjectManager.Me.Health + "/" + ObjectManager.Me.MaxHealth);
-
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
                             if (ObjectManager.Me.Target != lastTarget)

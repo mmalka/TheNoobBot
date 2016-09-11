@@ -166,39 +166,87 @@ public class DemonHunterHavoc
 {
     private static DemonHunterHavocSettings MySettings = DemonHunterHavocSettings.GetSettings();
 
-    #region Professions & Racial
-
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
+    #region General Timers & Variables
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
+    private bool CombatMode = true;
+
+    #endregion
+
+    #region Talents
+
+    public static Spell Bloodlet = new Spell("Bloodlet");
+    public static Spell DemonBlades = new Spell("Demon Blades");
+    public static Spell Demonic = new Spell("Demonic");
+    public static Spell ChaosCleave = new Spell("ChaosCleave");
+    public static Spell FelMastery = new Spell("Fel Mastery");
+    public static Spell FirstBlood = new Spell("First Blood");
+    public static Spell MasteroftheGlaive = new Spell("Master of the Glaive");
+    public static Spell Momentum = new Spell("Momentum");
+    public static Spell Prepared = new Spell("Prepared");
+
+    #endregion
+
+    #region Professions & Racial
+
+    //public static Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    public static Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
 
     #endregion
 
     #region DemonHunter Seals & Buffs
 
+    public static Spell DemonicTransformation = new Spell("Demonic Transformation");
+    public static Spell MomentumBuff = new Spell(208628 /*"Momentum"*/);
+
     #endregion
 
     #region Offensive Spell
 
+    public static Spell Annihilation = new Spell("Annihilation");
     public static Spell BladeDance = new Spell("Blade Dance");
     public static Spell ChaosStrike = new Spell("Chaos Strike");
-    public static Spell DemonBite = new Spell("Demon's Bite");
+    public static Spell DeathSweep = new Spell("Death Sweep");
+    public static Spell DemonsBite = new Spell("Demon's Bite");
+    public static Spell Felblade = new Spell("Felblade");
+    public static Spell FelRush = new Spell("Fel Rush");
+    public static Spell ThrowGlaive = new Spell("Throw Glaive");
+
+    #endregion
+
+    #region Legion Artifact
+
+    public static Spell AnguishoftheDeceiver = new Spell("Anguish of the Deceiver"); //No GCD
+    public static Spell FuryoftheIllidari = new Spell("Fury of the Illidari");
 
     #endregion
 
     #region Offensive Cooldown
 
+    public static Spell ChaosBlades = new Spell("Chaos Blades"); //No GCD
+    public static Spell EyeBeam = new Spell("Eye Beam");
+    public static Spell FelBarrage = new Spell("Fel Barrage");
+    public static Spell FelEruption = new Spell("Fel Eruption");
     public static Spell Metamorphosis = new Spell("Metamorphosis");
+    public static Spell Nemesis = new Spell("Nemesis");
+    public static Spell VengefulRetreat = new Spell("Vengeful Retreat"); //No GCD
 
     #endregion
 
     #region Defensive Cooldown
 
+    public static Spell Blur = new Spell("Blur"); //No GCD
+    public static Spell Darkness = new Spell("Darkness"); //No GCD
+
     #endregion
 
-    #region Healing Spell
+    #region Utility Cooldowns
+
+    //public static Spell ConsumeMagic = new Spell("Consume Magic"); //No GCD
+    //public static Spell Imprison = new Spell("Imprison");
+    public static Spell Netherwalk = new Spell("Netherwalk"); //No GCD
 
     #endregion
 
@@ -222,13 +270,15 @@ public class DemonHunterHavoc
                         {
                             if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            if (ObjectManager.Target.GetDistance <= 40f)
+
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
+                            else
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else
                             Patrolling();
                     }
                 }
@@ -242,94 +292,59 @@ public class DemonHunterHavoc
         }
     }
 
-    private void Pull()
+    private void Patrolling()
     {
+        if (!ObjectManager.Me.IsCast)
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
+
+            if (ObjectManager.Me.GetMove)
+            {
+                //Movement Buffs
+                if (MySettings.UseNetherwalkOOC && Netherwalk.IsSpellUsable && !Netherwalk.HaveBuff)
+                {
+                    Netherwalk.Cast();
+                    return;
+                }
+            }
+            else
+            {
+                //Self Heal for Damage Dealer
+            }
+        }
     }
 
     private void Combat()
     {
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        DPSCycle();
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
         Heal();
-        DPSCycle();
-        Buffs();
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Heal();
-        }
-    }
-
-    private void Buffs()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-                ItemsManager.UseItem(75525);
-        }
+        Defensive();
+        BurstBuffs();
+        GCDCycle();
     }
 
     private void Heal()
     {
-        if (ObjectManager.Me.ManaPercentage < 10)
-        {
-            if (ArcaneTorrent.KnownSpell && MySettings.UseArcaneTorrentForResource && ArcaneTorrent.IsSpellUsable)
-            {
-                ArcaneTorrent.Cast();
-                return;
-            }
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
-        if (Metamorphosis.IsSpellUsable && ObjectManager.Me.Fury >= 50 && ObjectManager.Target.GetDistance <= 8f)
-        {
-            Metamorphosis.Cast();
-        }
-    }
-
-    private void DefenseCycle()
-    {
-    }
-
-    private void DPSCycle()
-    {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
-            if (BladeDance.IsSpellUsable && BladeDance.IsHostileDistanceGood && ObjectManager.Me.Fury > 60)
+
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                BladeDance.Cast();
-                return;
-            }
-            if (ChaosStrike.IsSpellUsable && ChaosStrike.IsHostileDistanceGood && ObjectManager.Me.Fury > 60)
-            {
-                ChaosStrike.Cast();
-                return;
-            }
-            if (DemonBite.IsSpellUsable && DemonBite.IsHostileDistanceGood)
-            {
-                DemonBite.Cast();
+                GiftoftheNaaru.Cast();
                 return;
             }
         }
@@ -339,23 +354,278 @@ public class DemonHunterHavoc
         }
     }
 
-    private void AvoidMelee()
+    private void Defensive()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        Usefuls.SleepGlobalCooldown();
+
+        try
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Mitigate Damage
+            if (Blur.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseBlurBelowPercentage)
             {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
+                Blur.Cast();
             }
+            if (Darkness.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseDarknessBelowPercentage)
+            {
+                Darkness.Cast();
+            }
+            if (Netherwalk.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseNetherwalkBelowPercentage)
+            {
+                Netherwalk.Cast();
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseMetamorphosis && Metamorphosis.IsSpellUsable)
+            {
+                Metamorphosis.Cast();
+            }
+            if (MySettings.UseChaosBlades && ChaosBlades.IsSpellUsable)
+            {
+                ChaosBlades.Cast();
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseFelRush && FelRush.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, 20 /*FelRush Range*/) &&
+                //Keep Recharging
+                (FelRush.GetSpellCharges == 2 ||
+                 //Generate Fury
+                 (FelMastery.HaveBuff && (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 30) ||
+                 //Trigger Momentum
+                 (Momentum.HaveBuff && !MomentumBuff.HaveBuff)))
+            {
+                FelRush.Cast();
+                return;
+            }
+            if (MySettings.UseVengefulRetreat && VengefulRetreat.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, 20 /*Vengeful Retreat Range*/) &&
+                //Generate Fury
+                ((Prepared.HaveBuff && (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 20) ||
+                 //Trigger Momentum
+                 (Momentum.HaveBuff && !MomentumBuff.HaveBuff)))
+            {
+                VengefulRetreat.Cast();
+                return;
+            }
+            //Single Target 
+            if (ObjectManager.GetUnitInSpellRange(5f) == 1)
+            {
+                if (MySettings.UseNemesis && Nemesis.IsSpellUsable && Nemesis.IsHostileDistanceGood)
+                {
+                    Nemesis.Cast();
+                    return;
+                }
+                if (Demonic.HaveBuff && MySettings.UseEyeBeam && EyeBeam.IsSpellUsable && EyeBeam.IsHostileDistanceGood)
+                {
+                    EyeBeam.Cast();
+                    return;
+                }
+                if (MySettings.UseFelEruption && FelEruption.IsSpellUsable && FelEruption.IsHostileDistanceGood)
+                {
+                    FelEruption.Cast();
+                    return;
+                }
+                if (MySettings.UseFuryoftheIllidari && FuryoftheIllidari.IsSpellUsable && FuryoftheIllidari.IsHostileDistanceGood &&
+                    //Only with Momentum
+                    (!Momentum.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    FuryoftheIllidari.Cast();
+                    return;
+                }
+                if (FirstBlood.HaveBuff && (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    if (MySettings.UseBladeDance && BladeDance.IsSpellUsable && BladeDance.IsHostileDistanceGood)
+                    {
+                        BladeDance.Cast();
+                        return;
+                    }
+                    if (MySettings.UseDeathSweep && DeathSweep.IsSpellUsable && DeathSweep.IsHostileDistanceGood)
+                    {
+                        DeathSweep.Cast();
+                        return;
+                    }
+                }
+                if (MySettings.UseFelblade && Felblade.IsSpellUsable && Felblade.IsHostileDistanceGood &&
+                    //Generate Fury
+                    (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 30)
+                {
+                    Felblade.Cast();
+                    return;
+                }
+                if (Bloodlet.HaveBuff && MySettings.UseThrowGlaive && ThrowGlaive.IsSpellUsable && ThrowGlaive.IsHostileDistanceGood &&
+                    //Only with Momentum
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    ThrowGlaive.Cast();
+                    return;
+                }
+                if (MySettings.UseFelBarrage && FelBarrage.IsSpellUsable && FelBarrage.IsHostileDistanceGood &&
+                    //Keep Recharging
+                    FelBarrage.GetSpellCharges == 5 &&
+                    //Only with Momentum
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    FelBarrage.Cast();
+                    return;
+                }
+                if (MySettings.UseAnnihilation && Annihilation.IsSpellUsable && Annihilation.IsHostileDistanceGood &&
+                    //Generate Fury
+                    (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 30)
+                {
+                    Annihilation.Cast();
+                    return;
+                }
+                if (AnguishoftheDeceiver.HaveBuff && MySettings.UseEyeBeam && EyeBeam.IsSpellUsable && EyeBeam.IsHostileDistanceGood)
+                {
+                    EyeBeam.Cast();
+                    return;
+                }
+                if (MySettings.UseChaosStrike && ChaosStrike.IsSpellUsable && ChaosStrike.IsHostileDistanceGood &&
+                    //Generate Fury
+                    (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 30)
+                {
+                    ChaosStrike.Cast();
+                    return;
+                }
+                if (MySettings.UseFelBarrage && FelBarrage.IsSpellUsable && FelBarrage.IsHostileDistanceGood &&
+                    //Keep Recharging
+                    FelBarrage.GetSpellCharges >= 4 &&
+                    //Only with Momentum
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    FelBarrage.Cast();
+                    return;
+                }
+                if (!DemonBlades.HaveBuff && MySettings.UseDemonsBite && DemonsBite.IsSpellUsable && DemonsBite.IsHostileDistanceGood)
+                {
+                    DemonsBite.Cast();
+                    return;
+                }
+                if (MySettings.UseFelRush && FelRush.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 6, 20 /*FelRush Range*/))
+                {
+                    FelRush.Cast();
+                    return;
+                }
+                if (MySettings.UseThrowGlaive && ThrowGlaive.IsSpellUsable && (!CombatClass.InMeleeRange(ObjectManager.Target) ||
+                                                                               DemonBlades.HaveBuff))
+                {
+                    ThrowGlaive.Cast();
+                    return;
+                }
+            }
+                //Multiple Target
+            else
+            {
+                if (MySettings.UseFuryoftheIllidari && FuryoftheIllidari.IsSpellUsable && FuryoftheIllidari.IsHostileDistanceGood &&
+                    //Only with Momentum
+                    (!Momentum.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    FuryoftheIllidari.Cast();
+                    return;
+                }
+                if (MySettings.UseFelBarrage && FelBarrage.IsSpellUsable && FelBarrage.IsHostileDistanceGood &&
+                    //Keep Recharging
+                    FelBarrage.GetSpellCharges >= 4 &&
+                    //Only with Momentum
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    FelBarrage.Cast();
+                    return;
+                }
+                if (MySettings.UseEyeBeam && EyeBeam.IsSpellUsable && EyeBeam.IsHostileDistanceGood &&
+                    //Only with Momentum
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    EyeBeam.Cast();
+                    return;
+                }
+                if (FirstBlood.HaveBuff && ObjectManager.GetUnitInSpellRange(5f) > 2 &&
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    if (MySettings.UseBladeDance && BladeDance.IsSpellUsable && BladeDance.IsHostileDistanceGood)
+                    {
+                        BladeDance.Cast();
+                        return;
+                    }
+                    if (MySettings.UseDeathSweep && DeathSweep.IsSpellUsable && DeathSweep.IsHostileDistanceGood)
+                    {
+                        DeathSweep.Cast();
+                        return;
+                    }
+                }
+                if (Bloodlet.HaveBuff && MySettings.UseThrowGlaive && ThrowGlaive.IsSpellUsable && ThrowGlaive.IsHostileDistanceGood &&
+                    //Only with Momentum
+                    (!MomentumBuff.HaveBuff || MomentumBuff.HaveBuff))
+                {
+                    ThrowGlaive.Cast();
+                    return;
+                }
+                if (MySettings.UseChaosStrike && ChaosStrike.IsSpellUsable &&
+                    ChaosCleave.HaveBuff && ObjectManager.GetUnitInSpellRange(ChaosStrike.MaxRangeHostile) <= 3)
+                {
+                    ChaosStrike.Cast();
+                    return;
+                }
+                if (MySettings.UseThrowGlaive && ThrowGlaive.IsSpellUsable && ThrowGlaive.IsHostileDistanceGood)
+                {
+                    ThrowGlaive.Cast();
+                    return;
+                }
+                if (MySettings.UseChaosStrike && ChaosStrike.IsSpellUsable && ChaosStrike.IsHostileDistanceGood &&
+                    //Generate Fury
+                    (!DemonBlades.HaveBuff || (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 40) &&
+                    (ObjectManager.Me.MaxFury - ObjectManager.Me.Fury) < 30)
+                {
+                    ChaosStrike.Cast();
+                    return;
+                }
+                if (!DemonBlades.HaveBuff && MySettings.UseDemonsBite && DemonsBite.IsSpellUsable && DemonsBite.IsHostileDistanceGood)
+                {
+                    DemonsBite.Cast();
+                    return;
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
         }
     }
 
@@ -364,37 +634,80 @@ public class DemonHunterHavoc
     [Serializable]
     public class DemonHunterHavocSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+
+        /* Offensive Spells */
+        public bool UseAnnihilation = true;
+        public bool UseBladeDance = true;
+        public bool UseChaosStrike = true;
+        public bool UseDeathSweep = true;
+        public bool UseDemonsBite = true;
+        public bool UseFelblade = true;
+        public bool UseFelRush = true;
+        public bool UseThrowGlaive = true;
+
+        /* Artifact Spells */
+        public bool UseFuryoftheIllidari = true;
+
+        /* Offensive Cooldowns */
+        public bool UseChaosBlades = true;
+        public bool UseEyeBeam = true;
+        public bool UseFelBarrage = true;
+        public bool UseFelEruption = true;
+        public bool UseMetamorphosis = true;
+        public bool UseNemesis = true;
+        public bool UseVengefulRetreat = true;
+
+        /* Defensive Cooldowns */
+        public int UseBlurBelowPercentage = 40;
+        public int UseDarknessBelowPercentage = 60;
+
+        /* Utility Cooldowns */
+        //public bool UseConsumeMagic = true;
+        //public bool UseImprison = true;
+        public int UseNetherwalkBelowPercentage = 10;
+        public bool UseNetherwalkOOC = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
 
         public DemonHunterHavocSettings()
         {
-            ConfigWinForm("DemonHunter Havor Settings");
+            ConfigWinForm("DemonHunter Havoc Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            /* DemonHunter Seals & Buffs */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Offensive Spell */
+            AddControlInWinForm("Use Annihilation", "UseAnnihilation", "Offensive Spells");
+            AddControlInWinForm("Use Blade Dance", "UseBladeDance", "Offensive Spells");
+            AddControlInWinForm("Use Chaos Strike", "UseChaosStrike", "Offensive Spells");
+            AddControlInWinForm("Use Death Sweep", "UseDeathSweep", "Offensive Spells");
+            AddControlInWinForm("Use Demons Bite", "UseDemonsBite", "Offensive Spells");
+            AddControlInWinForm("Use Felblade", "UseFelblade", "Offensive Spells");
+            AddControlInWinForm("Use Fel Rush", "UseFelRush", "Offensive Spells");
+            AddControlInWinForm("Use Throw Glaive", "UseThrowGlaive", "Offensive Spells");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Fury of the Illidari", "UseFuryoftheIllidari", "Artifact Spells");
             /* Offensive Cooldown */
+            AddControlInWinForm("Use Chaos Blades", "UseChaosBlades", "Offensive Cooldowns");
+            AddControlInWinForm("Use Eye Beam", "UseEyeBeam", "Offensive Cooldowns");
+            AddControlInWinForm("Use Fel Barrage", "UseFelBarrage", "Offensive Cooldowns");
+            AddControlInWinForm("Use Fel Eruption", "UseFelEruption", "Offensive Cooldowns");
+            AddControlInWinForm("Use Metamorphosis", "UseMetamorphosis", "Offensive Cooldowns");
+            AddControlInWinForm("Use Nemesis", "UseNemesis", "Offensive Cooldowns");
+            AddControlInWinForm("Use Vengeful Retreat", "UseVengefulRetreat", "Offensive Cooldowns");
             /* Defensive Cooldown */
-            /* Healing Spell */
+            AddControlInWinForm("Use Blur", "UseBlur", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Darkness", "UseDarkness", "Defensive Cooldowns", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Netherwalk", "UseNetherwalkBelowPercentage", "Utility Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Netherwalk out of Combat", "UseNetherwalkOOC", "Utility Cooldowns");
+            /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static DemonHunterHavocSettings CurrentSetting { get; set; }
@@ -418,29 +731,77 @@ public class DemonHunterVengeance
 {
     private static DemonHunterVengeanceSettings MySettings = DemonHunterVengeanceSettings.GetSettings();
 
-    #region Professions & Racial
-
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
+    #region General Timers & Variables
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
+
+    #endregion
+
+    #region Talents
+
+    public static Spell BladeTurning = new Spell("Blade Turning");
+    public static Spell FlameCrash = new Spell("Flame Crash");
+
+    #endregion
+
+    #region Professions & Racial
+
+    //public static Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    public static Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
 
     #endregion
 
     #region DemonHunter Seals & Buffs
 
+    public static Spell BladeTurningBuff = new Spell(207709 /*"Blade Turning"*/);
+
+    #endregion
+
+    #region DemonHunter Dots
+
+    public static Spell Frailty = new Spell("Frailty");
+
     #endregion
 
     #region Offensive Spell
+
+    public static Spell Felblade = new Spell("Felblade");
+    public static Spell Fracture = new Spell("Fracture");
+    public static Spell ImmolationAura = new Spell("Immolation Aura");
+    public static Spell Shear = new Spell("Shear");
+    public static Spell SoulCleave = new Spell("Soul Cleave");
+    public static Spell SpiritBomb = new Spell("Spirit Bomb");
+
+    #endregion
+
+    #region Legion Artifact
+
+    public static Spell SoulCarver = new Spell("Soul Carver");
 
     #endregion
 
     #region Offensive Cooldown
 
+    public static Spell InfernalStrike = new Spell("Infernal Strike");
+    public static Spell SigilofFlame = new Spell("Sigil of Flame");
+    private Timer SigilofFlameTimer = new Timer(0);
+    public static Spell FelDevastation = new Spell("Fel Devastation");
+    public static Spell FelEruption = new Spell("Fel Eruption");
+
     #endregion
 
     #region Defensive Cooldown
+
+    public static Spell DemonSpikes = new Spell("Demon Spikes");
+    public static Spell FieryBrand = new Spell("Fiery Brand");
+    public static Spell EmpowerWards = new Spell("Empower Wards");
+    public static Spell Metamorphosis = new Spell("Metamorphosis");
 
     #endregion
 
@@ -448,19 +809,14 @@ public class DemonHunterVengeance
 
     #endregion
 
-    #region Flask & Potion Management
+    #region Utility Cooldowns
 
-/*
-        private readonly int _combatPotion = ItemsManager.GetIdByName(MySettings.CombatPotion);
-*/
-    private readonly int _flaskOrBattleElixir = ItemsManager.GetItemIdByName(MySettings.FlaskOrBattleElixir);
-    private readonly int _guardianElixir = ItemsManager.GetItemIdByName(MySettings.GuardianElixir);
-
-/*
-        private readonly WoWItem _hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
-        private readonly int _teasureFindingPotion = ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
-        private readonly int _wellFedBuff = ItemsManager.GetIdByName(MySettings.WellFedBuff);
-*/
+    //public static Spell ConsumeMagic = new Spell("Consume Magic"); //No GCD
+    //public static Spell Imprison = new Spell("Imprison");
+    //public static Spell SigilofMisery = new Spell("Sigil of Misery");
+    //public static Spell SigilofSilence = new Spell("Sigil of Silence");
+    //public static Spell ThrowGlaive = new Spell("Throw Glaive");
+    public static Spell Torment = new Spell("Torment"); //No GCD
 
     #endregion
 
@@ -482,15 +838,17 @@ public class DemonHunterVengeance
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget /* && Reckoning.IsHostileDistanceGood*/)
+                            if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            if (ObjectManager.Target.GetDistance <= 40f)
+
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
+                            else
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else
                             Patrolling();
                     }
                 }
@@ -504,80 +862,63 @@ public class DemonHunterVengeance
         }
     }
 
-    private void Pull()
+    private void Patrolling()
     {
+        if (!ObjectManager.Me.IsCast)
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
+
+            if (ObjectManager.Me.GetMove)
+            {
+                //Movement Buffs
+            }
+            else
+            {
+                //Self Heal for Damage Dealer
+            }
+        }
     }
 
     private void Combat()
     {
-        Buffs();
-        DPSBurst();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DPSCycle();
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
         Heal();
-    }
-
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.FlaskOrBattleElixir)) &&
-                    !ItemsManager.IsItemOnCooldown(_flaskOrBattleElixir) &&
-                    ItemsManager.IsItemUsable(_flaskOrBattleElixir))
-                    ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
-            if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.GuardianElixir)) &&
-                    !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsItemUsable(_guardianElixir))
-                    ItemsManager.UseItem(MySettings.GuardianElixir);
-            Blessing();
-            Heal();
-        }
-    }
-
-    private void Buffs()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.FlaskOrBattleElixir)) &&
-                    !ItemsManager.IsItemOnCooldown(_flaskOrBattleElixir) &&
-                    ItemsManager.IsItemUsable(_flaskOrBattleElixir))
-                    ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
-            if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.GuardianElixir)) &&
-                    !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsItemUsable(_guardianElixir))
-                    ItemsManager.UseItem(MySettings.GuardianElixir);
-            Blessing();
-
-            if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-                ItemsManager.UseItem(75525);
-        }
-    }
-
-    private void Blessing()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-        Usefuls.SleepGlobalCooldown();
+        if (Defensive()) return;
+        AgroManagement();
+        BurstBuffs();
+        GCDCycle();
     }
 
     private void Heal()
     {
-    }
-
-    private void DPSBurst()
-    {
-    }
-
-    private void DPSCycle()
-    {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.Cast();
+                return;
+            }
+            //Soul Cleave
+            if (MySettings.UseSoulCleave && SoulCleave.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseSoulCleaveBelowPercentage)
+            {
+                SoulCleave.Cast();
+                return;
+            }
         }
         finally
         {
@@ -585,23 +926,235 @@ public class DemonHunterVengeance
         }
     }
 
-    private void AvoidMelee()
+    private bool Defensive()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        Usefuls.SleepGlobalCooldown();
+
+        try
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Defensive Cooldowns
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
             {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
+                //Mitigate Damage
+                if (DemonSpikes.IsSpellUsable && (DemonSpikes.GetSpellCharges == 2 ||
+                                                  ObjectManager.Me.HealthPercent < MySettings.UseDemonSpikesBelowPercentage))
+                {
+                    DemonSpikes.Cast();
+                    DefensiveTimer = new Timer(1000*6);
+                    return true;
+                }
+                if (FieryBrand.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFieryBrandBelowPercentage)
+                {
+                    FieryBrand.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
             }
+            if (Metamorphosis.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMetamorphosisBelowPercentage)
+            {
+                Metamorphosis.Cast();
+                return true;
+            }
+            //Mitigate Magic Damage for Rage
+            if (EmpowerWards.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseEmpowerWardsBelowPercentage &&
+                !EmpowerWards.HaveBuff)
+            {
+                EmpowerWards.Cast();
+                DefensiveTimer = new Timer(1000*6);
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void BurstBuffs()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void AgroManagement()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Growl
+            if (MySettings.UseTorment && Torment.IsSpellUsable && Torment.IsHostileDistanceGood &&
+                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+            {
+                Torment.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private void GCDCycle()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseSoulCarver && SoulCarver.IsSpellUsable && SoulCarver.IsHostileDistanceGood)
+            {
+                SoulCarver.Cast();
+                return;
+            }
+            if (MySettings.UseFelDevastation && FelDevastation.IsSpellUsable && FelDevastation.IsHostileDistanceGood)
+            {
+                FelDevastation.Cast();
+                return;
+            }
+            if (MySettings.UseSoulCleave && SoulCleave.IsSpellUsable && SoulCleave.IsHostileDistanceGood &&
+                //Spend Pain
+                ObjectManager.Me.Pain >= 80)
+            {
+                SoulCleave.Cast();
+                return;
+            }
+            if (MySettings.UseImmolationAura && ImmolationAura.IsSpellUsable && ImmolationAura.IsHostileDistanceGood)
+            {
+                ImmolationAura.Cast();
+                return;
+            }
+
+            //Single Target 
+            if (ObjectManager.GetUnitInSpellRange(5f) == 1)
+            {
+                if (MySettings.UseFelblade && Felblade.IsSpellUsable && Felblade.IsHostileDistanceGood)
+                {
+                    Felblade.Cast();
+                    return;
+                }
+                if (MySettings.UseFelEruption && FelEruption.IsSpellUsable && FelEruption.IsHostileDistanceGood)
+                {
+                    FelEruption.Cast();
+                    return;
+                }
+                if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SpiritBomb.IsHostileDistanceGood &&
+                    !Frailty.TargetHaveBuff)
+                {
+                    SpiritBomb.Cast();
+                    return;
+                }
+                if (MySettings.UseShear && Shear.IsSpellUsable && Shear.IsHostileDistanceGood &&
+                    BladeTurningBuff.HaveBuff)
+                {
+                    Shear.Cast();
+                    return;
+                }
+                if (MySettings.UseFracture && Fracture.IsSpellUsable && Fracture.IsHostileDistanceGood &&
+                    //Spend Pain
+                    ObjectManager.Me.Pain >= 60)
+                {
+                    Fracture.Cast();
+                    return;
+                }
+                if (SigilofFlameTimer.IsReady)
+                {
+                    if (MySettings.UseSigilofFlame && SigilofFlame.IsSpellUsable && SigilofFlame.IsHostileDistanceGood)
+                    {
+                        SigilofFlame.Cast();
+                        SigilofFlameTimer = new Timer(1000*8);
+                        return;
+                    }
+                    if (FlameCrash.HaveBuff && MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable && InfernalStrike.IsHostileDistanceGood)
+                    {
+                        InfernalStrike.Cast();
+                        SigilofFlameTimer = new Timer(1000*8);
+                        return;
+                    }
+                }
+                if (MySettings.UseShear && Shear.IsSpellUsable && Shear.IsHostileDistanceGood)
+                {
+                    Shear.Cast();
+                    return;
+                }
+            }
+                //Multiple Target
+            else
+            {
+                if (MySettings.UseSpiritBomb && SpiritBomb.IsSpellUsable && SpiritBomb.IsHostileDistanceGood &&
+                    !Frailty.TargetHaveBuff)
+                {
+                    SpiritBomb.Cast();
+                    return;
+                }
+                if (MySettings.UseFelblade && Felblade.IsSpellUsable && Felblade.IsHostileDistanceGood)
+                {
+                    Felblade.Cast();
+                    return;
+                }
+                if (MySettings.UseShear && Shear.IsSpellUsable && Shear.IsHostileDistanceGood &&
+                    BladeTurningBuff.HaveBuff)
+                {
+                    Shear.Cast();
+                    return;
+                }
+                if (SigilofFlameTimer.IsReady)
+                {
+                    if (MySettings.UseSigilofFlame && SigilofFlame.IsSpellUsable && SigilofFlame.IsHostileDistanceGood)
+                    {
+                        SigilofFlame.Cast();
+                        SigilofFlameTimer = new Timer(1000*8);
+                        return;
+                    }
+                    if (FlameCrash.HaveBuff && MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable && InfernalStrike.IsHostileDistanceGood)
+                    {
+                        InfernalStrike.Cast();
+                        SigilofFlameTimer = new Timer(1000*8);
+                        return;
+                    }
+                }
+                if (MySettings.UseFelEruption && FelEruption.IsSpellUsable && FelEruption.IsHostileDistanceGood)
+                {
+                    FelEruption.Cast();
+                    return;
+                }
+                if (MySettings.UseShear && Shear.IsSpellUsable && Shear.IsHostileDistanceGood)
+                {
+                    Shear.Cast();
+                    return;
+                }
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
         }
     }
 
@@ -610,50 +1163,74 @@ public class DemonHunterVengeance
     [Serializable]
     public class DemonHunterVengeanceSettings : Settings
     {
-        public string CombatPotion = "";
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public string FlaskOrBattleElixir = "";
-        public string GuardianElixir = "";
-        public bool UseAlchFlask = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public bool UseCombatPotion = false;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+
+        /* Offensive Spells */
+        public bool UseFelblade = true;
+        public bool UseFracture = true;
+        public bool UseImmolationAura = true;
+        public bool UseShear = true;
+        public bool UseSoulCleave = true;
+        public int UseSoulCleaveBelowPercentage = 40;
+        public bool UseSpiritBomb = true;
+
+        /* Artifact Spells */
+        public bool UseSoulCarver = true;
+
+        /* Offensive Cooldowns */
+        public bool UseInfernalStrike = true;
+        public bool UseSigilofFlame = true;
+        public bool UseFelDevastation = true;
+        public bool UseFelEruption = true;
+
+        /* Defensive Cooldowns */
+        public int UseDemonSpikesBelowPercentage = 50;
+        public int UseFieryBrandBelowPercentage = 40;
+        public int UseEmpowerWardsBelowPercentage = 0;
+        public int UseMetamorphosisBelowPercentage = 60;
+
+        /* Utility Cooldowns */
+        //public bool UseConsumeMagic = true;
+        //public bool UseImprison = true;
+        public bool UseTorment = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWellFedBuff = false;
-        public bool UseGuardianElixir = false;
-        public bool UseFlaskOrBattleElixir = false;
-
-        public string WellFedBuff = "Sleeper Sushi";
 
         public DemonHunterVengeanceSettings()
         {
             ConfigWinForm("DemonHunter Vengeance Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-            /* DemonHunter Seals & Buffs */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Offensive Spell */
+            AddControlInWinForm("Use Felblade", "UseFelblade", "Offensive Spells");
+            AddControlInWinForm("Use Fracture", "UseFracture", "Offensive Spells");
+            AddControlInWinForm("Use Immolation Aura", "UseImmolationAura", "Offensive Spells");
+            AddControlInWinForm("Use Shear", "UseShear", "Offensive Spells");
+            AddControlInWinForm("Use Soul Cleave", "UseSoulCleave", "Offensive Spells");
+            AddControlInWinForm("Use Soul Cleave", "UseSoulCleaveBelowPercentage", "Offensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Spirit Bomb", "UseSpiritBomb", "Offensive Spells");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Soul Carver", "UseSoulCarver", "Artifact Spells");
             /* Offensive Cooldown */
+            AddControlInWinForm("Use Infernal Strike", "UseInfernalStrike", "Offensive Cooldowns");
+            AddControlInWinForm("Use Sigil of Flame", "UseSigilofFlame", "Offensive Cooldowns");
+            AddControlInWinForm("Use Fel Devastation", "UseFelDevastation", "Offensive Cooldowns");
+            AddControlInWinForm("Use Fel Eruption", "UseFelEruption", "Offensive Cooldowns");
             /* Defensive Cooldown */
-            /* Healing Spell */
-            /* Flask & Potion Management */
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Demon Spikes", "UseDemonSpikesBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Fiery Brand", "UseFieryBrandBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Empower Wards", "UseEmpowerWardsBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Metamorphosis", "UseMetamorphosisBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            /* Utility Cooldowns */
+            AddControlInWinForm("Use Torment", "UseTorment", "Utility Cooldowns");
+            /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Flask or Battle Elixir", "UseFlaskOrBattleElixir", "Flask & Potion Management");
-            AddControlInWinForm("Flask or Battle Elixir Name", "FlaskOrBattleElixir", "Flask & Potion Management");
-            AddControlInWinForm("Use Guardian Elixir", "UseGuardianElixir", "Flask & Potion Management");
-            AddControlInWinForm("Guardian Elixir Name", "GuardianElixir", "Flask & Potion Management");
-            AddControlInWinForm("Use Combat Potion", "UseCombatPotion", "Flask & Potion Management");
-            AddControlInWinForm("Combat Potion Name", "CombatPotion", "Flask & Potion Management");
-            AddControlInWinForm("Use Well Fed Buff", "UseWellFedBuff", "Flask & Potion Management");
-            AddControlInWinForm("Well Fed Buff Name", "WellFedBuff", "Flask & Potion Management");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static DemonHunterVengeanceSettings CurrentSetting { get; set; }
