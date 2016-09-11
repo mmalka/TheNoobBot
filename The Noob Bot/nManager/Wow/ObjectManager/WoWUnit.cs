@@ -799,6 +799,54 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint LunarPower
+        {
+            get
+            {
+                try
+                {
+                    return GetPowerByPowerType(PowerType.LunarPower);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > LunarPower: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxLunarPower
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(PowerType.LunarPower);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxLunarPower: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint LunarPowerPercentage
+        {
+            get
+            {
+                try
+                {
+                    return LunarPower * 100 / MaxLunarPower;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > LunarPowerPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public int Eclipse
         {
             get
@@ -1195,6 +1243,54 @@ namespace nManager.Wow.ObjectManager
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > FuryPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint Pain
+        {
+            get
+            {
+                try
+                {
+                    return GetPowerByPowerType(PowerType.Pain);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > Pain: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxPain
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(PowerType.Pain);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > MaxPain: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint PainPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Pain*100/MaxPain;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > PainPercentage: " + e);
                     return 0;
                 }
             }
