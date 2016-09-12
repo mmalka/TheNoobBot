@@ -197,7 +197,8 @@ public class ShamanEnhancement
 
     private bool CombatMode = true;
 
-    private Timer StunCD = new Timer(0);
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -205,82 +206,92 @@ public class ShamanEnhancement
 
     public readonly Spell CrashingStorm = new Spell("Crashing Storm");
     public readonly Spell Hailstorm = new Spell("Hailstorm");
-    //public readonly Spell HotHand = new Spell("Hot Hand");
+    public readonly Spell HotHand = new Spell("Hot Hand");
     //public readonly Spell EmpoweredStormlash = new Spell("Empowered Stormlash");
-    //public readonly Spell Landslide = new Spell("Landslide");
-    //public readonly Spell Overcharge = new Spell("Overcharge");
+    public readonly Spell Landslide = new Spell("Landslide");
+    public readonly Spell Overcharge = new Spell("Overcharge");
     //public readonly Spell Tempest = new Spell("Tempest");
 
     #endregion
 
     #region Professions & Racials
 
-    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
-    //public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
-    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
     #region Shaman Buffs
 
-    public readonly Spell Boulderfist = new Spell("Boulderfist");
-    public readonly Spell Flametongue = new Spell("Flametongue");
-    public readonly Spell Frostbrand = new Spell("Frostbrand");
-    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
+    public readonly Spell FuryofAirBuff = new Spell(197385);
+    public readonly Spell HotHandBuff = new Spell(215785);
+    public readonly Spell LandslideBuff = new Spell(202004);
+
+    #endregion
+
+    #region Legion Artifact Spells
+
+    private readonly Spell DoomWinds = new Spell("Doom Winds");
 
     #endregion
 
     #region Offensive Spells
 
+    public readonly Spell Boulderfist = new Spell("Boulderfist");
+    public readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
     public readonly Spell CrashLightning = new Spell("Crash Lightning");
+    public readonly Spell EarthenSpike = new Spell("Earthen Spike");
     public readonly Spell FeralLunge = new Spell("Feral Lunge");
     public readonly Spell FeralSpirit = new Spell("Feral Spirit");
+    public readonly Spell Flametongue = new Spell("Flametongue");
+    public readonly Spell Frostbrand = new Spell("Frostbrand");
+    public readonly Spell FuryofAir = new Spell("Fury of Air");
+    public readonly Spell Heroism = new Spell("Heroism"); //No GCD
     public readonly Spell LavaLash = new Spell("Lava Lash");
     public readonly Spell LightningBolt = new Spell("Lightning Bolt");
     public readonly Spell Rockbiter = new Spell("Rockbiter");
     public readonly Spell Stormstrike = new Spell("Stormstrike");
+    public readonly Spell Sundering = new Spell("Sundering");
+    public readonly Spell Windsong = new Spell("Windsong");
 
     #endregion
 
-    #region Offensive Cooldowns
-
-    public readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
-    public readonly Spell Heroism = new Spell("Heroism"); //No GCD
-
-    #endregion
-
-    #region Defensive Cooldowns
+    #region Defensive Spells
 
     public readonly Spell AstralShift = new Spell("Astral Shift"); //No GCD
     public readonly Spell LightningSurgeTotem = new Spell("Lightning Surge Totem");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Healing Spells
 
-    public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
+    public readonly Spell Ascendance = new Spell("Ascendance");
+    public readonly Spell HealingSurge = new Spell("Healing Surge");
 
     #endregion
 
-    #region Healing Spells
+    #region Utility Spells
 
-    public readonly Spell HealingSurge = new Spell("Healing Surge");
+    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
+    //public readonly Spell Hex = new Spell("Hex");
+    public readonly Spell SpiritWalk = new Spell("Spirit Walk");
+    public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
 
     #endregion
 
     public ShamanEnhancement()
     {
-        Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalRange = 40f;
+        Main.InternalAggroRange = Flametongue.MaxRangeHostile;
         Main.InternalLightHealingSpell = HealingSurge;
         MySettings = ShamanEnhancementSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanEnhancementSettings>(MySettings);
         UInt128 lastTarget = 0;
-
-        //Test();
-        //ShowMethods(typeof(Spell));
 
         while (Main.InternalLoop)
         {
@@ -294,11 +305,10 @@ public class ShamanEnhancement
                         {
                             if (ObjectManager.Me.Target != lastTarget)
                             {
-                                Logging.Write("New Target == " + ObjectManager.Target.Name);
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -317,78 +327,50 @@ public class ShamanEnhancement
         }
     }
 
-    private void Test()
-    {
-        Usefuls.SleepGlobalCooldown();
-        try
-        {
-            Memory.WowMemory.GameFrameLock();
-
-            Logging.Write("Hailstorm.HaveBuff == " + Hailstorm.HaveBuff);
-            Logging.Write("CrashingStorm.HaveBuff == " + CrashingStorm.HaveBuff);
-
-
-            //Test: Stormbringer Proc preventing GCD of Stormstrike
-        }
-        finally
-        {
-            Memory.WowMemory.GameFrameUnLock();
-        }
-    }
-
-    private static void ShowMethods(Type type)
-    {
-        foreach (var method in type.GetMethods())
-        {
-            var parameters = method.GetParameters();
-            var parameterDescriptions = string.Join
-                (", ", method.GetParameters()
-                    .Select(x => x.ParameterType + " " + x.Name)
-                    .ToArray());
-
-            Logging.Write(method.Name + "(" + parameterDescriptions + ") [color=#0000ff]returns[/color] " + method.ReturnType);
-        }
-    }
-
+    // For Movement Spells (always return after Casting)
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
+        //Log
+        if (CombatMode)
         {
-            //Log
-            if (CombatMode)
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
+        }
+
+        if (ObjectManager.Me.GetMove)
+        {
+            //Movement Buffs
+            if (MySettings.UseSpiritWalk && SpiritWalk.IsSpellUsable)
             {
-                Logging.WriteFight("Patrolling:");
-                CombatMode = false;
+                SpiritWalk.Cast();
+                return;
+            }
+            if (MySettings.UseWindRushTotem && WindRushTotem.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
+                return;
             }
 
-            if (!ObjectManager.Me.GetMove)
+            //Ghost Wolf
+            if (MySettings.UseGhostWolf && GhostWolf.IsSpellUsable && !GhostWolf.HaveBuff)
             {
-                //Healing Surge
-                if (ObjectManager.Me.HealthPercent <= MySettings.UseHealingSurgeBelowPercentageOutOfCombat &&
-                    HealingSurge.IsSpellUsable && MySettings.UseHealingSurge)
-                {
-                    HealingSurge.CastOnSelf();
-                    return;
-                }
+                GhostWolf.Cast();
+                return;
             }
-            else
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                //Wind Rush Totem
-                if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
-                {
-                    SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
-                    return;
-                }
-
-                //Ghost Wolf
-                if (!GhostWolf.HaveBuff && GhostWolf.IsSpellUsable && MySettings.UseGhostWolf)
-                {
-                    GhostWolf.Cast();
-                }
+                Main.InternalLightHealingSpell.CastOnSelf();
+                return;
             }
         }
     }
 
+    // For general InFight Behavior (only touch if you want to add a new method like Oneshot())
     private void Combat()
     {
         //Log
@@ -397,17 +379,11 @@ public class ShamanEnhancement
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-
-        //Oneshot
-        if (MySettings.TryOneshot && Oneshot())
-            return;
-
-        //Combat
-        if (CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.BurstDistance))
-            Burst(); //GCD independent
-        GCDCycle(); //GCD dependent
+        if (Healing() || Defensive() || Oneshot() || Offensive()) return;
+        Rotation();
     }
 
+    // For efficient farming of lower enemies
     private bool Oneshot()
     {
         Usefuls.SleepGlobalCooldown();
@@ -415,36 +391,31 @@ public class ShamanEnhancement
         {
             Memory.WowMemory.GameFrameLock();
 
-            int leveldif = (int) ObjectManager.Me.Level - (int) ObjectManager.Target.Level;
-
-            if (ObjectManager.Target.HealthPercent == 100 && leveldif > MySettings.TryOneshotLevelDifference)
+            if (ObjectManager.Target.MaxHealth < MySettings.TryOneshotHealth)
             {
-                Logging.WriteFight("Target is " + leveldif + " Levels lower. Try Onehot!");
+                Logging.WriteFight("Try Onehot because Target has low Max Life: " + ObjectManager.Target.MaxHealth);
 
                 //Charge
-                if (FeralLunge.IsHostileDistanceGood && FeralLunge.IsSpellUsable && MySettings.UseFeralLunge)
+                if (MySettings.UseFeralLunge && FeralLunge.IsSpellUsable && FeralLunge.IsHostileDistanceGood)
                 {
                     FeralLunge.Cast();
                     return true;
                 }
 
                 //Close Range
-                if (Boulderfist.KnownSpell)
+                if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood)
                 {
-                    if (Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood && MySettings.UseBoulderfist)
-                    {
-                        Boulderfist.Cast();
-                        return true;
-                    }
+                    Boulderfist.Cast();
+                    return true;
                 }
-                else if (Rockbiter.IsHostileDistanceGood && Rockbiter.IsSpellUsable && MySettings.UseRockbiter)
+                else if (MySettings.UseRockbiter && Rockbiter.IsSpellUsable && Rockbiter.IsHostileDistanceGood)
                 {
                     Rockbiter.Cast();
                     return true;
                 }
 
                 //Long Range
-                if (LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable && MySettings.UseLightningBolt)
+                if (MySettings.UseLightningBolt && LightningBolt.IsSpellUsable && LightningBolt.IsHostileDistanceGood)
                 {
                     LightningBolt.Cast();
                     return true;
@@ -458,62 +429,8 @@ public class ShamanEnhancement
         }
     }
 
-    private void Burst()
-    {
-        try
-        {
-            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
-
-            //Defensive Buffs
-            if (ObjectManager.Me.HealthPercent < MySettings.UseAstralShiftBelowPercentage &&
-                AstralShift.IsSpellUsable && MySettings.UseAstralShift)
-            {
-                AstralShift.Cast();
-            }
-            if (StunCD.IsReady)
-            {
-                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage &&
-                    Stoneform.IsSpellUsable && MySettings.UseStoneform)
-                {
-                    Stoneform.Cast();
-                }
-            }
-
-            //Trinkets
-            if (!ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry) && MySettings.UseTrinketOne)
-            {
-                ItemsManager.UseItem(_firstTrinket.Name);
-                Logging.WriteFight("Use First Trinket Slot");
-            }
-            if (!ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry) && MySettings.UseTrinketTwo)
-            {
-                ItemsManager.UseItem(_secondTrinket.Name);
-                Logging.WriteFight("Use Second Trinket Slot");
-            }
-
-            //Offensive Buffs
-            if (BloodFury.IsSpellUsable && MySettings.UseBloodFury)
-            {
-                BloodFury.Cast();
-            }
-
-            //Offensive Cooldowns
-            if (Bloodlust.IsSpellUsable && !ObjectManager.Me.HaveBuff(57724) && MySettings.UseBloodlustHeroism)
-            {
-                Bloodlust.Cast();
-            }
-            if (Heroism.IsSpellUsable && !ObjectManager.Me.HaveBuff(57723) && MySettings.UseBloodlustHeroism)
-            {
-                Heroism.Cast();
-            }
-        }
-        finally
-        {
-            Memory.WowMemory.GameFrameUnLock();
-        }
-    }
-
-    private void GCDCycle()
+    // For Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -521,148 +438,271 @@ public class ShamanEnhancement
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Stuns
-            if (StunCD.IsReady)
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                if (ObjectManager.Me.HealthPercent < MySettings.UseLightningSurgeTotemBelowPercentage &&
-                    LightningSurgeTotem.IsSpellUsable && MySettings.UseLightningSurgeTotem)
-                {
-                    SpellManager.CastSpellByIDAndPosition(LightningSurgeTotem.Id, ObjectManager.Target.Position);
-                    StunCD = new Timer(1000*7);
-                    return;
-                }
-                if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage &&
-                    WarStomp.IsSpellUsable && MySettings.UseWarStomp)
-                {
-                    WarStomp.Cast();
-                    StunCD = new Timer(1000*2);
-                    return;
-                }
+                GiftoftheNaaru.Cast();
+                return true;
             }
+            //Ascendance
+            if (ObjectManager.Me.HealthPercent < MySettings.UseAscendanceBelowPercentage && Ascendance.IsSpellUsable)
+            {
+                Ascendance.Cast();
+                return true;
+            }
+            //Healing Surge
+            if (ObjectManager.Me.HealthPercent < MySettings.UseHealingSurgeBelowPercentage && HealingSurge.IsSpellUsable &&
+                (!MySettings.UseHealingSurgeInstantOnly || ObjectManager.Me.Maelstrom >= 20))
+            {
+                HealingSurge.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
 
-            //Heals
-            if (ObjectManager.Me.HealthPercent < MySettings.UseHealingSurgeBelowPercentage &&
-                (!MySettings.UseHealingSurgeInstantOnly || ObjectManager.Me.Maelstrom >= 20) &&
-                HealingSurge.IsSpellUsable && MySettings.UseHealingSurge)
-            {
-                HealingSurge.CastOnSelf();
-                return;
-            }
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
 
-            //Offensive Buffs
-            if (!Boulderfist.HaveBuff && Boulderfist.IsSpellUsable &&
-                Boulderfist.IsHostileDistanceGood && MySettings.UseBoulderfist)
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
             {
-                Boulderfist.Cast();
-                return;
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                    if (LightningSurgeTotem.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseLightningSurgeTotemBelowPercentage)
+                    {
+                        SpellManager.CastSpellByIDAndPosition(LightningSurgeTotem.Id, ObjectManager.Target.Position);
+                        StunTimer = new Timer(1000*7);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (Stoneform.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (AstralShift.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseAstralShiftBelowPercentage)
+                {
+                    AstralShift.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
             }
-            if (!Frostbrand.HaveBuff && Frostbrand.IsSpellUsable &&
-                Frostbrand.IsHostileDistanceGood && Hailstorm.HaveBuff &&
-                MySettings.UseFrostbrand)
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Burst Buffs
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
             {
-                Frostbrand.Cast();
-                return;
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
             }
-            if (ObjectManager.Me.Maelstrom < 130 && Boulderfist.GetSpellCharges == 2 &&
-                Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood &&
-                MySettings.UseBoulderfist)
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
             {
-                Boulderfist.Cast();
-                return;
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
             }
-            if (!Flametongue.HaveBuff && Flametongue.IsSpellUsable &&
-                Flametongue.IsHostileDistanceGood && MySettings.UseFlametongue)
-            {
-                Flametongue.Cast();
-                return;
-            }
-            if (Berserking.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.BurstDistance) &&
-                MySettings.UseBerserking)
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
             {
                 Berserking.Cast();
-                return;
             }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            if (MySettings.UseBloodlustHeroism)
+            {
+                if (Bloodlust.IsSpellUsable && !ObjectManager.Me.HaveBuff(57724))
+                {
+                    Bloodlust.Cast();
+                }
+                if (Heroism.IsSpellUsable && !ObjectManager.Me.HaveBuff(57723))
+                {
+                    Heroism.Cast();
+                }
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
 
-            //Offensive Cooldowns
-            if (FeralSpirit.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, MySettings.BurstDistance) &&
-                MySettings.UseFeralSpirit)
-            {
-                FeralSpirit.Cast();
-                return;
-            }
-            if (ObjectManager.Me.GetUnitInSpellRange(5f) > 2 && CrashLightning.IsHostileDistanceGood &&
-                CrashLightning.IsSpellUsable && MySettings.UseCrashLightning)
-            {
-                CrashLightning.Cast();
-                return;
-            }
-            if (Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood &&
-                MySettings.UseStormstrike)
-            {
-                Stormstrike.Cast();
-                return;
-            }
-            if (CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
-                CrashingStorm.HaveBuff && MySettings.UseCrashLightning)
-            {
-                CrashLightning.Cast();
-                return;
-            }
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
 
-            //Offensive Buffs (Pandemic)
-            if (ObjectManager.Me.UnitAura(Frostbrand.Ids).AuraTimeLeftInMs < 45000 &&
-                Frostbrand.IsSpellUsable && Frostbrand.IsHostileDistanceGood &&
-                Hailstorm.HaveBuff && MySettings.UseFrostbrand)
-            {
-                Frostbrand.Cast();
-                return;
-            }
-            if (ObjectManager.Me.UnitAura(Flametongue.Ids).AuraTimeLeftInMs < 48000 &&
-                Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood && MySettings.UseFlametongue)
-            {
-                Flametongue.Cast();
-                return;
-            }
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Offensive Spells
-            if (ObjectManager.Me.Maelstrom > 110 && LavaLash.IsSpellUsable &&
-                LavaLash.IsHostileDistanceGood && MySettings.UseLavaLash)
+            if (!LandslideBuff.HaveBuff)
             {
-                LavaLash.Cast();
-                return;
-            }
-            if (FeralLunge.IsHostileDistanceGood && FeralLunge.IsSpellUsable && MySettings.UseFeralLunge)
-            {
-                //Logging.WriteFight("IsHostileDistanceGood == " + FeralLunge.IsHostileDistanceGood);
-                //Logging.WriteFight("Target.GetDistance == " + ObjectManager.Target.GetDistance);
-                //Logging.WriteFight("InSpellRange(MinRangeHostile, MaxRangeHostile) == " + CombatClass.InSpellRange(ObjectManager.Target, FeralLunge.MinRangeHostile, FeralLunge.MaxRangeHostile));
-                //Logging.WriteFight("InSpellRange(8, 25) == " + CombatClass.InSpellRange(ObjectManager.Target, 8, 25));
-                //Logging.WriteFight("MinRangeHostile == " + FeralLunge.MinRangeHostile);
-                //Logging.WriteFight("MaxRangeHostile == " + FeralLunge.MaxRangeHostile);
-                FeralLunge.Cast();
-                return;
-            }
-            if (Boulderfist.KnownSpell)
-            {
-                if (Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood && MySettings.UseBoulderfist)
+                if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood)
                 {
                     Boulderfist.Cast();
                     return;
                 }
+                else if (MySettings.UseRockbiter && Rockbiter.IsSpellUsable && Rockbiter.IsHostileDistanceGood)
+                {
+                    Rockbiter.Cast();
+                    return;
+                }
             }
-            else if (Rockbiter.IsHostileDistanceGood && Rockbiter.IsSpellUsable && MySettings.UseRockbiter)
+            if (MySettings.UseFrostbrand && Frostbrand.IsSpellUsable && Frostbrand.IsHostileDistanceGood &&
+                !Frostbrand.HaveBuff && Hailstorm.HaveBuff)
             {
-                Rockbiter.Cast();
+                Frostbrand.Cast();
                 return;
             }
-            if (Flametongue.IsHostileDistanceGood && Flametongue.IsSpellUsable && MySettings.UseFlametongue)
+            if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood &&
+                !Flametongue.HaveBuff)
             {
                 Flametongue.Cast();
                 return;
             }
-
-            if (CombatClass.InSpellRange(ObjectManager.Target, 5f, LightningBolt.MaxRangeHostile) &&
-                LightningBolt.IsSpellUsable && MySettings.UseLightningBolt)
+            if (MySettings.UseWindsong && Windsong.IsSpellUsable && Windsong.IsHostileDistanceGood)
+            {
+                Windsong.Cast();
+                return;
+            }
+            if (MySettings.UseDoomWinds && DoomWinds.IsSpellUsable &&
+                (!Hailstorm.HaveBuff || Frostbrand.HaveBuff) && Flametongue.HaveBuff)
+            {
+                DoomWinds.Cast();
+                return;
+            }
+            if (MySettings.UseFeralSpirit && FeralSpirit.IsSpellUsable)
+            {
+                FeralSpirit.Cast();
+                return;
+            }
+            if (MySettings.UseFuryofAir && FuryofAir.IsSpellUsable && CombatClass.InSpellRange(ObjectManager.Target, 0, 8) &&
+                !FuryofAirBuff.HaveBuff)
+            {
+                FuryofAir.Cast();
+                return;
+            }
+            if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
+                ObjectManager.Me.GetUnitInSpellRange(5f) >= 3)
+            {
+                CrashLightning.Cast();
+                return;
+            }
+            if (MySettings.UseStormstrike && Stormstrike.IsSpellUsable && Stormstrike.IsHostileDistanceGood)
+            {
+                Stormstrike.Cast();
+                return;
+            }
+            if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood &&
+                Boulderfist.GetSpellCharges == 2)
+            {
+                Boulderfist.Cast();
+                return;
+            }
+            if (MySettings.UseFrostbrand && Frostbrand.IsSpellUsable && Frostbrand.IsHostileDistanceGood &&
+                ObjectManager.Me.UnitAura(Frostbrand.Ids).AuraTimeLeftInMs < 45000 && Hailstorm.HaveBuff)
+            {
+                Frostbrand.Cast();
+                return;
+            }
+            if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood &&
+                ObjectManager.Me.UnitAura(Flametongue.Ids).AuraTimeLeftInMs < 48000)
+            {
+                Flametongue.Cast();
+                return;
+            }
+            if (MySettings.UseLightningBolt && LightningBolt.IsSpellUsable && LightningBolt.IsHostileDistanceGood &&
+                ObjectManager.Me.Maelstrom > 90 && Overcharge.HaveBuff)
+            {
+                LightningBolt.Cast();
+                return;
+            }
+            if (MySettings.UseLavaLash && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood &&
+                (!HotHand.HaveBuff || HotHandBuff.HaveBuff))
+            {
+                LavaLash.Cast();
+                return;
+            }
+            if (MySettings.UseEarthenSpike && EarthenSpike.IsSpellUsable && EarthenSpike.IsHostileDistanceGood)
+            {
+                EarthenSpike.Cast();
+                return;
+            }
+            if (MySettings.UseCrashLightning && CrashLightning.IsSpellUsable && CrashLightning.IsHostileDistanceGood &&
+                ObjectManager.Me.Maelstrom > 80 && CrashingStorm.HaveBuff)
+            {
+                CrashLightning.Cast();
+                return;
+            }
+            if (MySettings.UseSundering && Sundering.IsSpellUsable && Sundering.IsHostileDistanceGood &&
+                ObjectManager.Me.Maelstrom > 110)
+            {
+                Sundering.Cast();
+                return;
+            }
+            if (MySettings.UseLavaLash && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood &&
+                ObjectManager.Me.Maelstrom > 90)
+            {
+                LavaLash.Cast();
+                return;
+            }
+            if (MySettings.UseBoulderfist && Boulderfist.IsSpellUsable && Boulderfist.IsHostileDistanceGood)
+            {
+                Boulderfist.Cast();
+                return;
+            }
+            else if (MySettings.UseRockbiter && Rockbiter.IsSpellUsable && Rockbiter.IsHostileDistanceGood)
+            {
+                Rockbiter.Cast();
+                return;
+            }
+            if (MySettings.UseFlametongue && Flametongue.IsSpellUsable && Flametongue.IsHostileDistanceGood)
+            {
+                Flametongue.Cast();
+                return;
+            }
+            if (MySettings.UseFeralLunge && FeralLunge.IsSpellUsable && FeralLunge.IsHostileDistanceGood)
+            {
+                FeralLunge.Cast();
+                return;
+            }
+            if (MySettings.UseLightningBolt && LightningBolt.IsSpellUsable &&
+                CombatClass.InSpellRange(ObjectManager.Target, 5f, LightningBolt.MaxRangeHostile))
             {
                 LightningBolt.Cast();
                 return;
@@ -680,89 +720,102 @@ public class ShamanEnhancement
     public class ShamanEnhancementSettings : Settings
     {
         /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseStoneform = true;
-        public int UseStoneformBelowPercentage = 80;
-        public bool UseWarStomp = true;
-        public int UseWarStompBelowPercentage = 80;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public bool UseDoomWinds = true;
+
         /* Shaman Buffs */
         public bool UseBoulderfist = true;
         public bool UseFlametongue = true;
         public bool UseFrostbrand = true;
-        public bool UseGhostWolf = true;
+        public bool UseFuryofAir = true;
+        public bool UseLandslideBuff = true;
+
         /* Offensive Spells */
+        public bool UseBloodlustHeroism = false;
         public bool UseCrashLightning = true;
+        public bool UseEarthenSpike = true;
         public bool UseFeralLunge = true;
+        public bool UseFeralSpirit = true;
         public bool UseLavaLash = true;
         public bool UseLightningBolt = true;
         public bool UseRockbiter = true;
         public bool UseStormstrike = true;
-        /* Offensive Cooldowns */
-        public bool UseBloodlustHeroism = false;
-        public bool UseFeralSpirit = true;
-        /* Defensive Cooldowns */
-        public bool UseAstralShift = true;
-        public int UseAstralShiftBelowPercentage = 80;
-        public bool UseLightningSurgeTotem = true;
-        public int UseLightningSurgeTotemBelowPercentage = 80;
-        /* Utility Cooldowns */
-        public bool UseWindRushTotem = true;
+        public bool UseSundering = true;
+        public bool UseWindsong = true;
+
+        /* Defensive Spells */
+        public int UseAstralShiftBelowPercentage = 60;
+        public int UseLightningSurgeTotemBelowPercentage = 40;
+
         /* Healing Spells */
-        public bool UseHealingSurge = true;
+        public int UseAscendanceBelowPercentage = 25;
         public bool UseHealingSurgeInstantOnly = true;
         public int UseHealingSurgeBelowPercentage = 50;
-        public int UseHealingSurgeBelowPercentageOutOfCombat = 95;
+
+        /* Utility Spells */
+        public bool UseGhostWolf = true;
+        public bool UseSpiritWalk = true;
+        public bool UseWindRushTotem = true;
+
         /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public int BurstDistance = 30;
-        public bool TryOneshot = true;
-        public int TryOneshotLevelDifference = 20;
+        public int TryOneshotHealth = 100000;
 
         public ShamanEnhancementSettings()
         {
             ConfigWinForm("Shaman Enhancement Settings");
             /* Professions & Racials */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Doom Winds", "UseDoomWinds", "Artifact Spells");
             /* Shaman Buffs */
             AddControlInWinForm("Use Boulderfist", "UseBoulderfist", "Shaman Buffs");
             AddControlInWinForm("Use Flametongue", "UseFlametongue", "Shaman Buffs");
             AddControlInWinForm("Use Frostbrand", "UseFrostbrand", "Shaman Buffs");
-            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
+            AddControlInWinForm("Use Fury of Air", "UseFuryofAir", "Shaman Buffs");
+            AddControlInWinForm("Use Landslide", "UseLandslideBuff", "Shaman Buffs");
             /* Offensive Spells */
+            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
             AddControlInWinForm("Use Crash Lightning", "UseCrashLightning", "Offensive Spells");
+            AddControlInWinForm("Use EarthenSpike", "UseEarthenSpike", "Offensive Spells");
             AddControlInWinForm("Use Feral Lunge", "UseFeralLunge", "Offensive Cooldowns");
-            AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spells");
+            AddControlInWinForm("Use Feral Spirit", "UseFeralSpirit", "Offensive Cooldowns");
             AddControlInWinForm("Use Lava Lash", "UseLavaLash", "Offensive Spells");
+            AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spells");
             AddControlInWinForm("Use Rockbiter", "UseRockbiter", "Offensive Spells");
             AddControlInWinForm("Use Stormstrike", "UseStormstrike", "Offensive Spells");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
-            AddControlInWinForm("Use Feral Spirit", "UseFeralSpirit", "Offensive Cooldowns");
-            /* Defensive Cooldowns */
-            AddControlInWinForm("Use Astral", "UseAstralShift", "Defensive Cooldowns");
-            AddControlInWinForm("Use Astral Shift", "UseAstralShiftBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotem", "Defensive Cooldowns");
-            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotemBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Cooldowns");
+            AddControlInWinForm("Use Sundering", "UseSundering", "Offensive Spells");
+            AddControlInWinForm("Use Windsong", "UseWindsong", "Offensive Spells");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Astral Shift", "UseAstralShiftBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotemBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spells */
-            AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spells");
-            AddControlInWinForm("Use Healing Surge Only With Maelstrom In Fight", "UseHealingSurgeInstantOnly", "Healing Spells");
-            AddControlInWinForm("Use Healing Surge while In Fight", "UseHealingSurgeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Healing Surge while Out Of Fight", "UseHealingSurgeBelowPercentageOutOfCombat", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ascendance", "UseAscendanceBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Healing Surge only whith Maelstrom", "UseHealingSurgeInstantOnly", "Healing Spells");
+            AddControlInWinForm("Use Healing Surge", "UseHealingSurgeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Utility Spells");
+            AddControlInWinForm("Use Spirit Walk", "UseSpiritWalk", "Utility Spells");
+            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Burst if Target is below Range", "BurstDistance", "Game Settings"); //TODO add BelowPercentage alternative
-            AddControlInWinForm("Try Oneshotting Enemies", "TryOneshot", "Game Settings");
-            AddControlInWinForm("Try Oneshotting Enemies if Level Difference is above", "TryOneshotLevelDifference", "Game Settings"); //TODO add AbovePercentage alternative
+            AddControlInWinForm("Try Oneshotting Enemies with less Max Life.", "TryOneshotHealth", "Game Settings");
         }
 
         public static ShamanEnhancementSettings CurrentSetting { get; set; }
@@ -857,7 +910,7 @@ public class ShamanRestoration
 
     #endregion
 
-    #region Defensive Cooldowns
+    #region Defensive Spells
 
     public readonly Spell AstralShift = new Spell("Astral Shift");
     public readonly Spell CapacitorTotem = new Spell("Capacitor Totem");
@@ -921,11 +974,13 @@ public class ShamanRestoration
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance <= 40f)
+                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                     Combat();
+                                else if (!ObjectManager.Me.IsCast)
+                                    Patrolling();
                             }
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -1615,13 +1670,13 @@ public class ShamanRestoration
             AddControlInWinForm("Use Stormlash Totem", "UseStormlashTotem", "Offensive Cooldowns");
             AddControlInWinForm("Use Totemic Projection", "UseTotemicProjection", "Offensive Cooldowns");
             AddControlInWinForm("Use Unleash Elements", "UseUnleashElements", "Offensive Cooldowns");
-            /* Defensive Cooldowns */
-            AddControlInWinForm("Use Astral Shift", "UseAstralShift", "Defensive Cooldowns");
-            AddControlInWinForm("Use Capacitor Totem", "UseCapacitorTotem", "Defensive Cooldowns");
-            AddControlInWinForm("Use Earthbind Totem", "UseEarthbindTotem", "Defensive Cooldowns");
-            AddControlInWinForm("Use Grounding Totem", "UseGroundingTotem", "Defensive Cooldowns");
-            AddControlInWinForm("Use StoneBulwark Totem", "UseStoneBulwarkTotem", "Defensive Cooldowns");
-            AddControlInWinForm("Use Wind Shear", "UseWindShear", "Defensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Astral Shift", "UseAstralShift", "Defensive Spells");
+            AddControlInWinForm("Use Capacitor Totem", "UseCapacitorTotem", "Defensive Spells");
+            AddControlInWinForm("Use Earthbind Totem", "UseEarthbindTotem", "Defensive Spells");
+            AddControlInWinForm("Use Grounding Totem", "UseGroundingTotem", "Defensive Spells");
+            AddControlInWinForm("Use StoneBulwark Totem", "UseStoneBulwarkTotem", "Defensive Spells");
+            AddControlInWinForm("Use Wind Shear", "UseWindShear", "Defensive Spells");
             /* Healing Spells */
             AddControlInWinForm("Use Ancestral Guidance", "UseAncestralGuidance", "Healing Spells");
             AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spells");
@@ -1673,7 +1728,7 @@ public class ShamanElemental
 
     private bool CombatMode = true;
 
-    private Timer StunCD = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
@@ -1723,14 +1778,14 @@ public class ShamanElemental
 
     #endregion
 
-    #region Defensive Cooldowns
+    #region Defensive Spells
 
     public readonly Spell AstralShift = new Spell("Astral Shift"); //No GCD
     public readonly Spell LightningSurgeTotem = new Spell("Lightning Surge Totem");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
     public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
 
@@ -1787,39 +1842,37 @@ public class ShamanElemental
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
+        //Log
+        if (CombatMode)
         {
-            //Log
-            if (CombatMode)
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
+        }
+
+        if (ObjectManager.Me.GetMove)
+        {
+            //Movement Buffs
+            if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
             {
-                Logging.WriteFight("Patrolling:");
-                CombatMode = false;
+                SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
+                return;
             }
 
-            if (!ObjectManager.Me.GetMove)
+            //Ghost Wolf
+            if (!GhostWolf.HaveBuff && GhostWolf.IsSpellUsable && MySettings.UseGhostWolf)
             {
-                //Healing Surge
-                if (ObjectManager.Me.HealthPercent <= MySettings.UseHealingSurgeBelowPercentageOutOfCombat &&
-                    HealingSurge.IsSpellUsable && MySettings.UseHealingSurge)
-                {
-                    HealingSurge.CastOnSelf();
-                    return;
-                }
+                GhostWolf.Cast();
             }
-            else
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" &&
+                HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 90 &&
+                ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                //Wind Rush Totem
-                if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
-                {
-                    SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
-                    return;
-                }
-
-                //Ghost Wolf
-                if (!GhostWolf.HaveBuff && GhostWolf.IsSpellUsable && MySettings.UseGhostWolf)
-                {
-                    GhostWolf.Cast();
-                }
+                HealingSurge.CastOnSelf();
+                return;
             }
         }
     }
@@ -1904,7 +1957,7 @@ public class ShamanElemental
             {
                 AstralShift.Cast();
             }
-            if (StunCD.IsReady)
+            if (StunTimer.IsReady)
             {
                 if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage &&
                     Stoneform.IsSpellUsable && MySettings.UseStoneform)
@@ -1957,20 +2010,20 @@ public class ShamanElemental
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             //Stuns
-            if (StunCD.IsReady)
+            if (StunTimer.IsReady)
             {
                 if (ObjectManager.Me.HealthPercent < MySettings.UseLightningSurgeTotemBelowPercentage &&
                     LightningSurgeTotem.IsSpellUsable && MySettings.UseLightningSurgeTotem)
                 {
                     SpellManager.CastSpellByIDAndPosition(LightningSurgeTotem.Id, ObjectManager.Target.Position);
-                    StunCD = new Timer(1000*7);
+                    StunTimer = new Timer(1000*7);
                     return;
                 }
                 if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage &&
                     WarStomp.IsSpellUsable && MySettings.UseWarStomp)
                 {
                     WarStomp.Cast();
-                    StunCD = new Timer(1000*2);
+                    StunTimer = new Timer(1000*2);
                     return;
                 }
             }
@@ -2082,17 +2135,16 @@ public class ShamanElemental
         public bool UseElementalMastery = true;
         public bool UseFireElemental = true;
         public bool UseTotemMastery = true;
-        /* Defensive Cooldowns */
+        /* Defensive Spells */
         public bool UseAstralShift = true;
         public int UseAstralShiftBelowPercentage = 80;
         public bool UseLightningSurgeTotem = true;
         public int UseLightningSurgeTotemBelowPercentage = 80;
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseWindRushTotem = true;
         /* Healing Spells */
         public bool UseHealingSurge = true;
         public int UseHealingSurgeBelowPercentage = 50;
-        public int UseHealingSurgeBelowPercentageOutOfCombat = 90;
         /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
@@ -2126,17 +2178,16 @@ public class ShamanElemental
             AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Cooldowns");
             AddControlInWinForm("Use Fire Elemental", "UseFireElemental", "Offensive Cooldowns");
             AddControlInWinForm("Use Totem Mastery", "UseTotemMastery", "Offensive Cooldowns");
-            /* Defensive Cooldowns */
-            AddControlInWinForm("Use Astral", "UseAstralShift", "Defensive Cooldowns");
-            AddControlInWinForm("Use Astral Shift", "UseAstralShiftBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotem", "Defensive Cooldowns");
-            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotemBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Astral", "UseAstralShift", "Defensive Spells");
+            AddControlInWinForm("Use Astral Shift", "UseAstralShiftBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotem", "Defensive Spells");
+            AddControlInWinForm("Use Lightning Surge Totem", "UseLightningSurgeTotemBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Spells");
             /* Healing Spells */
             AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spells");
             AddControlInWinForm("Use Healing Surge while In Fight", "UseHealingSurgeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Healing Surge while Out Of Fight", "UseHealingSurgeBelowPercentageOutOfCombat", "Healing Spells", "BelowPercentage", "Life");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
