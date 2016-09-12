@@ -837,7 +837,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return LunarPower * 100 / MaxLunarPower;
+                    return LunarPower*100/MaxLunarPower;
                 }
                 catch (Exception e)
                 {
@@ -1008,193 +1008,49 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint LightForce
+        public uint Insanity
         {
             get
             {
                 try
                 {
-                    return GetPowerByPowerType(PowerType.LightForce);
+                    return GetPowerByPowerType(PowerType.Insanity);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > LightForce: " + e);
+                    Logging.WriteError("WoWUnit > Insanity: " + e);
                     return 0;
                 }
             }
         }
 
-        public uint MaxLightForce
+        public uint MaxInsanity
         {
             get
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(PowerType.LightForce);
+                    return GetMaxPowerByPowerType(PowerType.Insanity);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MaxLightForce: " + e);
+                    Logging.WriteError("WoWUnit > MaxInsanity: " + e);
                     return 0;
                 }
             }
         }
 
-        public uint LightForcePercentage
+        public uint InsanityPercentage
         {
             get
             {
                 try
                 {
-                    return LightForce*100/MaxLightForce;
+                    return Insanity*100/MaxInsanity;
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWPlayer > LightForcePercentage: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint ShadowOrbs
-        {
-            get
-            {
-                try
-                {
-                    return GetPowerByPowerType(PowerType.ShadowOrbs);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > ShadowOrbs: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint MaxShadowOrbs
-        {
-            get
-            {
-                try
-                {
-                    return GetMaxPowerByPowerType(PowerType.ShadowOrbs);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > MaxShadowOrbs: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint ShadowOrbsPercentage
-        {
-            get
-            {
-                try
-                {
-                    return ShadowOrbs*100/MaxShadowOrbs;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > ShadowOrbsPercentage: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint BurningEmbers
-        {
-            get
-            {
-                try
-                {
-                    return GetPowerByPowerType(PowerType.BurningEmbers);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > BurningEmbers: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint MaxBurningEmbers
-        {
-            get
-            {
-                try
-                {
-                    return GetMaxPowerByPowerType(PowerType.BurningEmbers);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > MaxBurningEmbers: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint BurningEmbersPercentage
-        {
-            get
-            {
-                try
-                {
-                    return BurningEmbers*100/MaxBurningEmbers;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > BurningEmbersPercentage: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint DemonicFury
-        {
-            get
-            {
-                try
-                {
-                    return GetPowerByPowerType(PowerType.DemonicFury);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > DemonicFury: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint MaxDemonicFury
-        {
-            get
-            {
-                try
-                {
-                    return GetMaxPowerByPowerType(PowerType.DemonicFury);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > MaxDemonicFury: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint DemonicFuryPercentage
-        {
-            get
-            {
-                try
-                {
-                    return DemonicFury*100/MaxDemonicFury;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > DemonicFuryPercentage: " + e);
+                    Logging.WriteError("WoWPlayer > InsanityPercentage: " + e);
                     return 0;
                 }
             }

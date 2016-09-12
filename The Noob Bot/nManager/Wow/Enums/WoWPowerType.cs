@@ -16,6 +16,7 @@
         Alternate = 0xA, // Alternate bar. (Example: Atramedes Song bar)
         Maelstrom = 0xB,
         Chi = 0xC,
+        Insanity = 0xD,
         ArcaneCharges = 0x10,
         Fury = 0x11,
         Pain = 0x12,

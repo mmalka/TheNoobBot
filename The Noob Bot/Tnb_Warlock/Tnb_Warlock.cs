@@ -859,16 +859,16 @@ public class WarlockDemonology
             if (MySettings.UseMannarothsFury && MannarothsFury.IsSpellUsable && ObjectManager.GetUnitInSpellRange(Hellfire.MaxRangeHostile) > 2)
                 MannarothsFury.Cast();
 
-            if (MySettings.UseMetamorphosis && ObjectManager.Me.DemonicFury > 899 || !Doom.TargetHaveBuff || DarkSoulKnowledge.IsSpellUsable)
+            if (MySettings.UseMetamorphosis && ObjectManager.Me.SoulShards > 899 || !Doom.TargetHaveBuff || DarkSoulKnowledge.IsSpellUsable)
             {
-                if (ObjectManager.Me.DemonicFury > 450)
+                if (ObjectManager.Me.SoulShards > 450)
                 {
                     if (MySettings.UseCorruption && !CorruptionDebuff.TargetHaveBuff && Corruption.IsSpellUsable && Corruption.IsHostileDistanceGood)
                         Corruption.Cast();
 
                     if (MySettings.UseMetamorphosis && Metamorphosis.KnownSpell)
                     {
-                        if (MySettings.UseCataclysm && Cataclysm.KnownSpell && (!Cataclysm.IsSpellUsable || ObjectManager.Me.DemonicFury < 950))
+                        if (MySettings.UseCataclysm && Cataclysm.KnownSpell && (!Cataclysm.IsSpellUsable || ObjectManager.Me.SoulShards < 950))
                             Others.SafeSleep(200);
                         else
                             MetamorphosisCombat();
@@ -923,7 +923,7 @@ public class WarlockDemonology
 
     private void MetamorphosisCombat()
     {
-        while (ObjectManager.Me.DemonicFury > 100)
+        while (ObjectManager.Me.SoulShards > 100)
         {
             if (MySettings.UseMetamorphosis && !Metamorphosis.HaveBuff && Metamorphosis.IsSpellUsable)
                 Metamorphosis.Cast();
@@ -954,12 +954,12 @@ public class WarlockDemonology
             if (MySettings.UseDemonbolt && Demonbolt.BuffStack < 4 && Demonbolt.IsSpellUsable && Demonbolt.IsHostileDistanceGood)
                 Demonbolt.Cast();
 
-            if (MySettings.UseChaosWave && DarkSoulKnowledge.HaveBuff && ChaosWave.GetSpellCharges > 0 && ObjectManager.Me.DemonicFury > 79
+            if (MySettings.UseChaosWave && DarkSoulKnowledge.HaveBuff && ChaosWave.GetSpellCharges > 0 && ObjectManager.Me.SoulShards > 79
                 && !SpellManager.IsSpellOnCooldown(124916) && HandofGuldan.IsHostileDistanceGood)
                 ChaosWave.Cast();
 
             if (MySettings.UseTouchofChaos && (CorruptionDebuff.TargetHaveBuff && ObjectManager.Target.UnitAura(146739).AuraTimeLeftInMs < 5400
-                                               || MoltenCore.BuffStack < 1) && ObjectManager.Me.DemonicFury > 39 && !SpellManager.IsSpellOnCooldown(103964) && ShadowBolt.IsHostileDistanceGood)
+                                               || MoltenCore.BuffStack < 1) && ObjectManager.Me.SoulShards > 39 && !SpellManager.IsSpellOnCooldown(103964) && ShadowBolt.IsHostileDistanceGood)
                 TouchofChaos.Cast();
 
             if (MySettings.UseSoulFire && MoltenCore.BuffStack > 0 && SoulFire.IsSpellUsable && SoulFire.IsHostileDistanceGood && ObjectManager.GetUnitInSpellRange(Hellfire.MaxRangeHostile) < 8)
@@ -1824,7 +1824,7 @@ public class WarlockDestruction
                 SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
                 return;
             }
-            if (MySettings.UseShadowburn && ObjectManager.Target.HealthPercent < 20 && (ObjectManager.Me.BurningEmbers > 35 || DarkSoulInstability.HaveBuff)
+            if (MySettings.UseShadowburn && ObjectManager.Target.HealthPercent < 20 && (ObjectManager.Me.SoulShards > 35 || DarkSoulInstability.HaveBuff)
                 && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood)
             {
                 Shadowburn.Cast();
@@ -1850,7 +1850,7 @@ public class WarlockDestruction
                 SpellManager.CastSpellByIDAndPosition(152108, ObjectManager.Target.Position);
                 return;
             }
-            if (MySettings.UseChaosBolt && (ObjectManager.Me.BurningEmbers > 35 || DarkSoulInstability.HaveBuff)
+            if (MySettings.UseChaosBolt && (ObjectManager.Me.SoulShards > 35 || DarkSoulInstability.HaveBuff)
                 && ChaosBolt.IsSpellUsable && ChaosBolt.IsHostileDistanceGood)
             {
                 ChaosBolt.Cast();
@@ -1861,7 +1861,7 @@ public class WarlockDestruction
                 Conflagrate.Cast();
                 return;
             }
-            if (MySettings.UseIncinerate && Conflagrate.GetSpellCharges < 1 && ObjectManager.Me.BurningEmbers < 36 && Incinerate.IsSpellUsable
+            if (MySettings.UseIncinerate && Conflagrate.GetSpellCharges < 1 && ObjectManager.Me.SoulShards < 36 && Incinerate.IsSpellUsable
                 && Incinerate.IsHostileDistanceGood)
                 Incinerate.Cast();
         }

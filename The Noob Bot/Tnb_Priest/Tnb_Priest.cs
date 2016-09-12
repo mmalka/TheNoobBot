@@ -351,7 +351,7 @@ public class PriestShadow
     private void Pull()
     {
         if (DevouringPlague.IsSpellUsable && DevouringPlague.KnownSpell && DevouringPlague.IsHostileDistanceGood
-            && ObjectManager.Me.ShadowOrbs == 3 && MySettings.UseDevouringPlague)
+            && ObjectManager.Me.Insanity == 3 && MySettings.UseDevouringPlague)
         {
             DevouringPlague.Cast();
             return;
@@ -373,7 +373,7 @@ public class PriestShadow
         Buff();
 
         if (DevouringPlague.IsSpellUsable && DevouringPlague.KnownSpell && DevouringPlague.IsHostileDistanceGood
-            && ObjectManager.Me.ShadowOrbs == 3 && MySettings.UseDevouringPlague)
+            && ObjectManager.Me.Insanity == 3 && MySettings.UseDevouringPlague)
         {
             DevouringPlague.Cast();
             return;
@@ -720,7 +720,7 @@ public class PriestShadow
                 return;
             }
             if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
-                && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath && ObjectManager.Me.ShadowOrbs < 5)
+                && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath && ObjectManager.Me.Insanity < 5)
             {
                 ShadowWordDeath.Cast();
                 return;
@@ -756,7 +756,7 @@ public class PriestShadow
                 return;
             }
             if (DevouringPlague.KnownSpell && DevouringPlague.IsSpellUsable && DevouringPlague.IsHostileDistanceGood &&
-                ObjectManager.Me.ShadowOrbs > 2 && MySettings.UseDevouringPlague
+                ObjectManager.Me.Insanity > 2 && MySettings.UseDevouringPlague
                 && (!DevouringPlague.TargetHaveBuff || _devouringPlagueTimer.IsReady))
             {
                 DevouringPlague.Cast();
@@ -769,7 +769,7 @@ public class PriestShadow
                 return;
             }
             if (MindBlast.KnownSpell && MindBlast.IsSpellUsable && MindBlast.IsHostileDistanceGood
-                && ObjectManager.Me.ShadowOrbs < 5 && MySettings.UseMindBlast)
+                && ObjectManager.Me.Insanity < 5 && MySettings.UseMindBlast)
             {
                 MindBlast.Cast();
                 return;
@@ -784,7 +784,7 @@ public class PriestShadow
                 && (ShadowWordPain.TargetHaveBuff || !MySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
                 (VampiricTouch.TargetHaveBuff || !MySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                && ObjectManager.Me.ShadowOrbs < 3 && !ClarityofPower.KnownSpell)
+                && ObjectManager.Me.Insanity < 3 && !ClarityofPower.KnownSpell)
             {
                 MindFlay.Cast();
                 return;
@@ -794,7 +794,7 @@ public class PriestShadow
                 && (ShadowWordPain.TargetHaveBuff || !MySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
                 (VampiricTouch.TargetHaveBuff || !MySettings.UseVampiricTouch || !VampiricTouch.KnownSpell || !_vampiricTouchTimer.IsReady)
                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                && ObjectManager.Me.ShadowOrbs < 3 && !ClarityofPower.KnownSpell)
+                && ObjectManager.Me.Insanity < 3 && !ClarityofPower.KnownSpell)
             {
                 Smite.Cast();
             }
