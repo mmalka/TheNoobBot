@@ -30,7 +30,7 @@ namespace nManager.Wow.Bot.States
         public List<int> EntryTarget = new List<int>();
         public List<uint> FactionsTarget = new List<uint>();
         public uint MinTargetLevel;
-        public uint MaxTargetLevel = 90;
+        public uint MaxTargetLevel = 113;
         private WoWUnit _unit;
 
         public override bool NeedToRun
