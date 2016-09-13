@@ -573,6 +573,11 @@ namespace nManager.Wow.Class
             Launch(StopMove, waitIsCast, ignoreIfCast, unitId);
         }
 
+        public void CastAtPosition(Point position)
+        {
+            SpellManager.CastSpellByIDAndPosition(Id, position);
+        }
+
         internal void Update()
         {
             try

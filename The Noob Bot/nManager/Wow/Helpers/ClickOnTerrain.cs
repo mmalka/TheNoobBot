@@ -33,7 +33,7 @@ namespace nManager.Wow.Helpers
 
             s.Launch();
 
-            Thread.Sleep(Usefuls.Latency*2);
+            Thread.Sleep(Usefuls.Latency*1);
 
             Pulse(point);
         }
