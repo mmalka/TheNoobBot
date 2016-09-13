@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -22,6 +23,7 @@ namespace nManager.Wow.Bot.Tasks
         private static bool _useLure;
         private static bool _automaticallyUseDraenorSecondaryBait;
         public static int _lastSuccessfullFishing;
+        private static bool _firstRun = true;
 
         private const float distanceBobber = 4.0f;
 
@@ -97,6 +99,11 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
+                if (_firstRun)
+                {
+                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots(), false, true);
+                    _firstRun = false;
+                }
                 while (true)
                 {
                     try

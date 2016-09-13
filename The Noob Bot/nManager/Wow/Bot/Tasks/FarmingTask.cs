@@ -340,7 +340,7 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        private static void TakeFarmingLoots()
+        public static void TakeFarmingLoots()
         {
             if (_countThisLoot)
             {
