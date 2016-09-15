@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks
+* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
 * Thanks you !
 */
 
@@ -589,7 +589,7 @@ public class DeathknightBlood
             {
                 if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood && CrimsonScourge.HaveBuff)
                 {
-                    DeathandDecay.Cast();
+                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
                     return;
                 }
                 if (BoneShield.BuffStack < 6 || ObjectManager.Me.UnitAura(BoneShield.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2000)
@@ -604,7 +604,7 @@ public class DeathknightBlood
                 {
                     if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
                     {
-                        DeathandDecay.Cast();
+                        DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
                         return;
                     }
                     if (MySettings.UseHearthStrike && HearthStrike.IsSpellUsable && HearthStrike.IsHostileDistanceGood)
@@ -619,7 +619,7 @@ public class DeathknightBlood
             {
                 if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
                 {
-                    DeathandDecay.Cast();
+                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
                     return;
                 }
                 if (BoneShield.BuffStack < 6 || ObjectManager.Me.UnitAura(BoneShield.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2000)
@@ -1525,8 +1525,7 @@ public class DeathknightUnholy
                 ScourgeStrike.Cast();
                 return;
             }
-            if (MySettings.UseOutbreak && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood &&
-                ObjectManager.Me.UnitAura(VirulentPlague.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
+            if (MySettings.UseOutbreak && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood && ObjectManager.Target.UnitAura(VirulentPlague.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
             {
                 Outbreak.Cast();
                 return;
@@ -1569,7 +1568,7 @@ public class DeathknightUnholy
                 }
                 if (MySettings.UseDeathandDecay && DeathandDecay.IsSpellUsable && DeathandDecay.IsHostileDistanceGood)
                 {
-                    DeathandDecay.Cast();
+                    DeathandDecay.CastAtPosition(ObjectManager.Target.Position);
                     return;
                 }
             }
