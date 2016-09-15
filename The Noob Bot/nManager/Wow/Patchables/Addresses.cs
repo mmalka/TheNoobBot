@@ -346,7 +346,7 @@
         /// </summary>
         public enum PowerIndex
         {
-            PowerIndexArrays = 0xDE4A7C, // PowerTypePointer
+            PowerIndexArrays = 0xDE4C7C, // PowerTypePointer
             Multiplicator = 0x13 - 1,
         }
     }
