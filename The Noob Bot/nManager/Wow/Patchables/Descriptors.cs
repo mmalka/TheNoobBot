@@ -42,7 +42,8 @@
 
         public enum ContainerFields
         {
-            NumSlots = 0x54,
+            Slots = 0x54,
+            NumSlots = 0xE4,
         };
 
         public enum UnitFields
@@ -301,23 +302,23 @@
 
         public enum AreaTriggerFields
         {
-            Caster = 0xC,
-            Duration = 0x10,
-            TimeToTarget = 0x11,
-            TimeToTargetScale = 0x12,
-            TimeToTargetExtraScale = 0x13,
-            SpellID = 0x14,
-            SpellVisualID = 0x15,
-            BoundsRadius2D = 0x16,
-            DecalPropertiesID = 0x17,
+            OverrideScaleCurve = 0xC,
+            ExtraScaleCurve = 0x13,
+            Caster = 0x1A,
+            Duration = 0x1E,
+            TimeToTarget = 0x1F,
+            TimeToTargetScale = 0x20,
+            TimeToTargetExtraScale = 0x21,
+            SpellID = 0x22,
+            SpellVisualID = 0x23,
+            BoundsRadius2D = 0x24,
+            DecalPropertiesID = 0x25,
         };
 
         public enum SceneObjectFields
         {
-            ScriptPackageID = 0xC,
-            RndSeedVal = 0xD,
-            CreatedBy = 0xE,
-            SceneType = 0x12,
+            CreatedBy = 0xC,
+            SceneType = 0x10,
         };
 
         public enum ConversationData
