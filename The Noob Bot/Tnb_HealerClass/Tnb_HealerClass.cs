@@ -4,22 +4,23 @@
 * Thanks you !
 */
 
-using System.Collections.Generic;
-using System.Reflection;
-using nManager.Wow;
-using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Class;
-using Timer = nManager.Helpful.Timer;
-// ReSharper disable EmptyGeneralCatchClause
-// ReSharper disable ObjectCreationAsStatement
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow;
+using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using Timer = nManager.Helpful.Timer;
+
+// ReSharper disable EmptyGeneralCatchClause
+// ReSharper disable ObjectCreationAsStatement
 
 public class Main : IHealerClass
 {
@@ -323,6 +324,7 @@ public class DruidRestoration
 
     private bool CombatMode = true;
 
+    private Timer DefensiveTimer = new Timer(0);
     private Timer StunTimer = new Timer(0);
 
     private WoWPlayer Tank = new WoWPlayer(0);
@@ -334,71 +336,75 @@ public class DruidRestoration
 
     #region Professions & Racials
 
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
     #region Druid Buffs
 
-    public readonly Spell CatForm = new Spell("Cat Form");
-    public readonly Spell Flourish = new Spell("Flourish");
-    public readonly Spell Incarnation = new Spell("Incarnation: Tree of Life");
+    private readonly Spell CatForm = new Spell("Cat Form");
+    private readonly Spell Flourish = new Spell("Flourish");
+    private readonly Spell Incarnation = new Spell("Incarnation: Tree of Life");
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell SolarWrath = new Spell("Solar Wrath");
+    private readonly Spell SolarWrath = new Spell("Solar Wrath");
 
     #endregion
 
-    #region Legion Artifact
+    #region Artifact Spells
 
-    public readonly Spell EssenceofGHanir = new Spell("Essence of G'Hanir");
+    private readonly Spell EssenceofGHanir = new Spell("Essence of G'Hanir");
 
     #endregion
 
-    #region Defensive Cooldowns
+    #region Defensive Spells
 
-    //public readonly Spell EntanglingRoots = new Spell("Entangling Roots");
-    public readonly Spell Ironbark = new Spell("Ironbark"); //No GCD
-    //public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
-    public readonly Spell MightyBash = new Spell("Mighty Bash");
-    //public readonly Spell Typhoon = new Spell("Typhoon");
-    //public readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
+    //private readonly Spell EntanglingRoots = new Spell("Entangling Roots");
+    private readonly Spell Ironbark = new Spell("Ironbark"); //No GCD
+    //private readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    private readonly Spell MightyBash = new Spell("Mighty Bash");
+    //private readonly Spell Typhoon = new Spell("Typhoon");
+    //private readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell CenarionWard = new Spell("Cenarion Ward");
-    public readonly Spell Efflorescence = new Spell("Efflorescence");
+    private readonly Spell CenarionWard = new Spell("Cenarion Ward");
+    private readonly Spell Efflorescence = new Spell("Efflorescence");
     private Timer EfflorescenceTimer = new Timer(0);
-    public readonly Spell FrenziedRegeneration = new Spell("Frenzied Regeneration");
-    public readonly Spell HealingTouch = new Spell("Healing Touch");
-    public readonly Spell Lifebloom = new Spell("Lifebloom");
-    public readonly Spell Regrowth = new Spell("Regrowth");
-    public readonly Spell Rejuvenation = new Spell("Rejuvenation");
-    public readonly Spell Renewal = new Spell("Renewal"); //No GCD
-    public readonly Spell Swiftmend = new Spell("Swiftmend");
-    public readonly Spell Tranquility = new Spell("Tranquility");
-    public readonly Spell WildGrowth = new Spell("Wild Growth");
+    private readonly Spell FrenziedRegeneration = new Spell("Frenzied Regeneration");
+    private readonly Spell HealingTouch = new Spell("Healing Touch");
+    private readonly Spell Lifebloom = new Spell("Lifebloom");
+    private readonly Spell Regrowth = new Spell("Regrowth");
+    private readonly Spell Rejuvenation = new Spell("Rejuvenation");
+    private readonly Spell Renewal = new Spell("Renewal"); //No GCD
+    private readonly Spell Swiftmend = new Spell("Swiftmend");
+    private readonly Spell Tranquility = new Spell("Tranquility");
+    private readonly Spell WildGrowth = new Spell("Wild Growth");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
-    //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
-    //public readonly Spell Prowl = new Spell("Prowl"); //No GCD
+    private readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
+    //private readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    //private readonly Spell Prowl = new Spell("Prowl"); //No GCD
 
     #endregion
 
     public DruidRestoration()
     {
-        Main.InternalRange = 30f;
+        Main.InternalRange = HealingTouch.MaxRangeFriend;
         MySettings = DruidRestorationSettings.GetSettings();
         Main.DumpCurrentSettings<DruidRestorationSettings>(MySettings);
 
@@ -448,12 +454,14 @@ public class DruidRestoration
                                     alivePlayers++;
                                     if (currentPlayer.HealthPercent < 100)
                                         DamagedPlayers++;
+
                                     //Setup Target
                                     if (currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         Target = currentPlayer;
                                     }
+
                                     //Setup Tank
                                     if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && Tank != currentPlayer)
                                     {
@@ -484,14 +492,11 @@ public class DruidRestoration
                                 }
                             }
                         }
+
                         if (Fight.InFight || PartyHpMedian < 90)
-                        {
                             Combat();
-                        }
                         else
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
@@ -503,6 +508,7 @@ public class DruidRestoration
         }
     }
 
+    // For Movement Spells (always return after Casting)
     private void Patrolling()
     {
         if (!ObjectManager.Me.IsMounted)
@@ -539,6 +545,7 @@ public class DruidRestoration
         }
     }
 
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
     private void Combat()
     {
         //Log
@@ -547,11 +554,40 @@ public class DruidRestoration
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Defensive()) return;
-        Burst(); //GCD independent
-        GCDCycle(); //GCD dependent
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            //Renewal 
+            if (Renewal.IsSpellUsable && Target.HealthPercent < MySettings.UseRenewalBelowTargetPercentage)
+            {
+                Renewal.Cast(false, true, false, Target.GetUnitId());
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
     private bool Defensive()
     {
         Usefuls.SleepGlobalCooldown();
@@ -560,9 +596,9 @@ public class DruidRestoration
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Defensive Cooldowns
-            if (StunTimer.IsReady)
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
             {
+                //Stun
                 if (ObjectManager.Target.IsStunnable)
                 {
                     if (MightyBash.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMightyBashBelowPercentage && MightyBash.IsHostileDistanceGood)
@@ -577,11 +613,19 @@ public class DruidRestoration
                         StunTimer = new Timer(1000*2);
                     }
                 }
-                //Frenzied Regeneration (shapeshift in Bear Form)
-                if (FrenziedRegeneration.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFrenziedRegenerationBelowPercentage)
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
                 {
-                    FrenziedRegeneration.CastOnSelf();
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
                 }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Frenzied Regeneration (shapeshift in Bear Form)
+            if (FrenziedRegeneration.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseFrenziedRegenerationBelowPercentage)
+            {
+                FrenziedRegeneration.CastOnSelf();
             }
             return false;
         }
@@ -591,7 +635,8 @@ public class DruidRestoration
         }
     }
 
-    private void Burst()
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -599,7 +644,6 @@ public class DruidRestoration
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Burst Buffs
             if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
             {
                 ItemsManager.UseItem(_firstTrinket.Name);
@@ -614,12 +658,11 @@ public class DruidRestoration
             {
                 Berserking.Cast();
             }
-
-            //Renewal
-            if (Renewal.IsSpellUsable && Target.HealthPercent < MySettings.UseRenewalBelowTargetPercentage)
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
             {
-                Renewal.Cast(false, true, false, Target.GetUnitId());
+                BloodFury.Cast();
             }
+            return false;
         }
         finally
         {
@@ -627,7 +670,8 @@ public class DruidRestoration
         }
     }
 
-    private void GCDCycle()
+    // For Spots (always return after Casting)
+    private void Rotation()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -649,7 +693,7 @@ public class DruidRestoration
                 CombatClass.InSpellRange(Target, Efflorescence.MinRangeFriend, Efflorescence.MaxRangeFriend) &&
                 Target.GetPlayerInSpellRange(10f) > MySettings.UseEfflorescenceAbovePlayerDensity && EfflorescenceTimer.IsReady)
             {
-                SpellManager.CastSpellByIDAndPosition(Efflorescence.Id, Target.Position);
+                Efflorescence.CastAtPosition(Target.Position);
                 EfflorescenceTimer = new Timer(1000*30);
                 return;
             }
@@ -769,9 +813,13 @@ public class DruidRestoration
     public class DruidRestorationSettings : Settings
     {
         /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
+        public bool UseBloodFury = true;
         public bool UseDarkflight = true;
-        public int UseWarStompBelowPercentage = 25;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
 
         /* Druid Buffs */
         public bool UseCatFormOOC = false;
@@ -780,14 +828,14 @@ public class DruidRestoration
         public int UseIncarnationBelowTargetPercentage = 40;
         public int UseIncarnationBelowPartyPercentage = 40;
 
-        /* Offensive Spells */
-        public bool UseSolarWrath = true;
-
         /* Artifact Spells */
         public int UseEssenceofGHanirBelowTargetPercentage = 50;
         public int UseEssenceofGHanirBelowPartyPercentage = 50;
 
-        /* Defensive Cooldowns */
+        /* Offensive Spells */
+        public bool UseSolarWrath = true;
+
+        /* Defensive Spells */
         public int UseIronbarkBelowTargetPercentage = 60;
         //public bool UseEntanglingRoots = true;
         //public bool UseMassEntanglement = true;
@@ -812,7 +860,7 @@ public class DruidRestoration
         public int UseWildGrowthBelowPartyPercentage = 60;
         public int UseWildGrowthAbovePlayerDensity = 2;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseDash = true;
         //public bool UseDisplacerBeast = true;
         //public bool UseProwl = true;
@@ -827,39 +875,43 @@ public class DruidRestoration
         {
             ConfigWinForm("Druid Restoration Settings");
             /* Professions & Racials */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
             AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
-            AddControlInWinForm("Use Flourish", "UseFlourishBelowTargetPercentage", "Druid Buffs", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Flourish", "UseFlourishBelowPartyPercentage", "Druid Buffs", "BelowPercentage", " Party Life");
-            AddControlInWinForm("Use Incarnation", "UseIncarnationBelowTargetPercentage", "Druid Buffs", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Incarnation", "UseIncarnationBelowPartyPercentage", "Druid Buffs", "BelowPercentage", " Party Life");
-            /* Offensive Spells */
-            AddControlInWinForm("Use SolarWrath", "UseSolarWrath", "Offensive Spells");
+            AddControlInWinForm("Use Flourish", "UseFlourishBelowTargetPercentage", "Druid Buffs", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Flourish", "UseFlourishBelowPartyPercentage", "Druid Buffs", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Incarnation", "UseIncarnationBelowTargetPercentage", "Druid Buffs", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Incarnation", "UseIncarnationBelowPartyPercentage", "Druid Buffs", "BelowPercentage", "Party Life");
             /* Artifact Spells */
-            AddControlInWinForm("Use Essence of G'Hanir", "UseEssenceofGHanirBelowTargetPercentage", "Artifact Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Essence of G'Hanir", "UseEssenceofGHanirBelowPartyPercentage", "Artifact Spells", "BelowPercentage", " Party Life");
-            /* Defensive Cooldowns */
-            AddControlInWinForm("Use Ironbark", "UseIronbarkBelowTargetPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Essence of G'Hanir", "UseEssenceofGHanirBelowTargetPercentage", "Artifact Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Essence of G'Hanir", "UseEssenceofGHanirBelowPartyPercentage", "Artifact Spells", "BelowPercentage", "Party Life");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Solar Wrath", "UseSolarWrath", "Offensive Spells");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Ironbark", "UseIronbarkBelowTargetPercentage", "Defensive Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spells */
             AddControlInWinForm("Use Cenarion Ward", "UseCenarionWardBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
             AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegenerationBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Healing Touch", "UseHealingTouchBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Healing Touch", "UseHealingTouchBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
             AddControlInWinForm("Use Lifebloom", "UseLifebloomBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
-            AddControlInWinForm("Use Regrowth", "UseRegrowthBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Rejuvenation", "UseRejuvenationBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Regrowth", "UseRegrowthBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Rejuvenation", "UseRejuvenationBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
             AddControlInWinForm("Use Rejuvenation", "UseRejuvenationBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
-            AddControlInWinForm("Use Renewal", "UseRenewalBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Swiftmend", "UseSwiftmendBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Renewal", "UseRenewalBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Swiftmend", "UseSwiftmendBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
             AddControlInWinForm("Use Tranquility", "UseTranquilityBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
             AddControlInWinForm("Use Tranquility", "UseTranquilityAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
-            AddControlInWinForm("Use Wild Growth", "UseWildGrowthBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Wild Growth", "UseWildGrowthBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
             AddControlInWinForm("Use Wild Growth", "UseWildGrowthAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Dash", "UseDash", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -890,59 +942,213 @@ public class DruidRestoration
 
 public class PaladinHoly
 {
-    private readonly PaladinHolySettings _mySettings = PaladinHolySettings.GetSettings();
+    private static PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
+
+    #region General Timers & Variables
+
+    private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
+
+    private WoWPlayer Tank = new WoWPlayer(0);
+    private WoWPlayer Target = new WoWPlayer(0);
+    private int DamagedPlayers;
+    private double PartyHpMedian;
+
+    #endregion
+
+    #region Professions & Racial
+
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
+
+    #endregion
+
+    #region Talents
+
+    private readonly Spell AuraofMercy = new Spell("Aura of Mercy"); //No GCD
+    private readonly Spell AuraofSacrifice = new Spell("Aura of Sacrifice"); //No GCD
+    private readonly Spell DevotionAura = new Spell("Devotion Aura"); //No GCD
+
+    #endregion
+
+    #region Buffs
+
+    private readonly Spell Forbearance = new Spell(25771);
+
+    #endregion
+
+    #region Artifact Spells
+
+    private readonly Spell TyrsDeliverance = new Spell("Tyr's Deliverance");
+
+    #endregion
+
+    #region Offensive Spells
+
+    private readonly Spell Judgment = new Spell("Judgment");
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell BlessingofProtection = new Spell("Blessing of Protection");
+    private readonly Spell BlessingofSacrifice = new Spell("Blessing of Sacrifice"); //No GCD
+    private readonly Spell DivineProtection = new Spell("Divine Protection");
+    private readonly Spell DivineShield = new Spell("Divine Shield");
+
+    #endregion
+
+    #region Healing Buffs
+
+    private readonly Spell BeaconofFaith = new Spell("Beacon of Faith");
+    private readonly Spell BeaconofLight = new Spell("Beacon of Light");
+    private readonly Spell BeaconofVirtue = new Spell("Beacon of Virtue");
+
+    #endregion
+
+    #region Healing Spells
+
+    private readonly Spell BestowFaith = new Spell("Bestow Faith");
+    private readonly Spell FlashofLight = new Spell("Flash of Light");
+    private readonly Spell HolyLight = new Spell("Holy Light");
+    private readonly Spell HolyPrism = new Spell("Holy Prism");
+    private readonly Spell HolyShock = new Spell("Holy Shock");
+    private readonly Spell LightofDawn = new Spell("Light of Dawn");
+    private readonly Spell LightoftheMartyr = new Spell("Light of the Martyr");
+
+    #endregion
+
+    #region Healing Cooldowns
+
+    private readonly Spell AvengingWrath = new Spell("Avenging Wrath"); //No GCD
+    private readonly Spell AuraMastery = new Spell("Aura Mastery"); //No GCD
+    private readonly Spell HolyAvenger = new Spell("Holy Avenger");
+    private readonly Spell LayonHands = new Spell("Lay on Hands"); //No GCD
+    private readonly Spell LightsHammer = new Spell("Light's Hammer");
+
+    #endregion
+
+    #region Utility Spells
+
+    private readonly Spell BlessingofFreedom = new Spell("Blessing of Freedom");
+    private readonly Spell DivineSteed = new Spell("Divine Steed");
+    private readonly Spell Repentance = new Spell("Repentance");
+    private readonly Spell RuleofLaw = new Spell("Rule of Law"); //No GCD
+
+    #endregion
 
     public PaladinHoly()
     {
-        Main.InternalRange = 30f;
+        Main.InternalRange = HolyLight.MaxRangeFriend;
+        MySettings = PaladinHolySettings.GetSettings();
+        Main.DumpCurrentSettings<PaladinHolySettings>(MySettings);
 
         while (Main.InternalLoop)
         {
             try
             {
-                Thread.Sleep(100);
-                if (ObjectManager.Me.IsDead || Usefuls.IsLoading || !Usefuls.InGame || ObjectManager.Me.IsMounted)
-                    continue;
-
-                List<WoWUnit> healingList = ObjectManager.GetFriendlyUnits();
-
-                if (healingList.Count == 1)
+                if (!ObjectManager.Me.IsDeadMe)
                 {
-                    if (ObjectManager.Me.HealthPercent < 100)
-                        HealingFight(ObjectManager.Me);
-                    continue;
-                }
-                double partyPercentHealthMedian = 0;
-                double lowestHp = 100;
-                var lowestHpPlayer = new WoWUnit(0);
-                foreach (WoWUnit currentPlayer in healingList)
-                {
-                    if (!currentPlayer.IsAlive || !currentPlayer.IsValid || !HealerClass.InRange(currentPlayer))
-                        continue;
-                    partyPercentHealthMedian += currentPlayer.HealthPercent;
+                    //Dismount in Combat
+                    if (ObjectManager.Me.InCombat && ObjectManager.Me.IsMounted)
+                        MountTask.DismountMount(true);
 
-                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        lowestHp = currentPlayer.HealthPercent;
-                        lowestHpPlayer = currentPlayer;
+                        //Setup Solo
+                        if (!Party.IsInGroup())
+                        {
+                            Tank = ObjectManager.Me;
+                            PartyHpMedian = ObjectManager.Me.HealthPercent;
+                            DamagedPlayers = 1;
+                            Target = ObjectManager.Me;
+                        }
+                            //Setup Group
+                        else
+                        {
+                            double lowestHp = 100;
+                            int alivePlayers = 0;
+                            PartyHpMedian = 0;
+                            DamagedPlayers = 0;
+                            Target = Tank;
+
+                            try
+                            {
+                                Memory.WowMemory.GameFrameLock();
+
+                                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
+                                {
+                                    if (playerInMyParty <= 0)
+                                        continue;
+                                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                                        continue;
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                                        continue;
+
+                                    //Calculate Class Variables
+                                    PartyHpMedian += currentPlayer.HealthPercent;
+                                    alivePlayers++;
+                                    if (currentPlayer.HealthPercent < 100)
+                                        DamagedPlayers++;
+
+                                    //Setup Target
+                                    if (currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                                    {
+                                        lowestHp = currentPlayer.HealthPercent;
+                                        Target = currentPlayer;
+                                    }
+
+                                    //Setup Tank
+                                    if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && Tank != currentPlayer)
+                                    {
+                                        Logging.WriteFight("New Tank: " + currentPlayer.Name);
+                                        Tank = currentPlayer;
+                                    }
+                                }
+                            }
+                            finally
+                            {
+                                Memory.WowMemory.GameFrameUnLock();
+                            }
+                            PartyHpMedian /= alivePlayers;
+
+                            if (Target.Guid > 0)
+                            {
+                                //Prioritize Me
+                                if (Target != ObjectManager.Me && ObjectManager.Me.HealthPercent <= MySettings.PrioritizeMeBelowPercentage)
+                                {
+                                    Target = ObjectManager.Me;
+                                }
+
+                                //Prioritize Tank
+                                if (Tank != null && Target != Tank &&
+                                    (Tank.HealthPercent <= MySettings.PrioritizeTankBelowPercentage) || Target.HealthPercent == 100)
+                                {
+                                    Target = Tank;
+                                }
+                            }
+                        }
+
+                        if (Fight.InFight || PartyHpMedian < 90)
+                            Combat();
+                        else
+                            Patrolling();
                     }
                 }
-                if (lowestHpPlayer.Guid > 0)
-                {
-                    if (lowestHpPlayer.Guid != ObjectManager.Me.Guid && ObjectManager.Me.HealthPercent < 100 && lowestHpPlayer.HealthPercent + 10 < ObjectManager.Me.HealthPercent)
-                    {
-                        lowestHpPlayer = ObjectManager.Me;
-                        // If the lowest healthpercent available in my party is not me and I have only 10% more HP than him.
-                        // Prioritize me instead. So selfish!
-                    }
-                }
-                partyPercentHealthMedian = partyPercentHealthMedian/healingList.Count;
-                // use partyPercentHealthMedian in the HealingFight() code may be useful.
-                if (!lowestHpPlayer.IsValid || !lowestHpPlayer.IsAlive)
-                    continue;
-                if (lowestHpPlayer.HealthPercent >= 100 && partyPercentHealthMedian >= 100)
-                    continue;
-                HealingFight(lowestHpPlayer, partyPercentHealthMedian);
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -950,39 +1156,339 @@ public class PaladinHoly
         }
     }
 
-    private void HealingFight(WoWUnit lowestHPUnit, double partyHealthPercentMedian = 100)
-    {
-        if (ObjectManager.Me.Target != lowestHPUnit.Guid)
-            Interact.InteractWith(lowestHPUnit.GetBaseAddress);
-        // Logging.Write("Most interesting lowestHpPlayer to heal is " + lowestHPUnit.Name + " (GUID: " + lowestHPUnit.Guid + "), %HP: " + lowestHPUnit.HealthPercent);
-        // Logging.Write("Party has a HealthPercent median of " + partyHealthPercentMedian);
-        if (ObjectManager.Target.HealthPercent < 40)
-            HealBurst();
-        HealCycle();
-        Buffs();
-    }
-
-    private void Buffs()
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
     {
         if (!ObjectManager.Me.IsMounted)
-            Blessing();
-        Seal();
+        {
+            //Log
+            if (CombatMode)
+            {
+                Logging.WriteFight("Patrolling:");
+                CombatMode = false;
+            }
+
+            if (ObjectManager.Me.GetMove)
+            {
+                //Movement Buffs
+                if (!Darkflight.HaveBuff && !DivineSteed.HaveBuff) //they don't stack
+                {
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                    {
+                        Darkflight.Cast();
+                        return;
+                    }
+                    if (MySettings.UseDivineSteed && DivineSteed.IsSpellUsable)
+                    {
+                        DivineSteed.Cast();
+                        return;
+                    }
+                }
+            }
+        }
     }
 
-    private void Seal()
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
+    private void Combat()
     {
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void Blessing()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
-    private void HealBurst()
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
     {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (WarStomp.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsHostileDistanceGood)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2);
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (ObjectManager.Me.HealthPercent < MySettings.UseDivineProtectionBelowPercentage &&
+                    DivineProtection.IsSpellUsable && !Target.HaveBuff(Forbearance.Id))
+                {
+                    DivineProtection.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDivineShieldBelowPercentage &&
+                DivineShield.IsSpellUsable && !Target.HaveBuff(Forbearance.Id))
+            {
+                DivineShield.Cast();
+                DefensiveTimer = new Timer(1000*8);
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
-    private void HealCycle()
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
     {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+
+            //Avenging Wrath Buff
+            if (Target.HealthPercent < MySettings.UseAvengingWrathBelowTargetPercentage && AvengingWrath.IsSpellUsable)
+            {
+                AvengingWrath.Cast();
+            }
+            //Aura Mastery Buff
+            if (PartyHpMedian < MySettings.UseAuraMasteryBelowPartyPercentage && AuraMastery.IsSpellUsable)
+            {
+                AuraMastery.Cast();
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Spots (always return after Casting)
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Beacon of Light on Tank
+            if (MySettings.UseBeaconofLight && BeaconofLight.IsSpellUsable &&
+                CombatClass.InSpellRange(Tank, BeaconofLight.MinRangeFriend, BeaconofLight.MaxRangeFriend) &&
+                !Tank.HaveBuff(BeaconofLight.Ids))
+            {
+                BeaconofLight.Cast(false, true, false, Tank.GetUnitId());
+            }
+            //Beacon of Faith on Target
+            if (MySettings.UseBeaconofFaith && BeaconofFaith.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, BeaconofFaith.MinRangeFriend, BeaconofFaith.MaxRangeFriend) &&
+                !Target.HaveBuff(BeaconofLight.Ids) && !Target.HaveBuff(BeaconofFaith.Ids))
+            {
+                BeaconofFaith.Cast(false, true, false, Target.GetUnitId());
+            }
+            //Beacon of Faith on Target
+            if (MySettings.UseBeaconofVirtue && BeaconofVirtue.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, BeaconofVirtue.MinRangeFriend, BeaconofVirtue.MaxRangeFriend) &&
+                Target.GetPlayerInSpellRange(30f) > MySettings.UseBeaconofVirtueAbovePlayerDensity &&
+                !Target.HaveBuff(BeaconofLight.Ids))
+            {
+                BeaconofVirtue.Cast(false, true, false, Target.GetUnitId());
+            }
+
+            //Lay on Hands on Target
+            if (Target.HealthPercent < MySettings.UseLayonHandsBelowTargetPercentage && LayonHands.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, LayonHands.MinRangeFriend, LayonHands.MaxRangeFriend) && !Target.HaveBuff(Forbearance.Id))
+            {
+                LayonHands.Cast();
+                return;
+            }
+
+            //Blessing of Sacrifice on Target
+            if (Tank.HealthPercent < MySettings.UseBlessingofSacrificeBelowTankPercentage &&
+                ObjectManager.Me.HealthPercent > MySettings.UseBlessingofSacrificeAbovePercentage && BlessingofSacrifice.IsSpellUsable &&
+                CombatClass.InSpellRange(Tank, BlessingofSacrifice.MinRangeFriend, BlessingofSacrifice.MaxRangeFriend))
+            {
+                BlessingofSacrifice.Cast();
+                return;
+            }
+
+            //Holy Shock on Target
+            if (Target.HealthPercent < MySettings.UseHolyShockBelowTargetPercentage && HolyShock.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, HolyShock.MinRangeFriend, HolyShock.MaxRangeFriend))
+            {
+                //Holy Avenger Buff
+                if (MySettings.UseHolyAvenger && HolyAvenger.IsSpellUsable)
+                {
+                    HolyAvenger.Cast();
+                    return;
+                }
+                HolyShock.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Light of Dawn on Target
+            if (Target.HealthPercent < MySettings.UseLightofDawnBelowTargetPercentage && LightofDawn.IsSpellUsable &&
+                ((CombatClass.InSpellRange(Target, 0, 10f) && Target.GetPlayerInSpellRange(5f) > MySettings.UseLightofDawnAbovePlayerDensity) ||
+                 ObjectManager.Me.GetPlayerInSpellRange(5f) > MySettings.UseLightofDawnAbovePlayerDensity) &&
+                DamagedPlayers > MySettings.UseLightofDawnAboveDamagedPlayer)
+            {
+                LightofDawn.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Light's Hammer on Target
+            if (PartyHpMedian < MySettings.UseLightsHammerBelowPartyPercentage && LightsHammer.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, LightsHammer.MinRangeFriend, LightsHammer.MaxRangeFriend) &&
+                Target.GetPlayerInSpellRange(10f) > MySettings.UseLightsHammerAbovePlayerDensity &&
+                DamagedPlayers > MySettings.UseLightsHammerAboveDamagedPlayer)
+            {
+                LightsHammer.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Holy Prism on Target
+            if (PartyHpMedian < MySettings.UseHolyPrismBelowPartyPercentage && HolyPrism.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, HolyPrism.MinRangeFriend, HolyPrism.MaxRangeFriend) &&
+                Target.GetPlayerInSpellRange(15f) > MySettings.UseHolyPrismAbovePlayerDensity &&
+                DamagedPlayers > MySettings.UseHolyPrismAboveDamagedPlayer)
+            {
+                HolyPrism.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Bestow Faith on Tank
+            if (Tank.HealthPercent < MySettings.UseBestowFaithBelowTankPercentage && BestowFaith.IsSpellUsable &&
+                CombatClass.InSpellRange(Tank, BestowFaith.MinRangeFriend, BestowFaith.MaxRangeFriend))
+            {
+                BestowFaith.Cast(false, true, false, Tank.GetUnitId());
+                return;
+            }
+
+            //Tyr's Deliverance on Target
+            if (PartyHpMedian < MySettings.UseTyrsDeliveranceBelowPartyPercentage && TyrsDeliverance.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, TyrsDeliverance.MinRangeFriend, TyrsDeliverance.MaxRangeFriend) &&
+                Target.GetPlayerInSpellRange(15f) > MySettings.UseTyrsDeliveranceAbovePlayerDensity &&
+                DamagedPlayers > MySettings.UseTyrsDeliveranceAboveDamagedPlayer)
+            {
+                TyrsDeliverance.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Light of the Martyr on Target
+            if (Target.HealthPercent < MySettings.UseLightoftheMartyrBelowTargetPercentage &&
+                ObjectManager.Me.HealthPercent > MySettings.UseLightoftheMartyrAbovePercentage && LightoftheMartyr.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, LightoftheMartyr.MinRangeFriend, LightoftheMartyr.MaxRangeFriend))
+            {
+                LightoftheMartyr.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Holy Light on Target when Avenging Wrath is up
+            if (Target.HealthPercent < MySettings.UseHolyLightBelowTargetPercentage && HolyLight.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, HolyLight.MinRangeFriend, HolyLight.MaxRangeFriend) && AvengingWrath.HaveBuff)
+            {
+                HolyLight.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Flash of Light on Target
+            if (Target.HealthPercent < MySettings.UseFlashofLightBelowTargetPercentage && FlashofLight.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, FlashofLight.MinRangeFriend, FlashofLight.MaxRangeFriend))
+            {
+                FlashofLight.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Holy Light on Target
+            if (Target.HealthPercent < MySettings.UseHolyLightBelowTargetPercentage && HolyLight.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, HolyLight.MinRangeFriend, HolyLight.MaxRangeFriend))
+            {
+                HolyLight.Cast(false, true, false, Target.GetUnitId());
+                return;
+            }
+
+            //Rule of Law Buff
+            if (MySettings.UseRuleofLaw && RuleofLaw.IsSpellUsable)
+            {
+                RuleofLaw.Cast();
+            }
+
+            //Filler Damage
+            if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood &&
+                !Judgment.TargetHaveBuff)
+            {
+                Judgment.Cast();
+                return;
+            }
+            if (MySettings.UseHolyShock && HolyShock.IsSpellUsable && HolyShock.IsHostileDistanceGood)
+            {
+                HolyShock.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
     #region Nested type: PaladinHolySettings
@@ -990,9 +1496,124 @@ public class PaladinHoly
     [Serializable]
     public class PaladinHolySettings : Settings
     {
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
+        public bool UseBerserking = true;
+        public bool UseBloodFury = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public int UseTyrsDeliveranceBelowPartyPercentage = 50;
+        public int UseTyrsDeliveranceAbovePlayerDensity = 3;
+        public int UseTyrsDeliveranceAboveDamagedPlayer = 3;
+
+        /* Offensive Spells */
+        public bool UseHolyShock = true;
+        public bool UseJudgment = true;
+
+        /* Defensive Spells */
+        public int UseBlessingofSacrificeAbovePercentage = 80;
+        public int UseBlessingofSacrificeBelowTankPercentage = 20;
+        public int UseDivineProtectionBelowPercentage = 70;
+        public int UseDivineShieldBelowPercentage = 10;
+
+        /* Healing Buffs */
+        public bool UseBeaconofFaith = true;
+        public bool UseBeaconofLight = true;
+        public bool UseBeaconofVirtue = true;
+        public int UseBeaconofVirtueAbovePlayerDensity = 2;
+        /* Healing Spells */
+        public int UseBestowFaithBelowTankPercentage = 40;
+        public int UseFlashofLightBelowTargetPercentage = 60;
+        public int UseHolyLightBelowTargetPercentage = 90;
+        public int UseHolyPrismAbovePlayerDensity = 2;
+        public int UseHolyPrismAboveDamagedPlayer = 2;
+        public int UseHolyPrismBelowPartyPercentage = 60;
+        public int UseHolyShockBelowTargetPercentage = 80;
+        public int UseLightofDawnAbovePlayerDensity = 2;
+        public int UseLightofDawnAboveDamagedPlayer = 2;
+        public int UseLightofDawnBelowTargetPercentage = 60;
+        public int UseLightoftheMartyrAbovePercentage = 80;
+        public int UseLightoftheMartyrBelowTargetPercentage = 30;
+        /* Healing Cooldowns */
+        public int UseAvengingWrathBelowTargetPercentage = 40;
+        public int UseAuraMasteryBelowPartyPercentage = 40;
+        public bool UseHolyAvenger = true;
+        public int UseLayonHandsBelowTargetPercentage = 10;
+        public int UseLightsHammerAbovePlayerDensity = 2;
+        public int UseLightsHammerAboveDamagedPlayer = 4;
+        public int UseLightsHammerBelowPartyPercentage = 60;
+
+        /* Utility Spells */
+        public bool UseDivineSteed = true;
+        public bool UseRuleofLaw = true;
+
+        /* Game Settings */
+        public bool UseTrinketOne = true;
+        public bool UseTrinketTwo = true;
+        public int PrioritizeTankBelowPercentage = 40;
+        public int PrioritizeMeBelowPercentage = 40;
+
         public PaladinHolySettings()
         {
             ConfigWinForm("Paladin Protection Settings");
+            /* Professions & Racials */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Essence of G'Hanir", "UseTyrsDeliveranceAbovePlayerDensity", "Artifact Spells", "AbovePercentage", "Players");
+            AddControlInWinForm("Use Essence of G'Hanir", "UseTyrsDeliveranceAboveDamagedPlayer", "Artifact Spells", "AbovePercentage", "Damaged Players");
+            AddControlInWinForm("Use Essence of G'Hanir", "UseTyrsDeliveranceBelowPartyPercentage", "Artifact Spells", "BelowPercentage", "Party Life");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spells");
+            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spells");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Blessing of Sacrifice", "UseBlessingofSacrificeAbovePercentage", "Defensive Spells", "AbovePercentage", "Life");
+            AddControlInWinForm("Use Blessing of Sacrifice", "UseBlessingofSacrificeBelowTankPercentage", "Defensive Spells", "BelowPercentage", "Tank Life");
+            AddControlInWinForm("Use Divine Protection", "UseDivineProtectionBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Divine Shield", "UseDivineShieldBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Healing Buffs */
+            AddControlInWinForm("Use Beacon of Faith", "UseBeaconofFaith", "Healing Buffs");
+            AddControlInWinForm("Use Beacon of Light", "UseBeaconofLight", "Healing Buffs");
+            AddControlInWinForm("Use Beacon of Virtue", "UseBeaconofVirtue", "Healing Buffs");
+            AddControlInWinForm("Use Beacon of Virtue", "UseBeaconofVirtueAbovePlayerDensity", "Healing Buffs", "AbovePercentage", "Players");
+            /* Healing Spells */
+            AddControlInWinForm("Use Bestow Faith", "UseBestowFaithBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
+            AddControlInWinForm("Use Flash of Light", "UseFlashofLightBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Holy Light", "UseHolyLightBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Holy Prism", "UseHolyPrismAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
+            AddControlInWinForm("Use Holy Prism", "UseHolyPrismAboveDamagedPlayer", "Healing Spells", "AbovePercentage", "Damaged Players");
+            AddControlInWinForm("Use Holy Prism", "UseHolyPrismBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Holy Shock", "UseHolyShockBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
+            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnAboveDamagedPlayer", "Healing Spells", "AbovePercentage", "Damaged Players");
+            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Light of the Martyr", "UseLightoftheMartyrAbovePercentage", "Healing Spells", "AbovePercentage", "Life");
+            AddControlInWinForm("Use Light of the Martyr", "UseLightoftheMartyrBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
+            /* Healing Cooldowns */
+            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrathBelowTargetPercentage", "Healing Cooldowns", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Aura Mastery", "UseAuraMasteryBelowPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Healing Cooldowns");
+            AddControlInWinForm("Use Lay on Hands", "UseLayonHandsBelowTargetPercentage", "Healing Cooldowns", "BelowPercentage", "Target Life");
+            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerAbovePlayerDensity", "Healing Cooldowns", "AbovePercentage", "Players");
+            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerAboveDamagedPlayer", "Healing Cooldowns", "AbovePercentage", "Damaged Players");
+            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerBelowPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Party Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Divine Steed", "UseDivineSteed", "Utility Spells");
+            AddControlInWinForm("Use Rule of Law", "UseRuleofLaw", "Utility Spells");
+            /* Game Settings */
+            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
+            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
+            AddControlInWinForm("Prioritize Tank", "PrioritizeTankBelowPercentage", "Game Settings", "BelowPercentage");
+            AddControlInWinForm("Prioritize Me", "PrioritizeMeBelowPercentage", "Game Settings", "BelowPercentage");
         }
 
         public static PaladinHolySettings CurrentSetting { get; set; }
@@ -1026,6 +1647,9 @@ public class ShamanRestoration
 
     private bool CombatMode = true;
 
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
+
     private WoWPlayer Tank = new WoWPlayer(0);
     private WoWPlayer Target = new WoWPlayer(0);
     private int DamagedPlayers;
@@ -1033,61 +1657,79 @@ public class ShamanRestoration
 
     #endregion
 
+    #region Professions & Racial
+
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
+
+    #endregion
+
     #region Talents
 
-    //public readonly Spell Deluge = new Spell("Deluge");
-    //public readonly Spell HighTide = new Spell("High Tide");
+    //private readonly Spell Deluge = new Spell("Deluge");
+    //private readonly Spell HighTide = new Spell("High Tide");
 
     #endregion
 
-    #region Shaman Buffs
+    #region Artifact Spells
 
-    public readonly Spell Riptide = new Spell("Riptide");
-    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
-
-    #endregion
-
-    #region Offensive Cooldowns
-
-    public readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
-    public readonly Spell Heroism = new Spell("Heroism"); //No GCD
+    private readonly Spell GiftoftheQueen = new Spell("Gift of the Queen");
 
     #endregion
 
-    #region Defensive Cooldowns
+    #region Offensive Spells
 
-    //public readonly Spell AncestralGuidance = new Spell("Ancestral Guidance");
-    //public readonly Spell CloudburstTotem  = new Spell("Cloudburst Totem");
-    public readonly Spell EarthenShieldTotem = new Spell("Earthen Shield Totem");
+    private readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
+    private readonly Spell Heroism = new Spell("Heroism"); //No GCD
+
+    #endregion
+
+    #region Healing Buffs
+
+    private readonly Spell Riptide = new Spell("Riptide");
+
+    #endregion
+
+    #region Healing Spells
+
+    private readonly Spell ChainHeal = new Spell("Chain Heal");
+    private readonly Spell HealingRain = new Spell("Healing Rain");
+    private readonly Spell HealingSurge = new Spell("Healing Surge");
+    private readonly Spell HealingWave = new Spell("Healing Wave");
+
+    #endregion
+
+    #region Healing Cooldowns
+
+    //private readonly Spell AncestralGuidance = new Spell("Ancestral Guidance");
+    //private readonly Spell CloudburstTotem  = new Spell("Cloudburst Totem");
+    private readonly Spell EarthenShieldTotem = new Spell("Earthen Shield Totem");
     private Timer EarthenShieldTotemCooldown = new Timer(0);
-    public readonly Spell HealingStreamTotem = new Spell("Healing Stream Totem");
+    private readonly Spell HealingStreamTotem = new Spell("Healing Stream Totem");
     private Timer HealingStreamTotemCooldown = new Timer(0);
-    public readonly Spell HealingTideTotem = new Spell("Healing Tide Totem");
+    private readonly Spell HealingTideTotem = new Spell("Healing Tide Totem");
     private Timer HealingTideTotemCooldown = new Timer(0);
-    public readonly Spell SpiritLinkTotem = new Spell("Spirit Link Totem");
+    private readonly Spell SpiritLinkTotem = new Spell("Spirit Link Totem");
     private Timer SpiritLinkTotemCooldown = new Timer(0);
-    //public readonly Spell SpiritwalkersGrace = new Spell("Spiritwalker's Grace");//No GCD
+    //private readonly Spell SpiritwalkersGrace = new Spell("Spiritwalker's Grace");//No GCD
 
     #endregion
 
-    #region Healing Cooldown
+    #region Utility Spells
 
-    public readonly Spell ChainHeal = new Spell("Chain Heal");
-    public readonly Spell HealingRain = new Spell("Healing Rain");
-    public readonly Spell HealingSurge = new Spell("Healing Surge");
-    public readonly Spell HealingWave = new Spell("Healing Wave");
-
-    #endregion
-
-    #region Utility Cooldowns
-
-    public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
+    private readonly Spell GhostWolf = new Spell("Ghost Wolf");
+    private readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
 
     #endregion
 
     public ShamanRestoration()
     {
-        Main.InternalRange = 30f;
+        Main.InternalRange = HealingSurge.MaxRangeFriend;
         MySettings = ShamanRestorationSettings.GetSettings();
         Main.DumpCurrentSettings<ShamanRestorationSettings>(MySettings);
 
@@ -1126,23 +1768,28 @@ public class ShamanRestoration
 
                                 foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
-                                    if (playerInMyParty <= 0) continue;
+                                    if (playerInMyParty <= 0)
+                                        continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player) continue;
+                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                                        continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                                        continue;
 
                                     //Calculate Class Variables
                                     PartyHpMedian += currentPlayer.HealthPercent;
                                     alivePlayers++;
                                     if (currentPlayer.HealthPercent < 100)
                                         DamagedPlayers++;
+
                                     //Setup Target
                                     if (currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         Target = currentPlayer;
                                     }
+
                                     //Setup Tank
                                     if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && Tank != currentPlayer)
                                     {
@@ -1171,28 +1818,13 @@ public class ShamanRestoration
                                 {
                                     Target = Tank;
                                 }
-
-                                //Setup Target //TODO implement Casts that doesn't need to be Targeted first.
-                                //if (ObjectManager.Me.Target != Target.Guid && HealerClass.InRange(Target) && Target.IsAlive)
-                                //{
-                                //    Logging.WriteFight("New Target: " + Target.Name);
-                                //    Interact.InteractWith(Target.GetBaseAddress);
-                                //}
-                                //else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                //{
-                                //    //Logging.WriteFight("New Target: " + ObjectManager.Me.Name);
-                                //    //Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
-                                //}
                             }
                         }
+
                         if (Fight.InFight || PartyHpMedian < 90)
-                        {
                             Combat();
-                        }
                         else
-                        {
                             Patrolling();
-                        }
                     }
                 }
                 else
@@ -1204,27 +1836,7 @@ public class ShamanRestoration
         }
     }
 
-    private void Test()
-    {
-        Logging.WriteDebug("HealingStreamTotem.IsSpellUsable == " + HealingStreamTotem.IsSpellUsable);
-        Usefuls.SleepGlobalCooldown();
-        try
-        {
-            Memory.WowMemory.GameFrameLock();
-
-            if (PartyHpMedian <= MySettings.UseHealingStreamTotemAtPartyPercentage && HealingStreamTotem.IsSpellUsable &&
-                MySettings.UseHealingStreamTotem && HealingStreamTotem.KnownSpell)
-            {
-                HealingStreamTotem.Cast();
-                return;
-            }
-        }
-        finally
-        {
-            Memory.WowMemory.GameFrameUnLock();
-        }
-    }
-
+    // For Movement Spells (always return after Casting)
     private void Patrolling()
     {
         if (!ObjectManager.Me.IsMounted)
@@ -1238,22 +1850,32 @@ public class ShamanRestoration
 
             if (ObjectManager.Me.GetMove)
             {
-                //Wind Rush Totem
-                if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
+                //Movement Buffs
+                if (!Darkflight.HaveBuff) // doesn't stack
                 {
-                    SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
-                    return;
+                    if (MySettings.UseDarkflight && Darkflight.IsSpellUsable) //they don't stack
+                    {
+                        Darkflight.Cast();
+                        return;
+                    }
+                    if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
+                    {
+                        WindRushTotem.CastAtPosition(ObjectManager.Me.Position);
+                        return;
+                    }
                 }
 
                 //Ghost Wolf
                 if (!GhostWolf.HaveBuff && GhostWolf.IsSpellUsable && MySettings.UseGhostWolf)
                 {
                     GhostWolf.Cast();
+                    return;
                 }
             }
         }
     }
 
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
     private void Combat()
     {
         //Log
@@ -1262,35 +1884,13 @@ public class ShamanRestoration
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-
-        Burst(); //GCD independent
-        GCDCycle(); //GCD dependent
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void Burst()
-    {
-        //Burst Buffs
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
-        if (Bloodlust.IsSpellUsable && !ObjectManager.Me.HaveBuff(57724) && MySettings.UseBloodlustHeroism)
-        {
-            Bloodlust.Cast();
-        }
-        if (Heroism.IsSpellUsable && !ObjectManager.Me.HaveBuff(57723) && MySettings.UseBloodlustHeroism)
-        {
-            Heroism.Cast();
-        }
-    }
-
-    private void GCDCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1298,9 +1898,111 @@ public class ShamanRestoration
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Logging.WriteFight("Tank.GetUnitId() == " + Tank.GetUnitId());
-            //Logging.WriteFight("Target.GetUnitId() == " + Target.GetUnitId());
-            //Logging.WriteFight("------------------");
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Bloodlust && Heroism
+            if (Bloodlust.IsSpellUsable && !ObjectManager.Me.HaveBuff(57724) && MySettings.UseBloodlustHeroism)
+            {
+                Bloodlust.Cast();
+            }
+            if (Heroism.IsSpellUsable && !ObjectManager.Me.HaveBuff(57723) && MySettings.UseBloodlustHeroism)
+            {
+                Heroism.Cast();
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
             //Heal Buffs
             if ( /*!Tank.HaveBuff(61295)*/!Tank.UnitAura(61295, ObjectManager.Me.Guid).IsValid && Riptide.IsSpellUsable && Tank.HealthPercent <= MySettings.UseRiptideAtTankPercentage &&
                                           CombatClass.InSpellRange(Tank, Riptide.MinRangeFriend, Riptide.MaxRangeFriend) && MySettings.UseRiptide)
@@ -1325,12 +2027,20 @@ public class ShamanRestoration
                 return;
             }
 
+            //Artifact AOE Heal
+            if (PartyHpMedian < MySettings.UseGiftoftheQueenBelowPartyPercentage && GiftoftheQueen.IsSpellUsable &&
+                Target.GetPlayerInSpellRange(12f) > MySettings.UseGiftoftheQueenAbovePlayerDensity)
+            {
+                GiftoftheQueen.CastAtPosition(Target.Position);
+                return;
+            }
+
             //Heal Cooldowns
             if (Target.HealthPercent <= MySettings.UseSpiritLinkTotemBelowPercentage && SpiritLinkTotemCooldown.IsReady &&
                 CombatClass.InSpellRange(Target, SpiritLinkTotem.MinRangeFriend, SpiritLinkTotem.MaxRangeFriend) &&
                 MySettings.UseSpiritLinkTotem && SpiritLinkTotem.KnownSpell)
             {
-                SpellManager.CastSpellByIDAndPosition(SpiritLinkTotem.Id, Target.Position);
+                SpiritLinkTotem.CastAtPosition(Target.Position);
                 SpiritLinkTotemCooldown = new Timer(1000*180);
                 return;
             }
@@ -1352,7 +2062,7 @@ public class ShamanRestoration
                 CombatClass.InSpellRange(Target, EarthenShieldTotem.MinRangeFriend, EarthenShieldTotem.MaxRangeFriend) &&
                 MySettings.UseEarthenShieldTotem && EarthenShieldTotem.KnownSpell)
             {
-                SpellManager.CastSpellByIDAndPosition(EarthenShieldTotem.Id, Target.Position);
+                EarthenShieldTotem.CastAtPosition(Target.Position);
                 EarthenShieldTotemCooldown = new Timer(1000*60);
                 return;
             }
@@ -1401,21 +2111,26 @@ public class ShamanRestoration
     [Serializable]
     public class ShamanRestorationSettings : Settings
     {
-        /* Shaman Buffs */
-        public bool UseGhostWolf = true;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
+        public bool UseBerserking = true;
+        public bool UseBloodFury = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public int UseGiftoftheQueenBelowPartyPercentage = 50;
+        public int UseGiftoftheQueenAbovePlayerDensity = 3;
+
+        /* Offensive Spells */
+        public bool UseBloodlustHeroism = false;
+
         /* Healing Buffs */
         public bool UseRiptide = true;
         public int UseRiptideBelowPercentage = 95;
         public int UseRiptideAtTankPercentage = 95;
-        /* Healing Cooldowns */
-        public bool UseEarthenShieldTotem = true;
-        public int UseEarthenShieldTotemBelowPercentage = 95;
-        public bool UseHealingStreamTotem = true;
-        public int UseHealingStreamTotemAtPartyPercentage = 95;
-        public bool UseHealingTideTotem = true;
-        public int UseHealingTideTotemAtPartyPercentage = 40;
-        public bool UseSpiritLinkTotem = true;
-        public int UseSpiritLinkTotemBelowPercentage = 20;
         /* Healing Spells */
         public bool UseChainHeal = true;
         public int UseChainHealAtDamagedPlayers = 4;
@@ -1429,56 +2144,74 @@ public class ShamanRestoration
         public bool UseHealingWave = true;
         public int UseHealingWaveBelowPercentage = 95;
         public int UseHealingWaveWithTidalWavesBelowPercentage = 60;
-        /* Utility Cooldowns */
+        /* Healing Cooldowns */
+        public bool UseEarthenShieldTotem = true;
+        public int UseEarthenShieldTotemBelowPercentage = 95;
+        public bool UseHealingStreamTotem = true;
+        public int UseHealingStreamTotemAtPartyPercentage = 95;
+        public bool UseHealingTideTotem = true;
+        public int UseHealingTideTotemAtPartyPercentage = 40;
+        public bool UseSpiritLinkTotem = true;
+        public int UseSpiritLinkTotemBelowPercentage = 20;
+
+        /* Utility Spells */
+        public bool UseGhostWolf = true;
         public bool UseWindRushTotem = true;
-        /* Offensive Cooldowns */
-        public bool UseBloodlustHeroism = false;
+
         /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public int BurstDistance = 30;
         public int PrioritizeTankBelowPercentage = 40;
         public int PrioritizeMeBelowPercentage = 40;
 
         public ShamanRestorationSettings()
         {
             ConfigWinForm("Shaman Restoration Settings");
-            /* Shaman Buffs */
-            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
+            /* Professions & Racials */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Gift of the Queen", "UseGiftoftheQueenBelowPartyPercentage", "Artifact Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Gift of the Queen", "UseGiftoftheQueenAbovePlayerDensity", "Artifact Spells", "AbovePercentage", "Players");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Spells");
             /* Healing Buffs */
             AddControlInWinForm("Use Riptide", "UseRiptide", "Healing Buffs");
             AddControlInWinForm("Use Riptide", "UseRiptideBelowPercentage", "Healing Buffs", "BelowPercentage", "Life");
             AddControlInWinForm("Use Riptide On Tank\n(highest possible priority)", "UseRiptideAtTankPercentage", "Healing Buffs", "BelowPercentage", "Life");
-            /* Healing Cooldowns */
-            AddControlInWinForm("Use Earthen Shield Totem", "UseEarthenShieldTotem", "Healing Cooldowns");
-            AddControlInWinForm("Use Earthen Shield Totem If Party Average", "UseEarthenShieldTotemBelowPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Healing Stream Totem", "UseHealingStreamTotem", "Healing Cooldowns");
-            AddControlInWinForm("Use Healing Stream Totem If Party Average", "UseHealingStreamTotemAtPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Healing Tide Totem", "UseHealingTideTotem", "Healing Cooldowns");
-            AddControlInWinForm("Use Healing Tide Totem If Party Average", "UseHealingTideTotemAtPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotem", "Healing Cooldowns");
-            AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotemBelowPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
             /* Healing Spells */
             AddControlInWinForm("Use Healing Rain", "UseHealingRain", "Healing Spells");
-            AddControlInWinForm("Use Healing Rain If Damaged Players stay together", "UseHealingRainAtPlayerDensity", "Healing Spells"); //TODO add AbovePercentage alternative
-            AddControlInWinForm("Use Healing Rain If Party Average", "UseHealingRainAtPartyPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Healing Rain If Damaged Players stay together", "UseHealingRainAtPlayerDensity", "Healing Spells", "AbovePercentage", "Players"); //TODO add AbovePercentage alternative
+            AddControlInWinForm("Use Healing Rain If Party Average", "UseHealingRainAtPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
             AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spells");
             AddControlInWinForm("Use Chain Heal If Damaged Players Count Reaches", "UseChainHealAtDamagedPlayers", "Healing Spells"); //TODO add AbovePercentage alternative
-            AddControlInWinForm("Use Chain Heal If Party Average", "UseChainHealAtPartyPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Chain Heal If Party Average", "UseChainHealAtPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
             AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spells");
             AddControlInWinForm("Use Healing Surge Only While Tidal Waves Buff Is Active", "UseHealingSurgeWithTidalWavesOnly", "Healing Spells");
             AddControlInWinForm("Use Healing Surge", "UseHealingSurgeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Healing Wave", "UseHealingWave", "Healing Spells");
             AddControlInWinForm("Use Healing Wave", "UseHealingWaveBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Healing Wave\nWhile Tidal Waves Buff Is Active", "UseHealingWaveWithTidalWavesBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Cooldowns");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
+            /* Healing Cooldowns */
+            AddControlInWinForm("Use Earthen Shield Totem", "UseEarthenShieldTotem", "Healing Cooldowns");
+            AddControlInWinForm("Use Earthen Shield Totem If Party Average", "UseEarthenShieldTotemBelowPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Healing Stream Totem", "UseHealingStreamTotem", "Healing Cooldowns");
+            AddControlInWinForm("Use Healing Stream Totem If Party Average", "UseHealingStreamTotemAtPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Healing Tide Totem", "UseHealingTideTotem", "Healing Cooldowns");
+            AddControlInWinForm("Use Healing Tide Totem If Party Average", "UseHealingTideTotemAtPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotem", "Healing Cooldowns");
+            AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotemBelowPercentage", "Healing Cooldowns", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Utility Spells");
+            AddControlInWinForm("Use Wind Rush Totem", "UseWindRushTotem", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Burst If Target is below Range", "BurstDistance", "Game Settings"); //TODO add BelowPercentage alternative
             AddControlInWinForm("Prioritize Tank", "PrioritizeTankBelowPercentage", "Game Settings", "BelowPercentage");
             AddControlInWinForm("Prioritize Me", "PrioritizeMeBelowPercentage", "Game Settings", "BelowPercentage");
         }

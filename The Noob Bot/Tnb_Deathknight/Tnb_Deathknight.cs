@@ -216,71 +216,72 @@ public class DeathknightBlood
 
     #region Buffs
 
-    public readonly Spell BoneShield = new Spell(195181);
-    public readonly Spell CrimsonScourge = new Spell(81141);
+    private readonly Spell BoneShield = new Spell(195181);
+    private readonly Spell DarkSuccor = new Spell(101568);
+    private readonly Spell CrimsonScourge = new Spell(81141);
 
     #endregion
 
     #region Dots
 
-    public readonly Spell BloodPlague = new Spell(55078);
+    private readonly Spell BloodPlague = new Spell(55078);
 
     #endregion
 
     #region Legion Artifact Spells
 
-    public readonly Spell Consumption = new Spell("Consumption");
+    private readonly Spell Consumption = new Spell("Consumption");
 
     #endregion
 
     #region Offensive Spell
 
-    public readonly Spell BloodBoil = new Spell("Blood Boil");
-    public readonly Spell DeathsCaress = new Spell("Death's Caress");
-    public readonly Spell DeathandDecay = new Spell("Death and Decay");
-    public readonly Spell DeathStrike = new Spell("Death Strike");
-    public readonly Spell HearthStrike = new Spell("Hearth Strike");
-    public readonly Spell Marrowrend = new Spell("Marrowrend");
+    private readonly Spell BloodBoil = new Spell("Blood Boil");
+    private readonly Spell DeathsCaress = new Spell("Death's Caress");
+    private readonly Spell DeathandDecay = new Spell("Death and Decay");
+    private readonly Spell DeathStrike = new Spell("Death Strike");
+    private readonly Spell HearthStrike = new Spell("Hearth Strike");
+    private readonly Spell Marrowrend = new Spell("Marrowrend");
 
     #endregion
 
     #region Defensive Spells
 
-    public readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
-    public readonly Spell BloodMirror = new Spell("Blood Mirror");
-    public readonly Spell DancingRuneWeapon = new Spell("Dancing Rune Weapon");
-    public readonly Spell MarkofBlood = new Spell("Mark of Blood");
-    public readonly Spell RuneTap = new Spell("Rune Tap");
-    public readonly Spell Tombstone = new Spell("Tombstone");
-    public readonly Spell VampiricBlood = new Spell("Vampiric Blood");
+    private readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
+    private readonly Spell BloodMirror = new Spell("Blood Mirror");
+    private readonly Spell DancingRuneWeapon = new Spell("Dancing Rune Weapon");
+    private readonly Spell MarkofBlood = new Spell("Mark of Blood");
+    private readonly Spell RuneTap = new Spell("Rune Tap");
+    private readonly Spell Tombstone = new Spell("Tombstone");
+    private readonly Spell VampiricBlood = new Spell("Vampiric Blood");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell Blooddrinker = new Spell("Blooddrinker");
-    public readonly Spell Bonestorm = new Spell("Bonestorm");
+    private readonly Spell Blooddrinker = new Spell("Blooddrinker");
+    private readonly Spell Bonestorm = new Spell("Bonestorm");
 
     #endregion
 
     #region Utility Spells
 
-    public readonly Spell Asphyxiate = new Spell("Asphyxiate");
-    public readonly Spell BloodTap = new Spell("Blood Tap");
+    private readonly Spell Asphyxiate = new Spell("Asphyxiate");
+    private readonly Spell BloodTap = new Spell("Blood Tap");
     private readonly Spell DarkCommand = new Spell("Dark Command");
-    public readonly Spell DeathGrip = new Spell("Death Grip");
-    public readonly Spell GorefiendsGrasp = new Spell("Gorefriend's Grasp");
-    //public readonly Spell MindFreeze = new Spell("Mind Freeze");
-    public readonly Spell RaiseAlly = new Spell("Raise Ally");
-    public readonly Spell Soulgorge = new Spell("Soulgorge");
-    public readonly Spell WraithWalk = new Spell("Wraith Walk");
+    private readonly Spell DeathGrip = new Spell("Death Grip");
+    private readonly Spell GorefiendsGrasp = new Spell("Gorefriend's Grasp");
+    //private readonly Spell MindFreeze = new Spell("Mind Freeze");
+    private readonly Spell RaiseAlly = new Spell("Raise Ally");
+    private readonly Spell Soulgorge = new Spell("Soulgorge");
+    private readonly Spell WraithWalk = new Spell("Wraith Walk");
 
     #endregion
 
     public DeathknightBlood()
     {
-        Main.InternalRange = 40f;
-        Main.InternalAggroRange = 40f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = DeathGrip.MaxRangeHostile;
         Main.InternalLightHealingSpell = null;
         MySettings = DeathknightBloodSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightBloodSettings>(MySettings);
@@ -568,7 +569,7 @@ public class DeathknightBlood
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseBloodBoil && BloodBoil.IsSpellUsable && BloodBoil.IsHostileDistanceGood && BloodPlague.TargetHaveBuff)
+            if (MySettings.UseBloodBoil && BloodBoil.IsSpellUsable && BloodBoil.IsHostileDistanceGood && !BloodPlague.TargetHaveBuff)
             {
                 BloodBoil.Cast();
                 return;
@@ -576,6 +577,12 @@ public class DeathknightBlood
             if (MySettings.UseMarrowrend && Marrowrend.IsSpellUsable && Marrowrend.IsHostileDistanceGood && BoneShield.BuffStack == 0)
             {
                 Marrowrend.Cast();
+                return;
+            }
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood &&
+                DarkSuccor.HaveBuff)
+            {
+                DeathStrike.Cast();
                 return;
             }
             if (MySettings.UseConsumption && Consumption.IsSpellUsable && Consumption.IsHostileDistanceGood)
@@ -740,7 +747,7 @@ public class DeathknightBlood
             AddControlInWinForm("Use Dark Command", "UseDarkCommand", "Utility Spells");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");
             AddControlInWinForm("Use Gorefiend's Grasp", "UseGorefiendsGrasp", "Utility Spells");
-            AddControlInWinForm("Use Wrait hWalk", "UseWraithWalk", "Utility Spells");
+            AddControlInWinForm("Use Wraith Walk", "UseWraithWalk", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -802,16 +809,17 @@ public class DeathknightFrost
 
     #region Buffs
 
-    public readonly Spell KillingMachine = new Spell(51128);
-    public readonly Spell Rime = new Spell(59057);
-    public readonly Spell Razorice = new Spell(51714);
-    public readonly Spell RuneofRazorice = new Spell(53343);
+    private readonly Spell DarkSuccor = new Spell(101568);
+    private readonly Spell KillingMachine = new Spell(51128);
+    private readonly Spell Rime = new Spell(59057);
+    private readonly Spell Razorice = new Spell(51714);
+    private readonly Spell RuneofRazorice = new Spell(53343);
 
     #endregion
 
     #region Dots
 
-    public readonly Spell FrostFever = new Spell(55095);
+    private readonly Spell FrostFever = new Spell(55095);
 
     #endregion
 
@@ -824,36 +832,38 @@ public class DeathknightFrost
     #region Offensive Spell
 
     private readonly Spell BreathofSindragosa = new Spell("Breath of Sindragosa");
-    public readonly Spell EmpowerRuneWeapon = new Spell("Empower Rune Weapon");
-    public readonly Spell FrostStrike = new Spell("Frost Strike");
-    public readonly Spell Frostscythe = new Spell("Frostscythe");
-    public readonly Spell GlacialAdvance = new Spell("Glacial Advance");
-    public readonly Spell HornofWinter = new Spell("Horn of Winter");
-    public readonly Spell HowlingBlast = new Spell("Howling Blast");
-    public readonly Spell HungeringRuneWeapon = new Spell("Hungering Rune Weapon");
-    public readonly Spell Obliterate = new Spell("Obliterate");
-    public readonly Spell Obliteration = new Spell("Obliteration");
-    public readonly Spell PillarofFrost = new Spell("Pillar of Frost");
-    public readonly Spell RemorselessWinter = new Spell("Remorseless Winter");
+    private readonly Spell DeathStrike = new Spell("Death Strike");
+    private readonly Spell EmpowerRuneWeapon = new Spell("Empower Rune Weapon");
+    private readonly Spell FrostStrike = new Spell("Frost Strike");
+    private readonly Spell Frostscythe = new Spell("Frostscythe");
+    private readonly Spell GlacialAdvance = new Spell("Glacial Advance");
+    private readonly Spell HornofWinter = new Spell("Horn of Winter");
+    private readonly Spell HowlingBlast = new Spell("Howling Blast");
+    private readonly Spell HungeringRuneWeapon = new Spell("Hungering Rune Weapon");
+    private readonly Spell Obliterate = new Spell("Obliterate");
+    private readonly Spell Obliteration = new Spell("Obliteration");
+    private readonly Spell PillarofFrost = new Spell("Pillar of Frost");
+    private readonly Spell RemorselessWinter = new Spell("Remorseless Winter");
 
     #endregion
 
     #region Defensive Spells
 
-    public readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
+    private readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
 
     #endregion
 
     #region Utility Spells
 
-    //public readonly Spell BlindingSleet = new Spell("Blinding Sleet");
+    //private readonly Spell BlindingSleet = new Spell("Blinding Sleet");
+    private readonly Spell DeathGrip = new Spell("Death Grip");
 
     #endregion
 
     public DeathknightFrost()
     {
-        Main.InternalRange = 40f;
-        Main.InternalAggroRange = 40f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = DeathGrip.MaxRangeHostile;
         Main.InternalLightHealingSpell = null;
         MySettings = DeathknightFrostSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightFrostSettings>(MySettings);
@@ -1061,6 +1071,12 @@ public class DeathknightFrost
                 HowlingBlast.Cast();
                 return;
             }
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood &&
+                DarkSuccor.HaveBuff)
+            {
+                DeathStrike.Cast();
+                return;
+            }
             if (MySettings.UseSindragosasFury && SindragosasFury.IsSpellUsable && SindragosasFury.IsHostileDistanceGood &&
                 Razorice.BuffStack == 5 && PillarofFrost.HaveBuff)
             {
@@ -1129,6 +1145,12 @@ public class DeathknightFrost
                 HornofWinter.Cast();
                 return;
             }
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && !MySettings.UseDeathStrikeOnlyWithDarkSuccor &&
+                DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
+            {
+                DeathStrike.Cast();
+                return;
+            }
             if (MySettings.UseFrostStrike && FrostStrike.IsSpellUsable && FrostStrike.IsHostileDistanceGood)
             {
                 FrostStrike.Cast();
@@ -1137,6 +1159,11 @@ public class DeathknightFrost
             if (MySettings.UseEmpowerRuneWeapon && EmpowerRuneWeapon.IsSpellUsable)
             {
                 EmpowerRuneWeapon.Cast();
+            }
+            if (MySettings.UseDeathGrip && DeathGrip.IsSpellUsable && DeathGrip.IsHostileDistanceGood)
+            {
+                DeathGrip.Cast();
+                return;
             }
         }
         finally
@@ -1163,6 +1190,8 @@ public class DeathknightFrost
         public bool UseSindragosasFury = true;
 
         /* Offensive Spells */
+        public int UseDeathStrikeBelowPercentage = 100;
+        public bool UseDeathStrikeOnlyWithDarkSuccor = true;
         public bool UseHowlingBlast = true;
         public bool UseEmpowerRuneWeapon = true;
         public bool UseFrostStrike = true;
@@ -1173,6 +1202,9 @@ public class DeathknightFrost
         public bool UseGlacialAdvance = true;
         public bool UsePillarofFrost = true;
         public bool UseObliteration = true;
+
+        /* Utility Spells */
+        public bool UseDeathGrip = true;
 
         /* Defensive Spells */
         public int UseAntiMagicShellBelowPercentage = 0;
@@ -1195,6 +1227,8 @@ public class DeathknightFrost
             /* Artifact Spells */
             AddControlInWinForm("Use Sindragosa's Fury", "UseSindragosasFury", "Artifact Spells");
             /* Offensive Spells */
+            AddControlInWinForm("Use Death Strike", "UseDeathStrikeBelowPercentage", "Offensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Death Strike only with Dark Succor Proc", "UseDeathStrikeOnlyWithDarkSuccor", "Offensive Spells");
             AddControlInWinForm("Use Howling Blast", "UseHowlingBlast", "Offensive Spells");
             AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Spells");
             AddControlInWinForm("Use Frost Strike", "UseFrostStrike", "Offensive Spells");
@@ -1207,6 +1241,8 @@ public class DeathknightFrost
             AddControlInWinForm("Use Obliteration", "UseObliteration", "Offensive Spells");
             /* Defensive Spells */
             AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShellBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -1266,55 +1302,62 @@ public class DeathknightUnholy
 
     #region Buffs
 
-    public readonly Spell DarkSuccor = new Spell(178819);
+    private readonly Spell DarkSuccor = new Spell(101568);
 
     #endregion
 
     #region Dots
 
-    public readonly Spell FesteringWound = new Spell(197147);
-    public readonly Spell SuddenDoom = new Spell(49530);
-    public readonly Spell VirulentPlague = new Spell(191587);
+    private readonly Spell FesteringWound = new Spell(197147);
+    private readonly Spell SuddenDoom = new Spell(49530);
+    private readonly Spell VirulentPlague = new Spell(191587);
 
     #endregion
 
     #region Legion Artifact Spells
 
-    public readonly Spell Apocalypse = new Spell("Apocalypse");
-    public readonly Spell ScourgeofWorldsBuff = new Spell(191748);
+    private readonly Spell Apocalypse = new Spell("Apocalypse");
+    private readonly Spell ScourgeofWorldsBuff = new Spell(191748);
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell BlightedRuneWeapon = new Spell("Blighted Rune Weapon");
-    public readonly Spell ClawingShadows = new Spell("Clawing Shadows");
-    public readonly Spell DarkArbiter = new Spell("Dark Arbiter");
-    public readonly Spell DarkTransformation = new Spell("Dark Transformation");
-    public readonly Spell DeathandDecay = new Spell("Death and Decay");
-    public readonly Spell DeathCoil = new Spell("Death Coil");
-    public readonly Spell Defile = new Spell("Defile");
-    public readonly Spell Epidemic = new Spell("Epidemic");
-    public readonly Spell FesteringStrike = new Spell("Festering Strike");
-    public readonly Spell Outbreak = new Spell("Outbreak");
-    public readonly Spell ScourgeStrike = new Spell("Scourge Strike");
-    public readonly Spell SoulReaper = new Spell("Soul Reaper");
-    public readonly Spell SummonGargoyle = new Spell("Summon Gargoyle");
-    public readonly Spell ArmyoftheDead = new Spell("Army of the Dead");
+    private readonly Spell BlightedRuneWeapon = new Spell("Blighted Rune Weapon");
+    private readonly Spell ClawingShadows = new Spell("Clawing Shadows");
+    private readonly Spell DarkArbiter = new Spell("Dark Arbiter");
+    private readonly Spell DarkTransformation = new Spell("Dark Transformation");
+    private readonly Spell DeathandDecay = new Spell("Death and Decay");
+    private readonly Spell DeathCoil = new Spell("Death Coil");
+    private readonly Spell DeathStrike = new Spell("Death Strike");
+    private readonly Spell Defile = new Spell("Defile");
+    private readonly Spell Epidemic = new Spell("Epidemic");
+    private readonly Spell FesteringStrike = new Spell("Festering Strike");
+    private readonly Spell Outbreak = new Spell("Outbreak");
+    private readonly Spell ScourgeStrike = new Spell("Scourge Strike");
+    private readonly Spell SoulReaper = new Spell("Soul Reaper");
+    private readonly Spell SummonGargoyle = new Spell("Summon Gargoyle");
+    private readonly Spell ArmyoftheDead = new Spell("Army of the Dead");
 
     #endregion
 
     #region Defensive Spells
 
-    public readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
-    public readonly Spell Asphyxiate = new Spell("Asphyxiate");
+    private readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
+    private readonly Spell Asphyxiate = new Spell("Asphyxiate");
+    #endregion
+
+    #region Utility Spells
+
+    private readonly Spell DeathGrip = new Spell("Death Grip");
+    private readonly Spell RaiseDead = new Spell("Raise Dead");
 
     #endregion
 
     public DeathknightUnholy()
     {
-        Main.InternalRange = 40f;
-        Main.InternalAggroRange = 40f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = DeathGrip.MaxRangeHostile;
         Main.InternalLightHealingSpell = null;
         MySettings = DeathknightUnholySettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightUnholySettings>(MySettings);
@@ -1502,6 +1545,13 @@ public class DeathknightUnholy
             {
                 SummonGargoyle.Cast();
             }
+            if (MySettings.UseRaiseDead && RaiseDead.IsSpellUsable &&
+                ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+            {
+                Logging.WriteDebug("Pet: Health == " + ObjectManager.Pet.Health + ", Guid == " + ObjectManager.Pet.Guid + ", IsValid == " + ObjectManager.Pet.IsValid);
+                RaiseDead.Cast();
+                return true;
+            }
             return false;
         }
         finally
@@ -1528,6 +1578,12 @@ public class DeathknightUnholy
             if (MySettings.UseOutbreak && Outbreak.IsSpellUsable && Outbreak.IsHostileDistanceGood && ObjectManager.Target.UnitAura(VirulentPlague.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
             {
                 Outbreak.Cast();
+                return;
+            }
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood &&
+                DarkSuccor.HaveBuff)
+            {
+                DeathStrike.Cast();
                 return;
             }
             if (MySettings.UseDarkTransformation && DarkTransformation.IsSpellUsable)
@@ -1583,10 +1639,22 @@ public class DeathknightUnholy
                 ScourgeStrike.Cast();
                 return;
             }
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && !MySettings.UseDeathStrikeOnlyWithDarkSuccor &&
+                DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood)
+            {
+                DeathStrike.Cast();
+                return;
+            }
             if (MySettings.UseDeathCoil && DeathCoil.IsSpellUsable && DeathCoil.IsHostileDistanceGood &&
-                true /*(SuddenDoom.HaveBuff || !ShadowInfusion.HaveBuff || !DarkTransformation.PetHaveBuff || ObjectManager.Me.RunicPowerPercentage > 90)*/)
+                (!ShadowInfusion.HaveBuff || ObjectManager.Pet.HaveBuff(DarkTransformation.Ids) ||
+                 SuddenDoom.HaveBuff || ObjectManager.Me.RunicPowerPercentage > 90))
             {
                 DeathCoil.Cast();
+                return;
+            }
+            if (MySettings.UseDeathGrip && DeathGrip.IsSpellUsable && DeathGrip.IsHostileDistanceGood)
+            {
+                DeathGrip.Cast();
                 return;
             }
         }
@@ -1620,6 +1688,8 @@ public class DeathknightUnholy
         public bool UseDarkTransformation = true;
         public bool UseDeathandDecay = true;
         public bool UseDeathCoil = true;
+        public int UseDeathStrikeBelowPercentage = 100;
+        public bool UseDeathStrikeOnlyWithDarkSuccor = true;
         public bool UseDefile = true;
         public bool UseFesteringStrike = true;
         public bool UseOutbreak = true;
@@ -1630,6 +1700,10 @@ public class DeathknightUnholy
         /* Defensive Spells */
         public int UseAntiMagicShellBelowPercentage = 50;
         public int UseAsphyxiateBelowPercentage = 50;
+
+        /* Utility Spells */
+        public bool UseDeathGrip = true;
+        public bool UseRaiseDead = true;
 
         /* Game Settings */
         public bool UseTrinketOne = true;
@@ -1655,6 +1729,8 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spells");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spells");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spells");
+            AddControlInWinForm("Use Death Strike", "UseDeathStrikeBelowPercentage", "Offensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Death Strike only with Dark Succor Proc", "UseDeathStrikeOnlyWithDarkSuccor", "Offensive Spells");
             AddControlInWinForm("Use Defile", "UseDefile", "Offensive Spells");
             AddControlInWinForm("Use Festering Strike", "UseFesteringStrike", "Offensive Spells");
             AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Spells");
@@ -1664,6 +1740,9 @@ public class DeathknightUnholy
             /* Defensive Spells */
             AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShellBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Asphyxiate", "UseAsphyxiateBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");
+            AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
