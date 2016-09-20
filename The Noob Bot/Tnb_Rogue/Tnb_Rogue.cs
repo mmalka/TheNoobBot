@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks
+* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
 * Thanks you !
 */
 
@@ -86,27 +86,6 @@ public class Main : ICombatClass
 
                 case WoWClass.Rogue:
 
-                    if (wowSpecialization == WoWSpecialization.RogueOutlaw)
-                    {
-                        if (configOnly)
-                        {
-                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Outlaw.xml";
-                            var currentSetting = new RogueOutlaw.RogueOutlawSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                currentSetting = Settings.Load<RogueOutlaw.RogueOutlawSettings>(currentSettingsFile);
-                            }
-                            currentSetting.ToForm();
-                            currentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("Loading Rogue Outlaw Combat class...");
-                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueOutlaw);
-                            new RogueOutlaw();
-                        }
-                        break;
-                    }
                     if (wowSpecialization == WoWSpecialization.RogueAssassination || wowSpecialization == WoWSpecialization.None)
                     {
                         if (configOnly)
@@ -125,6 +104,27 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Rogue Assassination Combat class...");
                             EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueAssassination);
                             new RogueAssassination();
+                        }
+                        break;
+                    }
+                    if (wowSpecialization == WoWSpecialization.RogueOutlaw)
+                    {
+                        if (configOnly)
+                        {
+                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Outlaw.xml";
+                            var currentSetting = new RogueOutlaw.RogueOutlawSettings();
+                            if (File.Exists(currentSettingsFile) && !resetSettings)
+                            {
+                                currentSetting = Settings.Load<RogueOutlaw.RogueOutlawSettings>(currentSettingsFile);
+                            }
+                            currentSetting.ToForm();
+                            currentSetting.Save(currentSettingsFile);
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Rogue Outlaw Combat class...");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueOutlaw);
+                            new RogueOutlaw();
                         }
                         break;
                     }
@@ -183,6 +183,669 @@ public class Main : ICombatClass
 
 #region Rogue
 
+public class RogueAssassination
+{
+    private static RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
+
+    #region General Timers & Variables
+
+    private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
+
+    #endregion
+
+    #region Professions & Racial
+
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
+
+    #endregion
+
+    #region Talent
+
+    private readonly Spell DeeperStratagem = new Spell("Deeper Stratagem");
+    private readonly Spell ElaboratePlanning = new Spell(193640);
+    private readonly Spell Nightstalker = new Spell("Nightstalker");
+    private readonly Spell Subterfuge = new Spell("Subterfuge");
+
+    #endregion
+
+    #region Buffs
+
+    private readonly Spell AgonizingPoison = new Spell("Agonizing Poison"); //No GCD
+    private readonly Spell CripplingPoison = new Spell("Crippling Poison"); //No GCD
+    private readonly Spell DeadlyPoison = new Spell("Deadly Poison"); //No GCD
+    private readonly Spell LeechingPoison = new Spell("Leeching Poison"); //No GCD
+    private readonly Spell ElaboratePlanningBuff = new Spell(193641);
+
+    #endregion
+
+    #region Artifact Spells
+
+    private readonly Spell Kingsbane = new Spell("Kingsbane");
+    private Timer KingsbaneTimer = new Timer(0);
+
+    #endregion
+
+    #region Offensive Spells
+
+    private readonly Spell DeathfromAbove = new Spell("Death from Above");
+    private readonly Spell Envenom = new Spell("Envenom");
+    private readonly Spell Exsanguinate = new Spell("Exsanguinate");
+    private readonly Spell FanofKnives = new Spell("Fan of Knives");
+    private readonly Spell Garrote = new Spell("Garrote");
+    private readonly Spell Mutilate = new Spell("Mutilate");
+    private readonly Spell Hemorrhage = new Spell("Hemorrhage");
+    private readonly Spell Rupture = new Spell("Rupture");
+
+    #endregion
+
+    #region Offensive Cooldowns
+
+    private readonly Spell MarkedforDeath = new Spell("Marked for Death"); //No GCD
+    private readonly Spell Vanish = new Spell("Vanish"); //No GCD
+    private readonly Spell Vendetta = new Spell("Vendetta"); //No GCD
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell CloakofShadows = new Spell("Cloak of Shadows"); //No GCD
+    private readonly Spell Evasion = new Spell("Evasion"); //No GCD
+    private readonly Spell Feint = new Spell("Feint"); //No GCD
+    private readonly Spell TricksoftheTrade = new Spell("Tricks of the Trade"); //No GCD
+
+    #endregion
+
+    #region Healing Spell
+
+    private readonly Spell CrimsonVial = new Spell("Crimson Vial");
+
+    #endregion
+
+    #region Utility Spells
+
+    private readonly Spell CheapShot = new Spell("Cheap Shot");
+    //private readonly Spell Distract = new Spell("Distract");
+    //private readonly Spell Kick = new Spell("Kick"); //No GCD
+    private readonly Spell KidneyShot = new Spell("Kidney Shot");
+    //private readonly Spell Sap = new Spell("Sap");
+    //private readonly Spell Shadowstep = new Spell("Shadowstep"); //No GCD
+    private readonly Spell Sprint = new Spell("Sprint"); //No GCD
+    private readonly Spell StealthBuff = new Spell("Stealth"); //No GCD
+
+    #endregion
+
+    public RogueAssassination()
+    {
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalLightHealingSpell = null;
+        MySettings = RogueAssassinationSettings.GetSettings();
+        Main.DumpCurrentSettings<RogueAssassinationSettings>(MySettings);
+        UInt128 lastTarget = 0;
+
+        while (Main.InternalLoop)
+        {
+            try
+            {
+                if (!ObjectManager.Me.IsDeadMe)
+                {
+                    if (!ObjectManager.Me.IsMounted)
+                    {
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget)
+                                lastTarget = ObjectManager.Me.Target;
+
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                                Combat();
+                            else if (!ObjectManager.Me.IsCast)
+                                Patrolling();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
+                    }
+                }
+                else
+                    Thread.Sleep(500);
+            }
+            catch
+            {
+            }
+            Thread.Sleep(100);
+        }
+    }
+
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
+    {
+        //Log
+        if (CombatMode)
+        {
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
+        }
+
+        if (ObjectManager.Me.GetMove)
+        {
+            //Movement Buffs
+            if (!Darkflight.HaveBuff && !Sprint.HaveBuff) // doesn't stack
+            {
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
+                if (MySettings.UseSprint && Sprint.IsSpellUsable)
+                {
+                    Sprint.Cast();
+                    return;
+                }
+            }
+            //Stealth
+            if (MySettings.UseStealth && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
+            {
+                StealthBuff.Cast();
+                return;
+            }
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
+            {
+                Main.InternalLightHealingSpell.CastOnSelf();
+                return;
+            }
+        }
+    }
+
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
+    private void Combat()
+    {
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+        if (StealthBuff.HaveBuff)
+            Stealth();
+        else
+        {
+            if (Healing() || Defensive() || AggroManagement() || Offensive())
+                return;
+            Rotation();
+        }
+    }
+
+    private void Stealth()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //1. Cast Rupture when
+            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
+                //you have five or more combo points and
+                ObjectManager.Me.ComboPoint >= 5 &&
+                //you have the Nightstalker Talent
+                Nightstalker.HaveBuff)
+            {
+                Rupture.Cast();
+                return;
+            }
+            //2. Cast Garrote when
+            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
+                //you have the Nightstalker or Subterfuge Talent
+                (Nightstalker.HaveBuff || Subterfuge.HaveBuff))
+            {
+                Garrote.Cast();
+                return;
+            }
+            //3. Cast Cheap Shot when
+            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood &&
+                //the target is stunnable
+                ObjectManager.Target.IsStunnable)
+            {
+                CheapShot.Cast();
+                StunTimer = new Timer(1000*4);
+                return;
+            }
+            //4. Cast Garrote
+            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood)
+            {
+                Garrote.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            //Crimson Vial
+            if (ObjectManager.Me.HealthPercent < MySettings.UseCrimsonVialBelowPercentage && CrimsonVial.IsSpellUsable)
+            {
+                CrimsonVial.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (ObjectManager.Me.HealthPercent < MySettings.UseFeintBelowPercentage && Feint.IsSpellUsable)
+                {
+                    Feint.Cast();
+                    DefensiveTimer = new Timer(1000*5);
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Cloak of Shadows
+            if (ObjectManager.Me.HealthPercent < MySettings.UseCloakofShadowsBelowPercentage && CloakofShadows.IsSpellUsable)
+            {
+                CloakofShadows.Cast();
+                DefensiveTimer = new Timer(1000*5);
+                return true;
+            }
+            //Evasion
+            if (ObjectManager.Me.HealthPercent < MySettings.UseEvasionBelowPercentage && Evasion.IsSpellUsable)
+            {
+                Evasion.Cast();
+                DefensiveTimer = new Timer(1000*10);
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Spots (always return after Casting)
+    private bool AggroManagement()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Tricks of the Trade on Tank when
+            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage && TricksoftheTrade.IsSpellUsable
+                //you are in a Group and
+                && Party.IsInGroup())
+            {
+                WoWPlayer tank = new WoWPlayer(0);
+                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
+                {
+                    if (playerInMyParty <= 0)
+                        continue;
+                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                        continue;
+                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                        continue;
+                    if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && tank != currentPlayer)
+                        tank = currentPlayer;
+                }
+                //the Tank has more than 20% Health
+                if (tank.HealthPercent > 20)
+                    TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Cast Vanish when you aren't in stealth and
+            if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff &&
+                //you don't have the Nightstalker Talent or
+                (!Nightstalker.HaveBuff ||
+                 //you have max combo points
+                 GetFreeComboPoints() == 0))
+            {
+                Vanish.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Kidney Shot when you have X combo points and
+            if (ObjectManager.Me.ComboPoint > MySettings.UseKidneyShotAboveComboPoints && KidneyShot.IsSpellUsable && KidneyShot.IsHostileDistanceGood &&
+                //the target is stunnable and probably not stunned
+                ObjectManager.Target.IsStunnable && StunTimer.IsReady)
+            {
+                KidneyShot.Cast();
+                StunTimer = new Timer(1000*1 + ObjectManager.Me.ComboPoint);
+                return;
+            }
+            //Cast Kingsbane when
+            if (MySettings.UseKingsbane && Kingsbane.IsSpellUsable && Kingsbane.IsHostileDistanceGood &&
+                //Envenom has 5 or more seconds remaining and
+                ObjectManager.Me.UnitAura(Envenom.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs >= 5000)
+            {
+                //Cast Vendetta
+                if (MySettings.UseVendetta && Vendetta.IsSpellUsable)
+                {
+                    Vendetta.Cast();
+                }
+                Kingsbane.Cast();
+                return;
+            }
+            //Cast Exsanguinate when
+            if (MySettings.UseExsanguinate && Exsanguinate.IsSpellUsable && Exsanguinate.IsHostileDistanceGood &&
+                //Kingsbane Dot is up
+                Kingsbane.TargetHaveBuff)
+            {
+                Exsanguinate.Cast();
+                return;
+            }
+
+            //1. Apply/Refresh Garotte Dot when
+            if (MySettings.UseGarrote && Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood &&
+                //it has 6 or less seconds remaining and
+                ObjectManager.Target.UnitAura(Garrote.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 6000 &&
+                //except during Exsanguinate.
+                !Exsanguinate.TargetHaveBuff)
+            {
+                Garrote.Cast();
+                return;
+            }
+            //2. Cast Marked for Death (when talented) when
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
+                //you have 5 free combo points.
+                GetFreeComboPoints() >= 5)
+            {
+                MarkedforDeath.Cast();
+                return;
+            }
+            //3. Generate combo points if they aren't capping.
+            if (GetFreeComboPoints() > 0)
+            {
+                //3a. Cast Fan of Knives when
+                if (MySettings.UseFanofKnives && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood &&
+                    //more than 2 enemies are near.
+                    ObjectManager.Me.GetUnitInSpellRange(10f) > 2)
+                {
+                    FanofKnives.Cast();
+                    return;
+                }
+                //3b. Cast Mutilate.
+                if (MySettings.UseMutilate && Mutilate.IsSpellUsable && Mutilate.IsHostileDistanceGood)
+                {
+                    Mutilate.Cast();
+                    return;
+                }
+            }
+            //4. Apply/Refresh Rupture when
+            if (MySettings.UseRupture && Rupture.IsSpellUsable && Rupture.IsHostileDistanceGood &&
+                //you have max combo points and
+                GetFreeComboPoints() == 0 &&
+                //it has 8 or less seconds remaining and
+                ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000 &&
+                //except during Exsanguinate.
+                !Exsanguinate.TargetHaveBuff)
+            {
+                Rupture.Cast();
+                return;
+            }
+            //3. Cast Envenom when
+            if (MySettings.UseEnvenom && Envenom.IsSpellUsable && Envenom.IsHostileDistanceGood &&
+                //you have max combo points and
+                GetFreeComboPoints() == 0 &&
+                //your energy is capping or
+                (ObjectManager.Me.EnergyPercentage == 100 ||
+                 //you have 80 or more energy and Envenom buff is not up and
+                 (ObjectManager.Me.Energy >= 80 && !Envenom.HaveBuff &&
+                  //Elaborate Planning wasn't taken or has less than 1 second remaining
+                  (!ElaboratePlanning.HaveBuff || ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000))))
+            {
+                Envenom.Cast();
+                return;
+            }
+            //4. Cast Death from Above when
+            if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood &&
+                //you have max combo points and
+                GetFreeComboPoints() == 0 &&
+                //your energy is capping or
+                (ObjectManager.Me.EnergyPercentage == 100 ||
+                 //Elaborate Planning wasn't taken or has less than 1 second remaining
+                 (!ElaboratePlanning.HaveBuff || ObjectManager.Me.UnitAura(ElaboratePlanningBuff.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)))
+            {
+                DeathfromAbove.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // Checks free combo points before capping
+    private int GetFreeComboPoints()
+    {
+        return ((DeeperStratagem.HaveBuff) ? 5 : 6) - (int) ObjectManager.Me.ComboPoint;
+    }
+
+    #region Nested type: RogueAssassinationSettings
+
+    [Serializable]
+    public class RogueAssassinationSettings : Settings
+    {
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
+        public bool UseBerserking = true;
+        public bool UseBloodFury = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public bool UseKingsbane = true;
+
+        /* Offensive Spells */
+        public bool UseDeathfromAbove = true;
+        public bool UseEnvenom = true;
+        public bool UseExsanguinate = true;
+        public bool UseFanofKnives = true;
+        public bool UseGarrote = true;
+        public bool UseMutilate = true;
+        public bool UseRupture = true;
+
+        /* Offensive Cooldowns */
+        public bool UseMarkedforDeath = true;
+        public bool UseVanish = true;
+        public bool UseVendetta = true;
+
+        /* Defensive Spells */
+        public int UseCloakofShadowsBelowPercentage = 0;
+        public int UseEvasionBelowPercentage = 10;
+        public int UseFeintBelowPercentage = 0;
+        public int UseTricksoftheTradeBelowPercentage = 100;
+
+        /* Healing Spells */
+        public int UseCrimsonVialBelowPercentage = 70;
+
+        /* Utility Spells */
+        public bool UseCheapShot = true;
+        public int UseKidneyShotAboveComboPoints = 10;
+        public bool UseSprint = true;
+        public bool UseStealth = true;
+
+        /* Game Settings */
+        public bool UseTrinketOne = true;
+        public bool UseTrinketTwo = true;
+
+        public RogueAssassinationSettings()
+        {
+            ConfigWinForm("Rogue Assassination Settings");
+            /* Professions & Racials */
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Kingsbane", "UseKingsbane", "Artifact Spells");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Death from Above", "UseDeathfromAbove", "Offensive Spells");
+            AddControlInWinForm("Use Envenom", "UseEnvenom", "Offensive Spells");
+            AddControlInWinForm("Use Exsanguinate", "UseExsanguinate", "Offensive Spells");
+            AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spells");
+            AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spells");
+            AddControlInWinForm("Use Mutilate", "UseMutilate", "Offensive Spells");
+            AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Marked for Death", "UseMarkedforDeath", "Offensive Cooldowns");
+            AddControlInWinForm("Use Vanish", "UseVanish", "Offensive Cooldowns");
+            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Cloak of Shadows", "UseCloakofShadowsBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Evasion", "UseEvasionBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Feint", "UseFeintBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Tricks of the Trade", "UseTricksoftheTradeBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Healing Spell */
+            AddControlInWinForm("Use Crimson Vial", "UseCrimsonVialBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Cheap Shot", "UseCheapShot", "Utility Spells");
+            AddControlInWinForm("Use Kidney Shot", "UseKidneyShotAboveComboPoints", "Offensive Spells", "AbovePercentage", "Combo Points");
+            AddControlInWinForm("Use Sprint", "UseSprint", "Utility Spells");
+            AddControlInWinForm("Use Stealth", "UseStealth", "Utility Spells");
+            /* Game Settings */
+            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
+            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
+        }
+
+        public static RogueAssassinationSettings CurrentSetting { get; set; }
+
+        public static RogueAssassinationSettings GetSettings()
+        {
+            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Assassination.xml";
+            if (File.Exists(currentSettingsFile))
+            {
+                return
+                    CurrentSetting = Load<RogueAssassinationSettings>(currentSettingsFile);
+            }
+            return new RogueAssassinationSettings();
+        }
+    }
+
+    #endregion
+}
+
 public class RogueOutlaw
 {
     private static RogueOutlawSettings MySettings = RogueOutlawSettings.GetSettings();
@@ -191,97 +854,98 @@ public class RogueOutlaw
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public uint CP = 0;
-    public int LC = 0;
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
 
-    #endregion
-
-    #region Professions & Racials
-
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
-    #region Rogue Buffs
+    #region Professions & Racial
 
-    public readonly Spell BladeFlurry = new Spell("Blade Flurry");
-    public readonly Spell BurstofSpeed = new Spell("Burst of Speed");
-    public readonly Spell CripplingPoison = new Spell("Crippling Poison");
-    public readonly Spell DeadlyPoison = new Spell("Deadly Poison");
-    public readonly Spell LeechingPoison = new Spell("Leeching Poison");
-    public readonly Spell MindnumbingPoison = new Spell("Mind-numbing Poison");
-    public readonly Spell ParalyticPoison = new Spell("Paralytic Poison");
-    public readonly Spell SliceandDice = new Spell("Slice and Dice");
-    public readonly Spell Sprint = new Spell("Sprint");
-    public readonly Spell Stealth = new Spell("Stealth");
-    public readonly Spell WoundPoison = new Spell("Wound Poison");
-/*
-        private Timer _sliceandDiceTimer = new Timer(0);
-*/
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Offensive Spell
+    #region Talent
 
-    public readonly Spell Ambush = new Spell("Ambush");
-    public readonly Spell CrimsonTempest = new Spell("Crimson Tempest");
-    public readonly Spell DeadlyThrow = new Spell("Deadly Throw");
-    public readonly Spell Eviscerate = new Spell("Eviscerate");
-    public readonly Spell ExposeArmor = new Spell("Expose Armor");
-    public readonly Spell FanofKnives = new Spell("Fan of Knives");
-    public readonly Spell Garrote = new Spell("Garrote");
-    public readonly Spell RevealingStrike = new Spell("Revealing Strike");
-    public readonly Spell Rupture = new Spell("Rupture");
-    public readonly Spell Shiv = new Spell("Shiv");
-    public readonly Spell ShurikenToss = new Spell("Shuriken Toss");
-    public readonly Spell SinisterStrike = new Spell("Sinister Strike");
-    public readonly Spell Throw = new Spell("Throw");
-    private Timer _ruptureTimer = new Timer(0);
+    private readonly Spell DeeperStratagem = new Spell("Deeper Stratagem");
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Buffs
 
-    public readonly Spell AdrenalineRush = new Spell("Adrenaline Rush");
-    public readonly Spell KillingSpree = new Spell("Killing Spree");
-    public readonly Spell Redirect = new Spell("Redirect");
-    public readonly Spell ShadowBlades = new Spell("Shadow Blades");
-    public readonly Spell ShadowStep = new Spell("Shadow Step");
-    public readonly Spell Vendetta = new Spell("Vendetta");
+    private readonly Spell Broadsides = new Spell(193356);
+    private readonly Spell BuriedTreasure = new Spell(199600);
+    private readonly Spell GrandMelee = new Spell(193358);
+    private readonly Spell JollyRoger = new Spell(199603);
+    private readonly Spell Opportunity = new Spell(195627);
+    private readonly Spell SharkInfestedWaters = new Spell(193357);
+    private readonly Spell TrueBearing = new Spell(193359);
 
     #endregion
 
-    #region Defensive Cooldown
+    #region Artifact Spells
 
-    public readonly Spell CheapShot = new Spell("Cheap Shot");
-    public readonly Spell CloakofShadows = new Spell("Cloak of Shadows");
-    public readonly Spell CombatReadiness = new Spell("Combat Readiness");
-    public readonly Spell Dismantle = new Spell("Dismantle");
-    public readonly Spell Evasion = new Spell("Evasion");
-    public readonly Spell Kick = new Spell("Kick");
-    public readonly Spell KidneyShot = new Spell("Kidney Shot");
-    public readonly Spell Preparation = new Spell("Preparation");
-    public readonly Spell SmokeBomb = new Spell("Smoke Bomb");
-    public readonly Spell Vanish = new Spell("Vanish");
-/*
-        private Timer _dismantleTimer = new Timer(0);
-*/
+    private readonly Spell CurseoftheDreadblades = new Spell("Curse of the Dreadblades");
+
+    #endregion
+
+    #region Offensive Spells
+
+    private readonly Spell BladeFlurry = new Spell("Blade Flurry");
+    private readonly Spell DeathfromAbove = new Spell("Death from Above");
+    private readonly Spell GhostlyStrike = new Spell("Ghostly Strike");
+    private readonly Spell PistolShot = new Spell("Pistol Shot");
+    private readonly Spell RolltheBones = new Spell("Roll the Bones");
+    private readonly Spell RunThrough = new Spell("Run Through");
+    private readonly Spell SaberSlash = new Spell("Saber Slash");
+    private readonly Spell SliceandDice = new Spell("Slice and Dice");
+
+    #endregion
+
+    #region Offensive Cooldowns
+
+    private readonly Spell AdrenalineRush = new Spell("Adrenaline Rush"); //No GCD
+    private readonly Spell CannonballBarrage = new Spell("Cannonball Barrage");
+    private readonly Spell KillingSpree = new Spell("Killing Spree");
+    private readonly Spell MarkedforDeath = new Spell("Marked for Death"); //No GCD
+    private readonly Spell Vanish = new Spell("Vanish"); //No GCD
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell CloakofShadows = new Spell("Cloak of Shadows"); //No GCD
+    private readonly Spell Feint = new Spell("Feint"); //No GCD
+    private readonly Spell Riposte = new Spell("Riposte"); //No GCD
+    private readonly Spell TricksoftheTrade = new Spell("Tricks of the Trade"); //No GCD
 
     #endregion
 
     #region Healing Spell
 
-    public readonly Spell Recuperate = new Spell("Recuperate");
+    private readonly Spell CrimsonVial = new Spell("Crimson Vial");
+
+    #endregion
+
+    #region Utility Spells
+
+    private readonly Spell CheapShot = new Spell("Cheap Shot");
+    //private readonly Spell Distract = new Spell("Distract");
+    private readonly Spell GrapplingHook = new Spell("Grappling Hook");
+    //private readonly Spell Kick = new Spell("Kick"); //No GCD
+    //private readonly Spell Parley = new Spell("Parley");
+    //private readonly Spell Sap = new Spell("Sap");
+    private readonly Spell Sprint = new Spell("Sprint"); //No GCD
+    private readonly Spell StealthBuff = new Spell("Stealth"); //No GCD
 
     #endregion
 
@@ -303,30 +967,15 @@ public class RogueOutlaw
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Throw.IsHostileDistanceGood || SinisterStrike.IsHostileDistanceGood))
-                            {
-                                Pull();
+                            if (ObjectManager.Me.Target != lastTarget)
                                 lastTarget = ObjectManager.Me.Target;
-                            }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && MySettings.UseLowCombat)
-                            {
-                                LC = 1;
-                                if (ObjectManager.Target.GetDistance < 30)
-                                    LowCombat();
-                            }
-                            else
-                            {
-                                LC = 0;
-                                if (ObjectManager.Target.GetDistance < 30 && ObjectManager.Me.Level < 10)
-                                    LowCombat();
-                                else if (ObjectManager.Target.GetDistance < 30)
-                                    Combat();
-                            }
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                                Combat();
+                            else if (!ObjectManager.Me.IsCast)
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -340,440 +989,305 @@ public class RogueOutlaw
         }
     }
 
-    private void Pull()
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
     {
-        if (Redirect.IsSpellUsable && Redirect.IsHostileDistanceGood && Redirect.KnownSpell
-            && MySettings.UseRedirect && ObjectManager.Me.ComboPoint > 0)
+        //Log
+        if (CombatMode)
         {
-            Redirect.Cast();
-            Others.SafeSleep(200);
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
         }
 
-        if (((Stealth.KnownSpell && Stealth.IsSpellUsable && !Stealth.HaveBuff && MySettings.UseStealth)
-             || Stealth.HaveBuff) && LC != 1)
+        if (ObjectManager.Me.GetMove)
         {
-            if (!Stealth.HaveBuff)
+            //Movement Buffs
+            if (!Darkflight.HaveBuff && !Sprint.HaveBuff) // doesn't stack
             {
-                Stealth.Cast();
-                Others.SafeSleep(200);
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
+                if (MySettings.UseSprint && Sprint.IsSpellUsable)
+                {
+                    Sprint.Cast();
+                    return;
+                }
             }
-
-            if (ShadowStep.IsSpellUsable && ShadowStep.IsHostileDistanceGood && ShadowStep.KnownSpell
-                && MySettings.UseShadowStep)
+            //Stealth
+            if (MySettings.UseStealth && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
             {
-                ShadowStep.Cast();
-                Others.SafeSleep(200);
-            }
-
-            if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
-                && MySettings.UseGarrote)
-            {
-                Garrote.Cast();
+                StealthBuff.Cast();
                 return;
             }
-            if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
-                && MySettings.UseCheapShot)
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                CheapShot.Cast();
+                Main.InternalLightHealingSpell.CastOnSelf();
                 return;
             }
-            return;
-        }
-        if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
-            && MySettings.UseShurikenToss && !MySettings.UseStealth)
-        {
-            ShurikenToss.Cast();
-            return;
-        }
-        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
-            && MySettings.UseThrow && !MySettings.UseStealth)
-        {
-            MovementManager.StopMove();
-            Throw.Cast();
-            Others.SafeSleep(1000);
         }
     }
 
-    private void LowCombat()
-    {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        Heal();
-
-        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseThrow)
-        {
-            Throw.Cast();
-            return;
-        }
-
-        if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood && MySettings.UseEviscerate && ObjectManager.Me.ComboPoint >= 2)
-        {
-            Eviscerate.Cast();
-            return;
-        }
-        if (RevealingStrike.KnownSpell && RevealingStrike.IsSpellUsable && RevealingStrike.IsHostileDistanceGood
-            && MySettings.UseRevealingStrike)
-        {
-            RevealingStrike.Cast();
-            return;
-        }
-        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-            && MySettings.UseSinisterStrike)
-        {
-            SinisterStrike.Cast();
-            return;
-        }
-        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-            && MySettings.UseSliceandDice && !SliceandDice.HaveBuff)
-        {
-            CP = ObjectManager.Me.ComboPoint;
-            SliceandDice.Cast();
-            //_sliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
-            return;
-        }
-        if (FanofKnives.KnownSpell && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood
-            && MySettings.UseFanofKnives)
-        {
-            FanofKnives.Cast();
-        }
-    }
-
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
     private void Combat()
     {
-        Buff();
-        DPSBurst();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DPSCycle();
-        Decast();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        Heal();
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseDeadlyPoison && DeadlyPoison.KnownSpell && DeadlyPoison.IsSpellUsable
-            && !DeadlyPoison.HaveBuff)
-        {
-            DeadlyPoison.Cast();
-            return;
-        }
-        if (!WoundPoison.HaveBuff && WoundPoison.KnownSpell && WoundPoison.IsSpellUsable
-            && MySettings.UseWoundPoison && !DeadlyPoison.HaveBuff)
-        {
-            WoundPoison.Cast();
-            return;
-        }
-        if (!LeechingPoison.HaveBuff && LeechingPoison.KnownSpell && LeechingPoison.IsSpellUsable
-            && MySettings.UseLeechingPoison)
-        {
-            LeechingPoison.Cast();
-            return;
-        }
-        if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
-            && MySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
-        {
-            ParalyticPoison.Cast();
-            return;
-        }
-        if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
-            && MySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
-        {
-            CripplingPoison.Cast();
-            return;
-        }
-        if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
-            && MySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
-            && !LeechingPoison.HaveBuff)
-        {
-            MindnumbingPoison.Cast();
-            return;
-        }
-        if (!ObjectManager.Me.InCombat && BurstofSpeed.IsSpellUsable && BurstofSpeed.KnownSpell
-            && MySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
-        {
-            BurstofSpeed.Cast();
-            return;
-        }
-        if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
-            && MySettings.UseSprint && ObjectManager.Me.GetMove)
-        {
-            Sprint.Cast();
-            return;
-        }
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-        {
-            ItemsManager.UseItem(75525);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
-    private void DefenseCycle()
-    {
-        if (ObjectManager.Me.HealthPercent <= 80 && !KidneyShot.TargetHaveBuff && KidneyShot.KnownSpell
-            && KidneyShot.IsSpellUsable && KidneyShot.IsHostileDistanceGood && ObjectManager.Me.ComboPoint <= 3
-            && Recuperate.HaveBuff && MySettings.UseKidneyShot)
-        {
-            CP = ObjectManager.Me.ComboPoint;
-            KidneyShot.Cast();
-            _onCd = new Timer(1000*CP);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
-            && MySettings.UseEvasion)
-        {
-            Evasion.Cast();
-            _onCd = new Timer(1000*15);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
-            && MySettings.UseCombatReadiness)
-        {
-            CombatReadiness.Cast();
-            _onCd = new Timer(1000*20);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
-            && MySettings.UseDismantle)
-        {
-            Dismantle.Cast();
-            //_dismantleTimer = new Timer(1000*60);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-            WarStomp.KnownSpell
-            && MySettings.UseWarStomp)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-            Stoneform.KnownSpell
-            && MySettings.UseStoneform)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-            return;
-        }
-        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
-            && MySettings.UseVanish)
-        {
-            Vanish.Cast();
-            Others.SafeSleep(5000);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
-            && MySettings.UsePreparation && !Evasion.IsSpellUsable)
-        {
-            Preparation.Cast();
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell &&
-            GiftoftheNaaru.IsSpellUsable
-            && MySettings.UseGiftoftheNaaru)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
-            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
-        {
-            Recuperate.Cast();
-        }
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable
-            && Kick.IsHostileDistanceGood && MySettings.UseKick && ObjectManager.Target.IsTargetingMe)
-        {
-            Kick.Cast();
-            return;
-        }
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && MySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-            ObjectManager.Target.IsTargetingMe)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
-            && ObjectManager.Target.IsTargetingMe && MySettings.UseCloakofShadows)
-        {
-            CloakofShadows.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
-            && ObjectManager.Target.IsTargetingMe && MySettings.UseSmokeBomb
-            && !CloakofShadows.HaveBuff)
-        {
-            SmokeBomb.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
-            && MySettings.UsePreparation && !CloakofShadows.IsSpellUsable && ObjectManager.Target.IsCast
-            && ObjectManager.Target.IsTargetingMe)
-        {
-            Preparation.Cast();
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-            return;
-        }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseBerserking)
-        {
-            Berserking.Cast();
-            return;
-        }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseBloodFury)
-        {
-            BloodFury.Cast();
-            return;
-        }
-        if (AdrenalineRush.KnownSpell && AdrenalineRush.IsSpellUsable
-            && MySettings.UseAdrenalineRush && ObjectManager.Target.GetDistance < 30)
-        {
-            AdrenalineRush.Cast();
-            return;
-        }
-        if (KillingSpree.KnownSpell && KillingSpree.IsSpellUsable
-            && MySettings.UseKillingSpree && ObjectManager.Target.GetDistance < 10
-            && ObjectManager.Me.EnergyPercentage < 35)
-        {
-            KillingSpree.Cast();
-            return;
-        }
-        if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
-            && MySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
-        {
-            ShadowBlades.Cast();
-        }
-    }
-
-    private void DPSCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
-                && MySettings.UseGarrote && ObjectManager.Me.HaveBuff(115192))
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                Garrote.Cast();
-                return;
+                GiftoftheNaaru.Cast();
+                return true;
             }
-            if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell && !ObjectManager.Target.InCombat
-                && MySettings.UseThrow)
+            //Crimson Vial
+            if (ObjectManager.Me.HealthPercent < MySettings.UseCrimsonVialBelowPercentage && CrimsonVial.IsSpellUsable)
             {
-                Throw.Cast();
-                return;
+                CrimsonVial.Cast();
+                return true;
             }
-            if (BladeFlurry.KnownSpell && BladeFlurry.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                && MySettings.UseBladeFlurry && !BladeFlurry.HaveBuff && ObjectManager.GetNumberAttackPlayer() > 1)
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (ObjectManager.Me.HealthPercent < MySettings.UseFeintBelowPercentage && Feint.IsSpellUsable)
+                {
+                    Feint.Cast();
+                    DefensiveTimer = new Timer(1000*5);
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Cloak of Shadows
+            if (ObjectManager.Me.HealthPercent < MySettings.UseCloakofShadowsBelowPercentage && CloakofShadows.IsSpellUsable)
+            {
+                CloakofShadows.Cast();
+                DefensiveTimer = new Timer(1000*5);
+                return true;
+            }
+            //Riposte
+            if (ObjectManager.Me.HealthPercent < MySettings.UseRiposteBelowPercentage && Riposte.IsSpellUsable)
+            {
+                Riposte.Cast();
+                DefensiveTimer = new Timer(1000*10);
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Cast Vanish
+            if (MySettings.UseVanish && Vanish.IsSpellUsable)
+            {
+                Vanish.Cast();
+                return true;
+            }
+            //Toggle Blade Flurry when
+            if (MySettings.UseBladeFlurry && BladeFlurry.IsSpellUsable &&
+                //it is disabled and multiple enemies are stacked
+                ((!BladeFlurry.HaveBuff && ObjectManager.Me.GetUnitInSpellRange(5f) > 1) ||
+                 //it is enabled and there aren't multiple enmies stacked
+                 (BladeFlurry.HaveBuff && ObjectManager.Me.GetUnitInSpellRange(5f) <= 1)))
             {
                 BladeFlurry.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Cheap Shot when
+            if (MySettings.UseCheapShot && CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood &&
+                //the target is stunnable and you are stealthed
+                ObjectManager.Target.IsStunnable && StealthBuff.HaveBuff)
+            {
+                CheapShot.Cast();
+                StunTimer = new Timer(1000*4);
                 return;
             }
-            if (BladeFlurry.KnownSpell && BladeFlurry.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                && BladeFlurry.HaveBuff && ObjectManager.GetNumberAttackPlayer() < 2)
+
+
+            //1. Apply Roll the Bones when
+            if (MySettings.UseRolltheBones && RolltheBones.IsSpellUsable && RolltheBones.IsHostileDistanceGood &&
+                //you have max combo points and
+                GetFreeComboPoints() == 0 &&
+                //you have 2 or more Roll the Bones buffs
+                GetRolltheBonesBuffs() >= 2)
             {
-                BladeFlurry.Cast();
+                RolltheBones.Cast();
                 return;
             }
-            if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood
-                && MySettings.UseEviscerate && ObjectManager.Me.ComboPoint > 4)
+            //2. Apply/Refresh Ghostly Strike when
+            if (MySettings.UseGhostlyStrike && GhostlyStrike.IsSpellUsable && GhostlyStrike.IsHostileDistanceGood &&
+                //the Target didn't have the Dot
+                !GhostlyStrike.TargetHaveBuff)
             {
-                Eviscerate.Cast();
+                GhostlyStrike.Cast();
                 return;
             }
-            if (RevealingStrike.KnownSpell && RevealingStrike.IsSpellUsable && RevealingStrike.IsHostileDistanceGood
-                && MySettings.UseRevealingStrike && !RevealingStrike.TargetHaveBuff)
+            //3. Activate Adrenaline Rush
+            if (MySettings.UseAdrenalineRush && AdrenalineRush.IsSpellUsable)
             {
-                RevealingStrike.Cast();
+                AdrenalineRush.Cast();
                 return;
             }
-            if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                && MySettings.UseSliceandDice && !SliceandDice.HaveBuff)
+            //4. Activate Curse of the Dreadblades
+            if (MySettings.UseCurseoftheDreadblades && CurseoftheDreadblades.IsSpellUsable)
             {
-                CP = ObjectManager.Me.ComboPoint;
-                SliceandDice.Cast();
-                //_sliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
+                CurseoftheDreadblades.Cast();
                 return;
             }
-            if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
-                && MySettings.UseRupture && (!Rupture.TargetHaveBuff || _ruptureTimer.IsReady))
+            //5. Cast Marked for Death (when talented) when
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
+                //you have 5 free combo points.
+                GetFreeComboPoints() >= 5)
             {
-                CP = ObjectManager.Me.ComboPoint;
-                Rupture.Cast();
-                _ruptureTimer = new Timer(1000*(4 + (CP*4)));
+                MarkedforDeath.Cast();
                 return;
             }
-            if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
-                && MySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
+            //6. Cast Pistol Shot when
+            if (MySettings.UsePistolShot && PistolShot.IsSpellUsable && PistolShot.IsHostileDistanceGood &&
+                //your combo points aren't capping and
+                GetFreeComboPoints() > 0 &&
+                //you have an Opportunity proc.
+                Opportunity.HaveBuff)
             {
-                ExposeArmor.Cast();
+                PistolShot.Cast();
                 return;
             }
-            if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                && MySettings.UseSinisterStrike)
+            //7. Cast Saber Slash when
+            if (MySettings.UseSaberSlash && SaberSlash.IsSpellUsable && SaberSlash.IsHostileDistanceGood &&
+                //your combo points aren't capping
+                GetFreeComboPoints() > 0)
             {
-                SinisterStrike.Cast();
+                SaberSlash.Cast();
                 return;
             }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && MySettings.UseArcaneTorrentForResource)
+            //8. Cast Death from Above (when talented) when
+            if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood &&
+                //you have max combo points and
+                GetFreeComboPoints() == 0 &&
+                //Adrenaline Rush is not active.
+                !AdrenalineRush.HaveBuff)
             {
-                ArcaneTorrent.Cast();
+                DeathfromAbove.Cast();
+                return;
+            }
+            //9. Cast Run Through when
+            if (MySettings.UseRunThrough && RunThrough.IsSpellUsable && RunThrough.IsHostileDistanceGood &&
+                //you have max combo points
+                GetFreeComboPoints() == 0)
+            {
+                RunThrough.Cast();
+                return;
+            }
+
+            //Single Target 
+            if (ObjectManager.Target.GetUnitInSpellRange(5f) == 1)
+            {
+            }
+                //Multiple Targets
+            else
+            {
             }
         }
         finally
@@ -782,11 +1296,22 @@ public class RogueOutlaw
         }
     }
 
-    private void Patrolling()
+    // Checks number of Roll the Bones Buffs
+    private int GetRolltheBonesBuffs()
     {
-        if (ObjectManager.Me.IsMounted) return;
-        Buff();
-        Heal();
+        uint[] idBuffs = {Broadsides.Id, BuriedTreasure.Id, GrandMelee.Id, JollyRoger.Id, SharkInfestedWaters.Id, TrueBearing.Id};
+        int buffs = 0;
+        foreach (Auras.UnitAura buff in ObjectManager.Me.UnitAuras.Auras)
+            foreach (uint buffId in idBuffs)
+                if (buff.AuraSpellId == buffId)
+                    buffs++;
+        return buffs;
+    }
+
+    // Checks free combo points before capping
+    private int GetFreeComboPoints()
+    {
+        return ((DeeperStratagem.HaveBuff) ? 5 : 6) - (int) ObjectManager.Me.ComboPoint;
     }
 
     #region Nested type: RogueOutlawSettings
@@ -794,132 +1319,89 @@ public class RogueOutlaw
     [Serializable]
     public class RogueOutlawSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAdrenalineRush = true;
-        public bool UseAlchFlask = true;
-        public bool UseAmbush = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBladeFlurry = true;
         public bool UseBloodFury = true;
-        public bool UseBurstofSpeed = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public bool UseCurseoftheDreadblades = true;
+
+        /* Offensive Spells */
+        public bool UseBladeFlurry = true;
+        public bool UseDeathfromAbove = true;
+        public bool UseGhostlyStrike = true;
+        public bool UsePistolShot = true;
+        public bool UseRolltheBones = true;
+        public bool UseRunThrough = true;
+        public bool UseSaberSlash = true;
+
+        /* Offensive Cooldowns */
+        public bool UseAdrenalineRush = true;
+        public bool UseMarkedforDeath = true;
+        public bool UseVanish = true;
+
+        /* Defensive Spells */
+        public int UseCloakofShadowsBelowPercentage = 0;
+        public int UseFeintBelowPercentage = 0;
+        public int UseRiposteBelowPercentage = 10;
+        public int UseTricksoftheTradeBelowPercentage = 100;
+
+        /* Healing Spells */
+        public int UseCrimsonVialBelowPercentage = 70;
+
+        /* Utility Spells */
         public bool UseCheapShot = true;
-        public bool UseCloakofShadows = true;
-        public bool UseCombatReadiness = true;
-        public bool UseCrimsonTempest = true;
-        public bool UseCripplingPoison = false;
-        public bool UseDeadlyPoison = true;
-        public bool UseDeadlyThrow = true;
-        public bool UseDismantle = true;
-
-        public bool UseEvasion = true;
-        public bool UseEviscerate = true;
-        public bool UseExposeArmor = false;
-        public bool UseFanofKnives = true;
-        public bool UseGarrote = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseKick = true;
-        public bool UseKidneyShot = true;
-        public bool UseKillingSpree = true;
-        public bool UseLeechingPoison = true;
-
-        public bool UseLowCombat = true;
-        public bool UseMindnumbingPoison = true;
-        public bool UseParalyticPoison = false;
-        public bool UsePreparation = true;
-        public bool UseRecuperate = true;
-        public bool UseRedirect = true;
-        public bool UseRevealingStrike = true;
-        public bool UseRupture = true;
-        public bool UseShadowBlades = true;
-        public bool UseShadowStep = true;
-        public bool UseShiv = true;
-        public bool UseShurikenToss = true;
-        public bool UseSinisterStrike = true;
-        public bool UseSliceandDice = true;
-        public bool UseSmokeBomb = true;
         public bool UseSprint = true;
-        public bool UseStealth = false;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
-        public bool UseThrow = true;
+        public bool UseStealth = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseVanish = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWoundPoison = false;
 
         public RogueOutlawSettings()
         {
             ConfigWinForm("Rogue Outlaw Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Rogue Buffs */
-            AddControlInWinForm("Use Blade Flurry", "UseBladeFlurry", "Rogue Buffs");
-            AddControlInWinForm("Use Burst of Speed", "UseBurstofSpeed", "Rogue Buffs");
-            AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Mindnumbing Poison", "UseMindnumbingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Paralytic Poison", "UseParalyticPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Slice and Dice", "UseSliceandDice", "Rogue Buffs");
-            AddControlInWinForm("Use Sprint", "UseSprint", "Rogue Buffs");
-            AddControlInWinForm("Use Stealth", "UseStealth", "Rogue Buffs");
-            AddControlInWinForm("Use Wound Poison", "UseWoundPoison", "Rogue Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
-            AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
-            AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
-            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spell");
-            AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
-            AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
-            AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
-            AddControlInWinForm("Use Revealing Strike", "UseRevealingStrike", "Offensive Spell");
-            AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
-            AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
-            AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
-            AddControlInWinForm("Use Sinister Strike", "UseSinisterStrike", "Offensive Spell");
-            AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Adrenaline Rush", "UseAdrenalineRush", "Offensive Cooldown");
-            AddControlInWinForm("Use Killing Spree", "UseKillingSpree", "Offensive Cooldown");
-            AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
-            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
-            AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
-            AddControlInWinForm("Use CombatReadiness", "UseCombatReadiness", "Defensive Cooldown");
-            AddControlInWinForm("Use Dismantle", "UseDismantle", "Defensive Cooldown");
-            AddControlInWinForm("Use Evasion", "UseEvasion", "Defensive Cooldown");
-            AddControlInWinForm("Use Kick", "UseKick", "Defensive Cooldown");
-            AddControlInWinForm("Use KidneyShot", "UseKidneyShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Preparation", "UsePreparation", "Defensive Cooldown");
-            AddControlInWinForm("Use SmokeBomb", "UseSmokeBomb", "Defensive Cooldown");
-            AddControlInWinForm("Use Vanish", "UseVanish", "Defensive Cooldown");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Curse of the Dreadblades", "UseCurseoftheDreadblades", "Artifact Spells");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Blade Flurry", "UseBladeFlurry", "Offensive Spells");
+            AddControlInWinForm("Use Death from Above", "UseDeathfromAbove", "Offensive Spells");
+            AddControlInWinForm("Use Ghostly Strike", "UseGhostlyStrike", "Offensive Spells");
+            AddControlInWinForm("Use Pistol Shot", "UsePistolShot", "Offensive Spells");
+            AddControlInWinForm("Use Roll the Bones", "UseRolltheBones", "Offensive Spells");
+            AddControlInWinForm("Use Run Through", "UseRunThrough", "Offensive Spells");
+            AddControlInWinForm("Use Saber Slash", "UseSaberSlash", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Adrenaline Rush", "UseAdrenalineRush", "Offensive Cooldowns");
+            AddControlInWinForm("Use Marked for Death", "UseMarkedforDeath", "Offensive Cooldowns");
+            AddControlInWinForm("Use Vanish", "UseVanish", "Offensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Cloak of Shadows", "UseCloakofShadowsBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Feint", "UseFeintBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Riposte", "UseRiposteBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Tricks of the Trade", "UseTricksoftheTradeBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spell */
-            AddControlInWinForm("Use Recuperate", "UseRecuperate", "Healing Spell");
+            AddControlInWinForm("Use Crimson Vial", "UseCrimsonVialBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Cheap Shot", "UseCheapShot", "Utility Spells");
+            AddControlInWinForm("Use Sprint", "UseSprint", "Utility Spells");
+            AddControlInWinForm("Use Stealth", "UseStealth", "Utility Spells");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static RogueOutlawSettings CurrentSetting { get; set; }
@@ -947,95 +1429,86 @@ public class RogueSubtlety
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public uint CP = 0;
-    public int LC = 0;
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
 
-    #endregion
-
-    #region Professions & Racials
-
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
-    #region Rogue Buffs
+    #region Professions & Racial
 
-    public readonly Spell BurstofSpeed = new Spell("Burst of Speed");
-    public readonly Spell CripplingPoison = new Spell("Crippling Poison");
-    public readonly Spell DeadlyPoison = new Spell("Deadly Poison");
-    public readonly Spell LeechingPoison = new Spell("Leeching Poison");
-    public readonly Spell MindnumbingPoison = new Spell("Mind-numbing Poison");
-    public readonly Spell ParalyticPoison = new Spell("Paralytic Poison");
-    public readonly Spell SliceandDice = new Spell("Slice and Dice");
-    public readonly Spell Sprint = new Spell("Sprint");
-    public readonly Spell Stealth = new Spell("Stealth");
-    public readonly Spell WoundPoison = new Spell("Wound Poison");
-/*
-        private Timer _sliceandDiceTimer = new Timer(0);
-*/
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Offensive Spell
+    #region Talent
 
-    public readonly Spell Ambush = new Spell("Ambush");
-    public readonly Spell CrimsonTempest = new Spell("Crimson Tempest");
-    public readonly Spell DeadlyThrow = new Spell("Deadly Throw");
-    public readonly Spell Eviscerate = new Spell("Eviscerate");
-    public readonly Spell ExposeArmor = new Spell("Expose Armor");
-    public readonly Spell FanofKnives = new Spell("Fan of Knives");
-    public readonly Spell Garrote = new Spell("Garrote");
-    public readonly Spell Hemorrhage = new Spell("Hemorrhage");
-    public readonly Spell Rupture = new Spell("Rupture");
-    public readonly Spell Shiv = new Spell("Shiv");
-    public readonly Spell ShurikenToss = new Spell("Shuriken Toss");
-    public readonly Spell SinisterStrike = new Spell("Sinister Strike");
-    public readonly Spell Throw = new Spell("Throw");
-    private Timer _ruptureTimer = new Timer(0);
+    private readonly Spell DeeperStratagem = new Spell("Deeper Stratagem");
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Artifact Spells
 
-    public readonly Spell Premeditation = new Spell("Premeditation");
-    public readonly Spell Redirect = new Spell("Redirect");
-    public readonly Spell ShadowBlades = new Spell("Shadow Blades");
-    public readonly Spell ShadowDance = new Spell("Shadow Dance");
-    public readonly Spell ShadowStep = new Spell("Shadow Step");
+    private readonly Spell GoremawsBite = new Spell("Goremaw's Bite");
 
     #endregion
 
-    #region Defensive Cooldown
+    #region Offensive Spells
 
-    public readonly Spell CheapShot = new Spell("Cheap Shot");
-    public readonly Spell CloakofShadows = new Spell("Cloak of Shadows");
-    public readonly Spell CombatReadiness = new Spell("Combat Readiness");
-    public readonly Spell Dismantle = new Spell("Dismantle");
-    public readonly Spell Evasion = new Spell("Evasion");
-    public readonly Spell Kick = new Spell("Kick");
-    public readonly Spell KidneyShot = new Spell("Kidney Shot");
-    public readonly Spell Preparation = new Spell("Preparation");
-    public readonly Spell SmokeBomb = new Spell("Smoke Bomb");
-    public readonly Spell Vanish = new Spell("Vanish");
-/*
-        private Timer _dismantleTimer = new Timer(0);
-*/
+    private readonly Spell Backstab = new Spell("Backstab");
+    private readonly Spell DeathfromAbove = new Spell("Death from Above");
+    private readonly Spell EnvelopingShadows = new Spell("Enveloping Shadows");
+    private readonly Spell Eviscerate = new Spell("Eviscerate");
+    private readonly Spell Gloomblade = new Spell("Gloomblade");
+    private readonly Spell Nightblade = new Spell("Nightblade");
+    private readonly Spell Shadowstrike = new Spell("Shadowstrike");
+    private readonly Spell ShurikenStorm = new Spell("Shuriken Storm");
+    private readonly Spell SymbolsofDeath = new Spell("Symbols of Death"); //No GCD
+
+    #endregion
+
+    #region Offensive Cooldowns
+
+    private readonly Spell MarkedforDeath = new Spell("Marked for Death"); //No GCD
+    private readonly Spell ShadowBlades = new Spell("Shadow Blades"); //No GCD
+    private readonly Spell ShadowDance = new Spell("Shadow Dance"); //No GCD
+    private readonly Spell Vanish = new Spell("Vanish"); //No GCD
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell CloakofShadows = new Spell("Cloak of Shadows"); //No GCD
+    private readonly Spell Evasion = new Spell("Evasion"); //No GCD
+    private readonly Spell Feint = new Spell("Feint"); //No GCD
+    private readonly Spell TricksoftheTrade = new Spell("Tricks of the Trade"); //No GCD
 
     #endregion
 
     #region Healing Spell
 
-    public readonly Spell Recuperate = new Spell("Recuperate");
+    private readonly Spell CrimsonVial = new Spell("Crimson Vial");
+
+    #endregion
+
+    #region Utility Spells
+
+    //private readonly Spell CheapShot = new Spell("Cheap Shot");
+    //private readonly Spell Distract = new Spell("Distract");
+    //private readonly Spell Kick = new Spell("Kick"); //No GCD
+    private readonly Spell KidneyShot = new Spell("Kidney Shot");
+    //private readonly Spell Sap = new Spell("Sap");
+    //private readonly Spell Shadowstep = new Spell("Shadowstep"); //No GCD
+    private readonly Spell Sprint = new Spell("Sprint"); //No GCD
+    private readonly Spell StealthBuff = new Spell("Stealth"); //No GCD
 
     #endregion
 
@@ -1057,28 +1530,15 @@ public class RogueSubtlety
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Throw.IsHostileDistanceGood || SinisterStrike.IsHostileDistanceGood))
-                            {
-                                Pull();
+                            if (ObjectManager.Me.Target != lastTarget)
                                 lastTarget = ObjectManager.Me.Target;
-                            }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && MySettings.UseLowCombat)
-                            {
-                                LC = 1;
-                                if (ObjectManager.Target.GetDistance < 30)
-                                    LowCombat();
-                            }
-                            else
-                            {
-                                LC = 0;
-                                if (ObjectManager.Target.GetDistance < 30)
-                                    Combat();
-                            }
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                                Combat();
+                            else if (!ObjectManager.Me.IsCast)
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -1092,426 +1552,351 @@ public class RogueSubtlety
         }
     }
 
-    private void Pull()
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
     {
-        if (Redirect.IsSpellUsable && Redirect.IsHostileDistanceGood && Redirect.KnownSpell
-            && MySettings.UseRedirect && ObjectManager.Me.ComboPoint > 0)
+        //Log
+        if (CombatMode)
         {
-            Redirect.Cast();
-            Others.SafeSleep(200);
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
         }
 
-        if (((Stealth.KnownSpell && Stealth.IsSpellUsable && !Stealth.HaveBuff && MySettings.UseStealth)
-             || Stealth.HaveBuff) && LC != 1)
+        if (ObjectManager.Me.GetMove)
         {
-            if (!Stealth.HaveBuff)
+            //Movement Buffs
+            if (!Darkflight.HaveBuff && !Sprint.HaveBuff) // doesn't stack
             {
-                Stealth.Cast();
-                Others.SafeSleep(200);
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
+                if (MySettings.UseSprint && Sprint.IsSpellUsable)
+                {
+                    Sprint.Cast();
+                    return;
+                }
             }
-
-            if (Premeditation.IsSpellUsable && Premeditation.IsHostileDistanceGood && Premeditation.KnownSpell
-                && MySettings.UsePremeditation && ObjectManager.Me.ComboPoint == 0)
+            //Stealth
+            if (MySettings.UseStealth && StealthBuff.IsSpellUsable && !StealthBuff.HaveBuff)
             {
-                Premeditation.Cast();
-                Others.SafeSleep(200);
-            }
-
-            if (ShadowStep.IsSpellUsable && ShadowStep.IsHostileDistanceGood && ShadowStep.KnownSpell
-                && MySettings.UseShadowStep)
-            {
-                ShadowStep.Cast();
-                Others.SafeSleep(200);
-            }
-
-            if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
-                && MySettings.UseGarrote)
-            {
-                Garrote.Cast();
+                StealthBuff.Cast();
                 return;
             }
-            if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
-                && MySettings.UseCheapShot)
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                CheapShot.Cast();
+                Main.InternalLightHealingSpell.CastOnSelf();
                 return;
             }
-            return;
-        }
-        if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
-            && MySettings.UseShurikenToss && !MySettings.UseStealth)
-        {
-            ShurikenToss.Cast();
-            return;
-        }
-        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
-            && MySettings.UseThrow && !MySettings.UseStealth)
-        {
-            MovementManager.StopMove();
-            Throw.Cast();
-            Others.SafeSleep(1000);
         }
     }
 
-    private void LowCombat()
-    {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        Heal();
-
-        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseThrow)
-        {
-            Throw.Cast();
-            return;
-        }
-
-        if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood
-            && MySettings.UseEviscerate && ObjectManager.Me.ComboPoint > 4)
-        {
-            Eviscerate.Cast();
-            return;
-        }
-        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-            && MySettings.UseSliceandDice && !SliceandDice.HaveBuff)
-        {
-            CP = ObjectManager.Me.ComboPoint;
-            SliceandDice.Cast();
-            //_sliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
-            return;
-        }
-        // Blizzard API Calls for Hemorrhage using Sinister Strike Function
-        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-            && MySettings.UseHemorrhage)
-        {
-            SinisterStrike.Cast();
-            return;
-        }
-        if (FanofKnives.KnownSpell && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood
-            && MySettings.UseFanofKnives)
-        {
-            FanofKnives.Cast();
-        }
-    }
-
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
     private void Combat()
     {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        DPSCycle();
-        Heal();
-        Decast();
-        DPSCycle();
-        DPSBurst();
-        DPSCycle();
+        //Log
+        if (!CombatMode)
+        {
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+        if (Healing() || Defensive() || AggroManagement() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseDeadlyPoison && DeadlyPoison.KnownSpell && DeadlyPoison.IsSpellUsable
-            && !DeadlyPoison.HaveBuff)
-        {
-            DeadlyPoison.Cast();
-            return;
-        }
-        if (!WoundPoison.HaveBuff && WoundPoison.KnownSpell && WoundPoison.IsSpellUsable
-            && MySettings.UseWoundPoison && !DeadlyPoison.HaveBuff)
-        {
-            WoundPoison.Cast();
-            return;
-        }
-        if (!LeechingPoison.HaveBuff && LeechingPoison.KnownSpell && LeechingPoison.IsSpellUsable
-            && MySettings.UseLeechingPoison)
-        {
-            LeechingPoison.Cast();
-            return;
-        }
-        if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
-            && MySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
-        {
-            ParalyticPoison.Cast();
-            return;
-        }
-        if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
-            && MySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
-        {
-            CripplingPoison.Cast();
-            return;
-        }
-        if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
-            && MySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
-            && !LeechingPoison.HaveBuff)
-        {
-            MindnumbingPoison.Cast();
-            return;
-        }
-        if (!ObjectManager.Me.InCombat && BurstofSpeed.IsSpellUsable && BurstofSpeed.KnownSpell
-            && MySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
-        {
-            BurstofSpeed.Cast();
-            return;
-        }
-        if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
-            && MySettings.UseSprint && ObjectManager.Me.GetMove)
-        {
-            Sprint.Cast();
-            return;
-        }
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-        {
-            ItemsManager.UseItem(75525);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
-    private void DefenseCycle()
-    {
-        if (ObjectManager.Me.HealthPercent <= 80 && !KidneyShot.TargetHaveBuff && KidneyShot.KnownSpell
-            && KidneyShot.IsSpellUsable && KidneyShot.IsHostileDistanceGood && ObjectManager.Me.ComboPoint <= 3
-            && Recuperate.HaveBuff && MySettings.UseKidneyShot)
-        {
-            CP = ObjectManager.Me.ComboPoint;
-            KidneyShot.Cast();
-            _onCd = new Timer(1000*CP);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
-            && MySettings.UseEvasion)
-        {
-            Evasion.Cast();
-            _onCd = new Timer(1000*15);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
-            && MySettings.UseCombatReadiness)
-        {
-            CombatReadiness.Cast();
-            _onCd = new Timer(1000*20);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
-            && MySettings.UseDismantle)
-        {
-            Dismantle.Cast();
-            //_dismantleTimer = new Timer(1000*60);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-            WarStomp.KnownSpell
-            && MySettings.UseWarStomp)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-            Stoneform.KnownSpell
-            && MySettings.UseStoneform)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-            return;
-        }
-        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
-            && MySettings.UseVanish)
-        {
-            Vanish.Cast();
-            Others.SafeSleep(5000);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
-            && MySettings.UsePreparation && !Evasion.IsSpellUsable)
-        {
-            Preparation.Cast();
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell &&
-            GiftoftheNaaru.IsSpellUsable
-            && MySettings.UseGiftoftheNaaru)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
-            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
-        {
-            Recuperate.Cast();
-        }
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable
-            && Kick.IsHostileDistanceGood && MySettings.UseKick && ObjectManager.Target.IsTargetingMe)
-        {
-            Kick.Cast();
-            return;
-        }
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && MySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-            ObjectManager.Target.IsTargetingMe)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
-            && ObjectManager.Target.IsTargetingMe && MySettings.UseCloakofShadows)
-        {
-            CloakofShadows.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
-            && ObjectManager.Target.IsTargetingMe && MySettings.UseSmokeBomb
-            && !CloakofShadows.HaveBuff)
-        {
-            SmokeBomb.Cast();
-            return;
-        }
-
-        if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
-            && MySettings.UsePreparation && !CloakofShadows.IsSpellUsable && ObjectManager.Target.IsCast
-            && ObjectManager.Target.IsTargetingMe)
-        {
-            Preparation.Cast();
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-            return;
-        }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseBerserking)
-        {
-            Berserking.Cast();
-            return;
-        }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseBloodFury)
-        {
-            BloodFury.Cast();
-            return;
-        }
-        if (ShadowDance.KnownSpell && ShadowDance.IsSpellUsable
-            && MySettings.UseShadowDance && ObjectManager.Target.GetDistance < 10)
-        {
-            ShadowDance.Cast();
-            return;
-        }
-        if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
-            && MySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
-        {
-            ShadowBlades.Cast();
-        }
-    }
-
-    private void DPSCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (ObjectManager.Me.HaveBuff(115192) || ObjectManager.Me.HaveBuff(51713))
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
-                    && MySettings.UseGarrote && !ObjectManager.Target.HaveBuff(703))
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            //Crimson Vial
+            if (ObjectManager.Me.HealthPercent < MySettings.UseCrimsonVialBelowPercentage && CrimsonVial.IsSpellUsable)
+            {
+                CrimsonVial.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
                 {
-                    Garrote.Cast();
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                if (ObjectManager.Me.HealthPercent < MySettings.UseFeintBelowPercentage && Feint.IsSpellUsable)
+                {
+                    Feint.Cast();
+                    DefensiveTimer = new Timer(1000*5);
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Cloak of Shadows
+            if (ObjectManager.Me.HealthPercent < MySettings.UseCloakofShadowsBelowPercentage && CloakofShadows.IsSpellUsable)
+            {
+                CloakofShadows.Cast();
+                DefensiveTimer = new Timer(1000*5);
+                return true;
+            }
+            //Evasion
+            if (ObjectManager.Me.HealthPercent < MySettings.UseEvasionBelowPercentage && Evasion.IsSpellUsable)
+            {
+                Evasion.Cast();
+                DefensiveTimer = new Timer(1000*10);
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Spots (always return after Casting)
+    private bool AggroManagement()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Tricks of the Trade on Tank when
+            if (ObjectManager.Me.HealthPercent < MySettings.UseTricksoftheTradeBelowPercentage && TricksoftheTrade.IsSpellUsable
+                //you are in a Group and
+                && Party.IsInGroup())
+            {
+                WoWPlayer tank = new WoWPlayer(0);
+                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
+                {
+                    if (playerInMyParty <= 0)
+                        continue;
+                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                        continue;
+                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                        continue;
+                    if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && tank != currentPlayer)
+                        tank = currentPlayer;
+                }
+                //the Tank has more than 20% Health
+                if (tank.HealthPercent > 20)
+                    TricksoftheTrade.Cast(false, true, false, tank.GetUnitId());
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Apply Symbols of Death
+            if (MySettings.UseSymbolsofDeath && SymbolsofDeath.IsSpellUsable && !SymbolsofDeath.HaveBuff)
+            {
+                SymbolsofDeath.Cast();
+                return true;
+            }
+            //Cast Vanish when you aren't in stealth
+            if (MySettings.UseVanish && Vanish.IsSpellUsable && !StealthBuff.HaveBuff)
+            {
+                Vanish.Cast();
+                return true;
+            }
+            //Apply Shadow Dance when you aren't in stealth and
+            if (MySettings.UseShadowDance && ShadowDance.IsSpellUsable && !StealthBuff.HaveBuff &&
+                //it has 2 or more charges
+                ShadowDance.GetSpellCharges >= 2)
+            {
+                ShadowDance.Cast();
+            }
+            //Cast Shadow Blades when
+            if (MySettings.UseShadowBlades && ShadowBlades.IsSpellUsable &&
+                //you have 4 or more free combo points.
+                GetFreeComboPoints() >= 4)
+            {
+                ShadowBlades.Cast();
+                return true;
+            }
+            //Cast Marked for Death (when talented) when
+            if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
+                //you have 5 free combo points.
+                GetFreeComboPoints() >= 5)
+            {
+                MarkedforDeath.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Cast Kidney Shot when you have X combo points and
+            if (ObjectManager.Me.ComboPoint > MySettings.UseKidneyShotAboveComboPoints && KidneyShot.IsSpellUsable && KidneyShot.IsHostileDistanceGood &&
+                //the target is stunnable and probably not stunned
+                ObjectManager.Target.IsStunnable && StunTimer.IsReady)
+            {
+                KidneyShot.Cast();
+                StunTimer = new Timer(1000*1 + ObjectManager.Me.ComboPoint);
+                return;
+            }
+            //Cast Goremaw's Bite when
+            if (MySettings.UseGoremawsBite && GoremawsBite.IsSpellUsable && GoremawsBite.IsHostileDistanceGood &&
+                //you have 3 or more free combo points and
+                GetFreeComboPoints() >= 3 &&
+                //you aren't capping energy
+                ObjectManager.Me.EnergyPercentage < 100)
+            {
+                GoremawsBite.Cast();
+                return;
+            }
+
+            //Generate combo points if they aren't capping.
+            if (GetFreeComboPoints() > 0)
+            {
+                //Cast Shuriken Storm when
+                if (MySettings.UseShurikenStorm && ShurikenStorm.IsSpellUsable && ShurikenStorm.IsHostileDistanceGood &&
+                    //you haves 2 or more targets
+                    ObjectManager.Me.GetUnitInSpellRange(10f) >= 2)
+                {
+                    ShurikenStorm.Cast();
+                    return;
+                }
+                //Cast Shadowstrike (only usable in Stelth or Shadow Dance)
+                if (MySettings.UseShadowstrike && Shadowstrike.IsSpellUsable && Shadowstrike.IsHostileDistanceGood)
+                {
+                    Shadowstrike.Cast();
+                    return;
+                }
+                //Cast Gloomblade/Backstap
+                if (MySettings.UseGloomblade && Gloomblade.IsSpellUsable && Gloomblade.IsHostileDistanceGood)
+                {
+                    Gloomblade.Cast();
+                    return;
+                }
+                else if (MySettings.UseBackstap && Backstab.IsSpellUsable && Backstab.IsHostileDistanceGood)
+                {
+                    Backstab.Cast();
                     return;
                 }
             }
-
-            if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell && !ObjectManager.Target.InCombat
-                && MySettings.UseThrow)
+                //Spend combo points if they are capping.
+            else
             {
-                Throw.Cast();
-                return;
-            }
-
-            if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood
-                && MySettings.UseEviscerate && ObjectManager.Me.ComboPoint > 4)
-            {
-                Eviscerate.Cast();
-                return;
-            }
-            if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                && MySettings.UseSliceandDice && !SliceandDice.HaveBuff)
-            {
-                CP = ObjectManager.Me.ComboPoint;
-                SliceandDice.Cast();
-                //_sliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
-                return;
-            }
-            if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
-                && MySettings.UseRupture && (!Rupture.TargetHaveBuff || _ruptureTimer.IsReady))
-            {
-                CP = ObjectManager.Me.ComboPoint;
-                Rupture.Cast();
-                _ruptureTimer = new Timer(1000*(4 + (CP*4)));
-                return;
-            }
-            if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
-                && MySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
-            {
-                ExposeArmor.Cast();
-                return;
-            }
-            if (Hemorrhage.KnownSpell && Hemorrhage.IsSpellUsable && Hemorrhage.IsHostileDistanceGood
-                && MySettings.UseHemorrhage)
-            {
-                Hemorrhage.Cast();
-                return;
-            }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && MySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Cast();
+                //Apply Enveloping Shadows when
+                if (MySettings.UseEnvelopingShadows && EnvelopingShadows.IsSpellUsable && EnvelopingShadows.IsHostileDistanceGood &&
+                    //you don't have the Buff
+                    EnvelopingShadows.HaveBuff)
+                {
+                    EnvelopingShadows.Cast();
+                    return;
+                }
+                //Apply Nightblade when
+                if (MySettings.UseNightblade && Nightblade.IsSpellUsable && Nightblade.IsHostileDistanceGood &&
+                    //your target don't have the Dot
+                    Nightblade.TargetHaveBuffFromMe)
+                {
+                    Nightblade.Cast();
+                    return;
+                }
+                //Cast Eviscerate when
+                if (MySettings.UseEviscerate && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood)
+                {
+                    Eviscerate.Cast();
+                    return;
+                }
+                //Cast DeathfromAbove when
+                if (MySettings.UseDeathfromAbove && DeathfromAbove.IsSpellUsable && DeathfromAbove.IsHostileDistanceGood)
+                {
+                    DeathfromAbove.Cast();
+                    return;
+                }
             }
         }
         finally
@@ -1520,13 +1905,10 @@ public class RogueSubtlety
         }
     }
 
-    private void Patrolling()
+    // Checks free combo points before capping
+    private int GetFreeComboPoints()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        return ((DeeperStratagem.HaveBuff) ? 5 : 6) - (int) ObjectManager.Me.ComboPoint;
     }
 
     #region Nested type: RogueSubtletySettings
@@ -1534,127 +1916,97 @@ public class RogueSubtlety
     [Serializable]
     public class RogueSubtletySettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseAmbush = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseBurstofSpeed = true;
-        public bool UseCheapShot = true;
-        public bool UseCloakofShadows = true;
-        public bool UseCombatReadiness = true;
-        public bool UseCrimsonTempest = true;
-        public bool UseCripplingPoison = false;
-        public bool UseDeadlyPoison = true;
-        public bool UseDeadlyThrow = true;
-        public bool UseDismantle = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
 
-        public bool UseEvasion = true;
+        /* Artifact Spells */
+        public bool UseGoremawsBite = true;
+
+        /* Offensive Spells */
+        public bool UseBackstap = true;
+        public bool UseDeathfromAbove = true;
+        public bool UseEnvelopingShadows = true;
         public bool UseEviscerate = true;
-        public bool UseExposeArmor = false;
-        public bool UseFanofKnives = true;
-        public bool UseGarrote = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseHemorrhage = true;
-        public bool UseKick = true;
-        public bool UseKidneyShot = true;
-        public bool UseLeechingPoison = true;
+        public bool UseGloomblade = true;
+        public bool UseNightblade = true;
+        public bool UseShadowstrike = true;
+        public bool UseShurikenStorm = true;
 
-        public bool UseLowCombat = true;
-        public bool UseMindnumbingPoison = true;
-        public bool UseParalyticPoison = false;
-        public bool UsePremeditation = true;
-        public bool UsePreparation = true;
-        public bool UseRecuperate = true;
-        public bool UseRedirect = true;
-        public bool UseRupture = true;
+        /* Offensive Cooldowns */
+        public bool UseMarkedforDeath = true;
         public bool UseShadowBlades = true;
         public bool UseShadowDance = true;
-        public bool UseShadowStep = true;
-        public bool UseShiv = true;
-        public bool UseShurikenToss = true;
-        public bool UseSliceandDice = true;
-        public bool UseSmokeBomb = true;
+        public bool UseSymbolsofDeath = true;
+        public bool UseVanish = true;
+
+        /* Defensive Spells */
+        public int UseCloakofShadowsBelowPercentage = 0;
+        public int UseEvasionBelowPercentage = 10;
+        public int UseFeintBelowPercentage = 0;
+        public int UseTricksoftheTradeBelowPercentage = 100;
+
+        /* Healing Spells */
+        public int UseCrimsonVialBelowPercentage = 70;
+
+        /* Utility Spells */
+        //public bool UseCheapShot = true;
+        public int UseKidneyShotAboveComboPoints = 10;
         public bool UseSprint = true;
-        public bool UseStealth = false;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
-        public bool UseThrow = true;
+        public bool UseStealth = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseVanish = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWoundPoison = false;
 
         public RogueSubtletySettings()
         {
             ConfigWinForm("Rogue Subtlety Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Rogue Buffs */
-            AddControlInWinForm("Use Burst of Speed", "UseBurstofSpeed", "Rogue Buffs");
-            AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Mindnumbing Poison", "UseMindnumbingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Paralytic Poison", "UseParalyticPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Slice and Dice", "UseSliceandDice", "Rogue Buffs");
-            AddControlInWinForm("Use Sprint", "UseSprint", "Rogue Buffs");
-            AddControlInWinForm("Use Stealth", "UseStealth", "Rogue Buffs");
-            AddControlInWinForm("Use Wound Poison", "UseWoundPoison", "Rogue Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
-            AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
-            AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
-            AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
-            AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
-            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spell");
-            AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
-            AddControlInWinForm("Use Hemorrhage", "UseHemorrhage", "Offensive Spell");
-            AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
-            AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
-            AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
-            AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Premeditation", "UsePremeditation", "Offensive Cooldown");
-            AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Dance", "UseShadowDance", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
-            AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
-            AddControlInWinForm("Use CombatReadiness", "UseCombatReadiness", "Defensive Cooldown");
-            AddControlInWinForm("Use Dismantle", "UseDismantle", "Defensive Cooldown");
-            AddControlInWinForm("Use Evasion", "UseEvasion", "Defensive Cooldown");
-            AddControlInWinForm("Use Kick", "UseKick", "Defensive Cooldown");
-            AddControlInWinForm("Use KidneyShot", "UseKidneyShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Preparation", "UsePreparation", "Defensive Cooldown");
-            AddControlInWinForm("Use SmokeBomb", "UseSmokeBomb", "Defensive Cooldown");
-            AddControlInWinForm("Use Vanish", "UseVanish", "Defensive Cooldown");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Goremaw's Bite", "UseGoremawsBite", "Artifact Spells");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Backstap", "UseBackstap", "Offensive Spells");
+            AddControlInWinForm("Use Death from Above", "UseDeathfromAbove", "Offensive Spells");
+            AddControlInWinForm("Use Enveloping Shadows", "UseEnvelopingShadows", "Offensive Spells");
+            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spells");
+            AddControlInWinForm("Use Gloomblade", "UseGloomblade", "Offensive Spells");
+            AddControlInWinForm("Use Nightblade", "UseNightblade", "Offensive Spells");
+            AddControlInWinForm("Use Shadowstrike", "UseShadowstrike", "Offensive Spells");
+            AddControlInWinForm("Use Shuriken Storm", "UseShurikenStorm", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Marked for Death", "UseMarkedforDeath", "Offensive Cooldowns");
+            AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldowns");
+            AddControlInWinForm("Use Shadow Dance", "UseShadowDance", "Offensive Cooldowns");
+            AddControlInWinForm("Use Symbols of Death", "UseSymbolsofDeath", "Offensive Cooldowns");
+            AddControlInWinForm("Use Vanish", "UseVanish", "Offensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Cloak of Shadows", "UseCloakofShadowsBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Evasios", "UseEvasiosBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Feint", "UseFeintBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Tricks of the Trade", "UseTricksoftheTradeBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Healing Spell */
-            AddControlInWinForm("Use Recuperate", "UseRecuperate", "Healing Spell");
+            AddControlInWinForm("Use Crimson Vial", "UseCrimsonVialBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            //AddControlInWinForm("Use Cheap Shot", "UseCheapShot", "Utility Spells");
+            AddControlInWinForm("Use Kidney Shot", "UseKidneyShotAboveComboPoints", "Offensive Spells", "AbovePercentage", "Combo Points");
+            AddControlInWinForm("Use Sprint", "UseSprint", "Utility Spells");
+            AddControlInWinForm("Use Stealth", "UseStealth", "Utility Spells");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static RogueSubtletySettings CurrentSetting { get; set; }
@@ -1668,754 +2020,6 @@ public class RogueSubtlety
                     CurrentSetting = Load<RogueSubtletySettings>(currentSettingsFile);
             }
             return new RogueSubtletySettings();
-        }
-    }
-
-    #endregion
-}
-
-public class RogueAssassination
-{
-    private static RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
-
-    #region General Timers & Variables
-
-    private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public uint CP = 0;
-    public int LC = 0;
-
-    private Timer _onCd = new Timer(0);
-
-    #endregion
-
-    #region Professions & Racials
-
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
-
-    #endregion
-
-    #region Rogue Buffs
-
-    public readonly Spell BurstofSpeed = new Spell("Burst of Speed");
-    public readonly Spell CripplingPoison = new Spell("Crippling Poison");
-    public readonly Spell DeadlyPoison = new Spell("Deadly Poison");
-    public readonly Spell LeechingPoison = new Spell("Leeching Poison");
-    public readonly Spell MindnumbingPoison = new Spell("Mind-numbing Poison");
-    public readonly Spell ParalyticPoison = new Spell("Paralytic Poison");
-    public readonly Spell SliceandDice = new Spell("Slice and Dice");
-    public readonly Spell Sprint = new Spell("Sprint");
-    public readonly Spell Stealth = new Spell("Stealth");
-    public readonly Spell WoundPoison = new Spell("Wound Poison");
-    private Timer _sliceandDiceTimer = new Timer(0);
-
-    #endregion
-
-    #region Offensive Spell
-
-    public readonly Spell Ambush = new Spell("Ambush");
-    public readonly Spell CrimsonTempest = new Spell("Crimson Tempest");
-    public readonly Spell DeadlyThrow = new Spell("Deadly Throw");
-    public readonly Spell Dispatch = new Spell("Dispatch");
-    public readonly Spell Envenom = new Spell("Envenom");
-    public readonly Spell Eviscerate = new Spell("Eviscerate");
-    public readonly Spell ExposeArmor = new Spell("Expose Armor");
-    public readonly Spell FanofKnives = new Spell("Fan of Knives");
-    public readonly Spell Garrote = new Spell("Garrote");
-    public readonly Spell Mutilate = new Spell("Mutilate");
-    public readonly Spell Rupture = new Spell("Rupture");
-    public readonly Spell Shiv = new Spell("Shiv");
-    public readonly Spell ShurikenToss = new Spell("Shuriken Toss");
-    public readonly Spell SinisterStrike = new Spell("Sinister Strike");
-    public readonly Spell Throw = new Spell("Throw");
-    private Timer _ruptureTimer = new Timer(0);
-
-    #endregion
-
-    #region Offensive Cooldown
-
-    public readonly Spell Redirect = new Spell("Redirect");
-    public readonly Spell ShadowBlades = new Spell("Shadow Blades");
-    public readonly Spell ShadowStep = new Spell("Shadow Step");
-    public readonly Spell Vendetta = new Spell("Vendetta");
-
-    #endregion
-
-    #region Defensive Cooldown
-
-    public readonly Spell CheapShot = new Spell("Cheap Shot");
-    public readonly Spell CloakofShadows = new Spell("Cloak of Shadows");
-    public readonly Spell CombatReadiness = new Spell("Combat Readiness");
-    public readonly Spell Dismantle = new Spell("Dismantle");
-    public readonly Spell Evasion = new Spell("Evasion");
-    public readonly Spell Kick = new Spell("Kick");
-    public readonly Spell KidneyShot = new Spell("Kidney Shot");
-    public readonly Spell Preparation = new Spell("Preparation");
-    public readonly Spell SmokeBomb = new Spell("Smoke Bomb");
-    public readonly Spell Vanish = new Spell("Vanish");
-/*
-        private Timer _dismantleTimer = new Timer(0);
-*/
-
-    #endregion
-
-    #region Healing Spell
-
-    public readonly Spell Recuperate = new Spell("Recuperate");
-
-    #endregion
-
-    public RogueAssassination()
-    {
-        Main.InternalRange = ObjectManager.Me.GetCombatReach;
-        Main.InternalLightHealingSpell = null;
-        MySettings = RogueAssassinationSettings.GetSettings();
-        Main.DumpCurrentSettings<RogueAssassinationSettings>(MySettings);
-        UInt128 lastTarget = 0;
-
-        while (Main.InternalLoop)
-        {
-            try
-            {
-                if (!ObjectManager.Me.IsDeadMe)
-                {
-                    if (!ObjectManager.Me.IsMounted)
-                    {
-                        if (Fight.InFight && ObjectManager.Me.Target > 0)
-                        {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Throw.IsHostileDistanceGood || SinisterStrike.IsHostileDistanceGood))
-                            {
-                                Pull();
-                                lastTarget = ObjectManager.Me.Target;
-                            }
-
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && MySettings.UseLowCombat)
-                            {
-                                LC = 1;
-                                if (ObjectManager.Target.GetDistance < 30)
-                                    LowCombat();
-                            }
-                            else
-                            {
-                                LC = 0;
-                                if (ObjectManager.Target.GetDistance < 30)
-                                    Combat();
-                            }
-                        }
-                        if (!ObjectManager.Me.IsCast)
-                            Patrolling();
-                    }
-                }
-                else
-                    Thread.Sleep(500);
-            }
-            catch
-            {
-            }
-            Thread.Sleep(100);
-        }
-    }
-
-    private void Pull()
-    {
-        if (Redirect.IsSpellUsable && Redirect.IsHostileDistanceGood && Redirect.KnownSpell
-            && MySettings.UseRedirect && ObjectManager.Me.ComboPoint > 0)
-        {
-            Redirect.Cast();
-            Others.SafeSleep(200);
-        }
-
-        if (((Stealth.KnownSpell && Stealth.IsSpellUsable && !Stealth.HaveBuff && MySettings.UseStealth)
-             || Stealth.HaveBuff) && LC != 1)
-        {
-            if (!Stealth.HaveBuff)
-            {
-                Stealth.Cast();
-                Others.SafeSleep(200);
-            }
-
-            if (ShadowStep.IsSpellUsable && ShadowStep.IsHostileDistanceGood && ShadowStep.KnownSpell
-                && MySettings.UseShadowStep)
-            {
-                ShadowStep.Cast();
-                Others.SafeSleep(200);
-            }
-
-            if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
-                && MySettings.UseGarrote)
-            {
-                Garrote.Cast();
-                return;
-            }
-            if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
-                && MySettings.UseCheapShot)
-            {
-                CheapShot.Cast();
-                return;
-            }
-            return;
-        }
-        if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
-            && MySettings.UseShurikenToss && !MySettings.UseStealth)
-        {
-            ShurikenToss.Cast();
-            return;
-        }
-        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
-            && MySettings.UseThrow && !MySettings.UseStealth)
-        {
-            MovementManager.StopMove();
-            Throw.Cast();
-            Others.SafeSleep(1000);
-        }
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DefenseCycle();
-        Heal();
-
-        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseThrow)
-        {
-            Throw.Cast();
-            return;
-        }
-        // Blizzard API Calls for Envenom using Eviscerate Function
-        if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood
-            && MySettings.UseEnvenom && (ObjectManager.Me.ComboPoint > 4
-                                         || (SliceandDice.HaveBuff && _sliceandDiceTimer.IsReady)))
-        {
-            Eviscerate.Cast();
-            if (SliceandDice.HaveBuff)
-                _sliceandDiceTimer = new Timer(1000*(6 + (5*6)));
-            return;
-        }
-        // Blizzard API Calls for Dispatch using Sinister Strike Function
-        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-            && MySettings.UseDispatch)
-        {
-            SinisterStrike.Cast();
-            return;
-        }
-        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-            && MySettings.UseSliceandDice && !SliceandDice.HaveBuff)
-        {
-            CP = ObjectManager.Me.ComboPoint;
-            SliceandDice.Cast();
-            _sliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
-            return;
-        }
-        if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && ObjectManager.Target.HealthPercent > 35
-            && MySettings.UseMutilate && Mutilate.IsHostileDistanceGood)
-        {
-            Mutilate.Cast();
-            return;
-        }
-        if (FanofKnives.KnownSpell && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood
-            && MySettings.UseFanofKnives)
-        {
-            FanofKnives.Cast();
-        }
-    }
-
-    private void Combat()
-    {
-        Buff();
-        DPSBurst();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DPSCycle();
-        Decast();
-        if (_onCd.IsReady)
-            DefenseCycle();
-        Heal();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseDeadlyPoison && DeadlyPoison.KnownSpell && DeadlyPoison.IsSpellUsable
-            && !DeadlyPoison.HaveBuff)
-        {
-            DeadlyPoison.Cast();
-            return;
-        }
-        if (!WoundPoison.HaveBuff && WoundPoison.KnownSpell && WoundPoison.IsSpellUsable
-            && MySettings.UseWoundPoison && !DeadlyPoison.HaveBuff)
-        {
-            WoundPoison.Cast();
-            return;
-        }
-        if (!LeechingPoison.HaveBuff && LeechingPoison.KnownSpell && LeechingPoison.IsSpellUsable
-            && MySettings.UseLeechingPoison)
-        {
-            LeechingPoison.Cast();
-            return;
-        }
-        if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
-            && MySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
-        {
-            ParalyticPoison.Cast();
-            return;
-        }
-        if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
-            && MySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
-        {
-            CripplingPoison.Cast();
-            return;
-        }
-        if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
-            && MySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
-            && !LeechingPoison.HaveBuff)
-        {
-            MindnumbingPoison.Cast();
-            return;
-        }
-        if (!ObjectManager.Me.InCombat && BurstofSpeed.IsSpellUsable && BurstofSpeed.KnownSpell
-            && MySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
-        {
-            BurstofSpeed.Cast();
-            return;
-        }
-        if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
-            && MySettings.UseSprint && ObjectManager.Me.GetMove)
-        {
-            Sprint.Cast();
-            return;
-        }
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-        {
-            ItemsManager.UseItem(75525);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
-    private void DefenseCycle()
-    {
-        if (ObjectManager.Me.HealthPercent <= 80 && !KidneyShot.TargetHaveBuff && KidneyShot.KnownSpell
-            && KidneyShot.IsSpellUsable && KidneyShot.IsHostileDistanceGood && ObjectManager.Me.ComboPoint <= 3
-            && Recuperate.HaveBuff && MySettings.UseKidneyShot)
-        {
-            CP = ObjectManager.Me.ComboPoint;
-            KidneyShot.Cast();
-            _onCd = new Timer(1000*CP);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
-            && MySettings.UseEvasion)
-        {
-            Evasion.Cast();
-            _onCd = new Timer(1000*15);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
-            && MySettings.UseCombatReadiness)
-        {
-            CombatReadiness.Cast();
-            _onCd = new Timer(1000*20);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
-            && MySettings.UseDismantle)
-        {
-            Dismantle.Cast();
-            //_dismantleTimer = new Timer(1000*60);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-            WarStomp.KnownSpell
-            && MySettings.UseWarStomp)
-        {
-            WarStomp.Cast();
-            _onCd = new Timer(1000*2);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-            Stoneform.KnownSpell
-            && MySettings.UseStoneform)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-            return;
-        }
-        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
-            && MySettings.UseVanish)
-        {
-            Vanish.Cast();
-            Others.SafeSleep(5000);
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
-            && MySettings.UsePreparation && !Evasion.IsSpellUsable)
-        {
-            Preparation.Cast();
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-        if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell &&
-            GiftoftheNaaru.IsSpellUsable
-            && MySettings.UseGiftoftheNaaru)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
-            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
-        {
-            Recuperate.Cast();
-        }
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable
-            && Kick.IsHostileDistanceGood && MySettings.UseKick && ObjectManager.Target.IsTargetingMe)
-        {
-            Kick.Cast();
-            return;
-        }
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && MySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-            ObjectManager.Target.IsTargetingMe)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
-            && ObjectManager.Target.IsTargetingMe && MySettings.UseCloakofShadows)
-        {
-            CloakofShadows.Cast();
-            return;
-        }
-        if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
-            && ObjectManager.Target.IsTargetingMe && MySettings.UseSmokeBomb
-            && !CloakofShadows.HaveBuff)
-        {
-            SmokeBomb.Cast();
-            return;
-        }
-        if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
-            && MySettings.UsePreparation && !CloakofShadows.IsSpellUsable && ObjectManager.Target.IsCast
-            && ObjectManager.Target.IsTargetingMe)
-        {
-            Preparation.Cast();
-        }
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-            return;
-        }
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseBerserking)
-        {
-            Berserking.Cast();
-            return;
-        }
-        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-            && MySettings.UseBloodFury)
-        {
-            BloodFury.Cast();
-            return;
-        }
-        if (Vendetta.KnownSpell && Vendetta.IsSpellUsable
-            && MySettings.UseVendetta && Vendetta.IsHostileDistanceGood)
-        {
-            Vendetta.Cast();
-            return;
-        }
-        if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
-            && MySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
-        {
-            ShadowBlades.Cast();
-        }
-    }
-
-    private void DPSCycle()
-    {
-        Usefuls.SleepGlobalCooldown();
-        try
-        {
-            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
-
-            if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && MySettings.UseMutilate
-                && Mutilate.IsHostileDistanceGood && MySettings.UseShadowFocus && !ObjectManager.Target.InCombat
-                && (Stealth.HaveBuff || ObjectManager.Me.HaveBuff(115192)))
-            {
-                Mutilate.Cast();
-                return;
-            }
-
-            if (Garrote.IsSpellUsable && Garrote.IsHostileDistanceGood && Garrote.KnownSpell
-                && MySettings.UseGarrote && ObjectManager.Me.HaveBuff(115192))
-            {
-                Garrote.Cast();
-                return;
-            }
-
-            if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell && !ObjectManager.Target.InCombat
-                && MySettings.UseThrow)
-            {
-                Throw.Cast();
-                return;
-            }
-
-            if (Eviscerate.KnownSpell && Eviscerate.IsSpellUsable && Eviscerate.IsHostileDistanceGood
-                && MySettings.UseEnvenom && (ObjectManager.Me.ComboPoint > 4
-                                             || (SliceandDice.HaveBuff && _sliceandDiceTimer.IsReady)))
-            {
-                Eviscerate.Cast();
-                if (SliceandDice.HaveBuff)
-                    _sliceandDiceTimer = new Timer(1000*(6 + (5*6)));
-                return;
-            }
-            if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                && MySettings.UseDispatch)
-            {
-                SinisterStrike.Cast();
-                return;
-            }
-            if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                && MySettings.UseSliceandDice && !SliceandDice.HaveBuff)
-            {
-                CP = ObjectManager.Me.ComboPoint;
-                SliceandDice.Cast();
-                _sliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
-                return;
-            }
-            if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
-                && MySettings.UseRupture && (!Rupture.TargetHaveBuff || _ruptureTimer.IsReady))
-            {
-                CP = ObjectManager.Me.ComboPoint;
-                Rupture.Cast();
-                _ruptureTimer = new Timer(1000*(4 + (CP*4)));
-                return;
-            }
-            if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
-                && MySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
-            {
-                ExposeArmor.Cast();
-                return;
-            }
-            if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && ObjectManager.Target.HealthPercent > 35
-                && MySettings.UseMutilate && Mutilate.IsHostileDistanceGood)
-            {
-                Mutilate.Cast();
-                return;
-            }
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && MySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Cast();
-            }
-        }
-        finally
-        {
-            Memory.WowMemory.GameFrameUnLock();
-        }
-    }
-
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
-    }
-
-    #region Nested type: RogueAssassinationSettings
-
-    [Serializable]
-    public class RogueAssassinationSettings : Settings
-    {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseAmbush = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseBurstofSpeed = true;
-        public bool UseCheapShot = true;
-        public bool UseCloakofShadows = true;
-        public bool UseCombatReadiness = true;
-        public bool UseCrimsonTempest = true;
-        public bool UseCripplingPoison = false;
-        public bool UseDeadlyPoison = true;
-        public bool UseDeadlyThrow = true;
-        public bool UseDismantle = true;
-        public bool UseDispatch = true;
-
-        public bool UseEnvenom = true;
-        public bool UseEvasion = true;
-        public bool UseExposeArmor = false;
-        public bool UseFanofKnives = true;
-        public bool UseGarrote = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseKick = true;
-        public bool UseKidneyShot = true;
-        public bool UseLeechingPoison = true;
-
-        public bool UseLowCombat = true;
-        public bool UseMindnumbingPoison = true;
-        public bool UseMutilate = true;
-        public bool UseParalyticPoison = false;
-        public bool UsePreparation = true;
-        public bool UseRecuperate = true;
-        public bool UseRedirect = true;
-        public bool UseRupture = true;
-        public bool UseShadowBlades = true;
-        public bool UseShadowFocus = false;
-        public bool UseShadowStep = true;
-        public bool UseShiv = true;
-        public bool UseShurikenToss = true;
-        public bool UseSliceandDice = true;
-        public bool UseSmokeBomb = true;
-        public bool UseSprint = true;
-        public bool UseStealth = false;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
-        public bool UseThrow = true;
-        public bool UseTrinketOne = true;
-        public bool UseTrinketTwo = true;
-        public bool UseVanish = true;
-        public bool UseVendetta = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWoundPoison = false;
-
-        public RogueAssassinationSettings()
-        {
-            ConfigWinForm("Rogue Assassination Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Rogue Buffs */
-            AddControlInWinForm("Use Burst of Speed", "UseBurstofSpeed", "Rogue Buffs");
-            AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Mindnumbing Poison", "UseMindnumbingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Paralytic Poison", "UseParalyticPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Slice and Dice", "UseSliceandDice", "Rogue Buffs");
-            AddControlInWinForm("Use Sprint", "UseSprint", "Rogue Buffs");
-            AddControlInWinForm("Use Stealth", "UseStealth", "Rogue Buffs");
-            AddControlInWinForm("Use Wound Poison", "UseWoundPoison", "Rogue Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
-            AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
-            AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
-            AddControlInWinForm("Use Dispatch", "UseDispatch", "Offensive Spell");
-            AddControlInWinForm("Use Envenom", "UseEnvenom", "Offensive Spell");
-            AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
-            AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
-            AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
-            AddControlInWinForm("Use Mutilate", "UseMutilate", "Offensive Spell");
-            AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
-            AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
-            AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
-            AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
-            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
-            AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
-            AddControlInWinForm("Use CombatReadiness", "UseCombatReadiness", "Defensive Cooldown");
-            AddControlInWinForm("Use Dismantle", "UseDismantle", "Defensive Cooldown");
-            AddControlInWinForm("Use Evasion", "UseEvasion", "Defensive Cooldown");
-            AddControlInWinForm("Use Kick", "UseKick", "Defensive Cooldown");
-            AddControlInWinForm("Use KidneyShot", "UseKidneyShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Preparation", "UsePreparation", "Defensive Cooldown");
-            AddControlInWinForm("Use SmokeBomb", "UseSmokeBomb", "Defensive Cooldown");
-            AddControlInWinForm("Use Vanish", "UseVanish", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Recuperate", "UseRecuperate", "Healing Spell");
-            /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
-            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
-            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Shadow Focus Talent?", "UseShadowFocus", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
-        }
-
-        public static RogueAssassinationSettings CurrentSetting { get; set; }
-
-        public static RogueAssassinationSettings GetSettings()
-        {
-            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Assassination.xml";
-            if (File.Exists(currentSettingsFile))
-            {
-                return
-                    CurrentSetting = Load<RogueAssassinationSettings>(currentSettingsFile);
-            }
-            return new RogueAssassinationSettings();
         }
     }
 

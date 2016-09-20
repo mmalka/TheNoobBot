@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks
+* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
 * Thanks you !
 */
 
@@ -194,103 +194,93 @@ public class MageArcane
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int DecastHP = 0;
-    public int DefenseHP = 0;
-    public int HealHP = 0;
-    public int HealMP = 0;
-    public int LC = 0;
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
-    #region Professions & Racials
+    #region Professions & Racial
 
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Darkflight = new Spell("Darkflight");
-    public readonly Spell EveryManforHimself = new Spell("Every Man for Himself");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Stoneform = new Spell("Stoneform");
-
-    #endregion
-
-    #region Mage Buffs
-
-    public readonly Spell ArcaneBrilliance = new Spell("Arcane Brilliance");
-    public readonly Spell ArcaneChargePassive = new Spell("Arcane Charge");
-    public readonly Spell BlazingSpeed = new Spell("Blazing Speed");
-    public readonly Spell Cauterize = new Spell(87024);
-    public readonly Spell DalaranBrilliance = new Spell("Dalaran Brilliance");
-    public readonly Spell IceFloes = new Spell("Ice Floes");
-    public readonly Spell Hypothermia = new Spell(41425);
-    public readonly Spell RuneofPower = new Spell("Rune of Power");
-    public readonly Spell RuneofPowerBuff = new Spell(116014);
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Offensive Spell
+    #region Buffs
 
-    public readonly Spell ArcaneOrb = new Spell("Arcane Orb");
-    public readonly Spell ArcaneBarrage = new Spell("Arcane Barrage");
-    public readonly Spell ArcaneBlast = new Spell("Arcane Blast");
-    public readonly Spell ArcaneExplosion = new Spell("Arcane Explosion");
-    public readonly Spell ArcaneMissiles = new Spell("Arcane Missiles");
-    public readonly Spell NetherTempest = new Spell("Nether Tempest");
+    private readonly Spell ArcaneCharge = new Spell(114664);
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Artifact Spells
 
-    public readonly Spell ArcanePower = new Spell("Arcane Power");
-    public readonly Spell MirrorImage = new Spell("Mirror Image");
-    public readonly Spell PresenceofMind = new Spell("Presence of Mind");
-    public readonly Spell PrismaticCrystal = new Spell("Prismatic Crystal");
-    public readonly Spell Supernova = new Spell("Supernova");
-    public readonly Spell TimeWarp = new Spell("Time Warp");
+    private readonly Spell MarkofAluneth = new Spell("Mark of Aluneth");
 
     #endregion
 
-    #region Defensive Cooldown
+    #region Offensive Spells
 
-    public readonly Spell AlterTime = new Spell("Alter Time");
-    public readonly Spell Blink = new Spell("Blink");
-    public readonly Spell ColdSnap = new Spell("Cold Snap");
-    public readonly Spell ConeofCold = new Spell("Cone of Cold");
-    public readonly Spell Counterspell = new Spell("Counterspell");
-    public readonly Spell Evanesce = new Spell("Evanesce");
-    public readonly Spell FrostNova = new Spell("Frost Nova");
-    public readonly Spell Frostjaw = new Spell("Frostjaw");
-    public readonly Spell GreaterInvisibility = new Spell("Greater Invisibility");
-    public readonly Spell IceBarrier = new Spell("Ice Barrier");
-    public readonly Spell IceBlock = new Spell("Ice Block");
-    public readonly Spell IceWard = new Spell("Ice Ward");
-    public readonly Spell Invisibility = new Spell("Invisibility");
-    public readonly Spell RingofFrost = new Spell("Ring of Frost");
-    public readonly Spell Slow = new Spell("Slow");
+    private readonly Spell ArcaneBarrage = new Spell("Arcane Barrage");
+    private readonly Spell ArcaneBlast = new Spell("Arcane Blast");
+    private readonly Spell ArcaneExplosion = new Spell("Arcane Explosion");
+    private readonly Spell ArcaneMissiles = new Spell("Arcane Missiles");
+    private readonly Spell ArcaneOrb = new Spell("Arcane Orb");
+    private readonly Spell ChargedUp = new Spell("Charged Up");
+    private readonly Spell NetherTempest = new Spell("Nether Tempest");
+    private readonly Spell RuneofPower = new Spell("Rune of Power");
+    private readonly Spell Supernova = new Spell("Supernova");
 
     #endregion
 
-    #region Healing Spell
+    #region Offensive Cooldowns
 
-    public readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
-    public readonly Spell Evocation = new Spell("Evocation");
-    public readonly Spell GlobalCooldown = new Spell("Global Cooldown");
-    private Timer _conjureRefreshmentTimer = new Timer(0);
-    private bool _burnPhaseStarted = false;
+    private readonly Spell ArcanePower = new Spell("Arcane Power"); //No GCD
+    private readonly Spell Evocation = new Spell("Evocation");
+    private readonly Spell MirrorImage = new Spell("Mirror Image");
+    private readonly Spell PresenceofMind = new Spell("Presence of Mind"); //No GCD
+    private readonly Spell TimeWarp = new Spell("Time Warp"); //No GCD
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell FrostNova = new Spell("Frost Nova");
+    private readonly Spell GreaterInvisibility = new Spell("Greater Invisibility");
+    private readonly Spell IceBarrier = new Spell("Ice Barrier");
+    private readonly Spell IceBlock = new Spell("Ice Block");
+    private readonly Spell Slow = new Spell("Slow");
+
+    #endregion
+
+    #region Utility Spells
+
+    //private readonly Spell Blink = new Spell("Blink");
+    //private readonly Spell Counterspell = new Spell("Counterspell");
+    //private readonly Spell Displacement = new Spell("Displacement");
+    private readonly Spell IceFloes = new Spell("Ice Floes");
+    //private readonly Spell Polymorph = new Spell("Polymorph");
+    //private readonly Spell Spellsteal = new Spell("Spellsteal");
+    //private readonly Spell SlowFall = new Spell("Slow Fall");
+    //private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
 
     #endregion
 
     public MageArcane()
     {
-        Main.InternalRange = 39f;
-        Main.InternalAggroRange = 39f;
+        Main.InternalRange = 39;
+        Main.InternalAggroRange = 39;
         Main.InternalLightHealingSpell = null;
         MySettings = MageArcaneSettings.GetSettings();
         Main.DumpCurrentSettings<MageArcaneSettings>(MySettings);
         UInt128 lastTarget = 0;
-        LowHP();
 
         while (Main.InternalLoop)
         {
@@ -302,26 +292,15 @@ public class MageArcane
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget && (ArcaneBarrage.IsHostileDistanceGood || ArcaneBlast.IsHostileDistanceGood))
-                            {
-                                Pull();
+                            if (ObjectManager.Me.Target != lastTarget)
                                 lastTarget = ObjectManager.Me.Target;
-                            }
 
-                            if (MySettings.UseLowCombat && (ObjectManager.Me.Level - ObjectManager.Target.Level >= MySettings.UseLowCombatAtPercentage))
-                            {
-                                LC = 1;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    LowCombat();
-                            }
-                            else
-                            {
-                                LC = 0;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    Combat();
-                            }
+                            if (ArcaneBlast.IsHostileDistanceGood)
+                                Combat();
+                            else if (!ObjectManager.Me.IsCast)
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -335,481 +314,329 @@ public class MageArcane
         }
     }
 
-    private void LowHP()
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
     {
-        if (MySettings.UseAlterTimeAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseAlterTimeAtPercentage;
-
-        if (MySettings.UseConeofColdAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseConeofColdAtPercentage;
-
-        if (MySettings.UseFrostNovaAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseFrostNovaAtPercentage;
-
-        if (MySettings.UseEvanesceAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseEvanesceAtPercentage;
-
-        if (MySettings.UseGreaterInvisibilityAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseGreaterInvisibilityAtPercentage;
-
-        if (MySettings.UseIceBarrierAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIceBarrierAtPercentage;
-
-        if (MySettings.UseIceWardAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIceWardAtPercentage;
-
-        if (MySettings.UseInvisibilityAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseInvisibilityAtPercentage;
-
-        if (MySettings.UseStoneformAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseStoneformAtPercentage;
-
-        if (MySettings.UseArcaneTorrentForDecastAtPercentage > DecastHP)
-            DecastHP = MySettings.UseArcaneTorrentForDecastAtPercentage;
-
-        if (MySettings.UseCounterspellAtPercentage > DecastHP)
-            DecastHP = MySettings.UseCounterspellAtPercentage;
-
-        if (MySettings.UseFrostjawAtPercentage > DecastHP)
-            DecastHP = MySettings.UseFrostjawAtPercentage;
-
-        if (MySettings.UseArcaneTorrentForResourceAtPercentage > HealMP)
-            HealMP = MySettings.UseArcaneTorrentForResourceAtPercentage;
-
-        if (MySettings.UseColdSnapForHealAtPercentage > HealHP)
-            HealHP = MySettings.UseColdSnapForHealAtPercentage;
-
-        if (MySettings.UseGiftoftheNaaruAtPercentage > HealHP)
-            HealHP = MySettings.UseGiftoftheNaaruAtPercentage;
-    }
-
-    private void Pull()
-    {
-        if (MySettings.UseRuneofPower && !RuneofPowerBuff.HaveBuff && RuneofPower.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-            SpellManager.CastSpellByIDAndPosition(RuneofPower.Id, ObjectManager.Me.Position);
-
-        if (MySettings.UseIceFloes && IceFloes.IsSpellUsable && ObjectManager.Me.GetMove)
-            IceFloes.Cast();
-
-        if (MySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-            ArcaneBlast.Cast();
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP)
-            Heal();
-
-        if (MySettings.UseArcaneBarrage && ArcaneBarrage.IsSpellUsable && ArcaneBarrage.IsHostileDistanceGood)
+        //Log
+        if (CombatMode)
         {
-            ArcaneBarrage.Cast();
-            return;
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
         }
-        if (MySettings.UseArcaneMissiles && ArcaneMissiles.IsSpellUsable && ArcaneMissiles.IsHostileDistanceGood)
+
+        if (ObjectManager.Me.GetMove)
         {
-            ArcaneMissiles.Cast();
-            return;
-        }
-        if (MySettings.UseArcaneBlast && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            ArcaneBlast.Cast();
-            return;
-        }
-        if (MySettings.UseArcaneExplosion && ArcaneExplosion.IsSpellUsable && ArcaneExplosion.IsHostileDistanceGood)
-            ArcaneExplosion.Cast();
-    }
-
-    private void Combat()
-    {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        DPSCycle();
-
-        if (_onCd.IsReady && (ObjectManager.Me.HealthPercent <= DefenseHP || ObjectManager.GetNumberAttackPlayer() > 2))
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP || ObjectManager.Me.ManaPercentage <= HealMP)
-            Heal();
-
-        if (ObjectManager.Me.HealthPercent <= DecastHP || (MySettings.UseSlow && ObjectManager.Target.GetMove))
-            Decast();
-
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseArcaneBrilliance && !ArcaneBrilliance.HaveBuff && !DalaranBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable)
-            ArcaneBrilliance.Cast();
-
-        if (MySettings.UseBlazingSpeed && !Darkflight.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && BlazingSpeed.IsSpellUsable)
-            BlazingSpeed.Cast();
-
-        if (MySettings.UseDarkflight && Darkflight.KnownSpell && !BlazingSpeed.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && Darkflight.IsSpellUsable)
-            Darkflight.Cast();
-
-        if (MySettings.UseIceBlock && !Evanesce.KnownSpell && Cauterize.HaveBuff && !Hypothermia.HaveBuff)
-        {
-            if (MySettings.UseColdSnapForDefence && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
+            //Movement Buffs
+            if (!Darkflight.HaveBuff) // doesn't stack
             {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
             }
-            if (IceBlock.IsSpellUsable)
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                IceBlock.Cast();
-                _onCd = new Timer(1000*10);
+                Main.InternalLightHealingSpell.CastOnSelf();
                 return;
             }
         }
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-
-        if (MySettings.UseConjureRefreshment && _conjureRefreshmentTimer.IsReady
-            && ItemsManager.GetItemCount(113509) == 0 // 100
-            && ItemsManager.GetItemCount(80610) == 0 // 90
-            && ItemsManager.GetItemCount(65499) == 0 // 85-89
-            && ItemsManager.GetItemCount(43523) == 0 // 84-80
-            && ItemsManager.GetItemCount(43518) == 0 // 79-74
-            && ItemsManager.GetItemCount(65517) == 0 // 73-64
-            && ItemsManager.GetItemCount(65516) == 0 // 63-54
-            && ItemsManager.GetItemCount(65515) == 0 // 53-44
-            && ItemsManager.GetItemCount(65500) == 0 // 43-38
-            && ConjureRefreshment.IsSpellUsable)
-        {
-            ConjureRefreshment.Cast();
-            _conjureRefreshmentTimer = new Timer(1000*60*10);
-        }
     }
 
-    private void AvoidMelee()
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
+    private void Combat()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        //Log
+        if (!CombatMode)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void DefenseCycle()
-    {
-        if (MySettings.UseEveryManforHimself && ObjectManager.Me.IsStunned && EveryManforHimself.IsSpellUsable)
-            EveryManforHimself.Cast();
-
-        if (MySettings.UseAlterTime && !AlterTime.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseAlterTimeAtPercentage && AlterTime.IsSpellUsable)
-        {
-            AlterTime.Cast();
-            return;
-        }
-        if (MySettings.UseBlink && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || Slow.TargetHaveBuff || Frostjaw.TargetHaveBuff) && Blink.IsSpellUsable
-            && ObjectManager.Target.GetDistance < 5)
-        {
-            Blink.Cast();
-            return;
-        }
-        if (MySettings.UseConeofCold && ObjectManager.Me.HealthPercent <= MySettings.UseConeofColdAtPercentage && ConeofCold.IsSpellUsable && ConeofCold.IsHostileDistanceGood)
-        {
-            ConeofCold.Cast();
-            return;
-        }
-        if (MySettings.UseEvanesce && ObjectManager.Me.HealthPercent <= MySettings.UseEvanesceAtPercentage)
-        {
-            if (MySettings.UseColdSnapForDefence && !Evanesce.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (Evanesce.IsSpellUsable)
-            {
-                Evanesce.Cast();
-                _onCd = new Timer(1000*3);
-            }
-            return;
-        }
-        if (MySettings.UseFrostjaw && ObjectManager.Me.HealthPercent <= MySettings.UseFrostjawAtPercentage && Frostjaw.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
-        {
-            Frostjaw.Cast();
-            return;
-        }
-        if (MySettings.UseFrostNova && ObjectManager.Me.HealthPercent <= MySettings.UseFrostNovaAtPercentage && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 0)
-        {
-            if (MySettings.UseColdSnapForDefence && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (FrostNova.IsSpellUsable)
-            {
-                FrostNova.Cast();
-                _onCd = new Timer(1000*8);
-            }
-            return;
-        }
-        if (MySettings.UseIceBarrier && !IceBarrier.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseIceBarrierAtPercentage && IceBarrier.IsSpellUsable)
-        {
-            IceBarrier.Cast();
-            return;
-        }
-        if (MySettings.UseIceWard && ObjectManager.Me.HealthPercent <= MySettings.UseIceWardAtPercentage && IceWard.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
-        {
-            IceWard.Cast();
-            _onCd = new Timer(1000*5);
-            return;
-        }
-        if (MySettings.UseInvisibility && ObjectManager.Me.HealthPercent <= MySettings.UseInvisibilityAtPercentage && Invisibility.IsSpellUsable)
-        {
-            Invisibility.Cast();
-            Others.SafeSleep(8000);
-            return;
-        }
-        if (MySettings.UseGreaterInvisibility && ObjectManager.Me.HealthPercent <= MySettings.UseGreaterInvisibilityAtPercentage && Invisibility.IsSpellUsable)
-        {
-            GreaterInvisibility.Cast();
-            Others.SafeSleep(8000);
-            return;
-        }
-        if (MySettings.UseRingofFrost && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
-        {
-            SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
-            _onCd = new Timer(1000*10);
-            return;
-        }
-        if (MySettings.UseStoneform && ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseArcaneTorrentForResource && ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.IsSpellUsable)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (MySettings.UseGiftoftheNaaru && ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (MySettings.UseColdSnapForHeal && ObjectManager.Me.HealthPercent <= MySettings.UseColdSnapForHealAtPercentage && ColdSnap.IsSpellUsable)
-        {
-            ColdSnap.Cast();
-            return;
-        }
-    }
-
-    private void Decast()
-    {
-        if (MySettings.UseArcaneTorrentForDecast && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ArcaneTorrent.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (MySettings.UseCounterspell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= MySettings.UseCounterspellAtPercentage
-            && Counterspell.IsSpellUsable && Counterspell.IsHostileDistanceGood)
-        {
-            Counterspell.Cast();
-            return;
-        }
-        if (MySettings.UseFrostjaw && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= MySettings.UseFrostjawAtPercentage
-            && Frostjaw.IsSpellUsable && Frostjaw.IsHostileDistanceGood)
-        {
-            Frostjaw.Cast();
-            return;
-        }
-        if (MySettings.UseSlow && !Slow.TargetHaveBuff && ObjectManager.Target.GetMove && Slow.IsSpellUsable && Slow.IsHostileDistanceGood)
-            Slow.Cast();
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
-        if (MySettings.UseBerserking && Berserking.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            Berserking.Cast();
-        }
-        if (MySettings.UseBloodFury && BloodFury.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            BloodFury.Cast();
-        }
-        if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            MirrorImage.Cast();
-        }
-        if (MySettings.UseRuneofPower && !RuneofPowerBuff.HaveBuff && !ObjectManager.Me.GetMove && RuneofPower.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-        }
-        if (MySettings.UsePresenceofMind && ArcaneChargePassive.BuffStack < 2 && PresenceofMind.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            PresenceofMind.Cast();
-        }
-        if (MySettings.UsePrismaticCrystal && _burnPhaseStarted && PrismaticCrystal.IsSpellUsable && PrismaticCrystal.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            SpellManager.CastSpellByIDAndPosition(152087, ObjectManager.Target.Position);
-            Lua.RunMacroText("/target Prismatic Crystal");
-        }
-        if (MySettings.UseTimeWarp && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723) && !ObjectManager.Me.HaveBuff(95809)
-            && TimeWarp.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            TimeWarp.Cast();
-        }
-    }
-
-    private void DPSCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseEvocation && ArcaneChargePassive.BuffStack >= 4 && Evocation.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                _burnPhaseStarted = true;
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                //Ice Barrier
+                if (ObjectManager.Me.HealthPercent < MySettings.UseIceBarrierBelowPercentage && IceBarrier.IsSpellUsable)
+                {
+                    IceBarrier.Cast();
+                    return true;
+                }
+                //Frost Nova
+                if (ObjectManager.Me.HealthPercent < MySettings.UseFrostNovaBelowPercentage && FrostNova.IsSpellUsable)
+                {
+                    FrostNova.Cast();
+                    return true;
+                }
+                //Greater Invisibility
+                if (ObjectManager.Me.HealthPercent < MySettings.UseGreaterInvisibilityBelowPercentage && GreaterInvisibility.IsSpellUsable)
+                {
+                    GreaterInvisibility.Cast();
+                    return true;
+                }
+                //Slow
+                if (ObjectManager.Me.HealthPercent < MySettings.UseSlowBelowPercentage && Slow.IsSpellUsable)
+                {
+                    Slow.Cast();
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Ice Block
+            if (ObjectManager.Me.HealthPercent < MySettings.UseIceBlockBelowPercentage && IceBlock.IsSpellUsable)
+            {
+                IceBlock.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Cast Time Warp whenever available.
+            if (MySettings.UseTimeWarp && TimeWarp.IsSpellUsable && !ObjectManager.Me.HaveBuff(80354))
+            {
+                TimeWarp.Cast();
+            }
+            //Cast Charged Up when you have no Arcane Charges.
+            if (MySettings.UseChargedUp && ChargedUp.IsSpellUsable && ArcaneCharge.BuffStack == 0)
+            {
+                ChargedUp.Cast();
+            }
+            //Cast Evocation when you have low Mana and
+            if (ObjectManager.Me.Mana < MySettings.UseEvocationBelowManaPercentage && Evocation.IsSpellUsable &&
+                //you are not in the Burst Phase
+                !ArcanePower.HaveBuff)
+            {
+                Evocation.Cast();
+                return true;
+            }
+            //Cast Mirror Image when you have 4 Arcane Charges.
+            if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && ArcaneCharge.BuffStack == 4)
+            {
+                MirrorImage.Cast();
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Use Ice Floes if you have to move //TODO: and have no instant casts to burn.
+            if (ObjectManager.Me.GetMove && !IceFloes.HaveBuff)
+            {
+                //Cast Ice Floes
+                if (MySettings.UseIceFloes && IceFloes.IsSpellUsable)
+                {
+                    IceFloes.Cast();
+                    return;
+                }
+            }
+
+            //Burn Phase
+            //1. Ensure you have 4 Arcane Charges.
+            if (ArcaneCharge.BuffStack == 4)
+            {
+                //2. Place Rune of Power (if talented).
+                if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && !RuneofPower.HaveBuff)
+                {
+                    RuneofPower.CastAtPosition(ObjectManager.Me.Position);
+                    return;
+                }
+                //3. Activate Arcane Power 
                 if (MySettings.UseArcanePower && ArcanePower.IsSpellUsable)
+                {
                     ArcanePower.Cast();
+                }
             }
-            if (ObjectManager.Me.ManaPercentage < 50)
+            if (ArcanePower.HaveBuff)
             {
-                _burnPhaseStarted = false;
-                Evocation.Launch(true, false, true);
-                Others.SafeSleep(500);
-                while (ObjectManager.Me.ManaPercentage < 96 && ObjectManager.Me.IsCast)
-                    Others.SafeSleep(20);
+                //4. Cast Arcane Missiles whenever available.
+                if (MySettings.UseArcaneMissiles && ArcaneMissiles.IsSpellUsable && ArcaneMissiles.IsHostileDistanceGood)
+                {
+                    ArcaneMissiles.Cast();
+                    return;
+                }
+                //5. Cast Arcane Blast.
+                if (MySettings.UseArcaneBlast && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
+                {
+                    ArcaneBlast.Cast();
+                    return;
+                }
+                //6. Activate Presence of Mind (if talented) for the end of Arcane Power.
+                if (MySettings.UsePresenceofMind && PresenceofMind.IsSpellUsable && ObjectManager.Target.UnitAura(ArcanePower.Ids).AuraTimeLeftInMs < 2000)
+                {
+                    PresenceofMind.Cast();
+                    return;
+                }
+            }
 
-                if (ObjectManager.Me.IsCast)
-                    ObjectManager.Me.StopCast();
-                return;
-            }
-            if (MySettings.UseIceFloes && !IceFloes.HaveBuff && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
-                IceFloes.Cast();
 
-            if (MySettings.UseNetherTempest && ArcaneChargePassive.BuffStack == 4 && (!NetherTempest.TargetHaveBuff || ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(NetherTempest.Id, 3599))
-                && NetherTempest.IsSpellUsable && NetherTempest.IsHostileDistanceGood)
+            //Conserve Phase
+            //1. Use Rune of Power if it has 2 charges.
+            if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && RuneofPower.GetSpellCharges == 2)
             {
-                NetherTempest.Cast();
+                RuneofPower.CastAtPosition(ObjectManager.Me.Position);
                 return;
             }
-            if (MySettings.UseSupernova && Supernova.GetSpellCharges > 0 && Supernova.IsSpellUsable && Supernova.IsHostileDistanceGood)
+            //2. Cast Mark of Aluneth on cooldown and make sure Rune of Power is up.
+            if (MySettings.UseMarkofAluneth && MarkofAluneth.IsSpellUsable && MarkofAluneth.IsHostileDistanceGood)
             {
-                Supernova.Cast();
+                if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && !RuneofPower.HaveBuff)
+                {
+                    RuneofPower.CastAtPosition(ObjectManager.Me.Position);
+                    return;
+                }
+                MarkofAluneth.Cast();
                 return;
             }
-            if (MySettings.UseArcaneOrb && ArcaneChargePassive.BuffStack <= 1 && ArcaneOrb.IsSpellUsable && ArcaneOrb.IsHostileDistanceGood)
+            //3. Cast Arcane Orb (if talented) and you currently have no Arcane Charges.
+            if (MySettings.UseArcaneOrb && ArcaneOrb.IsSpellUsable && ArcaneOrb.IsHostileDistanceGood &&
+                ArcaneCharge.BuffStack == 0)
             {
                 ArcaneOrb.Cast();
                 return;
             }
-            if (MySettings.UseConeofCold && MySettings.UseConeofColdGlyph && ConeofCold.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ConeofCold.MaxRangeHostile) >= 5)
+            //4.-5. Apply/Refresh Nether Tempest (if talented)
+            if (MySettings.UseNetherTempest && NetherTempest.IsSpellUsable && NetherTempest.IsHostileDistanceGood &&
+                //with 4 stacks of Arcane Charge and it has less than 4 seconds remaining.
+                ArcaneCharge.BuffStack == 4 && ObjectManager.Target.UnitAura(NetherTempest.Ids).AuraTimeLeftInMs < 4000)
             {
-                ConeofCold.Cast();
+                NetherTempest.Cast();
                 return;
             }
-            if (MySettings.UseArcaneExplosion && ArcaneChargePassive.BuffStack < 4 && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ArcaneExplosion.MaxRangeHostile) >= 5)
-            {
-                ArcaneExplosion.Cast();
-                return;
-            }
-            if (MySettings.UseArcaneMissiles && (ArcaneChargePassive.BuffStack >= 4 || ArcaneMissiles.GetSpellCharges >= 3) && ArcaneMissiles.IsSpellUsable && ArcaneMissiles.IsHostileDistanceGood)
-            {
-                ArcaneMissiles.Cast();
-                return;
-            }
-            if (MySettings.UseArcaneMissiles && ArcaneChargePassive.BuffStack >= 4 && ArcaneMissiles.IsSpellUsable && ArcaneMissiles.IsHostileDistanceGood)
+            //6. Cast Arcane Missiles if
+            if (MySettings.UseArcaneMissiles && ArcaneMissiles.IsSpellUsable && ArcaneMissiles.IsHostileDistanceGood &&
+                //you have 3 charges of Arcane Missiles or
+                (ArcaneMissiles.GetSpellCharges == 3 ||
+                 //you are not at 100% Mana and you have 3 or more Arcane Charges.
+                 (ObjectManager.Me.Mana < 100 && ArcaneCharge.BuffStack >= 3)))
             {
                 ArcaneMissiles.Cast();
                 return;
             }
-            if (MySettings.UseArcaneBlast && (ObjectManager.Me.ManaPercentage >= 93 || ArcaneChargePassive.BuffStack < 4 || _burnPhaseStarted) && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
+            //7. Cast Supernova (if talented).
+            if (MySettings.UseSupernova && Supernova.IsSpellUsable && Supernova.IsHostileDistanceGood)
             {
-                ArcaneBlast.Launch(true, false, true);
+                Supernova.Cast();
                 return;
             }
-            if (MySettings.UseArcaneBarrage && !_burnPhaseStarted && ArcaneChargePassive.BuffStack >= 4 && ArcaneBarrage.IsSpellUsable && ArcaneBarrage.IsHostileDistanceGood)
+            //8. Cast Arcane Barrage if you need to regenerate Mana.
+            if (ObjectManager.Me.Mana < MySettings.UseArcaneBarrageBelowManaPercentage &&
+                ArcaneBarrage.IsSpellUsable && ArcaneBarrage.IsHostileDistanceGood)
             {
                 ArcaneBarrage.Cast();
                 return;
             }
-            if (MySettings.UseArcaneExplosion && ObjectManager.Me.GetMove && ObjectManager.Me.AuraIsActiveAndExpireInLessThanMs(ArcaneChargePassive.Id, 3500)
-                && ArcaneExplosion.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ArcaneExplosion.MaxRangeHostile) >= 1)
+            //9. Cast Arcane Explosion if you will hit 3 or more targets.
+            if (MySettings.UseArcaneExplosion && ArcaneExplosion.IsSpellUsable &&
+                ObjectManager.Me.GetUnitInSpellRange(10) >= 3)
             {
                 ArcaneExplosion.Cast();
                 return;
             }
-            if (MySettings.UseArcaneBlast && (!MySettings.UseArcaneBarrage || !ArcaneBarrage.KnownSpell) && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
+            //10. Cast Arcane Blast.
+            if (MySettings.UseArcaneBlast && ArcaneBlast.IsSpellUsable && ArcaneBlast.IsHostileDistanceGood)
             {
-                ArcaneBlast.Launch(true, false, true);
+                ArcaneBlast.Cast();
                 return;
             }
         }
@@ -819,84 +646,52 @@ public class MageArcane
         }
     }
 
-    private void Patrolling()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        Buff();
-        Heal();
-    }
-
     #region Nested type: MageArcaneSettings
 
     [Serializable]
     public class MageArcaneSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseAlterTime = true;
-        public int UseAlterTimeAtPercentage = 80;
-        public bool UseArcaneBarrage = true;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
+        public bool UseBerserking = true;
+        public bool UseBloodFury = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public bool UseMarkofAluneth = true;
+
+        /* Offensive Spells */
+        public int UseArcaneBarrageBelowManaPercentage = 3;
         public bool UseArcaneBlast = true;
-        public bool UseArcaneBrilliance = true;
         public bool UseArcaneExplosion = true;
         public bool UseArcaneMissiles = true;
         public bool UseArcaneOrb = true;
-        public bool UseArcanePower = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 95;
-        public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public bool UseBerserking = true;
-        public bool UseBlazingSpeed = true;
-        public bool UseBlink = true;
-        public bool UseBloodFury = true;
-        public bool UseColdSnapForDefence = true;
-        public bool UseColdSnapForHeal = true;
-        public int UseColdSnapForHealAtPercentage = 70;
-        public bool UseConeofCold = true;
-        public int UseConeofColdAtPercentage = 45;
-        public bool UseConeofColdGlyph = false;
-        public bool UseConjureRefreshment = true;
-        public bool UseCounterspell = true;
-        public int UseCounterspellAtPercentage = 95;
-        public bool UseDarkflight = true;
-        public bool UseEvanesce = true;
-        public int UseEvanesceAtPercentage = 90;
-        public bool UseEveryManforHimself = true;
-        public bool UseEvocation = true;
-        public bool UseFrostNova = true;
-        public int UseFrostNovaAtPercentage = 50;
-        public bool UseFrostjaw = true;
-        public int UseFrostjawAtPercentage = 95;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGreaterInvisibility = true;
-        public int UseGreaterInvisibilityAtPercentage = 10;
-        public bool UseIceBarrier = true;
-        public int UseIceBarrierAtPercentage = 95;
-        public bool UseIceBlock = true;
-        public bool UseIceFloes = true;
-        public bool UseIceWard = true;
-        public int UseIceWardAtPercentage = 45;
-        public bool UseInvisibility = true;
-        public int UseInvisibilityAtPercentage = 10;
-        public bool UseLowCombat = true;
-        public int UseLowCombatAtPercentage = 15;
-        public bool UseMirrorImage = true;
+        public bool UseChargedUp = true;
         public bool UseNetherTempest = true;
-        public bool UsePresenceofMind = true;
-        public bool UsePrismaticCrystal = true;
-        public bool UseRingofFrost = true;
         public bool UseRuneofPower = true;
-        public bool UseScorch = true;
-        public bool UseSlow = false;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
         public bool UseSupernova = true;
+
+        /* Offensive Cooldowns */
+        public bool UseArcanePower = true;
+        public int UseEvocationBelowManaPercentage = 2;
+        public bool UseMirrorImage = true;
+        public bool UsePresenceofMind = true;
         public bool UseTimeWarp = true;
+
+        /* Defensive Spells */
+        public int UseFrostNovaBelowPercentage = 0;
+        public int UseGreaterInvisibilityBelowPercentage = 0;
+        public int UseIceBarrierBelowPercentage = 90;
+        public int UseIceBlockBelowPercentage = 10;
+        public int UseSlowBelowPercentage = 0;
+
+        /* Utility Spells */
+        public bool UseIceFloes = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
 
@@ -904,61 +699,42 @@ public class MageArcane
         {
             ConfigWinForm("Mage Arcane Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
-            AddControlInWinForm("Use Every Man for Himself", "UseEveryManforHimself", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
-            /* Mage Buffs */
-            AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
-            AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Mage Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Arcane Barrage", "UseArcaneBarrage", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Blast", "UseArcaneBlast", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Missiles", "UseArcaneMissiles", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Orb", "UseArcaneOrb", "Offensive Spell");
-            AddControlInWinForm("Use Nether Tempest", "UseNetherTempest", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Arcane Power", "UseArcanePower", "Offensive Cooldown");
-            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
-            AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Prismatic Crystal", "UsePrismaticCrystal", "Offensive Cooldown");
-            AddControlInWinForm("Use Supernova", "UseSupernova", "Offensive Cooldown");
-            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Alter Time", "UseAlterTime", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Cold Snap For Defence", "UseColdSnapForDefence", "Defensive Cooldown");
-            AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Evanesce", "UseEvanesce", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Frostjaw", "UseFrostjaw", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Frost Nova", "UseFrostNova", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Greater Invisiblity", "UseGreaterInvisibility", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ice Barrier", "UseIceBarrier", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ice Block", "UseIceBlock", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Ward", "UseIceWard", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Invisibility", "UseInvisibility", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
-            AddControlInWinForm("Use Slow", "UseSlow", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Cold Snap For Healing", "UseColdSnapForHeal", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
-            AddControlInWinForm("Use Evocation", "UseEvocation", "Healing Spell");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Mark of Aluneth", "UseMarkofAluneth", "Artifact Spells");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Arcane Barrage", "UseArcaneBarrageBelowManaPercentage", "Offensive Spells", "BelowPercentage", "Mana");
+            AddControlInWinForm("Use Arcane Blast", "UseArcaneBlast", "Offensive Spells");
+            AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spells");
+            AddControlInWinForm("Use Arcane Missiles", "UseArcaneMissiles", "Offensive Spells");
+            AddControlInWinForm("Use Arcane Orb", "UseArcaneOrb", "Offensive Spells");
+            AddControlInWinForm("Use Charged Up", "UseChargedUp", "Offensive Spells");
+            AddControlInWinForm("Use Nether Tempest", "UseNetherTempest", "Offensive Spells");
+            AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Offensive Spells");
+            AddControlInWinForm("Use Supernova", "UseSupernova", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Arcane Power", "UseArcanePower", "Offensive Cooldowns");
+            AddControlInWinForm("Use Evocation", "UseEvocationBelowManaPercentage", "Offensive Cooldowns", "BelowPercentage", "Mana");
+            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldowns");
+            AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldowns");
+            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Frost Nova", "UseFrostNovaBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Greater Invisibility", "UseGreaterInvisibilityBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ice Barrier", "UseIceBarrierBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ice Block", "UseIceBlockBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Slow", "UseSlowBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Utility Spells");
             /* Game Settings */
-            AddControlInWinForm("Use Cone of Cold Glyph", "UseConeofColdGlyph", "Game Settings");
-            AddControlInWinForm("Use Low Combat - Level Difference", "UseLowCombat", "Game Settings", "AtPercentage");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static MageArcaneSettings CurrentSetting { get; set; }
@@ -978,115 +754,107 @@ public class MageArcane
     #endregion
 }
 
-public class MageFrost
+public class MageFire
 {
-    private static MageFrostSettings MySettings = MageFrostSettings.GetSettings();
+    private static MageFireSettings MySettings = MageFireSettings.GetSettings();
 
-    #region General Timers & Variablesoffrostat
+    #region General Timers & Variables
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int DecastHP = 0;
-    public int DefenseHP = 0;
-    public int HealHP = 0;
-    public int HealMP = 0;
-    public int LC = 0;
 
-    private Timer _petAbilityTimer = new Timer(0);
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
-    #region Professions & Racials
+    #region Professions & Racial
 
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Darkflight = new Spell("Darkflight");
-    public readonly Spell EveryManforHimself = new Spell("Every Man for Himself");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Stoneform = new Spell("Stoneform");
-
-    #endregion
-
-    #region Mage Buffs
-
-    public readonly Spell ArcaneBrilliance = new Spell("Arcane Brilliance");
-    public readonly Spell BlazingSpeed = new Spell("Blazing Speed");
-    public readonly Spell BrainFreeze = new Spell(57761);
-    public readonly Spell Cauterize = new Spell(87024);
-    public readonly Spell DalaranBrilliance = new Spell("Dalaran Brilliance");
-    public readonly Spell FingersofFrost = new Spell(44544);
-    public readonly Spell Hypothermia = new Spell(41425);
-    public readonly Spell IceFloes = new Spell("Ice Floes");
-    public readonly Spell RuneofPower = new Spell("Rune of Power");
-    public readonly Spell RuneofPowerBuff = new Spell(116014);
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Offensive Spell
+    #region Buffs
 
-    public readonly Spell Blizzard = new Spell("Blizzard");
-    public readonly Spell CometStorm = new Spell("Comet Storm");
-    public readonly Spell ConeofCold = new Spell("Cone of Cold");
-    public readonly Spell FireBlast = new Spell("Fire Blast");
-    public readonly Spell Frostbolt = new Spell("Frostbolt");
-    public readonly Spell FrostBomb = new Spell("Frost Bomb");
-    public readonly Spell FrostfireBolt = new Spell("Frostfire Bolt");
-    public readonly Spell IceLance = new Spell("Ice Lance");
-    public readonly Spell IceNova = new Spell("Ice Nova");
-    public readonly Spell WaterJet = new Spell(135029);
-    public readonly Spell SummonWaterElemental = new Spell("Summon Water Elemental");
-    private Timer _waterJetTimer = new Timer(0);
+    private readonly Spell HeatingUp = new Spell(48107);
+    private readonly Spell HotStreak = new Spell(195283);
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Dots
 
-    public readonly Spell FrozenOrb = new Spell("Frozen Orb");
-    public readonly Spell IcyVeins = new Spell("Icy Veins");
-    public readonly Spell MirrorImage = new Spell("Mirror Image");
-    public readonly Spell PrismaticCrystal = new Spell("Prismatic Crystal");
-    public readonly Spell TimeWarp = new Spell("Time Warp");
-    private Timer _frozenOrbTimer = new Timer(0);
+    private readonly Spell Ignite = new Spell(12654);
 
     #endregion
 
-    #region Defensive Cooldown
+    #region Artifact Spells
 
-    public readonly Spell AlterTime = new Spell("Alter Time");
-    public readonly Spell Blink = new Spell("Blink");
-    public readonly Spell Counterspell = new Spell("Counterspell");
-    public readonly Spell DeepFreeze = new Spell("Deep Freeze");
-    public readonly Spell Evanesce = new Spell("Evanesce");
-    public readonly Spell Frostjaw = new Spell("Frostjaw");
-    public readonly Spell FrostNova = new Spell("Frost Nova");
-    public readonly Spell GreaterInvisibility = new Spell("Greater Invisibility");
-    public readonly Spell IceBarrier = new Spell("Ice Barrier");
-    public readonly Spell IceBlock = new Spell("Ice Block");
-    public readonly Spell IceWard = new Spell("Ice Ward");
-    public readonly Spell Invisibility = new Spell("Invisibility");
-    public readonly Spell RingofFrost = new Spell("Ring of Frost");
+    private readonly Spell PhoenixsFlames = new Spell("Phoenix's Flames");
 
     #endregion
 
-    #region Healing Spell
+    #region Offensive Spells
 
-    public readonly Spell ColdSnap = new Spell("Cold Snap");
-    public readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
-    private Timer _conjureRefreshmentTimer = new Timer(0);
+    private readonly Spell BlastWave = new Spell("Blast Wave");
+    private readonly Spell Cinderstorm = new Spell("Cinderstorm");
+    private readonly Spell DragonsBreath = new Spell("Dragon's Breath");
+    private readonly Spell Fireball = new Spell("Fireball");
+    private readonly Spell FireBlast = new Spell("Fire Blast");
+    private readonly Spell FlameOn = new Spell("Flame On");
+    private readonly Spell Flamestrike = new Spell("Flamestrike");
+    private readonly Spell LivingBomb = new Spell("Living Bomb");
+    private readonly Spell Meteor = new Spell("Meteor");
+    private readonly Spell Pyroblast = new Spell("Pyroblast");
+    private readonly Spell RuneofPower = new Spell("Rune of Power");
+    private readonly Spell Scorch = new Spell("Scorch");
 
     #endregion
 
-    public MageFrost()
+    #region Offensive Cooldowns
+
+    private readonly Spell Combustion = new Spell("Combustion"); //No GCD
+    private readonly Spell MirrorImage = new Spell("Mirror Image");
+    private readonly Spell TimeWarp = new Spell("Time Warp"); //No GCD
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell FrostNova = new Spell("Frost Nova");
+    private readonly Spell IceBarrier = new Spell("Ice Barrier");
+    private readonly Spell IceBlock = new Spell("Ice Block");
+    private readonly Spell Invisibility = new Spell("Invisibility");
+
+    #endregion
+
+    #region Utility Spells
+
+    //private readonly Spell Blink = new Spell("Blink");
+    //private readonly Spell Counterspell = new Spell("Counterspell");
+    private readonly Spell IceFloes = new Spell("Ice Floes");
+    //private readonly Spell Shimmer = new Spell("Shimmer");
+    //private readonly Spell Spellsteal = new Spell("Spellsteal");
+    //private readonly Spell SlowFall = new Spell("Slow Fall");
+    //private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
+
+    #endregion
+
+    public MageFire()
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
         Main.InternalLightHealingSpell = null;
-        MySettings = MageFrostSettings.GetSettings();
-        Main.DumpCurrentSettings<MageFrostSettings>(MySettings);
+        MySettings = MageFireSettings.GetSettings();
+        Main.DumpCurrentSettings<MageFireSettings>(MySettings);
         UInt128 lastTarget = 0;
-        LowHP();
 
         while (Main.InternalLoop)
         {
@@ -1098,26 +866,15 @@ public class MageFrost
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget && (Frostbolt.IsHostileDistanceGood || IceLance.IsHostileDistanceGood))
-                            {
-                                Pull();
+                            if (ObjectManager.Me.Target != lastTarget)
                                 lastTarget = ObjectManager.Me.Target;
-                            }
-                            if (MySettings.UseLowCombat && (ObjectManager.Me.Level - ObjectManager.Target.Level >= MySettings.UseLowCombatAtPercentage))
-                            {
-                                LC = 1;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    LowCombat();
-                            }
-                            else
-                            {
-                                LC = 0;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    Combat();
-                            }
-                        }
 
-                        if (!ObjectManager.Me.IsCast)
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                                Combat();
+                            else if (!ObjectManager.Me.IsCast)
+                                Patrolling();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -1131,540 +888,70 @@ public class MageFrost
         }
     }
 
-    private void LowHP()
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
     {
-        if (MySettings.UseAlterTimeAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseAlterTimeAtPercentage;
-
-        if (MySettings.UseConeofColdAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseConeofColdAtPercentage;
-
-        if (MySettings.UseDeepFreezeAtPercentage < DefenseHP)
-            DefenseHP = MySettings.UseDeepFreezeAtPercentage;
-
-        if (MySettings.UseFrostNovaAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseFrostNovaAtPercentage;
-
-        if (MySettings.UseEvanesceAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseEvanesceAtPercentage;
-
-        if (MySettings.UseGreaterInvisibilityAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseGreaterInvisibilityAtPercentage;
-
-        if (MySettings.UseIceBarrierAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIceBarrierAtPercentage;
-
-        if (MySettings.UseIceWardAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIceWardAtPercentage;
-
-        if (MySettings.UseInvisibilityAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseInvisibilityAtPercentage;
-
-        if (MySettings.UseStoneformAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseStoneformAtPercentage;
-
-        if (MySettings.UseArcaneTorrentForDecastAtPercentage > DecastHP)
-            DecastHP = MySettings.UseArcaneTorrentForDecastAtPercentage;
-
-        if (MySettings.UseCounterspellAtPercentage > DecastHP)
-            DecastHP = MySettings.UseCounterspellAtPercentage;
-
-        if (MySettings.UseFrostjawAtPercentage > DecastHP)
-            DecastHP = MySettings.UseFrostjawAtPercentage;
-
-        if (MySettings.UseArcaneTorrentForResourceAtPercentage > HealMP)
-            HealMP = MySettings.UseArcaneTorrentForResourceAtPercentage;
-
-        if (MySettings.UseColdSnapForHealAtPercentage > HealHP)
-            HealHP = MySettings.UseColdSnapForHealAtPercentage;
-
-        if (MySettings.UseGiftoftheNaaruAtPercentage > HealHP)
-            HealHP = MySettings.UseGiftoftheNaaruAtPercentage;
-    }
-
-    private void Pull()
-    {
-        if (ObjectManager.Pet.IsAlive)
+        //Log
+        if (CombatMode)
         {
-            Lua.RunMacroText("/petattack");
-            Logging.WriteFight("Cast Pet Attack");
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
         }
-        if (MySettings.UseRuneofPower && !RuneofPowerBuff.HaveBuff && RuneofPower.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-            SpellManager.CastSpellByIDAndPosition(RuneofPower.Id, ObjectManager.Me.Position);
 
-        if (MySettings.UseIceFloes && IceFloes.IsSpellUsable && ObjectManager.Me.GetMove)
-            IceFloes.Cast();
-
-        if (MySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-            Frostbolt.Cast();
-
-        if (MySettings.UseFreeze && _petAbilityTimer.IsReady && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
-            && !ObjectManager.Target.IsBoss && Frostbolt.IsHostileDistanceGood)
+        if (ObjectManager.Me.GetMove)
         {
-            SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
-            _petAbilityTimer = new Timer(1000*25);
-            Others.SafeSleep(1000);
-
-            if (MySettings.UseDeepFreeze && DeepFreeze.IsSpellUsable && DeepFreeze.IsHostileDistanceGood)
-                DeepFreeze.Cast();
-        }
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP)
-            Heal();
-
-        if (MySettings.UseIceLance && IceLance.KnownSpell && FingersofFrost.HaveBuff && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood)
-        {
-            IceLance.Cast();
-            return;
-        }
-        if (MySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && BrainFreeze.HaveBuff && FrostfireBolt.IsSpellUsable && FrostfireBolt.IsHostileDistanceGood)
-        {
-            FrostfireBolt.Cast();
-            return;
-        }
-        if (MySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            Frostbolt.Cast();
-            return;
-        }
-        if (MySettings.UseConeofCold && ConeofCold.IsSpellUsable && ConeofCold.IsHostileDistanceGood)
-            ConeofCold.Cast();
-    }
-
-    private void Combat()
-    {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        DPSCycle();
-
-        if (_onCd.IsReady && (ObjectManager.Me.HealthPercent <= DefenseHP || ObjectManager.GetNumberAttackPlayer() > 2))
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP || ObjectManager.Me.ManaPercentage <= HealMP)
-            Heal();
-
-        if (ObjectManager.Me.HealthPercent <= DecastHP)
-            Decast();
-
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseArcaneBrilliance && !ArcaneBrilliance.HaveBuff && !DalaranBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable)
-            ArcaneBrilliance.Cast();
-
-        if (MySettings.UseBlazingSpeed && !Darkflight.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && BlazingSpeed.IsSpellUsable)
-            BlazingSpeed.Cast();
-
-        if (MySettings.UseDarkflight && Darkflight.KnownSpell && !BlazingSpeed.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && Darkflight.IsSpellUsable)
-            Darkflight.Cast();
-
-        if (MySettings.UseIceBlock && !Evanesce.KnownSpell && Cauterize.HaveBuff && !Hypothermia.HaveBuff)
-        {
-            if (MySettings.UseColdSnapForDefence && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
+            //Movement Buffs
+            if (!Darkflight.HaveBuff) // doesn't stack
             {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
             }
-            if (IceBlock.IsSpellUsable)
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                IceBlock.Cast();
-                _onCd = new Timer(1000*10);
+                Main.InternalLightHealingSpell.CastOnSelf();
                 return;
             }
         }
-
-        if (MySettings.UseSummonWaterElemental && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && SummonWaterElemental.IsSpellUsable)
-        {
-            Logging.WriteFight(" - PET DEAD - ");
-            SummonWaterElemental.Cast();
-        }
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-
-        if (MySettings.UseConjureRefreshment && _conjureRefreshmentTimer.IsReady
-            && ItemsManager.GetItemCount(113509) == 0 // 100
-            && ItemsManager.GetItemCount(80610) == 0 // 90
-            && ItemsManager.GetItemCount(65499) == 0 // 85-89
-            && ItemsManager.GetItemCount(43523) == 0 // 84-80
-            && ItemsManager.GetItemCount(43518) == 0 // 79-74
-            && ItemsManager.GetItemCount(65517) == 0 // 73-64
-            && ItemsManager.GetItemCount(65516) == 0 // 63-54
-            && ItemsManager.GetItemCount(65515) == 0 // 53-44
-            && ItemsManager.GetItemCount(65500) == 0 // 43-38
-            && ConjureRefreshment.IsSpellUsable)
-        {
-            ConjureRefreshment.Cast();
-            _conjureRefreshmentTimer = new Timer(1000*60*10);
-        }
     }
 
-    private void AvoidMelee()
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
+    private void Combat()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        //Log
+        if (!CombatMode)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void DefenseCycle()
-    {
-        if (MySettings.UseEveryManforHimself && ObjectManager.Me.IsStunned && EveryManforHimself.IsSpellUsable)
-            EveryManforHimself.Cast();
-
-        if (MySettings.UseAlterTime && !AlterTime.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseAlterTimeAtPercentage && AlterTime.IsSpellUsable)
-        {
-            AlterTime.Cast();
-            return;
-        }
-        if (MySettings.UseBlink && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || Frostjaw.TargetHaveBuff) && Blink.IsSpellUsable
-            && ObjectManager.Target.GetDistance < 5)
-        {
-            Blink.Cast();
-            return;
-        }
-        if (MySettings.UseConeofCold && ObjectManager.Me.HealthPercent <= MySettings.UseConeofColdAtPercentage && ConeofCold.IsSpellUsable && ConeofCold.IsHostileDistanceGood)
-        {
-            ConeofCold.Cast();
-            return;
-        }
-        if (MySettings.UseDeepFreeze && ObjectManager.Me.HealthPercent <= MySettings.UseDeepFreezeAtPercentage && DeepFreeze.IsSpellUsable && DeepFreeze.IsHostileDistanceGood)
-        {
-            DeepFreeze.Cast();
-            _onCd = new Timer(1000*5);
-            return;
-        }
-        if (MySettings.UseEvanesce && ObjectManager.Me.HealthPercent <= MySettings.UseEvanesceAtPercentage)
-        {
-            if (MySettings.UseColdSnapForDefence && !Evanesce.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (Evanesce.IsSpellUsable)
-            {
-                Evanesce.Cast();
-                _onCd = new Timer(1000*3);
-            }
-            return;
-        }
-        if (MySettings.UseFrostjaw && ObjectManager.Me.HealthPercent <= MySettings.UseFrostjawAtPercentage && Frostjaw.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
-        {
-            Frostjaw.Cast();
-            return;
-        }
-        if (MySettings.UseFrostNova && ObjectManager.Me.HealthPercent <= MySettings.UseFrostNovaAtPercentage && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 0)
-        {
-            if (MySettings.UseColdSnapForDefence && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (FrostNova.IsSpellUsable)
-            {
-                FrostNova.Cast();
-                _onCd = new Timer(1000*8);
-            }
-            return;
-        }
-        if (MySettings.UseIceBarrier && !IceBarrier.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseIceBarrierAtPercentage && IceBarrier.IsSpellUsable)
-        {
-            IceBarrier.Cast();
-            return;
-        }
-        if (MySettings.UseIceWard && ObjectManager.Me.HealthPercent <= MySettings.UseIceWardAtPercentage && IceWard.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
-        {
-            IceWard.Cast();
-            _onCd = new Timer(1000*5);
-            return;
-        }
-        if (MySettings.UseInvisibility && ObjectManager.Me.HealthPercent <= MySettings.UseInvisibilityAtPercentage && Invisibility.IsSpellUsable)
-        {
-            Invisibility.Cast();
-            Others.SafeSleep(8000);
-            return;
-        }
-        if (MySettings.UseGreaterInvisibility && ObjectManager.Me.HealthPercent <= MySettings.UseGreaterInvisibilityAtPercentage && Invisibility.IsSpellUsable)
-        {
-            GreaterInvisibility.Cast();
-            Others.SafeSleep(8000);
-            return;
-        }
-        if (MySettings.UseRingofFrost && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
-        {
-            SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
-            _onCd = new Timer(1000*10);
-            return;
-        }
-        if (MySettings.UseStoneform && ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseArcaneTorrentForResource && ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.IsSpellUsable)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (MySettings.UseGiftoftheNaaru && ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (MySettings.UseColdSnapForHeal && ObjectManager.Me.HealthPercent <= MySettings.UseColdSnapForHealAtPercentage && ColdSnap.IsSpellUsable)
-        {
-            ColdSnap.Cast();
-            return;
-        }
-    }
-
-    private void Decast()
-    {
-        if (MySettings.UseArcaneTorrentForDecast && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ArcaneTorrent.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (MySettings.UseCounterspell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= MySettings.UseCounterspellAtPercentage
-            && Counterspell.IsSpellUsable && Counterspell.IsHostileDistanceGood)
-        {
-            Counterspell.Cast();
-            return;
-        }
-        if (MySettings.UseFrostjaw && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= MySettings.UseFrostjawAtPercentage
-            && Frostjaw.IsSpellUsable && Frostjaw.IsHostileDistanceGood)
-            Frostjaw.Cast();
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
-        if (MySettings.UseBerserking && Berserking.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            Berserking.Cast();
-        }
-        if (MySettings.UseBloodFury && BloodFury.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            BloodFury.Cast();
-        }
-        if (MySettings.UseIcyVeins && IcyVeins.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            IcyVeins.Cast();
-        }
-        if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(1000);
-            MirrorImage.Cast();
-        }
-        if (MySettings.UseRuneofPower && !RuneofPowerBuff.HaveBuff && !ObjectManager.Me.GetMove && RuneofPower.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-        }
-        if (MySettings.UsePrismaticCrystal && PrismaticCrystal.IsSpellUsable && PrismaticCrystal.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            SpellManager.CastSpellByIDAndPosition(152087, ObjectManager.Target.Position);
-            Lua.RunMacroText("/target Prismatic Crystal");
-
-            if (ObjectManager.Pet.IsAlive)
-            {
-                Lua.RunMacroText("/petattack");
-                Logging.WriteFight("Cast Pet Attack");
-            }
-        }
-        if (MySettings.UseTimeWarp && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723) && !ObjectManager.Me.HaveBuff(95809)
-            && TimeWarp.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            TimeWarp.Cast();
-        }
-    }
-
-    private void DPSCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseIceFloes && !IceFloes.HaveBuff && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-                IceFloes.Cast();
-
-            if (MySettings.UseFrozenOrb && FrozenOrb.IsSpellUsable && FrozenOrb.IsHostileDistanceGood)
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
             {
-                FrozenOrb.Cast();
-                _frozenOrbTimer = new Timer(1000*10);
-                return;
+                GiftoftheNaaru.Cast();
+                return true;
             }
-            if (MySettings.UseCometStorm && !ObjectManager.Target.GetMove && CometStorm.IsSpellUsable && CometStorm.IsHostileDistanceGood)
-            {
-                CometStorm.Cast();
-                return;
-            }
-            if (MySettings.UseFrostBomb && !FrostBomb.TargetHaveBuff && FingersofFrost.BuffStack > 1 && FrostBomb.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-            {
-                FrostBomb.Cast();
-                return;
-            }
-            if (MySettings.UseFreeze && _petAbilityTimer.IsReady && _frozenOrbTimer.IsReady && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
-                && FingersofFrost.BuffStack < 2 && !ObjectManager.Target.IsBoss && Frostbolt.IsHostileDistanceGood)
-            {
-                SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
-                _petAbilityTimer = new Timer(1000*25);
-                return;
-            }
-            if (MySettings.UseIceNova && IceNova.GetSpellCharges > 1 && IceNova.IsSpellUsable && IceNova.IsHostileDistanceGood)
-            {
-                IceNova.Cast();
-                return;
-            }
-            if (FrostBomb.KnownSpell)
-            {
-                if (MySettings.UseIceLance && FingersofFrost.HaveBuff && (FingersofFrost.BuffStack > 1 || FrostBomb.TargetHaveBuff
-                                                                          || ObjectManager.Me.UnitAura(44544).AuraTimeLeftInMs < 4000) && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood)
-                {
-                    IceLance.Cast();
-                    return;
-                }
-            }
-            else
-            {
-                if (MySettings.UseIceLance && FingersofFrost.HaveBuff && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood)
-                {
-                    IceLance.Cast();
-                    return;
-                }
-            }
-            if (MySettings.UseConeofCold && ConeofCold.IsSpellUsable && ObjectManager.GetUnitInSpellRange(ConeofCold.MaxRangeHostile) > 1)
-            {
-                ConeofCold.Cast();
-                return;
-            }
-            if (MySettings.UseBlizzard && Blizzard.IsSpellUsable && ObjectManager.GetUnitInSpellRange(Blizzard.MaxRangeHostile) > 4)
-            {
-                SpellManager.CastSpellByIDAndPosition(10, ObjectManager.Target.Position);
-                Others.SafeSleep(500);
-                while (FingersofFrost.BuffStack < 2 && ObjectManager.Me.IsCast)
-                    Others.SafeSleep(20);
-
-                if (ObjectManager.Me.IsCast)
-                    ObjectManager.Me.StopCast();
-                return;
-            }
-            if (MySettings.UseFrostfireBolt && BrainFreeze.HaveBuff && FingersofFrost.BuffStack < 2 && FrostfireBolt.IsSpellUsable && FrostfireBolt.IsHostileDistanceGood)
-            {
-                FrostfireBolt.Cast();
-                return;
-            }
-            if (MySettings.UseWaterJet && _petAbilityTimer.IsReady && _frozenOrbTimer.IsReady && ObjectManager.Me.Level > 99 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
-                && Frostbolt.IsHostileDistanceGood)
-            {
-                while (FingersofFrost.HaveBuff)
-                    IceLance.Cast();
-
-                WaterJet.Cast();
-                _petAbilityTimer = new Timer(1000*25);
-                _waterJetTimer = new Timer(1000*4);
-
-                while (!_waterJetTimer.IsReady)
-                {
-                    if (MySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsHostileDistanceGood && Frostbolt.IsSpellUsable)
-                        Frostbolt.Cast();
-                }
-                return;
-            }
-            if (MySettings.UseIceNova && IceNova.GetSpellCharges > 0 && IceNova.IsSpellUsable && IceNova.IsHostileDistanceGood)
-            {
-                IceNova.Cast();
-                return;
-            }
-            if (MySettings.UseFrostbolt && BrainFreeze.BuffStack < 2 && FingersofFrost.BuffStack < 2 && Frostbolt.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
-            {
-                Frostbolt.Launch(true, false, true);
-                return;
-            }
-            if (MySettings.UseFrostfireBolt && (!MySettings.UseFrostbolt || !Frostbolt.KnownSpell) && FrostfireBolt.IsSpellUsable && FrostfireBolt.IsHostileDistanceGood)
-            {
-                FrostfireBolt.Cast();
-                return;
-            }
-            if (MySettings.UseFireBlast && !IceLance.KnownSpell && FireBlast.IsSpellUsable && FireBlast.IsHostileDistanceGood)
-                FireBlast.Cast();
+            return false;
         }
         finally
         {
@@ -1672,275 +959,457 @@ public class MageFrost
         }
     }
 
-    private void Patrolling()
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
+        Usefuls.SleepGlobalCooldown();
 
-        Buff();
-        Heal();
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                //Ice Barrier
+                if (ObjectManager.Me.HealthPercent < MySettings.UseIceBarrierBelowPercentage && IceBarrier.IsSpellUsable)
+                {
+                    IceBarrier.Cast();
+                    return true;
+                }
+                //Frost Nova
+                if (ObjectManager.Me.HealthPercent < MySettings.UseFrostNovaBelowPercentage && FrostNova.IsSpellUsable)
+                {
+                    FrostNova.Cast();
+                    return true;
+                }
+                //Greater Invisibility
+                if (ObjectManager.Me.HealthPercent < MySettings.UseInvisibilityBelowPercentage && Invisibility.IsSpellUsable)
+                {
+                    Invisibility.Cast();
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Ice Block
+            if (ObjectManager.Me.HealthPercent < MySettings.UseIceBlockBelowPercentage && IceBlock.IsSpellUsable)
+            {
+                IceBlock.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
     }
 
-    #region Nested type: MageFrostSettings
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Cast Time Warp whenever available.
+            if (MySettings.UseTimeWarp && TimeWarp.IsSpellUsable && !ObjectManager.Me.HaveBuff(80354))
+            {
+                TimeWarp.Cast();
+            }
+            //Cast Mirror Image when you have at least 2 charges of Phoenix's Flames available
+            if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && PhoenixsFlames.GetSpellCharges >= 2)
+            {
+                MirrorImage.Cast();
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //13. Use Ice Floes or Cast Scorch if you have to move //TODO: and have no instant casts to burn.
+            if (ObjectManager.Me.GetMove && !IceFloes.HaveBuff)
+            {
+                //Cast Ice Floes
+                if (MySettings.UseIceFloes && IceFloes.IsSpellUsable)
+                {
+                    IceFloes.Cast();
+                    return;
+                }
+                //Cast Scorch if have no charges of Ice Floes
+                if (MySettings.UseIceFloes && Scorch.IsSpellUsable && Scorch.IsHostileDistanceGood)
+                {
+                    Scorch.Cast();
+                    return;
+                }
+            }
+
+            //1. Use Rune of Power when Combustion is off cooldown.
+            if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && Combustion.IsSpellUsable)
+            {
+                RuneofPower.CastAtPosition(ObjectManager.Me.Position);
+                return;
+            }
+            //2. Use Combustion when it is off cooldown.  
+            if (MySettings.UseCombustion && Combustion.IsSpellUsable &&
+                //Ensure you have at least 2 charges of Phoenix's Flames available and
+                PhoenixsFlames.GetSpellCharges >= 2 &&
+                //Flame On is off-cooldown, if possible.
+                FlameOn.IsSpellUsable)
+            {
+                Combustion.Cast();
+                return;
+            }
+            //3. Use Rune of Power when it has 2 charges.
+            if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && RuneofPower.GetSpellCharges == 2)
+            {
+                RuneofPower.CastAtPosition(ObjectManager.Me.Position);
+                return;
+            }
+            //4. Cast Phoenix's Flames when
+            if (MySettings.UsePhoenixsFlames && PhoenixsFlames.IsSpellUsable && Combustion.IsHostileDistanceGood &&
+                //it has 2 charges.
+                PhoenixsFlames.GetSpellCharges >= 2)
+            {
+                PhoenixsFlames.Cast();
+                return;
+            }
+            //5. Cast Phoenix's Flames when
+            if (MySettings.UsePhoenixsFlames && PhoenixsFlames.IsSpellUsable && PhoenixsFlames.IsHostileDistanceGood &&
+                //there are 3 or more targets stacked
+                ObjectManager.Target.GetUnitInSpellRange(5f) >= 3)
+            {
+                PhoenixsFlames.Cast();
+                return;
+            }
+            //6. Cast Flamestrike when
+            if (MySettings.UseFlamestrike && Flamestrike.IsSpellUsable && Flamestrike.IsHostileDistanceGood &&
+                //there are 3 or more targets stacked and
+                ObjectManager.Target.GetUnitInSpellRange(8f) >= 3 &&
+                //you are on a Hot Streak.
+                HotStreak.HaveBuff)
+            {
+                Flamestrike.CastAtPosition(ObjectManager.Me.Position);
+                return;
+            }
+            //7. Cast Pyroblast when
+            if (MySettings.UsePyroblast && Pyroblast.IsSpellUsable && Pyroblast.IsHostileDistanceGood &&
+                //you are on a Hot Streak.
+                HotStreak.HaveBuff)
+            {
+                Pyroblast.Cast();
+                return;
+            }
+            //8. Cast Meteor if it is talented and off cooldown.
+            if (MySettings.UseMeteor && Meteor.IsSpellUsable && Meteor.IsHostileDistanceGood)
+            {
+                Meteor.CastAtPosition(ObjectManager.Me.Position);
+                return;
+            }
+            //9. Living Bomb if talented and
+            if (MySettings.UseLivingBomb && LivingBomb.IsSpellUsable && LivingBomb.IsHostileDistanceGood &&
+                //there are 3 or more targets stacked and
+                ObjectManager.Target.GetUnitInSpellRange(10f) >= 3 &&
+                //TODO: they will all live for at least 12 seconds.
+                true)
+            {
+                LivingBomb.Cast();
+                return;
+            }
+            //10. Cast Flame On if talented and it is off cooldown and 
+            if (MySettings.UseFlameOn && FlameOn.IsSpellUsable &&
+                //you currently have no charges of Fire Blast.
+                FireBlast.GetSpellCharges == 0)
+            {
+                FlameOn.Cast();
+                return;
+            }
+            //11. Cast Dragon's Breath if it is off cooldown.
+            if (MySettings.UseDragonsBreath && DragonsBreath.IsSpellUsable && DragonsBreath.IsHostileDistanceGood)
+            {
+                DragonsBreath.Cast();
+                return;
+            }
+            //12. Cast Fire Blast when
+            if (MySettings.UseFireBlast && FireBlast.IsSpellUsable && FireBlast.IsHostileDistanceGood &&
+                //you are Heating Up.
+                HeatingUp.HaveBuff)
+            {
+                FireBlast.Cast();
+                return;
+            }
+            //12. Cast Fireball to generate Heating Up.
+            if (MySettings.UseFireball && Fireball.IsSpellUsable && Fireball.IsHostileDistanceGood)
+            {
+                Fireball.Cast();
+                return;
+            }
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    #region Nested type: MageFireSettings
 
     [Serializable]
-    public class MageFrostSettings : Settings
+    public class MageFireSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseAlterTime = true;
-        public int UseAlterTimeAtPercentage = 80;
-        public bool UseArcaneBrilliance = true;
-        public bool UseArcaneExplosion = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 95;
-        public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBlazingSpeed = true;
-        public bool UseBlink = true;
-        public bool UseBlizzard = true;
         public bool UseBloodFury = true;
-        public bool UseColdSnapForDefence = true;
-        public bool UseColdSnapForHeal = true;
-        public int UseColdSnapForHealAtPercentage = 70;
-        public bool UseCometStorm = true;
-        public bool UseConeofCold = true;
-        public int UseConeofColdAtPercentage = 45;
-        public bool UseConjureRefreshment = true;
-        public bool UseCounterspell = true;
-        public int UseCounterspellAtPercentage = 95;
         public bool UseDarkflight = true;
-        public bool UseDeepFreeze = true;
-        public int UseDeepFreezeAtPercentage = 50;
-        public bool UseEvanesce = true;
-        public int UseEvanesceAtPercentage = 50;
-        public bool UseEveryManforHimself = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public bool UsePhoenixsFlames = true;
+
+        /* Offensive Spells */
+        public bool UseDragonsBreath = true;
+        public bool UseFireball = true;
         public bool UseFireBlast = true;
-        public bool UseFreeze = true;
-        public bool UseFrostNova = true;
-        public int UseFrostNovaAtPercentage = 50;
-        public bool UseFrostbolt = true;
-        public bool UseFrostBomb = true;
-        public bool UseFrostfireBolt = true;
-        public bool UseFrostjaw = true;
-        public int UseFrostjawAtPercentage = 95;
-        public bool UseFrozenOrb = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGreaterInvisibility = true;
-        public int UseGreaterInvisibilityAtPercentage = 10;
-        public bool UseIceBarrier = true;
-        public int UseIceBarrierAtPercentage = 95;
-        public bool UseIceBlock = true;
-        public bool UseIceFloes = true;
-        public bool UseIceLance = true;
-        public bool UseIceNova = true;
-        public bool UseIceWard = true;
-        public int UseIceWardAtPercentage = 45;
-        public bool UseIcyVeins = true;
-        public bool UseInvisibility = true;
-        public int UseInvisibilityAtPercentage = 10;
-        public bool UseLowCombat = true;
-        public int UseLowCombatAtPercentage = 15;
-        public bool UseMirrorImage = true;
-        public bool UsePrismaticCrystal = true;
-        public bool UseRingofFrost = true;
+        public bool UseFlameOn = true;
+        public bool UseFlamestrike = true;
+        public bool UseLivingBomb = true;
+        public bool UseMeteor = true;
+        public bool UsePyroblast = true;
         public bool UseRuneofPower = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
-        public bool UseSummonWaterElemental = true;
+
+        /* Offensive Cooldowns */
+        public bool UseCombustion = true;
+        public bool UseMirrorImage = true;
         public bool UseTimeWarp = true;
+
+        /* Defensive Spells */
+        public int UseFrostNovaBelowPercentage = 0;
+        public int UseInvisibilityBelowPercentage = 0;
+        public int UseIceBarrierBelowPercentage = 90;
+        public int UseIceBlockBelowPercentage = 10;
+
+        /* Utility Spells */
+        public bool UseIceFloes = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWaterJet = true;
 
-        public MageFrostSettings()
+        public MageFireSettings()
         {
             ConfigWinForm("Mage Frost Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
-            AddControlInWinForm("Use Every Man for Himself", "UseEveryManforHimself", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
-            /* Mage Buffs */
-            AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
-            AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Mage Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Blizzard", "UseBlizzard", "Offensive Spell");
-            AddControlInWinForm("Use Comet Storm", "UseCometStorm", "Offensive Spell");
-            AddControlInWinForm("Use Fire Blast", "UseFireBlast", "Offensive Spell");
-            AddControlInWinForm("Use Frost Bomb", "UseFrostBomb", "Offensive Spell");
-            AddControlInWinForm("Use Frostbolt", "UseFrostbolt", "Offensive Spell");
-            AddControlInWinForm("Use Frostfire Bolt", "UseFrostfireBolt", "Offensive Spell");
-            AddControlInWinForm("Use Ice Lance", "UseIceLance", "Offensive Spell");
-            AddControlInWinForm("Use Ice Nova", "UseIceNova", "Offensive Spell");
-            AddControlInWinForm("Use Pet Freeze Ability", "UseFreeze", "Offensive Spell");
-            AddControlInWinForm("Use Pet Water Jet Ability", "UseWaterJet", "Offensive Spell");
-            AddControlInWinForm("Use Summon Water Elemental", "UseSummonWaterElemental", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Frozen Orb", "UseFrozenOrb", "Offensive Cooldown");
-            AddControlInWinForm("Use Icy Veins", "UseIcyVeins", "Offensive Cooldown");
-            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
-            AddControlInWinForm("Use Frost Bomb", "UseFrostBomb", "Offensive Cooldown");
-            AddControlInWinForm("Use Prismatic Crystal", "UsePrismaticCrystal", "Offensive Cooldown");
-            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Alter Time", "UseAlterTime", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cold Snap For Defence", "UseColdSnapForDefence", "Defensive Cooldown");
-            AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Deep Freeze", "UseDeepFreeze", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Evanesce", "UseEvanesce", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Frostjaw", "UseFrostjaw", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Frost Nova", "UseFrostNova", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use GreaterInvisibility", "UseGreaterInvisibility", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ice Barrier", "UseIceBarrier", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ice Block", "UseIceBlock", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Ward", "UseIceWard", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Invisibility", "UseInvisibility", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Cold Snap For Heal", "UseColdSnapForHeal", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Phoenix's Flames", "UsePhoenixsFlames", "Artifact Spells");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Dragon's Breath", "UseDragonsBreath", "Offensive Spells");
+            AddControlInWinForm("Use Fireball", "UseFireball", "Offensive Spells");
+            AddControlInWinForm("Use Fire Blast", "UseFireBlast", "Offensive Spells");
+            AddControlInWinForm("Use Flame On", "UseFlameOn", "Offensive Spells");
+            AddControlInWinForm("Use Flamestrike", "UseFlamestrike", "Offensive Spells");
+            AddControlInWinForm("Use Living Bomb", "UseLivingBomb", "Offensive Spells");
+            AddControlInWinForm("Use Meteor", "UseMeteor", "Offensive Spells");
+            AddControlInWinForm("Use Pyroblast", "UsePyroblast", "Offensive Spells");
+            AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Combustion", "UseCombustion", "Offensive Cooldowns");
+            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldowns");
+            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Frost Nova", "UseFrostNovaBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Invisibility", "UseInvisibilityBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ice Barrier", "UseIceBarrierBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ice Block", "UseIceBlockBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Utility Spells");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
-        public static MageFrostSettings CurrentSetting { get; set; }
+        public static MageFireSettings CurrentSetting { get; set; }
 
-        public static MageFrostSettings GetSettings()
+        public static MageFireSettings GetSettings()
         {
             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
-                    CurrentSetting = Load<MageFrostSettings>(currentSettingsFile);
+                    CurrentSetting = Load<MageFireSettings>(currentSettingsFile);
             }
-            return new MageFrostSettings();
+            return new MageFireSettings();
         }
     }
 
     #endregion
 }
 
-public class MageFire
+public class MageFrost
 {
-    private static MageFireSettings MySettings = MageFireSettings.GetSettings();
+    private static MageFrostSettings MySettings = MageFrostSettings.GetSettings();
 
     #region General Timers & Variables
 
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    public int DecastHP = 0;
-    public int DefenseHP = 0;
-    public int HealHP = 0;
-    public int HealMP = 0;
-    public int LC = 0;
 
-    private Timer _onCd = new Timer(0);
+    private bool CombatMode = true;
+
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
-    #region Professions & Racials
+    #region Professions & Racial
 
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell Darkflight = new Spell("Darkflight");
-    public readonly Spell EveryManforHimself = new Spell("Every Man for Himself");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Stoneform = new Spell("Stoneform");
-
-    #endregion
-
-    #region Mage Buffs
-
-    public readonly Spell ArcaneBrilliance = new Spell("Arcane Brilliance");
-    public readonly Spell BlazingSpeed = new Spell("Blazing Speed");
-    public readonly Spell Cauterize = new Spell(87024);
-    public readonly Spell DalaranBrilliance = new Spell("Dalaran Brilliance");
-    public readonly Spell HeatingUp = new Spell(48107);
-    public readonly Spell Hypothermia = new Spell(41425);
-    public readonly Spell IceFloes = new Spell("Ice Floes");
-    public readonly Spell Ignite = new Spell(12654);
-    public readonly Spell PyroblastBuff = new Spell(48108);
-    public readonly Spell RuneofPower = new Spell("Rune of Power");
-    public readonly Spell RuneofPowerBuff = new Spell(116014);
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Offensive Spell
+    #region Talent
 
-    public readonly Spell DragonsBreath = new Spell("Dragon's Breath");
-    public readonly Spell Fireball = new Spell("Fireball");
-    public readonly Spell Flamestrike = new Spell("Flamestrike");
-    public readonly Spell InfernoBlast = new Spell("Inferno Blast");
-    public readonly Spell Pyroblast = new Spell("Pyroblast");
-    public readonly Spell Scorch = new Spell("Scorch");
+    private readonly Spell ArcticGale = new Spell("Arctic Gale");
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Buffs
 
-    public readonly Spell BlastWave = new Spell("Blast Wave");
-    public readonly Spell Combustion = new Spell("Combustion");
-    public readonly Spell LivingBomb = new Spell("Living Bomb");
-    public readonly Spell Meteor = new Spell("Meteor");
-    public readonly Spell MirrorImage = new Spell("Mirror Image");
-    public readonly Spell PrismaticCrystal = new Spell("Prismatic Crystal");
-    public readonly Spell TimeWarp = new Spell("Time Warp");
+    private readonly Spell BrainFreeze = new Spell(190447);
+    private readonly Spell FingersofFrost = new Spell(112965);
 
     #endregion
 
-    #region Defensive Cooldown
+    #region Dots
 
-    public readonly Spell AlterTime = new Spell("Alter Time");
-    public readonly Spell Blink = new Spell("Blink");
-    public readonly Spell ConeofCold = new Spell("Cone of Cold");
-    public readonly Spell Counterspell = new Spell("Counterspell");
-    public readonly Spell Evanesce = new Spell("Evanesce");
-    public readonly Spell Frostjaw = new Spell("Frostjaw");
-    public readonly Spell FrostNova = new Spell("Frost Nova");
-    public readonly Spell GreaterInvisibility = new Spell("Greater Invisibility");
-    public readonly Spell IceBarrier = new Spell("Ice Barrier");
-    public readonly Spell IceBlock = new Spell("Ice Block");
-    public readonly Spell IceWard = new Spell("Ice Ward");
-    public readonly Spell Invisibility = new Spell("Invisibility");
-    public readonly Spell RingofFrost = new Spell("Ring of Frost");
+    private readonly Spell WintersChill = new Spell("Winter's Chill");
 
     #endregion
 
-    #region Healing Spell
+    #region Artifact Spells
 
-    public readonly Spell ColdSnap = new Spell("Cold Snap");
-    public readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
-    private Timer _conjureRefreshmentTimer = new Timer(0);
+    private readonly Spell Ebonbolt = new Spell("Ebonbolt");
 
     #endregion
 
-    public MageFire()
+    #region Offensive Spells
+
+    private readonly Spell Blizzard = new Spell("Blizzard");
+    private readonly Spell Flurry = new Spell("Flurry"); //No GCD
+    private readonly Spell Frostbolt = new Spell("Frostbolt");
+    private readonly Spell FrostBomb = new Spell("Frost Bomb");
+    private readonly Spell FrozenTouch = new Spell("Frozen Touch");
+    private readonly Spell IceLance = new Spell("Ice Lance");
+    private readonly Spell IceNova = new Spell("Ice Nova");
+    private readonly Spell GlacialSpike = new Spell("Glacial Spike");
+    private readonly Spell RuneofPower = new Spell("Rune of Power");
+    private readonly Spell WaterJet = new Spell("Water Jet");
+
+    #endregion
+
+    #region Offensive Cooldowns
+
+    private readonly Spell FrozenOrb = new Spell("Frozen Orb");
+    private readonly Spell IcyVeins = new Spell("Icy Veins"); //No GCD
+    private readonly Spell MirrorImage = new Spell("Mirror Image");
+    private readonly Spell RayofFrost = new Spell("Ray of Frost");
+    private readonly Spell TimeWarp = new Spell("Time Warp"); //No GCD
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell FrostNova = new Spell("Frost Nova");
+    private readonly Spell IceBarrier = new Spell("Ice Barrier");
+    private readonly Spell IceBlock = new Spell("Ice Block");
+    private readonly Spell Invisibility = new Spell("Invisibility");
+
+    #endregion
+
+    #region Utility Spells
+
+    //private readonly Spell Blink = new Spell("Blink");
+    //private readonly Spell Counterspell = new Spell("Counterspell");
+    private readonly Spell Freeze = new Spell("Freeze"); //No GCD
+    private readonly Spell IceFloes = new Spell("Ice Floes");
+    //private readonly Spell Polymorph = new Spell("Polymorph");
+    //private readonly Spell Spellsteal = new Spell("Spellsteal");
+    private readonly Spell SummonWaterElemental = new Spell("Summon Water Elemental");
+    //private readonly Spell SlowFall = new Spell("Slow Fall");
+    //private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
+
+    #endregion
+
+    public MageFrost()
     {
         Main.InternalRange = 39f;
         Main.InternalAggroRange = 39f;
         Main.InternalLightHealingSpell = null;
-        MySettings = MageFireSettings.GetSettings();
-        Main.DumpCurrentSettings<MageFireSettings>(MySettings);
+        MySettings = MageFrostSettings.GetSettings();
+        Main.DumpCurrentSettings<MageFrostSettings>(MySettings);
         UInt128 lastTarget = 0;
-        LowHP();
 
         while (Main.InternalLoop)
         {
@@ -1952,31 +1421,16 @@ public class MageFire
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Scorch.IsHostileDistanceGood || Pyroblast.IsHostileDistanceGood))
-                            {
-                                Pull();
+                            if (ObjectManager.Me.Target != lastTarget)
                                 lastTarget = ObjectManager.Me.Target;
-                            }
 
-                            if (MySettings.UseLowCombat && (ObjectManager.Me.Level - ObjectManager.Target.Level >= MySettings.UseLowCombatAtPercentage))
-                            {
-                                LC = 1;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    LowCombat();
-                            }
-                            else
-                            {
-                                LC = 0;
-                                if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
-                                    Combat();
-                            }
-                        }
-                        else
-                        {
-                            if (!ObjectManager.Me.IsCast)
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
+                                Combat();
+                            else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
                         }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
                 }
                 else
@@ -1989,476 +1443,351 @@ public class MageFire
         }
     }
 
-    private void LowHP()
+    // For Movement Spells (always return after Casting)
+    private void Patrolling()
     {
-        if (MySettings.UseAlterTimeAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseAlterTimeAtPercentage;
-
-        if (MySettings.UseConeofColdAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseConeofColdAtPercentage;
-
-        if (MySettings.UseFrostNovaAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseFrostNovaAtPercentage;
-
-        if (MySettings.UseEvanesceAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseEvanesceAtPercentage;
-
-        if (MySettings.UseGreaterInvisibilityAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseGreaterInvisibilityAtPercentage;
-
-        if (MySettings.UseIceBarrierAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIceBarrierAtPercentage;
-
-        if (MySettings.UseIceWardAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseIceWardAtPercentage;
-
-        if (MySettings.UseInvisibilityAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseInvisibilityAtPercentage;
-
-        if (MySettings.UseStoneformAtPercentage > DefenseHP)
-            DefenseHP = MySettings.UseStoneformAtPercentage;
-
-        if (MySettings.UseArcaneTorrentForDecastAtPercentage > DecastHP)
-            DecastHP = MySettings.UseArcaneTorrentForDecastAtPercentage;
-
-        if (MySettings.UseCounterspellAtPercentage > DecastHP)
-            DecastHP = MySettings.UseCounterspellAtPercentage;
-
-        if (MySettings.UseFrostjawAtPercentage > DecastHP)
-            DecastHP = MySettings.UseFrostjawAtPercentage;
-
-        if (MySettings.UseArcaneTorrentForResourceAtPercentage > HealMP)
-            HealMP = MySettings.UseArcaneTorrentForResourceAtPercentage;
-
-        if (MySettings.UseColdSnapForHealAtPercentage > HealHP)
-            HealHP = MySettings.UseColdSnapForHealAtPercentage;
-
-        if (MySettings.UseGiftoftheNaaruAtPercentage > HealHP)
-            HealHP = MySettings.UseGiftoftheNaaruAtPercentage;
-    }
-
-    private void Pull()
-    {
-        if (MySettings.UseRuneofPower && !RuneofPowerBuff.HaveBuff && RuneofPower.IsSpellUsable && Fireball.IsHostileDistanceGood)
-            SpellManager.CastSpellByIDAndPosition(RuneofPower.Id, ObjectManager.Me.Position);
-
-        if (MySettings.UseIceFloes && IceFloes.IsSpellUsable && ObjectManager.Me.GetMove)
-            IceFloes.Cast();
-
-        if (MySettings.UsePyroblast && PyroblastBuff.HaveBuff && Pyroblast.IsSpellUsable && Pyroblast.IsHostileDistanceGood)
+        //Log
+        if (CombatMode)
         {
-            Pyroblast.Cast();
-            return;
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
         }
-        if (MySettings.UseScorch && ObjectManager.Me.GetMove && Scorch.IsSpellUsable && Scorch.IsHostileDistanceGood)
+
+        if (ObjectManager.Me.GetMove)
         {
-            Scorch.Cast();
-            return;
-        }
-        if (MySettings.UseFireball && Fireball.IsSpellUsable && Fireball.IsHostileDistanceGood)
-            Fireball.Cast();
-    }
-
-    private void LowCombat()
-    {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        if (_onCd.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP)
-            Heal();
-
-        if (MySettings.UsePyroblast && PyroblastBuff.HaveBuff && Pyroblast.IsSpellUsable && Pyroblast.IsHostileDistanceGood)
-        {
-            Pyroblast.Cast();
-            return;
-        }
-        if (MySettings.UseInfernoBlast && InfernoBlast.IsSpellUsable && InfernoBlast.IsHostileDistanceGood)
-        {
-            InfernoBlast.Cast();
-            return;
-        }
-        if (MySettings.UseFireball && Fireball.IsSpellUsable && Fireball.IsHostileDistanceGood)
-        {
-            Fireball.Cast();
-            return;
-        }
-        if (MySettings.UseFlamestrike && Flamestrike.IsSpellUsable && Flamestrike.IsHostileDistanceGood)
-            SpellManager.CastSpellByIDAndPosition(2120, ObjectManager.Target.Position);
-    }
-
-    private void Combat()
-    {
-        Buff();
-
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-
-        DPSCycle();
-
-        if (_onCd.IsReady && (ObjectManager.Me.HealthPercent <= DefenseHP || ObjectManager.GetNumberAttackPlayer() > 2))
-            DefenseCycle();
-
-        if (ObjectManager.Me.HealthPercent <= HealHP || ObjectManager.Me.ManaPercentage <= HealMP)
-            Heal();
-
-        if (ObjectManager.Me.HealthPercent <= DecastHP)
-            Decast();
-
-        DPSBurst();
-        DPSCycle();
-    }
-
-    private void Buff()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseArcaneBrilliance && !ArcaneBrilliance.HaveBuff && !DalaranBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable)
-            ArcaneBrilliance.Cast();
-
-        if (MySettings.UseBlazingSpeed && !Darkflight.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && BlazingSpeed.IsSpellUsable)
-            BlazingSpeed.Cast();
-
-        if (MySettings.UseDarkflight && Darkflight.KnownSpell && !BlazingSpeed.HaveBuff && ObjectManager.Me.GetMove && !ObjectManager.Target.InCombat && Darkflight.IsSpellUsable)
-            Darkflight.Cast();
-
-        if (MySettings.UseIceBlock && !Evanesce.KnownSpell && Cauterize.HaveBuff && !Hypothermia.HaveBuff)
-        {
-            if (MySettings.UseColdSnapForDefence && !IceBlock.IsSpellUsable && ColdSnap.IsSpellUsable)
+            //Movement Buffs
+            if (!Darkflight.HaveBuff) // doesn't stack
             {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
             }
-            if (IceBlock.IsSpellUsable)
+        }
+        else
+        {
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                IceBlock.Cast();
-                _onCd = new Timer(1000*10);
+                Main.InternalLightHealingSpell.CastOnSelf();
                 return;
             }
         }
-
-        if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-            ItemsManager.UseItem(75525);
-
-        if (MySettings.UseConjureRefreshment && _conjureRefreshmentTimer.IsReady
-            && ItemsManager.GetItemCount(113509) == 0 // 100
-            && ItemsManager.GetItemCount(80610) == 0 // 90
-            && ItemsManager.GetItemCount(65499) == 0 // 85-89
-            && ItemsManager.GetItemCount(43523) == 0 // 84-80
-            && ItemsManager.GetItemCount(43518) == 0 // 79-74
-            && ItemsManager.GetItemCount(65517) == 0 // 73-64
-            && ItemsManager.GetItemCount(65516) == 0 // 63-54
-            && ItemsManager.GetItemCount(65515) == 0 // 53-44
-            && ItemsManager.GetItemCount(65500) == 0 // 43-38
-            && ConjureRefreshment.IsSpellUsable)
-        {
-            ConjureRefreshment.Cast();
-            _conjureRefreshmentTimer = new Timer(1000*60*10);
-        }
     }
 
-    private void AvoidMelee()
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
+    private void Combat()
     {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
+        //Log
+        if (!CombatMode)
         {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
         }
+        if (Healing() || Defensive() || Offensive())
+            return;
+        Rotation();
     }
 
-    private void DefenseCycle()
-    {
-        if (MySettings.UseEveryManforHimself && ObjectManager.Me.IsStunned && EveryManforHimself.IsSpellUsable)
-            EveryManforHimself.Cast();
-
-        if (MySettings.UseAlterTime && !AlterTime.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseAlterTimeAtPercentage && AlterTime.IsSpellUsable)
-        {
-            AlterTime.Cast();
-            return;
-        }
-        if (MySettings.UseBlink && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || Frostjaw.TargetHaveBuff) && Blink.IsSpellUsable
-            && ObjectManager.Target.GetDistance < 5)
-        {
-            Blink.Cast();
-            return;
-        }
-        if (MySettings.UseConeofCold && ObjectManager.Me.HealthPercent <= MySettings.UseConeofColdAtPercentage && ConeofCold.IsSpellUsable && ConeofCold.IsHostileDistanceGood)
-        {
-            ConeofCold.Cast();
-            return;
-        }
-        if (MySettings.UseEvanesce && ObjectManager.Me.HealthPercent <= MySettings.UseEvanesceAtPercentage)
-        {
-            if (MySettings.UseColdSnapForDefence && !Evanesce.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (Evanesce.IsSpellUsable)
-            {
-                Evanesce.Cast();
-                _onCd = new Timer(1000*3);
-            }
-            return;
-        }
-        if (MySettings.UseFrostjaw && ObjectManager.Me.HealthPercent <= MySettings.UseFrostjawAtPercentage && Frostjaw.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
-        {
-            Frostjaw.Cast();
-            return;
-        }
-        if (MySettings.UseFrostNova && ObjectManager.Me.HealthPercent <= MySettings.UseFrostNovaAtPercentage && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 0)
-        {
-            if (MySettings.UseColdSnapForDefence && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
-            {
-                ColdSnap.Cast();
-                Others.SafeSleep(1000);
-            }
-            if (FrostNova.IsSpellUsable)
-            {
-                FrostNova.Cast();
-                _onCd = new Timer(1000*8);
-            }
-            return;
-        }
-        if (MySettings.UseIceBarrier && !IceBarrier.HaveBuff && ObjectManager.Me.HealthPercent <= MySettings.UseIceBarrierAtPercentage && IceBarrier.IsSpellUsable)
-        {
-            IceBarrier.Cast();
-            return;
-        }
-        if (MySettings.UseIceWard && ObjectManager.Me.HealthPercent <= MySettings.UseIceWardAtPercentage && IceWard.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
-        {
-            IceWard.Cast();
-            _onCd = new Timer(1000*5);
-            return;
-        }
-        if (MySettings.UseInvisibility && ObjectManager.Me.HealthPercent <= MySettings.UseInvisibilityAtPercentage && Invisibility.IsSpellUsable)
-        {
-            Invisibility.Cast();
-            Others.SafeSleep(8000);
-            return;
-        }
-        if (MySettings.UseGreaterInvisibility && ObjectManager.Me.HealthPercent <= MySettings.UseGreaterInvisibilityAtPercentage && Invisibility.IsSpellUsable)
-        {
-            GreaterInvisibility.Cast();
-            Others.SafeSleep(8000);
-            return;
-        }
-        if (MySettings.UseRingofFrost && RingofFrost.IsSpellUsable && ObjectManager.GetUnitInSpellRange(RingofFrost.MaxRangeHostile) > 2)
-        {
-            SpellManager.CastSpellByIDAndPosition(113724, ObjectManager.Target.Position);
-            _onCd = new Timer(1000*10);
-            return;
-        }
-        if (MySettings.UseStoneform && ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
-        {
-            Stoneform.Cast();
-            _onCd = new Timer(1000*8);
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (MySettings.UseArcaneTorrentForResource && ObjectManager.Me.ManaPercentage <= MySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.IsSpellUsable)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (MySettings.UseGiftoftheNaaru && ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
-        {
-            GiftoftheNaaru.Cast();
-            return;
-        }
-        if (MySettings.UseColdSnapForHeal && ObjectManager.Me.HealthPercent <= MySettings.UseColdSnapForHealAtPercentage && ColdSnap.IsSpellUsable)
-        {
-            ColdSnap.Cast();
-            return;
-        }
-    }
-
-    private void Decast()
-    {
-        if (MySettings.UseArcaneTorrentForDecast && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForDecastAtPercentage
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ArcaneTorrent.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
-        {
-            ArcaneTorrent.Cast();
-            return;
-        }
-        if (MySettings.UseCounterspell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= MySettings.UseCounterspellAtPercentage
-            && Counterspell.IsSpellUsable && Counterspell.IsHostileDistanceGood)
-        {
-            Counterspell.Cast();
-            return;
-        }
-        if (MySettings.UseFrostjaw && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= MySettings.UseFrostjawAtPercentage
-            && Frostjaw.IsSpellUsable && Frostjaw.IsHostileDistanceGood)
-            Frostjaw.Cast();
-    }
-
-    private void DPSBurst()
-    {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
-        if (MySettings.UseBerserking && Berserking.IsSpellUsable && Fireball.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            Berserking.Cast();
-        }
-        if (MySettings.UseBloodFury && BloodFury.IsSpellUsable && Fireball.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            BloodFury.Cast();
-        }
-        if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && Fireball.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(1000);
-            MirrorImage.Cast();
-        }
-        if (MySettings.UseRuneofPower && !RuneofPowerBuff.HaveBuff && !ObjectManager.Me.GetMove && RuneofPower.IsSpellUsable && Fireball.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-        }
-        if (MySettings.UsePrismaticCrystal && PrismaticCrystal.IsSpellUsable && PrismaticCrystal.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            SpellManager.CastSpellByIDAndPosition(152087, ObjectManager.Target.Position);
-            Lua.RunMacroText("/target Prismatic Crystal");
-        }
-        if (MySettings.UseTimeWarp && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723) && !ObjectManager.Me.HaveBuff(95809)
-            && TimeWarp.IsSpellUsable && Fireball.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(500);
-            TimeWarp.Cast();
-        }
-        if (MySettings.UseMeteor && Meteor.IsSpellUsable && Meteor.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(1000);
-            Meteor.Cast();
-        }
-        if (MySettings.UseCombustion && Ignite.TargetHaveBuff && Combustion.IsSpellUsable && Combustion.IsHostileDistanceGood)
-        {
-            if (ObjectManager.Me.IsCast)
-                ObjectManager.Me.StopCast();
-
-            Others.SafeSleep(1000);
-            Combustion.Cast();
-        }
-    }
-
-    private void DPSCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (MySettings.UseIceFloes && !IceFloes.HaveBuff && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable && Fireball.IsHostileDistanceGood)
-                IceFloes.Cast();
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
 
-            if (MySettings.UseFlamestrike && Flamestrike.IsSpellUsable && ObjectManager.GetUnitInSpellRange(Flamestrike.MaxRangeHostile) > 4)
-            {
-                SpellManager.CastSpellByIDAndPosition(2120, ObjectManager.Target.Position);
-                return;
-            }
-            if (MySettings.UsePyroblast && ((PyroblastBuff.HaveBuff && HeatingUp.HaveBuff) || ObjectManager.Me.UnitAura(48108).AuraTimeLeftInMs < 4000)
-                && Pyroblast.IsSpellUsable && Pyroblast.IsHostileDistanceGood)
-            {
-                Pyroblast.Cast();
-                return;
-            }
-            if (MySettings.UseLivingBomb && !LivingBomb.TargetHaveBuff && LivingBomb.IsSpellUsable && LivingBomb.IsHostileDistanceGood)
-            {
-                LivingBomb.Cast();
-                return;
-            }
-            if (MySettings.UseInfernoBlast && HeatingUp.HaveBuff && !PyroblastBuff.HaveBuff && InfernoBlast.IsSpellUsable && InfernoBlast.IsHostileDistanceGood)
-            {
-                if (ObjectManager.Me.IsCast)
-                    ObjectManager.Me.StopCast();
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
 
-                Others.SafeSleep(1000);
-                InfernoBlast.Cast();
-                return;
-            }
-            if (MySettings.UseBlastWave && BlastWave.GetSpellCharges > 0 && BlastWave.IsSpellUsable && BlastWave.IsHostileDistanceGood)
-            {
-                BlastWave.Cast();
-                return;
-            }
-            if (MySettings.UseDragonsBreath && DragonsBreath.IsSpellUsable && ObjectManager.Target.GetDistance < 12)
-            {
-                DragonsBreath.Cast();
-                return;
-            }
-            if (MySettings.UseScorch && ObjectManager.Me.GetMove && !IceFloes.HaveBuff && Scorch.IsSpellUsable && Scorch.IsHostileDistanceGood)
-            {
-                Scorch.Cast();
-                return;
-            }
-            if (MySettings.UseFireball && !Ignite.HaveBuff && Fireball.IsSpellUsable && Fireball.IsHostileDistanceGood)
-            {
-                Fireball.Launch(true, false, true);
-                Others.SafeSleep(500);
-                while (!Ignite.HaveBuff && ObjectManager.Me.IsCast)
-                    Others.SafeSleep(20);
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-                if (ObjectManager.Me.IsCast)
-                    ObjectManager.Me.StopCast();
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                }
+                //Mitigate Damage
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                //Ice Barrier
+                if (ObjectManager.Me.HealthPercent < MySettings.UseIceBarrierBelowPercentage && IceBarrier.IsSpellUsable)
+                {
+                    IceBarrier.Cast();
+                    return true;
+                }
+                //Frost Nova
+                if (ObjectManager.Me.HealthPercent < MySettings.UseFrostNovaBelowPercentage && FrostNova.IsSpellUsable)
+                {
+                    FrostNova.Cast();
+                    return true;
+                }
+                //Greater Invisibility
+                if (ObjectManager.Me.HealthPercent < MySettings.UseInvisibilityBelowPercentage && Invisibility.IsSpellUsable)
+                {
+                    Invisibility.Cast();
+                    return true;
+                }
+            }
+            //Mitigate Damage in Emergency Situations
+            //Ice Block
+            if (ObjectManager.Me.HealthPercent < MySettings.UseIceBlockBelowPercentage && IceBlock.IsSpellUsable)
+            {
+                IceBlock.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Cast Summon Water Elemental if it's not alive
+            if (MySettings.UseSummonWaterElemental && SummonWaterElemental.IsSpellUsable &&
+                ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+            {
+                Logging.WriteDebug("Pet: Health == " + ObjectManager.Pet.Health + ", Guid == " + ObjectManager.Pet.Guid + ", IsValid == " + ObjectManager.Pet.IsValid);
+                SummonWaterElemental.Cast();
+                return true;
+            }
+            //Cast Time Warp whenever available.
+            if (MySettings.UseTimeWarp && TimeWarp.IsSpellUsable && !ObjectManager.Me.HaveBuff(80354))
+            {
+                TimeWarp.Cast();
+            }
+            //Cast Mirror Image when you have 2 charges of Fingers of Frost.
+            if (MySettings.UseMirrorImage && MirrorImage.IsSpellUsable && FingersofFrost.GetSpellCharges == 2)
+            {
+                MirrorImage.Cast();
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Use Ice Floes if you have to move //TODO: and have no instant casts to burn.
+            if (ObjectManager.Me.GetMove && !IceFloes.HaveBuff)
+            {
+                //Cast Ice Floes
+                if (MySettings.UseIceFloes && IceFloes.IsSpellUsable)
+                {
+                    IceFloes.Cast();
+                    return;
+                }
+            }
+
+            //11b. Cast Ice Lance if
+            if (MySettings.UseIceLance && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood &&
+                //the Winter's Chill Dot is on the Target
+                WintersChill.TargetHaveBuff)
+            {
+                IceLance.Cast();
                 return;
             }
-            if (MySettings.UsePyroblast && (!MySettings.UseFireball || !Fireball.KnownSpell) && Pyroblast.IsSpellUsable && Pyroblast.IsHostileDistanceGood)
+            //12b. Cast Frostbolt if
+            if (MySettings.UseFrostbolt && Frostbolt.IsSpellUsable && Frostbolt.IsHostileDistanceGood &&
+                //the Water Jet Dot is on the Target and you have less than 2 charges of Fingers of Frost.
+                WaterJet.TargetHaveBuff && FingersofFrost.GetSpellCharges < 2)
             {
-                Pyroblast.Cast();
+                Frostbolt.Cast();
                 return;
+            }
+
+            //1. Cast Rune of Power if talented and it is at 2 charges.
+            if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && RuneofPower.GetSpellCharges == 2)
+            {
+                RuneofPower.CastAtPosition(ObjectManager.Me.Position);
+                return;
+            }
+            //2. Cast Icy Veins if it is off cooldown.
+            if (MySettings.UseIcyVeins && IcyVeins.IsSpellUsable)
+            {
+                IcyVeins.Cast();
+                return;
+            }
+            //3. Cast Ray of Frost if
+            if (MySettings.UseRayofFrost && RayofFrost.IsSpellUsable && RayofFrost.IsHostileDistanceGood &&
+                //your Rune of Power is down.
+                RuneofPower.HaveBuff)
+            {
+                RayofFrost.Cast();
+                return;
+            }
+            //4. Cast Rune of Power if talented and
+            if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && !RuneofPower.HaveBuff &&
+                //you will deal high burst damage.
+                (FingersofFrost.GetSpellCharges >= 2 || (FingersofFrost.GetSpellCharges >= 1 &&
+                                                         Ebonbolt.IsSpellUsable) || FrozenOrb.IsSpellUsable))
+            {
+                RuneofPower.CastAtPosition(ObjectManager.Me.Position);
+                return;
+            }
+            //5. Cast Frost Bomb if talented and
+            if (MySettings.UseFrostBomb && FrostBomb.IsSpellUsable && FrostBomb.IsHostileDistanceGood &&
+                //you will trigger it with 2 charges of Fingers of Frost.
+                FingersofFrost.GetSpellCharges >= 2)
+            {
+                FrostBomb.Cast();
+                return;
+            }
+            //6. Cast Ice Lance if
+            if (MySettings.UseIceLance && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood &&
+                //you have 2 charges of Fingers of Frost.
+                FingersofFrost.GetSpellCharges >= 2)
+            {
+                IceLance.Cast();
+                return;
+            }
+            //7. Cast Frozen Orb if it is off cooldown.
+            if (MySettings.UseFrozenOrb && FrozenOrb.IsSpellUsable && FrozenOrb.IsHostileDistanceGood)
+            {
+                FrozenOrb.Cast();
+                return;
+            }
+            //8. Cast Freeze from your Water Elemental if //TODO: check if we have to workaround to cast pet spells
+            if (MySettings.UseFreeze && Freeze.IsSpellUsable &&
+                // it will hit at least 2 adds 
+                ObjectManager.Pet.GetUnitInSpellRange(8f) >= 2)
+            {
+                Freeze.Cast();
+                return;
+            }
+            //9. Cast Frozen Touch if talented and
+            if (MySettings.UseFrozenTouch && FrozenTouch.IsSpellUsable &&
+                //you currently have no charges of Fingers of Frost.
+                FingersofFrost.GetSpellCharges == 0)
+            {
+                FrozenTouch.Cast();
+                return;
+            }
+            //10. Cast Ebonbolt if it is off cooldown and
+            if (MySettings.UseEbonbolt && Ebonbolt.IsSpellUsable && Ebonbolt.IsHostileDistanceGood &&
+                //you have 1 or less charges of Fingers of Frost.
+                FingersofFrost.GetSpellCharges <= 2)
+            {
+                Ebonbolt.Cast();
+                return;
+            }
+            //11. Cast Flurry if
+            if (MySettings.UseFlurry && Flurry.IsSpellUsable && Flurry.IsHostileDistanceGood &&
+                //Brain Freeze is active and you currently have no charges of Fingers of Frost.
+                BrainFreeze.HaveBuff && FingersofFrost.GetSpellCharges == 0)
+            {
+                Flurry.Cast();
+                return;
+            }
+            //12. Cast Water Jet from your Water Elemental if //TODO: check if we have to workaround to cast pet spells
+            if (MySettings.UseFreeze && Freeze.IsSpellUsable &&
+                //you have no charges of Fingers of Frost.
+                FingersofFrost.GetSpellCharges == 0)
+            {
+                WaterJet.Cast();
+                return;
+            }
+            //13. Cast Ice Nova if talented.
+            if (MySettings.UseIceNova && IceNova.IsSpellUsable && IceNova.IsHostileDistanceGood)
+            {
+                IceNova.Cast();
+            }
+            //14. Cast Blizzard if
+            if (MySettings.UseBlizzard && Blizzard.IsSpellUsable && Blizzard.IsHostileDistanceGood &&
+                //more than 4 targets are present and within the AoE or
+                ObjectManager.Target.GetUnitInSpellRange(8f) > 4 ||
+                //you are talented into Arctic Gale.
+                ArcticGale.HaveBuff)
+            {
+                Blizzard.Cast();
+            }
+            //15. Cast Ice Lance if
+            if (MySettings.UseIceLance && IceLance.IsSpellUsable && IceLance.IsHostileDistanceGood &&
+                //you have 1 charge of Fingers of Frost.
+                FingersofFrost.GetSpellCharges == 1)
+            {
+                IceLance.Cast();
+                return;
+            }
+            //16. Cast Glacial Spike if talented and available.
+            if (MySettings.UseGlacialSpike && GlacialSpike.IsSpellUsable && GlacialSpike.IsHostileDistanceGood)
+            {
+                GlacialSpike.Cast();
+            }
+            //16. Cast Frostbolt as a filler spell.
+            if (MySettings.UseFrostbolt && Frostbolt.IsSpellUsable && Frostbolt.IsHostileDistanceGood)
+            {
+                Frostbolt.Cast();
             }
         }
         finally
@@ -2467,153 +1796,110 @@ public class MageFire
         }
     }
 
-    private void Patrolling()
-    {
-        if (ObjectManager.Me.IsMounted) return;
-        Buff();
-        Heal();
-    }
-
-    #region Nested type: MageFireSettings
+    #region Nested type: MageFrostSettings
 
     [Serializable]
-    public class MageFireSettings : Settings
+    public class MageFrostSettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseAlterTime = true;
-        public int UseAlterTimeAtPercentage = 80;
-        public bool UseArcaneBrilliance = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 95;
-        public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBlastWave = true;
-        public bool UseBlazingSpeed = true;
-        public bool UseBlink = true;
         public bool UseBloodFury = true;
-        public bool UseColdSnapForDefence = true;
-        public bool UseColdSnapForHeal = true;
-        public int UseColdSnapForHealAtPercentage = 70;
-        public bool UseCombustion = true;
-        public bool UseConeofCold = true;
-        public int UseConeofColdAtPercentage = 45;
-        public bool UseConjureRefreshment = true;
-        public bool UseCounterspell = true;
-        public int UseCounterspellAtPercentage = 95;
         public bool UseDarkflight = true;
-        public bool UseDragonsBreath = true;
-        public bool UseEvanesce = true;
-        public int UseEvanesceAtPercentage = 50;
-        public bool UseEveryManforHimself = true;
-        public bool UseFireball = true;
-        public bool UseFlamestrike = true;
-        public bool UseFrostNova = true;
-        public int UseFrostNovaAtPercentage = 50;
-        public bool UseFrostjaw = true;
-        public int UseFrostjawAtPercentage = 40;
-        public bool UseFrozenOrb = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseGreaterInvisibility = true;
-        public int UseGreaterInvisibilityAtPercentage = 10;
-        public bool UseIceBarrier = true;
-        public int UseIceBarrierAtPercentage = 95;
-        public bool UseIceBlock = true;
-        public bool UseIceFloes = false;
-        public bool UseIceWard = true;
-        public int UseIceWardAtPercentage = 45;
-        public bool UseInfernoBlast = true;
-        public bool UseInvisibility = true;
-        public int UseInvisibilityAtPercentage = 10;
-        public bool UseLivingBomb = true;
-        public bool UseLowCombat = true;
-        public int UseLowCombatAtPercentage = 15;
-        public bool UseMeteor = true;
-        public bool UseMirrorImage = true;
-        public bool UsePrismaticCrystal = true;
-        public bool UsePyroblast = true;
-        public bool UseRingofFrost = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
+
+        /* Artifact Spells */
+        public bool UseEbonbolt = true;
+
+        /* Offensive Spells */
+        public bool UseBlizzard = true;
+        public bool UseFlurry = true;
+        public bool UseFreeze = true;
+        public bool UseFrostbolt = true;
+        public bool UseFrostBomb = true;
+        public bool UseFrozenTouch = true;
+        public bool UseGlacialSpike = true;
+        public bool UseIceLance = true;
+        public bool UseIceNova = true;
         public bool UseRuneofPower = true;
-        public bool UseScorch = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
+
+        /* Offensive Cooldowns */
+        public bool UseFrozenOrb = true;
+        public bool UseIcyVeins = true;
+        public bool UseMirrorImage = true;
+        public bool UseRayofFrost = true;
         public bool UseTimeWarp = true;
+
+        /* Defensive Spells */
+        public int UseFrostNovaBelowPercentage = 0;
+        public int UseInvisibilityBelowPercentage = 0;
+        public int UseIceBarrierBelowPercentage = 90;
+        public int UseIceBlockBelowPercentage = 10;
+
+        /* Utility Spells */
+        public bool UseIceFloes = true;
+        public bool UseSummonWaterElemental = true;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
 
-        public MageFireSettings()
+        public MageFrostSettings()
         {
             ConfigWinForm("Mage Fire Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
-            AddControlInWinForm("Use Every Man for Himself", "UseEveryManforHimself", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
-            /* Mage Buffs */
-            AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
-            AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Mage Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Dragon's Breath", "UseDragonsBreath", "Offensive Spell");
-            AddControlInWinForm("Use Fireball", "UseFireball", "Offensive Spell");
-            AddControlInWinForm("Use Flamestrike", "UseFlamestrike", "Offensive Spell");
-            AddControlInWinForm("Use Inferno Blast", "UseInfernoBlast", "Offensive Spell");
-            AddControlInWinForm("Use Pyroblast", "UsePyroblast", "Offensive Spell");
-            AddControlInWinForm("Use Scorch", "UseScorch", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Blast Wave", "UseBlastWave", "Offensive Cooldown");
-            AddControlInWinForm("Use Combustion", "UseCombustion", "Offensive Cooldown");
-            AddControlInWinForm("Use Living Bomb", "UseLivingBomb", "Offensive Cooldown");
-            AddControlInWinForm("Use Meteor", "UseMeteor", "Offensive Cooldown");
-            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
-            AddControlInWinForm("Use Prismatic Crystal", "UsePrismaticCrystal", "Offensive Cooldown");
-            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Alter Time", "UseAlterTime", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown");
-            AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Evanesce", "UseEvanesce", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Frostjaw", "UseFrostjaw", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Frost Nova", "UseFrostNova", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Greater Invisibility", "UseGreaterInvisibility", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Barrier", "UseIceBarrier", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Ice Block", "UseIceBlock", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Ward", "UseIceWard", "Defensive Cooldown", "AtPercentage");
-            AddControlInWinForm("Use Invisibility", "UseInvisibility", "Defensive Cooldown");
-            AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Cold SnapForHeal", "UseColdSnap", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Ebonbolt", "UseEbonbolt", "Artifact Spells");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Blizzard", "UseBlizzard", "Offensive Spells");
+            AddControlInWinForm("Use Flurry", "UseFlurry", "Offensive Spells");
+            AddControlInWinForm("Use Freeze", "UseFreeze", "Offensive Spells");
+            AddControlInWinForm("Use Frostbolt", "UseFrostbolt", "Offensive Spells");
+            AddControlInWinForm("Use Frost Bomb", "UseFrostBomb", "Offensive Spells");
+            AddControlInWinForm("Use Frozen Touch", "UseFrozenTouch", "Offensive Spells");
+            AddControlInWinForm("Use Glacial Spike", "UseGlacialSpike", "Offensive Spells");
+            AddControlInWinForm("Use Ice Lance", "UseIceLance", "Offensive Spells");
+            AddControlInWinForm("Use Ice Nova", "UseIceNova", "Offensive Spells");
+            AddControlInWinForm("Use Rune of Power", "UseRuneofPower", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Frozen Orb", "UseFrozenOrb", "Offensive Cooldowns");
+            AddControlInWinForm("Use Icy Veins", "UseIcyVeins", "Offensive Cooldowns");
+            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldowns");
+            AddControlInWinForm("Use Ray of Frost", "UseRayofFrost", "Offensive Cooldowns");
+            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldowns");
+            /* Defensive Spells */
+            AddControlInWinForm("Use Frost Nova", "UseFrostNovaBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Invisibility", "UseInvisibilityBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ice Barrier", "UseIceBarrierBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Ice Block", "UseIceBlockBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
+            /* Utility Spells */
+            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Utility Spells");
+            AddControlInWinForm("Use Summon Water Elemental", "UseSummonWaterElemental", "Utility Spells");
             /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
-        public static MageFireSettings CurrentSetting { get; set; }
+        public static MageFrostSettings CurrentSetting { get; set; }
 
-        public static MageFireSettings GetSettings()
+        public static MageFrostSettings GetSettings()
         {
             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Fire.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
-                    CurrentSetting = Load<MageFireSettings>(currentSettingsFile);
+                    CurrentSetting = Load<MageFrostSettings>(currentSettingsFile);
             }
-            return new MageFireSettings();
+            return new MageFrostSettings();
         }
     }
 

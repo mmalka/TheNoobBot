@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks
+* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
 * Thanks you !
 */
 
@@ -203,100 +203,100 @@ public class HunterMarksmanship
 
     #region Talents
 
-    public readonly Spell LoneWolf = new Spell("Lone Wolf");
-    public readonly Spell NarrowEscape = new Spell("Narrow Escape");
-    public readonly Spell Posthaste = new Spell("Posthaste");
-    public readonly Spell SteadyFocus = new Spell("Steady Focus");
+    private readonly Spell LoneWolf = new Spell("Lone Wolf");
+    private readonly Spell NarrowEscape = new Spell("Narrow Escape");
+    private readonly Spell Posthaste = new Spell("Posthaste");
+    private readonly Spell SteadyFocus = new Spell("Steady Focus");
 
     #endregion
 
     #region Professions & Racials
 
-    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
-    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
     #region Hunter Dots
 
-    public readonly Spell HuntersMark = new Spell("Hunter's Mark");
-    public readonly Spell Vulnerable = new Spell("Vulnerable");
+    private readonly Spell HuntersMark = new Spell("Hunter's Mark");
+    private readonly Spell Vulnerable = new Spell("Vulnerable");
 
     #endregion
 
     #region Hunter Pets
 
-    public readonly Spell CallPet1 = new Spell("Call Pet 1");
-    public readonly Spell CallPet2 = new Spell("Call Pet 2");
-    public readonly Spell CallPet3 = new Spell("Call Pet 3");
-    public readonly Spell CallPet4 = new Spell("Call Pet 4");
-    public readonly Spell CallPet5 = new Spell("Call Pet 5");
-    public readonly Spell Dismiss = new Spell("Dismiss Pet");
-    public readonly Spell FeedPet = new Spell("Feed Pet");
-    public readonly Spell MendPet = new Spell("Mend Pet");
-    public readonly Spell RevivePet = new Spell("Revive Pet");
+    private readonly Spell CallPet1 = new Spell("Call Pet 1");
+    private readonly Spell CallPet2 = new Spell("Call Pet 2");
+    private readonly Spell CallPet3 = new Spell("Call Pet 3");
+    private readonly Spell CallPet4 = new Spell("Call Pet 4");
+    private readonly Spell CallPet5 = new Spell("Call Pet 5");
+    private readonly Spell Dismiss = new Spell("Dismiss Pet");
+    private readonly Spell FeedPet = new Spell("Feed Pet");
+    private readonly Spell MendPet = new Spell("Mend Pet");
+    private readonly Spell RevivePet = new Spell("Revive Pet");
 
     #endregion
 
     #region Offensive Spell
 
-    public readonly Spell AimedShot = new Spell("Aimed Shot");
-    public readonly Spell ArcaneShot = new Spell("Arcane Shot");
-    public readonly Spell MarkedShot = new Spell("Marked Shot");
-    public readonly Spell MultiShot = new Spell("Multi-Shot");
+    private readonly Spell AimedShot = new Spell("Aimed Shot");
+    private readonly Spell ArcaneShot = new Spell("Arcane Shot");
+    private readonly Spell MarkedShot = new Spell("Marked Shot");
+    private readonly Spell MultiShot = new Spell("Multi-Shot");
 
     #endregion
 
     #region Legion Artifact
 
-    public readonly Spell Windburst = new Spell("Windburst"); //No GCD
+    private readonly Spell Windburst = new Spell("Windburst"); //No GCD
 
     #endregion
 
     #region Offensive Cooldown
 
-    public readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
-    public readonly Spell Barrage = new Spell("Barrage");
-    //public readonly Spell BlackArrow = new Spell("Black Arrow");
-    //public readonly Spell ExplosiveShot = new Spell("Explosive Shot");
-    public readonly Spell PiercingShot = new Spell("Piercing Shot");
-    public readonly Spell Sidewinders = new Spell("Sidewinders");
-    //public readonly Spell Sentinel = new Spell("Sentinel");
-    public readonly Spell Trueshot = new Spell("Trueshot");
-    //public readonly Spell Volley = new Spell("Volley");
+    private readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
+    private readonly Spell Barrage = new Spell("Barrage");
+    //private readonly Spell BlackArrow = new Spell("Black Arrow");
+    //private readonly Spell ExplosiveShot = new Spell("Explosive Shot");
+    private readonly Spell PiercingShot = new Spell("Piercing Shot");
+    private readonly Spell Sidewinders = new Spell("Sidewinders");
+    //private readonly Spell Sentinel = new Spell("Sentinel");
+    private readonly Spell Trueshot = new Spell("Trueshot");
+    //private readonly Spell Volley = new Spell("Volley");
 
     #endregion
 
     #region Defensive Cooldown
 
-    public readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
-    public readonly Spell BindingShot = new Spell("Binding Shot");
-    public readonly Spell BurstingShot = new Spell("Bursting Shot");
-    //public readonly Spell Camouflage = new Spell("Camouflage"); //No GCD
-    public readonly Spell ConcussiveShot = new Spell("Concussive Shot");
-    //public readonly Spell CounterShot = new Spell("Counter Shot"); //No GCD
-    public readonly Spell Disengage = new Spell("Disengage"); //No GCD
-    public readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
-    public readonly Spell Misdirection = new Spell("Misdirection"); //No GCD
+    private readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
+    private readonly Spell BindingShot = new Spell("Binding Shot");
+    private readonly Spell BurstingShot = new Spell("Bursting Shot");
+    //private readonly Spell Camouflage = new Spell("Camouflage"); //No GCD
+    private readonly Spell ConcussiveShot = new Spell("Concussive Shot");
+    //private readonly Spell CounterShot = new Spell("Counter Shot"); //No GCD
+    private readonly Spell Disengage = new Spell("Disengage"); //No GCD
+    private readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
+    private readonly Spell Misdirection = new Spell("Misdirection"); //No GCD
 
     #endregion
 
     #region Healing Spell
 
-    public readonly Spell Exhilaration = new Spell("Exhilaration");
-    //public readonly Spell WyvernSting = new Spell("Wyvern Sting");
+    private readonly Spell Exhilaration = new Spell("Exhilaration");
+    //private readonly Spell WyvernSting = new Spell("Wyvern Sting");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
-    //public readonly Spell Flare = new Spell("Flare");
+    private readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
+    //private readonly Spell Flare = new Spell("Flare");
 
     #endregion
 
@@ -762,7 +762,7 @@ public class HunterMarksmanship
         /* Artifact Spells */
         public bool UseWindburst = true;
 
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseAMurderofCrows = true;
         public bool UseBarrage = true;
         public bool UseSidewinders = true;
@@ -780,7 +780,7 @@ public class HunterMarksmanship
         /* Healing Spells */
         public int UseExhilarationBelowPercentage = 25;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseAspectoftheCheetah = true;
 
         /* Game Settings */
@@ -830,8 +830,8 @@ public class HunterMarksmanship
             AddControlInWinForm("Use Misdirection", "UseMisdirectionBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilarationBelowPercentage", "Healing Spell", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -871,93 +871,93 @@ public class HunterBeastMastery
 
     #region Talents
 
-    public readonly Spell BeastCleave = new Spell("Beast Cleave");
-    public readonly Spell NarrowEscape = new Spell("Narrow Escape");
-    public readonly Spell Posthaste = new Spell("Posthaste");
+    private readonly Spell BeastCleave = new Spell("Beast Cleave");
+    private readonly Spell NarrowEscape = new Spell("Narrow Escape");
+    private readonly Spell Posthaste = new Spell("Posthaste");
 
     #endregion
 
     #region Professions & Racials
 
-    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
-    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
     #region Hunter Pets
 
-    public readonly Spell CallPet1 = new Spell("Call Pet 1");
-    public readonly Spell CallPet2 = new Spell("Call Pet 2");
-    public readonly Spell CallPet3 = new Spell("Call Pet 3");
-    public readonly Spell CallPet4 = new Spell("Call Pet 4");
-    public readonly Spell CallPet5 = new Spell("Call Pet 5");
-    public readonly Spell Dismiss = new Spell("Dismiss Pet");
-    public readonly Spell FeedPet = new Spell("Feed Pet");
-    public readonly Spell MendPet = new Spell("Mend Pet");
-    public readonly Spell RevivePet = new Spell("Revive Pet");
+    private readonly Spell CallPet1 = new Spell("Call Pet 1");
+    private readonly Spell CallPet2 = new Spell("Call Pet 2");
+    private readonly Spell CallPet3 = new Spell("Call Pet 3");
+    private readonly Spell CallPet4 = new Spell("Call Pet 4");
+    private readonly Spell CallPet5 = new Spell("Call Pet 5");
+    private readonly Spell Dismiss = new Spell("Dismiss Pet");
+    private readonly Spell FeedPet = new Spell("Feed Pet");
+    private readonly Spell MendPet = new Spell("Mend Pet");
+    private readonly Spell RevivePet = new Spell("Revive Pet");
 
     #endregion
 
     #region Offensive Spell
 
-    public readonly Spell CobraShot = new Spell("Cobra Shot");
-    public readonly Spell MultiShot = new Spell("Multi-Shot");
+    private readonly Spell CobraShot = new Spell("Cobra Shot");
+    private readonly Spell MultiShot = new Spell("Multi-Shot");
 
     #endregion
 
     #region Legion Artifact
 
-    public readonly Spell TitansThunder = new Spell("Titan's Thunder"); //No GCD
+    private readonly Spell TitansThunder = new Spell("Titan's Thunder"); //No GCD
 
     #endregion
 
     #region Offensive Cooldown
 
-    public readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
-    public readonly Spell AspectoftheWild = new Spell("Aspect of the Wild"); //No GCD
-    public readonly Spell Barrage = new Spell("Barrage");
-    //public readonly Spell BlinkStrike = new Spell("Blink Strike");
+    private readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
+    private readonly Spell AspectoftheWild = new Spell("Aspect of the Wild"); //No GCD
+    private readonly Spell Barrage = new Spell("Barrage");
+    //private readonly Spell BlinkStrike = new Spell("Blink Strike");
     //private Timer BlinkStrikeCD = new Timer(0);
-    public readonly Spell BestialWrath = new Spell("Bestial Wrath"); //No GCD
-    public readonly Spell ChimeraShot = new Spell("Chimaera Shot");
-    public readonly Spell DireBeast = new Spell("Dire Beast");
+    private readonly Spell BestialWrath = new Spell("Bestial Wrath"); //No GCD
+    private readonly Spell ChimeraShot = new Spell("Chimaera Shot");
+    private readonly Spell DireBeast = new Spell("Dire Beast");
     private Timer DireBeastTimer = new Timer(0);
-    public readonly Spell DireFrenzy = new Spell("Dire Frenzy");
-    public readonly Spell KillCommand = new Spell("Kill Command");
-    public readonly Spell Stampede = new Spell("Stampede"); //No GCD
-    //public readonly Spell Volley = new Spell("Volley");
+    private readonly Spell DireFrenzy = new Spell("Dire Frenzy");
+    private readonly Spell KillCommand = new Spell("Kill Command");
+    private readonly Spell Stampede = new Spell("Stampede"); //No GCD
+    //private readonly Spell Volley = new Spell("Volley");
 
     #endregion
 
     #region Defensive Cooldown
 
-    public readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
-    public readonly Spell BindingShot = new Spell("Binding Shot");
-    public readonly Spell ConcussiveShot = new Spell("Concussive Shot");
-    //public readonly Spell CounterShot = new Spell("Counter Shot"); //No GCD
-    public readonly Spell Disengage = new Spell("Disengage"); //No GCD
-    public readonly Spell Intimidation = new Spell("Intimidation");
-    public readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
-    public readonly Spell Misdirection = new Spell("Misdirection"); //No GCD
+    private readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
+    private readonly Spell BindingShot = new Spell("Binding Shot");
+    private readonly Spell ConcussiveShot = new Spell("Concussive Shot");
+    //private readonly Spell CounterShot = new Spell("Counter Shot"); //No GCD
+    private readonly Spell Disengage = new Spell("Disengage"); //No GCD
+    private readonly Spell Intimidation = new Spell("Intimidation");
+    private readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
+    private readonly Spell Misdirection = new Spell("Misdirection"); //No GCD
 
     #endregion
 
     #region Healing Spell
 
-    public readonly Spell Exhilaration = new Spell("Exhilaration");
+    private readonly Spell Exhilaration = new Spell("Exhilaration");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
-    //public readonly Spell Flare = new Spell("Flare");
-    //public readonly Spell WyvernSting = new Spell("Wyvern Sting");
+    private readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
+    //private readonly Spell Flare = new Spell("Flare");
+    //private readonly Spell WyvernSting = new Spell("Wyvern Sting");
 
     #endregion
 
@@ -1418,7 +1418,7 @@ public class HunterBeastMastery
         /* Artifact Spells */
         public bool UseTitansThunder = true;
 
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseAMurderofCrows = true;
         public bool UseAspectoftheWild = true;
         public bool UseBarrage = true;
@@ -1441,7 +1441,7 @@ public class HunterBeastMastery
         /* Healing Spells */
         public int UseExhilarationBelowPercentage = 25;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseAspectoftheCheetah = true;
 
         /* Game Settings */
@@ -1494,8 +1494,8 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Misdirection", "UseMisdirectionBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilarationBelowPercentage", "Healing Spell", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -1536,103 +1536,103 @@ public class HunterSurvival
 
     #region Talents
 
-    public readonly Spell WayoftheMokNathal = new Spell("Way of the Mok'Nathal");
+    private readonly Spell WayoftheMokNathal = new Spell("Way of the Mok'Nathal");
 
     #endregion
 
     #region Professions & Racials
 
-    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
-    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
     #region Hunter Pets
 
-    public readonly Spell CallPet1 = new Spell("Call Pet 1");
-    public readonly Spell CallPet2 = new Spell("Call Pet 2");
-    public readonly Spell CallPet3 = new Spell("Call Pet 3");
-    public readonly Spell CallPet4 = new Spell("Call Pet 4");
-    public readonly Spell CallPet5 = new Spell("Call Pet 5");
-    public readonly Spell Dismiss = new Spell("Dismiss Pet");
-    public readonly Spell FeedPet = new Spell("Feed Pet");
-    public readonly Spell MendPet = new Spell("Mend Pet");
-    public readonly Spell RevivePet = new Spell("Revive Pet");
+    private readonly Spell CallPet1 = new Spell("Call Pet 1");
+    private readonly Spell CallPet2 = new Spell("Call Pet 2");
+    private readonly Spell CallPet3 = new Spell("Call Pet 3");
+    private readonly Spell CallPet4 = new Spell("Call Pet 4");
+    private readonly Spell CallPet5 = new Spell("Call Pet 5");
+    private readonly Spell Dismiss = new Spell("Dismiss Pet");
+    private readonly Spell FeedPet = new Spell("Feed Pet");
+    private readonly Spell MendPet = new Spell("Mend Pet");
+    private readonly Spell RevivePet = new Spell("Revive Pet");
 
     #endregion
 
     #region Hunter Buffs
 
-    public readonly Spell MokNathalTactics = new Spell("Mok'Nathal Tactics");
+    private readonly Spell MokNathalTactics = new Spell("Mok'Nathal Tactics");
 
     #endregion
 
     #region Hunter Dots
 
-    public readonly Spell MongooseFury = new Spell("Mongoose Fury");
+    private readonly Spell MongooseFury = new Spell("Mongoose Fury");
 
     #endregion
 
     #region Offensive Spell
 
-    //public readonly Spell Carve = new Spell("Carve");
-    public readonly Spell RaptorStrike = new Spell("Raptor Strike");
+    //private readonly Spell Carve = new Spell("Carve");
+    private readonly Spell RaptorStrike = new Spell("Raptor Strike");
 
     #endregion
 
     #region Legion Artifact
 
-    public readonly Spell FuryoftheEagle = new Spell("Fury of the Eagle"); //No GCD
+    private readonly Spell FuryoftheEagle = new Spell("Fury of the Eagle"); //No GCD
 
     #endregion
 
     #region Offensive Cooldown
 
-    public readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
-    public readonly Spell AspectoftheEagle = new Spell("Aspect of the Eagle"); //No GCD
-    //public readonly Spell Butchery = new Spell("Butchery");
-    public readonly Spell DragonsfireGrenade = new Spell("Dragonsfire Grenade");
-    public readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
-    public readonly Spell FlankingStrike = new Spell("Flanking Strike");
-    public readonly Spell Harpoon = new Spell("Harpoon");
-    public readonly Spell Lacerate = new Spell("Lacerate");
-    public readonly Spell MongooseBite = new Spell("Mongoose Bite");
-    public readonly Spell SnakeHunter = new Spell("Snake Hunter");
-    public readonly Spell SpittingCobra = new Spell("Spitting Cobra");
-    public readonly Spell ThrowingAxes = new Spell("Throwing Axes");
+    private readonly Spell AMurderofCrows = new Spell("A Murder of Crows");
+    private readonly Spell AspectoftheEagle = new Spell("Aspect of the Eagle"); //No GCD
+    //private readonly Spell Butchery = new Spell("Butchery");
+    private readonly Spell DragonsfireGrenade = new Spell("Dragonsfire Grenade");
+    private readonly Spell ExplosiveTrap = new Spell("Explosive Trap");
+    private readonly Spell FlankingStrike = new Spell("Flanking Strike");
+    private readonly Spell Harpoon = new Spell("Harpoon");
+    private readonly Spell Lacerate = new Spell("Lacerate");
+    private readonly Spell MongooseBite = new Spell("Mongoose Bite");
+    private readonly Spell SnakeHunter = new Spell("Snake Hunter");
+    private readonly Spell SpittingCobra = new Spell("Spitting Cobra");
+    private readonly Spell ThrowingAxes = new Spell("Throwing Axes");
 
     #endregion
 
     #region Defensive Cooldown
 
-    public readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
-    public readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
-    //public readonly Spell Muzzle = new Spell("Muzzle");
+    private readonly Spell AspectoftheTurtle = new Spell("Aspect of the Turtle"); //No GCD
+    private readonly Spell FeignDeath = new Spell("Feign Death"); //No GCD
+    //private readonly Spell Muzzle = new Spell("Muzzle");
 
     #endregion
 
     #region Healing Spell
 
-    public readonly Spell Exhilaration = new Spell("Exhilaration");
+    private readonly Spell Exhilaration = new Spell("Exhilaration");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
-    //public readonly Spell CalTrops = new Spell("CalTrops");
-    //public readonly Spell Flare = new Spell("Flare");
-    //public readonly Spell FreezingTrap = new Spell("Freezing Trap");
-    //public readonly Spell RangersNet = new Spell("Ranger's Net");
-    //public readonly Spell SteelTrap = new Spell("Steel Trap");
-    //public readonly Spell StickyBomb = new Spell("Sticky Bomb");
-    //public readonly Spell TarTrap = new Spell("Tar Trap");
-    //public readonly Spell WingClip = new Spell("Wing Clip");
+    private readonly Spell AspectoftheCheetah = new Spell("Aspect of the Cheetah"); //No GCD
+    //private readonly Spell CalTrops = new Spell("CalTrops");
+    //private readonly Spell Flare = new Spell("Flare");
+    //private readonly Spell FreezingTrap = new Spell("Freezing Trap");
+    //private readonly Spell RangersNet = new Spell("Ranger's Net");
+    //private readonly Spell SteelTrap = new Spell("Steel Trap");
+    //private readonly Spell StickyBomb = new Spell("Sticky Bomb");
+    //private readonly Spell TarTrap = new Spell("Tar Trap");
+    //private readonly Spell WingClip = new Spell("Wing Clip");
 
     #endregion
 
@@ -2090,7 +2090,7 @@ public class HunterSurvival
         /* Artifact Spells */
         public bool UseFuryoftheEagle = true;
 
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseAMurderofCrows = true;
         public bool UseAspectoftheEagle = true;
         public bool UseDragonsfireGrenade = true;
@@ -2110,7 +2110,7 @@ public class HunterSurvival
         /* Healing Spells */
         public int UseExhilarationBelowPercentage = 25;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseAspectoftheCheetah = true;
 
         /* Game Settings */
@@ -2159,8 +2159,8 @@ public class HunterSurvival
             AddControlInWinForm("Use Feign Death", "UseFeignDeathBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilarationBelowPercentage", "Healing Spell", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Aspect of the Cheetah", "UseAspectoftheCheetah", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");

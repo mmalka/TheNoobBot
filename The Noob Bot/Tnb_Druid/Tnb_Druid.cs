@@ -224,85 +224,85 @@ public class DruidBalance
 
     #region Professions & Racials
 
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
 
     #region Druid Buffs
 
-    //public readonly Spell BearForm = new Spell("Bear Form");
-    //public readonly Spell BlessingoftheAncients = new Spell("Blessing of the Ancients"); //No GCD //no need for the bot to switch the buff
-    public readonly Spell CatForm = new Spell("Cat Form");
-    public readonly Spell MoonkinForm = new Spell("Moonkin Form");
-    //public readonly Spell TravelForm = new Spell("Travel Form");
-    public readonly Spell LunarEmpowerment = new Spell(164547);
-    public readonly Spell SolarEmpowerment = new Spell(164545);
+    //private readonly Spell BearForm = new Spell("Bear Form");
+    //private readonly Spell BlessingoftheAncients = new Spell("Blessing of the Ancients"); //No GCD //no need for the bot to switch the buff
+    private readonly Spell CatForm = new Spell("Cat Form");
+    private readonly Spell MoonkinForm = new Spell("Moonkin Form");
+    //private readonly Spell TravelForm = new Spell("Travel Form");
+    private readonly Spell LunarEmpowerment = new Spell(164547);
+    private readonly Spell SolarEmpowerment = new Spell(164545);
 
     #endregion
 
     #region Druid DoTs
 
-    public readonly Spell Moonfire = new Spell("Moonfire");
-    public readonly Spell Sunfire = new Spell("Sunfire");
-    public readonly Spell StellarFlare = new Spell("Stellar Flare");
+    private readonly Spell Moonfire = new Spell("Moonfire");
+    private readonly Spell Sunfire = new Spell("Sunfire");
+    private readonly Spell StellarFlare = new Spell("Stellar Flare");
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell LunarStrike = new Spell("Lunar Strike");
-    public readonly Spell SolarWrath = new Spell("Solar Wrath");
-    public readonly Spell Starfall = new Spell("Starfall");
-    public readonly Spell Starsurge = new Spell("Starsurge");
+    private readonly Spell LunarStrike = new Spell("Lunar Strike");
+    private readonly Spell SolarWrath = new Spell("Solar Wrath");
+    private readonly Spell Starfall = new Spell("Starfall");
+    private readonly Spell Starsurge = new Spell("Starsurge");
 
     #endregion
 
     #region Legion Artifact
 
-    public readonly Spell NewMoon = new Spell(202767 /*"New Moon"*/);
+    private readonly Spell NewMoon = new Spell(202767 /*"New Moon"*/);
 
     #endregion
 
-    #region Offensive Cooldowns
+    #region Offensive Spells
 
-    public readonly Spell AstralCommunion = new Spell("Astral Communion"); //No GCD
-    public readonly Spell CelestialAlignment = new Spell("Celestial Alignment");
-    public readonly Spell ForceofNature = new Spell("Force of Nature");
-    public readonly Spell FuryofElune = new Spell("Fury of Elune");
-    public readonly Spell Incarnation = new Spell("Incarnation: Chosen of Elune");
-    public readonly Spell WarriorofElune = new Spell("Warrior of Elune"); //No GCD
+    private readonly Spell AstralCommunion = new Spell("Astral Communion"); //No GCD
+    private readonly Spell CelestialAlignment = new Spell("Celestial Alignment");
+    private readonly Spell ForceofNature = new Spell("Force of Nature");
+    private readonly Spell FuryofElune = new Spell("Fury of Elune");
+    private readonly Spell Incarnation = new Spell("Incarnation: Chosen of Elune");
+    private readonly Spell WarriorofElune = new Spell("Warrior of Elune"); //No GCD
 
     #endregion
 
     #region Defensive Cooldowns
 
-    public readonly Spell Barkskin = new Spell("Barkskin"); //No GCD
-    //public readonly Spell EntanglingRoots = new Spell("Entangling Roots");
-    //public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
-    public readonly Spell MightyBash = new Spell("Mighty Bash");
-    //public readonly Spell SolarBeam = new Spell("Solar Beam");
-    //public readonly Spell Typhoon = new Spell("Typhoon");
-    //public readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
+    private readonly Spell Barkskin = new Spell("Barkskin"); //No GCD
+    //private readonly Spell EntanglingRoots = new Spell("Entangling Roots");
+    //private readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    private readonly Spell MightyBash = new Spell("Mighty Bash");
+    //private readonly Spell SolarBeam = new Spell("Solar Beam");
+    //private readonly Spell Typhoon = new Spell("Typhoon");
+    //private readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell HealingTouch = new Spell("Healing Touch");
-    public readonly Spell Regrowth = new Spell("Regrowth");
-    public readonly Spell Rejuvenation = new Spell("Rejuvenation");
-    public readonly Spell Renewal = new Spell("Renewal"); //No GCD
-    public readonly Spell Swiftmend = new Spell("Swiftmend");
+    private readonly Spell HealingTouch = new Spell("Healing Touch");
+    private readonly Spell Regrowth = new Spell("Regrowth");
+    private readonly Spell Rejuvenation = new Spell("Rejuvenation");
+    private readonly Spell Renewal = new Spell("Renewal"); //No GCD
+    private readonly Spell Swiftmend = new Spell("Swiftmend");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
-    //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
-    //public readonly Spell Prowl = new Spell("Prowl"); //No GCD
+    private readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
+    //private readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    //private readonly Spell Prowl = new Spell("Prowl"); //No GCD
 
     #endregion
 
@@ -478,7 +478,7 @@ public class DruidBalance
             if (MySettings.UseStarfall && Starfall.IsSpellUsable && Starfall.IsHostileDistanceGood &&
                 ObjectManager.GetUnitInSpellRange(15f) > 2)
             {
-                SpellManager.CastSpellByIDAndPosition(Starfall.Id, ObjectManager.Target.Position);
+                Starfall.CastAtPosition(ObjectManager.Target.Position);
                 return;
             }
             if (MySettings.UseSunfire && Sunfire.IsSpellUsable &&
@@ -617,7 +617,7 @@ public class DruidBalance
             {
                 if (ObjectManager.Me.Eclipse == 100 && NewMoon.GetSpellCharges == 3)
                 {
-                    SpellManager.CastSpellByIDAndPosition(FuryofElune.Id, ObjectManager.Target.Position);
+                    FuryofElune.CastAtPosition(ObjectManager.Target.Position);
                     return;
                 }
             }
@@ -628,7 +628,7 @@ public class DruidBalance
                 {
                     if (Starfall.IsSpellUsable && Starfall.IsHostileDistanceGood)
                     {
-                        SpellManager.CastSpellByIDAndPosition(Starfall.Id, ObjectManager.Target.Position);
+                        Starfall.CastAtPosition(ObjectManager.Target.Position);
                         return;
                     }
                 }
@@ -726,7 +726,7 @@ public class DruidBalance
         /* Artifact Spells */
         public bool UseNewMoon = true;
 
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseCelestialAlignment = true;
         public bool UseForceofNature = true;
         public bool UseFuryofElune = false;
@@ -750,7 +750,7 @@ public class DruidBalance
         public int UseRenewalBelowPercentage = 65;
         public int UseSwiftmendBelowPercentage = 25;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseDash = true;
         //public bool UseDisplacerBeast = true;
         //public bool UseProwl = true;
@@ -776,18 +776,18 @@ public class DruidBalance
             AddControlInWinForm("Use StellarFlare", "UseStellarFlare", "Druid DoTs");
             /* Offensive Spells */
             AddControlInWinForm("Use LunarStrike", "UseLunarStrike", "Offensive Spells");
-            AddControlInWinForm("Use SolarWrath", "UseSolarWrath", "Offensive Spells");
+            AddControlInWinForm("Use Solar Wrath", "UseSolarWrath", "Offensive Spells");
             AddControlInWinForm("Use Starsurge", "UseStarsurge", "Offensive Spells");
             AddControlInWinForm("Use Starfall", "UseStarfall", "Offensive Spells");
             /* Artifact Spells */
             AddControlInWinForm("Use New/Half/Full Moon", "UseNewMoon", "Artifact Spells");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Celestial Alignment", "UseCelestialAlignment", "Offensive Cooldowns");
-            AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldowns");
-            //AddControlInWinForm("Use Fury of Elune", "UseFuryofElune", "Offensive Cooldowns");//Not properly implemented
-            AddControlInWinForm("Use Warrior of Elune", "UseWarriorofElune", "Offensive Cooldowns");
-            AddControlInWinForm("Use Incarnation: Chosen of Elune", "UseIncarnation", "Offensive Cooldowns");
-            AddControlInWinForm("Use Astral Communion", "UseAstralCommunion", "Offensive Cooldowns");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Celestial Alignment", "UseCelestialAlignment", "Offensive Spells");
+            AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Spells");
+            //AddControlInWinForm("Use Fury of Elune", "UseFuryofElune", "Offensive Spells");//Not properly implemented
+            AddControlInWinForm("Use Warrior of Elune", "UseWarriorofElune", "Offensive Spells");
+            AddControlInWinForm("Use Incarnation: Chosen of Elune", "UseIncarnation", "Offensive Spells");
+            AddControlInWinForm("Use Astral Communion", "UseAstralCommunion", "Offensive Spells");
             /* Defensive Cooldowns */
             AddControlInWinForm("Use Barkskin", "UseBarkskinBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
@@ -797,8 +797,8 @@ public class DruidBalance
             AddControlInWinForm("Use Rejuvenation", "UseRejuvenationBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Renewal", "UseRenewalBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Swiftmend", "UseSwiftmendBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Dash", "UseDash", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -839,94 +839,94 @@ public class DruidFeral
 
     #region Talents
 
-    public readonly Spell Bloodtalons = new Spell("Bloodtalons");
-    public readonly Spell LunarInspiration = new Spell("Lunar Inspiration");
-    public readonly Spell Predator = new Spell("Predator");
-    public readonly Spell Sabertooth = new Spell("Sabertooth");
+    private readonly Spell Bloodtalons = new Spell("Bloodtalons");
+    private readonly Spell LunarInspiration = new Spell("Lunar Inspiration");
+    private readonly Spell Predator = new Spell("Predator");
+    private readonly Spell Sabertooth = new Spell("Sabertooth");
 
     #endregion
 
     #region Professions & Racials
 
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
 
     #region Druid Buffs
 
-    //public readonly Spell BearForm = new Spell("Bear Form");
-    public readonly Spell CatForm = new Spell("Cat Form");
-    //public readonly Spell MoonkinForm = new Spell("Moonkin Form");
-    //public readonly Spell TravelForm = new Spell("Travel Form");
-    public readonly Spell PredatorySwiftness = new Spell(69369); //Predatory Swiftness
+    //private readonly Spell BearForm = new Spell("Bear Form");
+    private readonly Spell CatForm = new Spell("Cat Form");
+    //private readonly Spell MoonkinForm = new Spell("Moonkin Form");
+    //private readonly Spell TravelForm = new Spell("Travel Form");
+    private readonly Spell PredatorySwiftness = new Spell(69369); //Predatory Swiftness
 
     #endregion
 
     #region Druid DoTs
 
-    public readonly Spell Moonfire = new Spell("Moonfire");
-    public readonly Spell Rake = new Spell("Rake");
-    public readonly Spell Rip = new Spell("Rip");
-    public readonly Spell Thrash = new Spell("Thrash");
+    private readonly Spell Moonfire = new Spell("Moonfire");
+    private readonly Spell Rake = new Spell("Rake");
+    private readonly Spell Rip = new Spell("Rip");
+    private readonly Spell Thrash = new Spell("Thrash");
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell BrutalSlash = new Spell("Brutal Slash");
-    public readonly Spell FerociousBite = new Spell("Ferocious Bite");
-    public readonly Spell SavageRoar = new Spell("Savage Roar");
-    public readonly Spell Shred = new Spell("Shred");
-    public readonly Spell Swipe = new Spell("Swipe");
+    private readonly Spell BrutalSlash = new Spell("Brutal Slash");
+    private readonly Spell FerociousBite = new Spell("Ferocious Bite");
+    private readonly Spell SavageRoar = new Spell("Savage Roar");
+    private readonly Spell Shred = new Spell("Shred");
+    private readonly Spell Swipe = new Spell("Swipe");
 
     #endregion
 
     #region Legion Artifact
 
-    public readonly Spell AshamanesFrenzy = new Spell("Ashamane's Frenzy");
+    private readonly Spell AshamanesFrenzy = new Spell("Ashamane's Frenzy");
 
     #endregion
 
-    #region Offensive Cooldowns
+    #region Offensive Spells
 
-    public readonly Spell Berserk = new Spell("Berserk"); //No GCD
-    public readonly Spell ElunesGuidance = new Spell("Elune's Guidance"); //No GCD
-    public readonly Spell Incarnation = new Spell("Incarnation: King of the Jungle");
-    public readonly Spell TigersFury = new Spell("Tiger's Fury"); //No GCD
+    private readonly Spell Berserk = new Spell("Berserk"); //No GCD
+    private readonly Spell ElunesGuidance = new Spell("Elune's Guidance"); //No GCD
+    private readonly Spell Incarnation = new Spell("Incarnation: King of the Jungle");
+    private readonly Spell TigersFury = new Spell("Tiger's Fury"); //No GCD
 
     #endregion
 
     #region Defensive Cooldowns
 
-    //public readonly Spell EntanglingRoots = new Spell("Entangling Roots");
-    //public readonly Spell Maim = new Spell("Maim");
-    //public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
-    public readonly Spell MightyBash = new Spell("Mighty Bash");
-    //public readonly Spell SkullBash = new Spell("Skull Bash"); //No GCD
-    public readonly Spell SurvivalInstincts = new Spell("Survival Instincts"); //No GCD
-    //public readonly Spell Typhoon = new Spell("Typhoon");
-    //public readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
+    //private readonly Spell EntanglingRoots = new Spell("Entangling Roots");
+    //private readonly Spell Maim = new Spell("Maim");
+    //private readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    private readonly Spell MightyBash = new Spell("Mighty Bash");
+    //private readonly Spell SkullBash = new Spell("Skull Bash"); //No GCD
+    private readonly Spell SurvivalInstincts = new Spell("Survival Instincts"); //No GCD
+    //private readonly Spell Typhoon = new Spell("Typhoon");
+    //private readonly Spell WildCharge = new Spell("Wild Charge"); //No GCD
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell HealingTouch = new Spell("Healing Touch");
-    public readonly Spell Regrowth = new Spell("Regrowth");
-    public readonly Spell Rejuvenation = new Spell("Rejuvenation");
-    public readonly Spell Renewal = new Spell("Renewal"); //No GCD
-    public readonly Spell Swiftmend = new Spell("Swiftmend");
+    private readonly Spell HealingTouch = new Spell("Healing Touch");
+    private readonly Spell Regrowth = new Spell("Regrowth");
+    private readonly Spell Rejuvenation = new Spell("Rejuvenation");
+    private readonly Spell Renewal = new Spell("Renewal"); //No GCD
+    private readonly Spell Swiftmend = new Spell("Swiftmend");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
-    //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
-    public readonly Spell Prowl = new Spell("Prowl"); //No GCD
-    public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
+    private readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
+    //private readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    private readonly Spell Prowl = new Spell("Prowl"); //No GCD
+    private readonly Spell StampedingRoar = new Spell("Stampeding Roar");
 
     #endregion
 
@@ -1487,7 +1487,7 @@ public class DruidFeral
         /* Artifact Spells */
         public bool UseAshamanesFrenzy = true;
 
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseBerserk = true;
         public bool UseElunesGuidance = true;
         public bool UseIncarnation = true;
@@ -1507,7 +1507,7 @@ public class DruidFeral
         public bool UseHealingTouch = true;
         public int UseRestorationAffinityBelowPercentage = 25;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseDash = true;
         //public bool UseDisplacerBeast = true;
         public bool UseProwl = true;
@@ -1541,22 +1541,22 @@ public class DruidFeral
             AddControlInWinForm("Use Swipe", "UseSwipe", "Offensive Spells");
             /* Artifact Spells */
             AddControlInWinForm("Use Ashamanes Frenzy", "UseAshamanesFrenzy", "Artifact Spells");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Cooldowns");
-            AddControlInWinForm("Use Elunes Guidance", "UseElunesGuidance", "Offensive Cooldowns");
-            AddControlInWinForm("Use Incarnation: King of the Jungle", "UseIncarnation", "Offensive Cooldowns");
-            AddControlInWinForm("Use Tiger's Fury", "UseTigersFury", "Offensive Cooldowns");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Spells");
+            AddControlInWinForm("Use Elunes Guidance", "UseElunesGuidance", "Offensive Spells");
+            AddControlInWinForm("Use Incarnation: King of the Jungle", "UseIncarnation", "Offensive Spells");
+            AddControlInWinForm("Use Tiger's Fury", "UseTigersFury", "Offensive Spells");
             /* Defensive Cooldowns */
             AddControlInWinForm("Use Mighty Bash", "UseMightyBashBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use SurvivalInstincts", "UseSurvivalInstinctsBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             /* Healing Spells */
             AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spells");
             AddControlInWinForm("Use Restoration Affinity", "UseRestorationAffinityBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
-            AddControlInWinForm("Use Prowl", "UseProwl", "Utility Cooldowns");
-            AddControlInWinForm("Use Prowl out of Combat", "UseProwlOOC", "Utility Cooldowns");
-            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Dash", "UseDash", "Utility Spells");
+            AddControlInWinForm("Use Prowl", "UseProwl", "Utility Spells");
+            AddControlInWinForm("Use Prowl out of Combat", "UseProwlOOC", "Utility Spells");
+            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -1597,64 +1597,64 @@ public class DruidRestoration
 
     #region Professions & Racials
 
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell Darkflight = new Spell("Darkflight");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell Darkflight = new Spell("Darkflight");
+    private readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
 
     #region Druid Buffs
 
-    public readonly Spell Dash = new Spell("Dash");
-    public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
-    public readonly Spell MarkoftheWild = new Spell("Mark of the Wild");
-    public readonly Spell MoonfireDebuff = new Spell(164812);
-    public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
+    private readonly Spell Dash = new Spell("Dash");
+    private readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    private readonly Spell MarkoftheWild = new Spell("Mark of the Wild");
+    private readonly Spell MoonfireDebuff = new Spell(164812);
+    private readonly Spell StampedingRoar = new Spell("Stampeding Roar");
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell HeartoftheWild = new Spell("Heart of the Wild");
-    public readonly Spell Hurricane = new Spell("Hurricane");
-    public readonly Spell Moonfire = new Spell("Moonfire");
-    public readonly Spell Wrath = new Spell("Wrath");
+    private readonly Spell HeartoftheWild = new Spell("Heart of the Wild");
+    private readonly Spell Hurricane = new Spell("Hurricane");
+    private readonly Spell Moonfire = new Spell("Moonfire");
+    private readonly Spell Wrath = new Spell("Wrath");
 
     #endregion
 
     #region Healing Cooldown
 
-    public readonly Spell ForceofNature = new Spell("Force of Nature");
-    public readonly Spell Incarnation = new Spell("Incarnation: Tree of Life");
-    public readonly Spell NaturesSwiftness = new Spell("Nature's Swiftness");
-    public readonly Spell Tranquility = new Spell("Tranquility");
+    private readonly Spell ForceofNature = new Spell("Force of Nature");
+    private readonly Spell Incarnation = new Spell("Incarnation: Tree of Life");
+    private readonly Spell NaturesSwiftness = new Spell("Nature's Swiftness");
+    private readonly Spell Tranquility = new Spell("Tranquility");
 
     #endregion
 
     #region Defensive Cooldowns
 
-    public readonly Spell Barkskin = new Spell("Barkskin");
-    public readonly Spell IncapacitatingRoar = new Spell("Incapacitating Roar");
-    public readonly Spell Ironbark = new Spell("Ironbark");
-    public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
-    public readonly Spell MightyBash = new Spell("Mighty Bash");
-    public readonly Spell Typhoon = new Spell("Typhoon");
-    public readonly Spell UrsolsVortex = new Spell("Ursol's Vortex");
+    private readonly Spell Barkskin = new Spell("Barkskin");
+    private readonly Spell IncapacitatingRoar = new Spell("Incapacitating Roar");
+    private readonly Spell Ironbark = new Spell("Ironbark");
+    private readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    private readonly Spell MightyBash = new Spell("Mighty Bash");
+    private readonly Spell Typhoon = new Spell("Typhoon");
+    private readonly Spell UrsolsVortex = new Spell("Ursol's Vortex");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell CenarionWard = new Spell("Cenarion Ward");
-    public readonly Spell HealingTouch = new Spell("Healing Touch");
-    public readonly Spell Lifebloom = new Spell("Lifebloom");
-    public readonly Spell NaturesVigil = new Spell("Nature's Vigil");
-    public readonly Spell Regrowth = new Spell("Regrowth");
-    public readonly Spell Rejuvenation = new Spell("Rejuvenation");
-    public readonly Spell Renewal = new Spell("Renewal");
-    public readonly Spell Swiftmend = new Spell("Swiftmend");
-    public readonly Spell WildGrowth = new Spell("Wild Growth");
-    public readonly Spell WildMushroom = new Spell("Wild Mushroom");
+    private readonly Spell CenarionWard = new Spell("Cenarion Ward");
+    private readonly Spell HealingTouch = new Spell("Healing Touch");
+    private readonly Spell Lifebloom = new Spell("Lifebloom");
+    private readonly Spell NaturesVigil = new Spell("Nature's Vigil");
+    private readonly Spell Regrowth = new Spell("Regrowth");
+    private readonly Spell Rejuvenation = new Spell("Rejuvenation");
+    private readonly Spell Renewal = new Spell("Renewal");
+    private readonly Spell Swiftmend = new Spell("Swiftmend");
+    private readonly Spell WildGrowth = new Spell("Wild Growth");
+    private readonly Spell WildMushroom = new Spell("Wild Mushroom");
 
     #endregion
 
@@ -2205,7 +2205,7 @@ public class DruidRestoration
             AddControlInWinForm("Use Cenarion Ward", "UseCenarionWard", "Healing Spells", "BelowPercentage");
             AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spells", "BelowPercentage");
             AddControlInWinForm("Use Lifebloom", "UseLifebloom", "Offensive Spells", "BelowPercentage");
-            AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Cooldowns", "BelowPercentage");
+            AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Spells", "BelowPercentage");
             AddControlInWinForm("Use Regrowth", "UseRegrowth", "Offensive Spells", "BelowPercentage");
             AddControlInWinForm("Use Rejuvenation", "UseRejuvenation", "Healing Spells", "BelowPercentage");
             AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spells", "BelowPercentage");
@@ -2255,77 +2255,77 @@ public class DruidGuardian
 
     #region Professions & Racials
 
-    public readonly Spell Berserking = new Spell("Berserking"); //No GCD
-    public readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
 
     #region Druid Buffs
 
-    public readonly Spell BearForm = new Spell("Bear Form");
-    public readonly Spell CatForm = new Spell("Cat Form");
-    public readonly Spell GalacticGuardian = new Spell(213708);
+    private readonly Spell BearForm = new Spell("Bear Form");
+    private readonly Spell CatForm = new Spell("Cat Form");
+    private readonly Spell GalacticGuardian = new Spell(213708);
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell Mangle = new Spell("Mangle");
-    public readonly Spell Maul = new Spell("Maul");
-    public readonly Spell Moonfire = new Spell("Moonfire");
-    public readonly Spell Pulverize = new Spell("Pulverize");
-    public readonly Spell Swipe = new Spell("Swipe");
-    public readonly Spell Thrash = new Spell("Thrash");
+    private readonly Spell Mangle = new Spell("Mangle");
+    private readonly Spell Maul = new Spell("Maul");
+    private readonly Spell Moonfire = new Spell("Moonfire");
+    private readonly Spell Pulverize = new Spell("Pulverize");
+    private readonly Spell Swipe = new Spell("Swipe");
+    private readonly Spell Thrash = new Spell("Thrash");
 
     #endregion
 
     #region Legion Artifact
 
-    public readonly Spell RageoftheSleeper = new Spell("Rage of the Sleeper");
+    private readonly Spell RageoftheSleeper = new Spell("Rage of the Sleeper");
 
     #endregion
 
-    #region Offensive Cooldowns
+    #region Offensive Spells
 
-    public readonly Spell BristlingFur = new Spell("Bristling Fur");
-    public readonly Spell Incarnation = new Spell("Incarnation: Guardian of Ursoc");
-    public readonly Spell LunarBeam = new Spell("Lunar Beam");
+    private readonly Spell BristlingFur = new Spell("Bristling Fur");
+    private readonly Spell Incarnation = new Spell("Incarnation: Guardian of Ursoc");
+    private readonly Spell LunarBeam = new Spell("Lunar Beam");
 
     #endregion
 
     #region Defensive Cooldowns
 
-    public readonly Spell Barkskin = new Spell("Barkskin");
-    //public readonly Spell IncapacitatingRoar = new Spell("Incapacitating Roar");
-    public readonly Spell Ironfur = new Spell("Ironfur");
-    public readonly Spell MarkofUrsol = new Spell("Mark of Ursol");
-    //public readonly Spell MassEntanglement = new Spell("Mass Entanglement");
-    public readonly Spell MightyBash = new Spell("Mighty Bash");
-    //public readonly Spell SkullBash = new Spell("Skull Bash");
-    public readonly Spell SurvivalInstincts = new Spell("Survival Instincts");
-    //public readonly Spell Typhoon = new Spell("Typhoon");
+    private readonly Spell Barkskin = new Spell("Barkskin");
+    //private readonly Spell IncapacitatingRoar = new Spell("Incapacitating Roar");
+    private readonly Spell Ironfur = new Spell("Ironfur");
+    private readonly Spell MarkofUrsol = new Spell("Mark of Ursol");
+    //private readonly Spell MassEntanglement = new Spell("Mass Entanglement");
+    private readonly Spell MightyBash = new Spell("Mighty Bash");
+    //private readonly Spell SkullBash = new Spell("Skull Bash");
+    private readonly Spell SurvivalInstincts = new Spell("Survival Instincts");
+    //private readonly Spell Typhoon = new Spell("Typhoon");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell FrenziedRegeneration = new Spell("Frenzied Regeneration");
-    public readonly Spell HealingTouch = new Spell("Healing Touch");
-    public readonly Spell Regrowth = new Spell("Regrowth");
-    public readonly Spell Rejuvenation = new Spell("Rejuvenation");
-    public readonly Spell Swiftmend = new Spell("Swiftmend");
+    private readonly Spell FrenziedRegeneration = new Spell("Frenzied Regeneration");
+    private readonly Spell HealingTouch = new Spell("Healing Touch");
+    private readonly Spell Regrowth = new Spell("Regrowth");
+    private readonly Spell Rejuvenation = new Spell("Rejuvenation");
+    private readonly Spell Swiftmend = new Spell("Swiftmend");
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    public readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
-    //public readonly Spell DisplacerBeast = new Spell("Displacer Beast");
-    public readonly Spell Growl = new Spell("Growl");
-    public readonly Spell Prowl = new Spell("Prowl"); //No GCD
-    public readonly Spell StampedingRoar = new Spell("Stampeding Roar");
-    //public readonly Spell WildCharge = new Spell("Wild Charge);
+    private readonly Spell Dash = new Spell(1850 /*"Dash"*/); //No GCD
+    //private readonly Spell DisplacerBeast = new Spell("Displacer Beast");
+    private readonly Spell Growl = new Spell("Growl");
+    private readonly Spell Prowl = new Spell("Prowl"); //No GCD
+    private readonly Spell StampedingRoar = new Spell("Stampeding Roar");
+    //private readonly Spell WildCharge = new Spell("Wild Charge);
 
     #endregion
 
@@ -2435,7 +2435,7 @@ public class DruidGuardian
         Heal();
         if (Defensive()) return;
         if (ObjectManager.Target.IsAlive && Shapeshift()) return;
-        AgroManagement();
+        AggroManagement();
         BurstBuffs();
         GCDCycle();
     }
@@ -2603,7 +2603,7 @@ public class DruidGuardian
         }
     }
 
-    private void AgroManagement()
+    private void AggroManagement()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -2702,7 +2702,7 @@ public class DruidGuardian
         /* Artifact Spells */
         public int UseRageoftheSleeperBelowPercentage = 40;
 
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseBristlingFur = true;
         public bool UseIncarnation = true;
         public bool UseLunarBeam = true;
@@ -2723,7 +2723,7 @@ public class DruidGuardian
         public int UseFrenziedRegenerationBelowPercentage = 25;
         public int UseRestorationAffinityBelowPercentage = 10;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         public bool UseDash = true;
         //public bool UseDisplacerBeast = true;
         public bool UseGrowl = true;
@@ -2752,10 +2752,10 @@ public class DruidGuardian
             AddControlInWinForm("Use Thrash", "UseThrash", "Offensive Spells");
             /* Artifact Spells */
             AddControlInWinForm("Use Rage of the Sleeper", "UseRageoftheSleeperBelowPercentage", "Artifact Spells", "BelowPercentage", "Life");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Bristling Fur", "UseBristlingFur", "Offensive Cooldowns");
-            AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldowns");
-            AddControlInWinForm("Use Lunar Beam", "UseLunarBeam", "Offensive Cooldowns");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Bristling Fur", "UseBristlingFur", "Offensive Spells");
+            AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Spells");
+            AddControlInWinForm("Use Lunar Beam", "UseLunarBeam", "Offensive Spells");
             /* Defensive Cooldowns */
             AddControlInWinForm("Use Barkskin", "UseBarkskinBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Ironfur", "UseIronfurBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
@@ -2765,10 +2765,10 @@ public class DruidGuardian
             /* Healing Spells */
             AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegenerationBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Restoration Affinity", "UseRestorationAffinityBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Dash", "UseDash", "Utility Cooldowns");
-            AddControlInWinForm("Use Growl", "UseGrowl", "Utility Cooldowns");
-            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Dash", "UseDash", "Utility Spells");
+            AddControlInWinForm("Use Growl", "UseGrowl", "Utility Spells");
+            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");

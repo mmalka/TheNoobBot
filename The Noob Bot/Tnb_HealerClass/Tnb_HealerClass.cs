@@ -1358,7 +1358,7 @@ public class PaladinHoly
             if (Target.HealthPercent < MySettings.UseLayonHandsBelowTargetPercentage && LayonHands.IsSpellUsable &&
                 CombatClass.InSpellRange(Target, LayonHands.MinRangeFriend, LayonHands.MaxRangeFriend) && !Target.HaveBuff(Forbearance.Id))
             {
-                LayonHands.Cast();
+                LayonHands.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
 
@@ -1367,7 +1367,7 @@ public class PaladinHoly
                 ObjectManager.Me.HealthPercent > MySettings.UseBlessingofSacrificeAbovePercentage && BlessingofSacrifice.IsSpellUsable &&
                 CombatClass.InSpellRange(Tank, BlessingofSacrifice.MinRangeFriend, BlessingofSacrifice.MaxRangeFriend))
             {
-                BlessingofSacrifice.Cast();
+                BlessingofSacrifice.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
 
@@ -1401,7 +1401,7 @@ public class PaladinHoly
                 Target.GetPlayerInSpellRange(10f) > MySettings.UseLightsHammerAbovePlayerDensity &&
                 DamagedPlayers > MySettings.UseLightsHammerAboveDamagedPlayer)
             {
-                LightsHammer.Cast(false, true, false, Target.GetUnitId());
+                LightsHammer.CastAtPosition(Target.Position);
                 return;
             }
 

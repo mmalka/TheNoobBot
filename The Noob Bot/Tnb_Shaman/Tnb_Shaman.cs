@@ -5,7 +5,6 @@
 */
 
 using System;
-using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -204,13 +203,13 @@ public class ShamanEnhancement
 
     #region Talents
 
-    public readonly Spell CrashingStorm = new Spell("Crashing Storm");
-    public readonly Spell Hailstorm = new Spell("Hailstorm");
-    public readonly Spell HotHand = new Spell("Hot Hand");
-    //public readonly Spell EmpoweredStormlash = new Spell("Empowered Stormlash");
-    public readonly Spell Landslide = new Spell("Landslide");
-    public readonly Spell Overcharge = new Spell("Overcharge");
-    //public readonly Spell Tempest = new Spell("Tempest");
+    private readonly Spell CrashingStorm = new Spell("Crashing Storm");
+    private readonly Spell Hailstorm = new Spell("Hailstorm");
+    private readonly Spell HotHand = new Spell("Hot Hand");
+    //private readonly Spell EmpoweredStormlash = new Spell("Empowered Stormlash");
+    private readonly Spell Landslide = new Spell("Landslide");
+    private readonly Spell Overcharge = new Spell("Overcharge");
+    //private readonly Spell Tempest = new Spell("Tempest");
 
     #endregion
 
@@ -226,11 +225,11 @@ public class ShamanEnhancement
 
     #endregion
 
-    #region Shaman Buffs
+    #region Buffs
 
-    public readonly Spell FuryofAirBuff = new Spell(197385);
-    public readonly Spell HotHandBuff = new Spell(215785);
-    public readonly Spell LandslideBuff = new Spell(202004);
+    private readonly Spell FuryofAirBuff = new Spell(197385);
+    private readonly Spell HotHandBuff = new Spell(215785);
+    private readonly Spell LandslideBuff = new Spell(202004);
 
     #endregion
 
@@ -242,51 +241,51 @@ public class ShamanEnhancement
 
     #region Offensive Spells
 
-    public readonly Spell Boulderfist = new Spell("Boulderfist");
-    public readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
-    public readonly Spell CrashLightning = new Spell("Crash Lightning");
-    public readonly Spell EarthenSpike = new Spell("Earthen Spike");
-    public readonly Spell FeralLunge = new Spell("Feral Lunge");
-    public readonly Spell FeralSpirit = new Spell("Feral Spirit");
-    public readonly Spell Flametongue = new Spell("Flametongue");
-    public readonly Spell Frostbrand = new Spell("Frostbrand");
-    public readonly Spell FuryofAir = new Spell("Fury of Air");
-    public readonly Spell Heroism = new Spell("Heroism"); //No GCD
-    public readonly Spell LavaLash = new Spell("Lava Lash");
-    public readonly Spell LightningBolt = new Spell("Lightning Bolt");
-    public readonly Spell Rockbiter = new Spell("Rockbiter");
-    public readonly Spell Stormstrike = new Spell("Stormstrike");
-    public readonly Spell Sundering = new Spell("Sundering");
-    public readonly Spell Windsong = new Spell("Windsong");
+    private readonly Spell Boulderfist = new Spell("Boulderfist");
+    private readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
+    private readonly Spell CrashLightning = new Spell("Crash Lightning");
+    private readonly Spell EarthenSpike = new Spell("Earthen Spike");
+    private readonly Spell FeralLunge = new Spell("Feral Lunge");
+    private readonly Spell FeralSpirit = new Spell("Feral Spirit");
+    private readonly Spell Flametongue = new Spell("Flametongue");
+    private readonly Spell Frostbrand = new Spell("Frostbrand");
+    private readonly Spell FuryofAir = new Spell("Fury of Air");
+    private readonly Spell Heroism = new Spell("Heroism"); //No GCD
+    private readonly Spell LavaLash = new Spell("Lava Lash");
+    private readonly Spell LightningBolt = new Spell("Lightning Bolt");
+    private readonly Spell Rockbiter = new Spell("Rockbiter");
+    private readonly Spell Stormstrike = new Spell("Stormstrike");
+    private readonly Spell Sundering = new Spell("Sundering");
+    private readonly Spell Windsong = new Spell("Windsong");
 
     #endregion
 
     #region Defensive Spells
 
-    public readonly Spell AstralShift = new Spell("Astral Shift"); //No GCD
-    public readonly Spell LightningSurgeTotem = new Spell("Lightning Surge Totem");
+    private readonly Spell AstralShift = new Spell("Astral Shift"); //No GCD
+    private readonly Spell LightningSurgeTotem = new Spell("Lightning Surge Totem");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell Ascendance = new Spell("Ascendance");
-    public readonly Spell HealingSurge = new Spell("Healing Surge");
+    private readonly Spell Ascendance = new Spell("Ascendance");
+    private readonly Spell HealingSurge = new Spell("Healing Surge");
 
     #endregion
 
     #region Utility Spells
 
-    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
-    //public readonly Spell Hex = new Spell("Hex");
-    public readonly Spell SpiritWalk = new Spell("Spirit Walk");
-    public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
+    private readonly Spell GhostWolf = new Spell("Ghost Wolf");
+    //private readonly Spell Hex = new Spell("Hex");
+    private readonly Spell SpiritWalk = new Spell("Spirit Walk");
+    private readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
 
     #endregion
 
     public ShamanEnhancement()
     {
-        Main.InternalRange = 40f;
+        Main.InternalRange = ObjectManager.Me.GetCombatReach;
         Main.InternalAggroRange = Flametongue.MaxRangeHostile;
         Main.InternalLightHealingSpell = HealingSurge;
         MySettings = ShamanEnhancementSettings.GetSettings();
@@ -308,7 +307,7 @@ public class ShamanEnhancement
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -347,7 +346,7 @@ public class ShamanEnhancement
             }
             if (MySettings.UseWindRushTotem && WindRushTotem.IsSpellUsable)
             {
-                SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
+                WindRushTotem.CastAtPosition(ObjectManager.Me.Position);
                 return;
             }
 
@@ -487,7 +486,7 @@ public class ShamanEnhancement
                     }
                     if (LightningSurgeTotem.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseLightningSurgeTotemBelowPercentage)
                     {
-                        SpellManager.CastSpellByIDAndPosition(LightningSurgeTotem.Id, ObjectManager.Target.Position);
+                        LightningSurgeTotem.CastAtPosition(ObjectManager.Target.Position);
                         StunTimer = new Timer(1000*7);
                         return true;
                     }
@@ -731,7 +730,7 @@ public class ShamanEnhancement
         /* Artifact Spells */
         public bool UseDoomWinds = true;
 
-        /* Shaman Buffs */
+        /* Buffs */
         public bool UseBoulderfist = true;
         public bool UseFlametongue = true;
         public bool UseFrostbrand = true;
@@ -783,18 +782,18 @@ public class ShamanEnhancement
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Artifact Spells */
             AddControlInWinForm("Use Doom Winds", "UseDoomWinds", "Artifact Spells");
-            /* Shaman Buffs */
-            AddControlInWinForm("Use Boulderfist", "UseBoulderfist", "Shaman Buffs");
-            AddControlInWinForm("Use Flametongue", "UseFlametongue", "Shaman Buffs");
-            AddControlInWinForm("Use Frostbrand", "UseFrostbrand", "Shaman Buffs");
-            AddControlInWinForm("Use Fury of Air", "UseFuryofAir", "Shaman Buffs");
-            AddControlInWinForm("Use Landslide", "UseLandslideBuff", "Shaman Buffs");
+            /* Buffs */
+            AddControlInWinForm("Use Boulderfist", "UseBoulderfist", "Buffs");
+            AddControlInWinForm("Use Flametongue", "UseFlametongue", "Buffs");
+            AddControlInWinForm("Use Frostbrand", "UseFrostbrand", "Buffs");
+            AddControlInWinForm("Use Fury of Air", "UseFuryofAir", "Buffs");
+            AddControlInWinForm("Use Landslide", "UseLandslideBuff", "Buffs");
             /* Offensive Spells */
-            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
+            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Spells");
             AddControlInWinForm("Use Crash Lightning", "UseCrashLightning", "Offensive Spells");
             AddControlInWinForm("Use EarthenSpike", "UseEarthenSpike", "Offensive Spells");
-            AddControlInWinForm("Use Feral Lunge", "UseFeralLunge", "Offensive Cooldowns");
-            AddControlInWinForm("Use Feral Spirit", "UseFeralSpirit", "Offensive Cooldowns");
+            AddControlInWinForm("Use Feral Lunge", "UseFeralLunge", "Offensive Spells");
+            AddControlInWinForm("Use Feral Spirit", "UseFeralSpirit", "Offensive Spells");
             AddControlInWinForm("Use Lava Lash", "UseLavaLash", "Offensive Spells");
             AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spells");
             AddControlInWinForm("Use Rockbiter", "UseRockbiter", "Offensive Spells");
@@ -851,90 +850,90 @@ public class ShamanRestoration
 
     #region Professions & Racials
 
-    public readonly Spell Alchemy = new Spell("Alchemy");
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly Spell Alchemy = new Spell("Alchemy");
+    private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
+    private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell BloodFury = new Spell("Blood Fury");
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
+    private readonly Spell Stoneform = new Spell("Stoneform");
+    private readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
 
-    #region Shaman Buffs
+    #region Buffs
 
-    public readonly Spell EarthShield = new Spell("Earth Shield");
-    public readonly Spell EarthlivingWeapon = new Spell("Earthliving Weapon");
-    public readonly Spell Flametongue = new Spell("Flametongue Weapon");
-    public readonly Spell Frostbrand = new Spell("Frostbrand Weapon");
-    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
-    public readonly Spell LightningShield = new Spell("Lightning Shield");
-    public readonly Spell RockbiterWeapon = new Spell("Rockbiter Weapon");
-    public readonly Spell SpiritwalkersGrace = new Spell("Spiritwalker's Grace");
-    public readonly Spell WaterShield = new Spell("Water Shield");
-    public readonly Spell WaterWalking = new Spell("Water Walking");
+    private readonly Spell EarthShield = new Spell("Earth Shield");
+    private readonly Spell EarthlivingWeapon = new Spell("Earthliving Weapon");
+    private readonly Spell Flametongue = new Spell("Flametongue Weapon");
+    private readonly Spell Frostbrand = new Spell("Frostbrand Weapon");
+    private readonly Spell GhostWolf = new Spell("Ghost Wolf");
+    private readonly Spell LightningShield = new Spell("Lightning Shield");
+    private readonly Spell RockbiterWeapon = new Spell("Rockbiter Weapon");
+    private readonly Spell SpiritwalkersGrace = new Spell("Spiritwalker's Grace");
+    private readonly Spell WaterShield = new Spell("Water Shield");
+    private readonly Spell WaterWalking = new Spell("Water Walking");
     private Timer _waterWalkingTimer = new Timer(0);
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell ChainLightning = new Spell("Chain Lightning");
-    public readonly Spell EarthShock = new Spell("Earth Shock");
-    public readonly Spell FlameShock = new Spell("Flame Shock");
-    public readonly Spell FrostShock = new Spell("Frost Shock");
-    public readonly Spell LavaBurst = new Spell("Lava Burst");
-    public readonly Spell LightningBolt = new Spell("Lightning Bolt");
-    public readonly Spell MagmaTotem = new Spell("Magma Totem");
-    public readonly Spell PrimalStrike = new Spell("Primal Strike");
-    public readonly Spell SearingTotem = new Spell("Searing Totem");
+    private readonly Spell ChainLightning = new Spell("Chain Lightning");
+    private readonly Spell EarthShock = new Spell("Earth Shock");
+    private readonly Spell FlameShock = new Spell("Flame Shock");
+    private readonly Spell FrostShock = new Spell("Frost Shock");
+    private readonly Spell LavaBurst = new Spell("Lava Burst");
+    private readonly Spell LightningBolt = new Spell("Lightning Bolt");
+    private readonly Spell MagmaTotem = new Spell("Magma Totem");
+    private readonly Spell PrimalStrike = new Spell("Primal Strike");
+    private readonly Spell SearingTotem = new Spell("Searing Totem");
     private Timer _flameShockTimer = new Timer(0);
 
     #endregion
 
-    #region Offensive Cooldowns
+    #region Offensive Spells
 
-    public readonly Spell AncestralSwiftness = new Spell("Ancestral Swiftness");
-    public readonly Spell Ascendance = new Spell("Ascendance");
-    public readonly Spell Bloodlust = new Spell("Bloodlust");
-    public readonly Spell CalloftheElements = new Spell("Call of the Elements");
-    public readonly Spell EarthElementalTotem = new Spell("Earth Elemental Totem");
-    public readonly Spell ElementalBlast = new Spell("Elemental Blast");
-    public readonly Spell ElementalMastery = new Spell("Elemental Mastery");
-    public readonly Spell FireElementalTotem = new Spell("Fire Elemental Totem");
-    public readonly Spell Heroism = new Spell("Heroism");
-    public readonly Spell StormlashTotem = new Spell("Stormlash Totem");
-    public readonly Spell TotemicProjection = new Spell("Totemic Projection");
-    public readonly Spell UnleashElements = new Spell("Unleash Elements");
-    public readonly Spell UnleashedFury = new Spell("Unleashed Fury");
+    private readonly Spell AncestralSwiftness = new Spell("Ancestral Swiftness");
+    private readonly Spell Ascendance = new Spell("Ascendance");
+    private readonly Spell Bloodlust = new Spell("Bloodlust");
+    private readonly Spell CalloftheElements = new Spell("Call of the Elements");
+    private readonly Spell EarthElementalTotem = new Spell("Earth Elemental Totem");
+    private readonly Spell ElementalBlast = new Spell("Elemental Blast");
+    private readonly Spell ElementalMastery = new Spell("Elemental Mastery");
+    private readonly Spell FireElementalTotem = new Spell("Fire Elemental Totem");
+    private readonly Spell Heroism = new Spell("Heroism");
+    private readonly Spell StormlashTotem = new Spell("Stormlash Totem");
+    private readonly Spell TotemicProjection = new Spell("Totemic Projection");
+    private readonly Spell UnleashElements = new Spell("Unleash Elements");
+    private readonly Spell UnleashedFury = new Spell("Unleashed Fury");
 
     #endregion
 
     #region Defensive Spells
 
-    public readonly Spell AstralShift = new Spell("Astral Shift");
-    public readonly Spell CapacitorTotem = new Spell("Capacitor Totem");
-    public readonly Spell EarthbindTotem = new Spell("Earthbind Totem");
-    public readonly Spell GroundingTotem = new Spell("Grounding Totem");
-    public readonly Spell StoneBulwarkTotem = new Spell("Stone Bulwark Totem");
-    public readonly Spell WindShear = new Spell("Wind Shear");
+    private readonly Spell AstralShift = new Spell("Astral Shift");
+    private readonly Spell CapacitorTotem = new Spell("Capacitor Totem");
+    private readonly Spell EarthbindTotem = new Spell("Earthbind Totem");
+    private readonly Spell GroundingTotem = new Spell("Grounding Totem");
+    private readonly Spell StoneBulwarkTotem = new Spell("Stone Bulwark Totem");
+    private readonly Spell WindShear = new Spell("Wind Shear");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell AncestralGuidance = new Spell("Ancestral Guidance");
-    public readonly Spell ChainHeal = new Spell("Chain Heal");
-    public readonly Spell GreaterHealingWave = new Spell("Greater Healing Wave");
-    public readonly Spell HealingRain = new Spell("Healing Rain");
-    public readonly Spell HealingStreamTotem = new Spell("Healing Stream Totem");
-    public readonly Spell HealingSurge = new Spell("Healing Surge");
-    public readonly Spell HealingTideTotem = new Spell("Healing Tide Totem");
-    public readonly Spell HealingWave = new Spell("HealingWave");
-    public readonly Spell ManaTideTotem = new Spell("Mana Tide Totem");
-    public readonly Spell Riptide = new Spell("Riptide");
-    public readonly Spell SpiritLinkTotem = new Spell("Spirit Link Totem");
-    public readonly Spell TotemicRecall = new Spell("Totemic Recall");
+    private readonly Spell AncestralGuidance = new Spell("Ancestral Guidance");
+    private readonly Spell ChainHeal = new Spell("Chain Heal");
+    private readonly Spell GreaterHealingWave = new Spell("Greater Healing Wave");
+    private readonly Spell HealingRain = new Spell("Healing Rain");
+    private readonly Spell HealingStreamTotem = new Spell("Healing Stream Totem");
+    private readonly Spell HealingSurge = new Spell("Healing Surge");
+    private readonly Spell HealingTideTotem = new Spell("Healing Tide Totem");
+    private readonly Spell HealingWave = new Spell("HealingWave");
+    private readonly Spell ManaTideTotem = new Spell("Mana Tide Totem");
+    private readonly Spell Riptide = new Spell("Riptide");
+    private readonly Spell SpiritLinkTotem = new Spell("Spirit Link Totem");
+    private readonly Spell TotemicRecall = new Spell("Totemic Recall");
 
     #endregion
 
@@ -1638,17 +1637,17 @@ public class ShamanRestoration
 
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Shaman Buffs */
-            AddControlInWinForm("Use Earth Shield", "UseEarthShield", "Shaman Buffs");
-            AddControlInWinForm("Use Earthliving Weapon", "UseEarthlivingWeapon", "Shaman Buffs");
-            AddControlInWinForm("Use Flametongue Weapon", "UseFlametongue", "Shaman Buffs");
-            AddControlInWinForm("Use Frostbrand Weapon", "UseFrostbrand", "Shaman Buffs");
-            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
-            AddControlInWinForm("Use Lightning Shield", "UseLightningShield", "Shaman Buffs");
-            AddControlInWinForm("Use Rockbiter Weapon", "UseRockbiterWeapon", "Shaman Buffs");
-            AddControlInWinForm("Use Spiritwalker's Grace", "UseSpiritwalkersGrace", "Shaman Buffs");
-            AddControlInWinForm("Use Water Shield", "UseWaterShield", "Shaman Buffs");
-            AddControlInWinForm("Use Water Walking", "UseWaterWalking", "Shaman Buffs");
+            /* Buffs */
+            AddControlInWinForm("Use Earth Shield", "UseEarthShield", "Buffs");
+            AddControlInWinForm("Use Earthliving Weapon", "UseEarthlivingWeapon", "Buffs");
+            AddControlInWinForm("Use Flametongue Weapon", "UseFlametongue", "Buffs");
+            AddControlInWinForm("Use Frostbrand Weapon", "UseFrostbrand", "Buffs");
+            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Buffs");
+            AddControlInWinForm("Use Lightning Shield", "UseLightningShield", "Buffs");
+            AddControlInWinForm("Use Rockbiter Weapon", "UseRockbiterWeapon", "Buffs");
+            AddControlInWinForm("Use Spiritwalker's Grace", "UseSpiritwalkersGrace", "Buffs");
+            AddControlInWinForm("Use Water Shield", "UseWaterShield", "Buffs");
+            AddControlInWinForm("Use Water Walking", "UseWaterWalking", "Buffs");
             /* Offensive Spells */
             AddControlInWinForm("Use Chain Lightning", "UseChainLightning", "Offensive Spells");
             AddControlInWinForm("Use Earth Shock", "UseEarthShock", "Offensive Spells");
@@ -1658,18 +1657,18 @@ public class ShamanRestoration
             AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spells");
             AddControlInWinForm("Use Magma Totem", "UseMagmaTotem", "Offensive Spells");
             AddControlInWinForm("Use Searing Totem", "UseSearingTotem", "Offensive Spells");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Ancestral Swiftness", "UseAncestralSwiftness", "Offensive Cooldowns");
-            AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Cooldowns");
-            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
-            AddControlInWinForm("Use Call of the Elements", "UseCalloftheElements", "Offensive Cooldowns");
-            AddControlInWinForm("Use Earth Elemental Totem", "UseEarthElementalTotem", "Offensive Cooldowns");
-            AddControlInWinForm("Use Elemental Blast", "UseElementalBlast", "Offensive Cooldowns");
-            AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Cooldowns");
-            AddControlInWinForm("Use Fire Elemental Totem", "UseFireElementalTotem", "Offensive Cooldowns");
-            AddControlInWinForm("Use Stormlash Totem", "UseStormlashTotem", "Offensive Cooldowns");
-            AddControlInWinForm("Use Totemic Projection", "UseTotemicProjection", "Offensive Cooldowns");
-            AddControlInWinForm("Use Unleash Elements", "UseUnleashElements", "Offensive Cooldowns");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Ancestral Swiftness", "UseAncestralSwiftness", "Offensive Spells");
+            AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Spells");
+            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Spells");
+            AddControlInWinForm("Use Call of the Elements", "UseCalloftheElements", "Offensive Spells");
+            AddControlInWinForm("Use Earth Elemental Totem", "UseEarthElementalTotem", "Offensive Spells");
+            AddControlInWinForm("Use Elemental Blast", "UseElementalBlast", "Offensive Spells");
+            AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Spells");
+            AddControlInWinForm("Use Fire Elemental Totem", "UseFireElementalTotem", "Offensive Spells");
+            AddControlInWinForm("Use Stormlash Totem", "UseStormlashTotem", "Offensive Spells");
+            AddControlInWinForm("Use Totemic Projection", "UseTotemicProjection", "Offensive Spells");
+            AddControlInWinForm("Use Unleash Elements", "UseUnleashElements", "Offensive Spells");
             /* Defensive Spells */
             AddControlInWinForm("Use Astral Shift", "UseAstralShift", "Defensive Spells");
             AddControlInWinForm("Use Capacitor Totem", "UseCapacitorTotem", "Defensive Spells");
@@ -1734,66 +1733,66 @@ public class ShamanElemental
 
     #region Talents
 
-    public readonly Spell PrimalElementalist = new Spell("Primal Elementalist");
+    private readonly Spell PrimalElementalist = new Spell("Primal Elementalist");
 
     #endregion
 
     #region Professions & Racials
 
-    //public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    //public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
-    //public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
-    public readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
-    public readonly Spell WarStomp = new Spell("War Stomp");
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    //private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    //private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp");
 
     #endregion
 
-    #region Shaman Buffs
+    #region Buffs
 
-    public readonly Spell GhostWolf = new Spell("Ghost Wolf");
+    private readonly Spell GhostWolf = new Spell("Ghost Wolf");
 
     #endregion
 
     #region Offensive Spells
 
-    public readonly Spell ChainLightning = new Spell("Chain Lightning");
-    public readonly Spell EarthShock = new Spell("Earth Shock");
-    public readonly Spell Earthquake = new Spell("Earthquake");
+    private readonly Spell ChainLightning = new Spell("Chain Lightning");
+    private readonly Spell EarthShock = new Spell("Earth Shock");
+    private readonly Spell Earthquake = new Spell("Earthquake");
     private Timer EarthquakeCooldown = new Timer(0);
-    public readonly Spell FlameShock = new Spell("Flame Shock");
-    public readonly Spell LavaBurst = new Spell("Lava Burst");
-    public readonly Spell LightningBolt = new Spell("Lightning Bolt");
-    public readonly Spell TotemMastery = new Spell("Totem Mastery");
+    private readonly Spell FlameShock = new Spell("Flame Shock");
+    private readonly Spell LavaBurst = new Spell("Lava Burst");
+    private readonly Spell LightningBolt = new Spell("Lightning Bolt");
+    private readonly Spell TotemMastery = new Spell("Totem Mastery");
 
     #endregion
 
-    #region Offensive Cooldowns
+    #region Offensive Spells
 
-    public readonly Spell Ascendance = new Spell("Ascendance"); //No GCD
-    public readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
-    public readonly Spell ElementalMastery = new Spell("Elemental Mastery"); //No GCD
-    public readonly Spell FireElemental = new Spell("Fire Elemental");
-    public readonly Spell Heroism = new Spell("Heroism"); //No GCD
+    private readonly Spell Ascendance = new Spell("Ascendance"); //No GCD
+    private readonly Spell Bloodlust = new Spell("Bloodlust"); //No GCD
+    private readonly Spell ElementalMastery = new Spell("Elemental Mastery"); //No GCD
+    private readonly Spell FireElemental = new Spell("Fire Elemental");
+    private readonly Spell Heroism = new Spell("Heroism"); //No GCD
 
     #endregion
 
     #region Defensive Spells
 
-    public readonly Spell AstralShift = new Spell("Astral Shift"); //No GCD
-    public readonly Spell LightningSurgeTotem = new Spell("Lightning Surge Totem");
+    private readonly Spell AstralShift = new Spell("Astral Shift"); //No GCD
+    private readonly Spell LightningSurgeTotem = new Spell("Lightning Surge Totem");
 
     #endregion
 
     #region Utility Spells
 
-    public readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
+    private readonly Spell WindRushTotem = new Spell("Wind Rush Totem");
 
     #endregion
 
     #region Healing Spells
 
-    public readonly Spell HealingSurge = new Spell("Healing Surge");
+    private readonly Spell HealingSurge = new Spell("Healing Surge");
 
     #endregion
 
@@ -1854,7 +1853,7 @@ public class ShamanElemental
             //Movement Buffs
             if (WindRushTotem.IsSpellUsable && MySettings.UseWindRushTotem)
             {
-                SpellManager.CastSpellByIDAndPosition(WindRushTotem.Id, ObjectManager.Me.Position);
+                WindRushTotem.CastAtPosition(ObjectManager.Me.Position);
                 return;
             }
 
@@ -1978,7 +1977,7 @@ public class ShamanElemental
                 Logging.WriteFight("Use Second Trinket Slot");
             }
 
-            //Offensive Cooldowns
+            //Offensive Spells
             if (Bloodlust.IsSpellUsable && !ObjectManager.Me.HaveBuff(57724) && MySettings.UseBloodlustHeroism)
             {
                 Bloodlust.Cast();
@@ -2015,7 +2014,7 @@ public class ShamanElemental
                 if (ObjectManager.Me.HealthPercent < MySettings.UseLightningSurgeTotemBelowPercentage &&
                     LightningSurgeTotem.IsSpellUsable && MySettings.UseLightningSurgeTotem)
                 {
-                    SpellManager.CastSpellByIDAndPosition(LightningSurgeTotem.Id, ObjectManager.Target.Position);
+                    LightningSurgeTotem.CastAtPosition(ObjectManager.Target.Position);
                     StunTimer = new Timer(1000*7);
                     return;
                 }
@@ -2039,7 +2038,7 @@ public class ShamanElemental
             //Totem Mastery
             if ((!ObjectManager.Me.HaveBuff(210659) || !ObjectManager.Me.HaveBuff(210652) ||
                  !ObjectManager.Me.HaveBuff(202192) || !ObjectManager.Me.HaveBuff(210658)) &&
-                MySettings.UseTotemMastery)
+                MySettings.UseTotemMastery && TotemMastery.IsSpellUsable)
             {
                 TotemMastery.Cast();
                 return;
@@ -2119,7 +2118,7 @@ public class ShamanElemental
         public int UseStoneformBelowPercentage = 80;
         public bool UseWarStomp = true;
         public int UseWarStompBelowPercentage = 80;
-        /* Shaman Buffs */
+        /* Buffs */
         public bool UseGhostWolf = true;
         /* Offensive Spells */
         public bool UseChainLightning = true;
@@ -2129,7 +2128,7 @@ public class ShamanElemental
         public bool UseFlameShock = true;
         public bool UseLavaBurst = true;
         public bool UseLightningBolt = true;
-        /* Offensive Cooldowns */
+        /* Offensive Spells */
         public bool UseAscendance = true;
         public bool UseBloodlustHeroism = false;
         public bool UseElementalMastery = true;
@@ -2162,8 +2161,8 @@ public class ShamanElemental
             AddControlInWinForm("Use Stoneform", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
-            /* Shaman Buffs */
-            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
+            /* Buffs */
+            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Buffs");
             /* Offensive Spells */
             AddControlInWinForm("Use Chain Lightning", "UseChainLightning", "Offensive Spells");
             AddControlInWinForm("Use Earth Shock", "UseEarthShock", "Offensive Spells");
@@ -2172,12 +2171,12 @@ public class ShamanElemental
             AddControlInWinForm("Use Flame Shock", "UseFlameShock", "Offensive Spells");
             AddControlInWinForm("Use Lava Burst", "UseLavaBurst", "Offensive Spells");
             AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spells");
-            /* Offensive Cooldowns */
-            AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Cooldowns");
-            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldowns");
-            AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Cooldowns");
-            AddControlInWinForm("Use Fire Elemental", "UseFireElemental", "Offensive Cooldowns");
-            AddControlInWinForm("Use Totem Mastery", "UseTotemMastery", "Offensive Cooldowns");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Spells");
+            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Spells");
+            AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Spells");
+            AddControlInWinForm("Use Fire Elemental", "UseFireElemental", "Offensive Spells");
+            AddControlInWinForm("Use Totem Mastery", "UseTotemMastery", "Offensive Spells");
             /* Defensive Spells */
             AddControlInWinForm("Use Astral", "UseAstralShift", "Defensive Spells");
             AddControlInWinForm("Use Astral Shift", "UseAstralShiftBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");

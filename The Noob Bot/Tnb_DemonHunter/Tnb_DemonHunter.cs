@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks
+* Credit : Vesper, Neo2003, Ryuichiro
 * Thanks you !
 */
 
@@ -177,76 +177,77 @@ public class DemonHunterHavoc
 
     #region Talents
 
-    public static Spell Bloodlet = new Spell("Bloodlet");
-    public static Spell DemonBlades = new Spell("Demon Blades");
-    public static Spell Demonic = new Spell("Demonic");
-    public static Spell ChaosCleave = new Spell("ChaosCleave");
-    public static Spell FelMastery = new Spell("Fel Mastery");
-    public static Spell FirstBlood = new Spell("First Blood");
-    public static Spell MasteroftheGlaive = new Spell("Master of the Glaive");
-    public static Spell Momentum = new Spell("Momentum");
-    public static Spell Prepared = new Spell("Prepared");
+    private readonly Spell Bloodlet = new Spell("Bloodlet");
+    private readonly Spell DemonBlades = new Spell("Demon Blades");
+    private readonly Spell Demonic = new Spell("Demonic");
+    private readonly Spell ChaosCleave = new Spell("ChaosCleave");
+    private readonly Spell FelMastery = new Spell("Fel Mastery");
+    private readonly Spell FirstBlood = new Spell("First Blood");
+    private readonly Spell MasteroftheGlaive = new Spell("Master of the Glaive");
+    private readonly Spell Momentum = new Spell("Momentum");
+    private readonly Spell Prepared = new Spell("Prepared");
 
     #endregion
 
     #region Professions & Racial
 
-    //public static Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    public static Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
 
     #endregion
 
     #region DemonHunter Seals & Buffs
 
-    public static Spell DemonicTransformation = new Spell("Demonic Transformation");
-    public static Spell MomentumBuff = new Spell(208628 /*"Momentum"*/);
+    private readonly Spell DemonicTransformation = new Spell("Demonic Transformation");
+    private readonly Spell MomentumBuff = new Spell(208628 /*"Momentum"*/);
 
     #endregion
 
-    #region Offensive Spell
+    #region Offensive Spells
 
-    public static Spell Annihilation = new Spell("Annihilation");
-    public static Spell BladeDance = new Spell("Blade Dance");
-    public static Spell ChaosStrike = new Spell("Chaos Strike");
-    public static Spell DeathSweep = new Spell("Death Sweep");
-    public static Spell DemonsBite = new Spell("Demon's Bite");
-    public static Spell Felblade = new Spell("Felblade");
-    public static Spell FelRush = new Spell("Fel Rush");
-    public static Spell ThrowGlaive = new Spell("Throw Glaive");
+    private readonly Spell Annihilation = new Spell("Annihilation");
+    private readonly Spell BladeDance = new Spell("Blade Dance");
+    private readonly Spell ChaosStrike = new Spell("Chaos Strike");
+    private readonly Spell DeathSweep = new Spell("Death Sweep");
+    private readonly Spell DemonsBite = new Spell("Demon's Bite");
+    private readonly Spell Felblade = new Spell("Felblade");
+    private readonly Spell FelRush = new Spell("Fel Rush");
+    private readonly Spell ThrowGlaive = new Spell("Throw Glaive");
 
     #endregion
 
     #region Legion Artifact
 
-    public static Spell AnguishoftheDeceiver = new Spell("Anguish of the Deceiver"); //No GCD
-    public static Spell FuryoftheIllidari = new Spell("Fury of the Illidari");
+    private readonly Spell AnguishoftheDeceiver = new Spell("Anguish of the Deceiver"); //No GCD
+    private readonly Spell FuryoftheIllidari = new Spell("Fury of the Illidari");
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Offensive Cooldowns
 
-    public static Spell ChaosBlades = new Spell("Chaos Blades"); //No GCD
-    public static Spell EyeBeam = new Spell("Eye Beam");
-    public static Spell FelBarrage = new Spell("Fel Barrage");
-    public static Spell FelEruption = new Spell("Fel Eruption");
-    public static Spell Metamorphosis = new Spell("Metamorphosis");
-    public static Spell Nemesis = new Spell("Nemesis");
-    public static Spell VengefulRetreat = new Spell("Vengeful Retreat"); //No GCD
+    private readonly Spell ChaosBlades = new Spell("Chaos Blades"); //No GCD
+    private readonly Spell EyeBeam = new Spell("Eye Beam");
+    private readonly Spell FelBarrage = new Spell("Fel Barrage");
+    private readonly Spell FelEruption = new Spell("Fel Eruption");
+    private readonly Spell InfernalStrike = new Spell("Infernal Strike");
+    private readonly Spell Metamorphosis = new Spell("Metamorphosis");
+    private readonly Spell Nemesis = new Spell("Nemesis");
+    private readonly Spell VengefulRetreat = new Spell("Vengeful Retreat"); //No GCD
 
     #endregion
 
     #region Defensive Cooldown
 
-    public static Spell Blur = new Spell("Blur"); //No GCD
-    public static Spell Darkness = new Spell("Darkness"); //No GCD
+    private readonly Spell Blur = new Spell("Blur"); //No GCD
+    private readonly Spell Darkness = new Spell("Darkness"); //No GCD
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    //public static Spell ConsumeMagic = new Spell("Consume Magic"); //No GCD
-    //public static Spell Imprison = new Spell("Imprison");
-    public static Spell Netherwalk = new Spell("Netherwalk"); //No GCD
+    //private readonly Spell ConsumeMagic = new Spell("Consume Magic"); //No GCD
+    //private readonly Spell Imprison = new Spell("Imprison");
+    private readonly Spell Netherwalk = new Spell("Netherwalk"); //No GCD
 
     #endregion
 
@@ -621,6 +622,11 @@ public class DemonHunterHavoc
                     DemonsBite.Cast();
                     return;
                 }
+                if (MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable && InfernalStrike.IsHostileDistanceGood)
+                {
+                    InfernalStrike.CastAtPosition(ObjectManager.Target.Position);
+                    return;
+                }
             }
         }
         finally
@@ -656,6 +662,7 @@ public class DemonHunterHavoc
         public bool UseEyeBeam = true;
         public bool UseFelBarrage = true;
         public bool UseFelEruption = true;
+        public bool UseInfernalStrike = true;
         public bool UseMetamorphosis = true;
         public bool UseNemesis = true;
         public bool UseVengefulRetreat = true;
@@ -664,7 +671,7 @@ public class DemonHunterHavoc
         public int UseBlurBelowPercentage = 40;
         public int UseDarknessBelowPercentage = 60;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         //public bool UseConsumeMagic = true;
         //public bool UseImprison = true;
         public int UseNetherwalkBelowPercentage = 10;
@@ -680,7 +687,7 @@ public class DemonHunterHavoc
             /* Professions & Racials */
             //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
-            /* Offensive Spell */
+            /* Offensive Spells */
             AddControlInWinForm("Use Annihilation", "UseAnnihilation", "Offensive Spells");
             AddControlInWinForm("Use Blade Dance", "UseBladeDance", "Offensive Spells");
             AddControlInWinForm("Use Chaos Strike", "UseChaosStrike", "Offensive Spells");
@@ -691,20 +698,20 @@ public class DemonHunterHavoc
             AddControlInWinForm("Use Throw Glaive", "UseThrowGlaive", "Offensive Spells");
             /* Artifact Spells */
             AddControlInWinForm("Use Fury of the Illidari", "UseFuryoftheIllidari", "Artifact Spells");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Chaos Blades", "UseChaosBlades", "Offensive Cooldowns");
-            AddControlInWinForm("Use Eye Beam", "UseEyeBeam", "Offensive Cooldowns");
-            AddControlInWinForm("Use Fel Barrage", "UseFelBarrage", "Offensive Cooldowns");
-            AddControlInWinForm("Use Fel Eruption", "UseFelEruption", "Offensive Cooldowns");
-            AddControlInWinForm("Use Metamorphosis", "UseMetamorphosis", "Offensive Cooldowns");
-            AddControlInWinForm("Use Nemesis", "UseNemesis", "Offensive Cooldowns");
-            AddControlInWinForm("Use Vengeful Retreat", "UseVengefulRetreat", "Offensive Cooldowns");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Chaos Blades", "UseChaosBlades", "Offensive Spells");
+            AddControlInWinForm("Use Eye Beam", "UseEyeBeam", "Offensive Spells");
+            AddControlInWinForm("Use Fel Barrage", "UseFelBarrage", "Offensive Spells");
+            AddControlInWinForm("Use Fel Eruption", "UseFelEruption", "Offensive Spells");
+            AddControlInWinForm("Use Metamorphosis", "UseMetamorphosis", "Offensive Spells");
+            AddControlInWinForm("Use Nemesis", "UseNemesis", "Offensive Spells");
+            AddControlInWinForm("Use Vengeful Retreat", "UseVengefulRetreat", "Offensive Spells");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blur", "UseBlur", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Darkness", "UseDarkness", "Defensive Cooldowns", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Netherwalk", "UseNetherwalkBelowPercentage", "Utility Cooldowns", "BelowPercentage", "Life");
-            AddControlInWinForm("Use Netherwalk out of Combat", "UseNetherwalkOOC", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Netherwalk", "UseNetherwalkBelowPercentage", "Utility Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Netherwalk out of Combat", "UseNetherwalkOOC", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -745,63 +752,58 @@ public class DemonHunterVengeance
 
     #region Talents
 
-    public static Spell BladeTurning = new Spell("Blade Turning");
-    public static Spell FlameCrash = new Spell("Flame Crash");
+    private readonly Spell BladeTurning = new Spell("Blade Turning");
+    private readonly Spell FlameCrash = new Spell("Flame Crash");
 
     #endregion
 
     #region Professions & Racial
 
-    //public static Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
-    public static Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
 
     #endregion
 
     #region DemonHunter Seals & Buffs
 
-    public static Spell BladeTurningBuff = new Spell(207709 /*"Blade Turning"*/);
+    private readonly Spell BladeTurningBuff = new Spell(207709 /*"Blade Turning"*/);
 
     #endregion
 
     #region DemonHunter Dots
 
-    public static Spell Frailty = new Spell("Frailty");
-
-    #endregion
-
-    #region Offensive Spell
-
-    public static Spell Felblade = new Spell("Felblade");
-    public static Spell Fracture = new Spell("Fracture");
-    public static Spell ImmolationAura = new Spell("Immolation Aura");
-    public static Spell Shear = new Spell("Shear");
-    public static Spell SoulCleave = new Spell("Soul Cleave");
-    public static Spell SpiritBomb = new Spell("Spirit Bomb");
+    private readonly Spell Frailty = new Spell("Frailty");
 
     #endregion
 
     #region Legion Artifact
 
-    public static Spell SoulCarver = new Spell("Soul Carver");
+    private readonly Spell SoulCarver = new Spell("Soul Carver");
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Offensive Spells
 
-    public static Spell InfernalStrike = new Spell("Infernal Strike");
-    public static Spell SigilofFlame = new Spell("Sigil of Flame");
+    private readonly Spell Felblade = new Spell("Felblade");
+    private readonly Spell FelDevastation = new Spell("Fel Devastation");
+    private readonly Spell FelEruption = new Spell("Fel Eruption");
+    private readonly Spell Fracture = new Spell("Fracture");
+    private readonly Spell ImmolationAura = new Spell("Immolation Aura");
+    private readonly Spell InfernalStrike = new Spell("Infernal Strike");
+    private readonly Spell Shear = new Spell("Shear");
+    private readonly Spell SigilofFlame = new Spell("Sigil of Flame");
     private Timer SigilofFlameTimer = new Timer(0);
-    public static Spell FelDevastation = new Spell("Fel Devastation");
-    public static Spell FelEruption = new Spell("Fel Eruption");
+    private readonly Spell SoulCleave = new Spell("Soul Cleave");
+    private readonly Spell SpiritBomb = new Spell("Spirit Bomb");
 
     #endregion
 
     #region Defensive Cooldown
 
-    public static Spell DemonSpikes = new Spell("Demon Spikes");
-    public static Spell FieryBrand = new Spell("Fiery Brand");
-    public static Spell EmpowerWards = new Spell("Empower Wards");
-    public static Spell Metamorphosis = new Spell("Metamorphosis");
+    private readonly Spell DemonSpikes = new Spell("Demon Spikes");
+    private readonly Spell FieryBrand = new Spell("Fiery Brand");
+    private readonly Spell EmpowerWards = new Spell("Empower Wards");
+    private readonly Spell Metamorphosis = new Spell("Metamorphosis");
 
     #endregion
 
@@ -809,14 +811,14 @@ public class DemonHunterVengeance
 
     #endregion
 
-    #region Utility Cooldowns
+    #region Utility Spells
 
-    //public static Spell ConsumeMagic = new Spell("Consume Magic"); //No GCD
-    //public static Spell Imprison = new Spell("Imprison");
-    //public static Spell SigilofMisery = new Spell("Sigil of Misery");
-    //public static Spell SigilofSilence = new Spell("Sigil of Silence");
-    //public static Spell ThrowGlaive = new Spell("Throw Glaive");
-    public static Spell Torment = new Spell("Torment"); //No GCD
+    //private readonly Spell ConsumeMagic = new Spell("Consume Magic"); //No GCD
+    //private readonly Spell Imprison = new Spell("Imprison");
+    //private readonly Spell SigilofMisery = new Spell("Sigil of Misery");
+    //private readonly Spell SigilofSilence = new Spell("Sigil of Silence");
+    //private readonly Spell ThrowGlaive = new Spell("Throw Glaive");
+    private readonly Spell Torment = new Spell("Torment"); //No GCD
 
     #endregion
 
@@ -894,7 +896,7 @@ public class DemonHunterVengeance
         }
         Heal();
         if (Defensive()) return;
-        AgroManagement();
+        AggroManagement();
         BurstBuffs();
         GCDCycle();
     }
@@ -999,7 +1001,7 @@ public class DemonHunterVengeance
         }
     }
 
-    private void AgroManagement()
+    private void AggroManagement()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -1129,13 +1131,13 @@ public class DemonHunterVengeance
                 {
                     if (MySettings.UseSigilofFlame && SigilofFlame.IsSpellUsable && SigilofFlame.IsHostileDistanceGood)
                     {
-                        SigilofFlame.Cast();
+                        SigilofFlame.CastAtPosition(ObjectManager.Target.Position);
                         SigilofFlameTimer = new Timer(1000*8);
                         return;
                     }
                     if (FlameCrash.HaveBuff && MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable && InfernalStrike.IsHostileDistanceGood)
                     {
-                        InfernalStrike.Cast();
+                        InfernalStrike.CastAtPosition(ObjectManager.Target.Position);
                         SigilofFlameTimer = new Timer(1000*8);
                         return;
                     }
@@ -1148,6 +1150,13 @@ public class DemonHunterVengeance
                 if (MySettings.UseShear && Shear.IsSpellUsable && Shear.IsHostileDistanceGood)
                 {
                     Shear.Cast();
+                    return;
+                }
+                if (MySettings.UseInfernalStrike && InfernalStrike.IsSpellUsable && InfernalStrike.IsHostileDistanceGood)
+                {
+                    InfernalStrike.CastAtPosition(ObjectManager.Target.Position);
+                    if (FlameCrash.HaveBuff)
+                        SigilofFlameTimer = new Timer(1000*8);
                     return;
                 }
             }
@@ -1167,23 +1176,21 @@ public class DemonHunterVengeance
         //public bool UseArcaneTorrent = true;
         public int UseGiftoftheNaaruBelowPercentage = 50;
 
-        /* Offensive Spells */
-        public bool UseFelblade = true;
-        public bool UseFracture = true;
-        public bool UseImmolationAura = true;
-        public bool UseShear = true;
-        public bool UseSoulCleave = true;
-        public int UseSoulCleaveBelowPercentage = 40;
-        public bool UseSpiritBomb = true;
-
         /* Artifact Spells */
         public bool UseSoulCarver = true;
 
-        /* Offensive Cooldowns */
-        public bool UseInfernalStrike = true;
-        public bool UseSigilofFlame = true;
+        /* Offensive Spells */
+        public bool UseFelblade = true;
         public bool UseFelDevastation = true;
         public bool UseFelEruption = true;
+        public bool UseFracture = true;
+        public bool UseImmolationAura = true;
+        public bool UseInfernalStrike = true;
+        public bool UseShear = true;
+        public bool UseSigilofFlame = true;
+        public bool UseSoulCleave = true;
+        public int UseSoulCleaveBelowPercentage = 40;
+        public bool UseSpiritBomb = true;
 
         /* Defensive Cooldowns */
         public int UseDemonSpikesBelowPercentage = 50;
@@ -1191,7 +1198,7 @@ public class DemonHunterVengeance
         public int UseEmpowerWardsBelowPercentage = 0;
         public int UseMetamorphosisBelowPercentage = 60;
 
-        /* Utility Cooldowns */
+        /* Utility Spells */
         //public bool UseConsumeMagic = true;
         //public bool UseImprison = true;
         public bool UseTorment = true;
@@ -1206,28 +1213,27 @@ public class DemonHunterVengeance
             /* Professions & Racials */
             //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
-            /* Offensive Spell */
+            /* Artifact Spells */
+            AddControlInWinForm("Use Soul Carver", "UseSoulCarver", "Artifact Spells");
+            /* Offensive Spells */
             AddControlInWinForm("Use Felblade", "UseFelblade", "Offensive Spells");
+            AddControlInWinForm("Use Fel Devastation", "UseFelDevastation", "Offensive Spells");
+            AddControlInWinForm("Use Fel Eruption", "UseFelEruption", "Offensive Spells");
             AddControlInWinForm("Use Fracture", "UseFracture", "Offensive Spells");
             AddControlInWinForm("Use Immolation Aura", "UseImmolationAura", "Offensive Spells");
+            AddControlInWinForm("Use Infernal Strike", "UseInfernalStrike", "Offensive Spells");
             AddControlInWinForm("Use Shear", "UseShear", "Offensive Spells");
+            AddControlInWinForm("Use Sigil of Flame", "UseSigilofFlame", "Offensive Spells");
             AddControlInWinForm("Use Soul Cleave", "UseSoulCleave", "Offensive Spells");
             AddControlInWinForm("Use Soul Cleave", "UseSoulCleaveBelowPercentage", "Offensive Spells", "BelowPercentage", "Life");
             AddControlInWinForm("Use Spirit Bomb", "UseSpiritBomb", "Offensive Spells");
-            /* Artifact Spells */
-            AddControlInWinForm("Use Soul Carver", "UseSoulCarver", "Artifact Spells");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Infernal Strike", "UseInfernalStrike", "Offensive Cooldowns");
-            AddControlInWinForm("Use Sigil of Flame", "UseSigilofFlame", "Offensive Cooldowns");
-            AddControlInWinForm("Use Fel Devastation", "UseFelDevastation", "Offensive Cooldowns");
-            AddControlInWinForm("Use Fel Eruption", "UseFelEruption", "Offensive Cooldowns");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Demon Spikes", "UseDemonSpikesBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Fiery Brand", "UseFieryBrandBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Empower Wards", "UseEmpowerWardsBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
             AddControlInWinForm("Use Metamorphosis", "UseMetamorphosisBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
-            /* Utility Cooldowns */
-            AddControlInWinForm("Use Torment", "UseTorment", "Utility Cooldowns");
+            /* Utility Spells */
+            AddControlInWinForm("Use Torment", "UseTorment", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");

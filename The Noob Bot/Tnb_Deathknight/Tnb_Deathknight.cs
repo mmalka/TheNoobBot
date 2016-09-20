@@ -272,6 +272,7 @@ public class DeathknightBlood
     private readonly Spell DeathGrip = new Spell("Death Grip");
     private readonly Spell GorefiendsGrasp = new Spell("Gorefriend's Grasp");
     //private readonly Spell MindFreeze = new Spell("Mind Freeze");
+    private readonly Spell PathofFrost = new Spell("Path of Frost");
     private readonly Spell RaiseAlly = new Spell("Raise Ally");
     private readonly Spell Soulgorge = new Spell("Soulgorge");
     private readonly Spell WraithWalk = new Spell("Wraith Walk");
@@ -281,7 +282,6 @@ public class DeathknightBlood
     public DeathknightBlood()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
-        Main.InternalAggroRange = DeathGrip.MaxRangeHostile;
         Main.InternalLightHealingSpell = null;
         MySettings = DeathknightBloodSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightBloodSettings>(MySettings);
@@ -302,7 +302,7 @@ public class DeathknightBlood
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -334,9 +334,22 @@ public class DeathknightBlood
         if (ObjectManager.Me.GetMove)
         {
             //Movement Buffs
-            if (MySettings.UseWraithWalk && WraithWalk.IsSpellUsable && !WraithWalk.HaveBuff)
+            if (!Darkflight.HaveBuff && !WraithWalk.HaveBuff) // doesn't stack
             {
-                WraithWalk.Cast();
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
+                if (MySettings.UseWraithWalk && WraithWalk.IsSpellUsable)
+                {
+                    WraithWalk.Cast();
+                    return;
+                }
+            }
+            if (MySettings.UsePathofFrost && PathofFrost.IsSpellUsable && !PathofFrost.HaveBuff)
+            {
+                PathofFrost.Cast();
                 return;
             }
         }
@@ -706,6 +719,7 @@ public class DeathknightBlood
         public bool UseDarkCommand = true;
         public bool UseDeathGrip = true;
         public bool UseGorefiendsGrasp = true;
+        public bool UsePathofFrost = true;
         public bool UseWraithWalk = true;
 
         /* Game Settings */
@@ -747,6 +761,7 @@ public class DeathknightBlood
             AddControlInWinForm("Use Dark Command", "UseDarkCommand", "Utility Spells");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");
             AddControlInWinForm("Use Gorefiend's Grasp", "UseGorefiendsGrasp", "Utility Spells");
+            AddControlInWinForm("Use Path of Frost", "UsePathofFrost", "Utility Spells");
             AddControlInWinForm("Use Wraith Walk", "UseWraithWalk", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
@@ -857,13 +872,13 @@ public class DeathknightFrost
 
     //private readonly Spell BlindingSleet = new Spell("Blinding Sleet");
     private readonly Spell DeathGrip = new Spell("Death Grip");
+    private readonly Spell PathofFrost = new Spell("Path of Frost");
 
     #endregion
 
     public DeathknightFrost()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
-        Main.InternalAggroRange = DeathGrip.MaxRangeHostile;
         Main.InternalLightHealingSpell = null;
         MySettings = DeathknightFrostSettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightFrostSettings>(MySettings);
@@ -884,7 +899,7 @@ public class DeathknightFrost
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -916,6 +931,19 @@ public class DeathknightFrost
         if (ObjectManager.Me.GetMove)
         {
             //Movement Buffs
+            if (!Darkflight.HaveBuff) // doesn't stack
+            {
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
+            }
+            if (MySettings.UsePathofFrost && PathofFrost.IsSpellUsable && !PathofFrost.HaveBuff)
+            {
+                PathofFrost.Cast();
+                return;
+            }
         }
         else
         {
@@ -1066,7 +1094,7 @@ public class DeathknightFrost
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             if (MySettings.UseHowlingBlast && HowlingBlast.IsSpellUsable && HowlingBlast.IsHostileDistanceGood &&
-                ObjectManager.Me.UnitAura(FrostFever.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
+                ObjectManager.Target.UnitAura(FrostFever.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
             {
                 HowlingBlast.Cast();
                 return;
@@ -1205,6 +1233,7 @@ public class DeathknightFrost
 
         /* Utility Spells */
         public bool UseDeathGrip = true;
+        public bool UsePathofFrost = true;
 
         /* Defensive Spells */
         public int UseAntiMagicShellBelowPercentage = 0;
@@ -1243,6 +1272,7 @@ public class DeathknightFrost
             AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShellBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");
+            AddControlInWinForm("Use Path of Frost", "UsePathofFrost", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
@@ -1345,19 +1375,20 @@ public class DeathknightUnholy
 
     private readonly Spell AntiMagicShell = new Spell("Anti-Magic Shell");
     private readonly Spell Asphyxiate = new Spell("Asphyxiate");
+
     #endregion
 
     #region Utility Spells
 
     private readonly Spell DeathGrip = new Spell("Death Grip");
     private readonly Spell RaiseDead = new Spell("Raise Dead");
+    private readonly Spell PathofFrost = new Spell("Path of Frost");
 
     #endregion
 
     public DeathknightUnholy()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
-        Main.InternalAggroRange = DeathGrip.MaxRangeHostile;
         Main.InternalLightHealingSpell = null;
         MySettings = DeathknightUnholySettings.GetSettings();
         Main.DumpCurrentSettings<DeathknightUnholySettings>(MySettings);
@@ -1378,7 +1409,7 @@ public class DeathknightUnholy
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, Main.InternalRange))
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
                             else if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -1410,6 +1441,19 @@ public class DeathknightUnholy
         if (ObjectManager.Me.GetMove)
         {
             //Movement Buffs
+            if (!Darkflight.HaveBuff) // doesn't stack
+            {
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
+            }
+            if (MySettings.UsePathofFrost && PathofFrost.IsSpellUsable && !PathofFrost.HaveBuff)
+            {
+                PathofFrost.Cast();
+                return;
+            }
         }
         else
         {
@@ -1703,6 +1747,7 @@ public class DeathknightUnholy
 
         /* Utility Spells */
         public bool UseDeathGrip = true;
+        public bool UsePathofFrost = true;
         public bool UseRaiseDead = true;
 
         /* Game Settings */
@@ -1742,6 +1787,7 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Asphyxiate", "UseAsphyxiateBelowPercentage", "Defensive Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Utility Spells");
+            AddControlInWinForm("Use Path of Frost", "UsePathofFrost", "Utility Spells");
             AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Utility Spells");
             /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
