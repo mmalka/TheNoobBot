@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 22594
+    ///   Offset and Pointer for Wow 22624
     /// </summary>
     public static class Addresses
     {
@@ -185,7 +185,7 @@
         {
             StatPvp = 0xC3F044, // StatPvpFOUND inside first call in Script_InActiveBattlefield
             PvpExitWindow = 0xEC9418, // Script_GetBattlefieldWinner
-            MaxBattlegroundId = 0xEC9AF8, // Script_GetMaxBattlefieldID
+            MaxBattlegroundId = 0xEC9AB4, // Script_GetMaxBattlefieldID
         }
 
         /// <summary>
@@ -250,15 +250,15 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayerObj = 0x80C41,
-            FrameScript_ExecuteBuffer = 0xA5EBE,
-            CGUnit_C__InitializeTrackingState = 0x30693D, // alias CGPlayer_C__ClickToMove
-            FrameScript__GetLocalizedText = 0x3011C4,
-            WowClientDB2__GetRowPointer = 0x20C87B,
-            CGWorldFrame__Intersect = 0x5E6D4F,
-            Spell_C_HandleTerrainClick = 0x2B7D83,
+            ClntObjMgrGetActivePlayerObj = 0x80C25,
+            FrameScript_ExecuteBuffer = 0xA5BD4,
+            CGUnit_C__InitializeTrackingState = 0x306CC0, // alias CGPlayer_C__ClickToMove
+            FrameScript__GetLocalizedText = 0x301547,
+            WowClientDB2__GetRowPointer = 0x20C84F,
+            CGWorldFrame__Intersect = 0x5E6C1B,
+            Spell_C_HandleTerrainClick = 0x2B8152,
             CGUnit_C__Interact = 0x52562,
-            strlen = 0x7522C0, // ida _strlen
+            strlen = 0x752090, // ida _strlen
             // saving
             IsOutdoors = 0x0,
             UnitCanAttack = 0x0,
@@ -279,7 +279,7 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            PlayerNameStorePtr = 0xD10620, // CGUnit_C__GetUnitName + 0x62 // Script_ResurrectGetOfferer
+            PlayerNameStorePtr = 0xD10820, // CGUnit_C__GetUnitName + 0x62 // Script_ResurrectGetOfferer
             PlayerNameNextOffset = 0x14,
             PlayerNameStringOffset = 0x11,
         }
