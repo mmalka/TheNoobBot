@@ -33,6 +33,18 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool HasToy(int entry)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = tostring(PlayerHasToy(" + entry + "));");
+            return Others.ToBoolean(Lua.GetLocalizedText(randomString));
+        }
+
+        public static void UseToy(int entry)
+        {
+            Lua.LuaDoString("UseToy(" + entry + ");");
+        }
+
         public static void EquipItemByName(string name)
         {
             try

@@ -92,7 +92,7 @@ namespace nManager.Wow.Bot.Tasks
                                     // Since these items have a CD of only 3 sec, it's worth waiting for the CD to recover
                                     while (ItemsManager.IsItemOnCooldown(LootARangeId))
                                         Thread.Sleep(250);
-                                    ItemsManager.UseItem(LootARangeId);
+                                    ItemsManager.UseToy(LootARangeId);
                                     Thread.Sleep(1000 + Usefuls.Latency);
                                     while (ObjectManager.ObjectManager.Me.IsCast)
                                     {

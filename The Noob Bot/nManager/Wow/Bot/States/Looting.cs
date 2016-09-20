@@ -22,9 +22,9 @@ namespace nManager.Wow.Bot.States
 
         public Looting()
         {
-            if (ItemsManager.GetItemCount(109167) > 0)
+            if (ItemsManager.HasToy(109167))
                 LootingTask.LootARangeId = 109167;
-            else if (ItemsManager.GetItemCount(60854) > 0)
+            else if (ItemsManager.HasToy(60854))
                 LootingTask.LootARangeId = 60854;
             else
                 LootingTask.LootARangeId = 0;
