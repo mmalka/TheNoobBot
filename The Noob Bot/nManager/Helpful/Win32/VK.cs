@@ -2,6 +2,17 @@
 {
     public enum UnreservedVK
     {
+        F13, // F13 key
+        F14, // F14 key
+        F15, // F15 key
+        F16, // F16 key
+        F17, // F17 key
+        F18, // F18 key
+        F19, // F19 key
+        F20, // F20 key
+        F21, // F21 key
+        F23, // F23 key
+        F24, // F24 key
         A, // A key
         B, // B key
         C, // C key
@@ -50,17 +61,6 @@
         F10, // F10 key
         F11, // F11 key
         F12, // F12 key
-        F13, // F13 key
-        F14, // F14 key
-        F15, // F15 key
-        F16, // F16 key
-        F17, // F17 key
-        F18, // F18 key
-        F19, // F19 key
-        F20, // F20 key
-        F21, // F21 key
-        F23, // F23 key
-        F24, // F24 key
     }
 
     public enum VK
