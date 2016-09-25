@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Helpers;
 
 namespace The_Noob_Bot
 {
@@ -27,6 +28,7 @@ namespace The_Noob_Bot
             }
             /* End AutoStart code */
 
+            Usefuls.DisableFIPS();
             Application.Run(loginForm);
         }
 

@@ -653,6 +653,30 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void DisableFIPS()
+        {
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("SYSTEM\\CurrentControlSet\\Control\\Lsa\\FipsAlgorithmPolicy", true))
+            {
+                if (key != null)
+                {
+                    int val = (int) key.GetValue("Enabled", null, RegistryValueOptions.None);
+                    if (val != 0)
+                    {
+                        Logging.Write("We had to disable FIPS for you, else you wouldn't be able to run the bot properly, learn more about FIPS here: https://en.wikipedia.org/wiki/FIPS_140-2");
+                        key.SetValue("Enabled", 0, RegistryValueKind.DWord);
+                    }
+                }
+            }
+            // Disable FIPS policy.
+            /*
+             * The Federal Information Processing Standard (FIPS) Publication 140-2, (FIPS PUB 140-2), 
+             * is a U.S. government computer security standard used to accredit cryptographic modules. 
+             * The title is Security Requirements for Cryptographic Modules.
+             * It therefor prevent any software from running non-accreditted cryptographic modules such as MD5.
+             */
+            // Only computer of the US Governement should have FIPS enabled.
+        }
+
 
         /// <summary>
         ///     Launch World Of Warcraft.
