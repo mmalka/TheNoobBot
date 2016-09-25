@@ -74,12 +74,13 @@ namespace Quester.Tasks
                                 if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // One of these quest need to be completed
                                     quest.NeedQuestCompletedId.Count == 0)
                                     if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCount(quest.ItemPickUp) > 0))
-                                        if (Script.Run(quest.ScriptCondition)) // Condition
-                                        {
-                                            CurrentQuest = quest;
-                                            Logging.Write("\"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
-                                            return;
-                                        }
+                                        if (quest.WorldQuestLocation == null || !quest.WorldQuestLocation.IsValid || IsWorldQuestAvailable(quest.Id))
+                                            if (Script.Run(quest.ScriptCondition)) // Condition
+                                            {
+                                                CurrentQuest = quest;
+                                                Logging.Write("\"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
+                                                return;
+                                            }
                 }
             }
             if (!completed)
@@ -87,6 +88,17 @@ namespace Quester.Tasks
                 Logging.Write("There is no more quest to do.");
                 completed = true;
             }
+        }
+
+        public static bool IsWorldQuestAvailable(int questId)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString("RemoveWorldQuestWatch(" + questId + ")");
+            // Make sure the quest is not watched already, else it would return false anyway.
+            Lua.LuaDoString(randomString + " = tostring(AddWorldQuestWatch(" + questId + "))");
+
+            return Others.ToBoolean(Lua.GetLocalizedText(randomString));
+            // If the quest is "watchable", it means it is available.
         }
 
         public static void SelectNextQuestObjective()
