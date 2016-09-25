@@ -62,13 +62,14 @@ namespace Quester.Bot
                     // Now check the integrity by checking we have all NPC required
                     foreach (Profile.Quest q in Profile.Quests)
                     {
-                        if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0 && !q.AutoAccepted)
+                        bool isWorldQuest = q.WorldQuestLocation != null && q.WorldQuestLocation.IsValid;
+                        if (!isWorldQuest && q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0 && !q.AutoAccepted)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.PickUp +
                                             "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");
                             return false;
                         }
-                        if (FindQuesterById(q.TurnIn).Entry == 0)
+                        if (!isWorldQuest && FindQuesterById(q.TurnIn).Entry == 0)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.TurnIn +
                                             "\nThe quest is '" + q.Name + "' (" + q.Id + "). Cannot continues!");

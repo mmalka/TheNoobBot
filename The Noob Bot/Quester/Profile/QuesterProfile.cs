@@ -104,6 +104,7 @@ namespace Quester.Profile
 
         [DefaultValue(0)] public int ItemPickUp = 0;
         [DefaultValue(0)] public int PickUp = 0;
+        [DefaultValue(null)] public Point WorldQuestLocation = null;
         public int TurnIn = 0;
         [DefaultValue("")] public string ScriptCondition = "";
         [DefaultValue("")] public string ScriptConditionIsFinish = "";
@@ -136,11 +137,30 @@ namespace Quester.Profile
                 return ItemPickUp != 0 ? 0 : 1;
             if (ItemPickUp != 0)
                 return -1;
+            Point currentQuestLocation;
+            Point otherQuestLocation;
+            if (WorldQuestLocation != null && WorldQuestLocation.IsValid)
+            {
+                currentQuestLocation = WorldQuestLocation;
+            }
+            else
+            {
+                Npc currentNpc = Bot.Bot.FindQuesterById(PickUp);
+                currentQuestLocation = currentNpc.Position;
+            }
 
-            Npc currentNpc = Bot.Bot.FindQuesterById(PickUp);
-            Npc otherNpc = Bot.Bot.FindQuesterById(otherQuest.PickUp);
-            if (otherNpc.Position != null)
-                return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
+            if (otherQuest.WorldQuestLocation != null && otherQuest.WorldQuestLocation.IsValid)
+            {
+                otherQuestLocation = otherQuest.WorldQuestLocation;
+            }
+            else
+            {
+                Npc otherNpc = Bot.Bot.FindQuesterById(otherQuest.PickUp);
+                otherQuestLocation = otherNpc.Position;
+            }
+
+            if (otherQuestLocation != null && otherQuestLocation.IsValid)
+                return currentQuestLocation.DistanceTo(ObjectManager.Me.Position).CompareTo(otherQuestLocation.DistanceTo(ObjectManager.Me.Position));
             throw new ArgumentException("Object is not a Quest");
         }
     }

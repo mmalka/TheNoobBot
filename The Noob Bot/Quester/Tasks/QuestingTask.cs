@@ -1299,7 +1299,21 @@ namespace Quester.Tasks
         public static void PickUpQuest()
         {
             QuestStatus = "Pick-Up Quest";
-            Npc npc = Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
+            Npc npc;
+            if (CurrentQuest.WorldQuestLocation != null && CurrentQuest.WorldQuestLocation.IsValid)
+            {
+                // We should go to there.
+                npc = new Npc()
+                {
+                    Position = CurrentQuest.WorldQuestLocation,
+                    Name = "World Quest: " + CurrentQuest.Name,
+                };
+                MovementManager.FindTarget(ref npc, 30.0f);
+                // We don't except a baseAddress to be valid, we just wanna get there so the WorldQuest is activated.
+                return;
+                // Just go there, we don't  need to do anything when we are here, so no need for the usual "InMovement Return // baseAddress > 0" stuff.
+            }
+            npc = Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
             int item = CurrentQuest.ItemPickUp;
             if (item != 0)
             {
@@ -1319,6 +1333,16 @@ namespace Quester.Tasks
             {
                 ResetQuestObjective();
                 return;
+            }
+            if (CurrentQuest.WorldQuestLocation != null && CurrentQuest.WorldQuestLocation.IsValid)
+            {
+                if (!Quest.GetLogQuestIsComplete(CurrentQuest.Id))
+                {
+                    ResetQuestObjective();
+                    // This is a WorldQuest, it should disapear by itself when completed
+                    // If it's still there, then we need to redo it.
+                    return;
+                }
             }
             QuestStatus = "Turn-In Quest";
             Npc npc = Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
