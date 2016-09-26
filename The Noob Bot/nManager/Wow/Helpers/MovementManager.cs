@@ -224,14 +224,17 @@ namespace nManager.Wow.Helpers
                                     int targetPoint = 0;
                                     if (_loop)
                                         targetPoint = _currentTargetedPoint;
-                                    if (
-                                        _points[targetPoint].DistanceTo2D(
-                                            ObjectManager.ObjectManager.Me.Position) < 0.5f)
+                                    if (targetPoint > _points.Count - 1)
+                                        targetPoint = _points.Count - 1;
+                                    if (_points[targetPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 0.8f)
                                     {
+                                        // increased from 0.5f to 0.8f to give more liberty when the bot gain speed boost making it go a little farther, 0.3 more not to look back.
+                                        // that doesn't mean we StopMove right away, so it shouldn't break code like "go to that NPC" (by standing off the 5yards range)
                                         targetPoint++;
                                     }
-                                    if (targetPoint >= _points.Count - 1)
+                                    if (targetPoint < 0 || targetPoint > _points.Count - 1)
                                     {
+                                        // modified from >= to >, why would we bypass the last point of the profile ? It may even be closer to the first next point and may be important.
                                         targetPoint = 0;
                                     }
                                     if (_loop)
@@ -264,6 +267,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (firstIdPoint < 0 || firstIdPoint > _points.Count - 1)
+                    firstIdPoint = 0; // Let's make sure we got this right.
                 if (_movement && _points.Count > 0)
                 {
                     if (_points[firstIdPoint].Type.ToLower() == "swimming")
@@ -955,8 +960,7 @@ namespace nManager.Wow.Helpers
                         _pointsOrigine.AddRange(points);
                         _points = new List<Point>();
                         _points.AddRange(points);
-                        _currentTargetedPoint = Math.NearestPointOfListPoints(_points,
-                            ObjectManager.ObjectManager.Me.Position);
+                        _currentTargetedPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
                         _loop = true;
                         _movement = true;
                     }

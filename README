@@ -3,7 +3,7 @@ TheNoobBot is a software that intend to reproduce real players movements in the 
 The bot do uses Injection of ASM for Click To Move, Interact, Lua Executions.
 The bot do read the WoW memory by retrieving the offsets addresses of the usefuls value from the executable file.
 
-TheNoobBot project have been public since 17 february 2012, for the WoW version 4.3.3 and the project is still active as of expansion Warlord of Draenor.
+TheNoobBot project have been public since 17 february 2012, for the WoW version 4.3.3 and the project is still active as of expansion Legion.
 
 
 To do :

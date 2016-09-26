@@ -78,6 +78,7 @@ public class Main : IHealerClass
                 case WoWClass.Rogue:
                 case WoWClass.Warrior:
                 case WoWClass.Hunter:
+                case WoWClass.DemonHunter:
 
                     string error = "Class " + ObjectManager.Me.WowClass + " can't be a healer.";
                     if (configOnly)
