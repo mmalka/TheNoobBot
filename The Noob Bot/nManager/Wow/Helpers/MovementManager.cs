@@ -267,129 +267,135 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (firstIdPoint < 0 || firstIdPoint > _points.Count - 1)
-                    firstIdPoint = 0; // Let's make sure we got this right.
-                if (_movement && _points.Count > 0)
+                lock (_points)
                 {
-                    if (_points[firstIdPoint].Type.ToLower() == "swimming")
+                    if (firstIdPoint < 0 || firstIdPoint > _points.Count - 1)
+                        firstIdPoint = 0; // Let's make sure we got this right.
+                    if (_movement && _points.Count > 0)
                     {
-                        return;
-                    }
-
-                    if (_loop && _points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 &&
-                        !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
-                    {
-                        Logging.WriteNavigator("Long Move distance: " +
-                                               ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[firstIdPoint]));
-                        LongMove.LongMoveByNewThread(_points[firstIdPoint]);
-                        Thread.Sleep(100);
-                        while (LongMove.IsLongMove && _movement)
+                        if (_points[firstIdPoint].Type.ToLower() == "swimming")
                         {
-                            Thread.Sleep(50);
-                        }
-                        LongMove.StopLongMove();
-
-                        if (!_movement)
                             return;
-                    }
-
-                    if (_loop ||
-                        Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
-                    {
-                        if (nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
-                            MountTask.MountingGroundMount(false);
-                        else
-                            MountTask.Mount(false);
-                        if (Usefuls.IsFlying)
-                        {
-                            List<Point> tmpList = new List<Point>();
-                            for (int i = 0; i < _points.Count; i++)
-                            {
-                                Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
-                                tmpList.Add(pt);
-                            }
-                            _points = tmpList;
                         }
-                    }
-                    _lastNbStuck = StuckCount;
-                    int idPoint = firstIdPoint;
 
-                    while (ObjectManager.ObjectManager.Me.IsCast)
-                    {
-                        Thread.Sleep(10);
-                    }
-
-                    MoveTo(_points[idPoint]);
-
-                    bool end = false;
-                    while ((_movement && !end) && !Usefuls.IsLoading && Usefuls.InGame)
-                    {
-                        try
+                        if (_loop && _points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 &&
+                            !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
                         {
-                            if (_points[idPoint].Type.ToLower() == "swimming")
+                            Logging.WriteNavigator("Long Move distance: " +
+                                                   ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[firstIdPoint]));
+                            LongMove.LongMoveByNewThread(_points[firstIdPoint]);
+                            Thread.Sleep(100);
+                            while (LongMove.IsLongMove && _movement)
                             {
-                                return;
+                                Thread.Sleep(50);
                             }
-                            // GoTo next Point
-                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f && ObjectManager.ObjectManager.Me.IsMounted) ||
-                                  ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) && ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) && _movement)
+                            LongMove.StopLongMove();
+
+                            if (!_movement)
+                                return;
+                        }
+
+                        if (_loop || Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                        {
+                            if (nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
+                                MountTask.MountingGroundMount(false);
+                            else
+                                MountTask.Mount(false);
+                            if (Usefuls.IsFlying)
                             {
-                                idPoint++;
-                                if (idPoint > _points.Count - 1)
+                                List<Point> tmpList = new List<Point>();
+                                for (int i = 0; i <= _points.Count - 1; i++)
                                 {
-                                    idPoint = _points.Count - 1;
-                                    end = true;
-                                    if (_loop)
+                                    Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
+                                    tmpList.Add(pt);
+                                }
+                                _points = tmpList;
+
+                                // _points list have been changed, recheck if the firstIdPoint stick to it.
+                                if (firstIdPoint > _points.Count - 1)
+                                    firstIdPoint = _points.Count - 1;
+                            }
+                        }
+                        _lastNbStuck = StuckCount;
+                        int idPoint = firstIdPoint;
+
+                        while (ObjectManager.ObjectManager.Me.IsCast)
+                        {
+                            Thread.Sleep(10);
+                        }
+
+                        MoveTo(_points[idPoint]);
+
+                        bool end = false;
+                        while ((_movement && !end) && !Usefuls.IsLoading && Usefuls.InGame)
+                        {
+                            try
+                            {
+                                if (_points[idPoint].Type.ToLower() == "swimming")
+                                {
+                                    return;
+                                }
+                                // GoTo next Point
+                                if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f && ObjectManager.ObjectManager.Me.IsMounted) ||
+                                      ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) && ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) && _movement)
+                                {
+                                    idPoint++;
+                                    if (idPoint > _points.Count - 1)
                                     {
-                                        end = false;
-                                        _points = new List<Point>();
-                                        _points.AddRange(_pointsOrigine);
-                                        idPoint = 0;
+                                        idPoint = _points.Count - 1;
+                                        end = true;
+                                        if (_loop)
+                                        {
+                                            end = false;
+                                            _points = new List<Point>();
+                                            _points.AddRange(_pointsOrigine);
+                                            idPoint = 0;
+                                        }
                                     }
                                 }
-                            }
 
-                            // Generate new path
-                            if (_lastMoveToResult == false || _lastNbStuck != StuckCount)
+                                // Generate new path
+                                if (_lastMoveToResult == false || _lastNbStuck != StuckCount)
+                                {
+                                    try
+                                    {
+                                        _lastNbStuck = StuckCount;
+
+                                        StopMoveTo();
+                                        _points = PathFinder.FindPath(_pointsOrigine[_pointsOrigine.Count - 1]);
+                                        idPoint = 0;
+                                    }
+                                    catch (Exception exception)
+                                    {
+                                        Logging.WriteError("ThreadMovementManager()#1: " + exception);
+                                    }
+                                    _lastMoveToResult = true;
+                                }
+
+                                // Move to point
+                                if (_loop)
+                                    _currentTargetedPoint = idPoint;
+                                MoveTo(_points[idPoint]);
+
+                                Thread.Sleep(50);
+
+                                int rJump = Others.Random(1, 5000);
+                                if (rJump == 5)
+                                    MovementsAction.Jump();
+                            }
+                            catch (Exception exception)
                             {
-                                try
-                                {
-                                    _lastNbStuck = StuckCount;
-
-                                    StopMoveTo();
-                                    _points = PathFinder.FindPath(_pointsOrigine[_pointsOrigine.Count - 1]);
-                                    idPoint = 0;
-                                }
-                                catch (Exception exception)
-                                {
-                                    Logging.WriteError("ThreadMovementManager()#1: " + exception);
-                                }
-                                _lastMoveToResult = true;
+                                Logging.WriteError("ThreadMovementManager()#2: " + exception);
+                                idPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
                             }
-
-                            // Move to point
-                            if (_loop)
-                                _currentTargetedPoint = idPoint;
-                            MoveTo(_points[idPoint]);
-
-                            Thread.Sleep(50);
-
-                            int rJump = Others.Random(1, 5000);
-                            if (rJump == 5)
-                                MovementsAction.Jump();
                         }
-                        catch (Exception exception)
+                        if (!_chasing)
                         {
-                            Logging.WriteError("ThreadMovementManager()#2: " + exception);
-                            idPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
+                            if (!_loop)
+                                StopMove();
+                            if (!ObjectManager.ObjectManager.Me.IsCast)
+                                StopMoveTo();
                         }
-                    }
-                    if (!_chasing)
-                    {
-                        if (!_loop)
-                            StopMove();
-                        if (!ObjectManager.ObjectManager.Me.IsCast)
-                            StopMoveTo();
                     }
                 }
             }
