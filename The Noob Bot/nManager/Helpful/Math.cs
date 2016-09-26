@@ -135,21 +135,21 @@ namespace nManager.Helpful
         {
             try
             {
-                int id = 0;
-                float distance = 9999999999;
-                int i = 0;
+                if (listPoint.Count <= 0)
+                    return 0; // Wrong list, then return immediatly.
+                float bestDistance = 99999999f;
+                int bestPoint = 0;
 
-                foreach (Point pointTemp in listPoint)
+                for (int i = 0; i <= listPoint.Count - 1; i++)
                 {
-                    float dist = pointTemp.DistanceTo(point);
-                    if (dist < distance)
+                    float dist = listPoint[i].DistanceTo(point);
+                    if (dist < bestDistance)
                     {
-                        distance = dist;
-                        id = i;
+                        bestDistance = dist;
+                        bestPoint = i;
                     }
-                    i++;
                 }
-                return id;
+                return bestPoint;
             }
             catch (Exception e)
             {
