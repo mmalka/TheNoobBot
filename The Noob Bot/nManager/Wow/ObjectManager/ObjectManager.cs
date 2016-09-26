@@ -1348,7 +1348,7 @@ namespace nManager.Wow.ObjectManager
             return unitInSpellRange;
         }
 
-        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true,  WoWUnit fromUnitOrPlayer = null)
+        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true, WoWUnit fromUnitOrPlayer = null)
         {
             if (spellRange < 5)
                 spellRange = 5;
@@ -1384,10 +1384,8 @@ namespace nManager.Wow.ObjectManager
         {
             foreach (WoWUnit u in GetObjectWoWUnit60Yards())
             {
-                if (u.IsValid && u.IsAlive && u.Attackable && !u.PlayerControlled && !u.NotSelectable &&
-                    UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
-                    u.GetDistance < (u.AggroDistance*0.90f) &&
-                    !(u.InCombat && !u.IsTargetingMe))
+                if (u.IsValid && u.IsAlive && u.Attackable && !u.PlayerControlled && !u.NotSelectable && UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
+                    u.GetDistance < (u.AggroDistance*0.90f) && !(u.InCombat && !u.IsTargetingMe))
                 {
                     /*Logging.Write("Target is: " + u.Name);
                     Logging.Write("Target Distance: " + u.GetDistance);
@@ -1395,6 +1393,10 @@ namespace nManager.Wow.ObjectManager
                     Logging.Write("Target Position : " + u.Position);
                     Logging.Write("My Position : " + Me.Position);
                     Logging.Write("Reaction : " + UnitRelation.GetReaction(Me, u));*/
+                    if (u.GetDistance > 15f)
+                        continue;
+                    // We want to strike back, but we don't necesserly want to pull them immediatly at max range, no players do that.
+                    // I personnally only fight them if they are real near as I run into them.
                     bool r;
                     List<Point> points = PathFinder.FindPath(u.Position, out r);
                     if (!r)
