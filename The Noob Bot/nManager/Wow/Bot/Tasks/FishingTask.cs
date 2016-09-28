@@ -159,7 +159,7 @@ namespace nManager.Wow.Bot.Tasks
                                     Interact.InteractWith(objBobber.GetBaseAddress);
                                     _lastSuccessfullFishing = Environment.TickCount;
                                     Statistics.Farms++;
-                                    Thread.Sleep(Usefuls.Latency + 400); // Arround 500
+                                    Thread.Sleep(Usefuls.Latency + 600); // Arround 650
                                     for (int i = 0; i < 10; i++)
                                     {
                                         if (!Others.IsFrameVisible("LootFrame"))

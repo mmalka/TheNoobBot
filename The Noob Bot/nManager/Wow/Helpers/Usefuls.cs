@@ -1064,5 +1064,13 @@ namespace nManager.Wow.Helpers
             }
             return new WoWCurrency();
         }
+
+        public static string GetClientLanguage()
+        {
+            string randomString = Others.GetRandomString(Others.Random(5, 10));
+            string result = Lua.LuaDoString(randomString + " =  GetLocale();", randomString);
+
+            return result;
+        }
     }
 }
