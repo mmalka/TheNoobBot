@@ -461,7 +461,7 @@ namespace nManager.Helpful
                                 var percentageLabel = new Label
                                 {
                                     Text = labelName,
-                                    Location = new Point(Spacing + 8, posY),
+                                    Location = new Point(Spacing + LineSpacing*2, posY),
                                     Size = new Size(90, 17),
                                     AutoSize = true,
                                     BackColor = Color.FromArgb(232, 232, 232),
@@ -469,7 +469,7 @@ namespace nManager.Helpful
                                 };
                                 var percentage = new NumericUpDown
                                 {
-                                    Location = new Point(LineSpacing + percentageLabel.Location.X + percentageLabel.Width + LineSpacing, posY - 4),
+                                    Location = new Point(Spacing + LineSpacing*2 + percentageLabel.Location.X + percentageLabel.Width + LineSpacing*2, posY - 4),
                                     Maximum = new decimal(100),
                                     Minimum = new decimal(0),
                                     Name = f.FieldName,
