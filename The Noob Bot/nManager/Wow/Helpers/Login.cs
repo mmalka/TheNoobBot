@@ -184,43 +184,61 @@ namespace nManager.Wow.Helpers
                     {
                         return false;
                     }
-                    string loggingIn = "if (WoWAccountSelectDialog and WoWAccountSelectDialog:IsShown()) then " +
-                                       "for i = 0, GetNumGameAccounts() do " +
-                                       "if GetGameAccountInfo(i) == '" + settings.BNetName + "' then " +
-                                       "WoWAccountSelect_SelectAccount(i) " +
-                                       "end " +
-                                       "end " +
-                                       "elseif (AccountLoginUI and AccountLoginUI:IsVisible()) then " +
-                                       "local editbox = AccountLoginPasswordEdit; editbox:SetText('" + settings.Password + "'); " +
-                                       "DefaultServerLogin('" + settings.Login + "', editbox); " +
-                                       "AccountLoginUI:Hide() " +
-                                       "elseif (RealmList and RealmList:IsVisible()) then " +
-                                       "for i = 1, select('#',GetRealmCategories()) do " +
-                                       "for j = 1, GetNumRealms(i) do " +
-                                       "if GetRealmInfo(i, j) == '" + settings.Realm.Replace("'", @"\'") + "' then " +
-                                       "RealmList:Hide() " +
-                                       "ChangeRealm(i, j) " +
-                                       "end " +
-                                       "end " +
-                                       "end " +
-                                       "end ";
-                    string charLoggingIn = "if (CharacterSelectUI and CharacterSelectUI:IsVisible()) then " +
+
+                    string emailPassLogin = "if (AccountLogin.UI and AccountLogin.UI:IsVisible()) then " +
+                                            "AccountLogin.UI.AccountEditBox:SetText('" + settings.Login + "'); " +
+                                            "AccountLogin.UI.PasswordEditBox:SetText('" + settings.Password + "'); " +
+                                            "AccountLogin_Login() " +
+                                            "end ";
+                    string battleNetLogin = "if (AccountLogin.UI.WoWAccountSelectDialog and AccountLogin.UI.WoWAccountSelectDialog:IsShown()) then " +
+                                            "C_Login.SelectGameAccount('" + settings.BNetName + "') " +
+                                            "end ";
+                    string realmSelection = "local realms = RealmList.selectedCategory and C_RealmList.GetRealmsInCategory(RealmList.selectedCategory) or {}; " +
+                                            "local scrollFrame = RealmListScrollFrame; " +
+                                            "local offset = HybridScrollFrame_GetOffset(scrollFrame) " +
+                                            "for i=1, #scrollFrame.buttons do " +
+                                            "local idx = i + offset; " +
+                                            "if ( idx <= #realms ) then " +
+                                            "local realmAddr = realms[idx]; " +
+                                            "local name, numChars, versionMismatch, isPvP, isRP, populationState, versionMajor, versionMinor, versionRev, versionBuild = C_RealmList.GetRealmInfo(realmAddr); " +
+                                            "if (name == '" + settings.Realm + "') then " +
+                                            "C_RealmList.ConnectToRealm(realmAddr); " +
+                                            "end " +
+                                            "end " +
+                                            "end";
+                    string charSelection = "if (CharacterSelectUI and CharacterSelectUI:IsVisible()) then " +
                                            "if GetServerName() ~= '" + settings.Realm.Replace("'", @"\'") +
                                            "' and (not RealmList or not RealmList:IsVisible()) then " +
-                                           "RequestRealmList(1) " +
+                                           "CharacterSelect_ChangeRealm() " +
                                            "else " +
                                            "for i = 0,GetNumCharacters() do " +
                                            "if (GetCharacterInfo(i) == '" + settings.Character + "') then " +
                                            "CharacterSelect_SelectCharacter(i) " +
-                                           //"EnterWorld(); " +
+                                           /*"if (CharacterSelect_AllowedToEnterWorld()) then " +
+                                            "CharacterSelect_EnterWorld() " +
+                                            "end " +*/
                                            "end " +
                                            "end " +
                                            "end " +
                                            "end ";
-                    Lua.LuaDoString(loggingIn, true);
+                    Lua.LuaDoString(emailPassLogin, true);
+                    string hiddenEmail = settings.Login.Substring(0, 4) + "########"; // only display a tiny part of the email.
+                    Logging.Write("Running: Battle.net account login for email " + hiddenEmail + "...");
+                    Application.DoEvents();
                     Thread.Sleep(5000);
-                    Lua.LuaDoString(charLoggingIn, true);
-                    Thread.Sleep(2500);
+                    Lua.LuaDoString(battleNetLogin, true);
+                    string hiddenBnet = settings.BNetName.Contains("WoW") ? settings.BNetName : settings.BNetName.Substring(0, 4) + "########"; // only display a tiny part of old style Bnet account.
+                    Logging.Write("Running: Battle.Net account login for account " + hiddenBnet + "...");
+                    Application.DoEvents();
+                    Thread.Sleep(5000);
+                    Lua.LuaDoString(realmSelection, true);
+                    Logging.Write("Running: Realm selection...");
+                    Application.DoEvents();
+                    Thread.Sleep(5000);
+                    Lua.LuaDoString(charSelection, true);
+                    Logging.Write("Running: Char selection...");
+                    Application.DoEvents();
+                    Thread.Sleep(5000);
                     Keyboard.PressKey(Memory.WowProcess.MainWindowHandle, Keys.Enter);
                     /*if ((tickCount + 45000) < Environment.TickCount)
                     {
@@ -232,6 +250,8 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(500);
                     Lua.LuaDoString(Others.ToUtf8("if (WoWAccountSelectDialog:IsShown()) then for i=0, GetNumGameAccounts() do local name = GetGameAccountInfo(i); if (name ~= nil and string.lower(name) == '" + settings.BNetName.ToLower() + "') then selectedIndex = i; WoWAccountSelect_SelectAccount(selectedIndex); WoWAccountSelect_Accept(); end end end"), true);
                     */
+                    Application.DoEvents();
+                    Logging.Write("Running: Loading the game...");
                     Thread.Sleep(8000);
                     Application.DoEvents();
                 }

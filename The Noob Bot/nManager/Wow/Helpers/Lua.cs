@@ -46,12 +46,17 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (!notInGameMode && !Usefuls.InGame && !Usefuls.IsLoading)
+                {
+                    Memory.WowMemory.GameFrameUnLock();
+                    return;
+                }
                 while (!notInGameMode && !Usefuls.InGame || Usefuls.IsLoading)
                 {
                     Memory.WowMemory.GameFrameUnLock();
                     Thread.Sleep(200);
                 }
-                if (doAntiAfk) // Avoid loop while retrieving the AFK key to press.
+                if (!notInGameMode && doAntiAfk) // Avoid loop while retrieving the AFK key to press.
                     Usefuls.UpdateLastHardwareAction();
                 if (command.Replace(" ", "").Length <= 0)
                     return;
@@ -136,11 +141,14 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                while (!Usefuls.InGame || Usefuls.IsLoading)
+                while (!Usefuls.InGame && Usefuls.IsLoading)
                 {
+                    // if we are not loading, avoid freezing wow => relog for example.
                     Memory.WowMemory.GameFrameUnLock();
                     Thread.Sleep(200);
                 }
+                if (!Usefuls.InGame && !Usefuls.IsLoading)
+                    return "NOT_CONNECTED";
                 // Command to send using LUA
                 string command = commandline;
                 if (command.Replace(" ", "").Length <= 0)
