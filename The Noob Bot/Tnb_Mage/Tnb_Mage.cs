@@ -1075,6 +1075,10 @@ public class MageFire
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
+            //DEBUG
+            if (HotStreak.HaveBuff)
+                Logging.WriteDebug("HotStreak Proc");
+
             //13. Use Ice Floes or Cast Scorch if you have to move //TODO: and have no instant casts to burn.
             if (ObjectManager.Me.GetMove && !IceFloes.HaveBuff)
             {
@@ -1114,18 +1118,12 @@ public class MageFire
                 RuneofPower.CastAtPosition(ObjectManager.Me.Position);
                 return;
             }
-            //4. Cast Phoenix's Flames when
+            //4-5. Cast Phoenix's Flames when
             if (MySettings.UsePhoenixsFlames && PhoenixsFlames.IsSpellUsable && Combustion.IsHostileDistanceGood &&
-                //it has 2 charges.
-                PhoenixsFlames.GetSpellCharges >= 2)
-            {
-                PhoenixsFlames.Cast();
-                return;
-            }
-            //5. Cast Phoenix's Flames when
-            if (MySettings.UsePhoenixsFlames && PhoenixsFlames.IsSpellUsable && PhoenixsFlames.IsHostileDistanceGood &&
-                //there are 3 or more targets stacked
-                ObjectManager.Target.GetUnitInSpellRange(5f) >= 3)
+                //it has 2 charges or
+                (PhoenixsFlames.GetSpellCharges >= 2 ||
+                 //there are 3 or more targets stacked
+                 ObjectManager.Target.GetUnitInSpellRange(5f) >= 3))
             {
                 PhoenixsFlames.Cast();
                 return;

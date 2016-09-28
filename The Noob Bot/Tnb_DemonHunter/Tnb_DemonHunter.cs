@@ -402,9 +402,9 @@ public class DemonHunterHavoc
                 ItemsManager.UseItem(_secondTrinket.Name);
                 Logging.WriteFight("Use Second Trinket Slot");
             }
-            if (MySettings.UseMetamorphosis && Metamorphosis.IsSpellUsable)
+            if (MySettings.UseMetamorphosis && Metamorphosis.IsSpellUsable && Metamorphosis.IsHostileDistanceGood)
             {
-                Metamorphosis.Cast();
+                Metamorphosis.CastAtPosition(ObjectManager.Target.Position);
             }
             if (MySettings.UseChaosBlades && ChaosBlades.IsSpellUsable)
             {
@@ -721,7 +721,7 @@ public class DemonHunterHavoc
 
         public static DemonHunterHavocSettings GetSettings()
         {
-            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\DemonHunter_Havor.xml";
+            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\DemonHunter_Havoc.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
@@ -954,9 +954,10 @@ public class DemonHunterVengeance
                     return true;
                 }
             }
-            if (Metamorphosis.IsSpellUsable && ObjectManager.Me.HealthPercent < MySettings.UseMetamorphosisBelowPercentage)
+            if (ObjectManager.Me.HealthPercent < MySettings.UseMetamorphosisBelowPercentage &&
+                Metamorphosis.IsSpellUsable && Metamorphosis.IsHostileDistanceGood)
             {
-                Metamorphosis.Cast();
+                Metamorphosis.CastAtPosition(ObjectManager.Target.Position);
                 return true;
             }
             //Mitigate Magic Damage for Rage

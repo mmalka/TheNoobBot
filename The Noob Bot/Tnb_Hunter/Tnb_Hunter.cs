@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
+* Credit : Vesper, Neo2003, Ryuichiro
 * Thanks you !
 */
 
