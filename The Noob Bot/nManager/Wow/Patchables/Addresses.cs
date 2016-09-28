@@ -222,7 +222,7 @@
             chatBufferStart = 0xE5D1D0,
             NextMessage = 0x17E8,
             msgFormatedChat = 0x65,
-            chatBufferPos = 0xEB6C30,
+            chatBufferPos = 0xE5D1CC,
         }
 
         /// <summary>
