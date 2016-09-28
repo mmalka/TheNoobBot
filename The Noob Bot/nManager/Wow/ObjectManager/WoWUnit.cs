@@ -1008,39 +1008,46 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint Insanity
+        public float Insanity
         {
             get
             {
                 try
                 {
-                    return GetPowerByPowerType(PowerType.Insanity);
+                    var insanity = (float) GetPowerByPowerType(PowerType.Insanity);
+
+                    if (insanity > 0)
+                        return insanity/100f;
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > Insanity: " + e);
-                    return 0;
                 }
+                return 0f;
             }
         }
 
-        public uint MaxInsanity
+        public float MaxInsanity
         {
             get
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(PowerType.Insanity);
+                    var maxInsanity = (float) GetMaxPowerByPowerType(PowerType.Insanity);
+
+                    if (maxInsanity > 0)
+                        return maxInsanity/100f;
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > MaxInsanity: " + e);
-                    return 0;
                 }
+
+                return 0f;
             }
         }
 
-        public uint InsanityPercentage
+        public float InsanityPercentage
         {
             get
             {
