@@ -29,7 +29,10 @@ namespace nManager.Wow.Helpers
                 if (definitions.Count() == 1)
                 {
                     var table = definitions.First();
-                    _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\ResearchSite.db2", table) as DB5Reader;
+                    if (Usefuls.GetClientLanguage().Length == 4)
+                        _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\" + Usefuls.GetClientLanguage() + @"\ResearchSite.db2", table) as DB5Reader;
+                    else
+                        _rSiteDB2 = DBReaderFactory.GetReader(Application.StartupPath + @"\Data\DBFilesClient\AllWoW\ResearchSite.db2", table) as DB5Reader;
                     if (_cachedResearchSiteRows == null || _cachedRecords == null)
                     {
                         if (_rSiteDB2 != null)
