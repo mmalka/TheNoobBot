@@ -561,6 +561,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (ObjectManager.ObjectManager.Me.IsCast)
+                    return;
                 IsUnStuck = true;
                 Logging.WriteDebug("UnStuck() started.");
                 MovementsAction.Ascend(false);

@@ -272,7 +272,7 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
                                     MountTask.Mount();
                             }
-                            if (MovementManager.FindTarget(inode, 5.0f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
+                            if (MovementManager.FindTarget(inode, 5.5f, true, nManagerSetting.CurrentSetting.GatheringSearchRadius*4.0f) == 0)
                             {
                                 nManagerSetting.AddBlackList(inode.Guid, 1000*60*5);
                                 _curNode = null;
@@ -283,6 +283,8 @@ namespace nManager.Wow.Bot.Tasks
                                 _lastnode = inode.Guid;
                                 Logging.Write("Farm " + inode.Name + " > " + inode.Position);
                             }
+                            if (inode.GetDistance < 5.5f) // max range is usually 5.8-9 yards
+                                MovementManager.StopMove();
                             if (MovementManager.InMovement)
                                 return;
                         }
