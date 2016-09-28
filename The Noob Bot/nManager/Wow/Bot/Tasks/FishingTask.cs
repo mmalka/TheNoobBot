@@ -156,10 +156,11 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                                 if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid)
                                 {
+                                    FarmingTask.CountThisLoot = true;
                                     Interact.InteractWith(objBobber.GetBaseAddress);
                                     _lastSuccessfullFishing = Environment.TickCount;
                                     Statistics.Farms++;
-                                    Thread.Sleep(Usefuls.Latency + 600); // Arround 650
+                                    Thread.Sleep(Usefuls.Latency + 400); // Arround 450
                                     for (int i = 0; i < 10; i++)
                                     {
                                         if (!Others.IsFrameVisible("LootFrame"))

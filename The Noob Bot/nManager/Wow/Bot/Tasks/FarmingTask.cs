@@ -15,7 +15,7 @@ namespace nManager.Wow.Bot.Tasks
     {
         private static UInt128 _lastnode;
         private static bool _wasLooted;
-        private static bool _countThisLoot;
+        public static bool CountThisLoot;
         private static bool _firstRun = true;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
@@ -169,7 +169,7 @@ namespace nManager.Wow.Bot.Tasks
                                 return;
                             }
                             _wasLooted = false;
-                            _countThisLoot = true;
+                            CountThisLoot = true;
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 500);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -186,7 +186,7 @@ namespace nManager.Wow.Bot.Tasks
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 Usefuls.DisMount();
-                                _countThisLoot = false;
+                                CountThisLoot = false;
                                 return;
                             }
                             Thread.Sleep(Usefuls.Latency + 100);
@@ -195,7 +195,7 @@ namespace nManager.Wow.Bot.Tasks
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 Usefuls.DisMount();
-                                _countThisLoot = false;
+                                CountThisLoot = false;
                                 return;
                             }
                             nManagerSetting.AddBlackList(node.Guid, 1000*20);
@@ -299,7 +299,7 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                         _wasLooted = false;
-                        _countThisLoot = true;
+                        CountThisLoot = true;
                         Interact.InteractWith(inode.GetBaseAddress);
                         Thread.Sleep(Usefuls.Latency + 500);
                         if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -313,16 +313,16 @@ namespace nManager.Wow.Bot.Tasks
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
-                            _countThisLoot = false;
+                            CountThisLoot = false;
                             return;
                         }
                         Thread.Sleep(100 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
-                            _countThisLoot = false;
+                            CountThisLoot = false;
                             return;
                         }
-                        if (_countThisLoot)
+                        if (CountThisLoot)
                             nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
                         Thread.Sleep(1000);
                         if (!_wasLooted)
@@ -342,10 +342,10 @@ namespace nManager.Wow.Bot.Tasks
 
         public static void TakeFarmingLoots()
         {
-            if (_countThisLoot)
+            if (CountThisLoot)
             {
                 _wasLooted = true;
-                _countThisLoot = false;
+                CountThisLoot = false;
                 LootingTask.LootAndConfirmBoPForAllItems(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems);
                 Thread.Sleep(200);
                 if (!Others.IsFrameVisible("LootFrame"))
