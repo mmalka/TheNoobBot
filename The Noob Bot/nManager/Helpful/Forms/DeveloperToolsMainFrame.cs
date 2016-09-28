@@ -466,7 +466,7 @@ namespace nManager.Helpful.Forms
             {
                 LuaExecButton.Enabled = false;
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"1\")");
-                Lua.LuaDoString(InformationArea.Text);
+                Lua.LuaDoString(InformationArea.Text, !Usefuls.InGame);
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");
             }
             catch (Exception ex)
