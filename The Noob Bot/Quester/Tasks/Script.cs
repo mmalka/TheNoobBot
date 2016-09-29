@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -10,12 +11,18 @@ namespace Quester.Tasks
 {
     public class Script
     {
+        internal static Dictionary<string, IScript> CachedScripts = new Dictionary<string, IScript>();
+
         internal static bool Run(string script)
         {
             try
             {
                 if (script.Replace(" ", "") == string.Empty)
                     return true;
+
+                string originalScript = script;
+                if (CachedScripts.ContainsKey(originalScript) && CachedScripts[originalScript] != null)
+                    return CachedScripts[originalScript].Script();
 
                 if (script[0] == '=')
                 {
@@ -72,6 +79,8 @@ namespace Quester.Tasks
 
                 object obj = assembly.CreateInstance("Main", true);
                 IScript instanceFromOtherAssembly = obj as IScript;
+
+                CachedScripts.Add(originalScript, instanceFromOtherAssembly);
 
                 return instanceFromOtherAssembly != null && instanceFromOtherAssembly.Script();
             }
