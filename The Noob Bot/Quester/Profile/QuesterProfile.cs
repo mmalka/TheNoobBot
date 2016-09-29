@@ -85,10 +85,10 @@ namespace Quester.Profile
         [DefaultValue(2)] public int Gender = 2;
         public int Id = 0;
         public int QuestLevel = 0;
-        public int MinLevel = 0;
-        public int MaxLevel = 0;
+        public int MinLevel = 1;
+        public int MaxLevel = 110;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed
-        public bool AutoAccepted = false;
+        [DefaultValue(false)] public bool AutoAccepted = false;
 
         public bool ShouldSerializeNeedQuestCompletedId()
         {
@@ -105,7 +105,7 @@ namespace Quester.Profile
         [DefaultValue(0)] public int ItemPickUp = 0;
         [DefaultValue(0)] public int PickUp = 0;
         [DefaultValue(null)] public Point WorldQuestLocation = null;
-        public int TurnIn = 0;
+        [DefaultValue(0)] public int TurnIn = 0;
         [DefaultValue("")] public string ScriptCondition = "";
         [DefaultValue("")] public string ScriptConditionIsFinish = "";
         public List<QuestObjective> Objectives = new List<QuestObjective>();
