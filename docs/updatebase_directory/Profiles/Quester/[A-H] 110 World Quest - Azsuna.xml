@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Questers />
+  <Quests>
+    <Quest>
+      <Name>Interlopers!</Name>
+      <Id>42277</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-280.8261</X>
+        <Y>7887.872</Y>
+        <Z>91.74159</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+		  <Count>100</Count> <!-- Percentage -->
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>107133</int>
+            <int>107135</int>
+            <int>107323</int>
+            <int>107201</int>
+            <int>107216</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-280.8261</X>
+              <Y>7887.872</Y>
+              <Z>91.74159</Z>
+            </Point>
+            <Point>
+              <X>-186.7942</X>
+              <Y>7910.541</Y>
+              <Z>117.1122</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Syphonus</Name>
+      <Id>43613</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-452.5851</X>
+        <Y>5408.342</Y>
+        <Z>70.31509</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+		  <Count>1</Count>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>90505</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-452.5851</X>
+              <Y>5408.342</Y>
+              <Z>70.31509</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+  </Quests>
+</QuesterProfile>

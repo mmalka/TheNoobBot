@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Questers />
+  <Quests>
+    <Quest>
+      <Name>Brambly Fjarnskaggl</Name>
+      <Id>41534</Id>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <AutoAccepted>false</AutoAccepted>
+      <QuestLevel>110</QuestLevel>
+      <WorldQuestLocation>
+        <X>3537.305</X>
+        <Y>2460.535</Y>
+        <Z>269.7839</Z>
+      </WorldQuestLocation>
+      <TurnIn>0</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>140959</CollectItemId>
+          <CollectCount>10</CollectCount>
+          <Entry>
+            <int>248027</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3537.305</X>
+              <Y>2460.535</Y>
+              <Z>269.7839</Z>
+            </Point>
+            <Point>
+              <X>3380.535</X>
+              <Y>2457.233</Y>
+              <Z>253.7723</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+  </Quests>
+</QuesterProfile>

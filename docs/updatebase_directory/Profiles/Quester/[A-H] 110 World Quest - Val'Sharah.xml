@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Questers />
+  <Quests>
+    <Quest>
+      <Name>Dreamleaf Cluster</Name>
+      <Id>41291</Id>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <AutoAccepted>false</AutoAccepted>
+      <QuestLevel>110</QuestLevel>
+      <WorldQuestLocation>
+        <X>2135.439</X>
+        <Y>6982.044</Y>
+        <Z>108.9087</Z>
+      </WorldQuestLocation>
+      <TurnIn>0</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+		  <Count>1</Count>
+		  <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>103844</int>
+          </Entry>
+          <Position>
+            <X>2135.439</X>
+            <Y>6982.044</Y>
+            <Z>108.9087</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+  </Quests>
+</QuesterProfile>

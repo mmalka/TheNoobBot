@@ -3,46 +3,6 @@
   <Questers />
   <Quests>
     <Quest>
-      <Name>Interlopers!</Name>
-      <Id>42277</Id>
-      <QuestLevel>110</QuestLevel>
-      <MinLevel>110</MinLevel>
-      <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
-      <WorldQuestLocation>
-        <X>-280.8261</X>
-        <Y>7887.872</Y>
-        <Z>91.74159</Z>
-      </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-		  <Count>100</Count> <!-- Percentage -->
-          <InternalIndex>1</InternalIndex>
-          <Entry>
-            <int>107133</int>
-            <int>107135</int>
-            <int>107323</int>
-            <int>107201</int>
-            <int>107216</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-280.8261</X>
-              <Y>7887.872</Y>
-              <Z>91.74159</Z>
-            </Point>
-            <Point>
-              <X>-186.7942</X>
-              <Y>7910.541</Y>
-              <Z>117.1122</Z>
-            </Point>
-          </Hotspots>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
       <Name>Withered Wrangling: Meredil and Ambervale</Name>
       <Id>43807</Id>
       <QuestLevel>110</QuestLevel>
