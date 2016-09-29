@@ -32,6 +32,11 @@ namespace nManager.Wow.Helpers
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
+                if (!targetNpc.Attackable)
+                {
+                    nManagerSetting.AddBlackList(targetNpc.Guid, 20000); // blacklist 20 sec
+                }
+
                 if (ObjectManager.ObjectManager.Me.IsMounted &&
                     (CombatClass.InAggroRange(targetNpc) || CombatClass.InRange(targetNpc)))
                     MountTask.DismountMount();
@@ -74,7 +79,7 @@ namespace nManager.Wow.Helpers
                     MovementManager.Go(points);
                     timer = Others.Times + (int) (Math.DistanceListPoint(points)/3*1000) + 15000;
 
-                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
+                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.Attackable && !targetNpc.IsLootable &&
                            targetNpc.Health > 0 && targetNpc.IsValid &&
                            MovementManager.InMovement && InFight && Usefuls.InGame &&
                            (TraceLine.TraceLineGo(targetNpc.Position) || !CombatClass.InAggroRange(targetNpc))
@@ -123,7 +128,7 @@ namespace nManager.Wow.Helpers
                 }
 
                 // If target died after only 0.2sec of fight, let's find a new target.
-                if (targetNpc.IsDead || !targetNpc.IsValid)
+                if (targetNpc.IsDead || !targetNpc.IsValid || targetNpc.Attackable)
                 {
                     WoWUnit newTargetNpc = new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer()).GetBaseAddress);
                     if (newTargetNpc.IsValid && !ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != newTargetNpc.Guid)
@@ -135,7 +140,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
 
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.Attackable && targetNpc.IsValid && InFight &&
                        targetNpc.IsValid && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
