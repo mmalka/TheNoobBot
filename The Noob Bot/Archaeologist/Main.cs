@@ -102,10 +102,10 @@ public class Main : IProduct
     {
         try
         {
-            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level < 90 &&
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level < 110 &&
                 nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOffArchaeologist);
-            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 90 &&
+            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 110 &&
                      !nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOnArchaeologist);
             if (MountTask.GetMountCapacity() >= MountCapacity.Ground)

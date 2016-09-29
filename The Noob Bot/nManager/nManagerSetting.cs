@@ -214,7 +214,7 @@ namespace nManager
         public bool CanPullUnitsAlreadyInFight;
         public bool DontPullMonsters;
         public bool UseSpiritHealer;
-        public bool UseGroundMount = false;
+        public bool UseGroundMount = true;
         public string GroundMountName = "";
         public uint MinimumDistanceToUseMount = 15;
         public bool IgnoreFightIfMounted = true;
@@ -232,9 +232,9 @@ namespace nManager
         public bool BeastNinjaSkinning;
         public bool ActivateVeinsHarvesting = true;
         public bool ActivateHerbsHarvesting = true;
-        public float DontHarvestIfPlayerNearRadius = 10;
-        public int DontHarvestIfMoreThanXUnitInAggroRange = 3;
-        public float GatheringSearchRadius = 80;
+        public float DontHarvestIfPlayerNearRadius = 0;
+        public int DontHarvestIfMoreThanXUnitInAggroRange = 4;
+        public float GatheringSearchRadius = 70;
         public bool HarvestDuringLongDistanceMovements;
         public bool ActivateAutoSmelting;
         public bool ActivateAutoProspecting;
@@ -275,7 +275,7 @@ namespace nManager
         public bool StopTNBIfBagAreFull;
         public bool StopTNBIfHonorPointsLimitReached;
         public bool StopTNBIfPlayerHaveBeenTeleported;
-        public int StopTNBAfterXLevelup = 90;
+        public int StopTNBAfterXLevelup = 110;
         public int StopTNBIfReceivedAtMostXWhispers = 10;
         public int StopTNBAfterXStucks = 80;
         public int StopTNBAfterXMinutes = 1440;

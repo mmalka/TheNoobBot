@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using nManager.FiniteStateMachine;
+using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
@@ -30,12 +32,29 @@ namespace nManager.Wow.Bot.States
                 LootingTask.LootARangeId = 0;
         }
 
+        public static List<int> ForceLootCreatureList = new List<int>();
+
         public override bool NeedToRun
         {
             get
             {
                 if (!nManagerSetting.CurrentSetting.ActivateMonsterLooting)
-                    return false;
+                {
+                    // no need to load that list if we activated looting.
+                    if (ForceLootCreatureList.Count <= 0)
+                    {
+                        Logging.Write("Loading ForceLootCreatureList...");
+                        string[] forceLootCreatureList = Others.ReadFileAllLines(Application.StartupPath + "\\Data\\ForceLootCreatureList.txt");
+                        for (int i = 0; i <= forceLootCreatureList.Length - 1; i++)
+                        {
+                            int creatureId = Others.ToInt32(forceLootCreatureList[i]);
+                            if (creatureId > 0 && !ForceLootCreatureList.Contains(creatureId))
+                                ForceLootCreatureList.Add(creatureId);
+                        }
+                        if (ForceLootCreatureList.Count > 0)
+                            Logging.Write("Loaded " + ForceLootCreatureList.Count + " creatures to force loot even if loot is deactivated. (high reward)");
+                    }
+                }
 
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoading ||
@@ -59,6 +78,8 @@ namespace nManager.Wow.Bot.States
 
                 foreach (WoWUnit woWUnit in tUnit)
                 {
+                    if (!nManagerSetting.CurrentSetting.ActivateMonsterLooting && !ForceLootCreatureList.Contains(woWUnit.Entry))
+                        continue;
                     if (woWUnit.GetDistance2D <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                         !nManagerSetting.IsBlackListed(woWUnit.Guid) &&
                         woWUnit.IsValid &&
