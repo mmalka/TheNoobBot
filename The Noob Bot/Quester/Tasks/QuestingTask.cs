@@ -93,10 +93,11 @@ namespace Quester.Tasks
         public static bool IsWorldQuestAvailable(int questId)
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString("RemoveWorldQuestWatch(" + questId + ")");
-            // Make sure the quest is not watched already, else it would return false anyway.
-            Lua.LuaDoString(randomString + " = tostring(AddWorldQuestWatch(" + questId + "))");
+            Lua.LuaDoString(randomString + " = tostring(IsWorldQuestWatched(" + questId + "))");
+            if (Others.ToBoolean(Lua.GetLocalizedText(randomString)))
+                return true;
 
+            Lua.LuaDoString(randomString + " = tostring(AddWorldQuestWatch(" + questId + "))");
             return Others.ToBoolean(Lua.GetLocalizedText(randomString));
             // If the quest is "watchable", it means it is available.
         }
