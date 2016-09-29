@@ -242,6 +242,9 @@ public class MonkBrewmaster
     public readonly Spell TigerPalm = new Spell("Tiger Palm");
     public readonly Spell TouchofDeath = new Spell("Touch of Death");
 
+    public readonly Spell BlackoutStrike = new Spell("Blackout Strike");
+    public readonly Spell ExplodingKeg  = new Spell("Exploding Keg");
+
     #endregion
 
     #region Offensive Cooldown
@@ -586,72 +589,39 @@ public class MonkBrewmaster
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (ObjectManager.GetNumberAttackPlayer() > 2)
+            if (ExplodingKeg.IsSpellUsable && ExplodingKeg.IsHostileDistanceGood && ObjectManager.GetNumberAttackPlayer() > 3)
             {
-                if (MySettings.UseSpinningCraneKick && SpinningCraneKick.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 5 && !ObjectManager.Me.IsCast
-                    && ObjectManager.Target.GetDistance < 8 && SpinningCraneKick.IsSpellUsable)
-                {
-                    SpinningCraneKick.Cast();
-                    return;
-                }
-                if (MySettings.UseDizzyingHaze && DizzyingHaze.KnownSpell && !DizzyingHaze.TargetHaveBuff && DizzyingHaze.IsHostileDistanceGood && DizzyingHaze.IsSpellUsable)
-                {
-                    SpellManager.CastSpellByIDAndPosition(115180, ObjectManager.Target.Position);
-                    return;
-                }
-                if (MySettings.UseBreathofFire && BreathofFire.KnownSpell && !BreathofFire.TargetHaveBuff && ObjectManager.Target.GetDistance < 8 && BreathofFire.IsSpellUsable)
-                {
-                    BreathofFire.Cast();
-                    return;
-                }
-                if (MySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && ObjectManager.Target.GetDistance < 30 && RushingJadeWind.IsSpellUsable)
-                {
-                    RushingJadeWind.Cast();
-                    return;
-                }
+                ExplodingKeg.CastAtPosition(ObjectManager.Target.Position);
+            }
+            if (MySettings.UseKegSmash && KegSmash.KnownSpell && KegSmash.IsHostileDistanceGood && KegSmash.IsSpellUsable)
+            {
+                KegSmash.Cast();
                 return;
             }
-            if (MySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && ObjectManager.Target.GetDistance < 30 && !ObjectManager.Target.HaveBuff(115307) &&
-                RushingJadeWind.IsSpellUsable)
-            {
-                RushingJadeWind.Cast();
-                return;
-            }
-            if (MySettings.UseBlackoutKick && BlackoutKick.KnownSpell && BlackoutKick.IsHostileDistanceGood && BlackoutKick.IsSpellUsable &&
-                (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath) && (!ObjectManager.Me.HaveBuff(115307) || !StanceoftheSturdyOx.KnownSpell))
-            {
-                BlackoutKick.Cast();
-                return;
-            }
-            if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable &&
-                (!ObjectManager.Me.HaveBuff(121125) || !MySettings.UseTouchofDeath)
-                &&
-                (!ObjectManager.Me.HaveBuff(125359) ||
-                 (!ObjectManager.Me.HaveBuff(118636) && Guard.IsSpellUsable && ObjectManager.Me.HealthPercent <= MySettings.UseGuardAtPercentage)))
+            if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && ObjectManager.Me.Energy > 65 && TigerPalm.IsSpellUsable)
             {
                 TigerPalm.Cast();
                 return;
             }
-            if (MySettings.UseKegSmash && KegSmash.KnownSpell && KegSmash.IsHostileDistanceGood && ObjectManager.Me.Chi < 3 && KegSmash.IsSpellUsable)
+            if (BlackoutStrike.KnownSpell && BlackoutStrike.IsHostileDistanceGood && BlackoutStrike.IsSpellUsable)
             {
-                KegSmash.Cast();
+                BlackoutStrike.Cast();
+                return;
+            }
+            if (RushingJadeWind.KnownSpell && RushingJadeWind.IsHostileDistanceGood && RushingJadeWind.IsSpellUsable)
+            {
+                RushingJadeWind.Cast();
+                return;
+            }
+            if (BreathofFire.KnownSpell && BreathofFire.IsHostileDistanceGood && BreathofFire.IsSpellUsable && KegSmash.TargetHaveBuff)
+            {
+                BreathofFire.Cast();
                 return;
             }
             if (MySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.EnergyPercentage < 40 && ArcaneTorrent.IsSpellUsable
                 && ObjectManager.Me.HealthPercent <= MySettings.UseExpelHarmAtPercentage)
             {
                 ArcaneTorrent.Cast();
-                return;
-            }
-            if (MySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseExpelHarmAtPercentage && ObjectManager.Me.Chi < 4
-                && ExpelHarm.IsHostileDistanceGood && ExpelHarm.IsSpellUsable)
-            {
-                ExpelHarm.Cast();
-                return;
-            }
-            if (MySettings.UseJab && Jab.KnownSpell && ObjectManager.Me.Chi < 4 && Jab.IsHostileDistanceGood && Jab.IsSpellUsable)
-            {
-                Jab.Cast();
                 return;
             }
             if (MySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable && !ObjectManager.Me.HaveBuff(121125)
