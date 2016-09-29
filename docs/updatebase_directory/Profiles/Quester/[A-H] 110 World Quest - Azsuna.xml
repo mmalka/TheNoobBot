@@ -16,8 +16,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-		  <Count>100</Count> <!-- Percentage -->
-          <InternalIndex>1</InternalIndex>
+		  <Count>-1</Count>
+		  <!-- % are tricky, as there is only one objective, rush the % first -->
+		  <!-- If more objectives, do the % at the end, even if "InternalIndex = 1" -->
           <Entry>
             <int>107133</int>
             <int>107135</int>
@@ -66,6 +67,156 @@
               <Z>70.31509</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>A Tainted Vintage</Name> <!-- Azsuna Zone -->
+      <Id>42014</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+       <X>1329.563</X>
+       <Y>6924.769</Y>
+       <Z>105.9022</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count> 
+		  <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <InternalIndex>2</InternalIndex>
+          <Entry>
+            <int>90537</int> <!-- Vintner Liastrin -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1263.426</X>
+              <Y>6813.902</Y>
+              <Z>119.2625</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+		  <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <InternalIndex>4</InternalIndex>
+          <Entry>
+            <int>90547</int> <!-- Grand Vintner Valiana -->
+          </Entry>
+          <Hotspots> 
+            <Point>
+              <X>1416.632</X>
+              <Y>6988.286</Y>
+              <Z>91.31978</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <Count>3</Count>
+          <InternalIndex>5</InternalIndex>
+          <Entry>
+            <int>91041</int> <!-- Arcane-aged Wine -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1430.276</X>
+              <Y>6974.249</Y>
+              <Z>90.65679</Z>
+            </Point>
+            <Point> 
+              <X>1430.276</X>
+              <Y>6974.249</Y>
+              <Z>90.65679</Z>
+            </Point>
+            <Point> 
+              <X>1276.26</X>
+              <Y>6741.071</Y>
+              <Z>107.019</Z>
+            </Point>
+            <Point> 
+              <X>1440.058</X>
+              <Y>6680.179</Y>
+              <Z>84.95699</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <Count>6</Count>
+          <InternalIndex>3</InternalIndex>
+          <Entry>
+            <int>249341</int> <!-- Haunted Vines -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1292.406</X>
+              <Y>6744.468</Y>
+              <Z>106.3289</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Slab of Bacon</Name>
+      <Id>41259</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>733.1569</X>
+        <Y>7809.029</Y>
+        <Z>1.415371</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count> 
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>103784</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>705.7835</X>
+              <Y>7813.947</Y>
+              <Z>-0.07265702</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Felwort</Name>
+      <Id>41514</Id>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <AutoAccepted>false</AutoAccepted>
+      <QuestLevel>110</QuestLevel>
+      <WorldQuestLocation>
+        <X>535.6406</X>
+        <Y>5325.36</Y>
+        <Z>47.72783</Z>
+      </WorldQuestLocation>
+      <TurnIn>0</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>248002</int>
+          </Entry>
+          <Position>
+            <X>535.6406</X>
+            <Y>5325.36</Y>
+            <Z>47.72783</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>

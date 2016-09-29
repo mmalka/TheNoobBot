@@ -3,6 +3,71 @@
   <Questers />
   <Quests>
     <Quest>
+      <Name>The Fallen Ones</Name>
+      <Id>42089</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <AutoAccepted>false</AutoAccepted>
+      <WorldQuestLocation>
+        <X>1935.183</X>
+        <Y>5391.917</Y>
+        <Z>-30.33499</Z>
+      </WorldQuestLocation>
+      <TurnIn>0</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>105623</int>
+            <int>105625</int>
+            <int>105632</int>
+            <int>105685</int>
+            <int>105686</int>
+            <int>105728</int>
+            <int>105739</int>
+            <int>105752</int>
+            <int>105753</int>
+            <int>114793</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1993.438</X>
+              <Y>5427.603</Y>
+              <Z>-31.37625</Z>
+            </Point>
+            <Point>
+              <X>1799.784</X>
+              <Y>5446.542</Y>
+              <Z>-37.84419</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>105676</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1993.438</X>
+              <Y>5427.603</Y>
+              <Z>-31.37625</Z>
+            </Point>
+            <Point>
+              <X>1799.784</X>
+              <Y>5446.542</Y>
+              <Z>-37.84419</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Withered Wrangling: Meredil and Ambervale</Name>
       <Id>43807</Id>
       <QuestLevel>110</QuestLevel>
@@ -37,6 +102,43 @@
           </Hotspots>
           <UseSpellId>224553</UseSpellId>
           <Range>30</Range>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Iridescent Starlight Roses</Name>
+      <Id>41538</Id>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <AutoAccepted>false</AutoAccepted>
+      <QuestLevel>110</QuestLevel>
+      <WorldQuestLocation>
+        <X>1720.651</X>
+        <Y>5304.354</Y>
+        <Z>68.95671</Z>
+      </WorldQuestLocation>
+      <TurnIn>0</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>140991</CollectItemId>
+          <CollectCount>10</CollectCount>
+          <Entry>
+            <int>248031</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1720.651</X>
+              <Y>5304.354</Y>
+              <Z>68.95671</Z>
+            </Point>
+            <Point>
+              <X>1679.376</X>
+              <Y>5337.931</Y>
+              <Z>64.51446</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>

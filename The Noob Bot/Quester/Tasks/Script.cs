@@ -20,7 +20,11 @@ namespace Quester.Tasks
                 if (script[0] == '=')
                 {
                     script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\" + script.Replace("=", ""));
+                    // this is for loading a file that will be added inside a method.
                 }
+                // or 1-line script directly from the field.
+
+                // Example: "return (Usefuls.ContinentId == 1440);"
 
 
                 CodeDomProvider cc = new CSharpCodeProvider();
@@ -30,11 +34,16 @@ namespace Quester.Tasks
                 cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
                 cp.ReferencedAssemblies.Add("nManager.dll");
                 cp.ReferencedAssemblies.Add("Products\\Quester.dll");
-
                 string toCompile =
                     "using System; " + Environment.NewLine +
                     "using System.Windows.Forms; " + Environment.NewLine +
-                    "using nManager; " + Environment.NewLine +
+                    "using nManager.Wow.Class; " + Environment.NewLine +
+                    "using nManager.Helpful; " + Environment.NewLine +
+                    "using nManager.Wow; " + Environment.NewLine +
+                    "using nManager.Wow.Bot.Tasks; " + Environment.NewLine +
+                    "using nManager.Wow.Enums; " + Environment.NewLine +
+                    "using nManager.Wow.Helpers; " + Environment.NewLine +
+                    "using nManager.Wow.ObjectManager; " + Environment.NewLine +
                     "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
                     "{ " + Environment.NewLine +
                     "    public bool Script() " + Environment.NewLine +
@@ -45,7 +54,7 @@ namespace Quester.Tasks
                     "        } " + Environment.NewLine +
                     "        catch (Exception e) " + Environment.NewLine +
                     "        { " + Environment.NewLine +
-                    "            nManager.Helpfull.Logging.Write(\"Error :\\n\" + e.ToString()); " + Environment.NewLine +
+                    "            Logging.Write(\"Error :\\n\" + e.ToString()); " + Environment.NewLine +
                     "        } " + Environment.NewLine +
                     "        return true; " + Environment.NewLine +
                     "    } " + Environment.NewLine +
