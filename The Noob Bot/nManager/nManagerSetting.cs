@@ -211,7 +211,7 @@ namespace nManager
         public bool OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum = true;
         public bool BecomeApprenticeIfNeededByProduct = false;
         public bool BecomeApprenticeOfSecondarySkillsWhileQuesting = false;
-        public bool CanPullUnitsAlreadyInFight;
+        public bool CanPullUnitsAlreadyInFight = true;
         public bool DontPullMonsters;
         public bool UseSpiritHealer;
         public bool UseGroundMount = true;
@@ -228,7 +228,7 @@ namespace nManager
         public bool ActivateMonsterLooting = true;
         public bool ActivateLootStatistics = true;
         public bool ActivateChestLooting;
-        public bool ActivateBeastSkinning;
+        public bool ActivateBeastSkinning = true;
         public bool BeastNinjaSkinning;
         public bool ActivateVeinsHarvesting = true;
         public bool ActivateHerbsHarvesting = true;
