@@ -57,6 +57,16 @@ namespace Quester.Bot
                     QuestingTask.SelectQuest();
                     return;
                 }
+                if (QuestingTask.CurrentQuest.WorldQuestLocation != null && QuestingTask.CurrentQuest.WorldQuestLocation.IsValid && !Quest.GetLogQuestId().Contains(id))
+                {
+                    // World Quest that we don't have in our inventory
+                    if (!QuestingTask.IsWorldQuestAvailable(id))
+                    {
+                        // The WorldQuest is no longer available, therefor, it's complete.
+                        QuestingTask.SelectQuest();
+                        return;
+                    }
+                }
             }
             else
             {
