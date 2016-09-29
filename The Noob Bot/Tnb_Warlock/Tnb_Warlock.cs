@@ -232,11 +232,15 @@ public class WarlockAffliction
     #region Dots
 
     private readonly Spell Agony = new Spell("Agony");
+    private readonly Spell AgonyDot = new Spell(980);
     private readonly Spell Corruption = new Spell("Corruption");
+    private readonly Spell CorruptionDot = new Spell(146739);
     private readonly Spell PhantomSingularity = new Spell("Phantom Singularity");
     private readonly Spell SeedofCorruption = new Spell("Seed of Corruption");
     private readonly Spell SiphonLife = new Spell("Siphon Life");
+    private readonly Spell SiphonLifeDot = new Spell(63106);
     private readonly Spell UnstableAffliction = new Spell("Unstable Affliction");
+    private readonly Spell UnstableAfflictionDot = new Spell(30108);
     private bool StackUnstableAffliction = true;
 
     #endregion
@@ -584,7 +588,7 @@ public class WarlockAffliction
                 //Maintain Unstable Affliction when you have the Contagion Talent
                 if (MySettings.UseUnstableAffliction && UnstableAffliction.IsSpellUsable &&
                     !ObjectManager.Me.GetMove && UnstableAffliction.IsHostileDistanceGood &&
-                    ObjectManager.Target.AuraTimeLeft(UnstableAffliction.Id, true) <= 1000*8/3)
+                    ObjectManager.Target.AuraTimeLeft(UnstableAfflictionDot.Id, true) <= 1000*8/3)
                 {
                     UnstableAffliction.Cast();
                     return;
@@ -653,14 +657,14 @@ public class WarlockAffliction
             }
             //Maintain Agony
             if (MySettings.UseAgony && Agony.IsSpellUsable && Agony.IsHostileDistanceGood &&
-                ObjectManager.Target.AuraTimeLeft(Agony.Id, true) <= 1000*18/3)
+                ObjectManager.Target.AuraTimeLeft(AgonyDot.Id, true) <= 1000*18/3)
             {
                 Agony.Cast();
                 return;
             }
             //Maintain Corruption
             if (MySettings.UseCorruption && Corruption.IsSpellUsable && Corruption.IsHostileDistanceGood &&
-                ObjectManager.Target.AuraTimeLeft(Corruption.Id, true) <= 1000*14/3)
+                ObjectManager.Target.AuraTimeLeft(CorruptionDot.Id, true) <= 1000*14/3)
             {
                 Corruption.Cast();
                 return;
@@ -668,7 +672,7 @@ public class WarlockAffliction
             //Maintain Siphon Life
             if (MySettings.UseSiphonLife && SiphonLife.IsSpellUsable &&
                 !ObjectManager.Me.GetMove && SiphonLife.IsHostileDistanceGood &&
-                ObjectManager.Target.AuraTimeLeft(SiphonLife.Id, true) <= 1000*10/3)
+                ObjectManager.Target.AuraTimeLeft(SiphonLifeDot.Id, true) <= 1000*10/3)
             {
                 SiphonLife.Cast();
                 return;
@@ -683,7 +687,8 @@ public class WarlockAffliction
                     SoulEffigy.Cast();
 
                     Others.SafeSleep(1500);
-                    while (ObjectManager.Me.IsCast) Others.SafeSleep(20);
+                    while (ObjectManager.Me.IsCast)
+                        Others.SafeSleep(20);
 
                     //Testing: save SummonedSoulEffigy
                     SummonedSoulEffigy = ObjectManager.GetWoWUnitSummonedOrCreatedByMeAndFighting();
@@ -692,7 +697,7 @@ public class WarlockAffliction
                 //Maintain Agony
                 if (MySettings.UseAgony && Agony.IsSpellUsable &&
                     SoulEffigy.CreatedBySpellInRange((uint) Agony.MaxRangeHostile) &&
-                    SummonedSoulEffigy.AuraTimeLeft(Agony.Id, true) <= 1000*18/3)
+                    SummonedSoulEffigy.AuraTimeLeft(AgonyDot.Id, true) <= 1000*18/3)
                 {
                     Lua.RunMacroText("/target " + SoulEffigy.NameInGame);
                     Agony.Cast();
@@ -702,7 +707,7 @@ public class WarlockAffliction
                 //Maintain Corruption
                 if (MySettings.UseCorruption && Corruption.IsSpellUsable &&
                     SoulEffigy.CreatedBySpellInRange((uint) Corruption.MaxRangeHostile) &&
-                    SummonedSoulEffigy.AuraTimeLeft(Corruption.Id, true) <= 1000*14/3)
+                    SummonedSoulEffigy.AuraTimeLeft(CorruptionDot.Id, true) <= 1000*14/3)
                 {
                     Lua.RunMacroText("/target " + SoulEffigy.NameInGame);
                     Corruption.Cast();
@@ -712,7 +717,7 @@ public class WarlockAffliction
                 //Maintain Siphon Life
                 if (MySettings.UseSiphonLife && SiphonLife.IsSpellUsable && !ObjectManager.Me.GetMove &&
                     SoulEffigy.CreatedBySpellInRange((uint) SiphonLife.MaxRangeHostile) &&
-                    SummonedSoulEffigy.AuraTimeLeft(SiphonLife.Id, true) <= 1000*10/3)
+                    SummonedSoulEffigy.AuraTimeLeft(SiphonLifeDot.Id, true) <= 1000*10/3)
                 {
                     Lua.RunMacroText("/target " + SoulEffigy.NameInGame);
                     SiphonLife.Cast();
@@ -1701,16 +1706,17 @@ public class WarlockDestruction
 
     #endregion
 
-    #region Buffs
+    #region Dots
 
-    private readonly Spell DemonicPower = new Spell("Demonic Power");
-    private readonly Spell TormentedSouls = new Spell("Tormented Souls");
+    private readonly Spell ImmolateDot = new Spell(193541); //TESTING
 
     #endregion
 
-    #region Buff
+    #region Buffs
 
+    private readonly Spell DemonicPower = new Spell("Demonic Power");
     private readonly Spell EradicationBuff = new Spell(196414);
+    private readonly Spell TormentedSouls = new Spell("Tormented Souls");
 
     #endregion
 
@@ -2110,7 +2116,7 @@ public class WarlockDestruction
             //Maintain Immolate
             if (MySettings.UseImmolate && Immolate.IsSpellUsable &&
                 !ObjectManager.Me.GetMove && Immolate.IsHostileDistanceGood &&
-                ObjectManager.Target.AuraTimeLeft(Immolate.Id, true) <= 1000*21/3)
+                ObjectManager.Target.AuraTimeLeft(ImmolateDot.Id, true) <= 1000*21/3)
             {
                 Immolate.Cast();
                 return;
