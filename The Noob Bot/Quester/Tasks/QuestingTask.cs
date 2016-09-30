@@ -271,7 +271,7 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
                 questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox ||
-                questObjective.Objective == Objective.GarrisonHearthstone)
+                questObjective.Objective == Objective.GarrisonHearthstone || questObjective.Objective == Objective.UseActionButtonOnUnit)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -868,8 +868,14 @@ namespace Quester.Tasks
                         Spell t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)
                         {
-                            while (!t.IsSpellUsable)
+                            Timer cooldownTimer = new Timer(10000);
+                            while (!t.IsSpellUsable || cooldownTimer.IsReady)
                                 Thread.Sleep(Usefuls.Latency);
+                            if (cooldownTimer.IsReady)
+                            {
+                                Logging.Write("Spell (" + questObjective.UseSpellId + ") was not available after 10 seconds.");
+                                continue;
+                            }
                             t.Launch();
                             Thread.Sleep(questObjective.WaitMs);
                         }
@@ -1122,6 +1128,72 @@ namespace Quester.Tasks
                 Quest.GetSetIgnoreFight = false;
             }
 
+            // USE UseActionButtonOnUnit
+            if (questObjective.Objective == Objective.UseActionButtonOnUnit)
+            {
+                List<WoWUnit> allUnits = ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead);
+                List<WoWUnit> allProperUnits = new List<WoWUnit>();
+                foreach (WoWUnit unit in allUnits)
+                {
+                    if (!unit.HaveBuff((uint) questObjective.BuffId))
+                        allProperUnits.Add(unit);
+                }
+                WoWUnit wowUnit = ObjectManager.GetNearestWoWUnit(allProperUnits);
+
+                if (wowUnit.IsValid && MovementManager.InMovement)
+                {
+                    if (wowUnit.GetDistance <= questObjective.Range)
+                        MovementManager.StopMove();
+                }
+                if (wowUnit.IsValid && !MovementManager.InMovement)
+                {
+                    if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    {
+                        MountTask.Mount();
+                        MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
+                    }
+                    else
+                    {
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
+                        MountTask.DismountMount();
+                        Interact.InteractWith(wowUnit.GetBaseAddress);
+                        MovementManager.StopMove();
+                        Thread.Sleep(100);
+                        Logging.WriteDebug("Using ExtraActionButton1 on " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
+                        Lua.RunMacroText("/click ExtraActionButton2");
+                        Lua.RunMacroText("/click ExtraActionButton1");
+                        questObjective.IsObjectiveCompleted = true;
+                        Thread.Sleep(questObjective.WaitMs);
+                        questObjective.CurrentCount++; // This is not correct
+                        Quest.GetSetIgnoreFight = false;
+                    }
+                }
+                else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
+                {
+                    // Mounting Mount
+                    MountTask.Mount();
+                    // Need GoTo Zone:
+                    if (
+                        questObjective.PathHotspots[
+                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                ObjectManager.Me.Position)].DistanceTo(
+                                    ObjectManager.Me.Position) > 5)
+                    {
+                        MovementManager.Go(
+                            PathFinder.FindPath(
+                                questObjective.PathHotspots[
+                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                        ObjectManager.Me.Position)]));
+                    }
+                    else
+                    {
+                        // Start Move
+                        MovementManager.GoLoop(questObjective.PathHotspots);
+                    }
+                }
+            }
+
             // BUY ITEM
             if (questObjective.Objective == Objective.BuyItem)
             {
@@ -1320,6 +1392,7 @@ namespace Quester.Tasks
                 {
                     Position = CurrentQuest.WorldQuestLocation,
                     Name = "World Quest: " + CurrentQuest.Name,
+                    Entry = CurrentQuest.Id, // display QuestId in logs instead of 0 as there is no Giver.
                 };
                 MovementManager.FindTarget(ref npc, 30.0f);
                 // We don't except a baseAddress to be valid, we just wanna get there so the WorldQuest is activated.

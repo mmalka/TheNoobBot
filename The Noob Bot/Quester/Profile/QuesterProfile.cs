@@ -286,6 +286,7 @@ namespace Quester.Profile
         TurnInQuest,
         UseFlightPath,
         UseItemAOE,
+        UseActionButtonOnUnit,
         UseRuneForge,
         UseSpell,
         UseSpellAOE,
