@@ -1604,9 +1604,14 @@ namespace nManager.Wow.Helpers
                     return 0;
                 }
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
-                if (!patherResult)
+                if (!patherResult && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 300 || points.Count < 2))
+                {
+                    // Give a chance to the bot to come closer if it's far away, unless the path is really short or innexistant.
+                    // PathFinder cannot always generate very long path.
+                    Logging.Write("No path found for " + Target.Name + ", abort FindTarget.");
                     return 0;
-                if (maxDist > 0 && Helpful.Math.DistanceListPoint(points) > maxDist)
+                }
+                if (maxDist > 0 && Math.DistanceListPoint(points) > maxDist)
                     return 0;
                 if (Target.Guid == 0)
                     Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
