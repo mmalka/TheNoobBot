@@ -169,5 +169,13 @@ end
 itemName = GetItemInfo(129746);
 for i = 1, GetItemCount(itemName) do
      RunMacroText("/use " .. itemName);
+end  
+itemName = GetItemInfo(140222);
+for i = 1, GetItemCount(itemName) do
+     RunMacroText("/use " .. itemName);
+end  
+itemName = GetItemInfo(140226);
+for i = 1, GetItemCount(itemName) do
+     RunMacroText("/use " .. itemName);
 end 
  
