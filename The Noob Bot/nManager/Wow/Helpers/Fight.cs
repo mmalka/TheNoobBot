@@ -58,7 +58,6 @@ namespace nManager.Wow.Helpers
                 // If pos start is very different
                 if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                     return 0;
-
                 if (!targetNpc.Attackable)
                 {
                     nManagerSetting.AddBlackList(targetNpc.Guid, 20000); // blacklist 20 sec
@@ -279,6 +278,11 @@ namespace nManager.Wow.Helpers
                 // If pos start is far, we will Loop to it anyway.
                 if (targetNpc.Position.DistanceTo(positionStartTarget) > CombatClass.GetRange + 5f)
                     return 0;
+                if (!targetNpc.Attackable)
+                {
+                    nManagerSetting.AddBlackList(targetNpc.Guid, 20000); // blacklist 20 sec
+                    return 0;
+                }
                 if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                 {
                     List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer();

@@ -1424,9 +1424,12 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 var unitFlags = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
-                if (unitFlags.HasFlag(UnitFlags.Combat) && unitFlags.HasFlag(UnitFlags.Totem) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
+                if (unitFlags.HasFlag(UnitFlags.Totem) && unitFlags.HasFlag(UnitFlags.Combat) && !unitFlags.HasFlag(UnitFlags.PetInCombat) ||
+                    unitFlags.HasFlag(UnitFlags.Totem) && !unitFlags.HasFlag(UnitFlags.Combat) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
                 {
-                    Logging.WriteDebug("Unit: " + Name + " is detected evading, blacklist it for a short time.");
+                    // Totem + PetInCombat may be a normal Totem.
+                    // Totem and no combat => evading done, near home location.
+                    // Totem + Combat and no PetInCombat => evading started, still considered in combat for some time.
                     nManagerSetting.AddBlackList(Guid, 10*1000);
                     return true;
                 }
