@@ -49,6 +49,18 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
+    public enum UnitFlags3
+    {
+        None = 0,
+    }
+
+    [Flags]
+    public enum StateAnimID
+    {
+        None = 0,
+    }
+
+    [Flags]
     public enum UnitNPCFlags
     {
         None = 0,

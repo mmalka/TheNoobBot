@@ -377,6 +377,8 @@ namespace nManager.Helpful.Forms
                         "IsTrivial : " + ObjectManager.Target.IsTrivial + Environment.NewLine +
                         "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                         "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
+                        "UnitFlag3: " + ObjectManager.Target.GetDescriptor<UnitFlags3>(Descriptors.UnitFields.Flags3) + Environment.NewLine +
+                        "StateAnimID: " + ObjectManager.Target.GetDescriptor<StateAnimID>(Descriptors.UnitFields.StateAnimID) + Environment.NewLine +
                         "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags) + Environment.NewLine +
                         questStatusText +
                         "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
