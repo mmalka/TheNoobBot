@@ -26,7 +26,7 @@ namespace Quester.Tasks
 
                 if (script[0] == '=')
                 {
-                    script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\" + script.Replace("=", ""));
+                    script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\Scripts\\" + script.Replace("=", ""));
                     // this is for loading a file that will be added inside a method.
                 }
                 // or 1-line script directly from the field.

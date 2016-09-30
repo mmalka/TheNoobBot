@@ -8,17 +8,15 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
       <WorldQuestLocation>
         <X>1935.183</X>
         <Y>5391.917</Y>
         <Z>-30.33499</Z>
       </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
+          <InternalIndex>7</InternalIndex>
           <Count>10</Count>
           <Entry>
             <int>105623</int>
@@ -47,7 +45,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
+          <InternalIndex>8</InternalIndex>
           <Count>6</Count>
           <Entry>
             <int>105676</int>
@@ -73,20 +71,18 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
       <WorldQuestLocation>
         <X>1565.112</X>
         <Y>4713.143</Y>
         <Z>139.9307</Z>
       </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <InternalIndex>1</InternalIndex>
+          <Objective>UseActionButtonOnUnit</Objective>
+          <InternalIndex>4</InternalIndex>
           <Count>10</Count>
           <Entry>
-            <int>112801</int>
+            <int>98555</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -100,6 +96,7 @@
               <Z>129.7561</Z>
             </Point>
           </Hotspots>
+          <WaitMs>4000</WaitMs>
           <UseSpellId>224553</UseSpellId>
           <Range>30</Range>
         </QuestObjective>
@@ -108,25 +105,24 @@
     <Quest>
       <Name>Iridescent Starlight Roses</Name>
       <Id>41538</Id>
+      <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
-      <QuestLevel>110</QuestLevel>
       <WorldQuestLocation>
         <X>1720.651</X>
         <Y>5304.354</Y>
         <Z>68.95671</Z>
       </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>140991</CollectItemId>
-          <CollectCount>10</CollectCount>
           <Entry>
             <int>248031</int>
           </Entry>
+          <CollectItemId>140991</CollectItemId>
+          <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
               <X>1720.651</X>

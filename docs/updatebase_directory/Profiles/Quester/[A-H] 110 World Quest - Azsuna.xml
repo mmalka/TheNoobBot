@@ -55,8 +55,8 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-		  <Count>1</Count>
           <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>90505</int>
           </Entry>
@@ -71,24 +71,23 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>A Tainted Vintage</Name> <!-- Azsuna Zone -->
+      <Name>A Tainted Vintage</Name>
       <Id>42014</Id>
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
       <WorldQuestLocation>
-       <X>1329.563</X>
-       <Y>6924.769</Y>
-       <Z>105.9022</Z>
+        <X>1329.563</X>
+        <Y>6924.769</Y>
+        <Z>105.9022</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>1</Count> 
-		  <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
           <Entry>
-            <int>90537</int> <!-- Vintner Liastrin -->
+            <int>90537</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -97,29 +96,30 @@
               <Z>119.2625</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>1</Count>
-		  <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>4</InternalIndex>
+          <Count>1</Count>
           <Entry>
-            <int>90547</int> <!-- Grand Vintner Valiana -->
+            <int>90547</int>
           </Entry>
-          <Hotspots> 
+          <Hotspots>
             <Point>
               <X>1416.632</X>
               <Y>6988.286</Y>
               <Z>91.31978</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
-          <Count>3</Count>
           <InternalIndex>5</InternalIndex>
+          <Count>3</Count>
           <Entry>
-            <int>91041</int> <!-- Arcane-aged Wine -->
+            <int>91041</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -127,17 +127,17 @@
               <Y>6974.249</Y>
               <Z>90.65679</Z>
             </Point>
-            <Point> 
+            <Point>
               <X>1430.276</X>
               <Y>6974.249</Y>
               <Z>90.65679</Z>
             </Point>
-            <Point> 
+            <Point>
               <X>1276.26</X>
               <Y>6741.071</Y>
               <Z>107.019</Z>
             </Point>
-            <Point> 
+            <Point>
               <X>1440.058</X>
               <Y>6680.179</Y>
               <Z>84.95699</Z>
@@ -146,10 +146,10 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <Count>6</Count>
           <InternalIndex>3</InternalIndex>
+          <Count>6</Count>
           <Entry>
-            <int>249341</int> <!-- Haunted Vines -->
+            <int>249341</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -175,9 +175,8 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <Count>1</Count> 
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>103784</int>
           </Entry>
@@ -188,27 +187,27 @@
               <Z>-0.07265702</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Felwort</Name>
       <Id>41514</Id>
+      <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
-      <QuestLevel>110</QuestLevel>
       <WorldQuestLocation>
         <X>535.6406</X>
         <Y>5325.36</Y>
         <Z>47.72783</Z>
       </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <Count>1</Count>
           <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>248002</int>
           </Entry>
@@ -217,6 +216,137 @@
             <Y>5325.36</Y>
             <Z>47.72783</Z>
           </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Language of the Lost</Name>
+      <Id>42101</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-576.3255</X>
+        <Y>5988.22</Y>
+        <Z>29.26938</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>249513</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-540.0497</X>
+              <Y>5971.074</Y>
+              <Z>30.55135</Z>
+            </Point>
+            <Point>
+              <X>-549.6499</X>
+              <Y>5866.304</Y>
+              <Z>29.29023</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>89850</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-635.5201</X>
+              <Y>5896.452</Y>
+              <Z>59.47859</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>DANGER: Stormfeather</Name>
+      <Id>43063</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-732.9374</X>
+        <Y>6515.701</Y>
+        <Z>111.8184</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>=IsTankScript.cs</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>109594</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-732.9374</X>
+              <Y>6515.701</Y>
+              <Z>111.8184</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Not On My Watch</Name>
+      <Id>42275</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-600.0396</X>
+        <Y>7561.979</Y>
+        <Z>105.5004</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>250375</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-539.7985</X>
+              <Y>7675.212</Y>
+              <Z>140.4233</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>107363</int>
+            <int>107368</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-647.2634</X>
+              <Y>7601.998</Y>
+              <Z>109.5427</Z>
+            </Point>
+            <Point>
+              <X>-558.3825</X>
+              <Y>7718.653</Y>
+              <Z>140.4649</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>

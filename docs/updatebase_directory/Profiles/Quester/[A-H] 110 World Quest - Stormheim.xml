@@ -5,25 +5,24 @@
     <Quest>
       <Name>Brambly Fjarnskaggl</Name>
       <Id>41534</Id>
+      <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
-      <QuestLevel>110</QuestLevel>
       <WorldQuestLocation>
         <X>3537.305</X>
         <Y>2460.535</Y>
         <Z>269.7839</Z>
       </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>140959</CollectItemId>
-          <CollectCount>10</CollectCount>
           <Entry>
             <int>248027</int>
           </Entry>
+          <CollectItemId>140959</CollectItemId>
+          <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
               <X>3537.305</X>

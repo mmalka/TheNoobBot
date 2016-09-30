@@ -5,21 +5,20 @@
     <Quest>
       <Name>Dreamleaf Cluster</Name>
       <Id>41291</Id>
+      <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <AutoAccepted>false</AutoAccepted>
-      <QuestLevel>110</QuestLevel>
       <WorldQuestLocation>
         <X>2135.439</X>
         <Y>6982.044</Y>
         <Z>108.9087</Z>
       </WorldQuestLocation>
-      <TurnIn>0</TurnIn>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-		  <Count>1</Count>
-		  <InternalIndex>1</InternalIndex>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
           <Entry>
             <int>103844</int>
           </Entry>
@@ -28,6 +27,40 @@
             <Y>6982.044</Y>
             <Z>108.9087</Z>
           </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Green Horror</Name>
+      <Id>42087</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3068.045</X>
+        <Y>5614.192</Y>
+        <Z>373.6935</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>-1</Count>
+          <Entry>
+            <int>105823</int>
+            <int>105826</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3086.905</X>
+              <Y>5584.042</Y>
+              <Z>378.6118</Z>
+            </Point>
+            <Point>
+              <X>3086.213</X>
+              <Y>5644.232</Y>
+              <Z>365.6297</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>
