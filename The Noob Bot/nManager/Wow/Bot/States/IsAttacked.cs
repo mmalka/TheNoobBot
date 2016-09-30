@@ -30,7 +30,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (!Usefuls.InGame || Usefuls.IsLoading || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid)
                     continue;
-                if((ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) || !Products.Products.IsStarted)
+                if ((ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) || !Products.Products.IsStarted)
                     continue;
                 if (Fight.InFight)
                     continue;
@@ -160,6 +160,11 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(150);
                 }
                 Fight.StopFight();
+            }
+            if (_unit.IsEvading)
+            {
+                Logging.WriteDebug("Unit: " + _unit.Name + " is detected evading, blacklist it for a short time.");
+                nManagerSetting.AddBlackList(unkillableMob, 10*1000);
             }
         }
     }

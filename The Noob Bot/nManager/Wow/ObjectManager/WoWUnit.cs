@@ -1419,6 +1419,17 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsEvading
+        {
+            get
+            {
+                var unitFlags = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
+                if (unitFlags.HasFlag(UnitFlags.Combat) && unitFlags.HasFlag(UnitFlags.Totem) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
+                    return true;
+                return false;
+            }
+        }
+
         public UnitQuestGiverStatus UnitQuestGiverStatus
         {
             get { return (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.Quests.QuestGiverStatus); }
