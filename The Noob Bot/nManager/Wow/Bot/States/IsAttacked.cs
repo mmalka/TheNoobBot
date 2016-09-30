@@ -101,9 +101,9 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.InCombatBlizzard)
                 {
                     _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetHostileUnitNearPlayer());
-                    if (_unit != null & _unit.IsValid && _unit.GetDistance < 20)
+                    if (_unit != null && _unit.IsValid && _unit.Attackable && _unit.GetDistance < 20)
                         return true;
-                    // we are in combat blizzard and one hostile unit is fightning nearby, let's kill him.
+                    // we are in combat blizzard and one hostile unit is fighting nearby, let's kill him.
                     // if it's evading etc, it will get blacklisted properly later anyway.
                     // this should fix bot being attacked from AoE by monster that does not target him.
                 }
@@ -160,11 +160,6 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(150);
                 }
                 Fight.StopFight();
-            }
-            if (_unit.IsEvading)
-            {
-                Logging.WriteDebug("Unit: " + _unit.Name + " is detected evading, blacklist it for a short time.");
-                nManagerSetting.AddBlackList(unkillableMob, 10*1000);
             }
         }
     }

@@ -58,6 +58,13 @@ namespace nManager.Wow.Helpers
                 // If pos start is very different
                 if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                     return 0;
+
+                if (!targetNpc.Attackable)
+                {
+                    nManagerSetting.AddBlackList(targetNpc.Guid, 20000); // blacklist 20 sec
+                    // Some become unattackable instead of being dead.
+                    // Some will evade.
+                }
                 if (Usefuls.IsInBattleground && !Battleground.IsFinishBattleground())
                 {
                     List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetHostileUnitAttackingPlayer();
@@ -252,6 +259,12 @@ namespace nManager.Wow.Helpers
                     targetNpc = new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
+                if (!targetNpc.Attackable)
+                {
+                    nManagerSetting.AddBlackList(targetNpc.Guid, 20000); // blacklist 20 sec
+                    return 0;
+                }
+
                 InFight = true;
 
                 if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -297,7 +310,7 @@ namespace nManager.Wow.Helpers
                         MovementManager.Face(targetNpc, false);
                 }
 
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight)
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight && targetNpc.Attackable)
                 {
                     // check for IsTransport if we are specifically inside a taxi, but allow fighting in ships etc.
                     // I guess transport Id become the creature Id in that case ? So check if transport id is actually a unit and not a gameobject or a continentid ? 

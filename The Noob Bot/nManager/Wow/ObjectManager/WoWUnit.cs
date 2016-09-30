@@ -1425,7 +1425,11 @@ namespace nManager.Wow.ObjectManager
             {
                 var unitFlags = GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags);
                 if (unitFlags.HasFlag(UnitFlags.Combat) && unitFlags.HasFlag(UnitFlags.Totem) && !unitFlags.HasFlag(UnitFlags.PetInCombat))
+                {
+                    Logging.WriteDebug("Unit: " + Name + " is detected evading, blacklist it for a short time.");
+                    nManagerSetting.AddBlackList(Guid, 10*1000);
                     return true;
+                }
                 return false;
             }
         }
@@ -2323,6 +2327,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    if (IsEvading)
+                        return false;
                     return ((GetDescriptor<UInt32>(Descriptors.UnitFields.Flags) & 0x10382) == 0) &&
                            (UnitRelation.GetReaction(Faction) < Reaction.Neutral ||
                             (UnitRelation.GetReaction(Faction) == Reaction.Neutral && (GetDescriptor<UInt32>(Descriptors.UnitFields.NpcFlags) == 0 || Guid == ObjectManager.Me.Target && CanAttackTargetLUA)));
