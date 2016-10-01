@@ -25,8 +25,8 @@ namespace nManager.Wow.Helpers
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
         private static BigInteger _forceBigInteger = 1000000000; // Force loading System.Numerics assembly when not running in VS.
-        private const float BASE_MELEERANGE_OFFSET = 1.30f;
-        private const float MIN_ATTACK_DISTANCE = 5.0f;
+        private const float BASE_MELEERANGE_OFFSET = 1.33f;
+        private const float MIN_ATTACK_DISTANCE = 4f;
 
         private static bool isMeleeClass
         {
@@ -120,7 +120,7 @@ namespace nManager.Wow.Helpers
                     {
                         if (_instanceFromOtherAssembly.AggroRange < _instanceFromOtherAssembly.Range)
                             return _instanceFromOtherAssembly.Range;
-                        return _instanceFromOtherAssembly.AggroRange < 5.0f ? 5.0f : _instanceFromOtherAssembly.AggroRange;
+                        return _instanceFromOtherAssembly.AggroRange < 1.5f ? 1.5f : _instanceFromOtherAssembly.AggroRange;
                     }
                     return 1.5f;
                 }

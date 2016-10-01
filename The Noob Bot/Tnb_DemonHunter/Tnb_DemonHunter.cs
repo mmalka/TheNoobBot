@@ -254,6 +254,7 @@ public class DemonHunterHavoc
     public DemonHunterHavoc()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = null;
         MySettings = DemonHunterHavocSettings.GetSettings();
         Main.DumpCurrentSettings<DemonHunterHavocSettings>(MySettings);
@@ -825,6 +826,7 @@ public class DemonHunterVengeance
     public DemonHunterVengeance()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = null;
         MySettings = DemonHunterVengeanceSettings.GetSettings();
         Main.DumpCurrentSettings<DemonHunterVengeanceSettings>(MySettings);

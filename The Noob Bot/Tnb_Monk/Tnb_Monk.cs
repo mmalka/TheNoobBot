@@ -269,6 +269,7 @@ public class MonkBrewmaster
     public MonkBrewmaster()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalAggroRange = 25.0f;
         Main.InternalLightHealingSpell = Effuse;
         MySettings = MonkBrewmasterSettings.GetSettings();
@@ -821,6 +822,7 @@ public class MonkWindwalker
     public MonkWindwalker()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = Effuse;
         MySettings = MonkWindwalkerSettings.GetSettings();
         Main.DumpCurrentSettings<MonkWindwalkerSettings>(MySettings);

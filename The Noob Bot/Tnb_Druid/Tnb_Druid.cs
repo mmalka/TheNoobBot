@@ -937,6 +937,7 @@ public class DruidFeral
     public DruidFeral()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach; // 1.5
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = HealingTouch;
         MySettings = DruidFeralSettings.GetSettings();
         Main.DumpCurrentSettings<DruidFeralSettings>(MySettings);
@@ -2312,6 +2313,7 @@ public class DruidGuardian
     public DruidGuardian()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = HealingTouch;
         MySettings = DruidGuardianSettings.GetSettings();
         Main.DumpCurrentSettings<DruidGuardianSettings>(MySettings);

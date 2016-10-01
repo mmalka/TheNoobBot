@@ -649,6 +649,7 @@ public class PaladinProtection
     public PaladinProtection()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = FlashOfLight;
         MySettings = PaladinProtectionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinProtectionSettings>(MySettings);
@@ -1136,6 +1137,7 @@ public class PaladinRetribution
     public PaladinRetribution()
     {
         Main.InternalRange = ObjectManager.Me.GetCombatReach;
+        Main.InternalAggroRange = Main.InternalRange;
         Main.InternalLightHealingSpell = FlashOfLight;
         MySettings = PaladinRetributionSettings.GetSettings();
         Main.DumpCurrentSettings<PaladinRetributionSettings>(MySettings);
