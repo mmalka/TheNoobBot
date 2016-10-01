@@ -22,6 +22,7 @@ namespace nManager.Wow.ObjectManager
         private static List<WoWPlayer> _playerList;
         private static List<WoWUnit> _unitList;
         private static List<WoWUnit> _unitList60Yards;
+        private static List<WoWDynamicObject> _dynamicObjectList;
         private static List<WoWGameObject> _gameobjectList;
         public static List<UInt128> BlackListMobAttack = new List<UInt128>();
 
@@ -130,6 +131,7 @@ namespace nManager.Wow.ObjectManager
                     _objectList = new List<WoWObject>();
                     _unitList = new List<WoWUnit>();
                     _unitList60Yards = new List<WoWUnit>();
+                    _dynamicObjectList = new List<WoWDynamicObject>();
                     _playerList = new List<WoWPlayer>();
                     _gameobjectList = new List<WoWGameObject>();
                     foreach (var o in ObjectDictionary)
@@ -149,6 +151,10 @@ namespace nManager.Wow.ObjectManager
                                     break;
                                 case WoWObjectType.GameObject:
                                     _gameobjectList.Add(new WoWGameObject(o.Value.GetBaseAddress));
+                                    break;
+                                case WoWObjectType.DynamicObject:
+                                    _dynamicObjectList.Add(new WoWDynamicObject(o.Value.GetBaseAddress));
+                                    Logging.Write("Added: " + new WoWDynamicObject(o.Value.GetBaseAddress));
                                     break;
                                 default:
                                     _objectList.Add(o.Value);
@@ -227,7 +233,7 @@ namespace nManager.Wow.ObjectManager
                                     obj = new WoWGameObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.DynamicObject:
-                                    obj = new WoWGameObject((uint) currentObject);
+                                    obj = new WoWDynamicObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.Corpse:
                                     obj = new WoWCorpse((uint) currentObject);
@@ -455,6 +461,20 @@ namespace nManager.Wow.ObjectManager
             {
                 Logging.WriteError("GetObjectWoWGameObject(): " + e);
                 return new List<WoWGameObject>();
+            }
+        }
+
+        public static List<WoWDynamicObject> GetObjectWoWDynamicObject()
+        {
+            try
+            {
+                lock (Locker)
+                    return _dynamicObjectList.ToList();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWDynamicObject(): " + e);
+                return new List<WoWDynamicObject>();
             }
         }
 
