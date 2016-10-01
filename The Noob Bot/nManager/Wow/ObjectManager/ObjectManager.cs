@@ -23,7 +23,10 @@ namespace nManager.Wow.ObjectManager
         private static List<WoWUnit> _unitList;
         private static List<WoWUnit> _unitList60Yards;
         private static List<WoWDynamicObject> _dynamicObjectList;
+        private static List<WoWAreaTrigger> _areaTriggerList;
         private static List<WoWGameObject> _gameobjectList;
+
+        private static List<uint> typeSeen = new List<uint>();
         public static List<UInt128> BlackListMobAttack = new List<UInt128>();
 
         static ObjectManager()
@@ -132,12 +135,18 @@ namespace nManager.Wow.ObjectManager
                     _unitList = new List<WoWUnit>();
                     _unitList60Yards = new List<WoWUnit>();
                     _dynamicObjectList = new List<WoWDynamicObject>();
+                    _areaTriggerList = new List<WoWAreaTrigger>();
                     _playerList = new List<WoWPlayer>();
                     _gameobjectList = new List<WoWGameObject>();
                     foreach (var o in ObjectDictionary)
                     {
                         if (o.Value.IsValid)
                         {
+                            /*if (!typeSeen.Contains((uint) o.Value.Type))
+                            {
+                                Logging.Write("Type seen: " + (uint) o.Value.Type);
+                                typeSeen.Add((uint) o.Value.Type);
+                            }*/
                             switch (o.Value.Type)
                             {
                                 case WoWObjectType.Unit:
@@ -153,8 +162,10 @@ namespace nManager.Wow.ObjectManager
                                     _gameobjectList.Add(new WoWGameObject(o.Value.GetBaseAddress));
                                     break;
                                 case WoWObjectType.DynamicObject:
-                                    _dynamicObjectList.Add(new WoWDynamicObject(o.Value.GetBaseAddress));
-                                    Logging.Write("Added: " + new WoWDynamicObject(o.Value.GetBaseAddress));
+                                    //_dynamicObjectList.Add(new WoWDynamicObject(o.Value.GetBaseAddress));
+                                    break;
+                                case WoWObjectType.AreaTrigger:
+                                    //_areaTriggerList.Add(new WoWAreaTrigger(o.Value.GetBaseAddress));
                                     break;
                                 default:
                                     _objectList.Add(o.Value);
@@ -238,10 +249,12 @@ namespace nManager.Wow.ObjectManager
                                 case WoWObjectType.Corpse:
                                     obj = new WoWCorpse((uint) currentObject);
                                     break;
+                                case WoWObjectType.AreaTrigger:
+                                    //obj = new WoWAreaTrigger((uint)currentObject);
+                                    break;
                                     // These two aren't used in most bots, as they're fairly pointless.
                                     // They are AI and area triggers for NPCs handled by the client itself.
                                 case WoWObjectType.AiGroup:
-                                case WoWObjectType.AreaTrigger:
                                     break;
                                     /*default:
                                     Logging.Write("GUID: " + objGuid);
@@ -475,6 +488,20 @@ namespace nManager.Wow.ObjectManager
             {
                 Logging.WriteError("GetObjectWoWDynamicObject(): " + e);
                 return new List<WoWDynamicObject>();
+            }
+        }
+
+        public static List<WoWAreaTrigger> GetObjectWoWAreaTrigger()
+        {
+            try
+            {
+                lock (Locker)
+                    return _areaTriggerList.ToList();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWAreaTrigger(): " + e);
+                return new List<WoWAreaTrigger>();
             }
         }
 

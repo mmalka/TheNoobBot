@@ -340,8 +340,10 @@
     <Compile Include="Wow\MemoryClass\Usefuls.cs" />
     <Compile Include="Wow\ObjectManager\ObjectManager.cs" />
     <Compile Include="Wow\ObjectManager\Pulsator.cs" />
+    <Compile Include="Wow\ObjectManager\WoWAreaTrigger.cs" />
     <Compile Include="Wow\ObjectManager\WoWContainer.cs" />
     <Compile Include="Wow\ObjectManager\WoWCorpse.cs" />
+    <Compile Include="Wow\ObjectManager\WoWDynamicObject.cs" />
     <Compile Include="Wow\ObjectManager\WoWGameObject.cs" />
     <Compile Include="Wow\ObjectManager\WoWItem.cs" />
     <Compile Include="Wow\ObjectManager\WoWObject.cs" />
