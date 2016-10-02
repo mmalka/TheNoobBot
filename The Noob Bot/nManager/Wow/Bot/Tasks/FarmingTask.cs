@@ -297,8 +297,11 @@ namespace nManager.Wow.Bot.Tasks
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             if (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())))
-                                MountTask.DismountMount();
-                            return;
+                            {
+                                MountTask.DismountMount(); // If we don't have druid mount or Sky Golem, dismount and fight.
+                                return;
+                            }
+                            // We are druid or using sky golem, let's try to loot
                         }
                         _wasLooted = false;
                         CountThisLoot = true;
@@ -313,16 +316,21 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             Thread.Sleep(150);
                         }
-                        if (ObjectManager.ObjectManager.Me.InCombat)
+                        if (ObjectManager.ObjectManager.Me.InCombat && (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))))
                         {
                             CountThisLoot = false;
                             return;
                         }
                         Thread.Sleep(100 + Usefuls.Latency);
-                        if (ObjectManager.ObjectManager.Me.InCombat)
+                        if (ObjectManager.ObjectManager.Me.InCombat && (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))))
                         {
                             CountThisLoot = false;
                             return;
+                        }
+                        if (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
+                        {
+                            if (ObjectManager.ObjectManager.Me.HealthPercent <= 30)
+                                MountTask.DismountMount(); // We are about to die with Sky Golem / Druid form, let's try to fight back.
                         }
                         if (CountThisLoot)
                             nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
