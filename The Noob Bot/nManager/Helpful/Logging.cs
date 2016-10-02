@@ -216,6 +216,22 @@ namespace nManager.Helpful
                 {
                     if (LogQueue.Count > 0)
                     {
+                        if (_logFileName != "")
+                        {
+                            try
+                            {
+                                if (new FileInfo(Application.StartupPath + "\\Logs\\" + _logFileName).Length > 5000000)
+                                {
+                                    Write("The file " + _logFileName + " is over 5MB, a new file have been created.");
+                                    NewFile(); // new file every 5MB.
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                NewFile();
+                                WriteError("private static void AddLog(): " + e);
+                            }
+                        }
                         if (_logFileName == "")
                             NewFile();
 
