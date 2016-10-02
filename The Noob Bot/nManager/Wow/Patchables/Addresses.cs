@@ -299,10 +299,10 @@
         /// </summary>
         public enum ActivateSettings
         {
-            AutoInteract_Activate_Pointer = 0xE5C920, // CGUnit_C__CanAutoInteract
-            AutoDismount_Activate_Pointer = 0xE5C928, // Cvars+b7
-            AutoLoot_Activate_Pointer = 0xE5C940, // CGGameUI__IsAutoLooting
-            AutoSelfCast_Activate_Pointer = 0xE5C94C, // offset aAutoselfcast ; "autoSelfCast"
+            AutoInteract_Activate_Pointer = 0xE5CB20, // CGUnit_C__CanAutoInteract
+            AutoDismount_Activate_Pointer = 0xE5CB28, // Cvars+b7
+            AutoLoot_Activate_Pointer = 0xE5CB40, // CGGameUI__IsAutoLooting
+            AutoSelfCast_Activate_Pointer = 0xE5CB4C, // offset aAutoselfcast ; "autoSelfCast"
             Activate_Offset = 0x34,
         }
 
