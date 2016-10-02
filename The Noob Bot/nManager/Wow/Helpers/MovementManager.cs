@@ -269,6 +269,8 @@ namespace nManager.Wow.Helpers
             {
                 lock (_points)
                 {
+                    if (_points.Count <= 0)
+                        return;
                     if (firstIdPoint < 0 || firstIdPoint > _points.Count - 1)
                         firstIdPoint = 0; // Let's make sure we got this right.
                     if (_movement && _points.Count > 0)
@@ -331,8 +333,9 @@ namespace nManager.Wow.Helpers
                         {
                             try
                             {
-                                if (_points[idPoint].Type.ToLower() == "swimming")
+                                if (_points.Count <= 0 || _points.Count - 1 < idPoint || _points[idPoint].Type.ToLower() == "swimming")
                                 {
+                                    end = true;
                                     return;
                                 }
                                 // GoTo next Point
@@ -363,6 +366,7 @@ namespace nManager.Wow.Helpers
 
                                         StopMoveTo();
                                         _points = PathFinder.FindPath(_pointsOrigine[_pointsOrigine.Count - 1]);
+                                        // Can fail path and create out of range exception.
                                         idPoint = 0;
                                     }
                                     catch (Exception exception)
@@ -370,6 +374,11 @@ namespace nManager.Wow.Helpers
                                         Logging.WriteError("ThreadMovementManager()#1: " + exception);
                                     }
                                     _lastMoveToResult = true;
+                                }
+
+                                if (_points.Count <= 0 || _points.Count - 1 < idPoint)
+                                {
+                                    return;
                                 }
 
                                 // Move to point
