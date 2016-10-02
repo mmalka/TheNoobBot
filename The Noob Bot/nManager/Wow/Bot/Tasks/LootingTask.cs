@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Math = nManager.Helpful.Math;
@@ -20,6 +21,11 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
+                if (FarmingTask.FirstRun)
+                {
+                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots(), false, true);
+                    FarmingTask.FirstRun = false;
+                }
                 woWUnits = woWUnits.OrderBy(x => x.GetDistance);
                 foreach (WoWUnit wowUnit in woWUnits)
                 {
@@ -46,6 +52,7 @@ namespace nManager.Wow.Bot.Tasks
                                 Logging.Write("Skin " + wowUnit.Name);
                             else
                                 continue;
+                            FarmingTask.CurUnit = wowUnit;
 
                             // We have no item to loot at range, then go to mob
                             if (!CombatClass.InMeleeRange(wowUnit) && (!nManagerSetting.CurrentSetting.UseLootARange || LootARangeId == 0 ||
@@ -92,6 +99,7 @@ namespace nManager.Wow.Bot.Tasks
                                     // Since these items have a CD of only 3 sec, it's worth waiting for the CD to recover
                                     while (ItemsManager.IsItemOnCooldown(LootARangeId))
                                         Thread.Sleep(250);
+                                    FarmingTask.CountThisLoot = true;
                                     ItemsManager.UseToy(LootARangeId);
                                     Thread.Sleep(1000 + Usefuls.Latency);
                                     while (ObjectManager.ObjectManager.Me.IsCast)
@@ -105,6 +113,7 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                                 else
                                 {
+                                    FarmingTask.CountThisLoot = true;
                                     Interact.InteractWith(wowUnit.GetBaseAddress);
                                     if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                     {

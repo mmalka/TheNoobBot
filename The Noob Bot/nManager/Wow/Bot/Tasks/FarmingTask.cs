@@ -16,16 +16,16 @@ namespace nManager.Wow.Bot.Tasks
         private static UInt128 _lastnode;
         private static bool _wasLooted;
         public static bool CountThisLoot;
-        private static bool _firstRun = true;
+        public static bool FirstRun = true;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {
             try
             {
-                if (_firstRun)
+                if (FirstRun)
                 {
                     EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots(), false, true);
-                    _firstRun = false;
+                    FirstRun = false;
                 }
                 if (Usefuls.IsFlying)
                     Fly(nodes);
@@ -140,7 +140,7 @@ namespace nManager.Wow.Bot.Tasks
                             if (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                             {
                                 if (!(SpellManager.HasSpell(169606) && Usefuls.ContinentId == 1116 || Usefuls.ContinentId == 1464)) // Passive Silver Dollar Club given by Stables.
-                                    Usefuls.DisMount();
+                                    MountTask.DismountMount();
                             }
                             else if (node.IsHerb)
                             {
@@ -165,7 +165,7 @@ namespace nManager.Wow.Bot.Tasks
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
-                                Usefuls.DisMount();
+                                MountTask.DismountMount();
                                 return;
                             }
                             _wasLooted = false;
@@ -185,7 +185,7 @@ namespace nManager.Wow.Bot.Tasks
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
-                                Usefuls.DisMount();
+                                MountTask.DismountMount();
                                 CountThisLoot = false;
                                 return;
                             }
@@ -194,7 +194,7 @@ namespace nManager.Wow.Bot.Tasks
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
-                                Usefuls.DisMount();
+                                MountTask.DismountMount();
                                 CountThisLoot = false;
                                 return;
                             }
@@ -227,6 +227,7 @@ namespace nManager.Wow.Bot.Tasks
         }
 
         private static WoWGameObject _curNode;
+        public static WoWUnit CurUnit;
 
         private static void Ground(IEnumerable<WoWGameObject> nodes)
         {
@@ -327,21 +328,22 @@ namespace nManager.Wow.Bot.Tasks
                             CountThisLoot = false;
                             return;
                         }
-                        if (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                        {
-                            if (ObjectManager.ObjectManager.Me.HealthPercent <= 30)
-                                MountTask.DismountMount(); // We are about to die with Sky Golem / Druid form, let's try to fight back.
-                        }
-                        if (CountThisLoot)
-                            nManagerSetting.AddBlackList(inode.Guid, 1000*20); // 20 sec
+                        /*if (CountThisLoot)
+                            nManagerSetting.AddBlackList(inode.Guid, 1000*20); */
+                        // this was for some cases where the node stays (draenor garrison trees support) => not the priority anymore and causes troubles when we get cancelled.
+
                         Thread.Sleep(1000);
                         if (!_wasLooted)
+                        {
                             Logging.Write("Farm failed");
+                            if (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
+                                MountTask.DismountMount(); // we got cancelled during farm, let's fight this out for good..
+                        }
                         return;
                     }
                     MovementManager.StopMove();
                     nManagerSetting.AddBlackList(inode.Guid);
-                    Logging.Write("Farm failed");
+                    Logging.Write("Current node not valid, blacklist.");
                 }
             }
             catch (Exception ex)
@@ -368,10 +370,15 @@ namespace nManager.Wow.Bot.Tasks
                     Statistics.Farms++;
                     Logging.Write("Farm partially successful");
                     // LootWindow is still open after we accepted BoP, so one item must be stuck. (Unique(X), InventoryFull, ...)
-                    if (_curNode != null && _curNode.IsValid)
-                        nManagerSetting.AddBlackList(_curNode.Guid);
                 }
+                // We had a valid LOOT_READY anyway, with our force loot function, that would have taken < 1 sec to loot anyway.
+                // So let's blacklist node/unit !
+                if (_curNode != null && _curNode.IsValid)
+                    nManagerSetting.AddBlackList(_curNode.Guid);
+                if (CurUnit != null && CurUnit.IsValid)
+                    nManagerSetting.AddBlackList(CurUnit.Guid);
                 _curNode = null;
+                CurUnit = null;
                 if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && ObjectManager.ObjectManager.Me.InCombat)
                     Elemental.AutoMakeElemental();
             }
