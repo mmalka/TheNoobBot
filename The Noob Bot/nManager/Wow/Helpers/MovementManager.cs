@@ -333,11 +333,13 @@ namespace nManager.Wow.Helpers
                         {
                             try
                             {
-                                if (_points.Count <= 0 || _points.Count - 1 < idPoint || _points[idPoint].Type.ToLower() == "swimming")
+                                if (_points.Count <= 0 || _points.Count - 1 < idPoint)
                                 {
                                     end = true;
                                     return;
                                 }
+                                if (_points[idPoint].Type.ToLower() == "swimming")
+                                    return;
                                 // GoTo next Point
                                 if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f && ObjectManager.ObjectManager.Me.IsMounted) ||
                                       ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) && ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) && _movement)

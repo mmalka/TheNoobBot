@@ -325,6 +325,11 @@
               <Y>7675.212</Y>
               <Z>140.4233</Z>
             </Point>
+            <Point>
+              <X>-560.8834</X>
+              <Y>7723.794</Y>
+              <Z>140.4059</Z>
+            </Point>
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
@@ -345,6 +350,485 @@
               <X>-558.3825</X>
               <Y>7718.653</Y>
               <Z>140.4649</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Smooth Sunrunner Hide</Name>
+      <Id>41582</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+	    <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
+      <WorldQuestLocation>
+        <X>817.2819</X>
+        <Y>5796.125</Y>
+        <Z>106.5564</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>137628</CollectItemId> <!-- Smooth Sunrunner Hide -->
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>91308</int> <!-- Equine Sunrunner -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>703.0834</X>
+              <Y>5849.58</Y>
+              <Z>111.4403</Z>
+            </Point>
+            <Point>
+              <X>765.0959</X>
+              <Y>5918.871</Y>
+              <Z>134.1287</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Faronaar in Chaos</Name>
+      <Id>42027</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-381.9999</X>
+        <Y>7331.751</Y>
+        <Z>39.00508</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <Count>2</Count> <!-- average Objectcount per Hotspot -->
+          <Entry>
+            <!-- 1/10 -->
+            <int>249411</int> <!-- Legion Portal -->
+            <!-- 1/17 -->
+            <int>249412</int> <!-- Libram of Fel Knowledge -->
+            <!-- 1/50 -->
+            <int>249421</int> <!-- Soul Prison -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-381.7636</X>
+              <Y>7322.387</Y>
+              <Z>36.62932</Z>
+            </Point>
+            <Point>
+              <X>-229.6719</X>
+              <Y>7200.666</Y>
+              <Z>17.74103</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>3</Count>
+          <Entry>
+            <!-- 1/4 -->
+            <int>90662</int> <!-- Imp Mother Fecunda -->
+            <!-- 1/13 -->
+            <int>103176</int> <!-- Mo'arg Crusher -->
+            <int>103363</int> <!-- Soultorn Jailer -->
+            <!-- 1/17 -->
+            <int>89731</int> <!-- Fel Seeker -->
+            <int>90661</int> <!-- Eredar Supplicant -->
+            <int>103180</int> <!-- Vile Doombringer -->
+            <int>90659</int> <!-- Legion Skyterror -->
+            <int>103162</int> <!-- Eredar Supplicant -->
+            <int>103231</int> <!-- Grim Inquisitor -->
+            <!-- 1/25 -->
+            <int>90660</int> <!-- Burning Hellion -->
+          </Entry>
+          <Hotspots>
+            <Point><!-- Imp Mother Fecunda Location -->
+              <X>-169.2448</X>
+              <Y>7388.976</Y>
+              <Z>14.09709</Z>
+            </Point>
+            <Point>
+              <X>-381.7636</X>
+              <Y>7322.387</Y>
+              <Z>36.62932</Z>
+            </Point>
+            <Point>
+              <X>-229.6719</X>
+              <Y>7200.666</Y>
+              <Z>17.74103</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Vorthax</Name>
+      <Id>42633</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-113.2328</X>
+        <Y>7400.449</Y>
+        <Z>102.4182</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>107113</int> <!-- Vorthax -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-90.25436</X>
+              <Y>7371.345</Y>
+              <Z>103.8052</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Warbringer Mox'na</Name>
+      <Id>43431</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-536.2983</X>
+        <Y>6685.736</Y>
+        <Z>102.2407</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>90164</int> <!-- Warbringer Mox'na -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-536.2983</X>
+              <Y>6685.736</Y>
+              <Z>102.2407</Z>
+            </Point>
+            <Point>
+              <X>-581.1536</X>
+              <Y>6658.77</Y>
+              <Z>112.1388</Z>
+            </Point>
+            <Point>
+              <X>-629.8542</X>
+              <Y>6570.632</Y>
+              <Z>111.5103</Z>
+            </Point>
+            <Point>
+              <X>-661.5565</X>
+              <Y>6450.899</Y>
+              <Z>112.1492</Z>
+            </Point>
+            <Point>
+              <X>-629.8542</X>
+              <Y>6570.632</Y>
+              <Z>111.5103</Z>
+            </Point>
+            <Point>
+              <X>-581.1536</X>
+              <Y>6658.77</Y>
+              <Z>112.1388</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>A Cleansing Cocktail</Name>
+      <Id>42119</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>257.4781</X>
+        <Y>6986.711</Y>
+        <Z>83.2653</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>136860</CollectItemId> <!-- Cliffwing Hippogryph Egg -->
+          <CollectCount>7</CollectCount>
+          <Entry>
+            <int>249704</int> <!-- Cliffwing Hippogryph Egg -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>163.4221</X>
+              <Y>7078.346</Y>
+              <Z>64.76645</Z>
+            </Point>
+            <Point>
+              <X>130.3386</X>
+              <Y>6978.731</Y>
+              <Z>66.87228</Z>
+            </Point>
+            <Point>
+              <X>138.768</X>
+              <Y>6916.394</Y>
+              <Z>82.90837</Z>
+            </Point>
+            <Point>
+              <X>284.4912</X>
+              <Y>6923.455</Y>
+              <Z>90.38322</Z>
+            </Point>
+            <Point>
+              <X>412.3457</X>
+              <Y>6986.077</Y>
+              <Z>108.2928</Z>
+            </Point>
+            <Point>
+              <X>362.8372</X>
+              <Y>7168.369</Y>
+              <Z>115.5778</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <CollectItemId>136859</CollectItemId> <!-- Fat Bear Liver -->
+          <CollectCount>5</CollectCount>
+          <Entry>
+            <int>90134</int> <!-- Llothien Grizzly -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>427.414</X>
+              <Y>7088.042</Y>
+              <Z>125.586</Z>
+            </Point>
+            <Point>
+              <X>280.1279</X>
+              <Y>6981.133</Y>
+              <Z>86.76693</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Withered Return</Name>
+      <Id>42112</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1096.952</X>
+        <Y>6842.665</Y>
+        <Z>170.574</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <CollectItemId>136850</CollectItemId> <!-- Stolen Ley Crystal -->
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>249702</int> <!-- Stolen Ley Crystals -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1100.697</X>
+              <Y>6711.063</Y>
+              <Z>168.6836</Z>
+            </Point>
+            <Point>
+              <X>1096.952</X>
+              <Y>6842.665</Y>
+              <Z>170.574</Z>
+            </Point>
+            <Point>
+              <X>1153.283</X>
+              <Y>6767.13</Y>
+              <Z>162.8417</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>4</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>106297</int> <!-- Mana-Starved Whelpling -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1153.283</X>
+              <Y>6767.13</Y>
+              <Z>162.8417</Z>
+            </Point>
+            <Point>
+              <X>1096.952</X>
+              <Y>6842.665</Y>
+              <Z>170.574</Z>
+            </Point>
+            <Point>
+              <X>1035.077</X>
+              <Y>6794.245</Y>
+              <Z>181.9333</Z>
+            </Point>
+            <Point>
+              <X>1045.73</X>
+              <Y>6716.261</Y>
+              <Z>186.9813</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>5</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>90379</int> <!-- Withered Exile -->
+            <int>90380</int> <!-- Withered Mana-Rager -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1163.604</X>
+              <Y>6742.484</Y>
+              <Z>162.3038</Z>
+            </Point>
+            <Point>
+              <X>1154.047</X>
+              <Y>6817.138</Y>
+              <Z>162.9193</Z>
+            </Point>
+            <Point>
+              <X>1096.952</X>
+              <Y>6842.665</Y>
+              <Z>170.574</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Felwort</Name>
+      <Id>41513</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-237.9115</X>
+        <Y>7149.966</Y>
+        <Z>9.58573</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) > 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>248001</int> <!-- Felwort -->
+          </Entry>
+          <Position>
+            <X>-237.9115</X>
+            <Y>7149.966</Y>
+            <Z>9.58573</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Leodrath's Kin</Name>
+      <Id>42211</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-439.5929</X>
+        <Y>5383.292</Y>
+        <Z>71.81261</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>6</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>90505</int> <!-- Syphonus -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-462.5434</X>
+              <Y>5407.14</Y>
+              <Z>70.2146</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>106689</int> <!-- Inactive Construct -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-420.8098</X>
+              <Y>5352.505</Y>
+              <Z>68.38811</Z>
+            </Point>
+            <Point>
+              <X>-421.3522</X>
+              <Y>5479.144</Y>
+              <Z>44.938</Z>
+            </Point>
+            <Point>
+              <X>-334.7277</X>
+              <Y>5547.344</Y>
+              <Z>39.81556</Z>
+            </Point>
+            <Point>
+              <X>-233.8279</X>
+              <Y>5597.287</Y>
+              <Z>61.51464</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>5</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>106695</int> <!-- Nightborne Animator -->
+            <int>106782</int> <!-- Nightborne Foehunter -->
+            <int>106788</int> <!-- Animated Construct -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-420.8098</X>
+              <Y>5352.505</Y>
+              <Z>68.38811</Z>
+            </Point>
+            <Point>
+              <X>-334.7277</X>
+              <Y>5547.344</Y>
+              <Z>39.81556</Z>
+            </Point>
+            <Point>
+              <X>-233.8279</X>
+              <Y>5597.287</Y>
+              <Z>61.51464</Z>
             </Point>
           </Hotspots>
         </QuestObjective>

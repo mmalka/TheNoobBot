@@ -16,19 +16,10 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>7</InternalIndex>
-          <Count>10</Count>
+          <InternalIndex>8</InternalIndex>
+          <Count>6</Count>
           <Entry>
-            <int>105623</int>
-            <int>105625</int>
-            <int>105632</int>
-            <int>105685</int>
-            <int>105686</int>
-            <int>105728</int>
-            <int>105739</int>
-            <int>105752</int>
-            <int>105753</int>
-            <int>114793</int>
+            <int>105676</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -45,10 +36,19 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>8</InternalIndex>
-          <Count>6</Count>
+          <InternalIndex>7</InternalIndex>
+          <Count>10</Count>
           <Entry>
-            <int>105676</int>
+            <int>105623</int>
+            <int>105625</int>
+            <int>105632</int>
+            <int>105685</int>
+            <int>105686</int>
+            <int>105728</int>
+            <int>105739</int>
+            <int>105752</int>
+            <int>105753</int>
+            <int>114793</int>
           </Entry>
           <Hotspots>
             <Point>
@@ -135,6 +135,66 @@
               <Z>64.51446</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Mal'Dreth the Corruptor</Name>
+      <Id>44015</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1217.42</X>
+        <Y>4737.024</Y>
+        <Z>156.4944</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>110024</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1197.379</X>
+              <Y>4746.045</Y>
+              <Z>156.9177</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Cadraeus</Name>
+      <Id>44016</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1720.307</X>
+        <Y>3187.212</Y>
+        <Z>187.4729</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>110726</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1686.163</X>
+              <Y>3178.62</Y>
+              <Z>198.1074</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>

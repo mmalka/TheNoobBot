@@ -290,20 +290,6 @@ namespace nManager.Helpful.Forms
                         wowO.GetDistance + "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Guid +
                         "</td>     <td>" + wowO.CreatedBy + "</td>   </tr>";
                 }
-
-                // WoWDynamicObject
-                foreach (WoWDynamicObject wowO in ObjectManager.GetObjectWoWDynamicObject())
-                {
-                    Application.DoEvents();
-                    codeHtml +=
-                        "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/object=" +
-                        wowO.Entry +
-                        "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWDynamicObject (" + wowO.Guid.GetWoWType + ")</td>     <td bgcolor=\"#CCCCCC\">" +
-                        wowO.Entry + "</td>     <td>" + wowO.Position.X + "</td>     <td bgcolor=\"#CCCCCC\">" +
-                        wowO.Position.Y + "</td>     <td>" + wowO.Position.Z + "</td>     <td bgcolor=\"#CCCCCC\">" +
-                        wowO.GetDistance + "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Guid +
-                        "</td>     <td>" + wowO.Caster + "</td>   </tr>";
-                }
                 // WoWItem
                 foreach (WoWItem wowO in ObjectManager.GetObjectWoWItem())
                 {

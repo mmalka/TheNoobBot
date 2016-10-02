@@ -1,6 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Questers />
-  <Quests>
-  </Quests>
+<Questers />
+<Quests>
+	<Quest>
+		<Name>Everything!</Name>
+		<Id>39424</Id>
+		<MinLevel>110</MinLevel>
+		<MaxLevel>110</MaxLevel>
+		<AutoAccepted>false</AutoAccepted>
+		<QuestLevel>110</QuestLevel>
+		<WorldQuestLocation>
+		 <X>5446.269</X>
+		 <Y>4631.716</Y>
+		 <Z>636.9424</Z>
+		</WorldQuestLocation>
+		<TurnIn>0</TurnIn>
+		<Objectives>
+		<QuestObjective>
+			<Objective>KillMob</Objective>
+			<Count>-1</Count>
+			<Entry>
+			<int>104328</int>
+			<int>95290</int>
+			<int>96423</int>
+			<int>104323</int>
+		  </Entry>
+			<Hotspots>
+			<Point>
+			 <X>5647.59</X>
+			 <Y>4407.495</Y>
+			 <Z>663.917</Z>
+			</Point>
+			<Point>
+				<X>5664.854</X>
+				<Y>4259.237</Y>
+				<Z>695.1217</Z>
+			</Point>
+			<Point>
+				<X>5571.087</X>
+				<Y>4488.204</Y>
+				<Z>656.5379</Z>
+				</Point>
+				<Point>
+				<X>5717.859</X>
+				<Y>4138.507</Y>
+				<Z>632.7021</Z>
+				</Point>
+			</Hotspots>
+		</QuestObjective>
+		</Objectives>
+	</Quest>
+</Quests>
 </QuesterProfile>
