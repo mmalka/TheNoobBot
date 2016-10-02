@@ -402,7 +402,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             Logging.WriteNavigator("Landing in progress.");
             MovementsAction.Descend(true, false, useLuaToLand);
-            Timer t = new Timer(15000);
+            Timer t = new Timer(60000);
             while (Usefuls.IsFlying && !t.IsReady)
             {
                 float z0 = ObjectManager.ObjectManager.Me.Position.Z;
@@ -410,6 +410,7 @@ namespace nManager.Wow.Bot.Tasks
                 if (z0 == ObjectManager.ObjectManager.Me.Position.Z)
                     t.ForceReady();
             }
+            Logging.WriteDebug("Still flying after 1min of landing.");
             Thread.Sleep(150);
             MovementsAction.Descend(false, false, useLuaToLand);
         }
