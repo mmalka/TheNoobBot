@@ -406,7 +406,7 @@ namespace nManager.Wow.Bot.Tasks
             while (Usefuls.IsFlying && !t.IsReady)
             {
                 float z0 = ObjectManager.ObjectManager.Me.Position.Z;
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
                 if (z0 == ObjectManager.ObjectManager.Me.Position.Z)
                     t.ForceReady();
             }
