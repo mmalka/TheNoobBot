@@ -59259,6 +59259,7 @@
       <Y>2427.52441</Y>
       <Z>242.1281</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Vendor</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
@@ -59270,6 +59271,7 @@
       <Y>2427.52441</Y>
       <Z>242.1281</Z>
     </Position>
+    <Faction>Horde</Faction>
     <Type>Repair</Type>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
