@@ -202,7 +202,7 @@ namespace nManager.Wow.Helpers
                 if (spellCooldown.CategoryCooldownDuration <= 0)
                     continue;
                 elaspedTime = currentWoWTime - spellCooldown.CategoryCooldownStartTime;
-                 // StartTime sometimes get to 0, don't trust it when we are checking for Category.
+                // StartTime sometimes get to 0, don't trust it when we are checking for Category.
                 if (spellCooldown.CategoryCooldownDuration >= elaspedTime)
                     return true;
             }
@@ -365,6 +365,13 @@ namespace nManager.Wow.Helpers
         public static bool KnownSpell(uint spellId)
         {
             return SpellBookID().Contains(spellId);
+        }
+
+        public static bool SpellHasCharges(uint spellId)
+        {
+            string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+            string ret = Lua.LuaDoString("_, " + randomStringResult + " = GetSpellCharges(" + spellId + ")", randomStringResult);
+            return Others.ToInt32(ret) > 0;
         }
 
         public static bool HasSpell(int spellId)

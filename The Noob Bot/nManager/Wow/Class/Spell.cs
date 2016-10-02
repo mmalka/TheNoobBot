@@ -21,6 +21,7 @@ namespace nManager.Wow.Class
         public int Cost;
         public string Icon = "";
         public bool IsFunnel;
+        public bool SpellHasCharges;
         public float MaxRangeHostile;
         public float MinRangeHostile;
         public float MaxRangeFriend;
@@ -72,6 +73,7 @@ namespace nManager.Wow.Class
                         if (MaxRangeFriend < 5.0f)
                             MaxRangeFriend = 5.0f;
                         KnownSpell = SpellManager.KnownSpell(Id);
+                        SpellHasCharges = SpellManager.SpellHasCharges(Id);
                         Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                         Ids.Add(Id);
                         CategoryId = WoWSpellCategories.GetSpellCategoryBySpellId(Id);
@@ -149,6 +151,7 @@ namespace nManager.Wow.Class
                 PowerType = tSpell.PowerType;
                 Rank = tSpell.Rank;
                 KnownSpell = tSpell.KnownSpell;
+                SpellHasCharges = tSpell.SpellHasCharges;
                 Ids.AddRange(tSpell.Ids);
                 Ids.Add(Id);
                 CategoryId = tSpell.CategoryId;
@@ -176,7 +179,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return KnownSpell && SpellManager.IsSpellUsableLUA(this);
+                    return KnownSpell && (!SpellHasCharges || GetSpellCharges > 0) && SpellManager.IsSpellUsableLUA(this);
                 }
                 catch (Exception exception)
                 {
