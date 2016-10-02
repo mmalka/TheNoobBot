@@ -735,7 +735,7 @@ public class RogueAssassination
     // Checks free combo points before capping
     private int GetFreeComboPoints()
     {
-        return ((DeeperStratagem.HaveBuff) ? 5 : 6) - (int) ObjectManager.Me.ComboPoint;
+        return ((DeeperStratagem.HaveBuff) ? 6 : 5) - (int) ObjectManager.Me.ComboPoint;
     }
 
     #region Nested type: RogueAssassinationSettings
@@ -1313,7 +1313,7 @@ public class RogueOutlaw
     // Checks free combo points before capping
     private int GetFreeComboPoints()
     {
-        return ((DeeperStratagem.HaveBuff) ? 5 : 6) - (int) ObjectManager.Me.ComboPoint;
+        return ((DeeperStratagem.HaveBuff) ? 6 : 5) - (int) ObjectManager.Me.ComboPoint;
     }
 
     #region Nested type: RogueOutlawSettings
@@ -1883,7 +1883,7 @@ public class RogueSubtlety
                 //Apply Nightblade when
                 if (MySettings.UseNightblade && Nightblade.IsSpellUsable && Nightblade.IsHostileDistanceGood &&
                     //your target don't have the Dot
-                    Nightblade.TargetHaveBuffFromMe)
+                    !Nightblade.TargetHaveBuffFromMe)
                 {
                     Nightblade.Cast();
                     return;
@@ -1911,7 +1911,7 @@ public class RogueSubtlety
     // Checks free combo points before capping
     private int GetFreeComboPoints()
     {
-        return ((DeeperStratagem.HaveBuff) ? 5 : 6) - (int) ObjectManager.Me.ComboPoint;
+        return ((DeeperStratagem.HaveBuff) ? 6 : 5) - (int) ObjectManager.Me.ComboPoint;
     }
 
     #region Nested type: RogueSubtletySettings
