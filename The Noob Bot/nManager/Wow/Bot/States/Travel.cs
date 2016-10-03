@@ -211,6 +211,28 @@ namespace nManager.Wow.Bot.States
             {
                 var taxi = selectedTransport as Taxi;
                 Logging.Write("Going to taxi " + taxi.Name + " to travel.");
+                // 141605
+                if (Usefuls.ContinentId == 1220 && Usefuls.AreaId != 7502 && Usefuls.IsOutdoors && taxi.APoint.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100f)
+                {
+                    // We want to uses the item Flight Master's Wistle as much as possible.
+                    // We are in Broken Isles, not in Dalaran, outdoor, we should be able to uses it.
+                    const int flightMasterWistleId = 141605;
+                    if (ItemsManager.GetItemCount(flightMasterWistleId) > 0 && ItemsManager.IsItemUsable(flightMasterWistleId))
+                    {
+                        ItemsManager.UseItem(flightMasterWistleId);
+                        Thread.Sleep(250);
+                        while (ObjectManager.ObjectManager.Me.IsCasting)
+                        {
+                            Thread.Sleep(250);
+                            if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                                return;
+                        }
+                        if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                            return;
+                        Thread.Sleep(7000);
+                        return;
+                    }
+                }
                 List<Point> pathToTaxi = PathFinder.FindPath(taxi.APoint);
                 MovementManager.Go(pathToTaxi);
                 bool loop = true;
