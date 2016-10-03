@@ -113,7 +113,7 @@ public static class MyPluginClass
     public static bool InternalLoop = true;
     public static string Author = "Vesper";
     public static string Name = "NPC Radar";
-    public static string TargetVersion = "6.0.x";
+    public static string TargetVersion = "6.3.x";
     public static string Version = "1.0.0";
 
     public static string Description =

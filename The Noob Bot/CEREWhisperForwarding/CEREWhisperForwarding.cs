@@ -107,7 +107,7 @@ public static class WhisperForwarding
     public static bool InternalLoop = true;
     public static string Author = "CEREAL";
     public static string Name = "Whisper Forwarding";
-    public static string TargetVersion = "6.0.x";
+    public static string TargetVersion = "6.3.x";
     public static string Version = "1.0.4";
     public static string Description = "Forwards every whispers to a defined Master Player.";
     private static readonly WhisperForwardingSettings MySettings = WhisperForwardingSettings.GetSettings();
