@@ -348,7 +348,7 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        public static void TakeFarmingLoots()
+        public static void TakeFarmingLoots(bool verbose = true)
         {
             if (CountThisLoot)
             {
@@ -359,12 +359,14 @@ namespace nManager.Wow.Bot.Tasks
                 if (!Others.IsFrameVisible("LootFrame"))
                 {
                     Statistics.Farms++;
-                    Logging.Write("Farm successful");
+                    if (verbose)
+                        Logging.Write("Farm successful");
                 }
                 else
                 {
                     Statistics.Farms++;
-                    Logging.Write("Farm partially successful");
+                    if (verbose)
+                        Logging.Write("Farm partially successful");
                     // LootWindow is still open after we accepted BoP, so one item must be stuck. (Unique(X), InventoryFull, ...)
                 }
                 // We had a valid LOOT_READY anyway, with our force loot function, that would have taken < 1 sec to loot anyway.
