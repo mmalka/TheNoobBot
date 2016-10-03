@@ -229,7 +229,7 @@ namespace nManager.Wow.Bot.States
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
                             return;
-                        Thread.Sleep(7000);
+                        Thread.Sleep(8000);
                         return;
                     }
                 }
