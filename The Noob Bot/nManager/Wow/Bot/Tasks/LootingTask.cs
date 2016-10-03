@@ -161,9 +161,7 @@ namespace nManager.Wow.Bot.Tasks
                                     if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.HERB_LOOT))
                                     {
                                         int myHerbalismLevel = Skill.GetValue(Enums.SkillLine.Herbalism);
-                                        if (myHerbalismLevel > 0)
-                                            myHerbalismLevel += Skill.GetSkillBonus(Enums.SkillLine.Herbalism);
-                                        if (wowUnit.GetSkillLevelRequired > myHerbalismLevel)
+                                        if (myHerbalismLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                             continue;
@@ -172,9 +170,7 @@ namespace nManager.Wow.Bot.Tasks
                                     else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.MINING_LOOT))
                                     {
                                         int myMiningLevel = Skill.GetValue(Enums.SkillLine.Mining);
-                                        if (myMiningLevel > 0)
-                                            myMiningLevel += Skill.GetSkillBonus(Enums.SkillLine.Mining);
-                                        if (wowUnit.GetSkillLevelRequired > myMiningLevel)
+                                        if (myMiningLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                             continue;
@@ -183,9 +179,7 @@ namespace nManager.Wow.Bot.Tasks
                                     else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
                                     {
                                         int myEngeneeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
-                                        if (myEngeneeringLevel > 0)
-                                            myEngeneeringLevel += Skill.GetSkillBonus(Enums.SkillLine.Engineering);
-                                        if (wowUnit.GetSkillLevelRequired > myEngeneeringLevel)
+                                        if (myEngeneeringLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                             continue;
