@@ -178,8 +178,8 @@ namespace nManager.Wow.Bot.Tasks
                                     }
                                     else if (wowUnit.ExtraLootType.HasFlag(Enums.TypeFlag.ENGENEERING_LOOT))
                                     {
-                                        int myEngeneeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
-                                        if (myEngeneeringLevel <= 0)
+                                        int myEngineeringLevel = Skill.GetValue(Enums.SkillLine.Engineering);
+                                        if (myEngineeringLevel <= 0)
                                         {
                                             nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                             continue;

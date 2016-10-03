@@ -1303,27 +1303,21 @@ namespace nManager.Wow.ObjectManager
                 var list = new List<WoWUnit>();
                 int mySkinningLevel = Skill.GetValue(SkillLine.Skinning);
                 int myHerbalismLevel = Skill.GetValue(SkillLine.Herbalism);
-                if (myHerbalismLevel > 0)
-                    myHerbalismLevel += Skill.GetSkillBonus(SkillLine.Herbalism);
                 int myMiningLevel = Skill.GetValue(SkillLine.Mining);
-                if (myMiningLevel > 0)
-                    myMiningLevel += Skill.GetSkillBonus(SkillLine.Mining);
-                int myEngeneeringLevel = Skill.GetValue(SkillLine.Engineering);
-                if (myEngeneeringLevel > 0)
-                    myEngeneeringLevel += Skill.GetSkillBonus(SkillLine.Engineering);
+                int myEngineeringLevel = Skill.GetValue(SkillLine.Engineering);
                 foreach (WoWUnit a in listWoWUnit)
                 {
                     if (a.IsSkinnable && !withoutGuid.Contains(a.Guid))
                     {
                         if (a.ExtraLootType.HasFlag(TypeFlag.HERB_LOOT))
-                            if (a.GetSkillLevelRequired <= myHerbalismLevel) list.Add(a);
+                            if (myHerbalismLevel > 0) list.Add(a);
                             else continue;
                         if (a.ExtraLootType.HasFlag(TypeFlag.MINING_LOOT))
-                            if (a.GetSkillLevelRequired <= myMiningLevel)
+                            if (myMiningLevel > 0)
                                 list.Add(a);
                             else continue;
                         if (a.ExtraLootType.HasFlag(TypeFlag.ENGENEERING_LOOT))
-                            if (a.GetSkillLevelRequired <= myEngeneeringLevel)
+                            if (myEngineeringLevel > 0)
                                 list.Add(a);
                             else continue;
                         if (mySkinningLevel > 0)
