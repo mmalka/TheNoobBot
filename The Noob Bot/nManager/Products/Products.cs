@@ -6,6 +6,7 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow;
 using nManager.Wow.Bot.States;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -233,6 +234,7 @@ namespace nManager.Products
                     _instanceFromOtherAssembly.RemoteStart(args);
                     if (!_instanceFromOtherAssembly.IsStarted)
                         return false;
+                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots());
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
                     EventsListener.HookEvent(WoWEventsType.PLAYER_TALENT_UPDATE, callback => SpellManager.UpdateSpellBook());
@@ -282,6 +284,7 @@ namespace nManager.Products
                 Fsm.StopEngine();
                 if (_instanceFromOtherAssembly != null)
                 {
+                    EventsListener.UnHookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots());
                     EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.UnHookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
                     EventsListener.UnHookEvent(WoWEventsType.PLAYER_TALENT_UPDATE, callback => SpellManager.UpdateSpellBook());

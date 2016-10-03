@@ -21,11 +21,6 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (FarmingTask.FirstRun)
-                {
-                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots(), false, true);
-                    FarmingTask.FirstRun = false;
-                }
                 woWUnits = woWUnits.OrderBy(x => x.GetDistance);
                 foreach (WoWUnit wowUnit in woWUnits)
                 {

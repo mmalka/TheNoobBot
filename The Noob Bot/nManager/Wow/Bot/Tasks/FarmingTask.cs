@@ -17,17 +17,11 @@ namespace nManager.Wow.Bot.Tasks
         private static bool _wasLooted;
         public static bool CountThisLoot;
         public static bool NodeOrUnit; // true = node / false = unit
-        public static bool FirstRun = true;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {
             try
             {
-                if (FirstRun)
-                {
-                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => TakeFarmingLoots(), false, true);
-                    FirstRun = false;
-                }
                 if (Usefuls.IsFlying)
                     Fly(nodes);
                 else
@@ -331,9 +325,8 @@ namespace nManager.Wow.Bot.Tasks
                             CountThisLoot = false;
                             return;
                         }
-                        /*if (CountThisLoot)
-                            nManagerSetting.AddBlackList(inode.Guid, 1000*20); */
-                        // this was for some cases where the node stays (draenor garrison trees support) => not the priority anymore and causes troubles when we get cancelled.
+                        if (CountThisLoot && !ObjectManager.ObjectManager.Me.InCombat)
+                            nManagerSetting.AddBlackList(inode.Guid, 1000*20);
 
                         Thread.Sleep(1000);
                         if (!_wasLooted)
