@@ -16,6 +16,7 @@ namespace nManager.Wow.Bot.Tasks
         private static UInt128 _lastnode;
         private static bool _wasLooted;
         public static bool CountThisLoot;
+        public static bool NodeOrUnit; // true = node / false = unit
         public static bool FirstRun = true;
 
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
@@ -170,6 +171,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             _wasLooted = false;
                             CountThisLoot = true;
+                            NodeOrUnit = true;
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 500);
                             if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -306,6 +308,7 @@ namespace nManager.Wow.Bot.Tasks
                         }
                         _wasLooted = false;
                         CountThisLoot = true;
+                        NodeOrUnit = true;
                         Interact.InteractWith(inode.GetBaseAddress);
                         Thread.Sleep(Usefuls.Latency + 500);
                         if (!ObjectManager.ObjectManager.Me.IsCast)
@@ -373,9 +376,9 @@ namespace nManager.Wow.Bot.Tasks
                 }
                 // We had a valid LOOT_READY anyway, with our force loot function, that would have taken < 1 sec to loot anyway.
                 // So let's blacklist node/unit !
-                if (_curNode != null && _curNode.IsValid)
+                if (NodeOrUnit && _curNode != null && _curNode.IsValid)
                     nManagerSetting.AddBlackList(_curNode.Guid);
-                if (CurUnit != null && CurUnit.IsValid)
+                if (!NodeOrUnit && CurUnit != null && CurUnit.IsValid)
                     nManagerSetting.AddBlackList(CurUnit.Guid);
                 _curNode = null;
                 CurUnit = null;

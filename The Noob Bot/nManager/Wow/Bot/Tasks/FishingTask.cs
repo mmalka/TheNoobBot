@@ -157,6 +157,7 @@ namespace nManager.Wow.Bot.Tasks
                                 if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast && objBobber.IsValid)
                                 {
                                     FarmingTask.CountThisLoot = true;
+                                    FarmingTask.NodeOrUnit = true;
                                     Interact.InteractWith(objBobber.GetBaseAddress);
                                     _lastSuccessfullFishing = Environment.TickCount;
                                     Statistics.Farms++;

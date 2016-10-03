@@ -100,6 +100,7 @@ namespace nManager.Wow.Bot.Tasks
                                     while (ItemsManager.IsItemOnCooldown(LootARangeId))
                                         Thread.Sleep(250);
                                     FarmingTask.CountThisLoot = true;
+                                    FarmingTask.NodeOrUnit = false;
                                     ItemsManager.UseToy(LootARangeId);
                                     Thread.Sleep(1000 + Usefuls.Latency);
                                     while (ObjectManager.ObjectManager.Me.IsCast)
@@ -114,6 +115,7 @@ namespace nManager.Wow.Bot.Tasks
                                 else
                                 {
                                     FarmingTask.CountThisLoot = true;
+                                    FarmingTask.NodeOrUnit = false;
                                     Interact.InteractWith(wowUnit.GetBaseAddress);
                                     if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                     {
