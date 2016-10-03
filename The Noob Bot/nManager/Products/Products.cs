@@ -194,6 +194,7 @@ namespace nManager.Products
                     _instanceFromOtherAssembly.Start();
                     if (!_instanceFromOtherAssembly.IsStarted)
                         return false;
+                    EventsListener.HookEvent(WoWEventsType.LOOT_READY, callback => FarmingTask.TakeFarmingLoots());
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_START, callback => ToggleCinematic(true));
                     EventsListener.HookEvent(WoWEventsType.CINEMATIC_STOP, callback => ToggleCinematic(false));
                     EventsListener.HookEvent(WoWEventsType.PLAYER_TALENT_UPDATE, callback => SpellManager.UpdateSpellBook());

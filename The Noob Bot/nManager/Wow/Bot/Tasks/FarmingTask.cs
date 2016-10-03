@@ -213,7 +213,7 @@ namespace nManager.Wow.Bot.Tasks
                         nManagerSetting.AddBlackList(node.Guid);
                     MovementManager.StopMove();
                     if (!_wasLooted)
-                        Logging.Write("Farm failed");
+                        Logging.Write("Farm failed #1");
                 }
             }
             catch (Exception ex)
@@ -331,7 +331,7 @@ namespace nManager.Wow.Bot.Tasks
                         Thread.Sleep(1000);
                         if (!_wasLooted)
                         {
-                            Logging.Write("Farm failed");
+                            Logging.Write("Farm failed #2");
                             if (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                 MountTask.DismountMount(); // we got cancelled during farm, let's fight this out for good..
                         }
