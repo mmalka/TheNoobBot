@@ -32,7 +32,7 @@ namespace Quester.Tasks
         private static int EntryListRow = 0;
         private static WoWUnit lockedTarget = null;
         private static Point _travelLocation = null;
-        private static bool _travelDisabled = false;
+        public static bool _travelDisabled = false;
 
         public static void Cleanup()
         {
@@ -1386,7 +1386,6 @@ namespace Quester.Tasks
         public static void PickUpQuest()
         {
             QuestStatus = "Pick-Up Quest";
-            _travelDisabled = false; // reset travel between quests.
             Npc npc;
             if (CurrentQuest.WorldQuestLocation != null && CurrentQuest.WorldQuestLocation.IsValid)
             {

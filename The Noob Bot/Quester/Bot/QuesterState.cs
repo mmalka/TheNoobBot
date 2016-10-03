@@ -97,6 +97,8 @@ namespace Quester.Bot
                 return;
             }
 
+            QuestingTask._travelDisabled = false; // reset travel after PickUp worked. (code exclusive for WQ)
+
             if (Script.Run(QuestingTask.CurrentQuest.ScriptConditionIsFinish) &&
                 QuestingTask.CurrentQuest.ScriptConditionIsFinish.Replace(" ", "").Length > 0)
             {
