@@ -15,6 +15,8 @@ namespace nManager.Wow.Helpers
         public static List<int> FinishedQuestSet = new List<int>();
         public static List<int> KilledMobsToCount = new List<int>();
         public static int AbandonnedId = 0;
+        private static Point _travelLocation = null;
+        private static bool _travelDisabled = false;
 
         static Quest()
         {
@@ -325,6 +327,11 @@ namespace nManager.Wow.Helpers
             QuestPickUp(ref npc, questName, questId, out cancelPickUp);
         }
 
+        public static bool IsNearQuestGiver(Point p)
+        {
+            return ObjectManager.ObjectManager.Me.Position.DistanceTo(p) <= 40f;
+        }
+
         public static void QuestPickUp(ref Npc npc, string questName, int questId, out bool cancelPickUp)
         {
             cancelPickUp = false;
@@ -338,6 +345,20 @@ namespace nManager.Wow.Helpers
                 AbandonQuest(AbandonnedId);
             }
             AbandonnedId = 0;
+
+            Point me = ObjectManager.ObjectManager.Me.Position;
+            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+            {
+                Logging.Write("Calling travel system...");
+                Products.Products.TravelToContinentId = Usefuls.ContinentId;
+                Products.Products.TravelTo = npc.Position;
+                // Pass the check for valid destination as a lambda
+                Products.Products.TargetValidationFct = IsNearQuestGiver;
+                _travelLocation = me;
+                return;
+            }
+            if (_travelLocation.DistanceTo(me) <= 0.1f)
+                _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f, true, true); // can pick up quest on dead NPC.
             var unitTest = new WoWUnit(baseAddress);
@@ -347,6 +368,7 @@ namespace nManager.Wow.Helpers
                     unitTest.UnitQuestGiverStatus != UnitQuestGiverStatus.LowLevelAvailable &&
                     unitTest.UnitQuestGiverStatus != UnitQuestGiverStatus.LowLevelAvailableRepeatable)
                 {
+                    _travelDisabled = false; // reset travel
                     nManagerSetting.AddBlackList(unitTest.Guid, 60000);
                     Logging.Write("Npc QuestGiver " + unitTest.Name + " (" + unitTest.Entry + ", distance: " + unitTest.GetDistance + ") does not have any available quest for the moment. Blacklisting it one minute.");
                     cancelPickUp = true;
@@ -354,6 +376,7 @@ namespace nManager.Wow.Helpers
                 }
             if (MovementManager.InMovement)
                 return;
+            _travelDisabled = false; // reset travel
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
             {
@@ -441,10 +464,24 @@ namespace nManager.Wow.Helpers
 
         public static void QuestTurnIn(ref Npc npc, string questName, int questId)
         {
+            Point me = ObjectManager.ObjectManager.Me.Position;
+            if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+            {
+                Logging.Write("Calling travel system...");
+                Products.Products.TravelToContinentId = Usefuls.ContinentId;
+                Products.Products.TravelTo = npc.Position;
+                // Pass the check for valid destination as a lambda
+                Products.Products.TargetValidationFct = IsNearQuestGiver;
+                _travelLocation = me;
+                return;
+            }
+            if (_travelLocation.DistanceTo(me) <= 0.1f)
+                _travelDisabled = true;
             //Start target finding based on QuestGiver.
             uint baseAddress = MovementManager.FindTarget(ref npc, 5.0f);
             if (MovementManager.InMovement)
                 return;
+            _travelDisabled = false; // reset travel
             ItemInfo equip = null;
             //End target finding based on QuestGiver.
             if (npc.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)

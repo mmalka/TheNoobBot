@@ -31,6 +31,8 @@ namespace Quester.Tasks
         public static bool completed = false;
         private static int EntryListRow = 0;
         private static WoWUnit lockedTarget = null;
+        private static Point _travelLocation = null;
+        private static bool _travelDisabled = false;
 
         public static void Cleanup()
         {
@@ -1384,6 +1386,7 @@ namespace Quester.Tasks
         public static void PickUpQuest()
         {
             QuestStatus = "Pick-Up Quest";
+            _travelDisabled = false; // reset travel between quests.
             Npc npc;
             if (CurrentQuest.WorldQuestLocation != null && CurrentQuest.WorldQuestLocation.IsValid)
             {
@@ -1394,6 +1397,20 @@ namespace Quester.Tasks
                     Name = "World Quest: " + CurrentQuest.Name,
                     Entry = CurrentQuest.Id, // display QuestId in logs instead of 0 as there is no Giver.
                 };
+
+                Point me = ObjectManager.Me.Position;
+                if ((_travelLocation == null || _travelLocation.DistanceTo(me) > 0.1f) && !_travelDisabled)
+                {
+                    Logging.Write("Calling travel system...");
+                    Products.TravelToContinentId = Usefuls.ContinentId;
+                    Products.TravelTo = npc.Position;
+                    // Pass the check for valid destination as a lambda
+                    Products.TargetValidationFct = IsNearWQ;
+                    _travelLocation = me;
+                    return;
+                }
+                if (_travelLocation.DistanceTo(me) <= 0.1f)
+                    _travelDisabled = true;
                 MovementManager.FindTarget(ref npc, 30.0f);
                 // We don't except a baseAddress to be valid, we just wanna get there so the WorldQuest is activated.
                 return;
@@ -1411,6 +1428,11 @@ namespace Quester.Tasks
             if (npc == null)
                 return;
             Quest.QuestPickUp(ref npc, CurrentQuest.Name, CurrentQuest.Id);
+        }
+
+        public static bool IsNearWQ(Point p)
+        {
+            return ObjectManager.Me.Position.DistanceTo(p) <= 40f;
         }
 
         public static void TurnInQuest()
