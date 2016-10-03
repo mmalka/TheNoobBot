@@ -310,11 +310,11 @@ namespace nManager.Wow.Bot.Tasks
                         CountThisLoot = true;
                         NodeOrUnit = true;
                         Interact.InteractWith(inode.GetBaseAddress);
-                        Thread.Sleep(Usefuls.Latency + 500);
+                        Thread.Sleep(Usefuls.Latency + 300);
                         if (!ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Interact.InteractWith(node.GetBaseAddress);
-                            Thread.Sleep(Usefuls.Latency + 500);
+                            Thread.Sleep(Usefuls.Latency + 250);
                         }
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
