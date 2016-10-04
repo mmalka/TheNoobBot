@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperToolsMainFrame));
             this.SearchObjectButton = new System.Windows.Forms.Label();
             this.TargetInfoButton = new System.Windows.Forms.Label();
-            this.InformationArea = new System.Windows.Forms.TextBox();
+            this.InformationArea = new System.Windows.Forms.RichTextBox();
             this.GpsButton = new System.Windows.Forms.Label();
             this.CsharpExecButton = new System.Windows.Forms.Label();
             this.TargetInfo2Button = new System.Windows.Forms.Label();
@@ -85,6 +85,7 @@
             // 
             this.InformationArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.InformationArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.InformationArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InformationArea.Location = new System.Drawing.Point(35, 69);
             this.InformationArea.Margin = new System.Windows.Forms.Padding(0);
             this.InformationArea.MaximumSize = new System.Drawing.Size(730, 435);
@@ -292,7 +293,7 @@
 
         private System.Windows.Forms.Label SearchObjectButton;
         private System.Windows.Forms.Label TargetInfoButton;
-        private System.Windows.Forms.TextBox InformationArea;
+        private System.Windows.Forms.RichTextBox InformationArea;
         private System.Windows.Forms.Label GpsButton;
         private System.Windows.Forms.Label CsharpExecButton;
         private System.Windows.Forms.Label TargetInfo2Button;

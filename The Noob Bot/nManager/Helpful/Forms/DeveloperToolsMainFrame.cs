@@ -549,9 +549,24 @@ namespace nManager.Helpful.Forms
                             !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
                     .Select(a => a.Location);
                 cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
+                cp.ReferencedAssemblies.Add("nManager.dll");
 
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp,
-                    " public class Main : nManager.Helpful.Interface.IScriptOnlineManager { public void Initialize() { " +
+                    "using System.Linq;" + Environment.NewLine +
+                    "using System;" + Environment.NewLine +
+                    "using System.Reflection;" + Environment.NewLine +
+                    "using System.Threading;" + Environment.NewLine +
+                    "using System.Windows.Forms;" + Environment.NewLine +
+                    "using nManager.Helpful;" + Environment.NewLine +
+                    "using nManager.Wow;" + Environment.NewLine +
+                    "using nManager.Wow.Bot.States;" + Environment.NewLine +
+                    "using nManager.Wow.Bot.Tasks;" + Environment.NewLine +
+                    "using nManager.Wow.Class;" + Environment.NewLine +
+                    "using nManager.Wow.Enums;" + Environment.NewLine +
+                    "using nManager.Wow.Helpers;" + Environment.NewLine +
+                    "using nManager.Wow.ObjectManager;" + Environment.NewLine +
+                    "using Timer = nManager.Helpful.Timer;" + Environment.NewLine +
+                    "public class Main : nManager.Helpful.Interface.IScriptOnlineManager { public void Initialize() { " +
                     InformationArea.Text + " } } ");
                 if (cr.Errors.HasErrors)
                 {
