@@ -375,7 +375,8 @@ public class DeathknightBlood
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || AggroManagement() || Offensive())
+        Healing();
+        if (Defensive() || AggroManagement() || Offensive())
             return;
         Rotation();
     }
@@ -825,17 +826,17 @@ public class DeathknightFrost
 
     #region Buffs
 
-    private readonly Spell DarkSuccor = new Spell(101568);
-    private readonly Spell KillingMachine = new Spell(51128);
-    private readonly Spell Rime = new Spell(59057);
-    private readonly Spell Razorice = new Spell(51714);
-    private readonly Spell RuneofRazorice = new Spell(53343);
+    private readonly Spell DarkSuccorBuff = new Spell(101568);
+    private readonly Spell KillingMachineBuff = new Spell(51124);
+    private readonly Spell RimeBuff = new Spell(59052);
+    private readonly Spell RazoriceBuff = new Spell(51714);
+    //private readonly Spell RuneofRazorice = new Spell(53343);
 
     #endregion
 
     #region Dots
 
-    private readonly Spell FrostFever = new Spell(55095);
+    private readonly Spell FrostFever = new Spell("Frost Fever");
 
     #endregion
 
@@ -968,7 +969,8 @@ public class DeathknightFrost
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1096,32 +1098,32 @@ public class DeathknightFrost
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
             if (MySettings.UseHowlingBlast && HowlingBlast.IsSpellUsable && HowlingBlast.IsHostileDistanceGood &&
-                ObjectManager.Target.UnitAura(FrostFever.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
+                ObjectManager.Target.UnitAura(FrostFever.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 1000)
             {
                 HowlingBlast.Cast();
                 return;
             }
             if (ObjectManager.Me.HealthPercent < MySettings.UseDeathStrikeBelowPercentage && DeathStrike.IsSpellUsable && DeathStrike.IsHostileDistanceGood &&
-                DarkSuccor.HaveBuff)
+                ObjectManager.Me.UnitAura(DarkSuccorBuff.Id, ObjectManager.Me.Guid).IsValid)
             {
                 DeathStrike.Cast();
                 return;
             }
             if (MySettings.UseSindragosasFury && SindragosasFury.IsSpellUsable && SindragosasFury.IsHostileDistanceGood &&
-                Razorice.BuffStack == 5 && PillarofFrost.HaveBuff)
+                RazoriceBuff.BuffStack == 5 && PillarofFrost.HaveBuff)
             {
                 SindragosasFury.Cast();
                 return;
             }
             if (MySettings.UseHowlingBlast && HowlingBlast.IsSpellUsable && HowlingBlast.IsHostileDistanceGood &&
-                Rime.HaveBuff)
+                ObjectManager.Me.UnitAura(RimeBuff.Id, ObjectManager.Me.Guid).IsValid)
             {
                 HowlingBlast.Cast();
                 return;
             }
             if (MySettings.UseFrostStrike && FrostStrike.IsSpellUsable && FrostStrike.IsHostileDistanceGood &&
                 (ObjectManager.Me.RunicPower >= 80 || Obliteration.HaveBuff ||
-                 (ShatteringStrikes.HaveBuff && Razorice.BuffStack == 5)))
+                 (ShatteringStrikes.HaveBuff && RazoriceBuff.BuffStack == 5)))
             {
                 FrostStrike.Cast();
                 return;
@@ -1132,7 +1134,7 @@ public class DeathknightFrost
                 return;
             }
             if (MySettings.UseFrostscythe && Frostscythe.IsSpellUsable && Frostscythe.IsHostileDistanceGood &&
-                KillingMachine.HaveBuff)
+                ObjectManager.Me.UnitAura(KillingMachineBuff.Id, ObjectManager.Me.Guid).IsValid)
             {
                 Frostscythe.Cast();
                 return;
@@ -1147,7 +1149,7 @@ public class DeathknightFrost
             if (ObjectManager.Target.GetUnitInSpellRange(5f) == 1)
             {
                 if (MySettings.UseObliterate && Obliterate.IsSpellUsable && Obliterate.IsHostileDistanceGood &&
-                    (!Rime.HaveBuff || ObjectManager.Me.Runes <= 3))
+                    (!ObjectManager.Me.UnitAura(RimeBuff.Id, ObjectManager.Me.Guid).IsValid || ObjectManager.Me.Runes <= 3))
                 {
                     Obliterate.Cast();
                     return;
@@ -1164,7 +1166,7 @@ public class DeathknightFrost
             }
 
             if (MySettings.UseFrostStrike && FrostStrike.IsSpellUsable && FrostStrike.IsHostileDistanceGood &&
-                (ObjectManager.Me.Runes <= 3 && Razorice.BuffStack == 5))
+                (ObjectManager.Me.Runes <= 3 && RazoriceBuff.BuffStack == 5))
             {
                 FrostStrike.Cast();
                 return;
@@ -1479,7 +1481,8 @@ public class DeathknightUnholy
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }

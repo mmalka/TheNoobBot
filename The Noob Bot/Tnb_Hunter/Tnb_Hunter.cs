@@ -386,7 +386,8 @@ public class HunterMarksmanship
         if (!ObjectManager.Me.IsCast)
         {
             Heal();
-            if (Defensive()) return;
+            if (Defensive())
+                return;
             Pet();
             BurstBuffs();
             GCDCycle();
@@ -1047,7 +1048,8 @@ public class HunterBeastMastery
         if (!ObjectManager.Me.IsCast)
         {
             Heal();
-            if (Defensive()) return;
+            if (Defensive())
+                return;
             Pet();
             BurstBuffs();
             GCDCycle();
@@ -1722,7 +1724,8 @@ public class HunterSurvival
         if (!ObjectManager.Me.IsCast)
         {
             Heal();
-            if (Defensive()) return;
+            if (Defensive())
+                return;
             Pet();
             BurstBuffs();
             GCDCycle();

@@ -880,7 +880,8 @@ public class WarriorArms
 
     private void Patrolling()
     {
-        if (ObjectManager.Me.IsMounted) return;
+        if (ObjectManager.Me.IsMounted)
+            return;
         Buff();
         Heal();
     }
@@ -1719,7 +1720,8 @@ public class WarriorProtection
 
     private void Patrolling()
     {
-        if (ObjectManager.Me.IsMounted) return;
+        if (ObjectManager.Me.IsMounted)
+            return;
         Buff();
         Heal();
     }

@@ -453,7 +453,8 @@ public class WarlockAffliction
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Pet() || Offensive())
+        Healing();
+        if (Defensive() || Pet() || Offensive())
             return;
         Rotation();
     }
@@ -480,6 +481,13 @@ public class WarlockAffliction
                 Logging.WriteFight("Use Healthstone.");
                 ItemsManager.UseItem("Healthstone");
                 HealthstoneTimer = new Timer(1000*60);
+                return true;
+            }
+            //Channel Drain Life & Drain Soul
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDrainLife_SoulBelowPercentage && DrainLife.IsSpellUsable &&
+                !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
+            {
+                DrainLife.Cast();
                 return true;
             }
             return false;
@@ -893,6 +901,8 @@ public class WarlockAffliction
         /* Healing Spells */
         public bool UseCreateHealthstone = true;
         public int UseHealthstoneBelowPercentage = 25;
+        public int UseDrainLife_SoulBelowPercentage = 25;
+
 
         /* Utility Spells */
         public int StartBurningRushAbovePercentage = 99;
@@ -946,6 +956,7 @@ public class WarlockAffliction
             /* Healing Spell */
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spells");
             AddControlInWinForm("Use Healthstone", "UseHealthstoneBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Drain Life & Drain Soul", "UseDrainLife_SoulBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Start Burning Rush", "StartBurningRushAbovePercentage", "Utility Spells", "AbovePercentage", "Life");
             AddControlInWinForm("Stop Burning Rush", "StopBurningRushBelowPercentage", "Utility Spells", "BelowPercentage", "Life");
@@ -1233,7 +1244,8 @@ public class WarlockDemonology
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Pet() || Offensive())
+        Healing();
+        if (Defensive() || Pet() || Offensive())
             return;
         Rotation();
     }
@@ -1260,6 +1272,13 @@ public class WarlockDemonology
                 Logging.WriteFight("Use Healthstone.");
                 ItemsManager.UseItem("Healthstone");
                 HealthstoneTimer = new Timer(1000*60);
+                return true;
+            }
+            //Channel Drain Life
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDrainLifeBelowPercentage && DrainLife.IsSpellUsable &&
+                !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
+            {
+                DrainLife.Cast();
                 return true;
             }
             return false;
@@ -1591,6 +1610,7 @@ public class WarlockDemonology
         /* Healing Spells */
         public bool UseCreateHealthstone = true;
         public int UseHealthstoneBelowPercentage = 25;
+        public int UseDrainLifeBelowPercentage = 25;
 
         /* Utility Spells */
         public int StartBurningRushAbovePercentage = 99;
@@ -1642,6 +1662,7 @@ public class WarlockDemonology
             /* Healing Spell */
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spells");
             AddControlInWinForm("Use Healthstone", "UseHealthstoneBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Drain Life", "UseDrainLifeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Start Burning Rush", "StartBurningRushAbovePercentage", "Utility Spells", "AbovePercentage", "Life");
             AddControlInWinForm("Stop Burning Rush", "StopBurningRushBelowPercentage", "Utility Spells", "BelowPercentage", "Life");
@@ -1708,7 +1729,7 @@ public class WarlockDestruction
 
     #region Dots
 
-    private readonly Spell ImmolateDot = new Spell(193541); //TESTING
+    private readonly Spell ImmolateDot = new Spell(193541); //TESTING 157736
 
     #endregion
 
@@ -1929,7 +1950,8 @@ public class WarlockDestruction
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Pet() || Offensive())
+        Healing();
+        if (Defensive() || Pet() || Offensive())
             return;
         Rotation();
     }
@@ -1956,6 +1978,13 @@ public class WarlockDestruction
                 Logging.WriteFight("Use Healthstone.");
                 ItemsManager.UseItem("Healthstone");
                 HealthstoneTimer = new Timer(1000*60);
+                return true;
+            }
+            //Channel Drain Life
+            if (ObjectManager.Me.HealthPercent < MySettings.UseDrainLifeBelowPercentage && DrainLife.IsSpellUsable &&
+                !ObjectManager.Me.GetMove && DrainLife.IsHostileDistanceGood)
+            {
+                DrainLife.Cast();
                 return true;
             }
             return false;
@@ -2285,6 +2314,7 @@ public class WarlockDestruction
         /* Healing Spells */
         public bool UseCreateHealthstone = true;
         public int UseHealthstoneBelowPercentage = 25;
+        public int UseDrainLifeBelowPercentage = 25;
 
         /* Utility Spells */
         public int StartBurningRushAbovePercentage = 99;
@@ -2338,6 +2368,7 @@ public class WarlockDestruction
             /* Healing Spell */
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spells");
             AddControlInWinForm("Use Healthstone", "UseHealthstoneBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Drain Life", "UseDrainLifeBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
             AddControlInWinForm("Start Burning Rush", "StartBurningRushAbovePercentage", "Utility Spells", "AbovePercentage", "Life");
             AddControlInWinForm("Stop Burning Rush", "StopBurningRushBelowPercentage", "Utility Spells", "BelowPercentage", "Life");

@@ -1114,23 +1114,23 @@ public class PaladinRetribution
 
     #region Flask & Potion Management
 
-/*
-        private readonly int _combatPotion = ItemsManager.GetIdByName(MySettings.CombatPotion);
-*/
+    /*
+            private readonly int _combatPotion = ItemsManager.GetIdByName(MySettings.CombatPotion);
+    */
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly int _flaskOrBattleElixir = ItemsManager.GetItemIdByName(MySettings.FlaskOrBattleElixir);
     private readonly int _guardianElixir = ItemsManager.GetItemIdByName(MySettings.GuardianElixir);
 
-/*
-        private readonly WoWItem _hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
-*/
+    /*
+            private readonly WoWItem _hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
+    */
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-/*
-        private readonly int _teasureFindingPotion = ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
-*/
-/*
-        private readonly int _wellFedBuff = ItemsManager.GetIdByName(MySettings.WellFedBuff);
-*/
+    /*
+            private readonly int _teasureFindingPotion = ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
+    */
+    /*
+            private readonly int _wellFedBuff = ItemsManager.GetIdByName(MySettings.WellFedBuff);
+    */
 
     #endregion
 

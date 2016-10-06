@@ -378,7 +378,9 @@ public class ShamanEnhancement
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Oneshot() || Offensive()) return;
+        Healing();
+        if (Defensive() || Oneshot() || Offensive())
+            return;
         Rotation();
     }
 
@@ -1546,7 +1548,8 @@ public class ShamanRestoration
 
     private void Patrolling()
     {
-        if (ObjectManager.Me.IsMounted) return;
+        if (ObjectManager.Me.IsMounted)
+            return;
         Buff();
         Heal();
     }

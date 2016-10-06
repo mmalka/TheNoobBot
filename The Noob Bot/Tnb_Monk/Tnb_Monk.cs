@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Ryuichiro
+* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
 * Thanks you !
 */
 
@@ -356,7 +356,8 @@ public class MonkBrewmaster
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -908,7 +909,8 @@ public class MonkWindwalker
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1441,7 +1443,8 @@ public class MonkMistweaver
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }

@@ -385,7 +385,8 @@ public class RogueAssassination
             Stealth();
         else
         {
-            if (Healing() || Defensive() || AggroManagement() || Offensive())
+            Healing();
+            if (Defensive() || AggroManagement() || Offensive())
                 return;
             Rotation();
         }
@@ -1045,7 +1046,8 @@ public class RogueOutlaw
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1410,7 +1412,7 @@ public class RogueOutlaw
 
         public static RogueOutlawSettings GetSettings()
         {
-            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
+            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Outlaw.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
@@ -1609,7 +1611,8 @@ public class RogueSubtlety
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || AggroManagement() || Offensive())
+        Healing();
+        if (Defensive() || AggroManagement() || Offensive())
             return;
         Rotation();
     }

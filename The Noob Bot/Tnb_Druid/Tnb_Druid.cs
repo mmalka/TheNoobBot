@@ -859,7 +859,7 @@ public class DruidFeral
     #region Druid Buffs
 
     //private readonly Spell BearForm = new Spell("Bear Form");
-    private readonly Spell BloodTalonsBuff = new Spell(145152);
+    private readonly Spell BloodtalonsBuff = new Spell(145152);
     private readonly Spell CatForm = new Spell("Cat Form");
     //private readonly Spell MoonkinForm = new Spell("Moonkin Form");
     //private readonly Spell TravelForm = new Spell("Travel Form");
@@ -1049,7 +1049,8 @@ public class DruidFeral
             Stealth();
         else
         {
-            if (Healing() || Defensive() || Shapeshift() || Offensive())
+            Healing();
+            if (Defensive() || Shapeshift() || Offensive())
                 return;
             Rotation();
         }
@@ -1066,6 +1067,10 @@ public class DruidFeral
             //1. Priority: Rake
             if (MySettings.UseRake && Rake.IsSpellUsable && Rake.IsHostileDistanceGood && ObjectManager.Target.IsStunnable)
             {
+                Logging.Write("CombatReach - Me: " + ObjectManager.Me.GetCombatReach + ", Target: " + ObjectManager.Target.GetCombatReach);
+                Logging.Write("Target Distance: " + ObjectManager.Target.GetDistance);
+                Logging.Write("Rake MaxRangeHostile: " + Rake.MaxRangeHostile + " (Tooltip: Melee)");
+                Logging.Write("Rake IsHostileDistanceGood: " + Rake.IsHostileDistanceGood);
                 Rake.Cast();
                 return;
             }
@@ -1090,42 +1095,13 @@ public class DruidFeral
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Cast Healing Touch when
-            if (MySettings.UseHealingTouch && HealingTouch.IsSpellUsable &&
-                //you have the Predatory Swiftness Buff and
-                ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).IsValid &&
-                //it will expire shortly or
-                (ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).AuraTimeLeftInMs < 1000 ||
-                 //you have 4 or more Combo Points or
-                 ObjectManager.Me.ComboPoint >= 4 ||
-                 //Ashamane's Frenzy isn't on Cooldown.
-                 AshamanesFrenzy.IsSpellUsable))
+            //Cast Healing Touch when it will expire shortly or
+            if (ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id).AuraTimeLeftInMs < 1000 ||
+                //you have less than 10% Health
+                ObjectManager.Me.Health < 10)
             {
-                if (ObjectManager.Me.HealthPercent > 90 && Party.IsInGroup())
-                {
-                    var lowestHpPlayer = ObjectManager.Me;
-                    foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
-                    {
-                        if (playerInMyParty <= 0) continue;
-                        WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                        if (!obj.IsValid || obj.Type != WoWObjectType.Player) continue;
-                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                        if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
-                        if (currentPlayer.HealthPercent < lowestHpPlayer.HealthPercent && CombatClass.InSpellRange(currentPlayer, 0, HealingTouch.MaxRangeFriend))
-                            lowestHpPlayer = currentPlayer;
-                    }
-                    if (lowestHpPlayer.Guid > 0)
-                    {
-                        Logging.WriteFight("Healing " + lowestHpPlayer.Name);
-                        HealingTouch.Cast(false, true, false, lowestHpPlayer.GetUnitId());
-                        return true;
-                    }
-                }
-                else
-                {
-                    HealingTouch.CastOnSelf();
+                if (CastHealingTouch())
                     return true;
-                }
             }
             //Renewal
             if (Renewal.IsSpellUsable && ObjectManager.Me.HealthPercent < 70)
@@ -1140,11 +1116,13 @@ public class DruidFeral
                 if (Swiftmend.IsSpellUsable)
                 {
                     Swiftmend.CastOnSelf();
+                    return true;
                 }
                 //Rejuvenation
                 if (Rejuvenation.IsSpellUsable && ObjectManager.Me.UnitAura(774, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
                 {
                     Rejuvenation.CastOnSelf();
+                    return true;
                 }
             }
             return false;
@@ -1253,11 +1231,10 @@ public class DruidFeral
             {
                 Berserking.Cast();
             }
-            //Apply Berserk
-            if (MySettings.UseBerserk && Berserk.IsSpellUsable)
+            //Apply Berserk when you have the Tiger's Fury Buff
+            if (MySettings.UseBerserk && Berserk.IsSpellUsable && TigersFury.HaveBuff)
             {
                 Berserk.Cast();
-                return true;
             }
             //Apply Elunes Guidance when
             if (MySettings.UseElunesGuidance && ElunesGuidance.IsSpellUsable &&
@@ -1267,12 +1244,14 @@ public class DruidFeral
                 ElunesGuidance.Cast();
                 return true;
             }
-            //Apply Tigers Fury when you have less than 40 Energy and
-            if (MySettings.UseTigersFury && TigersFury.IsSpellUsable && ObjectManager.Me.Energy < 40 &&
-                //no Buff uptime will be lost and
-                ObjectManager.Me.UnitAura(TigersFury.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333 &&
-                //Ashamane's Frenzy is on Cooldown.
-                !AshamanesFrenzy.IsSpellUsable)
+            //Apply Tigers Fury when
+            if (MySettings.UseTigersFury && TigersFury.IsSpellUsable &&
+                //no Buff uptime will be lost and you have less than 40 Energy or
+                ((ObjectManager.Me.UnitAura(TigersFury.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333 &&
+                  ObjectManager.Me.Energy < 40) ||
+                 //you can use the Predator Talent
+                 (Predator.HaveBuff && ObjectManager.Target.HealthPercent < 20 && ObjectManager.Target.IsAlive &&
+                  (Rake.HaveBuff || Rip.HaveBuff || AshamanesFrenzy.HaveBuff))))
             {
                 TigersFury.Cast();
                 return true;
@@ -1293,54 +1272,54 @@ public class DruidFeral
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //1. Apply Savage Roar when you don't have the Buff or
-            if (MySettings.UseSavageRoar && SavageRoar.IsSpellUsable && (!SavageRoar.HaveBuff ||
-                                                                         //you have max Combo Points and less than 8 seconds remaining.
-                                                                         (ObjectManager.Me.ComboPoint == 5 && ObjectManager.Me.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 8000)))
+            //1. Cast Ferocious Bite when
+            if (MySettings.UseFerociousBite && FerociousBite.IsSpellUsable && FerociousBite.IsHostileDistanceGood &&
+                //it will refresh Rip and
+                (Rip.TargetHaveBuff && (Sabertooth.HaveBuff || ObjectManager.Target.HealthPercent < 25)) &&
+                //Rip is active and has less than 8 seconds remaining
+                ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(Rip.Id, 8000))
             {
+                if (CastHealingTouch())
+                    return;
+                FerociousBite.Cast();
+                return;
+            }
+            //2. Maintain Savage Roar when
+            if (MySettings.UseSavageRoar && SavageRoar.IsSpellUsable &&
+                //you don't have the Buff or
+                (!SavageRoar.HaveBuff ||
+                 //you have max Combo Points and less than 8 seconds remaining.
+                 (ObjectManager.Me.ComboPoint == 5 && ObjectManager.Me.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 8000)))
+            {
+                if (CastHealingTouch())
+                    return;
                 SavageRoar.Cast();
                 return;
             }
-            //2. Cast Ashamane's Frenzy when
+            //3. Cast Ashamane's Frenzy when
             if (MySettings.UseAshamanesFrenzy && AshamanesFrenzy.IsSpellUsable && AshamanesFrenzy.IsHostileDistanceGood &&
                 //you have 2 or less Combo Points and
                 ObjectManager.Me.ComboPoint <= 2 &&
-                //you have the Bloodtalons Buff (if talented) and
-                (!Bloodtalons.HaveBuff || ObjectManager.Me.UnitAura(BloodTalonsBuff.Id, ObjectManager.Me.Guid).IsValid) &&
                 //you have the Savage Roar Buff (if talented).
                 (!SavageRoar.KnownSpell || ObjectManager.Me.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).IsValid))
             {
-                //Apply Tigers Fury when you have less than 40 Energy and
-                if (MySettings.UseTigersFury && TigersFury.IsSpellUsable && ObjectManager.Me.Energy < 40 &&
-                    //no Buff uptime will be lost.
-                    ObjectManager.Me.UnitAura(TigersFury.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333)
+                if (CastHealingTouch())
+                    return;
+                //you have the Bloodtalons Buff (if talented) and
+                if ((!Bloodtalons.HaveBuff || ObjectManager.Me.UnitAura(BloodtalonsBuff.Id, ObjectManager.Me.Guid).IsValid))
                 {
-                    TigersFury.Cast();
+                    //Apply Tigers Fury when
+                    if (MySettings.UseTigersFury && TigersFury.IsSpellUsable &&
+                        //no Buff uptime will be lost.
+                        ObjectManager.Me.UnitAura(TigersFury.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333)
+                    {
+                        TigersFury.Cast();
+                    }
+                    AshamanesFrenzy.Cast();
+                    return;
                 }
-                AshamanesFrenzy.Cast();
-                return;
             }
-            //3. Apply/Refresh Rake when
-            if (MySettings.UseRake && Rake.IsSpellUsable && Rake.IsHostileDistanceGood &&
-                //you have less than 5 seconds remaining or
-                (ObjectManager.Target.UnitAura(Rake.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000 ||
-                 //you have Blood Talons Buff.
-                 ObjectManager.Target.UnitAura(BloodTalonsBuff.Id).IsValid))
-            {
-                Rake.Cast();
-                return;
-            }
-            //4. Apply/Refresh Moonfire when
-            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
-                //you don't leave Cat Form and
-                (LunarInspiration.HaveBuff || !CatForm.HaveBuff) &&
-                //it has less than 5 seconds remaining.
-                ObjectManager.Target.UnitAura(Moonfire.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
-            {
-                Moonfire.Cast();
-                return;
-            }
-            //5. Apply/Refresh Thrash when
+            //4. Maintain Thrash when
             if (MySettings.UseThrash && Thrash.IsSpellUsable &&
                 //it has less than 5 seconds remaining and
                 ObjectManager.Target.UnitAura(106830, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000 &&
@@ -1350,14 +1329,25 @@ public class DruidFeral
                 Thrash.Cast();
                 return;
             }
-            //6. Cast Ferocious Bite when
-            if (MySettings.UseFerociousBite && FerociousBite.IsSpellUsable && FerociousBite.IsHostileDistanceGood &&
-                //it will refresh Rip and
-                (Rip.TargetHaveBuff && (Sabertooth.HaveBuff || ObjectManager.Target.HealthPercent < 25)) &&
-                //Rip is active and has less than 8 seconds remaining
-                ObjectManager.Target.AuraIsActiveAndExpireInLessThanMs(Rip.Id, 8000))
+            //5. Maintain Rake when
+            if (MySettings.UseRake && Rake.IsSpellUsable && Rake.IsHostileDistanceGood &&
+                //it has less than 5 seconds remaining or
+                (ObjectManager.Target.UnitAura(Rake.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000 ||
+                 //you are not capping Combo Points and you have the Blood Talons Buff.
+                 (ObjectManager.Me.ComboPoint < ObjectManager.Me.MaxComboPoint &&
+                  ObjectManager.Me.UnitAura(BloodtalonsBuff.Id, ObjectManager.Me.Guid).IsValid)))
             {
-                FerociousBite.Cast();
+                Rake.Cast();
+                return;
+            }
+            //6. Maintain Moonfire when
+            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
+                //you don't leave Cat Form and
+                (LunarInspiration.HaveBuff || !CatForm.HaveBuff) &&
+                //it has less than 5 seconds remaining.
+                ObjectManager.Target.UnitAura(Moonfire.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000)
+            {
+                Moonfire.Cast();
                 return;
             }
             //7. Generate Combo Points when you have less than 5
@@ -1367,16 +1357,16 @@ public class DruidFeral
                 if (MySettings.UseBrutalSlash && BrutalSlash.IsSpellUsable &&
                     //you have 3 charges or
                     (BrutalSlash.GetSpellCharges == 3 ||
-                     //there are multiple targets in range.
-                     ObjectManager.GetUnitInSpellRange(BrutalSlash.MaxRangeHostile) > 2))
+                     //there are 3 or more Targets in range.
+                     ObjectManager.GetUnitInSpellRange(BrutalSlash.MaxRangeHostile) >= 3))
                 {
                     BrutalSlash.Cast();
                     return;
                 }
                 //7b. Cast Swipe when
                 if (MySettings.UseSwipe && Swipe.IsSpellUsable && Swipe.IsHostileDistanceGood &&
-                    //there are multiple targets in range.
-                    ObjectManager.GetUnitInSpellRange(Swipe.MaxRangeHostile) > 2)
+                    //there are 3 or more Targets in range.
+                    ObjectManager.GetUnitInSpellRange(BrutalSlash.MaxRangeHostile) >= 3)
                 {
                     Swipe.Cast();
                     return;
@@ -1385,14 +1375,6 @@ public class DruidFeral
                 if (MySettings.UseShred && Shred.IsSpellUsable && Shred.IsHostileDistanceGood)
                 {
                     Shred.Cast();
-                    return;
-                }
-                //7d. Cast Moonfire when
-                if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
-                    //you have the Lunar Inspiration Talent
-                    LunarInspiration.HaveBuff)
-                {
-                    Moonfire.Cast();
                     return;
                 }
             }
@@ -1404,8 +1386,10 @@ public class DruidFeral
                     //you have less than 8 seconds remaining or
                     (ObjectManager.Target.UnitAura(1079, ObjectManager.Me.Guid).AuraTimeLeftInMs < 8000 ||
                      //you have Blood Talons Buff.
-                     ObjectManager.Target.UnitAura(BloodTalonsBuff.Id).IsValid))
+                     BloodtalonsBuff.HaveBuff))
                 {
+                    if (CastHealingTouch())
+                        return;
                     Rip.Cast();
                     return;
                 }
@@ -1416,6 +1400,8 @@ public class DruidFeral
                     //your Rip Buff has more than 10 seconds remaining.
                     ObjectManager.Target.UnitAura(Rip.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 10000)
                 {
+                    if (CastHealingTouch())
+                        return;
                     FerociousBite.Cast();
                     return;
                 }
@@ -1433,6 +1419,42 @@ public class DruidFeral
         {
             Memory.WowMemory.GameFrameUnLock();
         }
+    }
+
+    private bool CastHealingTouch()
+    {
+        //Cast Healing Touch when
+        if (MySettings.UseHealingTouch && HealingTouch.IsSpellUsable &&
+            //you have the Predatory Swiftness Buff
+            ObjectManager.Me.UnitAura(PredatorySwiftnessBuff.Id, ObjectManager.Me.Guid).IsValid)
+        {
+            if (ObjectManager.Me.HealthPercent > 90 && Party.IsInGroup())
+            {
+                var lowestHpPlayer = ObjectManager.Me;
+                foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
+                {
+                    if (playerInMyParty <= 0)
+                        continue;
+                    WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                        continue;
+                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                        continue;
+                    if (currentPlayer.HealthPercent < lowestHpPlayer.HealthPercent && CombatClass.InSpellRange(currentPlayer, 0, HealingTouch.MaxRangeFriend))
+                        lowestHpPlayer = currentPlayer;
+                }
+                if (lowestHpPlayer.Guid > 0)
+                {
+                    Logging.WriteFight("Healing " + lowestHpPlayer.Name);
+                    HealingTouch.Cast(false, true, false, lowestHpPlayer.GetUnitId());
+                    return true;
+                }
+            }
+            HealingTouch.CastOnSelf();
+            return true;
+        }
+        return false;
     }
 
     #region Nested type: DruidFeralSettings

@@ -897,7 +897,8 @@ public class DemonHunterVengeance
             CombatMode = true;
         }
         Heal();
-        if (Defensive()) return;
+        if (Defensive())
+            return;
         AggroManagement();
         BurstBuffs();
         GCDCycle();

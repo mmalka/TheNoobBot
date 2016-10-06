@@ -369,7 +369,8 @@ public class PriestDiscipline
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -563,11 +564,14 @@ public class PriestDiscipline
                 WoWPlayer atonementTarget = new WoWPlayer(0);
                 foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                 {
-                    if (playerInMyParty <= 0) continue;
+                    if (playerInMyParty <= 0)
+                        continue;
                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                    if (!obj.IsValid || obj.Type != WoWObjectType.Player) continue;
+                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                        continue;
                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                        continue;
 
                     if (!currentPlayer.HaveBuff(Atonement.Ids) && currentPlayer.HealthPercent < 100)
                     {
@@ -956,7 +960,8 @@ public class PriestHoly
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1264,6 +1269,7 @@ public class PriestShadow
 
     #region Talents
 
+    private readonly Spell LegacyoftheVoid = new Spell("Legacy of the Void");
     private readonly Spell ReaperofSouls = new Spell("Reaper of Souls");
 
     #endregion
@@ -1271,7 +1277,7 @@ public class PriestShadow
     #region Buffs
 
     private readonly Spell LingeringInsanity = new Spell("Lingering Insanity");
-    private readonly Spell Voidform = new Spell(194249); // Void Bolt workaround
+    private readonly Spell Voidform = new Spell(194249);
 
     #endregion
 
@@ -1416,7 +1422,8 @@ public class PriestShadow
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1577,15 +1584,6 @@ public class PriestShadow
                 SurrendertoMadness.Cast();
                 return true;
             }
-            //Cast Shadowfiend / Mindbender
-            if (MySettings.UseShadowfiend_Mindbender && Shadowfiend.IsSpellUsable)
-            {
-                if (Mindbender.HaveBuff)
-                    Mindbender.Cast();
-                else
-                    Shadowfiend.Cast();
-                return true;
-            }
             return false;
         }
         finally
@@ -1625,27 +1623,16 @@ public class PriestShadow
                 }
             }
 
-            //1. Use Void Bolt / Void Eruption
-            if (MySettings.UseVoidBolt && VoidBolt.IsSpellUsable &&
-                CombatClass.InSpellRange(ObjectManager.Target, 0, 40) &&
-                Voidform.HaveBuff)
-            {
-                VoidBolt.Cast();
-                return;
-            }
-            if (MySettings.UseVoidEruption && VoidEruption.IsSpellUsable && !Voidform.HaveBuff)
+            //Use Void Eruption
+            if (MySettings.UseVoidEruption && VoidEruption.IsSpellUsable &&
+                ((LegacyoftheVoid.HaveBuff && ObjectManager.Me.Insanity >= 70) ||
+                 ObjectManager.Me.Insanity >= 100) && !Voidform.HaveBuff)
             {
                 VoidEruption.Cast();
                 return;
             }
-            //2. Cast Mind Blast
-            if (MySettings.UseMindBlast && MindBlast.IsSpellUsable && MindBlast.IsHostileDistanceGood &&
-                MindBlast.GetSpellCharges > 0)
-            {
-                MindBlast.Cast();
-                return;
-            }
-            //3. Use Void Torrent when
+
+            //1. Use Void Torrent when
             if (MySettings.UseVoidTorrent && VoidTorrent.IsSpellUsable && VoidTorrent.IsHostileDistanceGood &&
                 //Voidform is active
                 Voidform.HaveBuff)
@@ -1653,24 +1640,64 @@ public class PriestShadow
                 VoidTorrent.Cast();
                 return;
             }
-            //4. Cast Shadow Word: Death when
+            //2. Use Void Bolt when
+            if (MySettings.UseVoidBolt && VoidBolt.IsSpellUsable &&
+                CombatClass.InSpellRange(ObjectManager.Target, 0, 40) &&
+                //Voidform is active
+                Voidform.HaveBuff)
+            {
+                VoidBolt.Cast();
+                return;
+            }
+            //3. Cast Shadowfiend / Mindbender when
+            if (MySettings.UseShadowfiend_Mindbender && Shadowfiend.IsSpellUsable &&
+                //you have low Voidform stacks.
+                Voidform.BuffStack <= 50)
+            {
+                if (Mindbender.HaveBuff)
+                    Mindbender.Cast();
+                else
+                    Shadowfiend.Cast();
+                return;
+            }
+            //4. Cast Shadow Word: Death when you are in Void form and
             if (MySettings.UseShadowWordDeath && ShadowWordDeath.IsSpellUsable &&
-                ShadowWordDeath.GetSpellCharges > 0 && ShadowWordDeath.IsHostileDistanceGood &&
-                //you have the Reaper of Souls Talent or
+                ShadowWordDeath.IsHostileDistanceGood &&
                 ((ReaperofSouls.HaveBuff && ObjectManager.Target.HealthPercent < 35) ||
-                 //TODO: the target will die.
-                 ObjectManager.Target.HealthPercent < 20))
+                 ObjectManager.Target.HealthPercent < 20) && Voidform.HaveBuff &&
+                //you have 2 charges or
+                (ShadowWordDeath.GetSpellCharges >= 2 ||
+                 //you will not fall out of Voidform in 2 seconds and Mind Blast is off cooldown.
+                 (ObjectManager.Me.Insanity > 9*2 && MindBlast.IsSpellUsable)))
             {
                 ShadowWordDeath.Cast();
                 return;
             }
-            //5. Cast Shadow Crash
+            //5. Cast Mind Blast
+            if (MySettings.UseMindBlast && MindBlast.IsSpellUsable && MindBlast.IsHostileDistanceGood &&
+                MindBlast.GetSpellCharges > 0)
+            {
+                MindBlast.Cast();
+                return;
+            }
+            //6. Cast Shadowfiend / Mindbender when
+            if (MySettings.UseShadowfiend_Mindbender && Shadowfiend.IsSpellUsable &&
+                //you have low Voidform stacks.
+                Voidform.BuffStack <= 50)
+            {
+                if (Mindbender.HaveBuff)
+                    Mindbender.Cast();
+                else
+                    Shadowfiend.Cast();
+                return;
+            }
+            //7. Cast Shadow Crash
             if (MySettings.UseShadowCrash && ShadowCrash.IsSpellUsable && ShadowCrash.IsHostileDistanceGood)
             {
                 ShadowCrash.CastAtPosition(ObjectManager.Target.Position);
                 return;
             }
-            //6. Cast Shadow Word: Void when
+            //8. Cast Shadow Word: Void when
             if (MySettings.UseShadowWordVoid && ShadowWordVoid.IsSpellUsable && ShadowWordVoid.IsHostileDistanceGood &&
                 //you have 3 charges or Voidform is active.
                 (ShadowWordVoid.GetSpellCharges == 3 || Voidform.HaveBuff))
@@ -1678,7 +1705,7 @@ public class PriestShadow
                 ShadowWordVoid.CastAtPosition(ObjectManager.Target.Position);
                 return;
             }
-            //7. Apply Shadow Word: Pain when
+            //9. Apply Shadow Word: Pain when
             if (MySettings.UseShadowWordPain && ShadowWordPain.IsSpellUsable && ShadowWordPain.IsHostileDistanceGood &&
                 //the Dot isn't up.
                 !ShadowWordPain.TargetHaveBuffFromMe)
@@ -1686,7 +1713,7 @@ public class PriestShadow
                 ShadowWordPain.Cast();
                 return;
             }
-            //8. Apply Vampiric Touch when
+            //10. Apply Vampiric Touch when
             if (MySettings.UseVampiricTouch && VampiricTouch.IsSpellUsable && VampiricTouch.IsHostileDistanceGood &&
                 //the Dot isn't up.
                 !VampiricTouch.TargetHaveBuffFromMe)
@@ -1694,7 +1721,7 @@ public class PriestShadow
                 VampiricTouch.Cast();
                 return;
             }
-            //9. Cast Mind Sear when
+            //11. Cast Mind Sear when
             if (MySettings.UseMindSear && MindSear.IsSpellUsable && MindSear.IsHostileDistanceGood &&
                 //you have multiple targets
                 ObjectManager.Target.GetUnitInSpellRange(10f) > 1)
@@ -1702,7 +1729,7 @@ public class PriestShadow
                 MindSear.Cast();
                 return;
             }
-            //10. Cast Mind Flay / Mind Spike
+            //12. Cast Mind Flay / Mind Spike
             if (MySettings.UseMindFlay_Spike && MindFlay.IsSpellUsable && MindFlay.IsHostileDistanceGood)
             {
                 MindFlay.Cast();

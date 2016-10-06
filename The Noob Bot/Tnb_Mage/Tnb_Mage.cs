@@ -357,7 +357,8 @@ public class MageArcane
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -931,7 +932,8 @@ public class MageFire
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1484,7 +1486,8 @@ public class MageFrost
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
