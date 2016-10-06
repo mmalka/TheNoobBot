@@ -39,9 +39,7 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoading ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat &&
-                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
                     ObjectManager.ObjectManager.Me.IsMounted ||
                     MovementManager.InMovement ||
                     !Products.Products.IsStarted)

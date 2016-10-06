@@ -66,9 +66,7 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoading ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat &&
-                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -227,9 +225,7 @@ namespace nManager.Wow.Bot.States
                         while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3.5f)
                         {
                             Thread.Sleep(100);
-                            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat)
                             {
                                 return;
                             }
@@ -713,10 +709,7 @@ namespace nManager.Wow.Bot.States
                             }
                             // incremente nbstuck if player is stuck
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(t.Position) < 5 ||
-                                (MovementManager.InMovement &&
-                                 !(ObjectManager.ObjectManager.Me.InCombat &&
-                                   !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                     (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                (MovementManager.InMovement && !ObjectManager.ObjectManager.Me.InInevitableCombat &&
                                  timer.IsReady))
 // ReSharper disable RedundantAssignment
                                 nbStuck++;
@@ -725,9 +718,7 @@ namespace nManager.Wow.Bot.States
 // ReSharper disable RedundantAssignment
                                 nbStuck = 0;
 // ReSharper restore RedundantAssignment
-                            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat)
                             {
                                 return;
                             }

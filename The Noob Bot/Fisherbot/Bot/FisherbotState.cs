@@ -181,9 +181,7 @@ namespace Fisherbot.Bot
                 timer = new nManager.Helpful.Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
                 while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&
                        !ObjectManager.Me.IsDeadMe &&
-                       !(ObjectManager.Me.InCombat &&
-                         !(ObjectManager.Me.IsMounted &&
-                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                       !ObjectManager.Me.InInevitableCombat &&
                        !timer.IsReady && MovementManager.InMovement)
                 {
                     if (ObjectManager.Me.Position.DistanceTo2D(whereToGo) <= 0.2f)

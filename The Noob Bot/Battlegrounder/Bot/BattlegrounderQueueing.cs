@@ -43,9 +43,7 @@ namespace Battlegrounder.Bot
                     Usefuls.IsLoading ||
                     ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.Me.IsValid ||
-                    (ObjectManager.Me.InCombat &&
-                     !(ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    ObjectManager.Me.InInevitableCombat ||
                     !Products.IsStarted)
                     return false;
 

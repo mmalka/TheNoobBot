@@ -30,9 +30,7 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoading ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat &&
-                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    ObjectManager.ObjectManager.Me.InInevitableCombat ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -83,9 +81,7 @@ namespace nManager.Wow.Bot.States
                     Timer timer = new Timer((int) (Math.DistanceListPoint(pointssmelting)/3*1000) + 5000);
                     Thread.Sleep(700);
                     while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat &&
-                             !(ObjectManager.ObjectManager.Me.IsMounted &&
-                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                           !ObjectManager.ObjectManager.Me.InInevitableCombat &&
                            !ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
                         if (timer.IsReady)

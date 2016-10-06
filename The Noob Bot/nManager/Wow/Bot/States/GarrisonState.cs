@@ -82,8 +82,7 @@ namespace nManager.Wow.Bot.States
             get
             {
                 if (!Usefuls.InGame || Usefuls.IsLoading || ObjMgr.Me.IsDeadMe || !ObjMgr.Me.IsValid ||
-                    (ObjMgr.Me.InCombat && !(ObjMgr.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
-                                                                     Usefuls.IsFlying))) || !Products.Products.IsStarted)
+                    ObjMgr.Me.InInevitableCombat || !Products.Products.IsStarted)
                     return false;
                 // Not initialized, then run
                 if (tList == null)

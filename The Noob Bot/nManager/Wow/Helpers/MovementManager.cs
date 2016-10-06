@@ -1634,7 +1634,7 @@ namespace nManager.Wow.Helpers
                 return baseAddress;
             }
             // We are in movement and want to update the path if necessary
-            if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
+            if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InInevitableCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
                 // Out of range of the position
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))

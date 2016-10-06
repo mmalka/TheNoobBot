@@ -44,9 +44,7 @@ namespace Mimesis.Bot
                     Usefuls.IsLoading ||
                     ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.Me.IsValid ||
-                    (ObjectManager.Me.InCombat &&
-                     !(ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    ObjectManager.Me.InInevitableCombat ||
                     Usefuls.IsFlying ||
                     !Products.IsStarted)
                     return false;

@@ -156,9 +156,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
 
                             Thread.Sleep(Usefuls.Latency + 200);
-                            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat)
                             {
                                 MountTask.DismountMount();
                                 return;
@@ -177,18 +175,14 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 Thread.Sleep(100);
                             }
-                            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat)
                             {
                                 MountTask.DismountMount();
                                 CountThisLoot = false;
                                 return;
                             }
                             Thread.Sleep(Usefuls.Latency + 100);
-                            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat)
                             {
                                 MountTask.DismountMount();
                                 CountThisLoot = false;

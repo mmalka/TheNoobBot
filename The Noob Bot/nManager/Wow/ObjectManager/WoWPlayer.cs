@@ -185,6 +185,11 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool InInevitableCombat
+        {
+            get { return ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)); }
+        }
+
         public new bool InCombat
         {
             get { return InCombatBlizzard && ObjectManager.GetNumberAttackPlayer() > 0; }
