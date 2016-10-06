@@ -67,6 +67,7 @@
               <Z>70.31509</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -492,6 +493,7 @@
               <Z>103.8052</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -546,6 +548,7 @@
               <Z>112.1388</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -774,6 +777,7 @@
               <Z>70.2146</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
@@ -829,6 +833,314 @@
               <X>-233.8279</X>
               <Y>5597.287</Y>
               <Z>61.51464</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Aethril Cluster</Name>
+      <Id>41545</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1379.226</X>
+        <Y>7193.648</Y>
+        <Z>68.92852</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) > 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>104377</int>
+          </Entry>
+          <Position>
+            <X>1379.226</X>
+            <Y>7193.648</Y>
+            <Z>68.92852</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Twisted Souls</Name>
+      <Id>42511</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>300.8808</X>
+        <Y>7289.17</Y>
+        <Z>133.7985</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>4</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>107696</int> <!-- Lord Tash'irel -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>320.3559</X>
+              <Y>7557.951</Y>
+              <Z>146.3011</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>12</Count>
+          <Entry>
+            <int>107624</int> <!-- Vengeful Soul -->
+            <int>107625</int> <!-- Vengeful Soul -->
+            <int>107628</int> <!-- Vengeful Soul -->
+            <int>107629</int> <!-- Vengeful Soul -->
+            <int>107715</int> <!-- Agonized Spirit -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>300.8808</X>
+              <Y>7289.17</Y>
+              <Z>133.7985</Z>
+            </Point>
+            <Point>
+              <X>320.3559</X>
+              <Y>7557.951</Y>
+              <Z>146.3011</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Doomlord Kazrok</Name>
+      <Id>43609</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>568.1667</X>
+        <Y>6988.304</Y>
+        <Z>179.033</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>=IsTankScript.cs</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Entry>
+            <int>91580</int> <!-- Tehd Shoemaker -->
+          </Entry> 
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          <Position>
+            <X>561.8281</X>
+            <Y>6983.585</Y>
+            <Z>178.9137</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>91579</int> <!-- Doomlord Kazrok -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>568.1667</X>
+              <Y>6988.304</Y>
+              <Z>179.033</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Mixology Mix-up</Name>
+      <Id>42105</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>353.2832</X>
+        <Y>6414.047</Y>
+        <Z>5.681364</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
+          <CollectItemId>136839</CollectItemId> <!-- Egg of Gangamesh -->
+          <CollectCount>1</CollectCount>
+          <Entry>
+            <int>249524</int> <!-- Egg of Gangamesh -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>353.2832</X>
+              <Y>6414.047</Y>
+              <Z>5.681364</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>136838</CollectItemId> <!-- Intact Murloc Eye -->
+          <CollectCount>20</CollectCount>
+          <Entry>
+            <int>88099</int> <!-- Salteye Hookblade -->
+            <int>88101</int> <!-- Salteye Tide-Shaman -->
+            <int>89865</int> <!-- Mrrgrl the Tide Reaver -->
+            <int>107439</int> <!-- Salteye Beastfeeder -->
+            <int>109174</int> <!-- Salteye Spearguard -->
+            <int>113866</int> <!-- Salteye Clam Vanquisher -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>307.038</X>
+              <Y>6490.09</Y>
+              <Z>3.508847</Z>
+            </Point>
+            <Point>
+              <X>72.47977</X>
+              <Y>6534.512</Y>
+              <Z>1.356189</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Captain Volo'ren</Name>
+      <Id>43430</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-124.3733</X>
+        <Y>6308.84</Y>
+        <Z>47.00557</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>89846</int> <!-- Captain Volo'ren -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-124.3733</X>
+              <Y>6308.84</Y>
+              <Z>47.00557</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>The Eternal Mages</Name>
+      <Id>42711</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-1043.703</X>
+        <Y>6073.835</Y>
+        <Z>39.15007</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>15</Count>
+          <Entry>
+            <int>109135</int> <!-- Ancient Flamecaller -->
+            <int>109136</int> <!-- Ancient Arcanist -->
+            <int>108334</int> <!-- Ancient Spellweaver -->
+            <int>108335</int> <!-- Ancient Flamewraith -->
+            <int>108337</int> <!-- Ancient Frostwhisperer -->
+            <int>108338</int> <!-- Ancient Arcanist -->
+            <int>108339</int> <!-- Ancient Flamecaller -->
+            <int>108340</int> <!-- Ancient Chillwitch -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1043.703</X>
+              <Y>6073.835</Y>
+              <Z>39.15007</Z>
+            </Point>
+            <Point>
+              <X>-1049.713</X>
+              <Y>6139.909</Y>
+              <Z>44.07459</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Those Beyond Redemption</Name>
+      <Id>42018</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1029.003</X>
+        <Y>6095.122</Y>
+        <Z>92.95913</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <!-- 1/7 -->
+            <int>90244</int> <!-- Arcavellus -->
+            <int>90267</int> <!-- Ael'Yith -->
+            <!-- 1/13 -->
+            <int>90389</int> <!-- Ishkaneth -->
+            <int>90390</int> <!-- Tyndrissen -->
+            <!-- 1/17 -->
+            <int>89801</int> <!-- Withered Scavenger -->
+            <int>90005</int> <!-- Nightfallen Construct -->
+            <int>90243</int> <!-- Rift Wraith -->
+            <int>90318</int> <!-- Withered Fanatic -->
+            <int>90616</int> <!-- Nightfallen Overseer -->
+            <int>93164</int> <!-- Leystone Rumbler -->
+            <int>100345</int> <!-- Damaged Construct -->
+            <int>109826</int> <!-- Nightfallen Hungerer -->
+            <!-- 1/34 -->
+            <int>89393</int> <!-- Azsuna Mana Wyrm -->
+            <int>90242</int> <!-- Rift Wyrm -->
+          </Entry>
+          <Hotspots>
+            <Point> <!-- Ishkaneth -->
+              <X>1029.003</X>
+              <Y>6095.122</Y>
+              <Z>92.95913</Z>
+            </Point>
+            <Point> <!-- Tyndrissen -->
+              <X>1115.208</X>
+              <Y>6029.859</Y>
+              <Z>85.51985</Z>
+            </Point>
+            <Point> <!-- Ael'Yith -->
+              <X>1251.304</X>
+              <Y>6027.025</Y>
+              <Z>116.3463</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
