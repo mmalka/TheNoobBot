@@ -143,7 +143,7 @@ namespace nManager.Wow.Helpers
                         "local nameItem = \"" + name + "\" " +
                         "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
                         "if itemLink == nil then " + randomString + " = 0 else " +
-                        "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\") end");
+                        "_,_," + randomString + " = string.find(itemLink, 'item:(%d+)') end");
                     int itemEntry = Others.ToInt32(Lua.GetLocalizedText(randomString));
                     if (itemEntry > 0)
                         ItemIdCache.Add(name, itemEntry);
