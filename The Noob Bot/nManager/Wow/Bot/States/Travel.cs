@@ -327,6 +327,8 @@ namespace nManager.Wow.Bot.States
                             }
                         }
                         MountTask.DismountMount();
+                        Thread.Sleep(500);
+                        Interact.InteractWith(memoryPortal.GetBaseAddress);
                         Thread.Sleep(150);
                         Interact.InteractWith(memoryPortal.GetBaseAddress);
                         TravelPatientlybyTaxiOrPortal();
@@ -810,7 +812,7 @@ namespace nManager.Wow.Bot.States
                     continue;
                 bool success;
                 PathFinder.FindPath(portal.BPoint, travelTo, Usefuls.ContinentNameMpqByContinentId(travelToContinentId), out success);
-                if (success)
+                if (success || portal.BPoint.DistanceTo(travelTo) < 5f)
                 {
                     listPortal.Add(portal);
                 }
