@@ -217,7 +217,7 @@ namespace nManager.Wow.Bot.States
                     // We want to uses the item Flight Master's Wistle as much as possible.
                     // We are in Broken Isles, not in Dalaran, outdoor, we should be able to uses it.
                     const int flightMasterWistleId = 141605;
-                    if (ItemsManager.GetItemCount(flightMasterWistleId) > 0 && ItemsManager.IsItemUsable(flightMasterWistleId))
+                    if (ItemsManager.GetItemCount(flightMasterWistleId) > 0 && ItemsManager.IsItemUsable(flightMasterWistleId) && !ItemsManager.IsItemOnCooldown(flightMasterWistleId))
                     {
                         ItemsManager.UseItem(flightMasterWistleId);
                         Thread.Sleep(250);
