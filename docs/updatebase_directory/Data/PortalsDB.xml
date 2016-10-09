@@ -469,5 +469,29 @@
         <Z>84.78045</Z>
       </BPoint>
     </Portal>
+    <Portal Id="250269" Name="Legion Portal (go to ship)" Faction="Neutral" AContinentId="1220" BContinentId="1220">
+      <APoint> <!-- Land portal -->
+        <X>-349.3655</X>
+        <Y>8063.979</Y>
+        <Z>90.83488</Z>
+      </APoint>
+      <BPoint> <!-- Ship portal -->
+         <X>-465.8174</X>
+         <Y>7965.167</Y>
+         <Z>328.6495</Z>
+      </BPoint>
+    </Portal>
+    <Portal Id="250270" Name="Legion Portal (go to land)" Faction="Neutral" AContinentId="1220" BContinentId="1220">
+      <APoint> <!-- Ship portal -->
+         <X>-465.8174</X>
+         <Y>7965.167</Y>
+         <Z>328.6495</Z>
+      </APoint>
+      <BPoint> <!-- Land portal -->
+        <X>-349.3655</X>
+        <Y>8063.979</Y>
+        <Z>90.83488</Z>
+      </BPoint>
+    </Portal>
   </Items>
 </Portals>
