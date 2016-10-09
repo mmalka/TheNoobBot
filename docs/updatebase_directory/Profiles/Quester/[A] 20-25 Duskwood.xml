@@ -1,219 +1,242 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questers>
     <Npc>
-      <Name>Felicia Maline</Name>
       <Entry>2409</Entry>
+      <Name>Felicia Maline</Name>
       <Position>
         <X>-10513.82</X>
         <Y>-1258.79</Y>
         <Z>41.43153</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>John Shelby</Name>
       <Entry>43697</Entry>
+      <Name>John Shelby</Name>
       <Position>
         <X>-10732.7</X>
         <Y>264.283</Y>
         <Z>42.37257</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Bailiff Conacher</Name>
       <Entry>900</Entry>
+      <Name>Bailiff Conacher</Name>
       <Position>
         <X>-9215.916</X>
         <Y>-2215.907</Y>
         <Z>66.18191</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Commander Althea Ebonlocke </Name>
       <Entry>264</Entry>
+      <Name>Commander Althea Ebonlocke </Name>
       <Position>
         <X>-10561.29</X>
         <Y>-1151.804</Y>
         <Z>28.01503</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Calor</Name>
       <Entry>663</Entry>
+      <Name>Calor</Name>
       <Position>
         <X>-10580.9</X>
         <Y>-1200.49</Y>
         <Z>27.60525</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Chef Grual</Name>
       <Entry>272</Entry>
+      <Name>Chef Grual</Name>
       <Position>
         <X>-10499.35</X>
         <Y>-1157.982</Y>
         <Z>28.08667</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Abercrombie</Name>
       <Entry>289</Entry>
+      <Name>Abercrombie</Name>
       <Position>
         <X>-10350.5</X>
         <Y>-1527.36</Y>
         <Z>92.64155</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Madame Eva</Name>
       <Entry>265</Entry>
+      <Name>Madame Eva</Name>
       <Position>
         <X>-10531.75</X>
         <Y>-1213.396</Y>
         <Z>28.1176</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Blind Mary</Name>
       <Entry>302</Entry>
+      <Name>Blind Mary</Name>
       <Position>
         <X>-10784.4</X>
         <Y>-1381.21</Y>
         <Z>39.71891</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Tavernkeep Smitts</Name>
       <Entry>273</Entry>
+      <Name>Tavernkeep Smitts</Name>
       <Position>
         <X>-10517.46</X>
         <Y>-1158.649</Y>
         <Z>28.09952</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Lord Ello Ebonlocke</Name>
       <Entry>263</Entry>
+      <Name>Lord Ello Ebonlocke</Name>
       <Position>
         <X>-10552.57</X>
         <Y>-1108.681</Y>
         <Z>31.42893</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jonathan Carevin</Name>
       <Entry>661</Entry>
+      <Name>Jonathan Carevin</Name>
       <Position>
         <X>-10598.7</X>
         <Y>-1202.16</Y>
         <Z>28.4985</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Clerk Daltry</Name>
       <Entry>267</Entry>
+      <Name>Clerk Daltry</Name>
       <Position>
         <X>-10561.06</X>
         <Y>-1122.741</Y>
         <Z>30.06945</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Tobias Mistmantle</Name>
       <Entry>43453</Entry>
+      <Name>Tobias Mistmantle</Name>
       <Position>
         <X>-10511.84</X>
         <Y>-1301.943</Y>
         <Z>41.29002</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Viktori Prism'Antras</Name>
       <Entry>276</Entry>
+      <Name>Viktori Prism'Antras</Name>
       <Position>
         <X>-10571.2</X>
         <Y>-1314.08</Y>
         <Z>48.92543</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Apprentice Fess</Name>
       <Entry>43738</Entry>
+      <Name>Apprentice Fess</Name>
       <Position>
         <X>-10930.3</X>
         <Y>-379.55</Y>
         <Z>39.53949</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Watcher Dodds</Name>
       <Entry>888</Entry>
+      <Name>Watcher Dodds</Name>
       <Position>
         <X>-10923.2</X>
         <Y>-384.9283</Y>
         <Z>39.251</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Oliver Harris</Name>
       <Entry>43730</Entry>
+      <Name>Oliver Harris</Name>
       <Position>
         <X>-10754.7</X>
         <Y>338.823</Y>
         <Z>37.2576</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jitters</Name>
       <Entry>288</Entry>
+      <Name>Jitters</Name>
       <Position>
         <X>-10767.1</X>
         <Y>330.665</Y>
         <Z>37.52517</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Sister Elsington</Name>
       <Entry>43731</Entry>
+      <Name>Sister Elsington</Name>
       <Position>
         <X>-10757.5</X>
         <Y>292.533</Y>
         <Z>39.54087</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>The Weathered Grave</Name>
       <Entry>61</Entry>
+      <Name>The Weathered Grave</Name>
       <Position>
         <X>-10240.82</X>
         <Y>356.6033</Y>
         <Z>50.45659</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Sirra Von'Indi</Name>
       <Entry>268</Entry>
+      <Name>Sirra Von'Indi</Name>
       <Position>
         <X>-10576.36</X>
         <Y>-1126.984</Y>
         <Z>29.16798</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Watcher Ladimore</Name>
       <Entry>576</Entry>
+      <Name>Watcher Ladimore</Name>
       <Position>
         <X>-10560.83</X>
         <Y>-1178.881</Y>
         <Z>27.94899</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
   </Questers>
   <Quests>
     <Quest>
       <Name>Hero's Call: Duskwood!</Name>
-      <Id>26728</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26728</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -222,13 +245,12 @@
       </NeedQuestCompletedId>
       <PickUp>900</PickUp>
       <TurnIn>264</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Wolves at Our Heels</Name>
-      <Id>26618</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26618</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -242,26 +264,25 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>272</NpcEntry>
-          <QuestId>26623</QuestId>
           <QuestName>Dusky Crab Cakes</QuestName>
+          <QuestId>26623</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>272</NpcEntry>
-          <QuestId>26620</QuestId>
           <QuestName>Seasoned Wolf Kabobs</QuestName>
+          <QuestId>26620</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26623</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>60988</CollectItemId>
-          <CollectCount>6</CollectCount>
+          <InternalQuestId>26623</InternalQuestId>
           <Entry>
             <int>26620</int>
           </Entry>
+          <CollectItemId>60988</CollectItemId>
+          <CollectCount>6</CollectCount>
           <Hotspots>
             <Point>
               <X>-10100.09</X>
@@ -274,17 +295,17 @@
               <Z>41.25073</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26620</InternalQuestId>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>60989</CollectItemId>
-          <CollectCount>5</CollectCount>
+          <InternalQuestId>26620</InternalQuestId>
           <Entry>
             <int>43704</int>
           </Entry>
+          <CollectItemId>60989</CollectItemId>
+          <CollectCount>5</CollectCount>
           <Hotspots>
             <Point>
               <X>-10100.09</X>
@@ -297,6 +318,7 @@
               <Z>41.25073</Z>
             </Point>
           </Hotspots>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -304,7 +326,7 @@
           <Count>12</Count>
           <Entry>
             <int>43704</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10100.09</X>
@@ -322,29 +344,29 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>272</NpcEntry>
-          <QuestId>26623</QuestId>
           <QuestName>Dusky Crab Cakes</QuestName>
+          <QuestId>26623</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>272</NpcEntry>
-          <QuestId>26620</QuestId>
           <QuestName>Seasoned Wolf Kabobs</QuestName>
+          <QuestId>26620</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>264</NpcEntry>
-          <QuestId>26618</QuestId>
           <QuestName>Wolves at Our Heels</QuestName>
+          <QuestId>26618</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Hermit</Name>
-      <Id>26627</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26627</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -370,15 +392,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>289</NpcEntry>
-          <QuestId>26627</QuestId>
           <QuestName>The Hermit</QuestName>
+          <QuestId>26627</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Supplies from Darkshire</Name>
-      <Id>26653</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26653</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -387,13 +409,12 @@
       </NeedQuestCompletedId>
       <PickUp>289</PickUp>
       <TurnIn>265</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Night Watch</Name>
-      <Id>26645</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26645</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -407,15 +428,8 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>265</NpcEntry>
-          <QuestId>26652</QuestId>
           <QuestName>Ghost Hair Thread</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>276</NpcEntry>
-          <QuestId>26683</QuestId>
-          <QuestName>Look To The Stars</QuestName>
+          <QuestId>26652</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -423,7 +437,7 @@
           <Count>8</Count>
           <Entry>
             <int>202</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10761.87</X>
@@ -436,43 +450,36 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>302</NpcEntry>
-          <QuestId>26652</QuestId>
           <QuestName>Ghost Hair Thread</QuestName>
+          <QuestId>26652</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>302</NpcEntry>
-          <QuestId>26654</QuestId>
           <QuestName>Return the Comb</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>302</NpcEntry>
-          <QuestId>26683</QuestId>
-          <QuestName>Look To The Stars</QuestName>
+          <QuestId>26654</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>265</NpcEntry>
-          <QuestId>26654</QuestId>
           <QuestName>Return the Comb</QuestName>
+          <QuestId>26654</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>264</NpcEntry>
-          <QuestId>26645</QuestId>
           <QuestName>The Night Watch</QuestName>
+          <QuestId>26645</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Deliver the Thread</Name>
-      <Id>26655</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26655</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -481,13 +488,12 @@
       </NeedQuestCompletedId>
       <PickUp>265</PickUp>
       <TurnIn>289</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Zombie Juice</Name>
-      <Id>26660</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26660</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -496,13 +502,12 @@
       </NeedQuestCompletedId>
       <PickUp>289</PickUp>
       <TurnIn>273</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Bones That Walk</Name>
-      <Id>26686</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26686</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -516,38 +521,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>273</NpcEntry>
-          <QuestId>26661</QuestId>
           <QuestName>Gather Rot Blossoms</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>302</NpcEntry>
-          <QuestId>26684</QuestId>
-          <QuestName>The Insane Ghoul</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>KillMob</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26684</InternalQuestId>
-          <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
-          <Entry>
-            <int>511</int>
-          </Entry>
-          <Hotspots>
-            <Point>
-              <X>-11005.44</X>
-              <Y>-1348.42</Y>
-              <Z>53.65797</Z>
-            </Point>
-          </Hotspots>
+          <QuestId>26661</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26661</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26661</InternalQuestId>
           <Entry>
             <int>204457</int>
           </Entry>
@@ -560,14 +540,15 @@
               <Z>52.58268</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>48</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10985.83</X>
@@ -582,7 +563,7 @@
           <Count>5</Count>
           <Entry>
             <int>203</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10985.83</X>
@@ -594,30 +575,23 @@
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <NpcEntry>276</NpcEntry>
-          <QuestId>26684</QuestId>
-          <QuestName>The Insane Ghoul</QuestName>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>TurnInQuest</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>273</NpcEntry>
-          <QuestId>26661</QuestId>
           <QuestName>Gather Rot Blossoms</QuestName>
+          <QuestId>26661</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>264</NpcEntry>
-          <QuestId>26686</QuestId>
           <QuestName>Bones That Walk</QuestName>
+          <QuestId>26686</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Legend of Stalvan</Name>
-      <Id>26666</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26666</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -626,13 +600,12 @@
       </NeedQuestCompletedId>
       <PickUp>43453</PickUp>
       <TurnIn>267</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Worgen in the Woods</Name>
-      <Id>26688</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26688</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -646,14 +619,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26667</QuestId>
           <QuestName>The Stolen Letters</QuestName>
+          <QuestId>26667</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26667</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26667</InternalQuestId>
           <Entry>
             <int>204462</int>
           </Entry>
@@ -666,15 +638,15 @@
               <Z>48.80074</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>7</Count>
           <Entry>
             <int>898</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10474.26</X>
@@ -682,27 +654,28 @@
               <Z>50.2718</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26667</QuestId>
           <QuestName>The Stolen Letters</QuestName>
+          <QuestId>26667</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>663</NpcEntry>
-          <QuestId>26688</QuestId>
           <QuestName>Worgen in the Woods</QuestName>
+          <QuestId>26688</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Rotting Orchard</Name>
-      <Id>26689</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26689</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -716,14 +689,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26669</QuestId>
           <QuestName>In A Dark Corner</QuestName>
+          <QuestId>26669</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26669</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26669</InternalQuestId>
           <Entry>
             <int>204464</int>
           </Entry>
@@ -736,14 +708,15 @@
               <Z>65.36153</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>   
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>10</Count>
           <Entry>
             <int>533</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10956.6</X>
@@ -756,22 +729,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26669</QuestId>
           <QuestName>In A Dark Corner</QuestName>
+          <QuestId>26669</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>663</NpcEntry>
-          <QuestId>26689</QuestId>
           <QuestName>The Rotting Orchard</QuestName>
+          <QuestId>26689</QuestId>
         </QuestObjective>
       </Objectives>
-    </Quest> 
+    </Quest>
     <Quest>
       <Name>Vile and Tainted</Name>
-      <Id>26690</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26690</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -785,14 +758,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26670</QuestId>
           <QuestName>Roland's Doom</QuestName>
+          <QuestId>26670</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26670</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26670</InternalQuestId>
           <Entry>
             <int>204591</int>
           </Entry>
@@ -805,15 +777,15 @@
               <Z>43.03315</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>8</Count>
           <Entry>
             <int>206</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11007.06</X>
@@ -821,15 +793,15 @@
               <Z>39.15694</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <InternalIndex>2</InternalIndex>
           <Count>8</Count>
           <Entry>
             <int>920</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11052.69</X>
@@ -837,27 +809,28 @@
               <Z>38.79548</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26670</QuestId>
           <QuestName>Roland's Doom</QuestName>
+          <QuestId>26670</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>663</NpcEntry>
-          <QuestId>26690</QuestId>
           <QuestName>Vile and Tainted</QuestName>
+          <QuestId>26690</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Worgen in the Woods</Name>
-      <Id>26691</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26691</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -866,13 +839,12 @@
       </NeedQuestCompletedId>
       <PickUp>663</PickUp>
       <TurnIn>661</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Juice Delivery</Name>
-      <Id>26676</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26676</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -886,29 +858,29 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>267</NpcEntry>
-          <QuestId>26671</QuestId>
           <QuestName>The Fate of Stalvan Mistmantle</QuestName>
+          <QuestId>26671</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43453</NpcEntry>
-          <QuestId>26671</QuestId>
           <QuestName>The Fate of Stalvan Mistmantle</QuestName>
+          <QuestId>26671</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>289</NpcEntry>
-          <QuestId>26676</QuestId>
           <QuestName>Juice Delivery</QuestName>
+          <QuestId>26676</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Clawing at the Truth</Name>
-      <Id>26672</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26672</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -917,13 +889,12 @@
       </NeedQuestCompletedId>
       <PickUp>43453</PickUp>
       <TurnIn>265</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Mistmantle's Revenge</Name>
-      <Id>26674</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26674</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -935,26 +906,25 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseItem</Objective>
-          <UseItemId>59363</UseItemId>
           <Count>1</Count>
+          <UseItemId>59363</UseItemId>
           <Position>
             <X>-10367.09</X>
             <Y>-1255.603</Y>
             <Z>35.9099</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
         <QuestObjective>
           <Objective>Wait</Objective>
           <WaitMs>31000</WaitMs>
         </QuestObjective>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
           <Count>5</Count>
           <Entry>
             <int>315</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10370.4</X>
@@ -962,18 +932,58 @@
               <Z>35.90959</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Look To The Stars</Name>
+      <Id>26683</Id>
+      <QuestLevel>4</QuestLevel>
+      <MinLevel>20</MinLevel>
+      <MaxLevel>26</MaxLevel>
+      <PickUp>276</PickUp>
+      <TurnIn>302</TurnIn>
+      <Objectives />
+    </Quest>
+    <Quest>
+      <Name>The Insane Ghoul</Name>
+      <RaceMask>2098253</RaceMask>
+      <Id>26684</Id>
+      <QuestLevel>20</QuestLevel>
+      <MinLevel>20</MinLevel>
+      <MaxLevel>30</MaxLevel>
+      <NeedQuestCompletedId>
+        <int>26683</int>
+      </NeedQuestCompletedId>
+      <PickUp>302</PickUp>
+      <TurnIn>276</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>511</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-11005.44</X>
+              <Y>-1348.42</Y>
+              <Z>53.65797</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Classy Glass</Name>
-      <Id>26685</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26685</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
       <NeedQuestCompletedId>
-        <int>26674</int>
+        <int>26684</int>
       </NeedQuestCompletedId>
       <PickUp>276</PickUp>
       <TurnIn>276</TurnIn>
@@ -982,14 +992,13 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>289</NpcEntry>
-          <QuestId>26680</QuestId>
           <QuestName>Ogre Thieves</QuestName>
+          <QuestId>26680</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26680</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26680</InternalQuestId>
           <Entry>
             <int>119</int>
           </Entry>
@@ -1002,15 +1011,16 @@
               <Z>15.54344</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>1968</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>300</int>
-          </Entry>     
+          </Entry>
+          <CollectItemId>1968</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-11234.87</X>
@@ -1023,22 +1033,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>289</NpcEntry>
-          <QuestId>26680</QuestId>
           <QuestName>Ogre Thieves</QuestName>
+          <QuestId>26680</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>276</NpcEntry>
-          <QuestId>26685</QuestId>
           <QuestName>Classy Glass</QuestName>
+          <QuestId>26685</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Ghoulish Effigy</Name>
-      <Id>26677</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26677</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1051,11 +1061,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>884</CollectItemId>
-          <CollectCount>7</CollectCount>
           <Entry>
             <int>1270</int>
           </Entry>
+          <CollectItemId>884</CollectItemId>
+          <CollectCount>7</CollectCount>
           <Hotspots>
             <Point>
               <X>-10347.87</X>
@@ -1068,8 +1078,8 @@
     </Quest>
     <Quest>
       <Name>Note to the Mayor</Name>
-      <Id>26681</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26681</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1078,13 +1088,12 @@
       </NeedQuestCompletedId>
       <PickUp>289</PickUp>
       <TurnIn>263</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Embalmer's Revenge</Name>
-      <Id>26727</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26727</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1095,12 +1104,11 @@
       <TurnIn>263</TurnIn>
       <Objectives>
         <QuestObjective>
-          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <Count>1</Count>
           <Entry>
             <int>43862</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-10553.2</X>
@@ -1108,13 +1116,14 @@
               <Z>27.79882</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Part of the Pack</Name>
-      <Id>26785</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26785</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1123,13 +1132,12 @@
       </NeedQuestCompletedId>
       <PickUp>43453</PickUp>
       <TurnIn>43738</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>A Deadly Vine</Name>
-      <Id>26707</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26707</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1143,18 +1151,18 @@
           <Objective>PickUpQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43738</NpcEntry>
-          <QuestId>26717</QuestId>
           <QuestName>The Yorgen Worgen</QuestName>
+          <QuestId>26717</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26717</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26717</InternalQuestId>
           <Count>1</Count>
           <Entry>
             <int>204777</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-11112.98</X>
             <Y>-514.0065</Y>
@@ -1164,11 +1172,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>60204</CollectItemId>
-          <CollectCount>5</CollectCount>
           <Entry>
             <int>43732</int>
           </Entry>
+          <CollectItemId>60204</CollectItemId>
+          <CollectCount>5</CollectCount>
           <Hotspots>
             <Point>
               <X>-11046.45</X>
@@ -1181,22 +1189,22 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43738</NpcEntry>
-          <QuestId>26717</QuestId>
           <QuestName>The Yorgen Worgen</QuestName>
+          <QuestId>26717</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43738</NpcEntry>
-          <QuestId>26707</QuestId>
           <QuestName>A Deadly Vine</QuestName>
+          <QuestId>26707</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Vulgar Vul'Gol</Name>
-      <Id>25235</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>25235</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1213,7 +1221,7 @@
           <Entry>
             <int>1251</int>
             <int>212</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-11019.54</X>
@@ -1226,8 +1234,8 @@
     </Quest>
     <Quest>
       <Name>Delivery to Master Harris</Name>
-      <Id>26719</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26719</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1236,13 +1244,12 @@
       </NeedQuestCompletedId>
       <PickUp>43738</PickUp>
       <TurnIn>43730</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>The Jitters-Bugs</Name>
-      <Id>26721</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26721</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1255,11 +1262,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>60207</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>45582</int>
           </Entry>
+          <CollectItemId>60207</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-10653.23</X>
@@ -1270,10 +1277,10 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>43697</int>
           </Entry>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-10732.7</X>
             <Y>264.283</Y>
@@ -1285,15 +1292,15 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>288</NpcEntry>
-          <QuestId>26721</QuestId>
           <QuestName>The Jitters-Bugs</QuestName>
+          <QuestId>26721</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Bear In Mind</Name>
-      <Id>26787</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26787</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1306,11 +1313,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>60334</CollectItemId>
-          <CollectCount>8</CollectCount>
           <Entry>
             <int>44016</int>
           </Entry>
+          <CollectItemId>60334</CollectItemId>
+          <CollectCount>8</CollectCount>
           <Hotspots>
             <Point>
               <X>-10758.77</X>
@@ -1328,8 +1335,8 @@
     </Quest>
     <Quest>
       <Name>Soothing Spirits</Name>
-      <Id>26777</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26777</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1342,23 +1349,23 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <InternalIndex>1</InternalIndex>
-          <UseItemId>60225</UseItemId>
           <Count>5</Count>
           <Entry>
             <int>43923</int>
           </Entry>
+          <UseItemId>60225</UseItemId>
           <Position>
             <X>-10939.69</X>
             <Y>240.8297</Y>
             <Z>28.65885</Z>
-          </Position>            
+          </Position>
         </QuestObjective>
-      </Objectives>      
+      </Objectives>
     </Quest>
     <Quest>
       <Name>The Weathered Grave</Name>
-      <Id>26793</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26793</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1380,24 +1387,24 @@
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>65000</WaitMs>
+          <TaxiEntry>43697</TaxiEntry>
           <FlightDestinationX>0.46984896063805</FlightDestinationX>
           <FlightDestinationY>0.2088368088007</FlightDestinationY>
-          <TaxiEntry>43697</TaxiEntry>
-          <WaitMs>65000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>268</NpcEntry>
-          <QuestId>26793</QuestId>
           <QuestName>The Weathered Grave</QuestName>
+          <QuestId>26793</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Morgan Ladimore</Name>
-      <Id>26794</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26794</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1406,13 +1413,12 @@
       </NeedQuestCompletedId>
       <PickUp>268</PickUp>
       <TurnIn>264</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Mor'Ladim</Name>
-      <Id>26795</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26795</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1425,10 +1431,10 @@
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>65000</WaitMs>
+          <TaxiEntry>2409</TaxiEntry>
           <FlightDestinationX>0.41676935553551</FlightDestinationX>
           <FlightDestinationY>0.20112501084805</FlightDestinationY>
-          <TaxiEntry>2409</TaxiEntry>
-          <WaitMs>65000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1448,11 +1454,11 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>3514</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>522</int>
           </Entry>
+          <CollectItemId>3514</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-10240.82</X>
@@ -1473,24 +1479,24 @@
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>65000</WaitMs>
+          <TaxiEntry>43697</TaxiEntry>
           <FlightDestinationX>0.46984896063805</FlightDestinationX>
           <FlightDestinationY>0.2088368088007</FlightDestinationY>
-          <TaxiEntry>43697</TaxiEntry>
-          <WaitMs>65000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>264</NpcEntry>
-          <QuestId>26795</QuestId>
           <QuestName>Mor'Ladim</QuestName>
+          <QuestId>26795</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>The Daughter Who Lived</Name>
-      <Id>26796</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26796</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1499,13 +1505,12 @@
       </NeedQuestCompletedId>
       <PickUp>264</PickUp>
       <TurnIn>576</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>A Daughter's Love</Name>
-      <Id>26797</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26797</Id>
       <QuestLevel>20</QuestLevel>
       <MinLevel>20</MinLevel>
       <MaxLevel>30</MaxLevel>
@@ -1518,10 +1523,10 @@
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>65000</WaitMs>
+          <TaxiEntry>2409</TaxiEntry>
           <FlightDestinationX>0.41676935553551</FlightDestinationX>
           <FlightDestinationY>0.20112501084805</FlightDestinationY>
-          <TaxiEntry>2409</TaxiEntry>
-          <WaitMs>65000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
@@ -1545,8 +1550,8 @@
           <Objective>TurnInQuest</Objective>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>61</NpcEntry>
-          <QuestId>26797</QuestId>
           <QuestName>A Daughter's Love</QuestName>
+          <QuestId>26797</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
