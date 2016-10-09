@@ -16,9 +16,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-		  <Count>-1</Count>
-		  <!-- % are tricky, as there is only one objective, rush the % first -->
-		  <!-- If more objectives, do the % at the end, even if "InternalIndex = 1" -->
+          <Count>-1</Count>
+          <!-- % are tricky, as there is only one objective, rush the % first -->
+          <!-- If more objectives, do the % at the end, even if "InternalIndex = 1" -->
           <Entry>
             <int>107133</int>
             <int>107135</int>
@@ -321,15 +321,20 @@
             <int>250375</int>
           </Entry>
           <Hotspots>
-            <Point>
-              <X>-539.7985</X>
-              <Y>7675.212</Y>
-              <Z>140.4233</Z>
+            <Point> 
+              <X>-575.4802</X>
+              <Y>7737.16</Y>
+              <Z>141.3467</Z>
             </Point>
-            <Point>
-              <X>-560.8834</X>
-              <Y>7723.794</Y>
-              <Z>140.4059</Z>
+            <Point> 
+              <X>-517.7883</X>
+              <Y>7660.651</Y>
+              <Z>141.2542</Z>
+            </Point>
+            <Point>  
+              <X>-551.5763</X>
+              <Y>7681.123</Y>
+              <Z>117.6851</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -362,7 +367,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-	    <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
       <WorldQuestLocation>
         <X>817.2819</X>
         <Y>5796.125</Y>
@@ -387,6 +392,36 @@
               <X>765.0959</X>
               <Y>5918.871</Y>
               <Z>134.1287</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fel Hide</Name>
+      <Id>41563</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0) && IsTankScript.cs;</ScriptCondition>
+      <WorldQuestLocation>
+        <X>-1274.185</X>
+        <Y>7085.82</Y>
+        <Z>33.67245</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>103675</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>-1282.235</X>
+              <Y>7087.083</Y>
+              <Z>37.25912</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -470,6 +505,36 @@
     <Quest>
       <Name>WANTED: Vorthax</Name>
       <Id>42633</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-113.2328</X>
+        <Y>7400.449</Y>
+        <Z>102.4182</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>107113</int> <!-- Vorthax -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-90.25436</X>
+              <Y>7371.345</Y>
+              <Z>103.8052</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Vorthax - 2</Name>
+      <Id>43614</Id>
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
@@ -1143,6 +1208,97 @@
               <Z>116.3463</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Faronaar in Ruin</Name>
+      <Id>42026</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-613.836</X>
+        <Y>7269.435</Y>
+        <Z>27.61122</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>9</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>249416</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>-654.7639</X>
+              <Y>7298</Y>
+              <Z>26.60166</Z>
+            </Point>
+            <Point>
+              <X>-743.8021</X>
+              <Y>7339.407</Y>
+              <Z>15.17719</Z>
+            </Point>
+            <Point>
+              <X>-825.1139</X>
+              <Y>7283.45</Y>
+              <Z>39.49133</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>90659</int>
+            <int>103231</int>
+            <int>103363</int>
+            <int>89731</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-721.3828</X>
+              <Y>7211.505</Y>
+              <Z>34.70384</Z>
+            </Point>
+            <Point>
+              <X>-752.1752</X>
+              <Y>7344.103</Y>
+              <Z>15.17948</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Inquisitor Tivos</Name>
+      <Id>43611</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>-473.2882</X>
+        <Y>7971.741</Y>
+        <Z>329.3157</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>107269</int>
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>-457.2441</X>
+              <Y>7986.58</Y>
+              <Z>301.2399</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>

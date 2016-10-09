@@ -71,9 +71,9 @@
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
       <WorldQuestLocation>
-        <X>3104.928</X>
-        <Y>5851.845</Y>
-        <Z>289.5245</Z>
+        <X>3101.697</X>
+        <Y>5858.513</Y>
+        <Z>287.9253</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
@@ -578,23 +578,23 @@
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
       <WorldQuestLocation>
-        <X>1819.689</X>
-        <Y>7438.806</Y>
-        <Z>1.15927</Z>
+        <X>2164.819</X>
+        <Y>5942.402</Y>
+        <Z>150.9084</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>4</InternalIndex>
-          <Count>10</Count>
+          <Count>8</Count>
           <Entry>
             <int>251946</int> <!-- Moist Grizzleberries -->
           </Entry>
           <Hotspots>
             <Point>
-              <X>1819.689</X>
-              <Y>7438.806</Y>
-              <Z>1.15927</Z>
+              <X>2164.819</X>
+              <Y>5942.402</Y>
+              <Z>150.9084</Z>
             </Point>
             <Point>
               <X>2251.75</X>
@@ -627,9 +627,9 @@
           </Entry>
           <Hotspots>
             <Point>
-              <X>1819.689</X>
-              <Y>7438.806</Y>
-              <Z>1.15927</Z>
+              <X>2164.819</X>
+              <Y>5942.402</Y>
+              <Z>150.9084</Z>
             </Point>
             <Point>
               <X>2251.75</X>
@@ -640,5 +640,321 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>Flourishing Dreamleaf</Name>
+      <Id>41294</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>2745.615</X>
+        <Y>7416.663</Y>
+        <Z>5.337918</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) > 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective> <!-- Wildeyed Undergrell -->
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>247606</int>
+          </Entry>
+          <CollectItemId>140952</CollectItemId> <!-- Flourishing Dreamleaf -->
+          <CollectCount>10</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>2745.615</X>
+              <Y>7416.663</Y>
+              <Z>5.337918</Z>
+            </Point>
+            <Point>
+              <X>2746.134</X>
+              <Y>7554.07</Y>
+              <Z>16.50253</Z>
+            </Point>
+            <Point>
+              <X>2659.889</X>
+              <Y>7609.625</Y>
+              <Z>16.95549</Z>
+            </Point>
+            <Point>
+              <X>2677.758</X>
+              <Y>7403.709</Y>
+              <Z>7.58376</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Seal Clubbing</Name>
+      <Id>43709</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3450.174</X>
+        <Y>7090.816</Y>
+        <Z>3.741213</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>111252</int> <!-- Druid of the Fin -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3450.174</X>
+              <Y>7090.816</Y>
+              <Z>3.741213</Z>
+            </Point>
+            <Point>
+              <X>3338.241</X>
+              <Y>7006.352</Y>
+              <Z>4.737566</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>4</InternalIndex>
+          <Count>8</Count>
+          <Entry>
+            <int>111253</int> <!-- Hypnotic Water Lily -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3450.174</X>
+              <Y>7090.816</Y>
+              <Z>3.741213</Z>
+            </Point>
+            <Point>
+              <X>3338.241</X>
+              <Y>7006.352</Y>
+              <Z>4.737566</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>6</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>111278</int> <!-- Thistleleaf Lilydancer -->
+            <int>111279</int> <!-- Thistleleaf Twigsnapper -->
+            <int>111280</int> <!-- Thistleleaf Petalpeeler -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3450.174</X>
+              <Y>7090.816</Y>
+              <Z>3.741213</Z>
+            </Point>
+            <Point>
+              <X>3338.241</X>
+              <Y>7006.352</Y>
+              <Z>4.737566</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Where's the Reef?</Name>
+      <Id>43759</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>2462.435</X>
+        <Y>8297.681</Y>
+        <Z>7.775694</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>4</InternalIndex>
+          <Count>15</Count>
+          <Entry>
+            <int>111472</int> <!-- Clackbrine Matron -->
+            <int>111473</int> <!-- Clackbrine Pincer -->
+            <int>111474</int> <!-- Clackbrine Snapper -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>2431.094</X>
+              <Y>8373.669</Y>
+              <Z>1.076474</Z>
+            </Point>
+            <Point>
+              <X>2577.128</X>
+              <Y>8383.321</Y>
+              <Z>1.648243</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Warden Tower Assault: Starstalker's Point</Name>
+      <Id>43183</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>  
+        <X>3226.933</X>
+        <Y>7856.101</Y>
+        <Z>0.1430282</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <!-- To prevent bot targeting boss and being killed by mobs -->
+          <Objective>MoveTo</Objective>
+          <Position> 
+            <X>3464.752</X>
+            <Y>7772.951</Y>
+            <Z>36.22799</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count> 
+          <Entry>
+            <int>103757</int> <!-- Magus Bonechill -->
+            <int>104289</int> <!-- Dark Ranger Alina -->
+            <int>104290</int> <!-- Captain Grimshanks -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>3486.328</X>
+              <Y>7733.866</Y>
+              <Z>120.3749</Z>
+            </Point> 
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count> 
+          <Entry>
+            <int>103210</int> <!-- Forsaken Defender -->
+            <int>103245</int> <!-- Forsaken Befouler -->
+            <int>103446</int> <!-- Forsaken Frostflinger -->
+            <int>103215</int> <!-- Forsaken Deathwarder -->
+            <int>103307</int> <!-- Forsaken Plaguebringer -->
+            <int>103449</int> <!-- Forsaken Coldwitch -->
+            <int>103729</int> <!-- Forsaken Archer -->
+            <int>103218</int> <!-- Forsaken Deceiver -->
+            <int>103430</int> <!-- Festering Abomination -->
+            <int>103453</int> <!-- Forsaken Rector -->
+            <int>103745</int> <!-- Forsaken Dark Ranger -->
+            <int>103222</int> <!-- Forsaken Shadowblade -->
+            <int>103431</int> <!-- Sninkwind Hulk -->
+            <int>103457</int> <!-- Forsaken Bishop -->
+          </Entry>
+          <Hotspots>
+            <Point>  
+              <X>3380.102</X>
+              <Y>7821.212</Y>
+              <Z>40.81984</Z>
+            </Point> 
+            <Point>  
+              <X>3403.243</X>
+              <Y>7745.796</Y>
+              <Z>35.7846</Z>
+            </Point> 
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Slab of Bacon</Name>
+      <Id>41553</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>2779.544</X>
+        <Y>5824.66</Y>
+        <Z>295.2301</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>103785</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>2775.589</X>
+              <Y>5807.959</Y>
+              <Z>293.5842</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!-- WORK IN PROGRESS
+      Problem description: 
+        When the player is transformed into npc his combat action bar is 
+        replaced by the cat's action bar.
+        
+      Solution explored:
+        - KillMob (npcs do nothing, just run and try to use player technics)
+        - KeyPress (npcs do nothing but waiting)
+        
+      NPCS:
+        - Sentinel of Ursoc - http://www.wowhead.com/npc=106588
+        - Verdant Grovewalker - http://www.wowhead.com/npc=106628
+        - Emerald Sister - http://www.wowhead.com/npc=106607
+        - Blackmaw Furbolg - http://www.wowhead.com/npc=106575
+        
+    <Quest>
+      <Name>Champions of Elune</Name>
+      <Id>42174</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3492.472</X>
+        <Y>5540.963</Y>
+        <Z>323.0205</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          <Entry>
+            <int>106638</int>
+          </Entry>
+          <Position>
+            <X>3513.522</X>
+            <Y>5547.427</Y>
+            <Z>323.7502</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>97796</int>
+          </Entry>
+          <Position>
+            <X>3586.538</X>
+            <Y>-4746.877</Y>
+            <Z>119.8263</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    -->
   </Quests>
 </QuesterProfile>

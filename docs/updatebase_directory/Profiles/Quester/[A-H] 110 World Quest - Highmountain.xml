@@ -10,9 +10,9 @@
       <AutoAccepted>false</AutoAccepted>
       <QuestLevel>110</QuestLevel>
       <WorldQuestLocation>
-      <X>5446.269</X>
-      <Y>4631.716</Y>
-      <Z>636.9424</Z>
+        <X>5446.269</X>
+        <Y>4631.716</Y>
+        <Z>636.9424</Z>
       </WorldQuestLocation>
       <TurnIn>0</TurnIn>
       <Objectives>
@@ -62,7 +62,7 @@
         <Z>786.5641</Z>
       </WorldQuestLocation>
       <Objectives>
-		<!-- Gathering Grain Sacks doesn't work
+        <!-- Gathering Grain Sacks doesn't work
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <Count>1</Count>
@@ -88,7 +88,7 @@
           <Entry>
             <!-- 1/10 -->
             <int>96146</int> <!-- Bristlefur Bear -->
-       <!-- <int>96146</int> Bristlemaul isn't worth the time -->
+            <!-- <int>96146</int> Bristlemaul isn't worth the time -->
           </Entry>
           <Hotspots>
             <Point>
@@ -131,6 +131,7 @@
               <Z>910.658</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -160,6 +161,7 @@
               <Z>665.0516</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -362,5 +364,364 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>WANTED: Arru</Name>
+      <Id>44289</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4606.411</X>
+        <Y>4243.127</Y>
+        <Z>820.3815</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>97220</int> <!-- Arru -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4609.884</X>
+              <Y>4228.596</Y>
+              <Z>814.5448</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Return to the Crag</Name>
+      <Id>41789</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4777.04</X>
+        <Y>4442.431</Y>
+        <Z>701.0876</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>6</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>104531</int> <!-- Hexxing Fetish -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>4763.71</X>
+              <Y>4446.724</Y>
+              <Z>696.7432</Z>
+            </Point>
+            <Point> 
+              <X>4820.868</X>
+              <Y>4334.285</Y>
+              <Z>729.7565</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>94196</int>  <!-- Cursed Prowler -->
+            <int>94386</int>  <!-- Cursed Elderhorn -->
+          </Entry>
+          <Hotspots>
+            <Point>  
+              <X>4752.74</X>
+              <Y>4388.944</Y>
+              <Z>700.3098</Z>
+            </Point>
+            <Point>  
+              <X>4849.086</X>
+              <Y>4449.562</Y>
+              <Z>725.9092</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>5</InternalIndex>
+          <Count>3</Count>
+          <Entry>
+            <int>94152</int>  <!-- Vilewing Hexer -->
+            <int>94153</int>  <!-- Vilewing Screecher -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>4693.115</X>
+              <Y>4394.49</Y>
+              <Z>678.7938</Z>
+            </Point>
+            <Point>
+              <X>4716.767</X>
+              <Y>4499.731</Y>
+              <Z>684.5021</Z>
+            </Point>
+            <Point>
+              <X>4815.404</X>
+              <Y>4478.742</Y>
+              <Z>706.8745</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!-- WORK IN PROGRESS
+      Problem description: 
+        When the player is transformed into cat, his combat action bar is 
+        replaced by the cat's action bar.
+        
+      Solution explored:
+        - KillMob (cat do nothing, just run and try to use player technics)
+        - UseSpell (cat attacks the right mobs, but don't use spell)
+        
+      Comment:
+        After a discussion with Ryuichiro, we should perhaps implement a 
+        CombatClass for the cat, load it when transformed and restore the player
+        one after.
+        
+    <Quest>
+      <Name>Primal Payback</Name>
+      <Id>39462</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>4691.678</X>
+        <Y>4795.072</Y>
+        <Z>687.9032</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          <Entry>
+            <int>101957</int>
+          </Entry>
+          <Position>
+            <X>4675.541</X>
+            <Y>4798.635</Y>
+            <Z>687.8559</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>101996</int>
+            <int>101997</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>4706.302</X>
+              <Y>4753.392</Y>
+              <Z>691.7911</Z>
+            </Point>
+            <Point>  
+              <X>4670.322</X>
+              <Y>4608.843</Y>
+              <Z>677.9514</Z>
+            </Point>
+            <Point>  
+              <X>4521.939</X>
+              <Y>4662.463</Y>
+              <Z>657.9668</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>101957</int>
+          </Entry>
+          <Position>
+            <X>4675.541</X>
+            <Y>4798.635</Y>
+            <Z>687.8559</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    -->
+    <Quest>
+      <Name>WANTED: Shara Felbreath</Name>
+      <Id>41821</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>5731.826</X>
+        <Y>4093.11</Y>
+        <Z>610.7051</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <!-- <InternalIndex>1</InternalIndex> Removed because not known -->
+          <Count>1</Count>
+          <Entry>
+            <int>97093</int> <!-- Shara Felbreath -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>5742.983</X>
+              <Y>4090.582</Y>
+              <Z>608.2803</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Border Reinforcements</Name>
+      <Id>41308</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3891.95</X>
+        <Y>3500.18</Y>
+        <Z>800.5155</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count> 
+          <Entry>
+            <int>103837</int> <!-- Tideskorn Raider -->
+            <int>103850</int> <!-- Tideskorn Stormbringer -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3873.505</X>
+              <Y>3523.79</Y>
+              <Z>800.554</Z>
+            </Point>
+            <Point>
+              <X>3730.697</X>
+              <Y>3490.361</Y>
+              <Z>754.2913</Z>
+            </Point> 
+            <Point>
+              <X>3847.473</X>
+              <Y>3435.307</Y>
+              <Z>755.1188</Z>
+            </Point> 
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Warden Tower Assault: Cordana's Apex</Name>
+      <Id>41257</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>4058.705</X>
+        <Y>3604.371</Y>
+        <Z>895.8636</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <!-- To prevent bot targeting boss and being killed by mobs -->
+          <Objective>MoveTo</Objective>
+          <Position> 
+            <X>4288.673</X>
+            <Y>3386.319</Y>
+            <Z>947.1041</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count> 
+          <Entry>
+            <int>103757</int> <!-- Magus Bonechill -->
+            <int>104289</int> <!-- Dark Ranger Alina -->
+            <int>104290</int> <!-- Captain Grimshanks -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>4293.115</X>
+              <Y>3353.738</Y>
+              <Z>1035.842</Z>
+            </Point> 
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count> 
+          <Entry>
+            <int>103210</int> <!-- Forsaken Defender -->
+            <int>103245</int> <!-- Forsaken Befouler -->
+            <int>103446</int> <!-- Forsaken Frostflinger -->
+            <int>103215</int> <!-- Forsaken Deathwarder -->
+            <int>103307</int> <!-- Forsaken Plaguebringer -->
+            <int>103449</int> <!-- Forsaken Coldwitch -->
+            <int>103729</int> <!-- Forsaken Archer -->
+            <int>103218</int> <!-- Forsaken Deceiver -->
+            <int>103430</int> <!-- Festering Abomination -->
+            <int>103453</int> <!-- Forsaken Rector -->
+            <int>103745</int> <!-- Forsaken Dark Ranger -->
+            <int>103222</int> <!-- Forsaken Shadowblade -->
+            <int>103431</int> <!-- Sninkwind Hulk -->
+            <int>103457</int> <!-- Forsaken Bishop -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>4262.614</X>
+              <Y>3389.548</Y>
+              <Z>945.2714</Z>
+            </Point> 
+            <Point> 
+              <X>4104.728</X>
+              <Y>3471.024</Y>
+              <Z>932.9518</Z>
+            </Point> 
+            <Point> 
+              <X>4104.728</X>
+              <Y>3471.024</Y>
+              <Z>932.9518</Z>
+            </Point> 
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Border Reinforcements" -->
+      <Position>
+        <X>3919.326</X>
+        <Y>3553.347</Y>
+        <Z>812.4172</Z>
+      </Position>
+      <Radius>20</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Border Reinforcements" -->
+      <Position> 
+        <X>3960.221</X>
+        <Y>3520.678</Y>
+        <Z>751.5049</Z>
+      </Position>
+      <Radius>100</Radius>
+    </QuesterBlacklistRadius>
+  </Blackspots>
 </QuesterProfile>
