@@ -592,7 +592,7 @@ namespace nManager.Wow.Helpers
                     for (int i = 0; i <= playerQuest.ObjectiveRequiredCounts.Length - 1; i++)
                     {
                         if (playerQuest.ObjectiveRequiredCounts[i] > 0)
-                            Logging.Write("InternalIndex: " + i + 1 + ", Count: " + playerQuest.ObjectiveRequiredCounts[i]);
+                            Logging.Write("InternalIndex: " + (i + 1) + ", Count: " + playerQuest.ObjectiveRequiredCounts[i]);
                     }
                 }
             }
