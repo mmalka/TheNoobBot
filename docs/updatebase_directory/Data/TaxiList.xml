@@ -3780,4 +3780,13 @@
     <Xcoord>0.83442741632462</Xcoord>
     <Ycoord>0.99238276481628</Ycoord>
   </Taxi>
+  <Taxi Faction="Neutral" Id="107457" Name="The Dreamgrove, Val'Sharah (only druids)" ContinentId="1220">
+    <Position>
+      <X>4075.33154</X>
+      <Y>7243.441</Y>
+      <Z>52.14536</Z>
+    </Position>
+    <Xcoord>-0.034761983901262</Xcoord>
+    <Ycoord>0.83051598072052</Ycoord>
+  </Taxi>
 </ArrayOfTaxi>
