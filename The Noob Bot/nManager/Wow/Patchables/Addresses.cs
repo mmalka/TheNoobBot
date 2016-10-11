@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 22747
+    ///   Offset and Pointer for Wow 22810
     /// </summary>
     public static class Addresses
     {
