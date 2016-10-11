@@ -38,5 +38,194 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <!--
+      This quest works but has been commented because TNB can't find a way to it
+      The player must go to the garrison first.
+    <Quest>
+      <Name>WANTED: Thane Irglov</Name>
+      <Id>43437</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>2409.653</X>
+        <Y>2621.673</Y>
+        <Z>298.166</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>4</Count>
+          <Entry>
+            <int>91892</int> 
+            <int>91893</int> 
+            <int>91895</int> 
+            <int>91894</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>2409.653</X>
+              <Y>2621.673</Y>
+              <Z>298.166</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    -->
+    <Quest>
+      <Name>Warden Tower Assault: Blackhawk's Bulwark</Name>
+      <Id>43599</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1752.741</X>
+        <Y>1591.357</Y>
+        <Z>62.53588</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <!-- To prevent bot targeting boss and being killed by mobs -->
+          <Objective>MoveTo</Objective>
+          <Position> 
+            <X>1585.222</X>
+            <Y>1417.613</Y>
+            <Z>88.8218</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count> 
+          <Entry>
+            <int>103757</int> <!-- Magus Bonechill -->
+            <int>104289</int> <!-- Dark Ranger Alina -->
+            <int>104290</int> <!-- Captain Grimshanks -->
+          </Entry>
+          <Hotspots>
+            <Point>  
+              <X>1542.551</X>
+              <Y>1423.338</Y>
+              <Z>171.32</Z>
+            </Point> 
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>15</Count> 
+          <Entry>
+            <int>103210</int> <!-- Forsaken Defender -->
+            <int>103245</int> <!-- Forsaken Befouler -->
+            <int>103446</int> <!-- Forsaken Frostflinger -->
+            <int>103215</int> <!-- Forsaken Deathwarder -->
+            <int>103307</int> <!-- Forsaken Plaguebringer -->
+            <int>103449</int> <!-- Forsaken Coldwitch -->
+            <int>103729</int> <!-- Forsaken Archer -->
+            <int>103218</int> <!-- Forsaken Deceiver -->
+            <int>103430</int> <!-- Festering Abomination -->
+            <int>103453</int> <!-- Forsaken Rector -->
+            <int>103745</int> <!-- Forsaken Dark Ranger -->
+            <int>103222</int> <!-- Forsaken Shadowblade -->
+            <int>103431</int> <!-- Sninkwind Hulk -->
+            <int>103457</int> <!-- Forsaken Bishop -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>1708.694</X>
+              <Y>1514.353</Y>
+              <Z>66.82328</Z>
+            </Point>
+            <Point>
+              <X>1593.806</X>
+              <Y>1472.632</Y>
+              <Z>79.87397</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fel Hide</Name>
+      <Id>41568</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
+      <WorldQuestLocation>
+        <X>4359.695</X>
+        <Y>1655.477</Y>
+        <Z>4.098811</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>103675</int> <!-- Felhide Gargantuan -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4359.695</X>
+              <Y>1655.477</Y>
+              <Z>4.098811</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <!-- Felhide Gargantuan -->
+            <int>247422</int>
+            <int>248042</int>
+            <int>248045</int>
+            <int>248047</int>
+            <int>248049</int>
+            <int>248050</int>
+            <int>248051</int>
+            <int>248053</int>
+            <int>248054</int>
+          </Entry>
+          <Position>
+              <X>4359.695</X>
+              <Y>1655.477</Y>
+              <Z>4.098811</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Felwort</Name>
+      <Id>41521</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1370.208</X>
+        <Y>109.8177</Y>
+        <Z>19.88334</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) > 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>248009</int> <!-- Felwort -->
+          </Entry>
+          <Position>
+            <X>1370.208</X>
+            <Y>109.8177</Y>
+            <Z>19.88334</Z>
+          </Position>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
 </QuesterProfile>

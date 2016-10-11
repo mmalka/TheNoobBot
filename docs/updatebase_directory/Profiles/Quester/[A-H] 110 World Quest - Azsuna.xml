@@ -403,7 +403,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0) && IsTankScript.cs;</ScriptCondition>
+      <ScriptCondition>=IsTankHaveSkinningScript.cs;</ScriptCondition>
       <WorldQuestLocation>
         <X>-1274.185</X>
         <Y>7085.82</Y>
@@ -412,18 +412,91 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
           <Count>1</Count>
           <Entry>
-            <int>103675</int>
+            <int>103675</int> <!-- Felhide Gargantuan -->
           </Entry>
           <Hotspots>
-            <Point> 
+            <Point>
               <X>-1282.235</X>
               <Y>7087.083</Y>
               <Z>37.25912</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <!-- Felhide Gargantuan -->
+            <int>247422</int>
+            <int>248042</int>
+            <int>248045</int>
+            <int>248047</int>
+            <int>248049</int>
+            <int>248050</int>
+            <int>248051</int>
+            <int>248053</int>
+            <int>248054</int>
+          </Entry>
+          <Position>
+              <X>-1282.235</X>
+              <Y>7087.083</Y>
+              <Z>37.25912</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fel Hide</Name>
+      <Id>41564</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
+      <WorldQuestLocation>
+        <X>-748.1087</X>
+        <Y>7863.687</Y>
+        <Z>16.49545</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count> 
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <Entry>
+            <int>103675</int> <!-- Felhide Gargantuan -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-748.1087</X>
+              <Y>7863.687</Y>
+              <Z>16.49545</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <!-- Felhide Gargantuan -->
+            <int>247422</int>
+            <int>248042</int>
+            <int>248045</int>
+            <int>248047</int>
+            <int>248049</int>
+            <int>248050</int>
+            <int>248051</int>
+            <int>248053</int>
+            <int>248054</int>
+          </Entry>
+          <Position>
+              <X>-748.1087</X>
+              <Y>7863.687</Y>
+              <Z>16.49545</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
