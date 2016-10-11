@@ -13,7 +13,9 @@ namespace nManager.Wow.Helpers
 {
     public class SpellManager
     {
-        private static readonly List<uint> MountDruidIdList = new List<uint>();
+        private static readonly List<uint> DruidMountIdList = new List<uint>();
+        private static readonly List<uint> HerbsInteractMountIdList = new List<uint>();
+        private static readonly List<uint> AllInteractMountIdList = new List<uint>();
 
         private static readonly List<uint> FlightFormsIdsList = new List<uint>();
         private static List<UInt32> _spellBookID = new List<UInt32>();
@@ -73,23 +75,57 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static List<uint> MountDruidId()
+        public static List<uint> DruidMountId()
         {
             try
             {
-                if (MountDruidIdList.Count <= 0)
+                if (DruidMountIdList.Count <= 0)
                 {
-                    //MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
-                    //MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
-                    //MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Aquatic Form"));
-                    MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Travel Form"));
-                    MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Sky Golem"));
+                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
+                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
+                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Aquatic Form"));
+                    DruidMountIdList.AddRange(SpellListManager.SpellIdByName("Travel Form"));
                 }
-                return MountDruidIdList;
+                return DruidMountIdList;
             }
             catch (Exception exception)
             {
-                Logging.WriteError("MountDruidId(): " + exception);
+                Logging.WriteError("DruidMountId(): " + exception);
+            }
+            return new List<uint>();
+        }
+
+        public static List<uint> HerbsInteractMountId()
+        {
+            try
+            {
+                if (HerbsInteractMountIdList.Count <= 0)
+                {
+                    HerbsInteractMountIdList.AddRange(SpellListManager.SpellIdByName("Travel Form"));
+                    HerbsInteractMountIdList.AddRange(SpellListManager.SpellIdByName("Sky Golem"));
+                }
+                return HerbsInteractMountIdList;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("HerbsInteractMountId(): " + exception);
+            }
+            return new List<uint>();
+        }
+
+        public static List<uint> AllInteractMountId()
+        {
+            try
+            {
+                if (AllInteractMountIdList.Count <= 0)
+                {
+                    AllInteractMountIdList.AddRange(SpellListManager.SpellIdByName("Demonsteel Stirrups"));
+                }
+                return AllInteractMountIdList;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("AllInteractMountId(): " + exception);
             }
             return new List<uint>();
         }

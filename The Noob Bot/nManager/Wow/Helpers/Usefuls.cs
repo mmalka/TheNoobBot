@@ -906,15 +906,11 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static Spell SkyGolem = null;
-
         public static void DisMount()
         {
             try
             {
-                if (SkyGolem == null)
-                    SkyGolem = new Spell("Sky Golem");
-                Lua.RunMacroText(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && !SkyGolem.HaveBuff ? "/cancelform" : "/dismount");
+                Lua.RunMacroText(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()) ? "/cancelform" : "/dismount");
             }
             catch (Exception e)
             {

@@ -132,12 +132,12 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 Thread.Sleep(50);
                             }
-                            if (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
+                            if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) && (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId())))
                             {
                                 if (!(SpellManager.HasSpell(169606) && Usefuls.ContinentId == 1116 || Usefuls.ContinentId == 1464)) // Passive Silver Dollar Club given by Stables.
                                     MountTask.DismountMount();
                             }
-                            else if (node.IsHerb)
+                            else if (node.IsHerb && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.DruidMountId()))
                             {
                                 Logging.WriteDebug("Druid IsFlying ? " + Usefuls.IsFlying);
                                 if (Usefuls.IsFlying)
@@ -287,7 +287,7 @@ namespace nManager.Wow.Bot.Tasks
                         Thread.Sleep(250 + Usefuls.Latency);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
-                            if (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())))
+                            if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) && (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId())))
                             {
                                 MountTask.DismountMount(); // If we don't have druid mount or Sky Golem, dismount and fight.
                                 return;
@@ -308,13 +308,13 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             Thread.Sleep(150);
                         }
-                        if (ObjectManager.ObjectManager.Me.InCombat && (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))))
+                        if (ObjectManager.ObjectManager.Me.InCombat && (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) && (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()))))
                         {
                             CountThisLoot = false;
                             return;
                         }
                         Thread.Sleep(100 + Usefuls.Latency);
-                        if (ObjectManager.ObjectManager.Me.InCombat && (!inode.IsHerb || (inode.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))))
+                        if (ObjectManager.ObjectManager.Me.InCombat && (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId()) && (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()))))
                         {
                             CountThisLoot = false;
                             return;
@@ -326,7 +326,7 @@ namespace nManager.Wow.Bot.Tasks
                         if (!_wasLooted)
                         {
                             Logging.Write("Farm failed #2");
-                            if (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
+                            if (ObjectManager.ObjectManager.Me.InCombat && (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.HerbsInteractMountId()) || ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.AllInteractMountId())))
                                 MountTask.DismountMount(); // we got cancelled during farm, let's fight this out for good..
                         }
                         return;
