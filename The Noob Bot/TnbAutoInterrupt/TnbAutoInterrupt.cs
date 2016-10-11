@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -18,33 +19,33 @@ public class Main : IPlugins
 
     public bool Loop
     {
-        get { return MyPluginClass.InternalLoop; }
-        set { MyPluginClass.InternalLoop = value; }
+        get { return TnbAutoInterrupt.InternalLoop; }
+        set { TnbAutoInterrupt.InternalLoop = value; }
     }
 
     public string Name
     {
-        get { return MyPluginClass.Name; }
+        get { return TnbAutoInterrupt.Name; }
     }
 
     public string Author
     {
-        get { return MyPluginClass.Author; }
+        get { return TnbAutoInterrupt.Author; }
     }
 
     public string Description
     {
-        get { return MyPluginClass.Description; }
+        get { return TnbAutoInterrupt.Description; }
     }
 
     public string TargetVersion
     {
-        get { return MyPluginClass.TargetVersion; }
+        get { return TnbAutoInterrupt.TargetVersion; }
     }
 
     public string Version
     {
-        get { return MyPluginClass.Version; }
+        get { return TnbAutoInterrupt.Version; }
     }
 
     public bool IsStarted
@@ -65,12 +66,12 @@ public class Main : IPlugins
 
     public void ShowConfiguration()
     {
-        MyPluginClass.ShowConfiguration();
+        TnbAutoInterrupt.ShowConfiguration();
     }
 
     public void ResetConfiguration()
     {
-        MyPluginClass.ResetConfiguration();
+        TnbAutoInterrupt.ResetConfiguration();
     }
 
     public void CheckFields() // do not edit.
@@ -89,7 +90,7 @@ public class Main : IPlugins
         {
             if (!configOnly && !resetSettings)
                 Loop = true;
-            MyPluginClass.Init();
+            TnbAutoInterrupt.Init();
         }
         catch (Exception e)
         {
@@ -103,23 +104,24 @@ public class Main : IPlugins
 
 #region Plugin core - Your plugin should be coded here
 
-public static class MyPluginClass
+public static class TnbAutoInterrupt
 {
     public static bool InternalLoop = true;
-    public static string Author = "Vesper";
+    public static string Author = "Vesper, Ryuichiro";
     public static string Name = "AutoInterrupt";
     public static string TargetVersion = "6.3.x";
-    public static string Version = "1.3.3";
+    public static string Version = "1.4.0";
     public static string Description = "Interrupt automatically when our target is casting or channeling a spell.";
 
+    private static readonly List<int> NotInterruptedSpells = new List<int>();
     private static readonly List<Spell> AvailableInterruptersPVP = new List<Spell>();
-    private static readonly List<Spell> AvailableInterruptersPve = new List<Spell>();
+    private static readonly List<Spell> AvailableInterruptersPVE = new List<Spell>();
     private static readonly MyPluginSettings MySettings = MyPluginSettings.GetSettings();
 
     public static void Init()
     {
         GetAllAvailableInterrupters();
-        if (AvailableInterruptersPVP.Count <= 0 && AvailableInterruptersPve.Count <= 0)
+        if (AvailableInterruptersPVP.Count <= 0 && AvailableInterruptersPVE.Count <= 0)
         {
             Logging.WritePluginDebug(Name + ": No spell capable of interrupt has been found.", Name);
             return;
@@ -128,10 +130,21 @@ public static class MyPluginClass
         {
             Logging.WritePlugin("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVP.", Name);
         }
-        foreach (Spell spell in AvailableInterruptersPve)
+        foreach (Spell spell in AvailableInterruptersPVE)
         {
             Logging.WritePlugin("Interrupter: " + spell.Name + " (" + spell.Id + ") has been found for PVE.", Name);
         }
+
+        GetSpellInIgnoreList();
+        if (NotInterruptedSpells.Count > 0)
+        {
+            Logging.WritePlugin("List of Spell Ids that shouldn't be interrupted:", Name);
+            foreach (int sId in NotInterruptedSpells)
+            {
+                Logging.WritePlugin(sId.ToString(), Name);
+            }
+        }
+
         MainLoop();
     }
 
@@ -146,7 +159,7 @@ public static class MyPluginClass
 
     public static void CheckToInterrupt()
     {
-        if (ObjectManager.Me.Target <= 0 || ObjectManager.Target.IsDead)
+        if (ObjectManager.Me.Target <= 0 || ObjectManager.Target.IsDead || !ObjectManager.Target.IsHostile)
         {
             return;
         }
@@ -156,39 +169,31 @@ public static class MyPluginClass
         }
         if (ObjectManager.Target.Type == WoWObjectType.Unit)
         {
-            InterruptPve();
+            InterruptPVE();
         }
     }
 
     public static void InterruptPVP()
     {
-        if (!ObjectManager.Target.IsHostile)
-            return;
-        if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
+        bool IsChanneled = ObjectManager.Target.CurrentSpellIdChannel > 0;
+        var rnd = new Random();
+        int rndTime = rnd.Next(70, 250);
+
+        while (ObjectManager.Target.CanInterruptCurrentCast)
         {
-            var rnd = new Random();
-            int sleepTime = rnd.Next(70, 250);
-            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 250ms before interrupt for account safety reason.
-            while (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
+            Thread.Sleep(rndTime); // Wait randomly between 70ms to 250ms before interrupt for account safety reason.
+
+            if (IsChanneled || ObjectManager.Target.CastEndsInMs < (rndTime + MySettings.LeadTime + Usefuls.Latency))
             {
                 foreach (Spell kicker in AvailableInterruptersPVP)
                 {
-                    if (ObjectManager.Target.GetDistance > kicker.MaxRangeHostile)
-                    {
-                        continue; // We are too far for this spell, try another one ASAP.
-                    }
-                    if (ObjectManager.Target.GetDistance < kicker.MinRangeFriend)
-                    {
-                        continue; // We are too close for this spell, try another one ASAP.
-                    }
-                    if (!kicker.IsSpellUsable)
-                    {
-                        continue; // This spell is on cooldown.
-                    }
+                    if (!kicker.IsSpellUsable || !kicker.IsHostileDistanceGood)
+                        continue;
+
                     int spellId = ObjectManager.Target.CastingSpellId;
                     if (spellId > 0)
                     {
-                        kicker.Launch();
+                        kicker.Cast();
                         Logging.WritePlugin("SpellId " + spellId + " from " + ObjectManager.Target.Name + " has been interrupted.", Name);
                         Thread.Sleep(500);
                     }
@@ -198,37 +203,27 @@ public static class MyPluginClass
         }
     }
 
-    public static void InterruptPve()
+    public static void InterruptPVE()
     {
-        if (!ObjectManager.Target.IsHostile)
-            return;
-        if (!ObjectManager.Target.InCombat)
-            return; // We don't wanna pull creatures.
-        if (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
+        bool IsChanneled = ObjectManager.Target.CurrentSpellIdChannel > 0;
+        var rnd = new Random();
+        int rndTime = rnd.Next(70, 250);
+
+        while (ObjectManager.Target.CanInterruptCurrentCast)
         {
-            var rnd = new Random();
-            int sleepTime = rnd.Next(70, 250);
-            Thread.Sleep(sleepTime); // Wait randomly between 70ms to 250ms before interrupt for account safety reason.
-            while (ObjectManager.Target.CanInterruptCurrentCast && !IsSpellInIgnoreList())
+            Thread.Sleep(rndTime); // Wait randomly between 70ms to 250ms before interrupt for account safety reason.
+
+            if (IsChanneled || ObjectManager.Target.CastEndsInMs < (rndTime + MySettings.LeadTime + Usefuls.Latency))
             {
-                foreach (Spell kicker in AvailableInterruptersPve)
+                foreach (Spell kicker in AvailableInterruptersPVE)
                 {
-                    if (ObjectManager.Target.GetDistance > kicker.MaxRangeHostile)
-                    {
-                        continue; // We are too far for this spell, try another one ASAP.
-                    }
-                    if (ObjectManager.Target.GetDistance < kicker.MinRangeFriend)
-                    {
-                        continue; // We are too close for this spell, try another one ASAP.
-                    }
-                    if (!kicker.IsSpellUsable)
-                    {
-                        continue; // This spell is on cooldown.
-                    }
+                    if (!kicker.IsSpellUsable || !kicker.IsHostileDistanceGood)
+                        continue;
+
                     int spellId = ObjectManager.Target.CastingSpellId;
                     if (spellId > 0)
                     {
-                        kicker.Launch();
+                        kicker.Cast();
                         Logging.WritePlugin("SpellId " + spellId + " from " + ObjectManager.Target.Name + " has been interrupted.", Name);
                         Thread.Sleep(500);
                     }
@@ -240,23 +235,31 @@ public static class MyPluginClass
 
     public static bool IsSpellInIgnoreList()
     {
-        string[] spellListPVP = MySettings.DontInterruptSpellList.Split(',');
-        foreach (string sId in spellListPVP)
+        if (NotInterruptedSpells.Contains(ObjectManager.Target.CastingSpellId))
         {
-            if (sId.Contains(ObjectManager.Target.CastingSpellId.ToString()))
-            {
-                Logging.WritePlugin("Target is casting spellId " + ObjectManager.Target.CastingSpellId + " but it's ignored.", Name);
-                return true;
-            }
+            Logging.WritePlugin("Target is casting spellId " + ObjectManager.Target.CastingSpellId + " but it's ignored.", Name);
+            return true;
         }
         return false;
     }
 
+    public static void GetSpellInIgnoreList()
+    {
+        NotInterruptedSpells.Clear();
+        string[] spellListIgnore = MySettings.DontInterruptSpellList.Split(',');
+        foreach (string sId in spellListIgnore)
+        {
+            int id = Others.ToInt32(sId.Trim());
+            if (id != 0)
+                NotInterruptedSpells.Add(id);
+        }
+    }
+
     public static void GetAllAvailableInterrupters()
     {
-        string[] spellListPVP = MySettings.SpellListPVP.Split(',');
-        AvailableInterruptersPve.Clear();
         AvailableInterruptersPVP.Clear();
+        AvailableInterruptersPVE.Clear();
+        string[] spellListPVP = MySettings.SpellListPVP.Split(',');
         foreach (string sId in spellListPVP)
         {
             uint id = Others.ToUInt32(sId.Trim());
@@ -265,11 +268,11 @@ public static class MyPluginClass
             {
                 if (MySettings.ActivateInterruptPVP)
                     AvailableInterruptersPVP.Add(spell);
-                if (MySettings.ActivateInterruptPve)
-                    AvailableInterruptersPve.Add(spell);
+                if (MySettings.ActivateInterruptPVE)
+                    AvailableInterruptersPVE.Add(spell);
             }
         }
-        if (!MySettings.ActivateInterruptPve)
+        if (!MySettings.ActivateInterruptPVE)
             return;
         string[] spellListPve = MySettings.SpellListPve.Split(',');
         foreach (string sId in spellListPve)
@@ -278,7 +281,7 @@ public static class MyPluginClass
             var spell = new Spell(id);
             if (spell.Name != "" && spell.KnownSpell)
             {
-                AvailableInterruptersPve.Add(spell);
+                AvailableInterruptersPVE.Add(spell);
             }
         }
     }
@@ -306,8 +309,9 @@ public static class MyPluginClass
     [Serializable]
     public class MyPluginSettings : Settings
     {
+        public uint LeadTime = 100;
         public bool ActivateInterruptPVP = true;
-        public bool ActivateInterruptPve = true;
+        public bool ActivateInterruptPVE = true;
         public string DontInterruptSpellList = "";
         public string SpellListPVP = "106839, 78675, 147362, 34490, 2139, 116705, 31935, 96231, 1766, 57994, 19647, 115782, 6552, 47528";
         public string SpellListPve = "15487, 47476";
@@ -318,8 +322,10 @@ public static class MyPluginClass
             AddControlInWinForm("List of spells to not interrupt (ignore) :", "DontInterruptSpellList", Name + " Spells Management", "List");
             AddControlInWinForm("Auto Interrupt in PVP", "ActivateInterruptPVP", Name + " Spells Management");
             AddControlInWinForm("List of spells that can interrupt in PVP :", "SpellListPVP", Name + " Spells Management", "List");
-            AddControlInWinForm("Auto Interrupt in PVE", "ActivateInterruptPve", Name + " Spells Management");
+            AddControlInWinForm("Auto Interrupt in PVE", "ActivateInterruptPVE", Name + " Spells Management");
             AddControlInWinForm("List of spells that can only interrupt in PVE (will complete the PVP list in PVE) :", "SpellListPve", Name + " Spells Management", "List");
+            ConfigWinForm("Internal Values");
+            AddControlInWinForm("Time before cast finishes at which it should be interrupted.\r\n(too low times will fail)", "LeadTime", "Internal Values");
         }
 
         public static MyPluginSettings CurrentSetting { get; set; }
