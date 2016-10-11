@@ -1389,11 +1389,12 @@ namespace nManager.Wow.ObjectManager
             return unitInSpellRange;
         }
 
-        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true, WoWUnit fromUnitOrPlayer = null)
+
+        public static List<WoWPlayer> GetPlayerInSpellRangeList(float spellRange = 5, bool friendly = true, WoWUnit fromUnitOrPlayer = null)
         {
+            List<WoWPlayer> playersInSpellRangeList = new List<WoWPlayer>();
             if (spellRange < 5)
                 spellRange = 5;
-            uint playersInSpellRange = 0;
             foreach (WoWPlayer p in GetObjectWoWPlayer())
             {
                 if (!p.IsValid)
@@ -1416,9 +1417,14 @@ namespace nManager.Wow.ObjectManager
                     if (p.Position.DistanceTo(fromUnitOrPlayer.Position) > spellRange)
                         continue;
                 }
-                playersInSpellRange++;
+                playersInSpellRangeList.Add(p);
             }
-            return playersInSpellRange;
+            return playersInSpellRangeList;
+        }
+
+        public static uint GetPlayerInSpellRange(float spellRange = 5, bool friendly = true, WoWUnit fromUnitOrPlayer = null)
+        {
+            return (uint) GetPlayerInSpellRangeList(spellRange, friendly, fromUnitOrPlayer).Count;
         }
 
         public static WoWUnit GetUnitInAggroRange()
