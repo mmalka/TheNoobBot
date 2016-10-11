@@ -786,7 +786,7 @@ public class MageFire
     #region Buffs
 
     private readonly Spell HeatingUp = new Spell(48107);
-    private readonly Spell HotStreak = new Spell(195283);
+    private readonly Spell HotStreak = new Spell(48108);
 
     #endregion
 

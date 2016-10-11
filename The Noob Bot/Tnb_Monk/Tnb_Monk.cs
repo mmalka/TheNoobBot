@@ -538,7 +538,7 @@ public class MonkBrewmaster
 
             //Cast Provoke
             if (MySettings.UseProvoke && Provoke.IsSpellUsable && Provoke.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 Provoke.Cast();
                 return;
@@ -1064,7 +1064,7 @@ public class MonkWindwalker
 
             //Cast Provoke
             if (MySettings.UseProvoke && Provoke.IsSpellUsable && Provoke.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 Provoke.Cast();
                 return;
@@ -1610,7 +1610,7 @@ public class MonkMistweaver
 
             //Cast Provoke
             if (MySettings.UseProvoke && Provoke.IsSpellUsable && Provoke.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 Provoke.Cast();
                 return;

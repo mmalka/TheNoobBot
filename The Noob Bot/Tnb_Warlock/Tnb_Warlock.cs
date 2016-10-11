@@ -1729,7 +1729,7 @@ public class WarlockDestruction
 
     #region Dots
 
-    private readonly Spell ImmolateDot = new Spell(193541); //TESTING 157736
+    private readonly Spell ImmolateDot = new Spell(157736);
 
     #endregion
 
@@ -1744,7 +1744,8 @@ public class WarlockDestruction
     #region Artifact Spells
 
     private readonly Spell DimensionalRift = new Spell("Dimensional Rift");
-    private readonly Spell LordofFlamesTrait = new Spell("Lord of Flames");
+    private readonly Spell LordofFlamesTrait = new Spell(224103);
+    private readonly Spell LordofFlamesBuff = new Spell(226802);
 
     #endregion
 
@@ -1919,7 +1920,8 @@ public class WarlockDestruction
                 {
                     //Summon Infernal
                     if (MySettings.UseSummonInfernal && SummonInfernal.IsSpellUsable &&
-                        SummonInfernal.IsHostileDistanceGood)
+                        SummonInfernal.IsHostileDistanceGood /*&&
+                        (!LordofFlamesTrait.HaveBuff || !LordofFlamesBuff.HaveBuff)*/)
                     {
                         SummonInfernal.CastAtPosition(ObjectManager.Target.Position);
                         return true;
@@ -2089,6 +2091,7 @@ public class WarlockDestruction
 
             //Summon Infernal when
             if (MySettings.UseSummonInfernal && SummonInfernal.IsSpellUsable && SummonInfernal.IsHostileDistanceGood &&
+                /*(!LordofFlamesTrait.HaveBuff || !LordofFlamesBuff.HaveBuff) &&*/
                 //you have 4 or more targets.
                 ObjectManager.Target.GetUnitInSpellRange(10f) >= 4)
             {

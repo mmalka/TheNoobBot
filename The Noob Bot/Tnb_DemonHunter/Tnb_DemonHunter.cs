@@ -1015,7 +1015,7 @@ public class DemonHunterVengeance
 
             //Growl
             if (MySettings.UseTorment && Torment.IsSpellUsable && Torment.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 Torment.Cast();
                 return;

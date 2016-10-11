@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -444,11 +445,14 @@ public class DruidRestoration
 
                                 foreach (UInt128 playerInMyParty in Party.GetPartyPlayersGUID())
                                 {
-                                    if (playerInMyParty <= 0) continue;
+                                    if (playerInMyParty <= 0)
+                                        continue;
                                     WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
-                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player) continue;
+                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                                        continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive)
+                                        continue;
 
                                     //Calculate Class Variables
                                     PartyHpMedian += currentPlayer.HealthPercent;
@@ -555,7 +559,8 @@ public class DruidRestoration
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -955,8 +960,10 @@ public class PaladinHoly
     private Timer DefensiveTimer = new Timer(0);
     private Timer StunTimer = new Timer(0);
 
-    private WoWPlayer Tank = new WoWPlayer(0);
+    private List<WoWPlayer> Tanks = new List<WoWPlayer>();
+    private Timer ScanForTanksTimer = new Timer(0);
     private WoWPlayer Target = new WoWPlayer(0);
+    private WoWPlayer OldTarget = new WoWPlayer(0);
     private int DamagedPlayers;
     private double PartyHpMedian;
 
@@ -979,12 +986,19 @@ public class PaladinHoly
     private readonly Spell AuraofMercy = new Spell("Aura of Mercy"); //No GCD
     private readonly Spell AuraofSacrifice = new Spell("Aura of Sacrifice"); //No GCD
     private readonly Spell DevotionAura = new Spell("Devotion Aura"); //No GCD
+    private readonly Spell JudgmentofLight = new Spell(183778);
 
     #endregion
 
     #region Buffs
 
     private readonly Spell Forbearance = new Spell(25771);
+
+    #endregion
+
+    #region Dot
+
+    private readonly Spell JudgmentofLightDebuff = new Spell(196941);
 
     #endregion
 
@@ -1066,10 +1080,18 @@ public class PaladinHoly
 
                     if (!ObjectManager.Me.IsMounted)
                     {
+                        //Prepare Tank Scan
+                        if (ScanForTanksTimer.IsReady)
+                        {
+                            Logging.WriteFight("Scanning for Tanks:");
+                            Tanks.Clear();
+                        }
+
                         //Setup Solo
                         if (!Party.IsInGroup())
                         {
-                            Tank = ObjectManager.Me;
+                            if (ScanForTanksTimer.IsReady)
+                                Tanks.Add(ObjectManager.Me);
                             PartyHpMedian = ObjectManager.Me.HealthPercent;
                             DamagedPlayers = 1;
                             Target = ObjectManager.Me;
@@ -1081,7 +1103,7 @@ public class PaladinHoly
                             int alivePlayers = 0;
                             PartyHpMedian = 0;
                             DamagedPlayers = 0;
-                            Target = Tank;
+                            Target = ObjectManager.Me;
 
                             try
                             {
@@ -1105,17 +1127,22 @@ public class PaladinHoly
                                         DamagedPlayers++;
 
                                     //Setup Target
-                                    if (currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
+                                    if (currentPlayer.HealthPercent < lowestHp &&
+                                        HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         Target = currentPlayer;
                                     }
 
-                                    //Setup Tank
-                                    if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank && Tank != currentPlayer)
+                                    //Add Tank
+                                    if (ScanForTanksTimer.IsReady)
                                     {
-                                        Logging.WriteFight("New Tank: " + currentPlayer.Name);
-                                        Tank = currentPlayer;
+                                        if (currentPlayer.GetUnitRole == WoWUnit.PartyRole.Tank)
+                                        {
+                                            Logging.WriteFight("Found Tank: " + currentPlayer.Name + "(" + currentPlayer.GetUnitId() + ")");
+                                            Tanks.Add(currentPlayer);
+                                        }
+                                        Logging.WriteFight(currentPlayer.Name + "(" + currentPlayer.GetUnitId() + ")");
                                     }
                                 }
                             }
@@ -1125,22 +1152,32 @@ public class PaladinHoly
                             }
                             PartyHpMedian /= alivePlayers;
 
-                            if (Target.Guid > 0)
+                            //Prioritize Tank
+                            if (!Tanks.Contains(Target))
                             {
-                                //Prioritize Me
-                                if (Target != ObjectManager.Me && ObjectManager.Me.HealthPercent <= MySettings.PrioritizeMeBelowPercentage)
+                                double lowestTankHp = 100;
+                                foreach (WoWPlayer tank in Tanks)
                                 {
-                                    Target = ObjectManager.Me;
-                                }
-
-                                //Prioritize Tank
-                                if (Tank != null && Target != Tank &&
-                                    (Tank.HealthPercent <= MySettings.PrioritizeTankBelowPercentage) || Target.HealthPercent == 100)
-                                {
-                                    Target = Tank;
+                                    if (tank.HealthPercent < MySettings.PrioritizeTankBelowPercentage &&
+                                        tank.HealthPercent < lowestTankHp)
+                                    {
+                                        lowestTankHp = tank.HealthPercent;
+                                        Target = tank;
+                                    }
                                 }
                             }
+
+                            //Prioritize Me
+                            if (ObjectManager.Me.HealthPercent < MySettings.PrioritizeMeBelowPercentage &&
+                                Target != ObjectManager.Me)
+                            {
+                                Target = ObjectManager.Me;
+                            }
                         }
+
+                        //Restart Scan For Tanks Interval
+                        if (ScanForTanksTimer.IsReady)
+                            ScanForTanksTimer = new Timer(1000*60);
 
                         if (Fight.InFight || PartyHpMedian < 90)
                             Combat();
@@ -1198,7 +1235,8 @@ public class PaladinHoly
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }
@@ -1258,7 +1296,7 @@ public class PaladinHoly
                 {
                     DivineProtection.Cast();
                     DefensiveTimer = new Timer(1000*8);
-                    return true;
+                    return false;
                 }
             }
             //Mitigate Damage in Emergency Situations
@@ -1305,12 +1343,12 @@ public class PaladinHoly
                 BloodFury.Cast();
             }
 
-            //Avenging Wrath Buff
+            //Use Avenging Wrath when target has low health
             if (Target.HealthPercent < MySettings.UseAvengingWrathBelowTargetPercentage && AvengingWrath.IsSpellUsable)
             {
                 AvengingWrath.Cast();
             }
-            //Aura Mastery Buff
+            //Use Aura Mastery on cooldown, assuming the raid is sufficiently damaged to justify it.
             if (PartyHpMedian < MySettings.UseAuraMasteryBelowPartyPercentage && AuraMastery.IsSpellUsable)
             {
                 AuraMastery.Cast();
@@ -1332,47 +1370,47 @@ public class PaladinHoly
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Beacon of Light on Tank
-            if (MySettings.UseBeaconofLight && BeaconofLight.IsSpellUsable &&
-                CombatClass.InSpellRange(Tank, BeaconofLight.MinRangeFriend, BeaconofLight.MaxRangeFriend) &&
-                !Tank.HaveBuff(BeaconofLight.Ids))
-            {
-                BeaconofLight.Cast(false, true, false, Tank.GetUnitId());
-            }
-            //Beacon of Faith on Target
-            if (MySettings.UseBeaconofFaith && BeaconofFaith.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, BeaconofFaith.MinRangeFriend, BeaconofFaith.MaxRangeFriend) &&
-                !Target.HaveBuff(BeaconofLight.Ids) && !Target.HaveBuff(BeaconofFaith.Ids))
-            {
-                BeaconofFaith.Cast(false, true, false, Target.GetUnitId());
-            }
-            //Beacon of Faith on Target
-            if (MySettings.UseBeaconofVirtue && BeaconofVirtue.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, BeaconofVirtue.MinRangeFriend, BeaconofVirtue.MaxRangeFriend) &&
-                Target.GetPlayerInSpellRange(30f) > MySettings.UseBeaconofVirtueAbovePlayerDensity &&
-                !Target.HaveBuff(BeaconofLight.Ids))
-            {
-                BeaconofVirtue.Cast(false, true, false, Target.GetUnitId());
-            }
-
-            //Lay on Hands on Target
+            //Log when Target switched
+            if (OldTarget != (OldTarget = Target))
+                Logging.WriteFight("new Target: " + Target.Name + "(" + Target.GetUnitId() + ")");
+            //Use Lay on Hands to save dying Players
             if (Target.HealthPercent < MySettings.UseLayonHandsBelowTargetPercentage && LayonHands.IsSpellUsable &&
                 CombatClass.InSpellRange(Target, LayonHands.MinRangeFriend, LayonHands.MaxRangeFriend) && !Target.HaveBuff(Forbearance.Id))
             {
                 LayonHands.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
-
-            //Blessing of Sacrifice on Target
-            if (Tank.HealthPercent < MySettings.UseBlessingofSacrificeBelowTankPercentage &&
-                ObjectManager.Me.HealthPercent > MySettings.UseBlessingofSacrificeAbovePercentage && BlessingofSacrifice.IsSpellUsable &&
-                CombatClass.InSpellRange(Tank, BlessingofSacrifice.MinRangeFriend, BlessingofSacrifice.MaxRangeFriend))
+            //Keep Beacon of Light on the main (first) tank.
+            if (MySettings.UseBeaconofLight && BeaconofLight.IsSpellUsable)
             {
-                BlessingofSacrifice.Cast(false, true, false, Target.GetUnitId());
+                WoWPlayer mainTank = Tanks.First();
+                if (CombatClass.InSpellRange(mainTank, BeaconofLight.MinRangeFriend, BeaconofLight.MaxRangeFriend))
+                {
+                    Logging.WriteFight("No active Beacon of Light, applying it to: " + mainTank.Name + "(" + mainTank.GetUnitId() + ")");
+                    BeaconofLight.Cast(false, true, false, mainTank.GetUnitId());
+                    return;
+                }
+            }
+            //Keep Beacon of Faith on the side (second) tank.
+            if (MySettings.UseBeaconofFaith && BeaconofFaith.IsSpellUsable)
+            {
+                WoWPlayer sideTank = Tanks[1] ?? ObjectManager.Me;
+                if (CombatClass.InSpellRange(sideTank, BeaconofFaith.MinRangeFriend, BeaconofFaith.MaxRangeFriend))
+                {
+                    Logging.WriteFight("No active Beacon of Faith, applying it to: " + sideTank.Name + "(" + sideTank.GetUnitId() + ")");
+                    BeaconofFaith.Cast(false, true, false, sideTank.GetUnitId());
+                    return;
+                }
+            }
+            //Use Light of the Martyr to save dying Players
+            if (Target.HealthPercent < MySettings.UseLightoftheMartyrBelowTargetPercentage &&
+                ObjectManager.Me.HealthPercent > MySettings.UseLightoftheMartyrAbovePercentage && LightoftheMartyr.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, LightoftheMartyr.MinRangeFriend, LightoftheMartyr.MaxRangeFriend))
+            {
+                LightoftheMartyr.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
-
-            //Holy Shock on Target
+            //Use Holy Shock on cooldown.
             if (Target.HealthPercent < MySettings.UseHolyShockBelowTargetPercentage && HolyShock.IsSpellUsable &&
                 CombatClass.InSpellRange(Target, HolyShock.MinRangeFriend, HolyShock.MaxRangeFriend))
             {
@@ -1385,111 +1423,176 @@ public class PaladinHoly
                 HolyShock.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
-
-            //Light of Dawn on Target
-            if (Target.HealthPercent < MySettings.UseLightofDawnBelowTargetPercentage && LightofDawn.IsSpellUsable &&
-                ((CombatClass.InSpellRange(Target, 0, 10f) && Target.GetPlayerInSpellRange(5f) > MySettings.UseLightofDawnAbovePlayerDensity) ||
-                 ObjectManager.Me.GetPlayerInSpellRange(5f) > MySettings.UseLightofDawnAbovePlayerDensity) &&
-                DamagedPlayers > MySettings.UseLightofDawnAboveDamagedPlayer)
+            //Use Blessing of Sacrifice for reducing the damage taken by the target.
+            if (Target.HealthPercent < MySettings.UseBlessingofSacrificeBelowTankPercentage &&
+                ObjectManager.Me.HealthPercent > MySettings.UseBlessingofSacrificeAbovePercentage && BlessingofSacrifice.IsSpellUsable &&
+                CombatClass.InSpellRange(Target, BlessingofSacrifice.MinRangeFriend, BlessingofSacrifice.MaxRangeFriend))
             {
-                LightofDawn.Cast(false, true, false, Target.GetUnitId());
+                BlessingofSacrifice.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
-
-            //Light's Hammer on Target
-            if (PartyHpMedian < MySettings.UseLightsHammerBelowPartyPercentage && LightsHammer.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, LightsHammer.MinRangeFriend, LightsHammer.MaxRangeFriend) &&
-                Target.GetPlayerInSpellRange(10f) > MySettings.UseLightsHammerAbovePlayerDensity &&
-                DamagedPlayers > MySettings.UseLightsHammerAboveDamagedPlayer)
+            //Use Bestow Faith on Tanks on cooldown (if you have taken this talent).
+            if (BestowFaith.IsSpellUsable)
             {
-                LightsHammer.CastAtPosition(Target.Position);
+                WoWPlayer lowestTank = Tanks.First();
+                foreach (WoWPlayer tank in Tanks)
+                {
+                    if (tank.HealthPercent < lowestTank.HealthPercent)
+                    {
+                        lowestTank = tank;
+                    }
+                }
+                if (lowestTank.HealthPercent < MySettings.UseBestowFaithBelowTankPercentage &&
+                    CombatClass.InSpellRange(lowestTank, BestowFaith.MinRangeFriend, BestowFaith.MaxRangeFriend))
+                {
+                    BestowFaith.Cast(false, true, false, lowestTank.GetUnitId());
+                    return;
+                }
+            }
+            //Maintain the Judgment of Light debuff on the target (if you have taken this talent).
+            if (MySettings.UseJudgment && Judgment.IsSpellUsable && ObjectManager.Target.IsHostile &&
+                Judgment.IsHostileDistanceGood && !JudgmentofLight.HaveBuff && !JudgmentofLightDebuff.TargetHaveBuff)
+            {
+                Judgment.Cast();
                 return;
             }
-
-            //Holy Prism on Target
-            if (PartyHpMedian < MySettings.UseHolyPrismBelowPartyPercentage && HolyPrism.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, HolyPrism.MinRangeFriend, HolyPrism.MaxRangeFriend) &&
-                Target.GetPlayerInSpellRange(15f) > MySettings.UseHolyPrismAbovePlayerDensity &&
-                DamagedPlayers > MySettings.UseHolyPrismAboveDamagedPlayer)
+            //Use Light's Hammer during AoE raid damage.
+            if (LightsHammer.IsSpellUsable && CombatClass.InSpellRange(Target, LightsHammer.MinRangeFriend, LightsHammer.MaxRangeFriend))
             {
-                HolyPrism.Cast(false, true, false, Target.GetUnitId());
-                return;
+                List<WoWPlayer> playersInRange = GetPlayersInRange(Target, 10f);
+                int damagedPlayers = 0;
+                float averageHealth = 0;
+                foreach (WoWPlayer player in playersInRange)
+                {
+                    damagedPlayers += (player.HealthPercent < 100) ? 1 : 0;
+                    averageHealth += player.HealthPercent;
+                }
+                averageHealth /= playersInRange.Count();
+                if (damagedPlayers > MySettings.UseLightsHammerAtDamagedPlayer &&
+                    averageHealth < MySettings.UseLightsHammerBelowHealth)
+                {
+                    LightsHammer.CastAtPosition(Target.Position);
+                    return;
+                }
             }
-
-            //Bestow Faith on Tank
-            if (Tank.HealthPercent < MySettings.UseBestowFaithBelowTankPercentage && BestowFaith.IsSpellUsable &&
-                CombatClass.InSpellRange(Tank, BestowFaith.MinRangeFriend, BestowFaith.MaxRangeFriend))
+            //Use Tyr's Deliverance on cooldown, assuming the raid is sufficiently damaged to justify it.
+            if (PartyHpMedian < MySettings.UseTyrsDeliveranceBelowPartyPercentage && TyrsDeliverance.IsSpellUsable && !ObjectManager.Me.GetMove)
             {
-                BestowFaith.Cast(false, true, false, Tank.GetUnitId());
-                return;
+                List<WoWPlayer> playersInRange = GetPlayersInRange(ObjectManager.Target, 15f);
+                foreach (WoWPlayer player in playersInRange)
+                {
+                    if (player.HealthPercent < 100)
+                    {
+                        TyrsDeliverance.Cast();
+                        return;
+                    }
+                }
             }
-
-            //Tyr's Deliverance on Target
-            if (PartyHpMedian < MySettings.UseTyrsDeliveranceBelowPartyPercentage && TyrsDeliverance.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, TyrsDeliverance.MinRangeFriend, TyrsDeliverance.MaxRangeFriend) &&
-                Target.GetPlayerInSpellRange(15f) > MySettings.UseTyrsDeliveranceAbovePlayerDensity &&
-                DamagedPlayers > MySettings.UseTyrsDeliveranceAboveDamagedPlayer)
+            //Use Beacon of Virtue when multiple party members are taking damage
+            if (BeaconofVirtue.IsSpellUsable && CombatClass.InSpellRange(Target, BeaconofVirtue.MinRangeFriend, BeaconofVirtue.MaxRangeFriend))
             {
-                TyrsDeliverance.Cast(false, true, false, Target.GetUnitId());
-                return;
+                List<WoWPlayer> playersInRange = GetPlayersInRange(Target, 30f);
+                int damagedPlayers = 0;
+                float averageHealth = 0;
+                foreach (WoWPlayer player in playersInRange)
+                {
+                    damagedPlayers += (player.HealthPercent < 100) ? 1 : 0;
+                    averageHealth += player.HealthPercent;
+                }
+                averageHealth /= playersInRange.Count();
+                if (damagedPlayers > MySettings.UseBeaconofVirtueAtDamagedPlayer &&
+                    averageHealth < MySettings.UseBeaconofVirtueBelowHealth)
+                {
+                    BeaconofVirtue.Cast(false, true, false, Target.GetUnitId());
+                    return;
+                }
             }
-
-            //Light of the Martyr on Target
-            if (Target.HealthPercent < MySettings.UseLightoftheMartyrBelowTargetPercentage &&
-                ObjectManager.Me.HealthPercent > MySettings.UseLightoftheMartyrAbovePercentage && LightoftheMartyr.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, LightoftheMartyr.MinRangeFriend, LightoftheMartyr.MaxRangeFriend))
+            //Use Light of Dawn on cooldown, assuming it heals enough players to justify it.
+            //TODO: Could cycle through all players of the party!
+            if (LightofDawn.IsSpellUsable && CombatClass.InSpellRange(Target, 0, 10f))
             {
-                LightoftheMartyr.Cast(false, true, false, Target.GetUnitId());
-                return;
+                List<WoWPlayer> playersInRange = GetPlayersInRange(Target, 10f);
+                int damagedPlayers = 0;
+                float averageHealth = 0;
+                foreach (WoWPlayer player in playersInRange)
+                {
+                    damagedPlayers += (player.HealthPercent < 100) ? 1 : 0;
+                    averageHealth += player.HealthPercent;
+                }
+                averageHealth /= playersInRange.Count();
+                if (damagedPlayers > MySettings.UseLightofDawnAtDamagedPlayer &&
+                    averageHealth < MySettings.UseLightofDawnBelowHealth)
+                {
+                    LightofDawn.Cast(false, true, false, Target.GetUnitId());
+                    return;
+                }
             }
-
-            //Holy Light on Target when Avenging Wrath is up
-            if (Target.HealthPercent < MySettings.UseHolyLightBelowTargetPercentage && HolyLight.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, HolyLight.MinRangeFriend, HolyLight.MaxRangeFriend) && AvengingWrath.HaveBuff)
+            //Use Holy Prism on cooldown, assuming it heals enough players to justify it (if you have taken this talent).
+            if (HolyPrism.IsSpellUsable && ObjectManager.Target.IsHostile && HolyPrism.IsHostileDistanceGood)
             {
-                HolyLight.Cast(false, true, false, Target.GetUnitId());
-                return;
+                List<WoWPlayer> playersInRange = GetPlayersInRange(ObjectManager.Target, 15f);
+                int damagedPlayers = 0;
+                float averageHealth = 0;
+                foreach (WoWPlayer player in playersInRange)
+                {
+                    damagedPlayers += (player.HealthPercent < 100) ? 1 : 0;
+                    averageHealth += player.HealthPercent;
+                }
+                averageHealth /= playersInRange.Count();
+                if (damagedPlayers > MySettings.UseHolyPrismAtDamagedPlayers &&
+                    averageHealth < MySettings.UseHolyPrismBelowHealth)
+                {
+                    HolyPrism.Cast();
+                    return;
+                }
             }
-
-            //Flash of Light on Target
-            if (Target.HealthPercent < MySettings.UseFlashofLightBelowTargetPercentage && FlashofLight.IsSpellUsable &&
+            //Use Flash of Light for high damage
+            if (Target.HealthPercent < MySettings.UseFlashofLightBelowTargetPercentage && FlashofLight.IsSpellUsable && !ObjectManager.Me.GetMove &&
                 CombatClass.InSpellRange(Target, FlashofLight.MinRangeFriend, FlashofLight.MaxRangeFriend))
             {
                 FlashofLight.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
-
-            //Holy Light on Target
-            if (Target.HealthPercent < MySettings.UseHolyLightBelowTargetPercentage && HolyLight.IsSpellUsable &&
-                CombatClass.InSpellRange(Target, HolyLight.MinRangeFriend, HolyLight.MaxRangeFriend))
+            //Use Holy Light for low damage
+            if (Target.HealthPercent < MySettings.UseHolyLightBelowTargetPercentage && HolyLight.IsSpellUsable && !ObjectManager.Me.GetMove &&
+                CombatClass.InSpellRange(Target, HolyLight.MinRangeFriend, HolyLight.MaxRangeFriend) && AvengingWrath.HaveBuff)
             {
                 HolyLight.Cast(false, true, false, Target.GetUnitId());
                 return;
             }
-
-            //Rule of Law Buff
-            if (MySettings.UseRuleofLaw && RuleofLaw.IsSpellUsable)
+            //Use Rule of Law when the target is out of range.
+            if (MySettings.UseRuleofLaw && RuleofLaw.IsSpellUsable &&
+                Target.GetDistance > 40 && Target.GetDistance <= 60)
             {
                 RuleofLaw.Cast();
-            }
-
-            //Filler Damage
-            if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood &&
-                !Judgment.TargetHaveBuff)
-            {
-                Judgment.Cast();
-                return;
-            }
-            if (MySettings.UseHolyShock && HolyShock.IsSpellUsable && HolyShock.IsHostileDistanceGood)
-            {
-                HolyShock.Cast();
-                return;
             }
         }
         finally
         {
             Memory.WowMemory.GameFrameUnLock();
         }
+    }
+
+    //Get Players in Range around Unit
+    private List<WoWPlayer> GetPlayersInRange(WoWUnit target, float range)
+    {
+        List<WoWPlayer> allPlayers = ObjectManager.GetObjectWoWPlayer();
+        List<WoWPlayer> playerInSpellRange = new List<WoWPlayer>();
+        foreach (WoWPlayer player in allPlayers)
+            if (player.Position.DistanceTo(target.Position) <= range)
+                playerInSpellRange.Add(player);
+        return playerInSpellRange;
+    }
+
+    //Get Players in Range around Player
+    private List<WoWPlayer> GetPlayersInRange(WoWPlayer target, float range)
+    {
+        List<WoWPlayer> allPlayers = ObjectManager.GetObjectWoWPlayer();
+        List<WoWPlayer> playerInSpellRange = new List<WoWPlayer>();
+        foreach (WoWPlayer player in allPlayers)
+            if (player.Position.DistanceTo(target.Position) <= range)
+                playerInSpellRange.Add(player);
+        return playerInSpellRange;
     }
 
     #region Nested type: PaladinHolySettings
@@ -1508,8 +1611,6 @@ public class PaladinHoly
 
         /* Artifact Spells */
         public int UseTyrsDeliveranceBelowPartyPercentage = 50;
-        public int UseTyrsDeliveranceAbovePlayerDensity = 3;
-        public int UseTyrsDeliveranceAboveDamagedPlayer = 3;
 
         /* Offensive Spells */
         public bool UseHolyShock = true;
@@ -1524,29 +1625,26 @@ public class PaladinHoly
         /* Healing Buffs */
         public bool UseBeaconofFaith = true;
         public bool UseBeaconofLight = true;
-        public bool UseBeaconofVirtue = true;
-        public int UseBeaconofVirtueAbovePlayerDensity = 2;
+        public int UseBeaconofVirtueAtDamagedPlayer = 3;
+        public int UseBeaconofVirtueBelowHealth = 60;
         /* Healing Spells */
         public int UseBestowFaithBelowTankPercentage = 40;
         public int UseFlashofLightBelowTargetPercentage = 60;
         public int UseHolyLightBelowTargetPercentage = 90;
-        public int UseHolyPrismAbovePlayerDensity = 2;
-        public int UseHolyPrismAboveDamagedPlayer = 2;
-        public int UseHolyPrismBelowPartyPercentage = 60;
+        public int UseHolyPrismAtDamagedPlayers = 3;
+        public int UseHolyPrismBelowHealth = 60;
         public int UseHolyShockBelowTargetPercentage = 80;
-        public int UseLightofDawnAbovePlayerDensity = 2;
-        public int UseLightofDawnAboveDamagedPlayer = 2;
-        public int UseLightofDawnBelowTargetPercentage = 60;
+        public int UseLightofDawnAtDamagedPlayer = 3;
+        public int UseLightofDawnBelowHealth = 60;
         public int UseLightoftheMartyrAbovePercentage = 80;
-        public int UseLightoftheMartyrBelowTargetPercentage = 30;
+        public int UseLightoftheMartyrBelowTargetPercentage = 20;
         /* Healing Cooldowns */
         public int UseAvengingWrathBelowTargetPercentage = 40;
         public int UseAuraMasteryBelowPartyPercentage = 40;
         public bool UseHolyAvenger = true;
         public int UseLayonHandsBelowTargetPercentage = 10;
-        public int UseLightsHammerAbovePlayerDensity = 2;
-        public int UseLightsHammerAboveDamagedPlayer = 4;
-        public int UseLightsHammerBelowPartyPercentage = 60;
+        public int UseLightsHammerAtDamagedPlayer = 5;
+        public int UseLightsHammerBelowHealth = 60;
 
         /* Utility Spells */
         public bool UseDivineSteed = true;
@@ -1570,9 +1668,7 @@ public class PaladinHoly
             AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Artifact Spells */
-            AddControlInWinForm("Use Essence of G'Hanir", "UseTyrsDeliveranceAbovePlayerDensity", "Artifact Spells", "AbovePercentage", "Players");
-            AddControlInWinForm("Use Essence of G'Hanir", "UseTyrsDeliveranceAboveDamagedPlayer", "Artifact Spells", "AbovePercentage", "Damaged Players");
-            AddControlInWinForm("Use Essence of G'Hanir", "UseTyrsDeliveranceBelowPartyPercentage", "Artifact Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Tyr's Deliverance", "UseTyrsDeliveranceBelowPartyPercentage", "Artifact Spells", "BelowPercentage", "Party Life");
             /* Offensive Spells */
             AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spells");
             AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spells");
@@ -1584,19 +1680,17 @@ public class PaladinHoly
             /* Healing Buffs */
             AddControlInWinForm("Use Beacon of Faith", "UseBeaconofFaith", "Healing Buffs");
             AddControlInWinForm("Use Beacon of Light", "UseBeaconofLight", "Healing Buffs");
-            AddControlInWinForm("Use Beacon of Virtue", "UseBeaconofVirtue", "Healing Buffs");
-            AddControlInWinForm("Use Beacon of Virtue", "UseBeaconofVirtueAbovePlayerDensity", "Healing Buffs", "AbovePercentage", "Players");
+            AddControlInWinForm("Use Beacon of Virtue", "UseBeaconofVirtueAtDamagedPlayer", "Healing Buffs", "AtPercentage", "Damaged Players");
+            AddControlInWinForm("Use Beacon of Virtue", "UseBeaconofVirtueBelowHealth", "Healing Buffs", "BelowPercentage", "~Health of Damaged Players");
             /* Healing Spells */
             AddControlInWinForm("Use Bestow Faith", "UseBestowFaithBelowTankPercentage", "Healing Spells", "BelowPercentage", "Tank Life");
             AddControlInWinForm("Use Flash of Light", "UseFlashofLightBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
             AddControlInWinForm("Use Holy Light", "UseHolyLightBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
-            AddControlInWinForm("Use Holy Prism", "UseHolyPrismAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
-            AddControlInWinForm("Use Holy Prism", "UseHolyPrismAboveDamagedPlayer", "Healing Spells", "AbovePercentage", "Damaged Players");
-            AddControlInWinForm("Use Holy Prism", "UseHolyPrismBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Holy Prism", "UseHolyPrismAtDamagedPlayers", "Healing Spells", "AtPercentage", "Damaged Players");
+            AddControlInWinForm("Use Holy Prism", "UseHolyPrismBelowHealth", "Healing Spells", "BelowPercentage", "~Health of Damaged Players");
             AddControlInWinForm("Use Holy Shock", "UseHolyShockBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
-            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnAbovePlayerDensity", "Healing Spells", "AbovePercentage", "Players");
-            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnAboveDamagedPlayer", "Healing Spells", "AbovePercentage", "Damaged Players");
-            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnBelowPartyPercentage", "Healing Spells", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnAtDamagedPlayer", "Healing Spells", "AtPercentage", "Damaged Players");
+            AddControlInWinForm("Use Light of Dawn", "UseLightofDawnBelowHealth", "Healing Spells", "BelowPercentage", "~Health of Damaged Players");
             AddControlInWinForm("Use Light of the Martyr", "UseLightoftheMartyrAbovePercentage", "Healing Spells", "AbovePercentage", "Life");
             AddControlInWinForm("Use Light of the Martyr", "UseLightoftheMartyrBelowTargetPercentage", "Healing Spells", "BelowPercentage", "Target Life");
             /* Healing Cooldowns */
@@ -1604,9 +1698,8 @@ public class PaladinHoly
             AddControlInWinForm("Use Aura Mastery", "UseAuraMasteryBelowPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Party Life");
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Healing Cooldowns");
             AddControlInWinForm("Use Lay on Hands", "UseLayonHandsBelowTargetPercentage", "Healing Cooldowns", "BelowPercentage", "Target Life");
-            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerAbovePlayerDensity", "Healing Cooldowns", "AbovePercentage", "Players");
-            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerAboveDamagedPlayer", "Healing Cooldowns", "AbovePercentage", "Damaged Players");
-            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerBelowPartyPercentage", "Healing Cooldowns", "BelowPercentage", "Party Life");
+            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerAtDamagedPlayer", "Healing Cooldowns", "AtPercentage", "Damaged Players");
+            AddControlInWinForm("Use Light's Hammer", "UseLightsHammerBelowHealth", "Healing Cooldowns", "BelowPercentage", "~Health of Damaged Players");
             /* Utility Spells */
             AddControlInWinForm("Use Divine Steed", "UseDivineSteed", "Utility Spells");
             AddControlInWinForm("Use Rule of Law", "UseRuleofLaw", "Utility Spells");
@@ -1885,7 +1978,8 @@ public class ShamanRestoration
             Logging.WriteFight("Combat:");
             CombatMode = true;
         }
-        if (Healing() || Defensive() || Offensive())
+        Healing();
+        if (Defensive() || Offensive())
             return;
         Rotation();
     }

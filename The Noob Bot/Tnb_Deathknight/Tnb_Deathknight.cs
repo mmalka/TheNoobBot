@@ -548,21 +548,21 @@ public class DeathknightBlood
 
             //Dark Command
             if (MySettings.UseDarkCommand && DarkCommand.IsSpellUsable && DarkCommand.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 DarkCommand.Cast();
                 return true;
             }
             //Death Grip
             if (MySettings.UseDeathGrip && DeathGrip.IsSpellUsable && DeathGrip.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 DeathGrip.Cast();
                 return true;
             }
             //Gorefiend's Grasp
             if (MySettings.UseGorefiendsGrasp && GorefiendsGrasp.IsSpellUsable && GorefiendsGrasp.IsHostileDistanceGood &&
-                ObjectManager.Target.Target != ObjectManager.Me.Guid)
+                !ObjectManager.Target.IsTargetingMe)
             {
                 GorefiendsGrasp.Cast();
                 return true;

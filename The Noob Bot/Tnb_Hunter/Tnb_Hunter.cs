@@ -203,10 +203,11 @@ public class HunterMarksmanship
 
     #region Talents
 
+    private readonly Spell LockandLoad = new Spell("Lock and Load");
     private readonly Spell LoneWolf = new Spell("Lone Wolf");
     private readonly Spell NarrowEscape = new Spell("Narrow Escape");
     private readonly Spell Posthaste = new Spell("Posthaste");
-    private readonly Spell SteadyFocus = new Spell("Steady Focus");
+    private readonly Spell SteadyFocus = new Spell(193533);
 
     #endregion
 
@@ -222,10 +223,18 @@ public class HunterMarksmanship
 
     #endregion
 
-    #region Hunter Dots
+    #region Buff
+
+    private readonly Spell LockandLoadBuff = new Spell(194594);
+    private readonly Spell MarkingTargetsBuff = new Spell(223138);
+    private readonly Spell SteadyFocusBuff = new Spell(193534);
+
+    #endregion
+
+    #region Dots
 
     private readonly Spell HuntersMark = new Spell("Hunter's Mark");
-    private readonly Spell Vulnerable = new Spell("Vulnerable");
+    private readonly Spell Vulnerable = new Spell(187131);
 
     #endregion
 
@@ -386,11 +395,9 @@ public class HunterMarksmanship
         if (!ObjectManager.Me.IsCast)
         {
             Heal();
-            if (Defensive())
-                return;
             Pet();
-            BurstBuffs();
-            GCDCycle();
+            if (Defensive() || Offensive() || SpendFocus() || GenerateFocus())
+                return;
         }
     }
 
@@ -604,7 +611,7 @@ public class HunterMarksmanship
         }
     }
 
-    private void BurstBuffs()
+    private bool Offensive()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -642,6 +649,7 @@ public class HunterMarksmanship
             {
                 Trueshot.Cast();
             }
+            return false;
         }
         finally
         {
@@ -649,7 +657,7 @@ public class HunterMarksmanship
         }
     }
 
-    private void GCDCycle()
+    private bool SpendFocus()
     {
         Usefuls.SleepGlobalCooldown();
 
@@ -657,75 +665,117 @@ public class HunterMarksmanship
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Procs
-            if (MySettings.UseMarkedShot && MarkedShot.IsSpellUsable && MarkedShot.IsHostileDistanceGood)
+            //Cast A Murder of Crows on cooldown.
+            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable &&
+                AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
             {
-                MarkedShot.Cast();
-                return;
-            }
-
-            //Cooldowns
-            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
-            {
-                Barrage.Cast();
-                return;
-            }
-            if (MySettings.UseWindburst && Windburst.IsSpellUsable && Windburst.IsHostileDistanceGood)
-            {
-                Windburst.Cast();
-                return;
-            }
-            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
-            {
+                if (ObjectManager.Me.Focus < 30)
+                    return false;
                 AMurderofCrows.Cast();
-                return;
+                return true;
             }
 
-            //Spend Focus
+            //Maintain Vulnerable Dot when you wouldn't be able to hit another Aimed Shot before it expires.
+            if (MySettings.UseMarkedShot && MarkedShot.IsSpellUsable && MarkedShot.IsHostileDistanceGood &&
+                ObjectManager.Target.UnitAura(Vulnerable.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2000)
+            {
+                if (ObjectManager.Me.Focus < 30)
+                    return false;
+                MarkedShot.Cast();
+                return true;
+            }
+
+            //Cast Aimed Shot when you have Lock and Load Buff and Target has Vulnerable Dot.
             if (MySettings.UseAimedShot && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood &&
-                ObjectManager.Target.UnitAura(Vulnerable.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs > 2000)
+                LockandLoadBuff.HaveBuff && ObjectManager.Target.UnitAura(Vulnerable.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 1000)
             {
                 AimedShot.Cast();
-                return;
+                return true;
             }
 
-            //Generate Focus
+            //Cast Windburst on cooldown.
+            if (MySettings.UseWindburst && Windburst.IsSpellUsable && Windburst.IsHostileDistanceGood)
+            {
+                if (ObjectManager.Me.Focus < 20)
+                    return false;
+                Windburst.Cast();
+                return true;
+            }
+            //Cast Barrage on cooldown.
+            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
+            {
+                if (ObjectManager.Me.Focus < 60)
+                    return false;
+                Barrage.Cast();
+                return true;
+            }
+            //Cast Aimed Shot when Target has Vulnerable Dot or you have 80+ Focus.
+            if (MySettings.UseAimedShot && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood &&
+                (ObjectManager.Target.UnitAura(Vulnerable.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 1000 ||
+                 ObjectManager.Me.Focus >= 80))
+            {
+                if (ObjectManager.Me.Focus < 30)
+                    return false;
+                AimedShot.Cast();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    private bool GenerateFocus()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            //Cast Sidewinders when you get a Marking Targets proc, or when it reaches 2 charges.
             if (MySettings.UseSidewinders && Sidewinders.IsSpellUsable && Sidewinders.IsHostileDistanceGood &&
-                (HuntersMark.TargetHaveBuff || Sidewinders.GetSpellCharges == 2))
+                (MarkingTargetsBuff.TargetHaveBuff || Sidewinders.GetSpellCharges == 2))
             {
                 Sidewinders.Cast();
-                return;
+                return true;
             }
+            //Cast Multi-Shot or Arcane Shot when you have nothing else to do.
             if (ObjectManager.Target.GetUnitInSpellRange(5f) > 1)
             {
                 if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
                 {
+                    MultiShot.Cast();
                     if (SteadyFocus.HaveBuff)
                     {
-                        MultiShot.Cast();
                         Others.SafeSleep(1500 + Usefuls.Latency);
-                        MultiShot.Cast();
-                        Others.SafeSleep(1500 + Usefuls.Latency);
+                        while (ObjectManager.Me.UnitAura(SteadyFocusBuff.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 3000)
+                        {
+                            MultiShot.Cast();
+                            Others.SafeSleep(1500 + Usefuls.Latency);
+                        }
                     }
-                    MultiShot.Cast();
-                    return;
+                    return true;
                 }
             }
             else
             {
                 if (MySettings.UseArcaneShot && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood)
                 {
+                    ArcaneShot.Cast();
                     if (SteadyFocus.HaveBuff)
                     {
-                        ArcaneShot.Cast();
                         Others.SafeSleep(1500 + Usefuls.Latency);
-                        ArcaneShot.Cast();
-                        Others.SafeSleep(1500 + Usefuls.Latency);
+                        while (ObjectManager.Me.UnitAura(SteadyFocusBuff.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs < 3000)
+                        {
+                            ArcaneShot.Cast();
+                            Others.SafeSleep(1500 + Usefuls.Latency);
+                        }
                     }
-                    ArcaneShot.Cast();
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
         finally
         {
@@ -890,6 +940,13 @@ public class HunterBeastMastery
 
     #endregion
 
+    #region Buffs
+
+    private readonly Spell Volley = new Spell(194386);
+    private readonly Spell VolleyBuff = new Spell(194392);
+
+    #endregion
+
     #region Hunter Pets
 
     private readonly Spell CallPet1 = new Spell("Call Pet 1");
@@ -914,6 +971,7 @@ public class HunterBeastMastery
     #region Legion Artifact
 
     private readonly Spell TitansThunder = new Spell("Titan's Thunder"); //No GCD
+    private readonly Spell SurgeoftheStormgod = new Spell("Surge of the Stormgod");
 
     #endregion
 
@@ -925,13 +983,12 @@ public class HunterBeastMastery
     //private readonly Spell BlinkStrike = new Spell("Blink Strike");
     //private Timer BlinkStrikeCD = new Timer(0);
     private readonly Spell BestialWrath = new Spell("Bestial Wrath"); //No GCD
-    private readonly Spell ChimeraShot = new Spell("Chimaera Shot");
+    private readonly Spell ChimaeraShot = new Spell("Chimaera Shot");
     private readonly Spell DireBeast = new Spell("Dire Beast");
     private Timer DireBeastTimer = new Timer(0);
     private readonly Spell DireFrenzy = new Spell("Dire Frenzy");
     private readonly Spell KillCommand = new Spell("Kill Command");
     private readonly Spell Stampede = new Spell("Stampede"); //No GCD
-    //private readonly Spell Volley = new Spell("Volley");
 
     #endregion
 
@@ -1299,21 +1356,19 @@ public class HunterBeastMastery
             {
                 BloodFury.Cast();
             }
-            if (MySettings.UseBestialWrath && BestialWrath.IsSpellUsable)
-            {
-                BestialWrath.Cast();
-            }
-            if (MySettings.UseAspectoftheWild && AspectoftheWild.IsSpellUsable)
-            {
-                AspectoftheWild.Cast();
-            }
-            if (MySettings.UseTitansThunder && TitansThunder.IsSpellUsable && (!DireBeastTimer.IsReady || ObjectManager.Pet.HaveBuff(DireFrenzy.Ids)))
-            {
-                TitansThunder.Cast();
-            }
-            if (MySettings.UseStampede && Stampede.IsSpellUsable && Stampede.IsHostileDistanceGood && BestialWrath.HaveBuff)
+            //Cast Stampede Wrath when Bestial Wrath is active.
+            if (MySettings.UseStampede && Stampede.IsSpellUsable &&
+                Stampede.IsHostileDistanceGood && BestialWrath.HaveBuff)
             {
                 Stampede.Cast();
+            }
+            //Toggle Volley
+            uint UnitsHitByVolley = ObjectManager.Target.GetUnitInSpellRange(8f);
+            if (MySettings.UseVolley && Volley.IsSpellUsable &&
+                ((UnitsHitByVolley > 1 && !VolleyBuff.HaveBuff) ||
+                 (UnitsHitByVolley == 1 && !VolleyBuff.HaveBuff)))
+            {
+                Volley.Cast();
             }
         }
         finally
@@ -1330,58 +1385,101 @@ public class HunterBeastMastery
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //AOEs
-            if (ObjectManager.Target.GetUnitInSpellRange(5f) > 1)
+            //Cast A Murder of Crows on cooldown.
+            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable &&
+                AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
             {
-                if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood && !ObjectManager.Pet.HaveBuff(BeastCleave.Ids))
-                {
-                    MultiShot.Cast();
+                if (ObjectManager.Me.Focus < 30)
                     return;
-                }
-                if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
-                {
-                    Barrage.Cast();
-                    return;
-                }
-            }
-
-            //Cooldowns
-            if (MySettings.UseAMurderofCrows && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood && !AMurderofCrows.TargetHaveBuff)
-            {
                 AMurderofCrows.Cast();
                 return;
             }
-            if (MySettings.UseKillCommand && KillCommand.IsSpellUsable && ObjectManager.Pet.Position.DistanceTo(ObjectManager.Target.Position) <= 25)
+            //Use Bestial Wrath on cooldown. (IsSpellUsable doesn't work properly)
+            //Logging.Write("BestialWrath: IsSpellUsable == " + BestialWrath.IsSpellUsable + ", IsSpellOnCooldown == " + SpellManager.IsSpellOnCooldown(BestialWrath.Id, BestialWrath.CategoryId, BestialWrath.StartRecoveryCategoryId));
+            if (MySettings.UseBestialWrath && BestialWrath.KnownSpell && !SpellManager.IsSpellOnCooldown(BestialWrath.Id, BestialWrath.CategoryId, BestialWrath.StartRecoveryCategoryId))
             {
-                KillCommand.Cast();
+                BestialWrath.Cast();
+            }
+            //Use Aspect of the Wild on cooldown.
+            if (MySettings.UseAspectoftheWild && AspectoftheWild.IsSpellUsable)
+            {
+                AspectoftheWild.Cast();
+            }
+            //Cast Multi-Shot to keep up the Beast Cleave buff on your pet when you have multiple targets.
+            if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood &&
+                !ObjectManager.Pet.HaveBuff(BeastCleave.Ids) && ObjectManager.Target.GetUnitInSpellRange(8f) > 1)
+            {
+                if (ObjectManager.Me.Focus < 40)
+                    return;
+                MultiShot.Cast();
                 return;
             }
-            if (MySettings.UseDireBeast && DireBeast.IsSpellUsable && DireBeast.IsHostileDistanceGood)
+            //Cast Titan's Thunder on cooldown and when Dire Beast or Dire Frenzy is active.
+            if (MySettings.UseTitansThunder && TitansThunder.IsSpellUsable &&
+                (!DireBeastTimer.IsReady || ObjectManager.Pet.HaveBuff(DireFrenzy.Ids)))
+            {
+                TitansThunder.Cast();
+            }
+            //Use Dire Frenzy if you have taken this talent or Dire Beast.
+            if (MySettings.UseDireFrenzy && DireFrenzy.IsSpellUsable && DireFrenzy.IsHostileDistanceGood &&
+                ObjectManager.Pet.InCombat && ObjectManager.Pet.AutoAttack)
+            {
+                DireFrenzy.Cast();
+                return;
+            }
+            else if (MySettings.UseDireBeast && DireBeast.IsSpellUsable && DireBeast.IsHostileDistanceGood)
             {
                 DireBeast.Cast();
                 DireBeastTimer = new Timer(1000*8);
                 return;
             }
-            else if (MySettings.UseDireFrenzy && DireFrenzy.IsSpellUsable && DireFrenzy.IsHostileDistanceGood)
+            //Cast Barrage when you have multiple targets.
+            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood &&
+                ObjectManager.Target.GetUnitInSpellRange(8f) > 1)
             {
-                DireFrenzy.Cast();
-                return;
-            }
-            if (MySettings.UseChimeraShot && ChimeraShot.IsSpellUsable && ChimeraShot.IsHostileDistanceGood)
-            {
-                ChimeraShot.Cast();
-                return;
-            }
-            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
-            {
+                if (ObjectManager.Me.Focus < 60)
+                    return;
                 Barrage.Cast();
                 return;
             }
-
-            //Generate Focus
-            if (ObjectManager.Me.Focus > MySettings.UseCobraShotAboveValue && CobraShot.IsSpellUsable &&
-                CobraShot.IsHostileDistanceGood)
+            //Cast Multi-Shot when you have the Surge of the Stormgod trait and 4 or more targets.
+            if (MySettings.UseMultiShot && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood &&
+                SurgeoftheStormgod.HaveBuff && ObjectManager.Target.GetUnitInSpellRange(8f) >= 4)
             {
+                if (ObjectManager.Me.Focus < 40)
+                    return;
+                MultiShot.Cast();
+                return;
+            }
+            //Cast Kill Command on cooldown.
+            if (MySettings.UseKillCommand && KillCommand.IsSpellUsable &&
+                ObjectManager.Pet.Position.DistanceTo(ObjectManager.Target.Position) <= 25)
+            {
+                if (ObjectManager.Me.Focus < 30)
+                    return;
+                KillCommand.Cast();
+                return;
+            }
+            //Cast Chimaera Shot on cooldown.
+            if (MySettings.UseChimaeraShot && ChimaeraShot.IsSpellUsable && ChimaeraShot.IsHostileDistanceGood)
+            {
+                ChimaeraShot.Cast();
+                return;
+            }
+            //Cast Barrage on cooldown.
+            if (MySettings.UseBarrage && Barrage.IsSpellUsable && Barrage.IsHostileDistanceGood)
+            {
+                if (ObjectManager.Me.Focus < 60)
+                    return;
+                Barrage.Cast();
+                return;
+            }
+            //Cast Cobra Shot when you have over (default = 90) Focus or Bestial Wrath is active.
+            if (ObjectManager.Me.Focus > MySettings.UseCobraShotAboveValue || BestialWrath.HaveBuff
+                && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood)
+            {
+                if (ObjectManager.Me.Focus < 40)
+                    return;
                 CobraShot.Cast();
                 return;
             }
@@ -1413,6 +1511,9 @@ public class HunterBeastMastery
         public int UsePet = 1;
         public bool UseRevivePet = true;
 
+        /* Buffs */
+        public bool UseVolley = true;
+
         /* Offensive Spells */
         public int UseCobraShotAboveValue = 90;
         public bool UseMultiShot = true;
@@ -1425,7 +1526,7 @@ public class HunterBeastMastery
         public bool UseAspectoftheWild = true;
         public bool UseBarrage = true;
         public bool UseBestialWrath = true;
-        public bool UseChimeraShot = true;
+        public bool UseChimaeraShot = true;
         public bool UseDireBeast = true;
         public bool UseDireFrenzy = true;
         public bool UseKillCommand = true;
@@ -1471,6 +1572,8 @@ public class HunterBeastMastery
             //AddControlInWinForm("Use Feed Pet", "UseFeedPetBelowPercentage", "Pet", "BelowPercentage", "Life");
             AddControlInWinForm("Use Mend Pet", "UseMendPetBelowPercentage", "Pet", "BelowPercentage", "Life");
             AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Pet");
+            /* Buffs */
+            AddControlInWinForm("Use Volley", "UseVolley", "Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Cobra Shot", "UseCobraShotAboveValue", "Offensive Spell", "AbovePercentage", "Focus"); //TODO add AbovePercentage alternative
             AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
@@ -1481,7 +1584,7 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Aspect of the Wild", "UseAspectoftheWild", "Offensive Cooldown");
             AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
             AddControlInWinForm("Use Bestial Wrath", "UseBestialWrath", "Offensive Cooldown");
-            AddControlInWinForm("Use Chimera Shot", "UseChimeraShot", "Offensive Cooldown");
+            AddControlInWinForm("Use Chimera Shot", "UseChimaeraShot", "Offensive Cooldown");
             AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
             AddControlInWinForm("Use Dire Frenzy", "UseDireFrenzy", "Offensive Cooldown");
             AddControlInWinForm("Use Kill Command", "UseKillCommand", "Offensive Cooldown");
