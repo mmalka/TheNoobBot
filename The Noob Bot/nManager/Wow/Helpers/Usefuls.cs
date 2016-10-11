@@ -12,6 +12,7 @@ using Microsoft.Win32;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
@@ -306,6 +307,32 @@ namespace nManager.Wow.Helpers
                 {
                     Logging.WriteError("Latency: " + e);
                     return 0;
+                }
+            }
+        }
+
+        public static void TagMonstersArround(Spell spellToUses, float range, int entry)
+        {
+            TagMonstersArround(spellToUses, range, new List<int> {entry});
+        }
+
+        public static void TagMonstersArround(Spell spellToUses, float range, List<int> entry = null)
+        {
+            Usefuls.SleepGlobalCooldown();
+            foreach (WoWUnit u in ObjectManager.ObjectManager.GetObjectWoWUnit60Yards())
+            {
+                if (!u.IsAlive || u.InCombat || (entry != null && !entry.Contains(u.Entry)) || UnitRelation.GetReaction(ObjectManager.ObjectManager.Me.Faction, u.Faction) > Reaction.Hostile)
+                {
+                    continue;
+                }
+                if (!u.IsInRange(range))
+                    continue;
+                if (ObjectManager.ObjectManager.Me.Target != u.Guid)
+                {
+                    Interact.InteractWith(u.GetBaseAddress, true);
+                    Thread.Sleep(100);
+                    spellToUses.Cast(true);
+                    return;
                 }
             }
         }
