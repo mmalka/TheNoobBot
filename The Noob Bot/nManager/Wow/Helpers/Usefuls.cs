@@ -321,7 +321,7 @@ namespace nManager.Wow.Helpers
             Usefuls.SleepGlobalCooldown();
             foreach (WoWUnit u in ObjectManager.ObjectManager.GetObjectWoWUnit60Yards())
             {
-                if (!u.IsAlive || u.InCombat || (entry != null && !entry.Contains(u.Entry)) || UnitRelation.GetReaction(ObjectManager.ObjectManager.Me.Faction, u.Faction) > Reaction.Hostile)
+                if (!u.IsAlive || u.InCombat || (entry != null && !entry.Contains(u.Entry)) || UnitRelation.GetReaction(ObjectManager.ObjectManager.Me.Faction, u.Faction) <= Reaction.Hostile)
                 {
                     continue;
                 }
