@@ -799,60 +799,6 @@
       </Objectives>
     </Quest>
     <Quest>
-      <Name>Verdant Sigil</Name>
-      <Id>3120</Id>
-      <RaceMask>8</RaceMask>
-      <ClassMask>1024</ClassMask>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>28715</int>
-      </NeedQuestCompletedId>
-      <PickUp>2079</PickUp>
-      <TurnIn>3597</TurnIn>
-      <Objectives>
-      </Objectives>
-    </Quest>
-    <Quest>
-      <Name>Moonfire</Name>
-      <Id>26948</Id>
-      <RaceMask>8</RaceMask>
-      <ClassMask>1024</ClassMask>
-      <QuestLevel>3</QuestLevel>
-      <MinLevel>2</MinLevel>
-      <MaxLevel>8</MaxLevel>
-      <NeedQuestCompletedId>
-        <int>3120</int>
-      </NeedQuestCompletedId>
-      <PickUp>3597</PickUp>
-      <TurnIn>3597</TurnIn>
-      <Objectives>
-        <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>10465.5</X>
-            <Y>802.2175</Y>
-            <Z>1322.745</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>UseSpell</Objective>
-          <Entry>
-            <int>44614</int>
-          </Entry>
-          <UseSpellId>8921</UseSpellId>
-          <Range>5</Range>
-          <Count>1</Count>
-          <Position>
-            <X>10465.5</X>
-            <Y>802.2175</Y>
-            <Z>1322.745</Z>
-          </Position>
-        </QuestObjective>
-      </Objectives>
-    </Quest>
-    <Quest>
       <Name>Priestess of the Moon</Name>
       <Id>28723</Id>
       <RaceMask>8</RaceMask>
@@ -861,7 +807,7 @@
       <MinLevel>3</MinLevel>
       <MaxLevel>8</MaxLevel>
       <NeedQuestCompletedId>
-        <int>26948</int>
+        <int>31169</int>
       </NeedQuestCompletedId>
       <PickUp>3597</PickUp>
       <TurnIn>49479</TurnIn>
