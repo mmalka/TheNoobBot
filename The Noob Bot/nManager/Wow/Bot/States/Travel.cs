@@ -220,6 +220,10 @@ namespace nManager.Wow.Bot.States
                     if (ItemsManager.GetItemCount(flightMasterWistleId) > 0 && ItemsManager.IsItemUsable(flightMasterWistleId) && !ItemsManager.IsItemOnCooldown(flightMasterWistleId))
                     {
                         ItemsManager.UseItem(flightMasterWistleId);
+                        TravelToContinentId = 9999999;
+                        TravelTo = new Point();
+                        TargetValidationFct = null;
+                        Logging.Write("We've used Flight Master Wistle, waiting for product to regenerate travel path.");
                         Thread.Sleep(250);
                         while (ObjectManager.ObjectManager.Me.IsCasting)
                         {
