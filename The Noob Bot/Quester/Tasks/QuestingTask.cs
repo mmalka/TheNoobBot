@@ -1361,8 +1361,20 @@ namespace Quester.Tasks
                     }
                     if (!Gossip.IsTaxiWindowOpen())
                     {
-                        Logging.Write("There is a problem with taxi master " + taxiMan.Name);
-                        return;
+                        // attempt to fix the wow bugged interact
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        Interact.InteractWith(baseAddress);
+                        Thread.Sleep(250 + Usefuls.Latency);
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Gossip.SelectGossip(Gossip.GossipOption.Taxi);
+                        }
+                        if (!Gossip.IsTaxiWindowOpen())
+                        {
+                            Logging.Write("There is a problem with taxi master " + taxiMan.Name);
+                            return;
+                        }
                     }
                     Gossip.TakeTaxi(questObjective.FlightDestinationX, questObjective.FlightDestinationY);
                     Thread.Sleep(questObjective.WaitMs);

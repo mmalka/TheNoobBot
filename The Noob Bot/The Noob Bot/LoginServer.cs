@@ -36,7 +36,7 @@ namespace The_Noob_Bot
         internal static string Login = "";
         internal static string Password = "";
         internal static string HardwareKey = "";
-        private const string Secret = "0e8897c8c73772e72d81dd28ebf57ac3";
+        private const string Secret = "0e88ec73772zet1dd28ee7ac23";
         private static string TrueResultLoop = "";
 
         internal static bool IsOnlineserver;
