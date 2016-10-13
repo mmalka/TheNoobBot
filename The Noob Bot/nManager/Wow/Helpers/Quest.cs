@@ -29,6 +29,8 @@ namespace nManager.Wow.Helpers
         {
             foreach (int q in qList)
             {
+                if (q == -1)
+                    return false;
                 if (GetQuestCompleted(q))
                     return true;
             }
@@ -61,6 +63,8 @@ namespace nManager.Wow.Helpers
 
         public static bool GetQuestCompleted(int questId)
         {
+            if (questId == -1)
+                return false;
             return FinishedQuestSet.Contains(questId);
         }
 

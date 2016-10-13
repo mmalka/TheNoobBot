@@ -58,6 +58,12 @@ namespace Quester.Tasks
             {
                 foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
+                    if (quest.Id == -1)
+                    {
+                        CurrentQuest = quest;
+                        Logging.Write("Action system loaded with fakeQuest: \"" + quest.Name + "\".");
+                        return;
+                    }
                     if (Quest.GetLogQuestId().Contains(quest.Id) && quest.MinLevel <= ObjectManager.Me.Level)
                     {
                         CurrentQuest = quest;
