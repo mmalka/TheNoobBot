@@ -671,17 +671,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new WoWGameObject(0);
-                float tempDistance = 9999999.0f;
-                foreach (WoWGameObject a in listWoWGameObject)
-                {
-                    if (a.GetDistance < tempDistance && (!nManagerSetting.IsBlackListed(a.Guid) || ignoreBlackList))
-                    {
-                        objectReturn = a;
-                        tempDistance = a.GetDistance;
-                    }
-                }
-                return objectReturn;
+                return GetNearestWoWGameObject(listWoWGameObject, Me.Position, ignoreBlackList);
             }
             catch (Exception e)
             {
