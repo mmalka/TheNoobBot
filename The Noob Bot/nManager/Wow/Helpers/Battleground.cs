@@ -10,7 +10,7 @@ namespace nManager.Wow.Helpers
     {
         public static void SetPVPRoles()
         {
-            Lua.LuaDoString("SetPVPRoles(0, 0, 1);");
+            Lua.LuaDoString("SetPVPRoles(false, false, true);");
             // Tank, Heal, DPS
             // We need to allow the bot to heal in BG with a settings, then we can tick Heal as well.
         }
