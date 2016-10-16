@@ -59205,6 +59205,7 @@
       <Z>308.8191</Z>
     </Position>
     <Type>Vendor</Type>
+	<Faction>Alliance</Faction>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
@@ -59216,6 +59217,7 @@
       <Z>308.8191</Z>
     </Position>
     <Type>Repair</Type>
+	<Faction>Alliance</Faction>
     <ContinentId>Troll Raid</ContinentId>
   </Npc>
   <Npc>
