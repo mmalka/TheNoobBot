@@ -58317,50 +58317,6 @@
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
-    <Entry>98548</Entry>
-    <Name>Großtelemant Oculeth</Name>
-    <Position>
-      <X>1707.16492</X>
-      <Y>4626.436</Y>
-      <Z>124.005585</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Troll Raid</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>98548</Entry>
-    <Name>Großtelemant Oculeth</Name>
-    <Position>
-      <X>1707.16492</X>
-      <Y>4626.436</Y>
-      <Z>124.005585</Z>
-    </Position>
-    <Type>Repair</Type>
-    <ContinentId>Troll Raid</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>98548</Entry>
-    <Name>Großtelemant Oculeth</Name>
-    <Position>
-      <X>1780.40625</X>
-      <Y>4644.25439</Y>
-      <Z>123.99279</Z>
-    </Position>
-    <Type>Vendor</Type>
-    <ContinentId>Troll Raid</ContinentId>
-  </Npc>
-  <Npc>
-    <Entry>98548</Entry>
-    <Name>Großtelemant Oculeth</Name>
-    <Position>
-      <X>1780.40625</X>
-      <Y>4644.25439</Y>
-      <Z>123.99279</Z>
-    </Position>
-    <Type>Repair</Type>
-    <ContinentId>Troll Raid</ContinentId>
-  </Npc>
-  <Npc>
     <Entry>98723</Entry>
     <Name>Tiffy Trapspring</Name>
     <Position>
