@@ -256,7 +256,7 @@ namespace Quester.Profile
         {
             EditSelectedQuesterButton.Enabled = false;
             int selectedIndex = ProfileQuesterList.SelectedIndex;
-            if (ObjectManager.Target.Guid == 0 || ObjectManager.Target.IsNpcQuestGiver)
+            if (ObjectManager.Target.Guid == 0 || !ObjectManager.Target.IsNpcQuestGiver)
             {
                 MessageBox.Show(@"The target is not a valid Npc Quest Giver");
                 return;
