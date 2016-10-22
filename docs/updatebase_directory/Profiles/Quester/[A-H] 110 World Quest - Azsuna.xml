@@ -72,6 +72,36 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>WANTED: Syphonus</Name>
+      <Id>43429</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-452.5851</X>
+        <Y>5408.342</Y>
+        <Z>70.31509</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>90505</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-452.5851</X>
+              <Y>5408.342</Y>
+              <Z>70.31509</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>A Tainted Vintage</Name>
       <Id>42014</Id>
       <QuestLevel>110</QuestLevel>
@@ -173,6 +203,7 @@
         <Y>7809.029</Y>
         <Z>1.415371</Z>
       </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -353,11 +384,27 @@
               <Z>109.5427</Z>
             </Point>
             <Point>
-              <X>-558.3825</X>
-              <Y>7718.653</Y>
-              <Z>140.4649</Z>
+              <X>-534.989</X>
+              <Y>7705.271</Y>
+              <Z>140.7738</Z>
+            </Point>
+            <Point>
+              <X>-469.475</X>
+              <Y>7714.571</Y>
+              <Z>109.5796</Z>
+            </Point>
+            <Point> 
+              <X>-512.5432</X>
+              <Y>7596.289</Y>
+              <Z>114.2596</Z>
+            </Point>
+            <Point>
+              <X>-670.8541</X>
+              <Y>7706.728</Y>
+              <Z>109.0289</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -367,7 +414,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
       <WorldQuestLocation>
         <X>817.2819</X>
         <Y>5796.125</Y>
@@ -440,9 +487,9 @@
             <int>248054</int>
           </Entry>
           <Position>
-              <X>-1282.235</X>
-              <Y>7087.083</Y>
-              <Z>37.25912</Z>
+            <X>-1282.235</X>
+            <Y>7087.083</Y>
+            <Z>37.25912</Z>
           </Position>
           <WaitMs>1000</WaitMs>
         </QuestObjective>
@@ -454,7 +501,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) > 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
       <WorldQuestLocation>
         <X>-748.1087</X>
         <Y>7863.687</Y>
@@ -492,9 +539,9 @@
             <int>248054</int>
           </Entry>
           <Position>
-              <X>-748.1087</X>
-              <Y>7863.687</Y>
-              <Z>16.49545</Z>
+            <X>-748.1087</X>
+            <Y>7863.687</Y>
+            <Z>16.49545</Z>
           </Position>
           <WaitMs>1000</WaitMs>
         </QuestObjective>
@@ -872,7 +919,7 @@
         <Y>7149.966</Y>
         <Z>9.58573</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) > 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -987,7 +1034,7 @@
         <Y>7193.648</Y>
         <Z>68.92852</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) > 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1070,6 +1117,48 @@
         <Z>179.033</Z>
       </WorldQuestLocation>
       <ScriptCondition>=IsTankScript.cs</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Entry>
+            <int>91580</int> <!-- Tehd Shoemaker -->
+          </Entry> 
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith> 
+          <Position>
+            <X>561.8281</X>
+            <Y>6983.585</Y>
+            <Z>178.9137</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>91579</int> <!-- Doomlord Kazrok -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>568.1667</X>
+              <Y>6988.304</Y>
+              <Z>179.033</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Doomlord Kazrok</Name>
+      <Id>43428</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>568.1667</X>
+        <Y>6988.304</Y>
+        <Z>179.033</Z>
+      </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1375,5 +1464,1197 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>WANTED: Inquisitor Tivos</Name>
+      <Id>42631</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>-473.2882</X>
+        <Y>7971.741</Y>
+        <Z>329.3157</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>107269</int>
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>-457.2441</X>
+              <Y>7986.58</Y>
+              <Z>301.2399</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Reclaiming Llothien</Name>
+      <Id>42123</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>546.7273</X>
+        <Y>6302.34</Y>
+        <Z>39.2565</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>90901</int> <!-- Pridelord Meowl -->
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>526.6806</X>
+              <Y>6155.048</Y>
+              <Z>40.56704</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>90313</int> <!-- Llothien Prowler -->
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>561.0834</X>
+              <Y>6278.852</Y>
+              <Z>38.99671</Z>
+            </Point>
+            <Point> 
+              <X>455.0004</X>
+              <Y>6180.326</Y>
+              <Z>39.58926</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Disgusting, but Useful</Name>
+      <Id>42276</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>-238.0025</X>
+        <Y>7756.399</Y>
+        <Z>124.5169</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>250267</int> <!--Felsurge Egg -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-59.37068</X>
+              <Y>7706.978</Y>
+              <Z>108.3451</Z>
+            </Point>
+            <Point>
+              <X>-93.84476</X>
+              <Y>7543.185</Y>
+              <Z>88.41136</Z>
+            </Point>
+            <Point>
+              <X>-155.9098</X>
+              <Y>7732.436</Y>
+              <Z>109.5114</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <CollectItemId>136838</CollectItemId> <!-- Manastalker Tendril -->
+          <CollectCount>50</CollectCount>
+          <Entry>
+            <int>107135</int> <!-- Llothien Prowler -->
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>-196.9421</X>
+              <Y>7949.032</Y>
+              <Z>117.2297</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!--    Work in progress
+    
+    We miss an objective or the possibility to pick up an object and use it
+    To destroy the "Kegs of Spicy Grog" we must use the additionnal action that
+    pop when pick up the object.
+    
+    <Quest>
+      <Name>Piracy Doesn't Pay</Name>
+      <Id>42623</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>-1003.95</X>
+        <Y>5865.528</Y>
+        <Z>-0.0365945</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>5</Count>
+          <Entry>
+            <int>250867</int>  Kegs of Spicy Grog 
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1103.086</X>
+              <Y>5927.58</Y>
+              <Z>1.177605</Z>
+            </Point>
+            <Point>
+              <X>-1432.874</X>
+              <Y>5984.978</Y>
+              <Z>4.451492</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>12</Count>
+          <Entry>
+            <int>106818</int>   Dread Sharpshooter 
+            <int>108137</int>  First Mate Oxswain 
+            <int>106819</int>  Dread Harpooner 
+            <int>108139</int>  Blacksail Keelhauler 
+            <int>106820</int>  Dread Crewman 
+            <int>108133</int>  Blacksail Salvor 
+            <int>108146</int>  Blacksail Gunner 
+          </Entry>
+          <Hotspots> 
+            <Point>
+              <X>-1103.086</X>
+              <Y>5927.58</Y>
+              <Z>1.177605</Z>
+            </Point>
+            <Point>
+              <X>-1432.874</X>
+              <Y>5984.978</Y>
+              <Z>4.451492</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>-->
+    <Quest>
+      <Name>The Broken Academy</Name>
+      <Id>42022</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-80.11475</X> 
+        <Y>6220.521</Y>
+        <Z>2.3686</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>25</Count>
+          <Entry>
+            <int>88086</int>
+            <int>88087</int>
+            <int>107447</int>
+            <int>91459</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-80.11475</X>
+              <Y>6220.521</Y>
+              <Z>2.3686</Z>
+            </Point>
+            <Point>
+              <X>-193.1335</X>
+              <Y>6129.032</Y>
+              <Z>41.13223</Z>
+            </Point>
+            <Point>
+              <X>-149.5609</X>
+              <Y>6279.979</Y>
+              <Z>6.223576</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Tomes of Yore</Name>
+      <Id>42506</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>328.7874</X>
+        <Y>7550.291</Y>
+        <Z>146.167</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>250592</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>277.3734</X>
+              <Y>7410.086</Y>
+              <Z>145.5608</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>5</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>250591</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>331.0016</X>
+              <Y>7365.515</Y>
+              <Z>141.0828</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>250593</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>322.5892</X>
+              <Y>7549.101</Y>
+              <Z>146.167</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Arcavellus</Name>
+      <Id>42620</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1258.869</X>
+        <Y>5896.356</Y>
+        <Z>14.80513</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>15</Count>
+          <Entry>
+            <int>90242</int>
+            <int>90243</int>
+            <int>90244</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>1258.869</X>
+              <Y>5896.356</Y>
+              <Z>14.80513</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Arcavellus</Name>
+      <Id>43606</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1258.869</X>
+        <Y>5896.356</Y>
+        <Z>14.80513</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>15</Count>
+          <Entry>
+            <int>90242</int>
+            <int>90243</int>
+            <int>90244</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>1258.869</X>
+              <Y>5896.356</Y>
+              <Z>14.80513</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Unwelcome Visitors</Name>
+      <Id>42160</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>575.1039</X>
+        <Y>5471.001</Y>
+        <Z>52.18985</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>106582</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>657.6992</X>
+              <Y>5343.462</Y>
+              <Z>49.0715</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>106583</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>485.2921</X>
+              <Y>5400.463</Y>
+              <Z>36.45038</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseActionButtonOnUnit</Objective>
+          <Entry>
+            <int>106509</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>613.5592</X>
+              <Y>5508.036</Y>
+              <Z>55.37341</Z>
+            </Point>
+            <Point> 
+              <X>721.4068</X>
+              <Y>5330.714</Y>
+              <Z>56.87012</Z>
+            </Point>
+            <Point> 
+              <X>587.613</X>
+              <Y>5313.188</Y>
+              <Z>44.38607</Z>
+            </Point>
+            <Point> 
+              <X>498.1479</X>
+              <Y>5311.433</Y>
+              <Z>60.10454</Z>
+            </Point>
+          </Hotspots>
+          <WaitMs>50</WaitMs>
+          <UseSpellId>211157</UseSpellId>
+          <Range>15</Range>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>UseSpellAOE</Objective>
+          <Entry>
+            <int>106509</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>613.5592</X>
+              <Y>5508.036</Y>
+              <Z>55.37341</Z>
+            </Point>
+            <Point> 
+              <X>721.4068</X>
+              <Y>5330.714</Y>
+              <Z>56.87012</Z>
+            </Point>
+            <Point> 
+              <X>587.613</X>
+              <Y>5313.188</Y>
+              <Z>44.38607</Z>
+            </Point>
+            <Point> 
+              <X>498.1479</X>
+              <Y>5311.433</Y>
+              <Z>60.10454</Z>
+            </Point>
+          </Hotspots>
+          <WaitMs>15000</WaitMs>
+          <UseSpellId>211157</UseSpellId>
+          <Range>15</Range>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Tip the Scales</Name>
+      <Id>42019</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>75.77303</X>
+        <Y>5634.069</Y>
+        <Z>0.7464082</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>20</Count>
+          <Entry>
+            <int>89891</int>
+            <int>89811</int>
+            <int>89024</int>
+            <int>89025</int>
+            <int>89808</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>75.77303</X>
+              <Y>5634.069</Y>
+              <Z>0.7464082</Z>
+            </Point>
+            <Point> 
+              <X>-161.7453</X>
+              <Y>5665.182</Y>
+              <Z>16.90707</Z>
+            </Point>
+            <Point> 
+              <X>53.70884</X>
+              <Y>5933.212</Y>
+              <Z>1.610366</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!--    <Quest>
+      <Name>Ley Race</Name>
+      <Id>43325</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>492.1704</X>
+        <Y>5669.848</Y>
+        <Z>72.19427</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <OnlyOutVehicule>true</OnlyOutVehicule>
+          <Count>1</Count>
+          <Entry>
+            <int>110903</int>
+          </Entry>
+          <Position> 
+            <X>492.1704</X>
+            <Y>5669.848</Y>
+            <Z>72.19427</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <IgnoreFight>true</IgnoreFight>
+          <OnlyInVehicule>true</OnlyInVehicule>
+          <Entry>
+            <int>97345</int>  An random NPC that will never be here 
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>446.5788</X>
+              <Y>5655.315</Y>
+              <Z>64.07099</Z>
+            </Point>
+            <Point> 
+              <X>290.0373</X>
+              <Y>5621.523</Y>
+              <Z>38.88693</Z>
+            </Point>
+            <Point> 
+              <X>175.9468</X>
+              <Y>5495.179</Y>
+              <Z>40.59372</Z>
+            </Point>
+            <Point> 
+              <X>-17.63709</X>
+              <Y>5448.558</Y>
+              <Z>36.65717</Z>
+            </Point>
+            <Point> 
+              <X>-155.0224</X>
+              <Y>5432.465</Y>
+              <Z>37.61887</Z>
+            </Point>
+            <Point> 
+              <X>-337.9683</X>
+              <Y>5502.971</Y>
+              <Z>38.69148</Z>
+            </Point>
+            <Point> 
+              <X>-407.5281</X>
+              <Y>5579.417</Y>
+              <Z>34.05424</Z>
+            </Point>
+            <Point> 
+              <X>-454.9234</X>
+              <Y>5681.271</Y>
+              <Z>31.63133</Z>
+            </Point>
+            <Point> 
+              <X>-438.0291</X>
+              <Y>5790.673</Y>
+              <Z>39.32584</Z>
+            </Point>
+            <Point> 
+              <X>-446.7904</X>
+              <Y>5939.745</Y>
+              <Z>37.59172</Z>
+            </Point>
+            <Point> 
+              <X>-488.8512</X>
+              <Y>6068.041</Y>
+              <Z>47.44969</Z>
+            </Point>
+            <Point> 
+              <X>-562.5947</X>
+              <Y>6231.568</Y>
+              <Z>67.29131</Z>
+            </Point>
+            <Point> 
+              <X>-627.2269</X>
+              <Y>6350.108</Y>
+              <Z>93.05071</Z>
+            </Point>
+            <Point> 
+              <X>-650.2681</X>
+              <Y>6485.344</Y>
+              <Z>112.1832</Z>
+            </Point>
+            <Point> 
+              <X>-629.776</X>
+              <Y>6568.716</Y>
+              <Z>111.5491</Z>
+            </Point>
+            <Point> 
+              <X>-522.7817</X>
+              <Y>6704.845</Y>
+              <Z>97.24453</Z>
+            </Point>
+            <Point> 
+              <X>-442.0103</X>
+              <Y>6777.446</Y>
+              <Z>69.01443</Z>
+            </Point>
+            <Point> 
+              <X>-355.0048</X>
+              <Y>6767.611</Y>
+              <Z>54.50068</Z>
+            </Point>
+            <Point> 
+              <X>-264.4179</X>
+              <Y>6787.24</Y>
+              <Z>40.06225</Z>
+            </Point>
+            <Point>
+              <X>-146.7608</X>
+              <Y>6791.036</Y>
+              <Z>35.63246</Z> 
+            </Point>
+            <Point>
+              <X>-79.57139</X>
+              <Y>6920.53</Y>
+              <Z>15.07901</Z> 
+            </Point>
+            <Point>
+              <X>17.104</X>
+              <Y>7036.613</Y>
+              <Z>16.35291</Z> 
+            </Point>
+            <Point>
+              <X>188.8562</X>
+              <Y>7158.178</Y>
+              <Z>52.92711</Z>
+            </Point>
+            <Point>
+              <X>138.1442</X>
+              <Y>7316.875</Y>
+              <Z>56.10636</Z>
+            </Point>
+            <Point>
+              <X>159.6037</X>
+              <Y>7425.151</Y>
+              <Z>45.36415</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>-->
+    <Quest>
+      <Name>Operation Murloc Freedom</Name>
+      <Id>41896</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1158.39</X>
+        <Y>7326.685</Y>
+        <Z>10.14573</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>20</Count>
+          <Entry>
+            <int>110448</int>
+            <int>105360</int>
+            <int>105362</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>1174.71</X>
+              <Y>7364.208</Y>
+              <Z>1.350242</Z>
+            </Point>
+            <Point>
+              <X>1162.511</X>
+              <Y>7481.411</Y>
+              <Z>1.12738</Z>
+            </Point>
+            <Point>
+              <X>1227.311</X>
+              <Y>7496.429</Y>
+              <Z>10.13228</Z>
+            </Point>
+            <Point> 
+              <X>1077.614</X>
+              <Y>7433.076</Y>
+              <Z>2.688049</Z>
+            </Point>
+            <Point> 
+              <X>1037.097</X>
+              <Y>7324.498</Y>
+              <Z>20.60204</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <!--    <Quest>
+      <Name>Investigation at Mak'rana</Name>
+      <Id>42021</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>-799.1843</X>
+        <Y>5979.224</Y>
+        <Z>-0.7201907</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>89053</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>-799.1843</X>
+              <Y>5979.224</Y>
+              <Z>-0.7201907</Z>
+            </Point>
+            <Point>
+              <X>-862.3048</X>
+              <Y>5801.287</Y>
+              <Z>-0.03436192</Z>
+            </Point>
+            <Point>
+              <X>-753.3561</X>
+              <Y>5652.291</Y>
+              <Z>8.471759</Z>
+            </Point>
+            <Point> 
+              <X>-714.517</X>
+              <Y>5812.633</Y>
+              <Z>3.430294</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>4</InternalIndex>
+          <Count>6</Count>
+          <Entry>
+            <int>89283</int>
+            <int>89284</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>-799.1843</X>
+              <Y>5979.224</Y>
+              <Z>-0.7201907</Z>
+            </Point>
+            <Point>
+              <X>-862.3048</X>
+              <Y>5801.287</Y>
+              <Z>-0.03436192</Z>
+            </Point>
+            <Point>
+              <X>-753.3561</X>
+              <Y>5652.291</Y>
+              <Z>8.471759</Z>
+            </Point>
+            <Point> 
+              <X>-714.517</X>
+              <Y>5812.633</Y>
+              <Z>3.430294</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <Count>4</Count>
+          <Entry>
+            <int>89290</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>-799.1843</X>
+              <Y>5979.224</Y>
+              <Z>-0.7201907</Z>
+            </Point>
+            <Point>
+              <X>-862.3048</X>
+              <Y>5801.287</Y>
+              <Z>-0.03436192</Z>
+            </Point>
+            <Point>
+              <X>-753.3561</X>
+              <Y>5652.291</Y>
+              <Z>8.471759</Z>
+            </Point>
+            <Point> 
+              <X>-714.517</X>
+              <Y>5812.633</Y>
+              <Z>3.430294</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Position> 
+            <X>-974.793</X>
+            <Y>5628.311</Y>
+            <Z>4.262432</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>89287</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>-975.0717</X>
+              <Y>5626.758</Y>
+              <Z>4.638008</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>-->
+    <Quest>
+      <Name>Rally the Nightwatchers</Name>
+      <Id>42108</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>101.5385</X>
+        <Y>6723.322</Y>
+        <Z>52.1923</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseActionButtonOnUnit</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>10</Count>
+          <Entry>
+            <int>88782</int>
+            <int>88783</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>66.73682</X>
+              <Y>6753.202</Y>
+              <Z>50.20576</Z>
+            </Point>
+            <Point>
+              <X>200.3121</X>
+              <Y>6795.621</Y>
+              <Z>57.02466</Z>
+            </Point>
+            <Point>
+              <X>262.0505</X>
+              <Y>6702.259</Y>
+              <Z>55.96184</Z>
+            </Point>
+          </Hotspots>
+          <WaitMs>5100</WaitMs>
+          <UseSpellId>210543</UseSpellId>
+          <Range>5</Range>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>89650</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>305.483</X>
+              <Y>6735.594</Y>
+              <Z>85.70753</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>88090</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>194.2129</X>
+              <Y>6839.122</Y>
+              <Z>69.77509</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Normantis the Deposed</Name>
+      <Id>43432</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1464.427</X>
+        <Y>6530.372</Y>
+        <Z>4.956631</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>90217</int>
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>1447.938</X>
+              <Y>6551.633</Y>
+              <Z>3.502647</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Normantis the Deposed</Name>
+      <Id>43612</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1464.427</X>
+        <Y>6530.372</Y>
+        <Z>4.956631</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>90217</int>
+          </Entry>
+          <Hotspots> 
+            <Point> 
+              <X>1447.938</X>
+              <Y>6551.633</Y>
+              <Z>3.502647</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Slab of Bacon</Name>
+      <Id>41552</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-1311.243</X>
+        <Y>5553.133</Y>
+        <Z>1.304099</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>103784</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1311.243</X>
+              <Y>5553.133</Y>
+              <Z>1.304099</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Flourishing Aethril</Name>
+      <Id>41289</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>258.1498</X>
+        <Y>6762.221</Y>
+        <Z>56.11096</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Entry>
+            <int>247605</int>
+          </Entry>
+          <CollectItemId>140947</CollectItemId> <!-- Flourishing Aethril -->
+          <CollectCount>10</CollectCount>
+          <Hotspots>
+            <Point>
+              <X>258.1498</X>
+              <Y>6762.221</Y>
+              <Z>56.11096</Z>
+            </Point>
+            <Point>
+              <X>126.7877</X>
+              <Y>6800.368</Y>
+              <Z>50.66686</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Heads of the Fleet</Name>
+      <Id>42624</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>-1187.488</X>
+        <Y>5861.782</Y>
+        <Z>1.82683</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>108137</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1246.569</X>
+              <Y>5905.662</Y>
+              <Z>0.887997</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>108212</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1205.701</X>
+              <Y>5799.835</Y>
+              <Z>18.56892</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>4</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>108174</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1306.138</X>
+              <Y>5815.157</Y>
+              <Z>-0.1189806</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>108186</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>-1490.156</X>
+              <Y>6054.738</Y>
+              <Z>5.652811</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fatty Lion Seal Skin</Name>
+      <Id>41323</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <WorldQuestLocation>
+        <X>351.7706</X>
+        <Y>7881.979</Y>
+        <Z>5.219042</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>134807</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>89013</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>351.7706</X>
+              <Y>7881.979</Y>
+              <Z>5.219042</Z>
+            </Point>
+            <Point>
+              <X>351.9298</X>
+              <Y>7786.875</Y>
+              <Z>0.6279621</Z>
+            </Point>
+            <Point>
+              <X>659.6592</X>
+              <Y>7800.136</Y>
+              <Z>32.03559</Z>
+            </Point>
+            <Point>
+              <X>632.3192</X>
+              <Y>7640.444</Y>
+              <Z>0.3955695</Z>
+            </Point>
+            <Point>
+              <X>835.181</X>
+              <Y>7531.431</Y>
+              <Z>-1.436232</Z>
+            </Point>
+            <Point>
+              <X>1003.202</X>
+              <Y>7672.988</Y>
+              <Z>11.94732</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
+  <Blackspots>
+    <QuesterBlacklistRadius>
+      <!-- Prevent falling in lava for "Not On My Watch" -->
+      <Position>
+        <X>-594.5076</X>
+        <Y>7617.877</Y>
+        <Z>107.4108</Z>
+      </Position>
+      <Radius>20</Radius>
+    </QuesterBlacklistRadius>
+  </Blackspots>
 </QuesterProfile>
