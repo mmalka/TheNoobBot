@@ -52,6 +52,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -59,6 +61,7 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\Bot.cs" />
@@ -83,6 +86,12 @@
     </Compile>
     <Compile Include="Profile\QuesterProfileLoader.designer.cs">
       <DependentUpon>QuesterProfileLoader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\SimpleProfileEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\SimpleProfileEditor.designer.cs">
+      <DependentUpon>SimpleProfileEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile\SimpleProfileManager.cs">
       <SubType>Form</SubType>
@@ -115,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\QuesterProfileLoader.resx">
       <DependentUpon>QuesterProfileLoader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\SimpleProfileEditor.resx">
+      <DependentUpon>SimpleProfileEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\SimpleProfileManager.resx">
       <DependentUpon>SimpleProfileManager.cs</DependentUpon>

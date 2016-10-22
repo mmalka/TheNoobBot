@@ -156,7 +156,7 @@ namespace Quester.Profile
 
         private void ProfileManagerAdd_Click(object sender, EventArgs e)
         {
-            var f = new SimpleProfileManager();
+            var f = new SimpleProfileEditor();
             f.ShowDialog();
             RefreshProfileManagerForm();
         }
@@ -165,7 +165,7 @@ namespace Quester.Profile
         {
             if (ExistingSimpleProfiles.Items.Count > 0)
             {
-                var f = new SimpleProfileManager(ExistingSimpleProfiles.Items[ExistingSimpleProfiles.SelectedIndex].ToString());
+                var f = new SimpleProfileEditor(ExistingSimpleProfiles.Items[ExistingSimpleProfiles.SelectedIndex].ToString());
                 f.ShowDialog();
             }
             else

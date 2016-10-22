@@ -29,7 +29,7 @@ namespace nManager.Wow.ObjectManager
             get { return (WoWRace) GetCharByte(0); }
         }
 
-        public WoWClass WowClass
+        public new WoWClass WowClass
         {
             get { return (WoWClass) GetCharByte(1); }
         }

@@ -73,6 +73,7 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,13 @@
     <Compile Include="Helpful\Forms\UserControls\TnbSwitchButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helpful\Forms\UserControls\ucXmlRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\ucXmlRichTextBox.designer.cs">
+      <DependentUpon>ucXmlRichTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\UserControls\XmlStateMachine.cs" />
     <Compile Include="Helpful\Garrison.cs" />
     <Compile Include="Helpful\GZip.cs" />
     <Compile Include="Helpful\IniFile.cs" />
@@ -371,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\UserControls\LoggingSchedulerUC.resx">
       <DependentUpon>LoggingSchedulerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\UserControls\ucXmlRichTextBox.resx">
+      <DependentUpon>ucXmlRichTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
