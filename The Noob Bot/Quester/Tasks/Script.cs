@@ -13,7 +13,7 @@ namespace Quester.Tasks
     {
         internal static Dictionary<string, IScript> CachedScripts = new Dictionary<string, IScript>();
 
-        internal static bool Run(string script)
+        internal static bool Run(string script, int questId = 0)
         {
             try
             {
@@ -57,6 +57,7 @@ namespace Quester.Tasks
                     "    { " + Environment.NewLine +
                     "        try " + Environment.NewLine +
                     "        { " + Environment.NewLine +
+                    "           int QuestID = " + questId + "; " + Environment.NewLine +
                     " " + script + " " + Environment.NewLine +
                     "        } " + Environment.NewLine +
                     "        catch (Exception e) " + Environment.NewLine +

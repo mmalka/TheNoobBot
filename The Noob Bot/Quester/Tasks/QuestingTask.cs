@@ -279,7 +279,8 @@ namespace Quester.Tasks
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
                 questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath ||
                 questObjective.Objective == Objective.UseLuaMacro || questObjective.Objective == Objective.ClickOnTerrain || questObjective.Objective == Objective.MessageBox ||
-                questObjective.Objective == Objective.GarrisonHearthstone || questObjective.Objective == Objective.UseActionButtonOnUnit)
+                questObjective.Objective == Objective.GarrisonHearthstone || questObjective.Objective == Objective.UseActionButtonOnUnit ||
+                questObjective.Objective == Objective.CSharpScript)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -1398,6 +1399,11 @@ namespace Quester.Tasks
                     return;
                 }
                 questObjective.IsObjectiveCompleted = true;
+            }
+
+            if (questObjective.Objective == Objective.CSharpScript)
+            {
+                Script.Run(questObjective.Script, CurrentQuest.Id);
             }
         }
 

@@ -45,6 +45,7 @@ namespace Quester.Bot
                             QuesterProfile profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
                             if (profileInclude != null)
                             {
+                                // Profile.Includes.AddRange(profileInclude.Includes);
                                 Profile.Questers.AddRange(profileInclude.Questers);
                                 Profile.Blackspots.AddRange(profileInclude.Blackspots);
                                 Profile.AvoidMobs.AddRange(profileInclude.AvoidMobs);

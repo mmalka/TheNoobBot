@@ -203,7 +203,7 @@ namespace Quester.Profile
         [DefaultValue("")] public string ScriptCondition = "";
         [DefaultValue("")] public string ScriptConditionIsComplete = "";
         internal bool IsObjectiveCompleted = false;
-        [DefaultValue(false)] public bool CanPullUnitsAlreadyInFight = nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight;
+        [DefaultValue(false)] public bool CanPullUnitsAlreadyInFight = false;
         [DefaultValue(false)] public bool IgnoreQuestCompleted = false;
         [DefaultValue(false)] public bool IgnoreBlackList = false;
 
@@ -297,6 +297,7 @@ namespace Quester.Profile
         MessageBox,
         PickUpNPC,
         GarrisonHearthstone,
+        CSharpScript,
     }
 
     [Serializable]
