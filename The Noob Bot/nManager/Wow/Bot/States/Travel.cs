@@ -67,7 +67,7 @@ namespace nManager.Wow.Bot.States
                     _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
                 if (_availableTransports == null || _availablePortals == null || _availableTaxis == null || _availableTaxiLinks == null)
                     return false;
-                if (!Products.Products.IsStarted || !NeedToTravel)
+                if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat || !NeedToTravel)
                     return false;
                 _generatedRoutePath = GenerateRoutePath; // Automatically cancel TravelTo if no founds.
                 return _generatedRoutePath.Count > 0;
@@ -159,16 +159,16 @@ namespace nManager.Wow.Bot.States
             foreach (Transport transport in _generatedRoutePath)
             {
                 GoToDepartureQuayOrPortal(transport);
-                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
                 if (!(transport is Portal) && !(transport is Taxi))
                 {
                     WaitForTransport(transport);
-                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                 }
                 EnterTransportOrTakePortal(transport);
-                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
                 if (transport is Taxi)
                 {
@@ -177,7 +177,7 @@ namespace nManager.Wow.Bot.States
                 else if (!(transport is Portal))
                 {
                     TravelPatiently(transport);
-                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     LeaveTransport(transport);
                 }
@@ -199,7 +199,7 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(portal.APoint) < 2.0f)
                         loop = false;
@@ -224,10 +224,10 @@ namespace nManager.Wow.Bot.States
                         while (ObjectManager.ObjectManager.Me.IsCasting)
                         {
                             Thread.Sleep(250);
-                            if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                            if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                                 return;
                         }
-                        if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                             return;
                         Thread.Sleep(5000);
                         TravelToContinentId = 9999999;
@@ -243,7 +243,7 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(taxi.APoint) < 4.0f)
                         loop = false;
@@ -259,7 +259,7 @@ namespace nManager.Wow.Bot.States
                 bool loop = true;
                 while (loop)
                 {
-                    if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                    if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                         return;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint) < 2.0f)
                         loop = false;
@@ -283,7 +283,7 @@ namespace nManager.Wow.Bot.States
                     MountTask.DismountMount();
                 if (memoryTransport.IsValid)
                 {
-                    if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).Equals(memoryTransport.Position))
+                    if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).DistanceTo(memoryTransport.Position) < 0.5f)
                         loop = false;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 5)
                     {
@@ -326,7 +326,7 @@ namespace nManager.Wow.Bot.States
                             MovementManager.Go(path);
                             while (memoryPortal.GetDistance > 4.0f)
                             {
-                                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                                if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                                     return;
                                 Thread.Sleep(150);
                             }
@@ -368,7 +368,7 @@ namespace nManager.Wow.Bot.States
                             MovementManager.Go(path);
                             while (memoryTaxi.GetDistance > 4.0f)
                             {
-                                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                                if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                                 {
                                     return;
                                 }
@@ -465,7 +465,7 @@ namespace nManager.Wow.Bot.States
                     bool loop = true;
                     while (loop)
                     {
-                        if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                        if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                             return;
                         if (ObjectManager.ObjectManager.Me.InTransport)
                         {
@@ -496,7 +496,7 @@ namespace nManager.Wow.Bot.States
             bool loop = true;
             while (loop)
             {
-                if (ObjectManager.ObjectManager.Me.InCombat || ObjectManager.ObjectManager.Me.IsDead)
+                if (ObjectManager.ObjectManager.Me.InInevitableCombat || ObjectManager.ObjectManager.Me.IsDead)
                     return;
                 if (!ObjectManager.ObjectManager.Me.InTransport)
                     loop = false;
