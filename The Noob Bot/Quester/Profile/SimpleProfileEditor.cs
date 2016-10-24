@@ -21,7 +21,7 @@ using Math = System.Math;
 using Point = nManager.Wow.Class.Point;
 using Quest = Quester.Profile.Quest;
 
-namespace WindowsFormsApplication1
+namespace Quester.Profile
 {
     public partial class SimpleProfileEditor
     {
@@ -224,7 +224,7 @@ namespace WindowsFormsApplication1
                     //Existing Objective Modification(s)
                     
                     QuestObjective objective = _profile.Quests[_lastSelectedObjective.Parent.Index].Objectives[_lastSelectedObjective.Index];
-
+                    
                     //Handles when a New Objective was added with the right click on the treeview
                     if (TreeView.SelectedNode.Tag == "NewObjective")
                     {
@@ -285,8 +285,20 @@ namespace WindowsFormsApplication1
                             objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
-                            break;
+                            objective.Range = Others.ToInt32(TBObjRange.Text);
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
 
+                            break;
+                        case "UseItemAOE":
+
+                            objective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
+                            objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
+                                float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            objective.Range = Others.ToInt32(TBObjRange.Text);
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+
+                            break;
                         case "UseSpell":
                             //TODO ENTRY + NAME + POSITION
                             objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
@@ -346,7 +358,7 @@ namespace WindowsFormsApplication1
                             objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.CanPullUnitsAlreadyInFight = CBObjCanPullUnitsInFight.Checked;
                             objective.GossipOptionsInteractWith = (Information.IsNumeric(TBObjGossipOption.Text)) ? Others.ToInt32(TBObjGossipOption.Text) : 0;
-
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             break;
                         case "UseVehicle":
                             objective.EntryVehicle = Others.ToInt32(TBObjEntry.Text);
@@ -357,6 +369,17 @@ namespace WindowsFormsApplication1
                             objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
                             objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+
+                            break;
+                        case "MessageBox":
+                            objective.Message = TBObjMessage.Text;
+
+                            break;
+                        case "PressKey":
+                            objective.Keys = nManager.Wow.Enums.Keybindings.ACTIONBUTTON1;
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
+                            objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
 
                             break;
                     }
@@ -407,6 +430,8 @@ namespace WindowsFormsApplication1
                             objective.Hotspots.Add(point);
                         }
                     }
+
+                    objective.IsDead = CBObjIsDead.Checked;
 
                     if (_displayXml)
                     {
@@ -469,7 +494,18 @@ namespace WindowsFormsApplication1
                             newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            newObjective.Range = Others.ToInt32(TBObjRange.Text);
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
 
+                            break;
+                        case "UseItemAOE":
+
+                            newObjective.UseItemId = Others.ToInt32(TBObjUseItemID.Text);
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
+                            newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
+                                float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            newObjective.Range = Others.ToInt32(TBObjRange.Text);
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             break;
                         case "UseSpell":
                             //TODO ENTRY + NAME + POSITION
@@ -529,7 +565,7 @@ namespace WindowsFormsApplication1
                             newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             newObjective.CanPullUnitsAlreadyInFight = CBObjCanPullUnitsInFight.Checked;
                             newObjective.GossipOptionsInteractWith = (Information.IsNumeric(TBObjGossipOption.Text) ? Others.ToInt32(TBObjGossipOption.Text) : 0);
-
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             break;
                         case "UseVehicle":
                             newObjective.EntryVehicle = Others.ToInt32(TBObjEntry.Text);
@@ -542,6 +578,17 @@ namespace WindowsFormsApplication1
                             newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
 
                             break;
+                        case "MessageBox":
+                            newObjective.Message = TBObjMessage.Text;
+
+                            break;
+                        case "PressKey":
+                            newObjective.Keys = nManager.Wow.Enums.Keybindings.ACTIONBUTTON1;
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
+                            newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
+                            newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            break;
+
                     }
                     if (newObjective.Objective.ToString() != "UseVehicle")
                     {
@@ -583,6 +630,7 @@ namespace WindowsFormsApplication1
 
                     newObjective.IgnoreQuestCompleted = CBObjIgnoreQuestCompleted.Checked;
 
+                    newObjective.IsDead = CBObjIsDead.Checked;
 
                     Quest lastSelQuestx = _profile.Quests[_lastSelectedQuest.Index];
 
@@ -623,7 +671,7 @@ namespace WindowsFormsApplication1
 
 
                     Quest Quest = _profile.Quests[TreeView.SelectedNode.Index];
-
+                    
 
                     Quest.Name = TBQuestQuestName.Text;
                     Quest.Id = (Information.IsNumeric(TBQuestID.Text) ? Others.ToInt32(TBQuestID.Text) : 0);
@@ -1089,7 +1137,9 @@ namespace WindowsFormsApplication1
             CBInternalObj.CheckedChanged -= CBInternalObj_CheckedChanged;
             CBInternalObj.Checked = false;
             CBInternalObj.CheckedChanged += CBInternalObj_CheckedChanged;
-
+            CBObjIsDead.Checked = false;
+            TBObjMessage.Enabled = false;
+            TBObjPressKey.Enabled = false;
 
             TBObjCount.Text = string.Empty;
             TBObjEntry.Text = string.Empty;
@@ -1116,6 +1166,8 @@ namespace WindowsFormsApplication1
             CBObjKillMobPickUpItem.Checked = false;
             CBObjKillMobPickUpItem.CheckedChanged += CBObjKillMobPickUpItem_CheckedChanged;
             LBObjHotspots.Items.Clear();
+            TBObjMessage.Text = string.Empty;
+            TBObjPressKey.Text = string.Empty;
         }
 
 
@@ -1217,9 +1269,29 @@ namespace WindowsFormsApplication1
                     TBObjCount.Enabled = true;
                     TBObjPosition.Enabled = true;
                     TBObjEntry.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjRange.Enabled = true;
+
                     TBObjUseItemID.Text = QObjective.UseItemId.ToString();
                     TBObjCount.Text = QObjective.Count.ToString();
                     TBObjPosition.Text = QObjective.Position.ToString();
+                    TBObjWaitMs.Text = QObjective.WaitMs.ToString();
+                    TBObjRange.Text = QObjective.Range.ToString();
+                    
+                    break;
+                case "UseItemAOE":
+                    TBObjUseItemID.Enabled = true;
+                    TBObjCount.Enabled = true;
+                    TBObjPosition.Enabled = true;
+                    TBObjEntry.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjRange.Enabled = true;
+
+                    TBObjUseItemID.Text = QObjective.UseItemId.ToString();
+                    TBObjCount.Text = QObjective.Count.ToString();
+                    TBObjPosition.Text = QObjective.Position.ToString();
+                    TBObjWaitMs.Text = QObjective.WaitMs.ToString();
+                    TBObjRange.Text = QObjective.Range.ToString();
 
                     break;
                 case "UseSpell":
@@ -1305,11 +1377,12 @@ namespace WindowsFormsApplication1
                     TBObjEntry.Enabled = true;
                     CBObjCanPullUnitsInFight.Enabled = true;
                     TBObjGossipOption.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
 
                     CBObjCanPullUnitsInFight.Checked = QObjective.CanPullUnitsAlreadyInFight;
                     TBObjCount.Text = QObjective.Count.ToString();
                     TBObjGossipOption.Text = QObjective.GossipOptionsInteractWith.ToString();
-
+                    TBObjWaitMs.Text = QObjective.WaitMs.ToString();
                     break;
                 case "UseVehicle":
                     TBObjPosition.Enabled = true;
@@ -1324,6 +1397,20 @@ namespace WindowsFormsApplication1
 
                     TBObjPosition.Text = QObjective.Position.ToString();
                     TBObjWaitMs.Text = QObjective.WaitMs.ToString(CultureInfo.InvariantCulture);
+                    break;
+                case "MessageBox":
+                    TBObjMessage.Enabled = true;
+                    TBObjMessage.Text = QObjective.Message;
+                    break;
+                case "PressKey":
+                    TBObjPressKey.Text = QObjective.Keys.ToString();
+                    TBObjCount.Text = QObjective.Count.ToString();
+                    TBObjWaitMs.Text = QObjective.WaitMs.ToString();
+                    TBObjPosition.Text = QObjective.Position.ToString();
+                    TBObjPressKey.Enabled = true;
+                    TBObjCount.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjPosition.Enabled = true;
                     break;
             }
 
@@ -1340,6 +1427,7 @@ namespace WindowsFormsApplication1
             }
 
             CBObjIgnoreQuestCompleted.Checked = QObjective.IgnoreQuestCompleted;
+            CBObjIsDead.Checked = QObjective.IsDead;
 
             CBObjType.SelectedValueChanged -= CBObjType_SelectedValueChanged;
             CBObjType.SelectedValue = cbSelectValue;
@@ -1469,6 +1557,11 @@ namespace WindowsFormsApplication1
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
+                Name = "Use an Item AOE",
+                Value = 15
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
                 Name = "Casting a spell",
                 Value = 18
             });
@@ -1526,6 +1619,16 @@ namespace WindowsFormsApplication1
             {
                 Name = "Click On Terrain",
                 Value = 23
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Message",
+                Value = 24
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Press Key",
+                Value = 10
             });
 
             CBObjType.DataSource = cbObjTypeList;
@@ -1679,9 +1782,18 @@ namespace WindowsFormsApplication1
                     TBObjCount.Enabled = true;
                     TBObjPosition.Enabled = true;
                     TBObjEntry.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjRange.Enabled = true;
+                    break;
+                case "UseItemAOE":
+                    TBObjUseItemID.Enabled = true;
+                    TBObjCount.Enabled = true;
+                    TBObjPosition.Enabled = true;
+                    TBObjEntry.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjRange.Enabled = true;
 
                     break;
-
                 case "UseSpell":
                     //TODO ENTRY + NAME + POSITION
                     TBObjUseSpellId.Enabled = true;
@@ -1736,7 +1848,7 @@ namespace WindowsFormsApplication1
                     TBObjEntry.Enabled = true;
                     CBObjCanPullUnitsInFight.Enabled = true;
                     TBObjGossipOption.Enabled = true;
-
+                    TBObjWaitMs.Enabled = true;
                     break;
                 case "UseVehicle":
                     TBObjPosition.Enabled = true;
@@ -1747,6 +1859,15 @@ namespace WindowsFormsApplication1
                     TBObjPosition.Enabled = true;
                     TBObjWaitMs.Enabled = true;
 
+                    break;
+                case "MessageBox":
+                    TBObjMessage.Enabled = true;
+                    break;
+                case "PressKey":
+                    TBObjPressKey.Enabled = true;
+                    TBObjCount.Enabled = true;
+                    TBObjWaitMs.Enabled = true;
+                    TBObjPosition.Enabled = true;
                     break;
             }
 
@@ -1963,7 +2084,10 @@ namespace WindowsFormsApplication1
         public void TODOs()
         {
             //TODO Add quest required ID from prev quest ID
-            //TODO Add Objective Messagebox 
+            //TODO Add useitem aoe
+            //TODO Range in USE ITEM AND AOE
+            //TOOD Add CB Keys for PressKey
+
             //  <QuestObjective>
             //  <Objective>MessageBox</Objective>
             //  <Message>You must Do this quest manually, don't worry, it's fast, just loot the blueprint, learn it, place your barrack, then activate it, then the bot can finish the quest for you.</Message>
@@ -2453,6 +2577,10 @@ namespace WindowsFormsApplication1
         }
 
         #endregion
+
+
+
+      
     }
 
     public class ComboBoxValueString
