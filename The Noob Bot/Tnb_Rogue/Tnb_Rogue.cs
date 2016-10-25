@@ -28,6 +28,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
+    internal static float Version = 1.0f;
 
     #region ICombatClass Members
 
@@ -177,6 +178,7 @@ public class Main : ICombatClass
             FieldInfo field = mySettings.GetType().GetFields(bindingFlags)[i];
             Logging.WriteDebug(field.Name + " = " + field.GetValue(mySettings));
         }
+        Logging.WriteDebug("Loaded " + ObjectManager.Me.WowSpecialization() + " Combat Class " + Version.ToString("0.0###"));
 
         // Last field is intentionnally ommited because it's a backing field.
     }
@@ -338,7 +340,7 @@ public class RogueAssassination
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff && !Sprint.HaveBuff) // doesn't stack
@@ -415,7 +417,8 @@ public class RogueAssassination
             if (MySettings.UseGarrote && Garrote.IsSpellUsable &&
                 ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood &&
                 //you have the Nightstalker or Subterfuge Talent
-                (Nightstalker.HaveBuff || Subterfuge.HaveBuff))
+                (Nightstalker.HaveBuff || Subterfuge.HaveBuff) &&
+                !Garrote.TargetHaveBuffFromMe)
             {
                 Garrote.Cast();
                 return;
@@ -424,7 +427,7 @@ public class RogueAssassination
             if (MySettings.UseCheapShot && CheapShot.IsSpellUsable &&
                 ObjectManager.Me.Energy >= 40 && CheapShot.IsHostileDistanceGood &&
                 //the target is stunnable
-                ObjectManager.Target.IsStunnable)
+                ObjectManager.Target.IsStunnable && !ObjectManager.Target.IsStunned)
             {
                 CheapShot.Cast();
                 StunTimer = new Timer(1000*4);
@@ -432,7 +435,8 @@ public class RogueAssassination
             }
             //4. Cast Garrote
             if (MySettings.UseGarrote && Garrote.IsSpellUsable &&
-                ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood)
+                ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood &&
+                !Garrote.TargetHaveBuffFromMe)
             {
                 Garrote.Cast();
                 return;
@@ -666,7 +670,7 @@ public class RogueAssassination
                 //it has 6 or less seconds remaining and
                 ObjectManager.Target.UnitAura(Garrote.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 6000 &&
                 //except during Exsanguinate.
-                !Exsanguinate.TargetHaveBuff)
+                !Exsanguinate.TargetHaveBuffFromMe)
             {
                 Garrote.Cast();
                 return;
@@ -707,7 +711,7 @@ public class RogueAssassination
                 //it has 8 or less seconds remaining and
                 ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000 &&
                 //except during Exsanguinate.
-                !Exsanguinate.TargetHaveBuff)
+                !Exsanguinate.TargetHaveBuffFromMe)
             {
                 Rupture.Cast();
                 return;
@@ -1017,7 +1021,7 @@ public class RogueOutlaw
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff && !Sprint.HaveBuff) // doesn't stack
@@ -1587,7 +1591,7 @@ public class RogueSubtlety
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff && !Sprint.HaveBuff) // doesn't stack

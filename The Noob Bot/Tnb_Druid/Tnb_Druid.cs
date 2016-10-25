@@ -28,6 +28,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
+    internal static float Version = 0.51f;
 
     #region ICombatClass Members
 
@@ -200,6 +201,7 @@ public class Main : ICombatClass
             FieldInfo field = mySettings.GetType().GetFields(bindingFlags)[i];
             Logging.WriteDebug(field.Name + " = " + field.GetValue(mySettings));
         }
+        Logging.WriteDebug("Loaded " + ObjectManager.Me.WowSpecialization() + " Combat Class " + Version.ToString("0.0###"));
 
         // Last field is intentionnally ommited because it's a backing field.
     }
@@ -236,7 +238,7 @@ public class DruidBalance
     //private readonly Spell BlessingoftheAncients = new Spell("Blessing of the Ancients"); //No GCD //no need for the bot to switch the buff
     private readonly Spell CatForm = new Spell("Cat Form");
     private readonly Spell MoonkinForm = new Spell("Moonkin Form");
-    //private readonly Spell TravelForm = new Spell("Travel Form");
+    private readonly Spell TravelForm = new Spell("Travel Form");
     private readonly Spell LunarEmpowerment = new Spell(164547);
     private readonly Spell SolarEmpowerment = new Spell(164545);
 
@@ -360,8 +362,15 @@ public class DruidBalance
                 CombatMode = false;
             }
 
-            if (ObjectManager.Me.GetMove)
+            if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
             {
+                //Travel Form while swimming
+                if (MySettings.UseAquaticTravelFormOOC && Usefuls.IsSwimming && TravelForm.IsSpellUsable)
+                {
+                    TravelForm.Cast();
+                    return;
+                }
+                //Movement Buffs
                 if (!Darkflight.HaveBuff && !Dash.HaveBuff)
                 {
                     if (MySettings.UseDarkflight && Darkflight.IsSpellUsable) //they don't stack
@@ -373,6 +382,7 @@ public class DruidBalance
                         Dash.Cast();
                     }
                 }
+                //Cat Form
                 if (MySettings.UseCatFormOOC && CatForm.IsSpellUsable && !CatForm.HaveBuff)
                 {
                     CatForm.Cast();
@@ -709,6 +719,7 @@ public class DruidBalance
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
+        public bool UseAquaticTravelFormOOC = true;
         public bool UseCatFormOOC = false;
         public bool UseMoonkinForm = true;
         //public bool UseBlessingoftheAncients  = true; //TEST THIS FIRST
@@ -769,6 +780,7 @@ public class DruidBalance
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
+            AddControlInWinForm("Use Aquatic Travel Form out of Combat", "UseAquaticTravelFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Moonkin Form", "UseMoonkinForm", "Druid Buffs");
             /* Druid DoTs */
@@ -840,7 +852,7 @@ public class DruidFeral
 
     #region Talents
 
-    private readonly Spell Bloodtalons = new Spell("Bloodtalons");
+    private readonly Spell Bloodtalons = new Spell(155672);
     private readonly Spell LunarInspiration = new Spell("Lunar Inspiration");
     private readonly Spell Predator = new Spell("Predator");
     private readonly Spell Sabertooth = new Spell("Sabertooth");
@@ -861,7 +873,7 @@ public class DruidFeral
     private readonly Spell BloodtalonsBuff = new Spell(145152);
     private readonly Spell CatForm = new Spell("Cat Form");
     //private readonly Spell MoonkinForm = new Spell("Moonkin Form");
-    //private readonly Spell TravelForm = new Spell("Travel Form");
+    private readonly Spell TravelForm = new Spell("Travel Form");
     private readonly Spell PredatorySwiftnessBuff = new Spell(69369);
     private readonly Spell SavageRoarBuff = new Spell(52610);
 
@@ -987,8 +999,14 @@ public class DruidFeral
                 CombatMode = false;
             }
 
-            if (ObjectManager.Me.GetMove)
+            if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
             {
+                //Travel Form while swimming
+                if (MySettings.UseAquaticTravelFormOOC && Usefuls.IsSwimming && TravelForm.IsSpellUsable)
+                {
+                    TravelForm.Cast();
+                    return;
+                }
                 //Movement Buffs
                 if (!Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
                 {
@@ -1065,10 +1083,8 @@ public class DruidFeral
             //1. Priority: Rake
             if (MySettings.UseRake && Rake.IsSpellUsable && Rake.IsHostileDistanceGood && ObjectManager.Target.IsStunnable)
             {
-                Logging.Write("Rake IsHostileDistanceGood: " + Rake.IsHostileDistanceGood);
-                Logging.Write("Target Distance: " + ObjectManager.Target.GetDistance);
-                Logging.Write("CombatReach - Me: " + ObjectManager.Me.GetCombatReach + ", Target: " + ObjectManager.Target.GetCombatReach);
-                Logging.Write("Rake MaxRangeHostile: " + Rake.MaxRangeHostile + " (Tooltip: Melee)");
+                Logging.WriteDebug("Rake IsHostileDistanceGood: " + Rake.IsHostileDistanceGood + ", Target Distance: " + ObjectManager.Target.GetDistance + ", CombatReach - Me: " + ObjectManager.Me.GetCombatReach +
+                                   ", Target: " + ObjectManager.Target.GetCombatReach + ", Rake MaxRangeHostile: " + Rake.MaxRangeHostile + " (Tooltip: Melee)");
                 Rake.Cast();
                 return;
             }
@@ -1180,8 +1196,8 @@ public class DruidFeral
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            //Cast Incarnation: King of the Jungle
-            if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && !Incarnation.HaveBuff)
+            //Cast Incarnation: King of the Jungle when you have the Tiger's Fury Buff
+            if (MySettings.UseIncarnation && Incarnation.IsSpellUsable && !Incarnation.HaveBuff && TigersFury.HaveBuff)
             {
                 Incarnation.Cast();
                 return true;
@@ -1242,11 +1258,11 @@ public class DruidFeral
                 ElunesGuidance.Cast();
                 return true;
             }
-            //Apply Tigers Fury when
+            //Apply Tiger's Fury when
             if (MySettings.UseTigersFury && TigersFury.IsSpellUsable &&
-                //no Buff uptime will be lost and you have less than 40 Energy or
+                //no Buff uptime will be lost and you have less than 30 Energy or
                 ((ObjectManager.Me.UnitAura(TigersFury.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 2333 &&
-                  ObjectManager.Me.Energy < 40) ||
+                  ObjectManager.Me.Energy < 30) ||
                  //you can use the Predator Talent
                  (Predator.HaveBuff && ObjectManager.Target.HealthPercent < 20 && ObjectManager.Target.IsAlive &&
                   (Rake.HaveBuff || Rip.HaveBuff || AshamanesFrenzy.HaveBuff))))
@@ -1269,6 +1285,18 @@ public class DruidFeral
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Logging
+            if ((SavageRoar.KnownSpell && !ObjectManager.Me.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).IsValid) ||
+                (Bloodtalons.HaveBuff && ObjectManager.Me.UnitAura(BloodtalonsBuff.Id, ObjectManager.Me.Guid).IsValid) ||
+                ObjectManager.Me.ComboPoint >= 5)
+            {
+                string log = "";
+                log += (SavageRoar.KnownSpell && !ObjectManager.Me.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).IsValid) ? "Savage Roar isn't active! " : "";
+                log += (Bloodtalons.HaveBuff && ObjectManager.Me.UnitAura(BloodtalonsBuff.Id, ObjectManager.Me.Guid).IsValid) ? BloodtalonsBuff.BuffStack + " Bloodtalons Stack active! " : "";
+                log += "Combo points: " + ObjectManager.Me.ComboPoint;
+                Logging.Write(log);
+            }
 
             //1. Cast Ferocious Bite when
             if (MySettings.UseFerociousBite && FerociousBite.IsSpellUsable && FerociousBite.IsHostileDistanceGood &&
@@ -1320,7 +1348,7 @@ public class DruidFeral
                 //it has less than 5 seconds remaining and
                 ObjectManager.Target.UnitAura(106830, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000 &&
                 //there are multiple targets in range.
-                ObjectManager.GetUnitInSpellRange(Thrash.MaxRangeHostile) > 1)
+                ObjectManager.Me.GetUnitInSpellRange(Thrash.MaxRangeHostile) > 1)
             {
                 if (ObjectManager.Me.Energy < 50)
                     return;
@@ -1329,10 +1357,11 @@ public class DruidFeral
             }
             //5. Maintain Rake when
             if (MySettings.UseRake && Rake.IsSpellUsable && Rake.IsHostileDistanceGood &&
-                //it has less than 5 seconds remaining or
-                (ObjectManager.Target.UnitAura(Rake.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000 ||
-                 //you are not capping Combo Points and you have the Blood Talons Buff.
-                 (ObjectManager.Me.ComboPoint < ObjectManager.Me.MaxComboPoint &&
+                //it isn't on the target or
+                (!Rake.TargetHaveBuffFromMe ||
+                 //it has less than 5 seconds remaining and
+                 (ObjectManager.Target.UnitAura(Rake.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 5000 &&
+                  //you have the Blood Talons Buff.
                   ObjectManager.Me.UnitAura(BloodtalonsBuff.Id, ObjectManager.Me.Guid).IsValid)))
             {
                 if (ObjectManager.Me.Energy < 35)
@@ -1355,12 +1384,14 @@ public class DruidFeral
             //Spend Combo Points on Finishers
             if (ObjectManager.Me.ComboPoint >= 5)
             {
-                //7. Apply/Refresh Rip when
+                //7. Maintain Rip when
                 if (MySettings.UseRip && Rip.IsSpellUsable && Rip.IsHostileDistanceGood &&
-                    //you have less than 8 seconds remaining or
-                    (ObjectManager.Target.UnitAura(1079, ObjectManager.Me.Guid).AuraTimeLeftInMs < 8000 ||
-                     //you have Blood Talons Buff.
-                     BloodtalonsBuff.HaveBuff))
+                    //it isn't on the target or
+                    (!Rip.TargetHaveBuffFromMe ||
+                     //it has less than 8 seconds remaining and
+                     (ObjectManager.Target.UnitAura(Rip.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs < 8000 &&
+                      //you have Blood Talons Buff.
+                      ObjectManager.Me.UnitAura(BloodtalonsBuff.Id, ObjectManager.Me.Guid).IsValid)))
                 {
                     if (CastHealingTouch() || ObjectManager.Me.Energy < 30)
                         return;
@@ -1370,9 +1401,9 @@ public class DruidFeral
                 //8. Cast Ferocious Bite when
                 if (MySettings.UseFerociousBite && FerociousBite.IsSpellUsable && FerociousBite.IsHostileDistanceGood &&
                     //your Savage Roar Buff has more than 10 seconds remaining (if talented) and
-                    (!SavageRoar.KnownSpell || ObjectManager.Target.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 10000) &&
+                    (!MySettings.UseSavageRoar || !SavageRoar.KnownSpell || ObjectManager.Target.UnitAura(SavageRoarBuff.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 10000) &&
                     //your Rip Buff has more than 10 seconds remaining.
-                    ObjectManager.Target.UnitAura(Rip.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 10000)
+                    (!MySettings.UseRip || !Rip.KnownSpell || ObjectManager.Target.UnitAura(Rip.Id, ObjectManager.Me.Guid).AuraTimeLeftInMs > 10000))
                 {
                     if (CastHealingTouch() || ObjectManager.Me.Energy < 25)
                         return;
@@ -1392,33 +1423,38 @@ public class DruidFeral
                 BrutalSlash.Cast();
                 return;
             }
-            //10. Cast Swipe when
-            if (MySettings.UseSwipe && Swipe.IsSpellUsable && Swipe.IsHostileDistanceGood &&
-                //there are 3 or more Targets in range.
-                ObjectManager.GetUnitInSpellRange(BrutalSlash.MaxRangeHostile) >= 3)
+            //Spend Energy on Fillers
+            if (ObjectManager.Me.EnergyPercentage > MySettings.PoolEnergy ||
+                (MySettings.UseTigersFury && TigersFury.IsSpellUsable))
             {
-                if (ObjectManager.Me.Energy < 45)
+                //10. Cast Swipe when
+                if (MySettings.UseSwipe && Swipe.IsSpellUsable && Swipe.IsHostileDistanceGood &&
+                    //there are 3 or more Targets in range.
+                    ObjectManager.GetUnitInSpellRange(BrutalSlash.MaxRangeHostile) >= 3)
+                {
+                    if (ObjectManager.Me.Energy < 45)
+                        return;
+                    Swipe.Cast();
                     return;
-                Swipe.Cast();
-                return;
-            }
-            //11. Cast Shred
-            if (MySettings.UseShred && Shred.IsSpellUsable && Shred.IsHostileDistanceGood)
-            {
-                if (ObjectManager.Me.Energy < 40)
+                }
+                //11. Cast Shred
+                if (MySettings.UseShred && Shred.IsSpellUsable && Shred.IsHostileDistanceGood)
+                {
+                    if (ObjectManager.Me.Energy < 40)
+                        return;
+                    Shred.Cast();
                     return;
-                Shred.Cast();
-                return;
-            }
-            //12. Cast Moonfire when
-            if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
-                //you have the Lunar Inspiration Talent or have it forced in the Settings
-                (LunarInspiration.HaveBuff || MySettings.UseMoonfireWihtoutTalent))
-            {
-                if (ObjectManager.Me.Energy < 30)
+                }
+                //12. Cast Moonfire when
+                if (MySettings.UseMoonfire && Moonfire.IsSpellUsable && Moonfire.IsHostileDistanceGood &&
+                    //you have the Lunar Inspiration Talent or have it forced in the Settings
+                    (LunarInspiration.HaveBuff || MySettings.UseMoonfireWihtoutTalent))
+                {
+                    if (ObjectManager.Me.Energy < 30)
+                        return;
+                    Moonfire.Cast();
                     return;
-                Moonfire.Cast();
-                return;
+                }
             }
         }
         finally
@@ -1474,6 +1510,7 @@ public class DruidFeral
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
+        public bool UseAquaticTravelFormOOC = true;
         public bool UseCatForm = true;
         public bool UseCatFormOOC = true;
         public bool UseSavageRoar = true;
@@ -1522,6 +1559,7 @@ public class DruidFeral
         public bool UseStampedingRoar = true;
 
         /* Game Settings */
+        public int PoolEnergy = 0;
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
 
@@ -1533,6 +1571,7 @@ public class DruidFeral
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
+            AddControlInWinForm("Use Aquatic Travel Form out of Combat", "UseAquaticTravelFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
             AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Savage Roar", "UseSavageRoar", "Druid Buffs");
@@ -1566,6 +1605,7 @@ public class DruidFeral
             AddControlInWinForm("Use Prowl out of Combat", "UseProwlOOC", "Utility Cooldowns");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Utility Cooldowns");
             /* Game Settings */
+            AddControlInWinForm("Use Fillers", "PoolEnergy", "Game Settings", "AbovePercentage", "Energy");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
         }
@@ -2274,6 +2314,7 @@ public class DruidGuardian
 
     private readonly Spell BearForm = new Spell("Bear Form");
     private readonly Spell CatForm = new Spell("Cat Form");
+    private readonly Spell TravelForm = new Spell("Travel Form");
     private readonly Spell GalacticGuardianBuff = new Spell(213708);
 
     #endregion
@@ -2392,8 +2433,14 @@ public class DruidGuardian
                 CombatMode = false;
             }
 
-            if (ObjectManager.Me.GetMove)
+            if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
             {
+                //Travel Form while swimming
+                if (MySettings.UseAquaticTravelFormOOC && Usefuls.IsSwimming && TravelForm.IsSpellUsable)
+                {
+                    TravelForm.Cast();
+                    return;
+                }
                 //Movement Buffs
                 if (!Darkflight.HaveBuff && !Dash.HaveBuff && !StampedingRoar.HaveBuff) //they don't stack
                 {
@@ -2413,6 +2460,7 @@ public class DruidGuardian
                         return;
                     }
                 }
+                //Cat Form
                 if (MySettings.UseCatFormOOC && CatForm.IsSpellUsable && !CatForm.HaveBuff)
                 {
                     CatForm.Cast();
@@ -2718,6 +2766,7 @@ public class DruidGuardian
         public int UseWarStompBelowPercentage = 25;
 
         /* Druid Buffs */
+        public bool UseAquaticTravelFormOOC = true;
         public bool UseBearForm = true;
         public bool UseCatFormOOC = true;
 
@@ -2772,6 +2821,7 @@ public class DruidGuardian
             AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
             /* Druid Buffs */
+            AddControlInWinForm("Use Aquatic Travel Form out of Combat", "UseAquaticTravelFormOOC", "Druid Buffs");
             AddControlInWinForm("Use Bear Form", "UseBearForm", "Druid Buffs");
             AddControlInWinForm("Use Cat Form out of Combat", "UseCatFormOOC", "Druid Buffs");
             /* Offensive Spells */

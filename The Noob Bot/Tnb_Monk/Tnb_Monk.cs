@@ -27,6 +27,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
+    internal static float Version = 1.0f;
 
     #region ICombatClass Members
 
@@ -177,6 +178,7 @@ public class Main : ICombatClass
             FieldInfo field = mySettings.GetType().GetFields(bindingFlags)[i];
             Logging.WriteDebug(field.Name + " = " + field.GetValue(mySettings));
         }
+        Logging.WriteDebug("Loaded " + ObjectManager.Me.WowSpecialization() + " Combat Class " + Version.ToString("0.0###"));
 
         // Last field is intentionnally ommited because it's a backing field.
     }
@@ -318,7 +320,7 @@ public class MonkBrewmaster
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff && !TigersLust.HaveBuff) // doesn't stack
@@ -807,6 +809,7 @@ public class MonkWindwalker
     #region Utility Spells
 
     private readonly Spell Detox = new Spell("Detox");
+    private readonly Spell EnergizingElixir = new Spell("Energizing Elixir");
     private readonly Spell LegSweep = new Spell("Leg Sweep");
     private readonly Spell Paralysis = new Spell("Paralysis");
     private readonly Spell Provoke = new Spell("Provoke"); //No GCD
@@ -871,7 +874,7 @@ public class MonkWindwalker
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff && !TigersLust.HaveBuff) // doesn't stack
@@ -1045,6 +1048,13 @@ public class MonkWindwalker
             {
                 StormEarthandFire.Cast();
             }
+            //Cast Energizing Elixir when
+            if (ObjectManager.Me.Energy < MySettings.UseEnergizingElixirBelowEnergyPecentage &&
+                ObjectManager.Me.Chi < MySettings.UseEnergizingElixirBelowChiPecentage &&
+                StormEarthandFire.IsSpellUsable)
+            {
+                EnergizingElixir.Cast();
+            }
             return false;
         }
         finally
@@ -1196,6 +1206,8 @@ public class MonkWindwalker
         public int UseEffuseBelowPercentage = 0;
 
         /* Utility Spells */
+        public int UseEnergizingElixirBelowEnergyPecentage = 20;
+        public int UseEnergizingElixirBelowChiPecentage = 1;
         public bool UseProvoke = false;
         public bool UseTigersLust = true;
 
@@ -1237,6 +1249,8 @@ public class MonkWindwalker
             /* Healing Spell */
             AddControlInWinForm("Use Effuse", "UseEffuseBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
             /* Utility Spells */
+            AddControlInWinForm("Use Energizing Elixir", "UseEnergizingElixirBelowEnergyPecentage", "Utility Spells", "BelowPercentage", "Energy");
+            AddControlInWinForm("Use Energizing Elixir", "UseEnergizingElixirBelowChiPecentage", "Utility Spells", "BelowPercentage", "Chi");
             AddControlInWinForm("Use Provoke", "UseProvoke", "Utility Spells");
             AddControlInWinForm("Use Tiger's Lust", "UseTigersLust", "Utility Spells");
             /* Game Settings */
@@ -1405,7 +1419,7 @@ public class MonkMistweaver
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff && !TigersLust.HaveBuff) // doesn't stack

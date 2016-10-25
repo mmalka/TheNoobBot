@@ -27,6 +27,7 @@ public class Main : ICombatClass
     internal static float InternalAggroRange = 5.0f;
     internal static bool InternalLoop = true;
     internal static Spell InternalLightHealingSpell;
+    internal static float Version = 1.0f;
 
     #region ICombatClass Members
 
@@ -176,6 +177,7 @@ public class Main : ICombatClass
             FieldInfo field = mySettings.GetType().GetFields(bindingFlags)[i];
             Logging.WriteDebug(field.Name + " = " + field.GetValue(mySettings));
         }
+        Logging.WriteDebug("Loaded " + ObjectManager.Me.WowSpecialization() + " Combat Class " + Version.ToString("0.0###"));
 
         // Last field is intentionnally ommited because it's a backing field.
     }
@@ -341,7 +343,7 @@ public class WarriorArms
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff) // doesn't stack
@@ -399,7 +401,7 @@ public class WarriorArms
             if (MySettings.UseVictoryRush && VictoryRush.IsSpellUsable &&
                 VictoryRush.IsHostileDistanceGood && ObjectManager.Me.HealthPercent < 70)
             {
-                VictoryRush.CastOnSelf();
+                VictoryRush.Cast();
                 return true;
             }
             return false;
@@ -622,7 +624,7 @@ public class WarriorArms
                 //Cast Colossus Smash when
                 if (MySettings.UseColossusSmash && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood &&
                     //Colossus Smash Dot is absent and Shattered Defenses Buff is not active.
-                    !ColossusSmash.TargetHaveBuffFromMe && !ShatteredDefensesBuff.HaveBuff)
+                    !ColossusSmash.TargetHaveBuffFromMe && !ObjectManager.Me.UnitAura(ShatteredDefensesBuff.Ids, ObjectManager.Me.Guid).IsValid)
                 {
                     ColossusSmash.Cast();
                     return;
@@ -630,7 +632,7 @@ public class WarriorArms
                 //Cast Warbreaker when
                 if (MySettings.UseWarbreaker && Warbreaker.IsSpellUsable && Warbreaker.IsHostileDistanceGood &&
                     //Colossus Smash Dot is absent and Shattered Defenses Buff is not active.
-                    !ColossusSmash.TargetHaveBuffFromMe && !ShatteredDefensesBuff.HaveBuff)
+                    !ColossusSmash.TargetHaveBuffFromMe && !ObjectManager.Me.UnitAura(ShatteredDefensesBuff.Ids, ObjectManager.Me.Guid).IsValid)
                 {
                     Warbreaker.Cast();
                     return;
@@ -985,7 +987,7 @@ public class WarriorProtection
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff) // doesn't stack
@@ -1045,7 +1047,7 @@ public class WarriorProtection
                                                       (ImpendingVictory.HaveBuff && ObjectManager.Me.Rage >= 10 &&
                                                        ObjectManager.Me.HealthPercent < 85)))
             {
-                VictoryRush.CastOnSelf();
+                VictoryRush.Cast();
                 return true;
             }
             return false;
@@ -1620,7 +1622,7 @@ public class WarriorFury
             CombatMode = false;
         }
 
-        if (ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
             //Movement Buffs
             if (!Darkflight.HaveBuff) // doesn't stack
@@ -1678,7 +1680,7 @@ public class WarriorFury
             if (MySettings.UseVictoryRush && VictoryRush.IsSpellUsable &&
                 VictoryRush.IsHostileDistanceGood && ObjectManager.Me.HealthPercent < 70)
             {
-                VictoryRush.CastOnSelf();
+                VictoryRush.Cast();
                 return true;
             }
             return false;
