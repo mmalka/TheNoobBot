@@ -263,9 +263,6 @@ namespace nManager.Wow.Helpers
                 {
                     try
                     {
-                        if (ObjectManager.ObjectManager.Me.InTransport)
-                            return true;
-
                         if (!_timePlayerUsingVehicle.IsReady)
                             return _lastResultPlayerUsingVehicle;
 
