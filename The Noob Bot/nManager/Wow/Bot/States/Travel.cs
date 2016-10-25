@@ -283,7 +283,7 @@ namespace nManager.Wow.Bot.States
                     MountTask.DismountMount();
                 if (memoryTransport.IsValid)
                 {
-                    if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).DistanceTo(memoryTransport.Position) < 0.5f)
+                    if ((selectedTransport.ArrivalIsA ? selectedTransport.BPoint : selectedTransport.APoint).DistanceTo(memoryTransport.Position) < 0.2f)
                         loop = false;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo((selectedTransport.ArrivalIsA ? selectedTransport.BOutsidePoint : selectedTransport.AOutsidePoint)) > 5)
                     {
