@@ -33,7 +33,7 @@ namespace Quester.Profile
 
         private string _loadPath = "";
         private string _path;
-       
+
         private QuesterProfile _profile;
 
         public SimpleProfileEditor(string profile = "")
@@ -86,7 +86,6 @@ namespace Quester.Profile
 
         private void ButtonSaveAsXML_Click(object sender, EventArgs e)
         {
-
             if (_profile != null)
             {
                 try
@@ -97,9 +96,9 @@ namespace Quester.Profile
                     ofd.InitialDirectory = Application.StartupPath + @"\Profiles\Quester\";
                     ofd.Title = "Save Profile";
                     //TODO CHANGE COMME SUR LE CHAT
-                
+
                     ofd.SupportMultiDottedExtensions = true;
-                    
+
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         if (File.Exists(ofd.FileName))
@@ -222,9 +221,9 @@ namespace Quester.Profile
                 if (TreeView.SelectedNode != null && (TreeView.SelectedNode.Tag == "Objective" || TreeView.SelectedNode.Tag == "NewObjective"))
                 {
                     //Existing Objective Modification(s)
-                    
+
                     QuestObjective objective = _profile.Quests[_lastSelectedObjective.Parent.Index].Objectives[_lastSelectedObjective.Index];
-                    
+
                     //Handles when a New Objective was added with the right click on the treeview
                     if (TreeView.SelectedNode.Tag == "NewObjective")
                     {
@@ -376,10 +375,12 @@ namespace Quester.Profile
 
                             break;
                         case "PressKey":
-                            objective.Keys = nManager.Wow.Enums.Keybindings.ACTIONBUTTON1;
+                            objective.Keys = (nManager.Wow.Enums.Keybindings) CBObjPressKeys.SelectedValue;
+
                             objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
-                            objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
+                                float.Parse(TBObjPosition.Text.Split(';')[2]));
 
                             break;
                     }
@@ -583,12 +584,12 @@ namespace Quester.Profile
 
                             break;
                         case "PressKey":
-                            newObjective.Keys = nManager.Wow.Enums.Keybindings.ACTIONBUTTON1;
+                            newObjective.Keys = (nManager.Wow.Enums.Keybindings) CBObjPressKeys.SelectedValue;
                             newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
-                            newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]), float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
+                                float.Parse(TBObjPosition.Text.Split(';')[2]));
                             break;
-
                     }
                     if (newObjective.Objective.ToString() != "UseVehicle")
                     {
@@ -671,7 +672,7 @@ namespace Quester.Profile
 
 
                     Quest Quest = _profile.Quests[TreeView.SelectedNode.Index];
-                    
+
 
                     Quest.Name = TBQuestQuestName.Text;
                     Quest.Id = (Information.IsNumeric(TBQuestID.Text) ? Others.ToInt32(TBQuestID.Text) : 0);
@@ -931,7 +932,7 @@ namespace Quester.Profile
 
                 _questParentNode.Tag = "Quests";
                 TreeView.Nodes.Add(_questParentNode);
-                
+
                 foreach (Quest quest  in _profile.Quests)
                 {
                     //QUEST
@@ -941,7 +942,6 @@ namespace Quester.Profile
                     //QUEST OBJECTIVES
                     foreach (QuestObjective questObjective in quest.Objectives)
                     {
-
                         var questObjectiveNode = new TreeNode(questObjective.Objective + " " + questObjective.QuestName) {Tag = "Objective"};
 
                         questNode.Nodes.Add(questObjectiveNode);
@@ -959,7 +959,7 @@ namespace Quester.Profile
 
         private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-           if ((string) e.Node.Tag == "NPC")//Npc Selected
+            if ((string) e.Node.Tag == "NPC") //Npc Selected
             {
                 PanelNPC.Visible = true;
                 PanelSimpleQuest.Visible = false;
@@ -1071,14 +1071,11 @@ namespace Quester.Profile
                 {
                     DisplayXMLs(quest);
                 }
-
-
-                
             }
-           else if ((string)e.Node.Tag == "Objective" || (string)e.Node.Tag == "NewObjective") //Objective Selected
+            else if ((string) e.Node.Tag == "Objective" || (string) e.Node.Tag == "NewObjective") //Objective Selected
             {
                 QuestObjective questObjective = _profile.Quests[e.Node.Parent.Index].Objectives[e.Node.Index];
-                
+
                 TabControl1.SelectedTab = TabPageObjectives;
                 _lastSelectedObjective = e.Node;
                 _lastSelectedQuest = e.Node.Parent;
@@ -1087,14 +1084,13 @@ namespace Quester.Profile
                 {
                     DisplayXMLs(questObjective);
                 }
-                
-               FillObjectiveFormByType(questObjective, _profile.Quests[e.Node.Parent.Index]);
+
+                FillObjectiveFormByType(questObjective, _profile.Quests[e.Node.Parent.Index]);
             }
         }
 
         public void DisplayXMLs(object objet)
         {
-            
             var xmldoc = new XmlDocument();
             var ser = new System.Xml.Serialization.XmlSerializer(objet.GetType());
             var sww = new StringWriter();
@@ -1139,7 +1135,7 @@ namespace Quester.Profile
             CBInternalObj.CheckedChanged += CBInternalObj_CheckedChanged;
             CBObjIsDead.Checked = false;
             TBObjMessage.Enabled = false;
-            TBObjPressKey.Enabled = false;
+            CBObjPressKeys.Enabled = false;
 
             TBObjCount.Text = string.Empty;
             TBObjEntry.Text = string.Empty;
@@ -1167,7 +1163,7 @@ namespace Quester.Profile
             CBObjKillMobPickUpItem.CheckedChanged += CBObjKillMobPickUpItem_CheckedChanged;
             LBObjHotspots.Items.Clear();
             TBObjMessage.Text = string.Empty;
-            TBObjPressKey.Text = string.Empty;
+            CBObjPressKeys.Text = string.Empty;
         }
 
 
@@ -1277,7 +1273,7 @@ namespace Quester.Profile
                     TBObjPosition.Text = QObjective.Position.ToString();
                     TBObjWaitMs.Text = QObjective.WaitMs.ToString();
                     TBObjRange.Text = QObjective.Range.ToString();
-                    
+
                     break;
                 case "UseItemAOE":
                     TBObjUseItemID.Enabled = true;
@@ -1403,11 +1399,11 @@ namespace Quester.Profile
                     TBObjMessage.Text = QObjective.Message;
                     break;
                 case "PressKey":
-                    TBObjPressKey.Text = QObjective.Keys.ToString();
+                    CBObjPressKeys.SelectedValue = (int) QObjective.Keys;
                     TBObjCount.Text = QObjective.Count.ToString();
                     TBObjWaitMs.Text = QObjective.WaitMs.ToString();
                     TBObjPosition.Text = QObjective.Position.ToString();
-                    TBObjPressKey.Enabled = true;
+                    CBObjPressKeys.Enabled = true;
                     TBObjCount.Enabled = true;
                     TBObjWaitMs.Enabled = true;
                     TBObjPosition.Enabled = true;
@@ -1450,7 +1446,7 @@ namespace Quester.Profile
                 foreach (Point hPoint in QObjective.Hotspots)
                 {
                     LBObjHotspots.Items.Add(hPoint);
-                }     
+                }
             }
 
             //Fill Entry
@@ -1504,7 +1500,6 @@ namespace Quester.Profile
 
         public void PopulateComboBox()
         {
-                       
             //None = 0
             //ApplyBuff = 1
             //BuyItem = 2
@@ -1542,11 +1537,6 @@ namespace Quester.Profile
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
-                Name = "Buying Item",
-                Value = 2
-            });
-            cbObjTypeList.Add(new ComboBoxValueString
-            {
                 Name = "Gathering Items",
                 Value = 8
             });
@@ -1557,18 +1547,13 @@ namespace Quester.Profile
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
-                Name = "Use an Item AOE",
-                Value = 15
+                Name = "Pickup Quest",
+                Value = 9
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
-                Name = "Casting a spell",
-                Value = 18
-            });
-            cbObjTypeList.Add(new ComboBoxValueString
-            {
-                Name = "Casting a spell AOE",
-                Value = 19
+                Name = "Turnin Quest",
+                Value = 13
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
@@ -1587,13 +1572,28 @@ namespace Quester.Profile
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
-                Name = "Pickup Quest",
-                Value = 9
+                Name = "PickUp Npc",
+                Value = 25
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
-                Name = "Turnin Quest",
-                Value = 13
+                Name = "Buying Item",
+                Value = 2
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Use an Item AOE",
+                Value = 15
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Casting a spell",
+                Value = 18
+            });
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "Casting a spell AOE",
+                Value = 19
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
@@ -1609,11 +1609,6 @@ namespace Quester.Profile
             {
                 Name = "Eject Vehicle",
                 Value = 3
-            });
-            cbObjTypeList.Add(new ComboBoxValueString
-            {
-                Name = "PickUp Npc",
-                Value = 25
             });
             cbObjTypeList.Add(new ComboBoxValueString
             {
@@ -1635,7 +1630,7 @@ namespace Quester.Profile
 
             CBObjType.ValueMember = "Value";
             CBObjType.DisplayMember = "Name";
-   
+
             //NPC TYPE
             var npcType = new List<ComboBoxValue>();
 
@@ -1716,6 +1711,22 @@ namespace Quester.Profile
             }
             CLBQuestRaceMask.DisplayMember = "Name";
             CLBQuestRaceMask.ValueMember = "Value";
+
+
+            var pressKeysList = new List<ComboBoxValue>();
+
+            foreach (object st in Enum.GetValues(typeof (nManager.Wow.Enums.Keybindings)))
+            {
+                pressKeysList.Add(new ComboBoxValue
+                {
+                    Name = st.ToString(),
+                    Value = Convert.ToInt32(st)
+                });
+            }
+
+            CBObjPressKeys.DataSource = pressKeysList;
+            CBObjPressKeys.DisplayMember = "Name";
+            CBObjPressKeys.ValueMember = "Value";
         }
 
         public string GetSelectedObjectiveTypeName()
@@ -1864,7 +1875,7 @@ namespace Quester.Profile
                     TBObjMessage.Enabled = true;
                     break;
                 case "PressKey":
-                    TBObjPressKey.Enabled = true;
+                    CBObjPressKeys.Enabled = true;
                     TBObjCount.Enabled = true;
                     TBObjWaitMs.Enabled = true;
                     TBObjPosition.Enabled = true;
@@ -2042,7 +2053,6 @@ namespace Quester.Profile
 
         private void ButtonObjGetXY_Click(object sender, EventArgs e)
         {
-            
             WoWUnit unit = default(WoWUnit);
             if (ObjectManager.Target.IsNpcFlightMaster)
             {
@@ -2059,7 +2069,7 @@ namespace Quester.Profile
                     return;
                 }
             }
-            
+
             XElement taxilist = XElement.Load(Application.StartupPath + "\\Data\\TaxiList.xml");
 
             foreach (XElement taxi in taxilist.Elements())
@@ -2084,19 +2094,10 @@ namespace Quester.Profile
         public void TODOs()
         {
             //TODO Add quest required ID from prev quest ID
-            //TODO Add useitem aoe
-            //TODO Range in USE ITEM AND AOE
-            //TOOD Add CB Keys for PressKey
-
-            //  <QuestObjective>
-            //  <Objective>MessageBox</Objective>
-            //  <Message>You must Do this quest manually, don't worry, it's fast, just loot the blueprint, learn it, place your barrack, then activate it, then the bot can finish the quest for you.</Message>
-            //</QuestObjective>
         }
 
         private void ButtonQuestImportFromGame_Click(object sender, EventArgs e)
         {
-           
             if (Others.IsFrameVisible("QuestFrameDetailPanel"))
             {
                 if (ObjectManager.Target.IsValid && QuestersDB.GetNpcByEntry(ObjectManager.Target.Entry) == null)
@@ -2130,14 +2131,14 @@ namespace Quester.Profile
                 TBQuestPickUpID.Text = ObjectManager.Target.Entry.ToString();
                 TBQuestTurnInID.Text = ObjectManager.Target.Entry.ToString();
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                TBQuestID.Text = Lua.LuaDoString(randomString +" = GetQuestID()", randomString);
-              
+                TBQuestID.Text = Lua.LuaDoString(randomString + " = GetQuestID()", randomString);
+
                 TBQuestQuestName.Text = Lua.LuaDoString(randomString + " = GetTitleText()", randomString);
 
                 nManager.Wow.Helpers.Quest.AcceptQuest();
                 Thread.Sleep(1000);
                 int questLogIdx = Others.ToInt32(Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + TBQuestID.Text + ")", randomString));
-                                
+
                 int questl = Others.ToInt32(Lua.LuaDoString("_, " + randomString + " = GetQuestLogTitle(" + questLogIdx + ")", randomString));
 
                 TBQuestLevel.Text = questl.ToString();
@@ -2462,7 +2463,9 @@ namespace Quester.Profile
                 if (_lastSelectedObjective != null)
                 {
                     objXmlToDisplay = _profile.Quests[_lastSelectedQuest.Index].Objectives[_lastSelectedObjective.Index];
-                }else if (_lastSelectedQuest != null){
+                }
+                else if (_lastSelectedQuest != null)
+                {
                     objXmlToDisplay = _profile.Quests[_lastSelectedQuest.Index];
                 }
                 else if (_lastSelectedNpc != null)
@@ -2476,7 +2479,6 @@ namespace Quester.Profile
                 _displayXml = false;
                 Size = _fsize;
             }
-         
         }
 
         private void TreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -2506,7 +2508,7 @@ namespace Quester.Profile
         {
             dynamic insertIdxProfile;
             dynamic insertIdxTreeView = 0;
-        
+
             if (ReferenceEquals(sender, InsertUpToolStripMenuItem))
             {
                 insertIdxProfile = 1;
@@ -2577,10 +2579,6 @@ namespace Quester.Profile
         }
 
         #endregion
-
-
-
-      
     }
 
     public class ComboBoxValueString
