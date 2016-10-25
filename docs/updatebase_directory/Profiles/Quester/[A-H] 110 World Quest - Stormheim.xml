@@ -1228,6 +1228,85 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>Drakestalker</Name>
+      <Id>41794</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3759.988</X>
+        <Y>2279.752</Y>
+        <Z>352.2415</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>136369</CollectItemId>
+          <CollectCount>30</CollectCount>
+          <Entry>
+            <int>99223</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3798.497</X>
+              <Y>2332.005</Y>
+              <Z>395.5159</Z>
+            </Point>
+            <Point>
+              <X>3753.323</X>
+              <Y>2542.367</Y>
+              <Z>356.8298</Z>
+            </Point>
+            <Point>
+              <X>3906.899</X>
+              <Y>2406.443</Y>
+              <Z>383.2794</Z>
+            </Point>
+            <Point>
+              <X>4060.787</X>
+              <Y>2546.078</Y>
+              <Z>260.1235</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Thick Bear Hide</Name>
+      <Id>41342</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4132.931</X>
+        <Y>2975.88</Y>
+        <Z>16.47831</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>134816</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>91569</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4174.656</X>
+              <Y>3036.379</Y>
+              <Z>12.69562</Z>
+            </Point>
+            <Point>
+              <X>4159.099</X>
+              <Y>2948.976</Y>
+              <Z>9.074306</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
   <Blackspots>
     <QuesterBlacklistRadius>

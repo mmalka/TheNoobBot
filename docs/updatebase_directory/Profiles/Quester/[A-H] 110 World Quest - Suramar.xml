@@ -585,6 +585,65 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>WANTED: Shanaar</Name>
+      <Id>42795</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1953.669</X>
+        <Y>5597.675</Y>
+        <Z>-65.22417</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>105739</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1953.669</X>
+              <Y>5597.675</Y>
+              <Z>-65.22417</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Hertha Grimdottir</Name>
+      <Id>44021</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1980.019</X>
+        <Y>3230.88</Y>
+        <Z>229.2436</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>103223</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1980.019</X>
+              <Y>3230.88</Y>
+              <Z>229.2436</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
   <Blackspots>
     <QuesterBlacklistRadius>

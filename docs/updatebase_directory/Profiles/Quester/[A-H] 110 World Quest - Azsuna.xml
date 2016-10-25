@@ -1720,22 +1720,22 @@
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>1</InternalIndex>
-          <Count>1</Count>
+          <CollectCount>1</CollectCount>
           <Entry>
             <int>250592</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>277.3734</X>
-              <Y>7410.086</Y>
-              <Z>145.5608</Z>
+              <X>287.5252</X>
+              <Y>7413.922</Y>
+              <Z>144.4933</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
           <InternalIndex>5</InternalIndex>
-          <Count>1</Count>
+          <CollectCount>1</CollectCount>
           <Entry>
             <int>250591</int>
           </Entry>
@@ -1749,15 +1749,15 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <Count>1</Count>
+          <CollectCount>1</CollectCount>
           <Entry>
             <int>250593</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>322.5892</X>
-              <Y>7549.101</Y>
-              <Z>146.167</Z>
+              <X>319.8196</X>
+              <Y>7565.911</Y>
+              <Z>147.0744</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -1875,10 +1875,10 @@
             <int>106509</int>
           </Entry>
           <Hotspots>
-            <Point> 
-              <X>613.5592</X>
-              <Y>5508.036</Y>
-              <Z>55.37341</Z>
+            <Point>
+              <X>613.6708</X>
+              <Y>5527.038</Y>
+              <Z>54.96353</Z>
             </Point>
             <Point> 
               <X>721.4068</X>
@@ -2645,6 +2645,35 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>WANTED: Arcanist Shal'iman</Name>
+      <Id>42636</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>319.8108</X>
+        <Y>7469.937</Y>
+        <Z>150.0439</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>107657</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>313.6467</X>
+              <Y>7462.443</Y>
+              <Z>149.7296</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
   <Blackspots>
     <QuesterBlacklistRadius>
@@ -2655,6 +2684,15 @@
         <Z>107.4108</Z>
       </Position>
       <Radius>20</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Prevent beeing in a buggy place for "Faronaar in Ruin" -->
+      <Position>
+        <X>-671.2021</X>
+        <Y>7152.769</Y>
+        <Z>28.18902</Z>
+      </Position>
+      <Radius>30</Radius>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

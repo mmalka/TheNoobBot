@@ -919,6 +919,36 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>WANTED: Bristlemaul</Name>
+      <Id>44290</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4808.785</X>
+        <Y>5029.287</Y>
+        <Z>776.7904</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>97449</int> <!-- Bristlemaul -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4808.785</X>
+              <Y>5029.287</Y>
+              <Z>776.7904</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Return to the River</Name>
       <Id>41144</Id>
       <QuestLevel>110</QuestLevel>
@@ -1263,18 +1293,16 @@
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
-          <Objective>PickUpObject</Objective>
-          <CollectCount>1</CollectCount>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
           <Entry>
             <int>247896</int>
           </Entry>
-          <Hotspots>
-            <Point>
-              <X>5671.802</X>
-              <Y>4268.25</Y>
-              <Z>694.905</Z>
-            </Point>
-          </Hotspots>
+          <Position>
+            <X>5685.888</X>
+            <Y>4258.445</Y>
+            <Z>695.4808</Z>
+          </Position>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1327,9 +1355,37 @@
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
       <WorldQuestLocation>
-        <X>4996.471</X>
-        <Y>3817.859</Y>
-        <Z>742.5016</Z>
+        <X>5017.398</X>
+        <Y>3840.796</Y>
+        <Z>737.9734</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <Count>6</Count>
+          <Entry>
+            <int>97543</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>5017.398</X>
+              <Y>3840.796</Y>
+              <Z>737.9734</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Devouring Darkness</Name>
+      <Id>43617</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>5017.398</X>
+        <Y>3840.796</Y>
+        <Z>737.9734</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
@@ -1461,6 +1517,207 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>Fel Hide</Name>
+      <Id>41560</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <WorldQuestLocation>
+        <X>5801.399</X>
+        <Y>4610.358</Y>
+        <Z>676.2725</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count> 
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+          <Entry>
+            <int>103675</int> <!-- Felhide Gargantuan -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>5801.399</X>
+              <Y>4610.358</Y>
+              <Z>676.2725</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <!-- Felhide Gargantuan -->
+            <int>247422</int>
+            <int>248041</int>
+            <int>248042</int>
+            <int>248045</int>
+            <int>248047</int>
+            <int>248048</int>
+            <int>248049</int>
+            <int>248050</int>
+            <int>248051</int>
+            <int>248052</int>
+            <int>248053</int>
+            <int>248054</int>
+          </Entry>
+          <Position>
+            <X>5801.399</X>
+            <Y>4610.358</Y>
+            <Z>676.2725</Z>
+          </Position>
+          <WaitMs>2000</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Bitestone Bazaar</Name>
+      <Id>40951</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3516.69</X>
+        <Y>4619.827</Y>
+        <Z>692.8995</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>35</Count>
+          <Entry>
+            <int>102827</int>
+            <int>98653</int>
+            <int>94261</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3438.12</X>
+              <Y>4462.602</Y>
+              <Z>680.2896</Z>
+            </Point>
+            <Point>
+              <X>3464.071</X>
+              <Y>4418.924</Y>
+              <Z>706.4318</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Gunksnout Infestation</Name>
+      <Id>41127</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3165.641</X>
+        <Y>3954.875</Y>
+        <Z>1179.767</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>MoveTo</Objective>
+          <Position>
+            <X>3105.714</X>
+            <Y>3924.776</Y>
+            <Z>1181.478</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <CollectCount>50</CollectCount>
+          <Entry>
+            <int>103196</int> 
+            <int>247075</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3127.084</X>
+              <Y>3830.25</Y>
+              <Z>1199.044</Z>
+            </Point>
+            <Point>
+              <X>3195.788</X>
+              <Y>3860.513</Y>
+              <Z>1204.362</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Ritualists in Our Midsts</Name>
+      <Id>40966</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4465.095</X>
+        <Y>4094.185</Y>
+        <Z>744.6396</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpNPC</Objective>
+          <InternalIndex>2</InternalIndex>
+          <Count>7</Count>
+          <Entry>
+            <int>102795</int> 
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4465.095</X>
+              <Y>4094.185</Y>
+              <Z>744.6396</Z>
+            </Point>
+            <Point>
+              <X>4401.474</X>
+              <Y>4008.717</Y>
+              <Z>741.3212</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>102501</int> 
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4440.303</X>
+              <Y>3945.884</Y>
+              <Z>709.9282</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>3</InternalIndex>
+          <Count>3</Count>
+          <Entry>
+            <int>101644</int> 
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4465.095</X>
+              <Y>4094.185</Y>
+              <Z>744.6396</Z>
+            </Point>
+            <Point>
+              <X>4401.474</X>
+              <Y>4008.717</Y>
+              <Z>741.3212</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
   <Blackspots>
     <QuesterBlacklistRadius>
@@ -1480,6 +1737,24 @@
         <Z>751.5049</Z>
       </Position>
       <Radius>100</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Bitestone Bazaar" -->
+      <Position> 
+        <X>3480.604</X>
+        <Y>4451.986</Y>
+        <Z>680.7639</Z>
+      </Position>
+      <Radius>50</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Gunksnout Infestation" -->
+      <Position>
+        <X>3161.381</X>
+        <Y>3907.45</Y>
+        <Z>1169.88</Z>
+      </Position>
+      <Radius>30</Radius>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>
