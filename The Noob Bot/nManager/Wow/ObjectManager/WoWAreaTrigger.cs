@@ -48,39 +48,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public float OverrideScaleCurve
-        {
-            get
-            {
-                try
-                {
-                    return GetDescriptor<float>(Descriptors.AreaTriggerFields.OverrideScaleCurve);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("AreaTriggerFields > OverrideScaleCurve: " + e);
-                }
-                return 0;
-            }
-        }
-
-        public float ExtraScaleCurve
-        {
-            get
-            {
-                try
-                {
-                    return GetDescriptor<float>(Descriptors.AreaTriggerFields.ExtraScaleCurve);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("AreaTriggerFields > ExtraScaleCurve: " + e);
-                }
-                return 0;
-            }
-        }
-
-
         public uint Duration
         {
             get
@@ -161,13 +128,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint SpellVisualID
+        public uint SpellXSpellVisualID
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.AreaTriggerFields.SpellVisualID);
+                    return GetDescriptor<uint>(Descriptors.AreaTriggerFields.SpellXSpellVisualID);
                 }
                 catch (Exception e)
                 {
@@ -310,13 +277,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             string retString = String.Format("DynamicObject: {0}BaseAddress: {1}, {0}Caster: {2}, {0}OverrideScaleCurve: {3}, {0}ExtraScaleCurve: {4}, {0}Duration: {5}, {0}TimeToTarget: {6}, {0}" +
                                              "{0}TimeToTargetScale: {7}, {0}TimeToTargetExtraScale: {8}, {0}SpellID: {9}, {0}SpellVisualID: {10}, {0}BoundsRadius2D: {11}, {0}Faction: {12}, {0}Name: {13}",
                 Environment.NewLine, BaseAddress, Caster, OverrideScaleCurve, ExtraScaleCurve, Duration, TimeToTarget, TimeToTargetScale, TimeToTargetExtraScale, SpellID, SpellVisualID, BoundsRadius2D
                 , Faction, Name);
             return retString;
-        }
+        }*/
     }
 }

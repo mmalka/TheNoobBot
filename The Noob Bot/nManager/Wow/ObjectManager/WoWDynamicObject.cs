@@ -48,17 +48,17 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint TypeAndVisualID
+        public uint SpellXSpellVisualID
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.DynamicObjectFields.TypeAndVisualID);
+                    return GetDescriptor<uint>(Descriptors.DynamicObjectFields.SpellXSpellVisualID);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("GameObjectFields > TypeAndVisualID: " + e);
+                    Logging.WriteError("GameObjectFields > SpellXSpellVisualID: " + e);
                 }
                 return 0;
             }
@@ -216,7 +216,7 @@ namespace nManager.Wow.ObjectManager
         public override string ToString()
         {
             string retString = String.Format("DynamicObject: {0}BaseAddress: {1}, {0}Caster: {2}, {0}TypeAndVisualID: {3}, {0}SpellID: {4}, {0}Radius: {5}, {0}CastTime: {6}, {0}", Environment.NewLine, BaseAddress,
-                Caster, TypeAndVisualID, SpellID, Radius, CastTime);
+                Caster, Type, SpellID, Radius, CastTime);
             return retString;
         }
     }

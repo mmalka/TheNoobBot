@@ -30,7 +30,7 @@
         public enum Hooking
         {
             DX_DEVICE = 0xD110D0, //Script_ShowCursor, first offset
-            DX_DEVICE_IDX = 0x2508, // DX9_DEVICE_IDX_FOUND
+            DX_DEVICE_IDX = 0x2590, // DX9_DEVICE_IDX_FOUND
             ENDSCENE_IDX = 0xA8,
         }
 
