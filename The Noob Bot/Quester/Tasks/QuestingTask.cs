@@ -1403,7 +1403,7 @@ namespace Quester.Tasks
 
             if (questObjective.Objective == Objective.CSharpScript)
             {
-                Script.Run(questObjective.Script, CurrentQuest.Id);
+                Script.Run(questObjective.Script, CurrentQuest.Id, ref questObjective);
             }
         }
 

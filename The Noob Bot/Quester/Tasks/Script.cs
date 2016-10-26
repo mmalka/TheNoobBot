@@ -6,6 +6,11 @@ using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Class;
+using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
+using Quester.Profile;
 
 namespace Quester.Tasks
 {
@@ -13,7 +18,13 @@ namespace Quester.Tasks
     {
         internal static Dictionary<string, IScript> CachedScripts = new Dictionary<string, IScript>();
 
-        internal static bool Run(string script, int questId = 0)
+        internal static bool Run(string script)
+        {
+            var qO = new QuestObjective();
+            return Run(script, 0, ref qO);
+        }
+
+        internal static bool Run(string script, int questId, ref Quester.Profile.QuestObjective qObjective)
         {
             try
             {
@@ -22,7 +33,7 @@ namespace Quester.Tasks
 
                 string originalScript = script;
                 if (CachedScripts.ContainsKey(originalScript) && CachedScripts[originalScript] != null)
-                    return CachedScripts[originalScript].Script();
+                    return CachedScripts[originalScript].Script(ref qObjective);
 
                 if (script[0] == '=')
                 {
@@ -33,17 +44,20 @@ namespace Quester.Tasks
 
                 // Example: "return (Usefuls.ContinentId == 1440);"
 
-
                 CodeDomProvider cc = new CSharpCodeProvider();
                 CompilerParameters cp = new CompilerParameters();
                 cp.ReferencedAssemblies.Add("System.dll");
+                cp.ReferencedAssemblies.Add("System.Linq.dll");
                 cp.ReferencedAssemblies.Add("System.Xml.dll");
                 cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
                 cp.ReferencedAssemblies.Add("nManager.dll");
                 cp.ReferencedAssemblies.Add("Products\\Quester.dll");
                 string toCompile =
                     "using System; " + Environment.NewLine +
+                    "using System.Threading; " + Environment.NewLine +
                     "using System.Windows.Forms; " + Environment.NewLine +
+                    "using System.Collections.Generic; " + Environment.NewLine +
+                    "using System.Linq; " + Environment.NewLine +
                     "using nManager.Wow.Class; " + Environment.NewLine +
                     "using nManager.Helpful; " + Environment.NewLine +
                     "using nManager.Wow; " + Environment.NewLine +
@@ -51,9 +65,10 @@ namespace Quester.Tasks
                     "using nManager.Wow.Enums; " + Environment.NewLine +
                     "using nManager.Wow.Helpers; " + Environment.NewLine +
                     "using nManager.Wow.ObjectManager; " + Environment.NewLine +
+                    "using Quester.Profile; " + Environment.NewLine +
                     "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
                     "{ " + Environment.NewLine +
-                    "    public bool Script() " + Environment.NewLine +
+                    "    public bool Script(ref QuestObjective questObjective) " + Environment.NewLine +
                     "    { " + Environment.NewLine +
                     "        try " + Environment.NewLine +
                     "        { " + Environment.NewLine +
@@ -67,6 +82,7 @@ namespace Quester.Tasks
                     "        return true; " + Environment.NewLine +
                     "    } " + Environment.NewLine +
                     "} " + Environment.NewLine;
+                Logging.WriteDebug(toCompile);
 
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                 if (cr.Errors.HasErrors)
@@ -83,7 +99,7 @@ namespace Quester.Tasks
 
                 CachedScripts.Add(originalScript, instanceFromOtherAssembly);
 
-                return instanceFromOtherAssembly != null && instanceFromOtherAssembly.Script();
+                return instanceFromOtherAssembly != null && CachedScripts[originalScript].Script(ref qObjective);
             }
             catch
             {
@@ -97,7 +113,7 @@ namespace Quester.Tasks
     {
         #region Methods
 
-        bool Script();
+        bool Script(ref QuestObjective questObjective);
 
         #endregion Methods
     }
