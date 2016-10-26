@@ -15,11 +15,10 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
-using Quester.Profile;
 using Information = Microsoft.VisualBasic.Information;
+using Keybindings = nManager.Wow.Enums.Keybindings;
 using Math = System.Math;
 using Point = nManager.Wow.Class.Point;
-using Quest = Quester.Profile.Quest;
 
 namespace Quester.Profile
 {
@@ -27,6 +26,7 @@ namespace Quester.Profile
     {
         private readonly TreeNode _npcParentNode;
         private readonly TreeNode _questParentNode;
+        private string _fullpath = "";
         private TreeNode _lastSelectedNpc;
         private TreeNode _lastSelectedObjective;
         private TreeNode _lastSelectedQuest;
@@ -45,12 +45,6 @@ namespace Quester.Profile
             Wow.Enums.WoWEventsType.DISABLE_TAXI_BENCHMARK
             TODO QUEST_LOOT_RECEIVED = 804 Auto QuestLoot
              */
-            nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight = false;
-            if (nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight)
-            {
-                MessageBox.Show(@"Please deactivate ""CanPullInitsAlreadyInFight"" in the Settings when Creating Profiles");
-            }
-
             _fsize = Size;
 
             PopulateComboBox();
@@ -68,58 +62,33 @@ namespace Quester.Profile
             LoadNodes();
         }
 
-        private void ButtonSaveXML_Click(object sender, EventArgs e)
+        private void SaveSimpleProfileAs_Click(object sender, EventArgs e)
         {
-            if (_profile != null)
+            if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
             {
-                if (_path != string.Empty)
-                {
-                    XmlSerializer.Serialize(_path, _profile);
-                }
-                else
-                {
-                    MessageBox.Show(@"Please SaveAs your new profile first.");
-                }
+                string fileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\", Translate.Get(Translate.Id.SimpleQuestProfileFile) + " (*.xml)|*.xml");
+                if (fileToSaveAs != "")
+                    XmlSerializer.Serialize(fileToSaveAs, _profile);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(Translate.Get(Translate.Id.CantSaveEmptySimpleNew));
             }
         }
 
-
-        private void ButtonSaveAsXML_Click(object sender, EventArgs e)
+        private void SaveSimpleProfile_Click(object sender, EventArgs e)
         {
-            if (_profile != null)
+            if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
             {
-                try
-                {
-                    var ofd = new OpenFileDialog();
-                    ofd.Filter = @"Profile files (*.xml)|*.xml|All files (*.*)|*.*";
-                    ofd.ShowHelp = true;
-                    ofd.InitialDirectory = Application.StartupPath + @"\Profiles\Quester\";
-                    ofd.Title = "Save Profile";
-                    //TODO CHANGE COMME SUR LE CHAT
-
-                    ofd.SupportMultiDottedExtensions = true;
-
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        if (File.Exists(ofd.FileName))
-                        {
-                            if (MessageBox.Show(@"File Exists, Replace?", "", MessageBoxButtons.YesNo) == DialogResult.No)
-                            {
-                                return;
-                            }
-                        }
-                        _path = ofd.FileName;
-                        XmlSerializer.Serialize(_path, _profile);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("private void ButtonSaveAsXML_Click(object sender, EventArgs e): " + exception);
-                    MessageBox.Show("There was an error while saving the XML Profile, check the error logs for more informations.");
-                }
+                XmlSerializer.Serialize(_fullpath, _profile);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(Translate.Get(Translate.Id.CantSaveEmptySimpleExisting));
             }
         }
-
 
         private void ButtonNewNPC_Click(object sender, EventArgs e)
         {
@@ -375,11 +344,11 @@ namespace Quester.Profile
 
                             break;
                         case "PressKey":
-                            objective.Keys = (nManager.Wow.Enums.Keybindings) CBObjPressKeys.SelectedValue;
+                            objective.Keys = (Keybindings) CBObjPressKeys.SelectedValue;
 
                             objective.Count = Others.ToInt32(TBObjCount.Text);
                             objective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
-                            objective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
+                            objective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
 
                             break;
@@ -424,7 +393,7 @@ namespace Quester.Profile
                     }
 
                     objective.Hotspots.Clear();
-                    foreach (nManager.Wow.Class.Point point in LBObjHotspots.Items)
+                    foreach (Point point in LBObjHotspots.Items)
                     {
                         if (point != null)
                         {
@@ -584,10 +553,10 @@ namespace Quester.Profile
 
                             break;
                         case "PressKey":
-                            newObjective.Keys = (nManager.Wow.Enums.Keybindings) CBObjPressKeys.SelectedValue;
+                            newObjective.Keys = (Keybindings) CBObjPressKeys.SelectedValue;
                             newObjective.Count = Others.ToInt32(TBObjCount.Text);
                             newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
-                            newObjective.Position = new nManager.Wow.Class.Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
+                            newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
                             break;
                     }
@@ -604,7 +573,7 @@ namespace Quester.Profile
                     }
 
                     newObjective.Hotspots.Clear();
-                    foreach (nManager.Wow.Class.Point point  in LBObjHotspots.Items)
+                    foreach (Point point  in LBObjHotspots.Items)
                     {
                         if (point != null)
                         {
@@ -902,10 +871,13 @@ namespace Quester.Profile
         {
             try
             {
+                _fullpath = Application.StartupPath + "\\Profiles\\Quester\\" + profile;
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    TopMost = true;
                 _path = Application.StartupPath + @"\Profiles\Quester\";
                 _profile = new QuesterProfile();
 
-                if (string.IsNullOrEmpty(profile) || !File.Exists(_path + profile))
+                if (string.IsNullOrEmpty(profile) || !File.Exists(_fullpath))
                 {
                     string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\", "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
                     if (File.Exists(file))
@@ -915,7 +887,7 @@ namespace Quester.Profile
                 }
                 else
                 {
-                    _profile = XmlSerializer.Deserialize<QuesterProfile>(_path + profile);
+                    _profile = XmlSerializer.Deserialize<QuesterProfile>(_fullpath);
                 }
 
                 TreeView.Nodes.Clear();
@@ -1442,7 +1414,7 @@ namespace Quester.Profile
             //Fill HotSpots
             if (QObjective.Hotspots.Count > 0)
             {
-                var pointList = new List<nManager.Wow.Class.Point>();
+                var pointList = new List<Point>();
                 foreach (Point hPoint in QObjective.Hotspots)
                 {
                     LBObjHotspots.Items.Add(hPoint);
@@ -1715,7 +1687,7 @@ namespace Quester.Profile
 
             var pressKeysList = new List<ComboBoxValue>();
 
-            foreach (object st in Enum.GetValues(typeof (nManager.Wow.Enums.Keybindings)))
+            foreach (object st in Enum.GetValues(typeof (Keybindings)))
             {
                 pressKeysList.Add(new ComboBoxValue
                 {
