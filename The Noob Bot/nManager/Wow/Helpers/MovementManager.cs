@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
-using SlimDX.DirectWrite;
-using Timer = nManager.Helpful.Timer;
 using CSharpMath = System.Math;
 using Math = nManager.Helpful.Math;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Helpers
 {
     /// <summary>
-    /// Management the player movement
+    ///     Management the player movement
     /// </summary>
     public static class MovementManager
     {
@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
         private static Thread _worker;
         private static bool _movement;
         private static bool _loop;
-        private static bool _chasing = false;
+        private static bool _chasing;
         private static List<Point> _points = new List<Point>();
 
         private static bool _first;
@@ -42,20 +42,20 @@ namespace nManager.Wow.Helpers
         private static List<Point> _pointsOrigine = new List<Point>();
 
         /// <summary>
-        /// Return true if the player is in unstuck
-        /// </summary>
-        public static bool IsUnStuck { get; private set; }
-
-        /// <summary>
-        /// Get number of stuck
+        ///     Get number of stuck
         /// </summary>
         public static int StuckCount;
 
         /// <summary>
-        /// Return true if the player is currently in move (Go() or GoLoop()).
+        ///     Return true if the player is in unstuck
+        /// </summary>
+        public static bool IsUnStuck { get; private set; }
+
+        /// <summary>
+        ///     Return true if the player is currently in move (Go() or GoLoop()).
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [in movement]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [in movement]; otherwise, <c>false</c>.
         /// </value>
         public static bool InMovement
         {
@@ -129,7 +129,7 @@ namespace nManager.Wow.Helpers
             {
                 Logging.Write(
                     "Starting the conversion process. Keep in mind that the best profiles are handmade profiles.");
-                List<Point> tempPoints = new List<Point>();
+                var tempPoints = new List<Point>();
                 outputPoints = new List<Point>();
                 uint failCounter = 0;
                 foreach (Point inputPoint in inputPoints)
@@ -160,7 +160,7 @@ namespace nManager.Wow.Helpers
                 decimal failPercent = failCounter/inputPoints.Count*100;
                 if (failPercent > 0)
                 {
-                    failPercent = System.Math.Round(failPercent, 0);
+                    failPercent = CSharpMath.Round(failPercent, 0);
                     if (failPercent == 0)
                         failPercent++;
                 }
@@ -306,10 +306,10 @@ namespace nManager.Wow.Helpers
                                 MountTask.Mount(false);
                             if (Usefuls.IsFlying)
                             {
-                                List<Point> tmpList = new List<Point>();
+                                var tmpList = new List<Point>();
                                 for (int i = 0; i <= _points.Count - 1; i++)
                                 {
-                                    Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
+                                    var pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
                                     tmpList.Add(pt);
                                 }
                                 _points = tmpList;
@@ -567,7 +567,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// UnStuck the player.
+        ///     UnStuck the player.
         /// </summary>
         public static void UnStuck()
         {
@@ -607,7 +607,7 @@ namespace nManager.Wow.Helpers
                 {
                     float dx = 1.0f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
                     float dy = 1.0f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
-                    Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
+                    var inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
                         ObjectManager.ObjectManager.Me.Position.Z + 1.0f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
                         ObjectManager.ObjectManager.Me.Position.Z + 1.0f);
@@ -645,15 +645,15 @@ namespace nManager.Wow.Helpers
                     }
                 }
                 StopMove();
-                Point lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
+                var lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
                 Logging.WriteDebug("UnStuck - lastPost = " + lastPost);
                 for (int i = 0; i < 8; i++)
                 {
                     Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " started.");
                     int j = Others.Random(1, 8);
 
-                    float disX = System.Math.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
-                    float disY = System.Math.Abs(lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y);
+                    float disX = CSharpMath.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
+                    float disY = CSharpMath.Abs(lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y);
                     Logging.WriteDebug("UnStuck - disX = " + disX);
                     Logging.WriteDebug("UnStuck - disY = " + disY);
 
@@ -762,7 +762,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// UnStuck the player if fly.
+        ///     UnStuck the player if fly.
         /// </summary>
         public static void UnStuckFly()
         {
@@ -786,7 +786,7 @@ namespace nManager.Wow.Helpers
                 MovementsAction.Ascend(false);
                 Logging.WriteDebug("Flying UnStuck - Jump attempt done.");
 
-                Point lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
+                var lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
                 Logging.WriteDebug("Flying UnStuck - lastPost = " + lastPost);
                 int iR = Others.Random(2, 3);
                 for (int i = 0; i < iR; i++)
@@ -795,8 +795,8 @@ namespace nManager.Wow.Helpers
                     int j = Others.Random(1, 8);
                     int z = Others.Random(-15, 15);
 
-                    float disX = System.Math.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
-                    float disY = System.Math.Abs(lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y);
+                    float disX = CSharpMath.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
+                    float disY = CSharpMath.Abs(lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y);
                     Logging.WriteDebug("Flying UnStuck - disX = " + disX);
                     Logging.WriteDebug("Flying UnStuck - disY = " + disY);
                     if (disX < 5 || disY < 5)
@@ -867,7 +867,7 @@ namespace nManager.Wow.Helpers
                             Logging.WriteDebug("Flying UnStuck - Backward Right done.");
                         }
                         Thread.Sleep(100);
-                        Timer tus = new Timer(3000);
+                        var tus = new Timer(3000);
                         while (ClickToMove.GetClickToMoveTypePush() == ClickToMoveType.Move && !tus.IsReady)
                             Thread.Sleep(50);
                         if (ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.None)
@@ -918,7 +918,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Go to with this list of points.
+        ///     Go to with this list of points.
         /// </summary>
         /// <param name="points">The _points.</param>
         public static void Go(List<Point> points)
@@ -959,7 +959,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// move with this list of point  loop.
+        ///     move with this list of point  loop.
         /// </summary>
         /// <param name="points">The points.</param>
         public static void GoLoop(List<Point> points)
@@ -998,7 +998,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Stops the Go() and GoLoop().
+        ///     Stops the Go() and GoLoop().
         /// </summary>
         public static void StopMove()
         {
@@ -1046,10 +1046,10 @@ namespace nManager.Wow.Helpers
         private static bool _lastMoveToResult = true;
 
         /// <summary>
-        /// Get if player use MoveTo().
+        ///     Get if player use MoveTo().
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [the player is in MoveTo()]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [the player is in MoveTo()]; otherwise, <c>false</c>.
         /// </value>
         public static bool InMoveTo
         {
@@ -1135,8 +1135,8 @@ namespace nManager.Wow.Helpers
                 if (!ObjectManager.ObjectManager.Me.IsMounted || Usefuls.IsSwimming || (!Usefuls.IsSwimming && MountTask.OnAquaticMount()))
                 {
                     // We are not mounted, or we are swimming.
-                    var mountCapacity = MountTask.GetMountCapacity();
-                    if (ObjectManager.ObjectManager.Me.IsAlive && _canRemount.IsReady && !Fight.InFight && !Bot.States.Looting.IsLooting &&
+                    MountCapacity mountCapacity = MountTask.GetMountCapacity();
+                    if (ObjectManager.ObjectManager.Me.IsAlive && _canRemount.IsReady && !Fight.InFight && !Looting.IsLooting &&
                         !ObjectManager.ObjectManager.Me.InCombat && !Usefuls.PlayerUsingVehicle && Products.Products.ProductName.ToLower() != "fisherbot" &&
                         mountCapacity > MountCapacity.Feet && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
@@ -1157,8 +1157,8 @@ namespace nManager.Wow.Helpers
                     }
                 }
 
-                Timer timer = new Timer(1*1000*1);
-                Timer timerWaypoint = new Timer(1*1000*(30/3));
+                var timer = new Timer(1*1000*1);
+                var timerWaypoint = new Timer(1*1000*(30/3));
                 double distance = (double) position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
                 if (distance > 45)
                     timerWaypoint = new Timer(1*1000*(distance/3));
@@ -1187,10 +1187,10 @@ namespace nManager.Wow.Helpers
                     {
                         Thread.Sleep(100);
                     }
-                    Point altPoint = new Point();
+                    var altPoint = new Point();
                     if (ObjectManager.ObjectManager.Me.InTransport)
                     {
-                        WoWObject t = new WoWObject(ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid).GetBaseAddress);
+                        var t = new WoWObject(ObjectManager.ObjectManager.GetObjectByGuid(ObjectManager.ObjectManager.Me.TransportGuid).GetBaseAddress);
                         if (t.Type == WoWObjectType.GameObject)
                         {
                             var o = new WoWGameObject(t.GetBaseAddress);
@@ -1261,7 +1261,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Moves to Position.
+        ///     Moves to Position.
         /// </summary>
         /// <param name="point">The point.</param>
         /// <param name="farm"></param>
@@ -1286,7 +1286,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Moves to Position.
+        ///     Moves to Position.
         /// </summary>
         /// <param name="x">X.</param>
         /// <param name="y">Y.</param>
@@ -1305,7 +1305,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Moves to.
+        ///     Moves to.
         /// </summary>
         /// <param name="obj">The Unit.</param>
         public static void MoveTo(WoWUnit obj)
@@ -1321,7 +1321,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Moves to.
+        ///     Moves to.
         /// </summary>
         /// <param name="obj">The GameObject.</param>
         /// <param name="farm"></param>
@@ -1338,7 +1338,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Stop Player.
+        ///     Stop Player.
         /// </summary>
         public static void StopMoveTo(bool stabilizeZAxis = true, bool stabilizeSides = false)
         {
@@ -1372,7 +1372,7 @@ namespace nManager.Wow.Helpers
         #region Facing code
 
         /// <summary>
-        /// Faces the Unit.
+        ///     Faces the Unit.
         /// </summary>
         /// <param name="obj">The Unit.</param>
         /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
@@ -1384,12 +1384,12 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                            CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
                                 (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI/4)
+                if (dif <= CSharpMath.PI/4)
                     return;
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
                 if (doMove)
@@ -1402,7 +1402,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Faces the specified Player.
+        ///     Faces the specified Player.
         /// </summary>
         /// <param name="obj">The Player.</param>
         /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
@@ -1414,12 +1414,12 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                            CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
                                 (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI/4)
+                if (dif <= CSharpMath.PI/4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1433,7 +1433,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Faces the specified GameObject.
+        ///     Faces the specified GameObject.
         /// </summary>
         /// <param name="obj">The GameObject.</param>
         /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
@@ -1445,12 +1445,12 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            System.Math.Atan2((obj.Position.Y - localPlayerPosition.Y),
+                            CSharpMath.Atan2((obj.Position.Y - localPlayerPosition.Y),
                                 (obj.Position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI/4 && obj.GOType != WoWGameObjectType.FishingHole)
+                if (dif <= CSharpMath.PI/4 && obj.GOType != WoWGameObjectType.FishingHole)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1464,7 +1464,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Faces the specified position.
+        ///     Faces the specified position.
         /// </summary>
         /// <param name="position">The position.</param>
         /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
@@ -1476,11 +1476,11 @@ namespace nManager.Wow.Helpers
                 float wowFacing =
                     NegativeAngle(
                         (float)
-                            System.Math.Atan2((position.Y - localPlayerPosition.Y), (position.X - localPlayerPosition.X)));
+                            CSharpMath.Atan2((position.Y - localPlayerPosition.Y), (position.X - localPlayerPosition.X)));
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI/4)
+                if (dif <= CSharpMath.PI/4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1494,7 +1494,7 @@ namespace nManager.Wow.Helpers
         }
 
         /// <summary>
-        /// Faces the specified position.
+        ///     Faces the specified position.
         /// </summary>
         /// <param name="angle">The angle.</param>
         /// <param name="doMove">Automatically do a micro move to adjust target instant.</param>
@@ -1519,7 +1519,7 @@ namespace nManager.Wow.Helpers
                 //if the turning angle is negative
                 if (angle < 0)
                     //add the maximum possible angle (PI x 2) to normalize the negative angle
-                    angle += (float) (System.Math.PI*2);
+                    angle += (float) (CSharpMath.PI*2);
                 return angle;
             }
             catch (Exception exception)
@@ -1660,8 +1660,7 @@ namespace nManager.Wow.Helpers
                     {
                         if (baseAddress == 0) // we don't have the target in our radar
                             return 0; // Then return
-                        else
-                            LongMove.StopLongMove(); // We have the target, then we can stop the long move
+                        LongMove.StopLongMove(); // We have the target, then we can stop the long move
                     }
                     else if (baseAddress == 0 && MountTask.GetMountCapacity() == MountCapacity.Fly)
                     {
