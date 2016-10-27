@@ -98,6 +98,8 @@ namespace meshReader.Game.ADT
             {
                 // do something to try and get the good type.
                 var t = MpqManager.GetFileExtension((int) fileId);
+
+                //Console.WriteLine("fileId: " + fileId + ", fileExt: " + t);
                 var _stream = MpqManager.GetFile(fileId);
                 var binary = new BinaryReader(_stream);
                 var magic = binary.ReadBytes(4);

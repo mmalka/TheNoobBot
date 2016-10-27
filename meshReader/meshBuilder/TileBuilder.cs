@@ -167,6 +167,7 @@ namespace meshBuilder
                 ADT main = GetAdt(World, X, Y);
                 Geometry.AddAdt(main);
                 InsertAllGameobjectGeometry(X, Y, MapId);
+                // Geometry.CreateDemoDump("X:\\Meshes\\" + MapId + "_" + X + "_" + Y + ".obj");
                 //}
 
                 if (Geometry.Vertices.Count == 0 && Geometry.Triangles.Count == 0)
@@ -394,6 +395,36 @@ namespace meshBuilder
             // bMax and bMin are switched here because of the coordinate system transformation
 
             var connections = new List<OffMeshConnection>();
+
+            if (MapId == 1220)
+            {
+                SlimDX.Vector3 from = new SlimDX.Vector3(1685.681f, 4709.121f, 139.4296f);
+                SlimDX.Vector3 to = new SlimDX.Vector3(1682.194f, 4712.713f, 139.6532f);
+                OffMeshConnection conn = new OffMeshConnection
+                {
+                    AreaId = PolyArea.Road,
+                    Flags = PolyFlag.Walk,
+                    From = from.ToRecast().ToFloatArray(),
+                    To = to.ToRecast().ToFloatArray(),
+                    Radius = 5,
+                    Type = ConnectionType.BiDirectional,
+                    UserID = 1,
+                };
+                connections.Add(conn);
+                from = new SlimDX.Vector3(1661.302f,4727.02f,139.4618f);
+                to = new SlimDX.Vector3(1669.568f,4733.722f,138.7087f);
+                conn = new OffMeshConnection
+                {
+                    AreaId = PolyArea.Road,
+                    Flags = PolyFlag.Walk,
+                    From = from.ToRecast().ToFloatArray(),
+                    To = to.ToRecast().ToFloatArray(),
+                    Radius = 5f,
+                    Type = ConnectionType.BiDirectional,
+                    UserID = 2,
+                };
+                connections.Add(conn);
+            }
 
             /*if (MapId == 0 && X == 31 && Y == 58)
             {
