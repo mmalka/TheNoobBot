@@ -7,6 +7,7 @@ using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
+using SlimDX.DirectWrite;
 using Timer = nManager.Helpful.Timer;
 using CSharpMath = System.Math;
 using Math = nManager.Helpful.Math;
@@ -1131,14 +1132,29 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(100);
                 }
 
-                if (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.IsAlive && _canRemount.IsReady && !Fight.InFight && !Bot.States.Looting.IsLooting &&
-                    !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.InTransport && Products.Products.ProductName.ToLower() != "fisherbot" &&
-                    MountTask.GetMountCapacity() > MountCapacity.Feet && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                if (!ObjectManager.ObjectManager.Me.IsMounted || Usefuls.IsSwimming || (!Usefuls.IsSwimming && MountTask.OnAquaticMount()))
                 {
-                    if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && MountTask.GetMountCapacity() >= MountCapacity.Ground)
-                        MountTask.MountingGroundMount(false);
-                    else
-                        MountTask.Mount(false);
+                    // We are not mounted, or we are swimming.
+                    var mountCapacity = MountTask.GetMountCapacity();
+                    if (ObjectManager.ObjectManager.Me.IsAlive && _canRemount.IsReady && !Fight.InFight && !Bot.States.Looting.IsLooting &&
+                        !ObjectManager.ObjectManager.Me.InCombat && !Usefuls.PlayerUsingVehicle && Products.Products.ProductName.ToLower() != "fisherbot" &&
+                        mountCapacity > MountCapacity.Feet && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                    {
+                        // I should be able to mount here or upgrade my current mount.
+                        if (Usefuls.IsSwimming && !MountTask.OnAquaticMount() && mountCapacity == MountCapacity.Swimm)
+                        {
+                            MountTask.MountingAquaticMount(false);
+                            // We are swimming and we have a swimming mount, but we are not using it.
+                        }
+                        else if (!ObjectManager.ObjectManager.Me.IsMounted || MountTask.OnAquaticMount() && !Usefuls.IsSwimming)
+                        {
+                            // We are not mounted, or we are on our Aquatic turtle and wanna go back to normal mount.
+                            if (!Usefuls.IsSwimming && nManagerSetting.CurrentSetting.UseGroundMount && mountCapacity >= MountCapacity.Ground)
+                                MountTask.MountingGroundMount(false);
+                            else
+                                MountTask.Mount(false);
+                        }
+                    }
                 }
 
                 Timer timer = new Timer(1*1000*1);
