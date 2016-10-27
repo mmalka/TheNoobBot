@@ -26,13 +26,10 @@ namespace Quester.Profile
     {
         private readonly TreeNode _npcParentNode;
         private readonly TreeNode _questParentNode;
-        private string _fullpath = "";
+        private string _fullpath;
         private TreeNode _lastSelectedNpc;
         private TreeNode _lastSelectedObjective;
         private TreeNode _lastSelectedQuest;
-
-        private string _loadPath = "";
-        private string _path;
 
         private QuesterProfile _profile;
 
@@ -53,6 +50,9 @@ namespace Quester.Profile
             _npcParentNode = new TreeNode("NPCs");
             _questParentNode = new TreeNode("Quests");
             LoadNodes(profile);
+
+            if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                TopMost = true;
         }
 
         private void ButtonLoadXML_Click(object sender, EventArgs e)
@@ -60,6 +60,24 @@ namespace Quester.Profile
             ClearQuestForm();
             DisableObjForm();
             LoadNodes();
+        }
+
+        private void SaveSimpleProfile_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(_fullpath))
+            {
+                SaveSimpleProfileAs_Click(sender, e);
+                return;
+            }
+            if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
+            {
+                XmlSerializer.Serialize(_fullpath, _profile);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(Translate.Get(Translate.Id.CantSaveEmptySimpleExisting));
+            }
         }
 
         private void SaveSimpleProfileAs_Click(object sender, EventArgs e)
@@ -77,18 +95,6 @@ namespace Quester.Profile
             }
         }
 
-        private void SaveSimpleProfile_Click(object sender, EventArgs e)
-        {
-            if (_profile.Quests.Count > 0 || _profile.Questers.Count > 0)
-            {
-                XmlSerializer.Serialize(_fullpath, _profile);
-                Close();
-            }
-            else
-            {
-                MessageBox.Show(Translate.Get(Translate.Id.CantSaveEmptySimpleExisting));
-            }
-        }
 
         private void ButtonNewNPC_Click(object sender, EventArgs e)
         {
@@ -352,6 +358,11 @@ namespace Quester.Profile
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
 
                             break;
+                        case "CSharpScript":
+                            objective.Count = Others.ToInt32(TBObjCount.Text);
+                            objective.Script = TBObjMessage.Text;
+
+                            break;
                     }
 
 
@@ -558,6 +569,11 @@ namespace Quester.Profile
                             newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
+                            break;
+                        case "CSharpScript":
+                            newObjective.Count = Others.ToInt32(TBObjCount.Text);
+                            newObjective.Script = TBObjMessage.Text;
+
                             break;
                     }
                     if (newObjective.Objective.ToString() != "UseVehicle")
@@ -863,7 +879,7 @@ namespace Quester.Profile
             TreeView.Nodes.Add(_npcParentNode);
             TreeView.Nodes.Add(_questParentNode);
             _questParentNode.Expand();
-            _path = String.Empty;
+            _fullpath = String.Empty;
             _profile = new QuesterProfile();
         }
 
@@ -871,10 +887,7 @@ namespace Quester.Profile
         {
             try
             {
-                _fullpath = Application.StartupPath + "\\Profiles\\Quester\\" + profile;
-                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    TopMost = true;
-                _path = Application.StartupPath + @"\Profiles\Quester\";
+                _fullpath = Application.StartupPath + @"\Profiles\Quester\" + profile;
                 _profile = new QuesterProfile();
 
                 if (string.IsNullOrEmpty(profile) || !File.Exists(_fullpath))
@@ -882,6 +895,7 @@ namespace Quester.Profile
                     string file = Others.DialogBoxOpenFile(Application.StartupPath + @"\Profiles\Quester\", "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
                     if (File.Exists(file))
                     {
+                        _fullpath = file;
                         _profile = XmlSerializer.Deserialize<QuesterProfile>(file);
                     }
                 }
@@ -1380,6 +1394,13 @@ namespace Quester.Profile
                     TBObjWaitMs.Enabled = true;
                     TBObjPosition.Enabled = true;
                     break;
+                case "CSharpScript":
+                    TBObjCount.Text = QObjective.Count.ToString();
+                    TBObjCount.Enabled = true;
+                    TBObjMessage.Text = QObjective.Script;
+                    TBObjMessage.Enabled = true;
+
+                    break;
             }
 
             switch (QObjective.Objective.ToString())
@@ -1499,6 +1520,7 @@ namespace Quester.Profile
             //MessageBox = 24
             //PickUpNPC = 25
             //GarrisonHearthstone = 26
+            //CSharpScript = 27,
 
             var cbObjTypeList = new List<ComboBoxValueString>();
 
@@ -1597,7 +1619,11 @@ namespace Quester.Profile
                 Name = "Press Key",
                 Value = 10
             });
-
+            cbObjTypeList.Add(new ComboBoxValueString
+            {
+                Name = "CSharpScript",
+                Value = 27
+            });
             CBObjType.DataSource = cbObjTypeList;
 
             CBObjType.ValueMember = "Value";
@@ -1851,6 +1877,10 @@ namespace Quester.Profile
                     TBObjCount.Enabled = true;
                     TBObjWaitMs.Enabled = true;
                     TBObjPosition.Enabled = true;
+                    break;
+                case "CSharpScript":
+                    TBObjCount.Enabled = true;
+                    TBObjMessage.Enabled = true;
                     break;
             }
 
@@ -2260,6 +2290,21 @@ namespace Quester.Profile
             foreach (int i in idxList)
             {
                 CLBQuestRaceMask.SetItemChecked(i, true);
+            }
+        }
+
+        private void ToolStripMenuItemAddNeedQuestComp_Click(object sender, EventArgs e)
+        {
+            if (_profile != null && _profile.Quests.Count > 0)
+            {
+                if (_lastSelectedQuest != null && TreeView.SelectedNode != null)
+                {
+                    TBQuestNeedQuestCompId.Text = _profile.Quests[_lastSelectedQuest.Index - 1].Id.ToString();
+                }
+                else
+                {
+                    TBQuestNeedQuestCompId.Text = _profile.Quests[_profile.Quests.Count - 1].Id.ToString();
+                }
             }
         }
 
