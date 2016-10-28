@@ -114,8 +114,8 @@ namespace Quester.Bot
                     return;
                 if (QuestingTask.CurrentQuestObjective == null)
                     QuestingTask.TurnInQuest();
-                else
-                    Script.Run(QuestingTask.CurrentQuestObjective.Script);
+                /*else
+                    Script.Run(QuestingTask.CurrentQuestObjective.Script);*/
                 return;
             }
 
