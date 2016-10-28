@@ -58,13 +58,53 @@ namespace nManager.Wow.Bot.States
             get
             {
                 if (_availableTransports == null)
+                {
                     _availableTransports = XmlSerializer.Deserialize<Transports>(Application.StartupPath + @"\Data\TransportsDB.xml");
+                    for (int i = _availableTransports.Items.Count - 1; i > 0; i--)
+                    {
+                        var transport = _availableTransports.Items[i];
+                        if (transport.Faction == Npc.FactionType.Neutral || transport.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
+                            continue;
+                        _availableTransports.Items.RemoveAt(i);
+                    }
+                }
                 if (_availablePortals == null)
+                {
                     _availablePortals = XmlSerializer.Deserialize<Portals>(Application.StartupPath + @"\Data\PortalsDB.xml");
+                    for (int i = _availablePortals.Items.Count - 1; i > 0; i--)
+                    {
+                        var portal = _availablePortals.Items[i];
+                        if (portal.Faction == Npc.FactionType.Neutral || portal.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
+                            continue;
+                        if (portal.RequireQuestId <= 0 || Quest.IsQuestFlaggedCompletedLUA(portal.RequireQuestId))
+                            continue;
+                        if (portal.RequireAchivementId <= 0 || Usefuls.IsCompletedAchievement(portal.RequireAchivementId, true))
+                            continue;
+                        _availablePortals.Items.RemoveAt(i);
+                        // We never serialize portals back, so it's all fine.
+                    }
+                }
                 if (_availableTaxis == null)
+                {
                     _availableTaxis = XmlSerializer.Deserialize<List<Taxi>>(Application.StartupPath + @"\Data\TaxiList.xml");
+                    for (int i = _availableTaxis.Count - 1; i > 0; i--)
+                    {
+                        var taxis = _availableTaxis[i];
+                        if (taxis.Faction == Npc.FactionType.Neutral || taxis.Faction.ToString() == ObjectManager.ObjectManager.Me.PlayerFaction)
+                            continue;
+                        _availableTaxis.RemoveAt(i);
+                    }
+                }
                 if (_availableTaxiLinks == null)
+                {
                     _availableTaxiLinks = XmlSerializer.Deserialize<List<TaxiLink>>(Application.StartupPath + @"\Data\TaxiLinks.xml");
+                    for (int i = _availableTaxiLinks.Count - 1; i > 0; i--)
+                    {
+                        var taxiLink = _availableTaxiLinks[i];
+                        if (taxiLink.PointB <= 0)
+                            _availableTaxiLinks.RemoveAt(i);
+                    }
+                }
                 if (_availableTransports == null || _availablePortals == null || _availableTaxis == null || _availableTaxiLinks == null)
                     return false;
                 if (!Products.Products.IsStarted || ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InInevitableCombat || !NeedToTravel)
@@ -811,8 +851,6 @@ namespace nManager.Wow.Bot.States
             var listPortal = new List<Portal>();
             foreach (Portal portal in _availablePortals.Items)
             {
-                if (portal.Faction != Npc.FactionType.Neutral && portal.Faction.ToString() != ObjectManager.ObjectManager.Me.PlayerFaction)
-                    continue;
                 if (portal.BContinentId != travelToContinentId)
                     continue;
                 bool success;
