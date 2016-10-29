@@ -138,7 +138,14 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            MountTask.DismountMount();
+            if (ObjectManager.ObjectManager.Me.IsMounted)
+            {
+                MovementManager.FindTarget(_unit, CombatClass.GetAggroRange);
+                Thread.Sleep(100);
+                if (MovementManager.InMovement)
+                    return;
+                MountTask.DismountMount();
+            }
             Logging.Write("Player Attacked by " + _unit.Name + " (lvl " + _unit.Level + ")");
             UInt128 unkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0 && _unit.HealthPercent == 100.0f)
