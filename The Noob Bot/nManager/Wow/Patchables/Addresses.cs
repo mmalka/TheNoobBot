@@ -135,8 +135,8 @@
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0x106C, // Script_UnitCastingInfo
-            CastingSpellStartTime = 0x108C,
-            CastingSpellEndTime = 0x1090,
+            CastingSpellStartTime = 0x1090,
+            CastingSpellEndTime = 0x1094,
             ChannelSpellID = 0x1098, // Script_UnitChannelInfo
             ChannelSpellStartTime = 0x109C,
             ChannelSpellEndTime = 0x10A0,
