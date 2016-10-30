@@ -10,6 +10,12 @@ namespace nManager.Wow.Bot.States
 {
     public class Grinding : State
     {
+        public List<int> EntryTarget = new List<int>();
+        public List<uint> FactionsTarget = new List<uint>();
+        public uint MaxTargetLevel = 113;
+        public uint MinTargetLevel;
+        private WoWUnit _unit;
+
         public override string DisplayName
         {
             get { return "Grinding"; }
@@ -26,12 +32,6 @@ namespace nManager.Wow.Bot.States
         {
             get { return new List<State>(); }
         }
-
-        public List<int> EntryTarget = new List<int>();
-        public List<uint> FactionsTarget = new List<uint>();
-        public uint MinTargetLevel;
-        public uint MaxTargetLevel = 113;
-        private WoWUnit _unit;
 
         public override bool NeedToRun
         {
@@ -50,7 +50,7 @@ namespace nManager.Wow.Bot.States
 
                 // Get unit:
                 _unit = new WoWUnit(0);
-                List<WoWUnit> listUnit = new List<WoWUnit>();
+                var listUnit = new List<WoWUnit>();
                 if (FactionsTarget.Count > 0)
                     listUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitByFaction(FactionsTarget));
                 if (EntryTarget.Count > 0)

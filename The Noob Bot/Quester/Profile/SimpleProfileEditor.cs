@@ -95,7 +95,6 @@ namespace Quester.Profile
             }
         }
 
-
         private void ButtonNewNPC_Click(object sender, EventArgs e)
         {
             ClearNPCForm();
@@ -107,7 +106,6 @@ namespace Quester.Profile
             if (TreeView.SelectedNode != null && TreeView.SelectedNode.Tag != "NPCs")
             {
                 //NPC Modification
-
                 Npc quester = _profile.Questers[_lastSelectedNpc.Index];
 
                 quester.Name = TBNpcName.Text;
@@ -116,13 +114,11 @@ namespace Quester.Profile
                 quester.Faction = (Npc.FactionType) CBNpcFaction.SelectedValue;
                 quester.Type = (Npc.NpcType) CBNpcType.SelectedValue;
                 quester.ContinentId = TBNpcContinentId.Text;
-
                 TreeView.SelectedNode.Text = TBNpcName.Text;
             }
             else
             {
                 //New NPC
-
                 var newQuester = new Npc();
 
                 newQuester.Name = TBNpcName.Text;
@@ -161,14 +157,12 @@ namespace Quester.Profile
                     {
                         CBNpcType.SelectedValue = Npc.NpcType.FlightMaster;
                     }
-
                     TBNpcContinentId.Text = Usefuls.ContinentNameByContinentId(Usefuls.ContinentId);
                 }
             }
             else
             {
                 WoWGameObject wowGO = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(WoWGameObjectType.Questgiver));
-
 
                 if (wowGO.Entry > 0 && ObjectManager.Me.Position.DistanceTo(wowGO.Position) < 5f && QuestersDB.GetNpcByEntry(wowGO.Entry).Entry == 0)
                 {
@@ -219,7 +213,6 @@ namespace Quester.Profile
                     switch (objective.Objective.ToString())
                     {
                         case "KillMob":
-
                             if (objective.CollectItemId > 0 || CBObjKillMobPickUpItem.Checked)
                             {
                                 TBObjCollectCount.Enabled = true;
@@ -234,8 +227,6 @@ namespace Quester.Profile
                                 objective.CollectCount = 0;
                                 objective.CollectItemId = 0;
                             }
-
-
                             objective.CanPullUnitsAlreadyInFight = CBObjCanPullUnitsInFight.Checked;
 
                             break;
@@ -433,16 +424,12 @@ namespace Quester.Profile
                         cbObjSelValue = ((ComboBoxValueString) CBObjType.SelectedValue).Value;
                     }
 
-
                     var newObjective = new QuestObjective();
                     newObjective.Objective = (Objective) cbObjSelValue;
-
 
                     switch (newObjective.Objective.ToString())
                     {
                         case "KillMob":
-
-
                             if (CBObjKillMobPickUpItem.Checked)
                             {
                                 newObjective.CollectCount = Others.ToInt32(TBObjCollectCount.Text);
@@ -457,7 +444,6 @@ namespace Quester.Profile
 
                             break;
                         case "BuyItem":
-
                             newObjective.CollectCount = Others.ToInt32(TBObjCollectCount.Text);
                             newObjective.CollectItemId = Others.ToInt32(TBObjCollectItemID.Text);
                             newObjective.Name = TBObjNPCId.Text;
@@ -549,7 +535,6 @@ namespace Quester.Profile
                             newObjective.WaitMs = Others.ToInt32(TBObjWaitMs.Text);
                             break;
                         case "UseVehicle":
-                            newObjective.EntryVehicle = Others.ToInt32(TBObjEntry.Text);
                             newObjective.Position = new Point(float.Parse(TBObjPosition.Text.Split(';')[0]), float.Parse(TBObjPosition.Text.Split(';')[1]),
                                 float.Parse(TBObjPosition.Text.Split(';')[2]));
                             break;
@@ -576,18 +561,14 @@ namespace Quester.Profile
 
                             break;
                     }
-                    if (newObjective.Objective.ToString() != "UseVehicle")
+                    newObjective.Entry.Clear();
+                    foreach (String st in TBObjEntry.Lines)
                     {
-                        newObjective.Entry.Clear();
-                        foreach (String st in TBObjEntry.Lines)
+                        if (st != "")
                         {
-                            if (st != "")
-                            {
-                                newObjective.Entry.Add(Convert.ToInt32(st));
-                            }
+                            newObjective.Entry.Add(Convert.ToInt32(st));
                         }
                     }
-
                     newObjective.Hotspots.Clear();
                     foreach (Point point  in LBObjHotspots.Items)
                     {

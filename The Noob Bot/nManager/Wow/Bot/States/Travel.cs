@@ -394,7 +394,7 @@ namespace nManager.Wow.Bot.States
             else if (selectedTransport is Taxi)
             {
                 var taxi = selectedTransport as Taxi;
-                WoWUnit memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id), ObjectManager.ObjectManager.Me.Position);
+                WoWUnit memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id));
                 bool loop = true;
                 while (loop)
                 {
@@ -482,7 +482,7 @@ namespace nManager.Wow.Bot.States
                             EnterTransportOrTakePortal(selectedTransport);
                             return;
                         }
-                        memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id), ObjectManager.ObjectManager.Me.Position);
+                        memoryTaxi = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry((int) taxi.Id));
                     }
                 }
             }

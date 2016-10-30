@@ -541,13 +541,7 @@ namespace nManager.Helpful.Forms
                 CodeDomProvider cc = new CSharpCodeProvider();
                 var cp = new CompilerParameters();
 
-                IEnumerable<string> assemblies = AppDomain.CurrentDomain
-                    .GetAssemblies()
-                    .Where(
-                        a =>
-                            !a.IsDynamic &&
-                            !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                    .Select(a => a.Location);
+                IEnumerable<string> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe"))).Select(a => a.Location);
                 cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                 cp.ReferencedAssemblies.Add("nManager.dll");
 
