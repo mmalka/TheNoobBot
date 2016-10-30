@@ -700,7 +700,7 @@ namespace Quester.Profile
                     }
                     if (_displayXml)
                         DisplayXMLs(quest);
-                    TreeView.SelectedNode.Text = TBQuestQuestName.Text + " (" + Quest.Id + ")";
+                    TreeView.SelectedNode.Text = TBQuestQuestName.Text + " (" + quest.Id + ")";
                 }
                 else
                 {
@@ -1899,7 +1899,7 @@ namespace Quester.Profile
                     CBObjInternalQuestID.DataSource = null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Catch Form Load triggering this Sub....and crashing
             }
