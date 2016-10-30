@@ -46,10 +46,7 @@ namespace Quester.Tasks
                 IEnumerable<string> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe"))).Select(a => a.Location);
                 cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                 cp.ReferencedAssemblies.Add("nManager.dll");
-                cp.ReferencedAssemblies.Add("System.dll");
                 cp.ReferencedAssemblies.Add("System.Linq.dll");
-                cp.ReferencedAssemblies.Add("System.Xml.dll");
-                cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
                 cp.ReferencedAssemblies.Add("nManager.dll");
                 cp.ReferencedAssemblies.Add("Products\\Quester.dll");
                 string toCompile =
