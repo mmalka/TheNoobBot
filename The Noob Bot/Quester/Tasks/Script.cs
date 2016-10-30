@@ -1,15 +1,12 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful;
-using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Class;
-using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
 using Quester.Profile;
 
 namespace Quester.Tasks
@@ -24,7 +21,7 @@ namespace Quester.Tasks
             return Run(script, 0, ref qO);
         }
 
-        internal static bool Run(string script, int questId, ref Quester.Profile.QuestObjective qObjective)
+        internal static bool Run(string script, int questId, ref QuestObjective qObjective)
         {
             try
             {
@@ -37,15 +34,18 @@ namespace Quester.Tasks
 
                 if (script[0] == '=')
                 {
-                    script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\Scripts\\" + script.Replace("=", ""));
+                    script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\Scripts\\" + script.Replace("=", ""), true);
                     // this is for loading a file that will be added inside a method.
                 }
                 // or 1-line script directly from the field.
-
                 // Example: "return (Usefuls.ContinentId == 1440);"
 
                 CodeDomProvider cc = new CSharpCodeProvider();
-                CompilerParameters cp = new CompilerParameters();
+                var cp = new CompilerParameters();
+
+                IEnumerable<string> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe"))).Select(a => a.Location);
+                cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
+                cp.ReferencedAssemblies.Add("nManager.dll");
                 cp.ReferencedAssemblies.Add("System.dll");
                 cp.ReferencedAssemblies.Add("System.Linq.dll");
                 cp.ReferencedAssemblies.Add("System.Xml.dll");
@@ -58,6 +58,7 @@ namespace Quester.Tasks
                     "using System.Windows.Forms; " + Environment.NewLine +
                     "using System.Collections.Generic; " + Environment.NewLine +
                     "using System.Linq; " + Environment.NewLine +
+                    "using nManager; " + Environment.NewLine +
                     "using nManager.Wow.Class; " + Environment.NewLine +
                     "using nManager.Helpful; " + Environment.NewLine +
                     "using nManager.Wow; " + Environment.NewLine +
@@ -66,6 +67,8 @@ namespace Quester.Tasks
                     "using nManager.Wow.Helpers; " + Environment.NewLine +
                     "using nManager.Wow.ObjectManager; " + Environment.NewLine +
                     "using Quester.Profile; " + Environment.NewLine +
+                    "namespace Quester.Tasks " + Environment.NewLine +
+                    "{ " + Environment.NewLine +
                     "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
                     "{ " + Environment.NewLine +
                     "    public bool Script(ref QuestObjective questObjective) " + Environment.NewLine +
@@ -81,6 +84,7 @@ namespace Quester.Tasks
                     "        } " + Environment.NewLine +
                     "        return true; " + Environment.NewLine +
                     "    } " + Environment.NewLine +
+                    "} " + Environment.NewLine +
                     "} " + Environment.NewLine;
                 Logging.WriteDebug(toCompile);
 
@@ -95,7 +99,7 @@ namespace Quester.Tasks
                 Assembly assembly = cr.CompiledAssembly;
 
                 object obj = assembly.CreateInstance("Main", true);
-                IScript instanceFromOtherAssembly = obj as IScript;
+                var instanceFromOtherAssembly = obj as IScript;
 
                 CachedScripts.Add(originalScript, instanceFromOtherAssembly);
 
@@ -106,6 +110,14 @@ namespace Quester.Tasks
             }
 
             return true;
+        }
+    }
+
+    public class Main : IScript
+    {
+        public bool Script(ref QuestObjective questObjective)
+        {
+            return false;
         }
     }
 
