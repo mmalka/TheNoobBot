@@ -1,7 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -42,11 +41,11 @@ namespace Quester.Tasks
 
                 CodeDomProvider cc = new CSharpCodeProvider();
                 var cp = new CompilerParameters();
-
-                IEnumerable<string> assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe"))).Select(a => a.Location);
-                cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
-                cp.ReferencedAssemblies.Add("nManager.dll");
+                cp.ReferencedAssemblies.Add("System.dll");
+                cp.ReferencedAssemblies.Add("System.Numerics.dll");
                 cp.ReferencedAssemblies.Add("System.Linq.dll");
+                cp.ReferencedAssemblies.Add("System.Xml.dll");
+                cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
                 cp.ReferencedAssemblies.Add("nManager.dll");
                 cp.ReferencedAssemblies.Add("Products\\Quester.dll");
                 string toCompile =
@@ -54,6 +53,7 @@ namespace Quester.Tasks
                     "using System.Threading; " + Environment.NewLine +
                     "using System.Windows.Forms; " + Environment.NewLine +
                     "using System.Collections.Generic; " + Environment.NewLine +
+                    "using System.Diagnostics; " + Environment.NewLine +
                     "using System.Linq; " + Environment.NewLine +
                     "using nManager; " + Environment.NewLine +
                     "using nManager.Wow.Class; " + Environment.NewLine +
@@ -64,8 +64,7 @@ namespace Quester.Tasks
                     "using nManager.Wow.Helpers; " + Environment.NewLine +
                     "using nManager.Wow.ObjectManager; " + Environment.NewLine +
                     "using Quester.Profile; " + Environment.NewLine +
-                    "namespace Quester.Tasks " + Environment.NewLine +
-                    "{ " + Environment.NewLine +
+                    "using Timer = nManager.Helpful.Timer;" + Environment.NewLine +
                     "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
                     "{ " + Environment.NewLine +
                     "    public bool Script(ref QuestObjective questObjective) " + Environment.NewLine +
@@ -81,9 +80,8 @@ namespace Quester.Tasks
                     "        } " + Environment.NewLine +
                     "        return true; " + Environment.NewLine +
                     "    } " + Environment.NewLine +
-                    "} " + Environment.NewLine +
                     "} " + Environment.NewLine;
-                Logging.WriteDebug(toCompile);
+                //Logging.WriteDebug(toCompile);
 
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                 if (cr.Errors.HasErrors)
@@ -102,21 +100,22 @@ namespace Quester.Tasks
 
                 return instanceFromOtherAssembly != null && CachedScripts[originalScript].Script(ref qObjective);
             }
-            catch
+            catch (Exception e)
             {
+                Logging.WriteError("internal static bool Run(string script, int questId, ref QuestObjective qObjective): " + e);
             }
 
             return true;
         }
     }
 
-    public class Main : IScript
+    /*public class Main : IScript
     {
         public bool Script(ref QuestObjective questObjective)
         {
             return false;
         }
-    }
+    }*/
 
     public interface IScript
     {
