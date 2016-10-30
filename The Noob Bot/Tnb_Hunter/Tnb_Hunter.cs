@@ -492,7 +492,7 @@ public class HunterMarksmanship
                 {
                     FeignDeath.Cast();
                     Others.SafeSleep(5000);
-                    if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                    if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
                         return true;
                     Others.SafeSleep(5000);
                     return true;
@@ -525,7 +525,7 @@ public class HunterMarksmanship
 
             if (!ObjectManager.Me.IsCast && !LoneWolf.HaveBuff)
             {
-                if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
                 {
                     //Call Pet //TODO implement a check which one is active
                     switch (MySettings.UsePet)
@@ -1203,7 +1203,7 @@ public class HunterBeastMastery
                 {
                     FeignDeath.Cast();
                     Others.SafeSleep(5000);
-                    if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                    if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
                         return true;
                     Others.SafeSleep(5000);
                     return true;
@@ -1236,7 +1236,7 @@ public class HunterBeastMastery
 
             if (!ObjectManager.Me.IsCast)
             {
-                if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
                 {
                     //Call Pet //TODO implement a check which one is active
                     switch (MySettings.UsePet)
@@ -1895,7 +1895,7 @@ public class HunterSurvival
                 {
                     FeignDeath.Cast();
                     Others.SafeSleep(5000);
-                    if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                    if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
                         return true;
                     Others.SafeSleep(5000);
                     return true;
@@ -1928,7 +1928,7 @@ public class HunterSurvival
 
             if (!ObjectManager.Me.IsCast)
             {
-                if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+                if (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead)
                 {
                     //Call Pet //TODO implement a check which one is active
                     switch (MySettings.UsePet)

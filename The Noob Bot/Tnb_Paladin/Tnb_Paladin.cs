@@ -1,6 +1,6 @@
 ﻿/*
 * CombatClass for TheNoobBot
-* Credit : Vesper, Neo2003, Dreadlocks
+* Credit : Vesper, Neo2003, Dreadlocks, Ryuichiro
 * Thanks you !
 */
 
@@ -190,59 +190,110 @@ public class PaladinHoly
 {
     private static PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
 
-    #region Professions & Racial
+    #region General Timers & Variables
 
-    public readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    public readonly Spell Berserking = new Spell("Berserking");
-    public readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
-
-    public readonly Spell Stoneform = new Spell("Stoneform");
-    public readonly Spell WarStomp = new Spell("War Stomp");
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem _secondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
-    #endregion
+    private bool CombatMode = true;
 
-    #region Paladin Seals & Buffs
-
-    #endregion
-
-    #region Offensive Spell
-
-    public readonly Spell Denounce = new Spell("Denounce");
-    public readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
-    public readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
-    public readonly Spell HolyShock = new Spell("Holy Shock");
+    private Timer DefensiveTimer = new Timer(0);
+    private Timer StunTimer = new Timer(0);
 
     #endregion
 
-    #region Offensive Cooldown
+    #region Professions & Racial
 
-    public readonly Spell AvengingWrath = new Spell("Avenging Wrath");
-    public readonly Spell HolyAvenger = new Spell("HolyAvenger");
-
-    #endregion
-
-    #region Defensive Cooldown
-
-    public readonly Spell DevotionAura = new Spell("Devotion Aura");
-    public readonly Spell DivineProtection = new Spell("Divine Protection");
-    public readonly Spell DivineShield = new Spell("Divine Shield");
-    public readonly Spell HandOfProtection = new Spell("Hand of Protection");
-    public readonly Spell HandOfPurity = new Spell("Hand of Purity");
-    public readonly Spell SacredShield = new Spell("Sacred Shield");
+    //private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent"); //No GCD
+    private readonly Spell Berserking = new Spell("Berserking"); //No GCD
+    private readonly Spell BloodFury = new Spell("Blood Fury"); //No GCD
+    private readonly Spell Darkflight = new Spell("Darkflight"); //No GCD
+    private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru"); //No GCD
+    private readonly Spell Stoneform = new Spell("Stoneform"); //No GCD
+    private readonly Spell WarStomp = new Spell("War Stomp"); //No GCD
 
     #endregion
 
-    #region Healing Spell
+    #region Talents
 
-    public readonly Spell BeaconOfLight = new Spell("Beacon of Light");
-    public readonly Spell FlashOfLight = new Spell("Flash of Light");
-    public readonly Spell GlyphOfHarshWords = new Spell("Glyph of Harsh Words");
-    public readonly Spell HolyLight = new Spell("Holy Light");
-    public readonly Spell HolyRadiance = new Spell("Holy Radiance");
-    public readonly Spell LayOnHands = new Spell("Lay on Hands");
-    public readonly Spell WordOfGlory = new Spell("Word of Glory");
+    private readonly Spell AuraofMercy = new Spell("Aura of Mercy"); //No GCD
+    private readonly Spell AuraofSacrifice = new Spell("Aura of Sacrifice"); //No GCD
+    private readonly Spell DevotionAura = new Spell("Devotion Aura"); //No GCD
+    private readonly Spell JudgmentofLight = new Spell(183778);
+
+    #endregion
+
+    #region Buffs
+
+    private readonly Spell Forbearance = new Spell(25771);
+
+    #endregion
+
+    #region Dot
+
+    private readonly Spell JudgmentofLightDebuff = new Spell(196941);
+
+    #endregion
+
+    #region Artifact Spells
+
+    private readonly Spell TyrsDeliverance = new Spell("Tyr's Deliverance");
+
+    #endregion
+
+    #region Offensive Spells
+
+    private readonly Spell CrusaderStrike = new Spell("Crusader Strike");
+    private readonly Spell Judgment = new Spell("Judgment");
+
+    #endregion
+
+    #region Defensive Spells
+
+    private readonly Spell BlessingofProtection = new Spell("Blessing of Protection");
+    private readonly Spell BlessingofSacrifice = new Spell("Blessing of Sacrifice"); //No GCD
+    private readonly Spell DivineProtection = new Spell("Divine Protection");
+    private readonly Spell DivineShield = new Spell("Divine Shield");
+
+    #endregion
+
+    #region Healing Buffs
+
+    private readonly Spell BeaconofFaith = new Spell("Beacon of Faith");
+    private readonly Spell BeaconofLight = new Spell("Beacon of Light");
+    private readonly Spell BeaconofVirtue = new Spell("Beacon of Virtue");
+
+    #endregion
+
+    #region Healing Spells
+
+    private readonly Spell BestowFaith = new Spell("Bestow Faith");
+    private readonly Spell FlashofLight = new Spell("Flash of Light");
+    private readonly Spell HolyLight = new Spell("Holy Light");
+    private readonly Spell HolyPrism = new Spell("Holy Prism");
+    private readonly Spell HolyShock = new Spell("Holy Shock");
+    private readonly Spell LightofDawn = new Spell("Light of Dawn");
+    private readonly Spell LightoftheMartyr = new Spell("Light of the Martyr");
+
+    #endregion
+
+    #region Healing Cooldowns
+
+    private readonly Spell AvengingWrath = new Spell("Avenging Wrath"); //No GCD
+    private readonly Spell AuraMastery = new Spell("Aura Mastery"); //No GCD
+    private readonly Spell HolyAvenger = new Spell("Holy Avenger");
+    private readonly Spell LayonHands = new Spell("Lay on Hands"); //No GCD
+    private readonly Spell LightsHammer = new Spell("Light's Hammer");
+
+    #endregion
+
+    #region Utility Spells
+
+    private readonly Spell BlessingofFreedom = new Spell("Blessing of Freedom");
+    private readonly Spell DivineSteed = new Spell("Divine Steed");
+    private readonly Spell HammerofJustice = new Spell("Hammer of Justice");
+    private readonly Spell Repentance = new Spell("Repentance");
+    private readonly Spell RuleofLaw = new Spell("Rule of Law"); //No GCD
 
     #endregion
 
@@ -250,7 +301,7 @@ public class PaladinHoly
     {
         Main.InternalRange = 30f;
         Main.InternalAggroRange = 30f;
-        Main.InternalLightHealingSpell = FlashOfLight;
+        Main.InternalLightHealingSpell = FlashofLight;
         MySettings = PaladinHolySettings.GetSettings();
         Main.DumpCurrentSettings<PaladinHolySettings>(MySettings);
         UInt128 lastTarget = 0;
@@ -265,15 +316,15 @@ public class PaladinHoly
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget && HolyShock.IsHostileDistanceGood)
-                            {
-                                Pull();
+                            if (ObjectManager.Me.Target != lastTarget)
                                 lastTarget = ObjectManager.Me.Target;
-                            }
-                            if (ObjectManager.Target.GetDistance <= 40f)
+
+                            if (CombatClass.InSpellRange(ObjectManager.Target, 0, 40))
                                 Combat();
+                            else if (!ObjectManager.Me.IsCast)
+                                Patrolling();
                         }
-                        if (!ObjectManager.Me.IsCast)
+                        else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -287,178 +338,247 @@ public class PaladinHoly
         }
     }
 
-    private void Pull()
-    {
-        if (HolyShock.KnownSpell && HolyShock.IsHostileDistanceGood && HolyShock.IsSpellUsable && MySettings.UseHolyShock)
-        {
-            HolyShock.Cast();
-        }
-    }
-
-    private void Combat()
-    {
-        Buffs();
-        DPSBurst();
-        if (MySettings.DoAvoidMelee)
-            AvoidMelee();
-        DPSCycle();
-        Heal();
-    }
-
+    // For Movement Spells (always return after Casting)
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
+        //Log
+        if (CombatMode)
         {
-            Heal();
+            Logging.WriteFight("Patrolling:");
+            CombatMode = false;
         }
-    }
 
-    private void Buffs()
-    {
-        if (!ObjectManager.Me.IsMounted)
+        if (ObjectManager.Me.GetMove && !Usefuls.PlayerUsingVehicle)
         {
-            if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
-                ItemsManager.UseItem(75525);
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat)
-        {
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
+            //Movement Buffs
+            if (!Darkflight.HaveBuff) // doesn't stack
             {
-                HolyLight.Cast(true, true, true);
-                return;
-            }
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
-            {
-                FlashOfLight.Cast(true, true, true);
-                return;
+                if (MySettings.UseDarkflight && Darkflight.IsSpellUsable)
+                {
+                    Darkflight.Cast();
+                    return;
+                }
             }
         }
-        if (!ObjectManager.Me.HaveBuff(25771))
+        else
         {
-            if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-                DivineShield.IsSpellUsable && MySettings.UseDivineShield)
+            //Self Heal for Damage Dealer
+            if (nManager.Products.Products.ProductName == "Damage Dealer" && Main.InternalLightHealingSpell.IsSpellUsable &&
+                ObjectManager.Me.HealthPercent < 90 && ObjectManager.Target.Guid == ObjectManager.Me.Guid)
             {
-                DivineShield.Cast();
+                Main.InternalLightHealingSpell.CastOnSelf();
                 return;
-            }
-            if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-                LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
-            {
-                LayOnHands.Cast();
-                return;
-            }
-            if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 &&
-                ObjectManager.Me.HealthPercent <= 20 &&
-                HandOfProtection.IsSpellUsable && MySettings.UseHandOfProtection)
-            {
-                HandOfProtection.Cast();
-                return;
-            }
-        }
-        if (ObjectManager.Me.ManaPercentage < 30)
-        {
-            if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrentForResource)
-                ArcaneTorrent.Cast();
-        }
-        if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
-        {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && MySettings.UseWordOfGlory)
-                WordOfGlory.Cast();
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
-            {
-                HolyLight.Cast();
-                return;
-            }
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
-            {
-                FlashOfLight.Cast();
-                return;
-            }
-        }
-        if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
-        {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && MySettings.UseWordOfGlory)
-                WordOfGlory.Cast();
-            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && MySettings.UseDivineProtection)
-                DivineProtection.Cast();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
-            {
-                FlashOfLight.Cast();
-                return;
-            }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
-            {
-                HolyLight.Cast();
             }
         }
     }
 
-    private void DPSBurst()
+    // For general InFight Behavior (only touch if you want to add a new method like PetManagement())
+    private void Combat()
     {
-        if (MySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+        //Log
+        if (!CombatMode)
         {
-            AvengingWrath.Cast();
-            if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
-            {
-                HolyAvenger.Cast();
-            }
+            Logging.WriteFight("Combat:");
+            CombatMode = true;
+        }
+        Healing();
+        if (Defensive() || Offensive())
             return;
-        }
-        if (!MySettings.UseAvengingWrath || !AvengingWrath.KnownSpell || !AvengingWrath.IsSpellUsable)
-        {
-            if (MySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
-            {
-                HolyAvenger.Cast();
-                return;
-            }
-        }
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
-        {
-            ItemsManager.UseItem(_firstTrinket.Name);
-            Logging.WriteFight("Use First Trinket Slot");
-            return;
-        }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
-        {
-            ItemsManager.UseItem(_secondTrinket.Name);
-            Logging.WriteFight("Use Second Trinket Slot");
-        }
+        Rotation();
     }
 
-    private void DPSCycle()
+    // For Self-Healing Spells (always return after Casting)
+    private bool Healing()
     {
         Usefuls.SleepGlobalCooldown();
+
         try
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if (HolyShock.KnownSpell && HolyShock.IsHostileDistanceGood && HolyShock.IsSpellUsable && MySettings.UseHolyShock)
+            //Maintain Beacon of Light
+            if (MySettings.UseBeaconofLight && BeaconofLight.IsSpellUsable && !BeaconofLight.HaveBuff)
+            {
+                BeaconofLight.CastOnSelf();
+                return true;
+            }
+            //Gift of the Naaru
+            if (ObjectManager.Me.HealthPercent < MySettings.UseGiftoftheNaaruBelowPercentage && GiftoftheNaaru.IsSpellUsable)
+            {
+                GiftoftheNaaru.CastOnSelf();
+                return true;
+            }
+            //Lay on Hands
+            if (ObjectManager.Me.HealthPercent < MySettings.UseLayonHandsBelowPercentage &&
+                LayonHands.IsSpellUsable && !Forbearance.HaveBuff)
+            {
+                LayonHands.CastOnSelf();
+                return true;
+            }
+            //Use Tyr's Deliverance
+            if (ObjectManager.Me.HealthPercent < MySettings.UseTyrsDeliveranceBelowPartyPercentage &&
+                TyrsDeliverance.IsSpellUsable && !ObjectManager.Me.GetMove)
+            {
+                TyrsDeliverance.Cast();
+                return true;
+            }
+            //Use Bestow Faith
+            if (ObjectManager.Me.HealthPercent < MySettings.UseBestowFaithBelowPercentage && BestowFaith.IsSpellUsable)
+            {
+                BestowFaith.CastOnSelf();
+                return true;
+            }
+            //Flash of Light
+            if (ObjectManager.Me.HealthPercent < MySettings.UseFlashofLightBelowPercentage &&
+                FlashofLight.IsSpellUsable && !Forbearance.HaveBuff)
+            {
+                FlashofLight.CastOnSelf();
+                return true;
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Defensive Buffs and Livesavers (always return after Casting)
+    private bool Defensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (StunTimer.IsReady && (DefensiveTimer.IsReady || ObjectManager.Me.HealthPercent < 20))
+            {
+                //Divine Shield
+                if (ObjectManager.Me.HealthPercent < MySettings.UseDivineShieldBelowPercentage &&
+                    DivineShield.IsSpellUsable)
+                {
+                    DivineShield.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+                //Stun
+                if (ObjectManager.Target.IsStunnable)
+                {
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseWarStompBelowPercentage && WarStomp.IsSpellUsable)
+                    {
+                        WarStomp.Cast();
+                        StunTimer = new Timer(1000*2.5);
+                        return true;
+                    }
+                    if (ObjectManager.Me.HealthPercent < MySettings.UseHammerofJusticeBelowPercentage &&
+                        HammerofJustice.IsSpellUsable && HammerofJustice.IsHostileDistanceGood)
+                    {
+                        HammerofJustice.Cast();
+                        StunTimer = new Timer(1000*6);
+                        return true;
+                    }
+                }
+                //Stoneform
+                if (ObjectManager.Me.HealthPercent < MySettings.UseStoneformBelowPercentage && Stoneform.IsSpellUsable)
+                {
+                    Stoneform.Cast();
+                    DefensiveTimer = new Timer(1000*8);
+                    return true;
+                }
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For Offensive Buffs (only return if a Cast triggered Global Cooldown)
+    private bool Offensive()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
+            {
+                ItemsManager.UseItem(_firstTrinket.Name);
+                Logging.WriteFight("Use First Trinket Slot");
+            }
+            if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
+            {
+                ItemsManager.UseItem(_secondTrinket.Name);
+                Logging.WriteFight("Use Second Trinket Slot");
+            }
+            if (MySettings.UseBerserking && Berserking.IsSpellUsable)
+            {
+                Berserking.Cast();
+            }
+            if (MySettings.UseBloodFury && BloodFury.IsSpellUsable)
+            {
+                BloodFury.Cast();
+            }
+            //Avenging Wrath
+            if (MySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable && !AvengingWrath.HaveBuff)
+            {
+                AvengingWrath.Cast();
+            }
+            return false;
+        }
+        finally
+        {
+            Memory.WowMemory.GameFrameUnLock();
+        }
+    }
+
+    // For the Ability Priority Logic
+    private void Rotation()
+    {
+        Usefuls.SleepGlobalCooldown();
+
+        try
+        {
+            Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
+
+            //Use Light's Hammer when it hits multiple enemies
+            if (LightsHammer.IsSpellUsable && ObjectManager.Target.GetUnitInSpellRange(10f) > 1)
+            {
+                LightsHammer.CastAtPosition(ObjectManager.Target.Position);
+                return;
+            }
+            //Cast Judgment
+            if (MySettings.UseJudgment && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+            {
+                Judgment.Cast();
+                return;
+            }
+            //Cast Holy Shock
+            if (MySettings.UseHolyShock && HolyShock.IsSpellUsable && HolyShock.IsHostileDistanceGood)
             {
                 HolyShock.Cast();
                 return;
             }
-            if (HammerOfWrath.KnownSpell && HammerOfWrath.IsHostileDistanceGood && ObjectManager.Target.IsAlive && HammerOfWrath.IsSpellUsable &&
-                MySettings.UseHammerOfWrath)
+            //Cast Crusader Strike
+            if (MySettings.UseCrusaderStrike && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood)
             {
-                HammerOfWrath.Cast();
+                CrusaderStrike.Cast();
                 return;
             }
-            if (HammerOfJustice.KnownSpell && HammerOfJustice.IsHostileDistanceGood && HammerOfJustice.IsSpellUsable &&
-                MySettings.UseHammerOfJustice)
+            //Cast Holy Shock
+            if (MySettings.UseHolyShock && HolyShock.IsSpellUsable && HolyShock.IsHostileDistanceGood)
             {
-                HammerOfJustice.Cast();
+                HolyShock.Cast();
                 return;
             }
-            if (Denounce.KnownSpell && Denounce.IsHostileDistanceGood && Denounce.IsSpellUsable && MySettings.UseDenounce)
+            //Cast Holy Light
+            if (MySettings.UseHolyLight && HolyLight.IsSpellUsable && HolyLight.IsHostileDistanceGood)
             {
-                Denounce.Cast();
+                HolyLight.Cast();
+                return;
             }
         }
         finally
@@ -467,106 +587,77 @@ public class PaladinHoly
         }
     }
 
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
-        {
-            Logging.WriteFight("Too Close. Moving Back");
-            var maxTimeTimer = new Timer(1000*2);
-            MovementsAction.MoveBackward(true);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
-                Others.SafeSleep(300);
-            MovementsAction.MoveBackward(false);
-            if (maxTimeTimer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
-            {
-                MovementsAction.MoveForward(true);
-                Others.SafeSleep(1000);
-                MovementsAction.MoveForward(false);
-                MovementManager.Face(ObjectManager.Target.Position);
-            }
-        }
-    }
-
     #region Nested type: PaladinHolySettings
 
     [Serializable]
     public class PaladinHolySettings : Settings
     {
-        public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 0;
-        public bool UseAlchFlask = true;
-        public bool UseArcaneTorrentForDecast = true;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public bool UseAvengingWrath = true;
-        public bool UseBeaconOfLight = true;
+        /* Professions & Racials */
+        //public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseDenounce = true;
-        public bool UseDevotionAura = true;
-        public bool UseDivineProtection = true;
-        public bool UseDivineShield = true;
-        public bool UseFlashOfLight = true;
-        public bool UseGiftoftheNaaru = true;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public bool UseHammerOfJustice = true;
-        public bool UseHammerOfWrath = true;
-        public bool UseHandOfProtection = true;
-        public bool UseHandOfPurity = true;
-        public bool UseHolyAvenger = true;
-        public bool UseHolyLight = true;
-        public bool UseHolyRadiance = true;
-        public bool UseHolyShock = true;
-        public bool UseLayOnHands = true;
+        public bool UseBloodFury = true;
+        public bool UseDarkflight = true;
+        public int UseGiftoftheNaaruBelowPercentage = 50;
+        public int UseStoneformBelowPercentage = 50;
+        public int UseWarStompBelowPercentage = 50;
 
-        public bool UseSacredShield = true;
-        public bool UseStoneform = true;
-        public int UseStoneformAtPercentage = 80;
+        /* Artifact Spells */
+        public int UseTyrsDeliveranceBelowPartyPercentage = 0;
+
+        /* Offensive Spells */
+        public bool UseCrusaderStrike = true;
+        public bool UseJudgment = true;
+        public bool UseHolyShock = true;
+        public bool UseHolyLight = true;
+
+        /* Offensive Cooldowns */
+        public bool UseAvengingWrath = true;
+
+        /* Defensive Cooldowns */
+        public int UseDivineShieldBelowPercentage = 0;
+        public int UseHammerofJusticeBelowPercentage = 50;
+
+        /* Healing Spells */
+        public bool UseBeaconofLight = true;
+        public int UseFlashofLightBelowPercentage = 25;
+        public int UseLayonHandsBelowPercentage = 10;
+        public int UseBestowFaithBelowPercentage = 40;
+
+        /* Game Settings */
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
-        public bool UseWarStomp = true;
-        public int UseWarStompAtPercentage = 80;
-        public bool UseWordOfGlory = true;
 
         public PaladinHolySettings()
         {
             ConfigWinForm("Paladin Protection Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
-
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            //AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            /* Paladin Seals & Buffs */
-            /* Offensive Spell */
-            AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spell");
-            AddControlInWinForm("Use Denounce", "UseDenounce", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
-            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
-            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Holy Radiance", "UseHolyRadiance", "Healing Spell");
-            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
-            AddControlInWinForm("Use Holy Light", "UseHolyLight", "Healing Spell");
-            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
-            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
-            AddControlInWinForm("Use Beacon of Light", "UseBeaconOfLight", "Healing Spell");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Darkflight", "UseDarkflight", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaruBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Stone Form", "UseStoneformBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            AddControlInWinForm("Use War Stomp", "UseWarStompBelowPercentage", "Professions & Racials", "BelowPercentage", "Life");
+            /* Artifact Spells */
+            AddControlInWinForm("Use Tyr's Deliverance", "UseTyrsDeliveranceBelowPartyPercentage", "Artifact Spells", "BelowPercentage", "Life");
+            /* Offensive Spells */
+            AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spells");
+            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spells");
+            AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spells");
+            AddControlInWinForm("Use Holy Light", "UseHolyLight", "Offensive Spells");
+            /* Offensive Cooldowns */
+            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldowns");
+            /* Defensive Cooldowns */
+            AddControlInWinForm("Use Divine Shield", "UseDivineShieldBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Hammer of Justice", "UseHammerofJusticeBelowPercentage", "Defensive Cooldowns", "BelowPercentage", "Life");
+            /* Healing Spells */
+            AddControlInWinForm("Use Beacon of Light", "UseBeaconofLight", "Healing Spells");
+            AddControlInWinForm("Use Flash of Light", "UseFlashofLightBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Lay on Hands", "UseLayonHandsBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            AddControlInWinForm("Use Bestow Faith", "UseBestowFaithBelowPercentage", "Healing Spells", "BelowPercentage", "Life");
+            /* Game Settings */
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
             AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
-            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
-            AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
         public static PaladinHolySettings CurrentSetting { get; set; }
@@ -1020,15 +1111,6 @@ public class PaladinProtection
             {
                 AvengersShield.Cast();
                 return;
-            }
-
-            //Single Target 
-            if (ObjectManager.Target.GetUnitInSpellRange(5f) == 1)
-            {
-            }
-                //Multiple Targets
-            else
-            {
             }
         }
         finally

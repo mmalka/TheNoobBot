@@ -426,8 +426,7 @@ public class WarlockAffliction
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) &&
-                ObjectManager.Me.SoulShards >= 1)
+            if ((!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) && ObjectManager.Me.SoulShards >= 1)
             {
                 if (GrimoireofSupremacy.HaveBuff)
                 {
@@ -1252,8 +1251,7 @@ public class WarlockDemonology
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) &&
-                ObjectManager.Me.SoulShards >= 1)
+            if ((!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) && ObjectManager.Me.SoulShards >= 1)
             {
                 if (GrimoireofSupremacy.HaveBuff)
                 {
@@ -2042,8 +2040,7 @@ public class WarlockDestruction
         {
             Memory.WowMemory.GameFrameLock(); // !!! WARNING - DONT SLEEP WHILE LOCKED - DO FINALLY(GameFrameUnLock()) !!!
 
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid) &&
-                ObjectManager.Me.SoulShards >= 1)
+            if ((!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) && ObjectManager.Me.SoulShards >= 1)
             {
                 if (GrimoireofSupremacy.HaveBuff)
                 {

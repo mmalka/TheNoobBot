@@ -1124,10 +1124,8 @@ public class MageFire
             }
             //4-5. Cast Phoenix's Flames when
             if (MySettings.UsePhoenixsFlames && PhoenixsFlames.IsSpellUsable && Combustion.IsHostileDistanceGood &&
-                //it has 2 charges or
-                (PhoenixsFlames.GetSpellCharges >= 2 ||
-                 //there are 3 or more targets stacked
-                 ObjectManager.Target.GetUnitInSpellRange(5f) >= 3))
+                //it has 2 charges or there are 3 or more targets stacked
+                (PhoenixsFlames.GetSpellCharges >= 2 || ObjectManager.Target.GetUnitInSpellRange(5f) >= 3))
             {
                 PhoenixsFlames.Cast();
                 return;
@@ -1290,7 +1288,7 @@ public class MageFire
 
         public static MageFireSettings GetSettings()
         {
-            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
+            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Fire.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
@@ -1607,8 +1605,8 @@ public class MageFrost
                 BloodFury.Cast();
             }
             //Cast Summon Water Elemental if it's not alive
-            if (MySettings.UseSummonWaterElemental && SummonWaterElemental.IsSpellUsable &&
-                ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+            if (MySettings.UseSummonWaterElemental && (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) &&
+                SummonWaterElemental.IsSpellUsable)
             {
                 Logging.WriteDebug("Pet: Health == " + ObjectManager.Pet.Health + ", Guid == " + ObjectManager.Pet.Guid + ", IsValid == " + ObjectManager.Pet.IsValid);
                 SummonWaterElemental.Cast();
@@ -1692,8 +1690,9 @@ public class MageFrost
             //4. Cast Rune of Power if talented and
             if (MySettings.UseRuneofPower && RuneofPower.IsSpellUsable && !RuneofPower.HaveBuff &&
                 //you will deal high burst damage.
-                (FingersofFrost.GetSpellCharges >= 2 || (FingersofFrost.GetSpellCharges >= 1 &&
-                                                         Ebonbolt.IsSpellUsable) || FrozenOrb.IsSpellUsable))
+                (FingersofFrost.GetSpellCharges >= 2 ||
+                 (FingersofFrost.GetSpellCharges >= 1 && Ebonbolt.IsSpellUsable) ||
+                 FrozenOrb.IsSpellUsable))
             {
                 RuneofPower.CastAtPosition(ObjectManager.Me.Position);
                 return;
@@ -1768,9 +1767,9 @@ public class MageFrost
             //14. Cast Blizzard if
             if (MySettings.UseBlizzard && Blizzard.IsSpellUsable && Blizzard.IsHostileDistanceGood &&
                 //more than 4 targets are present and within the AoE or
-                ObjectManager.Target.GetUnitInSpellRange(8f) > 4 ||
-                //you are talented into Arctic Gale.
-                ArcticGale.HaveBuff)
+                (ObjectManager.Target.GetUnitInSpellRange(8f) > 4 ||
+                 //you are talented into Arctic Gale.
+                 ArcticGale.HaveBuff))
             {
                 Blizzard.Cast();
             }
@@ -1896,7 +1895,7 @@ public class MageFrost
 
         public static MageFrostSettings GetSettings()
         {
-            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Fire.xml";
+            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return

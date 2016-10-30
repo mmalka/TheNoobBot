@@ -245,6 +245,8 @@ public class RogueAssassination
     private readonly Spell DeathfromAbove = new Spell("Death from Above");
     private readonly Spell Envenom = new Spell("Envenom");
     private readonly Spell Exsanguinate = new Spell("Exsanguinate");
+    private bool GarroteHasExsanguinateBuff = false;
+    private bool RuptureHasExsanguinateBuff = false;
     private readonly Spell FanofKnives = new Spell("Fan of Knives");
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Mutilate = new Spell("Mutilate");
@@ -660,6 +662,8 @@ public class RogueAssassination
                 //Kingsbane Dot is up
                 Kingsbane.TargetHaveBuff)
             {
+                GarroteHasExsanguinateBuff = true;
+                RuptureHasExsanguinateBuff = true;
                 Exsanguinate.Cast();
                 return;
             }
@@ -668,12 +672,15 @@ public class RogueAssassination
             if (MySettings.UseGarrote && Garrote.IsSpellUsable &&
                 ObjectManager.Me.Energy >= 45 && Garrote.IsHostileDistanceGood &&
                 //it has 6 or less seconds remaining and
-                ObjectManager.Target.UnitAura(Garrote.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 6000 &&
-                //except during Exsanguinate.
-                !Exsanguinate.TargetHaveBuffFromMe)
+                ObjectManager.Target.UnitAura(Garrote.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 6000)
             {
-                Garrote.Cast();
-                return;
+                //it won't reset Exsanguinate
+                if (!Garrote.TargetHaveBuffFromMe || !GarroteHasExsanguinateBuff)
+                {
+                    GarroteHasExsanguinateBuff = false;
+                    Garrote.Cast();
+                    return;
+                }
             }
             //2. Cast Marked for Death (when talented) when
             if (MySettings.UseMarkedforDeath && MarkedforDeath.IsSpellUsable && MarkedforDeath.IsHostileDistanceGood &&
@@ -709,12 +716,15 @@ public class RogueAssassination
                 //you have max combo points and
                 GetFreeComboPoints() == 0 &&
                 //it has 8 or less seconds remaining and
-                ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000 &&
-                //except during Exsanguinate.
-                !Exsanguinate.TargetHaveBuffFromMe)
+                ObjectManager.Target.UnitAura(Rupture.Ids, ObjectManager.Me.Guid).AuraTimeLeftInMs <= 8000)
             {
-                Rupture.Cast();
-                return;
+                //it won't reset Exsanguinate
+                if (!Rupture.TargetHaveBuffFromMe || !RuptureHasExsanguinateBuff)
+                {
+                    RuptureHasExsanguinateBuff = false;
+                    Rupture.Cast();
+                    return;
+                }
             }
             //3. Cast Envenom when
             if (MySettings.UseEnvenom && Envenom.IsSpellUsable &&

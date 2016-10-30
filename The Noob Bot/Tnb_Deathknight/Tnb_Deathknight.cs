@@ -1597,8 +1597,8 @@ public class DeathknightUnholy
             {
                 SummonGargoyle.Cast();
             }
-            if (MySettings.UseRaiseDead && RaiseDead.IsSpellUsable &&
-                ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0 || !ObjectManager.Pet.IsValid)
+            if (MySettings.UseRaiseDead && (!ObjectManager.Pet.IsValid || ObjectManager.Pet.IsDead) &&
+                RaiseDead.IsSpellUsable)
             {
                 Logging.WriteDebug("Pet: Health == " + ObjectManager.Pet.Health + ", Guid == " + ObjectManager.Pet.Guid + ", IsValid == " + ObjectManager.Pet.IsValid);
                 RaiseDead.Cast();
