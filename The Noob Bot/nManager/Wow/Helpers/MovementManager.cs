@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using nManager.Helpful;
@@ -1135,11 +1136,11 @@ namespace nManager.Wow.Helpers
                 if (!ObjectManager.ObjectManager.Me.IsMounted || Usefuls.IsSwimming || (!Usefuls.IsSwimming && MountTask.OnAquaticMount()))
                 {
                     // We are not mounted, or we are swimming.
-                    MountCapacity mountCapacity = MountTask.GetMountCapacity();
                     if (ObjectManager.ObjectManager.Me.IsAlive && _canRemount.IsReady && !Fight.InFight && !Looting.IsLooting &&
                         !ObjectManager.ObjectManager.Me.InCombat && !Usefuls.PlayerUsingVehicle && Products.Products.ProductName.ToLower() != "fisherbot" &&
-                        mountCapacity > MountCapacity.Feet && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                        MountTask.GetMountCapacity() > MountCapacity.Feet && position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
+                        MountCapacity mountCapacity = MountTask.GetMountCapacity();
                         // I should be able to mount here or upgrade my current mount.
                         if (Usefuls.IsSwimming && !MountTask.OnAquaticMount() && mountCapacity == MountCapacity.Swimm)
                         {
