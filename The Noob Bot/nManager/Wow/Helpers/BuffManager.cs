@@ -39,8 +39,9 @@ namespace nManager.Wow.Helpers
 
         public static int AuraStack(uint baseAddress, List<UInt32> buffId)
         {
-            foreach (Auras.UnitAura buff in AuraStack(baseAddress).Auras)
+            for (int i = 0; i < AuraStack(baseAddress).Auras.Count; i++)
             {
+                Auras.UnitAura buff = AuraStack(baseAddress).Auras[i];
                 if (buffId.Contains(buff.AuraSpellId))
                 {
                     if (buff.IsActive)
