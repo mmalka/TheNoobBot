@@ -83,7 +83,7 @@ namespace Quester.Tasks
                                     quest.NeedQuestCompletedId.Count == 0)
                                     if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCount(quest.ItemPickUp) > 0))
                                         if (quest.WorldQuestLocation == null || !quest.WorldQuestLocation.IsValid || IsWorldQuestAvailable(quest.Id))
-                                            if (Script.Run(quest.ScriptCondition)) // Condition
+                                            if (Script.Run(quest.ScriptCondition, quest.Id)) // Condition
                                             {
                                                 CurrentQuest = quest;
                                                 Logging.Write("\"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
@@ -123,7 +123,8 @@ namespace Quester.Tasks
                             CurrentQuest.Objectives[_currentQuestObjectiveId].InternalIndex,
                             CurrentQuest.Objectives[_currentQuestObjectiveId].Count > 0 ? CurrentQuest.Objectives[_currentQuestObjectiveId].Count : CurrentQuest.Objectives[_currentQuestObjectiveId].CollectCount))
                         continue;
-                    if (Script.Run(CurrentQuest.Objectives[_currentQuestObjectiveId].ScriptCondition))
+                    var questObjective = CurrentQuest.Objectives[_currentQuestObjectiveId];
+                    if (Script.Run(CurrentQuest.Objectives[_currentQuestObjectiveId].ScriptCondition, CurrentQuest.Id, ref questObjective))
                         // Script condition
                     {
                         CurrentQuestObjective = CurrentQuest.Objectives[_currentQuestObjectiveId];
@@ -190,7 +191,7 @@ namespace Quester.Tasks
                     questObjective.Count > 0 ? questObjective.Count : questObjective.CollectCount);
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
-                return Script.Run(questObjective.ScriptConditionIsComplete);
+                return Script.Run(questObjective.ScriptConditionIsComplete, CurrentQuest.Id, ref questObjective);
 
             if (questObjective.Objective == Objective.TravelTo)
             {
@@ -586,7 +587,7 @@ namespace Quester.Tasks
                     if (questObjective.Entry.Count > 0)
                     {
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList,
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                             questObjective.AllowPlayerControlled);
                         if (node.IsValid)
                         {
@@ -612,7 +613,8 @@ namespace Quester.Tasks
                         if (questObjective.Entry.Count > 0)
                         {
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList,
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable,
+                                questObjective.IgnoreBlackList,
                                 questObjective.AllowPlayerControlled);
                             if (node.IsValid)
                             {
@@ -650,7 +652,7 @@ namespace Quester.Tasks
                     if (questObjective.Entry.Count > 0)
                     {
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList,
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                             questObjective.AllowPlayerControlled);
                         if (node.IsValid)
                         {
@@ -676,7 +678,8 @@ namespace Quester.Tasks
                         if (questObjective.Entry.Count > 0)
                         {
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), true, questObjective.IgnoreBlackList,
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable,
+                                questObjective.IgnoreBlackList,
                                 questObjective.AllowPlayerControlled);
                             if (node.IsValid)
                             {
@@ -760,7 +763,7 @@ namespace Quester.Tasks
                     if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) < questObjective.Range)
                     {
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreBlackList,
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                             questObjective.AllowPlayerControlled);
                         Point pos;
                         uint baseAddress;
@@ -833,7 +836,7 @@ namespace Quester.Tasks
                     if (questObjective.Entry.Count > 0)
                     {
                         WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreBlackList,
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable, questObjective.IgnoreBlackList,
                             questObjective.AllowPlayerControlled);
                         if (node.IsValid)
                         {
@@ -856,7 +859,8 @@ namespace Quester.Tasks
                         if (questObjective.Entry.Count > 0)
                         {
                             WoWGameObject node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry), questObjective.IgnoreBlackList);
-                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreBlackList,
+                            WoWUnit unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(questObjective.Entry, questObjective.IsDead), questObjective.IgnoreNotSelectable,
+                                questObjective.IgnoreBlackList,
                                 questObjective.AllowPlayerControlled);
                             if (node.IsValid)
                             {

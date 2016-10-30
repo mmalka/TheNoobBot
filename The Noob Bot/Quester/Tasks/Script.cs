@@ -14,8 +14,10 @@ namespace Quester.Tasks
     {
         internal static Dictionary<string, IScript> CachedScripts = new Dictionary<string, IScript>();
 
-        internal static bool Run(string script)
+        internal static bool Run(string script, int questId = 0)
         {
+            if (string.IsNullOrWhiteSpace(script))
+                return true;
             var qO = new QuestObjective();
             return Run(script, 0, ref qO);
         }
@@ -24,7 +26,7 @@ namespace Quester.Tasks
         {
             try
             {
-                if (script.Replace(" ", "") == string.Empty)
+                if (string.IsNullOrWhiteSpace(script))
                     return true;
 
                 string originalScript = script;
