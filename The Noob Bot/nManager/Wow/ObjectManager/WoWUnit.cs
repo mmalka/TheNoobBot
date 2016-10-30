@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Net.Mime;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
@@ -14,6 +13,21 @@ namespace nManager.Wow.ObjectManager
 {
     public class WoWUnit : WoWObject
     {
+        public enum PartyRole
+        {
+            Tank,
+            DPS,
+            Heal,
+            None
+        }
+
+        private static List<uint> _ghostSpells = new List<uint>();
+        public static List<uint> CombatMount = new List<uint> {164222, 165803};
+        private static readonly List<uint> FlagsIds = new List<uint>();
+        private readonly List<UnitIdInfo> _cachedUnitIdInfo = new List<UnitIdInfo>();
+        private readonly Timer _cleanTimer = new Timer(600000);
+        private Point _lastPosMove = new Point();
+
         public WoWUnit(uint address)
             : base(address)
         {
@@ -57,7 +71,7 @@ namespace nManager.Wow.ObjectManager
                         if (i > 0x1200)
                             break;
                     }*/
-                    Point ret =
+                    var ret =
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
                                                               (uint) Addresses.UnitField.UNIT_FIELD_X),
@@ -67,14 +81,14 @@ namespace nManager.Wow.ObjectManager
                                                               (uint) Addresses.UnitField.UNIT_FIELD_Z));
                     if (InTransport)
                     {
-                        WoWObject t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
+                        var t = new WoWObject(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
                         if (t.Type == WoWObjectType.GameObject)
                         {
                             var o = new WoWGameObject(t.GetBaseAddress);
                             if (o.IsValid)
                             {
-                                var posAbsolute = ret.Transform(o.WorldMatrix);
-                                Point pos = new Point(posAbsolute.X, posAbsolute.Y, posAbsolute.Z);
+                                Vector3 posAbsolute = ret.Transform(o.WorldMatrix);
+                                var pos = new Point(posAbsolute.X, posAbsolute.Y, posAbsolute.Z);
                                 return pos;
                             }
                         }
@@ -221,16 +235,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint GetUnitInSpellRange(float range = 5f)
-        {
-            return ObjectManager.GetUnitInSpellRange(range, this);
-        }
-
-        public uint GetPlayerInSpellRange(float range = 5f, bool friendly = true)
-        {
-            return ObjectManager.GetPlayerInSpellRange(range, friendly, this);
-        }
-
         public bool IsHostile
         {
             get
@@ -343,7 +347,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint pointerToUnk0 = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) 0x11C) + (uint) 0x180);
+                    uint pointerToUnk0 = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + 0x11C) + 0x180);
                     int ret;
                     if (GetDbCacheRowPtr <= 0 || pointerToUnk0 > 0)
                         ret = 0;
@@ -1215,7 +1219,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
                     uint displayPower = descriptorsArray + ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
-                    var res = Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
+                    byte res = Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
                     if (res == 0)
                         res = Memory.WowMemory.Memory.ReadBytes((displayPower - 0x4), 4)[1];
                     return (WoWClass) res;
@@ -1226,36 +1230,6 @@ namespace nManager.Wow.ObjectManager
                     return WoWClass.None;
                 }
             }
-        }
-
-        private uint GetPowerIndexByPowerType(PowerType powerType)
-        {
-            var classId = (uint) ObjectManager.Me.WowClass;
-            uint index = classId + (uint) powerType + (uint) Addresses.PowerIndex.Multiplicator*classId;
-            uint result = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PowerIndex.PowerIndexArrays + index*4);
-            return result;
-        }
-
-        public uint GetPowerByPowerType(PowerType powerType)
-        {
-            uint index = GetPowerIndexByPowerType(powerType);
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-            uint powerValue =
-                Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.Multiplicator +
-                                                  index*4)); // To be updated. (Use Get Descriptors)
-            return powerValue;
-        }
-
-        public uint GetMaxPowerByPowerType(PowerType powerType)
-        {
-            uint index = GetPowerIndexByPowerType(powerType);
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-            uint powerValue =
-                Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.MaxPower*Descriptors.Multiplicator +
-                                                  index*4)); // To be updated. (Use Get Descriptors)
-            return powerValue;
         }
 
         public uint Faction
@@ -1290,8 +1264,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        private Point _lastPosMove = new Point();
-
         public bool GetMove
         {
             get
@@ -1322,20 +1294,6 @@ namespace nManager.Wow.ObjectManager
                     return true;
                 }
             }
-        }
-
-        public bool IsInRange(float range)
-        {
-            Vector3 delta = (Position - ObjectManager.Me.Position);
-            float positiveDeltaX = delta.X < 0 ? -delta.X : delta.X;
-            float positiveDeltaY = delta.Y < 0 ? -delta.Y : delta.Y;
-            float positiveDeltaZ = delta.Z < 0 ? -delta.Z : delta.Z;
-
-            if (positiveDeltaX > range || positiveDeltaY > range || positiveDeltaZ > range)
-                return false;
-            if (GetDistance > range)
-                return false;
-            return true;
         }
 
         public override float GetDistance
@@ -1387,8 +1345,6 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-
-        private static List<uint> _ghostSpells = new List<uint>();
 
         public bool IsDead
         {
@@ -1553,21 +1509,13 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public enum PartyRole
-        {
-            Tank,
-            DPS,
-            Heal,
-            None
-        }
-
         public PartyRole GetUnitRole
         {
             get
             {
                 string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(randomStringResult + " = UnitGroupRolesAssigned(\"" + Name + "\")");
-                var ret = Lua.GetLocalizedText(randomStringResult);
+                string ret = Lua.GetLocalizedText(randomStringResult);
                 if (ret == "TANK")
                     return PartyRole.Tank;
                 if (ret == "DAMAGER")
@@ -1683,22 +1631,6 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("WoWUnit > SubName: " + e);
                     return "";
                 }
-            }
-        }
-
-        private uint QuestItem(uint offset)
-        {
-            try
-            {
-                if (offset > 3)
-                    return 0;
-                return
-                    Memory.WowMemory.Memory.ReadUInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedQuestItem1 + (0x04*offset));
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("WoWUnit > QuestItem(" + offset + "): " + e);
-                return 0;
             }
         }
 
@@ -2126,7 +2058,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID); // To Repair
+                int spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID); // To Repair
                 return spellId;
             }
         }
@@ -2135,7 +2067,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                var spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID); // To Repair
+                int spellId = Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID); // To Repair
                 return spellId;
             }
         }
@@ -2205,7 +2137,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    UnitQuestGiverStatus questGiverStatus = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
+                    var questGiverStatus = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                     return questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnIn) || questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInInvisible) ||
                            questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInRepeatable) || questGiverStatus.HasFlag(UnitQuestGiverStatus.LowLevelTurnInRepeatable);
                 }
@@ -2216,8 +2148,6 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-
-        public static List<uint> CombatMount = new List<uint> {164222, 165803};
 
         public bool IsMounted
         {
@@ -2414,106 +2344,6 @@ namespace nManager.Wow.ObjectManager
             get { return BuffManager.AuraStack(BaseAddress); }
         }
 
-        public Auras.UnitAura UnitAura(List<UInt32> idBuffs, UInt128 creatorGUID)
-        {
-            for (int i = 0; i < UnitAuras.Auras.Count; i++)
-            {
-                var aura = UnitAuras.Auras[i];
-                if (idBuffs.Contains(aura.AuraSpellId) && aura.AuraCreatorGUID == creatorGUID)
-                    return aura;
-            }
-            return new Auras.UnitAura();
-        }
-
-        public Auras.UnitAura UnitAura(UInt32 idBuff, UInt128 creatorGUID)
-        {
-            var idBuffs = new List<UInt32> {idBuff};
-            return UnitAura(idBuffs, creatorGUID);
-        }
-
-        public Auras.UnitAura UnitAura(List<UInt32> idBuffs)
-        {
-            foreach (var aura in UnitAuras.Auras)
-            {
-                if (idBuffs.Contains(aura.AuraSpellId))
-                    return aura;
-            }
-            return new Auras.UnitAura();
-        }
-
-        public Auras.UnitAura UnitAura(UInt32 idBuff)
-        {
-            var idBuffs = new List<UInt32> {idBuff};
-            return UnitAura(idBuffs);
-        }
-
-        public int BuffStack(List<UInt32> idBuffs)
-        {
-            try
-            {
-                return BuffManager.AuraStack(BaseAddress, idBuffs);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("WoWUnit > BuffStack(List<UInt32> idBuffs): " + e);
-                return -1;
-            }
-        }
-
-        public int BuffStack(UInt32 idBuff)
-        {
-            try
-            {
-                var idBuffs = new List<UInt32> {idBuff};
-                return BuffManager.AuraStack(BaseAddress, idBuffs);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("WoWUnit > BuffStack(UInt32 idBuffs): " + e);
-                return -1;
-            }
-        }
-
-        public bool HaveBuff(List<UInt32> idBuffs)
-        {
-            try
-            {
-                return BuffManager.HaveBuff(BaseAddress, idBuffs);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("WoWUnit > HaveBuff(List<UInt32> idBuffs): " + e);
-                return false;
-            }
-        }
-
-        public bool HaveBuff(UInt32 idBuffs)
-        {
-            try
-            {
-                return BuffManager.HaveBuff(BaseAddress, idBuffs);
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("WoWUnit > HaveBuff(UInt32 idBuffs): " + e);
-                return false;
-            }
-        }
-
-        public int AuraTimeLeft(UInt32 idBuff, bool fromMe = false)
-        {
-            Auras.UnitAura aura = fromMe ? UnitAura(idBuff, ObjectManager.Me.Guid) : UnitAura(idBuff);
-            return !aura.IsValid ? 0 : aura.AuraTimeLeftInMs;
-        }
-
-        public bool AuraIsActiveAndExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs, bool fromMe = false)
-        {
-            int timeLeft = AuraTimeLeft(idBuff, fromMe);
-            if (timeLeft <= 0)
-                return false;
-            return timeLeft <= expireInLessThanMs;
-        }
-
         public Reaction Reaction
         {
             get
@@ -2529,8 +2359,6 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-
-        private static readonly List<uint> FlagsIds = new List<uint>();
 
         public bool IsHoldingWGFlag
         {
@@ -2570,7 +2398,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint descriptor = GetDescriptor<uint>(Descriptors.ObjectFields.DynamicFlags);
+                    var descriptor = GetDescriptor<uint>(Descriptors.ObjectFields.DynamicFlags);
                     long t;
                     if (value)
                     {
@@ -2620,43 +2448,6 @@ namespace nManager.Wow.ObjectManager
                     return false;
                 return true;
             }
-        }
-
-        private class UnitIdInfo
-        {
-            public UInt128 Guid;
-            public string UnitId;
-            public int TickCount;
-        }
-
-        private readonly List<UnitIdInfo> _cachedUnitIdInfo = new List<UnitIdInfo>();
-        private readonly Timer _cleanTimer = new Timer(600000);
-
-        public string GetUnitId()
-        {
-            if (_cleanTimer.IsReady)
-            {
-                for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
-                {
-                    if (_cachedUnitIdInfo[i].TickCount > Environment.TickCount - 60000)
-                        _cachedUnitIdInfo.Remove(_cachedUnitIdInfo[i]);
-                }
-                _cleanTimer.Reset();
-            }
-            foreach (UnitIdInfo info in _cachedUnitIdInfo)
-            {
-                if (info.Guid == Guid && info.TickCount < Environment.TickCount - 60000)
-                    return info.UnitId;
-                if (info.Guid == Guid)
-                {
-                    _cachedUnitIdInfo.Remove(info);
-                    break; // More than 60 seconds elapsed, regenerate.
-                }
-            }
-            string unitId = UnitId;
-            var tmpClass = new UnitIdInfo {Guid = Guid, TickCount = Environment.TickCount, UnitId = unitId};
-            _cachedUnitIdInfo.Add(tmpClass);
-            return unitId;
         }
 
         private string UnitId
@@ -2740,7 +2531,7 @@ namespace nManager.Wow.ObjectManager
                 uint unitLevel = Level;
                 uint playerLevel = ObjectManager.Me.Level;
 
-                int levelAboveUnit = (int) (playerLevel - unitLevel);
+                var levelAboveUnit = (int) (playerLevel - unitLevel);
 
                 if (levelAboveUnit <= -3)
                     return false;
@@ -2766,12 +2557,210 @@ namespace nManager.Wow.ObjectManager
                     return false;
                 }
 
-                uint trivialHp = (uint) (playerLevel/unitLevel*8*ObjectManager.Me.MaxHealth);
+                var trivialHp = (uint) (playerLevel/unitLevel*8*ObjectManager.Me.MaxHealth);
 
                 if (trivialHp >= MaxHealth)
                     return true;
                 return false;
             }
+        }
+
+        public uint GetUnitInSpellRange(float range = 5f)
+        {
+            return ObjectManager.GetUnitInSpellRange(range, this);
+        }
+
+        public uint GetPlayerInSpellRange(float range = 5f, bool friendly = true)
+        {
+            return ObjectManager.GetPlayerInSpellRange(range, friendly, this);
+        }
+
+        private uint GetPowerIndexByPowerType(PowerType powerType)
+        {
+            var classId = (uint) ObjectManager.Me.WowClass;
+            uint index = classId + (uint) powerType + (uint) Addresses.PowerIndex.Multiplicator*classId;
+            uint result = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PowerIndex.PowerIndexArrays + index*4);
+            return result;
+        }
+
+        public uint GetPowerByPowerType(PowerType powerType)
+        {
+            uint index = GetPowerIndexByPowerType(powerType);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
+            uint powerValue =
+                Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
+                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.Multiplicator +
+                                                  index*4)); // To be updated. (Use Get Descriptors)
+            return powerValue;
+        }
+
+        public uint GetMaxPowerByPowerType(PowerType powerType)
+        {
+            uint index = GetPowerIndexByPowerType(powerType);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
+            uint powerValue =
+                Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
+                                                 ((uint) Descriptors.UnitFields.MaxPower*Descriptors.Multiplicator +
+                                                  index*4)); // To be updated. (Use Get Descriptors)
+            return powerValue;
+        }
+
+        public bool IsInRange(float range)
+        {
+            Vector3 delta = (Position - ObjectManager.Me.Position);
+            float positiveDeltaX = delta.X < 0 ? -delta.X : delta.X;
+            float positiveDeltaY = delta.Y < 0 ? -delta.Y : delta.Y;
+            float positiveDeltaZ = delta.Z < 0 ? -delta.Z : delta.Z;
+
+            if (positiveDeltaX > range || positiveDeltaY > range || positiveDeltaZ > range)
+                return false;
+            if (GetDistance > range)
+                return false;
+            return true;
+        }
+
+        private uint QuestItem(uint offset)
+        {
+            try
+            {
+                if (offset > 3)
+                    return 0;
+                return
+                    Memory.WowMemory.Memory.ReadUInt(GetDbCacheRowPtr + (uint) Addresses.UnitField.CachedQuestItem1 + (0x04*offset));
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > QuestItem(" + offset + "): " + e);
+                return 0;
+            }
+        }
+
+        public Auras.UnitAura UnitAura(List<UInt32> idBuffs, UInt128 creatorGUID)
+        {
+            List<Auras.UnitAura> cachedAuras = UnitAuras.Auras;
+            for (int i = 0; i < cachedAuras.Count; i++)
+            {
+                Auras.UnitAura aura = cachedAuras[i];
+                if (idBuffs.Contains(aura.AuraSpellId) && aura.AuraCreatorGUID == creatorGUID)
+                    return aura;
+            }
+            return new Auras.UnitAura();
+        }
+
+        public Auras.UnitAura UnitAura(UInt32 idBuff, UInt128 creatorGUID)
+        {
+            var idBuffs = new List<UInt32> {idBuff};
+            return UnitAura(idBuffs, creatorGUID);
+        }
+
+        public Auras.UnitAura UnitAura(List<UInt32> idBuffs)
+        {
+            foreach (Auras.UnitAura aura in UnitAuras.Auras)
+            {
+                if (idBuffs.Contains(aura.AuraSpellId))
+                    return aura;
+            }
+            return new Auras.UnitAura();
+        }
+
+        public Auras.UnitAura UnitAura(UInt32 idBuff)
+        {
+            var idBuffs = new List<UInt32> {idBuff};
+            return UnitAura(idBuffs);
+        }
+
+        public int BuffStack(List<UInt32> idBuffs)
+        {
+            try
+            {
+                return BuffManager.AuraStack(BaseAddress, idBuffs);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > BuffStack(List<UInt32> idBuffs): " + e);
+                return -1;
+            }
+        }
+
+        public int BuffStack(UInt32 idBuff)
+        {
+            try
+            {
+                var idBuffs = new List<UInt32> {idBuff};
+                return BuffManager.AuraStack(BaseAddress, idBuffs);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > BuffStack(UInt32 idBuffs): " + e);
+                return -1;
+            }
+        }
+
+        public bool HaveBuff(List<UInt32> idBuffs)
+        {
+            try
+            {
+                return BuffManager.HaveBuff(BaseAddress, idBuffs);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > HaveBuff(List<UInt32> idBuffs): " + e);
+                return false;
+            }
+        }
+
+        public bool HaveBuff(UInt32 idBuffs)
+        {
+            try
+            {
+                return BuffManager.HaveBuff(BaseAddress, idBuffs);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > HaveBuff(UInt32 idBuffs): " + e);
+                return false;
+            }
+        }
+
+        public int AuraTimeLeft(UInt32 idBuff, bool fromMe = false)
+        {
+            Auras.UnitAura aura = fromMe ? UnitAura(idBuff, ObjectManager.Me.Guid) : UnitAura(idBuff);
+            return !aura.IsValid ? 0 : aura.AuraTimeLeftInMs;
+        }
+
+        public bool AuraIsActiveAndExpireInLessThanMs(UInt32 idBuff, uint expireInLessThanMs, bool fromMe = false)
+        {
+            int timeLeft = AuraTimeLeft(idBuff, fromMe);
+            if (timeLeft <= 0)
+                return false;
+            return timeLeft <= expireInLessThanMs;
+        }
+
+        public string GetUnitId()
+        {
+            if (_cleanTimer.IsReady)
+            {
+                for (int i = _cachedUnitIdInfo.Count; i >= 0; i--)
+                {
+                    if (_cachedUnitIdInfo[i].TickCount > Environment.TickCount - 60000)
+                        _cachedUnitIdInfo.Remove(_cachedUnitIdInfo[i]);
+                }
+                _cleanTimer.Reset();
+            }
+            foreach (UnitIdInfo info in _cachedUnitIdInfo)
+            {
+                if (info.Guid == Guid && info.TickCount < Environment.TickCount - 60000)
+                    return info.UnitId;
+                if (info.Guid == Guid)
+                {
+                    _cachedUnitIdInfo.Remove(info);
+                    break; // More than 60 seconds elapsed, regenerate.
+                }
+            }
+            string unitId = UnitId;
+            var tmpClass = new UnitIdInfo {Guid = Guid, TickCount = Environment.TickCount, UnitId = unitId};
+            _cachedUnitIdInfo.Add(tmpClass);
+            return unitId;
         }
 
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
@@ -2785,6 +2774,13 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("WoWUnit > GetDescriptor<T>(Descriptors.UnitFields field): " + e);
                 return default(T);
             }
+        }
+
+        private class UnitIdInfo
+        {
+            public UInt128 Guid;
+            public int TickCount;
+            public string UnitId;
         }
     }
 }

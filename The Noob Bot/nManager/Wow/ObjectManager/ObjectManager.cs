@@ -593,7 +593,8 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false): " + e);
+                Logging.WriteError(
+                    "public static WoWUnit GetNearestWoWUnit(List<WoWUnit> listWoWUnit, Point point, bool ignorenotSelectable = false, bool ignoreBlackList = false, bool allowPlayerControlled = false): " + e);
             }
             return new WoWUnit(0);
         }

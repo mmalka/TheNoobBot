@@ -551,6 +551,7 @@ namespace nManager.Helpful.Forms
                     "using System.Reflection;" + Environment.NewLine +
                     "using System.Threading;" + Environment.NewLine +
                     "using System.Windows.Forms;" + Environment.NewLine +
+                    "using System.Diagnostics; " + Environment.NewLine +
                     "using nManager.Helpful;" + Environment.NewLine +
                     "using nManager.Wow;" + Environment.NewLine +
                     "using nManager.Wow.Bot.States;" + Environment.NewLine +
