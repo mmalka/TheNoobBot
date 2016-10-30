@@ -1,265 +1,292 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Questers>
     <Npc>
-      <Name>Watch Captain Parker</Name>
       <Entry>464</Entry>
+      <Name>Watch Captain Parker</Name>
       <Position>
         <X>-9620.8</X>
         <Y>-1872.82</Y>
         <Z>99.24857</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Darcy Parker</Name>
       <Entry>379</Entry>
+      <Name>Darcy Parker</Name>
       <Position>
         <X>-9633.35</X>
         <Y>-1880.43</Y>
         <Z>61.81894</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Wanted!</Name>
       <Entry>204344</Entry>
+      <Name>Wanted!</Name>
       <Position>
         <X>-9620.599</X>
         <Y>-1891.415</Y>
         <Z>58.92071</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Magistrate Solomon</Name>
       <Entry>344</Entry>
+      <Name>Magistrate Solomon</Name>
       <Position>
         <X>-9218.61</X>
         <Y>-2221.804</Y>
         <Z>67.53988</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Ettin Control Orb</Name>
       <Entry>204351</Entry>
+      <Name>Ettin Control Orb</Name>
       <Position>
         <X>-8833.42</X>
         <Y>-1937.47</Y>
         <Z>132.928</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Bailiff Conacher</Name>
       <Entry>900</Entry>
+      <Name>Bailiff Conacher</Name>
       <Position>
         <X>-9215.916</X>
         <Y>-2215.907</Y>
         <Z>66.18184</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Shawn</Name>
       <Entry>8965</Entry>
+      <Name>Shawn</Name>
       <Position>
         <X>-9351.621</X>
         <Y>-2207.256</Y>
         <Z>61.89819</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Nida</Name>
       <Entry>8962</Entry>
+      <Name>Nida</Name>
       <Position>
         <X>-9351.521</X>
         <Y>-2205.557</Y>
         <Z>61.89754</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Marshal Marris</Name>
       <Entry>382</Entry>
+      <Name>Marshal Marris</Name>
       <Position>
         <X>-9283.36</X>
         <Y>-2297.5</Y>
         <Z>67.4972</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Colonel Troteman</Name>
       <Entry>43221</Entry>
+      <Name>Colonel Troteman</Name>
       <Position>
         <X>-9212.22</X>
         <Y>-2215.35</Y>
         <Z>66.18016</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>John J. Keeshan</Name>
       <Entry>43184</Entry>
+      <Name>John J. Keeshan</Name>
       <Position>
         <X>-9201.863</X>
         <Y>-2154.75</Y>
         <Z>57.18657</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Messner</Name>
       <Entry>43270</Entry>
+      <Name>Messner</Name>
       <Position>
         <X>-9233.03</X>
         <Y>-2700.04</Y>
         <Z>89.08604</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jorgensen</Name>
       <Entry>43272</Entry>
+      <Name>Jorgensen</Name>
       <Position>
         <X>-8717.79</X>
         <Y>-2340.73</Y>
         <Z>156.4093</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Messner</Name>
       <Entry>43300</Entry>
+      <Name>Messner</Name>
       <Position>
         <X>-9230.456</X>
         <Y>-2705.755</Y>
         <Z>89.08671</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Krakauer</Name>
       <Entry>43274</Entry>
+      <Name>Krakauer</Name>
       <Position>
         <X>-8694.16</X>
         <Y>-2144.71</Y>
         <Z>159.8133</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Jorgensen</Name>
       <Entry>43305</Entry>
+      <Name>Jorgensen</Name>
       <Position>
         <X>-8717.79</X>
         <Y>-2340.73</Y>
         <Z>156.4093</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Krakauer</Name>
       <Entry>43303</Entry>
+      <Name>Krakauer</Name>
       <Position>
         <X>-8697.166</X>
         <Y>-2150.931</Y>
         <Z>159.3296</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Danforth</Name>
       <Entry>43275</Entry>
+      <Name>Danforth</Name>
       <Position>
         <X>-8805.051</X>
         <Y>-2206.285</Y>
         <Z>130.9454</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Danforth</Name>
       <Entry>43302</Entry>
+      <Name>Danforth</Name>
       <Position>
         <X>-8805.509</X>
         <Y>-2203.025</Y>
         <Z>136.7118</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>John J. Keeshan</Name>
       <Entry>43458</Entry>
+      <Name>John J. Keeshan</Name>
       <Position>
         <X>-9463.47</X>
         <Y>-2829.04</Y>
         <Z>65.27947</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Krakauer</Name>
       <Entry>43461</Entry>
+      <Name>Krakauer</Name>
       <Position>
         <X>-9463.47</X>
         <Y>-2825.29</Y>
         <Z>65.27998</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Messner</Name>
       <Entry>43459</Entry>
+      <Name>Messner</Name>
       <Position>
         <X>-9465.68</X>
         <Y>-2826.04</Y>
         <Z>65.27947</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Danforth</Name>
       <Entry>43462</Entry>
+      <Name>Danforth</Name>
       <Position>
         <X>-9465.97</X>
         <Y>-2828.57</Y>
         <Z>65.27895</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>John J. Keeshan</Name>
       <Entry>43458</Entry>
+      <Name>John J. Keeshan</Name>
       <Position>
         <X>-9463.47</X>
         <Y>-2829.04</Y>
         <Z>65.27946</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Brubaker</Name>
       <Entry>43508</Entry>
-      <IsDead>False</IsDead>
+      <Name>Brubaker</Name>
       <Position>
         <X>-9676.19</X>
         <Y>-2841.93</Y>
         <Z>54.28123</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Martie Jainrose</Name>
       <Entry>342</Entry>
+      <Name>Martie Jainrose</Name>
       <Position>
         <X>-9245.81</X>
         <Y>-2045.33</Y>
         <Z>77.00335</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Captain Danuvin</Name>
       <Entry>821</Entry>
+      <Name>Captain Danuvin</Name>
       <Position>
         <X>-10509.97</X>
         <Y>1040.674</Y>
         <Z>60.51789</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
     <Npc>
-      <Name>Thor</Name>
       <Entry>523</Entry>
+      <Name>Thor</Name>
       <Position>
         <X>-10553.62</X>
         <Y>1034.418</Y>
         <Z>56.95718</Z>
       </Position>
+      <ContinentId>Azeroth</ContinentId>
     </Npc>
   </Questers>
   <Quests>
     <Quest>
       <Name>Hero's Call: Redridge Mountains!</Name>
-      <Id>26365</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26365</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -271,25 +298,27 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseFlightPath</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <WaitMs>170000</WaitMs>
+          <TaxiEntry>523</TaxiEntry>
           <FlightDestinationX>0.47141459584236</FlightDestinationX>
           <FlightDestinationY>0.24494062364101</FlightDestinationY>
-          <TaxiEntry>523</TaxiEntry>
-          <WaitMs>170000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
-          <QuestId>26365</QuestId>
           <QuestName>Hero's Call: Redridge Mountains!</QuestName>
+          <QuestId>26365</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Wanted: Redridge Gnolls</Name>
-      <Id>26504</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26504</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -301,16 +330,16 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
-          <QuestId>26503</QuestId>
           <QuestName>Still Assessing the Threat</QuestName>
+          <QuestId>26503</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26503</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26503</InternalQuestId>
           <Entry>
             <int>204345</int>
           </Entry>
@@ -323,12 +352,13 @@
               <Z>82.90894</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26503</InternalQuestId>
           <InternalIndex>3</InternalIndex>
+          <InternalQuestId>26503</InternalQuestId>
           <Entry>
             <int>204347</int>
           </Entry>
@@ -341,12 +371,13 @@
               <Z>96.25467</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26503</InternalQuestId>
           <InternalIndex>2</InternalIndex>
+          <InternalQuestId>26503</InternalQuestId>
           <Entry>
             <int>204346</int>
           </Entry>
@@ -359,7 +390,9 @@
               <Z>59.76247</Z>
             </Point>
           </Hotspots>
-        </QuestObjective> 
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
@@ -368,7 +401,7 @@
             <int>423</int>
             <int>426</int>
             <int>712</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-9497.66</X>
@@ -376,27 +409,30 @@
               <Z>79.43018</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
-          <QuestId>26503</QuestId>
           <QuestName>Still Assessing the Threat</QuestName>
+          <QuestId>26503</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>464</NpcEntry>
-          <QuestId>26504</QuestId>
           <QuestName>Wanted: Redridge Gnolls</QuestName>
+          <QuestId>26504</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Parker's Report</Name>
-      <Id>26505</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26505</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -408,10 +444,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Entry>
             <int>931</int>
           </Entry>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9435.215</X>
             <Y>-2234.882</Y>
@@ -421,17 +458,18 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>344</NpcEntry>
-          <QuestId>26505</QuestId>
           <QuestName>Parker's Report</QuestName>
+          <QuestId>26505</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Lake Everstill Clean Up</Name>
-      <Id>26511</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26511</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -443,15 +481,15 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <NpcEntry>344</NpcEntry>
-          <QuestId>26510</QuestId>
           <QuestName>We Must Prepare!</QuestName>
+          <QuestId>26510</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26510</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26510</InternalQuestId>
           <Entry>
             <int>204350</int>
           </Entry>
@@ -459,12 +497,14 @@
           <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
-              <X>-9276.847</X>
-              <Y>-2402.11</Y>
-              <Z>56.66605</Z>
+              <X>-9238.068</X>
+              <Y>-2442.258</Y>
+              <Z>56.04829</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>  
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+        </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
@@ -472,7 +512,7 @@
           <Entry>
             <int>422</int>
             <int>578</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-9276.847</X>
@@ -480,44 +520,42 @@
               <Z>56.66605</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>344</NpcEntry>
-          <QuestId>26510</QuestId>
           <QuestName>We Must Prepare!</QuestName>
+          <QuestId>26510</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>900</NpcEntry>
-          <QuestId>26511</QuestId>
           <QuestName>Lake Everstill Clean Up</QuestName>
+          <QuestId>26511</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Tuning the Gnomecorder</Name>
-      <Id>26512</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26512</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
       <NeedQuestCompletedId>
-        <int>26510</int>
+        <int>26511</int>
       </NeedQuestCompletedId>
-      <AutoComplete>
-        <int>26512</int>
-      </AutoComplete>
-      <AutoAccept>
-        <int>26514</int>
-      </AutoAccept>
       <PickUp>344</PickUp>
       <TurnIn>344</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-9189.014</X>
             <Y>-2309.52</Y>
@@ -525,11 +563,17 @@
           </Position>
         </QuestObjective>
       </Objectives>
+      <AutoComplete>
+        <int>26512</int>
+      </AutoComplete>
+      <AutoAccept>
+        <int>26514</int>
+      </AutoAccept>
     </Quest>
     <Quest>
       <Name>Canyon Romp</Name>
-      <Id>26514</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26514</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -541,16 +585,16 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>382</NpcEntry>
-          <QuestId>26513</QuestId>
           <QuestName>Like a Fart in the Wind</QuestName>
+          <QuestId>26513</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26513</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26513</InternalQuestId>
           <Entry>
             <int>204352</int>
           </Entry>
@@ -568,17 +612,19 @@
               <Z>133.7598</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>58897</CollectItemId>
-          <CollectCount>10</CollectCount>
           <Entry>
             <int>445</int>
             <int>446</int>
             <int>430</int>
           </Entry>
+          <CollectItemId>58897</CollectItemId>
+          <CollectCount>10</CollectCount>
           <Hotspots>
             <Point>
               <X>-9125.261</X>
@@ -591,27 +637,30 @@
               <Z>133.761</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>382</NpcEntry>
-          <QuestId>26513</QuestId>
           <QuestName>Like a Fart in the Wind</QuestName>
+          <QuestId>26513</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>344</NpcEntry>
-          <QuestId>26514</QuestId>
           <QuestName>Canyon Romp</QuestName>
+          <QuestId>26514</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>They've Wised Up...</Name>
-      <Id>26544</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26544</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -624,11 +673,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>58936</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>43185</int>
           </Entry>
+          <CollectItemId>58936</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-8825.669</X>
@@ -636,13 +685,14 @@
               <Z>132.979</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Yowler Must Die!</Name>
-      <Id>26545</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26545</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -655,11 +705,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>58937</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>518</int>
           </Entry>
+          <CollectItemId>58937</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-8890.98</X>
@@ -667,13 +717,14 @@
               <Z>132.467</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>He Who Controls the Ettins</Name>
-      <Id>26519</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26519</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -688,7 +739,7 @@
           <Count>1</Count>
           <Entry>
             <int>711</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-8825.669</X>
@@ -696,13 +747,14 @@
               <Z>132.979</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Nida's Necklace</Name>
-      <Id>26508</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26508</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -732,13 +784,14 @@
               <Z>50.30059</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>      
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>John J. Keeshan</Name>
-      <Id>26567</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26567</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -747,13 +800,12 @@
       </NeedQuestCompletedId>
       <PickUp>43221</PickUp>
       <TurnIn>43184</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>This Ain't My War</Name>
-      <Id>26568</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26568</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -762,13 +814,12 @@
       </NeedQuestCompletedId>
       <PickUp>43184</PickUp>
       <TurnIn>43221</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Weapons of War</Name>
-      <Id>26571</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26571</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -781,11 +832,11 @@
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>1</InternalIndex>
-          <CollectItemId>58953</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>43327</int>
           </Entry>
+          <CollectItemId>58953</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9223.58</X>
@@ -793,15 +844,16 @@
               <Z>92.47486</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
           <InternalIndex>2</InternalIndex>
-          <CollectItemId>58954</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>43329</int>
           </Entry>
+          <CollectItemId>58954</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9223.58</X>
@@ -809,9 +861,11 @@
               <Z>92.47486</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9228.79</X>
@@ -821,17 +875,18 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43221</NpcEntry>
-          <QuestId>26571</QuestId>
           <QuestName>Weapons of War</QuestName>
+          <QuestId>26571</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>His Heart Must Be In It</Name>
-      <Id>26573</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26573</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -856,6 +911,7 @@
               <Z>156.4315</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -872,13 +928,14 @@
               <Z>156.4315</Z>
             </Point>
           </Hotspots>
-        </QuestObjective>         
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>In Search of Bravo Company</Name>
-      <Id>26586</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26586</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -887,13 +944,12 @@
       </NeedQuestCompletedId>
       <PickUp>43221</PickUp>
       <TurnIn>43270</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>Breaking Out is Hard to Do</Name>
-      <Id>26587</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26587</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -905,25 +961,27 @@
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
-            <X>-9211.089</X>
-            <Y>-2775.781</Y>
-             <Z>90.38236</Z>
+            <X>-9155.272</X>
+            <Y>-2693.189</Y>
+            <Z>88.7272</Z>
           </Position>
-        </QuestObjective> <!-- Must be do manuel-->
+        </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43270</NpcEntry>
-          <QuestId>26587</QuestId>
           <QuestName>Breaking Out is Hard to Do</QuestName>
+          <QuestId>26587</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Jorgensen</Name>
-      <Id>26560</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26560</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -935,6 +993,7 @@
       <Objectives>
         <QuestObjective>
           <Objective>MoveTo</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-9084.72</X>
             <Y>-2537.702</Y>
@@ -943,11 +1002,11 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>58969</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>43350</int>
           </Entry>
+          <CollectItemId>58969</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-8699.94</X>
@@ -955,13 +1014,14 @@
               <Z>142.5545</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Krakauer</Name>
-      <Id>26561</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26561</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -976,7 +1036,7 @@
           <Count>1</Count>
           <Entry>
             <int>43363</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-8693.57</X>
@@ -984,13 +1044,14 @@
               <Z>158.401</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>And Last But Not Least... Danforth</Name>
-      <Id>26562</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26562</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1013,14 +1074,15 @@
               <Z>142.0757</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <Count>1</Count>
           <Entry>
             <int>204403</int>
           </Entry>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-8821.83</X>
             <Y>-2192.39</Y>
@@ -1028,18 +1090,31 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Script>=ClickToMove.cs</Script>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-8804.989</X>
+            <Y>-2206.76</Y>
+            <Z>130.6059</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43275</NpcEntry>
-          <QuestId>26562</QuestId>
           <QuestName>And Last But Not Least... Danforth</QuestName>
+          <QuestId>26562</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Return of the Bravo Company</Name>
-      <Id>26563</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26563</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1049,12 +1124,32 @@
       <PickUp>43302</PickUp>
       <TurnIn>43221</TurnIn>
       <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Count>1</Count>
+          <Script>=ClickToMove.cs</Script>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <Position>
+            <X>-8825.373</X>
+            <Y>-2193.082</Y>
+            <Z>138.7551</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <NpcEntry>43221</NpcEntry>
+          <QuestName>Return of the Bravo Company</QuestName>
+          <QuestId>26563</QuestId>
+        </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>They Drew First Blood</Name>
-      <Id>26607</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26607</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1063,13 +1158,12 @@
       </NeedQuestCompletedId>
       <PickUp>43221</PickUp>
       <TurnIn>43184</TurnIn>
-      <Objectives>
-      </Objectives>
+      <Objectives />
     </Quest>
     <Quest>
       <Name>It's Never Over</Name>
-      <Id>26616</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26616</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1084,6 +1178,7 @@
           <Entry>
             <int>43443</int>
           </Entry>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <Position>
             <X>-9300.98</X>
             <Y>-2363.68</Y>
@@ -1091,16 +1186,15 @@
           </Position>
         </QuestObjective>
         <QuestObjective>
-          <Wait>
-            <WaitMs>30000</WaitMs>
-          </Wait>
+          <Objective>None</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Hunting the Hunters</Name>
-      <Id>26638</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26638</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1112,23 +1206,24 @@
       <Objectives>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43461</NpcEntry>
-          <QuestId>26636</QuestId>
           <QuestName>Bravo Company Field Kit: Camouflage</QuestName>
+          <QuestId>26636</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43458</NpcEntry>
-          <QuestId>26639</QuestId>
           <QuestName>Point of Contact: Brubaker</QuestName>
+          <QuestId>26639</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26636</InternalQuestId>
           <InternalIndex>1</InternalIndex>
+          <InternalQuestId>26636</InternalQuestId>
           <Entry>
             <int>204424</int>
           </Entry>
@@ -1141,12 +1236,13 @@
               <Z>57.58617</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
-          <InternalQuestId>26636</InternalQuestId>
           <InternalIndex>2</InternalIndex>
+          <InternalQuestId>26636</InternalQuestId>
           <Entry>
             <int>204425</int>
           </Entry>
@@ -1159,6 +1255,8 @@
               <Z>57.58617</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1166,7 +1264,7 @@
           <Count>8</Count>
           <Entry>
             <int>4462</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-9615.035</X>
@@ -1184,34 +1282,39 @@
               <Z>58.2957</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43508</NpcEntry>
-          <QuestId>26639</QuestId>
           <QuestName>Point of Contact: Brubaker</QuestName>
+          <QuestId>26639</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>PickUpQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43508</NpcEntry>
-          <QuestId>26640</QuestId>
           <QuestName>Unspeakable Atrocities</QuestName>
+          <QuestId>26640</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43458</NpcEntry>
-          <QuestId>26640</QuestId>
           <QuestName>Unspeakable Atrocities</QuestName>
+          <QuestId>26640</QuestId>
         </QuestObjective>
         <QuestObjective>
-          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Objective>InteractWith</Objective>
           <Entry>
             <int>43371</int>
           </Entry>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>-9450.27</X>
             <Y>-2838.51</Y>
@@ -1221,24 +1324,26 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43461</NpcEntry>
-          <QuestId>26636</QuestId>
           <QuestName>Bravo Company Field Kit: Camouflage</QuestName>
+          <QuestId>26636</QuestId>
         </QuestObjective>
         <QuestObjective>
           <Objective>TurnInQuest</Objective>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <NpcEntry>43462</NpcEntry>
-          <QuestId>26638</QuestId>
           <QuestName>Hunting the Hunters</QuestName>
+          <QuestId>26638</QuestId>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>An Unwelcome Guest</Name>
-      <Id>26509</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26509</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1250,11 +1355,11 @@
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <CollectItemId>3631</CollectItemId>
-          <CollectCount>1</CollectCount>
           <Entry>
             <int>345</int>
           </Entry>
+          <CollectItemId>3631</CollectItemId>
+          <CollectCount>1</CollectCount>
           <Hotspots>
             <Point>
               <X>-9279.686</X>
@@ -1262,13 +1367,14 @@
               <Z>75.35896</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>
     <Quest>
       <Name>Render's Army</Name>
-      <Id>26570</Id>
       <RaceMask>2098253</RaceMask>
+      <Id>26570</Id>
       <QuestLevel>10</QuestLevel>
       <MinLevel>10</MinLevel>
       <MaxLevel>25</MaxLevel>
@@ -1285,7 +1391,7 @@
           <Entry>
             <int>4463</int>
             <int>615</int>
-          </Entry>     
+          </Entry>
           <Hotspots>
             <Point>
               <X>-8761.228</X>
@@ -1298,6 +1404,7 @@
               <Z>155.5802</Z>
             </Point>
           </Hotspots>
+          <IsObjectiveCompleted>false</IsObjectiveCompleted>
         </QuestObjective>
       </Objectives>
     </Quest>

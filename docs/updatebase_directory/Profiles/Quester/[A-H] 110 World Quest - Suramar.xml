@@ -134,7 +134,7 @@
         <Y>5304.354</Y>
         <Z>68.95671</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -537,7 +537,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>451.0614</X>
         <Y>4769.633</Y>
@@ -638,6 +638,36 @@
               <X>1980.019</X>
               <Y>3230.88</Y>
               <Z>229.2436</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>WANTED: Apothecary Faldren</Name>
+      <Id>44017</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation> 
+        <X>1377.158</X>
+        <Y>4302.001</Y>
+        <Z>111.3655</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>=IsTankScript.cs</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>110870</int>
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>1345.403</X>
+              <Y>4278.943</Y>
+              <Z>111.3678</Z>
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>

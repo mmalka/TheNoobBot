@@ -13,7 +13,7 @@
         <Y>6982.044</Y>
         <Z>108.9087</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -41,7 +41,7 @@
         <Y>6644.331</Y>
         <Z>95.13007</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -611,7 +611,7 @@
         <Y>6188.538</Y>
         <Z>71.43256</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpNPC</Objective>
@@ -710,7 +710,7 @@
         <Y>7416.663</Y>
         <Z>5.337918</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective> <!-- Wildeyed Undergrell -->
@@ -941,7 +941,7 @@
         <Y>5824.66</Y>
         <Z>295.2301</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1262,7 +1262,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>2996.085</X>
         <Y>6941.985</Y>
@@ -1823,7 +1823,7 @@
         <Y>7953.205</Y>
         <Z>10.5512</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -2414,7 +2414,7 @@
         <Y>6893.181</Y>
         <Z>1.908257</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -2440,9 +2440,9 @@
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
       <WorldQuestLocation>
-        <X>319.8108</X>
-        <Y>7469.937</Y>
-        <Z>150.0439</Z>
+        <X>2938.28</X>
+        <Y>6443.609</Y>
+        <Z>207.0251</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>

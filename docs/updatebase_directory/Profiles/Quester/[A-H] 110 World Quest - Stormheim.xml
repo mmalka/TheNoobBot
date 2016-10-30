@@ -13,7 +13,7 @@
         <Y>2460.535</Y>
         <Z>269.7839</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -154,7 +154,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>4359.695</X>
         <Y>1655.477</Y>
@@ -174,6 +174,7 @@
               <Z>4.098811</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -210,7 +211,7 @@
         <Y>109.8177</Y>
         <Z>19.88334</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -729,26 +730,25 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
-          <InternalIndex>1</InternalIndex>
           <Count>4</Count>
           <Entry>
-            <int>15502</int>
+            <int>105502</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>3563.49</X>
-              <Y>1480.191</Y>
-              <Z>5.341881</Z>
+              <X>3363.34</X>
+              <Y>1469.036</Y>
+              <Z>57.40516</Z>
             </Point>
             <Point>
-              <X>3363.989</X>
-              <Y>1569.026</Y>
-              <Z>11.02585</Z>
+              <X>3326.486</X>
+              <Y>1409.615</Y>
+              <Z>82.22283</Z>
             </Point>
             <Point>
-              <X>3400.393</X>
-              <Y>1691.706</Y>
-              <Z>0.427967</Z>
+              <X>3480.739</X>
+              <Y>1473.393</Y>
+              <Z>40.20412</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
@@ -1067,7 +1067,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>3016.831</X>
         <Y>3147.138</Y>
@@ -1283,7 +1283,7 @@
         <Y>2975.88</Y>
         <Z>16.47831</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1304,6 +1304,58 @@
               <Z>9.074306</Z>
             </Point>
           </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Fel Hide</Name>
+      <Id>41569</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
+      <WorldQuestLocation>
+        <X>2281.731</X>
+        <Y>1391.676</Y>
+        <Z>-0.3832587</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>103675</int> <!-- Felhide Gargantuan -->
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>2292.17</X>
+              <Y>1345.545</Y>
+              <Z>-1.503109</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Count>1</Count>
+          <Entry>
+            <!-- Felhide Gargantuan -->
+            <int>247422</int>
+            <int>248042</int>
+            <int>248045</int>
+            <int>248047</int>
+            <int>248049</int>
+            <int>248050</int>
+            <int>248051</int>
+            <int>248053</int>
+            <int>248054</int>
+          </Entry>
+          <Position>
+            <X>2292.17</X>
+            <Y>1345.545</Y>
+            <Z>-1.503109</Z>
+          </Position>
+          <WaitMs>1000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>

@@ -9930,6 +9930,18 @@
     <Type>QuestGiver</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
+    <Npc>
+    <Entry>7783</Entry>
+    <Name>Loramus Thalipedes</Name>
+    <Position>
+      <X>-11220.29</X>
+      <Y>-3475.865</Y>
+      <Z>9.681964</Z>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>QuestGiver</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
   <Npc>
     <Entry>7784</Entry>
     <Name>Homing Robot OOX-17/TN</Name>

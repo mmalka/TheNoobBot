@@ -617,6 +617,36 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>WANTED: Shara Felbreath</Name>
+      <Id>43619</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>5731.826</X>
+        <Y>4093.11</Y>
+        <Z>610.7051</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <!-- <InternalIndex>1</InternalIndex> Removed because not known -->
+          <Count>1</Count>
+          <Entry>
+            <int>97093</int> <!-- Shara Felbreath -->
+          </Entry>
+          <Hotspots>
+            <Point> 
+              <X>5742.983</X>
+              <Y>4090.582</Y>
+              <Z>608.2803</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Border Reinforcements</Name>
       <Id>41308</Id>
       <QuestLevel>110</QuestLevel>
@@ -813,7 +843,7 @@
         <Y>4348.408</Y>
         <Z>673.926</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -993,10 +1023,10 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <WorldQuestLocation>
-        <X>4288.236</X>
-        <Y>5769.085</Y>
-        <Z>443.2133</Z>
+      <WorldQuestLocation> 
+        <X>4276.997</X>
+        <Y>5940.405</Y>
+        <Z>424.5907</Z>
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
@@ -1072,7 +1102,7 @@
         <Y>4647.058</Y>
         <Z>631.7993</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1251,6 +1281,36 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>WANTED: Majestic Elderhorn</Name>
+      <Id>44292</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>5416.318</X>
+        <Y>4371.089</Y>
+        <Z>686.7238</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>=IsTankScript.cs</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>96410</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>5421.97</X>
+              <Y>4338.17</Y>
+              <Z>681.5777</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Unstable Portal</Name>
       <Id>41428</Id>
       <QuestLevel>110</QuestLevel>
@@ -1317,7 +1377,7 @@
         <Y>4667.257</Y>
         <Z>648.7774</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -1523,7 +1583,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>5801.399</X>
         <Y>4610.358</Y>
@@ -1620,18 +1680,11 @@
       </WorldQuestLocation>
       <Objectives>
         <QuestObjective>
-          <Objective>MoveTo</Objective>
-          <Position>
-            <X>3105.714</X>
-            <Y>3924.776</Y>
-            <Z>1181.478</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
-          <Objective>PickUpObject</Objective>
+          <Objective>PickUpNPC</Objective>
           <CollectCount>50</CollectCount>
           <Entry>
-            <int>103196</int> 
+            <int>103196</int>
+            <int>247074</int>
             <int>247075</int>
           </Entry>
           <Hotspots>
@@ -1718,6 +1771,188 @@
         </QuestObjective>
       </Objectives>
     </Quest>
+    <Quest>
+      <Name>WANTED: Gurbog da Basher</Name>
+      <Id>41819</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4174.109</X>
+        <Y>3678.978</Y>
+        <Z>878.0676</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>96590</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4174.109</X>
+              <Y>3678.978</Y>
+              <Z>878.0676</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Mists Take You</Name>
+      <Id>41122</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>3155.96</X>
+        <Y>3933.15</Y>
+        <Z>1175.463</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>35</Count>
+          <Entry>
+            <int>103150</int>
+            <int>103173</int>
+            <int>103174</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>3135.859</X>
+              <Y>3856.165</Y>
+              <Z>1191.275</Z>
+            </Point>
+            <Point>
+              <X>3212.316</X>
+              <Y>3864.38</Y>
+              <Z>1205.512</Z>
+            </Point>
+            <Point>
+              <X>3104.465</X>
+              <Y>3847.052</Y>
+              <Z>1232.993</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Boilback Plague</Name>
+      <Id>40980</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4978.562</X>
+        <Y>5056.782</Y>
+        <Z>788.1032</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>8</Count>
+          <Entry>
+            <int>102361</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4888.201</X>
+              <Y>5106.688</Y>
+              <Z>780.0096</Z>
+            </Point>
+            <Point>
+              <X>5041.987</X>
+              <Y>5039.208</Y>
+              <Z>788.3463</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Snowfeather Swarm!</Name>
+      <Id>44892</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>5815.367</X>
+        <Y>5329.313</Y>
+        <Z>7.228535</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>50</Count>
+          <Entry>
+            <int>115665</int>
+            <int>115677</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>5832.601</X>
+              <Y>5395.707</Y>
+              <Z>6.583255</Z>
+            </Point>
+            <Point>
+              <X>5773.743</X>
+              <Y>5301.929</Y>
+              <Z>23.59343</Z>
+            </Point>
+            <Point>
+              <X>5844.157</X>
+              <Y>5205.264</Y>
+              <Z>30.12715</Z>
+            </Point>
+            <Point>
+              <X>6095.185</X>
+              <Y>5079.102</Y>
+              <Z>27.95016</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Bristled Bear Skin</Name>
+      <Id>41233</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>4933.566</X>
+        <Y>5066.442</Y>
+        <Z>784.355</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>134131</CollectItemId>
+          <CollectCount>12</CollectCount>
+          <Entry>
+            <int>96146</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>4912.46</X>
+              <Y>5098.628</Y>
+              <Z>783.7261</Z>
+            </Point>
+            <Point>
+              <X>5037.151</X>
+              <Y>5033.301</Y>
+              <Z>788.4081</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
   </Quests>
   <Blackspots>
     <QuesterBlacklistRadius>
@@ -1755,6 +1990,33 @@
         <Z>1169.88</Z>
       </Position>
       <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Mists Take You" -->
+      <Position>
+        <X>3139.319</X>
+        <Y>3899.232</Y>
+        <Z>1225.239</Z>
+      </Position>
+      <Radius>30</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Mists Take You" -->
+      <Position>
+        <X>3061.93</X>
+        <Y>3864.297</Y>
+        <Z>1193.306</Z>
+      </Position>
+      <Radius>50</Radius>
+    </QuesterBlacklistRadius>
+    <QuesterBlacklistRadius>
+      <!-- Required by "Boilback Plague" -->
+      <Position>
+        <X>4815.964</X>
+        <Y>5082.875</Y>
+        <Z>771.0292</Z>
+      </Position>
+      <Radius>60</Radius>
     </QuesterBlacklistRadius>
   </Blackspots>
 </QuesterProfile>

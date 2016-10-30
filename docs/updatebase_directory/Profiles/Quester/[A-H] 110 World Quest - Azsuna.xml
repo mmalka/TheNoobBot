@@ -203,7 +203,7 @@
         <Y>7809.029</Y>
         <Z>1.415371</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -224,6 +224,37 @@
       </Objectives>
     </Quest>
     <Quest>
+      <Name>Slab of Bacon</Name>
+      <Id>41551</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1279.518</X>
+        <Y>7575.911</Y>
+        <Z>36.18946</Z>
+      </WorldQuestLocation>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Entry>
+            <int>103784</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1279.518</X>
+              <Y>7575.911</Y>
+              <Z>36.18946</Z>
+            </Point>
+          </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
       <Name>Felwort</Name>
       <Id>41514</Id>
       <QuestLevel>110</QuestLevel>
@@ -234,7 +265,7 @@
         <Y>5325.36</Y>
         <Z>47.72783</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -414,7 +445,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>817.2819</X>
         <Y>5796.125</Y>
@@ -470,6 +501,7 @@
               <Z>37.25912</Z>
             </Point>
           </Hotspots>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -501,7 +533,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>-748.1087</X>
         <Y>7863.687</Y>
@@ -919,7 +951,7 @@
         <Y>7149.966</Y>
         <Z>9.58573</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1034,7 +1066,7 @@
         <Y>7193.648</Y>
         <Z>68.92852</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -2458,7 +2490,7 @@
         <Y>5553.133</Y>
         <Z>1.304099</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Cooking) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -2488,7 +2520,7 @@
         <Y>6762.221</Y>
         <Z>56.11096</Z>
       </WorldQuestLocation>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Herbalism) &gt; 99);</ScriptCondition>
       <Objectives>
         <QuestObjective>
           <Objective>PickUpObject</Objective>
@@ -2596,7 +2628,7 @@
       <QuestLevel>110</QuestLevel>
       <MinLevel>110</MinLevel>
       <MaxLevel>110</MaxLevel>
-      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 0);</ScriptCondition>
+      <ScriptCondition>return (Skill.GetValue(SkillLine.Skinning) &gt; 99);</ScriptCondition>
       <WorldQuestLocation>
         <X>351.7706</X>
         <Y>7881.979</Y>
@@ -2671,6 +2703,101 @@
             </Point>
           </Hotspots>
           <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+    <Quest>
+      <Name>Straight From the Source</Name>
+      <Id>44847</Id>
+      <QuestLevel>110</QuestLevel>
+      <MinLevel>110</MinLevel>
+      <MaxLevel>110</MaxLevel>
+      <WorldQuestLocation>
+        <X>1205.948</X>
+        <Y>6159.579</Y>
+        <Z>85.8343</Z>
+      </WorldQuestLocation>
+      <Objectives>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=UseLuaMacroOnPosition.cs</Script>
+          <LuaMacro>/click ExtraActionButton1</LuaMacro>
+          <InternalIndex>3</InternalIndex>
+          <Count>1</Count>
+          <Position>
+            <X>1194.604</X>
+            <Y>6149.459</Y>
+            <Z>84.74923</Z>
+          </Position>
+          <Range>60</Range>
+          <WaitMs>8000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=UseLuaMacroOnPosition.cs</Script>
+          <LuaMacro>/click ExtraActionButton1</LuaMacro>
+          <InternalIndex>4</InternalIndex>
+          <Count>1</Count>
+          <Position>
+            <X>1282.351</X>
+            <Y>6127.508</Y>
+            <Z>87.79391</Z>
+          </Position>
+          <Range>60</Range>
+          <WaitMs>8000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=UseLuaMacroOnPosition.cs</Script>
+          <LuaMacro>/click ExtraActionButton1</LuaMacro>
+          <InternalIndex>1</InternalIndex>
+          <Count>1</Count>
+          <Position>
+            <X>1126.196</X>
+            <Y>6105.191</Y>
+            <Z>84.34274</Z>
+          </Position>
+          <Range>60</Range>
+          <WaitMs>8000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>CSharpScript</Objective>
+          <Script>=UseLuaMacroOnPosition.cs</Script>
+          <LuaMacro>/click ExtraActionButton1</LuaMacro>
+          <InternalIndex>5</InternalIndex>
+          <Count>1</Count>
+          <Position>
+            <X>1144.939</X>
+            <Y>6026.274</Y>
+            <Z>79.88235</Z>
+          </Position>
+          <Range>60</Range>
+          <WaitMs>8000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <InternalIndex>6</InternalIndex>
+          <Count>4</Count>
+          <Entry>
+            <int>90616</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>1117.509</X>
+              <Y>6020.28</Y>
+              <Z>99.43916</Z>
+            </Point>
+            <Point>
+              <X>1232.989</X>
+              <Y>6154.349</Y>
+              <Z>85.62845</Z>
+            </Point>
+            <Point>
+              <X>1210.638</X>
+              <Y>6109.935</Y>
+              <Z>98.75216</Z>
+            </Point>
+          </Hotspots>
         </QuestObjective>
       </Objectives>
     </Quest>
